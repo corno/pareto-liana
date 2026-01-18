@@ -32,6 +32,15 @@ export const $: g_.Types  = types(
             "sub group": tstate(t.component_cyclic("Group")),
             "optional": tstate(t.optional(t.component_cyclic("Group Part"))),
             "nothing": tstate(t.nothing()),
+            "rich list": tstate(t.group({
+                "elements": prop(t.list(t.component_cyclic("Group Part"))),
+                "if empty": prop(t.component_cyclic("Group Part")),
+                "if not empty": prop(t.group({
+                    "before": prop(t.component_cyclic("Group Part")),
+                    "separator": prop(t.component_cyclic("Group Part")),
+                    "after": prop(t.component_cyclic("Group Part")),
+                })),
+            }))
         })),
 
         "Block": type(t.list(t.component("Block Part"))),
@@ -42,6 +51,15 @@ export const $: g_.Types  = types(
             "sub block": tstate(t.component_cyclic("Block")),
             "optional": tstate(t.optional(t.component_cyclic("Block Part"))),
             "nothing": tstate(t.nothing()),
+            "rich list": tstate(t.group({
+                "elements": prop(t.list(t.component_cyclic("Block Part"))),
+                "if empty": prop(t.component_cyclic("Block Part")),
+                "if not empty": prop(t.group({
+                    "before": prop(t.component_cyclic("Block Part")),
+                    "separator": prop(t.component_cyclic("Block Part")),
+                    "after": prop(t.component_cyclic("Block Part")),
+                })),
+            }))
         })),
     }
 )

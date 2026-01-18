@@ -104,14 +104,7 @@ export const $: g_.Types = types(
 
         "Expression": type(t.state_group({
             "raw": tstate(t.component("Block Part")),
-            "number literal": tstate(t.number_local(n.approximation(10))),
-            "true": tstate(t.nothing()),
-            "false": tstate(t.nothing()),
-            "null": tstate(t.nothing()),
-            "string literal": tstate(t.component("String Literal")),
-            "object literal": tstate(t.group({
-                "properties": prop(t.dictionary(t.component_cyclic("Expression"))),
-            })),
+
             "array literal": tstate(t.list(t.component_cyclic("Expression"))),
             "arrow function": tstate(t.group({
                 "parameters": prop(t.list(t.group({
@@ -127,7 +120,15 @@ export const $: g_.Types = types(
             "call": tstate(t.group({
                 "function selection": prop(t.component_cyclic("Expression")),
                 "arguments": prop(t.list(t.component_cyclic("Expression"))),
-            }))
+            })),
+            "false": tstate(t.nothing()),
+            "null": tstate(t.nothing()),
+            "number literal": tstate(t.number_local(n.approximation(10))),
+            "object literal": tstate(t.group({
+                "properties": prop(t.dictionary(t.component_cyclic("Expression"))),
+            })),
+            "string literal": tstate(t.component("String Literal")),
+            "true": tstate(t.nothing()),
 
         })),
 

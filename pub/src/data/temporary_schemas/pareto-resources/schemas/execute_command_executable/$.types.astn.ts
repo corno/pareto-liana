@@ -19,11 +19,17 @@ export const $: g_.Types = types(
 
         "Error": type(t.state_group({
             "failed to spawn": tstate(t.group({
-                "message": prop(t.text_local(text('single line'))),
+                "message": prop(t.group({
+                    "lines": prop(t.list(t.text_local(text('single line')))),
+                    "raw": prop(t.text_local(text('multi line'))),
+                })),
             })),
             "non zero exit code": tstate(t.group({
                 "exit code": prop(t.optional(t.number_local(n.integer()))),
-                "stderr": prop(t.text_local(text('multi line'))),
+                "stderr": prop(t.group({
+                    "lines": prop(t.list(t.text_local(text('single line')))),
+                    "raw": prop(t.text_local(text('multi line'))),
+                })),
             })),
         })),
     }
