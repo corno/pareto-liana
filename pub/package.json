@@ -10,6 +10,6 @@
   "dependencies": {
     "astn": "^0.113.33",
     "pareto": "^0.80.0",
-    "pareto-fountain-pen": "^0.4.0"
+    "pareto-fountain-pen": "^0.4.1"
   }
 }
