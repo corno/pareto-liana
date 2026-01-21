@@ -6,7 +6,7 @@ import {
     wrap_dictionary,
     wrap_state_group,
     wrap_reference,
-} from 'pareto-core-internals/dist/algorithm_types/transformer/deprecated_shorthands_for_unresolved'
+} from 'pareto-core-shorthands/dist/unresolved_data'
 
 import { $$ as op_flatten_dictionaries } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
 
