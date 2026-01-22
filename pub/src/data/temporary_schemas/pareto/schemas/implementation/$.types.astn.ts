@@ -43,7 +43,7 @@ export const $: g_.Types = types(
             "algorithms": prop(t.dictionary(t.group({
                 "type": prop(t.component("Type Reference")),
                 "expression": prop(t.component_cyclic("Expression")),
-                "temp has error": prop(t.boolean()),
+                "temp has abort": prop(t.boolean()),
                 "temp has lookups": prop(t.boolean()),
                 "temp has parameters": prop(t.boolean()),
             }))),

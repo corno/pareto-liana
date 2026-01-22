@@ -7,15 +7,15 @@ import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas
 
 import { m, } from "pareto/dist/shorthands/implementation"
 
-import * as t_migration_boilerplate from "./exupery_implementation_migrate_boilerplate"
+import * as t_migration_boilerplate from "./pareto_implementation_migrate_boilerplate"
 
-import * as t_resolver from "./exupery_implementation_resolve"
+import * as t_resolver from "./pareto_implementation_resolve"
 
-import * as t_serialize from "./exupery_implementation_serialize"
-// import * as t_deserialize from "./exupery_implementation_deserialize"
+import * as t_serialize from "./pareto_implementation_serialize"
+// import * as t_deserialize from "./pareto_implementation_deserialize"
 
-import * as t_marshall from "./exupery_implementation_marshall"
-import * as t_unmarshall from "./exupery_implementation_unmarshall"
+import * as t_marshall from "./pareto_implementation_marshall"
+import * as t_unmarshall from "./pareto_implementation_unmarshall"
 
 export const Schema_Tree = (
     $: d_in.Schema_Tree,
@@ -30,11 +30,11 @@ export const Schema_Tree = (
                 return m.set(
                     _p.dictionary.filter(
                         _p.dictionary.literal<_pi.Optional_Value<d_out.Module_Set.D>>({
-                            // "migration boilerplate.ts": _p.optional.set(t_migration_boilerplate.Schema($, {
-                            //     'path': $p.path,
-                            //     'imports': $.imports,
-                            //     'constrained': $.complexity[0] === 'constrained'
-                            // })),
+                            "migration boilerplate.ts": _p.optional.set(t_migration_boilerplate.Schema($, {
+                                'path': $p.path,
+                                'imports': $.imports,
+                                'constrained': $.complexity[0] === 'constrained'
+                            })),
 
                             // "resolve.ts": _p.sg($.complexity, ($) => {
                             //     switch ($[0]) {

@@ -7,8 +7,8 @@ import * as d_in from "../../../../../interface/generated/pareto/schemas/module/
 import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/interface"
-import * as t_exupery_interface_main from "../../../../manual/schemas/schema/transformers/exupery_interface_main"
-import * as t_exupery_interface_types from "../../../../manual/schemas/schema/transformers/exupery_interface_types"
+import * as t_pareto_interface_main from "../../../../manual/schemas/schema/transformers/pareto_interface_main"
+import * as t_pareto_interface_types from "../../../../manual/schemas/schema/transformers/pareto_interface_types"
 
 
 export const Operations = (
@@ -21,14 +21,14 @@ export const Operations = (
     // return sh.t.group($.__d_map(($) => _p.sg($, ($) => {
     //     switch ($[0]) {
     //         case 'operation': return _p.ss($, ($) => sh.type.transformer(
-    //             t_exupery_interface_types.Type_Node($.result, { 'add location': $p['add location'] }),
-    //             t_exupery_interface_types.Type_Node(
+    //             t_pareto_interface_types.Type_Node($.result, { 'add location': $p['add location'] }),
+    //             t_pareto_interface_types.Type_Node(
     //                 $.context,
     //                 {
     //                     'add location': $p['add location'],
     //                 }
     //             ),
-    //             $.parameters.__d_map(($) => _p.sg($, ($) => t_exupery_interface_types.Type_Node($, { 'add location': $p['add location'] }))),
+    //             $.parameters.__d_map(($) => _p.sg($, ($) => t_pareto_interface_types.Type_Node($, { 'add location': $p['add location'] }))),
     //         ))
     //         case 'set': return _p.ss($, ($) => Operations($, { 'add location': $p['add location'] }))
     //         default: return _p.au($[0])
@@ -38,8 +38,29 @@ export const Operations = (
 
 export const Module = ($: d_in.Module): d_out.Module_Set => {
     return _psh.dictionary.literal({
-        "core": sh.m.set({
-
+        "generic": sh.m.set({
+            "resolve.ts": sh.m.module(
+                {
+                    "location": sh.import_.sibling("location", []),
+                },
+                {
+                    "Error": sh.type.data(sh.t.group({
+                        "type": sh.t.state_group({
+                            "cyclic lookup in acyclic context": sh.t.text(),
+                            "missing required entry": sh.t.text(),
+                            "no context lookup": sh.t.nothing(),
+                            "no such entry": sh.t.text(),
+                            "not the same node": sh.t.text(),
+                            "wrong state": sh.t.group({
+                                "expected": sh.t.text(),
+                                "found": sh.t.text(),
+                            }),
+                            "tbd": sh.t.text(),
+                        }),
+                        "location": sh.t.component_imported("location", "Location",),
+                    })),
+                }
+            ),
             "location.ts": sh.m.module(
                 {},
                 {
@@ -50,7 +71,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     })),
                 }
             ),
-            
+
         }),
 
         // "operations": m.module(
@@ -70,6 +91,6 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
         //         "operations": type({}, Operations($.operations))
         //     },
         // ),
-        "schemas": t_exupery_interface_main.Schema_Tree($['schema tree']),
+        "schemas": t_pareto_interface_main.Schema_Tree($['schema tree']),
     })
 }

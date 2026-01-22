@@ -62,25 +62,12 @@ export const Resolvers = (
                 true,
                 true,
                 true,
-                sh.e.block(
-                    [],
+                Node_Resolver(
+                    $['type resolver'],
                     {
-                        "l2s": sh.variable(
-                            null,
-                            sh.e.select_from_parameter_deprecated("location 2 string", [])
-                        ),
-                        "params": sh.variable(
-                            null,
-                            sh.e.select_from_parameter_deprecated("parameters", [])
-                        )
-                    },
-                    Node_Resolver(
-                        $['type resolver'],
-                        {
-                            'temp type': key,
-                            'temp subselection': _p.list.literal([])
-                        }
-                    )
+                        'temp type': key,
+                        'temp subselection': _p.list.literal([])
+                    }
                 ),
 
             )),

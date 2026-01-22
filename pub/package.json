@@ -1,6 +1,6 @@
 {
   "name": "pareto-liana",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A library for the Liana schema modeling language",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "astn": "^0.113.35",
-    "pareto": "^0.80.4",
+    "pareto": "file:../../pareto/pub",
     "pareto-fountain-pen": "^0.4.4"
   }
 }

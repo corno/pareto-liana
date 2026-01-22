@@ -14,7 +14,11 @@ export const Signatures = (
 ): d_out.Module_Set.D => {
     return sh.m.module(
         {
-            "resolve": sh.import_.external("pareto-core-internals", ["dist", "algorithm types", "refiner", "resolve"]),
+            "generic": sh.import_.ancestor(
+                2,
+                "generic",
+                ["resolve"]
+            ),
             "resolved": sh.import_.sibling("data", ["resolved"]),
             "unresolved": sh.import_.sibling("data", ["unresolved"]),
         },
@@ -22,8 +26,8 @@ export const Signatures = (
             ($, key) => sh.type.refiner(
                 sh.t.component_imported("unresolved", key),
                 sh.t.component_imported("resolved", key),
-                null,
-                $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm._type.refiner.lookups.O.D => {
+                sh.t.component_imported("generic", "Error"),
+                $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
                     const x = $.referent
                     return _p.sg($.type, ($) => {
                         switch ($[0]) {

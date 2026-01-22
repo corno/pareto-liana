@@ -6,15 +6,15 @@ import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface
 
 import { m } from "pareto/dist/shorthands/interface"
 
-import * as t_migrate_boilerplate from "./exupery_interface_migrate_boilerplate"
-import * as t_resolve from "./exupery_interface_resolve"
-import * as t_types from "./exupery_interface_types"
+import * as t_migrate_boilerplate from "./pareto_interface_migrate_boilerplate"
+import * as t_resolve from "./pareto_interface_resolve"
+import * as t_types from "./pareto_interface_types"
 
-import * as t_marshall from "./exupery_interface_marshall"
-import * as t_unmarshall from "./exupery_interface_unmarshall"
+import * as t_marshall from "./pareto_interface_marshall"
+import * as t_unmarshall from "./pareto_interface_unmarshall"
 
-import * as t_serialize from "./exupery_interface_serialize"
-import * as t_deserialize from "./exupery_interface_deserialize"
+import * as t_serialize from "./pareto_interface_serialize"
+import * as t_deserialize from "./pareto_interface_deserialize"
 
 
 // import * as operations from "pareto-standard-operations"

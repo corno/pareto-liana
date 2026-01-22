@@ -9,20 +9,20 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/sche
 //transformations
 
 import * as t_interface_to_typescript_temp from "pareto/dist/implementation/manual/schemas/interface/transformers/typescript_light"
-import * as t_pareto_to_exupery_interface from "./exupery_interface"
+import * as t_liana_to_pareto_interface from "./pareto_interface"
 import * as t_typescript_light_to_fountain_pen_block from "pareto/dist/modules/typescript_light/implementation/manual/schemas/typescript_light/transformers/fountain_pen_block"
 
 //resolvers
-// import * as r_exupery_interface from "pareto/dist/implementation/generated/pareto/schemas/interface/resolve"
+// import * as r_pareto_interface from "pareto/dist/implementation/generated/pareto/schemas/interface/resolve"
 
 
 export const Module = ($: d_in.Module): d_out.Directory => {
     return t_typescript_light_to_fountain_pen_block.Directory(
         t_interface_to_typescript_temp.Module_Set(
-            t_pareto_to_exupery_interface.Module($),
+            t_liana_to_pareto_interface.Module($),
 
-            // r_exupery_interface.r_Module_Set(
-            //     t_pareto_to_exupery_interface.Module($),
+            // r_pareto_interface.r_Module_Set(
+            //     t_pareto_to_pareto_interface.Module($),
             //     {
             //         'parameters': {
             //             'lookups': null,

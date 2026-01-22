@@ -33,7 +33,7 @@ export const Schema = (
                 " location": _p.dictionary.literal({
                     "": sh.import_.ancestor(
                         $p.depth + 2,
-                        "core",
+                        "generic",
                         [
                             "location",
                         ],

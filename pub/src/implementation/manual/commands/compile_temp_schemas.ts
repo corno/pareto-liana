@@ -23,10 +23,9 @@ export type Package_Error =
 import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
-import * as r_pareto_module from "../../temp/resolvers/module"
-import * as t_pareto_module_to_fountain_pen_block__implementation from "../schemas/module/transformers/temp_typescript_implementation"
-import * as t_pareto_module_to_fountain_pen_block__interface from "../schemas/module/transformers/temp_typescript_interface"
-import * as t_pareto_module_to_fountain_pen_block__interface2 from "../schemas/module/transformers/temp_typescript_interface"
+import * as r_liana_module from "../../temp/resolvers/module"
+import * as t_liana_module_to_fountain_pen_block__implementation from "../schemas/module/transformers/temp_typescript_implementation"
+import * as t_liana_module_to_fountain_pen_block__interface from "../schemas/module/transformers/temp_typescript_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as ds_context_path from "pareto-resources/dist/implementation/manual/schemas/context_path/deserializers"
 
@@ -72,7 +71,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             ),
 
                             _p.refine_without_error_transformation(
-                                (abort) => r_pareto_module.Module(
+                                (abort) => r_liana_module.Module(
                                     $.module,
                                     ($) => abort(['could not deserialize module', $]),
                                     null,
@@ -84,7 +83,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': interface_module_path,
-                                            'directory': t_pareto_module_to_fountain_pen_block__interface.Module(
+                                            'directory': t_liana_module_to_fountain_pen_block__interface.Module(
                                                 $,
                                             ),
                                             'indentation': "    ",
@@ -98,7 +97,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': implementation_module_path,
-                                            'directory': t_pareto_module_to_fountain_pen_block__implementation.Module(
+                                            'directory': t_liana_module_to_fountain_pen_block__implementation.Module(
                                                 $,
                                             ),
                                             'indentation': "    ",

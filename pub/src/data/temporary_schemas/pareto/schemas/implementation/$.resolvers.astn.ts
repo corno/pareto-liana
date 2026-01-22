@@ -33,7 +33,7 @@ export const $: g_.Resolvers = resolvers(
             "algorithms": r.dictionary(r.group({
                 "type": r.component("Type Reference", {}, {}),
                 "expression": r.component("Expression", {}, {}),
-                "temp has error": r.boolean(),
+                "temp has abort": r.boolean(),
                 "temp has lookups": r.boolean(),
                 "temp has parameters": r.boolean(),
             })),
