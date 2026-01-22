@@ -4,14 +4,14 @@
 // import * as _p_temp from 'pareto-core/dist/transformer'
 
 // //data types
-// import * as d_schema from "../../../../interface/generated/pareto/schemas/schema/data/resolved"
+// import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 // import * as d_deserialize_schema from "../../../../interface/to_be_generated/deserialize_schema"
-// import * as d_resolve from "../../../../interface/generated/pareto/core/resolve"
+// import * as d_resolve from "../../../../interface/generated/liana/generic/resolve"
 
 // //dependencies
 // import * as r_pareto_schema from "../../../temp/resolvers/schema"
 
-// import * as u_pareto_schema from "../../../generated/pareto/schemas/schema/unmarshall"
+// import * as u_pareto_schema from "../../../generated/liana/schemas/schema/unmarshall"
 
 // import * as ds_astn_source from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"
 

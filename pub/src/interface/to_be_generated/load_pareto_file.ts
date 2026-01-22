@@ -1,7 +1,7 @@
 import * as d_lpd from "./load_pareto_document"
-import * as d_path from "pareto-resources/dist/interface/generated/pareto/schemas/path/data"
+import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas/path/data"
 import * as d_unmarshall_result from "./temp_unmashall_result"
-import * as d_read_file from "pareto-resources/dist/interface/generated/pareto/schemas/read_file/data"
+import * as d_read_file from "pareto-resources/dist/interface/generated/liana/schemas/read_file/data"
 
 export type Result = d_unmarshall_result.Node
 

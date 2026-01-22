@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 
 
-import * as d_schema from "../interface/generated/pareto/schemas/schema/data/unresolved"
+import * as d_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
 
 /**
  * schema tree

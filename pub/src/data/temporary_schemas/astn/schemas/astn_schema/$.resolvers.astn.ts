@@ -4,7 +4,7 @@ import {
     resolvers, r, resolver, al, ls, av, gvs, ovi, vst, state, state_constrained, oc, pc, pvs, reference,
 } from "../../../../../shorthands/schema"
 
-import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/data/unresolved"
+import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 
 export const $: g_.Resolvers = resolvers(

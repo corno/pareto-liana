@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/pareto/schemas/schema/data/unresolved"
+import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 import { $ as x_alan_light } from "./schemas/alan_light/$.module.astn"
 import { $ as x_pareto_documentation } from "./schemas/pareto_documentation/$.module.astn"

@@ -11,7 +11,7 @@ import {
     tstate,
 
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/data/unresolved"
+import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 /**
  * dit schema gebruik ik voor het parsen van de oude boekhoudingen.

@@ -2,9 +2,9 @@ import * as _p from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
-import * as d_definition from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_in from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
-import * as d_in_token from "astn-core/dist/interface/generated/pareto/schemas/token/data"
+import * as d_definition from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
+import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
 import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_result"
 
 import * as t_ast_to_range from "astn/dist/implementation/manual/schemas/parse_tree/transformers/token"
@@ -33,7 +33,7 @@ export const Optional_Node = (
 )
 
 export const Node_Type = (
-    $: d_in.Value._type.concrete,
+    $: d_in.Value.type_.concrete,
     $p: {
         'definition': d_definition.Type_Node,
         'range': d_in_token.Range,

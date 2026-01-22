@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_path from "pareto-resources/dist/interface/generated/pareto/schemas/path/data"
+import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas/path/data"
 import * as d_unmarshall_result from "./temp_unmashall_result"
 import * as d_deserialize_unmarshall_result from "../to_be_generated/deserialize_unmarshall_result"
 

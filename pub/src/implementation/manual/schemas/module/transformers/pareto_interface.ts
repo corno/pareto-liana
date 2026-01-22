@@ -3,8 +3,8 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unconstrained'
 
 
-import * as d_in from "../../../../../interface/generated/pareto/schemas/module/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_in from "../../../../../interface/generated/liana/schemas/module/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/interface"
 import * as t_pareto_interface_main from "../../../../manual/schemas/schema/transformers/pareto_interface_main"

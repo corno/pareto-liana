@@ -10,8 +10,8 @@ import {
 
 import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
-import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "../../../../../interface/generated/pareto/schemas/astn_schema/data/unresolved"
+import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as d_out from "../../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
 export const Schema: _pi.Transformer<d_in.Schema, d_out.Schema> = (
     $

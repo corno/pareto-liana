@@ -1,9 +1,9 @@
 import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as unresolved from "../interface/generated/pareto/schemas/module/data/unresolved"
+import * as unresolved from "../interface/generated/liana/schemas/module/data/unresolved"
 
-import * as unresolved_schema from "../interface/generated/pareto/schemas/schema/data/unresolved"
+import * as unresolved_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const module_ = (
     operations: unresolved.Operations,

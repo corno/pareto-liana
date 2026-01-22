@@ -2,7 +2,7 @@ import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unre
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../interface/generated/pareto/schemas/module/data/unresolved"
+import * as g_ from "../../interface/generated/liana/schemas/module/data/unresolved"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
 // import { $ as m_antlr } from "./antlr/module.astn"

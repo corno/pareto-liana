@@ -1,8 +1,8 @@
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import { m } from "pareto/dist/shorthands/interface"
 

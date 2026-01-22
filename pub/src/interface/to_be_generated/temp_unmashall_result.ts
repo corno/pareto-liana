@@ -1,9 +1,9 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_astn_token from "astn-core/dist/interface/generated/pareto/schemas/token/data"
-import * as d_astn_ast from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
+import * as d_astn_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
+import * as d_astn_ast from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
-import * as d_schema from "../generated/pareto/schemas/schema/data/resolved"
+import * as d_schema from "../generated/liana/schemas/schema/data/resolved"
 
 export type Document = {
     'content': Node
@@ -49,7 +49,7 @@ export type Boolean = {
     'definition': d_schema.Type_Node._boolean
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.text
+        'value': d_astn_ast.Value.type_.concrete.text
         'range': d_astn_token.Range
         'correct string type': boolean
     }]
@@ -65,7 +65,7 @@ export type Dictionary = {
     'definition': d_schema.Type_Node.dictionary
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.dictionary
+        'value': d_astn_ast.Value.type_.concrete.dictionary
         'entries': _pi.Dictionary<Entry>
     }]
     | ['invalid', d_astn_token.Range]
@@ -85,12 +85,12 @@ export type Group_Type =
     | ['concise', Group_Concise]
 
 export type Group_Concise = {
-    'value': d_astn_ast.Value._type.concrete.group.concise
+    'value': d_astn_ast.Value.type_.concrete.group.concise
     'content': Group_Content
 }
 
 export type Group_Verbose = {
-    'value': d_astn_ast.Value._type.concrete.group.verbose
+    'value': d_astn_ast.Value.type_.concrete.group.verbose
     'content': Group_Content
 }
 
@@ -104,7 +104,7 @@ export type List = {
     'definition': d_schema.Type_Node.list
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.list
+        'value': d_astn_ast.Value.type_.concrete.list
         'elements': _pi.List<Node>
     }]
     | ['invalid', d_astn_token.Range]
@@ -115,11 +115,11 @@ export type Optional = {
     'found value type':
     | ['valid',
         | ['set', {
-            'value': d_astn_ast.Value._type.concrete.optional._set
+            'value': d_astn_ast.Value.type_.concrete.optional.set_
             'child node': Node
         }]
         | ['not set', {
-            'value': d_astn_ast.Value._type.concrete.nothing
+            'value': d_astn_ast.Value.type_.concrete.nothing
         }]
     ]
     | ['invalid', d_astn_token.Range]
@@ -129,7 +129,7 @@ export type Reference = {
     'definition': d_schema.Type_Node.reference
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.text
+        'value': d_astn_ast.Value.type_.concrete.text
     }] //FIXME
     | ['invalid', d_astn_token.Range]
 }
@@ -153,7 +153,7 @@ export type State_found_value__typevalid_value__typeSG_state_value_substatus =
     | ['set', State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set]
 
 export type State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
-    'value': d_astn_ast.Value._type.concrete.state_group.status._set
+    'value': d_astn_ast.Value.type_.concrete.state_group.status.set_
     'found state definition': _pi.Optional_Value<State_Definition_Found>
 }
 
@@ -188,7 +188,7 @@ export type Nothing = {
     'definition': d_schema.Type_Node.nothing
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.nothing
+        'value': d_astn_ast.Value.type_.concrete.nothing
     }]
     | ['invalid', d_astn_token.Range]
 }
@@ -197,7 +197,7 @@ export type Text = {
     'definition': d_schema.Type_Node.text
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.text
+        'value': d_astn_ast.Value.type_.concrete.text
     }]
     | ['invalid', d_astn_token.Range]
 }
@@ -206,7 +206,7 @@ export type Number = {
     'definition': d_schema.Type_Node._number
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value._type.concrete.text
+        'value': d_astn_ast.Value.type_.concrete.text
         'range': d_astn_token.Range
         'correct string type': boolean
     }]

@@ -2,13 +2,13 @@ import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
-import * as signatures from "../../../interface/generated/pareto/schemas/schema/resolve"
+import * as signatures from "../../../interface/generated/liana/schemas/schema/resolve"
 
-import * as d_out from "../../../interface/generated/pareto/schemas/schema/data/resolved"
+import * as d_out from "../../../interface/generated/liana/schemas/schema/data/resolved"
 
 import * as _i_generic from "../resolve_generic"
 
-// import * as _r from "../../../interface/generated/pareto/core/resolved"
+// import * as _r from "../../../interface/generated/liana/generic/resolved"
 
 const temp_assert = <Type, Error>(
     condition: () => _pi.Optional_Value<Error>,

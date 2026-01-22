@@ -3,9 +3,9 @@
 
 
 // import * as d_load_pareto_document from "../../../../interface/to_be_generated/load_pareto_document"
-// import * as d_parse_tree from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
+// import * as d_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
-// import * as d_schema from "../../../../interface/generated/pareto/schemas/schema/data/resolved"
+// import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 
 
 // export type Schema_And_Instance = {

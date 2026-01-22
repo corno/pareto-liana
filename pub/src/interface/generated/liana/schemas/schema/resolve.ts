@@ -7,7 +7,7 @@ import * as i_resolved from "./data/resolved"
 
 import * as i_unresolved from "./data/unresolved"
 
-import * as gen from "../../core/resolve"
+import * as gen from "../../generic/resolve"
 
 export namespace Type_Parameters_ {
 

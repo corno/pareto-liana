@@ -1,8 +1,8 @@
 import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as signatures from "../../../interface/generated/pareto/schemas/module/resolve"
-import * as d_out from "../../../interface/generated/pareto/schemas/module/data/resolved"
+import * as signatures from "../../../interface/generated/liana/schemas/module/resolve"
+import * as d_out from "../../../interface/generated/liana/schemas/module/data/resolved"
 
 import * as _i_r_schema from "./schema"
 import * as _i_generic from "../resolve_generic"

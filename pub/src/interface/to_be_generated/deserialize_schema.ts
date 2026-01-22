@@ -1,5 +1,5 @@
-import * as d_parse_result from "astn-core/dist/interface/generated/pareto/schemas/deserialize_parse_tree/data"
-import * as d_resolve from "../generated/pareto/core/resolve"
+import * as d_parse_result from "astn-core/dist/interface/generated/liana/schemas/deserialize_parse_tree/data"
+import * as d_resolve from "../generated/liana/generic/resolve"
 
 
 export type Error =

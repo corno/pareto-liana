@@ -6,7 +6,7 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_resolve from "../../../interface/generated/pareto/core/resolve"
+import * as d_resolve from "../../../interface/generated/liana/generic/resolve"
 export type Error = _pi.Dictionary<Package_Error>
 export type Package_Error =
     | ['could not log', null]
@@ -113,7 +113,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             // //copy generic implementation files
                             // $cr.copy.execute(
                             //     {
-                            //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path(`./pub/src/implementation/generated/pareto`), `generic`),
+                            //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path(`./pub/src/implementation/generated/liana`), `generic`),
                             //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': `generic` }),
                             //         'options': {
                             //             'recursive': _p.optional.set(true),
@@ -127,7 +127,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //copy core interface files
                             // $cr.copy.execute(
                             //     {
-                            //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path(`./pub/src/interface/generated/pareto`), `core`),
+                            //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path(`./pub/src/interface/generated/liana`), `core`),
                             //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': `core` }),
                             //         'options': {
                             //             'recursive': _p.optional.set(true),

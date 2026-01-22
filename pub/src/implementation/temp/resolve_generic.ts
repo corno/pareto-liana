@@ -2,8 +2,8 @@ import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
-import * as gen_loc from "../../interface/generated/pareto/core/location"
-import * as gen_resolve from "../../interface/generated/pareto/core/resolve"
+import * as gen_loc from "../../interface/generated/liana/generic/location"
+import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
 
 export type Unresolved_Dictionary<T> = {
     'location': gen_loc.Location

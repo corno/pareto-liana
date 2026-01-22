@@ -1,4 +1,4 @@
-import * as d_parse_result from "astn-core/dist/interface/generated/pareto/schemas/deserialize_parse_tree/data"
+import * as d_parse_result from "astn-core/dist/interface/generated/liana/schemas/deserialize_parse_tree/data"
 import * as d_deserialize_schema from "../to_be_generated/deserialize_schema"
 
 export type Error =

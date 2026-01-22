@@ -8,8 +8,8 @@
     "dist"
   ],
   "dependencies": {
-    "astn": "^0.113.35",
+    "astn": "^0.113.36",
     "pareto": "file:../../pareto/pub",
-    "pareto-fountain-pen": "^0.4.4"
+    "pareto-fountain-pen": "^0.4.5"
   }
 }

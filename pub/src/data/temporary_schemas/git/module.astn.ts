@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../../interface/generated/pareto/schemas/module/data/unresolved"
+import * as g_ from "../../../interface/generated/liana/schemas/module/data/unresolved"
 
 import { module_ } from "../../../shorthands/module"
 
