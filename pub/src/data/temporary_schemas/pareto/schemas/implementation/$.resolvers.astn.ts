@@ -185,23 +185,35 @@ export const $: g_.Resolvers = resolvers(
 
         "Selection": resolver(r.group({
             "start": r.state_group({
-                "implement me": state(r.nothing()),
                 "abort deprecated": state(r.nothing()),
+                "argument": state(r.text()),
                 "call": state(r.group({
                     "source": r.component("Selection", {}, {}),
                     "context": r.component("Selection", {}, {}),
                     "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
                 })),
-                "argument": state(r.text()),
                 "context": state(r.nothing()),
-                "variable": state(r.text()),
+                "entry": state(r.group({
+                    "dictionary": r.component("Selection", {}, {}),
+                    "key": r.component("Selection", {}, {}),
+                    "abort handler": r.component("Abort Expression", {}, {}),
+                })),
+                "implement me": state(r.nothing()),
                 "parameter": state(r.text()),
-                "imported variable": state(r.group({
-                    "import": r.text(),
-                    "variable": r.text(),
+                "variable": state(r.state_group({
+                    "local": state(r.text()),
+                    "imported": state(r.group({
+                        "import": r.text(),
+                        "variable": r.text(),
+                    })),
                 })),
             }),
             "tail": r.list(r.text()),
+        })),
+
+        "Abort Expression": resolver(r.state_group({
+            "current": state(r.nothing()),
+            "new": state(r.component("Expression", {}, {}))
         })),
 
     })

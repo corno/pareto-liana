@@ -5,6 +5,7 @@ import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/da
 
 export const $: g_.Resolve_Logic.signatures  = signatures(
     {
+        "Abort Expression": sig.local({}, {}),
         "Module Set": sig.local({}, {}),
         "Module": sig.local({}, {}),
         "Type Reference": sig.local({}, {}),

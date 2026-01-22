@@ -15,7 +15,6 @@ export const $: g_.Types = types(
     {
         "Operations": type(t.dictionary(t.state_group({
             "operation": tstate(t.group({
-                "type parameters": prop(t.component_external("schema", "Type Parameters")),
                 "context": prop(t.component_external("schema", "Type Node")),
                 "parameters": prop(t.dictionary(t.component_external("schema", "Type Node"))),
                 "result": prop(t.component_external("schema", "Type Node")),

@@ -1055,7 +1055,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => $.type.entry)
                         case 'internal': return _p.ss($, ($) => $.entry)
-                        case 'internal cyclic': return _p.ss($, ($) => $.entry['get circular dependent']())
+                        case 'internal cyclic': return _p.ss($, ($) => $.entry.get_circular_dependent())
                         default: return _p.au($[0])
                     }
                 })
@@ -1165,7 +1165,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                                 switch ($[0]) {
                                                                     case 'external': return _p.ss($, ($) => $.type.entry.node)
                                                                     case 'internal': return _p.ss($, ($) => $.entry.node)
-                                                                    case 'internal cyclic': return _p.ss($, ($) => $.entry['get circular dependent']().node) //IS THIS SAFE? I Am using a computed value (only available after resolving)
+                                                                    case 'internal cyclic': return _p.ss($, ($) => $.entry.get_circular_dependent().node) //IS THIS SAFE? I Am using a computed value (only available after resolving)
                                                                     default: return _p.au($[0])
                                                                 }
                                                             }))
@@ -1708,7 +1708,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                                 switch ($[0]) {
                                     case 'external': return _p.ss($, ($) => $.type.entry.node)
                                     case 'internal': return _p.ss($, ($) => $.entry.node)
-                                    case 'internal cyclic': return _p.ss($, ($) => $.entry['get circular dependent']().node) //this is safe, the types have been resolved at this stage
+                                    case 'internal cyclic': return _p.ss($, ($) => $.entry.get_circular_dependent().node) //this is safe, the types have been resolved at this stage
                                     default: return _p.au($[0])
                                 }
                             })

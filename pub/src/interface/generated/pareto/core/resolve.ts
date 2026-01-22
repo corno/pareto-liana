@@ -7,7 +7,7 @@ export type Error = {
 
 export type Error__type =
     | ['cyclic lookup in acyclic context', string]
-    | ['missing denseness entry', string]
+    | ['missing required entry', string]
     | ['no context lookup', null]
     | ['no such entry', string]
     | ['not the same node', string]

@@ -56,7 +56,7 @@ export const resolve_dense_ordered_dictionary = <Unresolved, Resolved, Benchmark
         $.dictionary.__get_entry(
             key,
             () => abort({
-                'type': ['missing denseness entry', key],
+                'type': ['missing required entry', key],
                 'location': $.location,
             })
         )
@@ -84,7 +84,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
         $.dictionary.__get_entry(
             key,
             () => abort({
-                'type': ['missing denseness entry', key],
+                'type': ['missing required entry', key],
                 'location': $.location,
             })
         )
@@ -100,8 +100,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
 export namespace acyclic {
 
     export const not_set = <T>(): _pi.Acyclic_Lookup<T> => ({
-        'get entry': (id, abort) => abort['no context lookup'](null),
-        'get possible entry': (id, abort) => abort['no context lookup'](null),
+        get_entry: (id, abort) => abort.no_context_lookup(null),
+        __get_entry_raw: (id, abort) => abort.no_context_lookup(null),
     })
 
 }
@@ -109,7 +109,7 @@ export namespace acyclic {
 export namespace cyclic {
 
     export const not_set = <T>(): _pi.Cyclic_Lookup<T> => ({
-        'get entry': (id, abort) => {
+        get_entry: (id, abort) => {
             //return abort['no context lookup']()
             return _pdev.implement_me("NCL")
         }
@@ -120,10 +120,10 @@ export namespace cyclic {
 export namespace stack {
 
     export const empty = <T>(): _pi.Stack_Lookup<T> => ({
-        'get entry': (id, abort) => {
-            //return abort['no context lookup']()
-            return _pdev.implement_me("NCL")
-        }
+        get_entry: (id, abort) => abort.no_context_lookup(null),
+        get_entry_depth(key) {
+            return -1
+        },
     })
 
 }
@@ -151,19 +151,35 @@ export const get_entry_from_stack = <T>(
 ): Resolved_Stack_Reference<T> => {
     return {
         'key': reference.key,
-        'up steps': _pdev.implement_me("up steps"),
-        'entry': stack['get entry'](
+        'up steps': stack.get_entry_depth(
             reference.key,
             {
-                'cyclic': () => abort({
+                cyclic: () => abort({
                     'type': ['cyclic lookup in acyclic context', reference.key],
                     'location': reference.location,
                 }),
-                'no such entry': () => abort({
+                no_such_entry: () => abort({
                     'type': ['no such entry', reference.key],
                     'location': reference.location,
                 }),
-                'no context lookup': () => abort({
+                no_context_lookup: () => abort({
+                    'type': ['no context lookup', null],
+                    'location': reference.location,
+                })
+            },
+        ),
+        'entry': stack.get_entry(
+            reference.key,
+            {
+                cyclic: () => abort({
+                    'type': ['cyclic lookup in acyclic context', reference.key],
+                    'location': reference.location,
+                }),
+                no_such_entry: () => abort({
+                    'type': ['no such entry', reference.key],
+                    'location': reference.location,
+                }),
+                no_context_lookup: () => abort({
                     'type': ['no context lookup', null],
                     'location': reference.location,
                 })
@@ -210,11 +226,11 @@ export const dictionary_to_lookup = <T>(
     dict: _pi.Dictionary<T>,
     x: null,
 ): _pi.Acyclic_Lookup<T> => ({
-    'get entry': (id, abort) => dict.__get_entry(
+    get_entry: (id, abort) => dict.__get_entry(
         id,
-        () => abort['no such entry'](id),
+        () => abort.no_such_entry(id),
     ),
-    'get possible entry': (id, abort) => dict.__get_entry_raw(id)
+    __get_entry_raw: (id, abort) => dict.__get_entry_raw(id)
 })
 
 export const get_entry = <T>(
@@ -223,18 +239,18 @@ export const get_entry = <T>(
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
     return {
-        'entry': lookup['get entry'](
+        'entry': lookup.get_entry(
             id.key,
             {
-                'cyclic': () => abort({
+                cyclic: () => abort({
                     'type': ['cyclic lookup in acyclic context', id.key],
                     'location': id.location,
                 }),
-                'no such entry': () => abort({
+                no_such_entry: () => abort({
                     'type': ['no such entry', id.key],
                     'location': id.location,
                 }),
-                'no context lookup': () => abort({
+                no_context_lookup: () => abort({
                     'type': ['no context lookup', null],
                     'location': id.location,
                 })
@@ -247,18 +263,37 @@ export const get_entry = <T>(
 export const push_stack = <T>(
     stack: _pi.Stack_Lookup<T>,
     acyclic: _pi.Acyclic_Lookup<T>,
-): _pi.Stack_Lookup<T> => ({
-    'get entry': (id, abort) => {
-        const temp = acyclic['get possible entry'](
-            id,
-            abort,
-        )
-        if (temp === null) {
-            return abort['no such entry'](id)
+): _pi.Stack_Lookup<T> => {
+    return ({
+        get_entry: (id, abort) => {
+            const temp = acyclic.__get_entry_raw(
+                id,
+                abort,
+            )
+            if (temp === null) {
+                return stack.get_entry(
+                    id,
+                    abort,
+                )
+            }
+            return temp[0]
+        },
+        get_entry_depth: (id, abort) => {
+
+            const temp = acyclic.__get_entry_raw(
+                id,
+                abort,
+            )
+            if (temp === null) {
+                return 1 + stack.get_entry_depth(
+                    id,
+                    abort,
+                )
+            }
+            return 0
         }
-        return temp[0]
-    }
-})
+    })
+}
 
 export const get_possibly_circular_dependent_sibling_entry = <T>(
     lookup: _pi.Cyclic_Lookup<T>,
@@ -267,15 +302,15 @@ export const get_possibly_circular_dependent_sibling_entry = <T>(
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
     return {
         'key': reference.key,
-        'entry': lookup['get entry'](
+        'entry': lookup.get_entry(
             reference.key,
             {
-                'accessing cyclic before resolved': () => _p.unreachable_code_path(),
-                'no such entry': () => abort({
+                accessing_cyclic_before_resolved: () => _p.unreachable_code_path(),
+                no_such_entry: () => abort({
                     'type': ['no such entry', reference.key],
                     'location': reference.location,
                 }),
-                'no context lookup': () => abort({
+                no_context_lookup: () => abort({
                     'type': ['no context lookup', null],
                     'location': reference.location,
                 })

@@ -8,10 +8,8 @@ export const $: g_.Resolvers = resolvers(
     {
         "Operations": resolver(r.dictionary(r.state_group({
             "operation": state(r.group({
-                "type parameters": r.component_external("schema", "Type Parameters", {}, {}),
                 "context": r.component_external("schema", "Type Node", {
                     "globals": av.optional(ovi.not_set()),
-                    "type parameters": av.required(gvs.sibling("type parameters", [vst.component()])),
                     "imports": av.optional(ovi.not_set()),
                 }, {
                     "noncircular sibling types": al.not_set(),
@@ -19,7 +17,6 @@ export const $: g_.Resolvers = resolvers(
                 }),
                 "parameters": r.dictionary(r.component_external("schema", "Type Node", {
                     "globals": av.optional(ovi.not_set()),
-                    "type parameters": av.required(gvs.sibling("type parameters", [vst.component()])),
                     "imports": av.optional(ovi.not_set()),
                 }, {
                     "noncircular sibling types": al.not_set(),
@@ -27,7 +24,6 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "result": r.component_external("schema", "Type Node", {
                     "globals": av.optional(ovi.not_set()),
-                    "type parameters": av.required(gvs.sibling("type parameters", [vst.component()])),
                     "imports": av.optional(ovi.not_set()),
                 }, {
                     "noncircular sibling types": al.not_set(),

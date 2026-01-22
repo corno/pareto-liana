@@ -211,7 +211,7 @@ export const $: g_.Types = types(
                     "abort handler": prop(t.component("Abort Expression")),
                 })),
                 "variable": tstate(t.state_group({
-                    "local variable": tstate(t.text_global("TBD")),
+                    "local": tstate(t.text_global("TBD")),
                     "imported": tstate(t.group({
                         "import": prop(t.text_global("TBD")),
                         "variable": prop(t.text_global("TBD")),

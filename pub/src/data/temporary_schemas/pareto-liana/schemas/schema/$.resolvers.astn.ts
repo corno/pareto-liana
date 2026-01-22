@@ -182,8 +182,6 @@ export const $: g_.Resolvers = resolvers(
             })),
         })),
 
-        "Type Parameters": resolver(r.dictionary(r.nothing())),
-
         "Relative Value Selection": resolver(r.group({
             "path": r.list_with_result(
                 r.state_group({
