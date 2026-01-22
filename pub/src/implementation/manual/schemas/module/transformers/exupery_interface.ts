@@ -4,9 +4,9 @@ import * as _psh from 'pareto-core-shorthands/dist/unconstrained'
 
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/module/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import * as sh from "exupery/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface"
 import * as t_exupery_interface_main from "../../../../manual/schemas/schema/transformers/exupery_interface_main"
 import * as t_exupery_interface_types from "../../../../manual/schemas/schema/transformers/exupery_interface_types"
 

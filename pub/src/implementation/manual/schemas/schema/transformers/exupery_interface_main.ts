@@ -2,9 +2,9 @@ import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import { m } from "exupery/dist/shorthands/interface"
+import { m } from "pareto/dist/shorthands/interface"
 
 import * as t_migrate_boilerplate from "./exupery_interface_migrate_boilerplate"
 import * as t_resolve from "./exupery_interface_resolve"

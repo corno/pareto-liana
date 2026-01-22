@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core-interface'
 import * as _psh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/module/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/implementation/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/implementation/data/resolved"
 
 import * as t_exupery_implementation_main from "../../../../manual/schemas/schema/transformers/exupery_implementation_main"
 

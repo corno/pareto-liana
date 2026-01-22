@@ -198,22 +198,34 @@ export const $: g_.Types = types(
                 "implement me": tstate(t.nothing()),
                 "abort deprecated": tstate(t.nothing()),
 
+                "argument": tstate(t.text_global("TBD")),
                 "call": tstate(t.group({
                     "source": prop(t.component_cyclic("Selection")),
                     "context": prop(t.component_cyclic("Selection")),
                     "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
                 })),
-                "argument": tstate(t.text_global("TBD")),
                 "context": tstate(t.nothing()),
-                "variable": tstate(t.text_global("TBD")),
+                "entry": tstate(t.group({
+                    "dictionary": prop(t.component_cyclic("Selection")),
+                    "key": prop(t.component_cyclic("Selection")),
+                    "abort handler": prop(t.component("Abort Expression")),
+                })),
+                "variable": tstate(t.state_group({
+                    "local variable": tstate(t.text_global("TBD")),
+                    "imported": tstate(t.group({
+                        "import": prop(t.text_global("TBD")),
+                        "variable": prop(t.text_global("TBD")),
+                    }))
+                })),
                 "parameter": tstate(t.text_global("TBD")),
-                "imported variable": tstate(t.group({
-                    "import": prop(t.text_global("TBD")),
-                    "variable": prop(t.text_global("TBD")),
-                }))
             })),
             "tail": prop(t.list(t.text_global("TBD"))),
         })),
+
+        "Abort Expression": type(t.state_group({
+            "current": tstate(t.nothing()),
+            "new": tstate(t.component_cyclic("Expression"))
+        }))
 
     }
 )

@@ -3,11 +3,11 @@ import * as _p from 'pareto-core-transformer'
 import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/implementation/data/resolved"
-import * as d_out_interface from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/implementation/data/resolved"
+import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import * as sh from "exupery/dist/shorthands/implementation"
-import * as sh_i from "exupery/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation"
+import * as sh_i from "pareto/dist/shorthands/interface"
 
 import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
 
@@ -37,12 +37,12 @@ export const Resolvers = (
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
                     "generic": sh_i.import_.external("pareto-core-internals", ["dist", "algorithm types", "refiner", "resolve"]),
-                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal([
+                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
                         _p.list.literal(["generated", "pareto", "schemas"]),
                         $p.path,
                         _p.list.literal(["data types", "source"]),
                     ])),
-                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal([
+                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
                         _p.list.literal(["generated", "pareto", "schemas"]),
                         $p.path,
                         _p.list.literal(["data types", "resolve"]),
@@ -104,7 +104,7 @@ export const Possible_Value_Selection = (
         switch ($[0]) {
             case 'parameter': return _p.ss($, ($) => sh.s.from_variable(
                 "params",
-                _p.list.nested_literal([
+                _p.list.nested_literal_old([
                     [
                         "values",
                         $.key
@@ -145,7 +145,7 @@ export const Guaranteed_Value_Selection = (
         'tail': () => _pi.List<d_out.Selection.tail.L>
     },
 ): d_out.Selection => {
-    const tail = (): _pi.List<d_out.Selection.tail.L> => _p.list.nested_literal([
+    const tail = (): _pi.List<d_out.Selection.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
             $.tail.path,
             ($) => _p.sg($, ($): _pi.List<d_out.Selection.tail.L> => {
@@ -177,7 +177,7 @@ export const Guaranteed_Value_Selection = (
             }))
             case 'parameter': return _p.ss($, ($) => sh.s.from_variable(
                 "params",
-                _p.list.nested_literal([
+                _p.list.nested_literal_old([
                     [
                         "values",
                         $.key
@@ -410,7 +410,7 @@ export const Node_Resolver = (
                     //             $.resolver,
                     //             {
                     //                 'temp type': $p['temp type'],
-                    //                 'temp subselection': _p.list.nested_literal([
+                    //                 'temp subselection': _p.list.nested_literal_old([
                     //                     $p['temp subselection'],
                     //                     [
                     //                         sh_i.sub.dictionary()
@@ -431,7 +431,7 @@ export const Node_Resolver = (
                 sh.type_node_reference(
                     "out",
                     $p['temp type'],
-                    _p.list.nested_literal([
+                    _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
                             sh_i.sub.group(key)
@@ -444,7 +444,7 @@ export const Node_Resolver = (
                         $.resolver,
                         {
                             'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal([
+                            'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
                                     sh_i.sub.group(key)
@@ -465,7 +465,7 @@ export const Node_Resolver = (
                     $.resolver,
                     {
                         'temp type': $p['temp type'],
-                        'temp subselection': _p.list.nested_literal([
+                        'temp subselection': _p.list.nested_literal_old([
                             $p['temp subselection'],
                             [
                                 sh_i.sub.list()
@@ -484,7 +484,7 @@ export const Node_Resolver = (
                         $['resolver'],
                         {
                             'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal([
+                            'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
                                     sh_i.sub.optional()
@@ -504,7 +504,7 @@ export const Node_Resolver = (
                         $['resolver'],
                         {
                             'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal([
+                            'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
                                     sh_i.sub.state_group(key)

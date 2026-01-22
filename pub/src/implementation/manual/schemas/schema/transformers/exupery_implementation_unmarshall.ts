@@ -4,12 +4,12 @@ import * as _pdev from 'pareto-core-dev'
 
 //data types
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/implementation/data/resolved"
-import * as d_out_interface from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/implementation/data/resolved"
+import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
 //shorthands
-import * as sh from "exupery/dist/shorthands/implementation"
-import * as sh_i from "exupery/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation"
+import * as sh_i from "pareto/dist/shorthands/interface"
 
 //dependencies
 import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
@@ -29,13 +29,13 @@ export const Schema: _pi.Transformer_With_Parameters<
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
                     "generic": sh_i.import_.ancestor(2, "generic", ["unmarshall"]),
-                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal([
+                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
                         _p.list.literal(["generated", "pareto", "schemas"]),
                         $p.path,
                         _p.list.literal(["unmarshall"]),
                     ])),
                     "in": sh_i.import_.ancestor(5, "interface", ["generated", "pareto", "core", "astn source"]),
-                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal([
+                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
                         _p.list.literal(["generated", "pareto", "schemas"]),
                         $p.path,
                         _p.list.literal(["data types", "target"]),
@@ -110,7 +110,7 @@ export const Type_Node = (
                     //         $.node,
                     //         {
                     //             'temp type': $p['temp type'],
-                    //             'temp subselection': _p.list.nested_literal([
+                    //             'temp subselection': _p.list.nested_literal_old([
                     //                 $p['temp subselection'],
                     //                 [
                     //                     sh_i.sub.dictionary(),
@@ -144,7 +144,7 @@ export const Type_Node = (
                     //                     $.node,
                     //                     {
                     //                         'temp type': $p['temp type'],
-                    //                         'temp subselection': _p.list.nested_literal([
+                    //                         'temp subselection': _p.list.nested_literal_old([
                     //                             $p['temp subselection'],
                     //                             [
                     //                                 sh_i.sub.group(key),
@@ -170,7 +170,7 @@ export const Type_Node = (
                     //         $.node,
                     //         {
                     //             'temp type': $p['temp type'],
-                    //             'temp subselection': _p.list.nested_literal([
+                    //             'temp subselection': _p.list.nested_literal_old([
                     //                 $p['temp subselection'],
                     //                 [
                     //                     sh_i.sub.list(),
@@ -214,7 +214,7 @@ export const Type_Node = (
                     //         $,
                     //         {
                     //             'temp type': $p['temp type'],
-                    //             'temp subselection': _p.list.nested_literal([
+                    //             'temp subselection': _p.list.nested_literal_old([
                     //                 $p['temp subselection'],
                     //                 [
                     //                     sh_i.sub.optional(),
@@ -267,7 +267,7 @@ export const Type_Node = (
                     //                     $.node,
                     //                     {
                     //                         'temp type': $p['temp type'],
-                    //                         'temp subselection': _p.list.nested_literal([
+                    //                         'temp subselection': _p.list.nested_literal_old([
                     //                             $p['temp subselection'],
                     //                             [
                     //                                 sh_i.sub.state_group(key),
@@ -277,7 +277,7 @@ export const Type_Node = (
                     //                     }
                     //                 )
                     //             ),
-                    //             sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal([
+                    //             sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
                     //                 $p['temp subselection'],
                     //                 [
                     //                     //sh_i.sub.group("SG"),

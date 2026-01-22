@@ -2,10 +2,10 @@ import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/implementation/data/resolved"
-import * as d_out_interface from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/implementation/data/resolved"
+import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import { m, } from "exupery/dist/shorthands/implementation"
+import { m, } from "pareto/dist/shorthands/implementation"
 
 import * as t_migration_boilerplate from "./exupery_implementation_migrate_boilerplate"
 
@@ -89,7 +89,7 @@ export const Schemas = (
     }
 ): d_out.Module_Set.D => {
     return m.set($.__d_map(($, key) => Schema_Tree($, {
-        'path': _p.list.nested_literal([
+        'path': _p.list.nested_literal_old([
             $p.path,
             [
                 key,

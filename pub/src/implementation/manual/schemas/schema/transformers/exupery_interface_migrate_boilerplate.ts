@@ -3,9 +3,9 @@ import * as _p from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import * as sh from "exupery/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface"
 
 
 export const Schema = (

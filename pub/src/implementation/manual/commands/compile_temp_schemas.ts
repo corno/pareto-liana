@@ -72,6 +72,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             'directory': t_pareto_module_to_fountain_pen_block__interface.Module(
                                 r_pareto_module.Module(
                                     $.module,
+                                    abort,
                                     {
                                         'parameters': {
                                             'lookups': null,

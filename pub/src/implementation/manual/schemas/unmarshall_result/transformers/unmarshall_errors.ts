@@ -25,7 +25,7 @@ export const Group_Content = (
         'group range': d_in_token.Range
     }
 ): d_out.Errors => {
-    return _p.list.nested_literal([
+    return _p.list.nested_literal_old([
         _p.list.flatten(
             _p.list.from_dictionary(
                 $.properties,
@@ -33,7 +33,7 @@ export const Group_Content = (
                     switch ($[0]) {
                         case 'multiple': return _p.ss($, ($) => _p.list.flatten(
                             $,
-                            ($) => _p.list.nested_literal([
+                            ($) => _p.list.nested_literal_old([
                                 _p.list.literal<d_out.Errors.L>([
                                     {
                                         'range': convert_range($.key.range),
@@ -121,7 +121,7 @@ export const Node = (
                                         case 'unique': return _p.ss($, ($) => Optional_Node($, $p))
                                         case 'multiple': return _p.ss($, ($) => _p.list.flatten(
                                             $,
-                                            ($) => _p.list.nested_literal<d_out.Errors.L>([
+                                            ($) => _p.list.nested_literal_old<d_out.Errors.L>([
                                                 _p.list.literal([
                                                     {
                                                         'range': convert_range($.key.range),

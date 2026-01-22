@@ -1,147 +1,155 @@
 
 import * as _pi from "pareto-core-interface"
 
-import * as i_resolve from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
+// import * as i_resolve from "pareto-core-internals/dist/algorithm_types/refiner/resolve"
 
 import * as i_resolved from "./data/resolved"
 
 import * as i_unresolved from "./data/unresolved"
 
+import * as gen from "../../core/resolve"
+
 export namespace Type_Parameters_ {
-    
+
     export type I = i_unresolved.Type_Parameters
-    
+
     export type O = i_resolved.Type_Parameters
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Type_Parameters_ = (
     $$_: Type_Parameters_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Type_Parameters_.O
 
 export namespace Presence_ {
-    
+
     export type I = i_unresolved.Presence
-    
+
     export type O = i_resolved.Presence
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Presence_ = (
     $$_: Presence_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Presence_.O
 
 export namespace Number_Type_ {
-    
+
     export type I = i_unresolved.Number_Type
-    
+
     export type O = i_resolved.Number_Type
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Number_Type_ = (
     $$_: Number_Type_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Number_Type_.O
 
 export namespace Text_Type_ {
-    
+
     export type I = i_unresolved.Text_Type
-    
+
     export type O = i_resolved.Text_Type
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Text_Type_ = (
     $$_: Text_Type_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Text_Type_.O
 
 export namespace Globals_ {
-    
+
     export type I = i_unresolved.Globals
-    
+
     export type O = i_resolved.Globals
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Globals_ = (
     $$_: Globals_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Globals_.O
 
 export namespace Group_ {
-    
+
     export type I = i_unresolved.Group
-    
+
     export type O = i_resolved.Group
-    
+
     export namespace L {
-        
+
         export type noncircular_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace globals {
-            
+
             export type O = i_resolved.Globals_
-            
+
         }
-        
+
         export type globals = _pi.Optional_Value<globals.O>
-        
+
         export type type_parameters = i_resolved.Type_Parameters_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Group_ = (
     $$_: Group_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
     },
@@ -153,50 +161,51 @@ export type Group_ = (
 ) => Group_.O
 
 export namespace Dictionary_ {
-    
+
     export type I = i_unresolved.Dictionary
-    
+
     export type O = i_resolved.Dictionary
-    
+
     export namespace L {
-        
+
         export type noncircular_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace globals {
-            
+
             export type O = i_resolved.Globals_
-            
+
         }
-        
+
         export type globals = _pi.Optional_Value<globals.O>
-        
+
         export type type_parameters = i_resolved.Type_Parameters_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Dictionary_ = (
     $$_: Dictionary_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
     },
@@ -208,50 +217,51 @@ export type Dictionary_ = (
 ) => Dictionary_.O
 
 export namespace Type_Node_ {
-    
+
     export type I = i_unresolved.Type_Node
-    
+
     export type O = i_resolved.Type_Node
-    
+
     export namespace L {
-        
+
         export type noncircular_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace globals {
-            
+
             export type O = i_resolved.Globals_
-            
+
         }
-        
+
         export type globals = _pi.Optional_Value<globals.O>
-        
+
         export type type_parameters = i_resolved.Type_Parameters_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Type_Node_ = (
     $$_: Type_Node_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
     },
@@ -263,48 +273,49 @@ export type Type_Node_ = (
 ) => Type_Node_.O
 
 export namespace Type_ {
-    
+
     export type I = i_unresolved.Type
-    
+
     export type O = i_resolved.Type
-    
+
     export namespace L {
-        
+
         export type noncircular_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace globals {
-            
+
             export type O = i_resolved.Globals_
-            
+
         }
-        
+
         export type globals = _pi.Optional_Value<globals.O>
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Type_ = (
     $$_: Type_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
         readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
     },
@@ -315,34 +326,35 @@ export type Type_ = (
 ) => Type_.O
 
 export namespace Type_Reference_ {
-    
+
     export type I = i_unresolved.Type_Reference
-    
+
     export type O = i_resolved.Type_Reference
-    
+
     export namespace L {
-        
+
         export type types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Type_Reference_ = (
     $$_: Type_Reference_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'types': _pi.Acyclic_Lookup<Type_Reference_.L.types>
     },
     $$_p: {
@@ -351,34 +363,35 @@ export type Type_Reference_ = (
 ) => Type_Reference_.O
 
 export namespace Type_Node_Reference_ {
-    
+
     export type I = i_unresolved.Type_Node_Reference
-    
+
     export type O = i_resolved.Type_Node_Reference
-    
+
     export namespace L {
-        
+
         export type types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Type_Node_Reference_ = (
     $$_: Type_Node_Reference_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'types': _pi.Acyclic_Lookup<Type_Node_Reference_.L.types>
     },
     $$_p: {
@@ -387,88 +400,89 @@ export type Type_Node_Reference_ = (
 ) => Type_Node_Reference_.O
 
 export namespace Node_Resolver_ {
-    
+
     export type I = i_unresolved.Node_Resolver
-    
+
     export type O = i_resolved.Node_Resolver
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Node_Resolver_ = (
     $$_: Node_Resolver_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_.L.parent_sibling_property_resolvers>
     },
@@ -487,88 +501,89 @@ export type Node_Resolver_ = (
 ) => Node_Resolver_.O
 
 export namespace Possible_Value_Selection_ {
-    
+
     export type I = i_unresolved.Possible_Value_Selection
-    
+
     export type O = i_resolved.Possible_Value_Selection
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Possible_Value_Selection_ = (
     $$_: Possible_Value_Selection_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Possible_Value_Selection_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Possible_Value_Selection_.L.parent_sibling_property_resolvers>
     },
@@ -587,88 +602,89 @@ export type Possible_Value_Selection_ = (
 ) => Possible_Value_Selection_.O
 
 export namespace Guaranteed_Value_Selection_ {
-    
+
     export type I = i_unresolved.Guaranteed_Value_Selection
-    
+
     export type O = i_resolved.Guaranteed_Value_Selection
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Guaranteed_Value_Selection_ = (
     $$_: Guaranteed_Value_Selection_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Guaranteed_Value_Selection_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
     },
@@ -687,88 +703,89 @@ export type Guaranteed_Value_Selection_ = (
 ) => Guaranteed_Value_Selection_.O
 
 export namespace Benchmark_ {
-    
+
     export type I = i_unresolved.Benchmark
-    
+
     export type O = i_resolved.Benchmark
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Benchmark_ = (
     $$_: Benchmark_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Benchmark_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Benchmark_.L.parent_sibling_property_resolvers>
     },
@@ -787,88 +804,89 @@ export type Benchmark_ = (
 ) => Benchmark_.O
 
 export namespace Optional_Value_Initialization_ {
-    
+
     export type I = i_unresolved.Optional_Value_Initialization
-    
+
     export type O = i_resolved.Optional_Value_Initialization
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Optional_Value_Initialization_ = (
     $$_: Optional_Value_Initialization_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Optional_Value_Initialization_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
     },
@@ -887,88 +905,89 @@ export type Optional_Value_Initialization_ = (
 ) => Optional_Value_Initialization_.O
 
 export namespace Lookup_Selection_ {
-    
+
     export type I = i_unresolved.Lookup_Selection
-    
+
     export type O = i_resolved.Lookup_Selection
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Lookup_Selection_ = (
     $$_: Lookup_Selection_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Lookup_Selection_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Lookup_Selection_.L.parent_sibling_property_resolvers>
     },
@@ -987,88 +1006,89 @@ export type Lookup_Selection_ = (
 ) => Lookup_Selection_.O
 
 export namespace Option_Constraints_ {
-    
+
     export type I = i_unresolved.Option_Constraints
-    
+
     export type O = i_resolved.Option_Constraints
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Type_Node_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Option_Constraints_ = (
     $$_: Option_Constraints_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraints_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraints_.L.parent_sibling_property_resolvers>
     },
@@ -1087,34 +1107,35 @@ export type Option_Constraints_ = (
 ) => Option_Constraints_.O
 
 export namespace Node_Resolver_List_Result_ {
-    
+
     export type I = i_unresolved.Node_Resolver_List_Result
-    
+
     export type O = i_resolved.Node_Resolver_List_Result
-    
+
     export namespace L {
-        
+
         export type types = i_resolved.Types_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Node_Resolver_List_Result_ = (
     $$_: Node_Resolver_List_Result_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'types': _pi.Acyclic_Lookup<Node_Resolver_List_Result_.L.types>
     },
     $$_p: {
@@ -1123,88 +1144,89 @@ export type Node_Resolver_List_Result_ = (
 ) => Node_Resolver_List_Result_.O
 
 export namespace Node_Resolver_Group_ {
-    
+
     export type I = i_unresolved.Node_Resolver_Group
-    
+
     export type O = i_resolved.Node_Resolver_Group
-    
+
     export namespace L {
-        
+
         export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace L {
-        
+
         export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type definition = i_resolved.Group_
-        
+
         export namespace list_cursor {
-            
+
             export type O = i_resolved.Node_Resolver_List_Result_
-            
+
         }
-        
+
         export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
+
         export namespace linked_entry {
-            
+
             export type O = i_resolved.Benchmark_
-            
+
         }
-        
+
         export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
+
         export namespace current_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
+
         export namespace current_ordered_dictionary {
-            
+
             export type O = i_resolved.Dictionary_
-            
+
         }
-        
+
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
+
         export type signature = i_resolved.Signature_
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export namespace option_constraints {
-            
+
             export type O = i_resolved.Option_Constraints_
-            
+
         }
-        
+
         export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
+
     }
-    
+
 }
 
 export type Node_Resolver_Group_ = (
     $$_: Node_Resolver_Group_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_Group_.L.sibling_property_resolvers>
         readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_Group_.L.parent_sibling_property_resolvers>
     },
@@ -1223,116 +1245,121 @@ export type Node_Resolver_Group_ = (
 ) => Node_Resolver_Group_.O
 
 export namespace Relative_Value_Selection_ {
-    
+
     export type I = i_unresolved.Relative_Value_Selection
-    
+
     export type O = i_resolved.Relative_Value_Selection
-    
+
     export namespace P {
-        
+
         export type node = i_resolved.Type_Node_
-        
+
     }
-    
+
 }
 
 export type Relative_Value_Selection_ = (
     $$_: Relative_Value_Selection_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'node': Relative_Value_Selection_.P.node
     },
 ) => Relative_Value_Selection_.O
 
 export namespace Constraint_ {
-    
+
     export type I = i_unresolved.Constraint
-    
+
     export type O = i_resolved.Constraint
-    
+
     export namespace P {
-        
+
         export type node = i_resolved.Type_Node_
-        
+
     }
-    
+
 }
 
 export type Constraint_ = (
     $$_: Constraint_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'node': Constraint_.P.node
     },
 ) => Constraint_.O
 
 export namespace Property_Constraints_ {
-    
+
     export type I = i_unresolved.Property_Constraints
-    
+
     export type O = i_resolved.Property_Constraints
-    
+
     export namespace P {
-        
+
         export type node = i_resolved.Type_Node_
-        
+
     }
-    
+
 }
 
 export type Property_Constraints_ = (
     $$_: Property_Constraints_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'node': Property_Constraints_.P.node
     },
 ) => Property_Constraints_.O
 
 export namespace Property_Constraint_ {
-    
+
     export type I = i_unresolved.Property_Constraint
-    
+
     export type O = i_resolved.Property_Constraint
-    
+
     export namespace L {
-        
+
         export type property_constraints = i_resolved.Property_Constraints_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Property_Constraint_ = (
     $$_: Property_Constraint_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'property constraints': _pi.Acyclic_Lookup<Property_Constraint_.L.property_constraints>
     },
     $$_p: null,
 ) => Property_Constraint_.O
 
 export namespace Resolve_Logic_ {
-    
+
     export type I = i_unresolved.Resolve_Logic
-    
+
     export type O = i_resolved.Resolve_Logic
-    
+
     export namespace P {
-        
+
         export type types = i_resolved.Types_
-        
+
         export type imports = i_resolved.Imports_
-        
+
     }
-    
+
 }
 
 export type Resolve_Logic_ = (
     $$_: Resolve_Logic_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'types': Resolve_Logic_.P.types
         readonly 'imports': Resolve_Logic_.P.imports
@@ -1340,24 +1367,25 @@ export type Resolve_Logic_ = (
 ) => Resolve_Logic_.O
 
 export namespace Signature_Parameters_ {
-    
+
     export type I = i_unresolved.Signature_Parameters
-    
+
     export type O = i_resolved.Signature_Parameters
-    
+
     export namespace P {
-        
+
         export type types = i_resolved.Types_
-        
+
         export type imports = i_resolved.Imports_
-        
+
     }
-    
+
 }
 
 export type Signature_Parameters_ = (
     $$_: Signature_Parameters_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'types': Signature_Parameters_.P.types
         readonly 'imports': Signature_Parameters_.P.imports
@@ -1365,32 +1393,33 @@ export type Signature_Parameters_ = (
 ) => Signature_Parameters_.O
 
 export namespace Signature_ {
-    
+
     export type I = i_unresolved.Signature
-    
+
     export type O = i_resolved.Signature
-    
+
     export namespace L {
-        
+
         export type sibling_signatures = i_resolved.Signatures_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
         export type types = i_resolved.Types_
-        
+
         export type _type = i_resolved.Type_
-        
+
         export type imports = i_resolved.Imports_
-        
+
     }
-    
+
 }
 
 export type Signature_ = (
     $$_: Signature_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling signatures': _pi.Acyclic_Lookup<Signature_.L.sibling_signatures>
     },
     $$_p: {
@@ -1401,24 +1430,25 @@ export type Signature_ = (
 ) => Signature_.O
 
 export namespace Signatures_ {
-    
+
     export type I = i_unresolved.Signatures
-    
+
     export type O = i_resolved.Signatures
-    
+
     export namespace P {
-        
+
         export type types = i_resolved.Types_
-        
+
         export type imports = i_resolved.Imports_
-        
+
     }
-    
+
 }
 
 export type Signatures_ = (
     $$_: Signatures_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'types': Signatures_.P.types
         readonly 'imports': Signatures_.P.imports
@@ -1426,26 +1456,27 @@ export type Signatures_ = (
 ) => Signatures_.O
 
 export namespace Resolvers_ {
-    
+
     export type I = i_unresolved.Resolvers
-    
+
     export type O = i_resolved.Resolvers
-    
+
     export namespace P {
-        
+
         export type signatures = i_resolved.Signatures_
-        
+
         export type types = i_resolved.Types_
-        
+
         export type imports = i_resolved.Imports_
-        
+
     }
-    
+
 }
 
 export type Resolvers_ = (
     $$_: Resolvers_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'signatures': Resolvers_.P.signatures
         readonly 'types': Resolvers_.P.types
@@ -1454,225 +1485,232 @@ export type Resolvers_ = (
 ) => Resolvers_.O
 
 export namespace Schemas_ {
-    
+
     export type I = i_unresolved.Schemas
-    
+
     export type O = i_resolved.Schemas
-    
+
     export namespace L {
-        
+
         export type sibling_schemas = i_resolved.Schemas_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Schemas_ = (
     $$_: Schemas_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
     },
     $$_p: null,
 ) => Schemas_.O
 
 export namespace Type_Specification_ {
-    
+
     export type I = i_unresolved.Type_Specification
-    
+
     export type O = i_resolved.Type_Specification
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Type_Specification_ = (
     $$_: Type_Specification_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: null,
 ) => Type_Specification_.O
 
 export namespace Schema_Tree_ {
-    
+
     export type I = i_unresolved.Schema_Tree
-    
+
     export type O = i_resolved.Schema_Tree
-    
+
     export namespace L {
-        
+
         export type sibling_schemas = i_resolved.Schemas_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Schema_Tree_ = (
     $$_: Schema_Tree_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
     },
     $$_p: null,
 ) => Schema_Tree_.O
 
 export namespace Schema_ {
-    
+
     export type I = i_unresolved.Schema
-    
+
     export type O = i_resolved.Schema
-    
+
     export namespace L {
-        
+
         export type sibling_schemas = i_resolved.Schemas_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Schema_ = (
     $$_: Schema_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
     },
     $$_p: null,
 ) => Schema_.O
 
 export namespace Imports_ {
-    
+
     export type I = i_unresolved.Imports
-    
+
     export type O = i_resolved.Imports
-    
+
     export namespace L {
-        
+
         export type sibling_schemas = i_resolved.Schemas_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Imports_ = (
     $$_: Imports_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
     },
     $$_p: null,
 ) => Imports_.O
 
 export namespace Reference_To_Property_Constraint_ {
-    
+
     export type I = i_unresolved.Reference_To_Property_Constraint
-    
+
     export type O = i_resolved.Reference_To_Property_Constraint
-    
+
     export namespace L {
-        
+
         export type property_constraints = i_resolved.Property_Constraints_.D
-        
+
     }
-    
+
     export namespace P {
-        
+
     }
-    
+
 }
 
 export type Reference_To_Property_Constraint_ = (
     $$_: Reference_To_Property_Constraint_.I,
-    $$_lookups: {
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: {
         readonly 'property constraints': _pi.Acyclic_Lookup<Reference_To_Property_Constraint_.L.property_constraints>
     },
     $$_p: null,
 ) => Reference_To_Property_Constraint_.O
 
 export namespace Types_ {
-    
+
     export type I = i_unresolved.Types
-    
+
     export type O = i_resolved.Types
-    
+
     export namespace P {
-        
+
         export namespace globals {
-            
+
             export type O = i_resolved.Globals_
-            
+
         }
-        
+
         export type globals = _pi.Optional_Value<globals.O>
-        
+
         export namespace imports {
-            
+
             export type O = i_resolved.Imports_
-            
+
         }
-        
+
         export type imports = _pi.Optional_Value<imports.O>
-        
+
     }
-    
+
 }
 
 export type Types_ = (
     $$_: Types_.I,
-    $$_lookups: null,
+    abort: _pi.Abort<gen.Error>,
+    $_lookups: null,
     $$_p: {
         readonly 'globals': Types_.P.globals
         readonly 'imports': Types_.P.imports
     },
 ) => Types_.O
 
-export { 
-    Type_Parameters_ as Type_Parameters, 
-    Presence_ as Presence, 
-    Number_Type_ as Number_Type, 
-    Text_Type_ as Text_Type, 
-    Globals_ as Globals, 
-    Group_ as Group, 
-    Dictionary_ as Dictionary, 
-    Type_Node_ as Type_Node, 
-    Type_ as Type, 
-    Type_Reference_ as Type_Reference, 
-    Type_Node_Reference_ as Type_Node_Reference, 
-    Node_Resolver_ as Node_Resolver, 
-    Possible_Value_Selection_ as Possible_Value_Selection, 
-    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
-    Benchmark_ as Benchmark, 
-    Optional_Value_Initialization_ as Optional_Value_Initialization, 
-    Lookup_Selection_ as Lookup_Selection, 
-    Option_Constraints_ as Option_Constraints, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
-    Relative_Value_Selection_ as Relative_Value_Selection, 
-    Constraint_ as Constraint, 
-    Property_Constraints_ as Property_Constraints, 
-    Property_Constraint_ as Property_Constraint, 
-    Resolve_Logic_ as Resolve_Logic, 
-    Signature_Parameters_ as Signature_Parameters, 
-    Signature_ as Signature, 
-    Signatures_ as Signatures, 
-    Resolvers_ as Resolvers, 
-    Schemas_ as Schemas, 
-    Type_Specification_ as Type_Specification, 
-    Schema_Tree_ as Schema_Tree, 
-    Schema_ as Schema, 
-    Imports_ as Imports, 
-    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint, 
-    Types_ as Types, 
+export {
+    Type_Parameters_ as Type_Parameters,
+    Presence_ as Presence,
+    Number_Type_ as Number_Type,
+    Text_Type_ as Text_Type,
+    Globals_ as Globals,
+    Group_ as Group,
+    Dictionary_ as Dictionary,
+    Type_Node_ as Type_Node,
+    Type_ as Type,
+    Type_Reference_ as Type_Reference,
+    Type_Node_Reference_ as Type_Node_Reference,
+    Node_Resolver_ as Node_Resolver,
+    Possible_Value_Selection_ as Possible_Value_Selection,
+    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection,
+    Benchmark_ as Benchmark,
+    Optional_Value_Initialization_ as Optional_Value_Initialization,
+    Lookup_Selection_ as Lookup_Selection,
+    Option_Constraints_ as Option_Constraints,
+    Node_Resolver_List_Result_ as Node_Resolver_List_Result,
+    Node_Resolver_Group_ as Node_Resolver_Group,
+    Relative_Value_Selection_ as Relative_Value_Selection,
+    Constraint_ as Constraint,
+    Property_Constraints_ as Property_Constraints,
+    Property_Constraint_ as Property_Constraint,
+    Resolve_Logic_ as Resolve_Logic,
+    Signature_Parameters_ as Signature_Parameters,
+    Signature_ as Signature,
+    Signatures_ as Signatures,
+    Resolvers_ as Resolvers,
+    Schemas_ as Schemas,
+    Type_Specification_ as Type_Specification,
+    Schema_Tree_ as Schema_Tree,
+    Schema_ as Schema,
+    Imports_ as Imports,
+    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint,
+    Types_ as Types,
 }

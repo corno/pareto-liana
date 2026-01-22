@@ -3,14 +3,11 @@ import * as _p from 'pareto-core-transformer'
 import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "exupery/dist/interface/generated/pareto/schemas/implementation/data/resolved"
-import * as d_out_interface from "exupery/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/implementation/data/resolved"
+import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
 
-import * as sh from "exupery/dist/shorthands/implementation"
-import * as sh_i from "exupery/dist/shorthands/interface"
-
-import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
-
+import * as sh from "pareto/dist/shorthands/implementation"
+import * as sh_i from "pareto/dist/shorthands/interface"
 
 export const Schema = (
     $: d_in.Schema,
@@ -25,7 +22,7 @@ export const Schema = (
         "signatures": sh_i.import_.ancestor(
             3, //5,
             "interface",
-            _p.list.nested_literal([
+            _p.list.nested_literal_old([
                 _p.list.literal([
                     // "generated",
                     // "pareto",
@@ -38,7 +35,7 @@ export const Schema = (
         "out": sh_i.import_.ancestor(
             3, //5,
             "interface",
-            _p.list.nested_literal([
+            _p.list.nested_literal_old([
                 _p.list.literal([
                     // "generated",
                     // "pareto",
@@ -96,7 +93,7 @@ export const Type_Node = (
                     $.node,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal([
+                        'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh_i.sub.dictionary()
@@ -111,7 +108,7 @@ export const Type_Node = (
                     $.node,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal([
+                        'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh_i.sub.group(key)
@@ -126,7 +123,7 @@ export const Type_Node = (
                     $.node,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal([
+                        'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh_i.sub.list()
@@ -143,7 +140,7 @@ export const Type_Node = (
                     $,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal([
+                        'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh_i.sub.optional()
@@ -165,7 +162,7 @@ export const Type_Node = (
                     $.node,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal([
+                        'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh_i.sub.state_group(key)

@@ -1,7 +1,8 @@
-
+import * as _p from 'pareto-core-command'
 import * as _pt from 'pareto-core-transformer'
 import * as _pi from 'pareto-core-interface'
-import * as _p from 'pareto-core-command'
+import * as _ps from 'pareto-core-serializer'
+import * as _pds from 'pareto-core-deserializer'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -10,7 +11,6 @@ import * as d_write_to_file from "../../../interface/to_be_generated/write_to_fi
 
 //dependencies
 import * as t_block_2_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
-import { $$ as s_list_of_texts } from "pareto-standard-operations/dist/implementation/temp_serializers/schemas/list_of_texts"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import { replace_space_in_context_path } from "../schemas/path/transformers/path"
 
@@ -28,8 +28,12 @@ export const $$: signatures.commands.write_to_file = _p.command_procedure(
                         ? replace_space_in_context_path($)
                         : $,
                 ),
-                'data': s_list_of_texts(
-                    t_block_2_lines.Group($p.group, { 'indentation': $p.indentation }).__l_map(($) => $ + $p.newline),
+                'data': _ps.text.from_list(
+                    _pt.list.flatten(
+                        t_block_2_lines.Group($p.group, { 'indentation': $p.indentation }).__l_map(($) => $ + $p.newline),
+                        ($) => _pds.list.from_text($, ($) => $)
+                    ),
+                    ($) => $
                 ),
             },
             ($) => ['write file', $],
