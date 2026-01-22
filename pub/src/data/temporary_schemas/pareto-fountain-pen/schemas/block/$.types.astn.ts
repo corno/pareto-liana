@@ -36,6 +36,7 @@ export const $: g_.Types  = types(
                 "elements": prop(t.list(t.component_cyclic("Group Part"))),
                 "if empty": prop(t.component_cyclic("Group Part")),
                 "if not empty": prop(t.group({
+                    "indent": prop(t.boolean()),
                     "before": prop(t.component_cyclic("Group Part")),
                     "separator": prop(t.component_cyclic("Group Part")),
                     "after": prop(t.component_cyclic("Group Part")),
