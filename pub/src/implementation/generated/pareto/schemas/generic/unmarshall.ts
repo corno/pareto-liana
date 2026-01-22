@@ -1,335 +1,335 @@
-import * as _pi from 'pareto-core/dist/interface'
-import * as _ea from 'pareto-core/dist/refiner'
+// import * as _pi from 'pareto-core/dist/interface'
+// import * as _ea from 'pareto-core/dist/refiner'
 
-import * as t from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
-import * as unconstrained from "../../../../../interface/generated/pareto/core/unconstrained"
-import * as unresolved from "../../../../../interface/generated/pareto/core/unresolved"
+// import * as t from "astn-core/dist/interface/generated/pareto/schemas/parse_tree/data"
+// import * as unconstrained from "../../../../../interface/generated/pareto/core/unconstrained"
+// import * as unresolved from "../../../../../interface/generated/pareto/core/unresolved"
 
-export const process_unconstrained_state_group = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'states': _pi.Dictionary<($: t.Value) => Mapped_Value>,
-    }
+// export const process_unconstrained_state_group = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'states': _pi.Dictionary<($: t.Value) => Mapped_Value>,
+//     }
 
-): Mapped_Value => {
-    return _ea.sg($.type, ($) => {
-        switch ($[0]) {
-            case 'concrete': return _ea.ss($, ($) => _ea.sg($, ($) => {
-                switch ($[0]) {
-                    case 'state group': return _ea.ss($, ($) => {
-                        const data = $
-                        return $p.states.__get_possible_entry(
-                            $xxxx
-                        ).__decide(
-                            ($) => $(data),
-                            () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
-                        )
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
-        }
-    })
-}
+// ): Mapped_Value => {
+//     return _ea.sg($.type, ($) => {
+//         switch ($[0]) {
+//             case 'concrete': return _ea.ss($, ($) => _ea.sg($, ($) => {
+//                 switch ($[0]) {
+//                     case 'state group': return _ea.ss($, ($) => {
+//                         const data = $
+//                         return $p.states.__get_possible_entry(
+//                             $xxxx
+//                         ).__decide(
+//                             ($) => $(data),
+//                             () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
+//                         )
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_unresolved_state_group = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'states': _pi.Dictionary<($: t.Value) => Mapped_Value>,
-    }
+// export const process_unresolved_state_group = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'states': _pi.Dictionary<($: t.Value) => Mapped_Value>,
+//     }
 
-): unresolved.State_Group<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'tagged value': return _ea.ss($, ($) => {
-                const data = $.value
-                return {
-                    'location': $["|"].range,
-                    'state group': $p.states.__get_possible_entry(
-                        $.state.value
-                    ).__decide(
-                        ($) => $(data),
-                        () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
-                    )
-                }
-            })
-            default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
-        }
-    })
-}
+// ): unresolved.State_Group<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'tagged value': return _ea.ss($, ($) => {
+//                 const data = $.value
+//                 return {
+//                     'location': $["|"].range,
+//                     'state group': $p.states.__get_possible_entry(
+//                         $.state.value
+//                     ).__decide(
+//                         ($) => $(data),
+//                         () => _ea.fixme_abort(`Unexpected state: ${$.state.value}`)
+//                     )
+//                 }
+//             })
+//             default: return _ea.fixme_abort(`Unexpected type for state group: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_group = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'properties': ($: _pi.Dictionary<t.Value>) => Mapped_Value,
-    }
+// export const process_group = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'properties': ($: _pi.Dictionary<t.Value>) => Mapped_Value,
+//     }
 
-): Mapped_Value => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
-                switch ($[0]) {
-                    case 'verbose group': return _ea.ss($, ($) => {
-                        return $p.properties(_ea.deprecated_build_dictionary(($i) => {
-                            $.entries.__for_each(($) => {
-                                $i['add entry']($.key.value, $.value.__decide(
-                                    ($) => $.value,
-                                    () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
-                                ))
-                            })
-                        }))
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for group: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for group: ${$[0]}`)
-        }
-    })
-}
+// ): Mapped_Value => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
+//                 switch ($[0]) {
+//                     case 'verbose group': return _ea.ss($, ($) => {
+//                         return $p.properties(_ea.deprecated_build_dictionary(($i) => {
+//                             $.entries.__for_each(($) => {
+//                                 $i['add entry']($.key.value, $.value.__decide(
+//                                     ($) => $.value,
+//                                     () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
+//                                 ))
+//                             })
+//                         }))
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for group: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for group: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const get_entry = (
-    $: _pi.Dictionary<t.Value>,
-    $p: {
-        'key': string,
-    }
+// export const get_entry = (
+//     $: _pi.Dictionary<t.Value>,
+//     $p: {
+//         'key': string,
+//     }
 
-): t.Value => {
-    return $.__get_possible_entry($p.key).__decide(
-        ($) => $,
-        () => _ea.fixme_abort(`no such entry: ${$p.key}`)
-    )
-}
+// ): t.Value => {
+//     return $.__get_possible_entry($p.key).__decide(
+//         ($) => $,
+//         () => _ea.fixme_abort(`no such entry: ${$p.key}`)
+//     )
+// }
 
-export const process_unresolved_dictionary = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'value': ($: t.Value) => Mapped_Value
-    }
-): unresolved.Dictionary<Mapped_Value> => {
-    return _ea.deprecated_cc($.type, ($) => {
-        switch ($[0]) {
-            case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
-                switch ($[0]) {
-                    case 'dictionary': return _ea.ss($, ($) => {
-                        return {
-                            'location': {
-                                'start': $["{"].range.start,
-                                'end': $["}"].range.end,
-                            },
-                            'dictionary': _ea.deprecated_build_dictionary(($i) => {
-                                $.entries.__for_each(($) => {
-                                    const key_location = $.key.range
-                                    $i['add entry']($.key.value, $.value.__decide(
-                                        ($) => ({
-                                            'location': key_location,
-                                            'entry': $p.value($.value),
-                                        }),
-                                        () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
-                                    ))
-                                })
-                            })
-                        }
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
-        }
-    })
-}
+// export const process_unresolved_dictionary = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'value': ($: t.Value) => Mapped_Value
+//     }
+// ): unresolved.Dictionary<Mapped_Value> => {
+//     return _ea.deprecated_cc($.type, ($) => {
+//         switch ($[0]) {
+//             case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
+//                 switch ($[0]) {
+//                     case 'dictionary': return _ea.ss($, ($) => {
+//                         return {
+//                             'location': {
+//                                 'start': $["{"].range.start,
+//                                 'end': $["}"].range.end,
+//                             },
+//                             'dictionary': _ea.deprecated_build_dictionary(($i) => {
+//                                 $.entries.__for_each(($) => {
+//                                     const key_location = $.key.range
+//                                     $i['add entry']($.key.value, $.value.__decide(
+//                                         ($) => ({
+//                                             'location': key_location,
+//                                             'entry': $p.value($.value),
+//                                         }),
+//                                         () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
+//                                     ))
+//                                 })
+//                             })
+//                         }
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_unconstrained_dictionary = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'value': ($: t.Value) => Mapped_Value
-    }
-): unconstrained.Dictionary<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
-                switch ($[0]) {
-                    case 'dictionary': return _ea.ss($, ($) => {
-                        return _ea.deprecated_build_dictionary(($i) => {
-                            $.entries.__for_each(($) => {
-                                $i['add entry']($.key.value, $.value.__decide(
-                                    ($) => $p.value($.value),
-                                    () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
-                                ))
-                            })
-                        })
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
-        }
-    })
-}
+// export const process_unconstrained_dictionary = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'value': ($: t.Value) => Mapped_Value
+//     }
+// ): unconstrained.Dictionary<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'indexed collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
+//                 switch ($[0]) {
+//                     case 'dictionary': return _ea.ss($, ($) => {
+//                         return _ea.deprecated_build_dictionary(($i) => {
+//                             $.entries.__for_each(($) => {
+//                                 $i['add entry']($.key.value, $.value.__decide(
+//                                     ($) => $p.value($.value),
+//                                     () => _ea.fixme_abort(`no value for property: ${$.key.value}`)
+//                                 ))
+//                             })
+//                         })
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for dictionary: ${$[0]}`)
+//         }
+//     })
+// }
 
 
-export const process_number = (
-    $: t.Value,
-    $p: {
-        // 'deserializer': ($: string, $p: null) => number
-    }
-): number => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
-            default: return _ea.fixme_abort(`Unexpected type for number: ${$[0]}`)
+// export const process_number = (
+//     $: t.Value,
+//     $p: {
+//         // 'deserializer': ($: string, $p: null) => number
+//     }
+// ): number => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
+//             default: return _ea.fixme_abort(`Unexpected type for number: ${$[0]}`)
 
-        }
-    })
-}
+//         }
+//     })
+// }
 
-export const process_boolean = (
-    $: t.Value,
-    $p: {
-        // 'deserializer': ($: string, $p: null) => boolean
-    }
+// export const process_boolean = (
+//     $: t.Value,
+//     $p: {
+//         // 'deserializer': ($: string, $p: null) => boolean
+//     }
 
-): boolean => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
-            default: return _ea.fixme_abort(`Unexpected type for boolean: ${$[0]}`)
-        }
-    })
-}
+// ): boolean => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'string': return _ea.ss($, ($) => $p.deserializer($.value, null))
+//             default: return _ea.fixme_abort(`Unexpected type for boolean: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_text = (
-    $: t.Value,
-    $p: null
+// export const process_text = (
+//     $: t.Value,
+//     $p: null
 
-): string => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => $.value)
-            default: return _ea.fixme_abort(`Unexpected type for text: ${$[0]}`)
-        }
-    })
-}
+// ): string => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'string': return _ea.ss($, ($) => $.value)
+//             default: return _ea.fixme_abort(`Unexpected type for text: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_unresolved_list = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'value': ($: t.Value) => Mapped_Value
-    }
-): unresolved.List<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'ordered collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
-                switch ($[0]) {
-                    case 'list': return _ea.ss($, ($) => {
-                        const temp = $["["]
-                        return {
-                            'location': $["["].range,
-                            'list': $["elements"].__l_map(($) => ({
-                                'location': temp.range,
-                                'element': $p.value($.value)
-                            }))
-                        }
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
-        }
-    })
-}
+// export const process_unresolved_list = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'value': ($: t.Value) => Mapped_Value
+//     }
+// ): unresolved.List<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'ordered collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
+//                 switch ($[0]) {
+//                     case 'list': return _ea.ss($, ($) => {
+//                         const temp = $["["]
+//                         return {
+//                             'location': $["["].range,
+//                             'list': $["elements"].__l_map(($) => ({
+//                                 'location': temp.range,
+//                                 'element': $p.value($.value)
+//                             }))
+//                         }
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_unconstrained_list = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'value': ($: t.Value) => Mapped_Value
-    }
+// export const process_unconstrained_list = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'value': ($: t.Value) => Mapped_Value
+//     }
 
-): unconstrained.List<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'ordered collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
-                switch ($[0]) {
-                    case 'list': return _ea.ss($, ($) => {
-                        return $["elements"].__l_map(($) => $p.value($.value))
-                    })
-                    default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
-                }
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
-        }
-    })
-}
+// ): unconstrained.List<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'ordered collection': return _ea.ss($, ($) => _ea.deprecated_cc($, ($) => {
+//                 switch ($[0]) {
+//                     case 'list': return _ea.ss($, ($) => {
+//                         return $["elements"].__l_map(($) => $p.value($.value))
+//                     })
+//                     default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
+//                 }
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for list: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_optional = <Mapped_Value>(
-    $: t.Value,
-    $p: {
-        'value': ($: t.Value) => Mapped_Value
-    }
+// export const process_optional = <Mapped_Value>(
+//     $: t.Value,
+//     $p: {
+//         'value': ($: t.Value) => Mapped_Value
+//     }
 
-): _pi.Optional_Value<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'not set': return _ea.ss($, ($) => _ea.optional.not_set())
-            case 'set optional value': return _ea.ss($, ($) => _ea.optional.set($p.value($.value)))
-            default: return _ea.fixme_abort(`Unexpected type for nothing: ${$[0]}`)
+// ): _pi.Optional_Value<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'not set': return _ea.ss($, ($) => _ea.optional.not_set())
+//             case 'set optional value': return _ea.ss($, ($) => _ea.optional.set($p.value($.value)))
+//             default: return _ea.fixme_abort(`Unexpected type for nothing: ${$[0]}`)
 
-        }
-    })
-}
+//         }
+//     })
+// }
 
-export const process_nothing = (
-    $: t.Value,
-    $p: null
-): null => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'not set': return _ea.ss($, ($) => null)
-            default: return _ea.fixme_abort(`Unexpected type for nothing: ${$[0]}`)
+// export const process_nothing = (
+//     $: t.Value,
+//     $p: null
+// ): null => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'not set': return _ea.ss($, ($) => null)
+//             default: return _ea.fixme_abort(`Unexpected type for nothing: ${$[0]}`)
 
-        }
-    })
-}
+//         }
+//     })
+// }
 
-export const process_selected_reference = <Mapped_Value>(
-    $: t.Value,
-    $p: null
-): unresolved.Reference_To_Normal_Dictionary_Entry<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => ({
-                'key': $.value,
-                'location': $.range,
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for selected reference key: ${$[0]}`)
-        }
-    })
-}
+// export const process_selected_reference = <Mapped_Value>(
+//     $: t.Value,
+//     $p: null
+// ): unresolved.Reference_To_Normal_Dictionary_Entry<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'string': return _ea.ss($, ($) => ({
+//                 'key': $.value,
+//                 'location': $.range,
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for selected reference key: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_stack_reference = <Mapped_Value>(
-    $: t.Value,
-    $p: null
-): unresolved.Reference_To_Stacked_Dictionary_Entry<Mapped_Value> => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'string': return _ea.ss($, ($) => ({
-                'key': $.value,
-                'location': $.range,
-            }))
-            default: return _ea.fixme_abort(`Unexpected type for selected reference key: ${$[0]}`)
-        }
-    })
-}
+// export const process_stack_reference = <Mapped_Value>(
+//     $: t.Value,
+//     $p: null
+// ): unresolved.Reference_To_Stacked_Dictionary_Entry<Mapped_Value> => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'string': return _ea.ss($, ($) => ({
+//                 'key': $.value,
+//                 'location': $.range,
+//             }))
+//             default: return _ea.fixme_abort(`Unexpected type for selected reference key: ${$[0]}`)
+//         }
+//     })
+// }
 
-export const process_derived_reference = (
-    $: t.Value,
-    $p: null
-): null => {
-    return _ea.deprecated_cc($, ($) => {
-        switch ($[0]) {
-            case 'not set': return _ea.ss($, ($) => null)
-            default: return _ea.fixme_abort(`Unexpected type for derived reference: ${$[0]}`)
+// export const process_derived_reference = (
+//     $: t.Value,
+//     $p: null
+// ): null => {
+//     return _ea.deprecated_cc($, ($) => {
+//         switch ($[0]) {
+//             case 'not set': return _ea.ss($, ($) => null)
+//             default: return _ea.fixme_abort(`Unexpected type for derived reference: ${$[0]}`)
 
-        }
-    })
-}
+//         }
+//     })
+// }
