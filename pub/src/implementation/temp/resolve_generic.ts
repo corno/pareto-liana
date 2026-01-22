@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-refiner'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/refiner'
+import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
 import * as gen_loc from "../../interface/generated/pareto/core/location"
@@ -100,10 +100,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
 export namespace acyclic {
 
     export const not_set = <T>(): _pi.Acyclic_Lookup<T> => ({
-        'get entry': (id, abort) => {
-            //return abort['no context lookup']()
-            return _pdev.implement_me("NCL")
-        }
+        'get entry': (id, abort) => abort['no context lookup'](null),
+        'get possible entry': (id, abort) => abort['no context lookup'](null),
     })
 
 }
@@ -188,7 +186,8 @@ export const dictionary_to_lookup = <T>(
     'get entry': (id, abort) => dict.__get_entry(
         id,
         () => abort['no such entry'](id),
-    )
+    ),
+    'get possible entry': (id, abort) => dict.__get_entry_raw(id)
 })
 
 export const get_entry = <T>(
@@ -207,6 +206,10 @@ export const get_entry = <T>(
                 'no such entry': () => abort({
                     'type': ['no such entry', id.key],
                     'location': id.location,
+                }),
+                'no context lookup': () => abort({
+                    'type': ['no context lookup', null],
+                    'location': id.location,
                 })
             }
         ),
@@ -219,16 +222,32 @@ export const push_stack = <T>(
     acyclic: _pi.Acyclic_Lookup<T>,
 ): _pi.Stack_Lookup<T> => ({
     'get entry': (id, abort) => {
-
+        return acyclic['get entry']
     }
 })
 
 export const get_possibly_circular_dependent_sibling_entry = <T>(
     lookup: _pi.Cyclic_Lookup<T>,
-    id: Unresolved_Reference,
+    reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
-    return lookup['get entry'](id.key, abort)
+    return {
+        'key': reference.key,
+        'entry': lookup['get entry'](
+            reference.key,
+            {
+                'accessing cyclic before resolved': () => _p.unreachable_code_path(),
+                'no such entry': () => abort({
+                    'type': ['no such entry', reference.key],
+                    'location': reference.location,
+                }),
+                'no context lookup': () => abort({
+                    'type': ['no context lookup', null],
+                    'location': reference.location,
+                })
+            }
+        )
+    }
 }
 
 export type Resolve_Path_Result<Resolved> = {

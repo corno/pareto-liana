@@ -1,6 +1,6 @@
 import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unresolved_data I think
 
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import * as g_ from "../../interface/generated/pareto/schemas/module/data/unresolved"
 

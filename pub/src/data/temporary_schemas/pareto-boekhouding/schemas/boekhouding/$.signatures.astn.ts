@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import { signatures, sig, value_parameter, lookup_parameter, sig_params } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/data/unresolved"

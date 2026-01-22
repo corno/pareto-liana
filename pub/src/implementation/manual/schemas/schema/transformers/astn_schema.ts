@@ -1,6 +1,6 @@
 import * as _pdev from 'pareto-core-dev'
-import * as _p from 'pareto-core-transformer'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/transformer'
+import * as _pi from 'pareto-core/dist/interface'
 
 import {
     wrap_dictionary,

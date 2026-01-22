@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core-query'
+import * as _p from 'pareto-core/dist/query'
 
 import * as signatures from "../../../interface/signatures"
 

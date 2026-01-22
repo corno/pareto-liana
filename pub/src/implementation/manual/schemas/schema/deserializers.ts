@@ -1,7 +1,7 @@
-import * as _p from 'pareto-core-deserializer'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/deserializer'
+import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
-import * as _p_temp from 'pareto-core-transformer'
+import * as _p_temp from 'pareto-core/dist/transformer'
 
 //data types
 import * as d_schema from "../../../../interface/generated/pareto/schemas/schema/data/resolved"

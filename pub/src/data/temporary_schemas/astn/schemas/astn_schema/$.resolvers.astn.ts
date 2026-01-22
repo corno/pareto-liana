@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import {
     resolvers, r, resolver, al, ls, av, gvs, ovi, vst, state, state_constrained, oc, pc, pvs, reference,

@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_unmarshall_result_types from "./to_be_generated/temp_unmashall_result"
 import * as d_load_pareto_document from "./to_be_generated/load_pareto_document"

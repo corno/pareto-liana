@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import { operation, set, operations } from "../../../shorthands/module"
 import { t, text, n } from "../../../shorthands/schema"

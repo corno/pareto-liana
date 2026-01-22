@@ -1,5 +1,5 @@
 import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 
 

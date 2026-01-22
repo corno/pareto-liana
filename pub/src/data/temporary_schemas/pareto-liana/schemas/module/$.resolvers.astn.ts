@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import { resolvers, r, resolver, al, av, gvs, vst, ovi, state } from "../../../../../shorthands/schema"
 

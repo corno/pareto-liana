@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-transformer'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/transformer'
+import * as _pi from 'pareto-core/dist/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/module/data/resolved"

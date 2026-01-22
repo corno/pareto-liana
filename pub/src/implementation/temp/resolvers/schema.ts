@@ -1,7 +1,7 @@
-import * as _p from 'pareto-core-refiner'
-import * as _pi from 'pareto-core-interface'
+import * as _p from 'pareto-core/dist/refiner'
+import * as _pi from 'pareto-core/dist/interface'
 
-// import * as _i_generic from 'pareto-core-internals/dist/algorithm_types/refiner/resolve'
+// import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as signatures from "../../../interface/generated/pareto/schemas/schema/resolve"
 
 import * as d_out from "../../../interface/generated/pareto/schemas/schema/data/resolved"

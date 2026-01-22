@@ -1,5 +1,5 @@
 
-import * as _pi from 'pareto-core-interface'
+import * as _pi from 'pareto-core/dist/interface'
 
 import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/data/unresolved"
 
