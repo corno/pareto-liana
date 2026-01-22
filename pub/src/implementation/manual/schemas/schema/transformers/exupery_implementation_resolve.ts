@@ -9,7 +9,7 @@ import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
+import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
 const op_pad_dictionary_identifiers = <T>(
     $: _pi.Dictionary<T>,
@@ -147,8 +147,8 @@ export const Guaranteed_Value_Selection = (
 ): d_out.Selection => {
     const tail = (): _pi.List<d_out.Selection.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
-            $.tail.path,
-            ($) => _p.sg($, ($): _pi.List<d_out.Selection.tail.L> => {
+            $.tail.path.list,
+            ($) => _p.sg($._, ($): _pi.List<d_out.Selection.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
                     case 'group': return _p.ss($, ($) => _p.list.literal([$.key]))

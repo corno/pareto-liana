@@ -13,23 +13,33 @@ export const Node = (
     abort: _pi.Abort<Error>
 ): d_out.Value => {
     return {
-        'type': _p.sg($.type, ($) => {
+        'metadata': {
+            'comments': _p.list.literal(["FIXME COMMENTS"]),
+        },
+        'data': _p.sg($.type, ($): d_out.Value.data => {
             switch ($[0]) {
-                case 'boolean': return _p.ss($, ($): d_out.Value._type => ['text', {
-                    'value': "FIXME_BOOLEAN",
-                    'delimiter': ['none', null],
+                case 'boolean': return _p.ss($, ($): d_out.Value.data => ['concrete', {
+                    'type': ['text', {
+                        'value': "FIXME_BOOLEAN",
+                        'delimiter': ['none', null],
 
+                    }]
                 }])
                 case 'component': return _pdev.implement_me("xx")
                 case 'dictionary': return _pdev.implement_me("xx")
                 case 'group': return _pdev.implement_me("xx")
                 case 'list': return _pdev.implement_me("xx")
-                case 'nothing': return _p.ss($, ($) => ['nothing', null])
-                case 'number': return _p.ss($, ($): d_out.Value._type => _p.sg($['found value type'], ($) => {
+                case 'nothing': return _p.ss($, ($) => ['concrete', {
+                    'type': ['nothing', null]
+                }])
+                case 'number': return _p.ss($, ($) => _p.sg($['found value type'], ($) => {
                     switch ($[0]) {
-                        case 'valid': return _p.ss($, ($) => ['text', {
-                            'value': $.value.value,
-                            'delimiter': ['none', null],
+                        case 'valid': return _p.ss($, ($) => ['concrete', {
+                            'type': ['text', {
+                                'value': "FIXME_NUMBER",
+                                'delimiter': ['none', null],
+
+                            }]
                         }])
                         case 'invalid': return _p.ss($, ($) => abort(null))
                         default: return _p.au($[0])
@@ -38,10 +48,12 @@ export const Node = (
                 case 'optional': return _pdev.implement_me("xx")
                 case 'reference': return _pdev.implement_me("xx")
                 case 'state group': return _pdev.implement_me("xx")
-                case 'text': return _p.ss($, ($): d_out.Value._type => ['text', {
-                    'value': "FIXME_TEXT",
-                    'delimiter': ['none', null],
+                case 'text': return _p.ss($, ($): d_out.Value.data => ['concrete', {
+                    'type': ['text', {
+                        'value': "FIXME_TEXT",
+                        'delimiter': ['none', null],
 
+                    }]
                 }])
                 default: return _p.au($[0])
             }

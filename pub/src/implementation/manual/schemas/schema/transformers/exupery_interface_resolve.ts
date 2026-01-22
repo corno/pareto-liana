@@ -85,7 +85,7 @@ export const Type_Part_Reference = (
         $: d_in.Type_Node_Reference.tail,
 
     ): _pi.List<d_out.Type.reference.sub_selection.L> => {
-        const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.__l_map(($) => _p.sg($, ($) => {
+        const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.list.__l_map(($) => _p.sg($._, ($) => {
             switch ($[0]) {
                 case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
                 case 'group': return _p.ss($, ($) => sh.sub.group($.key))

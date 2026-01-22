@@ -4,6 +4,7 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
+import * as d_resolve from "../../../interface/generated/pareto/core/resolve"
 export type Package_Error =
     | ['could not log', null]
     | ['could not remove interface', null]
@@ -12,6 +13,7 @@ export type Package_Error =
     | ['could not write implementation', null]
     | ['could not copy generic implementation', null]
     | ['could not copy core interface', null]
+    | ['could not deserialize module', d_resolve.Error]
 
 
 //data
@@ -64,53 +66,44 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                         ($) => ['could not remove interface', null]
                     ),
 
-                    //write new interface files
-                    $cr['write to directory'].execute(
-                        {
-                            'escape spaces in path': true,
-                            'path': interface_module_path,
-                            'directory': t_pareto_module_to_fountain_pen_block__interface.Module(
-                                r_pareto_module.Module(
-                                    $.module,
-                                    abort,
-                                    {
-                                        'parameters': {
-                                            'lookups': null,
-                                            'values': null,
-                                        },
-                                        'location 2 string': () => "XX" //location_to_string
-                                    }
-                                ),
+                    _p.refine_without_error_transformation(
+                        (abort) => r_pareto_module.Module(
+                            $.module,
+                            ($) => abort(['could not deserialize module', $]),
+                            null,
+                            null,
+                        ),
+                        ($) => [
+                            //write new interface files
+                            $cr['write to directory'].execute(
+                                {
+                                    'escape spaces in path': true,
+                                    'path': interface_module_path,
+                                    'directory': t_pareto_module_to_fountain_pen_block__interface.Module(
+                                        $,
+                                    ),
+                                    'indentation': "    ",
+                                    'newline': "\n",
+                                    'remove before creating': true,
+                                },
+                                ($) => ['could not write interface', null]
                             ),
-                            'indentation': "    ",
-                            'newline': "\n",
-                            'remove before creating': true,
-                        },
-                        ($) => ['could not write interface', null]
-                    ),
+                            //write new implementation files
+                            $cr['write to directory'].execute(
+                                {
+                                    'escape spaces in path': true,
+                                    'path': implementation_module_path,
+                                    'directory': t_pareto_module_to_fountain_pen_block__implementation.Module(
+                                        $,
+                                    ),
+                                    'indentation': "    ",
+                                    'newline': "\n",
+                                    'remove before creating': true,
+                                },
+                                ($) => ['could not write implementation', null]
+                            ),
 
-                    //write new implementation files
-                    $cr['write to directory'].execute(
-                        {
-                            'escape spaces in path': true,
-                            'path': implementation_module_path,
-                            'directory': t_pareto_module_to_fountain_pen_block__implementation.Module(
-                                r_pareto_module.Module(
-                                    $.module,
-                                    {
-                                        'parameters': {
-                                            'lookups': null,
-                                            'values': null,
-                                        },
-                                        'location 2 string': () => "XX" //location_to_string
-                                    }
-                                ),
-                            ),
-                            'indentation': "    ",
-                            'newline': "\n",
-                            'remove before creating': true,
-                        },
-                        ($) => ['could not write implementation', null]
+                        ]
                     ),
 
                     // //copy generic implementation files
@@ -151,7 +144,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                     ),
                 ]
             },
-            ($):d_main.Error => ({
+            ($): d_main.Error => ({
                 'exit code': 1
             })
         )

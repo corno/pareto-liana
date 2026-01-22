@@ -9,8 +9,10 @@ import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_
 
 import * as t_ast_to_range from "astn/dist/implementation/manual/schemas/parse_tree/transformers/token"
 
-
-import { $$ as op_expect_exactly_one_element } from "pareto-standard-operations/dist/implementation/operations/impure/list/expect_exactly_one_element"
+export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_elements($) !== 1
+    ? _p.optional.not_set()
+    // there is an element, so this statement will always return a 'set'
+    : $.__get_possible_element_at(0)
 
 type Key_Value_Pair<T> = {
     'key': string,

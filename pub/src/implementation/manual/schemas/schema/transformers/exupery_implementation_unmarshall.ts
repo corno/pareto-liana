@@ -12,7 +12,7 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 //dependencies
-import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
+import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
 export const Schema: _pi.Transformer_With_Parameters<
     d_in.Schema,

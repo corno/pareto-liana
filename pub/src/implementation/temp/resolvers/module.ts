@@ -12,7 +12,7 @@ export const Module: signatures.Module = ($, abort, $l, $p) => _p.deprecated_blo
         $,
         abort,
         {
-            'sibling schemas': null,
+            'sibling schemas': _i_generic.stack.empty(),
         },
         null,
     ))

@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/deserializer'
+import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 import * as _p_temp from 'pareto-core/dist/transformer'
@@ -6,11 +6,12 @@ import * as _p_temp from 'pareto-core/dist/transformer'
 //data types
 import * as d_schema from "../../../../interface/generated/pareto/schemas/schema/data/resolved"
 import * as d_deserialize_schema from "../../../../interface/to_be_generated/deserialize_schema"
+import * as d_resolve from "../../../../interface/generated/pareto/core/resolve"
 
 //dependencies
 import * as r_pareto_schema from "../../../temp/resolvers/schema"
 
-// import * as u_pareto_schema from "../../../generated/pareto/schemas/schema/unmarshall"
+import * as u_pareto_schema from "../../../generated/pareto/schemas/schema/unmarshall"
 
 import * as ds_astn_source from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"
 
@@ -55,24 +56,20 @@ export const $: _pi.Deserializer_With_Parameters<d_schema.Type, d_deserialize_sc
     )
 
     const resolved_schema_schema = r_pareto_schema.Type_Specification(
-        _pdev.implement_me("XX"),
-        // u_pareto_schema.Type_Specification(
-        //     x.content,
-        //     {
-        //         'value deserializers': {
-        //             'boolean': ($) => $ === "true",
-        //             'default number': () => 0,
-        //             'custom numbers': null
-        //         }
-        //     }
-        // ),
-        {
-            'location 2 string': ($) => _pdev.implement_me("XX2"), //`${$.start.relative.line}:${$.start.relative.column}`,
-            'parameters': {
-                'lookups': null,
-                'values': null,
+        
+        u_pareto_schema.Type_Specification(
+            x.content,
+            {
+                // 'value deserializers': {
+                //     'boolean': ($) => $ === "true",
+                //     'default number': () => 0,
+                //     'custom numbers': null
+                // }
             }
-        }
+        ),
+        ($) => abort(['resolve errorx', $]),
+        null,
+        null,
     )
     const temp_find_schema = (
         $: d_schema.Schema_Tree,

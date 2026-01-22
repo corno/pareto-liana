@@ -3,11 +3,11 @@ import * as _p from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved"
+import * as d_out from "pareto/dist/interface/generated/pareto/schemas/interface/data/resolved" //FIXME; this should be unresolved
 
 import * as sh from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
+import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
 const location = sh.t.component_imported(
     ` location`,
@@ -230,7 +230,7 @@ const Type_Node_Reference__tail = (
     $: d_in.Type_Node_Reference.tail,
 
 ): _pi.List<d_out.Type.reference.sub_selection.L> => {
-    return $.__l_map(($) => _p.sg($, ($) => {
+    return $.list.__l_map(($) => _p.sg($._, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))

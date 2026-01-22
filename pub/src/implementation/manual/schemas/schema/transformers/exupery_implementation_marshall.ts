@@ -9,8 +9,6 @@ import * as d_out_interface from "pareto/dist/interface/generated/pareto/schemas
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "pareto-standard-operations/dist/implementation/operations/pure/dictionary/flatten"
-
 
 export const Schema = (
     $: d_in.Schema,

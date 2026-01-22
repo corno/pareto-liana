@@ -1,13 +1,31 @@
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pdev from 'pareto-core-dev'
+import * as _pi from 'pareto-core/dist/interface'
+import * as _pd from 'pareto-core/dist/deserializer'
+import * as _ps from 'pareto-core/dist/serializer'
 
 import * as d_in from "../../../../../interface/generated/pareto/schemas/unmarshall_errors/data"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/pareto/schemas/block/data"
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-import { $$ as s_list_of_separated_texts } from "pareto-standard-operations/dist/implementation/temp_serializers/schemas/list_of_separated_texts"
 
+export const s_list_of_separated_texts: _pi.Serializer_With_Parameters<_pi.List<string>, { 'separator': string }> = ($, $p) => {
+    let is_first = true
+    return _ps.text.from_list(_p.list.deprecated_build<number>(
+        ($i) => {
+            $.__for_each(($) => {
+                if (!is_first) {
+                    $i['add list'](_pd.list.from_text($p.separator, ($) => $))
+                }
+                $i['add list'](_pd.list.from_text($, ($) => $))
+                is_first = false
+
+            })
+        }),
+        ($) => $,
+    )
+}
 
 export const Errors = (
     $: d_in.Errors,

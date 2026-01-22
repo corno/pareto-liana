@@ -138,11 +138,38 @@ export type Resolved_Reference<T> = {
     'key': string,
 }
 
+export type Resolved_Stack_Reference<T> = {
+    'entry': T,
+    'key': string,
+    'up steps': number,
+}
+
 export const get_entry_from_stack = <T>(
     stack: _pi.Stack_Lookup<T>,
-    id: Unresolved_Reference,
+    reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
-): T => {
+): Resolved_Stack_Reference<T> => {
+    return {
+        'key': reference.key,
+        'up steps': _pdev.implement_me("up steps"),
+        'entry': stack['get entry'](
+            reference.key,
+            {
+                'cyclic': () => abort({
+                    'type': ['cyclic lookup in acyclic context', reference.key],
+                    'location': reference.location,
+                }),
+                'no such entry': () => abort({
+                    'type': ['no such entry', reference.key],
+                    'location': reference.location,
+                }),
+                'no context lookup': () => abort({
+                    'type': ['no context lookup', null],
+                    'location': reference.location,
+                })
+            }
+        )
+    }
 }
 
 export namespace abort {
@@ -222,7 +249,14 @@ export const push_stack = <T>(
     acyclic: _pi.Acyclic_Lookup<T>,
 ): _pi.Stack_Lookup<T> => ({
     'get entry': (id, abort) => {
-        return acyclic['get entry']
+        const temp = acyclic['get possible entry'](
+            id,
+            abort,
+        )
+        if (temp === null) {
+            return abort['no such entry'](id)
+        }
+        return temp[0]
     }
 })
 
@@ -250,12 +284,17 @@ export const get_possibly_circular_dependent_sibling_entry = <T>(
     }
 }
 
-export type Resolve_Path_Result<Resolved> = {
-    'resulting node': Resolved,
-    'list': _pi.List<Resolved>
+export type Resolved_Path<Resolved, Referred> = {
+    'referred': Referred,
+    'list': _pi.List<Resolved_Step<Resolved, Referred>>
 }
 
-export const resolve_path = <Unresolved, Resolved, Context>(
+export type Resolved_Step<Resolved, Referred> = {
+    '_': Resolved,
+    'referred': Referred,
+}
+
+export const resolve_path = <Unresolved, Resolved, Referred>(
     source: {
         'list': _pi.List<{
             'element': Unresolved,
@@ -263,11 +302,21 @@ export const resolve_path = <Unresolved, Resolved, Context>(
         }>,
         'location': gen_loc.Location,
     },
-    seed: Context,
+    seed: Referred,
     handle_step: (
         $: Unresolved,
-        current: Context,
-    ) => Resolved,
-): Resolve_Path_Result<Resolved> => {
-
+        current: Referred,
+    ) => Resolved_Step<Resolved, Referred>,
+): Resolved_Path<Resolved, Referred> => {
+    let current = seed
+    return {
+        'list': _p.list.deprecated_build<Resolved_Step<Resolved, Referred>>(($i) => {
+            source.list.__for_each(($) => {
+                const step = handle_step($['element'], current)
+                $i['add element'](step)
+                current = step.referred
+            })
+        }),
+        'referred': current
+    }
 }

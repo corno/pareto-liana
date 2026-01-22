@@ -751,12 +751,12 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
         $l,
         $p,
     )
-    const p_tail_x: _i_generic.Resolve_Path_Result<d_out.Type_Node_Reference.tail.L> = _i_generic.resolve_path(
+    const p_tail_x: d_out.Type_Node_Reference.tail = _i_generic.resolve_path(
         $.tail,
         p_type_location['resulting node'],
         ($, current): d_out.Type_Node_Reference.tail.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($['state group'], ($) => {
+            return _p.deprecated_cc($['state group'], ($): d_out.Type_Node_Reference.tail.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
@@ -766,8 +766,8 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                             return $[1]
                         })
                         return {
-                            'element': ['dictionary', null],
-                            'result': sc_definition.node
+                            '_': ['dictionary', null],
+                            'referred': sc_definition.node
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
@@ -777,14 +777,14 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                             }
                             return $[1]
                         })
-                        const p_child: _i_generic.Acyclic_Entry_Reference<d_out.Group.D> = _i_generic.get_entry(
+                        const p_child = _i_generic.get_entry(
                             _i_generic.dictionary_to_lookup(sc_definition, null),
                             $,
                             abort,
                         )
                         return {
-                            'element': ['group', p_child],
-                            'result': p_child.entry.node
+                            '_': ['group', p_child],
+                            'referred': p_child.entry.node
                         }
                     })
                     case 'list': return _p.ss($, ($) => {
@@ -795,8 +795,8 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                             return $[1]
                         })
                         return {
-                            'element': ['list', null],
-                            'result': sc_definition.node
+                            '_': ['list', null],
+                            'referred': sc_definition.node
                         }
                     })
                     case 'optional': return _p.ss($, ($) => {
@@ -807,8 +807,8 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                             return $[1]
                         })
                         return {
-                            'element': ['optional', null],
-                            'result': sc_definition
+                            '_': ['optional', null],
+                            'referred': sc_definition
                         }
                     })
                     case 'state group': return _p.ss($, ($) => {
@@ -818,16 +818,14 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                             }
                             return $[1]
                         })
-                        const p_child: _i_generic.Acyclic_Entry_Reference<d_out.Type_Node.state_group.D> = _i_generic.get_entry(
+                        const p_child = _i_generic.get_entry(
                             _i_generic.dictionary_to_lookup(p_state_group, null),
-                            {
-                                'reference': $,
-                                'location 2 string': $p['location 2 string']
-                            }
+                            $,
+                            abort,
                         )
                         return {
-                            'element': ['state group', p_child],
-                            'result': p_child.entry.node
+                            '_': ['state group', p_child],
+                            'referred': p_child.entry.node
                         }
                     })
                     default: return _p.au($[0])
@@ -837,8 +835,8 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
     )
     return {
         'type location': p_type_location,
-        'tail': p_tail_x.list,
-        'resulting node': p_tail_x['resulting node'] // list result
+        'tail': p_tail_x,
+        'resulting node': p_tail_x.referred
     }
 }
 
@@ -1689,90 +1687,86 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
 
 export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => {
 
-    const p_path: _i_generic.Path<null, d_out.Relative_Value_Selection.path.L, d_out.Type_Node> = _i_generic.resolve_path(
+    const p_path: d_out.Relative_Value_Selection.path = _i_generic.resolve_path(
         $.path,
-        {
-            'seed': $p.node,
-            'map': ($, current) => {
-                const sg_loc = $.location
-                return _p.deprecated_cc($['state group'], ($): _i_generic.Resolved_Step<d_out.Relative_Value_Selection.path.L, d_out.Type_Node> => {
-                    switch ($[0]) {
-                        case 'component': return _p.ss($, ($) => {
+        $p.node,
+        ($, current): d_out.Relative_Value_Selection.path.L => {
+            const sg_loc = $.location
+            return _p.deprecated_cc($['state group'], ($): d_out.Relative_Value_Selection.path.L => {
+                switch ($[0]) {
+                    case 'component': return _p.ss($, ($) => {
 
-                            const sc_definition: d_out.Type_Node.component = _p.deprecated_cc(current, ($) => {
-                                if ($[0] !== 'component') {
-                                    return _i_generic.abort.tbd(`not a 'component' but a '${$[0]}'`, sg_loc, abort)
-                                }
-                                return $[1]
-                            })
-                            return {
-                                'element': ['component', null],
-                                'result': _p.deprecated_cc(sc_definition, ($) => {
-                                    switch ($[0]) {
-                                        case 'external': return _p.ss($, ($) => $.type.entry.node)
-                                        case 'internal': return _p.ss($, ($) => $.entry.node)
-                                        case 'internal cyclic': return _p.ss($, ($) => $.entry['get circular dependent']().node) //this is safe, the types have been resolved at this stage
-                                        default: return _p.au($[0])
-                                    }
-                                })
+                        const sc_definition: d_out.Type_Node.component = _p.deprecated_cc(current, ($) => {
+                            if ($[0] !== 'component') {
+                                return _i_generic.abort.tbd(`not a 'component' but a '${$[0]}'`, sg_loc, abort)
                             }
+                            return $[1]
                         })
-                        case 'group': return _p.ss($, ($) => {
-                            const sc_definition: d_out.Type_Node.group = _p.deprecated_cc(current, ($) => {
-                                if ($[0] !== 'group') {
-                                    return _i_generic.abort.tbd(`not a 'group' but a '${$[0]}'`, sg_loc, abort)
-                                }
-                                return $[1]
-                            })
-                            const p_child: _i_generic.Acyclic_Entry_Reference<d_out.Group.D> = _i_generic.get_entry(
-                                _i_generic.dictionary_to_lookup(sc_definition.dictionary, null),
-                                {
-                                    'reference': $,
-                                    'location 2 string': $p['location 2 string']
-                                }
-                            )
-                            return {
-                                'element': ['group', p_child],
-                                'result': p_child.entry.node
-                            }
-                        })
-                        case 'reference': return _p.ss($, ($): _i_generic.Resolved_Step<d_out.Relative_Value_Selection.path.L, d_out.Type_Node> => {
-
-                            const sc_definition: d_out.Type_Node.reference = _p.deprecated_cc(current, ($) => {
-                                if ($[0] !== 'reference') {
-                                    return _i_generic.abort.tbd(`not a 'reference' but a '${$[0]}'`, sg_loc, abort)
-                                }
-                                return $[1]
-                            })
-                            const referent: d_out.Type_Node_Reference = sc_definition.referent
-                            const x: d_out.Type_Node = _p.deprecated_cc(sc_definition.type, ($) => {
+                        return {
+                            '_': ['component', null],
+                            'referred': _p.deprecated_cc(sc_definition, ($) => {
                                 switch ($[0]) {
-                                    case 'derived': return _p.ss($, ($) => referent['resulting node'])
-                                    case 'selected': return _p.ss($, ($) => _p.deprecated_cc(referent['resulting node'], ($) => {
-                                        switch ($[0]) {
-                                            case 'dictionary': return _p.ss($, ($) => $.node)
-                                            default: return _i_generic.abort.tbd("not a dictionary @ ", sg_loc, abort)
-                                        }
-                                    }))
+                                    case 'external': return _p.ss($, ($) => $.type.entry.node)
+                                    case 'internal': return _p.ss($, ($) => $.entry.node)
+                                    case 'internal cyclic': return _p.ss($, ($) => $.entry['get circular dependent']().node) //this is safe, the types have been resolved at this stage
                                     default: return _p.au($[0])
                                 }
                             })
-                            return {
-                                'element': ['reference', {
-                                    'definition': sc_definition
-                                }],
-                                'result': x
+                        }
+                    })
+                    case 'group': return _p.ss($, ($) => {
+                        const sc_definition: d_out.Type_Node.group = _p.deprecated_cc(current, ($) => {
+                            if ($[0] !== 'group') {
+                                return _i_generic.abort.tbd(`not a 'group' but a '${$[0]}'`, sg_loc, abort)
+                            }
+                            return $[1]
+                        })
+                        const p_child = _i_generic.get_entry(
+                            _i_generic.dictionary_to_lookup(sc_definition, null),
+                            $,
+                            abort,
+                        )
+                        return {
+                            '_': ['group', p_child],
+                            'referred': p_child.entry.node
+                        }
+                    })
+                    case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.L => {
+
+                        const sc_definition: d_out.Type_Node.reference = _p.deprecated_cc(current, ($) => {
+                            if ($[0] !== 'reference') {
+                                return _i_generic.abort.tbd(`not a 'reference' but a '${$[0]}'`, sg_loc, abort)
+                            }
+                            return $[1]
+                        })
+                        const referent: d_out.Type_Node_Reference = sc_definition.referent
+                        const x: d_out.Type_Node = _p.deprecated_cc(sc_definition.type, ($) => {
+                            switch ($[0]) {
+                                case 'derived': return _p.ss($, ($) => referent['resulting node'])
+                                case 'selected': return _p.ss($, ($) => _p.deprecated_cc(referent['resulting node'], ($) => {
+                                    switch ($[0]) {
+                                        case 'dictionary': return _p.ss($, ($) => $.node)
+                                        default: return _i_generic.abort.tbd("not a dictionary @ ", sg_loc, abort)
+                                    }
+                                }))
+                                default: return _p.au($[0])
                             }
                         })
-                        default: return _p.au($[0])
-                    }
-                })
-            }
+                        return {
+                            '_': ['reference', {
+                                'definition': sc_definition
+                            }],
+                            'referred': x
+                        }
+                    })
+                    default: return _p.au($[0])
+                }
+            })
         }
     )
     return {
-        'path': p_path.list,
-        'resulting node': p_path.result.data, // list result
+        'path': p_path,
+        'resulting node': p_path.referred, // list result
     }
 })
 
