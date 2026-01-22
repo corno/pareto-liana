@@ -5,6 +5,7 @@ import * as g_ from "../../../interface/generated/pareto/schemas/schema/data/unr
 
 import { $ as m_copy } from "./schemas/copy/$.module.astn"
 import { $ as m_execute_any_command_executable } from "./schemas/execute_any_command_executable/$.module.astn"
+import { $ as m_terminal_output} from "./schemas/terminal_output/$.module.astn"
 import { $ as m_execute_any_query_executable } from "./schemas/execute_any_query_executable/$.module.astn"
 import { $ as m_execute_any_smelly_command_executable } from "./schemas/execute_any_smelly_command_executable/$.module.astn"
 import { $ as m_execute_command_executable } from "./schemas/execute_command_executable/$.module.astn"
@@ -42,6 +43,7 @@ export const $: g_.Schema_Tree = st.set({
     "read file": m_read_file,
     "remove": m_remove,
     "stat": m_stat,
+    "terminal output": m_terminal_output,
     "write file": m_write_file,
     "write to stderr": m_write_to_stderr,
     "write to stdout": m_write_to_stdout,

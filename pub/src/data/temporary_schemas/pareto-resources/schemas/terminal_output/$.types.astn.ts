@@ -1,0 +1,23 @@
+import * as _pi from 'pareto-core/dist/interface'
+
+import {
+    types,
+    t,
+    type,
+    n,
+    prop,
+    tstate,
+    text,
+} from "../../../../../shorthands/schema"
+import * as g_ from "../../../../../interface/generated/pareto/schemas/schema/data/unresolved"
+
+export const $: g_.Types = types(
+    {
+        "Message": type(t.group({
+            "lines": prop(t.list(t.text_local(text('single line')))),
+            "raw": prop(t.text_local(text('multi line'))),
+        })),
+    }
+)
+
+

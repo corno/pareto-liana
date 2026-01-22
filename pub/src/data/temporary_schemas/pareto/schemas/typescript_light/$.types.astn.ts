@@ -68,7 +68,6 @@ export const $: g_.Types = types(
                     })),
                     "statements": prop(t.component_cyclic("Statements")),
                 }))),
-                "default": prop(t.optional(t.component_cyclic("Statements"))),
             })),
             "type alias declaration": tstate(t.group({
                 "export": prop(t.boolean()),
