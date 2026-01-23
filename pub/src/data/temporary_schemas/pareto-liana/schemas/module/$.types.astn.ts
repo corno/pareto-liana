@@ -13,17 +13,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Types = types(
     {
-        "Operations": type(t.dictionary(t.state_group({
-            "operation": tstate(t.group({
-                "context": prop(t.component_external("schema", "Type Node")),
-                "parameters": prop(t.dictionary(t.component_external("schema", "Type Node"))),
-                "result": prop(t.component_external("schema", "Type Node")),
-            })),
-            "set": tstate(t.component_cyclic("Operations")),
-        }))),
         "Module": type(t.group({
+            "omit (de)serializer": prop(t.boolean()),
             "schema tree": prop(t.component_external("schema", "Schema Tree")),
-            "operations": prop(t.component("Operations")),
         })),
     }
 )

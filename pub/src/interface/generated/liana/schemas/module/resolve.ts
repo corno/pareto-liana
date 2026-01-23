@@ -28,28 +28,6 @@ export type Module_ = (
     parameters: null,
 ) => Module_.O
 
-export namespace Operations_ {
-    
-    export type I = i_unresolved.Operations
-    
-    export type O = i_resolved.Operations
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Operations_ = (
-    context: Operations_.I,
-    abort: _pi.Abort<Operations_.E>,
-    lookups: null,
-    parameters: null,
-) => Operations_.O
-
 export { 
     Module_ as Module, 
-    Operations_ as Operations, 
 }

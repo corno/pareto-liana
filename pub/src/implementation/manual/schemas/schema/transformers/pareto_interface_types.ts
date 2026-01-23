@@ -161,11 +161,35 @@ export const Type_Node = (
         )))
         case 'reference': return _p.ss($, ($) => {
             const referent = $.referent
+
+            const tmp_tnr = (
+                $: d_in.Type_Node_Reference,
+                $p: {
+                    'tail': _pi.List<d_out.Type.reference.sub_selection.L>,
+                    circular_dependent: boolean,
+                }
+
+            ): d_out.Type => _p.sg($['type location'].location, ($) => {
+                switch ($[0]) {
+                    case 'external': return _p.ss($, ($) => sh.t.reference_imported(
+                        `imports ${$.import.key}`,
+                        $.type.key,
+                        $p.tail,
+
+                    ))
+                    case 'internal': return _p.ss($, ($) => sh.t.reference_sibling(
+                        $.key,
+                        $p.circular_dependent,
+                        $p.tail,
+                    ))
+                    default: return _p.au($[0])
+                }
+            })
             return _p.sg($.type, ($) => {
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => $p['add location']
                         ? sh.t.nothing()
-                        : Type_Node_Reference(
+                        : tmp_tnr(
                             referent,
                             {
                                 'tail': Type_Node_Reference__tail(referent.tail),
@@ -180,7 +204,7 @@ export const Type_Node = (
                         })
                         : sh.t.group({
                             "entry": _p.deprecated_cc($, ($) => {
-                                const temp_tnr = Type_Node_Reference(
+                                const temp_tnr = tmp_tnr(
                                     referent,
                                     {
                                         'tail': _p.list.nested_literal_old([
@@ -241,30 +265,6 @@ const Type_Node_Reference__tail = (
         }
     }))
 }
-
-export const Type_Node_Reference = (
-    $: d_in.Type_Node_Reference,
-    $p: {
-        'tail': _pi.List<d_out.Type.reference.sub_selection.L>,
-        circular_dependent: boolean,
-    }
-
-): d_out.Type => _p.sg($['type location'].location, ($) => {
-    switch ($[0]) {
-        case 'external': return _p.ss($, ($) => sh.t.reference_imported(
-            `imports ${$.import.key}`,
-            $.type.key,
-            $p.tail,
-
-        ))
-        case 'internal': return _p.ss($, ($) => sh.t.reference_sibling(
-            $.key,
-            $p.circular_dependent,
-            $p.tail,
-        ))
-        default: return _p.au($[0])
-    }
-})
 
 export const Number_Type = (
     $: d_in.Number_Type

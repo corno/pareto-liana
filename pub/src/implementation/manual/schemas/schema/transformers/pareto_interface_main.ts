@@ -23,7 +23,12 @@ import * as t_deserialize from "./pareto_interface_deserialize"
 //     'filter dictionary': operations.pure.dictionary.filter
 // }
 
-export const Schema = ($: d_in.Schema): d_out.Module_Set.D => {
+export const Schema = (
+    $: d_in.Schema,
+    $p: {
+        'omit (de)serializer': boolean
+    }
+): d_out.Module_Set.D => {
     const schema = $
     const constrained: boolean = _p.sg($.complexity, ($) => {
         switch ($[0]) {
@@ -68,9 +73,9 @@ export const Schema = ($: d_in.Schema): d_out.Module_Set.D => {
                 )
                 : _p.optional.not_set(),
 
-            "resolve.ts":_p.sg($.complexity, ($) => {
+            "resolve.ts": _p.sg($.complexity, ($) => {
                 switch ($[0]) {
-                    case 'constrained': return _p.ss($, ($) =>  _p.optional.set(t_resolve.Signatures(
+                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Signatures(
                         $.signatures.types
                     )))
                     case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
@@ -83,27 +88,42 @@ export const Schema = ($: d_in.Schema): d_out.Module_Set.D => {
                     'constrained': constrained
                 }
             )),
-            // "unmarshall.ts": t_unmarshall.Schema(
-            //     schema,
-            //     {
-            //         'constrained': constrained
-            //     }
-            // ),
-            // "marshall.ts": _p.optional.set(t_marshall.Schema(
-            //     schema,
-            //     {
-            //         'constrained': constrained
-            //     }
-            // )),
-            // "serialize.ts": t_serialize.Schema(
-            //     schema,
-            //     {
-            //         'imports': schema.imports,
-            //     }
-            // ),
-            // "deserialize.ts": t_deserialize.Schema(
-            //     schema,
-            // ),
+            "unmarshall.ts": _p.optional.from_boolean(
+                !$p['omit (de)serializer'],
+                t_unmarshall.Schema(
+                    schema,
+                    {
+                        'constrained': constrained
+                    }
+                )
+            ),
+            "marshall.ts": _p.optional.from_boolean(
+                !$p['omit (de)serializer'],
+                t_marshall.Schema(
+                    schema,
+                    {
+                        'constrained': constrained
+                    }
+                )
+            ),
+            "serialize.ts": _p.optional.from_boolean(
+                !$p['omit (de)serializer'],
+                t_serialize.Schema(
+                    schema,
+                    {
+                        'constrained': constrained
+                    }
+                ), 
+            ),
+            "deserialize.ts": _p.optional.from_boolean(
+                !$p['omit (de)serializer'],
+                t_deserialize.Schema(
+                    schema,
+                    {
+                        'constrained': constrained
+                    }
+                )
+            ),
 
 
         }),
@@ -111,19 +131,29 @@ export const Schema = ($: d_in.Schema): d_out.Module_Set.D => {
     ))
 }
 
-export const Schema_Tree = ($: d_in.Schema_Tree): d_out.Module_Set.D => _p.sg($, ($) => {
+export const Schema_Tree = (
+    $: d_in.Schema_Tree,
+    $p: {
+        'omit (de)serializer': boolean
+    }
+): d_out.Module_Set.D => _p.sg($, ($) => {
     switch ($[0]) {
-        case 'schema': return _p.ss($, ($) => Schema($))
-        case 'set': return _p.ss($, ($) => Schemas($))
+        case 'schema': return _p.ss($, ($) => Schema($, $p))
+        case 'set': return _p.ss($, ($) => Schemas($, $p))
         default: return _p.au($[0])
     }
 })
 
 
-export const Schemas = ($: d_in.Schemas): d_out.Module_Set.D => m.set($.__d_map(($) => _p.sg($, ($) => {
+export const Schemas = (
+    $: d_in.Schemas,
+    $p: {
+        'omit (de)serializer': boolean
+    }
+): d_out.Module_Set.D => m.set($.__d_map(($) => _p.sg($, ($) => {
     switch ($[0]) {
-        case 'schema': return _p.ss($, ($) => Schema($))
-        case 'set': return _p.ss($, ($) => Schemas($))
+        case 'schema': return _p.ss($, ($) => Schema($, $p))
+        case 'set': return _p.ss($, ($) => Schemas($, $p))
         default: return _p.au($[0])
     }
 })))

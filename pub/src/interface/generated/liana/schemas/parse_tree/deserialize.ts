@@ -1,0 +1,126 @@
+
+import * as _pi from "pareto-core/dist/interface"
+
+import * as i_out from "./data"
+
+export namespace Structural_Token_ {
+    
+    export type I = string
+    
+    export type O = i_out.Structural_Token
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Structural_Token_ = (
+    context: Structural_Token_.I,
+) => Structural_Token_.O
+
+export namespace Text_ {
+    
+    export type I = string
+    
+    export type O = i_out.Text
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Text_ = (
+    context: Text_.I,
+) => Text_.O
+
+export namespace Key_Value_Pairs_ {
+    
+    export type I = string
+    
+    export type O = i_out.Key_Value_Pairs
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Key_Value_Pairs_ = (
+    context: Key_Value_Pairs_.I,
+) => Key_Value_Pairs_.O
+
+export namespace Elements_ {
+    
+    export type I = string
+    
+    export type O = i_out.Elements
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Elements_ = (
+    context: Elements_.I,
+) => Elements_.O
+
+export namespace Value_ {
+    
+    export type I = string
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_ = (
+    context: Value_.I,
+) => Value_.O
+
+export namespace Content_ {
+    
+    export type I = string
+    
+    export type O = i_out.Content
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Content_ = (
+    context: Content_.I,
+) => Content_.O
+
+export namespace Document_ {
+    
+    export type I = string
+    
+    export type O = i_out.Document
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Document_ = (
+    context: Document_.I,
+) => Document_.O
+
+export { 
+    Structural_Token_ as Structural_Token, 
+    Text_ as Text, 
+    Key_Value_Pairs_ as Key_Value_Pairs, 
+    Elements_ as Elements, 
+    Value_ as Value, 
+    Content_ as Content, 
+    Document_ as Document, 
+}

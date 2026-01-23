@@ -216,9 +216,7 @@ export const Lookup_Selection = (
         case 'dictionary': return _p.ss($, ($) => sh.s.call(
             sh.s.from_variable_import(" i generic", "dictionary to lookup", []),
             Guaranteed_Value_Selection($.selection, {
-                'tail': () => $['selected dictionary'].ordered
-                    ? _p.list.literal(["dictionary"])
-                    : _p.list.literal([]),
+                'tail': () => _p.list.literal([]),
             }),
             {
 
@@ -374,7 +372,7 @@ export const Node_Resolver = (
                 () => _p.dictionary.literal({})
             ),
             sh.e.call(
-                sh.s.from_variable_import(" i generic", $.definition.ordered ? "resolve ordered dictionary" : "resolve dictionary", []),
+                sh.s.from_variable_import(" i generic", "resolve dictionary", []),
                 sh.e.select_from_context_deprecated([]),
                 false,
                 {

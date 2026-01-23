@@ -276,13 +276,10 @@ export namespace Dictionary_ {
     
     export type node = Type_Node_
     
-    export type ordered = boolean
-    
 }
 
 export type Dictionary_ = {
     readonly 'node': Dictionary_.node
-    readonly 'ordered': Dictionary_.ordered
 }
 
 export namespace Signatures_ {

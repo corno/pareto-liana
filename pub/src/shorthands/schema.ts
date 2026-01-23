@@ -161,7 +161,6 @@ export namespace t {
     export const dictionary = (type: d_schema.Type_Node, ordered?: 'ordered' | ''): d_schema.Type_Node => {
         return _p.wrap_state_group(['dictionary', {
             'node': type,
-            'ordered': ordered === 'ordered',
             'benchmark': _p.optional.not_set(),
         }])
     }

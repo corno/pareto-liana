@@ -9,14 +9,19 @@ import * as sh from "pareto/dist/shorthands/interface"
 
 
 export const Schema = (
-    $: d_in.Schema
+    $: d_in.Schema,
+    $p: {
+        'constrained': boolean
+    }
 ): d_out.Module_Set.D => sh.m.module(
     {
         "out": sh.import_.sibling(
-            "data types",
-            [
-                "target",
-            ],
+            "data",
+            $p.constrained
+                ? [
+                    "unresolved",
+                ]
+                : [],
         ),
     },
     $.types.__d_map(($, key) => sh.type.refiner(

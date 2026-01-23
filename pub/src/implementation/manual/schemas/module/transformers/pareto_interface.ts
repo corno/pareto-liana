@@ -8,33 +8,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/
 
 import * as sh from "pareto/dist/shorthands/interface"
 import * as t_pareto_interface_main from "../../../../manual/schemas/schema/transformers/pareto_interface_main"
-import * as t_pareto_interface_types from "../../../../manual/schemas/schema/transformers/pareto_interface_types"
 
-
-export const Operations = (
-    $: d_in.Operations,
-    $p: {
-        'add location': boolean
-    }
-): d_out.Type => {
-    return sh.t.group({})
-    // return sh.t.group($.__d_map(($) => _p.sg($, ($) => {
-    //     switch ($[0]) {
-    //         case 'operation': return _p.ss($, ($) => sh.type.transformer(
-    //             t_pareto_interface_types.Type_Node($.result, { 'add location': $p['add location'] }),
-    //             t_pareto_interface_types.Type_Node(
-    //                 $.context,
-    //                 {
-    //                     'add location': $p['add location'],
-    //                 }
-    //             ),
-    //             $.parameters.__d_map(($) => _p.sg($, ($) => t_pareto_interface_types.Type_Node($, { 'add location': $p['add location'] }))),
-    //         ))
-    //         case 'set': return _p.ss($, ($) => Operations($, { 'add location': $p['add location'] }))
-    //         default: return _p.au($[0])
-    //     }
-    // })))
-}
 
 export const Module = ($: d_in.Module): d_out.Module_Set => {
     return _psh.dictionary.literal({
@@ -91,6 +65,11 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
         //         "operations": type({}, Operations($.operations))
         //     },
         // ),
-        "schemas": t_pareto_interface_main.Schema_Tree($['schema tree']),
+        "schemas": t_pareto_interface_main.Schema_Tree(
+            $['schema tree'],
+            {
+                'omit (de)serializer': $['omit (de)serializer'],
+            }
+        ),
     })
 }

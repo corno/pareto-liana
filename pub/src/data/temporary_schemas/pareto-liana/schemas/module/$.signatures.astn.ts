@@ -6,8 +6,5 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Resolve_Logic.signatures = signatures(
     {
         "Module": sig.local({}, {}),
-        "Operations": sig.local({
-            //"globals": value_parameter_external("schema", "Globals"),
-        }, {}),
     },
 )

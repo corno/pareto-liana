@@ -17,22 +17,23 @@ export const Schema = (
     return sh.m.module(
         {
             "out": sh.import_.sibling(
-                "data types",
-                [
-                    "target",
-                ],
+                "data",
+                $p.constrained
+                    ? [
+                        "unresolved",
+                    ]
+                    : [],
             ),
             "in": sh.import_.external(
-                "astn",
+                "astn-core",
                 [
                     "dist",
                     "interface",
                     "generated",
-                    "pareto",
+                    "liana",
                     "schemas",
-                    "authoring parse tree",
-                    "data types",
-                    "target",
+                    "parse tree",
+                    "data",
                 ],
             ),
         },

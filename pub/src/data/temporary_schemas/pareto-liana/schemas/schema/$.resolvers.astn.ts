@@ -112,7 +112,6 @@ export const $: g_.Resolvers = resolvers(
                     "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
                 }
             ),
-            "ordered": r.boolean(),
         })),
 
         "Type Node": resolver(r.state_group({

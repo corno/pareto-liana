@@ -547,7 +547,6 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
                 return ['dictionary', {
                     'node': p_type,
-                    'ordered': $.ordered,
                 }]
             })
             case 'group': return _p.ss($, ($) => ['group', _i_generic.resolve_ordered_dictionary(

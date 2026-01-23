@@ -6,31 +6,9 @@ import * as unresolved from "../interface/generated/liana/schemas/module/data/un
 import * as unresolved_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const module_ = (
-    operations: unresolved.Operations,
-    schema_tree: unresolved_schema.Schema_Tree
+    schema_tree: unresolved_schema.Schema_Tree,
+    omit_de_serializer?: boolean,
 ): unresolved.Module => ({
-    'operations': operations,
+    'omit (de)serializer': omit_de_serializer === undefined ? false : omit_de_serializer,
     'schema tree': schema_tree,
 })
-
-export const operations = (
-    operations: _p.Raw_Or_Normal_Dictionary<unresolved.Operations.dictionary.D.entry>,
-): unresolved.Operations => _p.wrap_dictionary(operations)
-
-export const operation = (
-    context: unresolved.Operations.dictionary.D.entry.state_group.operation.context,
-    parameters: _p.Raw_Or_Normal_Dictionary<unresolved.Operations.dictionary.D.entry.state_group.operation.parameters.dictionary.D.entry>,
-    result: unresolved.Operations.dictionary.D.entry.state_group.operation.result
-): unresolved.Operations.dictionary.D.entry => {
-    return _p.wrap_state_group(['operation', {
-        'context': context,
-        'parameters': _p.wrap_dictionary(parameters),
-        'result': result
-    }])
-}
-
-export const set = (
-    operations: _p.Raw_Or_Normal_Dictionary<unresolved.Operations.dictionary.D.entry>
-): unresolved.Operations.dictionary.D.entry => {
-    return _p.wrap_state_group(['set', _p.wrap_dictionary(operations)])
-}

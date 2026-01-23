@@ -124,7 +124,6 @@ export const $: g_.Types = types(
 
         "Dictionary": type(t.group({
             "node": prop(t.component_cyclic("Type Node")),
-            "ordered": prop(t.boolean()),
         })),
 
         "Signatures": type(t.dictionary(t.component_cyclic("Signature"), 'ordered')),

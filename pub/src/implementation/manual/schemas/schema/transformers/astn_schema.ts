@@ -97,7 +97,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
             }
         }))])
         case 'dictionary': return _p.ss($, ($) => ['dictionary', {
-            'ordered': $.ordered,
+            'ordered': false,
             'node': Type_Node($.node)
         }])
         case 'group': return _p.ss($, ($) => ['group', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])

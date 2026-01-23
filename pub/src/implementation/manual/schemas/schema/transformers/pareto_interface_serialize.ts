@@ -11,17 +11,19 @@ import * as sh from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'imports': d_in.Imports
+        'constrained': boolean
     }
 ): d_out.Module_Set.D => {
     return sh.m.module(
 
         {
             "in": sh.import_.sibling(
-                "data types",
-                [
-                    "source",
-                ],
+                "data",
+                $p.constrained
+                    ? [
+                        "resolved",
+                    ]
+                    : [],
             ),
         },
         $.types.__d_map(($, key) => sh.type.transformer(
