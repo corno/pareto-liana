@@ -28,9 +28,9 @@ export const Module = ($: d_in.Module): d_out.Directory => {
             //         'location 2 string': location_to_string
             //     }
             // ),
-            {
-                'phase': 'development',
-            }
+            // {
+            //     'phase': 'development',
+            // }
         )
     )
 }
