@@ -35,12 +35,7 @@ export const Operations: signatures.Operations = ($, abort, $l, $p) => _p.deprec
             switch ($[0]) {
                 case 'operation': return _p.ss($, ($) => ['operation', _p.deprecated_block(() => {
                     return _p.deprecated_block(() => {
-                        const p_type_parameters: d_out.Operations.D.operation.type_parameters = _p.deprecated_cc($['type parameters'], ($) => _i_r_schema.Type_Parameters(
-                            $,
-                            abort,
-                            $l,
-                            $p
-                        ))
+
                         const p_context: d_out.Operations.D.operation.context = _p.deprecated_cc($['context'], ($) => _i_r_schema.Type_Node(
                             $,
                             abort,
@@ -51,7 +46,6 @@ export const Operations: signatures.Operations = ($, abort, $l, $p) => _p.deprec
                             {
                                 'imports': _p.optional.not_set(),
                                 'globals': _p.optional.not_set(),
-                                'type parameters': p_type_parameters,
                             }
                         ))
                         const p_parameters: d_out.Operations.D.operation.parameters = _p.deprecated_cc($['parameters'], ($) => _i_generic.resolve_dictionary(
@@ -66,7 +60,6 @@ export const Operations: signatures.Operations = ($, abort, $l, $p) => _p.deprec
                                 {
                                     'imports': _p.optional.not_set(),
                                     'globals': _p.optional.not_set(),
-                                    'type parameters': p_type_parameters,
                                 },
                             )),
                         ))
@@ -80,14 +73,12 @@ export const Operations: signatures.Operations = ($, abort, $l, $p) => _p.deprec
                             {
                                 'imports': _p.optional.not_set(),
                                 'globals': _p.optional.not_set(),
-                                'type parameters': p_type_parameters,
                             }
                         ))
                         return ({
                             'context': p_context,
                             'parameters': p_parameters,
                             'result': p_result,
-                            'type parameters': p_type_parameters,
                         })
                     })
                 })])

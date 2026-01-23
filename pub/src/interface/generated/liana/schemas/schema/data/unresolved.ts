@@ -5,7 +5,7 @@ import * as i__location from "../../../generic/location"
 
 export namespace Text_Type_ {
     
-    export namespace _type {
+    export namespace type_ {
         
         export type location = i__location.Location
         
@@ -23,15 +23,15 @@ export namespace Text_Type_ {
         
     }
     
-    export type _type = {
-        readonly 'location': _type.location
-        readonly 'state group': _type.state_group
+    export type type_ = {
+        readonly 'location': type_.location
+        readonly 'state group': type_.state_group
     }
     
 }
 
 export type Text_Type_ = {
-    readonly 'type': Text_Type_._type
+    readonly 'type': Text_Type_.type_
 }
 
 export namespace Number_Type_ {
@@ -62,7 +62,7 @@ export namespace Number_Type_ {
                 
                 export type decimal_separator_offset = _pi.Optional_Value<decimal_separator_offset.O>
                 
-                export namespace _type {
+                export namespace type_ {
                     
                     export type location = i__location.Location
                     
@@ -83,16 +83,16 @@ export namespace Number_Type_ {
                     
                 }
                 
-                export type _type = {
-                    readonly 'location': _type.location
-                    readonly 'state group': _type.state_group
+                export type type_ = {
+                    readonly 'location': type_.location
+                    readonly 'state group': type_.state_group
                 }
                 
             }
             
             export type exact = {
                 readonly 'decimal separator offset': exact.decimal_separator_offset
-                readonly 'type': exact._type
+                readonly 'type': exact.type_
             }
             
         }
@@ -207,46 +207,13 @@ export type Globals_ = {
     readonly 'number types': Globals_.number_types
 }
 
-export namespace Type_Parameters_ {
-    
-    export type location = i__location.Location
-    
-    export namespace dictionary {
-        
-        export namespace D {
-            
-            export type location = i__location.Location
-            
-            export type entry = null
-            
-        }
-        
-        export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
-        }
-        
-    }
-    
-    export type dictionary = _pi.Dictionary<dictionary.D>
-    
-}
-
-export type Type_Parameters_ = {
-    readonly 'location': Type_Parameters_.location
-    readonly 'dictionary': Type_Parameters_.dictionary
-}
-
 export namespace Type_ {
-    
-    export type type_parameters = Type_Parameters_
     
     export type node = Type_Node_
     
 }
 
 export type Type_ = {
-    readonly 'type parameters': Type_.type_parameters
     readonly 'node': Type_.node
 }
 
@@ -349,13 +316,13 @@ export namespace Schema_Tree_ {
         
         export type schema = Schema_
         
-        export type _set = Schemas_
+        export type set_ = Schemas_
         
     }
     
     export type state_group = 
         | readonly ['schema', state_group.schema]
-        | readonly ['set', state_group._set]
+        | readonly ['set', state_group.set_]
     
 }
 
@@ -398,14 +365,14 @@ export namespace Type_Specification_ {
         readonly 'list': schema_path.list
     }
     
-    export type _type = string
+    export type type_ = string
     
 }
 
 export type Type_Specification_ = {
     readonly 'schema': Type_Specification_.schema
     readonly 'schema path': Type_Specification_.schema_path
-    readonly 'type': Type_Specification_._type
+    readonly 'type': Type_Specification_.type_
 }
 
 export namespace Schemas_ {
@@ -650,7 +617,7 @@ export namespace Type_Node_ {
     
     export namespace state_group {
         
-        export type _boolean = null
+        export type boolean_ = null
         
         export namespace component {
             
@@ -660,7 +627,7 @@ export namespace Type_Node_ {
                 
                 export namespace external {
                     
-                    export namespace _import {
+                    export namespace import_ {
                         
                         export type location = i__location.Location
                         
@@ -668,12 +635,12 @@ export namespace Type_Node_ {
                         
                     }
                     
-                    export type _import = {
-                        readonly 'location': _import.location
-                        readonly 'key': _import.key
+                    export type import_ = {
+                        readonly 'location': import_.location
+                        readonly 'key': import_.key
                     }
                     
-                    export namespace _type {
+                    export namespace type_ {
                         
                         export type location = i__location.Location
                         
@@ -681,16 +648,16 @@ export namespace Type_Node_ {
                         
                     }
                     
-                    export type _type = {
-                        readonly 'location': _type.location
-                        readonly 'key': _type.key
+                    export type type_ = {
+                        readonly 'location': type_.location
+                        readonly 'key': type_.key
                     }
                     
                 }
                 
                 export type external = {
-                    readonly 'import': external._import
-                    readonly 'type': external._type
+                    readonly 'import': external.import_
+                    readonly 'type': external.type_
                 }
                 
                 export namespace internal {
@@ -749,7 +716,7 @@ export namespace Type_Node_ {
         
         export type nothing = null
         
-        export namespace _number {
+        export namespace number_ {
             
             export type location = i__location.Location
             
@@ -778,9 +745,9 @@ export namespace Type_Node_ {
             
         }
         
-        export type _number = {
-            readonly 'location': _number.location
-            readonly 'state group': _number.state_group
+        export type number_ = {
+            readonly 'location': number_.location
+            readonly 'state group': number_.state_group
         }
         
         export type optional = Type_Node_
@@ -789,7 +756,7 @@ export namespace Type_Node_ {
             
             export type referent = Type_Node_Reference_
             
-            export namespace _type {
+            export namespace type_ {
                 
                 export type location = i__location.Location
                 
@@ -842,16 +809,16 @@ export namespace Type_Node_ {
                 
             }
             
-            export type _type = {
-                readonly 'location': _type.location
-                readonly 'state group': _type.state_group
+            export type type_ = {
+                readonly 'location': type_.location
+                readonly 'state group': type_.state_group
             }
             
         }
         
         export type reference = {
             readonly 'referent': reference.referent
-            readonly 'type': reference._type
+            readonly 'type': reference.type_
         }
         
         export namespace state_group {
@@ -938,13 +905,13 @@ export namespace Type_Node_ {
     }
     
     export type state_group = 
-        | readonly ['boolean', state_group._boolean]
+        | readonly ['boolean', state_group.boolean_]
         | readonly ['component', state_group.component]
         | readonly ['dictionary', state_group.dictionary]
         | readonly ['group', state_group.group]
         | readonly ['list', state_group.list]
         | readonly ['nothing', state_group.nothing]
-        | readonly ['number', state_group._number]
+        | readonly ['number', state_group.number_]
         | readonly ['optional', state_group.optional]
         | readonly ['reference', state_group.reference]
         | readonly ['state group', state_group.state_group]
@@ -980,7 +947,7 @@ export namespace Type_Reference_ {
             
             export namespace external {
                 
-                export namespace _import {
+                export namespace import_ {
                     
                     export type location = i__location.Location
                     
@@ -988,12 +955,12 @@ export namespace Type_Reference_ {
                     
                 }
                 
-                export type _import = {
-                    readonly 'location': _import.location
-                    readonly 'key': _import.key
+                export type import_ = {
+                    readonly 'location': import_.location
+                    readonly 'key': import_.key
                 }
                 
-                export namespace _type {
+                export namespace type_ {
                     
                     export type location = i__location.Location
                     
@@ -1001,16 +968,16 @@ export namespace Type_Reference_ {
                     
                 }
                 
-                export type _type = {
-                    readonly 'location': _type.location
-                    readonly 'key': _type.key
+                export type type_ = {
+                    readonly 'location': type_.location
+                    readonly 'key': type_.key
                 }
                 
             }
             
             export type external = {
-                readonly 'import': external._import
-                readonly 'type': external._type
+                readonly 'import': external.import_
+                readonly 'type': external.type_
             }
             
         }
@@ -1190,7 +1157,7 @@ export namespace Signature_Parameters_ {
                     
                     export type dictionary = null
                     
-                    export namespace _type {
+                    export namespace type_ {
                         
                         export type location = i__location.Location
                         
@@ -1211,9 +1178,9 @@ export namespace Signature_Parameters_ {
                         
                     }
                     
-                    export type _type = {
-                        readonly 'location': _type.location
-                        readonly 'state group': _type.state_group
+                    export type type_ = {
+                        readonly 'location': type_.location
+                        readonly 'state group': type_.state_group
                     }
                     
                     export type presence = Presence_
@@ -1223,7 +1190,7 @@ export namespace Signature_Parameters_ {
                 export type entry = {
                     readonly 'referent': entry.referent
                     readonly 'dictionary': entry.dictionary
-                    readonly 'type': entry._type
+                    readonly 'type': entry.type_
                     readonly 'presence': entry.presence
                 }
                 
@@ -1254,7 +1221,7 @@ export type Signature_Parameters_ = {
 
 export namespace Signature_ {
     
-    export type _type = null
+    export type type_ = null
     
     export namespace parameters {
         
@@ -1295,7 +1262,7 @@ export namespace Signature_ {
 }
 
 export type Signature_ = {
-    readonly 'type': Signature_._type
+    readonly 'type': Signature_.type_
     readonly 'parameters': Signature_.parameters
     readonly 'resolved parameters': Signature_.resolved_parameters
 }
@@ -1386,7 +1353,7 @@ export type Relative_Value_Selection_ = {
 
 export namespace Lookup_Selection_ {
     
-    export namespace _type {
+    export namespace type_ {
         
         export type location = i__location.Location
         
@@ -1432,9 +1399,9 @@ export namespace Lookup_Selection_ {
         
     }
     
-    export type _type = {
-        readonly 'location': _type.location
-        readonly 'state group': _type.state_group
+    export type type_ = {
+        readonly 'location': type_.location
+        readonly 'state group': type_.state_group
     }
     
     export type resulting_dictionary = null
@@ -1442,7 +1409,7 @@ export namespace Lookup_Selection_ {
 }
 
 export type Lookup_Selection_ = {
-    readonly 'type': Lookup_Selection_._type
+    readonly 'type': Lookup_Selection_.type_
     readonly 'resulting dictionary': Lookup_Selection_.resulting_dictionary
 }
 
@@ -1450,7 +1417,7 @@ export namespace Constraint_ {
     
     export type selection = Relative_Value_Selection_
     
-    export namespace _type {
+    export namespace type_ {
         
         export type location = i__location.Location
         
@@ -1498,16 +1465,16 @@ export namespace Constraint_ {
         
     }
     
-    export type _type = {
-        readonly 'location': _type.location
-        readonly 'state group': _type.state_group
+    export type type_ = {
+        readonly 'location': type_.location
+        readonly 'state group': type_.state_group
     }
     
 }
 
 export type Constraint_ = {
     readonly 'selection': Constraint_.selection
-    readonly 'type': Constraint_._type
+    readonly 'type': Constraint_.type_
 }
 
 export namespace Option_Constraints_ {
@@ -1671,7 +1638,7 @@ export namespace Optional_Value_Initialization_ {
         
         export type not_set = null
         
-        export type _set = Guaranteed_Value_Selection_
+        export type set_ = Guaranteed_Value_Selection_
         
         export type selection = Possible_Value_Selection_
         
@@ -1679,7 +1646,7 @@ export namespace Optional_Value_Initialization_ {
     
     export type state_group = 
         | readonly ['not set', state_group.not_set]
-        | readonly ['set', state_group._set]
+        | readonly ['set', state_group.set_]
         | readonly ['selection', state_group.selection]
     
 }
@@ -1754,7 +1721,7 @@ export namespace Node_Resolver_ {
     
     export namespace state_group {
         
-        export type _boolean = null
+        export type boolean_ = null
         
         export namespace component {
             
@@ -1766,7 +1733,7 @@ export namespace Node_Resolver_ {
                     
                     export namespace external {
                         
-                        export namespace _import {
+                        export namespace import_ {
                             
                             export type location = i__location.Location
                             
@@ -1774,12 +1741,12 @@ export namespace Node_Resolver_ {
                             
                         }
                         
-                        export type _import = {
-                            readonly 'location': _import.location
-                            readonly 'key': _import.key
+                        export type import_ = {
+                            readonly 'location': import_.location
+                            readonly 'key': import_.key
                         }
                         
-                        export namespace _type {
+                        export namespace type_ {
                             
                             export type location = i__location.Location
                             
@@ -1787,16 +1754,16 @@ export namespace Node_Resolver_ {
                             
                         }
                         
-                        export type _type = {
-                            readonly 'location': _type.location
-                            readonly 'key': _type.key
+                        export type type_ = {
+                            readonly 'location': type_.location
+                            readonly 'key': type_.key
                         }
                         
                     }
                     
                     export type external = {
-                        readonly 'import': external._import
-                        readonly 'type': external._type
+                        readonly 'import': external.import_
+                        readonly 'type': external.type_
                     }
                     
                     export namespace internal {
@@ -1827,7 +1794,7 @@ export namespace Node_Resolver_ {
             
             export type signature = null
             
-            export namespace _arguments {
+            export namespace arguments_ {
                 
                 export namespace O {
                     
@@ -1985,7 +1952,7 @@ export namespace Node_Resolver_ {
                 
             }
             
-            export type _arguments = _pi.Optional_Value<_arguments.O>
+            export type arguments_ = _pi.Optional_Value<arguments_.O>
             
             export type constraints = Property_Constraints_
             
@@ -1994,7 +1961,7 @@ export namespace Node_Resolver_ {
         export type component = {
             readonly 'location': component.location
             readonly 'signature': component.signature
-            readonly 'arguments': component._arguments
+            readonly 'arguments': component.arguments_
             readonly 'constraints': component.constraints
         }
         
@@ -2046,7 +2013,7 @@ export namespace Node_Resolver_ {
         
         export type nothing = null
         
-        export type _number = null
+        export type number_ = null
         
         export namespace optional {
             
@@ -2065,7 +2032,7 @@ export namespace Node_Resolver_ {
             
             export type definition = null
             
-            export namespace _type {
+            export namespace type_ {
                 
                 export type location = i__location.Location
                 
@@ -2105,16 +2072,16 @@ export namespace Node_Resolver_ {
                 
             }
             
-            export type _type = {
-                readonly 'location': _type.location
-                readonly 'state group': _type.state_group
+            export type type_ = {
+                readonly 'location': type_.location
+                readonly 'state group': type_.state_group
             }
             
         }
         
         export type reference = {
             readonly 'definition': reference.definition
-            readonly 'type': reference._type
+            readonly 'type': reference.type_
         }
         
         export namespace state_group {
@@ -2174,13 +2141,13 @@ export namespace Node_Resolver_ {
     }
     
     export type state_group = 
-        | readonly ['boolean', state_group._boolean]
+        | readonly ['boolean', state_group.boolean_]
         | readonly ['component', state_group.component]
         | readonly ['dictionary', state_group.dictionary]
         | readonly ['group', state_group.group]
         | readonly ['list', state_group.list]
         | readonly ['nothing', state_group.nothing]
-        | readonly ['number', state_group._number]
+        | readonly ['number', state_group.number_]
         | readonly ['optional', state_group.optional]
         | readonly ['reference', state_group.reference]
         | readonly ['state group', state_group.state_group]
@@ -2584,7 +2551,6 @@ export {
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Globals_ as Globals, 
-    Type_Parameters_ as Type_Parameters, 
     Type_ as Type, 
     Types_ as Types, 
     Resolve_Logic_ as Resolve_Logic, 

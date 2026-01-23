@@ -18,7 +18,7 @@ export namespace Operations_ {
 }
 
 export type Operations_ = (
-    $$_: Operations_.I,
+    context: Operations_.I,
 ) => Operations_.O
 
 export namespace Module_ {
@@ -34,7 +34,7 @@ export namespace Module_ {
 }
 
 export type Module_ = (
-    $$_: Module_.I,
+    context: Module_.I,
 ) => Module_.O
 
 export { 

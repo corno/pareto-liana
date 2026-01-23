@@ -45,7 +45,6 @@ export const globals = (
 }
 
 export const type = (type: d_schema.Type_Node): d_schema.Types.dictionary.D.entry => ({
-    'type parameters': _p.wrap_dictionary({}),
     'node': type,
 })
 
@@ -234,7 +233,7 @@ export namespace t {
         dependency?: "cyclic" | "acyclic",
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference._type = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
             'referent': {
                 'type location': {
                     'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
@@ -264,7 +263,7 @@ export namespace t {
         tail: d_schema.Type_Node_Reference.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference._type = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
             'dictionary': null,
             'dependency': _p.wrap_state_group(['stack', null])
         }])
@@ -288,7 +287,7 @@ export namespace t {
         tail: d_schema.Type_Node_Reference.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference._type = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
             'dictionary': null,
             'dependency': _p.wrap_state_group(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
         }])
@@ -472,13 +471,13 @@ export namespace al {
 
     export const not_set = (
 
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['not set', null])
     }
 
     export const empty_stack = (
 
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['empty stack', null])
     }
 
@@ -488,7 +487,7 @@ export namespace al {
     export const stack = (
         stack: d_schema.Lookup_Selection,
         element: d_schema.Lookup_Selection,
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['stack', {
             'stack': stack,
             'element': element,
@@ -498,7 +497,7 @@ export namespace al {
     /**
      * provides a dictionary by selecting a value (that is guaranteed to be a dictionary)
      */
-    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['selection', {
             'type': _p.wrap_state_group(['dictionary', {
                 'selection': value_selection,
@@ -511,7 +510,7 @@ export namespace al {
     /**
      * selects a lookup parameter of this resolver and passes it to the next resolver
      */
-    export const parameter = (parameter: string): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    export const parameter = (parameter: string): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['selection', {
             'type': _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)]),
             'resulting dictionary': null,
@@ -521,7 +520,7 @@ export namespace al {
     /**
      * this one is only usable in the context of an ordered dictionary
      */
-    export const not_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    export const not_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['selection', {
             'type': _p.wrap_state_group(['not circular dependent siblings', null]),
             'resulting dictionary': null,
@@ -531,7 +530,7 @@ export namespace al {
     /**
      * this one is only usable in the context of a dictionary (ordered or not)
      */
-    export const possibly_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry => {
+    export const possibly_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
         return _p.wrap_state_group(['selection', {
             'type': _p.wrap_state_group(['possibly circular dependent siblings', null]),
             'resulting dictionary': null,
@@ -831,19 +830,19 @@ export namespace av {
 
     export const parameter = (
         parameter: string,
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.values.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
         return _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)])
     }
 
     export const required = (
         value: d_schema.Guaranteed_Value_Selection,
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.values.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
         return _p.wrap_state_group(['required', value])
     }
 
     export const optional = (
         value: d_schema.Optional_Value_Initialization,
-    ): d_schema.Node_Resolver.state_group.component._arguments.O.values.O.dictionary.D.entry => {
+    ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
         return _p.wrap_state_group(['optional', value])
     }
 
@@ -960,8 +959,8 @@ export namespace r {
     }
     export const component = (
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component._arguments.O.values.O.dictionary.D.entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry>,
+        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry>,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
         return _p.wrap_state_group(['component', {
@@ -977,8 +976,8 @@ export namespace r {
     export const component_external = (
         imp: string,
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component._arguments.O.values.O.dictionary.D.entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component._arguments.O.lookups.O.dictionary.D.entry>,
+        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry>,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
         return _p.wrap_state_group(['component', {

@@ -46,7 +46,7 @@ export type Node_Type =
 
 
 export type Boolean = {
-    'definition': d_schema.Type_Node._boolean
+    'definition': d_schema.Type_Node.boolean_
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
@@ -203,7 +203,7 @@ export type Text = {
 }
 
 export type Number = {
-    'definition': d_schema.Type_Node._number
+    'definition': d_schema.Type_Node.number_
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text

@@ -11,8 +11,6 @@ export namespace Operations_ {
         
         export namespace operation {
             
-            export type type_parameters = i__imports_schema.Type_Parameters
-            
             export type context = i__imports_schema.Type_Node
             
             export namespace parameters {
@@ -28,19 +26,18 @@ export namespace Operations_ {
         }
         
         export type operation = {
-            readonly 'type parameters': operation.type_parameters
             readonly 'context': operation.context
             readonly 'parameters': operation.parameters
             readonly 'result': operation.result
         }
         
-        export type _set = Operations_
+        export type set_ = Operations_
         
     }
     
     export type D = 
         | readonly ['operation', D.operation]
-        | readonly ['set', D._set]
+        | readonly ['set', D.set_]
     
 }
 

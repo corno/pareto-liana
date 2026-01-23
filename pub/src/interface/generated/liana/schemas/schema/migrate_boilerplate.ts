@@ -18,7 +18,7 @@ export namespace Text_Type_ {
 }
 
 export type Text_Type_ = (
-    $$_: Text_Type_.I,
+    context: Text_Type_.I,
 ) => Text_Type_.O
 
 export namespace Number_Type_ {
@@ -34,7 +34,7 @@ export namespace Number_Type_ {
 }
 
 export type Number_Type_ = (
-    $$_: Number_Type_.I,
+    context: Number_Type_.I,
 ) => Number_Type_.O
 
 export namespace Globals_ {
@@ -50,24 +50,8 @@ export namespace Globals_ {
 }
 
 export type Globals_ = (
-    $$_: Globals_.I,
+    context: Globals_.I,
 ) => Globals_.O
-
-export namespace Type_Parameters_ {
-    
-    export type I = i_in.Type_Parameters
-    
-    export type O = i_out.Type_Parameters
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Type_Parameters_ = (
-    $$_: Type_Parameters_.I,
-) => Type_Parameters_.O
 
 export namespace Type_ {
     
@@ -82,7 +66,7 @@ export namespace Type_ {
 }
 
 export type Type_ = (
-    $$_: Type_.I,
+    context: Type_.I,
 ) => Type_.O
 
 export namespace Types_ {
@@ -98,7 +82,7 @@ export namespace Types_ {
 }
 
 export type Types_ = (
-    $$_: Types_.I,
+    context: Types_.I,
 ) => Types_.O
 
 export namespace Resolve_Logic_ {
@@ -114,7 +98,7 @@ export namespace Resolve_Logic_ {
 }
 
 export type Resolve_Logic_ = (
-    $$_: Resolve_Logic_.I,
+    context: Resolve_Logic_.I,
 ) => Resolve_Logic_.O
 
 export namespace Schema_ {
@@ -130,7 +114,7 @@ export namespace Schema_ {
 }
 
 export type Schema_ = (
-    $$_: Schema_.I,
+    context: Schema_.I,
 ) => Schema_.O
 
 export namespace Schema_Tree_ {
@@ -146,7 +130,7 @@ export namespace Schema_Tree_ {
 }
 
 export type Schema_Tree_ = (
-    $$_: Schema_Tree_.I,
+    context: Schema_Tree_.I,
 ) => Schema_Tree_.O
 
 export namespace Type_Specification_ {
@@ -162,7 +146,7 @@ export namespace Type_Specification_ {
 }
 
 export type Type_Specification_ = (
-    $$_: Type_Specification_.I,
+    context: Type_Specification_.I,
 ) => Type_Specification_.O
 
 export namespace Schemas_ {
@@ -178,7 +162,7 @@ export namespace Schemas_ {
 }
 
 export type Schemas_ = (
-    $$_: Schemas_.I,
+    context: Schemas_.I,
 ) => Schemas_.O
 
 export namespace Imports_ {
@@ -194,7 +178,7 @@ export namespace Imports_ {
 }
 
 export type Imports_ = (
-    $$_: Imports_.I,
+    context: Imports_.I,
 ) => Imports_.O
 
 export namespace Presence_ {
@@ -210,7 +194,7 @@ export namespace Presence_ {
 }
 
 export type Presence_ = (
-    $$_: Presence_.I,
+    context: Presence_.I,
 ) => Presence_.O
 
 export namespace Dictionary_ {
@@ -226,7 +210,7 @@ export namespace Dictionary_ {
 }
 
 export type Dictionary_ = (
-    $$_: Dictionary_.I,
+    context: Dictionary_.I,
 ) => Dictionary_.O
 
 export namespace Signatures_ {
@@ -242,7 +226,7 @@ export namespace Signatures_ {
 }
 
 export type Signatures_ = (
-    $$_: Signatures_.I,
+    context: Signatures_.I,
 ) => Signatures_.O
 
 export namespace Resolvers_ {
@@ -258,7 +242,7 @@ export namespace Resolvers_ {
 }
 
 export type Resolvers_ = (
-    $$_: Resolvers_.I,
+    context: Resolvers_.I,
 ) => Resolvers_.O
 
 export namespace Group_ {
@@ -274,7 +258,7 @@ export namespace Group_ {
 }
 
 export type Group_ = (
-    $$_: Group_.I,
+    context: Group_.I,
 ) => Group_.O
 
 export namespace Type_Node_ {
@@ -290,7 +274,7 @@ export namespace Type_Node_ {
 }
 
 export type Type_Node_ = (
-    $$_: Type_Node_.I,
+    context: Type_Node_.I,
 ) => Type_Node_.O
 
 export namespace Type_Reference_ {
@@ -306,7 +290,7 @@ export namespace Type_Reference_ {
 }
 
 export type Type_Reference_ = (
-    $$_: Type_Reference_.I,
+    context: Type_Reference_.I,
 ) => Type_Reference_.O
 
 export namespace Type_Node_Reference_ {
@@ -322,7 +306,7 @@ export namespace Type_Node_Reference_ {
 }
 
 export type Type_Node_Reference_ = (
-    $$_: Type_Node_Reference_.I,
+    context: Type_Node_Reference_.I,
 ) => Type_Node_Reference_.O
 
 export namespace Signature_Parameters_ {
@@ -338,7 +322,7 @@ export namespace Signature_Parameters_ {
 }
 
 export type Signature_Parameters_ = (
-    $$_: Signature_Parameters_.I,
+    context: Signature_Parameters_.I,
 ) => Signature_Parameters_.O
 
 export namespace Signature_ {
@@ -354,7 +338,7 @@ export namespace Signature_ {
 }
 
 export type Signature_ = (
-    $$_: Signature_.I,
+    context: Signature_.I,
 ) => Signature_.O
 
 export namespace Relative_Value_Selection_ {
@@ -370,7 +354,7 @@ export namespace Relative_Value_Selection_ {
 }
 
 export type Relative_Value_Selection_ = (
-    $$_: Relative_Value_Selection_.I,
+    context: Relative_Value_Selection_.I,
 ) => Relative_Value_Selection_.O
 
 export namespace Lookup_Selection_ {
@@ -386,7 +370,7 @@ export namespace Lookup_Selection_ {
 }
 
 export type Lookup_Selection_ = (
-    $$_: Lookup_Selection_.I,
+    context: Lookup_Selection_.I,
 ) => Lookup_Selection_.O
 
 export namespace Constraint_ {
@@ -402,7 +386,7 @@ export namespace Constraint_ {
 }
 
 export type Constraint_ = (
-    $$_: Constraint_.I,
+    context: Constraint_.I,
 ) => Constraint_.O
 
 export namespace Option_Constraints_ {
@@ -418,7 +402,7 @@ export namespace Option_Constraints_ {
 }
 
 export type Option_Constraints_ = (
-    $$_: Option_Constraints_.I,
+    context: Option_Constraints_.I,
 ) => Option_Constraints_.O
 
 export namespace Property_Constraints_ {
@@ -434,7 +418,7 @@ export namespace Property_Constraints_ {
 }
 
 export type Property_Constraints_ = (
-    $$_: Property_Constraints_.I,
+    context: Property_Constraints_.I,
 ) => Property_Constraints_.O
 
 export namespace Reference_To_Property_Constraint_ {
@@ -450,7 +434,7 @@ export namespace Reference_To_Property_Constraint_ {
 }
 
 export type Reference_To_Property_Constraint_ = (
-    $$_: Reference_To_Property_Constraint_.I,
+    context: Reference_To_Property_Constraint_.I,
 ) => Reference_To_Property_Constraint_.O
 
 export namespace Property_Constraint_ {
@@ -466,7 +450,7 @@ export namespace Property_Constraint_ {
 }
 
 export type Property_Constraint_ = (
-    $$_: Property_Constraint_.I,
+    context: Property_Constraint_.I,
 ) => Property_Constraint_.O
 
 export namespace Optional_Value_Initialization_ {
@@ -482,7 +466,7 @@ export namespace Optional_Value_Initialization_ {
 }
 
 export type Optional_Value_Initialization_ = (
-    $$_: Optional_Value_Initialization_.I,
+    context: Optional_Value_Initialization_.I,
 ) => Optional_Value_Initialization_.O
 
 export namespace Node_Resolver_Group_ {
@@ -498,7 +482,7 @@ export namespace Node_Resolver_Group_ {
 }
 
 export type Node_Resolver_Group_ = (
-    $$_: Node_Resolver_Group_.I,
+    context: Node_Resolver_Group_.I,
 ) => Node_Resolver_Group_.O
 
 export namespace Node_Resolver_List_Result_ {
@@ -514,7 +498,7 @@ export namespace Node_Resolver_List_Result_ {
 }
 
 export type Node_Resolver_List_Result_ = (
-    $$_: Node_Resolver_List_Result_.I,
+    context: Node_Resolver_List_Result_.I,
 ) => Node_Resolver_List_Result_.O
 
 export namespace Benchmark_ {
@@ -530,7 +514,7 @@ export namespace Benchmark_ {
 }
 
 export type Benchmark_ = (
-    $$_: Benchmark_.I,
+    context: Benchmark_.I,
 ) => Benchmark_.O
 
 export namespace Node_Resolver_ {
@@ -546,7 +530,7 @@ export namespace Node_Resolver_ {
 }
 
 export type Node_Resolver_ = (
-    $$_: Node_Resolver_.I,
+    context: Node_Resolver_.I,
 ) => Node_Resolver_.O
 
 export namespace Guaranteed_Value_Selection_ {
@@ -562,7 +546,7 @@ export namespace Guaranteed_Value_Selection_ {
 }
 
 export type Guaranteed_Value_Selection_ = (
-    $$_: Guaranteed_Value_Selection_.I,
+    context: Guaranteed_Value_Selection_.I,
 ) => Guaranteed_Value_Selection_.O
 
 export namespace Possible_Value_Selection_ {
@@ -578,14 +562,13 @@ export namespace Possible_Value_Selection_ {
 }
 
 export type Possible_Value_Selection_ = (
-    $$_: Possible_Value_Selection_.I,
+    context: Possible_Value_Selection_.I,
 ) => Possible_Value_Selection_.O
 
 export { 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Globals_ as Globals, 
-    Type_Parameters_ as Type_Parameters, 
     Type_ as Type, 
     Types_ as Types, 
     Resolve_Logic_ as Resolve_Logic, 
