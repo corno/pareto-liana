@@ -20,7 +20,7 @@ export const $: g_.Types = types(
             "schema": tstate(t.component("Schema")),
         })),
 
-        "Schemas": type(t.dictionary(t.component_cyclic("Schema Tree"), 'ordered')),
+        "Schemas": type(t.dictionary(t.component_cyclic("Schema Tree"))),
 
         "Schema": type(t.group({
             "imports": prop(t.component_cyclic("Imports")),
@@ -38,7 +38,7 @@ export const $: g_.Types = types(
             // "number types": t.dictionary(t.component("Number Type")),
         })),
 
-        "Types": type(t.dictionary(t.component("Type"), 'ordered')),
+        "Types": type(t.dictionary(t.component("Type"))),
 
         "Type": type(t.group({
             // "type parameters": t.component("Type Parameters"),

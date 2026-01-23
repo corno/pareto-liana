@@ -173,7 +173,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                             case 'no such entry': return _p.ss($, ($) => `no such entry: ${$}`)
                                             case 'not the same node': return _p.ss($, ($) => `not the same node`)
                                             case 'wrong state': return _p.ss($, ($) => `wrong state`)
-                                            case 'tbd': return _p.ss($, ($) => `tbd`)
+                                            case 'tbd': return _p.ss($, ($) => $)
                                             default: return _p.au($[0])
                                         }
                                     }))

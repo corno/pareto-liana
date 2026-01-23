@@ -158,7 +158,7 @@ export namespace t {
             'type': _p.wrap_reference(type),
         }])])
     }
-    export const dictionary = (type: d_schema.Type_Node, ordered?: 'ordered' | ''): d_schema.Type_Node => {
+    export const dictionary = (type: d_schema.Type_Node): d_schema.Type_Node => {
         return _p.wrap_state_group(['dictionary', {
             'node': type,
             'benchmark': _p.optional.not_set(),

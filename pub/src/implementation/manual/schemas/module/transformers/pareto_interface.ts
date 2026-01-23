@@ -13,7 +13,7 @@ import * as t_pareto_interface_main from "../../../../manual/schemas/schema/tran
 export const Module = ($: d_in.Module): d_out.Module_Set => {
     return _psh.dictionary.literal({
         "generic": sh.m.set({
-            "resolve.ts": sh.m.module(
+            "resolve": sh.m.module(
                 {
                     "location": sh.import_.sibling("location", []),
                 },
@@ -35,7 +35,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     })),
                 }
             ),
-            "location.ts": sh.m.module(
+            "location": sh.m.module(
                 {},
                 {
                     "Location": sh.type.data(sh.t.group({

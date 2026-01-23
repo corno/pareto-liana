@@ -17,12 +17,6 @@ import * as t_serialize from "./pareto_interface_serialize"
 import * as t_deserialize from "./pareto_interface_deserialize"
 
 
-// import * as operations from "pareto-standard-operations"
-
-// const op = {
-//     'filter dictionary': operations.pure.dictionary.filter
-// }
-
 export const Schema = (
     $: d_in.Schema,
     $p: {
@@ -39,41 +33,36 @@ export const Schema = (
     })
     return m.set(_p.dictionary.filter(
         _p.dictionary.literal<_pi.Optional_Value<d_out.Module_Set.D>>({
-            "data.ts": constrained
-                ? _p.optional.not_set()
-
-                : _p.optional.set(t_types.Schema(
+            "data": _p.optional.set(constrained
+                ? m.set(_p.dictionary.literal({
+                    "resolved": t_types.Schema(
+                        schema,
+                        {
+                            'imports': schema.imports,
+                            'depth': 1,
+                            'type': ['resolved', null],
+                        }
+                    ),
+                    "unresolved": t_types.Schema(
+                        schema,
+                        {
+                            'imports': schema.imports,
+                            'depth': 1,
+                            'type': ['unresolved', null],
+                        }
+                    ),
+                }))
+                : t_types.Schema(
                     schema,
                     {
                         'imports': schema.imports,
                         'depth': 0,
                         'type': ['unconstrained', null],
                     }
-                )),
-            "data": constrained
-                ? _p.optional.set(
-                    m.set(_p.dictionary.literal({
-                        "resolved.ts": t_types.Schema(
-                            schema,
-                            {
-                                'imports': schema.imports,
-                                'depth': 1,
-                                'type': ['resolved', null],
-                            }
-                        ),
-                        "unresolved.ts": t_types.Schema(
-                            schema,
-                            {
-                                'imports': schema.imports,
-                                'depth': 1,
-                                'type': ['unresolved', null],
-                            }
-                        ),
-                    }))
-                )
-                : _p.optional.not_set(),
+                ),
+            ),
 
-            "resolve.ts": _p.sg($.complexity, ($) => {
+            "resolve": _p.sg($.complexity, ($) => {
                 switch ($[0]) {
                     case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Signatures(
                         $.signatures.types
@@ -82,13 +71,13 @@ export const Schema = (
                     default: return _p.au($[0])
                 }
             }),
-            "migrate boilerplate.ts": _p.optional.set(t_migrate_boilerplate.Schema(
+            "migrate boilerplate": _p.optional.set(t_migrate_boilerplate.Schema(
                 schema,
                 {
                     'constrained': constrained
                 }
             )),
-            "unmarshall.ts": _p.optional.from_boolean(
+            "unmarshall": _p.optional.from_boolean(
                 !$p['omit (de)serializer'],
                 t_unmarshall.Schema(
                     schema,
@@ -97,7 +86,7 @@ export const Schema = (
                     }
                 )
             ),
-            "marshall.ts": _p.optional.from_boolean(
+            "marshall": _p.optional.from_boolean(
                 !$p['omit (de)serializer'],
                 t_marshall.Schema(
                     schema,
@@ -106,16 +95,16 @@ export const Schema = (
                     }
                 )
             ),
-            "serialize.ts": _p.optional.from_boolean(
+            "serialize": _p.optional.from_boolean(
                 !$p['omit (de)serializer'],
                 t_serialize.Schema(
                     schema,
                     {
                         'constrained': constrained
                     }
-                ), 
+                ),
             ),
-            "deserialize.ts": _p.optional.from_boolean(
+            "deserialize": _p.optional.from_boolean(
                 !$p['omit (de)serializer'],
                 t_deserialize.Schema(
                     schema,

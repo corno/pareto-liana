@@ -28,7 +28,7 @@ export const $: g_.Types = types(
             "set": tstated("a hierarchy of schemas", t.component_cyclic("Schemas")),
         })),
 
-        "Schemas": type(t.dictionary(t.component("Schema Tree"), 'ordered')),
+        "Schemas": type(t.dictionary(t.component("Schema Tree"))),
 
         "Schema": type(t.group({
             "imports": prop(t.component_cyclic("Imports")),
@@ -54,7 +54,7 @@ export const $: g_.Types = types(
             "number types": prop(t.dictionary(t.component("Number Type"))),
         })),
 
-        "Types": type(t.dictionary(t.component("Type"), 'ordered')),
+        "Types": type(t.dictionary(t.component("Type"))),
 
         "Resolve Logic": type(t.group({ //FIXME: inline
             "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
@@ -126,12 +126,12 @@ export const $: g_.Types = types(
             "node": prop(t.component_cyclic("Type Node")),
         })),
 
-        "Signatures": type(t.dictionary(t.component_cyclic("Signature"), 'ordered')),
+        "Signatures": type(t.dictionary(t.component_cyclic("Signature"))),
 
         "Resolvers": type(t.dictionary(t.group({
             "signature": prop(t.reference_derived("Signatures", [tr.d()])),
             "type resolver": prop(t.component_cyclic("Node Resolver")),
-        }), 'ordered')),
+        }))),
 
         /**
          * the properties in a group are ordered. This way there is a canonical concise representation
@@ -139,7 +139,7 @@ export const $: g_.Types = types(
         "Group": type(t.dictionary(t.group({
             "description": prop(t.optional(t.text_local(text('multi line')))),
             "node": prop(t.component_cyclic("Type Node"))
-        }), 'ordered')),
+        }))),
 
         "Type Node Reference": type(t.group({ //FIXME: inline
             "type location": prop(t.component("Type Reference")),
@@ -243,7 +243,7 @@ export const $: g_.Types = types(
             "assert is set": tstate(t.component_cyclic("Possible Value Selection")),
         }))),
 
-        "Property Constraints": type(t.dictionary(t.component_cyclic("Property Constraint"), 'ordered')),
+        "Property Constraints": type(t.dictionary(t.component_cyclic("Property Constraint"))),
 
         "Reference To Property Constraint": type(t.reference("Property Constraints", [])), //FIXME : inline
 
@@ -264,7 +264,7 @@ export const $: g_.Types = types(
         "Node Resolver Group": type(t.dictionary(t.group({
             "definition": prop(t.reference_derived("Group", [tr.d()])),
             "resolver": prop(t.component_cyclic("Node Resolver")),
-        }), 'ordered')),
+        }))),
 
         "Node Resolver List Result": type(t.component("Type Reference")),
 

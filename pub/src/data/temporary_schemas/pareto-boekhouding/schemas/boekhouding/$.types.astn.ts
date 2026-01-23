@@ -368,7 +368,7 @@ export const $: g_.Types = types(
             "Jaarbeheer": prop(t.component("Jaarbeheer")),
             "Handelstransacties": prop(t.component("Handelstransacties")),
             "Mutaties": prop(t.component("Mutaties")),
-        }), 'ordered')),
+        }))),
 
         "Eerste boekjaar": type(t.state_group({
             "Ja": tstate(t.nothing()),

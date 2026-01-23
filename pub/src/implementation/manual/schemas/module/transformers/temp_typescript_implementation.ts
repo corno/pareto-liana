@@ -18,6 +18,12 @@ export const Module = ($: d_in.Module): d_out.Directory => {
     return t_typescript_light_to_fountain_pen_block.Directory(
         t_implementation_to_typescript_temp.Module_Set(
             t_liana_to_pareto_implementation.Module($),
+            ($) => _p.sg($, ($) => {
+                switch ($[0]) {
+                    case 'directory name ending with ts': return _p.ss($, ($) => _p.unreachable_code_path())
+                    default: return _p.au($[0])
+                }
+            })
             // r_pareto_implementation.r_Module_Set(
             //     t_pareto_to_pareto_implementation.Module($),
             //     {
