@@ -38,7 +38,7 @@ import * as _pi from "pareto-core/dist/interface"
         $$_p: {
             
         },
-    ) => _i_out.Value._type.concrete
+    ) => _i_out.Value.type_.concrete
     
     export type Value = (
         $$_: _i_in.Value,
@@ -142,7 +142,7 @@ import * as _pi from "pareto-core/dist/interface"
         
         export namespace RESULT {
         }
-        export type RESULT = _i_out.Value._type.concrete
+        export type RESULT = _i_out.Value.type_.concrete
     }
     
     export namespace Value {

@@ -1,7 +1,7 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-import * as i_out from "./data"
+import * as i_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
 import * as i_in from "./data"
 
@@ -9,7 +9,7 @@ export namespace Relative_Location_ {
     
     export type I = i_in.Relative_Location
     
-    export type O = i_out.Relative_Location
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Location_ {
     
     export type I = i_in.Location
     
-    export type O = i_out.Location
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Range_ {
     
     export type I = i_in.Range
     
-    export type O = i_out.Range
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Whitespace_ {
     
     export type I = i_in.Whitespace
     
-    export type O = i_out.Whitespace
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -73,7 +73,7 @@ export namespace Trivia_ {
     
     export type I = i_in.Trivia
     
-    export type O = i_out.Trivia
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -89,7 +89,7 @@ export namespace Delimited_Text_ {
     
     export type I = i_in.Delimited_Text
     
-    export type O = i_out.Delimited_Text
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -105,7 +105,7 @@ export namespace Text_Type_ {
     
     export type I = i_in.Text_Type
     
-    export type O = i_out.Text_Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -121,7 +121,7 @@ export namespace Token_Type_ {
     
     export type I = i_in.Token_Type
     
-    export type O = i_out.Token_Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -137,7 +137,7 @@ export namespace Annotated_Token_ {
     
     export type I = i_in.Annotated_Token
     
-    export type O = i_out.Annotated_Token
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -153,7 +153,7 @@ export namespace Tokenizer_Result_ {
     
     export type I = i_in.Tokenizer_Result
     
-    export type O = i_out.Tokenizer_Result
+    export type O = i_out.Value
     
     export namespace P {
         

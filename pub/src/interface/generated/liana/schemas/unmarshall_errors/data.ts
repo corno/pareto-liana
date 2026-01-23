@@ -48,7 +48,7 @@ export namespace Errors_ {
         
         export type range = Range_
         
-        export namespace _type {
+        export namespace type_ {
             
             export namespace error {
                 
@@ -68,7 +68,7 @@ export namespace Errors_ {
                             
                             export type not_set = null
                             
-                            export type _set = null
+                            export type set_ = null
                             
                             export type list = null
                             
@@ -82,7 +82,7 @@ export namespace Errors_ {
                             | readonly ['concise group', L.concise_group]
                             | readonly ['dictionary', L.dictionary]
                             | readonly ['not set', L.not_set]
-                            | readonly ['set', L._set]
+                            | readonly ['set', L.set_]
                             | readonly ['list', L.list]
                             | readonly ['state', L.state]
                         
@@ -196,15 +196,15 @@ export namespace Errors_ {
             
         }
         
-        export type _type = 
-            | readonly ['error', _type.error]
-            | readonly ['warning', _type.warning]
+        export type type_ = 
+            | readonly ['error', type_.error]
+            | readonly ['warning', type_.warning]
         
     }
     
     export type L = {
         readonly 'range': L.range
-        readonly 'type': L._type
+        readonly 'type': L.type_
     }
     
 }

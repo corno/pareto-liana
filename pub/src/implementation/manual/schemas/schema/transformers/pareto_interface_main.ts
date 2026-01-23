@@ -89,7 +89,12 @@ export const Schema = ($: d_in.Schema): d_out.Module_Set.D => {
             //         'constrained': constrained
             //     }
             // ),
-            // "marshall.ts": t_marshall.Schema(schema),
+            // "marshall.ts": _p.optional.set(t_marshall.Schema(
+            //     schema,
+            //     {
+            //         'constrained': constrained
+            //     }
+            // )),
             // "serialize.ts": t_serialize.Schema(
             //     schema,
             //     {

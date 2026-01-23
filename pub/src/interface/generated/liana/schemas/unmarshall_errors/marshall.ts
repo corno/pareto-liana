@@ -1,7 +1,7 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-import * as i_out from "./data"
+import * as i_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
 import * as i_in from "./data"
 
@@ -9,7 +9,7 @@ export namespace Relative_Location_ {
     
     export type I = i_in.Relative_Location
     
-    export type O = i_out.Relative_Location
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Location_ {
     
     export type I = i_in.Location
     
-    export type O = i_out.Location
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Range_ {
     
     export type I = i_in.Range
     
-    export type O = i_out.Range
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Errors_ {
     
     export type I = i_in.Errors
     
-    export type O = i_out.Errors
+    export type O = i_out.Value
     
     export namespace P {
         

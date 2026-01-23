@@ -1,7 +1,7 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-import * as i_out from "./data/unresolved"
+import * as i_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
 import * as i_in from "./data/resolved"
 
@@ -9,7 +9,7 @@ export namespace Schemas_ {
     
     export type I = i_in.Schemas
     
-    export type O = i_out.Schemas
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Text_Type_ {
     
     export type I = i_in.Text_Type
     
-    export type O = i_out.Text_Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Globals_ {
     
     export type I = i_in.Globals
     
-    export type O = i_out.Globals
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Type_ {
     
     export type I = i_in.Type
     
-    export type O = i_out.Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -73,7 +73,7 @@ export namespace Types_ {
     
     export type I = i_in.Types
     
-    export type O = i_out.Types
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -89,7 +89,7 @@ export namespace Schema_ {
     
     export type I = i_in.Schema
     
-    export type O = i_out.Schema
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -105,7 +105,7 @@ export namespace Schema_Tree_ {
     
     export type I = i_in.Schema_Tree
     
-    export type O = i_out.Schema_Tree
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -121,7 +121,7 @@ export namespace Imports_ {
     
     export type I = i_in.Imports
     
-    export type O = i_out.Imports
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -137,7 +137,7 @@ export namespace Dictionary_ {
     
     export type I = i_in.Dictionary
     
-    export type O = i_out.Dictionary
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -153,7 +153,7 @@ export namespace Group_ {
     
     export type I = i_in.Group
     
-    export type O = i_out.Group
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -169,7 +169,7 @@ export namespace Type_Node_ {
     
     export type I = i_in.Type_Node
     
-    export type O = i_out.Type_Node
+    export type O = i_out.Value
     
     export namespace P {
         

@@ -10,26 +10,28 @@ import * as sh from "pareto/dist/shorthands/interface"
 
 export const Schema = (
     $: d_in.Schema,
+    $p: {
+        'constrained': boolean
+    }
 ): d_out.Module_Set.D => sh.m.module(
     {
         "out": sh.import_.external(
-            "astn",
+            "astn-core",
             [
                 "dist",
                 "interface",
                 "generated",
-                "pareto",
+                "liana",
                 "schemas",
                 "sealed target",
-                "data types",
-                "source",
+                "data",
             ],
         ),
         "in": sh.import_.sibling(
-            "data types",
-            [
-                "source",
-            ],
+            "data",
+            $p.constrained
+                ? ["resolved"]
+                : [],
         ),
     },
     $.types.__d_map(($, key) => sh.type.transformer(

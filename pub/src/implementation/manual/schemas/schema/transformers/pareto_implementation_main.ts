@@ -30,7 +30,7 @@ export const Schema_Tree = (
                 return m.set(
                     _p.dictionary.filter(
                         _p.dictionary.literal<_pi.Optional_Value<d_out.Module_Set.D>>({
-                            "migration boilerplate.ts": _p.optional.set(t_migration_boilerplate.Schema($, {
+                            "migrate boilerplate.ts": _p.optional.set(t_migration_boilerplate.Schema($, {
                                 'path': $p.path,
                                 'imports': $.imports,
                                 'constrained': $.complexity[0] === 'constrained'

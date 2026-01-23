@@ -1,7 +1,7 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-import * as i_out from "./data"
+import * as i_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
 import * as i_in from "./data"
 
@@ -9,7 +9,7 @@ export namespace Structural_Token_ {
     
     export type I = i_in.Structural_Token
     
-    export type O = i_out.Structural_Token
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Text_ {
     
     export type I = i_in.Text
     
-    export type O = i_out.Text
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Key_Value_Pairs_ {
     
     export type I = i_in.Key_Value_Pairs
     
-    export type O = i_out.Key_Value_Pairs
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Elements_ {
     
     export type I = i_in.Elements
     
-    export type O = i_out.Elements
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -89,7 +89,7 @@ export namespace Content_ {
     
     export type I = i_in.Content
     
-    export type O = i_out.Content
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -105,7 +105,7 @@ export namespace Document_ {
     
     export type I = i_in.Document
     
-    export type O = i_out.Document
+    export type O = i_out.Value
     
     export namespace P {
         

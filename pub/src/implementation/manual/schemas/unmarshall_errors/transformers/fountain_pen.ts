@@ -56,7 +56,7 @@ export const Errors = (
 }
 
 export const Error_Type_Error = (
-    $: d_in.Errors.L._type.error,
+    $: d_in.Errors.L.type_.error,
 ): d_out.Block_Part => _p.sg($, ($) => {
     switch ($[0]) {
         case 'duplicate property': return _p.ss($, ($) => sh.b.snippet(`Duplicate property "${$.name}"`))
@@ -87,7 +87,7 @@ export const Error_Type_Error = (
 })
 
 export const Error_Type_Warning = (
-    $: d_in.Errors.L._type.warning,
+    $: d_in.Errors.L.type_.warning,
 ): d_out.Block_Part => _p.sg($, ($) => {
     switch ($[0]) {
         case 'expected apostrophed string': return _p.ss($, ($) => sh.b.snippet(`Expected apostrophed string`))
