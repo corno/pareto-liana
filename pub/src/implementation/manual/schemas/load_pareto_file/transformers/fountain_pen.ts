@@ -12,7 +12,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementation/manual/schemas/read_file/transformers/fountain_pen"
 import * as t_load_pareto_document from "../../load_pareto_document/transformers/fountain_pen"
 
-export const Error: signatures.Error = ($) => _p.sg($, ($) => {
+export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'document': return _p.ss($, ($) => t_load_pareto_document.Error($))
         case 'read file': return _p.ss($, ($) => t_read_file_to_fountain_pen.Error($))

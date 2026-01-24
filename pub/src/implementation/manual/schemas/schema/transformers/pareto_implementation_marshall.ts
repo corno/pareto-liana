@@ -81,14 +81,14 @@ export const Type_Node = (
         )
     }
 
-    return _p.sg($, ($) => {
+    return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => string(
                 sh.e.implement_me(),
                 'backtick' //FIXME should be 'none'
             ))
             case 'component': return _p.ss($, ($) => sh.e.call(
-                _p.sg($, ($) => {
+                _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.key}`, $.type.key, []))
                         case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
@@ -186,7 +186,7 @@ export const Type_Node = (
                         [sh.sub.state("optional")]
                     ),
                 )))
-            case 'reference': return _p.ss($, ($) => _p.sg($.type, ($) => {
+            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.tagged_union("nothing", sh.e.null_()))
                     case 'selected': return _p.ss($, ($) => string(sh.e.select_from_context_deprecated(["key"]), 'backtick'))

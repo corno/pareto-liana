@@ -20,7 +20,7 @@ export const Module = ($: d_in.Module): d_out.Directory => {
     return t_typescript_light_to_fountain_pen_block.Directory(
         t_interface_to_typescript_temp.Module_Set(
             t_liana_to_pareto_interface.Module($),
-            ($) => _p.sg($, ($) => {
+            ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'directory name ending with ts': return _p.ss($, ($) => _p.unreachable_code_path())
                     default: return _p.au($[0])

@@ -60,7 +60,7 @@ export const $: g_.Types = types(
                         })),
                         //not set is the same as 'nothing'
                     })),
-                    "state group": tstate(t.group({
+                    "state": tstate(t.group({
                         "|": prop(t.component("Structural Token")),
                         "status": prop(t.state({
                             "missing data": tstate(t.group({

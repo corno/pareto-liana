@@ -41,17 +41,17 @@ export const Node_Type = (
     }
 ): d_out.Node_Type => {
     const data = $
-    return _p.sg($p.definition, ($): d_out.Node_Type => {
+    return _p.decide.state($p.definition, ($): d_out.Node_Type => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($): d_out.Node_Type => {
                 return ['boolean', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'text': return _p.ss($, ($) => ['valid', {
                                 'value': $,
                                 'range': $.range,
-                                'correct string type': _p.sg($.type, ($) => {
+                                'correct string type': _p.decide.state($.type, ($) => {
                                     switch ($[0]) {
                                         case 'quoted': return false
                                         case 'apostrophed': return false
@@ -72,7 +72,7 @@ export const Node_Type = (
                 'node': Node(
                     $p['temp value'],
                     {
-                        'definition': _p.sg($, ($) => {
+                        'definition': _p.decide.state($, ($) => {
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => $.type.entry.node)
                                 case 'internal': return _p.ss($, ($) => $.entry.node)
@@ -87,7 +87,7 @@ export const Node_Type = (
                 const prop_def = $.node
                 return ['dictionary', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'dictionary': return _p.ss($, ($) => {
                                 return ['valid', {
@@ -166,12 +166,12 @@ export const Node_Type = (
                 // // })
                 return ['group', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         const value = $
-                        return _p.sg($, ($) => {
+                        return _p.decide.state($, ($) => {
                             switch ($[0]) {
                                 // case 'group': return _p.ss($, ($): d_out.Group_Found_Value_Type => {
-                                //     const entries = op_group(_p.sg($, ($): d_in.Key_Value_Pairs => {
+                                //     const entries = op_group(_p.decide.state($, ($): d_in.Key_Value_Pairs => {
                                 //         switch ($[0]) {
                                 //             case 'dictionary': return _p.ss($, ($) => $.entries)
                                 //             case 'verbose group': return _p.ss($, ($) => $.entries)
@@ -183,7 +183,7 @@ export const Node_Type = (
                                 //             'value': $
                                 //         }
                                 //     }))
-                                //     const range: d_in_token.Range = _p.sg($, ($) => {
+                                //     const range: d_in_token.Range = _p.decide.state($, ($) => {
                                 //         switch ($[0]) {
                                 //             case 'dictionary': return _p.ss($, ($) => $['{'].range)
                                 //             case 'verbose group': return _p.ss($, ($) => $['('].range)
@@ -270,7 +270,7 @@ export const Node_Type = (
                 const prop_def = $.node
                 return ['list', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'list': return _p.ss($, ($) => {
                                 return ['valid', {
@@ -287,7 +287,7 @@ export const Node_Type = (
             case 'nothing': return _p.ss($, ($): d_out.Node_Type => {
                 return ['nothing', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'nothing': return _p.ss($, ($) => ['valid', {
                                 'value': $,
@@ -300,12 +300,12 @@ export const Node_Type = (
             case 'number': return _p.ss($, ($): d_out.Node_Type => {
                 return ['number', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'text': return _p.ss($, ($) => ['valid', {
                                 'value': $,
                                 'range': $.range,
-                                'correct string type': _p.sg($.type, ($) => {
+                                'correct string type': _p.decide.state($.type, ($) => {
                                     switch ($[0]) {
                                         case 'quoted': return true
                                         case 'apostrophed': return false
@@ -325,12 +325,12 @@ export const Node_Type = (
                 const def = $
                 return ['optional', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'nothing': return _p.ss($, ($) => ['valid', ['not set', {
                                 'value': $,
                             }]])
-                            case 'optional': return _p.ss($, ($) => _p.sg($, ($) => {
+                            case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                 switch ($[0]) {
                                     case 'set': return _p.ss($, ($) => ['valid', ['set', {
                                         'value': $,
@@ -352,7 +352,7 @@ export const Node_Type = (
             case 'reference': return _p.ss($, ($): d_out.Node_Type => {
                 return ['reference', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'text': return _p.ss($, ($) => ['valid', {
                                 'value': $,
@@ -367,13 +367,13 @@ export const Node_Type = (
                 const def = $
                 return ['state group', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($): d_out.State_found_value_type => {
+                    'found value type': _p.decide.state(data, ($): d_out.State_found_value_type => {
                         switch ($[0]) {
                             case 'state group': return _p.ss($, ($): d_out.State_found_value_type => {
                                 const tv = $
                                 return ['valid', {
                                     'value type': ['state', {
-                                        'value substatus': _p.sg($.status, ($): d_out.State_found_value__typevalid_value__typeSG_state_value_substatus => {
+                                        'value substatus': _p.decide.state($.status, ($): d_out.State_found_value__typevalid_value__typeSG_state_value_substatus => {
                                             switch ($[0]) {
                                                 case 'missing data': return _p.ss($, ($) => ['missing data', $['#']])
                                                 case 'set': return _p.ss($, ($): d_out.State_found_value__typevalid_value__typeSG_state_value_substatus => {
@@ -401,14 +401,14 @@ export const Node_Type = (
                                 }]
                             })
                             // case 'ordered collection': return _p.ss($, ($) => {
-                            //     const elements = _p.sg($, ($): d_in.Elements => {
+                            //     const elements = _p.decide.state($, ($): d_in.Elements => {
                             //         switch ($[0]) {
                             //             case 'list': return _p.ss($, ($) => $.elements)
                             //             case 'concise group': return _p.ss($, ($) => $.elements)
                             //             default: return _p.au($[0])
                             //         }
                             //     })
-                            //     const range = _p.sg($, ($): _in_token.Range => {
+                            //     const range = _p.decide.state($, ($): _in_token.Range => {
                             //         switch ($[0]) {
                             //             case 'list': return _p.ss($, ($) => $['['].range)
                             //             case 'concise group': return _p.ss($, ($) => $['<'].range)
@@ -461,7 +461,7 @@ export const Node_Type = (
             case 'text': return _p.ss($, ($) => {
                 return ['text', {
                     'definition': $,
-                    'found value type': _p.sg(data, ($) => {
+                    'found value type': _p.decide.state(data, ($) => {
                         switch ($[0]) {
                             case 'text': return _p.ss($, ($) => ['valid', {
                                 'value': $,
@@ -488,7 +488,7 @@ export const Node = (
     return {
         'definition': $p.definition,
         'value': datax,
-        'type': _p.sg(datax.type, ($) => {
+        'type': _p.decide.state(datax.type, ($) => {
             switch ($[0]) {
                 case 'concrete': return _p.ss($, ($) => {
                     const data = $

@@ -29,7 +29,7 @@ export const Signatures = (
                 sh.t.component_imported("generic", "Error"),
                 $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
                     const x = $.referent
-                    return _p.sg($.type, ($) => {
+                    return _p.decide.state($.type, ($) => {
                         switch ($[0]) {
                             case 'acyclic': return _p.ss($, ($) => ['acyclic', Type_Reference(x, { 'reference sub part': _p.list.literal([sh.sub.dictionary()]) })])
                             case 'cyclic': return _p.ss($, ($) => ['cyclic', Type_Reference(x, { 'reference sub part': _p.list.literal([sh.sub.dictionary()]) })])
@@ -40,7 +40,7 @@ export const Signatures = (
                 }),
                 $['resolved parameters'].values.__d_map(($) => {
                     const temp_2 = Type_Reference($['data type'], { 'reference sub part': _p.list.literal([]) })
-                    return _p.sg($.presence, ($) => {
+                    return _p.decide.state($.presence, ($) => {
                         switch ($[0]) {
                             case 'optional': return sh.t.optional(temp_2)
                             case 'required': return temp_2
@@ -60,7 +60,7 @@ export const Type_Reference = (
     }
 ): d_out.Type_Node => {
 
-    return _p.sg($.location, ($) => {
+    return _p.decide.state($.location, ($) => {
         switch ($[0]) {
             case 'external': return _p.ss($, ($) => sh.t.reference_imported(
                 `imports ${$.import.key}`,
@@ -81,7 +81,7 @@ export const Type_Reference = (
 export const Type_Node_Path = (
     $: d_in.Type_Node_Path_,
 ): d_out.Type_Node.reference.acyclic.sub_selection => {
-    const tail: _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L> = $.tail.list.__l_map(($) => _p.sg($.element, ($) => {
+    const tail: _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L> = $.tail.list.__l_map(($) => _p.decide.state($.element, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))

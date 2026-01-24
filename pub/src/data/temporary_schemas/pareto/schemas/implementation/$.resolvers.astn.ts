@@ -51,7 +51,7 @@ export const $: g_.Resolvers = resolvers(
                 "group": state(r.text()),
                 "list": state(r.nothing()),
                 "optional": state(r.nothing()),
-                "state group": state(r.text()),
+                "state": state(r.text()),
             })),
         })),
 
@@ -136,7 +136,7 @@ export const $: g_.Resolvers = resolvers(
                         "set handler": r.component("Expression", {}, {})
                     })),
                 })),
-                "state group": state(r.state_group({
+                "state": state(r.state_group({
                     "literal": state(r.group({
                         "state": r.text(),
                         "value": r.component("Expression", {}, {}),
@@ -166,7 +166,7 @@ export const $: g_.Resolvers = resolvers(
                         "if not set": r.component("Expression", {}, {}),
                         "if set": r.component("Expression", {}, {}),
                     })),
-                    "state group": state(r.group({
+                    "state": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
                         "type": r.state_group({

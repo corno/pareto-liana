@@ -187,7 +187,7 @@ export const $: g_.Types = types(
                 "presence": prop(t.component("Presence")),
             })))
         })),
-        
+
         "Signature": type(t.group({
             "type": prop(t.reference_derived("Type", [])),
             "parameters": prop(t.state({
@@ -384,6 +384,37 @@ export const $: g_.Types = types(
                     })),
                 })),
             })),
+            // "reference": tstate(t.group({
+            //     "type": prop(t.state({
+            //         "derived": tstate(t.group({
+            //             "type location": prop(t.component("Type Reference")),
+            //             // "path": prop(t.component("Type Node Path")),
+            //         })),
+            //         "selected": tstate(t.state({
+            //             "acyclic": tstate(t.group({
+            //                 "type location": prop(t.component("Type Reference")),
+            //                 "path": prop(t.component("Type Node Path")),
+            //                 "temp": prop(t.state({ //cannot constrain a component directly yet
+            //                     "temp": tstate(t.reference_derived("Dictionary", [])),
+            //                 }))
+            //             })),
+            //             "cyclic": tstate(t.group({
+            //                 "type": prop(t.reference("Types", [])),
+            //                 "temp": prop(t.state({ //cannot constrain a component directly yet
+            //                     "temp": tstate(t.reference_derived("Dictionary", [])),
+            //                 }))
+
+            //             })),
+            //             "stack": tstate(t.group({
+            //                 "type location": prop(t.component("Type Reference")),
+            //                 "path": prop(t.component("Type Node Path")),
+            //                 "temp": prop(t.state({ //cannot constrain a component directly yet
+            //                     "temp": tstate(t.reference_derived("Dictionary", [])),
+            //                 }))
+            //             })),
+            //         })),
+            //     })),
+            // })),
             "state group": tstate(t.group({
                 "definition": prop(t.reference_derived("Type Node", [tr.s("state group")])),
                 "states": prop(t.dictionary(t.group({

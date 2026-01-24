@@ -39,7 +39,7 @@ export const Error = ($: Error): d_fp.Group_Part => {
     return sh.g.sub($.__to_list(
         ($, key) => sh.g.nested_block([
             sh.b.snippet(`error in package ${key}: `),
-            _p.sg($, ($) => {
+            _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'could not log': return _p.ss($, ($) => sh.b.snippet(`could not log`))
                     case 'could not remove interface': return _p.ss($, ($) => sh.b.snippet(`could not remove interface`))
@@ -50,12 +50,12 @@ export const Error = ($: Error): d_fp.Group_Part => {
                     case 'could not copy core interface': return _p.ss($, ($) => sh.b.snippet(`could not copy core interface`))
                     case 'could not deserialize module': return _p.ss($, ($) => sh.b.sub([
                         sh.b.snippet($.location.file + `:` + $.location.line + `:` + $.location.column + `: `),
-                        _p.sg($.type, ($) => {
+                        _p.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'constraint': return _p.ss($, ($) => _p.sg($, ($) => {
+                                case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
                                         case 'state group': return _p.ss($, ($) => sh.b.snippet(`expected ${$.expected}, found ${$.found}`))
-                                        case 'optional value': return _p.ss($, ($) => _p.sg($, ($) => {
+                                        case 'optional value': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                             switch ($[0]) {
                                                 case 'set': return _p.ss($, ($) => sh.b.snippet(`expected ${$} to be set`))
                                                 default: return _p.au($[0])
@@ -65,7 +65,7 @@ export const Error = ($: Error): d_fp.Group_Part => {
                                         default: return _p.au($[0])
                                     }
                                 }))
-                                case 'lookup': return _p.ss($, ($) => _p.sg($, ($) => {
+                                case 'lookup': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
                                         case 'cyclic lookup in acyclic context': return _p.ss($, ($) => sh.b.snippet(`cyclic lookup in acyclic context: ${$}`))
                                         case 'no such entry': return _p.ss($, ($) => sh.b.snippet(`no such entry: ${$}`))

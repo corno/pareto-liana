@@ -12,13 +12,13 @@ export namespace st {
     export const set = (
         schemas: _p.Raw_Or_Normal_Dictionary<d_schema.Schema_Tree>,
     ): d_schema.Schema_Tree => {
-        return _p.wrap_state_group(['set', _p.wrap_dictionary(schemas)])
+        return _p.wrap_state_deprecated(['set', _p.wrap_dictionary(schemas)])
     }
 
     export const schema = (
         schema: d_schema.Schema,
     ): d_schema.Schema_Tree => {
-        return _p.wrap_state_group(['schema', schema])
+        return _p.wrap_state_deprecated(['schema', schema])
     }
 
 }
@@ -36,8 +36,8 @@ export const globals = (
 ): d_schema.Globals => {
     return {
         'complexity': complexity === 'unconstrained'
-            ? _p.wrap_state_group(['unconstrained', null])
-            : _p.wrap_state_group(['constrained', null]),
+            ? _p.wrap_state_deprecated(['unconstrained', null])
+            : _p.wrap_state_deprecated(['constrained', null]),
         'text types': _p.wrap_dictionary(text_types),
         'number types': _p.wrap_dictionary(number_types),
     }
@@ -48,7 +48,7 @@ export const type = (type: d_schema.Type_Node): d_schema.Types.dictionary.D.entr
 })
 
 export const text = (type: 'single line' | 'multi line'): d_schema.Text_Type => ({
-    'type': type === 'single line' ? _p.wrap_state_group(['single line', null]) : _p.wrap_state_group(['multi line', null]),
+    'type': type === 'single line' ? _p.wrap_state_deprecated(['single line', null]) : _p.wrap_state_deprecated(['multi line', null]),
 })
 
 export const prop = (
@@ -87,29 +87,29 @@ export const propd = (
 export namespace n {
 
     export const integer = (decimal_separator_offset?: number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state_group<d_schema.Number_Type.precision.state_group>(['exact', {
+        'precision': _p.wrap_state_deprecated<d_schema.Number_Type.precision.state_group>(['exact', {
             'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set<number>() : _p.optional.set<number>(decimal_separator_offset),
-            'type': _p.wrap_state_group(['integer', null]),
+            'type': _p.wrap_state_deprecated(['integer', null]),
         }])
     })
 
     export const approximation = (significant_digits: number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state_group<d_schema.Number_Type.precision.state_group>(['approximation', {
+        'precision': _p.wrap_state_deprecated<d_schema.Number_Type.precision.state_group>(['approximation', {
             'significant digits': significant_digits,
         }])
     })
 
     export const natural = (decimal_separator_offset?: number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state_group<d_schema.Number_Type.precision.state_group>(['exact', {
+        'precision': _p.wrap_state_deprecated<d_schema.Number_Type.precision.state_group>(['exact', {
             'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set() : _p.optional.set(decimal_separator_offset),
-            'type': _p.wrap_state_group(['natural', null]),
+            'type': _p.wrap_state_deprecated(['natural', null]),
         }])
     })
 
     export const positive_natural = (decimal_separator_offset?: number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state_group<d_schema.Number_Type.precision.state_group>(['exact', {
+        'precision': _p.wrap_state_deprecated<d_schema.Number_Type.precision.state_group>(['exact', {
             'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set() : _p.optional.set(decimal_separator_offset),
-            'type': _p.wrap_state_group(['positive natural', null]),
+            'type': _p.wrap_state_deprecated(['positive natural', null]),
         }])
     })
 
@@ -118,7 +118,7 @@ export namespace n {
 export const reference = (
     type: string,
 ): d_schema.Type_Reference => ({
-    'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+    'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
     'resulting type': null,
 })
 
@@ -129,7 +129,7 @@ export const part_reference = (
 ): d_schema.Type_Node_Reference => {
     return {
         'type location': {
-            'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+            'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
             'resulting type': null,
         },
         'path': {
@@ -147,52 +147,52 @@ export const part_reference = (
 export namespace t {
 
     export const boolean = (): d_schema.Type_Node => {
-        return _p.wrap_state_group(['boolean', null])
+        return _p.wrap_state_deprecated(['boolean', null])
     }
     export const component = (type: string): d_schema.Type_Node => {
-        return _p.wrap_state_group(['component', _p.wrap_state_group(['internal', _p.wrap_reference(type)])])
+        return _p.wrap_state_deprecated(['component', _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)])])
     }
     export const component_cyclic = (type: string): d_schema.Type_Node => {
-        return _p.wrap_state_group(['component', _p.wrap_state_group(['internal cyclic', _p.wrap_reference(type)])])
+        return _p.wrap_state_deprecated(['component', _p.wrap_state_deprecated(['internal cyclic', _p.wrap_reference(type)])])
     }
     export const component_external = (imp: string, type: string): d_schema.Type_Node => {
-        return _p.wrap_state_group(['component', _p.wrap_state_group(['external', {
+        return _p.wrap_state_deprecated(['component', _p.wrap_state_deprecated(['external', {
             'import': _p.wrap_reference(imp),
             'type': _p.wrap_reference(type),
         }])])
     }
     export const dictionary = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state_group(['dictionary', {
+        return _p.wrap_state_deprecated(['dictionary', {
             'node': type,
             'benchmark': _p.optional.not_set(),
         }])
     }
     export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_schema.Group.dictionary.D.entry>): d_schema.Type_Node => {
-        return _p.wrap_state_group(['group', _p.wrap_dictionary(properties)])
+        return _p.wrap_state_deprecated(['group', _p.wrap_dictionary(properties)])
     }
     export const list = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state_group(['list', {
+        return _p.wrap_state_deprecated(['list', {
             'node': type,
             'result': _p.optional.not_set(),
         }])
     }
     export const path = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state_group(['list', {
+        return _p.wrap_state_deprecated(['list', {
             'node': type,
             'result': _p.optional.set(null),
         }])
     }
     export const nothing = (): d_schema.Type_Node => {
-        return _p.wrap_state_group(['nothing', null])
+        return _p.wrap_state_deprecated(['nothing', null])
     }
     export const number_global = (name: string): d_schema.Type_Node => {
-        return _p.wrap_state_group(['number', _p.wrap_state_group(['global', _p.wrap_reference(name)])])
+        return _p.wrap_state_deprecated(['number', _p.wrap_state_deprecated(['global', _p.wrap_reference(name)])])
     }
     export const number_local = (bt: d_schema.Number_Type): d_schema.Type_Node => {
-        return _p.wrap_state_group(['number', _p.wrap_state_group(['local', bt])])
+        return _p.wrap_state_deprecated(['number', _p.wrap_state_deprecated(['local', bt])])
     }
     export const optional = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state_group(['optional', type])
+        return _p.wrap_state_deprecated(['optional', type])
     }
     export const reference_derived = (
         type: string,
@@ -200,7 +200,7 @@ export namespace t {
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
-                'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+                'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
                 'resulting type': null,
             },
             'path': {
@@ -208,9 +208,9 @@ export namespace t {
                 'resulting node': null
             }
         }
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'referent': x,
-            'type': _p.wrap_state_group(['derived', null]),
+            'type': _p.wrap_state_deprecated(['derived', null]),
         }])
     }
     export const reference_derived_external = (
@@ -221,7 +221,7 @@ export namespace t {
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
-                'location': _p.wrap_state_group(['external', {
+                'location': _p.wrap_state_deprecated(['external', {
                     'import': _p.wrap_reference(imp),
                     'type': _p.wrap_reference(type),
                 }]),
@@ -233,9 +233,9 @@ export namespace t {
             }
         }
 
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'referent': x,
-            'type': _p.wrap_state_group(['derived', null]),
+            'type': _p.wrap_state_deprecated(['derived', null]),
         }])
     }
 
@@ -245,22 +245,22 @@ export namespace t {
         dependency?: "cyclic" | "acyclic",
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_deprecated(['selected', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+                    'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
                     'resulting node': null
                 },
                 'tail': _p.wrap_list(tail),
                 'resulting node': null
             },
             'dictionary': null,
-            'dependency': dependency === "cyclic" ? _p.wrap_state_group(['cyclic', null]) : _p.wrap_state_group(['acyclic', null])
+            'dependency': dependency === "cyclic" ? _p.wrap_state_deprecated(['cyclic', null]) : _p.wrap_state_deprecated(['acyclic', null])
         }])
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+                    'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
                     'resulting node': null,
                     'resulting type': null,
                 },
@@ -278,14 +278,14 @@ export namespace t {
         tail: d_schema.Type_Node_Path.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_deprecated(['selected', {
             'dictionary': null,
-            'dependency': _p.wrap_state_group(['stack', null])
+            'dependency': _p.wrap_state_deprecated(['stack', null])
         }])
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+                    'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
                     'resulting node': null,
                     'resulting type': null,
                 },
@@ -305,14 +305,14 @@ export namespace t {
         tail: d_schema.Type_Node_Path.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
+        const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_deprecated(['selected', {
             'dictionary': null,
-            'dependency': _p.wrap_state_group(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
+            'dependency': _p.wrap_state_deprecated(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
         }])
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state_group(['external', {
+                    'location': _p.wrap_state_deprecated(['external', {
                         'import': _p.wrap_reference(schema),
                         'type': _p.wrap_reference(type),
                     }]),
@@ -328,16 +328,16 @@ export namespace t {
         }])
     }
     export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.state_group.state_group.dictionary.D.entry>): d_schema.Type_Node => {
-        return _p.wrap_state_group(['state group', _p.wrap_dictionary(options)])
+        return _p.wrap_state_deprecated(['state group', _p.wrap_dictionary(options)])
     }
     export const text_global = (name: string): d_schema.Type_Node => {
-        return _p.wrap_state_group(['text', _p.wrap_state_group(['global', _p.wrap_reference(name)])])
+        return _p.wrap_state_deprecated(['text', _p.wrap_state_deprecated(['global', _p.wrap_reference(name)])])
     }
     export const text_local = (bt: d_schema.Text_Type): d_schema.Type_Node => {
-        return _p.wrap_state_group(['text', _p.wrap_state_group(['local', bt])])
+        return _p.wrap_state_deprecated(['text', _p.wrap_state_deprecated(['local', bt])])
     }
     // export const type_parameter = (name: string): unresolved.Type_Node => {
-    //     return _psh.wrap_state_group(['type parameter', _psh.wrap_reference(name)])
+    //     return _psh.wrap_state_deprecated(['type parameter', _psh.wrap_reference(name)])
     // }
 }
 
@@ -347,16 +347,16 @@ export namespace t {
 export namespace tr {
 
     export const d = (): d_schema.Type_Node_Path.tail.list.L.element => {
-        return _p.wrap_state_group(['dictionary', null])
+        return _p.wrap_state_deprecated(['dictionary', null])
     }
     export const g = (grp: string): d_schema.Type_Node_Path.tail.list.L.element => {
-        return _p.wrap_state_group(['group', _p.wrap_reference(grp)])
+        return _p.wrap_state_deprecated(['group', _p.wrap_reference(grp)])
     }
     export const s = (state: string): d_schema.Type_Node_Path.tail.list.L.element => {
-        return _p.wrap_state_group(['state group', _p.wrap_reference(state)])
+        return _p.wrap_state_deprecated(['state group', _p.wrap_reference(state)])
     }
     export const o = (): d_schema.Type_Node_Path.tail.list.L.element => {
-        return _p.wrap_state_group(['optional', null])
+        return _p.wrap_state_deprecated(['optional', null])
     }
 }
 
@@ -383,7 +383,7 @@ export namespace sig {
     ): d_schema.Signatures.dictionary.D.entry => {
         return {
             'type': null,
-            'parameters': _p.wrap_state_group(['local', {
+            'parameters': _p.wrap_state_deprecated(['local', {
                 'values': _p.wrap_dictionary(values),
                 'lookups': _p.wrap_dictionary(lookups),
             }]),
@@ -396,7 +396,7 @@ export namespace sig {
     ): d_schema.Signatures.dictionary.D.entry => {
         return {
             'type': null,
-            'parameters': _p.wrap_state_group(['same as', _p.wrap_reference(name)]),
+            'parameters': _p.wrap_state_deprecated(['same as', _p.wrap_reference(name)]),
             'resolved parameters': null,
         }
     }
@@ -408,12 +408,12 @@ export const value_parameter = (
 ): d_schema.Signature_Parameters.values.dictionary.D.entry => {
     return {
         'data type': {
-            'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
+            'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(name)]),
             'resulting type': null,
         },
         'presence': presence === 'optional'
-            ? _p.wrap_state_group(['optional', null])
-            : _p.wrap_state_group(['required', null]),
+            ? _p.wrap_state_deprecated(['optional', null])
+            : _p.wrap_state_deprecated(['required', null]),
     }
 }
 
@@ -424,15 +424,15 @@ export const value_parameter_external = (
 ): d_schema.Signature_Parameters.values.dictionary.D.entry => {
     return {
         'data type': {
-            'location': _p.wrap_state_group(['external', {
+            'location': _p.wrap_state_deprecated(['external', {
                 'import': _p.wrap_reference(imp),
                 'type': _p.wrap_reference(type),
             }]),
             'resulting type': null,
         },
         'presence': presence === 'optional'
-            ? _p.wrap_state_group(['optional', null])
-            : _p.wrap_state_group(['required', null]),
+            ? _p.wrap_state_deprecated(['optional', null])
+            : _p.wrap_state_deprecated(['required', null]),
     }
 }
 
@@ -443,18 +443,18 @@ export const lookup_parameter = (
 ): d_schema.Signature_Parameters.lookups.dictionary.D.entry => {
     return {
         'referent': {
-            'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
+            'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(name)]),
             'resulting type': null,
         },
         'dictionary': null,
         'type': type === 'cyclic'
-            ? _p.wrap_state_group(['cyclic', null])
+            ? _p.wrap_state_deprecated(['cyclic', null])
             : type === 'stack'
-                ? _p.wrap_state_group(['stack', null])
-                : _p.wrap_state_group(['acyclic', null]),
+                ? _p.wrap_state_deprecated(['stack', null])
+                : _p.wrap_state_deprecated(['acyclic', null]),
         'presence': presence === 'optional'
-            ? _p.wrap_state_group(['optional', null])
-            : _p.wrap_state_group(['required', null]),
+            ? _p.wrap_state_deprecated(['optional', null])
+            : _p.wrap_state_deprecated(['required', null]),
     }
 }
 
@@ -465,19 +465,19 @@ export namespace ls {
 
     export const parameter = (parameter: string): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)]),
+            'type': _p.wrap_state_deprecated(['parameter', _p.wrap_reference(parameter)]),
             'resulting dictionary': null
         }
     }
     export const not_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state_group(['not circular dependent siblings', null]),
+            'type': _p.wrap_state_deprecated(['not circular dependent siblings', null]),
             'resulting dictionary': null
         }
     }
     export const possibly_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state_group(['possibly circular dependent siblings', null]),
+            'type': _p.wrap_state_deprecated(['possibly circular dependent siblings', null]),
             'resulting dictionary': null
         }
     }
@@ -493,13 +493,13 @@ export namespace al {
     export const not_set = (
 
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['not set', null])
+        return _p.wrap_state_deprecated(['not set', null])
     }
 
     export const empty_stack = (
 
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['empty stack', null])
+        return _p.wrap_state_deprecated(['empty stack', null])
     }
 
     /**
@@ -509,7 +509,7 @@ export namespace al {
         stack: d_schema.Lookup_Selection,
         element: d_schema.Lookup_Selection,
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['stack', {
+        return _p.wrap_state_deprecated(['stack', {
             'stack': stack,
             'element': element,
         }])
@@ -519,8 +519,8 @@ export namespace al {
      * provides a dictionary by selecting a value (that is guaranteed to be a dictionary)
      */
     export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['selection', {
-            'type': _p.wrap_state_group(['dictionary', {
+        return _p.wrap_state_deprecated(['selection', {
+            'type': _p.wrap_state_deprecated(['dictionary', {
                 'selection': value_selection,
                 'selected dictionary': null,
             }]),
@@ -532,8 +532,8 @@ export namespace al {
      * selects a lookup parameter of this resolver and passes it to the next resolver
      */
     export const parameter = (parameter: string): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['selection', {
-            'type': _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)]),
+        return _p.wrap_state_deprecated(['selection', {
+            'type': _p.wrap_state_deprecated(['parameter', _p.wrap_reference(parameter)]),
             'resulting dictionary': null,
         }])
     }
@@ -542,8 +542,8 @@ export namespace al {
      * this one is only usable in the context of an ordered dictionary
      */
     export const not_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['selection', {
-            'type': _p.wrap_state_group(['not circular dependent siblings', null]),
+        return _p.wrap_state_deprecated(['selection', {
+            'type': _p.wrap_state_deprecated(['not circular dependent siblings', null]),
             'resulting dictionary': null,
         }])
     }
@@ -552,8 +552,8 @@ export namespace al {
      * this one is only usable in the context of a dictionary (ordered or not)
      */
     export const possibly_circular_dependent_siblings = (): d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['selection', {
-            'type': _p.wrap_state_group(['possibly circular dependent siblings', null]),
+        return _p.wrap_state_deprecated(['selection', {
+            'type': _p.wrap_state_deprecated(['possibly circular dependent siblings', null]),
             'resulting dictionary': null,
         }])
     }
@@ -567,18 +567,18 @@ export namespace vst {
 
     export const component = (
     ): d_schema.Relative_Value_Selection.path.list.L.element => {
-        return _p.wrap_state_group(['component', null])
+        return _p.wrap_state_deprecated(['component', null])
     }
 
     export const group = (
         property: string,
     ): d_schema.Relative_Value_Selection.path.list.L.element => {
-        return _p.wrap_state_group(['group', _p.wrap_reference(property)])
+        return _p.wrap_state_deprecated(['group', _p.wrap_reference(property)])
     }
 
     export const reference = (
     ): d_schema.Relative_Value_Selection.path.list.L.element => {
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'definition': null,
         }])
     }
@@ -587,7 +587,7 @@ export namespace vst {
     //     type: unresolved.Type_Node_Reference,
     //     states: _psh.Raw_Or_Normal_Dictionary<unresolved.Relative_Value_Selection.path.L.state_group.states.dictionary.D.entry>,
     // ): unresolved.Relative_Value_Selection.path.L => {
-    //     return _psh.wrap_state_group(['state group', {
+    //     return _psh.wrap_state_deprecated(['state group', {
     //         'definition': null,
     //         'type': type,
     //         'states': _psh.wrap_dictionary(states),
@@ -604,19 +604,19 @@ export namespace ovi {
     export const not_set = (
 
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state_group(['not set', null])
+        return _p.wrap_state_deprecated(['not set', null])
     }
 
     export const set = (
         value: d_schema.Guaranteed_Value_Selection,
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state_group(['set', value])
+        return _p.wrap_state_deprecated(['set', value])
     }
 
     export const selection = (
         selection: d_schema.Possible_Value_Selection,
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state_group(['selection', selection])
+        return _p.wrap_state_deprecated(['selection', selection])
     }
 
 }
@@ -629,7 +629,7 @@ export namespace pvs {
         state_group: string,
         result: d_schema.Type_Reference,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state_group(['result', _p.wrap_state_group(['state group', {
+        return _p.wrap_state_deprecated(['result', _p.wrap_state_deprecated(['state group', {
             'property': _p.wrap_reference(state_group),
             'state group': null,
             'result': result,
@@ -640,7 +640,7 @@ export namespace pvs {
         optional_value: string,
         result: d_schema.Type_Reference,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state_group(['result', _p.wrap_state_group(['optional value', {
+        return _p.wrap_state_deprecated(['result', _p.wrap_state_deprecated(['optional value', {
             'property': _p.wrap_reference(optional_value),
             'optional value': null,
             'result': result,
@@ -650,7 +650,7 @@ export namespace pvs {
     export const parameter = (
         parameter: string,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)])
+        return _p.wrap_state_deprecated(['parameter', _p.wrap_reference(parameter)])
     }
 
 }
@@ -662,7 +662,7 @@ export namespace gvs {
 
     export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state_group(['dictionary', {
+            'type': _p.wrap_state_deprecated(['dictionary', {
                 'selection': value_selection,
                 'selected dictionary': null,
             }]),
@@ -675,7 +675,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['constraint', _p.wrap_state_group(['component', {
+            'start': _p.wrap_state_deprecated(['constraint', _p.wrap_state_deprecated(['component', {
                 'property': _p.wrap_reference(component),
                 'constraint': _p.wrap_reference(constraint),
             }])]),
@@ -693,7 +693,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['constraint', _p.wrap_state_group(['reference', {
+            'start': _p.wrap_state_deprecated(['constraint', _p.wrap_state_deprecated(['reference', {
                 'property': _p.wrap_reference(reference),
                 'constraint': _p.wrap_reference(constraint),
             }])]),
@@ -710,7 +710,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group<d_schema.Guaranteed_Value_Selection.start.state_group>(['result', _p.wrap_state_group(['list', {
+            'start': _p.wrap_state_deprecated<d_schema.Guaranteed_Value_Selection.start.state_group>(['result', _p.wrap_state_deprecated(['list', {
                 'property': _p.wrap_reference(list),
                 'list result': null,
             }])]),
@@ -728,7 +728,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group<d_schema.Possible_Value_Selection.state_group>(['result', _p.wrap_state_group(['state group', {
+            'start': _p.wrap_state_deprecated<d_schema.Possible_Value_Selection.state_group>(['result', _p.wrap_state_deprecated(['state group', {
                 'property': _p.wrap_reference(state_group),
                 'state group': null,
                 'result': result,
@@ -747,7 +747,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group<d_schema.Possible_Value_Selection.state_group>(['result', _p.wrap_state_group(['optional value', {
+            'start': _p.wrap_state_deprecated<d_schema.Possible_Value_Selection.state_group>(['result', _p.wrap_state_deprecated(['optional value', {
                 'property': _p.wrap_reference(optional_value),
                 'optional value': null,
                 'result': result,
@@ -765,7 +765,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group<d_schema.Possible_Value_Selection.state_group>(['parameter', _p.wrap_reference(parameter)]),
+            'start': _p.wrap_state_deprecated<d_schema.Possible_Value_Selection.state_group>(['parameter', _p.wrap_reference(parameter)]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -778,7 +778,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['list cursor', null]),
+            'start': _p.wrap_state_deprecated(['list cursor', null]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -791,7 +791,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['linked entry', null]),
+            'start': _p.wrap_state_deprecated(['linked entry', null]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -805,7 +805,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['sibling', _p.wrap_reference(sibling)]),
+            'start': _p.wrap_state_deprecated(['sibling', _p.wrap_reference(sibling)]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -819,7 +819,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['parent sibling', _p.wrap_reference(parent_sibling)]),
+            'start': _p.wrap_state_deprecated(['parent sibling', _p.wrap_reference(parent_sibling)]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -833,7 +833,7 @@ export namespace gvs {
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state_group(['option constraint', _p.wrap_reference(constraint)]),
+            'start': _p.wrap_state_deprecated(['option constraint', _p.wrap_reference(constraint)]),
             'tail': {
                 'path': _p.wrap_list(tail),
                 'resulting node': null,
@@ -852,19 +852,19 @@ export namespace av {
     export const parameter = (
         parameter: string,
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['parameter', _p.wrap_reference(parameter)])
+        return _p.wrap_state_deprecated(['parameter', _p.wrap_reference(parameter)])
     }
 
     export const required = (
         value: d_schema.Guaranteed_Value_Selection,
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['required', value])
+        return _p.wrap_state_deprecated(['required', value])
     }
 
     export const optional = (
         value: d_schema.Optional_Value_Initialization,
     ): d_schema.Node_Resolver.state_group.component.arguments_.O.values.O.dictionary.D.entry => {
-        return _p.wrap_state_group(['optional', value])
+        return _p.wrap_state_deprecated(['optional', value])
     }
 
 }
@@ -897,7 +897,7 @@ export namespace oc {
         value_selection: d_schema.Guaranteed_Value_Selection,
         state: string,
     ): d_schema.Option_Constraints.dictionary.D.entry => {
-        return _p.wrap_state_group(['state', {
+        return _p.wrap_state_deprecated(['state', {
             'selection': value_selection,
             'selected state group': null,
             'state': _p.wrap_reference(state),
@@ -907,7 +907,7 @@ export namespace oc {
     export const assert_set = (
         possibly_optional: d_schema.Possible_Value_Selection,
     ): d_schema.Option_Constraints.dictionary.D.entry => {
-        return _p.wrap_state_group(['assert is set', possibly_optional])
+        return _p.wrap_state_deprecated(['assert is set', possibly_optional])
     }
 
 }
@@ -922,13 +922,13 @@ export namespace pc {
         state: string,
     ): d_schema.Property_Constraints.dictionary.D.entry => {
         return {
-            'start': _p.wrap_state_group(['property', null]),
+            'start': _p.wrap_state_deprecated(['property', null]),
             'constraint': {
                 'selection': {
                     'path': _p.wrap_list(value_selection_tail),
                     'resulting node': null,
                 },
-                'type': _p.wrap_state_group(['state', {
+                'type': _p.wrap_state_deprecated(['state', {
                     'selected state group': null,
                     'state': _p.wrap_reference(state),
                 }])
@@ -942,17 +942,17 @@ export namespace pc {
         state?: string,
     ): d_schema.Property_Constraints.dictionary.D.entry => {
         return {
-            'start': _p.wrap_state_group(['sibling', _p.wrap_reference(constraint)]),
+            'start': _p.wrap_state_deprecated(['sibling', _p.wrap_reference(constraint)]),
             'constraint': {
                 'selection': {
                     'path': _p.wrap_list(value_selection_tail),
                     'resulting node': null,
                 },
                 'type': state === undefined
-                    ? _p.wrap_state_group(['optional value', {
+                    ? _p.wrap_state_deprecated(['optional value', {
                         'selected optional value': null,
                     }])
-                    : _p.wrap_state_group(['state', {
+                    : _p.wrap_state_deprecated(['state', {
                         'selected state group': null,
                         'state': _p.wrap_reference(state),
                     }])
@@ -968,15 +968,15 @@ export namespace pc {
 export namespace r {
 
     export const text = (): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['text', null])
+        return _p.wrap_state_deprecated(['text', null])
     }
 
     export const boolean = (): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['boolean', null])
+        return _p.wrap_state_deprecated(['boolean', null])
     }
 
     export const number = (): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['number', null])
+        return _p.wrap_state_deprecated(['number', null])
     }
     export const component = (
         type: string,
@@ -984,8 +984,8 @@ export namespace r {
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry>,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['component', {
-            'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
+        return _p.wrap_state_deprecated(['component', {
+            'location': _p.wrap_state_deprecated(['internal', _p.wrap_reference(type)]),
             'signature': null,
             'arguments': _p.optional.set({
                 'values': values === null ? _p.optional.not_set() : _p.optional.set(_p.wrap_dictionary(values)),
@@ -1001,8 +1001,8 @@ export namespace r {
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.component.arguments_.O.lookups.O.dictionary.D.entry>,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['component', {
-            'location': _p.wrap_state_group(['external', {
+        return _p.wrap_state_deprecated(['component', {
+            'location': _p.wrap_state_deprecated(['external', {
                 'import': _p.wrap_reference(imp),
                 'type': _p.wrap_reference(type),
             }]),
@@ -1016,7 +1016,7 @@ export namespace r {
     }
 
     export const dictionary = (resolver: d_schema.Node_Resolver): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['dictionary', {
+        return _p.wrap_state_deprecated(['dictionary', {
             'definition': null,
             'resolver': resolver,
             'benchmark': _p.optional.not_set(),
@@ -1028,7 +1028,7 @@ export namespace r {
         selection: d_schema.Guaranteed_Value_Selection,
         resolver: d_schema.Node_Resolver,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['dictionary', {
+        return _p.wrap_state_deprecated(['dictionary', {
             'definition': null,
             'resolver': resolver,
             'benchmark': _p.optional.set({
@@ -1043,7 +1043,7 @@ export namespace r {
         properties: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver_Group.dictionary.D.entry.resolver> //FIXME: remove the 'this entry' step
     ): d_schema.Node_Resolver => {
         const temp_dict = _p.wrap_dictionary(properties)
-        return _p.wrap_state_group(['group', {
+        return _p.wrap_state_deprecated(['group', {
             'location': temp_dict.location,
             'dictionary': temp_dict.dictionary.__d_map(($) => {
                 return {
@@ -1060,7 +1060,7 @@ export namespace r {
     export const list = (
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['list', {
+        return _p.wrap_state_deprecated(['list', {
             'definition': null,
             'resolver': type_resolver,
             'result': _p.optional.not_set<d_schema.Node_Resolver.state_group.list.result.O>(),
@@ -1071,7 +1071,7 @@ export namespace r {
         result: d_schema.Type_Reference,
 
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['list', {
+        return _p.wrap_state_deprecated(['list', {
             'definition': null,
             'resolver': type_resolver,
             'result': _p.optional.set(result),
@@ -1079,13 +1079,13 @@ export namespace r {
     }
 
     export const nothing = (): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['nothing', null])
+        return _p.wrap_state_deprecated(['nothing', null])
     }
 
     export const optional = (
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['optional', {
+        return _p.wrap_state_deprecated(['optional', {
             'constraints': _p.wrap_dictionary<d_schema.Option_Constraints.dictionary.D.entry>({}),
             'resolver': type_resolver,
         }])
@@ -1095,7 +1095,7 @@ export namespace r {
         constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.dictionary.D.entry>,
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['optional', {
+        return _p.wrap_state_deprecated(['optional', {
             'constraints': _p.wrap_dictionary(constraints),
             'resolver': type_resolver,
         }])
@@ -1104,9 +1104,9 @@ export namespace r {
     export const reference_derived = (
         value_selection: d_schema.Guaranteed_Value_Selection
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'definition': null,
-            'type': _p.wrap_state_group(['derived', {
+            'type': _p.wrap_state_deprecated(['derived', {
                 'value': value_selection,
             }])
         }])
@@ -1116,9 +1116,9 @@ export namespace r {
         lookup_selection: d_schema.Lookup_Selection,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'definition': null,
-            'type': _p.wrap_state_group(['selected', {
+            'type': _p.wrap_state_deprecated(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
                 'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
@@ -1130,9 +1130,9 @@ export namespace r {
         lookup_selection: d_schema.Lookup_Selection,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.dictionary.D.entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['reference', {
+        return _p.wrap_state_deprecated(['reference', {
             'definition': null,
-            'type': _p.wrap_state_group(['selected', {
+            'type': _p.wrap_state_deprecated(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
                 'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
@@ -1143,7 +1143,7 @@ export namespace r {
     export const state_group = (
         states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.state_group.states.dictionary.D.entry>
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state_group(['state group', {
+        return _p.wrap_state_deprecated(['state group', {
             'definition': null,
             'states': _p.wrap_dictionary(states),
         }])
@@ -1202,12 +1202,12 @@ export const schema_ = (
     types: d_schema.Types,
     resolve: null | d_schema.Schema.complexity.state_group.constrained,
 ): d_schema.Schemas.dictionary.D.entry => {
-    return _p.wrap_state_group(['schema', {
+    return _p.wrap_state_deprecated(['schema', {
         'imports': _p.wrap_dictionary(imports),
         'globals': globals,
         'types': types,
         'complexity': resolve === null
-            ? _p.wrap_state_group(['unconstrained', null])
-            : _p.wrap_state_group(['constrained', resolve])
+            ? _p.wrap_state_deprecated(['unconstrained', null])
+            : _p.wrap_state_deprecated(['constrained', resolve])
     }])
 }

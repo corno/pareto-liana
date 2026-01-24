@@ -44,12 +44,12 @@ export const Schema = (
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
                         $p.depth + 1 + $['schema set child']['up steps'],
                         $['schema set child'].key,
-                        _p.sg($.schema.complexity, ($) => {
+                        _p.decide.state($.schema.complexity, ($) => {
                             switch ($[0]) {
                                 case 'unconstrained': return _p.ss($, ($) => [
                                     "data",
                                 ])
-                                case 'constrained': return _p.ss($, ($) => _p.sg($p.type, ($) => {
+                                case 'constrained': return _p.ss($, ($) => _p.decide.state($p.type, ($) => {
                                     switch ($[0]) {
                                         case 'unconstrained': return _p.ss($, ($) => [
                                             "data",
@@ -97,10 +97,10 @@ export const Type_Node = (
 ): d_out.Type_Node => {
 
     const add_location = $p.type[0] === 'unresolved'
-    return _p.sg($, ($) => {
+    return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.t.boolean())
-            case 'component': return _p.ss($, ($) => _p.sg($, ($) => {
+            case 'component': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'external': return _p.ss($, ($) => sh.t.component_imported(
                         ` imports ${$.import.key}`,
@@ -142,7 +142,7 @@ export const Type_Node = (
             case 'list': return _p.ss($, ($) => {
                 const list = $
 
-                return _p.sg($p.type, ($) => {
+                return _p.decide.state($p.type, ($) => {
                     switch ($[0]) {
                         case 'unconstrained': return _p.ss($, ($) => sh.t.list(Type_Node(
                             list.node,
@@ -180,7 +180,7 @@ export const Type_Node = (
             }
             )
             case 'nothing': return _p.ss($, ($) => sh.t.nothing())
-            case 'number': return _p.ss($, ($) => _p.sg($, ($) => {
+            case 'number': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($) => Number_Type($.entry))
                     case 'local': return _p.ss($, ($) => Number_Type($))
@@ -203,7 +203,7 @@ export const Type_Node = (
                         'tail': _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L>,
                     }
 
-                ): d_out.Type_Node => _p.sg($['type location'].location, ($) => {
+                ): d_out.Type_Node => _p.decide.state($['type location'].location, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.t.reference_imported(
                             `imports ${$.import.key}`,
@@ -218,7 +218,7 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 })
-                return _p.sg($.type, ($) => {
+                return _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'derived': return _p.ss($, ($) => add_location
                             ? sh.t.nothing()
@@ -231,7 +231,7 @@ export const Type_Node = (
                         )
                         case 'selected': return _p.ss($, ($) => {
                             const selected = $
-                            return _p.sg($p.type, ($) => {
+                            return _p.decide.state($p.type, ($) => {
                                 switch ($[0]) {
                                     case 'unconstrained': return _p.ss($, ($) => sh.t.group({
                                         "location": location,
@@ -249,7 +249,7 @@ export const Type_Node = (
                                                                 sh.sub.dictionary(),
                                                             ]
                                                         ]),
-                                                        // 'circular_dependent': _p.sg(selected.dependency, ($) => {
+                                                        // 'circular_dependent': _p.decide.state(selected.dependency, ($) => {
                                                         //     switch ($[0]) {
                                                         //         case 'acyclic': return _p.ss($, ($) => false)
                                                         //         case 'cyclic': return _p.ss($, ($) => true)
@@ -262,7 +262,7 @@ export const Type_Node = (
                                                 return temp_tnr
                                             })),
                                             "key": _p.optional.set(sh.t.text()),
-                                            "up steps": _p.sg(selected.dependency, ($) => {
+                                            "up steps": _p.decide.state(selected.dependency, ($) => {
                                                 switch ($[0]) {
                                                     case 'acyclic': return _p.ss($, ($) => _p.optional.not_set())
                                                     case 'cyclic': return _p.ss($, ($) => _p.optional.not_set())
@@ -308,7 +308,7 @@ const Type_Node_Reference__tail = (
     $: d_in.Type_Node_Path.tail,
 
 ): _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L> => {
-    return $.list.__l_map(($) => _p.sg($.element, ($) => {
+    return $.list.__l_map(($) => _p.decide.state($.element, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))
@@ -322,10 +322,10 @@ const Type_Node_Reference__tail = (
 
 export const Number_Type = (
     $: d_in.Number_Type
-): d_out.Type_Node => _p.sg($.precision, ($) => {
+): d_out.Type_Node => _p.decide.state($.precision, ($) => {
     switch ($[0]) {
         case 'approximation': return _p.ss($, ($) => sh.t.number_approximation())
-        case 'exact': return _p.ss($, ($) => _p.sg($.type, ($) => {
+        case 'exact': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'integer': return _p.ss($, ($) => sh.t.integer())
                 case 'natural': return _p.ss($, ($) => sh.t.natural())

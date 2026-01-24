@@ -24,7 +24,7 @@ export const Schema = (
     }
 ): d_out.Module_Set.D => {
     const schema = $
-    const constrained: boolean = _p.sg($.complexity, ($) => {
+    const constrained: boolean = _p.decide.state($.complexity, ($) => {
         switch ($[0]) {
             case 'constrained': return _p.ss($, ($) => true)
             case 'unconstrained': return _p.ss($, ($) => false)
@@ -62,7 +62,7 @@ export const Schema = (
                 ),
             ),
 
-            "resolve": _p.sg($.complexity, ($) => {
+            "resolve": _p.decide.state($.complexity, ($) => {
                 switch ($[0]) {
                     case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Signatures(
                         $.signatures.types
@@ -125,7 +125,7 @@ export const Schema_Tree = (
     $p: {
         'omit (de)serializer': boolean
     }
-): d_out.Module_Set.D => _p.sg($, ($) => {
+): d_out.Module_Set.D => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'schema': return _p.ss($, ($) => Schema($, $p))
         case 'set': return _p.ss($, ($) => Schemas($, $p))
@@ -139,7 +139,7 @@ export const Schemas = (
     $p: {
         'omit (de)serializer': boolean
     }
-): d_out.Module_Set.D => m.set($.__d_map(($) => _p.sg($, ($) => {
+): d_out.Module_Set.D => m.set($.__d_map(($) => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'schema': return _p.ss($, ($) => Schema($, $p))
         case 'set': return _p.ss($, ($) => Schemas($, $p))

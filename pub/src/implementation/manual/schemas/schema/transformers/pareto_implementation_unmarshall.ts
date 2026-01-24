@@ -74,7 +74,7 @@ export const Type_Node = (
         'constrained': boolean
     },
 ): d_out.Expression => {
-    return _p.sg($, ($) => {
+    return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.call(
                 sh.s.from_variable_import(" i generic", "process boolean", []),
@@ -85,7 +85,7 @@ export const Type_Node = (
                 })
             ))
             case 'component': return _p.ss($, ($) => sh.e.call(
-                _p.sg($, ($) => {
+                _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.key}`, $.type.key, []))
                         case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
@@ -194,7 +194,7 @@ export const Type_Node = (
                 sh.e.select_from_context_deprecated([]),
                 false,
                 _p.dictionary.literal({
-                    "deserializer": sh.e.select_from_parameter_deprecated("value deserializers", _p.sg($, ($) => {
+                    "deserializer": sh.e.select_from_parameter_deprecated("value deserializers", _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'global': return _p.ss($, ($) => ["custom numbers", $.key])
                             case 'local': return _p.ss($, ($) => ["default number"])
@@ -226,7 +226,7 @@ export const Type_Node = (
                     // ),
                 })
             ))
-            case 'reference': return _p.ss($, ($) => _p.sg($.type, ($) => {
+            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.call(
                         sh.s.from_variable_import(" i generic", "process derived reference", []),
@@ -236,7 +236,7 @@ export const Type_Node = (
                         })
                     ))
                     case 'selected': return _p.ss($, ($) => sh.e.call(
-                        sh.s.from_variable_import(" i generic", _p.sg($.dependency, ($) => {
+                        sh.s.from_variable_import(" i generic", _p.decide.state($.dependency, ($) => {
                             switch ($[0]) {
                                 case 'acyclic': return "process selected reference"
                                 case 'cyclic': return "process selected reference"

@@ -99,7 +99,7 @@ export const $: g_.Resolvers = resolvers(
 
             "optional": state(r.component("Type Node", null, null)),
 
-            "state group": state(r.dictionary(r.component("Type Node", null, null))),
+            "state": state(r.dictionary(r.component("Type Node", null, null))),
             "text": state(r.state_group({
                 "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),

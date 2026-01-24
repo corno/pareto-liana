@@ -26,7 +26,7 @@ export const $: g_.Types = types(
                 "not set": tstate(t.nothing()),
                 "set": tstate(t.component_cyclic("Value")),
             })),
-            "state group": tstate(t.group({
+            "state": tstate(t.group({
                 "state": prop(t.text_global("Text Value")),
                 "value": prop(t.component_cyclic("Value"))
             })),

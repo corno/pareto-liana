@@ -62,7 +62,7 @@ export const $: g_.Types = types(
             })),
             "nothing": tstate(t.nothing()),
             "optional": tstate(t.component_cyclic("Type Node")),
-            "state group": tstate(t.dictionary(t.component_cyclic("Type Node"))),
+            "state": tstate(t.dictionary(t.component_cyclic("Type Node"))),
             "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
                 "local": tstate(t.component("Text Type")),

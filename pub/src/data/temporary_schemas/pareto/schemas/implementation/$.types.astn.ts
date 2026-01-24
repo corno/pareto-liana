@@ -61,7 +61,7 @@ export const $: g_.Types = types(
                 "group": tstate(t.text_global("TBD")),
                 "list": tstate(t.nothing()),
                 "optional": tstate(t.nothing()),
-                "state group": tstate(t.text_global("TBD")),
+                "state": tstate(t.text_global("TBD")),
             }))),
         })),
 
@@ -146,7 +146,7 @@ export const $: g_.Types = types(
                         "set handler": prop(t.component_cyclic("Expression"))
                     })),
                 })),
-                "state group": tstate(t.state({
+                "state": tstate(t.state({
                     "literal": tstate(t.group({
                         "state": prop(t.text_global("Identifier")),
                         "value": prop(t.component_cyclic("Expression")),
@@ -176,7 +176,7 @@ export const $: g_.Types = types(
                         "if not set": prop(t.component_cyclic("Expression")),
                         "if set": prop(t.component_cyclic("Expression")),
                     })),
-                    "state group": tstate(t.group({
+                    "state": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
                         "type": prop(t.state({

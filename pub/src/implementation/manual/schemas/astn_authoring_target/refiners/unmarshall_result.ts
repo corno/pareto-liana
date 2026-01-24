@@ -16,7 +16,7 @@ export const Node = (
         'metadata': {
             'comments': _p.list.literal(["FIXME COMMENTS"]),
         },
-        'data': _p.sg($.type, ($): d_out.Value.data => {
+        'data': _p.decide.state($.type, ($): d_out.Value.data => {
             switch ($[0]) {
                 case 'boolean': return _p.ss($, ($): d_out.Value.data => ['concrete', {
                     'type': ['text', {
@@ -32,7 +32,7 @@ export const Node = (
                 case 'nothing': return _p.ss($, ($) => ['concrete', {
                     'type': ['nothing', null]
                 }])
-                case 'number': return _p.ss($, ($) => _p.sg($['found value type'], ($) => {
+                case 'number': return _p.ss($, ($) => _p.decide.state($['found value type'], ($) => {
                     switch ($[0]) {
                         case 'valid': return _p.ss($, ($) => ['concrete', {
                             'type': ['text', {

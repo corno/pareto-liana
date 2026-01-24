@@ -76,11 +76,11 @@ export const Type_Node = (
         'subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L>
     },
 ): d_out.Expression => {
-    return _p.sg($, ($) => {
+    return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
             case 'component': return _p.ss($, ($) => sh.e.call(
-                _p.sg($, ($) => {
+                _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.key}`, $.type.key, []))
                         case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
@@ -153,7 +153,7 @@ export const Type_Node = (
                     }
                 )
             ))
-            case 'reference': return _p.ss($, ($) => _p.sg($.type, ($) => {
+            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.null_())
                     case 'selected': return _p.ss($, ($) => sh.e.select_from_context_deprecated(["key"]))

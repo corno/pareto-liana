@@ -23,7 +23,7 @@ export const Schema_Tree = (
         'path': _pi.List<string>,
     }
 ): d_out.Module_Set.D => {
-    return _p.sg($, ($) => {
+    return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'schema': return _p.ss($, ($) => {
                 const imports = $.imports
@@ -36,7 +36,7 @@ export const Schema_Tree = (
                                 'constrained': $.complexity[0] === 'constrained'
                             })),
 
-                            // "resolve": _p.sg($.complexity, ($) => {
+                            // "resolve": _p.decide.state($.complexity, ($) => {
                             //     switch ($[0]) {
                             //         case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolver.Resolvers($.resolvers, {
                             //             'path': $p.path,

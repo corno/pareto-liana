@@ -12,10 +12,10 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/schemas/deserialize_parse_tree/transformers/fountain_pen"
 
-export const Error: signatures.Error = ($) => _p.sg($, ($) => {
+export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'no schema file': return _p.ss($, ($) => sh.b.snippet(`no schema file @ ${$['file location']}`))
-        case 'deserialize': return _p.ss($, ($) => _p.sg($, ($) => {
+        case 'deserialize': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
 
                 case 'schema error': return _p.ss($, ($) => {
