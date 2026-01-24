@@ -369,7 +369,7 @@ export const Node_Type = (
                     'definition': $,
                     'found value type': _p.decide.state(data, ($): d_out.State_found_value_type => {
                         switch ($[0]) {
-                            case 'state group': return _p.ss($, ($): d_out.State_found_value_type => {
+                            case 'state': return _p.ss($, ($): d_out.State_found_value_type => {
                                 const tv = $
                                 return ['valid', {
                                     'value type': ['state', {
@@ -377,11 +377,10 @@ export const Node_Type = (
                                             switch ($[0]) {
                                                 case 'missing data': return _p.ss($, ($) => ['missing data', $['#']])
                                                 case 'set': return _p.ss($, ($): d_out.State_found_value__typevalid_value__typeSG_state_value_substatus => {
-                                                    const state = $.state
                                                     const value = $.value
                                                     return ['set', {
                                                         'value': $,
-                                                        'found state definition': def.__get_possible_entry($.state.value).__o_map(
+                                                        'found state definition': def.__get_possible_entry($.option.value).__o_map(
                                                             ($) => ({
                                                                 'definition': $,
                                                                 'node': Node(

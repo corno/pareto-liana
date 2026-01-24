@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types  = types(
     {
         // "Railroad Directory": type(t.dictionary(
-        //     t.state_group({
+        //     t.state({
         //         "file": t.component_external("railroad diagram", "Grammar"),
         //         "directory": t.component_cyclic("Railroad Directory"),
         //     })

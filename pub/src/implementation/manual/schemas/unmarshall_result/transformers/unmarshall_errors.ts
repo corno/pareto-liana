@@ -276,9 +276,9 @@ export const Node = (
                                                         ($) => Node($.node, $p),
                                                         (): d_out.Errors => _p.list.literal([
                                                             {
-                                                                'range': convert_range(xx.state.range),
+                                                                'range': convert_range(xx.option.range),
                                                                 'type': ['error', ['state', ['unknown state', {
-                                                                    'found': xx.state.value,
+                                                                    'found': xx.option.value,
                                                                     'expected': sg_def.__d_map(($) => null)
                                                                 }]]]
                                                             }

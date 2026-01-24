@@ -153,7 +153,7 @@ export type State_found_value__typevalid_value__typeSG_state_value_substatus =
     | ['set', State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set]
 
 export type State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
-    'value': d_astn_ast.Value.type_.concrete.state_group.status.set_
+    'value': d_astn_ast.Value.type_.concrete.state.status.set_
     'found state definition': _pi.Optional_Value<State_Definition_Found>
 }
 

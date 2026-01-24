@@ -138,7 +138,7 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "state": state(r.state({
                     "literal": state(r.group({
-                        "state": r.text(),
+                        "option": r.text(),
                         "value": r.component("Expression", {}, {}),
                     })),
                 })),

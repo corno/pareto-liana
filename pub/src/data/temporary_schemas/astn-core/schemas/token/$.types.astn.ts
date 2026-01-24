@@ -50,7 +50,7 @@ export const $: g_.Types = types(
             "~": tstate(t.nothing()), //nothing / not set
             "*": tstate(t.nothing()), //set
 
-            "|": tstate(t.nothing()), //state group
+            "|": tstate(t.nothing()), //state
 
             "text": tstate(t.group({
                 "value": prop(t.component("Delimited Text")),

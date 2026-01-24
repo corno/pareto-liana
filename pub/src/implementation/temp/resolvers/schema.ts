@@ -52,7 +52,7 @@ export const Imports: signatures.Imports = ($, abort, $l, $p) => _p.deprecated_b
 
 export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_block(() => {
     const loc = $.type.location
-    const p_type: d_out.Lookup_Selection.type_ = _p.deprecated_cc($['type'], ($) => _p.deprecated_cc($['state group'], ($): d_out.Lookup_Selection.type_ => {
+    const p_type: d_out.Lookup_Selection.type_ = _p.deprecated_cc($['type'], ($) => _p.deprecated_cc($.state, ($): d_out.Lookup_Selection.type_ => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => {
                 const p_selection = Guaranteed_Value_Selection(
@@ -109,11 +109,11 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
 
 export const Number_Type: signatures.Number_Type = ($, abort, $l, $p) => {
     return {
-        'precision': _p.deprecated_cc($.precision['state group'], ($): d_out.Number_Type.precision => {
+        'precision': _p.deprecated_cc($.precision.state, ($): d_out.Number_Type.precision => {
             switch ($[0]) {
                 case 'exact': return _p.ss($, ($) => {
                     return ['exact', {
-                        'type': _p.deprecated_cc($.type['state group'], ($) => {
+                        'type': _p.deprecated_cc($.type.state, ($) => {
                             switch ($[0]) {
                                 case 'integer': return _p.ss($, ($) => ['integer', null])
                                 case 'natural': return _p.ss($, ($) => ['natural', null])
@@ -152,7 +152,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                 },
 
             )
-            const p_presence = $.entry.presence['state group']
+            const p_presence = $.entry.presence.state
 
             return {
                 'data type': p_schema_type,
@@ -176,7 +176,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
 
             )
 
-            const p_type: d_out.Signature_Parameters.lookups.D.type_ = _p.deprecated_cc($.entry.type['state group'], ($) => {
+            const p_type: d_out.Signature_Parameters.lookups.D.type_ = _p.deprecated_cc($.entry.type.state, ($) => {
                 switch ($[0]) {
                     case 'acyclic': return _p.ss($, ($) => ['acyclic', null])
                     case 'cyclic': return _p.ss($, ($) => ['cyclic', null])
@@ -184,7 +184,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                     default: return _p.au($[0])
                 }
             })
-            const p_presence = $.entry.presence['state group']
+            const p_presence = $.entry.presence.state
             return {
                 'referent': p_referent,
                 'dictionary': _p.deprecated_cc(p_referent['resulting type'].node, ($) => { // component constraint (referent)
@@ -232,12 +232,12 @@ export const Globals: signatures.Globals = ($, abort, $l, $p) => {
     return {
         'number types': p_number_types,
         'text types': p_text_types,
-        'complexity': $['complexity']['state group'],
+        'complexity': $['complexity'].state,
     }
 }
 
 export const Signature: signatures.Signature = ($, abort, $l, $p) => {
-    const p_parameters: d_out.Signature.parameters = _p.deprecated_cc($.parameters['state group'], ($): d_out.Signature.parameters => {
+    const p_parameters: d_out.Signature.parameters = _p.deprecated_cc($.parameters.state, ($): d_out.Signature.parameters => {
         switch ($[0]) {
             case 'local': return _p.ss($, ($) => ['local', Signature_Parameters(
                 $,
@@ -302,7 +302,7 @@ export const Signatures: signatures.Signatures = ($, abort, $l, $p) => {
     )
 }
 
-export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($['state group'], ($): d_out.Schemas.D => {
+export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($.state, ($): d_out.Schemas.D => {
     switch ($[0]) {
         case 'schema': return _p.ss($, ($) => ['schema', _p.deprecated_block(() => {
             const p_imports = Imports(
@@ -343,7 +343,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
                     }
                 },
             )
-            const p_complexity: d_out.Schema.complexity = _p.deprecated_cc($.complexity['state group'], ($) => {
+            const p_complexity: d_out.Schema.complexity = _p.deprecated_cc($.complexity.state, ($) => {
                 switch ($[0]) {
                     case 'constrained': return _p.ss($, ($) => {
 
@@ -455,7 +455,7 @@ export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p.deprecated_b
 
 export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
     return {
-        'type': _p.deprecated_cc($.type['state group'], ($): d_out.Text_Type.type_ => {
+        'type': _p.deprecated_cc($.type.state, ($): d_out.Text_Type.type_ => {
             switch ($[0]) {
                 case 'single line': return _p.ss($, ($) => ['single line', null])
                 case 'multi line': return _p.ss($, ($) => ['multi line', null])
@@ -467,10 +467,10 @@ export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
 
 export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
     const loc = $.location
-    return _p.deprecated_cc($['state group'], ($): d_out.Type_Node => {
+    return _p.deprecated_cc($.state, ($): d_out.Type_Node => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($): d_out.Type_Node => ['boolean', null])
-            case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.number_ => {
+            case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p.deprecated_cc($.state, ($): d_out.Type_Node.number_ => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($): d_out.Type_Node.number_ => ['global', _i_generic.get_entry_acyclic(
                         _p_temp.dictionary_to_lookup(
@@ -491,7 +491,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'text': return _p.ss($, ($): d_out.Type_Node => ['text', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.text => {
+            case 'text': return _p.ss($, ($): d_out.Type_Node => ['text', _p.deprecated_cc($.state, ($): d_out.Type_Node.text => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($): d_out.Type_Node.text => ['global', _i_generic.get_entry_acyclic(
                         _p_temp.dictionary_to_lookup(
@@ -512,7 +512,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'component': return _p.ss($, ($): d_out.Type_Node => ['component', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.component => {
+            case 'component': return _p.ss($, ($): d_out.Type_Node => ['component', _p.deprecated_cc($.state, ($): d_out.Type_Node.component => {
                 switch ($[0]) {
                     case 'external': return _p.ss($, ($) => {
                         const sc_import = $p.imports.__decide(
@@ -610,7 +610,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                         'imports': $p.imports,
                     },
                 )
-                const p_type: d_out.Type_Node.reference.type_ = _p.deprecated_cc($.type['state group'], ($) => {
+                const p_type: d_out.Type_Node.reference.type_ = _p.deprecated_cc($.type.state, ($) => {
                     switch ($[0]) {
                         case 'selected': return _p.ss($, ($) => {
                             return ['selected', {
@@ -626,7 +626,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
 
                                     }
                                 }),
-                                'dependency': _p.deprecated_cc($.dependency['state group'], ($) => {
+                                'dependency': _p.deprecated_cc($.dependency.state, ($) => {
                                     switch ($[0]) {
                                         case 'cyclic': return _p.ss($, ($) => ['cyclic', null])
                                         case 'acyclic': return _p.ss($, ($) => ['acyclic', null])
@@ -662,7 +662,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 //     return ['reference', {
                 //         'type': p_type,
                 //         // 'resulting dictionary': p_dictionary,
-                //         'dependency': $.dependency['state group']
+                //         'dependency': $.dependency.state
                 //     }]
                 // }
             })
@@ -694,7 +694,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
 }
 
 export const Type_Reference: signatures.Type_Reference = ($, abort, $l, $p) => {
-    const x: d_out.Type_Reference.location = _p.deprecated_cc($.location['state group'], ($) => {
+    const x: d_out.Type_Reference.location = _p.deprecated_cc($.location.state, ($) => {
         switch ($[0]) {
             case 'external': return _p.ss($, ($): d_out.Type_Reference.location => {
                 const sc_import = $p.imports.__decide(
@@ -765,7 +765,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
         $p.type.node,
         ($, current): d_out.Type_Node_Path.tail.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Path.tail.list.L => {
+            return _p.deprecated_cc($.element.state, ($): d_out.Type_Node_Path.tail.list.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
@@ -856,7 +856,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
 export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, $p) => {
     return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
         $.dictionary,
-        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($.entry['state group'], ($) => {
+        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($.entry.state, ($) => {
             switch ($[0]) {
                 case 'state': return _p.ss($, ($) => ['state', _p.deprecated_block(() => {
                     const loc = $.selection.start.location
@@ -907,7 +907,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
         }
     ))
     const loc = $.type.location
-    const p_type: d_out.Constraint.type_ = _p.deprecated_cc($.type, ($) => _p.deprecated_cc($['state group'], ($) => {
+    const p_type: d_out.Constraint.type_ = _p.deprecated_cc($.type, ($) => _p.deprecated_cc($.state, ($) => {
         switch ($[0]) {
             case 'state': return _p.ss($, ($) => {
                 const p_selected_state_group = p_selection['resulting node'][0] !== 'state group' // component constraint ('selection')
@@ -954,7 +954,7 @@ export const Property_Constraints: signatures.Property_Constraints = ($, abort, 
     return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
         $.dictionary,
         ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_block(() => {
-            const p_start: d_out.Property_Constraint.start = _p.deprecated_cc($.entry.start['state group'], ($) => {
+            const p_start: d_out.Property_Constraint.start = _p.deprecated_cc($.entry.start.state, ($) => {
                 switch ($[0]) {
                     case 'property': return _p.ss($, ($) => ['property', null])
                     case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry_acyclic(
@@ -996,7 +996,7 @@ export const Property_Constraints: signatures.Property_Constraints = ($, abort, 
 
 export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
     const loc = $.location
-    const p_type = _p.deprecated_cc($['state group'], ($): d_out.Node_Resolver => {
+    const p_type = _p.deprecated_cc($.state, ($): d_out.Node_Resolver => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'boolean'
@@ -1018,7 +1018,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         abort,
                     )
                     : $p.definition[1]
-                const p_location = _p.deprecated_cc($.location['state group'], ($): d_out.Node_Resolver.component.location => {
+                const p_location = _p.deprecated_cc($.location.state, ($): d_out.Node_Resolver.component.location => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
@@ -1084,7 +1084,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                     p_signature['resolved parameters'].lookups,
                                     ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
                                         //do additional validation
-                                        return _p.deprecated_cc($.entry['state group'], ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
+                                        return _p.deprecated_cc($.entry.state, ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
                                                 case 'empty stack': return _p.ss($, ($) => ['empty stack', null])
                                                 case 'not set': return _p.ss($, ($) => ['not set', null])
@@ -1146,7 +1146,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                 },
                                                 abort,
                                             )
-                                            const out = _p.deprecated_cc($.entry['state group'], ($): d_out.Node_Resolver.component.arguments_.O.values.O.D => {
+                                            const out = _p.deprecated_cc($.entry.state, ($): d_out.Node_Resolver.component.arguments_.O.values.O.D => {
                                                 switch ($[0]) {
                                                     case 'optional': return _p.ss($, ($) => ['optional', Possible_Value_Selection(
                                                         $,
@@ -1521,7 +1521,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     : $p.definition[1]
                 return ['reference', {
                     'definition': p_definition,
-                    'type': _p.deprecated_cc($.type['state group'], ($): d_out.Node_Resolver.reference.type_ => {
+                    'type': _p.deprecated_cc($.type.state, ($): d_out.Node_Resolver.reference.type_ => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'derived'
@@ -1715,7 +1715,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
         $p.node,
         ($, current): d_out.Relative_Value_Selection.path.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element['state group'], ($): d_out.Relative_Value_Selection.path.list.L => {
+            return _p.deprecated_cc($.element.state, ($): d_out.Relative_Value_Selection.path.list.L => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
 
@@ -1798,7 +1798,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
     }
 })
 
-export const Possible_Value_Selection: signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($['state group'], ($) => {
+export const Possible_Value_Selection: signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($.state, ($) => {
     switch ($[0]) {
         case 'not set': return _p.ss($, ($) => ['not set', null])
         case 'set': return _p.ss($, ($) => ['set', Guaranteed_Value_Selection($, abort, $l, $p)])
@@ -1810,14 +1810,14 @@ export const Possible_Value_Selection: signatures.Optional_Value_Initialization 
 }))
 
 export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => {
-    return _p.deprecated_cc($['state group'], ($) => {
+    return _p.deprecated_cc($.state, ($) => {
         switch ($[0]) {
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
                 _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
                 $,
                 abort,
             )])
-            case 'result': return _p.ss($, ($) => ['result', _p.deprecated_cc($['state group'], ($): d_out.Possible_Value_Selection.result => {
+            case 'result': return _p.ss($, ($) => ['result', _p.deprecated_cc($.state, ($): d_out.Possible_Value_Selection.result => {
                 switch ($[0]) {
                     case 'state group': return _p.ss($, ($) => {
                         const loc = $['property'].location
@@ -1882,9 +1882,9 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
 
 export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_block(() => {
     const start_location = $.start.location
-    const p_start: d_out.Guaranteed_Value_Selection.start = _p.deprecated_cc($.start['state group'], ($): d_out.Guaranteed_Value_Selection.start => {
+    const p_start: d_out.Guaranteed_Value_Selection.start = _p.deprecated_cc($.start.state, ($): d_out.Guaranteed_Value_Selection.start => {
         switch ($[0]) {
-            case 'constraint': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['constraint', _p.deprecated_cc($['state group'], ($): d_out.Guaranteed_Value_Selection.start.constraint => {
+            case 'constraint': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['constraint', _p.deprecated_cc($.state, ($): d_out.Guaranteed_Value_Selection.start.constraint => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
                         const loc = $['property'].location
@@ -1955,7 +1955,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                 $,
                 abort,
             )])
-            case 'result': return _p.ss($, ($) => ['result', _p.deprecated_cc($['state group'], ($): d_out.Guaranteed_Value_Selection.start.result => {
+            case 'result': return _p.ss($, ($) => ['result', _p.deprecated_cc($.state, ($): d_out.Guaranteed_Value_Selection.start.result => {
                 switch ($[0]) {
                     case 'list': return _p.ss($, ($) => {
                         const loc = $['property'].location
