@@ -148,7 +148,7 @@ export const $: g_.Types = types(
                 })),
                 "state": tstate(t.state({
                     "literal": tstate(t.group({
-                        "state": prop(t.text_global("Identifier")),
+                        "option": prop(t.text_global("Identifier")),
                         "value": prop(t.component_cyclic("Expression")),
                     }))
                 })),

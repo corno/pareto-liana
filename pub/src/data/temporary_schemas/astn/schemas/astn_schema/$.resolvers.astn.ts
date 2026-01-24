@@ -32,7 +32,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Text Type": resolver(r.group({
-            "type": r.state_group({
+            "type": r.state({
                 "multi line": state(r.nothing()),
                 "single line": state(r.nothing()),
             }),
@@ -63,8 +63,8 @@ export const $: g_.Resolvers = resolvers(
             "ordered": r.boolean(),
         })),
 
-        "Type Node": resolver(r.state_group({
-            "component": state(r.state_group({
+        "Type Node": resolver(r.state({
+            "component": state(r.state({
                 "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
                     "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
@@ -100,7 +100,7 @@ export const $: g_.Resolvers = resolvers(
             "optional": state(r.component("Type Node", null, null)),
 
             "state": state(r.dictionary(r.component("Type Node", null, null))),
-            "text": state(r.state_group({
+            "text": state(r.state({
                 "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),
             })),
@@ -113,7 +113,7 @@ export const $: g_.Resolvers = resolvers(
             ),
         }))),
 
-        "Schema Tree": resolver(r.state_group({
+        "Schema Tree": resolver(r.state({
             "schema": state(r.component("Schema", {}, {
                 "sibling schemas": al.parameter("sibling schemas"),
             })),

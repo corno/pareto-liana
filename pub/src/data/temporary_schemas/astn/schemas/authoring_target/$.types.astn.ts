@@ -43,7 +43,7 @@ export const $: g_.Types = types(
                         "state": tstate(t.state({
                             "missing data": tstate(t.nothing()),
                             "set": tstate(t.group({
-                                "state": prop(t.text_global("Text Value")),
+                                "option": prop(t.text_global("Text Value")),
                                 "value": prop(t.component_cyclic("Value"))
                             }))
                         })),

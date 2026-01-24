@@ -288,7 +288,7 @@ export const Type_Node = (
             case 'state group': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "location": location,
-                    "state group": sh.t.state($.__d_map(($, key) => Type_Node(
+                    "state": sh.t.state($.__d_map(($, key) => Type_Node(
                         $.node,
                         $p
                     )))

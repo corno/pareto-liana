@@ -162,7 +162,7 @@ export const Type_Node = (
             }))
             case 'state group': return _p.ss($, ($) => sh.e.decide_state_group(
                 sh.s.from_context([]),
-                $.__d_map(($, key) => sh.e.case_(key, Type_Node(
+                $.__d_map(($, key) => sh.e.state_literal(key, Type_Node(
                     $.node,
                     {
                         'type': $p.type,

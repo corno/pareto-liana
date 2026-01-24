@@ -482,7 +482,7 @@ export const Node_Resolver = (
         ))
         case 'state group': return _p.ss($, ($) => sh.e.decide_state_group(
             sh.s.from_context(['state group']),
-            $.states.__d_map(($, key) => sh.e.case_(key, Option_Constraints(
+            $.states.__d_map(($, key) => sh.e.state_literal(key, Option_Constraints(
                 $.constraints,
                 {
                     'sub': () => Node_Resolver(

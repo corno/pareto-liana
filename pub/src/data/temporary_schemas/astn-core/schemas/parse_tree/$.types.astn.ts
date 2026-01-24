@@ -67,7 +67,7 @@ export const $: g_.Types = types(
                                 "#": prop(t.component("Structural Token")),
                             })),
                             "set": tstate(t.group({
-                                "state": prop(t.component("Text")),
+                                "option": prop(t.component("Text")),
                                 "value": prop(t.component_cyclic("Value")),
                             }))
                         })),

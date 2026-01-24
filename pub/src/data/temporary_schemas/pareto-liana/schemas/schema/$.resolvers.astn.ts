@@ -28,7 +28,7 @@ export const $: g_.Resolvers = resolvers(
         }))),
 
         "Globals": resolver(r.group({
-            "complexity": r.state_group({
+            "complexity": r.state({
                 "unconstrained": state(r.nothing()),
                 "constrained": state(r.nothing()),
             }),
@@ -37,13 +37,13 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Number Type": resolver(r.group({
-            "precision": r.state_group({
+            "precision": r.state({
                 "approximation": state(r.group({
                     "significant digits": r.number(),
                 })),
                 "exact": state(r.group({
                     "decimal separator offset": r.optional(r.number()),
-                    "type": r.state_group({
+                    "type": r.state({
                         "integer": state(r.nothing()),
                         "natural": state(r.nothing()),
                         "positive natural": state(r.nothing()),
@@ -53,14 +53,14 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Text Type": resolver(r.group({
-            "type": r.state_group({
+            "type": r.state({
                 "multi line": state(r.nothing()),
                 "single line": state(r.nothing()),
             }),
         })),
 
         "Type Reference": resolver(r.group({
-            "location": r.state_group(
+            "location": r.state(
                 {
                     "internal": state(r.reference(ls.parameter("types"))),
                     "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
@@ -79,7 +79,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Type Node Path": resolver(r.group({
             "tail": r.list_with_result(
-                r.state_group({
+                r.state({
                     "dictionary": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "dictionary") }, r.nothing()),
                     "group": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "group") }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
                     "list": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "list") }, r.nothing()),
@@ -118,9 +118,9 @@ export const $: g_.Resolvers = resolvers(
             ),
         })),
 
-        "Type Node": resolver(r.state_group({
+        "Type Node": resolver(r.state({
             "boolean": state(r.nothing()),
-            "component": state(r.state_group({
+            "component": state(r.state({
                 "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
                     "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
@@ -153,7 +153,7 @@ export const $: g_.Resolvers = resolvers(
                 "result": r.optional(r.nothing()),
             })),
             "nothing": state(r.nothing()),
-            "number": state(r.state_group({
+            "number": state(r.state({
                 "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("number types")])))),
                 "local": state(r.component("Number Type", {}, {})),
             })),
@@ -164,11 +164,11 @@ export const $: g_.Resolvers = resolvers(
                 }, {
                     "types": al.parameter("noncircular sibling types"),
                 }),
-                "type": r.state_group({
+                "type": r.state({
                     "derived": state(r.nothing()),
                     "selected": state_constrained({ "dictionary": oc.state(gvs.sibling("referent", [vst.component(), vst.group("type location"), vst.component(), vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()]), "dictionary") }, r.group({
                         "dictionary": r.reference_derived(gvs.option_constraint("dictionary", [])),
-                        "dependency": r.state_group({
+                        "dependency": r.state({
                             "acyclic": state(r.nothing()),
                             "cyclic": state(r.nothing()),
                             "stack": state(r.nothing()),
@@ -180,7 +180,7 @@ export const $: g_.Resolvers = resolvers(
                 "node": r.component("Type Node", null, null),
                 "description": r.optional(r.text()),
             }))),
-            "text": state(r.state_group({
+            "text": state(r.state({
                 "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),
             })),
@@ -188,7 +188,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Relative Value Selection": resolver(r.group({
             "path": r.list_with_result(
-                r.state_group({
+                r.state({
                     "component": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "component") }, r.nothing()),
                     "group": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "group") }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
                     "reference": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "reference") }, r.group({
@@ -200,7 +200,7 @@ export const $: g_.Resolvers = resolvers(
             "resulting node": r.reference_derived(gvs.list("path", [])),
         })),
 
-        "Presence": resolver(r.state_group({
+        "Presence": resolver(r.state({
             "optional": state(r.nothing()),
             "required": state(r.nothing()),
         })),
@@ -223,7 +223,7 @@ export const $: g_.Resolvers = resolvers(
                     "dictionary": pc.property([vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()], "dictionary"),
                 }),
                 "dictionary": r.reference_derived(gvs.component("referent", "dictionary", [])),
-                "type": r.state_group({
+                "type": r.state({
                     "cyclic": state(r.nothing()),
                     "acyclic": state(r.nothing()),
                     "stack": state(r.nothing()),
@@ -234,7 +234,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Signature": resolver(r.group({
             "type": r.reference_derived(gvs.parameter("type", [])),
-            "parameters": r.state_group(
+            "parameters": r.state(
                 {
                     "local": state(r.component("Signature Parameters", {
                         "types": av.parameter("types"),
@@ -259,15 +259,15 @@ export const $: g_.Resolvers = resolvers(
             })
         )),
 
-        "Optional Value Initialization": resolver(r.state_group({
+        "Optional Value Initialization": resolver(r.state({
             "not set": state(r.nothing()),
             "set": state(r.component("Guaranteed Value Selection", null, null)),
             "selection": state(r.component("Possible Value Selection", null, null)),
         })),
 
-        "Possible Value Selection": resolver(r.state_group({
+        "Possible Value Selection": resolver(r.state({
             "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("values")])))),
-            "result": state(r.state_group({
+            "result": state(r.state({
                 "state group": state(r.group({
                     "property": r.reference(ls.parameter("sibling property resolvers"), {
                         "state group": pc.property([vst.group("resolver"), vst.component()], "state group"),
@@ -295,7 +295,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Guaranteed Value Selection": resolver(r.group({
-            "start": r.state_group(
+            "start": r.state(
                 {
                     //stack
                     "list cursor": state(r.nothing()),
@@ -306,7 +306,7 @@ export const $: g_.Resolvers = resolvers(
                     "option constraint": state_constrained({ "oc": oc.assert_set(pvs.parameter("option constraints")) }, r.reference_stack(gvs.dictionary(gvs.option_constraint("oc", [])))),
 
                     //siblings
-                    "constraint": state(r.state_group({
+                    "constraint": state(r.state({
                         "component": state(r.group({
                             "property": r.reference(ls.parameter("sibling property resolvers"), {
                                 "component": pc.property([vst.group("resolver"), vst.component()], "component"),
@@ -323,7 +323,7 @@ export const $: g_.Resolvers = resolvers(
 
                     })),
                     "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("values")])))),
-                    "result": state(r.state_group({
+                    "result": state(r.state({
                         "list": state(r.group({
                             "property": r.reference(ls.parameter("sibling property resolvers"), {
                                 "list": pc.property([vst.group("resolver"), vst.component()], "list"),
@@ -366,7 +366,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Lookup Selection": resolver(r.group({
-            "type": r.state_group(
+            "type": r.state(
                 {
                     "dictionary": state(r.group({
                         "selection": r.component("Guaranteed Value Selection", null, null, {
@@ -420,7 +420,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Constraint": resolver(r.group({
             "selection": r.component("Relative Value Selection", null, null),
-            "type": r.state_group({
+            "type": r.state({
                 "state": state_constrained(
                     {
                         "state group": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state group")
@@ -436,7 +436,7 @@ export const $: g_.Resolvers = resolvers(
             }),
         })),
 
-        "Option Constraints": resolver(r.dictionary(r.state_group({
+        "Option Constraints": resolver(r.dictionary(r.state({
             "state": state(r.group({
                 "selection": r.component("Guaranteed Value Selection", null, null, {
                     "state group": pc.property([vst.group("resulting node"), vst.reference()], "state group")
@@ -448,7 +448,7 @@ export const $: g_.Resolvers = resolvers(
         }))),
 
         "Property Constraint": resolver(r.group({
-            "start": r.state_group(
+            "start": r.state(
                 {
                     "property": state(r.nothing()),
                     "sibling": state(r.component("Reference To Property Constraint", {}, {
@@ -510,10 +510,10 @@ export const $: g_.Resolvers = resolvers(
             "dense": r.boolean(),
         })),
 
-        "Node Resolver": resolver(r.state_group({
+        "Node Resolver": resolver(r.state({
             "boolean": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "boolean") }, r.nothing()),
             "component": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "component") }, r.group({
-                "location": r.state_group(
+                "location": r.state(
                     {
                         "external": state_constrained(
                             {
@@ -535,7 +535,7 @@ export const $: g_.Resolvers = resolvers(
                     "values": r.optional(r.dictionary_linked(
                         'dense',
                         gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("values")]),
-                        r.state_group({
+                        r.state({
                             "optional": state(r.component("Optional Value Initialization", null, null)),
                             "required": state(r.component("Guaranteed Value Selection", null, null)),
                             "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("values")])))),
@@ -544,7 +544,7 @@ export const $: g_.Resolvers = resolvers(
                     "lookups": r.optional(r.dictionary_linked(
                         'dense',
                         gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("lookups")]),
-                        r.state_group({
+                        r.state({
                             "empty stack": state(r.nothing()),
                             "not set": state(r.nothing()),
                             "selection": state(r.component("Lookup Selection", null, null)),
@@ -657,7 +657,7 @@ export const $: g_.Resolvers = resolvers(
             })),
             "reference": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "reference") }, r.group({
                 "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                "type": r.state_group({
+                "type": r.state({
                     "derived": state_constrained({ "definition": oc.state(gvs.sibling("definition", [vst.reference(), vst.group("type")]), "derived") }, r.group({
                         "value": r.component("Guaranteed Value Selection", null, null),
                     })),
@@ -732,7 +732,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
 
-        "Schema Tree": resolver(r.state_group({
+        "Schema Tree": resolver(r.state({
             "schema": state(r.component("Schema", {}, {
                 "sibling schemas": al.parameter("sibling schemas"),
             })),
@@ -752,7 +752,7 @@ export const $: g_.Resolvers = resolvers(
                 "imports": av.optional(ovi.set(gvs.sibling("imports", [vst.component()]))),
             }, {
             }),
-            "complexity": r.state_group({
+            "complexity": r.state({
                 "constrained": state(r.component("Resolve Logic", {
                     "imports": av.required(gvs.sibling("imports", [vst.component()])),
                     "types": av.required(gvs.sibling("types", [vst.component()])),

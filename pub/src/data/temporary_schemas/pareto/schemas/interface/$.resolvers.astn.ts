@@ -5,24 +5,24 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Resolvers = resolvers(
     {
-        "Module Set": resolver(r.dictionary(r.state_group({
+        "Module Set": resolver(r.dictionary(r.state({
             "module": state(r.component("Module", {}, {})),
             "set": state(r.component("Module Set", {}, {})),
         }))),
 
         "Module": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
-            "types": r.dictionary(r.state_group({
+            "types": r.dictionary(r.state({
                 "data": state(r.component("Type Node", {}, {})),
                 "algorithm": state(r.group({
                     "result": r.component("Type Node", {}, {}),
                     "context": r.component("Type Node", {}, {}),
-                    "type": r.state_group({
+                    "type": r.state({
                         "transformer": state(r.group({
                         })),
                         "refiner": state(r.group({
                             "error": r.optional(r.component("Type Node", {}, {})),
-                            "lookups": r.optional(r.dictionary(r.state_group({
+                            "lookups": r.optional(r.dictionary(r.state({
                                 "acyclic": state(r.component("Type Node", {}, {})),
                                 "cyclic": state(r.component("Type Node", {}, {})),
                                 "stack": state(r.component("Type Node", {}, {})),
@@ -35,7 +35,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Imports": resolver(r.dictionary(r.group({
-            "type": r.state_group({
+            "type": r.state({
                 "external": state(r.text()),
                 "ancestor": state(r.group({
                     "number of steps": r.number(),
@@ -46,11 +46,11 @@ export const $: g_.Resolvers = resolvers(
             "tail": r.list(r.text()),
         }))),
 
-        "Type Node": resolver(r.state_group({
+        "Type Node": resolver(r.state({
 
             "boolean": state(r.nothing()),
             "component": state(r.group({
-                "location": r.state_group({
+                "location": r.state({
                     "import": state(r.group({
                         "import": r.text(),
                         "type": r.text(),
@@ -63,27 +63,27 @@ export const $: g_.Resolvers = resolvers(
             "list": state(r.component("Type Node", {}, {})),
             "nothing": state(r.nothing()),
 
-            "number": state(r.state_group({
-                "exact": state(r.state_group({
+            "number": state(r.state({
+                "exact": state(r.state({
                     "natural": state(r.nothing()),
                     "integer": state(r.nothing()),
                 })),
                 "approximation": state(r.nothing()),
             })),
             "optional": state(r.component("Type Node", {}, {})),
-            "reference": state(r.state_group({
+            "reference": state(r.state({
                 "cyclic": state(r.group({
                     "sibling": r.text(),
                 })),
                 "acyclic": state(r.group({
-                    "location": r.state_group({
+                    "location": r.state({
                         "import": state(r.group({
                             "import": r.text(),
                             "type": r.text(),
                         })),
                         "local": state(r.text()),
                     }),
-                    "sub selection": r.list(r.state_group({
+                    "sub selection": r.list(r.state({
                         "dictionary": state(r.nothing()),
                         "group": state(r.text()),
                         "list": state(r.nothing()),

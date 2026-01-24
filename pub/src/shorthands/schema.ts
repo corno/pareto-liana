@@ -1140,7 +1140,7 @@ export namespace r {
         }])
     }
 
-    export const state_group = (
+    export const state = (
         states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state_group.state_group.states.dictionary.D.entry>
     ): d_schema.Node_Resolver => {
         return _p.wrap_state_deprecated(['state group', {

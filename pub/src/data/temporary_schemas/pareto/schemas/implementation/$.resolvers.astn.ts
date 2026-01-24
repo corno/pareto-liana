@@ -6,13 +6,13 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Resolvers = resolvers(
     {
 
-        "Module Set": resolver(r.dictionary(r.state_group({
+        "Module Set": resolver(r.dictionary(r.state({
             "module": state(r.component("Module", {}, {})),
             "set": state(r.component("Module Set", {}, {})),
         }))),
 
         "Module": resolver(r.group({
-            "type": r.state_group({
+            "type": r.state({
                 "serializer": state(r.nothing()),
                 "deserializer": state(r.nothing()),
                 "transformer": state(r.nothing()),
@@ -21,7 +21,7 @@ export const $: g_.Resolvers = resolvers(
             "type imports": r.component_external("interface", "Imports", {}, {}),
             "variable imports": r.dictionary(r.group({
                 "tail": r.list(r.text()),
-                "type": r.state_group({
+                "type": r.state({
                     "ancestor": state(r.group({
                         "dependency": r.text(),
                         "number of steps": r.number(),
@@ -46,7 +46,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Type Node Reference": resolver(r.group({
             "type": r.component("Type Reference", {}, {}),
-            "sub selection": r.list(r.state_group({
+            "sub selection": r.list(r.state({
                 "dictionary": state(r.nothing()),
                 "group": state(r.text()),
                 "list": state(r.nothing()),
@@ -55,8 +55,8 @@ export const $: g_.Resolvers = resolvers(
             })),
         })),
 
-        "Expression": resolver(r.state_group({
-            "special": state(r.state_group({
+        "Expression": resolver(r.state({
+            "special": state(r.state({
                 "abort": state(r.component("Expression", {}, {})),
                 "block": state(r.group({
                     "variables": r.dictionary(r.group({
@@ -83,15 +83,15 @@ export const $: g_.Resolvers = resolvers(
                     "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
                 })),
             })),
-            "initialize": state(r.state_group({
-                "boolean": state(r.state_group({
-                    "literal": state(r.state_group({
+            "initialize": state(r.state({
+                "boolean": state(r.state({
+                    "literal": state(r.state({
                         "false": state(r.nothing()),
                         "true": state(r.nothing()),
                     })),
                     "not": state(r.component("Selection", {}, {})),
                 })),
-                "component": state(r.state_group({
+                "component": state(r.state({
                     "call": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "context": r.component("Expression", {}, {}),
@@ -99,7 +99,7 @@ export const $: g_.Resolvers = resolvers(
                         "abort": r.boolean()
                     })),
                 })),
-                "dictionary": state(r.state_group({
+                "dictionary": state(r.state({
                     "literal": state(r.dictionary(r.component("Expression", {}, {}))),
                     "map": state(r.group({
                         "source": r.component("Selection", {}, {}),
@@ -107,7 +107,7 @@ export const $: g_.Resolvers = resolvers(
                     })),
                 })),
                 "group": state(r.dictionary(r.component("Expression", {}, {}))),
-                "list": state(r.state_group({
+                "list": state(r.state({
                     "literal": state(r.list(r.component("Expression", {}, {}))),
                     "map": state(r.group({
                         "source": r.component("Selection", {}, {}),
@@ -115,19 +115,19 @@ export const $: g_.Resolvers = resolvers(
                     })),
                 })),
                 "nothing": state(r.nothing()),
-                "number": state(r.state_group({
-                    "approximation": state(r.state_group({
+                "number": state(r.state({
+                    "approximation": state(r.state({
                         "literal": state(r.number())
                     })),
-                    "integer": state(r.state_group({
+                    "integer": state(r.state({
                         "literal": state(r.number())
                     })),
-                    "natural": state(r.state_group({
+                    "natural": state(r.state({
                         "literal": state(r.number())
                     })),
                 })),
-                "optional": state(r.state_group({
-                    "literal": state(r.state_group({
+                "optional": state(r.state({
+                    "literal": state(r.state({
                         "not set": state(r.nothing()),
                         "set": state(r.component("Expression", {}, {})),
                     })),
@@ -136,15 +136,15 @@ export const $: g_.Resolvers = resolvers(
                         "set handler": r.component("Expression", {}, {})
                     })),
                 })),
-                "state": state(r.state_group({
+                "state": state(r.state({
                     "literal": state(r.group({
                         "state": r.text(),
                         "value": r.component("Expression", {}, {}),
                     })),
                 })),
-                "text": state(r.state_group({
+                "text": state(r.state({
                     "literal": state(r.group({
-                        "delimiter": r.state_group({
+                        "delimiter": r.state({
                             "backtick": state(r.nothing()),
                             "quote": state(r.nothing()),
                         }),
@@ -153,7 +153,7 @@ export const $: g_.Resolvers = resolvers(
                 })),
             })),
             "decide": state(r.group({
-                "type": r.state_group({
+                "type": r.state({
                     "boolean": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
@@ -169,7 +169,7 @@ export const $: g_.Resolvers = resolvers(
                     "state": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
-                        "type": r.state_group({
+                        "type": r.state({
                             "partial": state(r.group({
                                 "cases": r.dictionary(r.component("Expression", {}, {})),
                                 "default": r.component("Expression", {}, {}),
@@ -184,7 +184,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Selection": resolver(r.group({
-            "start": r.state_group({
+            "start": r.state({
                 "abort deprecated": state(r.nothing()),
                 "argument": state(r.text()),
                 "call": state(r.group({
@@ -200,7 +200,7 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "implement me": state(r.nothing()),
                 "parameter": state(r.text()),
-                "variable": state(r.state_group({
+                "variable": state(r.state({
                     "local": state(r.text()),
                     "imported": state(r.group({
                         "import": r.text(),
@@ -211,7 +211,7 @@ export const $: g_.Resolvers = resolvers(
             "tail": r.list(r.text()),
         })),
 
-        "Abort Expression": resolver(r.state_group({
+        "Abort Expression": resolver(r.state({
             "current": state(r.nothing()),
             "new": state(r.component("Expression", {}, {}))
         })),

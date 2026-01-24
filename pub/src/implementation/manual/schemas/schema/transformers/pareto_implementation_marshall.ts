@@ -72,10 +72,10 @@ export const Type_Node = (
 ): d_out.Expression => {
 
     const string = (value: d_out.Expression, delimiter: 'quote' | 'backtick' | 'none'): d_out.Expression => {
-        return sh.e.tagged_union(
+        return sh.e.state_literal(
             "text",
             sh.e.group({
-                "delimiter": sh.e.tagged_union(delimiter, sh.e.null_()),
+                "delimiter": sh.e.state_literal(delimiter, sh.e.null_()),
                 "value": value,
             })
         )
@@ -99,7 +99,7 @@ export const Type_Node = (
                 sh.e.select_from_context_deprecated([]),
                 false,
             ))
-            case 'dictionary': return _p.ss($, ($) => sh.e.tagged_union(
+            case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
                 "dictionary",
                 sh.e.dictionary_map(
                     sh.s.from_context([]),
@@ -117,7 +117,7 @@ export const Type_Node = (
                     )
                 )
             ))
-            case 'group': return _p.ss($, ($) => sh.e.tagged_union(
+            case 'group': return _p.ss($, ($) => sh.e.state_literal(
                 "verbose group",
                 sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
                     sh.s.from_context([key]),
@@ -135,7 +135,7 @@ export const Type_Node = (
                     )
                 )))
             ))
-            case 'list': return _p.ss($, ($) => sh.e.tagged_union(
+            case 'list': return _p.ss($, ($) => sh.e.state_literal(
                 "list",
                 sh.e.list_map(
                     sh.s.from_context([]),
@@ -152,16 +152,16 @@ export const Type_Node = (
                         }
                     )
                 )))
-            case 'nothing': return _p.ss($, ($) => sh.e.tagged_union("nothing", sh.e.null_()))
+            case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
             case 'number': return _p.ss($, ($) => string(
                 sh.e.implement_me(),
                 'backtick'//FIXME should be 'none'
             ))
-            case 'optional': return _p.ss($, ($) => sh.e.tagged_union(
+            case 'optional': return _p.ss($, ($) => sh.e.state_literal(
                 "optional",
                 sh.e.decide_optional(
                     sh.s.from_context([]),
-                    sh.e.tagged_union(
+                    sh.e.state_literal(
                         "set",
                         Type_Node(
                             $,
@@ -176,7 +176,7 @@ export const Type_Node = (
                             }
                         ),
                     ),
-                    sh.e.tagged_union(
+                    sh.e.state_literal(
                         "not set",
                         sh.e.null_()
                     ),
@@ -188,12 +188,12 @@ export const Type_Node = (
                 )))
             case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.e.tagged_union("nothing", sh.e.null_()))
+                    case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
                     case 'selected': return _p.ss($, ($) => string(sh.e.select_from_context_deprecated(["key"]), 'backtick'))
                     default: return _p.au($[0])
                 }
             }))
-            case 'state group': return _p.ss($, ($) => sh.e.tagged_union(
+            case 'state group': return _p.ss($, ($) => sh.e.state_literal(
                 "state",
                 sh.e.decide_state_group(
                     sh.s.from_context([]),
