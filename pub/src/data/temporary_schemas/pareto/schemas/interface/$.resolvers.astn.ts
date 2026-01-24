@@ -1,31 +1,31 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { resolvers, r, resolver, sig, state } from "../../../../../shorthands/schema"
+import { resolvers, r, resolver, sig, state as option } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $: g_.Resolvers = resolvers(
     {
         "Module Set": resolver(r.dictionary(r.state({
-            "module": state(r.component("Module", {}, {})),
-            "set": state(r.component("Module Set", {}, {})),
+            "module": option(r.component("Module", {}, {})),
+            "set": option(r.component("Module Set", {}, {})),
         }))),
 
         "Module": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
             "types": r.dictionary(r.state({
-                "data": state(r.component("Type Node", {}, {})),
-                "algorithm": state(r.group({
+                "data": option(r.component("Type Node", {}, {})),
+                "algorithm": option(r.group({
                     "result": r.component("Type Node", {}, {}),
                     "context": r.component("Type Node", {}, {}),
                     "type": r.state({
-                        "transformer": state(r.group({
+                        "transformer": option(r.group({
                         })),
-                        "refiner": state(r.group({
+                        "refiner": option(r.group({
                             "error": r.optional(r.component("Type Node", {}, {})),
                             "lookups": r.optional(r.dictionary(r.state({
-                                "acyclic": state(r.component("Type Node", {}, {})),
-                                "cyclic": state(r.component("Type Node", {}, {})),
-                                "stack": state(r.component("Type Node", {}, {})),
+                                "acyclic": option(r.component("Type Node", {}, {})),
+                                "cyclic": option(r.component("Type Node", {}, {})),
+                                "stack": option(r.component("Type Node", {}, {})),
                             }))),
                         })),
                     }),
@@ -36,64 +36,56 @@ export const $: g_.Resolvers = resolvers(
 
         "Imports": resolver(r.dictionary(r.group({
             "type": r.state({
-                "external": state(r.text()),
-                "ancestor": state(r.group({
+                "external": option(r.text()),
+                "ancestor": option(r.group({
                     "number of steps": r.number(),
                     "dependency": r.text(),
                 })),
-                "sibling": state(r.text()),
+                "sibling": option(r.text()),
             }),
             "tail": r.list(r.text()),
         }))),
 
         "Type Node": resolver(r.state({
 
-            "boolean": state(r.nothing()),
-            "component": state(r.group({
-                "location": r.state({
-                    "import": state(r.group({
-                        "import": r.text(),
-                        "type": r.text(),
-                    })),
-                    "local": state(r.text()),
-                }),
+            "boolean": option(r.nothing()),
+            "component": option(r.group({
+                "location": r.component("Type Reference", {}, {}),
             })),
-            "dictionary": state(r.component("Type Node", {}, {})),
-            "group": state(r.dictionary(r.component("Type Node", {}, {}))),
-            "list": state(r.component("Type Node", {}, {})),
-            "nothing": state(r.nothing()),
+            "dictionary": option(r.component("Type Node", {}, {})),
+            "group": option(r.dictionary(r.component("Type Node", {}, {}))),
+            "list": option(r.component("Type Node", {}, {})),
+            "nothing": option(r.nothing()),
 
-            "number": state(r.state({
-                "exact": state(r.state({
-                    "natural": state(r.nothing()),
-                    "integer": state(r.nothing()),
+            "number": option(r.state({
+                "exact": option(r.state({
+                    "natural": option(r.nothing()),
+                    "integer": option(r.nothing()),
                 })),
-                "approximation": state(r.nothing()),
+                "approximation": option(r.nothing()),
             })),
-            "optional": state(r.component("Type Node", {}, {})),
-            "reference": state(r.state({
-                "cyclic": state(r.group({
-                    "sibling": r.text(),
+            "optional": option(r.component("Type Node", {}, {})),
+            "reference": option(r.group({
+                "location": r.component("Type Reference", {}, {}),
+                "sub selection": r.list(r.state({
+                    "dictionary": option(r.nothing()),
+                    "group": option(r.text()),
+                    "list": option(r.nothing()),
+                    "optional": option(r.nothing()),
+                    "state": option(r.text()),
                 })),
-                "acyclic": state(r.group({
-                    "location": r.state({
-                        "import": state(r.group({
-                            "import": r.text(),
-                            "type": r.text(),
-                        })),
-                        "local": state(r.text()),
-                    }),
-                    "sub selection": r.list(r.state({
-                        "dictionary": state(r.nothing()),
-                        "group": state(r.text()),
-                        "list": state(r.nothing()),
-                        "optional": state(r.nothing()),
-                        "state": state(r.text()),
-                    })),
-                })),
+                "cyclic": r.boolean(),
             })),
-            "state": state(r.dictionary(r.component("Type Node", {}, {}))),
-            "text": state(r.nothing()),
+            "state": option(r.dictionary(r.component("Type Node", {}, {}))),
+            "text": option(r.nothing()),
+        })),
+
+        "Type Reference": resolver(r.state({
+            "import": option(r.group({
+                "import": r.text(),
+                "type": r.text(),
+            })),
+            "local": option(r.text()),
         })),
 
     })

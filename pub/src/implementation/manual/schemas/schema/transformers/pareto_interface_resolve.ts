@@ -28,18 +28,26 @@ export const Signatures = (
                 sh.t.component_imported("resolved", key),
                 sh.t.component_imported("generic", "Error"),
                 $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
-                    const x = $.referent
+                    const y = sh.t.reference(
+                        Type_Reference($.referent),
+                        _p.list.literal([
+                            sh.sub.dictionary()
+                        ])
+                    )
                     return _p.decide.state($.type, ($) => {
                         switch ($[0]) {
-                            case 'acyclic': return _p.ss($, ($) => ['acyclic', Type_Reference(x, { 'reference sub part': _p.list.literal([sh.sub.dictionary()]) })])
-                            case 'cyclic': return _p.ss($, ($) => ['cyclic', Type_Reference(x, { 'reference sub part': _p.list.literal([sh.sub.dictionary()]) })])
-                            case 'stack': return _p.ss($, ($) => ['stack', Type_Reference(x, { 'reference sub part': _p.list.literal([sh.sub.dictionary()]) })])
+                            case 'acyclic': return _p.ss($, ($) => ['acyclic', y])
+                            case 'cyclic': return _p.ss($, ($) => ['cyclic', y])
+                            case 'stack': return _p.ss($, ($) => ['stack', y])
                             default: return _p.au($[0])
                         }
                     })
                 }),
                 $['resolved parameters'].values.__d_map(($) => {
-                    const temp_2 = Type_Reference($['data type'], { 'reference sub part': _p.list.literal([]) })
+                    const temp_2 = sh.t.reference(
+                        Type_Reference($['data type']),
+                        _p.list.literal([])
+                    )
                     return _p.decide.state($.presence, ($) => {
                         switch ($[0]) {
                             case 'optional': return sh.t.optional(temp_2)
@@ -55,23 +63,17 @@ export const Signatures = (
 
 export const Type_Reference = (
     $: d_in.Type_Reference,
-    $p: {
-        'reference sub part': _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L>
-    }
-): d_out.Type_Node => {
+): d_out.Type_Reference => {
 
     return _p.decide.state($.location, ($) => {
         switch ($[0]) {
-            case 'external': return _p.ss($, ($) => sh.t.reference_imported(
+            case 'external': return _p.ss($, ($) => sh.tr.imported(
                 `imports ${$.import.key}`,
                 $.type.key,
-                $p['reference sub part'],
-
             ))
-            case 'internal': return _p.ss($, ($) => sh.t.reference_imported(
+            case 'internal': return _p.ss($, ($) => sh.tr.imported(
                 "resolved",
                 $.key,
-                $p['reference sub part'],
             ))
             default: return _p.au($[0])
         }
@@ -80,8 +82,8 @@ export const Type_Reference = (
 
 export const Type_Node_Path = (
     $: d_in.Type_Node_Path_,
-): d_out.Type_Node.reference.acyclic.sub_selection => {
-    const tail: _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L> = $.tail.list.__l_map(($) => _p.decide.state($.element, ($) => {
+): d_out.Type_Node.reference.sub_selection => {
+    const tail: _pi.List<d_out.Type_Node.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.decide.state($.element, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))

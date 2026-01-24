@@ -147,7 +147,7 @@ export const $: g_.Types = types(
         })),
 
         "Type Node Path": type(t.group({
-            "tail": prop(t.path(
+            "tail": prop(t.path_to_sibling(
                 t.state({
                     "dictionary": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),
@@ -155,6 +155,7 @@ export const $: g_.Types = types(
                     "optional": tstate(t.nothing()),
                     "state": tstate(t.reference("Type Node", [tr.s("state")])),
                 }),
+                "Type Node"
             )),
             "resulting node": prop(t.reference_derived("Type Node", [])),
 
@@ -198,7 +199,7 @@ export const $: g_.Types = types(
         })),
 
         "Relative Value Selection": type(t.group({
-            "path": prop(t.path(
+            "path": prop(t.path_to_sibling(
                 t.state({
                     "component": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),
@@ -206,6 +207,7 @@ export const $: g_.Types = types(
                         "definition": prop(t.reference_derived("Type Node", [tr.s("reference")])),
                     })),
                 }),
+                "Type Node"
             )),
             "resulting node": prop(t.reference_derived("Type Node", [])),
         })),
@@ -293,7 +295,7 @@ export const $: g_.Types = types(
             "group": tstate(t.component("Group")),
             "list": tstate(t.group({
                 "node": prop(t.component_cyclic("Type Node")),
-                "result": prop(t.optional(t.nothing())),
+                "result": prop(t.optional(t.component("Type Reference"))),
             })),
             "nothing": tstate(t.nothing()),
             "number": tstate(t.state({

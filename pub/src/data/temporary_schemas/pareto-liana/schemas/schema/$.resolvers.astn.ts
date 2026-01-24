@@ -150,7 +150,11 @@ export const $: g_.Resolvers = resolvers(
             )),
             "list": state(r.group({
                 "node": r.component("Type Node", null, null),
-                "result": r.optional(r.nothing()),
+                "result": r.optional(r.component("Type Reference", {
+                    "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
+                }, {
+                    "types": al.parameter("noncircular sibling types"),
+                })),
             })),
             "nothing": state(r.nothing()),
             "number": state(r.state({

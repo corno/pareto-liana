@@ -578,7 +578,16 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
                 return ['list', {
                     'node': p_type,
-                    'result': $.result.__o_map(($) => null)
+                    'result': $.result.__o_map(($) => Type_Reference(
+                        $,
+                        abort,
+                        {
+                            'types': $l['noncircular sibling types'],
+                        },
+                        {
+                            'imports': $p.imports,
+                        },
+                    ))
                 }]
             })
             case 'nothing': return _p.ss($, ($) => ['nothing', null])

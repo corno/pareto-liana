@@ -785,7 +785,7 @@ export namespace Type_Node_ {
             
             export namespace result {
                 
-                export type O = null
+                export type O = Type_Reference_
                 
             }
             

@@ -8,7 +8,7 @@ import {
     tr,
     type,
     prop,
-    tstate,
+    tstate as toption,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -16,26 +16,26 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
         "Module Set": type(t.dictionary(t.state({
-            "module": tstate(t.component("Module")),
-            "set": tstate(t.component_cyclic("Module Set")),
+            "module": toption(t.component("Module")),
+            "set": toption(t.component_cyclic("Module Set")),
         }))),
 
         "Module": type(t.group({
             "imports": prop(t.component("Imports")),
             "types": prop(t.dictionary(t.state({
-                "data": tstate(t.component_cyclic("Type Node")),
-                "algorithm": tstate(t.group({
+                "data": toption(t.component_cyclic("Type Node")),
+                "algorithm": toption(t.group({
                     "result": prop(t.component_cyclic("Type Node")),
                     "context": prop(t.component_cyclic("Type Node")),
                     "type": prop(t.state({
-                        "transformer": tstate(t.group({
+                        "transformer": toption(t.group({
                         })),
-                        "refiner": tstate(t.group({
+                        "refiner": toption(t.group({
                             "error": prop(t.optional(t.component_cyclic("Type Node"))),
                             "lookups": prop(t.optional(t.dictionary(t.state({
-                                "acyclic": tstate(t.component_cyclic("Type Node")),
-                                "cyclic": tstate(t.component_cyclic("Type Node")),
-                                "stack": tstate(t.component_cyclic("Type Node")),
+                                "acyclic": toption(t.component_cyclic("Type Node")),
+                                "cyclic": toption(t.component_cyclic("Type Node")),
+                                "stack": toption(t.component_cyclic("Type Node")),
                             })))),
                         }))
                     })),
@@ -46,63 +46,55 @@ export const $: g_.Types = types(
 
         "Imports": type(t.dictionary(t.group({
             "type": prop(t.state({
-                "external": tstate(t.text_global("TBD")),
-                "ancestor": tstate(t.group({
+                "external": toption(t.text_global("TBD")),
+                "ancestor": toption(t.group({
                     "number of steps": prop(t.number_local(n.natural())),
                     "dependency": prop(t.text_global("TBD")),
                 })),
-                "sibling": tstate(t.text_global("TBD")),
+                "sibling": toption(t.text_global("TBD")),
             })),
             "tail": prop(t.list(t.text_global("TBD"))),
         }))),
 
         "Type Node": type(t.state({
-            "boolean": tstate(t.nothing()),
-            "component": tstate(t.group({
-                "location": prop(t.state({
-                    "import": tstate(t.group({
-                        "import": prop(t.text_global("TBD")),
-                        "type": prop(t.text_global("TBD")),
-                    })),
-                    "local": tstate(t.text_global("TBD")),
-                })),
+            "boolean": toption(t.nothing()),
+            "component": toption(t.group({
+                "location": prop(t.component("Type Reference")),
             })),
-            "dictionary": tstate(t.component_cyclic("Type Node")),
-            "group": tstate(t.dictionary(t.component_cyclic("Type Node"))),
-            "list": tstate(t.component_cyclic("Type Node")),
-            "nothing": tstate(t.nothing()),
-            "number": tstate(t.state({
-                "exact": tstate(t.state({
+            "dictionary": toption(t.component_cyclic("Type Node")),
+            "group": toption(t.dictionary(t.component_cyclic("Type Node"))),
+            "list": toption(t.component_cyclic("Type Node")),
+            "nothing": toption(t.nothing()),
+            "number": toption(t.state({
+                "exact": toption(t.state({
                     "natural": prop(t.nothing()),
                     "integer": prop(t.nothing()),
                 })),
-                "approximation": tstate(t.nothing()),
+                "approximation": toption(t.nothing()),
             })),
-            "optional": tstate(t.component_cyclic("Type Node")),
-            "reference": tstate(t.state({
-                "cyclic": tstate(t.group({
-                    "sibling": prop(t.text_global("TBD")),
-                })),
-                "acyclic": tstate(t.group({
-                    "location": prop(t.state({
-                        "import": tstate(t.group({
-                            "import": prop(t.text_global("TBD")),
-                            "type": prop(t.text_global("TBD")),
-                        })),
-                        "local": tstate(t.text_global("TBD")),
-                    })),
-                    "sub selection": prop(t.list(t.state({
-                        "dictionary": tstate(t.nothing()),
-                        "group": tstate(t.text_global("TBD")),
-                        "list": tstate(t.nothing()),
-                        "optional": tstate(t.nothing()),
-                        "state": tstate(t.text_global("TBD")),
-                    }))),
-                })),
+            "optional": toption(t.component_cyclic("Type Node")),
+            "reference": toption(t.group({
+                "location": prop(t.component("Type Reference")),
+                "sub selection": prop(t.list(t.state({
+                    "dictionary": toption(t.nothing()),
+                    "group": toption(t.text_global("TBD")),
+                    "list": toption(t.nothing()),
+                    "optional": toption(t.nothing()),
+                    "state": toption(t.text_global("TBD")),
+                }))),
+                "cyclic": prop(t.boolean()),
             })),
-            "state": tstate(t.dictionary(t.component_cyclic("Type Node"))),
-            "text": tstate(t.nothing()),
+            "state": toption(t.dictionary(t.component_cyclic("Type Node"))),
+            "text": toption(t.nothing()),
         })),
+
+        "Type Reference": type(t.state({
+            "import": toption(t.group({
+                "import": prop(t.text_global("TBD")),
+                "type": prop(t.text_global("TBD")),
+            })),
+            "local": toption(t.text_global("TBD")),
+        }))
 
     }
 )

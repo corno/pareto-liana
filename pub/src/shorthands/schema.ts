@@ -176,10 +176,16 @@ export namespace t {
             'result': _p.optional.not_set(),
         }])
     }
-    export const path = (type: d_schema.Type_Node): d_schema.Type_Node => {
+    export const path_to_sibling = (
+        type: d_schema.Type_Node,
+        result: string,
+    ): d_schema.Type_Node => {
         return _p.wrap_state(['list', {
             'node': type,
-            'result': _p.optional.set(null),
+            'result': _p.optional.set<d_schema.Type_Reference>({
+                'location': _p.wrap_state(['internal', _p.wrap_reference(result)]),
+                'resulting type': null,
+            }),
         }])
     }
     export const nothing = (): d_schema.Type_Node => {

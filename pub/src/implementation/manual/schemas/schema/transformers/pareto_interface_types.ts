@@ -86,6 +86,19 @@ export const Schema = (
     )
 }
 
+export const Type_Reference = (
+    $: d_in.Type_Reference,
+): d_out.Type_Reference => _p.decide.state($.location, ($) => {
+    switch ($[0]) {
+        case 'internal': return _p.ss($, ($) => sh.tr.local($.key))
+        case 'external': return _p.ss($, ($) => sh.tr.imported(
+            ` imports ${$.import.key}`,
+            $.type.key,
+        ))
+        default: return _p.au($[0])
+    }
+})
+
 export const Type_Node = (
     $: d_in.Type_Node,
     $p: {
@@ -161,13 +174,19 @@ export const Type_Node = (
                         case 'resolved': return _p.ss($, ($) => list.result.__decide(
                             ($) => sh.t.group({
                                 "list": sh.t.list(sh.t.group({
-                                    "result": sh.t.nothing(),
+                                    "result": sh.t.reference(
+                                        Type_Reference($),
+                                        []
+                                    ),
                                     "element": Type_Node(
                                         list.node,
                                         $p
                                     )
                                 })),
-                                "result": sh.t.nothing(),
+                                "result": sh.t.reference(
+                                    Type_Reference($),
+                                    []
+                                )
                             }),
                             () => sh.t.list(Type_Node(
                                 list.node,
@@ -194,39 +213,13 @@ export const Type_Node = (
             case 'reference': return _p.ss($, ($) => {
                 const referent = $.referent
 
-                const type_location = $.referent['type location']
-                const path = referent.path
-
-                const tmp_tnr = (
-                    $: d_in.Type_Node_Reference,
-                    $p: {
-                        'tail': _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L>,
-                    }
-
-                ): d_out.Type_Node => _p.decide.state($['type location'].location, ($) => {
-                    switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.t.reference_imported(
-                            `imports ${$.import.key}`,
-                            $.type.key,
-                            $p.tail,
-
-                        ))
-                        case 'internal': return _p.ss($, ($) => sh.t.reference_sibling(
-                            $.key,
-                            $p.tail,
-                        ))
-                        default: return _p.au($[0])
-                    }
-                })
                 return _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'derived': return _p.ss($, ($) => add_location
                             ? sh.t.nothing()
-                            : tmp_tnr(
-                                referent,
-                                {
-                                    'tail': Type_Node_Reference__tail(referent.path.tail),
-                                }
+                            : sh.t.reference(
+                                Type_Reference(referent['type location']),
+                                Type_Node_Reference__tail(referent.path.tail)
                             )
                         )
                         case 'selected': return _p.ss($, ($) => {
@@ -240,26 +233,24 @@ export const Type_Node = (
                                     case 'resolved': return _p.ss($, ($) => sh.t.group(_p.dictionary.filter(
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Type_Node>>({
                                             "entry": _p.optional.set(_p.deprecated_cc($, ($) => {
-                                                const temp_tnr = tmp_tnr(
-                                                    referent,
-                                                    {
-                                                        'tail': _p.list.nested_literal_old([
-                                                            Type_Node_Reference__tail(referent.path.tail),
-                                                            [
-                                                                sh.sub.dictionary(),
-                                                            ]
-                                                        ]),
-                                                        // 'circular_dependent': _p.decide.state(selected.dependency, ($) => {
-                                                        //     switch ($[0]) {
-                                                        //         case 'acyclic': return _p.ss($, ($) => false)
-                                                        //         case 'cyclic': return _p.ss($, ($) => true)
-                                                        //         case 'stack': return _p.ss($, ($) => false)
-                                                        //         default: return _p.au($[0])
-                                                        //     }
-                                                        // }),
-                                                    }
+                                                return sh.t.reference(
+                                                    Type_Reference(referent['type location']),
+                                                    _p.list.nested_literal_old([
+                                                        Type_Node_Reference__tail(referent.path.tail),
+                                                        [
+                                                            sh.sub.dictionary(),
+                                                        ]
+                                                    ]),
+                                                    _p.decide.state(selected.dependency, ($) => {
+                                                        switch ($[0]) {
+
+                                                            case 'acyclic': return _p.ss($, ($) => 'acyclic')
+                                                            case 'cyclic': return _p.ss($, ($) => 'cyclic')
+                                                            case 'stack': return _p.ss($, ($) => 'acyclic')
+                                                            default: return _p.au($[0])
+                                                        }
+                                                    })
                                                 )
-                                                return temp_tnr
                                             })),
                                             "key": _p.optional.set(sh.t.text()),
                                             "up steps": _p.decide.state(selected.dependency, ($) => {
@@ -307,7 +298,7 @@ export const Type_Node = (
 const Type_Node_Reference__tail = (
     $: d_in.Type_Node_Path.tail,
 
-): _pi.List<d_out.Type_Node.reference.acyclic.sub_selection.L> => {
+): _pi.List<d_out.Type_Node.reference.sub_selection.L> => {
     return $.list.__l_map(($) => _p.decide.state($.element, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
