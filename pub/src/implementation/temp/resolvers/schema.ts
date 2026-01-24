@@ -40,7 +40,7 @@ export const Imports: signatures.Imports = ($, abort, $l, $p) => _p.deprecated_b
         const p_schema: d_out.Imports.D.schema = _p.deprecated_cc($.entry['schema'], ($) => _p.deprecated_cc(p_schema_set_child.entry, ($) => { // reference constraint ('schema set child')
             switch ($[0]) {
                 case 'schema': return _p.ss($, ($) => $)
-                default: return  _i_generic.abort.state_constraint("set", $, loc, abort)
+                default: return _i_generic.abort.state_constraint("set", $, loc, abort)
             }
         }))
         return {
@@ -187,7 +187,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
             const p_presence = $.entry.presence['state group']
             return {
                 'referent': p_referent,
-                'dictionary': _p.deprecated_cc(p_referent['resulting node'], ($) => { // component constraint (referent)
+                'dictionary': _p.deprecated_cc(p_referent['resulting type'].node, ($) => { // component constraint (referent)
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => $)
                         // default: return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}' @ ${$p['location 2 string'](lookups_loc)}`)
@@ -467,7 +467,7 @@ export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
 
 export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
     const loc = $.location
-    return _p.deprecated_cc($['state group'], ($) => {
+    return _p.deprecated_cc($['state group'], ($): d_out.Type_Node => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($): d_out.Type_Node => ['boolean', null])
             case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.number_ => {
@@ -569,7 +569,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     )
                 }),
             )])
-            case 'list': return _p.ss($, ($) => {
+            case 'list': return _p.ss($, ($): d_out.Type_Node => {
                 const p_type = Type_Node(
                     $.node,
                     abort,
@@ -578,6 +578,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
                 return ['list', {
                     'node': p_type,
+                    'result': _p.optional.not_set()
                 }]
             })
             case 'nothing': return _p.ss($, ($) => ['nothing', null])
@@ -613,7 +614,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     switch ($[0]) {
                         case 'selected': return _p.ss($, ($) => {
                             return ['selected', {
-                                'dictionary': _p.deprecated_cc(p_referent['resulting node'], ($) => { // component constraint (referent)
+                                'dictionary': _p.deprecated_cc(p_referent.path['resulting node'], ($) => { // component constraint (referent)
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $)
                                         default: return _i_generic.abort.state_constraint(
@@ -722,15 +723,17 @@ export const Type_Reference: signatures.Type_Reference = ($, abort, $l, $p) => {
             default: return _p.au($[0])
         }
     })
+    const p_resulting_type = _p.deprecated_cc(x, ($): d_out.Type => {
+        switch ($[0]) {
+            case 'external': return _p.ss($, ($) => $.type.entry)
+            case 'internal': return _p.ss($, ($) => $.entry)
+            default: return _p.au($[0])
+        }
+    })
     return {
         'location': x,
-        'resulting node': _p.deprecated_cc(x, ($): d_out.Type_Node => {
-            switch ($[0]) {
-                case 'external': return _p.ss($, ($) => $.type.entry.node)
-                case 'internal': return _p.ss($, ($) => $.entry.node)
-                default: return _p.au($[0])
-            }
-        })
+        'resulting type': p_resulting_type,
+        'resulting node': p_resulting_type.node,
     }
 }
 
@@ -742,12 +745,27 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
         $l,
         $p,
     )
-    const p_tail_x: d_out.Type_Node_Reference.tail = _p_temp.map_with_state(
+    return {
+        'type location': p_type_location,
+        'path': Type_Node_Path(
+            $.path,
+            abort,
+            null,
+            {
+                'type': p_type_location['resulting type']
+            },
+        ),
+    }
+}
+
+
+export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
+    const p_tail_x: d_out.Type_Node_Path.tail = _p_temp.map_with_state(
         $.tail.list,
-        p_type_location['resulting node'],
-        ($, current): d_out.Type_Node_Reference.tail.L => {
+        $p.type.node,
+        ($, current): d_out.Type_Node_Path.tail.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Reference.tail.L => {
+            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Path.tail.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
@@ -830,7 +848,6 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
         })
     )
     return {
-        'type location': p_type_location,
         'tail': p_tail_x,
         'resulting node': p_tail_x.referred
     }
@@ -1167,7 +1184,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                                     default: return _p.au($[0])
                                                                 }
                                                             }))
-                                                            case 'reference': return _p.ss($, ($) => $.referent['resulting node'])
+                                                            case 'reference': return _p.ss($, ($) => $.referent.path['resulting node'])
                                                             default: return $
                                                         }
                                                     })
@@ -1196,7 +1213,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                                     })
                                                                     case 'set': return _p.ss($, ($) => {
 
-                                                                        if (walk_path_till_end(benchmark['data type']['resulting node']) !== walk_path_till_end($.tail['resulting node'])) {
+                                                                        if (walk_path_till_end(benchmark['data type']['resulting type'].node) !== walk_path_till_end($.tail['resulting node'])) {
                                                                             return _i_generic.abort.same_node_constraint(
                                                                                 "required argument data type",
                                                                                 values_location,
@@ -1218,7 +1235,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                                     abort,
                                                                 )
                                                             }
-                                                            if ($.entry['data type']['resulting node'] !== benchmark['data type']['resulting node']) {
+                                                            if ($.entry['data type']['resulting type'] !== benchmark['data type']['resulting type']) {
                                                                 return _i_generic.abort.same_node_constraint(
                                                                     "parameter data type",
                                                                     values_location,
@@ -1230,7 +1247,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                             if (benchmark.presence[0] !== 'required') {
                                                                 _i_generic.abort.state_constraint("required", benchmark.presence, values_location, abort)
                                                             }
-                                                            if (walk_path_till_end(benchmark['data type']['resulting node']) !== walk_path_till_end($.tail['resulting node'])) {
+                                                            if (walk_path_till_end(benchmark['data type']['resulting type'].node) !== walk_path_till_end($.tail['resulting node'])) {
                                                                 return _i_generic.abort.same_node_constraint(
                                                                     "required argument data type",
                                                                     values_location,
@@ -1748,8 +1765,8 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                         const referent: d_out.Type_Node_Reference = sc_definition.referent
                         const x: d_out.Type_Node = _p.deprecated_cc(sc_definition.type, ($) => {
                             switch ($[0]) {
-                                case 'derived': return _p.ss($, ($) => referent['resulting node'])
-                                case 'selected': return _p.ss($, ($) => _p.deprecated_cc(referent['resulting node'], ($) => {
+                                case 'derived': return _p.ss($, ($) => referent.path['resulting node'])
+                                case 'selected': return _p.ss($, ($) => _p.deprecated_cc(referent.path['resulting node'], ($) => {
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $.node)
                                         default: return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
@@ -2034,11 +2051,11 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                 const pvs = ($: d_out.Possible_Value_Selection) => _p.deprecated_cc($, ($): d_out.Type_Node => {
                     return _p.deprecated_cc($, ($) => {
                         switch ($[0]) {
-                            case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting node'])
+                            case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting type'].node)
                             case 'result': return _p.ss($, ($) => _p.deprecated_cc($, ($) => {
                                 switch ($[0]) {
-                                    case 'state group': return _p.ss($, ($) => $.result['resulting node'])
-                                    case 'optional value': return _p.ss($, ($) => $.result['resulting node'])
+                                    case 'state group': return _p.ss($, ($) => $.result['resulting type'].node)
+                                    case 'optional value': return _p.ss($, ($) => $.result['resulting type'].node)
                                     default: return _p.au($[0])
                                 }
                             }))
@@ -2070,17 +2087,17 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                                 default: return _p.au($[0])
                             }
                         }))
-                        case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting node'])
+                        case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting type'].node)
                         case 'result': return _p.ss($, ($) => _p.deprecated_cc($, ($) => {
                             switch ($[0]) {
-                                case 'state group': return _p.ss($, ($) => $.result['resulting node'])
-                                case 'optional value': return _p.ss($, ($) => $.result['resulting node'])
-                                case 'list': return _p.ss($, ($) => $['list result']['resulting node'])
+                                case 'state group': return _p.ss($, ($) => $.result['resulting type'].node)
+                                case 'optional value': return _p.ss($, ($) => $.result['resulting type'].node)
+                                case 'list': return _p.ss($, ($) => $['list result']['resulting type'].node)
                                 default: return _p.au($[0])
                             }
                         }))
                         case 'list cursor': return _p.ss($, ($) => $p['list cursor'].__decide(
-                            ($) => $['resulting node'],
+                            ($) => $['resulting type'].node,
                             () => _i_generic.abort.is_set_assertion("list cursor", start_loc, abort)
                         ))
                         case 'linked entry': return _p.ss($, ($) => $p['linked entry'].__decide(

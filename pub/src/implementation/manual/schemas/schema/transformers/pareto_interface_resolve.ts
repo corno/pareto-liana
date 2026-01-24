@@ -78,41 +78,40 @@ export const Type_Reference = (
     })
 }
 
-export const Type_Part_Reference = (
-    $: d_in.Type_Node_Reference,
-    $p: {
-        'add dictionary tail': boolean
-    }
-
-): d_out.Type => {
-    const Component_Sub_Selection = (
-        $: d_in.Type_Node_Reference.tail,
-
-    ): _pi.List<d_out.Type.reference.sub_selection.L> => {
-        const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.list.__l_map(($) => _p.sg($._, ($) => {
-            switch ($[0]) {
-                case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
-                case 'group': return _p.ss($, ($) => sh.sub.group($.key))
-                case 'list': return _p.ss($, ($) => sh.sub.list())
-                case 'optional': return _p.ss($, ($) => sh.sub.optional())
-                case 'state group': return _p.ss($, ($) => sh.sub.state_group($.key))
-                default: return _p.au($[0])
-            }
-        }))
-        return $p['add dictionary tail']
-            ? _p.list.nested_literal_old([
-                tail,
-                [
-                    sh.sub.dictionary()
-                ]
-            ])
-            : tail
-    }
-
-    return Type_Reference(
-        $['type location'],
-        {
-            'reference sub part': Component_Sub_Selection($.tail),
+export const Type_Node_Path = (
+    $: d_in.Type_Node_Path_,
+): d_out.Type.reference.sub_selection => {
+    const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.sg($._, ($) => {
+        switch ($[0]) {
+            case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
+            case 'group': return _p.ss($, ($) => sh.sub.group($.key))
+            case 'list': return _p.ss($, ($) => sh.sub.list())
+            case 'optional': return _p.ss($, ($) => sh.sub.optional())
+            case 'state group': return _p.ss($, ($) => sh.sub.state_group($.key))
+            default: return _p.au($[0])
         }
-    )
+    }))
+    return tail
 }
+
+// export const Type_Part_Reference = (
+//     $: d_in.Type_Node_Reference,
+//     $p: {
+//         'add dictionary tail': boolean
+//     }
+
+// ): d_out.Type => {
+
+//     return Type_Reference(
+//         $['type location'],
+//         {
+//             'reference sub part': Type_Node_Path($.path.tail),
+//             _p.list.nested_literal_old([
+//             tail,
+//             [
+//                 sh.sub.dictionary()
+//             ]
+//         ])
+//         }
+//     )
+// }

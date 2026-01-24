@@ -705,10 +705,19 @@ export namespace Type_Node_ {
             
             export type node = Type_Node_
             
+            export namespace result {
+                
+                export type O = null
+                
+            }
+            
+            export type result = _pi.Optional_Value<result.O>
+            
         }
         
         export type list = {
             readonly 'node': list.node
+            readonly 'result': list.result
         }
         
         export type nothing = null
@@ -990,18 +999,19 @@ export namespace Type_Reference_ {
         readonly 'state group': location.state_group
     }
     
+    export type resulting_type = null
+    
     export type resulting_node = null
     
 }
 
 export type Type_Reference_ = {
     readonly 'location': Type_Reference_.location
+    readonly 'resulting type': Type_Reference_.resulting_type
     readonly 'resulting node': Type_Reference_.resulting_node
 }
 
-export namespace Type_Node_Reference_ {
-    
-    export type type_location = Type_Reference_
+export namespace Type_Node_Path_ {
     
     export namespace tail {
         
@@ -1089,10 +1099,22 @@ export namespace Type_Node_Reference_ {
     
 }
 
+export type Type_Node_Path_ = {
+    readonly 'tail': Type_Node_Path_.tail
+    readonly 'resulting node': Type_Node_Path_.resulting_node
+}
+
+export namespace Type_Node_Reference_ {
+    
+    export type type_location = Type_Reference_
+    
+    export type path = Type_Node_Path_
+    
+}
+
 export type Type_Node_Reference_ = {
     readonly 'type location': Type_Node_Reference_.type_location
-    readonly 'tail': Type_Node_Reference_.tail
-    readonly 'resulting node': Type_Node_Reference_.resulting_node
+    readonly 'path': Type_Node_Reference_.path
 }
 
 export namespace Signature_Parameters_ {
@@ -2563,6 +2585,7 @@ export {
     Group_ as Group, 
     Type_Node_ as Type_Node, 
     Type_Reference_ as Type_Reference, 
+    Type_Node_Path_ as Type_Node_Path, 
     Type_Node_Reference_ as Type_Node_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Signature_ as Signature, 

@@ -259,6 +259,22 @@ export type Group_ = (
     context: Group_.I,
 ) => Group_.O
 
+export namespace Type_Reference_ {
+    
+    export type I = i_in.Type_Reference
+    
+    export type O = string
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Type_Reference_ = (
+    context: Type_Reference_.I,
+) => Type_Reference_.O
+
 export namespace Type_Node_ {
     
     export type I = i_in.Type_Node
@@ -275,9 +291,9 @@ export type Type_Node_ = (
     context: Type_Node_.I,
 ) => Type_Node_.O
 
-export namespace Type_Reference_ {
+export namespace Type_Node_Path_ {
     
-    export type I = i_in.Type_Reference
+    export type I = i_in.Type_Node_Path
     
     export type O = string
     
@@ -287,9 +303,9 @@ export namespace Type_Reference_ {
     
 }
 
-export type Type_Reference_ = (
-    context: Type_Reference_.I,
-) => Type_Reference_.O
+export type Type_Node_Path_ = (
+    context: Type_Node_Path_.I,
+) => Type_Node_Path_.O
 
 export namespace Type_Node_Reference_ {
     
@@ -580,8 +596,9 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
     Type_Reference_ as Type_Reference, 
+    Type_Node_ as Type_Node, 
+    Type_Node_Path_ as Type_Node_Path, 
     Type_Node_Reference_ as Type_Node_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Signature_ as Signature, 

@@ -389,6 +389,31 @@ export type Type_Node_Reference_ = (
     },
 ) => Type_Node_Reference_.O
 
+export namespace Type_Node_Path_ {
+    
+    export type I = i_unresolved.Type_Node_Path
+    
+    export type O = i_resolved.Type_Node_Path
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type type_ = i_resolved.Type_
+        
+    }
+    
+}
+
+export type Type_Node_Path_ = (
+    context: Type_Node_Path_.I,
+    abort: _pi.Abort<Type_Node_Path_.E>,
+    lookups: null,
+    parameters: {
+        readonly 'type': Type_Node_Path_.P.type_
+    },
+) => Type_Node_Path_.O
+
 export namespace Node_Resolver_ {
     
     export type I = i_unresolved.Node_Resolver
@@ -1727,6 +1752,7 @@ export {
     Type_ as Type, 
     Type_Reference_ as Type_Reference, 
     Type_Node_Reference_ as Type_Node_Reference, 
+    Type_Node_Path_ as Type_Node_Path, 
     Node_Resolver_ as Node_Resolver, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 

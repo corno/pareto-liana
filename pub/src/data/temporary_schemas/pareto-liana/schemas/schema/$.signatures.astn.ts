@@ -66,6 +66,13 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         ),
         "Type Node Reference": sig.same_as("Type Reference"),
 
+        "Type Node Path": sig.local(
+            {
+                "type": value_parameter("Type"),
+            },
+            {},
+        ),
+
 
         "Node Resolver": sig.local(
             {

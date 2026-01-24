@@ -334,6 +334,72 @@ export namespace Group_ {
 
 export type Group_ = _pi.Dictionary<Group_.D>
 
+export namespace Type_Reference_ {
+    
+    export namespace location {
+        
+        export namespace internal {
+            
+            export type entry = Types_.D
+            
+            export type key = string
+            
+        }
+        
+        export type internal = {
+            readonly 'entry': internal.entry
+            readonly 'key': internal.key
+        }
+        
+        export namespace external {
+            
+            export namespace import_ {
+                
+                export type entry = Imports_.D
+                
+                export type key = string
+                
+            }
+            
+            export type import_ = {
+                readonly 'entry': import_.entry
+                readonly 'key': import_.key
+            }
+            
+            export namespace type_ {
+                
+                export type entry = Types_.D
+                
+                export type key = string
+                
+            }
+            
+            export type type_ = {
+                readonly 'entry': type_.entry
+                readonly 'key': type_.key
+            }
+            
+        }
+        
+        export type external = {
+            readonly 'import': external.import_
+            readonly 'type': external.type_
+        }
+        
+    }
+    
+    export type location = 
+        | readonly ['internal', location.internal]
+        | readonly ['external', location.external]
+    
+    export type resulting_type = Type_
+    
+}
+
+export type Type_Reference_ = {
+    readonly 'location': Type_Reference_.location
+    readonly 'resulting type': Type_Reference_.resulting_type
+}
 export namespace Type_Node_ {
 
     export type boolean_ = null
@@ -415,11 +481,15 @@ export namespace Type_Node_ {
     export namespace list {
 
         export type node = Type_Node_
-
+        export namespace result {
+            export type O = null
+        }
+        export type result = _pi.Optional_Value<result.O>
     }
 
     export type list = {
         readonly 'node': list.node
+        readonly 'result': list.result
     }
 
     export type nothing = null
@@ -559,76 +629,8 @@ export type Type_Node_ =
     | readonly ['state group', Type_Node_.state_group]
     | readonly ['text', Type_Node_.text]
 
-export namespace Type_Reference_ {
-
-    export namespace location {
-
-        export namespace internal {
-
-            export type entry = Types_.D
-
-            export type key = string
-
-        }
-
-        export type internal = {
-            readonly 'entry': internal.entry
-            readonly 'key': internal.key
-        }
-
-        export namespace external {
-
-            export namespace import_ {
-
-                export type entry = Imports_.D
-
-                export type key = string
-
-            }
-
-            export type import_ = {
-                readonly 'entry': import_.entry
-                readonly 'key': import_.key
-            }
-
-            export namespace type_ {
-
-                export type entry = Types_.D
-
-                export type key = string
-
-            }
-
-            export type type_ = {
-                readonly 'entry': type_.entry
-                readonly 'key': type_.key
-            }
-
-        }
-
-        export type external = {
-            readonly 'import': external.import_
-            readonly 'type': external.type_
-        }
-
-    }
-
-    export type location =
-        | readonly ['internal', location.internal]
-        | readonly ['external', location.external]
-
-    export type resulting_node = Type_Node_
-
-}
-
-export type Type_Reference_ = {
-    readonly 'location': Type_Reference_.location
-    readonly 'resulting node': Type_Reference_.resulting_node
-}
-
-export namespace Type_Node_Reference_ {
-
-    export type type_location = Type_Reference_
+export namespace Type_Node_Path_ {
+    
 
     export namespace tail {
 
@@ -688,13 +690,22 @@ export namespace Type_Node_Reference_ {
     }
 
     export type resulting_node = Type_Node_
+    }
 
+export type Type_Node_Path_ = {
+    readonly 'tail': Type_Node_Path_.tail
+    readonly 'resulting node': Type_Node_Path_.resulting_node
+    }
+
+export namespace Type_Node_Reference_ {
+    export type type_location = Type_Reference_
+
+    export type path = Type_Node_Path_
 }
 
 export type Type_Node_Reference_ = {
     readonly 'type location': Type_Node_Reference_.type_location
-    readonly 'tail': Type_Node_Reference_.tail
-    readonly 'resulting node': Type_Node_Reference_.resulting_node
+    readonly 'path': Type_Node_Reference_.path
 }
 
 export namespace Signature_Parameters_ {
@@ -1775,6 +1786,7 @@ export {
     Group_ as Group,
     Type_Node_ as Type_Node,
     Type_Reference_ as Type_Reference,
+    Type_Node_Path_ as Type_Node_Path, 
     Type_Node_Reference_ as Type_Node_Reference,
     Signature_Parameters_ as Signature_Parameters,
     Signature_ as Signature,

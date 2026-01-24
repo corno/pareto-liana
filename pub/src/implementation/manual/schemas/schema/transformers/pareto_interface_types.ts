@@ -201,7 +201,7 @@ export const Type_Node = (
                         : tmp_tnr(
                             referent,
                             {
-                                'tail': Type_Node_Reference__tail(referent.tail),
+                                'tail': Type_Node_Reference__tail(referent.path.tail),
                                 'circular_dependent': false,
                             }
                         )
@@ -217,7 +217,7 @@ export const Type_Node = (
                                     referent,
                                     {
                                         'tail': _p.list.nested_literal_old([
-                                            Type_Node_Reference__tail(referent.tail),
+                                            Type_Node_Reference__tail(referent.path.tail),
                                             [
                                                 sh.sub.dictionary(),
                                             ]
@@ -260,7 +260,7 @@ export const Type_Node = (
 })
 
 const Type_Node_Reference__tail = (
-    $: d_in.Type_Node_Reference.tail,
+    $: d_in.Type_Node_Path.tail,
 
 ): _pi.List<d_out.Type.reference.sub_selection.L> => {
     return $.list.__l_map(($) => _p.sg($._, ($) => {

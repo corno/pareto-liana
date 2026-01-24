@@ -143,6 +143,10 @@ export const $: g_.Types = types(
 
         "Type Node Reference": type(t.group({ //FIXME: inline
             "type location": prop(t.component("Type Reference")),
+            "path": prop(t.component("Type Node Path")),
+        })),
+
+        "Type Node Path": type(t.group({
             "tail": prop(t.list(
                 t.state_group({
                     "dictionary": tstate(t.nothing()),
@@ -153,6 +157,7 @@ export const $: g_.Types = types(
                 }),
             )),
             "resulting node": prop(t.reference_derived("Type Node", [])),
+
         })),
 
         "Type Reference": type(t.group({
@@ -163,7 +168,7 @@ export const $: g_.Types = types(
                     "type": prop(t.reference("Types", [])),
                 })),
             })),
-            "resulting node": prop(t.reference_derived("Type Node", [])),
+            "resulting type": prop(t.reference_derived("Type", [])),
         })),
 
         "Signature Parameters": type(t.group({ //FIME: inline
@@ -288,6 +293,7 @@ export const $: g_.Types = types(
             "group": tstate(t.component("Group")),
             "list": tstate(t.group({
                 "node": prop(t.component_cyclic("Type Node")),
+                "result": prop(t.optional(t.nothing())),
             })),
             "nothing": tstate(t.nothing()),
             "number": tstate(t.state_group({

@@ -121,20 +121,26 @@ export const reference = (
 ): d_schema.Type_Reference => ({
     'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
     'resulting node': null,
+    'resulting type': null,
 })
 
 export const part_reference = (
     type: string,
-    tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+    tail: d_schema.Type_Node_Path.tail.list.L.element[],
 
 ): d_schema.Type_Node_Reference => {
     return {
         'type location': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
             'resulting node': null,
+            'resulting type': null,
         },
-        'tail': _p.wrap_list(tail),
-        'resulting node': null,
+        'path': {
+
+            'tail': _p.wrap_list(tail),
+
+            'resulting node': null,
+        }
     }
 }
 
@@ -187,15 +193,18 @@ export namespace t {
     }
     export const reference_derived = (
         type: string,
-        tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.element[],
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
                 'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
                 'resulting node': null,
+                'resulting type': null,
             },
-            'tail': _p.wrap_list(tail),
-            'resulting node': null
+            'path': {
+                'tail': _p.wrap_list(tail),
+                'resulting node': null
+            }
         }
         return _p.wrap_state_group(['reference', {
             'referent': x,
@@ -205,7 +214,7 @@ export namespace t {
     export const reference_derived_external = (
         imp: string,
         type: string,
-        tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.element[],
 
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
@@ -214,10 +223,13 @@ export namespace t {
                     'import': _p.wrap_reference(imp),
                     'type': _p.wrap_reference(type),
                 }]),
-                'resulting node': null
+                'resulting node': null,
+                'resulting type': null,
             },
-            'tail': _p.wrap_list(tail),
-            'resulting node': null
+            'path': {
+                'tail': _p.wrap_list(tail),
+                'resulting node': null
+            }
         }
 
         return _p.wrap_state_group(['reference', {
@@ -228,7 +240,7 @@ export namespace t {
 
     export const reference = (
         type: string,
-        tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.element[],
         dependency?: "cyclic" | "acyclic",
     ): d_schema.Type_Node => {
 
@@ -248,10 +260,13 @@ export namespace t {
             'referent': {
                 'type location': {
                     'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
-                    'resulting node': null
+                    'resulting node': null,
+                    'resulting type': null,
                 },
-                'tail': _p.wrap_list(tail),
-                'resulting node': null
+                'path': {
+                    'tail': _p.wrap_list(tail),
+                    'resulting node': null
+                }
             },
             'type': p_type,
         }])
@@ -259,7 +274,7 @@ export namespace t {
 
     export const reference_stack = (
         type: string,
-        tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
         const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
@@ -270,10 +285,13 @@ export namespace t {
             'referent': {
                 'type location': {
                     'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
-                    'resulting node': null
+                    'resulting node': null,
+                    'resulting type': null,
                 },
-                'tail': _p.wrap_list(tail),
-                'resulting node': null
+                'path': {
+                    'tail': _p.wrap_list(tail),
+                    'resulting node': null
+                }
             },
             'type': p_type,
         }])
@@ -283,7 +301,7 @@ export namespace t {
         schema: string,
 
         type: string,
-        tail: d_schema.Type_Node_Reference.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.element[],
     ): d_schema.Type_Node => {
 
         const p_type: d_schema.Type_Node.state_group.reference.type_ = _p.wrap_state_group(['selected', {
@@ -297,10 +315,13 @@ export namespace t {
                         'import': _p.wrap_reference(schema),
                         'type': _p.wrap_reference(type),
                     }]),
-                    'resulting node': null
+                    'resulting node': null,
+                    'resulting type': null,
                 },
-                'tail': _p.wrap_list(tail),
-                'resulting node': null
+                'path': {
+                    'tail': _p.wrap_list(tail),
+                    'resulting node': null
+                }
             },
             'type': p_type,
         }])
@@ -324,16 +345,16 @@ export namespace t {
  */
 export namespace tr {
 
-    export const d = (): d_schema.Type_Node_Reference.tail.list.L.element => {
+    export const d = (): d_schema.Type_Node_Path.tail.list.L.element => {
         return _p.wrap_state_group(['dictionary', null])
     }
-    export const g = (grp: string): d_schema.Type_Node_Reference.tail.list.L.element => {
+    export const g = (grp: string): d_schema.Type_Node_Path.tail.list.L.element => {
         return _p.wrap_state_group(['group', _p.wrap_reference(grp)])
     }
-    export const s = (state: string): d_schema.Type_Node_Reference.tail.list.L.element => {
+    export const s = (state: string): d_schema.Type_Node_Path.tail.list.L.element => {
         return _p.wrap_state_group(['state group', _p.wrap_reference(state)])
     }
-    export const o = (): d_schema.Type_Node_Reference.tail.list.L.element => {
+    export const o = (): d_schema.Type_Node_Path.tail.list.L.element => {
         return _p.wrap_state_group(['optional', null])
     }
 }
@@ -388,6 +409,7 @@ export const value_parameter = (
         'data type': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
             'resulting node': null,
+            'resulting type': null,
         },
         'presence': presence === 'optional'
             ? _p.wrap_state_group(['optional', null])
@@ -407,6 +429,7 @@ export const value_parameter_external = (
                 'type': _p.wrap_reference(type),
             }]),
             'resulting node': null,
+            'resulting type': null,
         },
         'presence': presence === 'optional'
             ? _p.wrap_state_group(['optional', null])
@@ -423,6 +446,7 @@ export const lookup_parameter = (
         'referent': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
             'resulting node': null,
+            'resulting type': null,
         },
         'dictionary': null,
         'type': type === 'cyclic'

@@ -69,11 +69,15 @@ export const $: g_.Resolvers = resolvers(
                     })),
                 }
             ),
-            "resulting node": r.reference_derived(gvs.state_group("location", reference("Type Node"), [])),
+            "resulting type": r.reference_derived(gvs.state_group("location", reference("Type"), [])),
         })),
 
         "Type Node Reference": resolver(r.group({
             "type location": r.component("Type Reference", null, null),
+            "path": r.component("Type Node Path", { "type": av.required(gvs.sibling("type location", [vst.component(), vst.group("resulting type"), vst.reference()])) }, {}),
+        })),
+
+        "Type Node Path": resolver(r.group({
             "tail": r.list_with_result(
                 r.state_group({
                     "dictionary": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "dictionary") }, r.nothing()),
@@ -146,6 +150,7 @@ export const $: g_.Resolvers = resolvers(
             )),
             "list": state(r.group({
                 "node": r.component("Type Node", null, null),
+                "result": r.optional(r.nothing()),
             })),
             "nothing": state(r.nothing()),
             "number": state(r.state_group({
@@ -161,7 +166,7 @@ export const $: g_.Resolvers = resolvers(
                 }),
                 "type": r.state_group({
                     "derived": state(r.nothing()),
-                    "selected": state_constrained({ "dictionary": oc.state(gvs.sibling("referent", [vst.component(), vst.group("resulting node"), vst.reference()]), "dictionary") }, r.group({
+                    "selected": state_constrained({ "dictionary": oc.state(gvs.sibling("referent", [vst.component(), vst.group("type location"), vst.component(), vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()]), "dictionary") }, r.group({
                         "dictionary": r.reference_derived(gvs.option_constraint("dictionary", [])),
                         "dependency": r.state_group({
                             "acyclic": state(r.nothing()),
@@ -215,7 +220,7 @@ export const $: g_.Resolvers = resolvers(
                 }, {
                     "types": al.dictionary(gvs.parameter("types", [])),
                 }, {
-                    "dictionary": pc.property([vst.group("resulting node"), vst.reference()], "dictionary"),
+                    "dictionary": pc.property([vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()], "dictionary"),
                 }),
                 "dictionary": r.reference_derived(gvs.component("referent", "dictionary", [])),
                 "type": r.state_group({
