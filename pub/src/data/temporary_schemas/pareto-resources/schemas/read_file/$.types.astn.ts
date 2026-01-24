@@ -15,7 +15,7 @@ export const $: g_.Types = types(
     {
         "Parameters": type(t.component_external("path", "Node Path")),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "file does not exist": tstate(t.nothing()),
             "node is not a file": tstate(t.nothing()),
             "permission denied": tstate(t.nothing()),

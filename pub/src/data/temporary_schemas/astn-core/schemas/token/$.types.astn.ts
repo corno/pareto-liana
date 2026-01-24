@@ -28,7 +28,7 @@ export const $: g_.Types = types(
             "trailing trivia": prop(t.component("Trivia")),
         })),
 
-        "Token Type": type(t.state_group({
+        "Token Type": type(t.state({
             "!": tstate(t.nothing()), //header
 
             "@": tstate(t.nothing()), //include
@@ -73,7 +73,7 @@ export const $: g_.Types = types(
         "Trivia": type(t.group({
             "leading whitespace": prop(t.component("Whitespace")),
             "comments": prop(t.list(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "line": tstate(t.nothing()),
                     "block": tstate(t.nothing()),
                 })),
@@ -83,7 +83,7 @@ export const $: g_.Types = types(
             }))),
         })),
 
-        "Text Type": type(t.state_group({
+        "Text Type": type(t.state({
             "quoted": tstate(t.nothing()),
             "apostrophed": tstate(t.nothing()),
             "undelimited": tstate(t.nothing()),

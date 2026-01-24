@@ -15,14 +15,14 @@ export const $: g_.Types = types(
 
         "Document": type(t.component("Value")),
 
-        "Value": type(t.state_group({
+        "Value": type(t.state({
             "list": tstate(t.list(t.component_cyclic("Value"))),
             "dictionary": tstate(t.dictionary(t.component_cyclic("Value"))),
-            "group": tstate(t.state_group({
+            "group": tstate(t.state({
                 "verbose": tstate(t.dictionary(t.component_cyclic("Value"))),
             })),
             "nothing": tstate(t.nothing()),
-            "optional": tstate(t.state_group({
+            "optional": tstate(t.state({
                 "not set": tstate(t.nothing()),
                 "set": tstate(t.component_cyclic("Value")),
             })),
@@ -32,7 +32,7 @@ export const $: g_.Types = types(
             })),
             "text": tstate(t.group({
                 "value": prop(t.text_global("Text Value")),
-                "delimiter": prop(t.state_group({
+                "delimiter": prop(t.state({
                     "none": tstate(t.nothing()),
                     "quote": tstate(t.nothing()),
                     "backtick": tstate(t.nothing()),

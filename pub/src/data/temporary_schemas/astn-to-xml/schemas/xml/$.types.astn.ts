@@ -35,7 +35,7 @@ export const $: g_.Types = types(
             "self closing": prop(t.boolean()), // whether to render as <tag/> vs <tag></tag>
         })),
 
-        "XML Content": type(t.state_group({
+        "XML Content": type(t.state({
             "empty": tstate(t.group({})),
             "text only": tstate(t.component("XML Text Content")),
             "elements only": tstate(t.list(t.component_cyclic("XML Element"))),
@@ -45,14 +45,14 @@ export const $: g_.Types = types(
         "XML Text Content": type(t.group({
             "value": prop(t.text_local(text('multi line'))),
             "preserve whitespace": prop(t.boolean()), // xml:space="preserve"
-            "escape": prop(t.state_group({
+            "escape": prop(t.state({
                 "auto": tstate(t.group({})), // automatically escape < > & " '
                 "cdata": tstate(t.group({})), // wrap in <![CDATA[...]]>
                 "none": tstate(t.group({})), // assume already escaped
             })),
         })),
 
-        "XML Node": type(t.state_group({
+        "XML Node": type(t.state({
             "element": tstate(t.component_cyclic("XML Element")),
             "text": tstate(t.component("XML Text Content")),
             "comment": tstate(t.group({
@@ -70,7 +70,7 @@ export const $: g_.Types = types(
         })),
 
         // Complete formatting options
-        "XML Formatting Options": type(t.state_group({
+        "XML Formatting Options": type(t.state({
             "compact": tstate(t.nothing()), // no unnecessary whitespace
             "pretty": tstate(t.group({
                 "indent": prop(t.text_local(text('single line'))),

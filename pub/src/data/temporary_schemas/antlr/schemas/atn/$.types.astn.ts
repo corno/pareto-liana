@@ -14,7 +14,7 @@ export const $: g_.Types = types(
     {
         "ATN": type(t.group({
             "grammar name": prop(t.text_global("Text Value")),
-            "grammar type": prop(t.state_group({
+            "grammar type": prop(t.state({
                 "lexer": tstate(t.nothing()),
                 "parser": tstate(t.nothing()),
                 "unknown": tstate(t.nothing()),
@@ -22,13 +22,13 @@ export const $: g_.Types = types(
             "max token type": prop(t.number_global("Integer")),
             "states": prop(t.list(t.group({
                 "state number": prop(t.number_global("State Number")),
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "null": tstate(t.nothing()),
                     "normal": tstate(t.group({
                         "rule index": prop(t.number_global("Integer")),
                         "transitions": prop(t.list(t.group({
                             "target": prop(t.number_global("State Number")),
-                            "type": prop(t.state_group({
+                            "type": prop(t.state({
                                 "atom": tstate(t.group({
                                     "label": prop(t.number_global("Integer")),
                                 })),
@@ -59,7 +59,7 @@ export const $: g_.Types = types(
                                 "unknown": tstate(t.nothing()),
                             })),
                         }))),
-                        "state type": prop(t.state_group({
+                        "state type": prop(t.state({
                             "rule start": tstate(t.group({
                                 "is left recursive rule": prop(t.boolean()),
                                 "stop state number": prop(t.optional(t.number_global("State Number"))),

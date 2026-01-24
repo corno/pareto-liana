@@ -18,7 +18,7 @@ export const $: g_.Types = types(
             "error if not exists": prop(t.boolean()),
         })),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "node does not exist": tstate(t.nothing()),
             "permission denied": tstate(t.nothing()),
         })),

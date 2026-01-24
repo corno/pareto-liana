@@ -13,9 +13,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Types = types(
     {
-        "Git Command": type(t.state_group({
-            "view": tstate(t.state_group({
-                "workspace": tstate(t.state_group({
+        "Git Command": type(t.state({
+            "view": tstate(t.state({
+                "workspace": tstate(t.state({
                     "status": tstate(t.group({ // git status
                         'porcelain': prop(t.optional(t.text_local(text('single line')))),
                         'short': prop(t.boolean()),
@@ -34,7 +34,7 @@ export const $: g_.Types = types(
                         'stat': prop(t.boolean()),
                     })),
                 })),
-                "index": tstate(t.state_group({
+                "index": tstate(t.state({
                     "diff cached": tstate(t.group({ // git diff --cached
                         'name only': prop(t.boolean()),
                         'stat': prop(t.boolean()),
@@ -45,7 +45,7 @@ export const $: g_.Types = types(
                         'short': prop(t.boolean()),
                     })),
                 })),
-                "stash": tstate(t.state_group({
+                "stash": tstate(t.state({
                     "list": tstate(t.group({ // git stash.b.st
                         'oneline': prop(t.boolean()),
                     })),
@@ -54,7 +54,7 @@ export const $: g_.Types = types(
                         'patch': prop(t.boolean()),
                     })),
                 })),
-                "local repo": tstate(t.state_group({
+                "local repo": tstate(t.state({
                     "log": tstate(t.group({ // git log
                         'oneline': prop(t.boolean()),
                         'graph': prop(t.boolean()),
@@ -78,7 +78,7 @@ export const $: g_.Types = types(
                         'oneline': prop(t.boolean()),
                     })),
                 })),
-                "remote repo": tstate(t.state_group({
+                "remote repo": tstate(t.state({
                     "remote": tstate(t.group({ // git remote
                         'verbose': prop(t.boolean()),
                     })),
@@ -92,7 +92,7 @@ export const $: g_.Types = types(
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                     })),
                 })),
-                "configuration": tstate(t.state_group({
+                "configuration": tstate(t.state({
                     "config": tstate(t.group({ // git config
                         'list': prop(t.boolean()),
                         'global': prop(t.boolean()),
@@ -102,8 +102,8 @@ export const $: g_.Types = types(
                     })),
                 })),
             })),
-            "change": tstate(t.state_group({
-                "workspace": tstate(t.state_group({
+            "change": tstate(t.state({
+                "workspace": tstate(t.state({
                     "checkout file": tstate(t.group({ // git checkout -- file (restore workspace)
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'force': prop(t.boolean()),
@@ -120,7 +120,7 @@ export const $: g_.Types = types(
                         'ignored': prop(t.boolean()),
                     })),
                 })),
-                "index": tstate(t.state_group({
+                "index": tstate(t.state({
                     "add": tstate(t.group({ // git add
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'all': prop(t.boolean()),
@@ -139,7 +139,7 @@ export const $: g_.Types = types(
                         'force': prop(t.boolean()),
                     })),
                 })),
-                "stash": tstate(t.state_group({
+                "stash": tstate(t.state({
                     "push": tstate(t.group({ // git stash push
                         'message': prop(t.optional(t.text_local(text('single line')))),
                         'keep index': prop(t.boolean()),
@@ -159,8 +159,8 @@ export const $: g_.Types = types(
                     })),
                     "clear": tstate(t.group({})), // git stash clear
                 })),
-                "local repo": tstate(t.state_group({
-                    "append": tstate(t.state_group({ // ✅ Safe operations - append-only
+                "local repo": tstate(t.state({
+                    "append": tstate(t.state({ // ✅ Safe operations - append-only
                         "commit": tstate(t.group({ // git commit
                             'message': prop(t.text_local(text('single line'))),
                             'amend': prop(t.boolean()), // Note: amend is actually destructive if commit is published
@@ -200,9 +200,9 @@ export const $: g_.Types = types(
                             'branch': prop(t.optional(t.text_local(text('single line')))),
                         })),
                     })),
-                    "destroy": tstate(t.state_group({ // ⚠️ History-rewriting operations - force push required
+                    "destroy": tstate(t.state({ // ⚠️ History-rewriting operations - force push required
                         "reset": tstate(t.group({ // git reset (moves branch pointer backward)
-                            'mode': prop(t.state_group({
+                            'mode': prop(t.state({
                                 'soft': tstate(t.group({})), // keeps workspace and index
                                 'mixed': tstate(t.group({})), // keeps workspace, resets index (default)
                                 'hard': tstate(t.group({})), // ⚠️ DANGEROUS: resets workspace and index
@@ -243,7 +243,7 @@ export const $: g_.Types = types(
                         })),
                     })),
                 })),
-                "remote repo": tstate(t.state_group({
+                "remote repo": tstate(t.state({
                     "fetch": tstate(t.group({ // git fetch
                         'all': prop(t.boolean()),
                         'remote': prop(t.optional(t.text_local(text('single line')))),
@@ -281,7 +281,7 @@ export const $: g_.Types = types(
                         'name': prop(t.text_local(text('single line'))),
                     })),
                 })),
-                "configuration": tstate(t.state_group({
+                "configuration": tstate(t.state({
                     "config set": tstate(t.group({ // git config <key> <value>
                         'key': prop(t.text_local(text('single line'))),
                         'value': prop(t.text_local(text('single line'))),
@@ -300,7 +300,7 @@ export const $: g_.Types = types(
         })),
 
         // Safety metadata types
-        "Safety Level": type(t.state_group({
+        "Safety Level": type(t.state({
             'safe': tstate(t.group({ // ✅ Safe for collaboration
                 'description': prop(t.text_local(text('multi line'))),
             })),

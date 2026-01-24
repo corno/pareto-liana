@@ -16,7 +16,7 @@ export const $: g_.Types = types(
     {
 
         "Directory": type(t.dictionary(
-            t.state_group({
+            t.state({
                 "file": tstate(t.group({
                     "statements": prop(t.component("Statements"))
                 })),
@@ -24,12 +24,12 @@ export const $: g_.Types = types(
             })
         )),
 
-        "Statements": type(t.list(t.state_group({
+        "Statements": type(t.list(t.state({
             "raw": tstate(t.component("Group")),
 
             "block": tstate(t.component_cyclic("Statements")),
             "export": tstate(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "named exports": tstate(t.group({
                         "specifiers": prop(t.list(t.group({
                             "name": prop(t.component("Identifier")),
@@ -41,7 +41,7 @@ export const $: g_.Types = types(
             })),
             "expression": tstate(t.component_cyclic("Expression")),
             "import": tstate(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "namespace": tstate(t.component("Identifier")),
                     "named": tstate(t.group({
                         "specifiers": prop(t.list(t.group({
@@ -62,7 +62,7 @@ export const $: g_.Types = types(
             "switch": tstate(t.group({
                 "expression": prop(t.component_cyclic("Expression")),
                 "clauses": prop(t.list(t.group({
-                    "type": prop(t.state_group({
+                    "type": prop(t.state({
                         "case": tstate(t.component_cyclic("Expression")),
                         "default": tstate(t.nothing()),
                     })),
@@ -84,7 +84,7 @@ export const $: g_.Types = types(
             })),
         }))),
 
-        "Type": type(t.state_group({
+        "Type": type(t.state({
             "boolean": tstate(t.nothing()),
             "function": tstate(t.group({
                 "type parameters": prop(t.list(t.component_cyclic("Type"))),
@@ -117,7 +117,7 @@ export const $: g_.Types = types(
             "void": tstate(t.nothing()),
         })),
 
-        "Expression": type(t.state_group({
+        "Expression": type(t.state({
             "raw": tstate(t.component("Block Part")),
 
             "array literal": tstate(t.list(t.component_cyclic("Expression"))),
@@ -127,7 +127,7 @@ export const $: g_.Types = types(
                     "type": prop(t.optional(t.component_cyclic("Type"))),
                 }))),
                 "return type": prop(t.optional(t.component_cyclic("Type"))),
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "block": tstate(t.component_cyclic("Statements")),
                     "expression": tstate(t.component_cyclic("Expression")),
                 })),
@@ -142,7 +142,7 @@ export const $: g_.Types = types(
             })),
             "compare": tstate(t.group({
                 "left": prop(t.component_cyclic("Expression")),
-                "operator": prop(t.state_group({
+                "operator": prop(t.state({
                     "loosely equal": tstate(t.nothing()),
                     "strictly equal": tstate(t.nothing()),
                     "loosely not equal": tstate(t.nothing()),
@@ -182,7 +182,7 @@ export const $: g_.Types = types(
         })),
 
         "String Literal": type(t.group({
-            "delimiter": prop(t.state_group({
+            "delimiter": prop(t.state({
                 "quote": tstate(t.nothing()),
                 "apostrophe": tstate(t.nothing()),
             })),
@@ -193,7 +193,7 @@ export const $: g_.Types = types(
 
         "Group": type(t.list(t.component("Group Part"))),
 
-        "Group Part": type(t.state_group({
+        "Group Part": type(t.state({
             "nested block": tstate(t.component("Block")),
             "block": tstate(t.text_global("Output")),
             "sub group": tstate(t.component_cyclic("Group")),
@@ -203,7 +203,7 @@ export const $: g_.Types = types(
 
         "Block": type(t.list(t.component("Block Part"))),
 
-        "Block Part": type(t.state_group({
+        "Block Part": type(t.state({
             "snippet": tstate(t.text_global("Output")),
             "indent": tstate(t.component_cyclic("Group")),
             "sub block": tstate(t.component_cyclic("Block")),

@@ -264,7 +264,7 @@ export const Node_Resolver = (
     $: d_in.Node_Resolver,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out_interface.Type.reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L> //can be removed when exupery has type inference
     },
 ): d_out.Expression => _p.sg($, ($) => {
     switch ($[0]) {
@@ -419,7 +419,7 @@ export const Node_Resolver = (
                     _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
-                            sh_i.sub.group(key)
+                            sh.sub.group(key)
                         ]
                     ]),
                 ),
@@ -432,7 +432,7 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh_i.sub.group(key)
+                                    sh.sub.group(key)
                                 ]
                             ]),
                         }
@@ -453,7 +453,7 @@ export const Node_Resolver = (
                         'temp subselection': _p.list.nested_literal_old([
                             $p['temp subselection'],
                             [
-                                sh_i.sub.list()
+                                sh.sub.list()
                             ]
                         ]),
                     }
@@ -472,7 +472,7 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh_i.sub.optional()
+                                    sh.sub.optional()
                                 ]
                             ]),
                         }
@@ -492,7 +492,7 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh_i.sub.state_group(key)
+                                    sh.sub.state(key)
                                 ]
                             ]),
                         }

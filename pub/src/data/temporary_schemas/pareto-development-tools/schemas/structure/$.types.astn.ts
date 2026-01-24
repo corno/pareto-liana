@@ -14,11 +14,11 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
 
-        "Directory": type(t.state_group({
+        "Directory": type(t.state({
             "dictionary": tstate(t.component_cyclic("Directory")),
-            "group": tstate(t.dictionary(t.state_group({
+            "group": tstate(t.dictionary(t.state({
                 "directory": tstate(t.component_cyclic("Directory")),
-                "file": tstate(t.state_group({
+                "file": tstate(t.state({
                     "manual": tstate(t.nothing()),
                     "generated": tstate(t.group({
                         "commit to git": prop(t.boolean())

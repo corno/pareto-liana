@@ -20,7 +20,7 @@ export const $: g_.Types  = types(
             "pre-release identifiers": prop(t.list(t.component("Number or Text"))),
             "build identifiers": prop(t.list(t.text_global("Text Value"))),
         })),
-        "Number or Text": type(t.state_group({
+        "Number or Text": type(t.state({
             "numeric": tstate(t.text_global("Text Value")), //is this correct?
             "alphanumeric": tstate(t.text_global("Text Value")),
         })),

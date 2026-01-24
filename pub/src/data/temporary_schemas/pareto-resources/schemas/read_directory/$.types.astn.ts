@@ -17,7 +17,7 @@ export const $: g_.Types = types(
             "path": prop(t.component_external("path", "Node Path")),
         })),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "directory does not exist": tstate(t.nothing()),
             "node is not a directory": tstate(t.nothing()),
         })),
@@ -33,7 +33,7 @@ export const $: g_.Types = types(
             "path": prop(t.component_external("path", "Node Path")),
         }))),
 
-        "Node Type": type(t.state_group({
+        "Node Type": type(t.state({
             "file": tstate(t.nothing()),
             "directory": tstate(t.nothing()),
             "other": tstate(t.nothing()),

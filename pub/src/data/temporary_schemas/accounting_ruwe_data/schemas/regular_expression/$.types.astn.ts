@@ -18,11 +18,11 @@ export const $: g_.Types = types(
         })),
 
         "Sequence": type(t.list(t.group({
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "literal": tstate(t.text_global("Text Value")),
                 "character class": tstate(t.group({
                     "negated": prop(t.boolean()),
-                    "ranges": prop(t.list(t.state_group({
+                    "ranges": prop(t.list(t.state({
                         "literal": tstate(t.number_global("Character")), //should be a reference to a character in the dictionary
                         "range": tstate(t.group({
                             "from": prop(t.number_global("Character")),
@@ -35,7 +35,7 @@ export const $: g_.Types = types(
                 })),
                 "alternation": tstate(t.list(t.component_cyclic("Sequence"))),
             })),
-            "quantifier": prop(t.optional(t.state_group({
+            "quantifier": prop(t.optional(t.state({
                 "optional": tstate(t.nothing()), // ?
                 "multiple": tstate(t.nothing()), // *
                 "one or more": tstate(t.nothing()), // +

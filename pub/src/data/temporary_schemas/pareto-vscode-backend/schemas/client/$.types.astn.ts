@@ -31,7 +31,7 @@ export const $: g_.Types = types(
             "indent string": prop(t.text_local(text('single line'))),
         })),
 
-        "Text Edit": type(t.state_group({
+        "Text Edit": type(t.state({
             "replace": tstate(t.component("Replace")),
             "delete": tstate(t.group({
                 "range": prop(t.component("Range")),

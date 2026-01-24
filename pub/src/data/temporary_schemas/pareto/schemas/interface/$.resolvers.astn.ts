@@ -13,23 +13,23 @@ export const $: g_.Resolvers = resolvers(
         "Module": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
             "types": r.dictionary(r.state_group({
-                "data": state(r.component("Type", {}, {})),
+                "data": state(r.component("Type Node", {}, {})),
                 "algorithm": state(r.group({
-                    "result": r.component("Type", {}, {}),
-                    "context": r.component("Type", {}, {}),
+                    "result": r.component("Type Node", {}, {}),
+                    "context": r.component("Type Node", {}, {}),
                     "type": r.state_group({
                         "transformer": state(r.group({
                         })),
                         "refiner": state(r.group({
-                            "error": r.optional(r.component("Type", {}, {})),
+                            "error": r.optional(r.component("Type Node", {}, {})),
                             "lookups": r.optional(r.dictionary(r.state_group({
-                                "acyclic": state(r.component("Type", {}, {})),
-                                "cyclic": state(r.component("Type", {}, {})),
-                                "stack": state(r.component("Type", {}, {})),
+                                "acyclic": state(r.component("Type Node", {}, {})),
+                                "cyclic": state(r.component("Type Node", {}, {})),
+                                "stack": state(r.component("Type Node", {}, {})),
                             }))),
                         })),
                     }),
-                    "parameters": r.optional(r.dictionary(r.component("Type", {}, {}))),
+                    "parameters": r.optional(r.dictionary(r.component("Type Node", {}, {}))),
                 })),
             })),
         })),
@@ -46,7 +46,7 @@ export const $: g_.Resolvers = resolvers(
             "tail": r.list(r.text()),
         }))),
 
-        "Type": resolver(r.state_group({
+        "Type Node": resolver(r.state_group({
 
             "boolean": state(r.nothing()),
             "component": state(r.group({
@@ -55,12 +55,12 @@ export const $: g_.Resolvers = resolvers(
                         "import": r.text(),
                         "type": r.text(),
                     })),
-                    "sibling": state(r.text()),
+                    "local": state(r.text()),
                 }),
             })),
-            "dictionary": state(r.component("Type", {}, {})),
-            "group": state(r.dictionary(r.component("Type", {}, {}))),
-            "list": state(r.component("Type", {}, {})),
+            "dictionary": state(r.component("Type Node", {}, {})),
+            "group": state(r.dictionary(r.component("Type Node", {}, {}))),
+            "list": state(r.component("Type Node", {}, {})),
             "nothing": state(r.nothing()),
 
             "number": state(r.state_group({
@@ -70,27 +70,29 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "approximation": state(r.nothing()),
             })),
-            "optional": state(r.component("Type", {}, {})),
-            "reference": state(r.group({
-                "location": r.state_group({
-                    "import": state(r.group({
-                        "import": r.text(),
-                        "type": r.text(),
+            "optional": state(r.component("Type Node", {}, {})),
+            "reference": state(r.state_group({
+                "cyclic": state(r.group({
+                    "sibling": r.text(),
+                })),
+                "acyclic": state(r.group({
+                    "location": r.state_group({
+                        "import": state(r.group({
+                            "import": r.text(),
+                            "type": r.text(),
+                        })),
+                        "local": state(r.text()),
+                    }),
+                    "sub selection": r.list(r.state_group({
+                        "dictionary": state(r.nothing()),
+                        "group": state(r.text()),
+                        "list": state(r.nothing()),
+                        "optional": state(r.nothing()),
+                        "state": state(r.text()),
                     })),
-                    "sibling": state(r.group({
-                        "sibling": r.text(),
-                        "circular dependent": r.boolean(),
-                    })),
-                }),
-                "sub selection": r.list(r.state_group({
-                    "dictionary": state(r.nothing()),
-                    "group": state(r.text()),
-                    "list": state(r.nothing()),
-                    "optional": state(r.nothing()),
-                    "state group": state(r.text()),
                 })),
             })),
-            "state group": state(r.dictionary(r.component("Type", {}, {}))),
+            "state": state(r.dictionary(r.component("Type Node", {}, {}))),
             "text": state(r.nothing()),
         })),
 

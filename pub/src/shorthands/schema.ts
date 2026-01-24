@@ -327,8 +327,8 @@ export namespace t {
             'type': p_type,
         }])
     }
-    export const state_group = (states: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.state_group.state_group.dictionary.D.entry>): d_schema.Type_Node => {
-        return _p.wrap_state_group(['state group', _p.wrap_dictionary(states)])
+    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.state_group.state_group.dictionary.D.entry>): d_schema.Type_Node => {
+        return _p.wrap_state_group(['state group', _p.wrap_dictionary(options)])
     }
     export const text_global = (name: string): d_schema.Type_Node => {
         return _p.wrap_state_group(['text', _p.wrap_state_group(['global', _p.wrap_reference(name)])])

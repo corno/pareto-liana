@@ -16,13 +16,13 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
 
-        "Module Set": type(t.dictionary(t.state_group({
+        "Module Set": type(t.dictionary(t.state({
             "module": tstate(t.component("Module")),
             "set": tstate(t.component_cyclic("Module Set")),
         }))),
 
         "Module": type(t.group({
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "serializer": tstate(t.nothing()),
                 "deserializer": tstate(t.nothing()),
                 "transformer": tstate(t.nothing()),
@@ -31,7 +31,7 @@ export const $: g_.Types = types(
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
                 "tail": prop(t.list(t.text_global("TBD"))),
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "ancestor": tstate(t.group({
                         "dependency": prop(t.text_global("TBD")),
                         "number of steps": prop(t.number_local(n.natural())),
@@ -56,7 +56,7 @@ export const $: g_.Types = types(
 
         "Type Node Reference": type(t.group({
             "type": prop(t.component("Type Reference")),
-            "sub selection": prop(t.list(t.state_group({
+            "sub selection": prop(t.list(t.state({
                 "dictionary": tstate(t.nothing()),
                 "group": tstate(t.text_global("TBD")),
                 "list": tstate(t.nothing()),
@@ -65,8 +65,8 @@ export const $: g_.Types = types(
             }))),
         })),
 
-        "Expression": type(t.state_group({
-            "special": tstate(t.state_group({
+        "Expression": type(t.state({
+            "special": tstate(t.state({
                 "abort": tstate(t.component_cyclic("Expression")),
                 "block": tstate(t.group({
                     "variables": prop(t.dictionary(t.group({
@@ -93,15 +93,15 @@ export const $: g_.Types = types(
                     "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
                 })),
             })),
-            "initialize": tstate(t.state_group({
-                "boolean": tstate(t.state_group({
-                    "literal": tstate(t.state_group({
+            "initialize": tstate(t.state({
+                "boolean": tstate(t.state({
+                    "literal": tstate(t.state({
                         "false": tstate(t.nothing()),
                         "true": tstate(t.nothing()),
                     })),
                     "not": tstate(t.component_cyclic("Selection")),
                 })),
-                "component": tstate(t.state_group({
+                "component": tstate(t.state({
                     "call": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "context": prop(t.component_cyclic("Expression")),
@@ -109,7 +109,7 @@ export const $: g_.Types = types(
                         "abort": prop(t.boolean())
                     })),
                 })),
-                "dictionary": tstate(t.state_group({
+                "dictionary": tstate(t.state({
                     "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
                     "map": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
@@ -117,7 +117,7 @@ export const $: g_.Types = types(
                     })),
                 })),
                 "group": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                "list": tstate(t.state_group({
+                "list": tstate(t.state({
                     "literal": tstate(t.list(t.component_cyclic("Expression"))),
                     "map": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
@@ -125,19 +125,19 @@ export const $: g_.Types = types(
                     })),
                 })),
                 "nothing": tstate(t.nothing()),
-                "number": tstate(t.state_group({
-                    "approximation": tstate(t.state_group({
+                "number": tstate(t.state({
+                    "approximation": tstate(t.state({
                         "literal": tstate(t.number_local(n.approximation(10)))
                     })),
-                    "integer": tstate(t.state_group({
+                    "integer": tstate(t.state({
                         "literal": tstate(t.number_local(n.integer()))
                     })),
-                    "natural": tstate(t.state_group({
+                    "natural": tstate(t.state({
                         "literal": tstate(t.number_local(n.natural()))
                     })),
                 })),
-                "optional": tstate(t.state_group({
-                    "literal": tstate(t.state_group({
+                "optional": tstate(t.state({
+                    "literal": tstate(t.state({
                         "not set": tstate(t.nothing()),
                         "set": tstate(t.component_cyclic("Expression")),
                     })),
@@ -146,15 +146,15 @@ export const $: g_.Types = types(
                         "set handler": prop(t.component_cyclic("Expression"))
                     })),
                 })),
-                "state group": tstate(t.state_group({
+                "state group": tstate(t.state({
                     "literal": tstate(t.group({
                         "state": prop(t.text_global("Identifier")),
                         "value": prop(t.component_cyclic("Expression")),
                     }))
                 })),
-                "text": tstate(t.state_group({
+                "text": tstate(t.state({
                     "literal": tstate(t.group({
-                        "delimiter": prop(t.state_group({
+                        "delimiter": prop(t.state({
                             "backtick": tstate(t.nothing()),
                             "quote": tstate(t.nothing()),
                         })),
@@ -163,7 +163,7 @@ export const $: g_.Types = types(
                 })),
             })),
             "decide": tstate(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "boolean": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
@@ -179,7 +179,7 @@ export const $: g_.Types = types(
                     "state group": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
-                        "type": prop(t.state_group({
+                        "type": prop(t.state({
                             "partial": tstate(t.group({
                                 "cases": prop(t.dictionary(t.component_cyclic("Expression"))),
                                 "default": prop(t.component_cyclic("Expression")),
@@ -194,7 +194,7 @@ export const $: g_.Types = types(
         })),
 
         "Selection": type(t.group({
-            "start": prop(t.state_group({
+            "start": prop(t.state({
                 "implement me": tstate(t.nothing()),
                 "abort deprecated": tstate(t.nothing()),
 
@@ -210,7 +210,7 @@ export const $: g_.Types = types(
                     "key": prop(t.component_cyclic("Selection")),
                     "abort handler": prop(t.component("Abort Expression")),
                 })),
-                "variable": tstate(t.state_group({
+                "variable": tstate(t.state({
                     "local": tstate(t.text_global("TBD")),
                     "imported": tstate(t.group({
                         "import": prop(t.text_global("TBD")),
@@ -222,7 +222,7 @@ export const $: g_.Types = types(
             "tail": prop(t.list(t.text_global("TBD"))),
         })),
 
-        "Abort Expression": type(t.state_group({
+        "Abort Expression": type(t.state({
             "current": tstate(t.nothing()),
             "new": tstate(t.component_cyclic("Expression"))
         }))

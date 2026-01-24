@@ -17,7 +17,7 @@ export const $: g_.Types = types(
         "Null Definition": type(t.nothing()),
         "Number Definition": type(t.nothing()),
         "Object Definition": type(t.group({
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "static": tstate(t.group({
                     "properties": prop(t.dictionary(t.group({
                         "definition": prop(t.component_cyclic("Definition")),
@@ -27,11 +27,11 @@ export const $: g_.Types = types(
                 "dynamic": tstate(t.component_cyclic("Definition")),
             })),
         })),
-        "String Definition": type(t.state_group({
+        "String Definition": type(t.state({
             "any": tstate(t.nothing()),
             "enum": tstate(t.dictionary(t.nothing())),
         })),
-        "Definition": type(t.state_group({
+        "Definition": type(t.state({
             "any": tstate(t.nothing()),
             "any of": tstate(t.group({
                 "array": prop(t.optional(t.component("Array Definition"))),
@@ -59,7 +59,7 @@ export const $: g_.Types = types(
 
         "Errors": type(t.list(t.group({
             "path": prop(t.text_local(text("single line"))),
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "not the right type": tstate(t.group({
                     "expected": prop(t.component("Value Type")),
                     "actual": prop(t.component("Value Type")),
@@ -75,7 +75,7 @@ export const $: g_.Types = types(
             })),
         }))),
 
-        "Value Type": type(t.state_group({
+        "Value Type": type(t.state({
             "array": tstate(t.nothing()),
             "boolean": tstate(t.nothing()),
             "null": tstate(t.nothing()),

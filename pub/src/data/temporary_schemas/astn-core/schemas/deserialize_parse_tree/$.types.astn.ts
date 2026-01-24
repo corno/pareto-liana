@@ -16,13 +16,13 @@ export const $: g_.Types = types(
     {
 
         "Error": type(t.group({
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "lexer": tstate(t.component("Lexer Error")),
                 "parser": tstate(t.component("Parser Error")),
             })),
         })),
 
-        "Lexer Error": type(t.state_group({
+        "Lexer Error": type(t.state({
             "dangling slash": tstate(t.group({
                 "range": prop(t.component_external("token", "Range")),
                 "at end of input": prop(t.boolean()),
@@ -65,7 +65,7 @@ export const $: g_.Types = types(
 
         "Parser Error": type(t.group({
             "expected": prop(t.list(t.component("Expected"))),
-            "cause": prop(t.state_group({
+            "cause": prop(t.state({
                 "missing token": tstate(t.nothing()),
                 "unexpected token": tstate(t.group({
                     "found": prop(t.component_external("token", "Annotated Token")),
@@ -73,7 +73,7 @@ export const $: g_.Types = types(
             })),
         })),
 
-        "Expected": type(t.state_group({
+        "Expected": type(t.state({
             "a text value": tstate(t.nothing()),
             "any value": tstate(t.nothing()),
             "!": tstate(t.nothing()),

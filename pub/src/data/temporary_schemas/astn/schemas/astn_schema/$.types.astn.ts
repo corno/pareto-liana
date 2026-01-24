@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
 
-        "Schema Tree": type(t.state_group({
+        "Schema Tree": type(t.state({
             "set": tstate(t.component("Schemas")),
             "schema": tstate(t.component("Schema")),
         })),
@@ -45,9 +45,9 @@ export const $: g_.Types = types(
             "node": prop(t.component_cyclic("Type Node"))
         })),
 
-        "Type Node": type(t.state_group({
+        "Type Node": type(t.state({
             //"boolean": t.nothing(),
-            "component": tstate(t.state_group({
+            "component": tstate(t.state({
                 "external": tstate(t.group({
                     "import": prop(t.reference("Imports", [])),
                     "type": prop(t.reference("Types", [])),
@@ -63,14 +63,14 @@ export const $: g_.Types = types(
             "nothing": tstate(t.nothing()),
             "optional": tstate(t.component_cyclic("Type Node")),
             "state group": tstate(t.dictionary(t.component_cyclic("Type Node"))),
-            "text": tstate(t.state_group({
+            "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
                 "local": tstate(t.component("Text Type")),
             })),
         })),
 
         "Text Type": type(t.group({
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "multi line": tstate(t.nothing()),
                 "single line": tstate(t.nothing()),
             })),

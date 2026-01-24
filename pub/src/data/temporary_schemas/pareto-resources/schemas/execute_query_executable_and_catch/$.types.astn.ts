@@ -18,14 +18,14 @@ export const $: g_.Types = types(
             "args": prop(t.list(t.text_local(text('single line')))),
         })),
 
-        "Result": type(t.state_group({
+        "Result": type(t.state({
             "success": tstate(t.group({
                 "stdout": prop(t.component_external("terminal output", "Message")),
             })),
             "error": tstate(t.component("Error")),
         })),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "failed to spawn": tstate(t.group({
                 "message": prop(t.component_external("terminal output", "Message")),
             })),

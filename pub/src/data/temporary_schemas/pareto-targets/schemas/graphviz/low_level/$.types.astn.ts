@@ -17,32 +17,32 @@ export const $: g_.Types = types(
 
         "Graph": type(t.group({
             "strict": prop(t.boolean()),
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "graph": tstate(t.nothing()),
                 "digraph": tstate(t.nothing()),
             })),
             "name": prop(t.optional(t.component("ID"))),
             "statements": prop(t.component("Statement List")),
         })),
-        "Statement List": type(t.list(t.state_group({
+        "Statement List": type(t.list(t.state({
             "node": tstate(t.group({
                 "node": prop(t.component("Node ID")),
                 "attribute list": prop(t.component("Attribute List")),
             })),
             "edge": tstate(t.group({
-                "left": prop(t.state_group({
+                "left": prop(t.state({
                     "node": tstate(t.component("Node ID")),
                     "subgraph": tstate(t.component("Subgraph")),
                 })),
                 //the operator (-- or ->) can be derived from the graph type
-                "right": prop(t.list(t.state_group({
+                "right": prop(t.list(t.state({
                     "node": tstate(t.component("Node ID")),
                     "subgraph": tstate(t.component("Subgraph")),
                 }))),
                 "attributes": prop(t.component("Attribute List")),
             })),
             "attribute list": tstate(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "graph": tstate(t.nothing()),
                     "node": tstate(t.nothing()),
                     "edge": tstate(t.nothing()),
@@ -66,7 +66,7 @@ export const $: g_.Types = types(
                 "compass point": prop(t.optional(t.component("ID"))),
             })))
         })),
-        "ID": type(t.state_group({
+        "ID": type(t.state({
             "id": tstate(t.text_global("id")),
             "string": tstate(t.text_global("Text Value")),
             "html": tstate(t.text_global("Text Value")),

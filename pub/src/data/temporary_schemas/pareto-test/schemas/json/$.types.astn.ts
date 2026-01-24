@@ -15,16 +15,16 @@ export const $: g_.Types = types(
 
         "Document": type(t.component("Value")),
 
-        "Value": type(t.state_group({
+        "Value": type(t.state({
             "array": tstate(t.list(t.component_cyclic("Value"))),
-            "object": tstate(t.state_group({
+            "object": tstate(t.state({
                 "key value array": tstate(t.list(t.group({
                     "key": prop(t.text_global("Text Value")),
                     "value": prop(t.component_cyclic("Value"))
                 }))),
                 "dictionary": tstate(t.dictionary(t.component_cyclic("Value"))),
             })),
-            "number": tstate(t.state_group({
+            "number": tstate(t.state({
                 "integer": tstate(t.number_local(n.integer())),
                 "float": tstate(t.number_local(n.approximation(16))),
             })),

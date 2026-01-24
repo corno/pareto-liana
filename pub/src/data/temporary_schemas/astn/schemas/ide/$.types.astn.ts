@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Types = types(
     {
-        "Text Edits": type(t.list(t.state_group({
+        "Text Edits": type(t.list(t.state({
             "insert": tstate(t.group({
                 "location": prop(t.component("Relative Location")),
                 "text": prop(t.text_local(text('single line'))),

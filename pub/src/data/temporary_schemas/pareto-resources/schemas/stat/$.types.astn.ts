@@ -15,13 +15,13 @@ export const $: g_.Types = types(
     {
         "Parameters": type(t.component_external("path", "Node Path")),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "node does not exist": tstate(t.nothing()),
         })),
 
         "Result": type(t.component("Node Type")),
 
-        "Node Type": type(t.state_group({
+        "Node Type": type(t.state({
             "file": tstate(t.nothing()),
             "directory": tstate(t.nothing()),
         })),

@@ -26,7 +26,7 @@ export const $: g_.Types = types(
             }))),
         })),
 
-        "Attributes": type(t.list(t.state_group({
+        "Attributes": type(t.list(t.state({
             "freeform": tstate(t.group({
                 "key": prop(t.text_local(text('single line'))),
                 "value": prop(t.text_local(text('single line'))),
@@ -47,7 +47,7 @@ export const $: g_.Types = types(
             "id": tstate(t.text_local(text('single line'))),
             "class": tstate(t.text_local(text('single line'))),
             "comment": tstate(t.text_local(text('multi line'))),
-            "style": tstate(t.state_group({
+            "style": tstate(t.state({
                 "filled": tstate(t.nothing()),
                 "rounded": tstate(t.nothing()),
                 "bold": tstate(t.nothing()),
@@ -63,7 +63,7 @@ export const $: g_.Types = types(
             })),
 
             //graph only
-            "layout": tstate(t.state_group({
+            "layout": tstate(t.state({
                 "dot": tstate(t.nothing()),
                 "neato": tstate(t.nothing()),
                 "fdp": tstate(t.nothing()),
@@ -72,18 +72,18 @@ export const $: g_.Types = types(
                 "circo": tstate(t.nothing()),
                 "custom": tstate(t.text_local(text('single line'))),
             })),
-            "rankdir": tstate(t.state_group({
+            "rankdir": tstate(t.state({
                 "TB": tstate(t.nothing()),
                 "BT": tstate(t.nothing()),
                 "LR": tstate(t.nothing()),
                 "RL": tstate(t.nothing()),
             })),
             "bgcolor": tstate(t.text_local(text('single line'))),
-            "labelloc": tstate(t.state_group({
+            "labelloc": tstate(t.state({
                 "t": tstate(t.nothing()),
                 "b": tstate(t.nothing()),
             })),
-            "labeljust": tstate(t.state_group({
+            "labeljust": tstate(t.state({
                 "l": tstate(t.nothing()),
                 "c": tstate(t.nothing()),
                 "r": tstate(t.nothing()),
@@ -94,7 +94,7 @@ export const $: g_.Types = types(
             "nodesep": tstate(t.number_local(n.approximation(10))),
             "ranksep": tstate(t.number_local(n.approximation(10))),
             "dpi": tstate(t.number_local(n.approximation(10))),
-            "overlap": tstate(t.state_group({
+            "overlap": tstate(t.state({
                 "true": tstate(t.nothing()),
                 "false": tstate(t.nothing()),
                 "scale": tstate(t.nothing()),
@@ -106,12 +106,12 @@ export const $: g_.Types = types(
                 "ipsep": tstate(t.nothing()),
                 "prism": tstate(t.nothing()),
             })),
-            "pack": tstate(t.state_group({
+            "pack": tstate(t.state({
                 "true": tstate(t.nothing()),
                 "false": tstate(t.nothing()),
                 "custom": tstate(t.number_local(n.natural())),
             })),
-            "packmode": tstate(t.state_group({
+            "packmode": tstate(t.state({
                 "node": tstate(t.nothing()),
                 "clust": tstate(t.nothing()),
                 "graph": tstate(t.nothing()),
@@ -121,20 +121,20 @@ export const $: g_.Types = types(
             "center": tstate(t.boolean()),
             "normalize": tstate(t.boolean()),
             "landscape": tstate(t.boolean()),
-            "outputorder": tstate(t.state_group({
+            "outputorder": tstate(t.state({
                 "breadthfirst": tstate(t.nothing()),
                 "nodesfirst": tstate(t.nothing()),
                 "edgesfirst": tstate(t.nothing()),
             })),
             "charset": tstate(t.text_local(text('single line'))),
-            "clusterrank": tstate(t.state_group({
+            "clusterrank": tstate(t.state({
                 "local": tstate(t.nothing()),
                 "global": tstate(t.nothing()),
                 "none": tstate(t.nothing()),
             })),
 
             //node only
-            "shape": tstate(t.state_group({
+            "shape": tstate(t.state({
                 "box": tstate(t.nothing()),
                 "circle": tstate(t.nothing()),
                 "ellipse": tstate(t.nothing()),
@@ -168,7 +168,7 @@ export const $: g_.Types = types(
             "peripheries": tstate(t.number_local(n.natural())),
             "pin": tstate(t.boolean()),
             "image": tstate(t.text_local(text('single line'))),
-            "imagepos": tstate(t.state_group({
+            "imagepos": tstate(t.state({
                 "tl": tstate(t.nothing()),
                 "tc": tstate(t.nothing()),
                 "tr": tstate(t.nothing()),
@@ -179,7 +179,7 @@ export const $: g_.Types = types(
                 "bc": tstate(t.nothing()),
                 "br": tstate(t.nothing()),
             })),
-            "imagescale": tstate(t.state_group({
+            "imagescale": tstate(t.state({
                 "false": tstate(t.nothing()),
                 "true": tstate(t.nothing()),
                 "width": tstate(t.nothing()),
@@ -193,7 +193,7 @@ export const $: g_.Types = types(
             "margin": tstate(t.text_local(text('single line'))),
 
             //edge only
-            "arrowhead": tstate(t.state_group({
+            "arrowhead": tstate(t.state({
                 "normal": tstate(t.nothing()),
                 "box": tstate(t.nothing()),
                 "crow": tstate(t.nothing()),
@@ -212,7 +212,7 @@ export const $: g_.Types = types(
                 "obox": tstate(t.nothing()),
                 "custom": tstate(t.text_local(text('single line'))),
             })),
-            "arrowtail": tstate(t.state_group({
+            "arrowtail": tstate(t.state({
                 "normal": tstate(t.nothing()),
                 "box": tstate(t.nothing()),
                 "crow": tstate(t.nothing()),
@@ -232,7 +232,7 @@ export const $: g_.Types = types(
                 "custom": tstate(t.text_local(text('single line'))),
             })),
             "arrowsize": tstate(t.number_local(n.approximation(10))),
-            "dir": tstate(t.state_group({
+            "dir": tstate(t.state({
                 "forward": tstate(t.nothing()),
                 "back": tstate(t.nothing()),
                 "both": tstate(t.nothing()),
@@ -251,7 +251,7 @@ export const $: g_.Types = types(
             "minlen": tstate(t.number_local(n.natural())),
             "constraint": tstate(t.boolean()),
             "decorate": tstate(t.boolean()),
-            "headport": tstate(t.state_group({
+            "headport": tstate(t.state({
                 "center": tstate(t.nothing()),
                 "n": tstate(t.nothing()),
                 "ne": tstate(t.nothing()),
@@ -263,7 +263,7 @@ export const $: g_.Types = types(
                 "nw": tstate(t.nothing()),
                 "custom": tstate(t.text_local(text('single line'))),
             })),
-            "tailport": tstate(t.state_group({
+            "tailport": tstate(t.state({
                 "center": tstate(t.nothing()),
                 "n": tstate(t.nothing()),
                 "ne": tstate(t.nothing()),
@@ -297,7 +297,7 @@ export const $: g_.Types = types(
             "tailtooltip": tstate(t.text_local(text('single line'))),
             "labeltooltip": tstate(t.text_local(text('single line'))),
             "radius": tstate(t.number_local(n.approximation(10))),
-            "splines": tstate(t.state_group({
+            "splines": tstate(t.state({
                 "true": tstate(t.nothing()),
                 "false": tstate(t.nothing()),
                 "none": tstate(t.nothing()),

@@ -19,9 +19,9 @@ export const $: g_.Types = types(
             "dependencies": prop(t.list(t.component("Raw Reference"))),
             "entities": prop(t.dictionary(t.group({
                 "id": prop(t.component("ID")),
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "classifier": tstate(t.group({
-                        "type": prop(t.state_group({
+                        "type": prop(t.state({
                             "concept": tstate(t.group({
                                 "abstract": prop(t.text_local(text('single line'))),
                                 "partition": prop(t.text_local(text('single line'))),
@@ -36,14 +36,14 @@ export const $: g_.Types = types(
                         "features": prop(t.dictionary(t.group({
                             "id": prop(t.component("ID")),
                             "optional": prop(t.text_local(text('single line'))),
-                            "type": prop(t.state_group({
+                            "type": prop(t.state({
                                 "property": tstate(t.group({
                                     "type": prop(t.component("Raw Reference")),
                                 })),
                                 "link": tstate(t.group({
                                     "multiple": prop(t.text_local(text('single line'))),
                                     "type": prop(t.component("Raw Reference")),
-                                    "link type": prop(t.state_group({
+                                    "link type": prop(t.state({
                                         "containment": tstate(t.nothing()),
                                         "reference": tstate(t.nothing()),
                                     }))
@@ -51,7 +51,7 @@ export const $: g_.Types = types(
                             })),
                         }))),
                     })),
-                    "datatype": tstate(t.state_group({
+                    "datatype": tstate(t.state({
                         "enumeration": tstate(t.dictionary(t.component("ID"))),
                         // structured data type and primitive type need to be implemented
                     })),

@@ -19,7 +19,7 @@ export const $: g_.Types = types(
             "tokens": prop(t.list(t.component("Annotated Token"))),
         })),
 
-        "Token": type(t.state_group({
+        "Token": type(t.state({
             "<": tstate(t.nothing()),
             "/": tstate(t.nothing()),
             ">": tstate(t.nothing()),
@@ -57,7 +57,7 @@ export const $: g_.Types = types(
         "Content": type(t.group({
             "preceding chardata": prop(t.optional(t.text_global("Text Value"))),
             "nodes": prop(t.list(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "cdata": tstate(t.text_global("Text Value")),
                     "comment": tstate(t.text_global("Text Value")),
                     "element": tstate(t.component_cyclic("Element")),

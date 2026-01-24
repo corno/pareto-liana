@@ -73,7 +73,7 @@ export const Type_Node = (
     $: d_in.Type_Node,
     $p: {
         'type': string
-        'subselection': _pi.List<d_out_interface.Type.reference.sub_selection.L>
+        'subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L>
     },
 ): d_out.Expression => {
     return _p.sg($, ($) => {
@@ -100,7 +100,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh_i.sub.dictionary()
+                                sh.sub.dictionary()
                             ]
                         ]),
                     }
@@ -115,7 +115,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh_i.sub.group(key)
+                                sh.sub.group(key)
                             ]
                         ]),
                     }
@@ -130,7 +130,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh_i.sub.list()
+                                sh.sub.list()
                             ]
                         ]),
                     }
@@ -147,7 +147,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh_i.sub.optional()
+                                sh.sub.optional()
                             ]
                         ]),
                     }
@@ -169,7 +169,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh_i.sub.state_group(key)
+                                sh.sub.state(key)
                             ]
                         ]),
                     }

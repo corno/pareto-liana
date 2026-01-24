@@ -20,7 +20,7 @@ export const $: g_.Types = types(
             "children": prop(t.component("Children")),
         })),
         "Attributes": type(t.dictionary(t.text_global("Text Value"))),
-        "Children": type(t.list(t.state_group({
+        "Children": type(t.list(t.state({
             "cdata": tstate(t.text_global("Text Value")),
             "comment": tstate(t.text_global("Text Value")),
             "element": tstate(t.component_cyclic("Element")),

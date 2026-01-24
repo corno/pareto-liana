@@ -18,7 +18,7 @@ export const $: g_.Types = types(
             "root": prop(t.component("Flow Content")),
         })),
 
-        "Flow Content": type(t.list(t.state_group({
+        "Flow Content": type(t.list(t.state({
             "div": tstate(t.component_cyclic("Flow Content")),
             "dimensioned div": tstate(t.group({
                 "width": prop(t.optional(t.number_local(n.natural()))),
@@ -33,14 +33,14 @@ export const $: g_.Types = types(
                 "classes": prop(t.component("Classes")),
                 "sections": prop(t.list(t.group({
                     "classes": prop(t.component("Classes")),
-                    "type": prop(t.state_group({
+                    "type": prop(t.state({
                         "header": tstate(t.nothing()),
                         "body": tstate(t.nothing()),
                         "footer": tstate(t.nothing()),
                     })),
                     "rows": prop(t.list(t.group({
                         "classes": prop(t.component("Classes")),
-                        "type": prop(t.state_group({
+                        "type": prop(t.state({
                             "th": tstate(t.nothing()),
                             "td": tstate(t.nothing()),
                         })),
@@ -76,7 +76,7 @@ export const $: g_.Types = types(
 
         "Classes": type(t.list(t.text_local(text('single line')))),
 
-        "Phrasing Content": type(t.list(t.state_group({
+        "Phrasing Content": type(t.list(t.state({
             "span": tstate(t.component_cyclic("Phrasing Content")),
             "classified span": tstate(t.group({
                 "classes": prop(t.component("Classes")),

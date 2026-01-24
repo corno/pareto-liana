@@ -19,7 +19,7 @@ export const $: g_.Types = types(
         "Graph": type(t.group({
             "name": prop(t.optional(t.text_global("Text Value"))),
             "tree": prop(t.component("Tree")),
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "undirected": tstate(t.group({
                     "edges": prop(t.list(t.group({
                         "yin": prop(t.component("End Point Specification")),
@@ -42,12 +42,12 @@ export const $: g_.Types = types(
          */
         "Tree": type(t.group({
             "attributes": prop(t.component("Graph Attributes")),
-            "elements": prop(t.dictionary(t.state_group({
+            "elements": prop(t.dictionary(t.state({
                 "node": tstate(t.group({
                     "attributes": prop(t.component("Node Attributes")),
                 })),
                 "sub": tstate(t.group({
-                    "type": prop(t.state_group({
+                    "type": prop(t.state({
                         "group": tstate(t.nothing()),
                         "cluster": tstate(t.nothing()),
                         "subgraph": tstate(t.nothing()),
@@ -69,10 +69,10 @@ export const $: g_.Types = types(
 
 
 
-        "Graph Attributes": type(t.list(t.state_group({
+        "Graph Attributes": type(t.list(t.state({
             "concentrate": tstate(t.boolean()),
             "charset": tstate(t.text_global("Text Value")),
-            "clusterrank": tstate(t.state_group({
+            "clusterrank": tstate(t.state({
                 "none": tstate(t.nothing()),
                 "local": tstate(t.nothing()),
                 "global": tstate(t.nothing()),
@@ -89,7 +89,7 @@ export const $: g_.Types = types(
             "label": tstate(t.text_global("Text Value")),
             "label distance": tstate(t.number_local(n.integer())),
             "label scheme": tstate(t.number_local(n.integer())),
-            "label location": tstate(t.state_group({
+            "label location": tstate(t.state({
                 "top": tstate(t.nothing()),
                 "bottom": tstate(t.nothing()),
             })),
@@ -101,7 +101,7 @@ export const $: g_.Types = types(
             "max iteration": tstate(t.number_local(n.integer())),
             "mclimit": tstate(t.number_local(n.integer())),
             "mindist": tstate(t.number_local(n.integer())),
-            "mode": tstate(t.state_group({
+            "mode": tstate(t.state({
                 "no output": tstate(t.nothing()),
                 "out": tstate(t.nothing()),
                 "in": tstate(t.nothing()),
@@ -110,23 +110,23 @@ export const $: g_.Types = types(
             "newrank": tstate(t.boolean()),
             "no loop": tstate(t.boolean()),
             "normalize": tstate(t.boolean()),
-            "ordering": tstate(t.state_group({
+            "ordering": tstate(t.state({
                 "out": tstate(t.nothing()),
                 "in": tstate(t.nothing()),
                 "in out": tstate(t.nothing()),
             })),
             "orientation": tstate(t.number_local(n.integer())),
-            "output order": tstate(t.state_group({
+            "output order": tstate(t.state({
                 "breadth first": tstate(t.nothing()),
                 "dfs": tstate(t.nothing()),
             })),
             "overlap": tstate(t.text_global("Text Value")),
-            "output mode": tstate(t.state_group({
+            "output mode": tstate(t.state({
                 "edges first": tstate(t.nothing()),
                 "nodes first": tstate(t.nothing()),
             })),
             "pack": tstate(t.boolean()),
-            "pack mode": tstate(t.state_group({
+            "pack mode": tstate(t.state({
                 "node": tstate(t.nothing()),
                 "graph": tstate(t.nothing()),
             })),
@@ -134,7 +134,7 @@ export const $: g_.Types = types(
             "page": tstate(t.text_global("Text Value")),
             "quadtree": tstate(t.boolean()),
             "quantum": tstate(t.number_local(n.integer())),
-            "rankdir": tstate(t.state_group({
+            "rankdir": tstate(t.state({
                 "top bottom": tstate(t.nothing()),
                 "bottom top": tstate(t.nothing()),
                 "left right": tstate(t.nothing()),
@@ -149,7 +149,7 @@ export const $: g_.Types = types(
             "sep": tstate(t.text_global("Text Value")),
             "showboxes": tstate(t.boolean()),
             "size": tstate(t.text_global("Text Value")),
-            "smoothing": tstate(t.state_group({
+            "smoothing": tstate(t.state({
                 "none": tstate(t.nothing()),
                 "spring": tstate(t.nothing()),
                 "triangle": tstate(t.nothing()),
@@ -168,7 +168,7 @@ export const $: g_.Types = types(
             "xlabel": tstate(t.text_global("Text Value")),
         }))),
 
-        "Node Attributes": type(t.list(t.state_group({
+        "Node Attributes": type(t.list(t.state({
             "color": tstate(t.text_global("Text Value")),
             "colorscheme": tstate(t.text_global("Text Value")),
             "comment": tstate(t.text_global("Text Value")),
@@ -182,7 +182,7 @@ export const $: g_.Types = types(
             "height": tstate(t.number_local(n.approximation(10))),
             "image": tstate(t.text_global("Text Value")),
             "label": tstate(t.text_global("Text Value")),
-            "labelloc": tstate(t.state_group({
+            "labelloc": tstate(t.state({
                 "top": tstate(t.nothing()),
                 "center": tstate(t.nothing()),
                 "bottom": tstate(t.nothing()),
@@ -209,7 +209,7 @@ export const $: g_.Types = types(
             "xlp": tstate(t.text_global("Text Value")),
         }))),
 
-        "Edge Attributes": type(t.list(t.state_group({
+        "Edge Attributes": type(t.list(t.state({
             "arrowhead": tstate(t.text_global("Text Value")),
             "arrowsize": tstate(t.number_local(n.approximation(10))),
             "arrowtail": tstate(t.text_global("Text Value")),
@@ -219,7 +219,7 @@ export const $: g_.Types = types(
             "comment": tstate(t.text_global("Text Value")),
             "constraint": tstate(t.boolean()),
             "decorate": tstate(t.boolean()),
-            "dir": tstate(t.state_group({
+            "dir": tstate(t.state({
                 "forward": tstate(t.nothing()),
                 "back": tstate(t.nothing()),
                 "both": tstate(t.nothing()),
@@ -267,7 +267,7 @@ export const $: g_.Types = types(
         /**
          * 
          */
-        "Attribute Value": type(t.state_group({
+        "Attribute Value": type(t.state({
             "number": tstate(t.text_global("Text Value")),
             "string": tstate(t.text_global("Text Value")),
             "html string": tstate(t.text_global("Text Value")),

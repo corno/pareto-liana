@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
 
-        "Diagnostic Severity": type(t.state_group({
+        "Diagnostic Severity": type(t.state({
             "error": tstate(t.group({})),
             "warning": tstate(t.group({})),
             "information": tstate(t.group({})),

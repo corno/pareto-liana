@@ -17,7 +17,7 @@ export const $: g_.Types  = types(
         "Lines": type(t.text_global("Output")),
 
         "Directory": type(t.dictionary(
-            t.state_group({
+            t.state({
                 "file": tstate(t.component("Lines")),
                 "directory": tstate(t.component_cyclic("Directory")),
             })

@@ -36,7 +36,7 @@ export const $: g_.Types = types(
 
         "Context Subpath": type(t.list(t.text_local(text('single line')))),
 
-        "Start": type(t.state_group({
+        "Start": type(t.state({
             "absolute": tstate(t.nothing()),
             "relative": tstate(t.group({
                 "up steps": prop(t.component("Up Steps")),
@@ -47,7 +47,7 @@ export const $: g_.Types = types(
 
         "Non Normalized Path": type(t.group({
             "leading slash": prop(t.boolean()),
-            "segments": prop(t.list(t.state_group({
+            "segments": prop(t.list(t.state({
                 "parent": tstate(t.nothing()),
                 "child": tstate(t.text_local(text('single line'))),
                 "current": tstate(t.nothing()),

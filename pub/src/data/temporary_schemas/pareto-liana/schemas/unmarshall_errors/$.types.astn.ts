@@ -17,10 +17,10 @@ export const $: g_.Types = types(
     {
         "Errors": type(t.list(t.group({
             "range": prop(t.component("Range")),
-            "type": prop(t.state_group({
-                "error": tstate(t.state_group({
+            "type": prop(t.state({
+                "error": tstate(t.state({
                     "invalid value type": tstate(t.group({
-                        "expected": prop(t.list(t.state_group({
+                        "expected": prop(t.list(t.state({
                             "text": tstate(t.nothing()),
                             "verbose group": tstate(t.nothing()),
                             "concise group": tstate(t.nothing()),
@@ -40,7 +40,7 @@ export const $: g_.Types = types(
                     "superfluous property": tstate(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
-                    "state": tstate(t.state_group({
+                    "state": tstate(t.state({
                         "more than 2 elements": tstate(t.nothing()),
                         "missing state name": tstate(t.nothing()),
                         "state is not a string": tstate(t.nothing()),
@@ -52,7 +52,7 @@ export const $: g_.Types = types(
                         "missing data marker": tstate(t.nothing()),
                     })),
                 })),
-                "warning": tstate(t.state_group({
+                "warning": tstate(t.state({
                     "expected apostrophed string": tstate(t.nothing()),
                     "expected quoted string": tstate(t.nothing()),
                     "expected backticked string": tstate(t.nothing()),

@@ -19,18 +19,18 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                 },
                 {
                     "Error": sh.type.data(sh.t.group({
-                        "type": sh.t.state_group({
-                            "constraint": sh.t.state_group({
+                        "type": sh.t.state({
+                            "constraint": sh.t.state({
                                 "state group": sh.t.group({
                                     "expected": sh.t.text(),
                                     "found": sh.t.text(),
                                 }),
-                                "optional value": sh.t.state_group({
+                                "optional value": sh.t.state({
                                     "set": sh.t.text(),
                                 }),
                                 "same node": sh.t.text(),
                             }),
-                            "lookup": sh.t.state_group({
+                            "lookup": sh.t.state({
                                 "cyclic lookup in acyclic context": sh.t.text(),
                                 "optional lookup not set": sh.t.nothing(),
                                 "no such entry": sh.t.text(),

@@ -20,7 +20,7 @@ export const $: g_.Types  = types(
         //     })
         // )),
         "Graphviz Directory": type(t.dictionary(
-            t.state_group({
+            t.state({
                 "file": tstate(t.component_external("graphviz", "Graph")),
                 "directory": tstate(t.component_cyclic("Graphviz Directory")),
             })

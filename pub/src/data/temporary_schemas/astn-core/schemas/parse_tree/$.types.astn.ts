@@ -26,14 +26,14 @@ export const $: g_.Types = types(
         "Content": type(t.component("Value")),
 
         "Value": type(t.group({
-            "type": prop(t.state_group({
-                "concrete": tstate(t.state_group({
+            "type": prop(t.state({
+                "concrete": tstate(t.state({
                     "dictionary": tstate(t.group({
                         "{": prop(t.component("Structural Token")),
                         "entries": prop(t.component("Key Value Pairs")),
                         "}": prop(t.component("Structural Token")),
                     })),
-                    "group": tstate(t.state_group({
+                    "group": tstate(t.state({
                         "concise": tstate(t.group({
                             "<": prop(t.component("Structural Token")),
                             "elements": prop(t.component("Elements")),
@@ -53,7 +53,7 @@ export const $: g_.Types = types(
                     "nothing": tstate(t.group({
                         "~": prop(t.component("Structural Token")),
                     })),
-                    "optional": tstate(t.state_group({
+                    "optional": tstate(t.state({
                         "set": tstate(t.group({
                             "*": prop(t.component("Structural Token")),
                             "value": prop(t.component_cyclic("Value")),
@@ -62,7 +62,7 @@ export const $: g_.Types = types(
                     })),
                     "state group": tstate(t.group({
                         "|": prop(t.component("Structural Token")),
-                        "status": prop(t.state_group({
+                        "status": prop(t.state({
                             "missing data": tstate(t.group({
                                 "#": prop(t.component("Structural Token")),
                             })),

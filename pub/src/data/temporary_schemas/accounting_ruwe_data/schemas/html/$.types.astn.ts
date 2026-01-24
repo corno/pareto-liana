@@ -14,12 +14,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Types = types(
     {
-        "Phrasing content": type(t.list(t.state_group({
+        "Phrasing content": type(t.list(t.state({
             "text": tstate(t.text_global("TBD")),
             "element": tstate(t.component_cyclic("Phrasing")),
         }))),
 
-        "Flow content": type(t.list(t.state_group({
+        "Flow content": type(t.list(t.state({
             "phrase": tstate(t.component("Phrasing content")),
             "flow": tstate(t.component_cyclic("Flow")),
         }))),
@@ -77,7 +77,7 @@ export const $: g_.Types = types(
             "datetime": prop(t.optional(t.text_global("TBD"))),
         })),
 
-        "Embedded": type(t.state_group({
+        "Embedded": type(t.state({
             "audio": tstate(t.group({
                 /*FIXME*/
                 // If the element has a src attribute: zero or more track elements, then transparent, but with no media element descendants.
@@ -167,7 +167,7 @@ export const $: g_.Types = types(
 
         "Template": type(t.component("Flow content")),
 
-        "Script supporting": type(t.state_group({
+        "Script supporting": type(t.state({
             "script": tstate(t.group({
                 /*FIXME*/
                 // src — Address of the resource
@@ -187,7 +187,7 @@ export const $: g_.Types = types(
             "template": tstate(t.component("Template")),
         })),
 
-        "Heading": type(t.state_group({
+        "Heading": type(t.state({
             "h1": tstate(t.component("Phrasing content")),
             "h2": tstate(t.component("Phrasing content")),
             "h3": tstate(t.component("Phrasing content")),
@@ -195,11 +195,11 @@ export const $: g_.Types = types(
             "h5": tstate(t.component("Phrasing content")),
             "h6": tstate(t.component("Phrasing content")),
             "hgroup": tstate(t.group({
-                "content before": prop(t.state_group({
+                "content before": prop(t.state({
                     "p": tstate(t.group({/*FIXME*/ })),
                     "script supporting": tstate(t.component("Script supporting")),
                 })),
-                "heading": prop(t.state_group({
+                "heading": prop(t.state({
                     "h1 ": tstate(t.component("Phrasing content")),
                     "h2": tstate(t.component("Phrasing content")),
                     "h3": tstate(t.component("Phrasing content")),
@@ -207,7 +207,7 @@ export const $: g_.Types = types(
                     "h5": tstate(t.component("Phrasing content")),
                     "h6": tstate(t.component("Phrasing content")),
                 })),
-                "content after": prop(t.state_group({
+                "content after": prop(t.state({
                     "p": tstate(t.group({/*FIXME*/ })),
                     "script supporting": tstate(t.component("Script supporting")),
                 })),
@@ -217,14 +217,14 @@ export const $: g_.Types = types(
         //"Heading content": type(list(component("Heading"))),
         //"Script supporting content": type(list(component("Script supporting"))),
 
-        "Sectioning content": type(t.state_group({
+        "Sectioning content": type(t.state({
             "article": tstate(t.component("Flow content")),
             "aside": tstate(t.component("Flow content")),
             "nav": tstate(t.component("Flow content")),
             "section": tstate(t.component("Flow content")),
         })),
 
-        "Flow": type(t.state_group({
+        "Flow": type(t.state({
             //generic attributes
             "id": tstate(t.group({
                 "id": prop(t.text_global("TBD")),
@@ -240,7 +240,7 @@ export const $: g_.Types = types(
             "script supporting": tstate(t.component("Script supporting")),
             "embedded": tstate(t.component("Embedded")),
             "details": tstate(t.group({
-                "summary": prop(t.list(t.state_group({
+                "summary": prop(t.list(t.state({
                     "phrasing": tstate(t.component("Phrasing content")),
                     "heading": tstate(t.component("Heading")),
                 }))),
@@ -263,7 +263,7 @@ export const $: g_.Types = types(
                 "content": prop(t.component("Flow content")),
             })),
             "div": tstate(t.component("Flow content")),
-            "dl": tstate(t.state_group({
+            "dl": tstate(t.state({
                 "divs": tstate(t.group({/*FIXME*/ })),
                 "dts": tstate(t.group({/*FIXME*/ })),
             })), //description list
@@ -278,7 +278,7 @@ export const $: g_.Types = types(
             "figure": tstate(t.group({
                 "caption": prop(t.optional(t.group({
                     "content": prop(t.component("Flow content")),
-                    "position": prop(t.state_group({
+                    "position": prop(t.state({
                         "top": tstate(t.group({})),
                         "botom": tstate(t.group({})),
                     })),
@@ -321,7 +321,7 @@ export const $: g_.Types = types(
                 "name": prop(t.text_global("TBD")),
                 "content": prop(t.component("Flow content")),
             })),
-            "menu": tstate(t.list(t.state_group({
+            "menu": tstate(t.list(t.state({
                 "li": tstate(t.component("Flow content")),
                 "script supporting": tstate(t.component("Script supporting")),
             }))),
@@ -338,14 +338,14 @@ export const $: g_.Types = types(
             "ol": tstate(t.group({
                 "reversed": prop(t.optional(t.text_global("TBD"))),
                 "start": prop(t.optional(t.text_global("TBD"))),
-                "type": prop(t.optional(t.state_group({
+                "type": prop(t.optional(t.state({
                     "1": tstate(t.group({})),
                     "a": tstate(t.group({})),
                     "A": tstate(t.group({})),
                     "i": tstate(t.group({})),
                     "I": tstate(t.group({})),
                 }))),
-                "content": prop(t.list(t.state_group({
+                "content": prop(t.list(t.state({
                     "li": tstate(t.group({
                         "value": prop(t.text_global("TBD")),
                         "content": prop(t.component("Flow content")),
@@ -367,7 +367,7 @@ export const $: g_.Types = types(
                 //"thead": prop(optional(component("Flow content"))),
 
             })),
-            "ul": tstate(t.list(t.state_group({
+            "ul": tstate(t.list(t.state({
                 "li": tstate(t.component("Flow content")),
                 "script supporting": tstate(t.component("Script supporting")),
             }))),
@@ -375,7 +375,7 @@ export const $: g_.Types = types(
             "sectioning": tstate(t.component("Sectioning content")),
         })),
 
-        "Phrasing": type(t.state_group({
+        "Phrasing": type(t.state({
             //generic attributes
             "id": tstate(t.group({
                 "id": prop(t.text_global("TBD")),
@@ -512,7 +512,7 @@ export const $: g_.Types = types(
                 // name — Name of the element to use for form submission and in the form.elements API
                 // required — Whether the control is required for form submission
                 // size — Size of the control
-                "content": prop(t.list(t.state_group({
+                "content": prop(t.list(t.state({
                     "option": tstate(t.group({/*FIXME*/ })),
                     "optgroup": tstate(t.group({
                         //label
@@ -573,9 +573,9 @@ export const $: g_.Types = types(
                 "value": prop(t.text_global("TBD")),
                 "content": prop(t.component("Phrasing content")),
             })),
-            "datalist": tstate(t.state_group({
+            "datalist": tstate(t.state({
                 "phrasing": tstate(t.component("Phrasing content")),
-                "options": tstate(t.list(t.state_group({
+                "options": tstate(t.list(t.state({
                     "option": tstate(t.group({/*FIXME*/ })),
                     "script supporting": tstate(t.component("Script supporting")),
                 }))),
@@ -648,7 +648,7 @@ export const $: g_.Types = types(
             "strong": tstate(t.component("Phrasing content")),
             "sub": tstate(t.component("Phrasing content")),
             "sup": tstate(t.component("Phrasing content")),
-            "time": tstate(t.state_group({
+            "time": tstate(t.state({
                 "datetime": tstate(t.group({
                     "value": prop(t.text_global("TBD")),
                     "content": prop(t.component("Phrasing content")),

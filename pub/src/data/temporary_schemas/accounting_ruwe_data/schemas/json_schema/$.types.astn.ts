@@ -18,7 +18,7 @@ export const $: g_.Types = types(
             "type": prop(t.component("Type")),
         })),
 
-        "Type": type(t.state_group({
+        "Type": type(t.state({
             "array": tstate(t.group({
                 "minItems": prop(t.optional(t.number_global("amount"))),
                 "maxItems": prop(t.optional(t.number_global("amount"))),

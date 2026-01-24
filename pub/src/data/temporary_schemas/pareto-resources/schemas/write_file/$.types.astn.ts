@@ -18,7 +18,7 @@ export const $: g_.Types = types(
             "data": prop(t.text_local(text('multi line'))),
         })),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "permission denied": tstate(t.nothing()),
         })),
     }

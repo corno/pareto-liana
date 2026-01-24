@@ -19,14 +19,14 @@ export const $: g_.Types  = types(
             t.component("Node")
         )),
 
-        "Node": type(t.state_group({
+        "Node": type(t.state({
             "file": tstate(t.component("Group")),
             "directory": tstate(t.component_cyclic("Directory")),
         })),
 
         "Group": type(t.list(t.component("Group Part"))),
 
-        "Group Part": type(t.state_group({
+        "Group Part": type(t.state({
             "nested block": tstate(t.component("Block")),
             "block": tstate(t.text_global("Output")),
             "sub group": tstate(t.component_cyclic("Group")),
@@ -46,7 +46,7 @@ export const $: g_.Types  = types(
 
         "Block": type(t.list(t.component("Block Part"))),
 
-        "Block Part": type(t.state_group({
+        "Block Part": type(t.state({
             "snippet": tstate(t.text_global("Output")),
             "indent": tstate(t.component_cyclic("Group")),
             "sub block": tstate(t.component_cyclic("Block")),

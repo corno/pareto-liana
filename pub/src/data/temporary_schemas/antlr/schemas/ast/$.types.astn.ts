@@ -15,7 +15,7 @@ export const $: g_.Types = types(
         "Grammar": type(t.group({
             "name": prop(t.text_global("Text Value")),
             "file name": prop(t.optional(t.text_global("Text Value"))),
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "lexer": tstate(t.group({
                     "modes": prop(t.optional(t.dictionary(t.list(t.text_global("Text Value"))))),
                 })),
@@ -48,7 +48,7 @@ export const $: g_.Types = types(
             "label": prop(t.optional(t.text_global("Text Value"))),
         })),
 
-        "Element": type(t.state_group({
+        "Element": type(t.state({
             "token": tstate(t.group({
                 "name": prop(t.text_global("Text Value")),
                 "label": prop(t.optional(t.text_global("Text Value"))),
@@ -74,7 +74,7 @@ export const $: g_.Types = types(
             "wildcard": tstate(t.nothing()),
             "block": tstate(t.group({
                 "alternatives": prop(t.list(t.component_cyclic("Alternative"))),
-                "ebnf": prop(t.optional(t.state_group({
+                "ebnf": prop(t.optional(t.state({
                     "plus": tstate(t.nothing()),
                     "star": tstate(t.nothing()),
                     "optional": tstate(t.nothing()),

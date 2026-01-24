@@ -70,7 +70,7 @@ export const Type_Node = (
     $: d_in.Type_Node,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out_interface.Type.reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out_interface.Type_Node.reference.acyclic.sub_selection.L> //can be removed when exupery has type inference
         'constrained': boolean
     },
 ): d_out.Expression => {

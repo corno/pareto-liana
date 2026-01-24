@@ -14,14 +14,14 @@ export const $: g_.Types = types(
     {
         "Fiscaal": type(t.group({
             "Balans Hoofdcategorieen": prop(t.dictionary(t.group({
-                "Zijde": prop(t.state_group({
+                "Zijde": prop(t.state({
                     "Activa": tstate(t.nothing()),
                     "Passiva": tstate(t.nothing()),
                 })),
                 "Subcategorieen": prop(t.dictionary(t.nothing())),
             }))),
             "Resultaat Hoofdcategorieen": prop(t.dictionary(t.group({
-                "Zijde": prop(t.state_group({
+                "Zijde": prop(t.state({
                     "Kosten": tstate(t.nothing()),
                     "Opbrengsten": tstate(t.nothing()),
                 })),
@@ -34,7 +34,7 @@ export const $: g_.Types = types(
                 "Te corrigeren promillage": prop(t.number_global("Promillage")),
             }))),
             "Balans": prop(t.dictionary(t.group({
-                "Zijde": prop(t.state_group({
+                "Zijde": prop(t.state({
                     "Activa": tstate(t.nothing()),
                     "Passiva": tstate(t.nothing()),
                 })),
@@ -44,7 +44,7 @@ export const $: g_.Types = types(
                 })))
             }))),
             "Resultaat": prop(t.dictionary(t.group({
-                "Zijde": prop(t.state_group({
+                "Zijde": prop(t.state({
                     "Kosten": tstate(t.nothing()),
                     "Opbrengsten": tstate(t.nothing()),
                 })),
@@ -57,7 +57,7 @@ export const $: g_.Types = types(
 
         "Beheer": type(t.group({
             "BTW-categorieen": prop(t.dictionary(t.group({
-                "BTW-heffing": prop(t.state_group({
+                "BTW-heffing": prop(t.state({
                     "Ja": tstate(t.group({
                         "BTW-promillage": prop(t.number_global("Promillage")),
                     }))
@@ -67,7 +67,7 @@ export const $: g_.Types = types(
                 "Balans": prop(t.dictionary(t.group({
                     "Hoofdcategorie": prop(t.reference("Grootboek Categorieen", [tr.g("Balans")])),
                     "Subcategorie": prop(t.reference("Grootboek Categorieen", [tr.g("Balans"), tr.d(), tr.g("Subcategorieen")])),
-                    "Zijde": prop(t.state_group({
+                    "Zijde": prop(t.state({
                         "Activa": tstate(t.nothing()),
                         "Passiva": tstate(t.nothing()),
                     })),
@@ -75,9 +75,9 @@ export const $: g_.Types = types(
                 "Resultaat": prop(t.dictionary(t.group({
                     "Hoofdcategorie": prop(t.reference("Grootboek Categorieen", [tr.g("Resultaat")])),
                     "Subcategorie": prop(t.reference("Grootboek Categorieen", [tr.g("Resultaat"), tr.d(), tr.g("Subcategorieen")])),
-                    "Zijde": prop(t.state_group({
+                    "Zijde": prop(t.state({
                         "Kosten": tstate(t.group({
-                            "Correctie op vennootschapsbelasting": prop(t.state_group({
+                            "Correctie op vennootschapsbelasting": prop(t.state({
                                 "Ja": tstate(t.group({
                                     "Correctietype": prop(t.reference("Grootboek Categorieen", [tr.g("Correctietypes vennootschapsbelasting")])),
                                 })),
@@ -105,7 +105,7 @@ export const $: g_.Types = types(
                 "Projecten": prop(t.dictionary(t.group({
                     "Offertes": prop(t.dictionary(t.group({
                         "Opbrengsten": prop(t.dictionary(t.group({
-                            "Type": prop(t.state_group({
+                            "Type": prop(t.state({
                                 "Project": tstate(t.group({
                                     "Bedrag": prop(t.number_global("Bedrag")),
                                     "Betaaldatum": prop(t.number_global("Datum")),
@@ -121,7 +121,7 @@ export const $: g_.Types = types(
 
         "Grootboekrekeningen": type(t.group({
             "Balans": prop(t.dictionary(t.group({
-                "Type": prop(t.state_group({
+                "Type": prop(t.state({
                     "Bankrekening": tstate(t.nothing()),
                     "Overig": tstate(t.nothing()),
                     "Informele rekening": tstate(t.nothing()),
@@ -141,7 +141,7 @@ export const $: g_.Types = types(
                         "Bestand": prop(t.text_global("Bestandsnaam")),
                     }))),
                     "Omschrijving": prop(t.text_global("Omschrijving")),
-                    "Status": prop(t.state_group({
+                    "Status": prop(t.state({
                         "Aangegeven": tstate(t.group({
                             "Afronding": prop(t.number_global("Bedrag")),
                             "Bedrag": prop(t.number_global("Bedrag")),
@@ -162,7 +162,7 @@ export const $: g_.Types = types(
                 "Informele rekeningen": prop(t.dictionary(t.group({
                     "Beginsaldo": prop(t.number_global("Bedrag")),
                     "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [tr.g("Balans")])),
-                    "Nieuw": prop(t.state_group({
+                    "Nieuw": prop(t.state({
                         "Ja": tstate(t.nothing()),
                         "Nee": tstate(t.group({
                             "Rekening": prop(t.component_cyclic("Verwijzing naar Informele rekening")),
@@ -172,7 +172,7 @@ export const $: g_.Types = types(
                 "Bankrekeningen": prop(t.dictionary(t.group({
                     "Beginsaldo": prop(t.number_global("Bedrag")),
                     "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [tr.g("Balans")])),
-                    "Nieuw": prop(t.state_group({
+                    "Nieuw": prop(t.state({
                         "Ja": tstate(t.nothing()),
                         "Nee": tstate(t.group({
                             "Rekening": prop(t.component_cyclic("Verwijzing naar Bankrekening")),
@@ -192,7 +192,7 @@ export const $: g_.Types = types(
         "Overige balans item": type(t.group({
             "Beginsaldo": prop(t.number_global("Bedrag")),
             "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [tr.g("Balans")])),
-            "Nieuw": prop(t.state_group({
+            "Nieuw": prop(t.state({
                 "Ja": tstate(t.nothing()),
                 "Nee": tstate(t.group({
                     "Balans item": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Overige balans items")])),
@@ -205,13 +205,13 @@ export const $: g_.Types = types(
 
         "Handelstransacties": type(t.group({
             "Inkopen": prop(t.dictionary(t.group({
-                "Afhandeling": prop(t.state_group({
+                "Afhandeling": prop(t.state({
                     "Mutaties": tstate(t.nothing()),
                     "Rekening courant": tstate(t.group({
                         "Rekening courant": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Informele rekeningen")])),
                     })),
                 })),
-                "BTW-regime": prop(t.state_group({
+                "BTW-regime": prop(t.state({
                     "Binnenland: heffing verlegd": tstate(t.nothing()),
                     "Geen BTW van toepassing": tstate(t.nothing()),
                     "Import van buiten de EU": tstate(t.nothing()),
@@ -220,7 +220,7 @@ export const $: g_.Types = types(
                         "BTW-periode": prop(t.reference("Jaarbeheer", [tr.g("Resultaat"), tr.g("BTW periodes")])),
                     })),
                 })),
-                "Brondocument": prop(t.state_group({
+                "Brondocument": prop(t.state({
                     "Toegevoegd": tstate(t.group({
                         "Document": prop(t.text_global("Bestandsnaam")),
                     })),
@@ -230,14 +230,14 @@ export const $: g_.Types = types(
                 })),
                 "Datum": prop(t.number_global("Datum")),
                 "Regels": prop(t.dictionary(t.group({
-                    "Bedrag": prop(t.state_group({
+                    "Bedrag": prop(t.state({
                         "Bekend": tstate(t.group({
                             "BTW-bedrag": prop(t.number_global("Bedrag")),
                             "Bedrag inclusief geheven BTW": prop(t.number_global("Bedrag")),
                         }))
                     })),
                     "Omschrijving": prop(t.text_global("Omschrijving")),
-                    "Type": prop(t.state_group({
+                    "Type": prop(t.state({
                         "Balans": tstate(t.group({
                             "Balans item": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Overige balans items")])),
                         })),
@@ -246,7 +246,7 @@ export const $: g_.Types = types(
                         })),
                     })),
                 }))),
-                "Type": prop(t.state_group({
+                "Type": prop(t.state({
                     "Bonnetje": tstate(t.nothing()),
                     "Inkoop (met crediteur)": tstate(t.group({
                         "Crediteur": prop(t.reference("Beheer", [tr.g("Leveranciers")])),
@@ -262,7 +262,7 @@ export const $: g_.Types = types(
                 })),
             }))),
             "Verkopen": prop(t.dictionary(t.group({
-                "Afhandeling": prop(t.state_group({
+                "Afhandeling": prop(t.state({
                     "Mutaties": tstate(t.nothing()),
                     "Rekening courant": tstate(t.group({
                         "Rekening courant": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Informele rekeningen")])),
@@ -270,13 +270,13 @@ export const $: g_.Types = types(
                 })),
                 "Betalingstermijn": prop(t.number_global("Dagen")),
                 "BTW-periode": prop(t.reference("Jaarbeheer", [tr.g("Resultaat"), tr.g("BTW periodes")])),
-                "Brondocument": prop(t.state_group({
+                "Brondocument": prop(t.state({
                     "Toegevoegd": tstate(t.group({
                         "Document": prop(t.text_global("Bestandsnaam"))
                     })),
                 })),
                 "Debiteur": prop(t.reference("Beheer", [tr.g("Klanten")])),
-                "Contracttype": prop(t.state_group({
+                "Contracttype": prop(t.state({
                     "Project": tstate(t.group({
                         "Project": prop(t.reference("Beheer", [tr.g("Klanten"), tr.d(), tr.g("Projecten")])),
                         "Offerte": prop(t.reference("Beheer", [tr.g("Klanten"), tr.d(), tr.g("Projecten"), tr.d(), tr.g("Offertes")])),
@@ -287,7 +287,7 @@ export const $: g_.Types = types(
                 })),
                 "Datum": prop(t.number_global("Datum")),
                 "Regels": prop(t.dictionary(t.group({
-                    "BTW-regime": prop(t.state_group({
+                    "BTW-regime": prop(t.state({
                         "Intracommunautair": tstate(t.nothing()),
                         "Standaard": tstate(t.group({
                             "BTW-categorie": prop(t.reference("Beheer", [tr.g("BTW-categorieen")])),
@@ -295,7 +295,7 @@ export const $: g_.Types = types(
                         "Binnenland: heffing verlegd": tstate(t.nothing()),
                     })),
                     "Bedrag exclusief BTW": prop(t.number_global("Bedrag")),
-                    "Contracttype": prop(t.state_group({
+                    "Contracttype": prop(t.state({
                         "Project": tstate(t.group({
                             "Opbrengst": prop(t.reference("Beheer", [tr.g("Klanten"), tr.d(), tr.g("Projecten"), tr.d(), tr.g("Offertes"), tr.d(), tr.g("Opbrengsten")])),
                         })),
@@ -305,7 +305,7 @@ export const $: g_.Types = types(
                         })),
                     })),
                     "Omschrijving": prop(t.text_global("Omschrijving")),
-                    "Type": prop(t.state_group({
+                    "Type": prop(t.state({
                         "Opbrengsten": tstate(t.group({
                             "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [tr.g("Resultaat")])),
                         })),
@@ -320,18 +320,18 @@ export const $: g_.Types = types(
         "Mutaties": type(t.group({
             "Verrekenpost mutaties": prop(t.dictionary(t.dictionary(t.group({
                 "Bedrag": prop(t.number_global("Bedrag")),
-                "Afhandeling": prop(t.state_group({
+                "Afhandeling": prop(t.state({
                     "Resultaat": tstate(t.component_cyclic("Balans Resultaat Mutatie")),
-                    "Balans": tstate(t.state_group({
+                    "Balans": tstate(t.state({
                         "Informele rekening": tstate(t.group({
                             "Informele rekening": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Informele rekeningen")])),
                         })),
                     }))
                 }))
             })))),
-            "Bankrekening Mutatie Verwerkingen": prop(t.dictionary(t.dictionary(t.state_group({
+            "Bankrekening Mutatie Verwerkingen": prop(t.dictionary(t.dictionary(t.state({
                 "Resultaat": tstate(t.component_cyclic("Balans Resultaat Mutatie")),
-                "Balans": tstate(t.state_group({
+                "Balans": tstate(t.state({
                     "Informele rekening": tstate(t.group({
                         "Informele rekening": prop(t.reference("Jaarbeheer", [tr.g("Balans"), tr.g("Informele rekeningen")])),
                     })),
@@ -350,7 +350,7 @@ export const $: g_.Types = types(
 
         "Balans Resultaat Mutatie": type(t.group({
             "Jaar": prop(t.optional(t.reference("Jaren", []))),
-            "type": prop(t.state_group({
+            "type": prop(t.state({
                 "Inkoop": tstate(t.reference("Handelstransacties", [tr.g("Inkopen")])),
                 "Verkoop": tstate(t.reference("Handelstransacties", [tr.g("Verkopen")])),
                 "BTW-periode": tstate(t.reference("Jaarbeheer", [tr.g("Resultaat"), tr.g("BTW periodes")])),
@@ -358,7 +358,7 @@ export const $: g_.Types = types(
         })),
 
         "Jaren": type(t.dictionary(t.group({
-            "Afgesloten": prop(t.state_group({
+            "Afgesloten": prop(t.state({
                 "Ja": tstate(t.nothing()),
                 "Nee": tstate(t.nothing()),
             })),
@@ -370,7 +370,7 @@ export const $: g_.Types = types(
             "Mutaties": prop(t.component("Mutaties")),
         }))),
 
-        "Eerste boekjaar": type(t.state_group({
+        "Eerste boekjaar": type(t.state({
             "Ja": tstate(t.nothing()),
             "Nee": tstate(t.group({
                 "Vorig boekjaar": prop(t.reference("Jaren", [])),

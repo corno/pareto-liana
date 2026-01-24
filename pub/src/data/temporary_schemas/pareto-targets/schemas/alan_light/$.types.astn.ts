@@ -39,7 +39,7 @@ export const $: g_.Types  = types(
 
         "Node": type(t.group({
             "properties": prop(t.dictionary(t.group({
-                "type": prop(t.state_group({
+                "type": prop(t.state({
                     "collection": tstate(t.group({
                         "node": prop(t.component_cyclic("Node")),
                         "key": prop(t.component("Identifier")),

@@ -23,7 +23,7 @@ export const $: g_.Types = types(
             })),
         })),
 
-        "Error": type(t.state_group({
+        "Error": type(t.state({
             "source does not exist": tstate(t.nothing()),
             "node is not a file": tstate(t.nothing()),
             "permission denied": tstate(t.nothing()),
