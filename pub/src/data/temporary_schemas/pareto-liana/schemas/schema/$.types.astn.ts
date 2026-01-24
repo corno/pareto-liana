@@ -147,7 +147,7 @@ export const $: g_.Types = types(
         })),
 
         "Type Node Path": type(t.group({
-            "tail": prop(t.list(
+            "tail": prop(t.path(
                 t.state_group({
                     "dictionary": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),
@@ -198,7 +198,7 @@ export const $: g_.Types = types(
         })),
 
         "Relative Value Selection": type(t.group({
-            "path": prop(t.list(
+            "path": prop(t.path(
                 t.state_group({
                     "component": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),

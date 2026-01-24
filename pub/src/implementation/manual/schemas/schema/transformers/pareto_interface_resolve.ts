@@ -81,7 +81,7 @@ export const Type_Reference = (
 export const Type_Node_Path = (
     $: d_in.Type_Node_Path_,
 ): d_out.Type.reference.sub_selection => {
-    const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.sg($._, ($) => {
+    const tail: _pi.List<d_out.Type.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.sg($.element, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))

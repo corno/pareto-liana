@@ -608,6 +608,84 @@ export type Group_ = {
     readonly 'dictionary': Group_.dictionary
 }
 
+export namespace Type_Reference_ {
+    
+    export namespace location {
+        
+        export type location = i__location.Location
+        
+        export namespace state_group {
+            
+            export namespace internal {
+                
+                export type location = i__location.Location
+                
+                export type key = string
+                
+            }
+            
+            export type internal = {
+                readonly 'location': internal.location
+                readonly 'key': internal.key
+            }
+            
+            export namespace external {
+                
+                export namespace import_ {
+                    
+                    export type location = i__location.Location
+                    
+                    export type key = string
+                    
+                }
+                
+                export type import_ = {
+                    readonly 'location': import_.location
+                    readonly 'key': import_.key
+                }
+                
+                export namespace type_ {
+                    
+                    export type location = i__location.Location
+                    
+                    export type key = string
+                    
+                }
+                
+                export type type_ = {
+                    readonly 'location': type_.location
+                    readonly 'key': type_.key
+                }
+                
+            }
+            
+            export type external = {
+                readonly 'import': external.import_
+                readonly 'type': external.type_
+            }
+            
+        }
+        
+        export type state_group = 
+            | readonly ['internal', state_group.internal]
+            | readonly ['external', state_group.external]
+        
+    }
+    
+    export type location = {
+        readonly 'location': location.location
+        readonly 'state group': location.state_group
+    }
+    
+    export type resulting_type = null
+    
+}
+
+export type Type_Reference_ = {
+    readonly 'location': Type_Reference_.location
+    readonly 'resulting type': Type_Reference_.resulting_type
+}
+
 export namespace Type_Node_ {
     
     export type location = i__location.Location
@@ -928,87 +1006,6 @@ export namespace Type_Node_ {
 export type Type_Node_ = {
     readonly 'location': Type_Node_.location
     readonly 'state group': Type_Node_.state_group
-}
-
-export namespace Type_Reference_ {
-    
-    export namespace location {
-        
-        export type location = i__location.Location
-        
-        export namespace state_group {
-            
-            export namespace internal {
-                
-                export type location = i__location.Location
-                
-                export type key = string
-                
-            }
-            
-            export type internal = {
-                readonly 'location': internal.location
-                readonly 'key': internal.key
-            }
-            
-            export namespace external {
-                
-                export namespace import_ {
-                    
-                    export type location = i__location.Location
-                    
-                    export type key = string
-                    
-                }
-                
-                export type import_ = {
-                    readonly 'location': import_.location
-                    readonly 'key': import_.key
-                }
-                
-                export namespace type_ {
-                    
-                    export type location = i__location.Location
-                    
-                    export type key = string
-                    
-                }
-                
-                export type type_ = {
-                    readonly 'location': type_.location
-                    readonly 'key': type_.key
-                }
-                
-            }
-            
-            export type external = {
-                readonly 'import': external.import_
-                readonly 'type': external.type_
-            }
-            
-        }
-        
-        export type state_group = 
-            | readonly ['internal', state_group.internal]
-            | readonly ['external', state_group.external]
-        
-    }
-    
-    export type location = {
-        readonly 'location': location.location
-        readonly 'state group': location.state_group
-    }
-    
-    export type resulting_type = null
-    
-    export type resulting_node = null
-    
-}
-
-export type Type_Reference_ = {
-    readonly 'location': Type_Reference_.location
-    readonly 'resulting type': Type_Reference_.resulting_type
-    readonly 'resulting node': Type_Reference_.resulting_node
 }
 
 export namespace Type_Node_Path_ {
@@ -2583,8 +2580,8 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Type_Node_ as Type_Node, 
     Type_Reference_ as Type_Reference, 
+    Type_Node_ as Type_Node, 
     Type_Node_Path_ as Type_Node_Path, 
     Type_Node_Reference_ as Type_Node_Reference, 
     Signature_Parameters_ as Signature_Parameters, 

@@ -578,7 +578,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
                 return ['list', {
                     'node': p_type,
-                    'result': _p.optional.not_set()
+                    'result': $.result.__o_map(($) => null)
                 }]
             })
             case 'nothing': return _p.ss($, ($) => ['nothing', null])
@@ -763,9 +763,9 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
     const p_tail_x: d_out.Type_Node_Path.tail = _p_temp.map_with_state(
         $.tail.list,
         $p.type.node,
-        ($, current): d_out.Type_Node_Path.tail.L => {
+        ($, current): d_out.Type_Node_Path.tail.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Path.tail.L => {
+            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Path.tail.list.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
@@ -775,8 +775,8 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            '_': ['dictionary', null],
-                            'referred': sc_definition.node
+                            'element': ['dictionary', null],
+                            'result': sc_definition.node
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
@@ -792,8 +792,8 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            '_': ['group', p_child],
-                            'referred': p_child.entry.node
+                            'element': ['group', p_child],
+                            'result': p_child.entry.node
                         }
                     })
                     case 'list': return _p.ss($, ($) => {
@@ -804,8 +804,8 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            '_': ['list', null],
-                            'referred': sc_definition.node
+                            'element': ['list', null],
+                            'result': sc_definition.node
                         }
                     })
                     case 'optional': return _p.ss($, ($) => {
@@ -816,8 +816,8 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            '_': ['optional', null],
-                            'referred': sc_definition
+                            'element': ['optional', null],
+                            'result': sc_definition
                         }
                     })
                     case 'state group': return _p.ss($, ($) => {
@@ -833,23 +833,23 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            '_': ['state group', p_child],
-                            'referred': p_child.entry.node
+                            'element': ['state group', p_child],
+                            'result': p_child.entry.node
                         }
                     })
                     default: return _p.au($[0])
                 }
             })
         },
-        ($, current) => $.referred,
+        ($, current) => $.result,
         (list, result) => ({
             'list': list,
-            'referred': result,
+            'result': result,
         })
     )
     return {
         'tail': p_tail_x,
-        'resulting node': p_tail_x.referred
+        'resulting node': p_tail_x.result
     }
 }
 
@@ -1713,9 +1713,9 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
     const p_path: d_out.Relative_Value_Selection.path = _p_temp.map_with_state(
         $.path.list,
         $p.node,
-        ($, current): d_out.Relative_Value_Selection.path.L => {
+        ($, current): d_out.Relative_Value_Selection.path.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element['state group'], ($): d_out.Relative_Value_Selection.path.L => {
+            return _p.deprecated_cc($.element['state group'], ($): d_out.Relative_Value_Selection.path.list.L => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
 
@@ -1726,8 +1726,8 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             return $[1]
                         })
                         return {
-                            '_': ['component', null],
-                            'referred': _p.deprecated_cc(sc_definition, ($) => {
+                            'element': ['component', null],
+                            'result': _p.deprecated_cc(sc_definition, ($) => {
                                 switch ($[0]) {
                                     case 'external': return _p.ss($, ($) => $.type.entry.node)
                                     case 'internal': return _p.ss($, ($) => $.entry.node)
@@ -1750,11 +1750,11 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             abort,
                         )
                         return {
-                            '_': ['group', p_child],
-                            'referred': p_child.entry.node
+                            'element': ['group', p_child],
+                            'result': p_child.entry.node
                         }
                     })
-                    case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.L => {
+                    case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.list.L => {
 
                         const sc_definition: d_out.Type_Node.reference = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'reference') {
@@ -1776,25 +1776,25 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             }
                         })
                         return {
-                            '_': ['reference', {
+                            'element': ['reference', {
                                 'definition': sc_definition
                             }],
-                            'referred': x
+                            'result': x
                         }
                     })
                     default: return _p.au($[0])
                 }
             })
         },
-        ($) => $.referred,
+        ($) => $.result,
         (list, result) => ({
             'list': list,
-            'referred': result,
+            'result': result,
         }),
     )
     return {
         'path': p_path,
-        'resulting node': p_path.referred, // list result
+        'resulting node': p_path.result, // list result
     }
 })
 

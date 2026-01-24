@@ -135,7 +135,7 @@ export const Guaranteed_Value_Selection = (
     const tail = (): _pi.List<d_out.Selection.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
             $.tail.path.list,
-            ($) => _p.sg($._, ($): _pi.List<d_out.Selection.tail.L> => {
+            ($) => _p.sg($.element, ($): _pi.List<d_out.Selection.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
                     case 'group': return _p.ss($, ($) => _p.list.literal([$.key]))

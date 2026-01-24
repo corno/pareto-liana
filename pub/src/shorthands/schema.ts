@@ -2,7 +2,6 @@ import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
 import * as _pi from 'pareto-core/dist/interface'
 
 
-
 import * as d_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
 
 /**
@@ -120,7 +119,6 @@ export const reference = (
     type: string,
 ): d_schema.Type_Reference => ({
     'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
-    'resulting node': null,
     'resulting type': null,
 })
 
@@ -132,7 +130,6 @@ export const part_reference = (
     return {
         'type location': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
-            'resulting node': null,
             'resulting type': null,
         },
         'path': {
@@ -179,6 +176,12 @@ export namespace t {
             'result': _p.optional.not_set(),
         }])
     }
+    export const path = (type: d_schema.Type_Node): d_schema.Type_Node => {
+        return _p.wrap_state_group(['list', {
+            'node': type,
+            'result': _p.optional.set(null),
+        }])
+    }
     export const nothing = (): d_schema.Type_Node => {
         return _p.wrap_state_group(['nothing', null])
     }
@@ -198,7 +201,6 @@ export namespace t {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
                 'location': _p.wrap_state_group(['internal', _p.wrap_reference(type)]),
-                'resulting node': null,
                 'resulting type': null,
             },
             'path': {
@@ -223,7 +225,6 @@ export namespace t {
                     'import': _p.wrap_reference(imp),
                     'type': _p.wrap_reference(type),
                 }]),
-                'resulting node': null,
                 'resulting type': null,
             },
             'path': {
@@ -408,7 +409,6 @@ export const value_parameter = (
     return {
         'data type': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
-            'resulting node': null,
             'resulting type': null,
         },
         'presence': presence === 'optional'
@@ -428,7 +428,6 @@ export const value_parameter_external = (
                 'import': _p.wrap_reference(imp),
                 'type': _p.wrap_reference(type),
             }]),
-            'resulting node': null,
             'resulting type': null,
         },
         'presence': presence === 'optional'
@@ -445,7 +444,6 @@ export const lookup_parameter = (
     return {
         'referent': {
             'location': _p.wrap_state_group(['internal', _p.wrap_reference(name)]),
-            'resulting node': null,
             'resulting type': null,
         },
         'dictionary': null,
