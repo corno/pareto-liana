@@ -416,10 +416,15 @@ export const $: g_.Resolvers = resolvers(
         "Constraint": resolver(r.group({
             "selection": r.component("Relative Value Selection", null, null),
             "type": r.state_group({
-                "state": state_constrained({ "state group": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state group") }, r.group({
-                    "selected state group": r.reference_derived(gvs.option_constraint("state group", [])),
-                    "state": r.reference(gvs.dictionary(gvs.sibling("selected state group", [vst.reference()]))),
-                })),
+                "state": state_constrained(
+                    {
+                        "state group": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state group")
+                    },
+                    r.group({
+                        "selected state group": r.reference_derived(gvs.option_constraint("state group", [])),
+                        "state": r.reference(gvs.dictionary(gvs.sibling("selected state group", [vst.reference()]))),
+                    })
+                ),
                 "optional value": state_constrained({ "optional": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state group") }, r.group({
                     "selected optional value": r.reference_derived(gvs.option_constraint("optional", [])),
                 })),
@@ -669,7 +674,7 @@ export const $: g_.Resolvers = resolvers(
                         "constraints": r.component("Option Constraints", null, null),
                         "resolver": r.component("Node Resolver",
                             {
-                                "definition": av.required(gvs.linked_entry([ vst.group("node")])),
+                                "definition": av.required(gvs.linked_entry([vst.group("node")])),
 
                                 "types": av.parameter("types"),
                                 "imports": av.parameter("imports"),

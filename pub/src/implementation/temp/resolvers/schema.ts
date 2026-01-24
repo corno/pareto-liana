@@ -1,5 +1,6 @@
 import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
+import * as _p_temp from '../temp_core'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as signatures from "../../../interface/generated/liana/schemas/schema/resolve"
@@ -27,20 +28,19 @@ const temp_assert = <Type, Error>(
     return callback()
 }
 
-export const Imports: signatures.Imports = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($, ($) => _i_generic.resolve_dictionary(
-    $,
-    ($, $p) => _p.deprecated_cc($, ($) => _p.deprecated_cc($, ($): d_out.Imports.D => {
-        const p_schema_set_child: d_out.Imports.D.schema_set_child = _p.deprecated_cc($['schema set child'], ($) => _i_generic.get_entry_from_stack(
+export const Imports: signatures.Imports = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($, ($) => _p.dictionary.resolve(
+    $.dictionary,
+    ($, key) => _p.deprecated_cc($, ($) => _p.deprecated_cc($, ($): d_out.Imports.D => {
+        const p_schema_set_child: d_out.Imports.D.schema_set_child = _p.deprecated_cc($.entry['schema set child'], ($) => _i_generic.get_entry_stack(
             $l['sibling schemas'],
             $,
             abort,
         ))
-        const loc = $['schema set child'].location
-        const p_schema: d_out.Imports.D.schema = _p.deprecated_cc($['schema'], ($) => _p.deprecated_cc(p_schema_set_child.entry, ($) => { // reference constraint ('schema set child')
+        const loc = $.entry['schema set child'].location
+        const p_schema: d_out.Imports.D.schema = _p.deprecated_cc($.entry['schema'], ($) => _p.deprecated_cc(p_schema_set_child.entry, ($) => { // reference constraint ('schema set child')
             switch ($[0]) {
                 case 'schema': return _p.ss($, ($) => $)
-                case 'set': return _p.ss($, ($) => _i_generic.abort.tbd("HELP!!!", loc, abort))
-                default: return _p.au($[0])
+                default: return  _i_generic.abort.state_constraint("set", $, loc, abort)
             }
         }))
         return {
@@ -63,9 +63,9 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
                 )
 
                 const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
-                    ? _i_generic.abort.wrong_state(
+                    ? _i_generic.abort.state_constraint(
                         "dictionary",
-                        p_selection['resulting node'][0],
+                        p_selection['resulting node'],
                         $.selection.start.location, //$['selected dictionary'].location,
                         abort,
                     )
@@ -78,16 +78,16 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
             })
             case 'not circular dependent siblings': return _p.ss($, ($) => ['not circular dependent siblings', $p['current dictionary'].__decide(
                 ($) => $,
-                () => _i_generic.abort.tbd("not in a dictionary", loc, abort)
+                () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
             )])
-            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry(
-                _i_generic.dictionary_to_lookup($p.signature['resolved parameters'].lookups, null),
+            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
+                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].lookups),
                 $,
                 abort
             )])
             case 'possibly circular dependent siblings': return _p.ss($, ($) => ['possibly circular dependent siblings', $p['current dictionary'].__decide(
                 ($) => $,
-                () => _i_generic.abort.tbd("SFSFSD", loc, abort)
+                () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
             )])
             default: return _p.au($[0])
         }
@@ -137,22 +137,22 @@ export const Number_Type: signatures.Number_Type = ($, abort, $l, $p) => {
 
 export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, $l, $p) => {
 
-    const p_parameters_values: d_out.Signature_Parameters.values = _i_generic.resolve_dictionary(
-        $.values,
-        ($, $acyclic, $cyclic) => {
+    const p_parameters_values: d_out.Signature_Parameters.values = _p.dictionary.resolve(
+        $.values.dictionary,
+        ($, key, $acyclic, $cyclic) => {
 
             const p_schema_type = Type_Reference(
-                $['data type'],
+                $.entry['data type'],
                 abort,
                 {
-                    'types': _i_generic.dictionary_to_lookup($p.types, null),
+                    'types': _p_temp.dictionary_to_lookup($p.types),
                 },
                 {
                     'imports': _p.optional.not_set(),
                 },
 
             )
-            const p_presence = $.presence['state group']
+            const p_presence = $.entry.presence['state group']
 
             return {
                 'data type': p_schema_type,
@@ -161,14 +161,14 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
         },
     )
     const lookups_loc = $.lookups.location
-    const p_parameters_lookups: d_out.Signature_Parameters.lookups = _i_generic.resolve_dictionary(
-        $.lookups,
-        ($, $acyclic, $cyclic) => {
+    const p_parameters_lookups: d_out.Signature_Parameters.lookups = _p.dictionary.resolve(
+        $.lookups.dictionary,
+        ($, key, $acyclic, $cyclic) => {
             const p_referent = Type_Reference(
-                $.referent,
+                $.entry.referent,
                 abort,
                 {
-                    'types': _i_generic.dictionary_to_lookup($p.types, null),
+                    'types': _p_temp.dictionary_to_lookup($p.types),
                 },
                 {
                     'imports': _p.optional.not_set(),
@@ -176,7 +176,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
 
             )
 
-            const p_type: d_out.Signature_Parameters.lookups.D.type_ = _p.deprecated_cc($.type['state group'], ($) => {
+            const p_type: d_out.Signature_Parameters.lookups.D.type_ = _p.deprecated_cc($.entry.type['state group'], ($) => {
                 switch ($[0]) {
                     case 'acyclic': return _p.ss($, ($) => ['acyclic', null])
                     case 'cyclic': return _p.ss($, ($) => ['cyclic', null])
@@ -184,16 +184,16 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                     default: return _p.au($[0])
                 }
             })
-            const p_presence = $.presence['state group']
+            const p_presence = $.entry.presence['state group']
             return {
                 'referent': p_referent,
                 'dictionary': _p.deprecated_cc(p_referent['resulting node'], ($) => { // component constraint (referent)
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => $)
                         // default: return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}' @ ${$p['location 2 string'](lookups_loc)}`)
-                        default: return _i_generic.abort.wrong_state(
+                        default: return _i_generic.abort.state_constraint(
                             "dictionary",
-                            $[0],
+                            $,
                             lookups_loc,
                             abort,
                         )
@@ -211,19 +211,19 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
     }
 }
 export const Globals: signatures.Globals = ($, abort, $l, $p) => {
-    const p_number_types: d_out.Globals.number_types = _i_generic.resolve_dictionary(
-        $['number types'],
-        ($, $acyclic, $cyclic) => Number_Type(
-            $,
+    const p_number_types: d_out.Globals.number_types = _p.dictionary.resolve(
+        $['number types'].dictionary,
+        ($, key, $acyclic, $cyclic) => Number_Type(
+            $.entry,
             abort,
             null,
             null,
         ),
     )
-    const p_text_types: d_out.Globals.text_types = _i_generic.resolve_dictionary(
-        $['text types'],
-        ($, $acyclic, $cyclic) => Text_Type(
-            $,
+    const p_text_types: d_out.Globals.text_types = _p.dictionary.resolve(
+        $['text types'].dictionary,
+        ($, key, $acyclic, $cyclic) => Text_Type(
+            $.entry,
             abort,
             null,
             null,
@@ -248,7 +248,7 @@ export const Signature: signatures.Signature = ($, abort, $l, $p) => {
                     'types': $p.types,
                 },
             )])
-            case 'same as': return _p.ss($, ($) => ['same as', _i_generic.get_entry(
+            case 'same as': return _p.ss($, ($) => ['same as', _i_generic.get_entry_acyclic(
                 $l['sibling signatures'],
                 $,
                 abort,
@@ -270,19 +270,23 @@ export const Signature: signatures.Signature = ($, abort, $l, $p) => {
 }
 
 export const Signatures: signatures.Signatures = ($, abort, $l, $p) => {
-    return _i_generic.resolve_dense_ordered_dictionary(
-        $,
+    return _i_generic.resolve_dense_dictionary(
+        $.dictionary,
+        $.location,
         abort,
         $p.types,
-        ($, ref, $acyclic, $cyclic) => {
-            const p_linked_entry = _i_generic.get_entry(
-                _i_generic.dictionary_to_lookup($p.types, null),
-                ref,
+        ($, key, $acyclic, $cyclic) => {
+            const p_linked_entry = _i_generic.get_entry_acyclic(
+                _p_temp.dictionary_to_lookup($p.types),
+                {
+                    'key': key,
+                    'location': $.location,
+                },
                 abort,
             )
 
             return Signature(
-                $,
+                $.entry,
                 abort,
                 {
                     'sibling signatures': $acyclic,
@@ -317,11 +321,11 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
                 null,
                 null,
             ))
-            const p_types: d_out.Types = _i_generic.resolve_ordered_dictionary(
-                $.types,
-                ($, $acyclic, $cyclic) => {
+            const p_types: d_out.Types = _p.dictionary.resolve(
+                $.types.dictionary,
+                ($, key, $acyclic, $cyclic) => {
                     const p_type = Type_Node(
-                        $.node,
+                        $.entry.node,
                         abort,
                         {
                             'noncircular sibling types': $acyclic,
@@ -357,31 +361,36 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
                                 'types': p_types_2,
                             }
                         })
-                        const p_resolvers: d_out.Resolve_Logic.resolvers = _i_generic.resolve_dense_ordered_dictionary(
-                            $.resolvers,
+                        const p_resolvers: d_out.Resolve_Logic.resolvers = _i_generic.resolve_dense_dictionary(
+                            $.resolvers.dictionary,
+                            $.resolvers.location,
                             abort,
                             p_signatures.types,
-                            ($, ref, $acyclic, $cyclic) => {
+                            ($, key, $acyclic, $cyclic) => {
 
-                                const key = ref.key
-
-                                const p_linked_entry = _i_generic.get_entry(
-                                    _i_generic.dictionary_to_lookup(p_types, null),
-                                    ref,
+                                const p_linked_entry = _i_generic.get_entry_acyclic(
+                                    _p_temp.dictionary_to_lookup(p_types),
+                                    {
+                                        'key': key,
+                                        'location': $.location,
+                                    },
                                     abort,
                                 )
-                                const p_signature = _i_generic.get_entry(
-                                    _i_generic.dictionary_to_lookup(p_signatures.types, null),
-                                    ref,
+                                const p_signature = _i_generic.get_entry_acyclic(
+                                    _p_temp.dictionary_to_lookup(p_signatures.types),
+                                    {
+                                        'key': key,
+                                        'location': $.location,
+                                    },
                                     abort,
                                 )
 
                                 const p_type_resolver = Node_Resolver(
-                                    $['type resolver'],
+                                    $.entry['type resolver'],
                                     abort,
                                     {
-                                        'sibling property resolvers': _i_generic.acyclic.not_set(),
-                                        'parent sibling property resolvers': _i_generic.acyclic.not_set(),
+                                        'sibling property resolvers': _p_temp.acyclic.not_set(),
+                                        'parent sibling property resolvers': _p_temp.acyclic.not_set(),
 
                                     },
                                     {
@@ -432,13 +441,13 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
     }
 }))
 
-export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p.deprecated_block(() => _i_generic.resolve_ordered_dictionary(
-    $,
-    ($, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => Schema_Tree(
-        $,
+export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p.deprecated_block(() => _p.dictionary.resolve(
+    $.dictionary,
+    ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => Schema_Tree(
+        $.entry,
         abort,
         {
-            'sibling schemas': _i_generic.push_stack($l['sibling schemas'], $acyclic)
+            'sibling schemas': _p_temp.push_stack($l['sibling schemas'], $acyclic)
         },
         null,
     )),
@@ -463,12 +472,12 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             case 'boolean': return _p.ss($, ($): d_out.Type_Node => ['boolean', null])
             case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.number_ => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($): d_out.Type_Node.number_ => ['global', _i_generic.get_entry(
-                        _i_generic.dictionary_to_lookup($p.globals.__decide(
-                            ($) => $['number types'],
-                            () => _i_generic.abort.tbd("globals not set", $.location, abort)
-                        ),
-                            null
+                    case 'global': return _p.ss($, ($): d_out.Type_Node.number_ => ['global', _i_generic.get_entry_acyclic(
+                        _p_temp.dictionary_to_lookup(
+                            $p.globals.__decide(
+                                ($) => $['number types'],
+                                () => _i_generic.abort.is_set_assertion("globals", $.location, abort)
+                            ),
                         ),
                         $,
                         abort,
@@ -484,13 +493,12 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             })])
             case 'text': return _p.ss($, ($): d_out.Type_Node => ['text', _p.deprecated_cc($['state group'], ($): d_out.Type_Node.text => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($): d_out.Type_Node.text => ['global', _i_generic.get_entry(
-                        _i_generic.dictionary_to_lookup(
+                    case 'global': return _p.ss($, ($): d_out.Type_Node.text => ['global', _i_generic.get_entry_acyclic(
+                        _p_temp.dictionary_to_lookup(
                             $p.globals.__decide(
                                 ($) => $['text types'],
-                                () => _i_generic.abort.tbd("globals not set", $.location, abort)
+                                () => _i_generic.abort.is_set_assertion("globals", $.location, abort)
                             ),
-                            null
                         ),
                         $,
                         abort
@@ -509,28 +517,28 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     case 'external': return _p.ss($, ($) => {
                         const sc_import = $p.imports.__decide(
                             ($) => $,
-                            () => _i_generic.abort.tbd("missing", $.import.location, abort)
+                            () => _i_generic.abort.is_set_assertion("imports", $.import.location, abort)
                         )
-                        const p_import = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(sc_import, null),
+                        const p_import = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(sc_import),
                             $.import,
                             abort,
                         )
                         return ['external', {
                             'import': p_import,
-                            'type': _i_generic.get_entry(
-                                _i_generic.dictionary_to_lookup(p_import.entry.schema.types, null),
+                            'type': _i_generic.get_entry_acyclic(
+                                _p_temp.dictionary_to_lookup(p_import.entry.schema.types),
                                 $.type,
                                 abort,
                             )
                         }]
                     })
-                    case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry(
+                    case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
                         $l['noncircular sibling types'],
                         $,
                         abort,
                     )])
-                    case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _i_generic.get_possibly_circular_dependent_sibling_entry(
+                    case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _i_generic.get_entry_cyclic(
                         $l['possibly circular dependent sibling types'],
                         $,
                         abort
@@ -549,12 +557,12 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     'node': p_type,
                 }]
             })
-            case 'group': return _p.ss($, ($) => ['group', _i_generic.resolve_ordered_dictionary(
-                $,
-                ($, $acyclic, $cyclic) => ({
-                    'description': $.description,
+            case 'group': return _p.ss($, ($) => ['group', _p.dictionary.resolve(
+                $.dictionary,
+                ($, key, $acyclic, $cyclic) => ({
+                    'description': $.entry.description,
                     'node': Type_Node(
-                        $.node,
+                        $.entry.node,
                         abort,
                         $l,
                         $p,
@@ -582,15 +590,14 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
 
             case 'reference': return _p.ss($, ($): d_out.Type_Node => {
                 const loc = $.referent['type location'].location.location
-                $p.globals.__decide(
+                const temp = $p.globals.__decide(
                     ($) => {
-                        if ($.complexity[0] === 'unconstrained') {
-                            _i_generic.abort.tbd(`schema complexity setting is 'unconstrained', so references are not allowed`, loc, abort)
-                        }
+                        $.complexity[0] === 'unconstrained'
+                            ? _i_generic.abort.state_constraint("constrained", $.complexity, loc, abort)
+                            : $.complexity[1]
+
                     },
-                    () => {
-                        _i_generic.abort.tbd(`schema doesn't have settings, so no references are allowed`, loc, abort)
-                    }
+                    () => _i_generic.abort.is_set_assertion("globals", loc, abort)
                 )
                 const p_referent = Type_Node_Reference(
                     $.referent,
@@ -609,9 +616,9 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                                 'dictionary': _p.deprecated_cc(p_referent['resulting node'], ($) => { // component constraint (referent)
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $)
-                                        default: return _i_generic.abort.wrong_state(
+                                        default: return _i_generic.abort.state_constraint(
                                             "dictionary",
-                                            $[0],
+                                            $,
                                             loc,
                                             abort,
                                         )
@@ -658,12 +665,12 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 //     }]
                 // }
             })
-            case 'state group': return _p.ss($, ($) => ['state group', _i_generic.resolve_dictionary(
-                $,
-                ($, $acyclic, $cyclic) => ({
-                    'description': $.description,
+            case 'state group': return _p.ss($, ($) => ['state group', _p.dictionary.resolve(
+                $.dictionary,
+                ($, key, $acyclic, $cyclic) => ({
+                    'description': $.entry.description,
                     'node': Type_Node(
-                        $.node,
+                        $.entry.node,
                         abort,
                         $l,
                         $p,
@@ -671,7 +678,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 }),
             )])
             // case 'type parameter': return _pt.ss($, ($) => ['type parameter', _i_generic.get_entry(
-            //     _i_generic.dictionary_to_lookup(
+            //     _p_temp.dictionary_to_lookup(
             //         $p['type parameters'],
             //         null,
             //     ),
@@ -691,23 +698,23 @@ export const Type_Reference: signatures.Type_Reference = ($, abort, $l, $p) => {
             case 'external': return _p.ss($, ($): d_out.Type_Reference.location => {
                 const sc_import = $p.imports.__decide(
                     ($) => $,
-                    () => _i_generic.abort.tbd("missing", $.import.location, abort)
+                    () => _i_generic.abort.is_set_assertion("imports", $.import.location, abort)
                 )
-                const p_import = _i_generic.get_entry(
-                    _i_generic.dictionary_to_lookup(sc_import, null),
+                const p_import = _i_generic.get_entry_acyclic(
+                    _p_temp.dictionary_to_lookup(sc_import),
                     $.import,
                     abort
                 )
                 return ['external', {
                     'import': p_import,
-                    'type': _i_generic.get_entry(
-                        _i_generic.dictionary_to_lookup(p_import.entry.schema.types, null),
+                    'type': _i_generic.get_entry_acyclic(
+                        _p_temp.dictionary_to_lookup(p_import.entry.schema.types),
                         $.type,
                         abort,
                     )
                 }]
             })
-            case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry(
+            case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
                 $l['types'],
                 $,
                 abort,
@@ -735,17 +742,17 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
         $l,
         $p,
     )
-    const p_tail_x: d_out.Type_Node_Reference.tail = _i_generic.resolve_path(
-        $.tail,
+    const p_tail_x: d_out.Type_Node_Reference.tail = _p_temp.map_with_state(
+        $.tail.list,
         p_type_location['resulting node'],
         ($, current): d_out.Type_Node_Reference.tail.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($['state group'], ($): d_out.Type_Node_Reference.tail.L => {
+            return _p.deprecated_cc($.element['state group'], ($): d_out.Type_Node_Reference.tail.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'dictionary') {
-                                return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -757,12 +764,12 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                     case 'group': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.group = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'group') {
-                                return _i_generic.abort.tbd(`not a 'group' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
                             }
                             return $[1]
                         })
-                        const p_child = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(sc_definition, null),
+                        const p_child = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(sc_definition),
                             $,
                             abort,
                         )
@@ -774,7 +781,7 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                     case 'list': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.list = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'list') {
-                                return _i_generic.abort.tbd(`not a 'list' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("list", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -786,7 +793,7 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                     case 'optional': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.optional = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'optional') {
-                                return _i_generic.abort.tbd(`not a 'optional' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("optional", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -798,12 +805,12 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                     case 'state group': return _p.ss($, ($) => {
                         const p_state_group: d_out.Type_Node.state_group = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'state group') {
-                                return _i_generic.abort.tbd(`not a 'state group' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("state group", $, sg_loc, abort)
                             }
                             return $[1]
                         })
-                        const p_child = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(p_state_group, null),
+                        const p_child = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(p_state_group),
                             $,
                             abort,
                         )
@@ -815,7 +822,12 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
                     default: return _p.au($[0])
                 }
             })
-        }
+        },
+        ($, current) => $.referred,
+        (list, result) => ({
+            'list': list,
+            'referred': result,
+        })
     )
     return {
         'type location': p_type_location,
@@ -825,9 +837,9 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
 }
 
 export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, $p) => {
-    return _p.deprecated_cc($, ($) => _i_generic.resolve_dictionary(
-        $,
-        ($, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($['state group'], ($) => {
+    return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
+        $.dictionary,
+        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($.entry['state group'], ($) => {
             switch ($[0]) {
                 case 'state': return _p.ss($, ($) => ['state', _p.deprecated_block(() => {
                     const loc = $.selection.start.location
@@ -838,15 +850,15 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                         $p,
                     ))
                     const p_selected_state_group = p_selection['resulting node'][0] !== 'state group' // component constraint ('selection')
-                        ? _i_generic.abort.wrong_state(
+                        ? _i_generic.abort.state_constraint(
                             "state group",
-                            p_selection['resulting node'][0],
+                            p_selection['resulting node'],
                             loc,
                             abort,
                         )
                         : p_selection['resulting node'][1]
-                    const p_state: d_out.Option_Constraints.D.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry(
-                        _i_generic.dictionary_to_lookup(p_selected_state_group, null),
+                    const p_state: d_out.Option_Constraints.D.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry_acyclic(
+                        _p_temp.dictionary_to_lookup(p_selected_state_group),
                         $,
                         abort,
                     ))
@@ -882,15 +894,15 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
         switch ($[0]) {
             case 'state': return _p.ss($, ($) => {
                 const p_selected_state_group = p_selection['resulting node'][0] !== 'state group' // component constraint ('selection')
-                    ? _i_generic.abort.wrong_state(
+                    ? _i_generic.abort.state_constraint(
                         "state group",
-                        p_selection['resulting node'][0],
+                        p_selection['resulting node'],
                         loc,
                         abort,
                     )
                     : p_selection['resulting node'][1]
-                const p_state: d_out.Constraint.type_.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry(
-                    _i_generic.dictionary_to_lookup(p_selected_state_group, null),
+                const p_state: d_out.Constraint.type_.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry_acyclic(
+                    _p_temp.dictionary_to_lookup(p_selected_state_group),
                     $,
                     abort,
                 ))
@@ -901,9 +913,9 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
             })
             case 'optional value': return _p.ss($, ($) => {
                 const p_selected_optional_value = p_selection['resulting node'][0] !== 'optional' // component constraint ('selection')
-                    ? _i_generic.abort.wrong_state(
+                    ? _i_generic.abort.state_constraint(
                         "optional",
-                        p_selection['resulting node'][0],
+                        p_selection['resulting node'],
                         loc,
                         abort,
                     )
@@ -922,13 +934,13 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
 }
 
 export const Property_Constraints: signatures.Property_Constraints = ($, abort, $l, $p) => {
-    return _p.deprecated_cc($, ($) => _i_generic.resolve_ordered_dictionary(
-        $,
-        ($, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_block(() => {
-            const p_start: d_out.Property_Constraint.start = _p.deprecated_cc($.start['state group'], ($) => {
+    return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
+        $.dictionary,
+        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_block(() => {
+            const p_start: d_out.Property_Constraint.start = _p.deprecated_cc($.entry.start['state group'], ($) => {
                 switch ($[0]) {
                     case 'property': return _p.ss($, ($) => ['property', null])
-                    case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry(
+                    case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry_acyclic(
                         $acyclic,
                         $,
                         abort,
@@ -937,7 +949,7 @@ export const Property_Constraints: signatures.Property_Constraints = ($, abort, 
                 }
             })
             const p_constraint: d_out.Property_Constraint.constraint = Constraint(
-                $.constraint,
+                $.entry.constraint,
                 abort,
                 null,
                 {
@@ -971,9 +983,9 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'boolean'
-                    ? _i_generic.abort.wrong_state(
+                    ? _i_generic.abort.state_constraint(
                         "boolean",
-                        $p.definition[0],
+                        $p.definition,
                         loc,
                         abort,
                     )
@@ -982,9 +994,9 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'component': return _p.ss($, ($): d_out.Node_Resolver => {
                 const x = $p.definition[0] !== 'component'
-                    ? _i_generic.abort.wrong_state(
+                    ? _i_generic.abort.state_constraint(
                         "component",
-                        $p.definition[0],
+                        $p.definition,
                         loc,
                         abort,
                     )
@@ -994,33 +1006,31 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
                                 ($) => $,
-                                () => _i_generic.abort.tbd("missing", loc, abort)
+                                () => _i_generic.abort.is_set_assertion("imports", loc, abort)
                             )
-                            const p_import = _i_generic.get_entry(
-                                _i_generic.dictionary_to_lookup(sc_import, null),
+                            const p_import = _i_generic.get_entry_acyclic(
+                                _p_temp.dictionary_to_lookup(sc_import),
                                 $.import,
                                 abort,
                             )
                             const pc_constrained: d_out.Schema.complexity.constrained = _p.deprecated_cc(p_import.entry.schema.complexity, ($) => {
                                 switch ($[0]) {
                                     case 'constrained': return _p.ss($, ($) => $)
-                                    case 'unconstrained': return _p.ss($, ($) => _i_generic.abort.tbd(`not constrained`, loc, abort))
-                                    default: return _p.au($[0])
+                                    default: return _i_generic.abort.state_constraint("constrained", $, loc, abort)
                                 }
                             })
                             return ['external', {
                                 'import': p_import,
-                                'type': _i_generic.get_entry(
-                                    _i_generic.dictionary_to_lookup(pc_constrained.signatures.types, null),
+                                'type': _i_generic.get_entry_acyclic(
+                                    _p_temp.dictionary_to_lookup(pc_constrained.signatures.types),
                                     $.type,
                                     abort,
                                 )
                             }]
                         })
-                        case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(
+                        case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(
                                 $p['signatures'],
-                                null,
                             ),
                             $,
                             abort,
@@ -1044,19 +1054,20 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     }
                 })
                 if (p_signature.type.node !== x_type.node) {
-                    _i_generic.abort.tbd("type mismatch", loc, abort)
+                    _i_generic.abort.same_node_constraint("type.node", loc, abort)
                 }
                 const p_arguments: d_out.Node_Resolver.component.arguments_ = $.arguments.__decide(
                     ($) => {
                         const x: d_out.Node_Resolver.component.arguments_.O = {
                             'lookups': $.lookups.__decide(
                                 ($) => _p.optional.set(_i_generic.resolve_dense_dictionary(
-                                    $,
+                                    $.dictionary,
+                                    $.location,
                                     abort,
                                     p_signature['resolved parameters'].lookups,
-                                    ($, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
+                                    ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
                                         //do additional validation
-                                        return _p.deprecated_cc($['state group'], ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
+                                        return _p.deprecated_cc($.entry['state group'], ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
                                                 case 'empty stack': return _p.ss($, ($) => ['empty stack', null])
                                                 case 'not set': return _p.ss($, ($) => ['not set', null])
@@ -1094,7 +1105,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                         //additional validation
                                         if (p_signature['resolved parameters'].lookups !== $p.signature['resolved parameters'].lookups) {
 
-                                            _i_generic.abort.tbd("lookup parameters mismatch", loc, abort)
+                                            _i_generic.abort.same_node_constraint("lookups", loc, abort)
                                         }
                                     }
                                     return _p.optional.not_set()
@@ -1105,16 +1116,20 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                     const values_location = $.location
 
                                     return _p.optional.set(_i_generic.resolve_dense_dictionary(
-                                        $,
+                                        $.dictionary,
+                                        $.location,
                                         abort,
                                         p_signature['resolved parameters'].values,
-                                        ($, ref, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
-                                            const linked_entry = _i_generic.get_entry(
-                                                _i_generic.dictionary_to_lookup(p_signature['resolved parameters'].values, null),
-                                                ref,
+                                        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
+                                            const linked_entry = _i_generic.get_entry_acyclic(
+                                                _p_temp.dictionary_to_lookup(p_signature['resolved parameters'].values),
+                                                {
+                                                    'key': key,
+                                                    'location': $.location,
+                                                },
                                                 abort,
                                             )
-                                            const out = _p.deprecated_cc($['state group'], ($): d_out.Node_Resolver.component.arguments_.O.values.O.D => {
+                                            const out = _p.deprecated_cc($.entry['state group'], ($): d_out.Node_Resolver.component.arguments_.O.values.O.D => {
                                                 switch ($[0]) {
                                                     case 'optional': return _p.ss($, ($) => ['optional', Possible_Value_Selection(
                                                         $,
@@ -1122,8 +1137,8 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                         $l,
                                                         $p,
                                                     )])
-                                                    case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry(
-                                                        _i_generic.dictionary_to_lookup($p.signature['resolved parameters'].values, null),
+                                                    case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
+                                                        _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
                                                         $,
                                                         abort,
                                                     )])
@@ -1139,7 +1154,6 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                             {
                                                 //additional validation
                                                 const benchmark = linked_entry.entry
-                                                const key = ref.key
                                                 const focus = out
 
                                                 const walk_path_till_end = ($: d_out.Type_Node): d_out.Type_Node => {
@@ -1164,7 +1178,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                         case 'optional': return _p.ss($, ($) => {
 
                                                             if (benchmark.presence[0] !== 'optional') {
-                                                                _i_generic.abort.tbd(`argument ${key} is not optional`, values_location, abort)
+                                                                _i_generic.abort.state_constraint("optional", benchmark.presence, values_location, abort)
                                                             }
 
                                                             _p.deprecated_cc($, ($) => {
@@ -1183,7 +1197,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                                     case 'set': return _p.ss($, ($) => {
 
                                                                         if (walk_path_till_end(benchmark['data type']['resulting node']) !== walk_path_till_end($.tail['resulting node'])) {
-                                                                            return _i_generic.abort.not_the_same_node(
+                                                                            return _i_generic.abort.same_node_constraint(
                                                                                 "required argument data type",
                                                                                 values_location,
                                                                                 abort,
@@ -1198,14 +1212,14 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                         })
                                                         case 'parameter': return _p.ss($, ($) => {
                                                             if ($.entry.presence[0] !== benchmark.presence[0]) {
-                                                                return _i_generic.abort.not_the_same_node(
+                                                                return _i_generic.abort.same_node_constraint(
                                                                     "parameter presence",
                                                                     values_location,
                                                                     abort,
                                                                 )
                                                             }
                                                             if ($.entry['data type']['resulting node'] !== benchmark['data type']['resulting node']) {
-                                                                return _i_generic.abort.not_the_same_node(
+                                                                return _i_generic.abort.same_node_constraint(
                                                                     "parameter data type",
                                                                     values_location,
                                                                     abort,
@@ -1214,10 +1228,10 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                         })
                                                         case 'required': return _p.ss($, ($) => {
                                                             if (benchmark.presence[0] !== 'required') {
-                                                                _i_generic.abort.tbd(`argument ${key} is not required`, values_location, abort)
+                                                                _i_generic.abort.state_constraint("required", benchmark.presence, values_location, abort)
                                                             }
                                                             if (walk_path_till_end(benchmark['data type']['resulting node']) !== walk_path_till_end($.tail['resulting node'])) {
-                                                                return _i_generic.abort.not_the_same_node(
+                                                                return _i_generic.abort.same_node_constraint(
                                                                     "required argument data type",
                                                                     values_location,
                                                                     abort,
@@ -1238,7 +1252,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                         //additional validation
 
                                         if (p_signature['resolved parameters'].values !== $p.signature['resolved parameters'].values) {
-                                            return _i_generic.abort.not_the_same_node(
+                                            return _i_generic.abort.same_node_constraint(
                                                 "value parameters",
                                                 loc,
                                                 abort,
@@ -1255,14 +1269,14 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         {
                             //additional validation
                             if (p_signature['resolved parameters'].lookups !== $p.signature['resolved parameters'].lookups) {
-                                return _i_generic.abort.not_the_same_node(
+                                return _i_generic.abort.same_node_constraint(
                                     "lookup parameters",
                                     loc,
                                     abort,
                                 )
                             }
                             if (p_signature['resolved parameters'].values !== $p.signature['resolved parameters'].values) {
-                                return _i_generic.abort.not_the_same_node(
+                                return _i_generic.abort.same_node_constraint(
                                     "value parameters",
                                     loc,
                                     abort,
@@ -1296,7 +1310,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'dictionary': return _p.ss($, ($) => {
                 const p_definition = $p.definition[0] !== 'dictionary'
-                    ? _i_generic.abort.wrong_state("dictionary", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("dictionary", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_benchmark = $.benchmark.__o_map(($) => {
@@ -1308,7 +1322,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     )
 
                     const p_resulting_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint ('selection')
-                        ? _i_generic.abort.wrong_state("dictionary", p_selection['resulting node'][0], loc, abort)
+                        ? _i_generic.abort.state_constraint("dictionary", p_selection['resulting node'], loc, abort)
                         : p_selection['resulting node'][1]
                     return {
                         'selection': p_selection,
@@ -1344,22 +1358,26 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'group': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'group'
-                    ? _i_generic.abort.wrong_state("group", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("group", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_properties = _i_generic.resolve_dense_ordered_dictionary(
-                    $,
+                const p_properties = _i_generic.resolve_dense_dictionary(
+                    $.dictionary,
+                    $.location,
                     abort,
                     x,
-                    ($, ref, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
+                    ($, key, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
 
-                        const p_definition = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(x, null),
-                            ref,
+                        const p_definition = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(x),
+                            {
+                                'key': key,
+                                'location': $.location,
+                            },
                             abort,
                         )
                         const p_resolver = Node_Resolver(
-                            $.resolver,
+                            $.entry.resolver,
                             abort,
                             {
                                 //special
@@ -1392,13 +1410,13 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'list': return _p.ss($, ($) => {
                 const p_definition = $p.definition[0] !== 'list'
-                    ? _i_generic.abort.wrong_state("list", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("list", $p.definition, loc, abort)
                     : $p.definition[1]
                 const p_result = $.result.__o_map(($) => Type_Reference(
                     $,
                     abort,
                     {
-                        'types': _i_generic.dictionary_to_lookup($p.types, null),
+                        'types': _p_temp.dictionary_to_lookup($p.types),
                     },
                     {
                         'imports': $p.imports,
@@ -1433,19 +1451,19 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'nothing': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'nothing'
-                    ? _i_generic.abort.wrong_state("nothing", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("nothing", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['nothing', null]
             })
             case 'number': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'number'
-                    ? _i_generic.abort.wrong_state("number", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("number", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['number', null]
             })
             case 'optional': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'optional'
-                    ? _i_generic.abort.wrong_state("optional", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_constraints: d_out.Node_Resolver.state_group.states.D.constraints = Option_Constraints(
@@ -1482,7 +1500,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'reference': return _p.ss($, ($): d_out.Node_Resolver => {
                 const p_definition = $p.definition[0] !== 'reference'
-                    ? _i_generic.abort.wrong_state("reference", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("reference", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['reference', {
                     'definition': p_definition,
@@ -1490,7 +1508,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'derived'
-                                    ? _i_generic.abort.wrong_state("derived", p_definition.type[0], loc, abort)
+                                    ? _i_generic.abort.state_constraint("derived", p_definition.type, loc, abort)
                                     : p_definition.type[1]
                                 return ['derived', {
                                     'value': Guaranteed_Value_Selection(
@@ -1503,7 +1521,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             })
                             case 'selected': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'selected'
-                                    ? _i_generic.abort.wrong_state("selected", p_definition.type[0], loc, abort)
+                                    ? _i_generic.abort.state_constraint("selected", p_definition.type, loc, abort)
                                     : p_definition.type[1]
                                 const p_lookup = Lookup_Selection(
                                     $.lookup,
@@ -1532,28 +1550,32 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'state group': return _p.ss($, ($): d_out.Node_Resolver => {
                 const p_definition = $p.definition[0] !== 'state group'
-                    ? _i_generic.abort.wrong_state("state group", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("state group", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_states: d_out.Node_Resolver.state_group.states = _i_generic.resolve_dense_dictionary(
-                    $.states,
+                    $.states.dictionary,
+                    $.states.location,
                     abort,
                     p_definition,
-                    ($, ref, $acyclic, $cyclic) => {
+                    ($, key, $acyclic, $cyclic) => {
 
-                        const x2 = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(p_definition, null),
-                            ref,
+                        const x2 = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(p_definition),
+                            {
+                                'key': key,
+                                'location': $.location,
+                            },
                             abort,
                         )
                         const p_constraints: d_out.Node_Resolver.state_group.states.D.constraints = Option_Constraints(
-                            $.constraints,
+                            $.entry.constraints,
                             abort,
                             $l,
                             $p,
                         )
                         const vr = Node_Resolver(
-                            $['resolver'],
+                            $.entry['resolver'],
                             abort,
                             {
                                 'sibling property resolvers': $l['sibling property resolvers'],
@@ -1610,7 +1632,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 //                 'location 2 string': l2s,
                 //                 'map': ($, $p) => {
                 //                     const linked_entry = _i_generic.get_entry(
-                //                         _i_generic.dictionary_to_lookup(sc_definition, null),
+                //                         _p_temp.dictionary_to_lookup(sc_definition, null),
                 //                         {
                 //                             'location 2 string': l2s,
                 //                             'reference': {
@@ -1652,14 +1674,14 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
             })
             case 'text': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'text'
-                    ? _i_generic.abort.wrong_state("text", $p.definition[0], loc, abort)
+                    ? _i_generic.abort.state_constraint("text", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['text', null]
             })
             // case 'type parameter': return _pt.ss($, ($) => {
 
             //     const x = $p.definition[0] !== 'type parameter'
-            //         ? _pt.fixme_abort("not a 'type parameter' but a '", $p.definition[0], "' @ ", $p['location 2 string'](loc))
+            //         ? _pt.fixme_abort("not a 'type parameter' but a '", $p.definition, "' @ ", $p['location 2 string'](loc))
             //         : $p.definition[1]
             //     return ['type parameter', null]
             // })
@@ -1671,18 +1693,18 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
 
 export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => {
 
-    const p_path: d_out.Relative_Value_Selection.path = _i_generic.resolve_path(
-        $.path,
+    const p_path: d_out.Relative_Value_Selection.path = _p_temp.map_with_state(
+        $.path.list,
         $p.node,
         ($, current): d_out.Relative_Value_Selection.path.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($['state group'], ($): d_out.Relative_Value_Selection.path.L => {
+            return _p.deprecated_cc($.element['state group'], ($): d_out.Relative_Value_Selection.path.L => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
 
                         const sc_definition: d_out.Type_Node.component = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'component') {
-                                return _i_generic.abort.tbd(`not a 'component' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("component", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -1701,12 +1723,12 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                     case 'group': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.group = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'group') {
-                                return _i_generic.abort.tbd(`not a 'group' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
                             }
                             return $[1]
                         })
-                        const p_child = _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(sc_definition, null),
+                        const p_child = _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(sc_definition,),
                             $,
                             abort,
                         )
@@ -1719,7 +1741,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
 
                         const sc_definition: d_out.Type_Node.reference = _p.deprecated_cc(current, ($) => {
                             if ($[0] !== 'reference') {
-                                return _i_generic.abort.tbd(`not a 'reference' but a '${$[0]}'`, sg_loc, abort)
+                                return _i_generic.abort.state_constraint("reference", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -1730,7 +1752,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                                 case 'selected': return _p.ss($, ($) => _p.deprecated_cc(referent['resulting node'], ($) => {
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $.node)
-                                        default: return _i_generic.abort.tbd("not a dictionary @ ", sg_loc, abort)
+                                        default: return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
                                     }
                                 }))
                                 default: return _p.au($[0])
@@ -1746,7 +1768,12 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                     default: return _p.au($[0])
                 }
             })
-        }
+        },
+        ($) => $.referred,
+        (list, result) => ({
+            'list': list,
+            'referred': result,
+        }),
     )
     return {
         'path': p_path,
@@ -1768,8 +1795,8 @@ export const Possible_Value_Selection: signatures.Optional_Value_Initialization 
 export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort, $l, $p) => _p.deprecated_block(() => {
     return _p.deprecated_cc($['state group'], ($) => {
         switch ($[0]) {
-            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry(
-                _i_generic.dictionary_to_lookup($p.signature['resolved parameters'].values, null),
+            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
+                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
                 $,
                 abort,
             )])
@@ -1777,20 +1804,20 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                 switch ($[0]) {
                     case 'state group': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Possible_Value_Selection.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling: d_out.Possible_Value_Selection.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
                         const p_state_group = _p.deprecated_cc($['state group'], ($) => p_sibling.entry.resolver[0] !== 'state group'
-                            ? _i_generic.abort.wrong_state("state group", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("state group", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
 
                         const p_result = Type_Reference(
                             $.result,
                             abort,
                             {
-                                'types': _i_generic.dictionary_to_lookup($p.types, null),
+                                'types': _p_temp.dictionary_to_lookup($p.types),
                             },
                             {
                                 'imports': $p.imports,
@@ -1804,19 +1831,19 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                     })
                     case 'optional value': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Possible_Value_Selection.result.optional_value.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling: d_out.Possible_Value_Selection.result.optional_value.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
                         const p_optional_value = _p.deprecated_cc($['optional value'], ($) => p_sibling.entry.resolver[0] !== 'optional'
-                            ? _i_generic.abort.wrong_state("optional", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("optional", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
                         const p_result = Type_Reference(
                             $.result,
                             abort,
                             {
-                                'types': _i_generic.dictionary_to_lookup($p.types, null),
+                                'types': _p_temp.dictionary_to_lookup($p.types),
                             },
                             {
                                 'imports': $p.imports,
@@ -1844,18 +1871,18 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
 
                         const x_component = p_sibling.entry.resolver[0] !== 'component'
-                            ? _i_generic.abort.wrong_state("component", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("component", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1]
 
-                        const p_constraint = _p.deprecated_cc($['constraint'], ($) => _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(x_component.constraints, null),
+                        const p_constraint = _p.deprecated_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(x_component.constraints),
                             $,
                             abort,
                         ))
@@ -1866,22 +1893,22 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     })
                     case 'reference': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
 
                         const x_reference = p_sibling.entry.resolver[0] !== 'reference'
-                            ? _i_generic.abort.wrong_state("reference", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("reference", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1]
 
                         const x_reference_selected = x_reference.type[0] !== 'selected'
-                            ? _i_generic.abort.wrong_state("selected", x_reference.type[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("selected", x_reference.type, loc, abort)
                             : x_reference.type[1]
 
-                        const p_constraint = _p.deprecated_cc($['constraint'], ($) => _i_generic.get_entry(
-                            _i_generic.dictionary_to_lookup(x_reference_selected.constraints, null),
+                        const p_constraint = _p.deprecated_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
+                            _p_temp.dictionary_to_lookup(x_reference_selected.constraints),
                             $,
                             abort,
                         ))
@@ -1898,16 +1925,16 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
             case 'option constraint': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => {
                 const sc = $p['option constraints'].__decide(
                     ($) => $,
-                    () => _i_generic.abort.wrong_state("option", "not in an option", start_location, abort)
+                    () => _i_generic.abort.is_set_assertion("option constraints", start_location, abort)
                 )
-                return ['option constraint', _i_generic.get_entry(
-                    _i_generic.dictionary_to_lookup(sc, null),
+                return ['option constraint', _i_generic.get_entry_acyclic(
+                    _p_temp.dictionary_to_lookup(sc),
                     $,
                     abort,
                 )]
             })
-            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry(
-                _i_generic.dictionary_to_lookup($p.signature['resolved parameters'].values, null),
+            case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
+                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
                 $,
                 abort,
             )])
@@ -1915,17 +1942,17 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                 switch ($[0]) {
                     case 'list': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.list.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.list.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
                         const p_list_result_a = _p.deprecated_cc($['list result'], ($) => p_sibling.entry.resolver[0] !== 'list'
-                            ? _i_generic.abort.wrong_state("list", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("list", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
                         const p_list_result: d_out.Guaranteed_Value_Selection.start.result.list.list_result = p_list_result_a.result.__decide(
                             ($) => $,
-                            () => _i_generic.abort.tbd("there is no list result", loc, abort)
+                            () => _i_generic.abort.is_set_assertion("list result", loc, abort)
                         )
                         return ['list', {
                             'property': p_sibling,
@@ -1934,13 +1961,13 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     })
                     case 'state group': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
                         const p_state_group = _p.deprecated_cc($['state group'], ($) => p_sibling.entry.resolver[0] !== 'state group'
-                            ? _i_generic.abort.wrong_state("state group", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("state group", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
                         return ['state group', {
                             'property': p_sibling,
@@ -1949,7 +1976,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                                 $.result,
                                 abort,
                                 {
-                                    'types': _i_generic.dictionary_to_lookup($p.types, null),
+                                    'types': _p_temp.dictionary_to_lookup($p.types),
                                 },
                                 {
                                     'imports': $p.imports,
@@ -1959,13 +1986,13 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     })
                     case 'optional value': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.optional_value.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry(
+                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.optional_value.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
                         const p_optional_value = _p.deprecated_cc($['optional value'], ($) => p_sibling.entry.resolver[0] !== 'optional'
-                            ? _i_generic.abort.wrong_state("optional", p_sibling.entry.resolver[0], loc, abort)
+                            ? _i_generic.abort.state_constraint("optional", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
                         return ['optional value', {
                             'property': p_sibling,
@@ -1974,7 +2001,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                                 $.result,
                                 abort,
                                 {
-                                    'types': _i_generic.dictionary_to_lookup($p.types, null),
+                                    'types': _p_temp.dictionary_to_lookup($p.types),
                                 },
                                 {
                                     'imports': $p.imports,
@@ -1985,12 +2012,12 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     default: return _p.au($[0])
                 }
             })])
-            case 'sibling': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['sibling', _i_generic.get_entry(
+            case 'sibling': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['sibling', _i_generic.get_entry_acyclic(
                 $l['sibling property resolvers'],
                 $,
                 abort,
             )])
-            case 'parent sibling': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['parent sibling', _i_generic.get_entry(
+            case 'parent sibling': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => ['parent sibling', _i_generic.get_entry_acyclic(
                 $l['parent sibling property resolvers'],
                 $,
                 abort,
@@ -2054,11 +2081,11 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         }))
                         case 'list cursor': return _p.ss($, ($) => $p['list cursor'].__decide(
                             ($) => $['resulting node'],
-                            () => _i_generic.abort.tbd("there is no cursor", start_loc, abort)
+                            () => _i_generic.abort.is_set_assertion("list cursor", start_loc, abort)
                         ))
                         case 'linked entry': return _p.ss($, ($) => $p['linked entry'].__decide(
                             ($) => $['resulting dictionary'].node,
-                            () => _i_generic.abort.tbd(`there is no linked entry`, start_loc, abort)
+                            () => _i_generic.abort.is_set_assertion("linked entry", start_loc, abort)
                         ))
                         case 'option constraint': return _p.ss($, ($) => _p.deprecated_cc($.entry, ($) => {
                             switch ($[0]) {
@@ -2089,7 +2116,7 @@ export const Type_Specification: signatures.Type_Specification = ($, abort, $l, 
         $.schema,
         abort,
         {
-            'sibling schemas': _i_generic.stack.empty(),
+            'sibling schemas': _p_temp.stack.empty(),
         },
         $p,
     ),

@@ -7,6 +7,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "../../../interface/generated/liana/generic/resolve"
+import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 export type Error = _pi.Dictionary<Package_Error>
 export type Package_Error =
     | ['could not log', null]
@@ -19,8 +20,12 @@ export type Package_Error =
     | ['could not deserialize module', d_resolve.Error]
 
 
+
+
 //data
 import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/all"
+
+import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
 import * as r_liana_module from "../../temp/resolvers/module"
@@ -28,7 +33,62 @@ import * as t_liana_module_to_fountain_pen_block__implementation from "../schema
 import * as t_liana_module_to_fountain_pen_block__interface from "../schemas/module/transformers/temp_typescript_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as ds_context_path from "pareto-resources/dist/implementation/manual/schemas/context_path/deserializers"
+import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
 
+export const Error = ($: Error): d_fp.Group_Part => {
+    return sh.g.sub($.__to_list(
+        ($, key) => sh.g.nested_block([
+            sh.b.snippet(`error in package ${key}: `),
+            _p.sg($, ($) => {
+                switch ($[0]) {
+                    case 'could not log': return _p.ss($, ($) => sh.b.snippet(`could not log`))
+                    case 'could not remove interface': return _p.ss($, ($) => sh.b.snippet(`could not remove interface`))
+                    case 'could not remove implementation': return _p.ss($, ($) => sh.b.snippet(`could not remove implementation`))
+                    case 'could not write interface': return _p.ss($, ($) => sh.b.snippet(`could not write interface`))
+                    case 'could not write implementation': return _p.ss($, ($) => sh.b.snippet(`could not write implementation`))
+                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.b.snippet(`could not copy generic implementation`))
+                    case 'could not copy core interface': return _p.ss($, ($) => sh.b.snippet(`could not copy core interface`))
+                    case 'could not deserialize module': return _p.ss($, ($) => sh.b.sub([
+                        sh.b.snippet($.location.file + `:` + $.location.line + `:` + $.location.column + `: `),
+                        _p.sg($.type, ($) => {
+                            switch ($[0]) {
+                                case 'constraint': return _p.ss($, ($) => _p.sg($, ($) => {
+                                    switch ($[0]) {
+                                        case 'state group': return _p.ss($, ($) => sh.b.snippet(`expected ${$.expected}, found ${$.found}`))
+                                        case 'optional value': return _p.ss($, ($) => _p.sg($, ($) => {
+                                            switch ($[0]) {
+                                                case 'set': return _p.ss($, ($) => sh.b.snippet(`expected ${$} to be set`))
+                                                default: return _p.au($[0])
+                                            }
+                                        }))
+                                        case 'same node': return _p.ss($, ($) => sh.b.snippet(`${$}, not the same node`))
+                                        default: return _p.au($[0])
+                                    }
+                                }))
+                                case 'lookup': return _p.ss($, ($) => _p.sg($, ($) => {
+                                    switch ($[0]) {
+                                        case 'cyclic lookup in acyclic context': return _p.ss($, ($) => sh.b.snippet(`cyclic lookup in acyclic context: ${$}`))
+                                        case 'no such entry': return _p.ss($, ($) => sh.b.snippet(`no such entry: ${$}`))
+                                        case 'optional lookup not set': return _p.ss($, ($) => sh.b.snippet(`there is is no context where this entry can be looked up`))
+                                        default: return _p.au($[0])
+                                    }
+                                }))
+                                case 'missing required entries': return _p.ss($, ($) => sh.b.sub([
+                                    sh.b.snippet(`missing required entries:`),
+                                    sh.b.indent([
+                                        sh.g.sub($.__to_list(($, key) => sh.g.simple_block(`- ${key}`)))
+                                    ])
+                                ]))
+                                default: return _p.au($[0])
+                            }
+                        })
+                    ]))
+                    default: return _p.au($[0])
+                }
+            })
+        ])
+    ))
+}
 export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure(
     ($p, $cr, $qr) => [
 
@@ -154,33 +214,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
             ($) => [
                 $cr.log.execute(
                     {
-                        'lines': _pt.list.from_dictionary(
-                            $,
-                            ($, key) => `error in package ${key}: ` + _p.sg($, ($) => {
-                                switch ($[0]) {
-                                    case 'could not log': return _p.ss($, ($) => `could not log`)
-                                    case 'could not remove interface': return _p.ss($, ($) => `could not remove interface`)
-                                    case 'could not remove implementation': return _p.ss($, ($) => `could not remove implementation`)
-                                    case 'could not write interface': return _p.ss($, ($) => `could not write interface`)
-                                    case 'could not write implementation': return _p.ss($, ($) => `could not write implementation`)
-                                    case 'could not copy generic implementation': return _p.ss($, ($) => `could not copy generic implementation`)
-                                    case 'could not copy core interface': return _p.ss($, ($) => `could not copy core interface`)
-                                    case 'could not deserialize module': return _p.ss($, ($) => $.location.file + `:` + $.location.line + `:` + $.location.column + `: ` + _p.sg($.type, ($) => {
-                                        switch ($[0]) {
-                                            case 'cyclic lookup in acyclic context': return _p.ss($, ($) => `cyclic lookup in acyclic context: ${$}`)
-                                            case 'missing required entry': return _p.ss($, ($) => `missing required entry: ${$}`)
-                                            case 'no context lookup': return _p.ss($, ($) => `no context lookup`)
-                                            case 'no such entry': return _p.ss($, ($) => `no such entry: ${$}`)
-                                            case 'not the same node': return _p.ss($, ($) => `not the same node`)
-                                            case 'wrong state': return _p.ss($, ($) => `wrong state`)
-                                            case 'tbd': return _p.ss($, ($) => $)
-                                            default: return _p.au($[0])
-                                        }
-                                    }))
-                                    default: return _p.au($[0])
-                                }
-                            })
-                        )
+                        'lines': t_fp_to_lines.Group_Part(Error($), {'indentation': '    '})
                     },
                     ($) => ({
                         'exit code': 1

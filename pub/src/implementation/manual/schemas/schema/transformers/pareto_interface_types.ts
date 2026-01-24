@@ -44,19 +44,28 @@ export const Schema = (
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
                         $p.depth + 1 + $['schema set child']['up steps'],
                         $['schema set child'].key,
-                        _p.sg($p.type, ($) => {
+                        _p.sg($.schema.complexity, ($) => {
                             switch ($[0]) {
                                 case 'unconstrained': return _p.ss($, ($) => [
                                     "data",
                                 ])
-                                case 'unresolved': return _p.ss($, ($) => [
-                                    "data",
-                                    "unresolved",
-                                ])
-                                case 'resolved': return _p.ss($, ($) => [
-                                    "data",
-                                    "resolved",
-                                ])
+                                case 'constrained': return _p.ss($, ($) => _p.sg($p.type, ($) => {
+                                    switch ($[0]) {
+                                        case 'unconstrained': return _p.ss($, ($) => [
+                                            "data",
+                                            "resolved",
+                                        ])
+                                        case 'unresolved': return _p.ss($, ($) => [
+                                            "data",
+                                            "unresolved",
+                                        ])
+                                        case 'resolved': return _p.ss($, ($) => [
+                                            "data",
+                                            "resolved",
+                                        ])
+                                        default: return _p.au($[0])
+                                    }
+                                }))
                                 default: return _p.au($[0])
                             }
                         }),

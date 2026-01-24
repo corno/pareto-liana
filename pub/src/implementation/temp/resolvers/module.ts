@@ -1,5 +1,6 @@
 import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
+import * as _p_temp from '../temp_core'
 
 import * as signatures from "../../../interface/generated/liana/schemas/module/resolve"
 import * as d_out from "../../../interface/generated/liana/schemas/module/data/resolved"
@@ -12,7 +13,7 @@ export const Module: signatures.Module = ($, abort, $l, $p) => _p.deprecated_blo
         $,
         abort,
         {
-            'sibling schemas': _i_generic.stack.empty(),
+            'sibling schemas': _p_temp.stack.empty(),
         },
         null,
     ))

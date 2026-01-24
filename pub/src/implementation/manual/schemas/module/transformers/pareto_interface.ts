@@ -20,16 +20,22 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                 {
                     "Error": sh.type.data(sh.t.group({
                         "type": sh.t.state_group({
-                            "cyclic lookup in acyclic context": sh.t.text(),
-                            "missing required entry": sh.t.text(),
-                            "no context lookup": sh.t.nothing(),
-                            "no such entry": sh.t.text(),
-                            "not the same node": sh.t.text(),
-                            "wrong state": sh.t.group({
-                                "expected": sh.t.text(),
-                                "found": sh.t.text(),
+                            "constraint": sh.t.state_group({
+                                "state group": sh.t.group({
+                                    "expected": sh.t.text(),
+                                    "found": sh.t.text(),
+                                }),
+                                "optional value": sh.t.state_group({
+                                    "set": sh.t.text(),
+                                }),
+                                "same node": sh.t.text(),
                             }),
-                            "tbd": sh.t.text(),
+                            "lookup": sh.t.state_group({
+                                "cyclic lookup in acyclic context": sh.t.text(),
+                                "optional lookup not set": sh.t.nothing(),
+                                "no such entry": sh.t.text(),
+                            }),
+                            "missing required entries": sh.t.dictionary(sh.t.nothing()),
                         }),
                         "location": sh.t.component_imported("location", "Location",),
                     })),
