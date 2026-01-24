@@ -193,9 +193,9 @@ export const Type_Node = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state group': return _p.ss($, ($) => sh.e.state_literal(
+            case 'state': return _p.ss($, ($) => sh.e.state_literal(
                 "state",
-                sh.e.decide_state_group(
+                sh.e.decide_state(
                     sh.s.from_context([]),
                     $.__d_map(($, key) => sh.e.group({
                         "state": sh.e.string(key, 'quote'),

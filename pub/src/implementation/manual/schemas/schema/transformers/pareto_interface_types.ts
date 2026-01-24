@@ -285,7 +285,7 @@ export const Type_Node = (
                     }
                 })
             })
-            case 'state group': return _p.ss($, ($) => add_location
+            case 'state': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "location": location,
                     "state": sh.t.state($.__d_map(($, key) => Type_Node(
@@ -314,7 +314,7 @@ const Type_Node_Reference__tail = (
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))
             case 'list': return _p.ss($, ($) => sh.sub.list())
             case 'optional': return _p.ss($, ($) => sh.sub.optional())
-            case 'state group': return _p.ss($, ($) => sh.sub.state($.key))
+            case 'state': return _p.ss($, ($) => sh.sub.state($.key))
             default: return _p.au($[0])
         }
     }))

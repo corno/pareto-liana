@@ -52,7 +52,7 @@ export const $: g_.Types = types(
             "character code": tstate(t.number_local(n.natural())),
             // "character class": t.group({
             //     "negated": t.boolean(),
-            //     "type" : t.state_group({
+            //     "type" : t.state({
             //         "char": t.nothing(),
             //     }),
             // }),

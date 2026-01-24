@@ -101,7 +101,7 @@ export const Possible_Value_Selection = (
             ))
             case 'result': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'state group': return _p.ss($, ($) => sh.s.implement_me()) //quite some work
+                    case 'state': return _p.ss($, ($) => sh.s.implement_me()) //quite some work
                     case 'optional value': return _p.ss($, ($) => sh.s.implement_me()) //quite some work
 
                     default: return _p.au($[0])
@@ -174,7 +174,7 @@ export const Guaranteed_Value_Selection = (
             ))
             case 'result': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'state group': return _p.ss($, ($) => sh.s.implement_me())  // quite some work
+                    case 'state': return _p.ss($, ($) => sh.s.implement_me())  // quite some work
                     case 'optional value': return _p.ss($, ($) => sh.s.implement_me()) // quite some work
                     case 'list': return _p.ss($, ($) => sh.s.implement_me()) // quite some work
 
@@ -480,8 +480,8 @@ export const Node_Resolver = (
                 }
             )
         ))
-        case 'state group': return _p.ss($, ($) => sh.e.decide_state_group(
-            sh.s.from_context(['state group']),
+        case 'state': return _p.ss($, ($) => sh.e.decide_state(
+            sh.s.from_context(['state']),
             $.states.__d_map(($, key) => sh.e.state_literal(key, Option_Constraints(
                 $.constraints,
                 {

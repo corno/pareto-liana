@@ -87,7 +87,7 @@ export const Type_Node_Path = (
             case 'group': return _p.ss($, ($) => sh.sub.group($.key))
             case 'list': return _p.ss($, ($) => sh.sub.list())
             case 'optional': return _p.ss($, ($) => sh.sub.optional())
-            case 'state group': return _p.ss($, ($) => sh.sub.state($.key))
+            case 'state': return _p.ss($, ($) => sh.sub.state($.key))
             default: return _p.au($[0])
         }
     }))

@@ -905,7 +905,7 @@ export namespace Type_Node_ {
             readonly 'type': reference.type_
         }
         
-        export namespace state_group {
+        export namespace state {
             
             export type location = i__location.Location
             
@@ -947,9 +947,9 @@ export namespace Type_Node_ {
             
         }
         
-        export type state_group = {
-            readonly 'location': state_group.location
-            readonly 'dictionary': state_group.dictionary
+        export type state = {
+            readonly 'location': state.location
+            readonly 'dictionary': state.dictionary
         }
         
         export namespace text {
@@ -998,7 +998,7 @@ export namespace Type_Node_ {
         | readonly ['number', state.number_]
         | readonly ['optional', state.optional]
         | readonly ['reference', state.reference]
-        | readonly ['state group', state.state_group]
+        | readonly ['state', state.state]
         | readonly ['text', state.text]
     
 }
@@ -1045,7 +1045,7 @@ export namespace Type_Node_Path_ {
                         
                         export type optional = null
                         
-                        export namespace state_group {
+                        export namespace state {
                             
                             export type location = i__location.Location
                             
@@ -1053,9 +1053,9 @@ export namespace Type_Node_Path_ {
                             
                         }
                         
-                        export type state_group = {
-                            readonly 'location': state_group.location
-                            readonly 'key': state_group.key
+                        export type state = {
+                            readonly 'location': state.location
+                            readonly 'key': state.key
                         }
                         
                     }
@@ -1065,7 +1065,7 @@ export namespace Type_Node_Path_ {
                         | readonly ['group', state.group]
                         | readonly ['list', state.list]
                         | readonly ['optional', state.optional]
-                        | readonly ['state group', state.state_group]
+                        | readonly ['state', state.state]
                     
                 }
                 
@@ -1441,9 +1441,9 @@ export namespace Constraint_ {
             
             export namespace state {
                 
-                export type selected_state_group = null
+                export type selected_state = null
                 
-                export namespace state {
+                export namespace option {
                     
                     export type location = i__location.Location
                     
@@ -1451,16 +1451,16 @@ export namespace Constraint_ {
                     
                 }
                 
-                export type state = {
-                    readonly 'location': state.location
-                    readonly 'key': state.key
+                export type option = {
+                    readonly 'location': option.location
+                    readonly 'key': option.key
                 }
                 
             }
             
             export type state = {
-                readonly 'selected state group': state.selected_state_group
-                readonly 'state': state.state
+                readonly 'selected state': state.selected_state
+                readonly 'option': state.option
             }
             
             export namespace optional_value {
@@ -1513,9 +1513,9 @@ export namespace Option_Constraints_ {
                         
                         export type selection = Guaranteed_Value_Selection_
                         
-                        export type selected_state_group = null
+                        export type selected_state = null
                         
-                        export namespace state {
+                        export namespace option {
                             
                             export type location = i__location.Location
                             
@@ -1523,17 +1523,17 @@ export namespace Option_Constraints_ {
                             
                         }
                         
-                        export type state = {
-                            readonly 'location': state.location
-                            readonly 'key': state.key
+                        export type option = {
+                            readonly 'location': option.location
+                            readonly 'key': option.key
                         }
                         
                     }
                     
                     export type state = {
                         readonly 'selection': state.selection
-                        readonly 'selected state group': state.selected_state_group
-                        readonly 'state': state.state
+                        readonly 'selected state': state.selected_state
+                        readonly 'option': state.option
                     }
                     
                     export type assert_is_set = Possible_Value_Selection_
@@ -2100,7 +2100,7 @@ export namespace Node_Resolver_ {
             readonly 'type': reference.type_
         }
         
-        export namespace state_group {
+        export namespace state {
             
             export type definition = null
             
@@ -2147,9 +2147,9 @@ export namespace Node_Resolver_ {
             
         }
         
-        export type state_group = {
-            readonly 'definition': state_group.definition
-            readonly 'states': state_group.states
+        export type state = {
+            readonly 'definition': state.definition
+            readonly 'states': state.states
         }
         
         export type text = null
@@ -2166,7 +2166,7 @@ export namespace Node_Resolver_ {
         | readonly ['number', state.number_]
         | readonly ['optional', state.optional]
         | readonly ['reference', state.reference]
-        | readonly ['state group', state.state_group]
+        | readonly ['state', state.state]
         | readonly ['text', state.text]
     
 }
@@ -2359,7 +2359,7 @@ export namespace Guaranteed_Value_Selection_ {
                         readonly 'list result': list.list_result
                     }
                     
-                    export namespace state_group {
+                    export namespace state {
                         
                         export namespace property {
                             
@@ -2374,16 +2374,16 @@ export namespace Guaranteed_Value_Selection_ {
                             readonly 'key': property.key
                         }
                         
-                        export type state_group = null
+                        export type state = null
                         
                         export type result = Type_Reference_
                         
                     }
                     
-                    export type state_group = {
-                        readonly 'property': state_group.property
-                        readonly 'state group': state_group.state_group
-                        readonly 'result': state_group.result
+                    export type state = {
+                        readonly 'property': state.property
+                        readonly 'state': state.state
+                        readonly 'result': state.result
                     }
                     
                     export namespace optional_value {
@@ -2417,7 +2417,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export type state = 
                     | readonly ['list', state.list]
-                    | readonly ['state group', state.state_group]
+                    | readonly ['state', state.state]
                     | readonly ['optional value', state.optional_value]
                 
             }
@@ -2483,7 +2483,7 @@ export namespace Possible_Value_Selection_ {
             
             export namespace state {
                 
-                export namespace state_group {
+                export namespace state {
                     
                     export namespace property {
                         
@@ -2498,16 +2498,16 @@ export namespace Possible_Value_Selection_ {
                         readonly 'key': property.key
                     }
                     
-                    export type state_group = null
+                    export type state = null
                     
                     export type result = Type_Reference_
                     
                 }
                 
-                export type state_group = {
-                    readonly 'property': state_group.property
-                    readonly 'state group': state_group.state_group
-                    readonly 'result': state_group.result
+                export type state = {
+                    readonly 'property': state.property
+                    readonly 'state': state.state
+                    readonly 'result': state.result
                 }
                 
                 export namespace optional_value {
@@ -2540,7 +2540,7 @@ export namespace Possible_Value_Selection_ {
             }
             
             export type state = 
-                | readonly ['state group', state.state_group]
+                | readonly ['state', state.state]
                 | readonly ['optional value', state.optional_value]
             
         }

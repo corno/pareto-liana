@@ -666,7 +666,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 //     }]
                 // }
             })
-            case 'state group': return _p.ss($, ($) => ['state group', _p.dictionary.resolve(
+            case 'state': return _p.ss($, ($) => ['state', _p.dictionary.resolve(
                 $.dictionary,
                 ($, key, $acyclic, $cyclic) => ({
                     'description': $.entry.description,
@@ -820,20 +820,20 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             'result': sc_definition
                         }
                     })
-                    case 'state group': return _p.ss($, ($) => {
-                        const p_state_group: d_out.Type_Node.state_group = _p.deprecated_cc(current, ($) => {
-                            if ($[0] !== 'state group') {
-                                return _i_generic.abort.state_constraint("state group", $, sg_loc, abort)
+                    case 'state': return _p.ss($, ($) => {
+                        const P_state: d_out.Type_Node.state = _p.deprecated_cc(current, ($) => {
+                            if ($[0] !== 'state') {
+                                return _i_generic.abort.state_constraint("state", $, sg_loc, abort)
                             }
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(p_state_group),
+                            _p_temp.dictionary_to_lookup(P_state),
                             $,
                             abort,
                         )
                         return {
-                            'element': ['state group', p_child],
+                            'element': ['state', p_child],
                             'result': p_child.entry.node
                         }
                     })
@@ -866,23 +866,23 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                         $l,
                         $p,
                     ))
-                    const p_selected_state_group = p_selection['resulting node'][0] !== 'state group' // component constraint ('selection')
+                    const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
                         ? _i_generic.abort.state_constraint(
-                            "state group",
+                            "state",
                             p_selection['resulting node'],
                             loc,
                             abort,
                         )
                         : p_selection['resulting node'][1]
-                    const p_state: d_out.Option_Constraints.D.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry_acyclic(
-                        _p_temp.dictionary_to_lookup(p_selected_state_group),
+                    const p_option: d_out.Option_Constraints.D.state.option = _p.deprecated_cc($['option'], ($) => _i_generic.get_entry_acyclic(
+                        _p_temp.dictionary_to_lookup(p_selected_state),
                         $,
                         abort,
                     ))
                     return ({
-                        'selected state group': p_selected_state_group,
+                        'selected state': p_selected_state,
                         'selection': p_selection,
-                        'state': p_state,
+                        'option': p_option,
                     })
                 })])
                 case 'assert is set': return _p.ss($, ($) => ['assert is set', Possibly_Optional(
@@ -910,22 +910,22 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
     const p_type: d_out.Constraint.type_ = _p.deprecated_cc($.type, ($) => _p.deprecated_cc($.state, ($) => {
         switch ($[0]) {
             case 'state': return _p.ss($, ($) => {
-                const p_selected_state_group = p_selection['resulting node'][0] !== 'state group' // component constraint ('selection')
+                const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
                     ? _i_generic.abort.state_constraint(
-                        "state group",
+                        "state",
                         p_selection['resulting node'],
                         loc,
                         abort,
                     )
                     : p_selection['resulting node'][1]
-                const p_state: d_out.Constraint.type_.state.state = _p.deprecated_cc($['state'], ($) => _i_generic.get_entry_acyclic(
-                    _p_temp.dictionary_to_lookup(p_selected_state_group),
+                const p_option: d_out.Constraint.type_.state.option = _p.deprecated_cc($['option'], ($) => _i_generic.get_entry_acyclic(
+                    _p_temp.dictionary_to_lookup(p_selected_state),
                     $,
                     abort,
                 ))
                 return ['state', {
-                    'selected state group': p_selected_state_group,
-                    'state': p_state,
+                    'selected state': p_selected_state,
+                    'option': p_option,
                 }]
             })
             case 'optional value': return _p.ss($, ($) => {
@@ -976,7 +976,7 @@ export const Property_Constraints: signatures.Property_Constraints = ($, abort, 
                             case 'property': return _p.ss($, ($) => $p.node)
                             case 'sibling': return _p.ss($, ($) => _p.deprecated_cc($.entry.constraint.type, ($) => {
                                 switch ($[0]) {
-                                    case 'state': return _p.ss($, ($) => $.state.entry.node)
+                                    case 'state': return _p.ss($, ($) => $.option.entry.node)
                                     case 'optional value': return _p.ss($, ($) => $['selected optional value'])
                                     default: return _p.au($[0])
                                 }
@@ -1483,7 +1483,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_constraints: d_out.Node_Resolver.state_group.states.D.constraints = Option_Constraints(
+                const p_constraints: d_out.Node_Resolver.state.states.D.constraints = Option_Constraints(
                     $.constraints,
                     abort,
                     $l,
@@ -1565,12 +1565,12 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     })
                 }]
             })
-            case 'state group': return _p.ss($, ($): d_out.Node_Resolver => {
-                const p_definition = $p.definition[0] !== 'state group'
-                    ? _i_generic.abort.state_constraint("state group", $p.definition, loc, abort)
+            case 'state': return _p.ss($, ($): d_out.Node_Resolver => {
+                const p_definition = $p.definition[0] !== 'state'
+                    ? _i_generic.abort.state_constraint("state", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_states: d_out.Node_Resolver.state_group.states = _i_generic.resolve_dense_dictionary(
+                const p_states: d_out.Node_Resolver.state.states = _i_generic.resolve_dense_dictionary(
                     $.states.dictionary,
                     $.states.location,
                     abort,
@@ -1585,7 +1585,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_constraints: d_out.Node_Resolver.state_group.states.D.constraints = Option_Constraints(
+                        const p_constraints: d_out.Node_Resolver.state.states.D.constraints = Option_Constraints(
                             $.entry.constraints,
                             abort,
                             $l,
@@ -1621,16 +1621,16 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 )
 
 
-                // case 'state group': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Relative_Value_Selection.tail.L, _i_out.Type_Node> => pa.deprecated_block(() => {
+                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Relative_Value_Selection.tail.L, _i_out.Type_Node> => pa.deprecated_block(() => {
                 //     return pa.deprecated_block(() => {
 
-                //         const sc_definition: _i_out.Type_Node.state_group = pa.deprecated_cc(current, ($) => {
-                //             if ($[0] !== 'state group') {
-                //                 return pa.panic(`not a 'state group' but a '${$[0]}' @ ${$p['location 2 string'](sg_loc)}`)
+                //         const sc_definition: _i_out.Type_Node.state = pa.deprecated_cc(current, ($) => {
+                //             if ($[0] !== 'state') {
+                //                 return pa.panic(`not a 'state' but a '${$[0]}' @ ${$p['location 2 string'](sg_loc)}`)
                 //             }
                 //             return $[1]
                 //         })
-                //         const p_type: _i_out.Relative_Value_Selection.tail.L.state_group.type_ = pa.deprecated_cc($['type'], ($) => Type_Reference(
+                //         const p_type: _i_out.Relative_Value_Selection.tail.L.state.type_ = pa.deprecated_cc($['type'], ($) => Type_Reference(
                 //             $,
                 //             {
                 //                 'location 2 string': l2s,
@@ -1643,7 +1643,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 //                 }),
                 //             }
                 //         ))
-                //         const p_states: _i_out.Relative_Value_Selection.tail.L.state_group.states = pa.deprecated_cc($['states'], ($) => _i_generic.resolve_dense_dictionary(
+                //         const p_states: _i_out.Relative_Value_Selection.tail.L.state.states = pa.deprecated_cc($['states'], ($) => _i_generic.resolve_dense_dictionary(
                 //             $,
                 //             {
                 //                 'location 2 string': l2s,
@@ -1676,7 +1676,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 //         ))
                 //         return {
                 //             'result': p_type['resulting node'],
-                //             'element': ['state group', ({
+                //             'element': ['state', ({
                 //                 'definition': sc_definition,
                 //                 'states': p_states,
                 //                 'type': p_type,
@@ -1684,7 +1684,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 //         }
                 //     })
                 // }))
-                return ['state group', {
+                return ['state', {
                     'definition': p_definition,
                     'states': p_states,
                 }]
@@ -1819,15 +1819,15 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
             )])
             case 'result': return _p.ss($, ($) => ['result', _p.deprecated_cc($.state, ($): d_out.Possible_Value_Selection.result => {
                 switch ($[0]) {
-                    case 'state group': return _p.ss($, ($) => {
+                    case 'state': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Possible_Value_Selection.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
+                        const p_sibling: d_out.Possible_Value_Selection.result.state.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
-                        const p_state_group = _p.deprecated_cc($['state group'], ($) => p_sibling.entry.resolver[0] !== 'state group'
-                            ? _i_generic.abort.state_constraint("state group", p_sibling.entry.resolver, loc, abort)
+                        const P_state = _p.deprecated_cc($['state'], ($) => p_sibling.entry.resolver[0] !== 'state'
+                            ? _i_generic.abort.state_constraint("state", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
 
                         const p_result = Type_Reference(
@@ -1840,9 +1840,9 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                                 'imports': $p.imports,
                             },
                         )
-                        return ['state group', {
+                        return ['state', {
                             'property': p_sibling,
-                            'state group': p_state_group,
+                            'state': P_state,
                             'result': p_result,
                         }]
                     })
@@ -1976,19 +1976,19 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             'list result': p_list_result,
                         }]
                     })
-                    case 'state group': return _p.ss($, ($) => {
+                    case 'state': return _p.ss($, ($) => {
                         const loc = $['property'].location
-                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.state_group.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
+                        const p_sibling: d_out.Guaranteed_Value_Selection.start.result.state.property = _p.deprecated_cc($['property'], ($) => _i_generic.get_entry_acyclic(
                             $l['sibling property resolvers'],
                             $,
                             abort,
                         ))
-                        const p_state_group = _p.deprecated_cc($['state group'], ($) => p_sibling.entry.resolver[0] !== 'state group'
-                            ? _i_generic.abort.state_constraint("state group", p_sibling.entry.resolver, loc, abort)
+                        const P_state = _p.deprecated_cc($['state'], ($) => p_sibling.entry.resolver[0] !== 'state'
+                            ? _i_generic.abort.state_constraint("state", p_sibling.entry.resolver, loc, abort)
                             : p_sibling.entry.resolver[1])
-                        return ['state group', {
+                        return ['state', {
                             'property': p_sibling,
-                            'state group': p_state_group,
+                            'state': P_state,
                             'result': Type_Reference(
                                 $.result,
                                 abort,
@@ -2054,7 +2054,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting type'].node)
                             case 'result': return _p.ss($, ($) => _p.deprecated_cc($, ($) => {
                                 switch ($[0]) {
-                                    case 'state group': return _p.ss($, ($) => $.result['resulting type'].node)
+                                    case 'state': return _p.ss($, ($) => $.result['resulting type'].node)
                                     case 'optional value': return _p.ss($, ($) => $.result['resulting type'].node)
                                     default: return _p.au($[0])
                                 }
@@ -2070,14 +2070,14 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             switch ($[0]) {
                                 case 'component': return _p.ss($, ($) => _p.deprecated_cc($.constraint.entry.constraint.type, ($) => {
                                     switch ($[0]) {
-                                        case 'state': return _p.ss($, ($) => $.state.entry.node)
+                                        case 'state': return _p.ss($, ($) => $.option.entry.node)
                                         case 'optional value': return _p.ss($, ($) => $['selected optional value'])
                                         default: return _p.au($[0])
                                     }
                                 }))
                                 case 'reference': return _p.ss($, ($) => _p.deprecated_cc($.constraint.entry.constraint.type, ($) => {
                                     switch ($[0]) {
-                                        case 'state': return _p.ss($, ($) => $.state.entry.node)
+                                        case 'state': return _p.ss($, ($) => $.option.entry.node)
                                         case 'optional value': return _p.ss($, ($) => $['selected optional value'])
 
                                         default: return _p.au($[0])
@@ -2090,7 +2090,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         case 'parameter': return _p.ss($, ($) => $.entry['data type']['resulting type'].node)
                         case 'result': return _p.ss($, ($) => _p.deprecated_cc($, ($) => {
                             switch ($[0]) {
-                                case 'state group': return _p.ss($, ($) => $.result['resulting type'].node)
+                                case 'state': return _p.ss($, ($) => $.result['resulting type'].node)
                                 case 'optional value': return _p.ss($, ($) => $.result['resulting type'].node)
                                 case 'list': return _p.ss($, ($) => $['list result']['resulting type'].node)
                                 default: return _p.au($[0])
@@ -2106,7 +2106,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         ))
                         case 'option constraint': return _p.ss($, ($) => _p.deprecated_cc($.entry, ($) => {
                             switch ($[0]) {
-                                case 'state': return _p.ss($, ($) => $.state.entry.node)
+                                case 'state': return _p.ss($, ($) => $.option.entry.node)
                                 case 'assert is set': return _p.ss($, ($) => pvs($))
                                 default: return _p.au($[0])
                             }

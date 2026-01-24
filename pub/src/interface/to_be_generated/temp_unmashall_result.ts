@@ -41,7 +41,7 @@ export type Node_Type =
     | ['number', Number]
     | ['optional', Optional]
     | ['reference', Reference]
-    | ['state group', State_Group]
+    | ['state', State]
     | ['text', Text]
 
 
@@ -134,13 +134,13 @@ export type Reference = {
     | ['invalid', d_astn_token.Range]
 }
 
-export type State_Group = {
-    'definition': d_schema.Type_Node.state_group
+export type State = {
+    'definition': d_schema.Type_Node.state
     'found value type': State_found_value_type
 }
 
 export type State_Definition_Found = {
-    'definition': d_schema.Type_Node.state_group.D
+    'definition': d_schema.Type_Node.state.D
     'node': Node
 }
 

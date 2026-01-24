@@ -254,7 +254,7 @@ export const Node = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state group': return _p.ss($, ($) => {
+            case 'state': return _p.ss($, ($) => {
                 const sg_def = $.definition
                 return _p.decide.state($['found value type'], ($): d_out.Errors => {
                     switch ($[0]) {

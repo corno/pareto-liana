@@ -363,9 +363,9 @@ export const Node_Type = (
                     })
                 }]
             })
-            case 'state group': return _p.ss($, ($): d_out.Node_Type => {
+            case 'state': return _p.ss($, ($): d_out.Node_Type => {
                 const def = $
-                return ['state group', {
+                return ['state', {
                     'definition': $,
                     'found value type': _p.decide.state(data, ($): d_out.State_found_value_type => {
                         switch ($[0]) {

@@ -67,7 +67,7 @@ export namespace abort {
         location: gen_loc.Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
-        'type': ['constraint', ['state group', {
+        'type': ['constraint', ['state', {
             'expected': expected,
             'found': found[0],
         }]],

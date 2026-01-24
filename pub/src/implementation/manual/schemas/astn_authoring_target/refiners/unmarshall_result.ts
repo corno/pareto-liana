@@ -47,7 +47,7 @@ export const Node = (
                 }))
                 case 'optional': return _pdev.implement_me("xx")
                 case 'reference': return _pdev.implement_me("xx")
-                case 'state group': return _pdev.implement_me("xx")
+                case 'state': return _pdev.implement_me("xx")
                 case 'text': return _p.ss($, ($): d_out.Value.data => ['concrete', {
                     'type': ['text', {
                         'value': "FIXME_TEXT",

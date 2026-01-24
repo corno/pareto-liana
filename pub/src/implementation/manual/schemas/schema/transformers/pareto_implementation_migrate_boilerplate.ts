@@ -160,7 +160,7 @@ export const Type_Node = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state group': return _p.ss($, ($) => sh.e.decide_state_group(
+            case 'state': return _p.ss($, ($) => sh.e.decide_state(
                 sh.s.from_context([]),
                 $.__d_map(($, key) => sh.e.state_literal(key, Type_Node(
                     $.node,

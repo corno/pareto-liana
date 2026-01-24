@@ -60,7 +60,7 @@ export const prop = (
 
 export const tstate = (
     node: d_schema.Type_Node,
-): d_schema.Type_Node.state.state_group.dictionary.D.entry => ({
+): d_schema.Type_Node.state.state.dictionary.D.entry => ({
     'description': _p.optional.not_set(),
     'node': node,
 })
@@ -68,7 +68,7 @@ export const tstate = (
 export const tstated = (
     description: string,
     node: d_schema.Type_Node,
-): d_schema.Type_Node.state.state_group.dictionary.D.entry => ({
+): d_schema.Type_Node.state.state.dictionary.D.entry => ({
     'description': _p.optional.set(description),
     'node': node,
 })
@@ -327,8 +327,8 @@ export namespace t {
             'type': p_type,
         }])
     }
-    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.state.state_group.dictionary.D.entry>): d_schema.Type_Node => {
-        return _p.wrap_state(['state group', _p.wrap_dictionary(options)])
+    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.state.state.dictionary.D.entry>): d_schema.Type_Node => {
+        return _p.wrap_state(['state', _p.wrap_dictionary(options)])
     }
     export const text_global = (name: string): d_schema.Type_Node => {
         return _p.wrap_state(['text', _p.wrap_state(['global', _p.wrap_reference(name)])])
@@ -353,7 +353,7 @@ export namespace tr {
         return _p.wrap_state(['group', _p.wrap_reference(grp)])
     }
     export const s = (state: string): d_schema.Type_Node_Path.tail.list.L.element => {
-        return _p.wrap_state(['state group', _p.wrap_reference(state)])
+        return _p.wrap_state(['state', _p.wrap_reference(state)])
     }
     export const o = (): d_schema.Type_Node_Path.tail.list.L.element => {
         return _p.wrap_state(['optional', null])
@@ -583,17 +583,6 @@ export namespace vst {
         }])
     }
 
-    // export const state_group = (
-    //     type: unresolved.Type_Node_Reference,
-    //     states: _psh.Raw_Or_Normal_Dictionary<unresolved.Relative_Value_Selection.path.L.state.states.dictionary.D.entry>,
-    // ): unresolved.Relative_Value_Selection.path.L => {
-    //     return _psh.wrap_state(['state group', {
-    //         'definition': null,
-    //         'type': type,
-    //         'states': _psh.wrap_dictionary(states),
-    //     }])
-    // }
-
 }
 
 /**
@@ -625,13 +614,13 @@ export namespace ovi {
  * possible value selection
  */
 export namespace pvs {
-    export const state_group = (
-        state_group: string,
+    export const state = (
+        state: string,
         result: d_schema.Type_Reference,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state(['result', _p.wrap_state(['state group', {
-            'property': _p.wrap_reference(state_group),
-            'state group': null,
+        return _p.wrap_state(['result', _p.wrap_state(['state', {
+            'property': _p.wrap_reference(state),
+            'state': null,
             'result': result,
         }])])
     }
@@ -722,15 +711,15 @@ export namespace gvs {
         }
     }
 
-    export const state_group = (
-        state_group: string,
+    export const state = (
+        state: string,
         result: d_schema.Type_Reference,
         tail: d_schema.Relative_Value_Selection.path.list.L.element[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state<d_schema.Possible_Value_Selection.state>(['result', _p.wrap_state(['state group', {
-                'property': _p.wrap_reference(state_group),
-                'state group': null,
+            'start': _p.wrap_state<d_schema.Possible_Value_Selection.state>(['result', _p.wrap_state(['state', {
+                'property': _p.wrap_reference(state),
+                'state': null,
                 'result': result,
             }])]),
             'tail': {
@@ -871,7 +860,7 @@ export namespace av {
 
 export const state = (
     resolver: d_schema.Node_Resolver,
-): d_schema.Node_Resolver.state.state_group.states.dictionary.D.entry => {
+): d_schema.Node_Resolver.state.state.states.dictionary.D.entry => {
     return {
         'constraints': _p.wrap_dictionary({}),
         'resolver': resolver,
@@ -881,7 +870,7 @@ export const state = (
 export const state_constrained = (
     constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.dictionary.D.entry>,
     resolver: d_schema.Node_Resolver,
-): d_schema.Node_Resolver.state.state_group.states.dictionary.D.entry => {
+): d_schema.Node_Resolver.state.state.states.dictionary.D.entry => {
     return {
         'constraints': _p.wrap_dictionary(constraints),
         'resolver': resolver,
@@ -899,8 +888,8 @@ export namespace oc {
     ): d_schema.Option_Constraints.dictionary.D.entry => {
         return _p.wrap_state(['state', {
             'selection': value_selection,
-            'selected state group': null,
-            'state': _p.wrap_reference(state),
+            'selected state': null,
+            'option': _p.wrap_reference(state),
         }])
     }
 
@@ -929,8 +918,8 @@ export namespace pc {
                     'resulting node': null,
                 },
                 'type': _p.wrap_state(['state', {
-                    'selected state group': null,
-                    'state': _p.wrap_reference(state),
+                    'selected state': null,
+                    'option': _p.wrap_reference(state),
                 }])
             },
         }
@@ -953,8 +942,8 @@ export namespace pc {
                         'selected optional value': null,
                     }])
                     : _p.wrap_state(['state', {
-                        'selected state group': null,
-                        'state': _p.wrap_reference(state),
+                        'selected state': null,
+                        'option': _p.wrap_reference(state),
                     }])
             },
         }
@@ -1141,9 +1130,9 @@ export namespace r {
     }
 
     export const state = (
-        states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state.state_group.states.dictionary.D.entry>
+        states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.state.state.states.dictionary.D.entry>
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['state group', {
+        return _p.wrap_state(['state', {
             'definition': null,
             'states': _p.wrap_dictionary(states),
         }])

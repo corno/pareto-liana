@@ -54,7 +54,7 @@ export const Error = ($: Error): d_fp.Group_Part => {
                             switch ($[0]) {
                                 case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'state group': return _p.ss($, ($) => sh.b.snippet(`expected ${$.expected}, found ${$.found}`))
+                                        case 'state': return _p.ss($, ($) => sh.b.snippet(`expected ${$.expected}, found ${$.found}`))
                                         case 'optional value': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                             switch ($[0]) {
                                                 case 'set': return _p.ss($, ($) => sh.b.snippet(`expected ${$} to be set`))

@@ -21,7 +21,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     "Error": sh.type.data(sh.t.group({
                         "type": sh.t.state({
                             "constraint": sh.t.state({
-                                "state group": sh.t.group({
+                                "state": sh.t.group({
                                     "expected": sh.t.text(),
                                     "found": sh.t.text(),
                                 }),

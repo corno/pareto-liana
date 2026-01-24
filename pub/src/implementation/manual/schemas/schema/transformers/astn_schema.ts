@@ -102,7 +102,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         }])
         case 'group': return _p.ss($, ($) => ['group', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
         case 'optional': return _p.ss($, ($) => ['optional', Type_Node($)])
-        case 'state group': return _p.ss($, ($) => ['state', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
+        case 'state': return _p.ss($, ($) => ['state', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
         case 'text': return _p.ss($, ($) => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.state.text.state => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', wrap_reference("t" + $.key)])

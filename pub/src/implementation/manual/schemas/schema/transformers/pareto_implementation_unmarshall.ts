@@ -252,8 +252,8 @@ export const Type_Node = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state group': return _p.ss($, ($) => sh.e.call(
-                sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved state group" : "process unconstrained state group", []),
+            case 'state': return _p.ss($, ($) => sh.e.call(
+                sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved state" : "process unconstrained state", []),
                 sh.e.select_from_context_deprecated([]),
                 false,
                 _p.dictionary.literal({
@@ -270,7 +270,7 @@ export const Type_Node = (
                     //                         'temp subselection': _p.list.nested_literal_old([
                     //                             $p['temp subselection'],
                     //                             [
-                    //                                 sh_i.sub.state_group(key),
+                    //                                 sh_i.sub.state(key),
                     //                             ]
                     //                         ]),
                     //                         'constrained': $p.constrained
