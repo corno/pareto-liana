@@ -198,7 +198,7 @@ export const Type_Node = (
                 sh.e.decide_state(
                     sh.s.from_context([]),
                     $.__d_map(($, key) => sh.e.group({
-                        "state": sh.e.string(key, 'quote'),
+                        "state": sh.e.text_literal(key, 'quote'),
                         "value": Type_Node(
                             $.node,
                             {
