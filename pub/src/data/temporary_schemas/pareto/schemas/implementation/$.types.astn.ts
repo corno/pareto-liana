@@ -87,11 +87,11 @@ export const $: g_.Types = types(
                 "implement me": tstate(t.nothing()),
                 "selection deprecated": tstate(t.component_cyclic("Selection")),
                 "unreachable": tstate(t.nothing()),
-                "deprecated function": tstate(t.group({
-                    "expression": prop(t.component_cyclic("Expression")),
-                    "temp has parameters": prop(t.boolean()),
-                    "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
-                })),
+                // "deprecated function": tstate(t.group({
+                //     "expression": prop(t.component_cyclic("Expression")),
+                //     "temp has parameters": prop(t.boolean()),
+                //     "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
+                // })),
             })),
             "initialize": tstate(t.state({
                 "boolean": tstate(t.state({

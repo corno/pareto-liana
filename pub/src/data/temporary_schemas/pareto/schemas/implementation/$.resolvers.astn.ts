@@ -77,11 +77,11 @@ export const $: g_.Resolvers = resolvers(
                 "implement me": state(r.nothing()),
                 "selection deprecated": state(r.component("Selection", {}, {})),
                 "unreachable": state(r.nothing()),
-                "deprecated function": state(r.group({
-                    "expression": r.component("Expression", {}, {}),
-                    "temp has parameters": r.boolean(),
-                    "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
-                })),
+                // "deprecated function": state(r.group({
+                //     "expression": r.component("Expression", {}, {}),
+                //     "temp has parameters": r.boolean(),
+                //     "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                // })),
             })),
             "initialize": state(r.state({
                 "boolean": state(r.state({

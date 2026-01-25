@@ -88,10 +88,7 @@ export const $: g_.Types = types(
             "boolean": tstate(t.nothing()),
             "function": tstate(t.group({
                 "type parameters": prop(t.list(t.component_cyclic("Type"))),
-                "parameters": prop(t.list(t.group({
-                    "name": prop(t.component("Identifier")),
-                    "type": prop(t.optional(t.component_cyclic("Type"))),
-                }))),
+                "parameters": prop(t.component("Function Parameters")),
                 "return": prop(t.component_cyclic("Type")),
             })),
             "literal type": tstate(t.component("String Literal")),
@@ -117,17 +114,19 @@ export const $: g_.Types = types(
             "void": tstate(t.nothing()),
         })),
 
+        "Function Parameters": type(t.list(t.group({
+            "name": prop(t.component("Identifier")),
+            "type": prop(t.optional(t.component_cyclic("Type"))),
+        }))),
+
         "Expression": type(t.state({
             "raw": tstate(t.component("Block Part")),
 
             "array literal": tstate(t.list(t.component_cyclic("Expression"))),
             "arrow function": tstate(t.group({
-                "parameters": prop(t.list(t.group({
-                    "name": prop(t.component("Identifier")),
-                    "type": prop(t.optional(t.component_cyclic("Type"))),
-                }))),
+                "parameters": prop(t.component("Function Parameters")),
                 "return type": prop(t.optional(t.component_cyclic("Type"))),
-                "type": prop(t.state({
+                "body": prop(t.state({
                     "block": tstate(t.component_cyclic("Statements")),
                     "expression": tstate(t.component_cyclic("Expression")),
                 })),
@@ -178,7 +177,13 @@ export const $: g_.Types = types(
             })),
             "string literal": tstate(t.component("String Literal")),
             "true": tstate(t.nothing()),
-
+            "unary operation": tstate(t.group({
+                "operator": prop(t.state({
+                    "negation": tstate(t.nothing()),
+                    "logical not": tstate(t.nothing()),
+                })),
+                "operand": prop(t.component_cyclic("Expression")),
+            })),
         })),
 
         "String Literal": type(t.group({
