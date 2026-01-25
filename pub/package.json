@@ -10,6 +10,6 @@
   "dependencies": {
     "astn": "^0.113.36",
     "pareto": "file:../../pareto/pub",
-    "pareto-fountain-pen": "^0.4.6"
+    "pareto-fountain-pen": "^0.4.7"
   }
 }
