@@ -7,7 +7,7 @@ import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tr
 import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
 import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_result"
 
-import * as t_ast_to_range from "astn/dist/implementation/manual/schemas/parse_tree/transformers/token"
+import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/token"
 
 export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_elements($) !== 1
     ? _p.optional.not_set()
