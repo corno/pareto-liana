@@ -32,7 +32,7 @@ export const $$: signatures.commands.write_to_directory = _p.command_procedure(
         _p.dictionaryx.parallel(
             $p.directory,
             ($, key) => [
-                _pt.sg($, ($): _pi.Command_Promise<d_write_to_directory.Error__nodes> => {
+                _pt.decide.state($, ($): _pi.Command_Promise<d_write_to_directory.Error__nodes> => {
                     const node_path = t_path_to_path.extend_node_path($p.path, { 'addition': key })
                     switch ($[0]) {
                         case 'file':
