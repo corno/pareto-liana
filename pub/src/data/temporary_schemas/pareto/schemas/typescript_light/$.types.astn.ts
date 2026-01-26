@@ -25,8 +25,6 @@ export const $: g_.Types = types(
         )),
 
         "Statements": type(t.list(t.state({
-            "raw": tstate(t.component("Group")),
-
             "block": tstate(t.component_cyclic("Statements")),
             "export": tstate(t.group({
                 "type": prop(t.state({
@@ -120,8 +118,6 @@ export const $: g_.Types = types(
         }))),
 
         "Expression": type(t.state({
-            "raw": tstate(t.component("Block Part")),
-
             "array literal": tstate(t.list(t.component_cyclic("Expression"))),
             "arrow function": tstate(t.group({
                 "parameters": prop(t.component("Function Parameters")),
@@ -195,26 +191,6 @@ export const $: g_.Types = types(
         })),
 
         "Identifier": type(t.text_local(text('single line'))),
-
-        "Group": type(t.list(t.component("Group Part"))),
-
-        "Group Part": type(t.state({
-            "nested block": tstate(t.component("Block")),
-            "block": tstate(t.text_global("Output")),
-            "sub group": tstate(t.component_cyclic("Group")),
-            "optional": tstate(t.optional(t.component_cyclic("Group Part"))),
-            "nothing": tstate(t.nothing()),
-        })),
-
-        "Block": type(t.list(t.component("Block Part"))),
-
-        "Block Part": type(t.state({
-            "snippet": tstate(t.text_global("Output")),
-            "indent": tstate(t.component_cyclic("Group")),
-            "sub block": tstate(t.component_cyclic("Block")),
-            "optional": tstate(t.optional(t.component_cyclic("Block Part"))),
-            "nothing": tstate(t.nothing()),
-        })),
 
     }
 )
