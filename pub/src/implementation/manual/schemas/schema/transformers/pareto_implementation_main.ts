@@ -57,11 +57,11 @@ export const Schema_Tree = (
                                     }
                                 )
                             ),
-                            // "unmarshall": _p.optional.set(t_unmarshall.Schema($, {
-                            //     'path': $p.path,
-                            //     'imports': $.imports,
-                            //     'constrained': $.complexity[0] === 'constrained'
-                            // })),
+                            "unmarshall": _p.optional.set(t_unmarshall.Schema($, {
+                                'path': $p.path,
+                                'imports': $.imports,
+                                'constrained': $.complexity[0] === 'constrained'
+                            })),
 
                             "serialize": _p.optional.from_boolean(
                                 !$p['omit (de)serializer'],
@@ -71,10 +71,10 @@ export const Schema_Tree = (
                                     'constrained': $.complexity[0] === 'constrained'
                                 })
                             ),
-                            // "deserialize": _p.optional.set(t_deserialize.Schema($, {
-                            //     'path': $p.path,
-                            //     'imports': $.imports,
-                            // })),
+                            "deserialize": _p.optional.set(t_deserialize.Schema($, {
+                                'path': $p.path,
+                                'imports': $.imports,
+                            })),
                         }),
                         ($) => $
                     )
