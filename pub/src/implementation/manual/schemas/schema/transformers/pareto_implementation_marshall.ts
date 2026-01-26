@@ -77,7 +77,7 @@ export const Schema = (
                     ]),
                 ),
             }),
-            "external ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
+            "external": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
         }),
         {
             'separator': " ",

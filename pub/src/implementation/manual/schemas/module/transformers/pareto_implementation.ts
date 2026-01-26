@@ -14,6 +14,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
             $['schema tree'],
             {
                 'path': _p.list.literal([]),
+                'omit (de)serializer': $['omit (de)serializer'],
             }
         )
     })

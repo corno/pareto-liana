@@ -21,6 +21,7 @@ export const Schema_Tree = (
     $: d_in.Schema_Tree,
     $p: {
         'path': _pi.List<string>,
+        'omit (de)serializer': boolean
     }
 ): d_out.Module_Set.D => {
     return _p.decide.state($, ($) => {
@@ -46,14 +47,17 @@ export const Schema_Tree = (
                             //         default: return _p.au($[0])
                             //     }
                             // }),
-                            // "marshall": _p.optional.set(t_marshall.Schema(
-                            //     $,
-                            //     {
-                            //         'path': $p.path,
-                            //         'imports': $.imports,
-                            //         'constrained': $.complexity[0] === 'constrained'
-                            //     }
-                            // )),
+                            "marshall": _p.optional.from_boolean(
+                                !$p['omit (de)serializer'],
+                                t_marshall.Schema(
+                                    $,
+                                    {
+                                        'path': $p.path,
+                                        'imports': $.imports,
+                                        'constrained': $.complexity[0] === 'constrained'
+                                    }
+                                )
+                            ),
                             // "unmarshall": _p.optional.set(t_unmarshall.Schema($, {
                             //     'path': $p.path,
                             //     'imports': $.imports,
@@ -78,6 +82,7 @@ export const Schema_Tree = (
                 $,
                 {
                     'path': $p.path,
+                    'omit (de)serializer': $p['omit (de)serializer'],
                 }
             ))
             default: return _p.au($[0])
@@ -89,6 +94,7 @@ export const Schemas = (
     $: d_in.Schemas,
     $p: {
         'path': _pi.List<string>,
+        'omit (de)serializer': boolean
     }
 ): d_out.Module_Set.D => {
     return m.set($.__d_map(($, key) => Schema_Tree($, {
@@ -98,5 +104,6 @@ export const Schemas = (
                 key,
             ]
         ]),
+        'omit (de)serializer': $p['omit (de)serializer']
     })))
 }
