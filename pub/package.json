@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "astn-core": "^0.5.8",
+    "liana-core": "^0.0.3",
     "pareto": "file:../../pareto/pub",
     "pareto-core-dev": "^0.12.3",
     "pareto-fountain-pen": "^0.4.7",

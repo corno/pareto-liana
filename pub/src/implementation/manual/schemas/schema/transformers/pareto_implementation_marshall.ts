@@ -4,7 +4,6 @@ import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
-import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
@@ -178,23 +177,38 @@ export const Type_Node = (
                     )))
                 )
             ))
-            case 'list': return _p.ss($, ($) => sh.e.state_literal(
-                "list",
-                sh.e.list_map(
-                    sh.s.from_context([]),
-                    Type_Node(
-                        $.node,
-                        {
-                            'type': $p.type,
-                            'subselection': _p.list.nested_literal_old([
-                                $p.subselection,
-                                [
-                                    sh.sub.list(),
-                                ]
-                            ]),
-                        }
+            case 'list': return _p.ss($, ($) => {
+
+                const x = Type_Node(
+                    $.node,
+                    {
+                        'type': $p.type,
+                        'subselection': _p.list.nested_literal_old([
+                            $p.subselection,
+                            [
+                                sh.sub.list(),
+                            ]
+                        ]),
+                    }
+                )
+
+                return sh.e.state_literal(
+                    "list",
+                    sh.e.list_map(
+                        sh.s.from_context($.result.__decide(
+                            ($) => ["list"],
+                            () => []
+                        )),
+                        $.result.__decide(
+                            ($) => sh.e.change_context(
+                                sh.s.from_context(["element"]),
+                                x,
+                            ),
+                            () => x
+                        )
                     )
-                )))
+                )
+            })
             case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
             case 'number': return _p.ss($, ($) => string(
                 sh.e.call(
