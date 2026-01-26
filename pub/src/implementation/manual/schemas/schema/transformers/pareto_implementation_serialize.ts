@@ -23,12 +23,12 @@ export const Schema = (
         'serializer',
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
-                3, //5,
+                5,
                 "interface",
                 _p.list.nested_literal_old([
                     _p.list.literal([
-                        // "generated",
-                        // "pareto",
+                        "generated",
+                        "liana",
                         "schemas"
                     ]),
                     $p.path,
@@ -42,7 +42,7 @@ export const Schema = (
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
                     "serialize": sh_i.import_.external(
-                        "astn",
+                        "astn-core",
                         [
                             "dist",
                             "implementation",
