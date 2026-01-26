@@ -46,14 +46,14 @@ export const Schema_Tree = (
                             //         default: return _p.au($[0])
                             //     }
                             // }),
-                            // "marshall": _p.optional.set(t_marshall.Schema(
-                            //     $,
-                            //     {
-                            //         'path': $p.path,
-                            //         'imports': $.imports,
-                            //         'constrained': $.complexity[0] === 'constrained'
-                            //     }
-                            // )),
+                            "marshall": _p.optional.set(t_marshall.Schema(
+                                $,
+                                {
+                                    'path': $p.path,
+                                    'imports': $.imports,
+                                    'constrained': $.complexity[0] === 'constrained'
+                                }
+                            )),
                             // "unmarshall": _p.optional.set(t_unmarshall.Schema($, {
                             //     'path': $p.path,
                             //     'imports': $.imports,

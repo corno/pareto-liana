@@ -121,7 +121,7 @@ export const Type_Node = (
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => string(
                 sh.e.call(
-                    sh.s.from_variable_import("serialize boolean", "$$", []),
+                    sh.s.from_variable_import("serialize boolean", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
                 ),
@@ -198,7 +198,7 @@ export const Type_Node = (
             case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
             case 'number': return _p.ss($, ($) => string(
                 sh.e.call(
-                    sh.s.from_variable_import("serialize number", "$$", []),
+                    sh.s.from_variable_import("serialize number", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
                 ),
