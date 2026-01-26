@@ -38,12 +38,12 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
         switch ($[0]) {
             case 'concrete':
                 return _p.ss($, ($,) => ({
-                    'option': "concrete",
+                    'option': 'concrete',
                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                         switch ($[0]) {
                             case 'dictionary':
                                 return _p.ss($, ($,) => ({
-                                    'option': "dictionary",
+                                    'option': 'dictionary',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '{': _p.deprecated_cc($['{'], ($,) => Structural_Token($)),
                                         'entries': _p.deprecated_cc($['entries'], ($,) => Key_Value_Pairs($)),
@@ -52,12 +52,12 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 }))
                             case 'group':
                                 return _p.ss($, ($,) => ({
-                                    'option': "group",
+                                    'option': 'group',
                                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                         switch ($[0]) {
                                             case 'concise':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "concise",
+                                                    'option': 'concise',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         '<': _p.deprecated_cc($['<'], ($,) => Structural_Token($)),
                                                         'elements': _p.deprecated_cc($['elements'], ($,) => Elements($)),
@@ -66,7 +66,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                                 }))
                                             case 'verbose':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "verbose",
+                                                    'option': 'verbose',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         '(': _p.deprecated_cc($['('], ($,) => Structural_Token($)),
                                                         'entries': _p.deprecated_cc($['entries'], ($,) => Key_Value_Pairs($)),
@@ -80,7 +80,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 }))
                             case 'list':
                                 return _p.ss($, ($,) => ({
-                                    'option': "list",
+                                    'option': 'list',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '[': _p.deprecated_cc($['['], ($,) => Structural_Token($)),
                                         'elements': _p.deprecated_cc($['elements'], ($,) => Elements($)),
@@ -89,19 +89,19 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 }))
                             case 'nothing':
                                 return _p.ss($, ($,) => ({
-                                    'option': "nothing",
+                                    'option': 'nothing',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '~': _p.deprecated_cc($['~'], ($,) => Structural_Token($)),
                                     }))]],
                                 }))
                             case 'optional':
                                 return _p.ss($, ($,) => ({
-                                    'option': "optional",
+                                    'option': 'optional',
                                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                         switch ($[0]) {
                                             case 'set':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "set",
+                                                    'option': 'set',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         '*': _p.deprecated_cc($['*'], ($,) => Structural_Token($)),
                                                         'value': _p.deprecated_cc($['value'], ($,) => Value($)),
@@ -114,21 +114,21 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 }))
                             case 'state':
                                 return _p.ss($, ($,) => ({
-                                    'option': "state",
+                                    'option': 'state',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '|': _p.deprecated_cc($['|'], ($,) => Structural_Token($)),
                                         'status': _p.deprecated_cc($['status'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                             switch ($[0]) {
                                                 case 'missing data':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "missing data",
+                                                        'option': 'missing data',
                                                         'value': ['group', ['verbose', _p.dictionary.literal(({
                                                             '#': _p.deprecated_cc($['#'], ($,) => Structural_Token($)),
                                                         }))]],
                                                     }))
                                                 case 'set':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "set",
+                                                        'option': 'set',
                                                         'value': ['group', ['verbose', _p.dictionary.literal(({
                                                             'option': _p.deprecated_cc($['option'], ($,) => Text($)),
                                                             'value': _p.deprecated_cc($['value'], ($,) => Value($)),
@@ -142,7 +142,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                 }))
                             case 'text':
                                 return _p.ss($, ($,) => ({
-                                    'option': "text",
+                                    'option': 'text',
                                     'value': Text($),
                                 }))
                             default:
@@ -152,7 +152,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                 }))
             case 'include':
                 return _p.ss($, ($,) => ({
-                    'option': "include",
+                    'option': 'include',
                     'value': ['group', ['verbose', _p.dictionary.literal(({
                         '@': _p.deprecated_cc($['@'], ($,) => Structural_Token($)),
                         'path': _p.deprecated_cc($['path'], ($,) => Text($)),
@@ -160,7 +160,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                 }))
             case 'missing data':
                 return _p.ss($, ($,) => ({
-                    'option': "missing data",
+                    'option': 'missing data',
                     'value': ['group', ['verbose', _p.dictionary.literal(({
                         '#': _p.deprecated_cc($['#'], ($,) => Structural_Token($)),
                     }))]],

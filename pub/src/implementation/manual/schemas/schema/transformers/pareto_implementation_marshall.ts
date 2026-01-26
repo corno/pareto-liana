@@ -244,10 +244,10 @@ export const Type_Node = (
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
-                case 'selected': return _p.ss($, ($) => sh.e.group({
+                case 'selected': return _p.ss($, ($) => sh.e.state_literal("text", sh.e.group({
                     "delimiter": sh.e.state_literal("backtick", sh.e.null_()),
                     "value": sh.e.select_from_context_deprecated(["key"]),
-                }))
+                })))
                 default: return _p.au($[0])
             }
         }))

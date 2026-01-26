@@ -12,7 +12,7 @@ import * as v_serialize_boolean from "liana-core/dist/implementation/manual/prim
 import * as v_external_schema from "../schema/marshall"
 export const Module: t_signatures.Module = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'omit (de)serializer': _p.deprecated_cc($['omit (de)serializer'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_boolean.serialize($),
     })]),
     'schema tree': _p.deprecated_cc($['schema tree'], ($,) => v_external_schema.Schema_Tree($)),

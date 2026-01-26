@@ -1,6 +1,8 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
+import * as i_generic from "../../generic/deserialize"
+
 import * as i_out from "./data/unresolved"
 
 export namespace Text_Type_ {
@@ -8,6 +10,8 @@ export namespace Text_Type_ {
     export type I = string
     
     export type O = i_out.Text_Type
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -17,6 +21,7 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     context: Text_Type_.I,
+    abort: _pi.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
 export namespace Number_Type_ {
@@ -24,6 +29,8 @@ export namespace Number_Type_ {
     export type I = string
     
     export type O = i_out.Number_Type
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -33,6 +40,7 @@ export namespace Number_Type_ {
 
 export type Number_Type_ = (
     context: Number_Type_.I,
+    abort: _pi.Abort<Number_Type_.E>,
 ) => Number_Type_.O
 
 export namespace Globals_ {
@@ -40,6 +48,8 @@ export namespace Globals_ {
     export type I = string
     
     export type O = i_out.Globals
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -49,6 +59,7 @@ export namespace Globals_ {
 
 export type Globals_ = (
     context: Globals_.I,
+    abort: _pi.Abort<Globals_.E>,
 ) => Globals_.O
 
 export namespace Type_ {
@@ -56,6 +67,8 @@ export namespace Type_ {
     export type I = string
     
     export type O = i_out.Type
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -65,6 +78,7 @@ export namespace Type_ {
 
 export type Type_ = (
     context: Type_.I,
+    abort: _pi.Abort<Type_.E>,
 ) => Type_.O
 
 export namespace Types_ {
@@ -72,6 +86,8 @@ export namespace Types_ {
     export type I = string
     
     export type O = i_out.Types
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -81,6 +97,7 @@ export namespace Types_ {
 
 export type Types_ = (
     context: Types_.I,
+    abort: _pi.Abort<Types_.E>,
 ) => Types_.O
 
 export namespace Resolve_Logic_ {
@@ -88,6 +105,8 @@ export namespace Resolve_Logic_ {
     export type I = string
     
     export type O = i_out.Resolve_Logic
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -97,6 +116,7 @@ export namespace Resolve_Logic_ {
 
 export type Resolve_Logic_ = (
     context: Resolve_Logic_.I,
+    abort: _pi.Abort<Resolve_Logic_.E>,
 ) => Resolve_Logic_.O
 
 export namespace Schema_ {
@@ -104,6 +124,8 @@ export namespace Schema_ {
     export type I = string
     
     export type O = i_out.Schema
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -113,6 +135,7 @@ export namespace Schema_ {
 
 export type Schema_ = (
     context: Schema_.I,
+    abort: _pi.Abort<Schema_.E>,
 ) => Schema_.O
 
 export namespace Schema_Tree_ {
@@ -120,6 +143,8 @@ export namespace Schema_Tree_ {
     export type I = string
     
     export type O = i_out.Schema_Tree
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -129,6 +154,7 @@ export namespace Schema_Tree_ {
 
 export type Schema_Tree_ = (
     context: Schema_Tree_.I,
+    abort: _pi.Abort<Schema_Tree_.E>,
 ) => Schema_Tree_.O
 
 export namespace Type_Specification_ {
@@ -136,6 +162,8 @@ export namespace Type_Specification_ {
     export type I = string
     
     export type O = i_out.Type_Specification
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -145,6 +173,7 @@ export namespace Type_Specification_ {
 
 export type Type_Specification_ = (
     context: Type_Specification_.I,
+    abort: _pi.Abort<Type_Specification_.E>,
 ) => Type_Specification_.O
 
 export namespace Schemas_ {
@@ -152,6 +181,8 @@ export namespace Schemas_ {
     export type I = string
     
     export type O = i_out.Schemas
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -161,6 +192,7 @@ export namespace Schemas_ {
 
 export type Schemas_ = (
     context: Schemas_.I,
+    abort: _pi.Abort<Schemas_.E>,
 ) => Schemas_.O
 
 export namespace Imports_ {
@@ -168,6 +200,8 @@ export namespace Imports_ {
     export type I = string
     
     export type O = i_out.Imports
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -177,6 +211,7 @@ export namespace Imports_ {
 
 export type Imports_ = (
     context: Imports_.I,
+    abort: _pi.Abort<Imports_.E>,
 ) => Imports_.O
 
 export namespace Presence_ {
@@ -184,6 +219,8 @@ export namespace Presence_ {
     export type I = string
     
     export type O = i_out.Presence
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -193,6 +230,7 @@ export namespace Presence_ {
 
 export type Presence_ = (
     context: Presence_.I,
+    abort: _pi.Abort<Presence_.E>,
 ) => Presence_.O
 
 export namespace Dictionary_ {
@@ -200,6 +238,8 @@ export namespace Dictionary_ {
     export type I = string
     
     export type O = i_out.Dictionary
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -209,6 +249,7 @@ export namespace Dictionary_ {
 
 export type Dictionary_ = (
     context: Dictionary_.I,
+    abort: _pi.Abort<Dictionary_.E>,
 ) => Dictionary_.O
 
 export namespace Signatures_ {
@@ -216,6 +257,8 @@ export namespace Signatures_ {
     export type I = string
     
     export type O = i_out.Signatures
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -225,6 +268,7 @@ export namespace Signatures_ {
 
 export type Signatures_ = (
     context: Signatures_.I,
+    abort: _pi.Abort<Signatures_.E>,
 ) => Signatures_.O
 
 export namespace Resolvers_ {
@@ -232,6 +276,8 @@ export namespace Resolvers_ {
     export type I = string
     
     export type O = i_out.Resolvers
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -241,6 +287,7 @@ export namespace Resolvers_ {
 
 export type Resolvers_ = (
     context: Resolvers_.I,
+    abort: _pi.Abort<Resolvers_.E>,
 ) => Resolvers_.O
 
 export namespace Group_ {
@@ -248,6 +295,8 @@ export namespace Group_ {
     export type I = string
     
     export type O = i_out.Group
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -257,6 +306,7 @@ export namespace Group_ {
 
 export type Group_ = (
     context: Group_.I,
+    abort: _pi.Abort<Group_.E>,
 ) => Group_.O
 
 export namespace Type_Reference_ {
@@ -264,6 +314,8 @@ export namespace Type_Reference_ {
     export type I = string
     
     export type O = i_out.Type_Reference
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -273,6 +325,7 @@ export namespace Type_Reference_ {
 
 export type Type_Reference_ = (
     context: Type_Reference_.I,
+    abort: _pi.Abort<Type_Reference_.E>,
 ) => Type_Reference_.O
 
 export namespace Type_Node_ {
@@ -280,6 +333,8 @@ export namespace Type_Node_ {
     export type I = string
     
     export type O = i_out.Type_Node
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -289,6 +344,7 @@ export namespace Type_Node_ {
 
 export type Type_Node_ = (
     context: Type_Node_.I,
+    abort: _pi.Abort<Type_Node_.E>,
 ) => Type_Node_.O
 
 export namespace Type_Node_Path_ {
@@ -296,6 +352,8 @@ export namespace Type_Node_Path_ {
     export type I = string
     
     export type O = i_out.Type_Node_Path
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -305,6 +363,7 @@ export namespace Type_Node_Path_ {
 
 export type Type_Node_Path_ = (
     context: Type_Node_Path_.I,
+    abort: _pi.Abort<Type_Node_Path_.E>,
 ) => Type_Node_Path_.O
 
 export namespace Type_Node_Reference_ {
@@ -312,6 +371,8 @@ export namespace Type_Node_Reference_ {
     export type I = string
     
     export type O = i_out.Type_Node_Reference
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -321,6 +382,7 @@ export namespace Type_Node_Reference_ {
 
 export type Type_Node_Reference_ = (
     context: Type_Node_Reference_.I,
+    abort: _pi.Abort<Type_Node_Reference_.E>,
 ) => Type_Node_Reference_.O
 
 export namespace Signature_Parameters_ {
@@ -328,6 +390,8 @@ export namespace Signature_Parameters_ {
     export type I = string
     
     export type O = i_out.Signature_Parameters
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -337,6 +401,7 @@ export namespace Signature_Parameters_ {
 
 export type Signature_Parameters_ = (
     context: Signature_Parameters_.I,
+    abort: _pi.Abort<Signature_Parameters_.E>,
 ) => Signature_Parameters_.O
 
 export namespace Signature_ {
@@ -344,6 +409,8 @@ export namespace Signature_ {
     export type I = string
     
     export type O = i_out.Signature
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -353,6 +420,7 @@ export namespace Signature_ {
 
 export type Signature_ = (
     context: Signature_.I,
+    abort: _pi.Abort<Signature_.E>,
 ) => Signature_.O
 
 export namespace Relative_Value_Selection_ {
@@ -360,6 +428,8 @@ export namespace Relative_Value_Selection_ {
     export type I = string
     
     export type O = i_out.Relative_Value_Selection
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -369,6 +439,7 @@ export namespace Relative_Value_Selection_ {
 
 export type Relative_Value_Selection_ = (
     context: Relative_Value_Selection_.I,
+    abort: _pi.Abort<Relative_Value_Selection_.E>,
 ) => Relative_Value_Selection_.O
 
 export namespace Lookup_Selection_ {
@@ -376,6 +447,8 @@ export namespace Lookup_Selection_ {
     export type I = string
     
     export type O = i_out.Lookup_Selection
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -385,6 +458,7 @@ export namespace Lookup_Selection_ {
 
 export type Lookup_Selection_ = (
     context: Lookup_Selection_.I,
+    abort: _pi.Abort<Lookup_Selection_.E>,
 ) => Lookup_Selection_.O
 
 export namespace Constraint_ {
@@ -392,6 +466,8 @@ export namespace Constraint_ {
     export type I = string
     
     export type O = i_out.Constraint
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -401,6 +477,7 @@ export namespace Constraint_ {
 
 export type Constraint_ = (
     context: Constraint_.I,
+    abort: _pi.Abort<Constraint_.E>,
 ) => Constraint_.O
 
 export namespace Option_Constraints_ {
@@ -408,6 +485,8 @@ export namespace Option_Constraints_ {
     export type I = string
     
     export type O = i_out.Option_Constraints
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -417,6 +496,7 @@ export namespace Option_Constraints_ {
 
 export type Option_Constraints_ = (
     context: Option_Constraints_.I,
+    abort: _pi.Abort<Option_Constraints_.E>,
 ) => Option_Constraints_.O
 
 export namespace Property_Constraints_ {
@@ -424,6 +504,8 @@ export namespace Property_Constraints_ {
     export type I = string
     
     export type O = i_out.Property_Constraints
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -433,6 +515,7 @@ export namespace Property_Constraints_ {
 
 export type Property_Constraints_ = (
     context: Property_Constraints_.I,
+    abort: _pi.Abort<Property_Constraints_.E>,
 ) => Property_Constraints_.O
 
 export namespace Reference_To_Property_Constraint_ {
@@ -440,6 +523,8 @@ export namespace Reference_To_Property_Constraint_ {
     export type I = string
     
     export type O = i_out.Reference_To_Property_Constraint
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -449,6 +534,7 @@ export namespace Reference_To_Property_Constraint_ {
 
 export type Reference_To_Property_Constraint_ = (
     context: Reference_To_Property_Constraint_.I,
+    abort: _pi.Abort<Reference_To_Property_Constraint_.E>,
 ) => Reference_To_Property_Constraint_.O
 
 export namespace Property_Constraint_ {
@@ -456,6 +542,8 @@ export namespace Property_Constraint_ {
     export type I = string
     
     export type O = i_out.Property_Constraint
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -465,6 +553,7 @@ export namespace Property_Constraint_ {
 
 export type Property_Constraint_ = (
     context: Property_Constraint_.I,
+    abort: _pi.Abort<Property_Constraint_.E>,
 ) => Property_Constraint_.O
 
 export namespace Optional_Value_Initialization_ {
@@ -472,6 +561,8 @@ export namespace Optional_Value_Initialization_ {
     export type I = string
     
     export type O = i_out.Optional_Value_Initialization
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -481,6 +572,7 @@ export namespace Optional_Value_Initialization_ {
 
 export type Optional_Value_Initialization_ = (
     context: Optional_Value_Initialization_.I,
+    abort: _pi.Abort<Optional_Value_Initialization_.E>,
 ) => Optional_Value_Initialization_.O
 
 export namespace Node_Resolver_Group_ {
@@ -488,6 +580,8 @@ export namespace Node_Resolver_Group_ {
     export type I = string
     
     export type O = i_out.Node_Resolver_Group
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -497,6 +591,7 @@ export namespace Node_Resolver_Group_ {
 
 export type Node_Resolver_Group_ = (
     context: Node_Resolver_Group_.I,
+    abort: _pi.Abort<Node_Resolver_Group_.E>,
 ) => Node_Resolver_Group_.O
 
 export namespace Node_Resolver_List_Result_ {
@@ -504,6 +599,8 @@ export namespace Node_Resolver_List_Result_ {
     export type I = string
     
     export type O = i_out.Node_Resolver_List_Result
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -513,6 +610,7 @@ export namespace Node_Resolver_List_Result_ {
 
 export type Node_Resolver_List_Result_ = (
     context: Node_Resolver_List_Result_.I,
+    abort: _pi.Abort<Node_Resolver_List_Result_.E>,
 ) => Node_Resolver_List_Result_.O
 
 export namespace Benchmark_ {
@@ -520,6 +618,8 @@ export namespace Benchmark_ {
     export type I = string
     
     export type O = i_out.Benchmark
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -529,6 +629,7 @@ export namespace Benchmark_ {
 
 export type Benchmark_ = (
     context: Benchmark_.I,
+    abort: _pi.Abort<Benchmark_.E>,
 ) => Benchmark_.O
 
 export namespace Node_Resolver_ {
@@ -536,6 +637,8 @@ export namespace Node_Resolver_ {
     export type I = string
     
     export type O = i_out.Node_Resolver
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -545,6 +648,7 @@ export namespace Node_Resolver_ {
 
 export type Node_Resolver_ = (
     context: Node_Resolver_.I,
+    abort: _pi.Abort<Node_Resolver_.E>,
 ) => Node_Resolver_.O
 
 export namespace Guaranteed_Value_Selection_ {
@@ -552,6 +656,8 @@ export namespace Guaranteed_Value_Selection_ {
     export type I = string
     
     export type O = i_out.Guaranteed_Value_Selection
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -561,6 +667,7 @@ export namespace Guaranteed_Value_Selection_ {
 
 export type Guaranteed_Value_Selection_ = (
     context: Guaranteed_Value_Selection_.I,
+    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
 ) => Guaranteed_Value_Selection_.O
 
 export namespace Possible_Value_Selection_ {
@@ -568,6 +675,8 @@ export namespace Possible_Value_Selection_ {
     export type I = string
     
     export type O = i_out.Possible_Value_Selection
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -577,6 +686,7 @@ export namespace Possible_Value_Selection_ {
 
 export type Possible_Value_Selection_ = (
     context: Possible_Value_Selection_.I,
+    abort: _pi.Abort<Possible_Value_Selection_.E>,
 ) => Possible_Value_Selection_.O
 
 export { 

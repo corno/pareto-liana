@@ -1,6 +1,8 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
+import * as i_generic from "../../generic/unmarshall"
+
 import * as i_out from "./data"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
@@ -11,6 +13,8 @@ export namespace Relative_Location_ {
     
     export type O = i_out.Relative_Location
     
+    export type E = i_generic.Error
+    
     export namespace P {
         
     }
@@ -19,6 +23,7 @@ export namespace Relative_Location_ {
 
 export type Relative_Location_ = (
     context: Relative_Location_.I,
+    abort: _pi.Abort<Relative_Location_.E>,
 ) => Relative_Location_.O
 
 export namespace Location_ {
@@ -26,6 +31,8 @@ export namespace Location_ {
     export type I = i_in.Value
     
     export type O = i_out.Location
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -35,6 +42,7 @@ export namespace Location_ {
 
 export type Location_ = (
     context: Location_.I,
+    abort: _pi.Abort<Location_.E>,
 ) => Location_.O
 
 export namespace Range_ {
@@ -42,6 +50,8 @@ export namespace Range_ {
     export type I = i_in.Value
     
     export type O = i_out.Range
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -51,6 +61,7 @@ export namespace Range_ {
 
 export type Range_ = (
     context: Range_.I,
+    abort: _pi.Abort<Range_.E>,
 ) => Range_.O
 
 export namespace Whitespace_ {
@@ -58,6 +69,8 @@ export namespace Whitespace_ {
     export type I = i_in.Value
     
     export type O = i_out.Whitespace
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -67,6 +80,7 @@ export namespace Whitespace_ {
 
 export type Whitespace_ = (
     context: Whitespace_.I,
+    abort: _pi.Abort<Whitespace_.E>,
 ) => Whitespace_.O
 
 export namespace Trivia_ {
@@ -74,6 +88,8 @@ export namespace Trivia_ {
     export type I = i_in.Value
     
     export type O = i_out.Trivia
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -83,6 +99,7 @@ export namespace Trivia_ {
 
 export type Trivia_ = (
     context: Trivia_.I,
+    abort: _pi.Abort<Trivia_.E>,
 ) => Trivia_.O
 
 export namespace Delimited_Text_ {
@@ -90,6 +107,8 @@ export namespace Delimited_Text_ {
     export type I = i_in.Value
     
     export type O = i_out.Delimited_Text
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -99,6 +118,7 @@ export namespace Delimited_Text_ {
 
 export type Delimited_Text_ = (
     context: Delimited_Text_.I,
+    abort: _pi.Abort<Delimited_Text_.E>,
 ) => Delimited_Text_.O
 
 export namespace Text_Type_ {
@@ -106,6 +126,8 @@ export namespace Text_Type_ {
     export type I = i_in.Value
     
     export type O = i_out.Text_Type
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -115,6 +137,7 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     context: Text_Type_.I,
+    abort: _pi.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
 export namespace Token_Type_ {
@@ -122,6 +145,8 @@ export namespace Token_Type_ {
     export type I = i_in.Value
     
     export type O = i_out.Token_Type
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -131,6 +156,7 @@ export namespace Token_Type_ {
 
 export type Token_Type_ = (
     context: Token_Type_.I,
+    abort: _pi.Abort<Token_Type_.E>,
 ) => Token_Type_.O
 
 export namespace Annotated_Token_ {
@@ -138,6 +164,8 @@ export namespace Annotated_Token_ {
     export type I = i_in.Value
     
     export type O = i_out.Annotated_Token
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -147,6 +175,7 @@ export namespace Annotated_Token_ {
 
 export type Annotated_Token_ = (
     context: Annotated_Token_.I,
+    abort: _pi.Abort<Annotated_Token_.E>,
 ) => Annotated_Token_.O
 
 export namespace Tokenizer_Result_ {
@@ -154,6 +183,8 @@ export namespace Tokenizer_Result_ {
     export type I = i_in.Value
     
     export type O = i_out.Tokenizer_Result
+    
+    export type E = i_generic.Error
     
     export namespace P {
         
@@ -163,6 +194,7 @@ export namespace Tokenizer_Result_ {
 
 export type Tokenizer_Result_ = (
     context: Tokenizer_Result_.I,
+    abort: _pi.Abort<Tokenizer_Result_.E>,
 ) => Tokenizer_Result_.O
 
 export { 

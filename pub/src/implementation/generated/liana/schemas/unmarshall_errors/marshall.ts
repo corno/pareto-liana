@@ -10,18 +10,18 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 export const Relative_Location: t_signatures.Relative_Location = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'line': _p.deprecated_cc($['line'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
     'column': _p.deprecated_cc($['column'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
 }))]]
 export const Location: t_signatures.Location = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'relative': _p.deprecated_cc($['relative'], ($,) => Relative_Location($)),
     'absolute': _p.deprecated_cc($['absolute'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
 }))]]
@@ -35,53 +35,53 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
         switch ($[0]) {
             case 'error':
                 return _p.ss($, ($,) => ({
-                    'option': "error",
+                    'option': 'error',
                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                         switch ($[0]) {
                             case 'invalid value type':
                                 return _p.ss($, ($,) => ({
-                                    'option': "invalid value type",
+                                    'option': 'invalid value type',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'expected': _p.deprecated_cc($['expected'], ($,) => ['list', $.__l_map(($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                             switch ($[0]) {
                                                 case 'text':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "text",
+                                                        'option': 'text',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'verbose group':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "verbose group",
+                                                        'option': 'verbose group',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'concise group':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "concise group",
+                                                        'option': 'concise group',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'dictionary':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "dictionary",
+                                                        'option': 'dictionary',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'not set':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "not set",
+                                                        'option': 'not set',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'set':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "set",
+                                                        'option': 'set',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'list':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "list",
+                                                        'option': 'list',
                                                         'value': ['nothing', null],
                                                     }))
                                                 case 'state':
                                                     return _p.ss($, ($,) => ({
-                                                        'option': "state",
+                                                        'option': 'state',
                                                         'value': ['nothing', null],
                                                     }))
                                                 default:
@@ -92,7 +92,7 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                 }))
                             case 'duplicate property':
                                 return _p.ss($, ($,) => ({
-                                    'option': "duplicate property",
+                                    'option': 'duplicate property',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'name': _p.deprecated_cc($['name'], ($,) => ['text', ({
                                             'delimiter': ['quote', null],
@@ -102,7 +102,7 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                 }))
                             case 'missing property':
                                 return _p.ss($, ($,) => ({
-                                    'option': "missing property",
+                                    'option': 'missing property',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'name': _p.deprecated_cc($['name'], ($,) => ['text', ({
                                             'delimiter': ['quote', null],
@@ -112,7 +112,7 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                 }))
                             case 'superfluous property':
                                 return _p.ss($, ($,) => ({
-                                    'option': "superfluous property",
+                                    'option': 'superfluous property',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'name': _p.deprecated_cc($['name'], ($,) => ['text', ({
                                             'delimiter': ['quote', null],
@@ -122,32 +122,32 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                 }))
                             case 'state':
                                 return _p.ss($, ($,) => ({
-                                    'option': "state",
+                                    'option': 'state',
                                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                         switch ($[0]) {
                                             case 'more than 2 elements':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "more than 2 elements",
+                                                    'option': 'more than 2 elements',
                                                     'value': ['nothing', null],
                                                 }))
                                             case 'missing state name':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "missing state name",
+                                                    'option': 'missing state name',
                                                     'value': ['nothing', null],
                                                 }))
                                             case 'state is not a string':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "state is not a string",
+                                                    'option': 'state is not a string',
                                                     'value': ['nothing', null],
                                                 }))
                                             case 'missing value':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "missing value",
+                                                    'option': 'missing value',
                                                     'value': ['nothing', null],
                                                 }))
                                             case 'unknown state':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "unknown state",
+                                                    'option': 'unknown state',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         'found': _p.deprecated_cc($['found'], ($,) => ['text', ({
                                                             'delimiter': ['quote', null],
@@ -158,7 +158,7 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                                 }))
                                             case 'missing data marker':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': "missing data marker",
+                                                    'option': 'missing data marker',
                                                     'value': ['nothing', null],
                                                 }))
                                             default:
@@ -173,27 +173,27 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                 }))
             case 'warning':
                 return _p.ss($, ($,) => ({
-                    'option': "warning",
+                    'option': 'warning',
                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                         switch ($[0]) {
                             case 'expected apostrophed string':
                                 return _p.ss($, ($,) => ({
-                                    'option': "expected apostrophed string",
+                                    'option': 'expected apostrophed string',
                                     'value': ['nothing', null],
                                 }))
                             case 'expected quoted string':
                                 return _p.ss($, ($,) => ({
-                                    'option': "expected quoted string",
+                                    'option': 'expected quoted string',
                                     'value': ['nothing', null],
                                 }))
                             case 'expected backticked string':
                                 return _p.ss($, ($,) => ({
-                                    'option': "expected backticked string",
+                                    'option': 'expected backticked string',
                                     'value': ['nothing', null],
                                 }))
                             case 'expected undelimited string':
                                 return _p.ss($, ($,) => ({
-                                    'option': "expected undelimited string",
+                                    'option': 'expected undelimited string',
                                     'value': ['nothing', null],
                                 }))
                             default:

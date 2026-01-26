@@ -14,18 +14,18 @@ export const Relative_Location: t_signatures.Relative_Location = ($,) => ['group
         'value': $,
     })]),
     'line': _p.deprecated_cc($['line'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
     'column': _p.deprecated_cc($['column'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
 }))]]
 export const Location: t_signatures.Location = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'relative': _p.deprecated_cc($['relative'], ($,) => Relative_Location($)),
     'absolute': _p.deprecated_cc($['absolute'], ($,) => ['text', ({
-        'delimiter': ['backtick', null],
+        'delimiter': ['none', null],
         'value': v_serialize_number.serialize($),
     })]),
 }))]]
@@ -47,12 +47,12 @@ export const Trivia: t_signatures.Trivia = ($,) => ['group', ['verbose', _p.dict
             switch ($[0]) {
                 case 'line':
                     return _p.ss($, ($,) => ({
-                        'option': "line",
+                        'option': 'line',
                         'value': ['nothing', null],
                     }))
                 case 'block':
                     return _p.ss($, ($,) => ({
-                        'option': "block",
+                        'option': 'block',
                         'value': ['nothing', null],
                     }))
                 default:
@@ -75,22 +75,22 @@ export const Text_Type: t_signatures.Text_Type = ($,) => ['state', _p.decide.sta
     switch ($[0]) {
         case 'quoted':
             return _p.ss($, ($,) => ({
-                'option': "quoted",
+                'option': 'quoted',
                 'value': ['nothing', null],
             }))
         case 'apostrophed':
             return _p.ss($, ($,) => ({
-                'option': "apostrophed",
+                'option': 'apostrophed',
                 'value': ['nothing', null],
             }))
         case 'undelimited':
             return _p.ss($, ($,) => ({
-                'option': "undelimited",
+                'option': 'undelimited',
                 'value': ['nothing', null],
             }))
         case 'backticked':
             return _p.ss($, ($,) => ({
-                'option': "backticked",
+                'option': 'backticked',
                 'value': ['nothing', null],
             }))
         default:
@@ -101,82 +101,82 @@ export const Token_Type: t_signatures.Token_Type = ($,) => ['state', _p.decide.s
     switch ($[0]) {
         case '!':
             return _p.ss($, ($,) => ({
-                'option': "!",
+                'option': '!',
                 'value': ['nothing', null],
             }))
         case '@':
             return _p.ss($, ($,) => ({
-                'option': "@",
+                'option': '@',
                 'value': ['nothing', null],
             }))
         case ':':
             return _p.ss($, ($,) => ({
-                'option': ":",
+                'option': ':',
                 'value': ['nothing', null],
             }))
         case '#':
             return _p.ss($, ($,) => ({
-                'option': "#",
+                'option': '#',
                 'value': ['nothing', null],
             }))
         case '{':
             return _p.ss($, ($,) => ({
-                'option': "{",
+                'option': '{',
                 'value': ['nothing', null],
             }))
         case '}':
             return _p.ss($, ($,) => ({
-                'option': "}",
+                'option': '}',
                 'value': ['nothing', null],
             }))
         case '[':
             return _p.ss($, ($,) => ({
-                'option': "[",
+                'option': '[',
                 'value': ['nothing', null],
             }))
         case ']':
             return _p.ss($, ($,) => ({
-                'option': "]",
+                'option': ']',
                 'value': ['nothing', null],
             }))
         case '(':
             return _p.ss($, ($,) => ({
-                'option': "(",
+                'option': '(',
                 'value': ['nothing', null],
             }))
         case ')':
             return _p.ss($, ($,) => ({
-                'option': ")",
+                'option': ')',
                 'value': ['nothing', null],
             }))
         case '<':
             return _p.ss($, ($,) => ({
-                'option': "<",
+                'option': '<',
                 'value': ['nothing', null],
             }))
         case '>':
             return _p.ss($, ($,) => ({
-                'option': ">",
+                'option': '>',
                 'value': ['nothing', null],
             }))
         case '~':
             return _p.ss($, ($,) => ({
-                'option': "~",
+                'option': '~',
                 'value': ['nothing', null],
             }))
         case '*':
             return _p.ss($, ($,) => ({
-                'option': "*",
+                'option': '*',
                 'value': ['nothing', null],
             }))
         case '|':
             return _p.ss($, ($,) => ({
-                'option': "|",
+                'option': '|',
                 'value': ['nothing', null],
             }))
         case 'text':
             return _p.ss($, ($,) => ({
-                'option': "text",
+                'option': 'text',
                 'value': ['group', ['verbose', _p.dictionary.literal(({
                     'value': _p.deprecated_cc($['value'], ($,) => Delimited_Text($)),
                     'type': _p.deprecated_cc($['type'], ($,) => Text_Type($)),
