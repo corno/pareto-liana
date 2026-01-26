@@ -226,7 +226,7 @@ export const Type_Node = (
                             const selected = $
                             return _p.decide.state($p.type, ($) => {
                                 switch ($[0]) {
-                                    case 'unconstrained': return _p.ss($, ($) => sh.t.group({
+                                    case 'unconstrained': return _p.ss($, ($) => sh.t.group({ //this is weird; a reference in an unconstrained schema
                                         "location": location,
                                         "key": sh.t.text(),
                                     }))

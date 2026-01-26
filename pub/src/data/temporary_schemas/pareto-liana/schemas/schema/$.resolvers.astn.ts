@@ -63,10 +63,13 @@ export const $: g_.Resolvers = resolvers(
             "location": r.state(
                 {
                     "internal": state(r.reference(ls.parameter("types"))),
-                    "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
-                        "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                        "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
-                    })),
+                    "external": state_constrained(
+                        {
+                            "import": oc.assert_set(pvs.parameter("imports"))
+                        }, r.group({
+                            "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
+                            "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
+                        })),
                 }
             ),
             "resulting type": r.reference_derived(gvs.state("location", reference("Type"), [])),
@@ -80,11 +83,26 @@ export const $: g_.Resolvers = resolvers(
         "Type Node Path": resolver(r.group({
             "tail": r.list_with_result(
                 r.state({
-                    "dictionary": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "dictionary") }, r.nothing()),
-                    "group": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "group") }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
-                    "list": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "list") }, r.nothing()),
-                    "optional": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "optional") }, r.nothing()),
-                    "state": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "state") }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [])))),
+                    "dictionary": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "dictionary")
+                        }, r.nothing()),
+                    "group": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "group")
+                        }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
+                    "list": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "list")
+                        }, r.nothing()),
+                    "optional": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "optional")
+                        }, r.nothing()),
+                    "state": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "state")
+                        }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [])))),
                 }),
                 reference("Type Node"),
             ),
@@ -121,10 +139,13 @@ export const $: g_.Resolvers = resolvers(
         "Type Node": resolver(r.state({
             "boolean": state(r.nothing()),
             "component": state(r.state({
-                "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
-                    "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                    "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
-                })),
+                "external": state_constrained(
+                    {
+                        "import": oc.assert_set(pvs.parameter("imports"))
+                    }, r.group({
+                        "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
+                        "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
+                    })),
                 "internal": state(r.reference(ls.parameter("noncircular sibling types"))),
                 "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling types"))),
             })),
@@ -158,7 +179,10 @@ export const $: g_.Resolvers = resolvers(
             })),
             "nothing": state(r.nothing()),
             "number": state(r.state({
-                "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("number types")])))),
+                "global": state_constrained(
+                    {
+                        "globals": oc.assert_set(pvs.parameter("globals"))
+                    }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("number types")])))),
                 "local": state(r.component("Number Type", {}, {})),
             })),
             "optional": state(r.component("Type Node", null, null)),
@@ -170,14 +194,23 @@ export const $: g_.Resolvers = resolvers(
                 }),
                 "type": r.state({
                     "derived": state(r.nothing()),
-                    "selected": state_constrained({ "dictionary": oc.state(gvs.sibling("referent", [vst.component(), vst.group("type location"), vst.component(), vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()]), "dictionary") }, r.group({
-                        "dictionary": r.reference_derived(gvs.option_constraint("dictionary", [])),
-                        "dependency": r.state({
-                            "acyclic": state(r.nothing()),
-                            "cyclic": state(r.nothing()),
-                            "stack": state(r.nothing()),
-                        })
-                    })),
+                    "selected": state_constrained(
+                        {
+                            "dictionary": oc.state(
+                                gvs.sibling(
+                                    "referent",
+                                    [vst.component(), vst.group("type location"), vst.component(), vst.group("resulting type"), vst.reference(), vst.group("node"), vst.component()]
+                                ),
+                                "dictionary"
+                            )
+                        }, r.group({
+                            "dictionary": r.reference_derived(gvs.option_constraint("dictionary", [])),
+                            "dependency": r.state({
+                                "acyclic": state(r.nothing()),
+                                "cyclic": state(r.nothing()),
+                                "stack": state(r.nothing()),
+                            })
+                        })),
                 }),
             })),
             "state": state(r.dictionary(r.group({
@@ -185,7 +218,10 @@ export const $: g_.Resolvers = resolvers(
                 "description": r.optional(r.text()),
             }))),
             "text": state(r.state({
-                "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
+                "global": state_constrained(
+                    {
+                        "globals": oc.assert_set(pvs.parameter("globals"))
+                    }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),
             })),
         })),
@@ -193,11 +229,22 @@ export const $: g_.Resolvers = resolvers(
         "Relative Value Selection": resolver(r.group({
             "path": r.list_with_result(
                 r.state({
-                    "component": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "component") }, r.nothing()),
-                    "group": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "group") }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
-                    "reference": state_constrained({ "definition": oc.state(gvs.list_cursor([]), "reference") }, r.group({
-                        "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    })),
+                    "component": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "component")
+                        }, r.nothing()),
+                    "group": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "group")
+                        }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [vst.component()])))),
+                    "reference": state_constrained(
+                        {
+                            "definition": oc.state(gvs.list_cursor([]), "reference")
+                        },
+                        r.group({
+                            "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                        })
+                    ),
                 }),
                 reference("Type Node"),
             ),
@@ -307,7 +354,10 @@ export const $: g_.Resolvers = resolvers(
 
                     "sibling": state(r.reference(ls.parameter("sibling property resolvers"))),
                     "parent sibling": state(r.reference(ls.parameter("parent sibling property resolvers"))),
-                    "option constraint": state_constrained({ "oc": oc.assert_set(pvs.parameter("option constraints")) }, r.reference_stack(gvs.dictionary(gvs.option_constraint("oc", [])))),
+                    "option constraint": state_constrained(
+                        {
+                            "oc": oc.assert_set(pvs.parameter("option constraints"))
+                        }, r.reference_stack(gvs.dictionary(gvs.option_constraint("oc", [])))),
 
                     //siblings
                     "constraint": state(r.state({
@@ -380,11 +430,15 @@ export const $: g_.Resolvers = resolvers(
                     })),
                     "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("lookups")])))),
                     "not circular dependent siblings": state_constrained(
-                        { "cd": oc.assert_set(pvs.parameter("current ordered dictionary")) },
+                        {
+                            "cd": oc.assert_set(pvs.parameter("current ordered dictionary"))
+                        },
                         r.reference_derived(gvs.option_constraint("cd", []))
                     ),
                     "possibly circular dependent siblings": state_constrained(
-                        { "cd": oc.assert_set(pvs.parameter("current dictionary")) },
+                        {
+                            "cd": oc.assert_set(pvs.parameter("current dictionary"))
+                        },
                         r.reference_derived(gvs.option_constraint("cd", []))
                     ),
                 },
@@ -434,9 +488,12 @@ export const $: g_.Resolvers = resolvers(
                         "option": r.reference(gvs.dictionary(gvs.sibling("selected state", [vst.reference()]))),
                     })
                 ),
-                "optional value": state_constrained({ "optional": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state") }, r.group({
-                    "selected optional value": r.reference_derived(gvs.option_constraint("optional", [])),
-                })),
+                "optional value": state_constrained(
+                    {
+                        "optional": oc.state(gvs.sibling("selection", [vst.component(), vst.group("resulting node"), vst.reference()]), "state")
+                    }, r.group({
+                        "selected optional value": r.reference_derived(gvs.option_constraint("optional", [])),
+                    })),
             }),
         })),
 
@@ -515,54 +572,60 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Node Resolver": resolver(r.state({
-            "boolean": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "boolean") }, r.nothing()),
-            "component": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "component") }, r.group({
-                "location": r.state(
-                    {
-                        "external": state_constrained(
-                            {
-                                "import": oc.assert_set(pvs.parameter("imports")),
-                            },
-                            r.group({
-                                "import": r.reference(gvs.dictionary(gvs.option_constraint("import", [])), {
-                                    "constrained": pc.property([vst.group("schema"), vst.reference(), vst.group("complexity")], "constrained"),
-                                }),
-                                "type": r.reference(gvs.dictionary(gvs.reference("import", "constrained", [vst.component(), vst.group("signatures"), vst.group("types"), vst.component()]))),
-                            })
+            "boolean": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "boolean")
+                }, r.nothing()),
+            "component": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "component")
+                }, r.group({
+                    "location": r.state(
+                        {
+                            "external": state_constrained(
+                                {
+                                    "import": oc.assert_set(pvs.parameter("imports")),
+                                },
+                                r.group({
+                                    "import": r.reference(gvs.dictionary(gvs.option_constraint("import", [])), {
+                                        "constrained": pc.property([vst.group("schema"), vst.reference(), vst.group("complexity")], "constrained"),
+                                    }),
+                                    "type": r.reference(gvs.dictionary(gvs.reference("import", "constrained", [vst.component(), vst.group("signatures"), vst.group("types"), vst.component()]))),
+                                })
+                            ),
+                            "internal": state(r.reference(gvs.dictionary(gvs.parameter("signatures", [])))),
+                        },
+                    ),
+                    "signature": r.reference_derived(gvs.state("location",
+                        reference("Signature"), [])),
+                    "arguments": r.optional(r.group({
+                        "values": r.optional(r.dictionary_linked(
+                            'dense',
+                            gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("values")]),
+                            r.state({
+                                "optional": state(r.component("Optional Value Initialization", null, null)),
+                                "required": state(r.component("Guaranteed Value Selection", null, null)),
+                                "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("values")])))),
+                            }))
                         ),
-                        "internal": state(r.reference(gvs.dictionary(gvs.parameter("signatures", [])))),
-                    },
-                ),
-                "signature": r.reference_derived(gvs.state("location",
-                    reference("Signature"), [])),
-                "arguments": r.optional(r.group({
-                    "values": r.optional(r.dictionary_linked(
-                        'dense',
-                        gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("values")]),
-                        r.state({
-                            "optional": state(r.component("Optional Value Initialization", null, null)),
-                            "required": state(r.component("Guaranteed Value Selection", null, null)),
-                            "parameter": state(r.reference(gvs.dictionary(gvs.parameter("signature", [vst.group("resolved parameters"), vst.reference(), vst.group("values")])))),
-                        }))
-                    ),
-                    "lookups": r.optional(r.dictionary_linked(
-                        'dense',
-                        gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("lookups")]),
-                        r.state({
-                            "empty stack": state(r.nothing()),
-                            "not set": state(r.nothing()),
-                            "selection": state(r.component("Lookup Selection", null, null)),
-                            "stack": state(r.group({
-                                "stack": r.component("Lookup Selection", null, null),
-                                "element": r.component("Lookup Selection", null, null),
-                            })),
-                        }))
-                    ),
+                        "lookups": r.optional(r.dictionary_linked(
+                            'dense',
+                            gvs.parent_sibling("signature", [vst.reference(), vst.component(), vst.group("resolved parameters"), vst.reference(), vst.group("lookups")]),
+                            r.state({
+                                "empty stack": state(r.nothing()),
+                                "not set": state(r.nothing()),
+                                "selection": state(r.component("Lookup Selection", null, null)),
+                                "stack": state(r.group({
+                                    "stack": r.component("Lookup Selection", null, null),
+                                    "element": r.component("Lookup Selection", null, null),
+                                })),
+                            }))
+                        ),
+                    })),
+                    "constraints": r.component("Property Constraints", {
+                        "node": av.required(gvs.sibling("signature", [vst.reference(), vst.component(), vst.group("type"), vst.reference(), vst.group("node"), vst.component(),])),
+                    }, {})
                 })),
-                "constraints": r.component("Property Constraints", {
-                    "node": av.required(gvs.sibling("signature", [vst.reference(), vst.component(), vst.group("type"), vst.reference(), vst.group("node"), vst.component(),])),
-                }, {})
-            })),
             "dictionary": state_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "dictionary"),
@@ -591,60 +654,13 @@ export const $: g_.Resolvers = resolvers(
                     ),
                 })
             ),
-            "group": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "group") }, r.component("Node Resolver Group",
+            "group": state_constrained(
                 {
-                    "definition": av.required(gvs.option_constraint("definition", [])),
-
-                    "types": av.parameter("types"),
-                    "imports": av.parameter("imports"),
-                    "signature": av.parameter("signature"),
-                    "signatures": av.parameter("signatures"),
-                    "list cursor": av.parameter("list cursor"),
-                    "linked entry": av.parameter("linked entry"),
-                    "current dictionary": av.parameter("current dictionary"),
-                    "option constraints": av.parameter("option constraints"),
-                    "current ordered dictionary": av.parameter("current ordered dictionary"),
-                },
-                {
-                    "sibling property resolvers": al.parameter("sibling property resolvers"),
-                    "parent sibling property resolvers": al.parameter("sibling property resolvers"),
-                },
-
-            )),
-            "list": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "list") }, r.group({
-                "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                "result": r.optional(
-                    r.component("Node Resolver List Result", {
-                        "imports": av.parameter("imports"),
-                    }, {
-                        "types": al.dictionary(gvs.parameter("types", [])),
-                    }),
-                ),
-                "resolver": r.component("Node Resolver",
+                    "definition": oc.state(gvs.parameter("definition", []), "group")
+                }, 
+                r.component("Node Resolver Group",
                     {
-                        "list cursor": av.optional(ovi.set(gvs.optional_value("result",
-                            reference("Node Resolver List Result"), [vst.component()]))),
-                        "definition": av.required(gvs.option_constraint("definition", [vst.group("node")])),
-
-                        "types": av.parameter("types"),
-                        "imports": av.parameter("imports"),
-                        "signature": av.parameter("signature"),
-                        "signatures": av.parameter("signatures"),
-                        "linked entry": av.parameter("linked entry"),
-                        "current dictionary": av.parameter("current dictionary"),
-                        "option constraints": av.parameter("option constraints"),
-                        "current ordered dictionary": av.parameter("current ordered dictionary"),
-                    },
-                    null,
-                ),
-            })),
-            "nothing": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "nothing") }, r.nothing()),
-            "number": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "number") }, r.nothing()),
-            "optional": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "optional") }, r.group({
-                "constraints": r.component("Option Constraints", null, null),
-                "resolver": r.component("Node Resolver",
-                    {
-                        "definition": av.required(gvs.option_constraint("definition", [vst.component()])),
+                        "definition": av.required(gvs.option_constraint("definition", [])),
 
                         "types": av.parameter("types"),
                         "imports": av.parameter("imports"),
@@ -656,51 +672,130 @@ export const $: g_.Resolvers = resolvers(
                         "option constraints": av.parameter("option constraints"),
                         "current ordered dictionary": av.parameter("current ordered dictionary"),
                     },
-                    null,
-                ),
-            })),
-            "reference": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "reference") }, r.group({
-                "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                "type": r.state({
-                    "derived": state_constrained({ "definition": oc.state(gvs.sibling("definition", [vst.reference(), vst.group("type")]), "derived") }, r.group({
-                        "value": r.component("Guaranteed Value Selection", null, null),
-                    })),
-                    "selected": state_constrained({ "definition": oc.state(gvs.sibling("definition", [vst.reference(), vst.group("type")]), "selected") }, r.group({
-                        "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                        "lookup": r.component("Lookup Selection", null, null),
-                        "constraints": r.component("Property Constraints", {
-                            "node": av.required(gvs.sibling("lookup", [vst.component(), vst.group("resulting dictionary"), vst.reference(), vst.group("node")])),
-                        }, {})
-                    })),
-                }),
-            }),),
-            "state": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "state") }, r.group({
-                "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                "states": r.dictionary_linked(
-                    'dense',
-                    gvs.option_constraint("definition", []),
-                    r.group({
-                        "constraints": r.component("Option Constraints", null, null),
-                        "resolver": r.component("Node Resolver",
-                            {
-                                "definition": av.required(gvs.linked_entry([vst.group("node")])),
+                    {
+                        "sibling property resolvers": al.parameter("sibling property resolvers"),
+                        "parent sibling property resolvers": al.parameter("sibling property resolvers"),
+                    },
 
-                                "types": av.parameter("types"),
-                                "imports": av.parameter("imports"),
-                                "signature": av.parameter("signature"),
-                                "signatures": av.parameter("signatures"),
-                                "list cursor": av.parameter("list cursor"),
-                                "linked entry": av.parameter("linked entry"),
-                                "current dictionary": av.parameter("current dictionary"),
-                                "option constraints": av.parameter("option constraints"),
-                                "current ordered dictionary": av.parameter("current ordered dictionary"),
-                            },
-                            null,
-                        ),
-                    })
-                ),
-            })),
-            "text": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "text") }, r.nothing()),
+                )
+            ),
+            "list": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "list")
+                }, r.group({
+                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                    "result": r.optional(
+                        r.component("Node Resolver List Result", {
+                            "imports": av.parameter("imports"),
+                        }, {
+                            "types": al.dictionary(gvs.parameter("types", [])),
+                        }),
+                    ),
+                    "resolver": r.component("Node Resolver",
+                        {
+                            "list cursor": av.optional(ovi.set(gvs.optional_value("result",
+                                reference("Node Resolver List Result"), [vst.component()]))),
+                            "definition": av.required(gvs.option_constraint("definition", [vst.group("node")])),
+
+                            "types": av.parameter("types"),
+                            "imports": av.parameter("imports"),
+                            "signature": av.parameter("signature"),
+                            "signatures": av.parameter("signatures"),
+                            "linked entry": av.parameter("linked entry"),
+                            "current dictionary": av.parameter("current dictionary"),
+                            "option constraints": av.parameter("option constraints"),
+                            "current ordered dictionary": av.parameter("current ordered dictionary"),
+                        },
+                        null,
+                    ),
+                })),
+            "nothing": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "nothing")
+                }, r.nothing()),
+            "number": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "number")
+                }, r.nothing()),
+            "optional": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "optional")
+                }, r.group({
+                    "constraints": r.component("Option Constraints", null, null),
+                    "resolver": r.component("Node Resolver",
+                        {
+                            "definition": av.required(gvs.option_constraint("definition", [vst.component()])),
+
+                            "types": av.parameter("types"),
+                            "imports": av.parameter("imports"),
+                            "signature": av.parameter("signature"),
+                            "signatures": av.parameter("signatures"),
+                            "list cursor": av.parameter("list cursor"),
+                            "linked entry": av.parameter("linked entry"),
+                            "current dictionary": av.parameter("current dictionary"),
+                            "option constraints": av.parameter("option constraints"),
+                            "current ordered dictionary": av.parameter("current ordered dictionary"),
+                        },
+                        null,
+                    ),
+                })),
+            "reference": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "reference")
+                }, r.group({
+                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                    "type": r.state({
+                        "derived": state_constrained(
+                            {
+                                "definition": oc.state(gvs.sibling("definition", [vst.reference(), vst.group("type")]), "derived")
+                            }, r.group({
+                                "value": r.component("Guaranteed Value Selection", null, null),
+                            })),
+                        "selected": state_constrained(
+                            {
+                                "definition": oc.state(gvs.sibling("definition", [vst.reference(), vst.group("type")]), "selected")
+                            }, r.group({
+                                "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                                "lookup": r.component("Lookup Selection", null, null),
+                                "constraints": r.component("Property Constraints", {
+                                    "node": av.required(gvs.sibling("lookup", [vst.component(), vst.group("resulting dictionary"), vst.reference(), vst.group("node")])),
+                                }, {})
+                            })),
+                    }),
+                }),),
+            "state": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "state")
+                }, r.group({
+                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                    "states": r.dictionary_linked(
+                        'dense',
+                        gvs.option_constraint("definition", []),
+                        r.group({
+                            "constraints": r.component("Option Constraints", null, null),
+                            "resolver": r.component("Node Resolver",
+                                {
+                                    "definition": av.required(gvs.linked_entry([vst.group("node")])),
+
+                                    "types": av.parameter("types"),
+                                    "imports": av.parameter("imports"),
+                                    "signature": av.parameter("signature"),
+                                    "signatures": av.parameter("signatures"),
+                                    "list cursor": av.parameter("list cursor"),
+                                    "linked entry": av.parameter("linked entry"),
+                                    "current dictionary": av.parameter("current dictionary"),
+                                    "option constraints": av.parameter("option constraints"),
+                                    "current ordered dictionary": av.parameter("current ordered dictionary"),
+                                },
+                                null,
+                            ),
+                        })
+                    ),
+                })),
+            "text": state_constrained(
+                {
+                    "definition": oc.state(gvs.parameter("definition", []), "text")
+                }, r.nothing()),
             // "type parameter": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "type parameter") }, r.nothing()),
         })),
 
