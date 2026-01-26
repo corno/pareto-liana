@@ -16,6 +16,11 @@ export const Schema = (
 ): d_out.Module_Set.D => {
     return sh.m.module(
         {
+            "generic": sh.import_.ancestor(
+                2,
+                "generic",
+                ["unmarshall"]
+            ),
             "out": sh.import_.sibling(
                 "data",
                 $p.constrained
@@ -46,7 +51,7 @@ export const Schema = (
                 "out",
                 key,
             ),
-            null,
+            sh.t.component_imported("generic", "Error"),
             null,
             null,
         )),

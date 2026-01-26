@@ -13,6 +13,24 @@ import * as t_pareto_interface_main from "../../../../manual/schemas/schema/tran
 export const Module = ($: d_in.Module): d_out.Module_Set => {
     return _psh.dictionary.literal({
         "generic": sh.m.set({
+            "location": sh.m.module(
+                {},
+                {
+                    "Location": sh.type.data(sh.t.group({
+                        "file": sh.t.text(),
+                        "line": sh.t.natural(),
+                        "column": sh.t.natural(),
+                    })),
+                }
+            ),
+            "unmarshall": sh.m.module(
+                {},
+                {
+                    "Error": sh.type.data(sh.t.state({
+                        "tbd": sh.t.nothing()
+                    }))
+                }
+            ),
             "resolve": sh.m.module(
                 {
                     "location": sh.import_.sibling("location", []),
@@ -41,14 +59,14 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     })),
                 }
             ),
-            "location": sh.m.module(
-                {},
+            "deserialize": sh.m.module(
                 {
-                    "Location": sh.type.data(sh.t.group({
-                        "file": sh.t.text(),
-                        "line": sh.t.natural(),
-                        "column": sh.t.natural(),
-                    })),
+                    "unmarshall": sh.import_.sibling("unmarshall", []),
+                },
+                {
+                    "Error": sh.type.data(sh.t.state({
+                        "tbd": sh.t.nothing()
+                    }))
                 }
             ),
 

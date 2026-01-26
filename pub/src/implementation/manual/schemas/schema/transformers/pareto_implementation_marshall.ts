@@ -104,44 +104,55 @@ export const Type_Node = (
         'type': string
         'subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L>
     },
-): d_out.Expression => {
-
-    const string = (value: d_out.Expression, delimiter: 'quote' | 'backtick' | 'none'): d_out.Expression => {
-        return sh.e.state_literal(
+): d_out.Expression => _p.decide.state($, ($) => {
+    switch ($[0]) {
+        case 'boolean': return _p.ss($, ($) => sh.e.state_literal(
             "text",
             sh.e.group({
-                "delimiter": sh.e.state_literal(delimiter, sh.e.null_()),
-                "value": value,
-            })
-        )
-    }
-
-    return _p.decide.state($, ($) => {
-        switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => string(
-                sh.e.call(
+                "delimiter": sh.e.state_literal("none", sh.e.null_()),
+                "value": sh.e.call(
                     sh.s.from_variable_import("serialize boolean", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
                 ),
-                'backtick' //FIXME should be 'none'
-            ))
-            case 'component': return _p.ss($, ($) => sh.e.call(
-                _p.decide.state($, ($) => {
-                    switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.key}`, $.type.key, []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.key, []))
-                        default: return _p.au($[0])
+            })
+        ))
+        case 'component': return _p.ss($, ($) => sh.e.call(
+            _p.decide.state($, ($) => {
+                switch ($[0]) {
+                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.key}`, $.type.key, []))
+                    case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
+                    case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.key, []))
+                    default: return _p.au($[0])
+                }
+            }),
+            sh.e.select_from_context_deprecated([]),
+            false,
+        ))
+        case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
+            "dictionary",
+            sh.e.dictionary_map(
+                sh.s.from_context([]),
+                Type_Node(
+                    $.node,
+                    {
+                        'type': $p.type,
+                        'subselection': _p.list.nested_literal_old([
+                            $p.subselection,
+                            [
+                                sh.sub.dictionary(),
+                            ]
+                        ]),
                     }
-                }),
-                sh.e.select_from_context_deprecated([]),
-                false,
-            ))
-            case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
-                "dictionary",
-                sh.e.dictionary_map(
-                    sh.s.from_context([]),
+                )
+            )
+        ))
+        case 'group': return _p.ss($, ($) => sh.e.state_literal(
+            "group",
+            sh.e.state_literal(
+                "verbose",
+                sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
+                    sh.s.from_context([key]),
                     Type_Node(
                         $.node,
                         {
@@ -149,139 +160,130 @@ export const Type_Node = (
                             'subselection': _p.list.nested_literal_old([
                                 $p.subselection,
                                 [
-                                    sh.sub.dictionary(),
+                                    sh.sub.group(key),
                                 ]
                             ]),
                         }
                     )
-                )
-            ))
-            case 'group': return _p.ss($, ($) => sh.e.state_literal(
-                "group",
-                sh.e.state_literal(
-                    "verbose",
-                    sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
-                        sh.s.from_context([key]),
-                        Type_Node(
-                            $.node,
-                            {
-                                'type': $p.type,
-                                'subselection': _p.list.nested_literal_old([
-                                    $p.subselection,
-                                    [
-                                        sh.sub.group(key),
-                                    ]
-                                ]),
-                            }
-                        )
-                    )))
-                )
-            ))
-            case 'list': return _p.ss($, ($) => {
+                )))
+            )
+        ))
+        case 'list': return _p.ss($, ($) => {
 
-                const x = Type_Node(
-                    $.node,
-                    {
-                        'type': $p.type,
-                        'subselection': _p.list.nested_literal_old([
-                            $p.subselection,
-                            [
-                                sh.sub.list(),
-                            ]
-                        ]),
-                    }
-                )
+            const x = Type_Node(
+                $.node,
+                {
+                    'type': $p.type,
+                    'subselection': _p.list.nested_literal_old([
+                        $p.subselection,
+                        [
+                            sh.sub.list(),
+                        ]
+                    ]),
+                }
+            )
 
-                return sh.e.state_literal(
-                    "list",
-                    sh.e.list_map(
-                        sh.s.from_context($.result.__decide(
-                            ($) => ["list"],
-                            () => []
-                        )),
-                        $.result.__decide(
-                            ($) => sh.e.change_context(
-                                sh.s.from_context(["element"]),
-                                x,
-                            ),
-                            () => x
-                        )
+            return sh.e.state_literal(
+                "list",
+                sh.e.list_map(
+                    sh.s.from_context($.result.__decide(
+                        ($) => ["list"],
+                        () => []
+                    )),
+                    $.result.__decide(
+                        ($) => sh.e.change_context(
+                            sh.s.from_context(["element"]),
+                            x,
+                        ),
+                        () => x
                     )
                 )
-            })
-            case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
-            case 'number': return _p.ss($, ($) => string(
-                sh.e.call(
+            )
+        })
+        case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
+        case 'number': return _p.ss($, ($) => sh.e.state_literal(
+            "text",
+            sh.e.group({
+                "delimiter": sh.e.state_literal("none", sh.e.null_()),
+                "value": sh.e.call(
                     sh.s.from_variable_import("serialize number", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
-                ),
-                'backtick'//FIXME should be 'none'
-            ))
-            case 'optional': return _p.ss($, ($) => sh.e.state_literal(
-                "optional",
-                sh.e.decide_optional(
-                    sh.s.from_context([]),
-                    sh.e.state_literal(
-                        "set",
-                        Type_Node(
-                            $,
-                            {
-                                'type': $p.type,
-                                'subselection': _p.list.nested_literal_old([
-                                    $p.subselection,
-                                    [
-                                        sh.sub.optional(),
-                                    ]
-                                ]),
-                            }
-                        ),
-                    ),
-                    sh.e.state_literal(
-                        "not set",
-                        sh.e.null_()
-                    ),
-                    sh.type_node_reference(
-                        "out",
-                        "Value",
-                        [sh.sub.state("optional")]
-                    ),
-                )))
-            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
-                switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
-                    case 'selected': return _p.ss($, ($) => string(sh.e.select_from_context_deprecated(["key"]), 'backtick'))
-                    default: return _p.au($[0])
-                }
-            }))
-            case 'state': return _p.ss($, ($) => sh.e.state_literal(
-                "state",
-                sh.e.decide_state(
-                    sh.s.from_context([]),
-                    $.__d_map(($, key) => sh.e.group({
-                        "option": sh.e.text_literal(key, 'quote'),
-                        "value": Type_Node(
-                            $.node,
-                            {
-                                'type': $p.type,
-                                'subselection': _p.list.nested_literal_old([
-                                    $p.subselection,
-                                    [
-                                        sh.sub.state(key),
-                                    ]
-                                ]),
-                            }
-                        )
-                    })),
-                    sh.type_node_reference(
-                        "out",
-                        "Value",
-                        [sh.sub.state("state")]
-                    ),
                 )
-            ))
-            case 'text': return _p.ss($, ($) => string(sh.e.select_from_context_deprecated([]), 'quote'))
-            default: return _p.au($[0])
-        }
-    })
-}
+            })
+        ))
+        case 'optional': return _p.ss($, ($) => sh.e.state_literal(
+            "optional",
+            sh.e.decide_optional(
+                sh.s.from_context([]),
+                sh.e.state_literal(
+                    "set",
+                    Type_Node(
+                        $,
+                        {
+                            'type': $p.type,
+                            'subselection': _p.list.nested_literal_old([
+                                $p.subselection,
+                                [
+                                    sh.sub.optional(),
+                                ]
+                            ]),
+                        }
+                    ),
+                ),
+                sh.e.state_literal(
+                    "not set",
+                    sh.e.null_()
+                ),
+                sh.type_node_reference(
+                    "out",
+                    "Value",
+                    [sh.sub.state("optional")]
+                ),
+            )))
+        case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
+            switch ($[0]) {
+                case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
+                case 'selected': return _p.ss($, ($) => sh.e.group({
+                    "delimiter": sh.e.state_literal("backtick", sh.e.null_()),
+                    "value": sh.e.select_from_context_deprecated(["key"]),
+                }))
+                default: return _p.au($[0])
+            }
+        }))
+        case 'state': return _p.ss($, ($) => sh.e.state_literal(
+            "state",
+            sh.e.decide_state(
+                sh.s.from_context([]),
+                $.__d_map(($, key) => sh.e.group({
+                    "option": sh.e.text_literal(key, 'identifier'),
+                    "value": Type_Node(
+                        $.node,
+                        {
+                            'type': $p.type,
+                            'subselection': _p.list.nested_literal_old([
+                                $p.subselection,
+                                [
+                                    sh.sub.state(key),
+                                ]
+                            ]),
+                        }
+                    )
+                })),
+                sh.type_node_reference(
+                    "out",
+                    "Value",
+                    [sh.sub.state("state")]
+                ),
+            )
+        ))
+        case 'text': return _p.ss($, ($) => sh.e.state_literal(
+            "text",
+            sh.e.group({
+                "delimiter": sh.e.state_literal("quote", sh.e.null_()),
+                "value": sh.e.select_from_context_deprecated([]),
+            })
+        ))
+        default: return _p.au($[0])
+    }
+})

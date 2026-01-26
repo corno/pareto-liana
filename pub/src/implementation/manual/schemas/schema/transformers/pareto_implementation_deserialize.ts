@@ -20,18 +20,38 @@ export const Schema = (
 ): d_out.Module_Set.D => {
     return sh.m.module(
         'deserializer',
+        _p.dictionary.literal({
+            "signatures": sh_i.import_.ancestor(
+                5,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    _p.list.literal([
+                        "deserialize"
+                    ])
+                ])
+            ),
+        }),
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["deserialize"]),
-                    ])),
-                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["data types", "target"]),
+                    "deserialize": sh_i.import_.external(
+                        "astn-core",
+                        [
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "schemas",
+                            "parse tree",
+                            "deserializers",
+                        ],
+                    ),
+                    "unmarshall": sh_i.import_.sibling("unmarshall", _p.list.nested_literal_old([
                     ])),
                 }),
                 "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["deserialize"]))
@@ -41,13 +61,25 @@ export const Schema = (
             },
             () => _p.unreachable_code_path(),
         ),
-        {},
         $.types.__d_map(($, key) => sh.algorithm(
             sh.type_reference("signatures", key),
+            true,
             false,
             false,
-            false,
-            sh.e.implement_me("deser imp"),
+            sh.e.call(
+                sh.s.from_variable_import("unmarshall", key, []),
+                sh.e.call(
+                    sh.s.from_variable_import("deserialize", "Document", []),
+                    sh.e.select_from_context_deprecated([]),
+                    false,
+
+                ),
+                false,
+                {
+                    "uri": sh.e.text_literal("FIXME URI", 'freeform'),
+                    "indentation": sh.e.integer(4)
+                }
+            )
         )),
     )
 }

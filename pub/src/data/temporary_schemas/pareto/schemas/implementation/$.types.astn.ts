@@ -154,9 +154,9 @@ export const $: g_.Types = types(
                 })),
                 "text": tstate(t.state({
                     "literal": tstate(t.group({
-                        "delimiter": prop(t.state({
-                            "backtick": tstate(t.nothing()),
-                            "quote": tstate(t.nothing()),
+                        "type": prop(t.state({
+                            "identifier": tstate(t.nothing()),
+                            "freeform": tstate(t.nothing()),
                         })),
                         "value": prop(t.text_local(text('single line'))),
                     }))

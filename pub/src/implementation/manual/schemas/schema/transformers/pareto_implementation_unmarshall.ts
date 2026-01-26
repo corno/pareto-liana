@@ -28,18 +28,18 @@ export const Schema: _pi.Transformer_With_Parameters<
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "generic": sh_i.import_.ancestor(2, "generic", ["unmarshall"]),
+                    // "generic": sh_i.import_.ancestor(2, "generic", ["unmarshall"]),
                     "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
+                        _p.list.literal(["generated", "liana", "schemas"]),
                         $p.path,
                         _p.list.literal(["unmarshall"]),
                     ])),
-                    "in": sh_i.import_.ancestor(5, "interface", ["generated", "pareto", "core", "astn source"]),
-                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["data types", "target"]),
-                    ])),
+                    // "in": sh_i.import_.ancestor(5, "interface", ["generated", "pareto", "core", "astn source"]),
+                    // "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
+                    //     _p.list.literal(["generated", "pareto", "schemas"]),
+                    //     $p.path,
+                    //     _p.list.literal(["data types", "target"]),
+                    // ])),
                 }),
                 "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["unmarshall"]))
             }),
@@ -54,14 +54,15 @@ export const Schema: _pi.Transformer_With_Parameters<
             false,
             false,
             false,
-            Type_Node(
-                $.node,
-                {
-                    'temp type': key,
-                    'temp subselection': _p.list.literal([]),
-                    'constrained': $p.constrained
-                }
-            ),
+            // Type_Node(
+            //     $.node,
+            //     {
+            //         'temp type': key,
+            //         'temp subselection': _p.list.literal([]),
+            //         'constrained': $p.constrained
+            //     }
+            // ),
+            sh.e.unreachable()
         )),
     )
 }

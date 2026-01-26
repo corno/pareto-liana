@@ -144,9 +144,9 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "text": state(r.state({
                     "literal": state(r.group({
-                        "delimiter": r.state({
-                            "backtick": state(r.nothing()),
-                            "quote": state(r.nothing()),
+                        "type": r.state({
+                            "identifier": state(r.nothing()),
+                            "freeform": state(r.nothing()),
                         }),
                         "value": r.text(),
                     }))

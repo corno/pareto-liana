@@ -10,7 +10,7 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 const location = sh.e.group({
-    "file": sh.e.text_literal("implement me", 'quote'),
+    "file": sh.e.text_literal("implement me", 'freeform'),
     "line": sh.e.integer(42),
     "column": sh.e.integer(42),
 })
