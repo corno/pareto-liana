@@ -56,26 +56,20 @@ export const Resolvers = (
             () => _p.unreachable_code_path(),
         ),
         {},
-        op_pad_dictionary_identifiers(
-            $.__d_map(($, key) => sh.algorithm(
-                sh.type_reference("signatures", key),
-                true,
-                true,
-                true,
-                Node_Resolver(
-                    $['type resolver'],
-                    {
-                        'temp type': key,
-                        'temp subselection': _p.list.literal([])
-                    }
-                ),
+        $.__d_map(($, key) => sh.algorithm(
+            sh.type_reference("signatures", key),
+            true,
+            true,
+            true,
+            Node_Resolver(
+                $['type resolver'],
+                {
+                    'temp type': key,
+                    'temp subselection': _p.list.literal([])
+                }
+            ),
 
-            )),
-            {
-                'prefix': "r ",
-                'suffix': "",
-            }
-        )
+        ))
     )
 }
 
@@ -101,8 +95,8 @@ export const Possible_Value_Selection = (
             ))
             case 'result': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'state': return _p.ss($, ($) => sh.s.implement_me()) //quite some work
-                    case 'optional value': return _p.ss($, ($) => sh.s.implement_me()) //quite some work
+                    case 'state': return _p.ss($, ($) => sh.s.implement_me("STATE2")) //quite some work
+                    case 'optional value': return _p.ss($, ($) => sh.s.implement_me("OPTIONAL VALUE2")) //quite some work
 
                     default: return _p.au($[0])
                 }
@@ -157,8 +151,8 @@ export const Guaranteed_Value_Selection = (
             case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
 
-                    case 'component': return _p.ss($, ($) => sh.s.implement_me()) //simple
-                    case 'reference': return _p.ss($, ($) => sh.s.implement_me()) //simple
+                    case 'component': return _p.ss($, ($) => sh.s.implement_me("COMPONENT")) //simple
+                    case 'reference': return _p.ss($, ($) => sh.s.implement_me("REFERENCE")) //simple
                     default: return _p.au($[0])
                 }
             }))
@@ -174,9 +168,9 @@ export const Guaranteed_Value_Selection = (
             ))
             case 'result': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'state': return _p.ss($, ($) => sh.s.implement_me())  // quite some work
-                    case 'optional value': return _p.ss($, ($) => sh.s.implement_me()) // quite some work
-                    case 'list': return _p.ss($, ($) => sh.s.implement_me()) // quite some work
+                    case 'state': return _p.ss($, ($) => sh.s.implement_me("STATE"))  // quite some work
+                    case 'optional value': return _p.ss($, ($) => sh.s.implement_me("OPTIONAL VALUE")) // quite some work
+                    case 'list': return _p.ss($, ($) => sh.s.implement_me("LIST")) // quite some work
 
                     default: return _p.au($[0])
                 }
@@ -251,9 +245,9 @@ export const Option_Constraints = (
             case 'assert is set': return _p.ss($, ($) => sh.e.decide_optional(
                 Possible_Value_Selection($, { 'tail': () => _p.list.literal([]) }),
                 sh.e.select_from_context_deprecated([]),
-                sh.e.implement_me(),
+                sh.e.implement_me("assert is set"),
             ))
-            case 'state': return _p.ss($, ($) => sh.e.implement_me()) // medium work
+            case 'state': return _p.ss($, ($) => sh.e.implement_me("state constraint")) // medium work
             default: return _p.au($[0])
         }
     }))),
@@ -348,7 +342,7 @@ export const Node_Resolver = (
                                     case 'empty stack': return _p.ss($, ($) => sh.e.list_literal([]))
                                     case 'not set': return _p.ss($, ($) => sh.e.not_set())
                                     case 'selection': return _p.ss($, ($) => sh.e.select_deprecated(Lookup_Selection($, {})))
-                                    case 'stack': return _p.ss($, ($) => sh.e.implement_me()) // quite some work
+                                    case 'stack': return _p.ss($, ($) => sh.e.implement_me("stack")) // quite some work
                                     default: return _p.au($[0])
                                 }
                             }))),

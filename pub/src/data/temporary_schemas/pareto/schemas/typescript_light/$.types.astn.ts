@@ -33,7 +33,7 @@ export const $: g_.Types = types(
                             "name": prop(t.component("Identifier")),
                             "as": prop(t.optional(t.component("Identifier"))),
                         }))),
-                        "from": prop(t.optional(t.component("Identifier"))),
+                        "from": prop(t.optional(t.text_local(text('single line')))),
                     })),
                 })),
             })),
@@ -48,7 +48,7 @@ export const $: g_.Types = types(
                         }))),
                     })),
                 })),
-                "from": prop(t.component("Identifier")),
+                "from": prop(t.text_local(text('single line'))),
             })),
             "module declaration": tstate(t.group({ //namespace
                 "export": prop(t.boolean()),
@@ -190,7 +190,9 @@ export const $: g_.Types = types(
             "value": prop(t.text_local(text('single line')))
         })),
 
-        "Identifier": type(t.text_local(text('single line'))),
+        "Identifier": type(t.group({
+            "value": prop(t.text_local(text('single line')))
+        })),
 
     }
 )

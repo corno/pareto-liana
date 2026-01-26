@@ -57,7 +57,7 @@ export const Schema = (
                         "data",
                     ])
             ])
-        )
+        ),
     }),
     $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["migrate boilerplate"])),
     $.types.__d_map(($, key) => sh.algorithm(

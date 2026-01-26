@@ -84,7 +84,7 @@ export const $: g_.Types = types(
                     "new context": prop(t.component_cyclic("Selection")),
                     "expression": prop(t.component_cyclic("Expression")),
                 })),
-                "implement me": tstate(t.nothing()),
+                "implement me": tstate(t.text_local(text('single line'))),
                 "selection deprecated": tstate(t.component_cyclic("Selection")),
                 "unreachable": tstate(t.nothing()),
                 // "deprecated function": tstate(t.group({
@@ -195,7 +195,7 @@ export const $: g_.Types = types(
 
         "Selection": type(t.group({
             "start": prop(t.state({
-                "implement me": tstate(t.nothing()),
+                "implement me": tstate(t.text_local(text('single line'))),
                 "abort deprecated": tstate(t.nothing()),
 
                 "argument": tstate(t.text_global("TBD")),

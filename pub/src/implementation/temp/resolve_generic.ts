@@ -62,14 +62,14 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
 export namespace abort {
 
     export const state_constraint = <T extends readonly [string, any]>(
-        expected: string,
-        found: T,
+        found: string,
+        expected: T,
         location: gen_loc.Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
-            'expected': expected,
-            'found': found[0],
+            'expected': expected[0],
+            'found': found,
         }]],
         'location': location,
     })

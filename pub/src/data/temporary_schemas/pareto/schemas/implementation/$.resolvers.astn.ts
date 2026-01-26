@@ -74,7 +74,7 @@ export const $: g_.Resolvers = resolvers(
                     "new context": r.component("Selection", {}, {}),
                     "expression": r.component("Expression", {}, {}),
                 })),
-                "implement me": state(r.nothing()),
+                "implement me": state(r.text()),
                 "selection deprecated": state(r.component("Selection", {}, {})),
                 "unreachable": state(r.nothing()),
                 // "deprecated function": state(r.group({
@@ -198,7 +198,7 @@ export const $: g_.Resolvers = resolvers(
                     "key": r.component("Selection", {}, {}),
                     "abort handler": r.component("Abort Expression", {}, {}),
                 })),
-                "implement me": state(r.nothing()),
+                "implement me": state(r.text()),
                 "parameter": state(r.text()),
                 "variable": state(r.state({
                     "local": state(r.text()),

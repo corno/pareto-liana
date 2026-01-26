@@ -9,6 +9,8 @@ import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
+import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
+
 
 export const Schema = (
     $: d_in.Schema,
@@ -21,12 +23,12 @@ export const Schema = (
     'transformer',
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
-            3, //5,
+            5,
             "interface",
             _p.list.nested_literal_old([
                 _p.list.literal([
-                    // "generated",
-                    // "pareto",
+                    "generated",
+                    "liana",
                     "schemas"
                 ]),
                 $p.path,
@@ -34,20 +36,54 @@ export const Schema = (
             ])
         ),
         "out": sh_i.import_.external(
-            "astn",
+            "astn-core",
             [
                 "dist",
                 "interface",
                 "generated",
-                "pareto",
+                "liana",
                 "schemas",
                 "sealed target",
-                "data types",
-                "source",
+                "data",
             ],
         ),
+
     }),
-    $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"])),
+    op_flatten_dictionary(
+        _p.dictionary.literal({
+            "serialize": _p.dictionary.literal({
+                "number": sh_i.import_.external(
+                    "liana-core",
+                    _p.list.literal([
+                        "dist",
+                        "implementation",
+                        "manual",
+                        "primitives",
+                        "integer",
+                        "serializers",
+                        "decimal",
+                    ]),
+                ),
+                "boolean": sh_i.import_.external(
+                    "liana-core",
+                    _p.list.literal([
+                        "dist",
+                        "implementation",
+                        "manual",
+                        "primitives",
+                        "boolean",
+                        "serializers",
+                        "true false",
+                    ]),
+                ),
+            }),
+            "external ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
+        }),
+        {
+            'separator': " ",
+        },
+        () => _p.unreachable_code_path(),
+    ),
     $.types.__d_map(($, key) => sh.algorithm(
         sh.type_reference("signatures", key),
         false,
@@ -84,13 +120,17 @@ export const Type_Node = (
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => string(
-                sh.e.implement_me(),
+                sh.e.call(
+                    sh.s.from_variable_import("serialize boolean", "$$", []),
+                    sh.e.select_from_context_deprecated([]),
+                    false,
+                ),
                 'backtick' //FIXME should be 'none'
             ))
             case 'component': return _p.ss($, ($) => sh.e.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.key}`, $.type.key, []))
+                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.key}`, $.type.key, []))
                         case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
                         case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.key, []))
                         default: return _p.au($[0])
@@ -118,22 +158,25 @@ export const Type_Node = (
                 )
             ))
             case 'group': return _p.ss($, ($) => sh.e.state_literal(
-                "verbose group",
-                sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
-                    sh.s.from_context([key]),
-                    Type_Node(
-                        $.node,
-                        {
-                            'type': $p.type,
-                            'subselection': _p.list.nested_literal_old([
-                                $p.subselection,
-                                [
-                                    sh.sub.group(key),
-                                ]
-                            ]),
-                        }
-                    )
-                )))
+                "group",
+                sh.e.state_literal(
+                    "verbose",
+                    sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
+                        sh.s.from_context([key]),
+                        Type_Node(
+                            $.node,
+                            {
+                                'type': $p.type,
+                                'subselection': _p.list.nested_literal_old([
+                                    $p.subselection,
+                                    [
+                                        sh.sub.group(key),
+                                    ]
+                                ]),
+                            }
+                        )
+                    )))
+                )
             ))
             case 'list': return _p.ss($, ($) => sh.e.state_literal(
                 "list",
@@ -154,7 +197,11 @@ export const Type_Node = (
                 )))
             case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
             case 'number': return _p.ss($, ($) => string(
-                sh.e.implement_me(),
+                sh.e.call(
+                    sh.s.from_variable_import("serialize number", "$$", []),
+                    sh.e.select_from_context_deprecated([]),
+                    false,
+                ),
                 'backtick'//FIXME should be 'none'
             ))
             case 'optional': return _p.ss($, ($) => sh.e.state_literal(
@@ -198,7 +245,7 @@ export const Type_Node = (
                 sh.e.decide_state(
                     sh.s.from_context([]),
                     $.__d_map(($, key) => sh.e.group({
-                        "state": sh.e.text_literal(key, 'quote'),
+                        "option": sh.e.text_literal(key, 'quote'),
                         "value": Type_Node(
                             $.node,
                             {
