@@ -36,7 +36,7 @@ export const Group_Content = (
                             ($) => _p.list.nested_literal_old([
                                 _p.list.literal<d_out.Errors.L>([
                                     {
-                                        'range': convert_range($.key.range),
+                                        'range': convert_range($.id.range),
                                         'type': ['error', ['duplicate property', {
                                             name: id
                                         }]]
@@ -124,7 +124,7 @@ export const Node = (
                                             ($) => _p.list.nested_literal_old<d_out.Errors.L>([
                                                 _p.list.literal([
                                                     {
-                                                        'range': convert_range($.key.range),
+                                                        'range': convert_range($.id.range),
                                                         'type': ['error', ['duplicate property', {
                                                             name: id
                                                         }]]

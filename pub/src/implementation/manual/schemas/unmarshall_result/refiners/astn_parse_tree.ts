@@ -94,7 +94,7 @@ export const Node_Type = (
                                     'value': $,
                                     'entries': op_group($.entries.__l_map(($) => {
                                         return {
-                                            'key': $.key.value,
+                                            'key': $.id.value,
                                             'value': $
                                         }
                                     })).__d_map(($) => op_expect_exactly_one_element($).__decide(
@@ -115,7 +115,7 @@ export const Node_Type = (
                                                     'definition': prop_def,
                                                 },
                                             ),
-                                            'key': $.key
+                                            'id': $.id
                                         }))]
                                     ))
                                 }]

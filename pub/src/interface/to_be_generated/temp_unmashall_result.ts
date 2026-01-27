@@ -10,7 +10,7 @@ export type Document = {
 }
 
 export type Entry_Data = {
-    'key': d_astn_ast.Text
+    'id': d_astn_ast.Text
     'node': Optional_Node
 }
 
