@@ -89,7 +89,7 @@ export const Globals: t_signatures.Globals = ($,) => ({
             'line': 42,
             'column': 42,
         }),
-        'dictionary': $.__d_map(($,key,) => ({
+        'dictionary': $.__d_map(($,id,) => ({
             'entry': Text_Type($),
             'location': ({
                 'file': "implement me",
@@ -104,7 +104,7 @@ export const Globals: t_signatures.Globals = ($,) => ({
             'line': 42,
             'column': 42,
         }),
-        'dictionary': $.__d_map(($,key,) => ({
+        'dictionary': $.__d_map(($,id,) => ({
             'entry': Number_Type($),
             'location': ({
                 'file': "implement me",
@@ -123,7 +123,7 @@ export const Types: t_signatures.Types = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Type($),
         'location': ({
             'file': "implement me",
@@ -202,7 +202,7 @@ export const Schemas: t_signatures.Schemas = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Schema_Tree($),
         'location': ({
             'file': "implement me",
@@ -217,7 +217,7 @@ export const Imports: t_signatures.Imports = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'schema set child': _p.deprecated_cc($['schema set child'], ($,) => ({
                 'location': ({
@@ -262,7 +262,7 @@ export const Signatures: t_signatures.Signatures = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Signature($),
         'location': ({
             'file': "implement me",
@@ -277,7 +277,7 @@ export const Resolvers: t_signatures.Resolvers = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'signature': _p.deprecated_cc($['signature'], ($,) => null),
             'type resolver': _p.deprecated_cc($['type resolver'], ($,) => Node_Resolver($)),
@@ -295,7 +295,7 @@ export const Group: t_signatures.Group = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'description': _p.deprecated_cc($['description'], ($,) => $.__o_map(($,) => $)),
             'node': _p.deprecated_cc($['node'], ($,) => Type_Node($)),
@@ -499,7 +499,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                         'line': 42,
                         'column': 42,
                     }),
-                    'dictionary': $.__d_map(($,key,) => ({
+                    'dictionary': $.__d_map(($,id,) => ({
                         'entry': ({
                             'description': _p.deprecated_cc($['description'], ($,) => $.__o_map(($,) => $)),
                             'node': _p.deprecated_cc($['node'], ($,) => Type_Node($)),
@@ -606,7 +606,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($,) => (
             'line': 42,
             'column': 42,
         }),
-        'dictionary': $.__d_map(($,key,) => ({
+        'dictionary': $.__d_map(($,id,) => ({
             'entry': ({
                 'data type': _p.deprecated_cc($['data type'], ($,) => Type_Reference($)),
                 'presence': _p.deprecated_cc($['presence'], ($,) => Presence($)),
@@ -624,7 +624,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($,) => (
             'line': 42,
             'column': 42,
         }),
-        'dictionary': $.__d_map(($,key,) => ({
+        'dictionary': $.__d_map(($,id,) => ({
             'entry': ({
                 'referent': _p.deprecated_cc($['referent'], ($,) => Type_Reference($)),
                 'dictionary': _p.deprecated_cc($['dictionary'], ($,) => null),
@@ -802,7 +802,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'location': ({
                 'file': "implement me",
@@ -844,7 +844,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($,) => (
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': Property_Constraint($),
         'location': ({
             'file': "implement me",
@@ -906,7 +906,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($,) => ({
         'line': 42,
         'column': 42,
     }),
-    'dictionary': $.__d_map(($,key,) => ({
+    'dictionary': $.__d_map(($,id,) => ({
         'entry': ({
             'definition': _p.deprecated_cc($['definition'], ($,) => null),
             'resolver': _p.deprecated_cc($['resolver'], ($,) => Node_Resolver($)),
@@ -985,7 +985,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                 'line': 42,
                                 'column': 42,
                             }),
-                            'dictionary': $.__d_map(($,key,) => ({
+                            'dictionary': $.__d_map(($,id,) => ({
                                 'entry': ({
                                     'location': ({
                                         'file': "implement me",
@@ -1025,7 +1025,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                 'line': 42,
                                 'column': 42,
                             }),
-                            'dictionary': $.__d_map(($,key,) => ({
+                            'dictionary': $.__d_map(($,id,) => ({
                                 'entry': ({
                                     'location': ({
                                         'file': "implement me",
@@ -1119,7 +1119,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                             'line': 42,
                             'column': 42,
                         }),
-                        'dictionary': $.__d_map(($,key,) => ({
+                        'dictionary': $.__d_map(($,id,) => ({
                             'entry': ({
                                 'constraints': _p.deprecated_cc($['constraints'], ($,) => Option_Constraints($)),
                                 'resolver': _p.deprecated_cc($['resolver'], ($,) => Node_Resolver($)),

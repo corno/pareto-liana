@@ -74,7 +74,7 @@ export const Errors: t_signatures.Errors = ($,) => $.__l_map(($,) => ({
                                     case 'unknown state':
                                         return _p.ss($, ($,) => ['unknown state', ({
                                             'found': _p.deprecated_cc($['found'], ($,) => $),
-                                            'expected': _p.deprecated_cc($['expected'], ($,) => $.__d_map(($,key,) => null)),
+                                            'expected': _p.deprecated_cc($['expected'], ($,) => $.__d_map(($,id,) => null)),
                                         })])
                                     case 'missing data marker':
                                         return _p.ss($, ($,) => ['missing data marker', null])

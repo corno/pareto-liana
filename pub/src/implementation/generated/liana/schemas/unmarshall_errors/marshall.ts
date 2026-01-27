@@ -153,7 +153,7 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                                             'delimiter': ['quote', null],
                                                             'value': $,
                                                         })]),
-                                                        'expected': _p.deprecated_cc($['expected'], ($,) => ['dictionary', $.__d_map(($,key,) => ['nothing', null])]),
+                                                        'expected': _p.deprecated_cc($['expected'], ($,) => ['dictionary', $.__d_map(($,id,) => ['nothing', null])]),
                                                     }))]],
                                                 }))
                                             case 'missing data marker':
