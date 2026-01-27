@@ -25,13 +25,13 @@
 
 // export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<Element_And_Rest<T>> => {
 //     const arr = $
-//     return $.__get_possible_element_at(0).__o_map(
+//     return $.__get_possible_item_at(0).__o_map(
 //         ($) => ({
 //             'rest': _p.list.deprecated_build(($i) => {
 //                 let is_first = true
 //                 arr.__for_each(($) => {
 //                     if (!is_first) {
-//                         $i['add element']($)
+//                         $i['add item']($)
 //                     }
 //                     is_first = false
 //                 })

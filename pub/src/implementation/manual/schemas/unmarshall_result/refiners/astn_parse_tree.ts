@@ -9,10 +9,10 @@ import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_
 
 import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/token"
 
-export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_elements($) !== 1
+export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_items($) !== 1
     ? _p.optional.not_set()
     // there is an element, so this statement will always return a 'set'
-    : $.__get_possible_element_at(0)
+    : $.__get_possible_item_at(0)
 
 type Key_Value_Pair<T> = {
     'key': string,
@@ -417,7 +417,7 @@ export const Node_Type = (
                             //     if (elements.__get_length() > 2) {
                             //         return ['more than 2 elements', range]
                             //     }
-                            //     const first = elements.__get_possible_element_at(0)
+                            //     const first = elements.__get_possible_item_at(0)
                             //     return first.__decide<d_out.State_Status>(
                             //         ($) => {
                             //             if ($.value.type[0] !== 'string') {
@@ -425,7 +425,7 @@ export const Node_Type = (
                             //             }
                             //             const state_name = $.value.type[1].value
                             //             const state_name_range = $.value.type[1].range
-                            //             return elements.__get_possible_element_at(1).__decide<d_out.State_Status>(
+                            //             return elements.__get_possible_item_at(1).__decide<d_out.State_Status>(
                             //                 ($) => {
                             //                     const value = $.value
                             //                     return def.get_entry(state_name).__decide<d_out.State_Status>(
