@@ -41,7 +41,7 @@ export const $: g_.Types = types(
                         "name": prop(t.text_local(text('single line'))),
                     })),
                     "state": tstate(t.state({
-                        "more than 2 elements": tstate(t.nothing()),
+                        "more than 2 items": tstate(t.nothing()),
                         "missing state name": tstate(t.nothing()),
                         "state is not a string": tstate(t.nothing()),
                         "missing value": tstate(t.nothing()),

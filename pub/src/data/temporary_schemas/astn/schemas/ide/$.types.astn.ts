@@ -33,7 +33,7 @@ export const $: g_.Types = types(
             "end": prop(t.component("Relative Location")),
         })),
 
-        "Key Value Pairs To Be Sorted": type(t.dictionary(t.text_local(text('single line')))),
+        "ID Value Pairs To Be Sorted": type(t.dictionary(t.text_local(text('single line')))),
 
         "Relative Location": type(t.group({
             "line": prop(t.number_local(n.natural())),

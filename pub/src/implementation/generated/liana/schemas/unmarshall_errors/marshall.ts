@@ -125,9 +125,9 @@ export const Errors: t_signatures.Errors = ($,) => ['list', $.__l_map(($,) => ['
                                     'option': 'state',
                                     'value': ['state', _p.decide.state($, ($,): t_out.Value.state => {
                                         switch ($[0]) {
-                                            case 'more than 2 elements':
+                                            case 'more than 2 items':
                                                 return _p.ss($, ($,) => ({
-                                                    'option': 'more than 2 elements',
+                                                    'option': 'more than 2 items',
                                                     'value': ['nothing', null],
                                                 }))
                                             case 'missing state name':

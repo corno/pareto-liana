@@ -43,12 +43,12 @@ export const $: g_.Types = types(
         })),
 
         "Alternative": type(t.group({
-            "elements": prop(t.list(t.component("Element"))),
+            "items": prop(t.list(t.component("Item"))),
             "actions": prop(t.optional(t.list(t.text_global("Multi Line Text")))),
             "label": prop(t.optional(t.text_global("Text Value"))),
         })),
 
-        "Element": type(t.state({
+        "Item": type(t.state({
             "token": tstate(t.group({
                 "name": prop(t.text_global("Text Value")),
                 "label": prop(t.optional(t.text_global("Text Value"))),
@@ -65,7 +65,7 @@ export const $: g_.Types = types(
                 "code": prop(t.text_global("Multi Line Text")),
             })),
             "set": tstate(t.group({
-                "elements": prop(t.list(t.component_cyclic("Element"))),
+                "items": prop(t.list(t.component_cyclic("Item"))),
             })),
             "range": tstate(t.group({
                 "from": prop(t.text_global("Text Value")),

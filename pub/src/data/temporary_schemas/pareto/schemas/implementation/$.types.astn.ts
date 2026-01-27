@@ -121,7 +121,7 @@ export const $: g_.Types = types(
                     "literal": tstate(t.list(t.component_cyclic("Expression"))),
                     "map": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
-                        "element handler": prop(t.component_cyclic("Expression"))
+                        "item handler": prop(t.component_cyclic("Expression"))
                     })),
                 })),
                 "nothing": tstate(t.nothing()),
@@ -207,7 +207,7 @@ export const $: g_.Types = types(
                 "context": tstate(t.nothing()),
                 "entry": tstate(t.group({
                     "dictionary": prop(t.component_cyclic("Selection")),
-                    "key": prop(t.component_cyclic("Selection")),
+                    "id": prop(t.component_cyclic("Selection")),
                     "abort handler": prop(t.component("Abort Expression")),
                 })),
                 "variable": tstate(t.state({

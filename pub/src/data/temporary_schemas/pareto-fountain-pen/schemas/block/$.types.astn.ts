@@ -33,7 +33,7 @@ export const $: g_.Types  = types(
             "optional": tstate(t.optional(t.component_cyclic("Group Part"))),
             "nothing": tstate(t.nothing()),
             "rich list": tstate(t.group({
-                "elements": prop(t.list(t.component_cyclic("Group Part"))),
+                "items": prop(t.list(t.component_cyclic("Group Part"))),
                 "if empty": prop(t.component_cyclic("Group Part")),
                 "if not empty": prop(t.group({
                     "indent": prop(t.boolean()),
@@ -53,7 +53,7 @@ export const $: g_.Types  = types(
             "optional": tstate(t.optional(t.component_cyclic("Block Part"))),
             "nothing": tstate(t.nothing()),
             "rich list": tstate(t.group({
-                "elements": prop(t.list(t.component_cyclic("Block Part"))),
+                "items": prop(t.list(t.component_cyclic("Block Part"))),
                 "if empty": prop(t.component_cyclic("Block Part")),
                 "if not empty": prop(t.group({
                     "before": prop(t.component_cyclic("Block Part")),

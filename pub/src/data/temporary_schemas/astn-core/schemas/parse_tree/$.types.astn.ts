@@ -30,24 +30,24 @@ export const $: g_.Types = types(
                 "concrete": tstate(t.state({
                     "dictionary": tstate(t.group({
                         "{": prop(t.component("Structural Token")),
-                        "entries": prop(t.component("Key Value Pairs")),
+                        "entries": prop(t.component("ID Value Pairs")),
                         "}": prop(t.component("Structural Token")),
                     })),
                     "group": tstate(t.state({
                         "concise": tstate(t.group({
                             "<": prop(t.component("Structural Token")),
-                            "elements": prop(t.component("Elements")),
+                            "items": prop(t.component("Items")),
                             ">": prop(t.component("Structural Token")),
                         })),
                         "verbose": tstate(t.group({
                             "(": prop(t.component("Structural Token")),
-                            "entries": prop(t.component("Key Value Pairs")),
+                            "entries": prop(t.component("ID Value Pairs")),
                             ")": prop(t.component("Structural Token")),
                         })),
                     })),
                     "list": tstate(t.group({
                         "[": prop(t.component("Structural Token")),
-                        "elements": prop(t.component("Elements")),
+                        "items": prop(t.component("Items")),
                         "]": prop(t.component("Structural Token")),
                     })),
                     "nothing": tstate(t.group({
@@ -96,15 +96,15 @@ export const $: g_.Types = types(
             "type": prop(t.component_external("token", "Text Type")),
         })),
 
-        "Key Value Pairs": type(t.list(t.group({
-            "key": prop(t.component("Text")),
+        "ID Value Pairs": type(t.list(t.group({
+            "id": prop(t.component("Text")),
             "value": prop(t.optional(t.group({
                 ":": prop(t.component("Structural Token")),
                 "value": prop(t.component_cyclic("Value")),
             }))),
         }))),
 
-        "Elements": type(t.list(t.group({
+        "Items": type(t.list(t.group({
             "value": prop(t.component_cyclic("Value")),
         }))),
     },

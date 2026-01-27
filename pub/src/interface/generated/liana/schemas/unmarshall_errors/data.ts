@@ -128,7 +128,7 @@ export namespace Errors_ {
                 
                 export namespace state {
                     
-                    export type more_than_2_elements = null
+                    export type more_than_2_items = null
                     
                     export type missing_state_name = null
                     
@@ -160,7 +160,7 @@ export namespace Errors_ {
                 }
                 
                 export type state = 
-                    | readonly ['more than 2 elements', state.more_than_2_elements]
+                    | readonly ['more than 2 items', state.more_than_2_items]
                     | readonly ['missing state name', state.missing_state_name]
                     | readonly ['state is not a string', state.state_is_not_a_string]
                     | readonly ['missing value', state.missing_value]

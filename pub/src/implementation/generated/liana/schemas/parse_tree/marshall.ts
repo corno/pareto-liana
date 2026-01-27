@@ -23,14 +23,14 @@ export const Text: t_signatures.Text = ($,) => ['group', ['verbose', _p.dictiona
     })]),
     'type': _p.deprecated_cc($['type'], ($,) => v_external_token.Text_Type($)),
 }))]]
-export const Key_Value_Pairs: t_signatures.Key_Value_Pairs = ($,) => ['list', $.__l_map(($,) => ['group', ['verbose', _p.dictionary.literal(({
-    'key': _p.deprecated_cc($['key'], ($,) => Text($)),
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($,) => ['list', $.__l_map(($,) => ['group', ['verbose', _p.dictionary.literal(({
+    'id': _p.deprecated_cc($['id'], ($,) => Text($)),
     'value': _p.deprecated_cc($['value'], ($,) => ['optional', $.__decide(($,): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(({
         ':': _p.deprecated_cc($[':'], ($,) => Structural_Token($)),
         'value': _p.deprecated_cc($['value'], ($,) => Value($)),
     }))]]], () => ['not set', null])]),
 }))]])]
-export const Elements: t_signatures.Elements = ($,) => ['list', $.__l_map(($,) => ['group', ['verbose', _p.dictionary.literal(({
+export const Items: t_signatures.Items = ($,) => ['list', $.__l_map(($,) => ['group', ['verbose', _p.dictionary.literal(({
     'value': _p.deprecated_cc($['value'], ($,) => Value($)),
 }))]])]
 export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictionary.literal(({
@@ -46,7 +46,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                     'option': 'dictionary',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '{': _p.deprecated_cc($['{'], ($,) => Structural_Token($)),
-                                        'entries': _p.deprecated_cc($['entries'], ($,) => Key_Value_Pairs($)),
+                                        'entries': _p.deprecated_cc($['entries'], ($,) => ID_Value_Pairs($)),
                                         '}': _p.deprecated_cc($['}'], ($,) => Structural_Token($)),
                                     }))]],
                                 }))
@@ -60,7 +60,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                                     'option': 'concise',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         '<': _p.deprecated_cc($['<'], ($,) => Structural_Token($)),
-                                                        'elements': _p.deprecated_cc($['elements'], ($,) => Elements($)),
+                                                        'items': _p.deprecated_cc($['items'], ($,) => Items($)),
                                                         '>': _p.deprecated_cc($['>'], ($,) => Structural_Token($)),
                                                     }))]],
                                                 }))
@@ -69,7 +69,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                                     'option': 'verbose',
                                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                                         '(': _p.deprecated_cc($['('], ($,) => Structural_Token($)),
-                                                        'entries': _p.deprecated_cc($['entries'], ($,) => Key_Value_Pairs($)),
+                                                        'entries': _p.deprecated_cc($['entries'], ($,) => ID_Value_Pairs($)),
                                                         ')': _p.deprecated_cc($[')'], ($,) => Structural_Token($)),
                                                     }))]],
                                                 }))
@@ -83,7 +83,7 @@ export const Value: t_signatures.Value = ($,) => ['group', ['verbose', _p.dictio
                                     'option': 'list',
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         '[': _p.deprecated_cc($['['], ($,) => Structural_Token($)),
-                                        'elements': _p.deprecated_cc($['elements'], ($,) => Elements($)),
+                                        'items': _p.deprecated_cc($['items'], ($,) => Items($)),
                                         ']': _p.deprecated_cc($[']'], ($,) => Structural_Token($)),
                                     }))]],
                                 }))

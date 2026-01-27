@@ -111,7 +111,7 @@ export const $: g_.Resolvers = resolvers(
                     "literal": state(r.list(r.component("Expression", {}, {}))),
                     "map": state(r.group({
                         "source": r.component("Selection", {}, {}),
-                        "element handler": r.component("Expression", {}, {})
+                        "item handler": r.component("Expression", {}, {})
                     })),
                 })),
                 "nothing": state(r.nothing()),
@@ -195,7 +195,7 @@ export const $: g_.Resolvers = resolvers(
                 "context": state(r.nothing()),
                 "entry": state(r.group({
                     "dictionary": r.component("Selection", {}, {}),
-                    "key": r.component("Selection", {}, {}),
+                    "id": r.component("Selection", {}, {}),
                     "abort handler": r.component("Abort Expression", {}, {}),
                 })),
                 "implement me": state(r.text()),

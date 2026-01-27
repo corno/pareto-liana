@@ -45,11 +45,11 @@ export type Text_ = (
     abort: _pi.Abort<Text_.E>,
 ) => Text_.O
 
-export namespace Key_Value_Pairs_ {
+export namespace ID_Value_Pairs_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Key_Value_Pairs
+    export type O = i_out.ID_Value_Pairs
     
     export type E = i_generic.Error
     
@@ -59,16 +59,16 @@ export namespace Key_Value_Pairs_ {
     
 }
 
-export type Key_Value_Pairs_ = (
-    context: Key_Value_Pairs_.I,
-    abort: _pi.Abort<Key_Value_Pairs_.E>,
-) => Key_Value_Pairs_.O
+export type ID_Value_Pairs_ = (
+    context: ID_Value_Pairs_.I,
+    abort: _pi.Abort<ID_Value_Pairs_.E>,
+) => ID_Value_Pairs_.O
 
-export namespace Elements_ {
+export namespace Items_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Elements
+    export type O = i_out.Items
     
     export type E = i_generic.Error
     
@@ -78,10 +78,10 @@ export namespace Elements_ {
     
 }
 
-export type Elements_ = (
-    context: Elements_.I,
-    abort: _pi.Abort<Elements_.E>,
-) => Elements_.O
+export type Items_ = (
+    context: Items_.I,
+    abort: _pi.Abort<Items_.E>,
+) => Items_.O
 
 export namespace Value_ {
     
@@ -143,8 +143,8 @@ export type Document_ = (
 export { 
     Structural_Token_ as Structural_Token, 
     Text_ as Text, 
-    Key_Value_Pairs_ as Key_Value_Pairs, 
-    Elements_ as Elements, 
+    ID_Value_Pairs_ as ID_Value_Pairs, 
+    Items_ as Items, 
     Value_ as Value, 
     Content_ as Content, 
     Document_ as Document, 

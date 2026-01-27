@@ -68,7 +68,7 @@ export const Error_Type_Error = (
                 case 'missing state name': return _p.ss($, ($) => sh.b.snippet(`Missing state name`))
                 case 'missing data marker': return _p.ss($, ($) => sh.b.snippet(`Missing data marker`))
                 case 'missing value': return _p.ss($, ($) => sh.b.snippet(`Missing value`))
-                case 'more than 2 elements': return _p.ss($, ($) => sh.b.snippet(`More than 2 elements`))
+                case 'more than 2 items': return _p.ss($, ($) => sh.b.snippet(`More than 2 items`))
                 case 'state is not a string': return _p.ss($, ($) => sh.b.snippet(`State is not a string`))
                 case 'unknown state': return _p.ss($, ($) => sh.b.sub([
                     sh.b.snippet(`Unknown state: ${$.found}, expected one of `),
