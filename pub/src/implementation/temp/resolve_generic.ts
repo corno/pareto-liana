@@ -10,17 +10,17 @@ import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
 
 export type Unresolved_Reference = {
     'location': gen_loc.Location
-    'key': string
+    'id': string
 }
 
 export type Resolved_Reference<T> = {
     'entry': T,
-    'key': string,
+    'id': string,
 }
 
 export type Resolved_Stack_Reference<T> = {
     'entry': T,
-    'key': string,
+    'id': string,
     'up steps': number,
 }
 
@@ -95,28 +95,28 @@ export namespace abort {
 
 export const get_entry_acyclic = <T>(
     lookup: _pi.Acyclic_Lookup<T>,
-    id: Unresolved_Reference,
+    ref: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
     return {
         'entry': lookup.get_entry(
-            id.key,
+            ref.id,
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', id.key]],
-                    'location': id.location,
+                    'type': ['lookup', ['cyclic lookup in acyclic context', ref.id]],
+                    'location': ref.location,
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', id.key]],
-                    'location': id.location,
+                    'type': ['lookup', ['no such entry', ref.id]],
+                    'location': ref.location,
                 }),
                 no_context_lookup: () => abort({
                     'type': ['lookup', ['optional lookup not set', null]],
-                    'location': id.location,
+                    'location': ref.location,
                 })
             }
         ),
-        'key': id.key,
+        'id': ref.id,
     }
 }
 
@@ -126,13 +126,13 @@ export const get_entry_cyclic = <T>(
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
     return {
-        'key': reference.key,
+        'id': reference.id,
         'entry': lookup.get_entry(
-            reference.key,
+            reference.id,
             {
                 accessing_cyclic_before_resolved: () => _p.unreachable_code_path(),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference.key]],
+                    'type': ['lookup', ['no such entry', reference.id]],
                     'location': reference.location,
                 }),
                 no_context_lookup: () => abort({
@@ -150,16 +150,16 @@ export const get_entry_stack = <T>(
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
     return {
-        'key': reference.key,
+        'id': reference.id,
         'up steps': stack.get_entry_depth(
-            reference.key,
+            reference.id,
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference.key]],
+                    'type': ['lookup', ['cyclic lookup in acyclic context', reference.id]],
                     'location': reference.location,
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference.key]],
+                    'type': ['lookup', ['no such entry', reference.id]],
                     'location': reference.location,
                 }),
                 no_context_lookup: () => abort({
@@ -169,14 +169,14 @@ export const get_entry_stack = <T>(
             },
         ),
         'entry': stack.get_entry(
-            reference.key,
+            reference.id,
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference.key]],
+                    'type': ['lookup', ['cyclic lookup in acyclic context', reference.id]],
                     'location': reference.location,
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference.key]],
+                    'type': ['lookup', ['no such entry', reference.id]],
                     'location': reference.location,
                 }),
                 no_context_lookup: () => abort({

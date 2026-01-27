@@ -345,13 +345,13 @@ export namespace Type_Specification_ {
                 
                 export type location = i__location.Location
                 
-                export type element = string
+                export type item = string
                 
             }
             
             export type L = {
                 readonly 'location': L.location
-                readonly 'element': L.element
+                readonly 'item': L.item
             }
             
         }
@@ -421,13 +421,13 @@ export namespace Imports_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type schema_set_child = {
                     readonly 'location': schema_set_child.location
-                    readonly 'key': schema_set_child.key
+                    readonly 'id': schema_set_child.id
                 }
                 
                 export type schema = null
@@ -620,13 +620,13 @@ export namespace Type_Reference_ {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type internal = {
                 readonly 'location': internal.location
-                readonly 'key': internal.key
+                readonly 'id': internal.id
             }
             
             export namespace external {
@@ -635,26 +635,26 @@ export namespace Type_Reference_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type import_ = {
                     readonly 'location': import_.location
-                    readonly 'key': import_.key
+                    readonly 'id': import_.id
                 }
                 
                 export namespace type_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type type_ = {
                     readonly 'location': type_.location
-                    readonly 'key': type_.key
+                    readonly 'id': type_.id
                 }
                 
             }
@@ -706,26 +706,26 @@ export namespace Type_Node_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type import_ = {
                         readonly 'location': import_.location
-                        readonly 'key': import_.key
+                        readonly 'id': import_.id
                     }
                     
                     export namespace type_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type type_ = {
                         readonly 'location': type_.location
-                        readonly 'key': type_.key
+                        readonly 'id': type_.id
                     }
                     
                 }
@@ -739,26 +739,26 @@ export namespace Type_Node_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type internal = {
                     readonly 'location': internal.location
-                    readonly 'key': internal.key
+                    readonly 'id': internal.id
                 }
                 
                 export namespace internal_cyclic {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type internal_cyclic = {
                     readonly 'location': internal_cyclic.location
-                    readonly 'key': internal_cyclic.key
+                    readonly 'id': internal_cyclic.id
                 }
                 
             }
@@ -810,13 +810,13 @@ export namespace Type_Node_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type global = {
                     readonly 'location': global.location
-                    readonly 'key': global.key
+                    readonly 'id': global.id
                 }
                 
                 export type local = Number_Type_
@@ -962,13 +962,13 @@ export namespace Type_Node_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type global = {
                     readonly 'location': global.location
-                    readonly 'key': global.key
+                    readonly 'id': global.id
                 }
                 
                 export type local = Text_Type_
@@ -1020,7 +1020,7 @@ export namespace Type_Node_Path_ {
                 
                 export type location = i__location.Location
                 
-                export namespace element {
+                export namespace item {
                     
                     export type location = i__location.Location
                     
@@ -1032,13 +1032,13 @@ export namespace Type_Node_Path_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type group = {
                             readonly 'location': group.location
-                            readonly 'key': group.key
+                            readonly 'id': group.id
                         }
                         
                         export type list = null
@@ -1049,13 +1049,13 @@ export namespace Type_Node_Path_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type state = {
                             readonly 'location': state.location
-                            readonly 'key': state.key
+                            readonly 'id': state.id
                         }
                         
                     }
@@ -1069,16 +1069,16 @@ export namespace Type_Node_Path_ {
                     
                 }
                 
-                export type element = {
-                    readonly 'location': element.location
-                    readonly 'state': element.state
+                export type item = {
+                    readonly 'location': item.location
+                    readonly 'state': item.state
                 }
                 
             }
             
             export type L = {
                 readonly 'location': L.location
-                readonly 'element': L.element
+                readonly 'item': L.item
             }
             
         }
@@ -1251,13 +1251,13 @@ export namespace Signature_ {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type same_as = {
                 readonly 'location': same_as.location
-                readonly 'key': same_as.key
+                readonly 'id': same_as.id
             }
             
         }
@@ -1295,7 +1295,7 @@ export namespace Relative_Value_Selection_ {
                 
                 export type location = i__location.Location
                 
-                export namespace element {
+                export namespace item {
                     
                     export type location = i__location.Location
                     
@@ -1307,13 +1307,13 @@ export namespace Relative_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type group = {
                             readonly 'location': group.location
-                            readonly 'key': group.key
+                            readonly 'id': group.id
                         }
                         
                         export namespace reference {
@@ -1335,16 +1335,16 @@ export namespace Relative_Value_Selection_ {
                     
                 }
                 
-                export type element = {
-                    readonly 'location': element.location
-                    readonly 'state': element.state
+                export type item = {
+                    readonly 'location': item.location
+                    readonly 'state': item.state
                 }
                 
             }
             
             export type L = {
                 readonly 'location': L.location
-                readonly 'element': L.element
+                readonly 'item': L.item
             }
             
         }
@@ -1392,13 +1392,13 @@ export namespace Lookup_Selection_ {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type parameter = {
                 readonly 'location': parameter.location
-                readonly 'key': parameter.key
+                readonly 'id': parameter.id
             }
             
             export type not_circular_dependent_siblings = null
@@ -1447,13 +1447,13 @@ export namespace Constraint_ {
                     
                     export type location = i__location.Location
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type option = {
                     readonly 'location': option.location
-                    readonly 'key': option.key
+                    readonly 'id': option.id
                 }
                 
             }
@@ -1519,13 +1519,13 @@ export namespace Option_Constraints_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type option = {
                             readonly 'location': option.location
-                            readonly 'key': option.key
+                            readonly 'id': option.id
                         }
                         
                     }
@@ -1603,13 +1603,13 @@ export namespace Reference_To_Property_Constraint_ {
     
     export type location = i__location.Location
     
-    export type key = string
+    export type id = string
     
 }
 
 export type Reference_To_Property_Constraint_ = {
     readonly 'location': Reference_To_Property_Constraint_.location
-    readonly 'key': Reference_To_Property_Constraint_.key
+    readonly 'id': Reference_To_Property_Constraint_.id
 }
 
 export namespace Property_Constraint_ {
@@ -1753,26 +1753,26 @@ export namespace Node_Resolver_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type import_ = {
                             readonly 'location': import_.location
-                            readonly 'key': import_.key
+                            readonly 'id': import_.id
                         }
                         
                         export namespace type_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type type_ = {
                             readonly 'location': type_.location
-                            readonly 'key': type_.key
+                            readonly 'id': type_.id
                         }
                         
                     }
@@ -1786,13 +1786,13 @@ export namespace Node_Resolver_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type internal = {
                         readonly 'location': internal.location
-                        readonly 'key': internal.key
+                        readonly 'id': internal.id
                     }
                     
                 }
@@ -1840,13 +1840,13 @@ export namespace Node_Resolver_ {
                                                 
                                                 export type location = i__location.Location
                                                 
-                                                export type key = string
+                                                export type id = string
                                                 
                                             }
                                             
                                             export type parameter = {
                                                 readonly 'location': parameter.location
-                                                readonly 'key': parameter.key
+                                                readonly 'id': parameter.id
                                             }
                                             
                                         }
@@ -2188,39 +2188,39 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type sibling = {
                 readonly 'location': sibling.location
-                readonly 'key': sibling.key
+                readonly 'id': sibling.id
             }
             
             export namespace parent_sibling {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type parent_sibling = {
                 readonly 'location': parent_sibling.location
-                readonly 'key': parent_sibling.key
+                readonly 'id': parent_sibling.id
             }
             
             export namespace option_constraint {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type option_constraint = {
                 readonly 'location': option_constraint.location
-                readonly 'key': option_constraint.key
+                readonly 'id': option_constraint.id
             }
             
             export type list_cursor = null
@@ -2239,26 +2239,26 @@ export namespace Guaranteed_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type property = {
                             readonly 'location': property.location
-                            readonly 'key': property.key
+                            readonly 'id': property.id
                         }
                         
                         export namespace constraint {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type constraint = {
                             readonly 'location': constraint.location
-                            readonly 'key': constraint.key
+                            readonly 'id': constraint.id
                         }
                         
                     }
@@ -2274,26 +2274,26 @@ export namespace Guaranteed_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type property = {
                             readonly 'location': property.location
-                            readonly 'key': property.key
+                            readonly 'id': property.id
                         }
                         
                         export namespace constraint {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type constraint = {
                             readonly 'location': constraint.location
-                            readonly 'key': constraint.key
+                            readonly 'id': constraint.id
                         }
                         
                     }
@@ -2320,13 +2320,13 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export type location = i__location.Location
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type parameter = {
                 readonly 'location': parameter.location
-                readonly 'key': parameter.key
+                readonly 'id': parameter.id
             }
             
             export namespace result {
@@ -2341,13 +2341,13 @@ export namespace Guaranteed_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type property = {
                             readonly 'location': property.location
-                            readonly 'key': property.key
+                            readonly 'id': property.id
                         }
                         
                         export type list_result = null
@@ -2365,13 +2365,13 @@ export namespace Guaranteed_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type property = {
                             readonly 'location': property.location
-                            readonly 'key': property.key
+                            readonly 'id': property.id
                         }
                         
                         export type state = null
@@ -2392,13 +2392,13 @@ export namespace Guaranteed_Value_Selection_ {
                             
                             export type location = i__location.Location
                             
-                            export type key = string
+                            export type id = string
                             
                         }
                         
                         export type property = {
                             readonly 'location': property.location
-                            readonly 'key': property.key
+                            readonly 'id': property.id
                         }
                         
                         export type optional_value = null
@@ -2468,13 +2468,13 @@ export namespace Possible_Value_Selection_ {
             
             export type location = i__location.Location
             
-            export type key = string
+            export type id = string
             
         }
         
         export type parameter = {
             readonly 'location': parameter.location
-            readonly 'key': parameter.key
+            readonly 'id': parameter.id
         }
         
         export namespace result {
@@ -2489,13 +2489,13 @@ export namespace Possible_Value_Selection_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type property = {
                         readonly 'location': property.location
-                        readonly 'key': property.key
+                        readonly 'id': property.id
                     }
                     
                     export type state = null
@@ -2516,13 +2516,13 @@ export namespace Possible_Value_Selection_ {
                         
                         export type location = i__location.Location
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type property = {
                         readonly 'location': property.location
-                        readonly 'key': property.key
+                        readonly 'id': property.id
                     }
                     
                     export type optional_value = null

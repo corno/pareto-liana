@@ -186,7 +186,7 @@ export const Type_Specification: t_signatures.Type_Specification = ($,) => ({
             'column': 42,
         }),
         'list': $.__l_map(($,) => ({
-            'element': $,
+            'item': $,
             'location': ({
                 'file': "implement me",
                 'line': 42,
@@ -225,7 +225,7 @@ export const Imports: t_signatures.Imports = ($,) => ({
                     'line': 42,
                     'column': 42,
                 }),
-                'key': $['key'],
+                'id': $['id'],
             })),
             'schema': _p.deprecated_cc($['schema'], ($,) => null),
         }),
@@ -323,7 +323,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($,) => ({
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'external':
                     return _p.ss($, ($,) => ['external', ({
@@ -333,7 +333,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($,) => ({
                                 'line': 42,
                                 'column': 42,
                             }),
-                            'key': $['key'],
+                            'id': $['id'],
                         })),
                         'type': _p.deprecated_cc($['type'], ($,) => ({
                             'location': ({
@@ -341,7 +341,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($,) => ({
                                 'line': 42,
                                 'column': 42,
                             }),
-                            'key': $['key'],
+                            'id': $['id'],
                         })),
                     })])
                 default:
@@ -378,7 +378,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                     'type': _p.deprecated_cc($['type'], ($,) => ({
                                         'location': ({
@@ -386,7 +386,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                 })])
                             case 'internal':
@@ -396,7 +396,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             case 'internal cyclic':
                                 return _p.ss($, ($,) => ['internal cyclic', ({
@@ -405,7 +405,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             default:
                                 return _p.au($[0])
@@ -439,7 +439,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             case 'local':
                                 return _p.ss($, ($,) => ['local', Number_Type($)])
@@ -527,7 +527,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ({
                                         'line': 42,
                                         'column': 42,
                                     }),
-                                    'key': $['key'],
+                                    'id': $['id'],
                                 })])
                             case 'local':
                                 return _p.ss($, ($,) => ['local', Text_Type($)])
@@ -549,13 +549,13 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ({
             'column': 42,
         }),
         'list': $['list'].__l_map(($,) => ({
-            'element': _p.deprecated_cc($['element'], ($,) => ({
+            'item': _p.deprecated_cc($['item'], ($,) => ({
                 'location': ({
                     'file': "implement me",
                     'line': 42,
                     'column': 42,
                 }),
-                'state': _p.decide.state($, ($,): t_out.Type_Node_Path.tail.list.L.element.state => {
+                'state': _p.decide.state($, ($,): t_out.Type_Node_Path.tail.list.L.item.state => {
                     switch ($[0]) {
                         case 'dictionary':
                             return _p.ss($, ($,) => ['dictionary', null])
@@ -566,7 +566,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ({
                                     'line': 42,
                                     'column': 42,
                                 }),
-                                'key': $['key'],
+                                'id': $['id'],
                             })])
                         case 'list':
                             return _p.ss($, ($,) => ['list', null])
@@ -579,7 +579,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ({
                                     'line': 42,
                                     'column': 42,
                                 }),
-                                'key': $['key'],
+                                'id': $['id'],
                             })])
                         default:
                             return _p.au($[0])
@@ -676,7 +676,7 @@ export const Signature: t_signatures.Signature = ($,) => ({
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 default:
                     return _p.au($[0])
@@ -693,13 +693,13 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
             'column': 42,
         }),
         'list': $['list'].__l_map(($,) => ({
-            'element': _p.deprecated_cc($['element'], ($,) => ({
+            'item': _p.deprecated_cc($['item'], ($,) => ({
                 'location': ({
                     'file': "implement me",
                     'line': 42,
                     'column': 42,
                 }),
-                'state': _p.decide.state($, ($,): t_out.Relative_Value_Selection.path.list.L.element.state => {
+                'state': _p.decide.state($, ($,): t_out.Relative_Value_Selection.path.list.L.item.state => {
                     switch ($[0]) {
                         case 'component':
                             return _p.ss($, ($,) => ['component', null])
@@ -710,7 +710,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                     'line': 42,
                                     'column': 42,
                                 }),
-                                'key': $['key'],
+                                'id': $['id'],
                             })])
                         case 'reference':
                             return _p.ss($, ($,) => ['reference', ({
@@ -751,7 +751,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($,) => ({
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'not circular dependent siblings':
                     return _p.ss($, ($,) => ['not circular dependent siblings', null])
@@ -783,7 +783,7 @@ export const Constraint: t_signatures.Constraint = ($,) => ({
                                 'line': 42,
                                 'column': 42,
                             }),
-                            'key': $['key'],
+                            'id': $['id'],
                         })),
                     })])
                 case 'optional value':
@@ -821,7 +821,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($,) => ({
                                     'line': 42,
                                     'column': 42,
                                 }),
-                                'key': $['key'],
+                                'id': $['id'],
                             })),
                         })])
                     case 'assert is set':
@@ -859,7 +859,7 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
         'line': 42,
         'column': 42,
     }),
-    'key': $['key'],
+    'id': $['id'],
 })
 export const Property_Constraint: t_signatures.Property_Constraint = ($,) => ({
     'start': _p.deprecated_cc($['start'], ($,) => ({
@@ -952,7 +952,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'type': _p.deprecated_cc($['type'], ($,) => ({
                                             'location': ({
@@ -960,7 +960,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                     })])
                                 case 'internal':
@@ -970,7 +970,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })])
                                 default:
                                     return _p.au($[0])
@@ -1005,7 +1005,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     }),
-                                                    'key': $['key'],
+                                                    'id': $['id'],
                                                 })])
                                             default:
                                                 return _p.au($[0])
@@ -1155,7 +1155,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'parent sibling':
                     return _p.ss($, ($,) => ['parent sibling', ({
@@ -1164,7 +1164,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'option constraint':
                     return _p.ss($, ($,) => ['option constraint', ({
@@ -1173,7 +1173,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'list cursor':
                     return _p.ss($, ($,) => ['list cursor', null])
@@ -1196,7 +1196,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'constraint': _p.deprecated_cc($['constraint'], ($,) => ({
                                             'location': ({
@@ -1204,7 +1204,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                     })])
                                 case 'reference':
@@ -1215,7 +1215,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'constraint': _p.deprecated_cc($['constraint'], ($,) => ({
                                             'location': ({
@@ -1223,7 +1223,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                     })])
                                 default:
@@ -1238,7 +1238,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                             'line': 42,
                             'column': 42,
                         }),
-                        'key': $['key'],
+                        'id': $['id'],
                     })])
                 case 'result':
                     return _p.ss($, ($,) => ['result', ({
@@ -1257,7 +1257,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'list result': _p.deprecated_cc($['list result'], ($,) => null),
                                     })])
@@ -1269,7 +1269,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'state': _p.deprecated_cc($['state'], ($,) => null),
                                         'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -1282,7 +1282,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                 'line': 42,
                                                 'column': 42,
                                             }),
-                                            'key': $['key'],
+                                            'id': $['id'],
                                         })),
                                         'optional value': _p.deprecated_cc($['optional value'], ($,) => null),
                                         'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -1315,7 +1315,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                         'line': 42,
                         'column': 42,
                     }),
-                    'key': $['key'],
+                    'id': $['id'],
                 })])
             case 'result':
                 return _p.ss($, ($,) => ['result', ({
@@ -1334,7 +1334,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                     'state': _p.deprecated_cc($['state'], ($,) => null),
                                     'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -1347,7 +1347,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                             'line': 42,
                                             'column': 42,
                                         }),
-                                        'key': $['key'],
+                                        'id': $['id'],
                                     })),
                                     'optional value': _p.deprecated_cc($['optional value'], ($,) => null),
                                     'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),

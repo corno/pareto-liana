@@ -139,7 +139,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
 
     const p_parameters_values: d_out.Signature_Parameters.values = _p.dictionary.resolve(
         $.values.dictionary,
-        ($, key, $acyclic, $cyclic) => {
+        ($, id, $acyclic, $cyclic) => {
 
             const p_schema_type = Type_Reference(
                 $.entry['data type'],
@@ -163,7 +163,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
     const lookups_loc = $.lookups.location
     const p_parameters_lookups: d_out.Signature_Parameters.lookups = _p.dictionary.resolve(
         $.lookups.dictionary,
-        ($, key, $acyclic, $cyclic) => {
+        ($, id, $acyclic, $cyclic) => {
             const p_referent = Type_Reference(
                 $.entry.referent,
                 abort,
@@ -213,7 +213,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
 export const Globals: signatures.Globals = ($, abort, $l, $p) => {
     const p_number_types: d_out.Globals.number_types = _p.dictionary.resolve(
         $['number types'].dictionary,
-        ($, key, $acyclic, $cyclic) => Number_Type(
+        ($, id, $acyclic, $cyclic) => Number_Type(
             $.entry,
             abort,
             null,
@@ -222,7 +222,7 @@ export const Globals: signatures.Globals = ($, abort, $l, $p) => {
     )
     const p_text_types: d_out.Globals.text_types = _p.dictionary.resolve(
         $['text types'].dictionary,
-        ($, key, $acyclic, $cyclic) => Text_Type(
+        ($, id, $acyclic, $cyclic) => Text_Type(
             $.entry,
             abort,
             null,
@@ -275,11 +275,11 @@ export const Signatures: signatures.Signatures = ($, abort, $l, $p) => {
         $.location,
         abort,
         $p.types,
-        ($, key, $acyclic, $cyclic) => {
+        ($, id, $acyclic, $cyclic) => {
             const p_linked_entry = _i_generic.get_entry_acyclic(
                 _p_temp.dictionary_to_lookup($p.types),
                 {
-                    'key': key,
+                    'id': id,
                     'location': $.location,
                 },
                 abort,
@@ -323,7 +323,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
             ))
             const p_types: d_out.Types = _p.dictionary.resolve(
                 $.types.dictionary,
-                ($, key, $acyclic, $cyclic) => {
+                ($, id, $acyclic, $cyclic) => {
                     const p_type = Type_Node(
                         $.entry.node,
                         abort,
@@ -366,12 +366,12 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
                             $.resolvers.location,
                             abort,
                             p_signatures.types,
-                            ($, key, $acyclic, $cyclic) => {
+                            ($, id, $acyclic, $cyclic) => {
 
                                 const p_linked_entry = _i_generic.get_entry_acyclic(
                                     _p_temp.dictionary_to_lookup(p_types),
                                     {
-                                        'key': key,
+                                        'id': id,
                                         'location': $.location,
                                     },
                                     abort,
@@ -379,7 +379,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
                                 const p_signature = _i_generic.get_entry_acyclic(
                                     _p_temp.dictionary_to_lookup(p_signatures.types),
                                     {
-                                        'key': key,
+                                        'id': id,
                                         'location': $.location,
                                     },
                                     abort,
@@ -443,7 +443,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p.depr
 
 export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p.deprecated_block(() => _p.dictionary.resolve(
     $.dictionary,
-    ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => Schema_Tree(
+    ($, id, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => Schema_Tree(
         $.entry,
         abort,
         {
@@ -559,7 +559,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             })
             case 'group': return _p.ss($, ($) => ['group', _p.dictionary.resolve(
                 $.dictionary,
-                ($, key, $acyclic, $cyclic) => ({
+                ($, id, $acyclic, $cyclic) => ({
                     'description': $.entry.description,
                     'node': Type_Node(
                         $.entry.node,
@@ -677,7 +677,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             })
             case 'state': return _p.ss($, ($) => ['state', _p.dictionary.resolve(
                 $.dictionary,
-                ($, key, $acyclic, $cyclic) => ({
+                ($, id, $acyclic, $cyclic) => ({
                     'description': $.entry.description,
                     'node': Type_Node(
                         $.entry.node,
@@ -774,7 +774,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
         $p.type.node,
         ($, current): d_out.Type_Node_Path.tail.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element.state, ($): d_out.Type_Node_Path.tail.list.L => {
+            return _p.deprecated_cc($.item.state, ($): d_out.Type_Node_Path.tail.list.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Type_Node.dictionary = _p.deprecated_cc(current, ($) => {
@@ -784,7 +784,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'element': ['dictionary', null],
+                            'item': ['dictionary', null],
                             'result': sc_definition.node
                         }
                     })
@@ -801,7 +801,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            'element': ['group', p_child],
+                            'item': ['group', p_child],
                             'result': p_child.entry.node
                         }
                     })
@@ -813,7 +813,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'element': ['list', null],
+                            'item': ['list', null],
                             'result': sc_definition.node
                         }
                     })
@@ -825,7 +825,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'element': ['optional', null],
+                            'item': ['optional', null],
                             'result': sc_definition
                         }
                     })
@@ -842,7 +842,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            'element': ['state', p_child],
+                            'item': ['state', p_child],
                             'result': p_child.entry.node
                         }
                     })
@@ -865,7 +865,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
 export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, $p) => {
     return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
         $.dictionary,
-        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($.entry.state, ($) => {
+        ($, id, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_cc($.entry.state, ($) => {
             switch ($[0]) {
                 case 'state': return _p.ss($, ($) => ['state', _p.deprecated_block(() => {
                     const loc = $.selection.start.location
@@ -962,7 +962,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
 export const Property_Constraints: signatures.Property_Constraints = ($, abort, $l, $p) => {
     return _p.deprecated_cc($, ($) => _p.dictionary.resolve(
         $.dictionary,
-        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_block(() => {
+        ($, id, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => _p.deprecated_block(() => {
             const p_start: d_out.Property_Constraint.start = _p.deprecated_cc($.entry.start.state, ($) => {
                 switch ($[0]) {
                     case 'property': return _p.ss($, ($) => ['property', null])
@@ -1091,7 +1091,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                     $.location,
                                     abort,
                                     p_signature['resolved parameters'].lookups,
-                                    ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
+                                    ($, id, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
                                         //do additional validation
                                         return _p.deprecated_cc($.entry.state, ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
@@ -1146,11 +1146,11 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                         $.location,
                                         abort,
                                         p_signature['resolved parameters'].values,
-                                        ($, key, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
+                                        ($, id, $acyclic, $cyclic) => _p.deprecated_cc($, ($) => {
                                             const linked_entry = _i_generic.get_entry_acyclic(
                                                 _p_temp.dictionary_to_lookup(p_signature['resolved parameters'].values),
                                                 {
-                                                    'key': key,
+                                                    'id': id,
                                                     'location': $.location,
                                                 },
                                                 abort,
@@ -1392,12 +1392,12 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     $.location,
                     abort,
                     x,
-                    ($, key, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
+                    ($, id, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
 
                         const p_definition = _i_generic.get_entry_acyclic(
                             _p_temp.dictionary_to_lookup(x),
                             {
-                                'key': key,
+                                'id': id,
                                 'location': $.location,
                             },
                             abort,
@@ -1584,12 +1584,12 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     $.states.location,
                     abort,
                     p_definition,
-                    ($, key, $acyclic, $cyclic) => {
+                    ($, id, $acyclic, $cyclic) => {
 
                         const x2 = _i_generic.get_entry_acyclic(
                             _p_temp.dictionary_to_lookup(p_definition),
                             {
-                                'key': key,
+                                'id': id,
                                 'location': $.location,
                             },
                             abort,
@@ -1724,7 +1724,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
         $p.node,
         ($, current): d_out.Relative_Value_Selection.path.list.L => {
             const sg_loc = $.location
-            return _p.deprecated_cc($.element.state, ($): d_out.Relative_Value_Selection.path.list.L => {
+            return _p.deprecated_cc($.item.state, ($): d_out.Relative_Value_Selection.path.list.L => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
 
@@ -1735,7 +1735,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             return $[1]
                         })
                         return {
-                            'element': ['component', null],
+                            'item': ['component', null],
                             'result': _p.deprecated_cc(sc_definition, ($) => {
                                 switch ($[0]) {
                                     case 'external': return _p.ss($, ($) => $.type.entry.node)
@@ -1759,7 +1759,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             abort,
                         )
                         return {
-                            'element': ['group', p_child],
+                            'item': ['group', p_child],
                             'result': p_child.entry.node
                         }
                     })
@@ -1785,7 +1785,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             }
                         })
                         return {
-                            'element': ['reference', {
+                            'item': ['reference', {
                                 'definition': sc_definition
                             }],
                             'result': x
@@ -2146,6 +2146,6 @@ export const Type_Specification: signatures.Type_Specification = ($, abort, $l, 
         },
         $p,
     ),
-    'schema path': $['schema path'].list.__l_map(($) => $.element),
+    'schema path': $['schema path'].list.__l_map(($) => $.item),
     'type': $.type,
 }))

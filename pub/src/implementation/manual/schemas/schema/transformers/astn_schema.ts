@@ -47,7 +47,7 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
     $
 ) => wrap_dictionary($.__d_map(($) => ({
     'schema': null,
-    'schema set child': wrap_reference($['schema set child'].key)
+    'schema set child': wrap_reference($['schema set child'].id)
 })))
 
 export const Type: _pi.Transformer<d_in.Type, d_out.Type> = (
@@ -62,7 +62,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
     switch ($[0]) {
         case 'number': return _p.ss($, ($): d_out.Type_Node.state => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.state.text.state => {
             switch ($[0]) {
-                case 'global': return _p.ss($, ($) => ['global', wrap_reference("n" + $.key)])
+                case 'global': return _p.ss($, ($) => ['global', wrap_reference("n" + $.id)])
                 case 'local': return _p.ss($, ($) => ['local', {
                     'type': wrap_state(['single line', null])
                 }])
@@ -88,11 +88,11 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         case 'component': return _p.ss($, ($) => ['component', wrap_state(_p.decide.state($, ($): d_out.Type_Node.state.component.state => {
             switch ($[0]) {
                 case 'external': return _p.ss($, ($) => ['external', {
-                    'import': wrap_reference($.import.key),
-                    'type': wrap_reference($.type.key)
+                    'import': wrap_reference($.import.id),
+                    'type': wrap_reference($.type.id)
                 }])
-                case 'internal': return _p.ss($, ($) => ['internal', wrap_reference($.key)])
-                case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', wrap_reference($.key)])
+                case 'internal': return _p.ss($, ($) => ['internal', wrap_reference($.id)])
+                case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', wrap_reference($.id)])
                 default: return _p.au($[0])
             }
         }))])
@@ -105,7 +105,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         case 'state': return _p.ss($, ($) => ['state', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
         case 'text': return _p.ss($, ($) => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.state.text.state => {
             switch ($[0]) {
-                case 'global': return _p.ss($, ($) => ['global', wrap_reference("t" + $.key)])
+                case 'global': return _p.ss($, ($) => ['global', wrap_reference("t" + $.id)])
                 case 'local': return _p.ss($, ($) => ['local', Text_Type($)])
                 default: return _p.au($[0])
             }

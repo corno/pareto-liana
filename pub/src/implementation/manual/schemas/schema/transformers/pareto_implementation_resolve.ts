@@ -48,7 +48,7 @@ export const Resolvers = (
                         _p.list.literal(["data types", "resolve"]),
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["resolve"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["resolve"]))
             }),
             {
                 'separator': "",
@@ -88,7 +88,7 @@ export const Possible_Value_Selection = (
                 _p.list.nested_literal_old([
                     [
                         "values",
-                        $.key
+                        $.id
                     ],
                     $p.tail(),
                 ]),
@@ -129,10 +129,10 @@ export const Guaranteed_Value_Selection = (
     const tail = (): _pi.List<d_out.Selection.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
             $.tail.path.list,
-            ($) => _p.decide.state($.element, ($): _pi.List<d_out.Selection.tail.L> => {
+            ($) => _p.decide.state($.item, ($): _pi.List<d_out.Selection.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
-                    case 'group': return _p.ss($, ($) => _p.list.literal([$.key]))
+                    case 'group': return _p.ss($, ($) => _p.list.literal([$.id]))
                     case 'reference': return _p.ss($, ($) => _p.decide.state($.definition.type, ($) => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => _p.list.literal([]))
@@ -161,7 +161,7 @@ export const Guaranteed_Value_Selection = (
                 _p.list.nested_literal_old([
                     [
                         "values",
-                        $.key
+                        $.id
                     ],
                     tail(),
                 ]),
@@ -184,15 +184,15 @@ export const Guaranteed_Value_Selection = (
                 tail(),
             ))
             case 'option constraint': return _p.ss($, ($) => sh.s.from_variable(
-                `c ${$.key}`,//FIXME: do the upsteps
+                `c ${$.id}`,//FIXME: do the upsteps
                 tail(),
             ))
             case 'sibling': return _p.ss($, ($) => sh.s.from_variable(
-                `p ${$.key}`,
+                `p ${$.id}`,
                 tail(),
             ))
             case 'parent sibling': return _p.ss($, ($) => sh.s.from_variable(
-                `p ${$.key}`,//FIXME: do the upstep
+                `p ${$.id}`,//FIXME: do the upstep
                 tail(),
             ))
             default: return _p.au($[0])
@@ -223,7 +223,7 @@ export const Lookup_Selection = (
         ))
         case 'parameter': return _p.ss($, ($) => sh.s.from_variable(
             "params",
-            ["lookups", $.key],
+            ["lookups", $.id],
         ))
         case 'possibly circular dependent siblings': return _p.ss($, ($) => sh.s.from_parameter(
             "possibly circular dependent siblings",
@@ -310,8 +310,8 @@ export const Node_Resolver = (
         case 'component': return _p.ss($, ($) => sh.e.call(
             _p.decide.state($.location, ($) => {
                 switch ($[0]) {
-                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.key}`, `r ${$.type.key}`, []))
-                    case 'internal': return _p.ss($, ($) => sh.s.from_variable(`r ${$.key}`, []))
+                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.id}`, `r ${$.type.id}`, []))
+                    case 'internal': return _p.ss($, ($) => sh.s.from_variable(`r ${$.id}`, []))
                     default: return _p.au($[0])
                 }
             }),
@@ -327,7 +327,7 @@ export const Node_Resolver = (
                                     case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($, null))
                                     case 'parameter': return _p.ss($, ($) => sh.e.select_from_variable_deprecated(
                                         "params",
-                                        ["values", $.key],
+                                        ["values", $.id],
                                     ))
                                     case 'required': return _p.ss($, ($) => sh.e.select_deprecated(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
 

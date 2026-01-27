@@ -237,7 +237,7 @@ export namespace Imports_ {
             
             export type entry = Schemas_.D
             
-            export type key = string
+            export type id = string
             
             export type up_steps = number
             
@@ -245,7 +245,7 @@ export namespace Imports_ {
         
         export type schema_set_child = {
             readonly 'entry': schema_set_child.entry
-            readonly 'key': schema_set_child.key
+            readonly 'id': schema_set_child.id
             readonly 'up steps': schema_set_child.up_steps
         }
         
@@ -344,13 +344,13 @@ export namespace Type_Reference_ {
             
             export type entry = Types_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type internal = {
             readonly 'entry': internal.entry
-            readonly 'key': internal.key
+            readonly 'id': internal.id
         }
         
         export namespace external {
@@ -359,26 +359,26 @@ export namespace Type_Reference_ {
                 
                 export type entry = Imports_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type import_ = {
                 readonly 'entry': import_.entry
-                readonly 'key': import_.key
+                readonly 'id': import_.id
             }
             
             export namespace type_ {
                 
                 export type entry = Types_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type type_ = {
                 readonly 'entry': type_.entry
-                readonly 'key': type_.key
+                readonly 'id': type_.id
             }
             
         }
@@ -415,26 +415,26 @@ export namespace Type_Node_ {
                 
                 export type entry = Imports_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type import_ = {
                 readonly 'entry': import_.entry
-                readonly 'key': import_.key
+                readonly 'id': import_.id
             }
             
             export namespace type_ {
                 
                 export type entry = Types_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type type_ = {
                 readonly 'entry': type_.entry
-                readonly 'key': type_.key
+                readonly 'id': type_.id
             }
             
         }
@@ -448,26 +448,26 @@ export namespace Type_Node_ {
             
             export type entry = Types_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type internal = {
             readonly 'entry': internal.entry
-            readonly 'key': internal.key
+            readonly 'id': internal.id
         }
         
         export namespace internal_cyclic {
             
             export type entry = _pi.Circular_Dependency<Types_.D>
             
-            export type key = string
+            export type id = string
             
         }
         
         export type internal_cyclic = {
             readonly 'entry': internal_cyclic.entry
-            readonly 'key': internal_cyclic.key
+            readonly 'id': internal_cyclic.id
         }
         
     }
@@ -508,13 +508,13 @@ export namespace Type_Node_ {
             
             export type entry = Globals_.number_types.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type global = {
             readonly 'entry': global.entry
-            readonly 'key': global.key
+            readonly 'id': global.id
         }
         
         export type local = Number_Type_
@@ -605,13 +605,13 @@ export namespace Type_Node_ {
             
             export type entry = Globals_.text_types.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type global = {
             readonly 'entry': global.entry
-            readonly 'key': global.key
+            readonly 'id': global.id
         }
         
         export type local = Text_Type_
@@ -647,7 +647,7 @@ export namespace Type_Node_Path_ {
                 
                 export type result = Type_Node_
                 
-                export namespace element {
+                export namespace item {
                     
                     export type dictionary = null
                     
@@ -655,13 +655,13 @@ export namespace Type_Node_Path_ {
                         
                         export type entry = Group_.D
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type group = {
                         readonly 'entry': group.entry
-                        readonly 'key': group.key
+                        readonly 'id': group.id
                     }
                     
                     export type list = null
@@ -672,29 +672,29 @@ export namespace Type_Node_Path_ {
                         
                         export type entry = Type_Node_.state.D
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type state = {
                         readonly 'entry': state.entry
-                        readonly 'key': state.key
+                        readonly 'id': state.id
                     }
                     
                 }
                 
-                export type element = 
-                    | readonly ['dictionary', element.dictionary]
-                    | readonly ['group', element.group]
-                    | readonly ['list', element.list]
-                    | readonly ['optional', element.optional]
-                    | readonly ['state', element.state]
+                export type item = 
+                    | readonly ['dictionary', item.dictionary]
+                    | readonly ['group', item.group]
+                    | readonly ['list', item.list]
+                    | readonly ['optional', item.optional]
+                    | readonly ['state', item.state]
                 
             }
             
             export type L = {
                 readonly 'result': L.result
-                readonly 'element': L.element
+                readonly 'item': L.item
             }
             
         }
@@ -810,13 +810,13 @@ export namespace Signature_ {
             
             export type entry = Signatures_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type same_as = {
             readonly 'entry': same_as.entry
-            readonly 'key': same_as.key
+            readonly 'id': same_as.id
         }
         
     }
@@ -845,7 +845,7 @@ export namespace Relative_Value_Selection_ {
                 
                 export type result = Type_Node_
                 
-                export namespace element {
+                export namespace item {
                     
                     export type component = null
                     
@@ -853,13 +853,13 @@ export namespace Relative_Value_Selection_ {
                         
                         export type entry = Group_.D
                         
-                        export type key = string
+                        export type id = string
                         
                     }
                     
                     export type group = {
                         readonly 'entry': group.entry
-                        readonly 'key': group.key
+                        readonly 'id': group.id
                     }
                     
                     export namespace reference {
@@ -874,16 +874,16 @@ export namespace Relative_Value_Selection_ {
                     
                 }
                 
-                export type element = 
-                    | readonly ['component', element.component]
-                    | readonly ['group', element.group]
-                    | readonly ['reference', element.reference]
+                export type item = 
+                    | readonly ['component', item.component]
+                    | readonly ['group', item.group]
+                    | readonly ['reference', item.reference]
                 
             }
             
             export type L = {
                 readonly 'result': L.result
-                readonly 'element': L.element
+                readonly 'item': L.item
             }
             
         }
@@ -929,13 +929,13 @@ export namespace Lookup_Selection_ {
             
             export type entry = Signature_Parameters_.lookups.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type parameter = {
             readonly 'entry': parameter.entry
-            readonly 'key': parameter.key
+            readonly 'id': parameter.id
         }
         
         export type not_circular_dependent_siblings = Dictionary_
@@ -973,13 +973,13 @@ export namespace Constraint_ {
                 
                 export type entry = Type_Node_.state.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type option = {
                 readonly 'entry': option.entry
-                readonly 'key': option.key
+                readonly 'id': option.id
             }
             
         }
@@ -1026,13 +1026,13 @@ export namespace Option_Constraints_ {
                 
                 export type entry = Type_Node_.state.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type option = {
                 readonly 'entry': option.entry
-                readonly 'key': option.key
+                readonly 'id': option.id
             }
             
         }
@@ -1067,13 +1067,13 @@ export namespace Reference_To_Property_Constraint_ {
     
     export type entry = Property_Constraints_.D
     
-    export type key = string
+    export type id = string
     
 }
 
 export type Reference_To_Property_Constraint_ = {
     readonly 'entry': Reference_To_Property_Constraint_.entry
-    readonly 'key': Reference_To_Property_Constraint_.key
+    readonly 'id': Reference_To_Property_Constraint_.id
 }
 
 export namespace Property_Constraint_ {
@@ -1165,26 +1165,26 @@ export namespace Node_Resolver_ {
                     
                     export type entry = Imports_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type import_ = {
                     readonly 'entry': import_.entry
-                    readonly 'key': import_.key
+                    readonly 'id': import_.id
                 }
                 
                 export namespace type_ {
                     
                     export type entry = Signatures_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type type_ = {
                     readonly 'entry': type_.entry
-                    readonly 'key': type_.key
+                    readonly 'id': type_.id
                 }
                 
             }
@@ -1198,13 +1198,13 @@ export namespace Node_Resolver_ {
                 
                 export type entry = Signatures_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type internal = {
                 readonly 'entry': internal.entry
-                readonly 'key': internal.key
+                readonly 'id': internal.id
             }
             
         }
@@ -1233,13 +1233,13 @@ export namespace Node_Resolver_ {
                                 
                                 export type entry = Signature_Parameters_.values.D
                                 
-                                export type key = string
+                                export type id = string
                                 
                             }
                             
                             export type parameter = {
                                 readonly 'entry': parameter.entry
-                                readonly 'key': parameter.key
+                                readonly 'id': parameter.id
                             }
                             
                         }
@@ -1483,39 +1483,39 @@ export namespace Guaranteed_Value_Selection_ {
             
             export type entry = Node_Resolver_Group_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type sibling = {
             readonly 'entry': sibling.entry
-            readonly 'key': sibling.key
+            readonly 'id': sibling.id
         }
         
         export namespace parent_sibling {
             
             export type entry = Node_Resolver_Group_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type parent_sibling = {
             readonly 'entry': parent_sibling.entry
-            readonly 'key': parent_sibling.key
+            readonly 'id': parent_sibling.id
         }
         
         export namespace option_constraint {
             
             export type entry = Option_Constraints_.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type option_constraint = {
             readonly 'entry': option_constraint.entry
-            readonly 'key': option_constraint.key
+            readonly 'id': option_constraint.id
         }
         
         export type list_cursor = null
@@ -1530,26 +1530,26 @@ export namespace Guaranteed_Value_Selection_ {
                     
                     export type entry = Node_Resolver_Group_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type property = {
                     readonly 'entry': property.entry
-                    readonly 'key': property.key
+                    readonly 'id': property.id
                 }
                 
                 export namespace constraint {
                     
                     export type entry = Property_Constraints_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type constraint = {
                     readonly 'entry': constraint.entry
-                    readonly 'key': constraint.key
+                    readonly 'id': constraint.id
                 }
                 
             }
@@ -1565,26 +1565,26 @@ export namespace Guaranteed_Value_Selection_ {
                     
                     export type entry = Node_Resolver_Group_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type property = {
                     readonly 'entry': property.entry
-                    readonly 'key': property.key
+                    readonly 'id': property.id
                 }
                 
                 export namespace constraint {
                     
                     export type entry = Property_Constraints_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type constraint = {
                     readonly 'entry': constraint.entry
-                    readonly 'key': constraint.key
+                    readonly 'id': constraint.id
                 }
                 
             }
@@ -1604,13 +1604,13 @@ export namespace Guaranteed_Value_Selection_ {
             
             export type entry = Signature_Parameters_.values.D
             
-            export type key = string
+            export type id = string
             
         }
         
         export type parameter = {
             readonly 'entry': parameter.entry
-            readonly 'key': parameter.key
+            readonly 'id': parameter.id
         }
         
         export namespace result {
@@ -1621,13 +1621,13 @@ export namespace Guaranteed_Value_Selection_ {
                     
                     export type entry = Node_Resolver_Group_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type property = {
                     readonly 'entry': property.entry
-                    readonly 'key': property.key
+                    readonly 'id': property.id
                 }
                 
                 export type list_result = Node_Resolver_.list.result.O
@@ -1645,13 +1645,13 @@ export namespace Guaranteed_Value_Selection_ {
                     
                     export type entry = Node_Resolver_Group_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type property = {
                     readonly 'entry': property.entry
-                    readonly 'key': property.key
+                    readonly 'id': property.id
                 }
                 
                 export type state = Node_Resolver_.state
@@ -1672,13 +1672,13 @@ export namespace Guaranteed_Value_Selection_ {
                     
                     export type entry = Node_Resolver_Group_.D
                     
-                    export type key = string
+                    export type id = string
                     
                 }
                 
                 export type property = {
                     readonly 'entry': property.entry
-                    readonly 'key': property.key
+                    readonly 'id': property.id
                 }
                 
                 export type optional_value = Node_Resolver_.optional
@@ -1730,13 +1730,13 @@ export namespace Possible_Value_Selection_ {
         
         export type entry = Signature_Parameters_.values.D
         
-        export type key = string
+        export type id = string
         
     }
     
     export type parameter = {
         readonly 'entry': parameter.entry
-        readonly 'key': parameter.key
+        readonly 'id': parameter.id
     }
     
     export namespace result {
@@ -1747,13 +1747,13 @@ export namespace Possible_Value_Selection_ {
                 
                 export type entry = Node_Resolver_Group_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type property = {
                 readonly 'entry': property.entry
-                readonly 'key': property.key
+                readonly 'id': property.id
             }
             
             export type state = Node_Resolver_.state
@@ -1774,13 +1774,13 @@ export namespace Possible_Value_Selection_ {
                 
                 export type entry = Node_Resolver_Group_.D
                 
-                export type key = string
+                export type id = string
                 
             }
             
             export type property = {
                 readonly 'entry': property.entry
-                readonly 'key': property.key
+                readonly 'id': property.id
             }
             
             export type optional_value = Node_Resolver_.optional

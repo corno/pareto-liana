@@ -76,7 +76,7 @@ export const Schema = (
                     ]),
                 ),
             }),
-            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
+            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["marshall"]))
         }),
         {
             'separator': " ",
@@ -120,9 +120,9 @@ export const Type_Node = (
         case 'component': return _p.ss($, ($) => sh.e.call(
             _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.key}`, $.type.key, []))
-                    case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
-                    case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.key, []))
+                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
+                    case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                    case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
                     default: return _p.au($[0])
                 }
             }),
@@ -192,7 +192,7 @@ export const Type_Node = (
                     )),
                     $.result.__decide(
                         ($) => sh.e.change_context(
-                            sh.s.from_context(["element"]),
+                            sh.s.from_context(["item"]),
                             x,
                         ),
                         () => x
@@ -246,7 +246,7 @@ export const Type_Node = (
                 case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
                 case 'selected': return _p.ss($, ($) => sh.e.state_literal("text", sh.e.group({
                     "delimiter": sh.e.state_literal("backtick", sh.e.null_()),
-                    "value": sh.e.select_from_context_deprecated(["key"]),
+                    "value": sh.e.select_from_context_deprecated(["id"]),
                 })))
                 default: return _p.au($[0])
             }

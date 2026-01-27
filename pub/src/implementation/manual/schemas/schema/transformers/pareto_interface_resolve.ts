@@ -68,12 +68,12 @@ export const Type_Reference = (
     return _p.decide.state($.location, ($) => {
         switch ($[0]) {
             case 'external': return _p.ss($, ($) => sh.tr.imported(
-                `imports ${$.import.key}`,
-                $.type.key,
+                `imports ${$.import.id}`,
+                $.type.id,
             ))
             case 'internal': return _p.ss($, ($) => sh.tr.imported(
                 "resolved",
-                $.key,
+                $.id,
             ))
             default: return _p.au($[0])
         }
@@ -83,13 +83,13 @@ export const Type_Reference = (
 export const Type_Node_Path = (
     $: d_in.Type_Node_Path_,
 ): d_out.Type_Node.reference.sub_selection => {
-    const tail: _pi.List<d_out.Type_Node.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.decide.state($.element, ($) => {
+    const tail: _pi.List<d_out.Type_Node.reference.sub_selection.L> = $.tail.list.__l_map(($) => _p.decide.state($.item, ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
-            case 'group': return _p.ss($, ($) => sh.sub.group($.key))
+            case 'group': return _p.ss($, ($) => sh.sub.group($.id))
             case 'list': return _p.ss($, ($) => sh.sub.list())
             case 'optional': return _p.ss($, ($) => sh.sub.optional())
-            case 'state': return _p.ss($, ($) => sh.sub.state($.key))
+            case 'state': return _p.ss($, ($) => sh.sub.state($.id))
             default: return _p.au($[0])
         }
     }))

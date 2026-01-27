@@ -157,7 +157,7 @@ export const Schemas: t_signatures.Schemas = ($,) => ['dictionary', $.__d_map(($
 export const Imports: t_signatures.Imports = ($,) => ['dictionary', $.__d_map(($,key,) => ['group', ['verbose', _p.dictionary.literal(({
     'schema set child': _p.deprecated_cc($['schema set child'], ($,) => ['text', ({
         'delimiter': ['backtick', null],
-        'value': $['key'],
+        'value': $['id'],
     })]),
     'schema': _p.deprecated_cc($['schema'], ($,) => ['nothing', null]),
 }))]])]
@@ -200,7 +200,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($,) => ['group', ['v
                     'option': 'internal',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'external':
@@ -209,11 +209,11 @@ export const Type_Reference: t_signatures.Type_Reference = ($,) => ['group', ['v
                     'value': ['group', ['verbose', _p.dictionary.literal(({
                         'import': _p.deprecated_cc($['import'], ($,) => ['text', ({
                             'delimiter': ['backtick', null],
-                            'value': $['key'],
+                            'value': $['id'],
                         })]),
                         'type': _p.deprecated_cc($['type'], ($,) => ['text', ({
                             'delimiter': ['backtick', null],
-                            'value': $['key'],
+                            'value': $['id'],
                         })]),
                     }))]],
                 }))
@@ -241,11 +241,11 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                                 'value': ['group', ['verbose', _p.dictionary.literal(({
                                     'import': _p.deprecated_cc($['import'], ($,) => ['text', ({
                                         'delimiter': ['backtick', null],
-                                        'value': $['key'],
+                                        'value': $['id'],
                                     })]),
                                     'type': _p.deprecated_cc($['type'], ($,) => ['text', ({
                                         'delimiter': ['backtick', null],
-                                        'value': $['key'],
+                                        'value': $['id'],
                                     })]),
                                 }))]],
                             }))
@@ -254,7 +254,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                                 'option': 'internal',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
-                                    'value': $['key'],
+                                    'value': $['id'],
                                 })],
                             }))
                         case 'internal cyclic':
@@ -262,7 +262,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                                 'option': 'internal cyclic',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
-                                    'value': $['key'],
+                                    'value': $['id'],
                                 })],
                             }))
                         default:
@@ -303,7 +303,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                                 'option': 'global',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
-                                    'value': $['key'],
+                                    'value': $['id'],
                                 })],
                             }))
                         case 'local':
@@ -388,7 +388,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
                                 'option': 'global',
                                 'value': ['text', ({
                                     'delimiter': ['backtick', null],
-                                    'value': $['key'],
+                                    'value': $['id'],
                                 })],
                             }))
                         case 'local':
@@ -406,7 +406,7 @@ export const Type_Node: t_signatures.Type_Node = ($,) => ['state', _p.decide.sta
     }
 })]
 export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ['group', ['verbose', _p.dictionary.literal(({
-    'tail': _p.deprecated_cc($['tail'], ($,) => ['list', $['list'].__l_map(($,) => _p.deprecated_cc($['element'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
+    'tail': _p.deprecated_cc($['tail'], ($,) => ['list', $['list'].__l_map(($,) => _p.deprecated_cc($['item'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
         switch ($[0]) {
             case 'dictionary':
                 return _p.ss($, ($,) => ({
@@ -418,7 +418,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ['group', ['v
                     'option': 'group',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'list':
@@ -436,7 +436,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => ['group', ['v
                     'option': 'state',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             default:
@@ -495,7 +495,7 @@ export const Signature: t_signatures.Signature = ($,) => ['group', ['verbose', _
                     'option': 'same as',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             default:
@@ -505,7 +505,7 @@ export const Signature: t_signatures.Signature = ($,) => ['group', ['verbose', _
     'resolved parameters': _p.deprecated_cc($['resolved parameters'], ($,) => ['nothing', null]),
 }))]]
 export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($,) => ['group', ['verbose', _p.dictionary.literal(({
-    'path': _p.deprecated_cc($['path'], ($,) => ['list', $['list'].__l_map(($,) => _p.deprecated_cc($['element'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
+    'path': _p.deprecated_cc($['path'], ($,) => ['list', $['list'].__l_map(($,) => _p.deprecated_cc($['item'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
         switch ($[0]) {
             case 'component':
                 return _p.ss($, ($,) => ({
@@ -517,7 +517,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                     'option': 'group',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'reference':
@@ -549,7 +549,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($,) => ['group',
                     'option': 'parameter',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'not circular dependent siblings':
@@ -579,7 +579,7 @@ export const Constraint: t_signatures.Constraint = ($,) => ['group', ['verbose',
                         'selected state': _p.deprecated_cc($['selected state'], ($,) => ['nothing', null]),
                         'option': _p.deprecated_cc($['option'], ($,) => ['text', ({
                             'delimiter': ['backtick', null],
-                            'value': $['key'],
+                            'value': $['id'],
                         })]),
                     }))]],
                 }))
@@ -605,7 +605,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($,) => ['dic
                     'selected state': _p.deprecated_cc($['selected state'], ($,) => ['nothing', null]),
                     'option': _p.deprecated_cc($['option'], ($,) => ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })]),
                 }))]],
             }))
@@ -621,7 +621,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($,) => ['dic
 export const Property_Constraints: t_signatures.Property_Constraints = ($,) => ['dictionary', $.__d_map(($,key,) => Property_Constraint($))]
 export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($,) => ['text', ({
     'delimiter': ['backtick', null],
-    'value': $['key'],
+    'value': $['id'],
 })]
 export const Property_Constraint: t_signatures.Property_Constraint = ($,) => ['group', ['verbose', _p.dictionary.literal(({
     'start': _p.deprecated_cc($['start'], ($,) => ['state', _p.decide.state($, ($,): t_out.Value.state => {
@@ -695,11 +695,11 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ['state', _p.de
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'import': _p.deprecated_cc($['import'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'type': _p.deprecated_cc($['type'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                     }))]],
                                 }))
@@ -708,7 +708,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ['state', _p.de
                                     'option': 'internal',
                                     'value': ['text', ({
                                         'delimiter': ['backtick', null],
-                                        'value': $['key'],
+                                        'value': $['id'],
                                     })],
                                 }))
                             default:
@@ -734,7 +734,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($,) => ['state', _p.de
                                         'option': 'parameter',
                                         'value': ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })],
                                     }))
                                 default:
@@ -872,7 +872,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                     'option': 'sibling',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'parent sibling':
@@ -880,7 +880,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                     'option': 'parent sibling',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'option constraint':
@@ -888,7 +888,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                     'option': 'option constraint',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'list cursor':
@@ -912,11 +912,11 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'constraint': _p.deprecated_cc($['constraint'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                     }))]],
                                 }))
@@ -926,11 +926,11 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'constraint': _p.deprecated_cc($['constraint'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                     }))]],
                                 }))
@@ -944,7 +944,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                     'option': 'parameter',
                     'value': ['text', ({
                         'delimiter': ['backtick', null],
-                        'value': $['key'],
+                        'value': $['id'],
                     })],
                 }))
             case 'result':
@@ -958,7 +958,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'list result': _p.deprecated_cc($['list result'], ($,) => ['nothing', null]),
                                     }))]],
@@ -969,7 +969,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'state': _p.deprecated_cc($['state'], ($,) => ['nothing', null]),
                                         'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -981,7 +981,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'value': ['group', ['verbose', _p.dictionary.literal(({
                                         'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                             'delimiter': ['backtick', null],
-                                            'value': $['key'],
+                                            'value': $['id'],
                                         })]),
                                         'optional value': _p.deprecated_cc($['optional value'], ($,) => ['nothing', null]),
                                         'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -1006,7 +1006,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                 'option': 'parameter',
                 'value': ['text', ({
                     'delimiter': ['backtick', null],
-                    'value': $['key'],
+                    'value': $['id'],
                 })],
             }))
         case 'result':
@@ -1020,7 +1020,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                 'value': ['group', ['verbose', _p.dictionary.literal(({
                                     'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                         'delimiter': ['backtick', null],
-                                        'value': $['key'],
+                                        'value': $['id'],
                                     })]),
                                     'state': _p.deprecated_cc($['state'], ($,) => ['nothing', null]),
                                     'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),
@@ -1032,7 +1032,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                 'value': ['group', ['verbose', _p.dictionary.literal(({
                                     'property': _p.deprecated_cc($['property'], ($,) => ['text', ({
                                         'delimiter': ['backtick', null],
-                                        'value': $['key'],
+                                        'value': $['id'],
                                     })]),
                                     'optional value': _p.deprecated_cc($['optional value'], ($,) => ['nothing', null]),
                                     'result': _p.deprecated_cc($['result'], ($,) => Type_Reference($)),

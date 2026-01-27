@@ -41,7 +41,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                     //     _p.list.literal(["data types", "target"]),
                     // ])),
                 }),
-                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["unmarshall"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"]))
             }),
             {
                 'separator': "",
@@ -88,9 +88,9 @@ export const Type_Node = (
             case 'component': return _p.ss($, ($) => sh.e.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.key}`, $.type.key, []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.key, []))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.key, []))
+                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.id}`, $.type.id, []))
+                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
                         default: return _p.au($[0])
                     }
                 }),
@@ -197,7 +197,7 @@ export const Type_Node = (
                 _p.dictionary.literal({
                     "deserializer": sh.e.select_from_parameter_deprecated("value deserializers", _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'global': return _p.ss($, ($) => ["custom numbers", $.key])
+                            case 'global': return _p.ss($, ($) => ["custom numbers", $.id])
                             case 'local': return _p.ss($, ($) => ["default number"])
                             default: return _p.au($[0])
                         }

@@ -124,7 +124,7 @@ export const reference = (
 
 export const part_reference = (
     type: string,
-    tail: d_schema.Type_Node_Path.tail.list.L.element[],
+    tail: d_schema.Type_Node_Path.tail.list.L.item[],
 
 ): d_schema.Type_Node_Reference => {
     return {
@@ -202,7 +202,7 @@ export namespace t {
     }
     export const reference_derived = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.item[],
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
@@ -222,7 +222,7 @@ export namespace t {
     export const reference_derived_external = (
         imp: string,
         type: string,
-        tail: d_schema.Type_Node_Path.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.item[],
 
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
@@ -247,7 +247,7 @@ export namespace t {
 
     export const reference = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.item[],
         dependency?: "cyclic" | "acyclic",
     ): d_schema.Type_Node => {
 
@@ -281,7 +281,7 @@ export namespace t {
 
     export const reference_stack = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.item[],
     ): d_schema.Type_Node => {
 
         const p_type: d_schema.Type_Node.state.reference.type_ = _p.wrap_state(['selected', {
@@ -308,7 +308,7 @@ export namespace t {
         schema: string,
 
         type: string,
-        tail: d_schema.Type_Node_Path.tail.list.L.element[],
+        tail: d_schema.Type_Node_Path.tail.list.L.item[],
     ): d_schema.Type_Node => {
 
         const p_type: d_schema.Type_Node.state.reference.type_ = _p.wrap_state(['selected', {
@@ -352,16 +352,16 @@ export namespace t {
  */
 export namespace tr {
 
-    export const d = (): d_schema.Type_Node_Path.tail.list.L.element => {
+    export const d = (): d_schema.Type_Node_Path.tail.list.L.item => {
         return _p.wrap_state(['dictionary', null])
     }
-    export const g = (grp: string): d_schema.Type_Node_Path.tail.list.L.element => {
+    export const g = (grp: string): d_schema.Type_Node_Path.tail.list.L.item => {
         return _p.wrap_state(['group', _p.wrap_reference(grp)])
     }
-    export const s = (state: string): d_schema.Type_Node_Path.tail.list.L.element => {
+    export const s = (state: string): d_schema.Type_Node_Path.tail.list.L.item => {
         return _p.wrap_state(['state', _p.wrap_reference(state)])
     }
-    export const o = (): d_schema.Type_Node_Path.tail.list.L.element => {
+    export const o = (): d_schema.Type_Node_Path.tail.list.L.item => {
         return _p.wrap_state(['optional', null])
     }
 }
@@ -572,18 +572,18 @@ export namespace al {
 export namespace vst {
 
     export const component = (
-    ): d_schema.Relative_Value_Selection.path.list.L.element => {
+    ): d_schema.Relative_Value_Selection.path.list.L.item => {
         return _p.wrap_state(['component', null])
     }
 
     export const group = (
         property: string,
-    ): d_schema.Relative_Value_Selection.path.list.L.element => {
+    ): d_schema.Relative_Value_Selection.path.list.L.item => {
         return _p.wrap_state(['group', _p.wrap_reference(property)])
     }
 
     export const reference = (
-    ): d_schema.Relative_Value_Selection.path.list.L.element => {
+    ): d_schema.Relative_Value_Selection.path.list.L.item => {
         return _p.wrap_state(['reference', {
             'definition': null,
         }])
@@ -667,7 +667,7 @@ export namespace gvs {
     export const component = (
         component: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['constraint', _p.wrap_state(['component', {
@@ -685,7 +685,7 @@ export namespace gvs {
     export const reference = (
         reference: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['constraint', _p.wrap_state(['reference', {
@@ -702,7 +702,7 @@ export namespace gvs {
 
     export const list = (
         list: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state<d_schema.Guaranteed_Value_Selection.start.state>(['result', _p.wrap_state(['list', {
@@ -720,7 +720,7 @@ export namespace gvs {
     export const state = (
         state: string,
         result: d_schema.Type_Reference,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state<d_schema.Possible_Value_Selection.state>(['result', _p.wrap_state(['state', {
@@ -739,7 +739,7 @@ export namespace gvs {
     export const optional_value = (
         optional_value: string,
         result: d_schema.Type_Reference,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state<d_schema.Possible_Value_Selection.state>(['result', _p.wrap_state(['optional value', {
@@ -757,7 +757,7 @@ export namespace gvs {
 
     export const parameter = (
         parameter: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state<d_schema.Possible_Value_Selection.state>(['parameter', _p.wrap_reference(parameter)]),
@@ -770,7 +770,7 @@ export namespace gvs {
     }
 
     export const list_cursor = (
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['list cursor', null]),
@@ -783,7 +783,7 @@ export namespace gvs {
     }
 
     export const linked_entry = (
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['linked entry', null]),
@@ -797,7 +797,7 @@ export namespace gvs {
 
     export const sibling = (
         sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['sibling', _p.wrap_reference(sibling)]),
@@ -811,7 +811,7 @@ export namespace gvs {
 
     export const parent_sibling = (
         parent_sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['parent sibling', _p.wrap_reference(parent_sibling)]),
@@ -825,7 +825,7 @@ export namespace gvs {
 
     export const option_constraint = (
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        tail: d_schema.Relative_Value_Selection.path.list.L.item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
             'start': _p.wrap_state(['option constraint', _p.wrap_reference(constraint)]),
@@ -913,7 +913,7 @@ export namespace oc {
 export namespace pc {
 
     export const property = (
-        value_selection_tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        value_selection_tail: d_schema.Relative_Value_Selection.path.list.L.item[],
         state: string,
     ): d_schema.Property_Constraints.dictionary.D.entry => {
         return {
@@ -933,7 +933,7 @@ export namespace pc {
 
     export const constraint = (
         constraint: string,
-        value_selection_tail: d_schema.Relative_Value_Selection.path.list.L.element[],
+        value_selection_tail: d_schema.Relative_Value_Selection.path.list.L.item[],
         state?: string,
     ): d_schema.Property_Constraints.dictionary.D.entry => {
         return {
