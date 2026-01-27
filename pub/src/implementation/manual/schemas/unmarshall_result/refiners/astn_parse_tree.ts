@@ -14,14 +14,14 @@ export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_V
     // there is an element, so this statement will always return a 'set'
     : $.__get_possible_item_at(0)
 
-type Key_Value_Pair<T> = {
-    'key': string,
+type ID_Value_Pair<T> = {
+    'id': string,
     'value': T,
 }
 
 const op_group = <T>(
-    $: _pi.List<Key_Value_Pair<T>>,
-): _pi.Dictionary<_pi.List<T>> => _p.dictionary.group_list($, ($) => $.key).__d_map(($) => $.__l_map(($) => $.value))
+    $: _pi.List<ID_Value_Pair<T>>,
+): _pi.Dictionary<_pi.List<T>> => _p.dictionary.group_list($, ($) => $.id).__d_map(($) => $.__l_map(($) => $.value))
 
 export const Optional_Node = (
     $: _pi.Optional_Value<d_in.Value>,
@@ -94,7 +94,7 @@ export const Node_Type = (
                                     'value': $,
                                     'entries': op_group($.entries.__l_map(($) => {
                                         return {
-                                            'key': $.id.value,
+                                            'id': $.id.value,
                                             'value': $
                                         }
                                     })).__d_map(($) => op_expect_exactly_one_element($).__decide(

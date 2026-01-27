@@ -27,7 +27,7 @@ export namespace stack {
 
     export const empty = <T>(): _pi.Stack_Lookup<T> => ({
         get_entry: (id, abort) => abort.no_context_lookup(null),
-        get_entry_depth(key) {
+        get_entry_depth(id) {
             return -1
         },
     })

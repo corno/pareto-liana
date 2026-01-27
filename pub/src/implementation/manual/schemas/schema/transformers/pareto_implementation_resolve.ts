@@ -18,10 +18,10 @@ const op_pad_dictionary_identifiers = <T>(
         'suffix': string
     }
 ): _pi.Dictionary<T> => _p.dictionary.from_list(
-    _p.list.from_dictionary($, ($, id) => ({ 'key': id, value: $ })),
-    ($) => $p.prefix + $.key + $p.suffix,
+    _p.list.from_dictionary($, ($, id) => ({ 'id': id, value: $ })),
+    ($) => $p.prefix + $.id + $p.suffix,
     ($) => $.value,
-    () => _p.unreachable_code_path() // no possibility of duplicate keys
+    () => _p.unreachable_code_path() // no possibility of duplicate id's
 )
 
 export const Resolvers = (

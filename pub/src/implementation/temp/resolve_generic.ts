@@ -33,7 +33,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     benchmark: _pi.Dictionary<Benchmark>,
     handle_entry: (
         $: Unresolved,
-        key: string,
+        id: string,
         $acyclic: _pi.Acyclic_Lookup<Resolved>,
         $cyclic: _pi.Cyclic_Lookup<Resolved>,
     ) => Resolved,
@@ -41,8 +41,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     const xx  = _p.decide.dictionary.has_entries(
         _p.dictionary.filter(
             benchmark,
-            (_, key) => $.__get_possible_entry(
-                key,
+            (_, id) => $.__get_possible_entry(
+                id,
             ).__decide(
                 () => _p.optional.not_set<null>(),
                 () => _p.optional.set(null),
