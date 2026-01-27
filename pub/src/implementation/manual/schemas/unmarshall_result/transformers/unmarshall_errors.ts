@@ -29,7 +29,7 @@ export const Group_Content = (
         _p.list.flatten(
             _p.list.from_dictionary(
                 $.properties,
-                ($, key) => _p.decide.state($, ($): d_out.Errors => {
+                ($, id) => _p.decide.state($, ($): d_out.Errors => {
                     switch ($[0]) {
                         case 'multiple': return _p.ss($, ($) => _p.list.flatten(
                             $,
@@ -38,7 +38,7 @@ export const Group_Content = (
                                     {
                                         'range': convert_range($.key.range),
                                         'type': ['error', ['duplicate property', {
-                                            name: key
+                                            name: id
                                         }]]
                                     }
                                 ]),
@@ -49,7 +49,7 @@ export const Group_Content = (
                             {
                                 'range': convert_range($p['group range']),
                                 'type': ['error', ['missing property', {
-                                    name: key
+                                    name: id
                                 }]]
                             }
                         ]))
@@ -63,13 +63,13 @@ export const Group_Content = (
         _p.list.flatten(
             _p.list.from_dictionary(
                 $['superfluous entries'],
-                ($, key): d_out.Errors => _p.list.flatten(
+                ($, id): d_out.Errors => _p.list.flatten(
                     $,
                     ($) => _p.list.literal([
                         {
                             'range': convert_range($),
                             'type': ['error', ['superfluous property', {
-                                name: key
+                                name: id
                             }]]
                         }
                     ])
@@ -116,7 +116,7 @@ export const Node = (
                         return _p.list.flatten(
                             _p.list.from_dictionary(
                                 $.entries,
-                                ($, key) => _p.decide.state($, ($): d_out.Errors => {
+                                ($, id) => _p.decide.state($, ($): d_out.Errors => {
                                     switch ($[0]) {
                                         case 'unique': return _p.ss($, ($) => Optional_Node($, $p))
                                         case 'multiple': return _p.ss($, ($) => _p.list.flatten(
@@ -126,7 +126,7 @@ export const Node = (
                                                     {
                                                         'range': convert_range($.key.range),
                                                         'type': ['error', ['duplicate property', {
-                                                            name: key
+                                                            name: id
                                                         }]]
                                                     }
                                                 ]),

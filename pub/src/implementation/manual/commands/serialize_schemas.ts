@@ -15,7 +15,7 @@ export const $$:  signatures.commands.serialize_schemas = _p.command_procedure(
     ($p, $cr, $qr) => [
         _p.dictionaryx.parallel(
             poormans_modules,
-            ($, key) => [
+            ($, id) => [
 
                 $cr['write file'].execute(
                     {

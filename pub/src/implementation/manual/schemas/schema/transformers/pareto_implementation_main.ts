@@ -103,11 +103,11 @@ export const Schemas = (
         'omit (de)serializer': boolean
     }
 ): d_out.Module_Set.D => {
-    return sh.m.set($.__d_map(($, key) => Schema_Tree($, {
+    return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
         'path': _p.list.nested_literal_old([
             $p.path,
             [
-                key,
+                id,
             ]
         ]),
         'omit (de)serializer': $p['omit (de)serializer']

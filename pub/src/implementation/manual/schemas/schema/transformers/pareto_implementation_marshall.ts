@@ -76,22 +76,22 @@ export const Schema = (
                     ]),
                 ),
             }),
-            "external": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
+            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["marshall"]))
         }),
         {
             'separator': " ",
         },
         () => _p.unreachable_code_path(),
     ),
-    $.types.__d_map(($, key) => sh.algorithm(
-        sh.type_reference("signatures", key),
+    $.types.__d_map(($, id) => sh.algorithm(
+        sh.type_reference("signatures", id),
         false,
         false,
         false,
         Type_Node(
             $.node,
             {
-                'type': key,
+                'type': id,
                 'subselection': _p.list.literal([])
             }
         ),
@@ -151,8 +151,8 @@ export const Type_Node = (
             "group",
             sh.e.state_literal(
                 "verbose",
-                sh.e.dictionary_literal($.__d_map(($, key) => sh.e.change_context(
-                    sh.s.from_context([key]),
+                sh.e.dictionary_literal($.__d_map(($, id) => sh.e.change_context(
+                    sh.s.from_context([id]),
                     Type_Node(
                         $.node,
                         {
@@ -160,7 +160,7 @@ export const Type_Node = (
                             'subselection': _p.list.nested_literal_old([
                                 $p.subselection,
                                 [
-                                    sh.sub.group(key),
+                                    sh.sub.group(id),
                                 ]
                             ]),
                         }
@@ -255,8 +255,8 @@ export const Type_Node = (
             "state",
             sh.e.decide_state(
                 sh.s.from_context([]),
-                $.__d_map(($, key) => sh.e.group({
-                    "option": sh.e.text_literal(key, 'identifier'),
+                $.__d_map(($, id) => sh.e.group({
+                    "option": sh.e.text_literal(id, 'identifier'),
                     "value": Type_Node(
                         $.node,
                         {
@@ -264,7 +264,7 @@ export const Type_Node = (
                             'subselection': _p.list.nested_literal_old([
                                 $p.subselection,
                                 [
-                                    sh.sub.state(key),
+                                    sh.sub.state(id),
                                 ]
                             ]),
                         }

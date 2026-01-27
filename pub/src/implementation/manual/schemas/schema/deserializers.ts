@@ -105,7 +105,7 @@
 //     const type = schema.types.__get_possible_entry(resolved_schema_schema.type).__decide(
 //         ($) => $,
 //         () => {
-//             schema.types.__d_map(($, key) => {
+//             schema.types.__d_map(($, id) => {
 //                 _pdev.log_debug_message(`available type: ${key}`, () => { })
 //             })
 //             _pdev.implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.type} not found`)

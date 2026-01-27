@@ -34,10 +34,10 @@ export const Schema = (
                 : [],
         ),
     },
-    $.types.__d_map(($, key) => sh.type.transformer(
+    $.types.__d_map(($, id) => sh.type.transformer(
         sh.t.component_imported(
             "in",
-            key,
+            id,
         ),
         sh.t.component_imported(
             "out",

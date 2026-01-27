@@ -33,14 +33,14 @@ export const Schema = (
         )
     },
     $.types.__d_map(
-        ($, key) => sh.type.transformer(
+        ($, id) => sh.type.transformer(
             sh.t.component_imported(
                 "in",
-                key,
+                id,
             ),
             sh.t.component_imported(
                 "out",
-                key,
+                id,
             ),
             null
         )

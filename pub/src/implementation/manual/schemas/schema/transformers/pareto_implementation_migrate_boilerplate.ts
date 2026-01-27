@@ -59,16 +59,16 @@ export const Schema = (
             ])
         ),
     }),
-    $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["migrate boilerplate"])),
-    $.types.__d_map(($, key) => sh.algorithm(
-        sh.type_reference("signatures", key),
+    $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["migrate boilerplate"])),
+    $.types.__d_map(($, id) => sh.algorithm(
+        sh.type_reference("signatures", id),
         false,
         false,
         false,
         Type_Node(
             $.node,
             {
-                'type name': key,
+                'type name': id,
                 'subselection': _p.list.literal([]),
                 'constrained': $p.constrained,
             }
@@ -143,8 +143,8 @@ export const Type_Node = (
                         )
                     )
             })
-            case 'group': return _p.ss($, ($) => sh.e.group($.__d_map(($, key) => sh.e.change_context(
-                sh.s.from_context([key]),
+            case 'group': return _p.ss($, ($) => sh.e.group($.__d_map(($, id) => sh.e.change_context(
+                sh.s.from_context([id]),
                 Type_Node(
                     $.node,
                     {
@@ -152,7 +152,7 @@ export const Type_Node = (
                         'subselection': _p.list.nested_literal_old([
                             $p.subselection,
                             [
-                                sh.sub.group(key)
+                                sh.sub.group(id)
                             ]
                         ]),
                         'constrained': $p.constrained,
@@ -255,7 +255,7 @@ export const Type_Node = (
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.e.decide_state(
                     sh.s.from_context([]),
-                    $.__d_map(($, key) => sh.e.state_literal(key, Type_Node(
+                    $.__d_map(($, id) => sh.e.state_literal(id, Type_Node(
                         $.node,
                         {
                             'type name': $p['type name'],
@@ -264,10 +264,10 @@ export const Type_Node = (
                                 $p.constrained
                                     ? [
                                         sh.sub.group("state"),
-                                        sh.sub.state(key)
+                                        sh.sub.state(id)
                                     ]
                                     : [
-                                        sh.sub.state(key)
+                                        sh.sub.state(id)
                                     ]
                             ]),
                             'constrained': $p.constrained,

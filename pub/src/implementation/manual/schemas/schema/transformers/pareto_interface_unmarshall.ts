@@ -42,14 +42,14 @@ export const Schema = (
                 ],
             ),
         },
-        $.types.__d_map(($, key) => sh.type.refiner(
+        $.types.__d_map(($, id) => sh.type.refiner(
             sh.t.component_imported(
                 "in",
                 "Value",
             ),
             sh.t.component_imported(
                 "out",
-                key,
+                id,
             ),
             sh.t.component_imported("generic", "Error"),
             null,

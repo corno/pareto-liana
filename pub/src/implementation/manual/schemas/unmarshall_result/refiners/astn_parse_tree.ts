@@ -135,7 +135,7 @@ export const Node_Type = (
                 // //                     'key': $.key.value,
                 // //                     'value': $
                 // //                 }
-                // //             })).__d_map(($, key) => {
+                // //             })).__d_map(($, id) => {
                 // //                 _pdev.log_debug_message(`clashing key: ${key}`)
                 // //             })
                 // //             const properties = impure.list['to dictionary, overwrite clashing keys']($.entries.__d_map(($) => {
@@ -144,7 +144,7 @@ export const Node_Type = (
                 // //                     'value': $
                 // //                 }
                 // //             }))
-                // //             group_def.__d_map(($, key) => {
+                // //             group_def.__d_map(($, id) => {
                 // //                 properties.get_entry(key).__decide(
                 // //                     ($) => {
                 // //                         _pdev.log_debug_message(`property ${key} found in data`)
@@ -196,7 +196,7 @@ export const Node_Type = (
                                 //     ): _pi.Dictionary<{
                                 //         'context': Main
                                 //         'supporting': _pi.Optional_Value<Supporting>
-                                //     }> => $.__d_map(($, key) => ({
+                                //     }> => $.__d_map(($, id) => ({
                                 //         'context': $,
                                 //         'supporting': $p['supporting dictionary'].__get_possible_entry(
                                 //             key,

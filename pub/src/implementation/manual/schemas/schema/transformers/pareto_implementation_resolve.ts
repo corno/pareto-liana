@@ -18,7 +18,7 @@ const op_pad_dictionary_identifiers = <T>(
         'suffix': string
     }
 ): _pi.Dictionary<T> => _p.dictionary.from_list(
-    _p.list.from_dictionary($, ($, key) => ({ 'key': key, value: $ })),
+    _p.list.from_dictionary($, ($, id) => ({ 'key': id, value: $ })),
     ($) => $p.prefix + $.key + $p.suffix,
     ($) => $.value,
     () => _p.unreachable_code_path() // no possibility of duplicate keys
@@ -48,7 +48,7 @@ export const Resolvers = (
                         _p.list.literal(["data types", "resolve"]),
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["resolve"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["resolve"]))
             }),
             {
                 'separator': "",
@@ -56,15 +56,15 @@ export const Resolvers = (
             () => _p.unreachable_code_path(),
         ),
         {},
-        $.__d_map(($, key) => sh.algorithm(
-            sh.type_reference("signatures", key),
+        $.__d_map(($, id) => sh.algorithm(
+            sh.type_reference("signatures", id),
             true,
             true,
             true,
             Node_Resolver(
                 $['type resolver'],
                 {
-                    'temp type': key,
+                    'temp type': id,
                     'temp subselection': _p.list.literal([])
                 }
             ),
@@ -405,20 +405,20 @@ export const Node_Resolver = (
             )
         ))
         case 'group': return _p.ss($, ($) => sh.e.block(
-            $.__to_list(($, key) => sh.temp_ordered_variable(
-                `p ${key}`,
+            $.__to_list(($, id) => sh.temp_ordered_variable(
+                `p ${id}`,
                 sh.type_node_reference(
                     "out",
                     $p['temp type'],
                     _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
-                            sh.sub.group(key)
+                            sh.sub.group(id)
                         ]
                     ]),
                 ),
                 sh.e.change_context(
-                    sh.s.from_context([key]),
+                    sh.s.from_context([id]),
                     Node_Resolver(
                         $.resolver,
                         {
@@ -426,7 +426,7 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh.sub.group(key)
+                                    sh.sub.group(id)
                                 ]
                             ]),
                         }
@@ -434,7 +434,7 @@ export const Node_Resolver = (
                 )
             )),
             {},
-            sh.e.group($.__d_map(($, key) => sh.e.select_from_variable_deprecated(`p ${key}`, [])))
+            sh.e.group($.__d_map(($, id) => sh.e.select_from_variable_deprecated(`p ${id}`, [])))
         ))
         case 'list': return _p.ss($, ($) => sh.e.list_map(
             sh.s.from_context(["list"]),
@@ -476,7 +476,7 @@ export const Node_Resolver = (
         ))
         case 'state': return _p.ss($, ($) => sh.e.decide_state(
             sh.s.from_context(['state']),
-            $.states.__d_map(($, key) => sh.e.state_literal(key, Option_Constraints(
+            $.states.__d_map(($, id) => sh.e.state_literal(id, Option_Constraints(
                 $.constraints,
                 {
                     'sub': () => Node_Resolver(
@@ -486,7 +486,7 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh.sub.state(key)
+                                    sh.sub.state(id)
                                 ]
                             ]),
                         }

@@ -75,7 +75,7 @@ export const Error_Type_Error = (
                     sh.b.sub(
                         _p.list.from_dictionary(
                             $.expected,
-                            ($, key) => sh.b.snippet(`'${key}'`)
+                            ($, id) => sh.b.snippet(`'${id}'`)
                         )
                     )
                 ]))

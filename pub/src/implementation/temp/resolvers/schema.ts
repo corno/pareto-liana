@@ -30,7 +30,7 @@ const temp_assert = <Type, Error>(
 
 export const Imports: signatures.Imports = ($, abort, $l, $p) => _p.deprecated_block(() => _p.deprecated_cc($, ($) => _p.dictionary.resolve(
     $.dictionary,
-    ($, key) => _p.deprecated_cc($, ($) => _p.deprecated_cc($, ($): d_out.Imports.D => {
+    ($, id) => _p.deprecated_cc($, ($) => _p.deprecated_cc($, ($): d_out.Imports.D => {
         const p_schema_set_child: d_out.Imports.D.schema_set_child = _p.deprecated_cc($.entry['schema set child'], ($) => _i_generic.get_entry_stack(
             $l['sibling schemas'],
             $,

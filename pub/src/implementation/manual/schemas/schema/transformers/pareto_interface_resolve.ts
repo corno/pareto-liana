@@ -23,9 +23,9 @@ export const Signatures = (
             "unresolved": sh.import_.sibling("data", ["unresolved"]),
         },
         $.__d_map(
-            ($, key) => sh.type.refiner(
-                sh.t.component_imported("unresolved", key),
-                sh.t.component_imported("resolved", key),
+            ($, id) => sh.type.refiner(
+                sh.t.component_imported("unresolved", id),
+                sh.t.component_imported("resolved", id),
                 sh.t.component_imported("generic", "Error"),
                 $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
                     const y = sh.t.reference(

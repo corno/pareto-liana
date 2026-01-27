@@ -54,20 +54,20 @@ export const Schema = (
                     "unmarshall": sh_i.import_.sibling("unmarshall", _p.list.nested_literal_old([
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["deserialize"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["deserialize"]))
             }),
             {
                 'separator': "",
             },
             () => _p.unreachable_code_path(),
         ),
-        $.types.__d_map(($, key) => sh.algorithm(
-            sh.type_reference("signatures", key),
+        $.types.__d_map(($, id) => sh.algorithm(
+            sh.type_reference("signatures", id),
             true,
             false,
             false,
             sh.e.call(
-                sh.s.from_variable_import("unmarshall", key, []),
+                sh.s.from_variable_import("unmarshall", id, []),
                 sh.e.call(
                     sh.s.from_variable_import("deserialize", "Document", []),
                     sh.e.select_from_context_deprecated([]),

@@ -41,7 +41,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                     //     _p.list.literal(["data types", "target"]),
                     // ])),
                 }),
-                "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["unmarshall"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["unmarshall"]))
             }),
             {
                 'separator': "",
@@ -49,8 +49,8 @@ export const Schema: _pi.Transformer_With_Parameters<
             () => _p.unreachable_code_path(),
         ),
         {},
-        $.types.__d_map(($, key) => sh.algorithm(
-            sh.type_reference("signatures", key),
+        $.types.__d_map(($, id) => sh.algorithm(
+            sh.type_reference("signatures", id),
             false,
             false,
             false,
@@ -132,7 +132,7 @@ export const Type_Node = (
                     //     false,
                     //     sh.e.group(
                     //         $.dictionary.__d_map(
-                    //             ($, key) => sh.e.change_context(
+                    //             ($, id) => sh.e.change_context(
                     //                 sh.s.call(
                     //                     sh.s.from_variable_import(" i generic", "get entry", []),
                     //                     sh.s.from_context([]),
@@ -260,7 +260,7 @@ export const Type_Node = (
                 _p.dictionary.literal({
                     // "states": sh.e.dictionary_literal(
                     //     $.__d_map(
-                    //         ($, key) => sh.e.function_deprecated(
+                    //         ($, id) => sh.e.function_deprecated(
                     //             false,
                     //             sh.e.case_(
                     //                 key,

@@ -37,8 +37,8 @@ import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/s
 
 export const Error = ($: Error): d_fp.Group_Part => {
     return sh.g.sub($.__to_list(
-        ($, key) => sh.g.nested_block([
-            sh.b.snippet(`error in package ${key}: `),
+        ($, id) => sh.g.nested_block([
+            sh.b.snippet(`error in package ${id}: `),
             _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'could not log': return _p.ss($, ($) => sh.b.snippet(`could not log`))
@@ -76,7 +76,7 @@ export const Error = ($: Error): d_fp.Group_Part => {
                                 case 'missing required entries': return _p.ss($, ($) => sh.b.sub([
                                     sh.b.snippet(`missing required entries:`),
                                     sh.b.indent([
-                                        sh.g.sub($.__to_list(($, key) => sh.g.simple_block(`- ${key}`)))
+                                        sh.g.sub($.__to_list(($, id) => sh.g.simple_block(`- ${id}`)))
                                     ])
                                 ]))
                                 default: return _p.au($[0])
@@ -105,10 +105,10 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
 
                 _p.dictionaryx.parallel<Module, Error, Package_Error>(
                     poormans_modules,
-                    ($, key) => {
+                    ($, id) => {
 
-                        const interface_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${key}`), `interface`)
-                        const implementation_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${key}`), `implementation`)
+                        const interface_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${id}`), `interface`)
+                        const implementation_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${id}`), `implementation`)
 
                         return [
 
@@ -202,7 +202,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //log
                             $cr.log.execute(
                                 {
-                                    'lines': _p.list.literal([`generated package: ${key}`])
+                                    'lines': _p.list.literal([`generated package: ${id}`])
                                 },
                                 ($) => ['could not log', null]
                             ),

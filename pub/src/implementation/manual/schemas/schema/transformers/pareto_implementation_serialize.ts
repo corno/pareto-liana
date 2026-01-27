@@ -55,22 +55,22 @@ export const Schema = (
                     "marshall": sh_i.import_.sibling("marshall", _p.list.nested_literal_old([
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, key) => sh_i.import_.ancestor(1, $['schema set child'].key, ["serialize"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].key, ["serialize"]))
             }),
             {
                 'separator': "",
             },
             () => _p.unreachable_code_path(),
         ),
-        $.types.__d_map(($, key) => sh.algorithm(
-            sh.type_reference("signatures", key),
+        $.types.__d_map(($, id) => sh.algorithm(
+            sh.type_reference("signatures", id),
             false,
             false,
             false,
             sh.e.call(
                 sh.s.from_variable_import("serialize", "Document", []),
                 sh.e.call(
-                    sh.s.from_variable_import("marshall", key, []),
+                    sh.s.from_variable_import("marshall", id, []),
                     sh.e.select_from_context_deprecated([]),
                     false,
 
