@@ -26,7 +26,7 @@ export const $: g_.Types = types(
                 })),
             }))),
             "wildcards": tstate(t.group({
-                "required directories": prop(t.number_local(n.natural())),
+                "required directories": prop(t.number_local(n.natural(null))),
                 "additional directories allowed": prop(t.boolean()),
                 "extensions": prop(t.list(t.text_local(text('single line')))),
                 "warn": prop(t.boolean()),

@@ -74,7 +74,7 @@ export const $: g_.Types = types(
             "compact": tstate(t.nothing()), // no unnecessary whitespace
             "pretty": tstate(t.group({
                 "indent": prop(t.text_local(text('single line'))),
-                "max line length": prop(t.optional(t.number_local(n.natural()))), // wrap long attributes
+                "max line length": prop(t.optional(t.number_local(n.natural(null)))), // wrap long attributes
                 "preserve mixed content": prop(t.boolean()), // don't add whitespace in mixed content
             })),
             "custom": tstate(t.group({

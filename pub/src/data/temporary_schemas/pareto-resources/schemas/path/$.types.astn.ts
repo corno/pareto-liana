@@ -43,7 +43,7 @@ export const $: g_.Types = types(
             })),
         })),
 
-        "Up Steps": type(t.number_local(n.natural())),
+        "Up Steps": type(t.number_local(n.natural(null))),
 
         "Non Normalized Path": type(t.group({
             "leading slash": prop(t.boolean()),

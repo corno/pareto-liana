@@ -16,6 +16,6 @@ export const $: g_.Globals = globals(
         "Multi Line Text": text("multi line"),
     },
     {
-        "Integer": n.integer(),
+        "Integer": n.integer(null),
     },
 )

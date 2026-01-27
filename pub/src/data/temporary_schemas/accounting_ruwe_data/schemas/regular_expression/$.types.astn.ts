@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
         "Regular Expression": type(t.group({
-            "characters": prop(t.dictionary(t.number_local(n.positive_natural()))),
+            "characters": prop(t.dictionary(t.number_local(n.positive_natural(null)))),
             "sequence": prop(t.component_cyclic("Sequence")),
         })),
 
@@ -39,10 +39,10 @@ export const $: g_.Types = types(
                 "optional": tstate(t.nothing()), // ?
                 "multiple": tstate(t.nothing()), // *
                 "one or more": tstate(t.nothing()), // +
-                // "exact": t.number_local(n.natural()), // {n}
+                // "exact": t.number_local(n.natural(null)), // {n}
                 // "between": t.group({
-                //     "min": t.number_local(n.natural()), // {n,m}
-                //     "max": t.number_local(n.natural()),
+                //     "min": t.number_local(n.natural(null)), // {n,m}
+                //     "max": t.number_local(n.natural(null)),
                 // }),
 
             }))),

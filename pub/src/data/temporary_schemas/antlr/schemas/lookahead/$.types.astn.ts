@@ -13,15 +13,15 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
         "Decision": type(t.group({
-            "decision number": prop(t.number_local(n.integer())),
-            "atn decision state": prop(t.number_local(n.integer())),
+            "decision number": prop(t.number_local(n.integer(null))),
+            "atn decision state": prop(t.number_local(n.integer(null))),
             "alternatives": prop(t.dictionary(t.group({
-                "alternative number": prop(t.number_local(n.integer())),
+                "alternative number": prop(t.number_local(n.integer(null))),
                 "token sets": prop(t.dictionary(t.group({
-                    "context depth": prop(t.number_local(n.integer())),
+                    "context depth": prop(t.number_local(n.integer(null))),
                     "intervals": prop(t.dictionary(t.group({
-                        "min": prop(t.number_local(n.integer())),
-                        "max": prop(t.number_local(n.integer())),
+                        "min": prop(t.number_local(n.integer(null))),
+                        "max": prop(t.number_local(n.integer(null))),
                     }))),
                 }))),
             }))),

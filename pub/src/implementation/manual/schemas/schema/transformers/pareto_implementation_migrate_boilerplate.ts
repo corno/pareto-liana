@@ -98,6 +98,7 @@ export const Type_Node = (
                 }),
                 sh.e.select_from_context_deprecated([]),
                 false,
+                {}
             ))
             case 'dictionary': return _p.ss($, ($) => {
 

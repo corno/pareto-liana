@@ -34,22 +34,22 @@ export const $: g_.Types = types(
                 "range": prop(t.component_external("token", "Range")),
             })),
             // "unexpected character": tstate(t.group({
-            //     "character": prop(t.number_local(n.natural())),
+            //     "character": prop(t.number_local(n.natural(null))),
             //     "location": prop(t.component_external("token", "Location")),
             // })),
             "unexpected control character": tstate(t.group({
-                "character": prop(t.number_local(n.natural())),
+                "character": prop(t.number_local(n.natural(null))),
                 "location": prop(t.component_external("token", "Location")),
             })),
             "unexpected control character in text": tstate(t.group({
-                "character": prop(t.number_local(n.natural())),
+                "character": prop(t.number_local(n.natural(null))),
                 "range": prop(t.component_external("token", "Range")),
             })),
             "unexpected end of line in delimited text": tstate(t.group({
                 "range": prop(t.component_external("token", "Range")),
             })),
             "unknown escape character": tstate(t.group({
-                "character": prop(t.number_local(n.natural())),
+                "character": prop(t.number_local(n.natural(null))),
                 "range": prop(t.component_external("token", "Range")),
             })),
             "unterminated block comment": tstate(t.group({

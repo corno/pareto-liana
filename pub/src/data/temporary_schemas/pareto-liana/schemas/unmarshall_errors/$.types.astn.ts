@@ -63,12 +63,12 @@ export const $: g_.Types = types(
         
         "Location": type(t.group({
             "relative": prop(t.component("Relative Location")),
-            "absolute": prop(t.number_local(n.natural())),
+            "absolute": prop(t.number_local(n.natural(null))),
         })),
 
         "Relative Location": type(t.group({
-            "line": prop(t.number_local(n.natural())),
-            "column": prop(t.number_local(n.natural())), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+            "line": prop(t.number_local(n.natural(null))),
+            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
 
         // "Document Range": type(t.group({

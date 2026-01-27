@@ -109,7 +109,7 @@ export const $: g_.Types = types(
             "pack": tstate(t.state({
                 "true": tstate(t.nothing()),
                 "false": tstate(t.nothing()),
-                "custom": tstate(t.number_local(n.natural())),
+                "custom": tstate(t.number_local(n.natural(null))),
             })),
             "packmode": tstate(t.state({
                 "node": tstate(t.nothing()),
@@ -161,11 +161,11 @@ export const $: g_.Types = types(
             "height": tstate(t.number_local(n.approximation(10))),
             "fixedsize": tstate(t.boolean()),
             "regular": tstate(t.boolean()),
-            "sides": tstate(t.number_local(n.natural())),
+            "sides": tstate(t.number_local(n.natural(null))),
             "skew": tstate(t.number_local(n.approximation(10))),
             "distortion": tstate(t.number_local(n.approximation(10))),
             "orientation": tstate(t.number_local(n.approximation(10))),
-            "peripheries": tstate(t.number_local(n.natural())),
+            "peripheries": tstate(t.number_local(n.natural(null))),
             "pin": tstate(t.boolean()),
             "image": tstate(t.text_local(text('single line'))),
             "imagepos": tstate(t.state({
@@ -187,7 +187,7 @@ export const $: g_.Types = types(
                 "both": tstate(t.nothing()),
             })),
             "group": tstate(t.text_local(text('single line'))),
-            "sortv": tstate(t.number_local(n.natural())),
+            "sortv": tstate(t.number_local(n.natural(null))),
             "area": tstate(t.number_local(n.approximation(10))),
             "z": tstate(t.number_local(n.approximation(10))),
             "margin": tstate(t.text_local(text('single line'))),
@@ -248,7 +248,7 @@ export const $: g_.Types = types(
             "labelfloat": tstate(t.boolean()),
             "weight": tstate(t.number_local(n.approximation(10))),
             "len": tstate(t.number_local(n.approximation(10))),
-            "minlen": tstate(t.number_local(n.natural())),
+            "minlen": tstate(t.number_local(n.natural(null))),
             "constraint": tstate(t.boolean()),
             "decorate": tstate(t.boolean()),
             "headport": tstate(t.state({

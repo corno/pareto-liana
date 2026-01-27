@@ -16,9 +16,9 @@ export const $: g_.Types  = types(
     {
 
         "Annotation": type(t.group({
-            "position": prop(t.number_local(n.natural())),
-            "line": prop(t.number_local(n.natural())),
-            "column": prop(t.number_local(n.natural())),
+            "position": prop(t.number_local(n.natural(null))),
+            "line": prop(t.number_local(n.natural(null))),
+            "column": prop(t.number_local(n.natural(null))),
         })),
 
         "Data Set": type(t.group({

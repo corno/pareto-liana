@@ -63,7 +63,7 @@ export const $: g_.Types = types(
                         'until': prop(t.optional(t.text_local(text('single line')))),
                         'author': prop(t.optional(t.text_local(text('single line')))),
                         'grep': prop(t.optional(t.text_local(text('single line')))),
-                        'max count': prop(t.optional(t.number_local(n.natural()))),
+                        'max count': prop(t.optional(t.number_local(n.natural(null)))),
                     })),
                     "branch": tstate(t.group({ // git branch (list)
                         'all': prop(t.boolean()),
@@ -178,12 +178,12 @@ export const $: g_.Types = types(
                         "cherry pick": tstate(t.group({ // git cherry-pick
                             'commits': prop(t.list(t.text_local(text('single line')))),
                             'no commit': prop(t.boolean()),
-                            'mainline': prop(t.optional(t.number_local(n.natural()))),
+                            'mainline': prop(t.optional(t.number_local(n.natural(null)))),
                         })),
                         "revert": tstate(t.group({ // git revert
                             'commits': prop(t.list(t.text_local(text('single line')))),
                             'no commit': prop(t.boolean()),
-                            'mainline': prop(t.optional(t.number_local(n.natural()))),
+                            'mainline': prop(t.optional(t.number_local(n.natural(null)))),
                         })),
                         "branch create": tstate(t.group({ // git branch <name>
                             'name': prop(t.text_local(text('single line'))),
@@ -270,7 +270,7 @@ export const $: g_.Types = types(
                         'url': prop(t.text_local(text('single line'))),
                         'directory': prop(t.optional(t.text_local(text('single line')))),
                         'branch': prop(t.optional(t.text_local(text('single line')))),
-                        'depth': prop(t.optional(t.number_local(n.natural()))),
+                        'depth': prop(t.optional(t.number_local(n.natural(null)))),
                         'recursive': prop(t.boolean()),
                     })),
                     "remote add": tstate(t.group({ // git remote add

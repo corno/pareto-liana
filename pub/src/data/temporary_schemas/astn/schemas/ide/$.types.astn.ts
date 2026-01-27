@@ -36,8 +36,8 @@ export const $: g_.Types = types(
         "ID Value Pairs To Be Sorted": type(t.dictionary(t.text_local(text('single line')))),
 
         "Relative Location": type(t.group({
-            "line": prop(t.number_local(n.natural())),
-            "column": prop(t.number_local(n.natural())), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+            "line": prop(t.number_local(n.natural(null))),
+            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
     },
 )

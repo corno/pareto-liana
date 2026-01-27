@@ -22,8 +22,8 @@ export const $: g_.Types = types(
         })),
 
         "Position": type(t.group({
-            "line": prop(t.number_local(n.natural())),
-            "character": prop(t.number_local(n.natural())),
+            "line": prop(t.number_local(n.natural(null))),
+            "character": prop(t.number_local(n.natural(null))),
         })),
 
         "Range": type(t.group({
@@ -101,7 +101,7 @@ export const $: g_.Types = types(
         "Validate Document Parameters": type(t.group({
             "content": prop(t.text_local(text('multi line'))),
             "file path": prop(t.text_local(text('single line'))),
-            "tab size": prop(t.number_local(n.natural())),
+            "tab size": prop(t.number_local(n.natural(null))),
         })),
     }
 )

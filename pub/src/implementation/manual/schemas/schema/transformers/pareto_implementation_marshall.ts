@@ -114,6 +114,7 @@ export const Type_Node = (
                     sh.s.from_variable_import("serialize boolean", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
+                    {}
                 ),
             })
         ))
@@ -128,6 +129,7 @@ export const Type_Node = (
             }),
             sh.e.select_from_context_deprecated([]),
             false,
+            {}
         ))
         case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
             "dictionary",
@@ -209,6 +211,7 @@ export const Type_Node = (
                     sh.s.from_variable_import("serialize number", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     false,
+                    {}
                 )
             })
         ))

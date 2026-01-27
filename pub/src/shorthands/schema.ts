@@ -86,9 +86,9 @@ export const propd = (
  */
 export namespace n {
 
-    export const integer = (decimal_separator_offset?: number): d_schema.Number_Type => ({
+    export const integer = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
         'precision': _p.wrap_state<d_schema.Number_Type.precision.state>(['exact', {
-            'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set<number>() : _p.optional.set<number>(decimal_separator_offset),
+            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
             'type': _p.wrap_state(['integer', null]),
         }])
     })
@@ -99,16 +99,16 @@ export namespace n {
         }])
     })
 
-    export const natural = (decimal_separator_offset?: number): d_schema.Number_Type => ({
+    export const natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
         'precision': _p.wrap_state<d_schema.Number_Type.precision.state>(['exact', {
-            'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set() : _p.optional.set(decimal_separator_offset),
+            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
             'type': _p.wrap_state(['natural', null]),
         }])
     })
 
-    export const positive_natural = (decimal_separator_offset?: number): d_schema.Number_Type => ({
+    export const positive_natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
         'precision': _p.wrap_state<d_schema.Number_Type.precision.state>(['exact', {
-            'decimal separator offset': decimal_separator_offset === undefined ? _p.optional.not_set() : _p.optional.set(decimal_separator_offset),
+            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
             'type': _p.wrap_state(['positive natural', null]),
         }])
     })

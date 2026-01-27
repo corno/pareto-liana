@@ -92,13 +92,13 @@ export const $: g_.Types = types(
 
         "Location": type(t.group({
             "relative": prop(t.component("Relative Location")), //if at the end of the document, this is not set
-            "absolute": prop(t.number_local(n.natural())),
+            "absolute": prop(t.number_local(n.natural(null))),
         })),
 
         "Relative Location": type(t.group({
             "uri": prop(t.text_local(text('single line'))),
-            "line": prop(t.number_local(n.natural())),
-            "column": prop(t.number_local(n.natural())), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+            "line": prop(t.number_local(n.natural(null))),
+            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
     }
 )

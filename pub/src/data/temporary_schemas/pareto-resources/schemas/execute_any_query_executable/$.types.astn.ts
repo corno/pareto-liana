@@ -23,7 +23,7 @@ export const $: g_.Types = types(
                 "message": prop(t.component_external("terminal output", "Message")),
             })),
             "non zero exit code": tstate(t.group({
-                "exit code": prop(t.optional(t.number_local(n.integer()))),
+                "exit code": prop(t.optional(t.number_local(n.integer(null)))),
                 "stderr": prop(t.component_external("terminal output", "Message")),
             })),
         })),

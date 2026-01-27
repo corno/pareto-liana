@@ -17,7 +17,7 @@ export const $: g_.Globals = globals(
         "identifier": text("single line"),
     },
     {
-        "amount": n.natural(),
+        "amount": n.natural(null),
     },
 )
 

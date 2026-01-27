@@ -14,7 +14,7 @@ export const $: g_.Globals = globals(
         "Text Value": text("single line"),
     },
     {
-        "Character": n.positive_natural(),
+        "Character": n.positive_natural(null),
     },
 )
 

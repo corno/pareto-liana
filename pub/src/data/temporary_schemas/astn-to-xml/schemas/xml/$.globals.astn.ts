@@ -15,7 +15,7 @@ export const $: g_.Globals = globals(
         "Text Value": text('multi line'),
     },
     {
-        "Natural Number": n.natural(),
+        "Natural Number": n.natural(null),
     },
 )
 

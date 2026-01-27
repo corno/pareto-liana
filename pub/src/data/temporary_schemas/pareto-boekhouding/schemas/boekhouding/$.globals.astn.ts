@@ -18,7 +18,7 @@ export const $: g_.Globals = globals(
     },
     {
         "Bedrag": n.integer(2),
-        "Dagen": n.positive_natural(0),
+        "Dagen": n.positive_natural(null),
         "Datum": n.integer(0),
         "Promillage": n.natural(0),
 

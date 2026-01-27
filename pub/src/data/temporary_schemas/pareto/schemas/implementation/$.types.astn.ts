@@ -34,7 +34,7 @@ export const $: g_.Types = types(
                 "type": prop(t.state({
                     "ancestor": tstate(t.group({
                         "dependency": prop(t.text_global("TBD")),
-                        "number of steps": prop(t.number_local(n.natural())),
+                        "number of steps": prop(t.number_local(n.natural(null))),
                     })),
                     "external": tstate(t.text_global("TBD")),
                     "sibling": tstate(t.text_global("TBD")),
@@ -130,10 +130,10 @@ export const $: g_.Types = types(
                         "literal": tstate(t.number_local(n.approximation(10)))
                     })),
                     "integer": tstate(t.state({
-                        "literal": tstate(t.number_local(n.integer()))
+                        "literal": tstate(t.number_local(n.integer(null)))
                     })),
                     "natural": tstate(t.state({
-                        "literal": tstate(t.number_local(n.natural()))
+                        "literal": tstate(t.number_local(n.natural(null)))
                     })),
                 })),
                 "optional": tstate(t.state({

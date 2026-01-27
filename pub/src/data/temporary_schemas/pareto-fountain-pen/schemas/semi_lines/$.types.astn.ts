@@ -16,7 +16,7 @@ export const $: g_.Types  = types(
     {
         "Lines": type(t.list(t.group({
             "text": prop(t.text_global("Output")),
-            "indentation": prop(t.number_local(n.natural()))
+            "indentation": prop(t.number_local(n.natural(null)))
         }))),
 
         "Directory": type(t.dictionary(

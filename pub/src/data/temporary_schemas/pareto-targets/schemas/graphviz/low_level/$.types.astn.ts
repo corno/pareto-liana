@@ -70,7 +70,7 @@ export const $: g_.Types = types(
             "id": tstate(t.text_global("id")),
             "string": tstate(t.text_global("Text Value")),
             "html": tstate(t.text_global("Text Value")),
-            "number": tstate(t.number_local(n.integer())),
+            "number": tstate(t.number_local(n.integer(null))),
         })),
         "Subgraph": type(t.group({
             "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?

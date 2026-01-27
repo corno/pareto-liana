@@ -16,6 +16,9 @@ export const $: g_.Types = types(
         "Parameters": type(t.group({
             "lines": prop(t.list(t.text_local(text('single line')))),
         })),
+
+        "Error": type(t.nothing()) //I'm not aware of any errors that could occur at this time
+        
     }
 )
 

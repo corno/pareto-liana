@@ -26,7 +26,7 @@ export const $: g_.Types = types(
             })),
             "number": tstate(t.state({
                 //depending on the source, one needs to be chosen.
-                "integer": tstate(t.number_local(n.integer())),
+                "integer": tstate(t.number_local(n.integer(null))),
                 "float": tstate(t.number_local(n.approximation(16))),
             })),
             "string": tstate(t.text_global("Text Value")),

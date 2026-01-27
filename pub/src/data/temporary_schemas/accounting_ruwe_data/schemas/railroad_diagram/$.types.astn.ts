@@ -49,7 +49,7 @@ export const $: g_.Types = types(
         "Primary": type(t.state({
             // "reference": t.reference("Productions", []), FIXME: make schema constrained first
             "literal": tstate(t.text_local(text('single line'))),
-            "character code": tstate(t.number_local(n.natural())),
+            "character code": tstate(t.number_local(n.natural(null))),
             // "character class": t.group({
             //     "negated": t.boolean(),
             //     "type" : t.state({

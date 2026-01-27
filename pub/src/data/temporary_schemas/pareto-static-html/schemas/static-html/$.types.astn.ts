@@ -21,8 +21,8 @@ export const $: g_.Types = types(
         "Flow Content": type(t.list(t.state({
             "div": tstate(t.component_cyclic("Flow Content")),
             "dimensioned div": tstate(t.group({
-                "width": prop(t.optional(t.number_local(n.natural()))),
-                "height": prop(t.optional(t.number_local(n.natural()))),
+                "width": prop(t.optional(t.number_local(n.natural(null)))),
+                "height": prop(t.optional(t.number_local(n.natural(null)))),
                 "content": prop(t.component_cyclic("Flow Content")),
             })),
             "classified div": tstate(t.group({
@@ -44,7 +44,7 @@ export const $: g_.Types = types(
                             "th": tstate(t.nothing()),
                             "td": tstate(t.nothing()),
                         })),
-                        "height": prop(t.optional(t.number_local(n.natural()))),
+                        "height": prop(t.optional(t.number_local(n.natural(null)))),
                         "cells": prop(t.list(t.group({
                             "classes": prop(t.component("Classes")),
                             "content": prop(t.component_cyclic("Flow Content")),
@@ -62,14 +62,14 @@ export const $: g_.Types = types(
                 "classes": prop(t.component("Classes")),
                 "src": prop(t.text_local(text('single line'))),
                 "alt": prop(t.text_local(text('single line'))),
-                "width": prop(t.optional(t.number_local(n.natural()))),
-                "height": prop(t.optional(t.number_local(n.natural()))),
+                "width": prop(t.optional(t.number_local(n.natural(null)))),
+                "height": prop(t.optional(t.number_local(n.natural(null)))),
             })),
             "svg": tstate(t.group({
                 "classes": prop(t.component("Classes")),
                 "content": prop(t.text_local(text('multi line'))),
-                "width": prop(t.optional(t.number_local(n.natural()))),
-                "height": prop(t.optional(t.number_local(n.natural()))),
+                "width": prop(t.optional(t.number_local(n.natural(null)))),
+                "height": prop(t.optional(t.number_local(n.natural(null)))),
             })),
 
         }))),

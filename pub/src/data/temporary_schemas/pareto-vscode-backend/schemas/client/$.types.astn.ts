@@ -14,8 +14,8 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Types = types(
     {
         "Position": type(t.group({
-            "line": prop(t.number_local(n.natural())),
-            "character": prop(t.number_local(n.natural())),
+            "line": prop(t.number_local(n.natural(null))),
+            "character": prop(t.number_local(n.natural(null))),
         })),
 
         "Range": type(t.group({

@@ -25,7 +25,7 @@ export const $: g_.Types = types(
                 "dictionary": tstate(t.dictionary(t.component_cyclic("Value"))),
             })),
             "number": tstate(t.state({
-                "integer": tstate(t.number_local(n.integer())),
+                "integer": tstate(t.number_local(n.integer(null))),
                 "float": tstate(t.number_local(n.approximation(16))),
             })),
             "string": tstate(t.text_global("Text Value")),

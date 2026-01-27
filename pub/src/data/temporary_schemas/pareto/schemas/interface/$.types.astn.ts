@@ -48,7 +48,7 @@ export const $: g_.Types = types(
             "type": prop(t.state({
                 "external": toption(t.text_global("TBD")),
                 "ancestor": toption(t.group({
-                    "number of steps": prop(t.number_local(n.natural())),
+                    "number of steps": prop(t.number_local(n.natural(null))),
                     "dependency": prop(t.text_global("TBD")),
                 })),
                 "sibling": toption(t.text_global("TBD")),
