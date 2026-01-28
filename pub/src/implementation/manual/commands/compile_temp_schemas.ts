@@ -100,7 +100,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                 'exit code': 1
             })
         ),
-        _p.create_error_handling_context(
+        _p.handle_error(
             [
 
                 _p.dictionaryx.parallel<Module, Error, Package_Error>(
