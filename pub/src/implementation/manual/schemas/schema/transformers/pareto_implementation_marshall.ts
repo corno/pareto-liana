@@ -112,7 +112,7 @@ export const Type_Node = (
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.component.call(
                     sh.s.from_variable_import("serialize boolean", "serialize", []),
-                    sh.e.select_from_context_deprecated([]),
+                    sh.e.select(sh.s.from_context([])),
                     null,
                     null,
                 ),
@@ -127,7 +127,7 @@ export const Type_Node = (
                     default: return _p.au($[0])
                 }
             }),
-            sh.e.select_from_context_deprecated([]),
+            sh.e.select(sh.s.from_context([])),
             null,
             null,
         ))
@@ -209,7 +209,7 @@ export const Type_Node = (
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.component.call(
                     sh.s.from_variable_import("serialize number", "serialize", []),
-                    sh.e.select_from_context_deprecated([]),
+                    sh.e.select(sh.s.from_context([])),
                     null,
                     null,
                 )
@@ -249,7 +249,7 @@ export const Type_Node = (
                 case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
                 case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group({
                     "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
-                    "value": sh.e.text.select(sh.s.from_context(["id"])),
+                    "value": sh.e.text.copy(sh.s.from_context(["id"])),
                 })))
                 default: return _p.au($[0])
             }
@@ -284,7 +284,7 @@ export const Type_Node = (
             "text",
             sh.e.group({
                 "delimiter": sh.e.state.literal("quote", sh.e.nothing()),
-                "value": sh.e.text.select(sh.s.from_context([])),
+                "value": sh.e.text.copy(sh.s.from_context([])),
             })
         ))
         default: return _p.au($[0])

@@ -86,7 +86,7 @@ export const Type_Node = (
 ): d_out.Expression => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
+            case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
             case 'component': return _p.ss($, ($) => sh.e.component.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
@@ -96,7 +96,7 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select_from_context_deprecated([]),
+                sh.e.select(sh.s.from_context([])),
                 null,
                 null
             ))
@@ -220,7 +220,7 @@ export const Type_Node = (
 
             })
             case 'nothing': return _p.ss($, ($) => sh.e.nothing())
-            case 'number': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
+            case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
             case 'optional': return _p.ss($, ($) => sh.e.optional.map(
                 sh.s.from_context([]),
                 Type_Node(
@@ -241,7 +241,7 @@ export const Type_Node = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.nothing())
                     case 'selected': return _p.ss($, ($) => {
-                        const tn = sh.e.select_from_context_deprecated(["id"])
+                        const tn = sh.e.select(sh.s.from_context(["id"]))
 
                         return $p.constrained
                             ? sh.e.group({
@@ -295,7 +295,7 @@ export const Type_Node = (
                     })
                     : tn
             })
-            case 'text': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
+            case 'text': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
             default: return _p.au($[0])
         }
     })

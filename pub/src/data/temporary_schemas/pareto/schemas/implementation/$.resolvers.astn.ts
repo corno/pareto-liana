@@ -56,107 +56,6 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Expression": resolver(r.state({
-            "special": state(r.state({
-                "abort": state(r.component("Expression", {}, {})),
-                "block": state(r.group({
-                    "variables": r.dictionary(r.group({
-                        "type": r.optional(r.component("Type Node Reference", {}, {})),
-                        "expression": r.component("Expression", {}, {}),
-                    })),
-                    "temp ordered variables": r.list(r.group({
-                        "name": r.text(),
-                        "type": r.optional(r.component("Type Node Reference", {}, {})),
-                        "expression": r.component("Expression", {}, {}),
-                    })),
-                    "expression": r.component("Expression", {}, {}),
-                })),
-                "change context": state(r.group({
-                    "new context": r.component("Selection", {}, {}),
-                    "expression": r.component("Expression", {}, {}),
-                })),
-                "implement me": state(r.text()),
-                "selection deprecated": state(r.component("Selection", {}, {})),
-                "unreachable": state(r.nothing()),
-                // "deprecated function": state(r.group({
-                //     "expression": r.component("Expression", {}, {}),
-                //     "temp has parameters": r.boolean(),
-                //     "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
-                // })),
-            })),
-            "initialize": state(r.state({
-                "boolean": state(r.state({
-                    "literal": state(r.state({
-                        "false": state(r.nothing()),
-                        "true": state(r.nothing()),
-                    })),
-                    "not": state(r.component("Selection", {}, {})),
-                    "select": state(r.component("Selection", {}, {})),
-                })),
-                "component": state(r.state({
-                    "call": state(r.group({
-                        "source": r.component("Selection", {}, {}),
-                        "context": r.component("Expression", {}, {}),
-                        "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
-                        "abort": r.optional(r.component("Expression", {}, {}))
-                    })),
-                })),
-                "dictionary": state(r.state({
-                    "literal": state(r.dictionary(r.component("Expression", {}, {}))),
-                    "map": state(r.group({
-                        "source": r.component("Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {})
-                    })),
-                })),
-                "group": state(r.dictionary(r.component("Expression", {}, {}))),
-                "list": state(r.state({
-                    "literal": state(r.list(r.component("Expression", {}, {}))),
-                    "map": state(r.group({
-                        "source": r.component("Selection", {}, {}),
-                        "item handler": r.component("Expression", {}, {})
-                    })),
-                })),
-                "nothing": state(r.nothing()),
-                "number": state(r.state({
-                    "approximation": state(r.state({
-                        "literal": state(r.number()),
-                        "select": state(r.component("Selection", {}, {})),
-                    })),
-                    "integer": state(r.state({
-                        "literal": state(r.number()),
-                        "select": state(r.component("Selection", {}, {})),
-                    })),
-                    "natural": state(r.state({
-                        "literal": state(r.number()),
-                        "select": state(r.component("Selection", {}, {})),
-                    })),
-                })),
-                "optional": state(r.state({
-                    "literal": state(r.state({
-                        "not set": state(r.nothing()),
-                        "set": state(r.component("Expression", {}, {})),
-                    })),
-                    "map": state(r.group({
-                        "source": r.component("Selection", {}, {}),
-                        "set handler": r.component("Expression", {}, {})
-                    })),
-                })),
-                "state": state(r.state({
-                    "literal": state(r.group({
-                        "option": r.text(),
-                        "value": r.component("Expression", {}, {}),
-                    })),
-                })),
-                "text": state(r.state({
-                    "literal": state(r.group({
-                        "type": r.state({
-                            "identifier": state(r.nothing()),
-                            "freeform": state(r.nothing()),
-                        }),
-                        "value": r.text(),
-                    })),
-                    "select": state(r.component("Selection", {}, {})),
-                })),
-            })),
             "decide": state(r.group({
                 "type": r.state({
                     "boolean": state(r.group({
@@ -186,6 +85,107 @@ export const $: g_.Resolvers = resolvers(
                     })),
                 }),
             })),
+            "initialize": state(r.state({
+                "boolean": state(r.state({
+                    "literal": state(r.state({
+                        "false": state(r.nothing()),
+                        "true": state(r.nothing()),
+                    })),
+                    "not": state(r.component("Selection", {}, {})),
+                    "copy": state(r.component("Selection", {}, {})),
+                })),
+                "component": state(r.state({
+                    "call": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "context": r.component("Expression", {}, {}),
+                        "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
+                        "abort": r.optional(r.component("Expression", {}, {}))
+                    })),
+                })),
+                "dictionary": state(r.state({
+                    "literal": state(r.dictionary(r.component("Expression", {}, {}))),
+                    "map": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "entry handler": r.component("Expression", {}, {})
+                    })),
+                })),
+                "group": state(r.dictionary(r.component("Expression", {}, {}))),
+                "list": state(r.state({
+                    "literal": state(r.list(r.component("Expression", {}, {}))),
+                    "map": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "item handler": r.component("Expression", {}, {})
+                    })),
+                })),
+                "nothing": state(r.nothing()),
+                "number": state(r.state({
+                    "approximation": state(r.state({
+                        "literal": state(r.number()),
+                        "copy": state(r.component("Selection", {}, {})),
+                    })),
+                    "integer": state(r.state({
+                        "literal": state(r.number()),
+                        "copy": state(r.component("Selection", {}, {})),
+                    })),
+                    "natural": state(r.state({
+                        "literal": state(r.number()),
+                        "copy": state(r.component("Selection", {}, {})),
+                    })),
+                })),
+                "optional": state(r.state({
+                    "literal": state(r.state({
+                        "not set": state(r.nothing()),
+                        "set": state(r.component("Expression", {}, {})),
+                    })),
+                    "map": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "set handler": r.component("Expression", {}, {})
+                    })),
+                })),
+                "state": state(r.state({
+                    "literal": state(r.group({
+                        "option": r.text(),
+                        "value": r.component("Expression", {}, {}),
+                    })),
+                })),
+                "text": state(r.state({
+                    "literal": state(r.group({
+                        "type": r.state({
+                            "identifier": state(r.nothing()),
+                            "freeform": state(r.nothing()),
+                        }),
+                        "value": r.text(),
+                    })),
+                    "copy": state(r.component("Selection", {}, {})),
+                })),
+            })),
+            "special": state(r.state({
+                "abort": state(r.component("Expression", {}, {})),
+                "block": state(r.group({
+                    "variables": r.dictionary(r.group({
+                        "type": r.optional(r.component("Type Node Reference", {}, {})),
+                        "expression": r.component("Expression", {}, {}),
+                    })),
+                    "temp ordered variables": r.list(r.group({
+                        "name": r.text(),
+                        "type": r.optional(r.component("Type Node Reference", {}, {})),
+                        "expression": r.component("Expression", {}, {}),
+                    })),
+                    "expression": r.component("Expression", {}, {}),
+                })),
+                "change context": state(r.group({
+                    "new context": r.component("Selection", {}, {}),
+                    "expression": r.component("Expression", {}, {}),
+                })),
+                "implement me": state(r.text()),
+                "selection deprecated": state(r.component("Selection", {}, {})),
+                "unreachable": state(r.nothing()),
+                // "deprecated function": state(r.group({
+                //     "expression": r.component("Expression", {}, {}),
+                //     "temp has parameters": r.boolean(),
+                //     "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                // })),
+            })),
         })),
 
         "Selection": resolver(r.group({
@@ -194,7 +194,7 @@ export const $: g_.Resolvers = resolvers(
                 "argument": state(r.text()),
                 "call": state(r.group({
                     "source": r.component("Selection", {}, {}),
-                    "context": r.component("Selection", {}, {}),
+                    "context": r.component("Expression", {}, {}),
                     "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
                 })),
                 "context": state(r.nothing()),

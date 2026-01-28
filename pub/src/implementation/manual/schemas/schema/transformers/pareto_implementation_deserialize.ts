@@ -70,14 +70,14 @@ export const Schema = (
                 sh.s.from_variable_import("unmarshall", id, []),
                 sh.e.component.call(
                     sh.s.from_variable_import("deserialize", "Document", []),
-                    sh.e.select_from_context_deprecated([]),
+                    sh.e.select(sh.s.from_context([])),
                     sh.e.implement_me("SFDSF"),
                     null,
                 ),
                 null,
                 {
-                    "document resource identifier": sh.e.select_from_parameter_deprecated("document resource identifier", []),
-                    "indentation": sh.e.select_from_parameter_deprecated("indentation", [])
+                    "document resource identifier": sh.e.text.copy(sh.s.from_parameter("document resource identifier", [])),
+                    "indentation": sh.e.number.integer_copy(sh.s.from_parameter("indentation", []))
                 }
             )
         )),

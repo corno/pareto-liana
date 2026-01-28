@@ -66,107 +66,6 @@ export const $: g_.Types = types(
         })),
 
         "Expression": type(t.state({
-            "special": tstate(t.state({
-                "abort": tstate(t.component_cyclic("Expression")),
-                "block": tstate(t.group({
-                    "variables": prop(t.dictionary(t.group({
-                        "type": prop(t.optional(t.component("Type Node Reference"))),
-                        "expression": prop(t.component_cyclic("Expression")),
-                    }))),
-                    "temp ordered variables": prop(t.list(t.group({ //FIXME: remove this as soon as the dependencies can be determined in the variables dictionary
-                        "name": prop(t.text_global("Identifier")),
-                        "type": prop(t.optional(t.component("Type Node Reference"))),
-                        "expression": prop(t.component_cyclic("Expression")),
-                    }))),
-                    "expression": prop(t.component_cyclic("Expression")),
-                })),
-                "change context": tstate(t.group({
-                    "new context": prop(t.component_cyclic("Selection")),
-                    "expression": prop(t.component_cyclic("Expression")),
-                })),
-                "implement me": tstate(t.text_local(text('single line'))),
-                "selection deprecated": tstate(t.component_cyclic("Selection")),
-                "unreachable": tstate(t.nothing()),
-                // "deprecated function": tstate(t.group({
-                //     "expression": prop(t.component_cyclic("Expression")),
-                //     "temp has parameters": prop(t.boolean()),
-                //     "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
-                // })),
-            })),
-            "initialize": tstate(t.state({
-                "boolean": tstate(t.state({
-                    "literal": tstate(t.state({
-                        "false": tstate(t.nothing()),
-                        "true": tstate(t.nothing()),
-                    })),
-                    "not": tstate(t.component_cyclic("Selection")),
-                    "select": tstate(t.component("Selection")),
-                })),
-                "component": tstate(t.state({
-                    "call": tstate(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
-                        "context": prop(t.component_cyclic("Expression")),
-                        "abort": prop(t.optional(t.component_cyclic("Expression"))),
-                        "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
-                    })),
-                })),
-                "dictionary": tstate(t.state({
-                    "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                    "map": tstate(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression"))
-                    })),
-                })),
-                "group": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                "list": tstate(t.state({
-                    "literal": tstate(t.list(t.component_cyclic("Expression"))),
-                    "map": tstate(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
-                        "item handler": prop(t.component_cyclic("Expression"))
-                    })),
-                })),
-                "nothing": tstate(t.nothing()),
-                "number": tstate(t.state({
-                    "approximation": tstate(t.state({
-                        "literal": tstate(t.number_local(n.approximation(10))),
-                        "select": tstate(t.component("Selection")),
-                    })),
-                    "integer": tstate(t.state({
-                        "literal": tstate(t.number_local(n.integer(null))),
-                        "select": tstate(t.component("Selection")),
-                    })),
-                    "natural": tstate(t.state({
-                        "literal": tstate(t.number_local(n.natural(null))),
-                        "select": tstate(t.component("Selection")),
-                    })),
-                })),
-                "optional": tstate(t.state({
-                    "literal": tstate(t.state({
-                        "not set": tstate(t.nothing()),
-                        "set": tstate(t.component_cyclic("Expression")),
-                    })),
-                    "map": tstate(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
-                        "set handler": prop(t.component_cyclic("Expression"))
-                    })),
-                })),
-                "state": tstate(t.state({
-                    "literal": tstate(t.group({
-                        "option": prop(t.text_global("Identifier")),
-                        "value": prop(t.component_cyclic("Expression")),
-                    }))
-                })),
-                "text": tstate(t.state({
-                    "literal": tstate(t.group({
-                        "type": prop(t.state({
-                            "identifier": tstate(t.nothing()),
-                            "freeform": tstate(t.nothing()),
-                        })),
-                        "value": prop(t.text_local(text('single line'))),
-                    })),
-                    "select": tstate(t.component("Selection")),
-                })),
-            })),
             "decide": tstate(t.group({
                 "type": prop(t.state({
                     "boolean": tstate(t.group({
@@ -196,6 +95,107 @@ export const $: g_.Types = types(
                     })),
                 })),
             })),
+            "initialize": tstate(t.state({
+                "boolean": tstate(t.state({
+                    "literal": tstate(t.state({
+                        "false": tstate(t.nothing()),
+                        "true": tstate(t.nothing()),
+                    })),
+                    "not": tstate(t.component("Selection")),
+                    "copy": tstate(t.component("Selection")),
+                })),
+                "component": tstate(t.state({
+                    "call": tstate(t.group({
+                        "source": prop(t.component("Selection")),
+                        "context": prop(t.component_cyclic("Expression")),
+                        "abort": prop(t.optional(t.component_cyclic("Expression"))),
+                        "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
+                    })),
+                })),
+                "dictionary": tstate(t.state({
+                    "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                    "map": tstate(t.group({
+                        "source": prop(t.component("Selection")),
+                        "entry handler": prop(t.component_cyclic("Expression"))
+                    })),
+                })),
+                "group": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                "list": tstate(t.state({
+                    "literal": tstate(t.list(t.component_cyclic("Expression"))),
+                    "map": tstate(t.group({
+                        "source": prop(t.component("Selection")),
+                        "item handler": prop(t.component_cyclic("Expression"))
+                    })),
+                })),
+                "nothing": tstate(t.nothing()),
+                "number": tstate(t.state({
+                    "approximation": tstate(t.state({
+                        "literal": tstate(t.number_local(n.approximation(10))),
+                        "copy": tstate(t.component("Selection")),
+                    })),
+                    "integer": tstate(t.state({
+                        "literal": tstate(t.number_local(n.integer(null))),
+                        "copy": tstate(t.component("Selection")),
+                    })),
+                    "natural": tstate(t.state({
+                        "literal": tstate(t.number_local(n.natural(null))),
+                        "copy": tstate(t.component("Selection")),
+                    })),
+                })),
+                "optional": tstate(t.state({
+                    "literal": tstate(t.state({
+                        "not set": tstate(t.nothing()),
+                        "set": tstate(t.component_cyclic("Expression")),
+                    })),
+                    "map": tstate(t.group({
+                        "source": prop(t.component("Selection")),
+                        "set handler": prop(t.component_cyclic("Expression"))
+                    })),
+                })),
+                "state": tstate(t.state({
+                    "literal": tstate(t.group({
+                        "option": prop(t.text_global("Identifier")),
+                        "value": prop(t.component_cyclic("Expression")),
+                    }))
+                })),
+                "text": tstate(t.state({
+                    "literal": tstate(t.group({
+                        "type": prop(t.state({
+                            "identifier": tstate(t.nothing()),
+                            "freeform": tstate(t.nothing()),
+                        })),
+                        "value": prop(t.text_local(text('single line'))),
+                    })),
+                    "copy": tstate(t.component("Selection")),
+                })),
+            })),
+            "special": tstate(t.state({
+                "abort": tstate(t.component_cyclic("Expression")),
+                "block": tstate(t.group({
+                    "variables": prop(t.dictionary(t.group({
+                        "type": prop(t.optional(t.component("Type Node Reference"))),
+                        "expression": prop(t.component_cyclic("Expression")),
+                    }))),
+                    "temp ordered variables": prop(t.list(t.group({ //FIXME: remove this as soon as the dependencies can be determined in the variables dictionary
+                        "name": prop(t.text_global("Identifier")),
+                        "type": prop(t.optional(t.component("Type Node Reference"))),
+                        "expression": prop(t.component_cyclic("Expression")),
+                    }))),
+                    "expression": prop(t.component_cyclic("Expression")),
+                })),
+                "change context": tstate(t.group({
+                    "new context": prop(t.component("Selection")),
+                    "expression": prop(t.component_cyclic("Expression")),
+                })),
+                "implement me": tstate(t.text_local(text('single line'))),
+                "selection deprecated": tstate(t.component("Selection")),
+                "unreachable": tstate(t.nothing()),
+                // "deprecated function": tstate(t.group({
+                //     "expression": prop(t.component_cyclic("Expression")),
+                //     "temp has parameters": prop(t.boolean()),
+                //     "temp resulting node": prop(t.optional(t.component("Type Node Reference"))),
+                // })),
+            })),
         })),
 
         "Selection": type(t.group({
@@ -206,7 +206,7 @@ export const $: g_.Types = types(
                 "argument": tstate(t.text_global("TBD")),
                 "call": tstate(t.group({
                     "source": prop(t.component_cyclic("Selection")),
-                    "context": prop(t.component_cyclic("Selection")),
+                    "context": prop(t.component_cyclic("Expression")),
                     "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
                 })),
                 "context": tstate(t.nothing()),

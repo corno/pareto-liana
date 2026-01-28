@@ -79,10 +79,10 @@ export const Type_Node = (
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process boolean", []),
-                sh.e.select_from_context_deprecated([]),
+                sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
-                    "deserializer": sh.e.select_from_parameter_deprecated("value deserializers", ["boolean"]),
+                    "deserializer": sh.e.select(sh.s.from_parameter("value deserializers", ["boolean"])),
                 })
             ))
             case 'component': return _p.ss($, ($) => sh.e.component.call(
@@ -94,15 +94,15 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select_from_context_deprecated([]),
+                sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
-                    "value deserializers": sh.e.select_from_parameter_deprecated("value deserializers", []),
+                    "value deserializers": sh.e.select(sh.s.from_parameter("value deserializers", [])),
                 }),
             ))
             case 'dictionary': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved dictionary" : "process unconstrained dictionary", []),
-                sh.e.select_from_context_deprecated([]),
+                sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                     // "value": sh.e.function_deprecated(
@@ -125,7 +125,7 @@ export const Type_Node = (
             ))
             case 'group': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process group", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                     // "properties": sh.e.function_deprecated(
@@ -162,7 +162,7 @@ export const Type_Node = (
             ))
             case 'list': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved list" : "process unconstrained list", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                     // "value": sh.e.function_deprecated(
@@ -185,28 +185,28 @@ export const Type_Node = (
             ))
             case 'nothing': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process nothing", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                 })
             ))
             case 'number': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process number", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
-                    "deserializer": sh.e.select_from_parameter_deprecated("value deserializers", _p.decide.state($, ($) => {
+                    "deserializer": sh.e.select(sh.s.from_parameter("value deserializers", _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'global': return _p.ss($, ($) => ["custom numbers", $.id])
                             case 'local': return _p.ss($, ($) => ["default number"])
                             default: return _p.au($[0])
                         }
-                    })),
+                    }))),
                 }),
             ))
             case 'optional': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process optional", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                     // "value": sh.e.function_deprecated(
@@ -231,7 +231,7 @@ export const Type_Node = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.component.call(
                         sh.s.from_variable_import(" i generic", "process derived reference", []),
-                        sh.e.select_from_context_deprecated([]),
+                                            sh.e.select(sh.s.from_context([])),
                         null,
                         _p.dictionary.literal({
                         })
@@ -245,7 +245,7 @@ export const Type_Node = (
                                 default: return _p.au($[0])
                             }
                         }), []),
-                        sh.e.select_from_context_deprecated([]),
+                                            sh.e.select(sh.s.from_context([])),
                         null,
                         _p.dictionary.literal({
                         })
@@ -255,7 +255,7 @@ export const Type_Node = (
             }))
             case 'state': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved state" : "process unconstrained state", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                     // "states": sh.e.dictionary_literal(
@@ -291,7 +291,7 @@ export const Type_Node = (
             ))
             case 'text': return _p.ss($, ($) => sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "process text", []),
-                sh.e.select_from_context_deprecated([]),
+                                    sh.e.select(sh.s.from_context([])),
                 null,
                 _p.dictionary.literal({
                 })

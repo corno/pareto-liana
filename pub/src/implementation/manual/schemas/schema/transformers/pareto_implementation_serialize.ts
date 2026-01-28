@@ -71,7 +71,7 @@ export const Schema = (
                 sh.s.from_variable_import("serialize", "Document", []),
                 sh.e.component.call(
                     sh.s.from_variable_import("marshall", id, []),
-                    sh.e.select_from_context_deprecated([]),
+                    sh.e.select(sh.s.from_context([])),
                     null,
                     null,
                 ),
