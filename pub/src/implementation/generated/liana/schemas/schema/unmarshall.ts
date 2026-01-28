@@ -2,39 +2,75 @@
 import * as _p from "pareto-core/dist/refiner"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/schema/unmarshall"
-export const Text_Type: t_signatures.Text_Type = ($,) => _p.unreachable_code_path()
-export const Number_Type: t_signatures.Number_Type = ($,) => _p.unreachable_code_path()
-export const Globals: t_signatures.Globals = ($,) => _p.unreachable_code_path()
-export const Type: t_signatures.Type = ($,) => _p.unreachable_code_path()
-export const Types: t_signatures.Types = ($,) => _p.unreachable_code_path()
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($,) => _p.unreachable_code_path()
-export const Schema: t_signatures.Schema = ($,) => _p.unreachable_code_path()
-export const Schema_Tree: t_signatures.Schema_Tree = ($,) => _p.unreachable_code_path()
-export const Type_Specification: t_signatures.Type_Specification = ($,) => _p.unreachable_code_path()
-export const Schemas: t_signatures.Schemas = ($,) => _p.unreachable_code_path()
-export const Imports: t_signatures.Imports = ($,) => _p.unreachable_code_path()
-export const Presence: t_signatures.Presence = ($,) => _p.unreachable_code_path()
-export const Dictionary: t_signatures.Dictionary = ($,) => _p.unreachable_code_path()
-export const Signatures: t_signatures.Signatures = ($,) => _p.unreachable_code_path()
-export const Resolvers: t_signatures.Resolvers = ($,) => _p.unreachable_code_path()
-export const Group: t_signatures.Group = ($,) => _p.unreachable_code_path()
-export const Type_Reference: t_signatures.Type_Reference = ($,) => _p.unreachable_code_path()
-export const Type_Node: t_signatures.Type_Node = ($,) => _p.unreachable_code_path()
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($,) => _p.unreachable_code_path()
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($,) => _p.unreachable_code_path()
-export const Signature_Parameters: t_signatures.Signature_Parameters = ($,) => _p.unreachable_code_path()
-export const Signature: t_signatures.Signature = ($,) => _p.unreachable_code_path()
-export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($,) => _p.unreachable_code_path()
-export const Lookup_Selection: t_signatures.Lookup_Selection = ($,) => _p.unreachable_code_path()
-export const Constraint: t_signatures.Constraint = ($,) => _p.unreachable_code_path()
-export const Option_Constraints: t_signatures.Option_Constraints = ($,) => _p.unreachable_code_path()
-export const Property_Constraints: t_signatures.Property_Constraints = ($,) => _p.unreachable_code_path()
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($,) => _p.unreachable_code_path()
-export const Property_Constraint: t_signatures.Property_Constraint = ($,) => _p.unreachable_code_path()
-export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($,) => _p.unreachable_code_path()
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($,) => _p.unreachable_code_path()
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($,) => _p.unreachable_code_path()
-export const Benchmark: t_signatures.Benchmark = ($,) => _p.unreachable_code_path()
-export const Node_Resolver: t_signatures.Node_Resolver = ($,) => _p.unreachable_code_path()
-export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($,) => _p.unreachable_code_path()
-export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = ($,) => _p.unreachable_code_path()
+export const Text_Type: t_signatures.Text_Type = ($) => _p.unreachable_code_path(
+)
+export const Number_Type: t_signatures.Number_Type = ($) => _p.unreachable_code_path(
+)
+export const Globals: t_signatures.Globals = ($) => _p.unreachable_code_path(
+)
+export const Type: t_signatures.Type = ($) => _p.unreachable_code_path(
+)
+export const Types: t_signatures.Types = ($) => _p.unreachable_code_path(
+)
+export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => _p.unreachable_code_path(
+)
+export const Schema: t_signatures.Schema = ($) => _p.unreachable_code_path(
+)
+export const Schema_Tree: t_signatures.Schema_Tree = ($) => _p.unreachable_code_path(
+)
+export const Type_Specification: t_signatures.Type_Specification = ($) => _p.unreachable_code_path(
+)
+export const Schemas: t_signatures.Schemas = ($) => _p.unreachable_code_path(
+)
+export const Imports: t_signatures.Imports = ($) => _p.unreachable_code_path(
+)
+export const Presence: t_signatures.Presence = ($) => _p.unreachable_code_path(
+)
+export const Dictionary: t_signatures.Dictionary = ($) => _p.unreachable_code_path(
+)
+export const Signatures: t_signatures.Signatures = ($) => _p.unreachable_code_path(
+)
+export const Resolvers: t_signatures.Resolvers = ($) => _p.unreachable_code_path(
+)
+export const Group: t_signatures.Group = ($) => _p.unreachable_code_path(
+)
+export const Type_Reference: t_signatures.Type_Reference = ($) => _p.unreachable_code_path(
+)
+export const Type_Node: t_signatures.Type_Node = ($) => _p.unreachable_code_path(
+)
+export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => _p.unreachable_code_path(
+)
+export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => _p.unreachable_code_path(
+)
+export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => _p.unreachable_code_path(
+)
+export const Signature: t_signatures.Signature = ($) => _p.unreachable_code_path(
+)
+export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => _p.unreachable_code_path(
+)
+export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => _p.unreachable_code_path(
+)
+export const Constraint: t_signatures.Constraint = ($) => _p.unreachable_code_path(
+)
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.unreachable_code_path(
+)
+export const Property_Constraints: t_signatures.Property_Constraints = ($) => _p.unreachable_code_path(
+)
+export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($) => _p.unreachable_code_path(
+)
+export const Property_Constraint: t_signatures.Property_Constraint = ($) => _p.unreachable_code_path(
+)
+export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => _p.unreachable_code_path(
+)
+export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => _p.unreachable_code_path(
+)
+export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => _p.unreachable_code_path(
+)
+export const Benchmark: t_signatures.Benchmark = ($) => _p.unreachable_code_path(
+)
+export const Node_Resolver: t_signatures.Node_Resolver = ($) => _p.unreachable_code_path(
+)
+export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($) => _p.unreachable_code_path(
+)
+export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = ($) => _p.unreachable_code_path(
+)

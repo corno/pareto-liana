@@ -6,7 +6,15 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 import * as t_out from "../../../../../interface/generated/liana/schemas/module/data/unresolved"
 
 import * as v_schema from "../schema/migrate_boilerplate"
-export const Module: t_signatures.Module = ($,) => ({
-    'omit (de)serializer': _p.deprecated_cc($['omit (de)serializer'], ($,) => $),
-    'schema tree': _p.deprecated_cc($['schema tree'], ($,) => v_schema.Schema_Tree($)),
+export const Module: t_signatures.Module = ($) => ({
+    'omit (de)serializer': _p.deprecated_cc(
+        $['omit (de)serializer'], 
+        ($) => $
+    ),
+    'schema tree': _p.deprecated_cc(
+        $['schema tree'], 
+        ($) => v_schema.Schema_Tree(
+            $
+        )
+    ),
 })
