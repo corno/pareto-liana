@@ -15,6 +15,10 @@ export namespace Relative_Location_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -22,6 +26,10 @@ export namespace Relative_Location_ {
 export type Relative_Location_ = (
     context: Relative_Location_.I,
     abort: _pi.Abort<Relative_Location_.E>,
+    parameters: {
+        readonly 'document resource identifier': Relative_Location_.P.document_resource_identifier
+        readonly 'indentation': Relative_Location_.P.indentation
+    },
 ) => Relative_Location_.O
 
 export namespace Location_ {
@@ -34,6 +42,10 @@ export namespace Location_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -41,6 +53,10 @@ export namespace Location_ {
 export type Location_ = (
     context: Location_.I,
     abort: _pi.Abort<Location_.E>,
+    parameters: {
+        readonly 'document resource identifier': Location_.P.document_resource_identifier
+        readonly 'indentation': Location_.P.indentation
+    },
 ) => Location_.O
 
 export namespace Range_ {
@@ -53,6 +69,10 @@ export namespace Range_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -60,6 +80,10 @@ export namespace Range_ {
 export type Range_ = (
     context: Range_.I,
     abort: _pi.Abort<Range_.E>,
+    parameters: {
+        readonly 'document resource identifier': Range_.P.document_resource_identifier
+        readonly 'indentation': Range_.P.indentation
+    },
 ) => Range_.O
 
 export namespace Errors_ {
@@ -72,6 +96,10 @@ export namespace Errors_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -79,6 +107,10 @@ export namespace Errors_ {
 export type Errors_ = (
     context: Errors_.I,
     abort: _pi.Abort<Errors_.E>,
+    parameters: {
+        readonly 'document resource identifier': Errors_.P.document_resource_identifier
+        readonly 'indentation': Errors_.P.indentation
+    },
 ) => Errors_.O
 
 export { 

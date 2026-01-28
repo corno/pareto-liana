@@ -106,11 +106,11 @@ export const Type_Node = (
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'boolean': return _p.ss($, ($) => sh.e.state_literal(
+        case 'boolean': return _p.ss($, ($) => sh.e.state.literal(
             "text",
             sh.e.group({
-                "delimiter": sh.e.state_literal("none", sh.e.null_()),
-                "value": sh.e.call(
+                "delimiter": sh.e.state.literal("none", sh.e.nothing()),
+                "value": sh.e.component.call(
                     sh.s.from_variable_import("serialize boolean", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     null,
@@ -118,7 +118,7 @@ export const Type_Node = (
                 ),
             })
         ))
-        case 'component': return _p.ss($, ($) => sh.e.call(
+        case 'component': return _p.ss($, ($) => sh.e.component.call(
             _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
@@ -131,9 +131,9 @@ export const Type_Node = (
             null,
             null,
         ))
-        case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
+        case 'dictionary': return _p.ss($, ($) => sh.e.state.literal(
             "dictionary",
-            sh.e.dictionary_map(
+            sh.e.dictionary.map(
                 sh.s.from_context([]),
                 Type_Node(
                     $.node,
@@ -149,11 +149,11 @@ export const Type_Node = (
                 )
             )
         ))
-        case 'group': return _p.ss($, ($) => sh.e.state_literal(
+        case 'group': return _p.ss($, ($) => sh.e.state.literal(
             "group",
-            sh.e.state_literal(
+            sh.e.state.literal(
                 "verbose",
-                sh.e.dictionary_literal($.__d_map(($, id) => sh.e.change_context(
+                sh.e.dictionary.literal($.__d_map(($, id) => sh.e.change_context(
                     sh.s.from_context([id]),
                     Type_Node(
                         $.node,
@@ -185,9 +185,9 @@ export const Type_Node = (
                 }
             )
 
-            return sh.e.state_literal(
+            return sh.e.state.literal(
                 "list",
-                sh.e.list_map(
+                sh.e.list.map(
                     sh.s.from_context($.result.__decide(
                         ($) => ["list"],
                         () => []
@@ -202,12 +202,12 @@ export const Type_Node = (
                 )
             )
         })
-        case 'nothing': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
-        case 'number': return _p.ss($, ($) => sh.e.state_literal(
+        case 'nothing': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
+        case 'number': return _p.ss($, ($) => sh.e.state.literal(
             "text",
             sh.e.group({
-                "delimiter": sh.e.state_literal("none", sh.e.null_()),
-                "value": sh.e.call(
+                "delimiter": sh.e.state.literal("none", sh.e.nothing()),
+                "value": sh.e.component.call(
                     sh.s.from_variable_import("serialize number", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
                     null,
@@ -215,11 +215,11 @@ export const Type_Node = (
                 )
             })
         ))
-        case 'optional': return _p.ss($, ($) => sh.e.state_literal(
+        case 'optional': return _p.ss($, ($) => sh.e.state.literal(
             "optional",
-            sh.e.decide_optional(
+            sh.e.decide.optional(
                 sh.s.from_context([]),
-                sh.e.state_literal(
+                sh.e.state.literal(
                     "set",
                     Type_Node(
                         $,
@@ -234,9 +234,9 @@ export const Type_Node = (
                         }
                     ),
                 ),
-                sh.e.state_literal(
+                sh.e.state.literal(
                     "not set",
-                    sh.e.null_()
+                    sh.e.nothing()
                 ),
                 sh.type_node_reference(
                     "out",
@@ -246,20 +246,20 @@ export const Type_Node = (
             )))
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
-                case 'derived': return _p.ss($, ($) => sh.e.state_literal("nothing", sh.e.null_()))
-                case 'selected': return _p.ss($, ($) => sh.e.state_literal("text", sh.e.group({
-                    "delimiter": sh.e.state_literal("backtick", sh.e.null_()),
-                    "value": sh.e.select_from_context_deprecated(["id"]),
+                case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
+                case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group({
+                    "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
+                    "value": sh.e.text.select(sh.s.from_context(["id"])),
                 })))
                 default: return _p.au($[0])
             }
         }))
-        case 'state': return _p.ss($, ($) => sh.e.state_literal(
+        case 'state': return _p.ss($, ($) => sh.e.state.literal(
             "state",
-            sh.e.decide_state(
+            sh.e.decide.state(
                 sh.s.from_context([]),
                 $.__d_map(($, id) => sh.e.group({
-                    "option": sh.e.text_literal(id, 'identifier'),
+                    "option": sh.e.text.literal(id, 'identifier'),
                     "value": Type_Node(
                         $.node,
                         {
@@ -280,11 +280,11 @@ export const Type_Node = (
                 ),
             )
         ))
-        case 'text': return _p.ss($, ($) => sh.e.state_literal(
+        case 'text': return _p.ss($, ($) => sh.e.state.literal(
             "text",
             sh.e.group({
-                "delimiter": sh.e.state_literal("quote", sh.e.null_()),
-                "value": sh.e.select_from_context_deprecated([]),
+                "delimiter": sh.e.state.literal("quote", sh.e.nothing()),
+                "value": sh.e.text.select(sh.s.from_context([])),
             })
         ))
         default: return _p.au($[0])

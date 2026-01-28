@@ -65,19 +65,19 @@ export const Schema = (
             sh.type_reference("signatures", id),
             true,
             false,
-            false,
-            sh.e.call(
+            true,
+            sh.e.component.call(
                 sh.s.from_variable_import("unmarshall", id, []),
-                sh.e.call(
+                sh.e.component.call(
                     sh.s.from_variable_import("deserialize", "Document", []),
                     sh.e.select_from_context_deprecated([]),
-                    null,
+                    sh.e.implement_me("SFDSF"),
                     null,
                 ),
                 null,
                 {
-                    "document resource identifier": sh.e.text_literal("FIXME URI", 'freeform'),
-                    "indentation": sh.e.integer(4)
+                    "document resource identifier": sh.e.select_from_parameter_deprecated("document resource identifier", []),
+                    "indentation": sh.e.select_from_parameter_deprecated("indentation", [])
                 }
             )
         )),

@@ -113,9 +113,9 @@ export const Optional_Value_Initialization = (
     $p: null,
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'not set': return _p.ss($, ($) => sh.e.not_set())
+        case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
         case 'selection': return _p.ss($, ($) => sh.e.select_deprecated(Possible_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
-        case 'set': return _p.ss($, ($) => sh.e.set(sh.e.select_deprecated(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) }))))
+        case 'set': return _p.ss($, ($) => sh.e.optional.set(sh.e.select_deprecated(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) }))))
         default: return _p.au($[0])
     }
 })
@@ -242,7 +242,7 @@ export const Option_Constraints = (
     [],
     op_pad_dictionary_identifiers($, { 'prefix': "c ", 'suffix': "" }).__d_map(($) => sh.variable(null, _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'assert is set': return _p.ss($, ($) => sh.e.decide_optional(
+            case 'assert is set': return _p.ss($, ($) => sh.e.decide.optional(
                 Possible_Value_Selection($, { 'tail': () => _p.list.literal([]) }),
                 sh.e.select_from_context_deprecated([]),
                 sh.e.implement_me("assert is set"),
@@ -264,7 +264,7 @@ export const Node_Resolver = (
     switch ($[0]) {
         case 'number': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
         case 'boolean': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
-        case 'nothing': return _p.ss($, ($) => sh.e.null_())
+        case 'nothing': return _p.ss($, ($) => sh.e.nothing())
         case 'reference': return _p.ss($, ($) => sh.e.select_deprecated(_p.decide.state($.type, ($): d_out.Selection => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => Guaranteed_Value_Selection($.value, { 'tail': () => _p.list.literal([]) }))
@@ -307,7 +307,7 @@ export const Node_Resolver = (
             }
         })))
         case 'text': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
-        case 'component': return _p.ss($, ($) => sh.e.call(
+        case 'component': return _p.ss($, ($) => sh.e.component.call(
             _p.decide.state($.location, ($) => {
                 switch ($[0]) {
                     case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.id}`, `r ${$.type.id}`, []))
@@ -339,8 +339,8 @@ export const Node_Resolver = (
                         "lookups": $.lookups.__decide(
                             ($) => sh.e.group($.__d_map(($) => _p.decide.state($, ($) => {
                                 switch ($[0]) {
-                                    case 'empty stack': return _p.ss($, ($) => sh.e.list_literal([]))
-                                    case 'not set': return _p.ss($, ($) => sh.e.not_set())
+                                    case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
+                                    case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
                                     case 'selection': return _p.ss($, ($) => sh.e.select_deprecated(Lookup_Selection($, {})))
                                     case 'stack': return _p.ss($, ($) => sh.e.implement_me("stack")) // quite some work
                                     default: return _p.au($[0])
@@ -365,7 +365,7 @@ export const Node_Resolver = (
                 }),
                 () => _p.dictionary.literal({})
             ),
-            sh.e.call(
+            sh.e.component.call(
                 sh.s.from_variable_import(" i generic", "resolve dictionary", []),
                 sh.e.select_from_context_deprecated([]),
                 null,
@@ -436,7 +436,7 @@ export const Node_Resolver = (
             {},
             sh.e.group($.__d_map(($, id) => sh.e.select_from_variable_deprecated(`p ${id}`, [])))
         ))
-        case 'list': return _p.ss($, ($) => sh.e.list_map(
+        case 'list': return _p.ss($, ($) => sh.e.list.map(
             sh.s.from_context(["list"]),
             sh.e.change_context(
                 sh.s.from_context(["element"]),
@@ -454,7 +454,7 @@ export const Node_Resolver = (
                 )
             )
         ))
-        case 'optional': return _p.ss($, ($) => sh.e.optional_map(
+        case 'optional': return _p.ss($, ($) => sh.e.optional.map(
             sh.s.from_context([]),
             Option_Constraints(
                 $.constraints,
@@ -474,9 +474,9 @@ export const Node_Resolver = (
                 }
             )
         ))
-        case 'state': return _p.ss($, ($) => sh.e.decide_state(
+        case 'state': return _p.ss($, ($) => sh.e.decide.state(
             sh.s.from_context(['state']),
-            $.states.__d_map(($, id) => sh.e.state_literal(id, Option_Constraints(
+            $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
                 $.constraints,
                 {
                     'sub': () => Node_Resolver(

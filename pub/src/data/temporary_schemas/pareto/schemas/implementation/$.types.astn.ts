@@ -100,6 +100,7 @@ export const $: g_.Types = types(
                         "true": tstate(t.nothing()),
                     })),
                     "not": tstate(t.component_cyclic("Selection")),
+                    "select": tstate(t.component("Selection")),
                 })),
                 "component": tstate(t.state({
                     "call": tstate(t.group({
@@ -127,13 +128,16 @@ export const $: g_.Types = types(
                 "nothing": tstate(t.nothing()),
                 "number": tstate(t.state({
                     "approximation": tstate(t.state({
-                        "literal": tstate(t.number_local(n.approximation(10)))
+                        "literal": tstate(t.number_local(n.approximation(10))),
+                        "select": tstate(t.component("Selection")),
                     })),
                     "integer": tstate(t.state({
-                        "literal": tstate(t.number_local(n.integer(null)))
+                        "literal": tstate(t.number_local(n.integer(null))),
+                        "select": tstate(t.component("Selection")),
                     })),
                     "natural": tstate(t.state({
-                        "literal": tstate(t.number_local(n.natural(null)))
+                        "literal": tstate(t.number_local(n.natural(null))),
+                        "select": tstate(t.component("Selection")),
                     })),
                 })),
                 "optional": tstate(t.state({
@@ -159,7 +163,8 @@ export const $: g_.Types = types(
                             "freeform": tstate(t.nothing()),
                         })),
                         "value": prop(t.text_local(text('single line'))),
-                    }))
+                    })),
+                    "select": tstate(t.component("Selection")),
                 })),
             })),
             "decide": tstate(t.group({

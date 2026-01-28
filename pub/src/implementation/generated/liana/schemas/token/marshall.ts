@@ -9,7 +9,7 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 export const Relative_Location: t_signatures.Relative_Location = ($,) => ['group', ['verbose', _p.dictionary.literal(({
-    'uri': _p.deprecated_cc($['uri'], ($,) => ['text', ({
+    'document resource identifier': _p.deprecated_cc($['document resource identifier'], ($,) => ['text', ({
         'delimiter': ['quote', null],
         'value': $,
     })]),

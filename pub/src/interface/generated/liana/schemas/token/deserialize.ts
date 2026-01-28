@@ -15,6 +15,10 @@ export namespace Relative_Location_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -22,6 +26,10 @@ export namespace Relative_Location_ {
 export type Relative_Location_ = (
     context: Relative_Location_.I,
     abort: _pi.Abort<Relative_Location_.E>,
+    parameters: {
+        readonly 'document resource identifier': Relative_Location_.P.document_resource_identifier
+        readonly 'indentation': Relative_Location_.P.indentation
+    },
 ) => Relative_Location_.O
 
 export namespace Location_ {
@@ -34,6 +42,10 @@ export namespace Location_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -41,6 +53,10 @@ export namespace Location_ {
 export type Location_ = (
     context: Location_.I,
     abort: _pi.Abort<Location_.E>,
+    parameters: {
+        readonly 'document resource identifier': Location_.P.document_resource_identifier
+        readonly 'indentation': Location_.P.indentation
+    },
 ) => Location_.O
 
 export namespace Range_ {
@@ -53,6 +69,10 @@ export namespace Range_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -60,6 +80,10 @@ export namespace Range_ {
 export type Range_ = (
     context: Range_.I,
     abort: _pi.Abort<Range_.E>,
+    parameters: {
+        readonly 'document resource identifier': Range_.P.document_resource_identifier
+        readonly 'indentation': Range_.P.indentation
+    },
 ) => Range_.O
 
 export namespace Whitespace_ {
@@ -72,6 +96,10 @@ export namespace Whitespace_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -79,6 +107,10 @@ export namespace Whitespace_ {
 export type Whitespace_ = (
     context: Whitespace_.I,
     abort: _pi.Abort<Whitespace_.E>,
+    parameters: {
+        readonly 'document resource identifier': Whitespace_.P.document_resource_identifier
+        readonly 'indentation': Whitespace_.P.indentation
+    },
 ) => Whitespace_.O
 
 export namespace Trivia_ {
@@ -91,6 +123,10 @@ export namespace Trivia_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -98,6 +134,10 @@ export namespace Trivia_ {
 export type Trivia_ = (
     context: Trivia_.I,
     abort: _pi.Abort<Trivia_.E>,
+    parameters: {
+        readonly 'document resource identifier': Trivia_.P.document_resource_identifier
+        readonly 'indentation': Trivia_.P.indentation
+    },
 ) => Trivia_.O
 
 export namespace Delimited_Text_ {
@@ -110,6 +150,10 @@ export namespace Delimited_Text_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -117,6 +161,10 @@ export namespace Delimited_Text_ {
 export type Delimited_Text_ = (
     context: Delimited_Text_.I,
     abort: _pi.Abort<Delimited_Text_.E>,
+    parameters: {
+        readonly 'document resource identifier': Delimited_Text_.P.document_resource_identifier
+        readonly 'indentation': Delimited_Text_.P.indentation
+    },
 ) => Delimited_Text_.O
 
 export namespace Text_Type_ {
@@ -129,6 +177,10 @@ export namespace Text_Type_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -136,6 +188,10 @@ export namespace Text_Type_ {
 export type Text_Type_ = (
     context: Text_Type_.I,
     abort: _pi.Abort<Text_Type_.E>,
+    parameters: {
+        readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
+        readonly 'indentation': Text_Type_.P.indentation
+    },
 ) => Text_Type_.O
 
 export namespace Token_Type_ {
@@ -148,6 +204,10 @@ export namespace Token_Type_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -155,6 +215,10 @@ export namespace Token_Type_ {
 export type Token_Type_ = (
     context: Token_Type_.I,
     abort: _pi.Abort<Token_Type_.E>,
+    parameters: {
+        readonly 'document resource identifier': Token_Type_.P.document_resource_identifier
+        readonly 'indentation': Token_Type_.P.indentation
+    },
 ) => Token_Type_.O
 
 export namespace Annotated_Token_ {
@@ -167,6 +231,10 @@ export namespace Annotated_Token_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -174,6 +242,10 @@ export namespace Annotated_Token_ {
 export type Annotated_Token_ = (
     context: Annotated_Token_.I,
     abort: _pi.Abort<Annotated_Token_.E>,
+    parameters: {
+        readonly 'document resource identifier': Annotated_Token_.P.document_resource_identifier
+        readonly 'indentation': Annotated_Token_.P.indentation
+    },
 ) => Annotated_Token_.O
 
 export namespace Tokenizer_Result_ {
@@ -186,6 +258,10 @@ export namespace Tokenizer_Result_ {
     
     export namespace P {
         
+        export type document_resource_identifier = string
+        
+        export type indentation = number
+        
     }
     
 }
@@ -193,6 +269,10 @@ export namespace Tokenizer_Result_ {
 export type Tokenizer_Result_ = (
     context: Tokenizer_Result_.I,
     abort: _pi.Abort<Tokenizer_Result_.E>,
+    parameters: {
+        readonly 'document resource identifier': Tokenizer_Result_.P.document_resource_identifier
+        readonly 'indentation': Tokenizer_Result_.P.indentation
+    },
 ) => Tokenizer_Result_.O
 
 export { 

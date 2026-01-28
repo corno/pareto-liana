@@ -10,9 +10,9 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 const location = sh.e.group({
-    "file": sh.e.text_literal("implement me", 'freeform'),
-    "line": sh.e.integer(42),
-    "column": sh.e.integer(42),
+    "file": sh.e.text.literal("implement me", 'freeform'),
+    "line": sh.e.number.integer_literal(42),
+    "column": sh.e.number.integer_literal(42),
 })
 
 export const Schema = (
@@ -87,7 +87,7 @@ export const Type_Node = (
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
-            case 'component': return _p.ss($, ($) => sh.e.call(
+            case 'component': return _p.ss($, ($) => sh.e.component.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.id}`, $.type.id, []))
@@ -105,7 +105,7 @@ export const Type_Node = (
                 return $p.constrained
                     ? sh.e.group({
                         "location": location,
-                        "dictionary": sh.e.dictionary_map(
+                        "dictionary": sh.e.dictionary.map(
                             sh.s.from_context([]),
                             sh.e.group({
                                 "entry": Type_Node(
@@ -127,7 +127,7 @@ export const Type_Node = (
                             })
                         )
                     })
-                    : sh.e.dictionary_map(
+                    : sh.e.dictionary.map(
                         sh.s.from_context([]),
                         Type_Node(
                             $.node,
@@ -165,7 +165,7 @@ export const Type_Node = (
                 return $p.constrained
                     ? sh.e.group({
                         "location": location,
-                        "list": sh.e.list_map(
+                        "list": sh.e.list.map(
                             sh.s.from_context(
                                 $.result.__decide(
                                     ($) => ["list"],
@@ -201,7 +201,7 @@ export const Type_Node = (
                             })
                         )
                     })
-                    : sh.e.list_map(
+                    : sh.e.list.map(
                         sh.s.from_context([]),
                         Type_Node(
                             $.node,
@@ -219,9 +219,9 @@ export const Type_Node = (
                     )
 
             })
-            case 'nothing': return _p.ss($, ($) => sh.e.null_())
+            case 'nothing': return _p.ss($, ($) => sh.e.nothing())
             case 'number': return _p.ss($, ($) => sh.e.select_from_context_deprecated([]))
-            case 'optional': return _p.ss($, ($) => sh.e.optional_map(
+            case 'optional': return _p.ss($, ($) => sh.e.optional.map(
                 sh.s.from_context([]),
                 Type_Node(
                     $,
@@ -239,7 +239,7 @@ export const Type_Node = (
             ))
             case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.e.null_())
+                    case 'derived': return _p.ss($, ($) => sh.e.nothing())
                     case 'selected': return _p.ss($, ($) => {
                         const tn = sh.e.select_from_context_deprecated(["id"])
 
@@ -254,9 +254,9 @@ export const Type_Node = (
                 }
             }))
             case 'state': return _p.ss($, ($) => {
-                const tn = sh.e.decide_state(
+                const tn = sh.e.decide.state(
                     sh.s.from_context([]),
-                    $.__d_map(($, id) => sh.e.state_literal(id, Type_Node(
+                    $.__d_map(($, id) => sh.e.state.literal(id, Type_Node(
                         $.node,
                         {
                             'type name': $p['type name'],

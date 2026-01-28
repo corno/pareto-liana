@@ -90,6 +90,7 @@ export const $: g_.Resolvers = resolvers(
                         "true": state(r.nothing()),
                     })),
                     "not": state(r.component("Selection", {}, {})),
+                    "select": state(r.component("Selection", {}, {})),
                 })),
                 "component": state(r.state({
                     "call": state(r.group({
@@ -117,13 +118,16 @@ export const $: g_.Resolvers = resolvers(
                 "nothing": state(r.nothing()),
                 "number": state(r.state({
                     "approximation": state(r.state({
-                        "literal": state(r.number())
+                        "literal": state(r.number()),
+                        "select": state(r.component("Selection", {}, {})),
                     })),
                     "integer": state(r.state({
-                        "literal": state(r.number())
+                        "literal": state(r.number()),
+                        "select": state(r.component("Selection", {}, {})),
                     })),
                     "natural": state(r.state({
-                        "literal": state(r.number())
+                        "literal": state(r.number()),
+                        "select": state(r.component("Selection", {}, {})),
                     })),
                 })),
                 "optional": state(r.state({
@@ -149,7 +153,8 @@ export const $: g_.Resolvers = resolvers(
                             "freeform": state(r.nothing()),
                         }),
                         "value": r.text(),
-                    }))
+                    })),
+                    "select": state(r.component("Selection", {}, {})),
                 })),
             })),
             "decide": state(r.group({
