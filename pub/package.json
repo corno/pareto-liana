@@ -13,7 +13,7 @@
     "pareto": "file:../../pareto/pub",
     "pareto-core-dev": "^0.12.4",
     "pareto-core-shorthands": "^0.2.11",
-    "pareto-fountain-pen": "^0.4.8",
+    "pareto-fountain-pen": "^0.4.9",
     "pareto-host-nodejs": "^0.2.12",
     "pareto-resources": "^0.2.16"
   }
