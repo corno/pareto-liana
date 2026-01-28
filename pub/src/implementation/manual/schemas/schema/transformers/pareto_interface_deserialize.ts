@@ -37,6 +37,9 @@ export const Schema = (
         ),
         sh.t.component_imported("generic", "Error"),
         null,
-        null,
+        {
+            "document resource identifier": sh.t.text(),
+            "indentation": sh.t.natural(),
+        },
     )),
 )

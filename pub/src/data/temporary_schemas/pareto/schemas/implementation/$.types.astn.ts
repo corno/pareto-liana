@@ -105,8 +105,8 @@ export const $: g_.Types = types(
                     "call": tstate(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "context": prop(t.component_cyclic("Expression")),
+                        "abort": prop(t.optional(t.component_cyclic("Expression"))),
                         "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
-                        "abort": prop(t.boolean())
                     })),
                 })),
                 "dictionary": tstate(t.state({

@@ -96,7 +96,7 @@ export const $: g_.Types = types(
         })),
 
         "Relative Location": type(t.group({
-            "uri": prop(t.text_local(text('single line'))),
+            "document resource identifier": prop(t.text_local(text('single line'))),
             "line": prop(t.number_local(n.natural(null))),
             "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),

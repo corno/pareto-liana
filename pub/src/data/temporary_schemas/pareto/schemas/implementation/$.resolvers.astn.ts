@@ -96,7 +96,7 @@ export const $: g_.Resolvers = resolvers(
                         "source": r.component("Selection", {}, {}),
                         "context": r.component("Expression", {}, {}),
                         "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
-                        "abort": r.boolean()
+                        "abort": r.optional(r.component("Expression", {}, {}))
                     })),
                 })),
                 "dictionary": state(r.state({

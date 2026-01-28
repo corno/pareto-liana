@@ -316,7 +316,7 @@ export const Node_Resolver = (
                 }
             }),
             sh.e.select_from_context_deprecated([]),
-            false,
+            null,
             {
                 "location 2 string": sh.e.select_from_variable_deprecated("l2s", []),
                 "parameters": $.arguments.__decide(
@@ -368,7 +368,7 @@ export const Node_Resolver = (
             sh.e.call(
                 sh.s.from_variable_import(" i generic", "resolve dictionary", []),
                 sh.e.select_from_context_deprecated([]),
-                false,
+                null,
                 {
                     //"denseness benchmark": e.not_set(),
                     // "map": sh.e.function_deprecated(true, sh.e.block(

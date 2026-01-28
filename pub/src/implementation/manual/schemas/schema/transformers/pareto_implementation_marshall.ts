@@ -113,8 +113,8 @@ export const Type_Node = (
                 "value": sh.e.call(
                     sh.s.from_variable_import("serialize boolean", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
-                    false,
-                    {}
+                    null,
+                    null,
                 ),
             })
         ))
@@ -128,8 +128,8 @@ export const Type_Node = (
                 }
             }),
             sh.e.select_from_context_deprecated([]),
-            false,
-            {}
+            null,
+            null,
         ))
         case 'dictionary': return _p.ss($, ($) => sh.e.state_literal(
             "dictionary",
@@ -210,8 +210,8 @@ export const Type_Node = (
                 "value": sh.e.call(
                     sh.s.from_variable_import("serialize number", "serialize", []),
                     sh.e.select_from_context_deprecated([]),
-                    false,
-                    {}
+                    null,
+                    null,
                 )
             })
         ))

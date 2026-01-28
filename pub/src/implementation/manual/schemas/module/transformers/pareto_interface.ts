@@ -66,7 +66,12 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                 {
                     "Error": sh.type.data(sh.t.state({
                         "tbd": sh.t.nothing()
-                    }))
+                    })),
+
+                    // "Parameters": sh.type.data(sh.t.group({
+                    //     "document resource identifier": sh.t.text(),
+                    //     "indentation": sh.t.natural(),
+                    // })),
                 }
             ),
 
