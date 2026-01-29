@@ -12,7 +12,7 @@ import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/pa
 export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_items($) !== 1
     ? _p.optional.not_set()
     // there is an element, so this statement will always return a 'set'
-    : $.__get_possible_item_at(0)
+    : $.__deprecated_get_possible_item_at(0)
 
 type ID_Value_Pair<T> = {
     'id': string,
@@ -417,7 +417,7 @@ export const Node_Type = (
                             //     if (elements.__get_length() > 2) {
                             //         return ['more than 2 elements', range]
                             //     }
-                            //     const first = elements.__get_possible_item_at(0)
+                            //     const first = elements.__deprecated_get_possible_item_at(0)
                             //     return first.__decide<d_out.State_Status>(
                             //         ($) => {
                             //             if ($.value.type[0] !== 'string') {
@@ -425,7 +425,7 @@ export const Node_Type = (
                             //             }
                             //             const state_name = $.value.type[1].value
                             //             const state_name_range = $.value.type[1].range
-                            //             return elements.__get_possible_item_at(1).__decide<d_out.State_Status>(
+                            //             return elements.__deprecated_get_possible_item_at(1).__decide<d_out.State_Status>(
                             //                 ($) => {
                             //                     const value = $.value
                             //                     return def.get_entry(state_name).__decide<d_out.State_Status>(

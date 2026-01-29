@@ -31,7 +31,10 @@ export const $: g_.Resolvers = resolvers(
                 }),
             })),
             "algorithms": r.dictionary(r.group({
-                "type": r.component("Type Reference", {}, {}),
+                "type": r.group({
+                    "import": r.text(),
+                    "type": r.text(),
+                }),
                 "expression": r.component("Expression", {}, {}),
                 "temp has abort": r.boolean(),
                 "temp has lookups": r.boolean(),
@@ -39,13 +42,11 @@ export const $: g_.Resolvers = resolvers(
             })),
         })),
 
-        "Type Reference": resolver(r.group({
-            "import": r.text(),
-            "type": r.text(),
-        })),
-
-        "Type Node Reference": resolver(r.group({
-            "type": r.component("Type Reference", {}, {}),
+        "Temp Type Node Reference": resolver(r.group({
+            "type": r.group({
+                "import": r.text(),
+                "type": r.text(),
+            }),
             "sub selection": r.list(r.state({
                 "dictionary": state(r.nothing()),
                 "group": state(r.text()),
@@ -60,19 +61,43 @@ export const $: g_.Resolvers = resolvers(
                 "type": r.state({
                     "boolean": state(r.group({
                         "source": r.component("Selection", {}, {}),
-                        "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                        "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "if false": r.component("Expression", {}, {}),
                         "if true": r.component("Expression", {}, {}),
                     })),
+                    "dictionary": state(r.state({
+                        "has entries": state(r.group({
+                            "dictionary": r.component("Selection", {}, {}),
+                            "if false": r.component("Expression", {}, {}),
+                            "if true": r.component("Expression", {}, {}),
+                        })),
+                    })),
+                    "list": state(r.state({
+                        "has first item": state(r.group({
+                            "list": r.component("Selection", {}, {}),
+                            "if false": r.component("Expression", {}, {}),
+                            "if true": r.component("Expression", {}, {}),
+                        })),
+                        "has last item": state(r.group({
+                            "list": r.component("Selection", {}, {}),
+                            "if false": r.component("Expression", {}, {}),
+                            "if true": r.component("Expression", {}, {}),
+                        })),
+                        "has items": state(r.group({
+                            "list": r.component("Selection", {}, {}),
+                            "if false": r.component("Expression", {}, {}),
+                            "if true": r.component("Expression", {}, {}),
+                        })),
+                    })),
                     "optional": state(r.group({
                         "source": r.component("Selection", {}, {}),
-                        "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                        "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "if not set": r.component("Expression", {}, {}),
                         "if set": r.component("Expression", {}, {}),
                     })),
                     "state": state(r.group({
                         "source": r.component("Selection", {}, {}),
-                        "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                        "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "type": r.state({
                             "partial": state(r.group({
                                 "cases": r.dictionary(r.component("Expression", {}, {})),
@@ -82,6 +107,12 @@ export const $: g_.Resolvers = resolvers(
                                 "cases": r.dictionary(r.component("Expression", {}, {})),
                             }))
                         }),
+                    })),
+                    "text": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
+                        "cases": r.dictionary(r.component("Expression", {}, {})),
+                        "default": r.component("Expression", {}, {}),
                     })),
                 }),
             })),
@@ -93,46 +124,94 @@ export const $: g_.Resolvers = resolvers(
                     })),
                     "not": state(r.component("Selection", {}, {})),
                     "copy": state(r.component("Selection", {}, {})),
-                })),
-                "component": state(r.state({
-                    "call": state(r.group({
-                        "source": r.component("Selection", {}, {}),
-                        "context": r.component("Expression", {}, {}),
-                        "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
-                        "abort": r.optional(r.component("Expression", {}, {}))
-                    })),
+                    "dictionary is empty": state(r.component("Selection", {}, {})),
+                    "list is empty": state(r.component("Selection", {}, {})),
                 })),
                 "dictionary": state(r.state({
+                    "filter": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "entry handler": r.component("Expression", {}, {})
+                    })),
+                    "from list": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "get id": r.component("Expression", {}, {}),
+                        "get entry": r.component("Expression", {}, {}),
+                        "abort": r.component("Expression", {}, {}),
+                    })),
                     "literal": state(r.dictionary(r.component("Expression", {}, {}))),
                     "map": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "entry handler": r.component("Expression", {}, {})
+                    })),
+                    "resolve": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "entry handler": r.component("Expression", {}, {})
                     })),
                 })),
                 "group": state(r.dictionary(r.component("Expression", {}, {}))),
                 "list": state(r.state({
+                    "filter": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "entry handler": r.component("Expression", {}, {})
+                    })),
+                    "from dictionary": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "get item": r.component("Expression", {}, {}),
+                    })),
                     "literal": state(r.list(r.component("Expression", {}, {}))),
                     "map": state(r.group({
                         "source": r.component("Selection", {}, {}),
                         "item handler": r.component("Expression", {}, {})
                     })),
+                    "map with state": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "initial state": r.component("Expression", {}, {}),
+                        "item handler": r.component("Expression", {}, {}),
+                        "update state": r.component("Expression", {}, {}),
+                        "wrap up": r.component("Expression", {}, {}),
+                    })),
+                    "reduce": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "initial state": r.component("Expression", {}, {}),
+                        "item handler": r.component("Expression", {}, {}),
+                    })),
+                    "reverse": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                    })),
                 })),
                 "nothing": state(r.nothing()),
                 "number": state(r.state({
                     "approximation": state(r.state({
-                        "literal": state(r.number()),
                         "copy": state(r.component("Selection", {}, {})),
+                        "literal": state(r.number()),
                     })),
                     "integer": state(r.state({
-                        "literal": state(r.number()),
                         "copy": state(r.component("Selection", {}, {})),
+                        "divide": state(r.group({
+                            "divident": r.component("Selection", {}, {}),
+                            "divisor": r.component("Selection", {}, {}),
+                            "abort": r.component("Expression", {}, {})
+                        })),
+                        "literal": state(r.number()),
                     })),
                     "natural": state(r.state({
-                        "literal": state(r.number()),
                         "copy": state(r.component("Selection", {}, {})),
+                        "literal": state(r.number()),
+                        "number of dictionary entries": state(r.group({
+                            "dictionary": r.component("Selection", {}, {})
+                        })),
+                        "number of list items": state(r.group({
+                            "list": r.component("Selection", {}, {})
+                        })),
+                        "source column": state(r.nothing()),
+                        "source line": state(r.nothing()),
                     })),
                 })),
                 "optional": state(r.state({
+                    "from boolean": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "get set": r.component("Expression", {}, {}),
+                    })),
                     "literal": state(r.state({
                         "not set": state(r.nothing()),
                         "set": state(r.component("Expression", {}, {})),
@@ -149,6 +228,7 @@ export const $: g_.Resolvers = resolvers(
                     })),
                 })),
                 "text": state(r.state({
+                    "copy": state(r.component("Selection", {}, {})),
                     "literal": state(r.group({
                         "type": r.state({
                             "identifier": state(r.nothing()),
@@ -156,19 +236,24 @@ export const $: g_.Resolvers = resolvers(
                         }),
                         "value": r.text(),
                     })),
-                    "copy": state(r.component("Selection", {}, {})),
+                    "source document": state(r.nothing()),
                 })),
             })),
+            "select": state(r.component("Selection", {}, {})),
             "special": state(r.state({
                 "abort": state(r.component("Expression", {}, {})),
+                "assert": state(r.group({
+                    "tester": r.component("Expression", {}, {}),
+                    "normal flow": r.component("Expression", {}, {}),
+                })),
                 "block": state(r.group({
                     "variables": r.dictionary(r.group({
-                        "type": r.optional(r.component("Type Node Reference", {}, {})),
+                        "type": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "expression": r.component("Expression", {}, {}),
                     })),
                     "temp ordered variables": r.list(r.group({
                         "name": r.text(),
-                        "type": r.optional(r.component("Type Node Reference", {}, {})),
+                        "type": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "expression": r.component("Expression", {}, {}),
                     })),
                     "expression": r.component("Expression", {}, {}),
@@ -178,47 +263,46 @@ export const $: g_.Resolvers = resolvers(
                     "expression": r.component("Expression", {}, {}),
                 })),
                 "implement me": state(r.text()),
-                "selection deprecated": state(r.component("Selection", {}, {})),
+                "iterate": state(r.group({
+                    "list": r.component("Selection", {}, {}),
+                    "handler": r.component("Expression", {}, {}),
+                })),
                 "unreachable": state(r.nothing()),
                 // "deprecated function": state(r.group({
                 //     "expression": r.component("Expression", {}, {}),
                 //     "temp has parameters": r.boolean(),
-                //     "temp resulting node": r.optional(r.component("Type Node Reference", {}, {})),
+                //     "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
                 // })),
             })),
         })),
 
-        "Selection": resolver(r.group({
-            "start": r.state({
-                "abort deprecated": state(r.nothing()),
-                "argument": state(r.text()),
-                "call": state(r.group({
-                    "source": r.component("Selection", {}, {}),
-                    "context": r.component("Expression", {}, {}),
-                    "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
-                })),
-                "context": state(r.nothing()),
-                "entry": state(r.group({
-                    "dictionary": r.component("Selection", {}, {}),
-                    "id": r.component("Selection", {}, {}),
-                    "abort handler": r.component("Abort Expression", {}, {}),
-                })),
-                "implement me": state(r.text()),
-                "parameter": state(r.text()),
-                "variable": state(r.state({
-                    "local": state(r.text()),
-                    "imported": state(r.group({
-                        "import": r.text(),
-                        "variable": r.text(),
+        "Selection": resolver(r.state({
+            "implement me": state(r.text()),
+            "regular": state(r.group({
+                "start": r.state({
+                    "call": state(r.group({
+                        "source": r.component("Selection", {}, {}),
+                        "context": r.component("Expression", {}, {}),
+                        "abort": r.optional(r.component("Expression", {}, {})),
+                        "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
                     })),
-                })),
-            }),
-            "tail": r.list(r.text()),
-        })),
-
-        "Abort Expression": resolver(r.state({
-            "current": state(r.nothing()),
-            "new": state(r.component("Expression", {}, {}))
+                    "context": state(r.nothing()),
+                    "entry": state(r.group({
+                        "dictionary": r.component("Selection", {}, {}),
+                        "id": r.component("Expression", {}, {}),
+                        "abort handler": r.component("Expression", {}, {}),
+                    })),
+                    "parameter": state(r.text()),
+                    "variable": state(r.state({
+                        "local": state(r.text()),
+                        "imported": state(r.group({
+                            "import": r.text(),
+                            "variable": r.text(),
+                        })),
+                    })),
+                }),
+                "tail": r.list(r.text()),
+            }))
         })),
 
     })

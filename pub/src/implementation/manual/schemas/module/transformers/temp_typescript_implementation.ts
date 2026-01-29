@@ -1,4 +1,5 @@
 import * as _p from 'pareto-core/dist/transformer'
+import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
 
 //FIXME, this one should be moved to pareto-targets
 
@@ -20,7 +21,7 @@ export const Module = ($: d_in.Module): d_out.Directory => {
             t_liana_to_pareto_implementation.Module($),
             ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'directory name ending with ts': return _p.ss($, ($) => _p.unreachable_code_path())
+                    case 'directory name ending with ts': return _p.ss($, ($) => _p_unreachable_code_path())
                     default: return _p.au($[0])
                 }
             })

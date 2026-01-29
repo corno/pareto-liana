@@ -1,6 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pdev from 'pareto-core-dev'
+import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -81,7 +82,7 @@ export const Schema = (
         {
             'separator': " ",
         },
-        () => _p.unreachable_code_path(),
+        () => _p_unreachable_code_path(),
     ),
     $.types.__d_map(($, id) => sh.algorithm(
         sh.type_reference("signatures", id),
@@ -110,26 +111,31 @@ export const Type_Node = (
             "text",
             sh.e.group({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
-                "value": sh.e.component.call(
-                    sh.s.from_variable_import("serialize boolean", "serialize", []),
-                    sh.e.select(sh.s.from_context([])),
-                    null,
-                    null,
-                ),
+                "value": sh.e.select(
+                    sh.s.call(
+                        sh.s.from_variable_import("serialize boolean", "serialize", []),
+                        sh.e.select(sh.s.from_context([])),
+                        null,
+                        null,
+                        [],
+                    )),
             })
         ))
-        case 'component': return _p.ss($, ($) => sh.e.component.call(
-            _p.decide.state($, ($) => {
-                switch ($[0]) {
-                    case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
-                    case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                    case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                    default: return _p.au($[0])
-                }
-            }),
-            sh.e.select(sh.s.from_context([])),
-            null,
-            null,
+        case 'component': return _p.ss($, ($) => sh.e.select(
+            sh.s.call(
+                _p.decide.state($, ($) => {
+                    switch ($[0]) {
+                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
+                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                        default: return _p.au($[0])
+                    }
+                }),
+                sh.e.select(sh.s.from_context([])),
+                null,
+                null,
+                [],
+            )
         ))
         case 'dictionary': return _p.ss($, ($) => sh.e.state.literal(
             "dictionary",
@@ -207,11 +213,14 @@ export const Type_Node = (
             "text",
             sh.e.group({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
-                "value": sh.e.component.call(
-                    sh.s.from_variable_import("serialize number", "serialize", []),
-                    sh.e.select(sh.s.from_context([])),
-                    null,
-                    null,
+                "value": sh.e.select(
+                    sh.s.call(
+                        sh.s.from_variable_import("serialize number", "serialize", []),
+                        sh.e.select(sh.s.from_context([])),
+                        null,
+                        null,
+                        [],
+                    )
                 )
             })
         ))

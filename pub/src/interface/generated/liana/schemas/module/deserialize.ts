@@ -17,7 +17,7 @@ export namespace Module_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -28,7 +28,7 @@ export type Module_ = (
     abort: _pi.Abort<Module_.E>,
     parameters: {
         readonly 'document resource identifier': Module_.P.document_resource_identifier
-        readonly 'indentation': Module_.P.indentation
+        readonly 'tab size': Module_.P.tab_size
     },
 ) => Module_.O
 

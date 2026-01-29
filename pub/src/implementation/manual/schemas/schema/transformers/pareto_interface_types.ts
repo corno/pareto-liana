@@ -1,6 +1,8 @@
 import * as _pdev from 'pareto-core-dev'
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
+import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
+import { _p_cc } from 'pareto-core/dist/change_context'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
@@ -39,7 +41,7 @@ export const Schema = (
                         ],
                     )
                 }),
-                " imports ": _p.deprecated_cc($, ($) => {
+                " imports ": _p_cc($, ($) => {
                     // const types = $p['what to generate']
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
                         $p.depth + 1 + $['schema set child']['up steps'],
@@ -75,7 +77,7 @@ export const Schema = (
             {
                 'separator': "",
             },
-            () => _p.unreachable_code_path(),
+            () => _p_unreachable_code_path(),
         ),
         $.types.__d_map(($) => sh.type.data(Type_Node(
             $.node,
@@ -232,7 +234,7 @@ export const Type_Node = (
                                     }))
                                     case 'resolved': return _p.ss($, ($) => sh.t.group(_p.dictionary.filter(
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Type_Node>>({
-                                            "entry": _p.optional.set(_p.deprecated_cc($, ($) => {
+                                            "entry": _p.optional.set(_p_cc($, ($) => {
                                                 return sh.t.reference(
                                                     Type_Reference(referent['type location']),
                                                     _p.list.nested_literal_old([

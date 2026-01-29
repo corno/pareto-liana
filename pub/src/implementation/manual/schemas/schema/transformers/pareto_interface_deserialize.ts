@@ -39,7 +39,7 @@ export const Schema = (
         null,
         {
             "document resource identifier": sh.t.text(),
-            "indentation": sh.t.natural(),
+            "tab size": sh.t.natural(),
         },
     )),
 )

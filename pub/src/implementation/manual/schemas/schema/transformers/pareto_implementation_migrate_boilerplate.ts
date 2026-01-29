@@ -1,6 +1,8 @@
 import * as _pi from 'pareto-core/dist/interface'
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pdev from 'pareto-core-dev'
+import { _p_cc } from 'pareto-core/dist/change_context'
+
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -87,18 +89,21 @@ export const Type_Node = (
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-            case 'component': return _p.ss($, ($) => sh.e.component.call(
-                _p.decide.state($, ($) => {
-                    switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.id}`, $.type.id, []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                        default: return _p.au($[0])
-                    }
-                }),
-                sh.e.select(sh.s.from_context([])),
-                null,
-                null
+            case 'component': return _p.ss($, ($) => sh.e.select(
+                sh.s.call(
+                    _p.decide.state($, ($) => {
+                        switch ($[0]) {
+                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.id}`, $.type.id, []))
+                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                            default: return _p.au($[0])
+                        }
+                    }),
+                    sh.e.select(sh.s.from_context([])),
+                    null,
+                    null,
+                    [],
+                )
             ))
             case 'dictionary': return _p.ss($, ($) => {
 
@@ -173,7 +178,7 @@ export const Type_Node = (
                                 )
                             ),
                             sh.e.group({
-                                "item": _p.deprecated_cc($, ($) => {
+                                "item": _p_cc($, ($) => {
                                     const tn = Type_Node(
                                         $.node,
                                         {

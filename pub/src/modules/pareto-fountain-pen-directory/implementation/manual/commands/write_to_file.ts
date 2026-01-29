@@ -3,6 +3,7 @@ import * as _pt from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _ps from 'pareto-core/dist/serializer'
 import * as _pds from 'pareto-core/dist/deserializer'
+import { _p_cc } from 'pareto-core/dist/change_context'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -22,7 +23,7 @@ export const $$: signatures.commands.write_to_file = _p.command_procedure(
         ),
         $cr['write file'].execute(
             {
-                'path': _pt.deprecated_cc(
+                'path': _p_cc(
                     t_path_to_path.extend_node_path($p['directory path'], { 'addition': $p.filename }),
                     ($) => $p['escape spaces in path']
                         ? replace_space_in_context_path($)

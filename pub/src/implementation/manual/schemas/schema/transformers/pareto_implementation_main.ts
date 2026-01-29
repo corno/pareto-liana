@@ -72,13 +72,13 @@ export const Schema_Tree = (
                                     'constrained': $.complexity[0] === 'constrained'
                                 })
                             ),
-                            // "deserialize": _p.optional.from_boolean(
-                            //     !$p['omit (de)serializer'],
-                            //     t_deserialize.Schema($, {
-                            //         'path': $p.path,
-                            //         'imports': $.imports,
-                            //     })
-                            // ),
+                            "deserialize": _p.optional.from_boolean(
+                                !$p['omit (de)serializer'],
+                                t_deserialize.Schema($, {
+                                    'path': $p.path,
+                                    'imports': $.imports,
+                                })
+                            ),
                         }),
                         ($) => $
                     )

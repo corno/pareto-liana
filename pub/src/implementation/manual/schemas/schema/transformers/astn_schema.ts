@@ -1,6 +1,7 @@
 import * as _pdev from 'pareto-core-dev'
 import * as _p from 'pareto-core/dist/transformer'
 import * as _pi from 'pareto-core/dist/interface'
+import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
 
 import {
     wrap_dictionary,
@@ -39,7 +40,7 @@ export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
         {
             'separator': "",
         },
-        () => _p.unreachable_code_path(),
+        () => _p_unreachable_code_path(),
     )),
 })
 

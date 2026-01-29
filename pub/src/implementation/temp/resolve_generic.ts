@@ -2,6 +2,7 @@ import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 import * as _p_temp from './temp_core'
+import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
 
 import * as gen_loc from "../../interface/generated/liana/generic/location"
 import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
@@ -130,7 +131,7 @@ export const get_entry_cyclic = <T>(
         'entry': lookup.get_entry(
             reference.id,
             {
-                accessing_cyclic_before_resolved: () => _p.unreachable_code_path(),
+                accessing_cyclic_before_resolved: () => _p_unreachable_code_path(),
                 no_such_entry: () => abort({
                     'type': ['lookup', ['no such entry', reference.id]],
                     'location': reference.location,

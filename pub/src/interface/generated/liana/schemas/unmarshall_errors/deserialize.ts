@@ -17,7 +17,7 @@ export namespace Relative_Location_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -28,7 +28,7 @@ export type Relative_Location_ = (
     abort: _pi.Abort<Relative_Location_.E>,
     parameters: {
         readonly 'document resource identifier': Relative_Location_.P.document_resource_identifier
-        readonly 'indentation': Relative_Location_.P.indentation
+        readonly 'tab size': Relative_Location_.P.tab_size
     },
 ) => Relative_Location_.O
 
@@ -44,7 +44,7 @@ export namespace Location_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -55,7 +55,7 @@ export type Location_ = (
     abort: _pi.Abort<Location_.E>,
     parameters: {
         readonly 'document resource identifier': Location_.P.document_resource_identifier
-        readonly 'indentation': Location_.P.indentation
+        readonly 'tab size': Location_.P.tab_size
     },
 ) => Location_.O
 
@@ -71,7 +71,7 @@ export namespace Range_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -82,7 +82,7 @@ export type Range_ = (
     abort: _pi.Abort<Range_.E>,
     parameters: {
         readonly 'document resource identifier': Range_.P.document_resource_identifier
-        readonly 'indentation': Range_.P.indentation
+        readonly 'tab size': Range_.P.tab_size
     },
 ) => Range_.O
 
@@ -98,7 +98,7 @@ export namespace Errors_ {
         
         export type document_resource_identifier = string
         
-        export type indentation = number
+        export type tab_size = number
         
     }
     
@@ -109,7 +109,7 @@ export type Errors_ = (
     abort: _pi.Abort<Errors_.E>,
     parameters: {
         readonly 'document resource identifier': Errors_.P.document_resource_identifier
-        readonly 'indentation': Errors_.P.indentation
+        readonly 'tab size': Errors_.P.tab_size
     },
 ) => Errors_.O
 

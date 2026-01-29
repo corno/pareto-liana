@@ -27,7 +27,16 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                 {},
                 {
                     "Error": sh.type.data(sh.t.state({
-                        "tbd": sh.t.nothing()
+                        "expected a dictionary": sh.t.nothing(),
+                        "expected a group": sh.t.nothing(),
+                        "expected a list": sh.t.nothing(),
+                        "expected a nothing": sh.t.nothing(),
+                        "expected an optional": sh.t.nothing(),
+                        "expected a state": sh.t.nothing(),
+                        "expected a text": sh.t.nothing(),
+                        "not a valid number": sh.t.nothing(),
+                        "not a valid boolean": sh.t.nothing(),
+                        "no such entry": sh.t.text(),
                     }))
                 }
             ),
