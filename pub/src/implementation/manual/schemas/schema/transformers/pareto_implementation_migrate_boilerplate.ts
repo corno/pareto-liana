@@ -26,6 +26,11 @@ export const Schema = (
     }
 ): d_out.Module_Set.D => sh.m.module(
     'transformer',
+    false,
+    true,
+    false,
+    false,
+    true,
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
             5,

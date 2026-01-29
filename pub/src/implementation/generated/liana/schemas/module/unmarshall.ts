@@ -11,6 +11,8 @@ import {
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/module/unmarshall"
 
+import * as t_out from "../../../../../interface/generated/liana/schemas/module/data/unresolved"
+
 import * as t_external_schema from "../schema/unmarshall"
 
 import * as v_deserialize_number from "liana-core/dist/implementation/manual/primitives/integer/deserializers/decimal"

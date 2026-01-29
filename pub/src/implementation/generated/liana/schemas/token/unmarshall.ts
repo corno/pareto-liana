@@ -11,6 +11,8 @@ import {
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/token/unmarshall"
 
+import * as t_out from "../../../../../interface/generated/liana/schemas/token/data"
+
 import * as t_external_location from "../location/unmarshall"
 
 import * as v_deserialize_number from "liana-core/dist/implementation/manual/primitives/integer/deserializers/decimal"
@@ -112,7 +114,44 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_cc(
                                     ['no such entry', "type"]
                                 )
                             ),
-                            ($) => _p_unreachable_code_path(
+                            ($) => _p_cc(
+                                v_unmarshalled_from_parse_tree.State(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a state', null]
+                                    )
+                                ),
+                                ($) => _p.decide.text(
+                                    $['option']['value'],
+                                    ($t): t_out.Trivia.comments.L.type_ => {
+                                        switch ($t) {
+                                            case 'line':
+                                                return _p_cc(
+                                                    $['value'],
+                                                    ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null]
+                                                        )
+                                                    )]
+                                                )
+                                            case 'block':
+                                                return _p_cc(
+                                                    $['value'],
+                                                    ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null]
+                                                        )
+                                                    )]
+                                                )
+                                            default:
+                                                return abort(
+                                                    ['unknown option', $['option']['value']]
+                                                )
+                                        }
+                                    }
+                                )
                             )
                         ),
                         'content': _p_cc(
@@ -171,10 +210,276 @@ export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmar
     )
 )
 
-export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_unreachable_code_path(
+export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            ['expected a state', null]
+        )
+    ),
+    ($) => _p.decide.text(
+        $['option']['value'],
+        ($t): t_out.Text_Type => {
+            switch ($t) {
+                case 'quoted':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['quoted', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'apostrophed':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['apostrophed', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'undelimited':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['undelimited', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'backticked':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['backticked', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                default:
+                    return abort(
+                        ['unknown option', $['option']['value']]
+                    )
+            }
+        }
+    )
 )
 
-export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_unreachable_code_path(
+export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            ['expected a state', null]
+        )
+    ),
+    ($) => _p.decide.text(
+        $['option']['value'],
+        ($t): t_out.Token_Type => {
+            switch ($t) {
+                case '!':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['!', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '@':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['@', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case ':':
+                    return _p_cc(
+                        $['value'],
+                        ($) => [':', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '#':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['#', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '{':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['{', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '}':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['}', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '[':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['[', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case ']':
+                    return _p_cc(
+                        $['value'],
+                        ($) => [']', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '(':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['(', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case ')':
+                    return _p_cc(
+                        $['value'],
+                        ($) => [')', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '<':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['<', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '>':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['>', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '~':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['~', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '*':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['*', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case '|':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['|', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'text':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['text', _p_cc(
+                            v_unmarshalled_from_parse_tree.Group(
+                                $,
+                                ($) => abort(
+                                    ['expected a group', null]
+                                )
+                            ),
+                            ($) => ({
+                                'value': _p_cc(
+                                    $.__get_entry(
+                                        'value',
+                                        ($) => abort(
+                                            ['no such entry', "value"]
+                                        )
+                                    ),
+                                    ($) => Delimited_Text(
+                                        $,
+                                        ($) => abort(
+                                            $
+                                        )
+                                    )
+                                ),
+                                'type': _p_cc(
+                                    $.__get_entry(
+                                        'type',
+                                        ($) => abort(
+                                            ['no such entry', "type"]
+                                        )
+                                    ),
+                                    ($) => Text_Type(
+                                        $,
+                                        ($) => abort(
+                                            $
+                                        )
+                                    )
+                                ),
+                            })
+                        )]
+                    )
+                default:
+                    return abort(
+                        ['unknown option', $['option']['value']]
+                    )
+            }
+        }
+    )
 )
 
 export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_cc(

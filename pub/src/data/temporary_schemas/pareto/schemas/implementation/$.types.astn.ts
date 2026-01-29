@@ -30,7 +30,7 @@ export const $: g_.Types = types(
             })),
             "specials": prop(t.group({
                 "abort": prop(t.boolean()),
-                "change context": tstate(t.nothing()),
+                "change context": tstate(t.boolean()),
                 "implement me": prop(t.boolean()),
                 "iterate": prop(t.boolean()),
                 "unreachable code path": prop(t.boolean()),
@@ -117,11 +117,11 @@ export const $: g_.Types = types(
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "type": prop(t.state({
                             "partial": tstate(t.group({
-                                "cases": prop(t.dictionary(t.component_cyclic("Expression"))),
+                                "options": prop(t.dictionary(t.component_cyclic("Expression"))),
                                 "default": prop(t.component_cyclic("Expression")),
                             })),
                             "full": tstate(t.group({
-                                "cases": prop(t.dictionary(t.component_cyclic("Expression"))),
+                                "options": prop(t.dictionary(t.component_cyclic("Expression"))),
                             }))
                         })),
                     })),

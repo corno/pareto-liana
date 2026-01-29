@@ -37,6 +37,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                         "not a valid number": sh.t.nothing(),
                         "not a valid boolean": sh.t.nothing(),
                         "no such entry": sh.t.text(),
+                        "unknown option": sh.t.text(),
                     }))
                 }
             ),

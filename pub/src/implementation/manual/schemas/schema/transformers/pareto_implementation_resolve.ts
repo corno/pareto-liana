@@ -33,6 +33,11 @@ export const Resolvers = (
 ): d_out.Module_Set.D => {
     return sh.m.module(
         'refiner',
+        false,
+        true,
+        false,
+        false,
+        true,
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
@@ -56,7 +61,7 @@ export const Resolvers = (
                             ]
                             ),
                             $p.path,
-                            _p.list.literal(["data types", "source"]),
+                            _p.list.literal(["data", "resolved"]),
                         ])
                     ),
                     "signatures": sh_i.import_.ancestor(
@@ -279,6 +284,7 @@ export const Option_Constraints = (
                 Possible_Value_Selection($, { 'tail': () => _p.list.literal([]) }),
                 sh.e.select(sh.s.from_context([])),
                 sh.e.implement_me("assert is set"),
+                sh.type_node_reference("out", $p['sub'] as any as string, _p.list.literal([]))
             ))
             case 'state': return _p.ss($, ($) => sh.e.implement_me("state constraint")) // medium work
             default: return _p.au($[0])

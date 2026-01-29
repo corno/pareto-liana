@@ -39,6 +39,11 @@ export const Schema: _pi.Transformer_With_Parameters<
 > = ($, $p) => {
     return sh.m.module(
         'refiner',
+        false,
+        true,
+        false,
+        false,
+        true,
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
@@ -55,8 +60,23 @@ export const Schema: _pi.Transformer_With_Parameters<
                             _p.list.literal(["unmarshall"]),
                         ]),
                     ),
+                    "out": sh_i.import_.ancestor(
+                        5,
+                        "interface",
+                        _p.list.nested_literal_old([
+                            _p.list.literal([
+                                "generated",
+                                "liana",
+                                "schemas"
+                            ]),
+                            $p.path,
+                            $p.constrained
+                                ? _p.list.literal(["data", "unresolved"])
+                                : _p.list.literal(["data"]),
+                        ]),
+                    ),
                 }),
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"]))
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"])),
             }),
             {
                 'separator': "",
@@ -204,7 +224,10 @@ export const Type_Node = (
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
+                                                sh_i.sub.group("dictionary"),
                                                 sh_i.sub.dictionary(),
+                                                sh_i.sub.group("entry"),
+
                                             ]
                                         ]),
                                         'constrained': $p.constrained
@@ -287,7 +310,9 @@ export const Type_Node = (
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
+                                                sh_i.sub.group("list"),
                                                 sh_i.sub.list(),
+                                                sh_i.sub.group("item"),
                                             ]
                                         ]),
                                         'constrained': $p.constrained
@@ -393,7 +418,66 @@ export const Type_Node = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state': return _p.ss($, ($) => sh.e.unreachable())
+            case 'state': return _p.ss($, ($) => sh.e.change_context(
+                sh.s.call(
+                    sh.s.from_variable_import("unmarshalled from parse tree", "State", []),
+                    sh.e.select(sh.s.from_context([])),
+                    sh.e.state.literal("expected a state", sh.e.nothing()),
+                    null,
+                    [],
+                ),
+                sh.e.decide.text(
+                    sh.s.from_context(["option", "value"]),
+                    $.__d_map(
+                        ($, id) => sh.e.change_context(
+                            sh.s.from_context(["value"]),
+                            $p.constrained
+                                ? sh.e.group({
+                                    "location": location,
+                                    "state": sh.e.state.literal(
+                                        id,
+                                        Type_Node(
+                                            $.node,
+                                            {
+                                                'temp type': $p['temp type'],
+                                                'temp subselection': _p.list.nested_literal_old([
+                                                    $p['temp subselection'],
+                                                    [
+                                                        sh_i.sub.group("state"),
+                                                        sh_i.sub.state(id),
+                                                    ]
+                                                ]),
+                                                'constrained': $p.constrained
+                                            }
+                                        )
+                                    )
+                                })
+                                : sh.e.state.literal(
+                                    id,
+                                    Type_Node(
+                                        $.node,
+                                        {
+                                            'temp type': $p['temp type'],
+                                            'temp subselection': _p.list.nested_literal_old([
+                                                $p['temp subselection'],
+                                                [
+                                                    sh_i.sub.state(id),
+                                                ]
+                                            ]),
+                                            'constrained': $p.constrained
+                                        }
+                                    )
+                                )
+                        ),
+                    ),
+                    sh.e.abort(sh.e.state.literal("unknown option", sh.e.select(sh.s.from_context(["option", "value"])))),
+                    sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
+                        $p['temp subselection'],
+                        [
+                            //sh_i.sub.group("SG"),
+                        ]
+                    ])))
+            ))
             case 'text': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
                     sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
@@ -403,131 +487,6 @@ export const Type_Node = (
                     [],
                 )
             ))
-            // case 'group': return _p.ss($, ($) => sh.e.select(
-            //     sh.s.call(
-            //         sh.s.from_variable_import(" i generic", "process group", []),
-            //         sh.e.select(sh.s.from_context([])),
-            //         null,
-            //         _p.dictionary.literal({
-            //             // "properties": sh.e.function_deprecated(
-            //             //     false,
-            //             //     sh.e.group(
-            //             //         $.dictionary.__d_map(
-            //             //             ($, id) => sh.e.change_context(
-            //             //                 sh.s.call(
-            //             //                     sh.s.from_variable_import(" i generic", "get entry", []),
-            //             //                     sh.s.from_context([]),
-            //             //                     _p.dictionary.literal({
-            //             //                         "id": sh.e.string(id, 'quote'),
-            //             //                     }),
-            //             //                     [],
-            //             //                 ),
-
-            //             //             )
-            //             //         )
-            //             //     )
-            //             // ),
-            //         }),
-            //         [],
-            //     )
-            // ))
-            // case 'optional': return _p.ss($, ($) => sh.e.select(
-            //     sh.s.call(
-            //         sh.s.from_variable_import(" i generic", "process optional", []),
-            //         sh.e.select(sh.s.from_context([])),
-            //         null,
-            //         _p.dictionary.literal({
-            //             // "value": sh.e.function_deprecated(
-            //             //     false,
-            //             //     Type_Node(
-            //             //         $,
-            //             //         {
-            //             //             'temp type': $p['temp type'],
-            //             //             'temp subselection': _p.list.nested_literal_old([
-            //             //                 $p['temp subselection'],
-            //             //                 [
-            //             //                     sh_i.sub.optional(),
-            //             //                 ]
-            //             //             ]),
-            //             //             'constrained': $p.constrained
-            //             //         }
-            //             //     ),
-            //             // ),
-            //         }),
-            //         [],
-            //     )
-            // ))
-            // case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
-            //     switch ($[0]) {
-            //         case 'derived': return _p.ss($, ($) => sh.e.select(
-            //             sh.s.call(
-            //                 sh.s.from_variable_import(" i generic", "process derived reference", []),
-            //                 sh.e.select(sh.s.from_context([])),
-            //                 null,
-            //                 _p.dictionary.literal({
-            //                 }),
-            //                 [],
-            //             )
-            //         ))
-            //         case 'selected': return _p.ss($, ($) => sh.e.select(
-            //             sh.s.call(
-            //                 sh.s.from_variable_import(" i generic", _p.decide.state($.dependency, ($) => {
-            //                     switch ($[0]) {
-            //                         case 'acyclic': return "process selected reference"
-            //                         case 'cyclic': return "process selected reference"
-            //                         case 'stack': return "process stack reference"
-            //                         default: return _p.au($[0])
-            //                     }
-            //                 }), []),
-            //                 sh.e.select(sh.s.from_context([])),
-            //                 null,
-            //                 _p.dictionary.literal({
-            //                 }),
-            //                 [],
-            //             )
-            //         ))
-            //         default: return _p.au($[0])
-            //     }
-            // }))
-            // case 'state': return _p.ss($, ($) => sh.e.select(
-            //     sh.s.call(
-            //         sh.s.from_variable_import(" i generic", $p.constrained ? "process unresolved state" : "process unconstrained state", []),
-            //         sh.e.select(sh.s.from_context([])),
-            //         null,
-            //         _p.dictionary.literal({
-            //             // "states": sh.e.dictionary_literal(
-            //             //     $.__d_map(
-            //             //         ($, id) => sh.e.function_deprecated(
-            //             //             false,
-            //             //             sh.e.case_(
-            //             //                 id,
-            //             //                 Type_Node(
-            //             //                     $.node,
-            //             //                     {
-            //             //                         'temp type': $p['temp type'],
-            //             //                         'temp subselection': _p.list.nested_literal_old([
-            //             //                             $p['temp subselection'],
-            //             //                             [
-            //             //                                 sh_i.sub.state(id),
-            //             //                             ]
-            //             //                         ]),
-            //             //                         'constrained': $p.constrained
-            //             //                     }
-            //             //                 )
-            //             //             ),
-            //             //             sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
-            //             //                 $p['temp subselection'],
-            //             //                 [
-            //             //                     //sh_i.sub.group("SG"),
-            //             //                 ]
-            //             //             ]))
-            //             //         )
-            //             //     )
-            //             // )
-            //         }),
-            //         [],
-            //     )
-            // ))
             default: return _p.au($[0])
         }
     })

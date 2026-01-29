@@ -20,7 +20,7 @@ export const $: g_.Resolvers = resolvers(
             }),
             "specials": r.group({
                 "abort": r.boolean(),
-                "change context": r.nothing(),
+                "change context": r.boolean(),
                 "implement me": r.boolean(),
                 "iterate": r.boolean(),
                 "unreachable code path": r.boolean(),
@@ -107,11 +107,11 @@ export const $: g_.Resolvers = resolvers(
                         "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
                         "type": r.state({
                             "partial": state(r.group({
-                                "cases": r.dictionary(r.component("Expression", {}, {})),
+                                "options": r.dictionary(r.component("Expression", {}, {})),
                                 "default": r.component("Expression", {}, {}),
                             })),
                             "full": state(r.group({
-                                "cases": r.dictionary(r.component("Expression", {}, {})),
+                                "options": r.dictionary(r.component("Expression", {}, {})),
                             }))
                         }),
                     })),
