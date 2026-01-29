@@ -1080,7 +1080,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['internal', ({
+                                        'state': ['internal', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -1090,7 +1090,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'external':
@@ -1284,7 +1284,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal', ({
+                                                        'state': ['internal', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -1294,7 +1294,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             case 'internal cyclic':
@@ -1304,7 +1304,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal cyclic', ({
+                                                        'state': ['internal cyclic', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -1314,7 +1314,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             default:
@@ -1451,7 +1451,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['global', ({
+                                                        'state': ['global', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -1461,7 +1461,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             case 'local':
@@ -1691,7 +1691,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                             'location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['state', ({
+                            'state': ['state', {
                                 'location': v_parse_tree_to_location.Value(
                                     $
                                 )['start']['relative'],
@@ -1752,7 +1752,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                         ),
                                     })
                                 ),
-                            })],
+                            }],
                         })
                     )
                 case 'text':
@@ -1780,7 +1780,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['global', ({
+                                                        'state': ['global', {
                                                             'location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
@@ -1790,7 +1790,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                     ['expected a text', null]
                                                                 )
                                                             ),
-                                                        })],
+                                                        }],
                                                     })
                                                 )
                                             case 'local':
@@ -1889,7 +1889,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                                     'location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['group', ({
+                                                    'state': ['group', {
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
@@ -1899,7 +1899,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                                                 ['expected a text', null]
                                                             )
                                                         ),
-                                                    })],
+                                                    }],
                                                 })
                                             )
                                         case 'list':
@@ -1939,7 +1939,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                                     'location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['state', ({
+                                                    'state': ['state', {
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
@@ -1949,7 +1949,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                                                 ['expected a text', null]
                                                             )
                                                         ),
-                                                    })],
+                                                    }],
                                                 })
                                             )
                                         default:
@@ -2305,7 +2305,7 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_cc(
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['same as', ({
+                                        'state': ['same as', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -2315,7 +2315,7 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_cc(
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             default:
@@ -2406,7 +2406,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                     'location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['group', ({
+                                                    'state': ['group', {
                                                         'location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
@@ -2416,7 +2416,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                                 ['expected a text', null]
                                                             )
                                                         ),
-                                                    })],
+                                                    }],
                                                 })
                                             )
                                         case 'reference':
@@ -2561,7 +2561,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parameter', ({
+                                        'state': ['parameter', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -2571,7 +2571,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'not circular dependent siblings':
@@ -3312,7 +3312,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                     'location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['internal', ({
+                                                                    'state': ['internal', {
                                                                         'location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
@@ -3322,7 +3322,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                 ['expected a text', null]
                                                                             )
                                                                         ),
-                                                                    })],
+                                                                    }],
                                                                 })
                                                             )
                                                         default:
@@ -3444,7 +3444,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                                     'location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['parameter', ({
+                                                                                                    'state': ['parameter', {
                                                                                                         'location': v_parse_tree_to_location.Value(
                                                                                                             $
                                                                                                         )['start']['relative'],
@@ -3454,7 +3454,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                                                 ['expected a text', null]
                                                                                                             )
                                                                                                         ),
-                                                                                                    })],
+                                                                                                    }],
                                                                                                 })
                                                                                             )
                                                                                         default:
@@ -4170,7 +4170,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['sibling', ({
+                                        'state': ['sibling', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -4180,7 +4180,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'parent sibling':
@@ -4190,7 +4190,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parent sibling', ({
+                                        'state': ['parent sibling', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -4200,7 +4200,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'option constraint':
@@ -4210,7 +4210,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['option constraint', ({
+                                        'state': ['option constraint', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -4220,7 +4220,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'list cursor':
@@ -4402,7 +4402,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parameter', ({
+                                        'state': ['parameter', {
                                             'location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
@@ -4412,7 +4412,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                     ['expected a text', null]
                                                 )
                                             ),
-                                        })],
+                                        }],
                                     })
                                 )
                             case 'result':
@@ -4685,7 +4685,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                             'location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['parameter', ({
+                            'state': ['parameter', {
                                 'location': v_parse_tree_to_location.Value(
                                     $
                                 )['start']['relative'],
@@ -4695,7 +4695,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                         ['expected a text', null]
                                     )
                                 ),
-                            })],
+                            }],
                         })
                     )
                 case 'result':

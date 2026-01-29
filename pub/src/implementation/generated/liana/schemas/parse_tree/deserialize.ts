@@ -17,10 +17,10 @@ export const Structural_Token: t_signatures.Structural_Token = ($, abort, $p) =>
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -33,10 +33,10 @@ export const Text: t_signatures.Text = ($, abort, $p) => v_unmarshall.Text(
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -49,10 +49,10 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort, $p) => v_u
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -65,10 +65,10 @@ export const Items: t_signatures.Items = ($, abort, $p) => v_unmarshall.Items(
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -81,10 +81,10 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -97,10 +97,10 @@ export const Content: t_signatures.Content = ($, abort, $p) => v_unmarshall.Cont
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]
@@ -113,10 +113,10 @@ export const Document: t_signatures.Document = ($, abort, $p) => v_unmarshall.Do
         ($) => abort(
             ['tbd', null]
         ),
-        ({
+        {
             'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
-        })
+        }
     )['content'],
     ($) => abort(
         ['tbd', null]

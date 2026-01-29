@@ -72,7 +72,7 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                             case 'invalid value type':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['invalid value type', ({
+                                                    ($) => ['invalid value type', {
                                                         'expected': _p_cc(
                                                             $['expected'],
                                                             ($) => $.__l_map(
@@ -129,37 +129,37 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                                                 )
                                                             )
                                                         ),
-                                                    })]
+                                                    }]
                                                 )
                                             case 'duplicate property':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['duplicate property', ({
+                                                    ($) => ['duplicate property', {
                                                         'name': _p_cc(
                                                             $['name'],
                                                             ($) => $
                                                         ),
-                                                    })]
+                                                    }]
                                                 )
                                             case 'missing property':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['missing property', ({
+                                                    ($) => ['missing property', {
                                                         'name': _p_cc(
                                                             $['name'],
                                                             ($) => $
                                                         ),
-                                                    })]
+                                                    }]
                                                 )
                                             case 'superfluous property':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['superfluous property', ({
+                                                    ($) => ['superfluous property', {
                                                         'name': _p_cc(
                                                             $['name'],
                                                             ($) => $
                                                         ),
-                                                    })]
+                                                    }]
                                                 )
                                             case 'state':
                                                 return _p.ss(
@@ -191,7 +191,7 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                                                 case 'unknown state':
                                                                     return _p.ss(
                                                                         $,
-                                                                        ($) => ['unknown state', ({
+                                                                        ($) => ['unknown state', {
                                                                             'found': _p_cc(
                                                                                 $['found'],
                                                                                 ($) => $
@@ -202,7 +202,7 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                                                                     ($, id) => null
                                                                                 )
                                                                             ),
-                                                                        })]
+                                                                        }]
                                                                     )
                                                                 case 'missing data marker':
                                                                     return _p.ss(

@@ -16,7 +16,7 @@ import * as v_serialize_boolean from "liana-core/dist/implementation/manual/prim
 import * as v_external_location from "../location/marshall"
 
 export const Whitespace: t_signatures.Whitespace = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'range': _p_cc(
             $['range'],
             ($) => v_external_location.Range(
@@ -25,16 +25,16 @@ export const Whitespace: t_signatures.Whitespace = ($) => ['group', ['verbose', 
         ),
         'value': _p_cc(
             $['value'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['quote', null],
                 'value': $,
-            })]
+            }]
         ),
-    })
+    }
 )]]
 
 export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'leading whitespace': _p_cc(
             $['leading whitespace'],
             ($) => Whitespace(
@@ -45,7 +45,7 @@ export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dicti
             $['comments'],
             ($) => ['list', $.__l_map(
                 ($) => ['group', ['verbose', _p.dictionary.literal(
-                    ({
+                    {
                         'type': _p_cc(
                             $['type'],
                             ($) => ['state', _p.decide.state(
@@ -78,10 +78,10 @@ export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dicti
                         ),
                         'content': _p_cc(
                             $['content'],
-                            ($) => ['text', ({
+                            ($) => ['text', {
                                 'delimiter': ['quote', null],
                                 'value': $,
-                            })]
+                            }]
                         ),
                         'range': _p_cc(
                             $['range'],
@@ -95,17 +95,17 @@ export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dicti
                                 $
                             )
                         ),
-                    })
+                    }
                 )]]
             )]
         ),
-    })
+    }
 )]]
 
-export const Delimited_Text: t_signatures.Delimited_Text = ($) => ['text', ({
+export const Delimited_Text: t_signatures.Delimited_Text = ($) => ['text', {
     'delimiter': ['quote', null],
     'value': $,
-})]
+}]
 
 export const Text_Type: t_signatures.Text_Type = ($) => ['state', _p.decide.state(
     $,
@@ -281,7 +281,7 @@ export const Token_Type: t_signatures.Token_Type = ($) => ['state', _p.decide.st
                     ($) => ({
                         'option': 'text',
                         'value': ['group', ['verbose', _p.dictionary.literal(
-                            ({
+                            {
                                 'value': _p_cc(
                                     $['value'],
                                     ($) => Delimited_Text(
@@ -294,7 +294,7 @@ export const Token_Type: t_signatures.Token_Type = ($) => ['state', _p.decide.st
                                         $
                                     )
                                 ),
-                            })
+                            }
                         )]],
                     })
                 )
@@ -307,7 +307,7 @@ export const Token_Type: t_signatures.Token_Type = ($) => ['state', _p.decide.st
 )]
 
 export const Annotated_Token: t_signatures.Annotated_Token = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'start': _p_cc(
             $['start'],
             ($) => v_external_location.Location(
@@ -332,11 +332,11 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => ['group', ['
                 $
             )
         ),
-    })
+    }
 )]]
 
 export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'leading trivia': _p_cc(
             $['leading trivia'],
             ($) => Trivia(
@@ -357,5 +357,5 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($) => ['group', 
                 $
             )
         ),
-    })
+    }
 )]]

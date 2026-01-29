@@ -14,30 +14,30 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
 export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'line': _p_cc(
             $['line'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_number.serialize(
                     $
                 ),
-            })]
+            }]
         ),
         'column': _p_cc(
             $['column'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_number.serialize(
                     $
                 ),
-            })]
+            }]
         ),
-    })
+    }
 )]]
 
 export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'relative': _p_cc(
             $['relative'],
             ($) => Relative_Location(
@@ -46,18 +46,18 @@ export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.d
         ),
         'absolute': _p_cc(
             $['absolute'],
-            ($) => ['text', ({
+            ($) => ['text', {
                 'delimiter': ['none', null],
                 'value': v_serialize_number.serialize(
                     $
                 ),
-            })]
+            }]
         ),
-    })
+    }
 )]]
 
 export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.dictionary.literal(
-    ({
+    {
         'start': _p_cc(
             $['start'],
             ($) => Location(
@@ -70,12 +70,12 @@ export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.diction
                 $
             )
         ),
-    })
+    }
 )]]
 
 export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
     ($) => ['group', ['verbose', _p.dictionary.literal(
-        ({
+        {
             'range': _p_cc(
                 $['range'],
                 ($) => Range(
@@ -103,7 +103,7 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                             ($) => ({
                                                                 'option': 'invalid value type',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                    ({
+                                                                    {
                                                                         'expected': _p_cc(
                                                                             $['expected'],
                                                                             ($) => ['list', $.__l_map(
@@ -184,7 +184,7 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                                                 )]
                                                                             )]
                                                                         ),
-                                                                    })
+                                                                    }
                                                                 )]],
                                                             })
                                                         )
@@ -194,15 +194,15 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                             ($) => ({
                                                                 'option': 'duplicate property',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                    ({
+                                                                    {
                                                                         'name': _p_cc(
                                                                             $['name'],
-                                                                            ($) => ['text', ({
+                                                                            ($) => ['text', {
                                                                                 'delimiter': ['quote', null],
                                                                                 'value': $,
-                                                                            })]
+                                                                            }]
                                                                         ),
-                                                                    })
+                                                                    }
                                                                 )]],
                                                             })
                                                         )
@@ -212,15 +212,15 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                             ($) => ({
                                                                 'option': 'missing property',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                    ({
+                                                                    {
                                                                         'name': _p_cc(
                                                                             $['name'],
-                                                                            ($) => ['text', ({
+                                                                            ($) => ['text', {
                                                                                 'delimiter': ['quote', null],
                                                                                 'value': $,
-                                                                            })]
+                                                                            }]
                                                                         ),
-                                                                    })
+                                                                    }
                                                                 )]],
                                                             })
                                                         )
@@ -230,15 +230,15 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                             ($) => ({
                                                                 'option': 'superfluous property',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                    ({
+                                                                    {
                                                                         'name': _p_cc(
                                                                             $['name'],
-                                                                            ($) => ['text', ({
+                                                                            ($) => ['text', {
                                                                                 'delimiter': ['quote', null],
                                                                                 'value': $,
-                                                                            })]
+                                                                            }]
                                                                         ),
-                                                                    })
+                                                                    }
                                                                 )]],
                                                             })
                                                         )
@@ -289,13 +289,13 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                                                     ($) => ({
                                                                                         'option': 'unknown state',
                                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
-                                                                                            ({
+                                                                                            {
                                                                                                 'found': _p_cc(
                                                                                                     $['found'],
-                                                                                                    ($) => ['text', ({
+                                                                                                    ($) => ['text', {
                                                                                                         'delimiter': ['quote', null],
                                                                                                         'value': $,
-                                                                                                    })]
+                                                                                                    }]
                                                                                                 ),
                                                                                                 'expected': _p_cc(
                                                                                                     $['expected'],
@@ -303,7 +303,7 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                                                                         ($, id) => ['nothing', null]
                                                                                                     )]
                                                                                                 ),
-                                                                                            })
+                                                                                            }
                                                                                         )]],
                                                                                     })
                                                                                 )
@@ -391,6 +391,6 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                     }
                 )]
             ),
-        })
+        }
     )]]
 )]
