@@ -5,7 +5,6 @@ import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
-import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
@@ -25,7 +24,7 @@ export const Schema = (
         false,
         false,
         false,
-        true,
+        false,
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 5,
