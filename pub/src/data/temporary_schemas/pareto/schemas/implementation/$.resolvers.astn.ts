@@ -18,6 +18,13 @@ export const $: g_.Resolvers = resolvers(
                 "transformer": state(r.nothing()),
                 "refiner": state(r.nothing()),
             }),
+            "specials": r.group({
+                "abort": r.boolean(),
+                "change context": r.nothing(),
+                "implement me": r.boolean(),
+                "iterate": r.boolean(),
+                "unreachable code path": r.boolean(),
+            }),
             "type imports": r.component_external("interface", "Imports", {}, {}),
             "variable imports": r.dictionary(r.group({
                 "tail": r.list(r.text()),

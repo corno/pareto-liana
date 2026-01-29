@@ -28,6 +28,13 @@ export const $: g_.Types = types(
                 "transformer": tstate(t.nothing()),
                 "refiner": tstate(t.nothing()),
             })),
+            "specials": prop(t.group({
+                "abort": prop(t.boolean()),
+                "change context": tstate(t.nothing()),
+                "implement me": prop(t.boolean()),
+                "iterate": prop(t.boolean()),
+                "unreachable code path": prop(t.boolean()),
+            })),
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
                 "tail": prop(t.list(t.text_global("TBD"))),
