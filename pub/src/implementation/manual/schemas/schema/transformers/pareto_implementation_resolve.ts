@@ -37,7 +37,7 @@ export const Resolvers = (
         true,
         false,
         false,
-    false,
+        false,
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
@@ -301,54 +301,7 @@ export const Node_Resolver = (
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
         case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-        case 'nothing': return _p.ss($, ($) => sh.e.nothing())
-        case 'reference': return _p.ss($, ($) => sh.e.select(_p.decide.state($.type, ($): d_out.Selection => {
-            switch ($[0]) {
-                case 'derived': return _p.ss($, ($) => Guaranteed_Value_Selection($.value, { 'tail': () => _p.list.literal([]) }))
-                case 'selected': return _p.ss($, ($) => {
-                    const context = $
-                    return _p.decide.state($.definition.dependency, ($) => {
-                        switch ($[0]) {
-                            case 'acyclic': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get entry", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            case 'cyclic': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get possibly circular dependent sibling entry", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            case 'stack': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get entry from stack", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            default: return _p.au($[0])
-                        }
-                    })
-                })
-                default: return _p.au($[0])
-            }
-        })))
-        case 'text': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
         case 'component': return _p.ss($, ($) => sh.e.select(
             sh.s.call(
                 _p.decide.state($.location, ($) => {
@@ -502,6 +455,8 @@ export const Node_Resolver = (
                 )
             )
         ))
+        case 'nothing': return _p.ss($, ($) => sh.e.nothing())
+        case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
         case 'optional': return _p.ss($, ($) => sh.e.optional.map(
             sh.s.from_context([]),
             Option_Constraints(
@@ -522,6 +477,50 @@ export const Node_Resolver = (
                 }
             )
         ))
+        case 'reference': return _p.ss($, ($) => sh.e.select(_p.decide.state($.type, ($): d_out.Selection => {
+            switch ($[0]) {
+                case 'derived': return _p.ss($, ($) => Guaranteed_Value_Selection($.value, { 'tail': () => _p.list.literal([]) }))
+                case 'selected': return _p.ss($, ($) => {
+                    const context = $
+                    return _p.decide.state($.definition.dependency, ($) => {
+                        switch ($[0]) {
+                            case 'acyclic': return _p.ss($, ($) => sh.s.call(
+                                sh.s.from_variable_import(" i generic", "get entry", []),
+                                sh.e.select(Lookup_Selection(context.lookup, {})),
+                                null,
+                                {
+                                    "reference": sh.e.select(sh.s.from_context([])),
+                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+                                },
+                                [],
+                            ))
+                            case 'cyclic': return _p.ss($, ($) => sh.s.call(
+                                sh.s.from_variable_import(" i generic", "get possibly circular dependent sibling entry", []),
+                                sh.e.select(Lookup_Selection(context.lookup, {})),
+                                null,
+                                {
+                                    "reference": sh.e.select(sh.s.from_context([])),
+                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+                                },
+                                [],
+                            ))
+                            case 'stack': return _p.ss($, ($) => sh.s.call(
+                                sh.s.from_variable_import(" i generic", "get entry from stack", []),
+                                sh.e.select(Lookup_Selection(context.lookup, {})),
+                                null,
+                                {
+                                    "reference": sh.e.select(sh.s.from_context([])),
+                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+                                },
+                                [],
+                            ))
+                            default: return _p.au($[0])
+                        }
+                    })
+                })
+                default: return _p.au($[0])
+            }
+        })))
         case 'state': return _p.ss($, ($) => sh.e.decide.state(
             sh.s.from_context(['state']),
             $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
@@ -547,7 +546,7 @@ export const Node_Resolver = (
                 $p['temp subselection'],
             ),
         ))
-        // case 'type parameter': return _p.ss($, ($) => _pdev.implement_me()) // a lot of work: the resolvers need to be passed to this resolve function
+        case 'text': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
         default: return _p.au($[0])
     }
 })

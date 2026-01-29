@@ -165,7 +165,10 @@ export const $: g_.Types = types(
                         "entry handler": prop(t.component_cyclic("Expression"))
                     })),
                 })),
-                "group": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                "group": tstate(t.state({
+                    "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                    "resolve": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                })),
                 "list": tstate(t.state({
                     "filter": tstate(t.group({
                         "source": prop(t.component("Selection")),

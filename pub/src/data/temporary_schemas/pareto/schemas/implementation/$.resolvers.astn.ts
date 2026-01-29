@@ -155,7 +155,10 @@ export const $: g_.Resolvers = resolvers(
                         "entry handler": r.component("Expression", {}, {})
                     })),
                 })),
-                "group": state(r.dictionary(r.component("Expression", {}, {}))),
+                "group": state(r.state({
+                    "literal": state(r.dictionary(r.component("Expression", {}, {}))),
+                    "resolve": state(r.dictionary(r.component("Expression", {}, {}))),
+                })),
                 "list": state(r.state({
                     "filter": state(r.group({
                         "source": r.component("Selection", {}, {}),
