@@ -17,7 +17,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                 {},
                 {
                     "Location": sh.type.data(sh.t.group({
-                        "file": sh.t.text(),
+                        "document resource identifier": sh.t.text(),
                         "line": sh.t.natural(),
                         "column": sh.t.natural(),
                     })),

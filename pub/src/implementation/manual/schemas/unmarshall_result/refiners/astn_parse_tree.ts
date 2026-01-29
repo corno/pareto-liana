@@ -4,10 +4,10 @@ import * as _pdev from 'pareto-core-dev'
 
 import * as d_definition from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
+import * as d_in_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_result"
 
-import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/token"
+import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
 
 export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_items($) !== 1
     ? _p.optional.not_set()
@@ -36,7 +36,7 @@ export const Node_Type = (
     $: d_in.Value.type_.concrete,
     $p: {
         'definition': d_definition.Type_Node,
-        'range': d_in_token.Range,
+        'range': d_in_location.Range,
         'temp value': d_in.Value,
     }
 ): d_out.Node_Type => {

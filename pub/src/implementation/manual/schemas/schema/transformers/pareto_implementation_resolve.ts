@@ -5,7 +5,6 @@ import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
-import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
@@ -37,19 +36,52 @@ export const Resolvers = (
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "generic": sh_i.import_.external("pareto-core-internals", ["dist", "algorithm types", "refiner", "resolve"]),
-                    "out": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["data types", "source"]),
-                    ])),
-                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "pareto", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["data types", "resolve"]),
-                    ])),
+                    "generic": sh_i.import_.external(
+                        "pareto-core-internals",
+                        [
+                            "dist",
+                            "algorithm types",
+                            "refiner",
+                            "resolve"
+                        ]
+                    ),
+                    "out": sh_i.import_.ancestor(
+                        5,
+                        "interface",
+                        _p.list.nested_literal_old([
+                            _p.list.literal([
+                                "generated",
+                                "pareto",
+                                "schemas"
+                            ]
+                            ),
+                            $p.path,
+                            _p.list.literal(["data types", "source"]),
+                        ])
+                    ),
+                    "signatures": sh_i.import_.ancestor(
+                        5,
+                        "interface",
+                        _p.list.nested_literal_old([
+                            _p.list.literal([
+                                "generated",
+                                "pareto",
+                                "schemas"
+                            ]),
+                            $p.path,
+                            _p.list.literal([
+                                "data types",
+                                "resolve"
+                            ]),
+                        ])
+                    ),
                 }),
-                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["resolve"]))
+                "r ": $p.imports.__d_map(
+                    ($, id) => sh_i.import_.ancestor(
+                        1,
+                        $['schema set child'].id,
+                        ["resolve"])
+                )
             }),
             {
                 'separator': "",
@@ -58,7 +90,8 @@ export const Resolvers = (
         ),
         {},
         $.__d_map(($, id) => sh.algorithm(
-            sh.type_reference("signatures", id),
+            "signatures",
+            id,
             true,
             true,
             true,
@@ -258,7 +291,7 @@ export const Node_Resolver = (
     $: d_in.Node_Resolver,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L> //can be removed when exupery has type inference
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {

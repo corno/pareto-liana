@@ -2,7 +2,7 @@ import * as _p from 'pareto-core/dist/transformer'
 import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "../../../../../interface/to_be_generated/temp_unmashall_result"
-import * as d_in_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
+import * as d_in_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_out from "../../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 
 export const Optional_Node = (
@@ -15,14 +15,14 @@ export const Optional_Node = (
     )
 }
 
-const convert_range = (r: d_in_token.Range): d_out.Range => {
+const convert_range = (r: d_in_location.Range): d_out.Range => {
     return r
 }
 
 export const Group_Content = (
     $: d_in.Group_Content,
     $p: {
-        'group range': d_in_token.Range
+        'group range': d_in_location.Range
     }
 ): d_out.Errors => {
     return _p.list.nested_literal_old([

@@ -15,6 +15,19 @@ import * as sh_i from "pareto/dist/shorthands/interface"
 //dependencies
 import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
+const location = sh.e.select(
+    sh.s.call(
+        sh.s.from_variable_import("parse tree to location", "Value", []),
+        sh.e.select(sh.s.from_context([])),
+        null,
+        null,
+        [
+            "start",
+            "relative"
+        ],
+    )
+)
+
 export const Schema: _pi.Transformer_With_Parameters<
     d_in.Schema,
     d_out.Module_Set.D,
@@ -29,11 +42,19 @@ export const Schema: _pi.Transformer_With_Parameters<
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "signatures": sh_i.import_.ancestor(5, "interface", _p.list.nested_literal_old([
-                        _p.list.literal(["generated", "liana", "schemas"]),
-                        $p.path,
-                        _p.list.literal(["unmarshall"]),
-                    ])),
+                    "signatures": sh_i.import_.ancestor(
+                        5,
+                        "interface",
+                        _p.list.nested_literal_old([
+                            _p.list.literal([
+                                "generated",
+                                "liana",
+                                "schemas"
+                            ]),
+                            $p.path,
+                            _p.list.literal(["unmarshall"]),
+                        ]),
+                    ),
                 }),
                 "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"]))
             }),
@@ -69,7 +90,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                             "true false",
                         ]),
                     ),
-                    "generic": sh_i.import_.external(
+                    "unmarshalled from parse tree": sh_i.import_.external(
                         "astn-core",
                         [
                             "dist",
@@ -81,6 +102,18 @@ export const Schema: _pi.Transformer_With_Parameters<
                             "parse tree"
                         ]
                     ),
+                    "parse tree to location": sh_i.import_.external(
+                        "astn-core",
+                        [
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "schemas",
+                            "parse tree",
+                            "transformers",
+                            "location"
+                        ]
+                    ),
                 }),
                 "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"]))
             }),
@@ -90,7 +123,8 @@ export const Schema: _pi.Transformer_With_Parameters<
             () => _p_unreachable_code_path(),
         ),
         $.types.__d_map(($, id) => sh.algorithm(
-            sh.type_reference("signatures", id),
+            "signatures",
+            id,
             true,
             false,
             false,
@@ -121,7 +155,7 @@ export const Type_Node = (
                     sh.s.from_variable_import("deserialize boolean", "deserialize", []),
                     sh.e.select(
                         sh.s.call(
-                            sh.s.from_variable_import("generic", "expect text", []),
+                            sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
                             sh.e.select(sh.s.from_context([])),
                             sh.e.state.literal("expected a text", sh.e.nothing()),
                             null,
@@ -150,48 +184,71 @@ export const Type_Node = (
                 )
             ))
             case 'dictionary': return _p.ss($, ($) => {
-                const xx = sh.e.dictionary.map(
-                    sh.s.call(
-                        sh.s.from_variable_import("generic", "expect dictionary", []),
-                        sh.e.select(sh.s.from_context([])),
-                        sh.e.state.literal("expected a dictionary", sh.e.nothing()),
-                        null,
-                        [],
-                    ),
-                    Type_Node(
-                        $.node,
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh_i.sub.dictionary(),
-                                ]
-                            ]),
-                            'constrained': $p.constrained
-                        }
-                    ),
-                )
                 return $p.constrained
                     ? sh.e.group({
-                        "location": sh.e.implement_me("Location"),
-                        "dictionary": xx
+                        "location": location,
+                        "dictionary": sh.e.dictionary.map(
+                            sh.s.call(
+                                sh.s.from_variable_import("unmarshalled from parse tree", "Dictionary", []),
+                                sh.e.select(sh.s.from_context([])),
+                                sh.e.state.literal("expected a dictionary", sh.e.nothing()),
+                                null,
+                                [],
+                            ),
+                            sh.e.group({
+                                "location": location,
+                                "entry": Type_Node(
+                                    $.node,
+                                    {
+                                        'temp type': $p['temp type'],
+                                        'temp subselection': _p.list.nested_literal_old([
+                                            $p['temp subselection'],
+                                            [
+                                                sh_i.sub.dictionary(),
+                                            ]
+                                        ]),
+                                        'constrained': $p.constrained
+                                    }
+                                )
+                            }),
+                        )
                     })
-                    : xx
+                    : sh.e.dictionary.map(
+                        sh.s.call(
+                            sh.s.from_variable_import("unmarshalled from parse tree", "Dictionary", []),
+                            sh.e.select(sh.s.from_context([])),
+                            sh.e.state.literal("expected a dictionary", sh.e.nothing()),
+                            null,
+                            [],
+                        ),
+                        Type_Node(
+                            $.node,
+                            {
+                                'temp type': $p['temp type'],
+                                'temp subselection': _p.list.nested_literal_old([
+                                    $p['temp subselection'],
+                                    [
+                                        sh_i.sub.dictionary(),
+                                    ]
+                                ]),
+                                'constrained': $p.constrained
+                            }
+                        ),
+                    )
             })
             case 'group': return _p.ss($, ($) => sh.e.change_context(
                 sh.s.call(
-                    sh.s.from_variable_import("generic", "expect group", []),
+                    sh.s.from_variable_import("unmarshalled from parse tree", "Group", []),
                     sh.e.select(sh.s.from_context([])),
                     sh.e.state.literal("expected a group", sh.e.nothing()),
                     null,
                     [],
                 ),
-                sh.e.group($.__d_map(($, key) => sh.e.change_context(
+                sh.e.group($.__d_map(($, id) => sh.e.change_context(
                     sh.s.from_entry(
                         sh.s.from_context([]),
-                        sh.e.text.literal(key, 'identifier'),
-                        sh.e.state.literal("no such entry", sh.e.text.literal(key, 'freeform')),
+                        sh.e.text.literal(id, 'identifier'),
+                        sh.e.state.literal("no such entry", sh.e.text.literal(id, 'freeform')),
                         []
                     ),
                     Type_Node(
@@ -201,7 +258,7 @@ export const Type_Node = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh_i.sub.group(key),
+                                    sh_i.sub.group(id),
                                 ]
                             ]),
                             'constrained': $p.constrained
@@ -210,38 +267,61 @@ export const Type_Node = (
                 ))),
             ))
             case 'list': return _p.ss($, ($) => {
-                const xx = sh.e.list.map(
-                    sh.s.call(
-                        sh.s.from_variable_import("generic", "expect list", []),
-                        sh.e.select(sh.s.from_context([])),
-                        sh.e.state.literal("expected a list", sh.e.nothing()),
-                        null,
-                        [],
-                    ),
-                    Type_Node(
-                        $.node,
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh_i.sub.list(),
-                                ]
-                            ]),
-                            'constrained': $p.constrained
-                        }
-                    ),
-                )
                 return $p.constrained
                     ? sh.e.group({
-                        "location": sh.e.implement_me("Location"),
-                        "list": xx
+                        "location": location,
+                        "list": sh.e.list.map(
+                            sh.s.call(
+                                sh.s.from_variable_import("unmarshalled from parse tree", "List", []),
+                                sh.e.select(sh.s.from_context([])),
+                                sh.e.state.literal("expected a list", sh.e.nothing()),
+                                null,
+                                [],
+                            ),
+                            sh.e.group({
+                                "location": location,
+                                "item": Type_Node(
+                                    $.node,
+                                    {
+                                        'temp type': $p['temp type'],
+                                        'temp subselection': _p.list.nested_literal_old([
+                                            $p['temp subselection'],
+                                            [
+                                                sh_i.sub.list(),
+                                            ]
+                                        ]),
+                                        'constrained': $p.constrained
+                                    }
+                                )
+                            })
+                        )
                     })
-                    : xx
+                    : sh.e.list.map(
+                        sh.s.call(
+                            sh.s.from_variable_import("unmarshalled from parse tree", "List", []),
+                            sh.e.select(sh.s.from_context([])),
+                            sh.e.state.literal("expected a list", sh.e.nothing()),
+                            null,
+                            [],
+                        ),
+                        Type_Node(
+                            $.node,
+                            {
+                                'temp type': $p['temp type'],
+                                'temp subselection': _p.list.nested_literal_old([
+                                    $p['temp subselection'],
+                                    [
+                                        sh_i.sub.list(),
+                                    ]
+                                ]),
+                                'constrained': $p.constrained
+                            }
+                        ),
+                    )
             })
             case 'nothing': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
-                    sh.s.from_variable_import("generic", "expect nothing", []),
+                    sh.s.from_variable_import("unmarshalled from parse tree", "Nothing", []),
                     sh.e.select(sh.s.from_context([])),
                     sh.e.state.literal("expected a nothing", sh.e.nothing()),
                     null,
@@ -253,7 +333,7 @@ export const Type_Node = (
                     sh.s.from_variable_import("deserialize number", "deserialize", []),
                     sh.e.select(
                         sh.s.call(
-                            sh.s.from_variable_import("generic", "expect text", []),
+                            sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
                             sh.e.select(sh.s.from_context([])),
                             sh.e.state.literal("expected a text", sh.e.nothing()),
                             null,
@@ -267,7 +347,7 @@ export const Type_Node = (
             ))
             case 'optional': return _p.ss($, ($) => sh.e.optional.map(
                 sh.s.call(
-                    sh.s.from_variable_import("generic", "expect optional", []),
+                    sh.s.from_variable_import("unmarshalled from parse tree", "Optional", []),
                     sh.e.select(sh.s.from_context([])),
                     sh.e.state.literal("expected an optional", sh.e.nothing()),
                     null,
@@ -291,7 +371,7 @@ export const Type_Node = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.select(
                         sh.s.call(
-                            sh.s.from_variable_import("generic", "expect nothing", []),
+                            sh.s.from_variable_import("unmarshalled from parse tree", "Nothing", []),
                             sh.e.select(sh.s.from_context([])),
                             sh.e.state.literal("expected a nothing", sh.e.nothing()),
                             null,
@@ -299,10 +379,10 @@ export const Type_Node = (
                         )
                     ))
                     case 'selected': return _p.ss($, ($) => sh.e.group({
-                        "location": sh.e.implement_me("LOC"),
-                        "key": sh.e.select(
+                        "location": location,
+                        "id": sh.e.select(
                             sh.s.call(
-                                sh.s.from_variable_import("generic", "expect text", []),
+                                sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
                                 sh.e.select(sh.s.from_context([])),
                                 sh.e.state.literal("expected a text", sh.e.nothing()),
                                 null,
@@ -316,7 +396,7 @@ export const Type_Node = (
             case 'state': return _p.ss($, ($) => sh.e.unreachable())
             case 'text': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
-                    sh.s.from_variable_import("generic", "expect text", []),
+                    sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
                     sh.e.select(sh.s.from_context([])),
                     sh.e.state.literal("expected a text", sh.e.nothing()),
                     null,
@@ -338,7 +418,7 @@ export const Type_Node = (
             //             //                     sh.s.from_variable_import(" i generic", "get entry", []),
             //             //                     sh.s.from_context([]),
             //             //                     _p.dictionary.literal({
-            //             //                         "key": sh.e.string(key, 'quote'),
+            //             //                         "id": sh.e.string(id, 'quote'),
             //             //                     }),
             //             //                     [],
             //             //                 ),
@@ -420,7 +500,7 @@ export const Type_Node = (
             //             //         ($, id) => sh.e.function_deprecated(
             //             //             false,
             //             //             sh.e.case_(
-            //             //                 key,
+            //             //                 id,
             //             //                 Type_Node(
             //             //                     $.node,
             //             //                     {
@@ -428,7 +508,7 @@ export const Type_Node = (
             //             //                         'temp subselection': _p.list.nested_literal_old([
             //             //                             $p['temp subselection'],
             //             //                             [
-            //             //                                 sh_i.sub.state(key),
+            //             //                                 sh_i.sub.state(id),
             //             //                             ]
             //             //                         ]),
             //             //                         'constrained': $p.constrained

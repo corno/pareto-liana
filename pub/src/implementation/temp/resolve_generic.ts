@@ -4,13 +4,13 @@ import * as _pdev from 'pareto-core-dev'
 import * as _p_temp from './temp_core'
 import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
 
-import * as gen_loc from "../../interface/generated/liana/generic/location"
+import * as gen_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
 
 //types
 
 export type Unresolved_Reference = {
-    'location': gen_loc.Location
+    'location': gen_loc.Relative_Location
     'id': string
 }
 
@@ -29,7 +29,7 @@ export type Resolved_Stack_Reference<T> = {
 
 export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     $: _pi.Dictionary<Unresolved>,
-    location: gen_loc.Location,
+    location: gen_loc.Relative_Location,
     abort: _pi.Abort<gen_resolve.Error>,
     benchmark: _pi.Dictionary<Benchmark>,
     handle_entry: (
@@ -65,7 +65,7 @@ export namespace abort {
     export const state_constraint = <T extends readonly [string, any]>(
         found: string,
         expected: T,
-        location: gen_loc.Location,
+        location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
@@ -77,7 +77,7 @@ export namespace abort {
 
     export const same_node_constraint = (
         property: string,
-        location: gen_loc.Location,
+        location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['same node', property]],
@@ -86,7 +86,7 @@ export namespace abort {
 
     export const is_set_assertion = (
         parameter: string,
-        location: gen_loc.Location,
+        location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value', ['set', parameter]]],

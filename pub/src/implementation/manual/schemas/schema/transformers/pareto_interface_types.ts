@@ -13,7 +13,7 @@ import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary
 
 const location = sh.t.component_imported(
     ` location`,
-    "Location",
+    "Relative Location",
 )
 
 // const location = sh.t.nothing()
@@ -29,18 +29,31 @@ export const Schema = (
         | ['resolved', null]
     }
 ): d_out.Module_Set.D => {
+    const add_location = $p.type[0] === 'unresolved'
+
     return sh.m.module(
         op_flatten_dictionary(
             _p.dictionary.literal({
-                " location": _p.dictionary.literal({
-                    "": sh.import_.ancestor(
-                        $p.depth + 2,
-                        "generic",
-                        [
-                            "location",
-                        ],
-                    )
-                }),
+                " location": _p.dictionary.filter(
+                    _p.dictionary.literal({
+                        "": _p.optional.from_boolean(
+                            add_location,
+                            sh.import_.external(
+                                "astn-core",
+                                [
+                                    "dist",
+                                    "interface",
+                                    "generated",
+                                    "liana",
+                                    "schemas",
+                                    "location",
+                                    "data",
+                                ]
+                            )
+                        )
+                    }),
+                    ($) => $
+                ),
                 " imports ": _p_cc($, ($) => {
                     // const types = $p['what to generate']
                     return $p.imports.__d_map(($) => sh.import_.ancestor(

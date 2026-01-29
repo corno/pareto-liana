@@ -85,7 +85,8 @@ export const Schema = (
         () => _p_unreachable_code_path(),
     ),
     $.types.__d_map(($, id) => sh.algorithm(
-        sh.type_reference("signatures", id),
+        "signatures",
+        id,
         false,
         false,
         false,
@@ -103,7 +104,7 @@ export const Type_Node = (
     $: d_in.Type_Node,
     $p: {
         'type': string
-        'subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L>
+        'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {

@@ -12,7 +12,7 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 const location = sh.e.group({
-    "file": sh.e.text.literal("implement me", 'freeform'),
+    "document resource identifier": sh.e.text.literal("implement me", 'freeform'),
     "line": sh.e.number.integer_literal(42),
     "column": sh.e.number.integer_literal(42),
 })
@@ -63,7 +63,8 @@ export const Schema = (
     }),
     $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["migrate boilerplate"])),
     $.types.__d_map(($, id) => sh.algorithm(
-        sh.type_reference("signatures", id),
+        "signatures",
+        id,
         false,
         false,
         false,
@@ -82,7 +83,7 @@ export const Type_Node = (
     $: d_in.Type_Node,
     $p: {
         'type name': string
-        'subselection': _pi.List<d_out.Type_Node_Reference.sub_selection.L>
+        'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
         'constrained': boolean
     },
 ): d_out.Expression => {

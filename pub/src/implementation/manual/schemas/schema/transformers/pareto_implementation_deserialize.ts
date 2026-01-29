@@ -63,7 +63,8 @@ export const Schema = (
             () => _p_unreachable_code_path(),
         ),
         $.types.__d_map(($, id) => sh.algorithm(
-            sh.type_reference("signatures", id),
+            "signatures",
+            id,
             true,
             false,
             true,

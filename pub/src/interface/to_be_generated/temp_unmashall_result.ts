@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_astn_token from "astn-core/dist/interface/generated/liana/schemas/token/data"
+import * as d_astn_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_astn_ast from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
 import * as d_schema from "../generated/liana/schemas/schema/data/resolved"
@@ -21,7 +21,7 @@ export type Optional_Node = _pi.Optional_Value<Node>
 // }
 
 export type Property =
-    | ['missing', d_astn_token.Range]
+    | ['missing', d_astn_location.Range]
     | ['unique', Entry_Data]
     | ['multiple', _pi.List<Entry_Data>]
 
@@ -50,10 +50,10 @@ export type Boolean = {
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
-        'range': d_astn_token.Range
+        'range': d_astn_location.Range
         'correct string type': boolean
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Component = {
@@ -68,7 +68,7 @@ export type Dictionary = {
         'value': d_astn_ast.Value.type_.concrete.dictionary
         'entries': _pi.Dictionary<Entry>
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Group = {
@@ -78,7 +78,7 @@ export type Group = {
 
 export type Group_Found_Value_Type =
     | ['valid', Group_Type]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 
 export type Group_Type =
     | ['verbose', Group_Verbose]
@@ -96,7 +96,7 @@ export type Group_Verbose = {
 
 export type Group_Content = {
     'properties': _pi.Dictionary<Property>
-    'superfluous entries': _pi.Dictionary<_pi.List<d_astn_token.Range>>
+    'superfluous entries': _pi.Dictionary<_pi.List<d_astn_location.Range>>
 
 }
 
@@ -107,7 +107,7 @@ export type List = {
         'value': d_astn_ast.Value.type_.concrete.list
         'elements': _pi.List<Node>
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Optional = {
@@ -122,7 +122,7 @@ export type Optional = {
             'value': d_astn_ast.Value.type_.concrete.nothing
         }]
     ]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Reference = {
@@ -131,7 +131,7 @@ export type Reference = {
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
     }] //FIXME
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type State = {
@@ -170,15 +170,15 @@ export type State_found_value__typevalid = {
 
 export type State_found_value_type =
     | ['valid', State_found_value__typevalid]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 
 // export type State_Error =
-//     | ['more than 2 elements', d_astn_token.Range]
-//     | ['missing state name', d_astn_token.Range]
-//     | ['state is not a string', d_astn_token.Range]
-//     | ['missing value', d_astn_token.Range]
+//     | ['more than 2 elements', d_astn_location.Range]
+//     | ['missing state name', d_astn_location.Range]
+//     | ['state is not a string', d_astn_location.Range]
+//     | ['missing value', d_astn_location.Range]
 //     | ['unknown state', {
-//         'range': d_astn_token.Range
+//         'range': d_astn_location.Range
 //         'found': string
 //         'expected': pt.Dictionary<null>
 //     }]
@@ -190,7 +190,7 @@ export type Nothing = {
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.nothing
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Text = {
@@ -199,7 +199,7 @@ export type Text = {
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Number = {
@@ -207,10 +207,10 @@ export type Number = {
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
-        'range': d_astn_token.Range
+        'range': d_astn_location.Range
         'correct string type': boolean
     }]
-    | ['invalid', d_astn_token.Range]
+    | ['invalid', d_astn_location.Range]
 }
 
 export type Entry =

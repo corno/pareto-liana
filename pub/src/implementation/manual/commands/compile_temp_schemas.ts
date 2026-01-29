@@ -49,7 +49,7 @@ export const Error = ($: Error): d_fp.Group_Part => {
                     case 'could not copy generic implementation': return _p.ss($, ($) => sh.b.snippet(`could not copy generic implementation`))
                     case 'could not copy core interface': return _p.ss($, ($) => sh.b.snippet(`could not copy core interface`))
                     case 'could not deserialize module': return _p.ss($, ($) => sh.b.sub([
-                        sh.b.snippet($.location.file + `:` + $.location.line + `:` + $.location.column + `: `),
+                        sh.b.snippet($.location['document resource identifier'] + `:` + $.location.line + `:` + $.location.column + `: `),
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {

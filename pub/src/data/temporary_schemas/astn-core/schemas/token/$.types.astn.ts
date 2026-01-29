@@ -18,13 +18,13 @@ export const $: g_.Types = types(
         "Tokenizer Result": type(t.group({
             "leading trivia": prop(t.component("Trivia")),
             "tokens": prop(t.list(t.component("Annotated Token"))),
-            "end": prop(t.component("Location")),
+            "end": prop(t.component_external("location", "Location")),
         })),
 
         "Annotated Token": type(t.group({
-            "start": prop(t.component("Location")),
+            "start": prop(t.component_external("location", "Location")),
             "type": prop(t.component("Token Type")),
-            "end": prop(t.component("Location")),
+            "end": prop(t.component_external("location", "Location")),
             "trailing trivia": prop(t.component("Trivia")),
         })),
 
@@ -61,13 +61,8 @@ export const $: g_.Types = types(
         "Delimited Text": type(t.text_local(text('single line'))),
 
         "Whitespace": type(t.group({
-            "range": prop(t.component("Range")),
+            "range": prop(t.component_external("location", "Range")),
             "value": prop(t.text_local(text('single line'))),
-        })),
-
-        "Range": type(t.group({
-            "start": prop(t.component("Location")),
-            "end": prop(t.component("Location")),
         })),
         
         "Trivia": type(t.group({
@@ -78,7 +73,7 @@ export const $: g_.Types = types(
                     "block": tstate(t.nothing()),
                 })),
                 "content": prop(t.text_local(text('single line'))),
-                "range": prop(t.component("Range")),
+                "range": prop(t.component_external("location", "Range")),
                 "trailing whitespace": prop(t.component("Whitespace")),
             }))),
         })),
@@ -88,17 +83,6 @@ export const $: g_.Types = types(
             "apostrophed": tstate(t.nothing()),
             "undelimited": tstate(t.nothing()),
             "backticked": tstate(t.nothing()),
-        })),
-
-        "Location": type(t.group({
-            "relative": prop(t.component("Relative Location")), //if at the end of the document, this is not set
-            "absolute": prop(t.number_local(n.natural(null))),
-        })),
-
-        "Relative Location": type(t.group({
-            "document resource identifier": prop(t.text_local(text('single line'))),
-            "line": prop(t.number_local(n.natural(null))),
-            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
     }
 )

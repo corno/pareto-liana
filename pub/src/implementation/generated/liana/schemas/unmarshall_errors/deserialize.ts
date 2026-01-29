@@ -1,0 +1,80 @@
+
+import * as _p from "pareto-core/dist/deserializer"
+
+import {
+    _p_unreachable_code_path,
+} from "pareto-core/dist/unreachable_code_path"
+
+import {
+    _p_cc,
+} from "pareto-core/dist/change_context"
+
+import * as t_signatures from "../../../../../interface/generated/liana/schemas/unmarshall_errors/deserialize"
+
+import * as v_deserialize from "astn-core/dist/implementation/manual/schemas/parse_tree/deserializers"
+
+import * as v_unmarshall from "./unmarshall"
+
+export const Relative_Location: t_signatures.Relative_Location = ($, abort, $p) => v_unmarshall.Relative_Location(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        ({
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        })
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)
+
+export const Location: t_signatures.Location = ($, abort, $p) => v_unmarshall.Location(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        ({
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        })
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)
+
+export const Range: t_signatures.Range = ($, abort, $p) => v_unmarshall.Range(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        ({
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        })
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)
+
+export const Errors: t_signatures.Errors = ($, abort, $p) => v_unmarshall.Errors(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        ({
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        })
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)

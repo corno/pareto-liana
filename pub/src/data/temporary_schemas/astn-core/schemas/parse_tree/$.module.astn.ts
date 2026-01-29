@@ -11,7 +11,7 @@ import { $ as globals } from "./$.globals.astn"
 export const $: g_.Schemas.dictionary.D.entry = schema_(
     {
         "token": import_("token"),
-
+        "location": import_("location"),
     },
     globals,
     schema,

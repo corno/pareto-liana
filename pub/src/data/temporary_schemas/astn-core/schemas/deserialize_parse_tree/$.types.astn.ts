@@ -24,14 +24,14 @@ export const $: g_.Types = types(
 
         "Lexer Error": type(t.state({
             "dangling slash": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
                 "at end of input": prop(t.boolean()),
             })),
             "invalid unicode escape sequence": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "missing character after escape": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             // "unexpected character": tstate(t.group({
             //     "character": prop(t.number_local(n.natural(null))),
@@ -39,27 +39,27 @@ export const $: g_.Types = types(
             // })),
             "unexpected control character": tstate(t.group({
                 "character": prop(t.number_local(n.natural(null))),
-                "location": prop(t.component_external("token", "Location")),
+                "location": prop(t.component_external("location", "Location")),
             })),
             "unexpected control character in text": tstate(t.group({
                 "character": prop(t.number_local(n.natural(null))),
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "unexpected end of line in delimited text": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "unknown escape character": tstate(t.group({
                 "character": prop(t.number_local(n.natural(null))),
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "unterminated block comment": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "unterminated text": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
             "unterminated unicode escape sequence": tstate(t.group({
-                "range": prop(t.component_external("token", "Range")),
+                "range": prop(t.component_external("location", "Range")),
             })),
         })),
 

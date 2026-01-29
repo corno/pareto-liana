@@ -12,6 +12,7 @@ export const $: g_.Schemas.dictionary.D.entry = schema_(
     {
         "parse tree": import_("parse tree"),
         "token": import_("token"),
+        "location": import_("location"),
     },
     globals,
     schema,

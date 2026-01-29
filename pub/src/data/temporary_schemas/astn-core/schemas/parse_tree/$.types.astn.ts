@@ -86,12 +86,12 @@ export const $: g_.Types = types(
 
         "Structural Token": type(t.group({
             "trailing trivia": prop(t.component_external("token", "Trivia")),
-            "range": prop(t.component_external("token", "Range")),
+            "range": prop(t.component_external("location", "Range")),
         })),
 
         "Text": type(t.group({
             "trailing trivia": prop(t.component_external("token", "Trivia")),
-            "range": prop(t.component_external("token", "Range")),
+            "range": prop(t.component_external("location", "Range")),
             "value": prop(t.text_local(text('single line'))),
             "type": prop(t.component_external("token", "Text Type")),
         })),
