@@ -43,7 +43,8 @@ export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dicti
         ),
         'comments': _p_cc(
             $['comments'],
-            ($) => ['list', $.__l_map(
+            ($) => ['list', _p.list.map(
+                $,
                 ($) => ['group', ['verbose', _p.dictionary.literal(
                     {
                         'type': _p_cc(
@@ -345,7 +346,8 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($) => ['group', 
         ),
         'tokens': _p_cc(
             $['tokens'],
-            ($) => ['list', $.__l_map(
+            ($) => ['list', _p.list.map(
+                $,
                 ($) => Annotated_Token(
                     $
                 )

@@ -34,12 +34,8 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
                     ),
                 },
                 {
-                    'globals': _pdev.implement_me(
-                        "parameter"
-                    ),
-                    'imports': _pdev.implement_me(
-                        "parameter"
-                    ),
+                    'globals': $p['globals'],
+                    'imports': $p['imports'],
                 }
             )
         )
@@ -49,7 +45,29 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
     }
 )
 
-export const Types: t_signatures.Types = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Types.D => _p_cc(
+        $['l entry'],
+        ($) => Type(
+            $,
+            ($) => abort(
+                $
+            ),
+            {
+                'noncircular sibling types': _pdev.implement_me(
+                    'selection'
+                ),
+                'possibly circular dependent sibling types': _pdev.implement_me(
+                    'selection'
+                ),
+            },
+            {
+                'globals': $p['globals'],
+                'imports': $p['imports'],
+            }
+        )
+    )
 )
 
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.resolve(
@@ -63,13 +81,37 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.reso
         
         const prop_text_types = _p_cc(
             $['text types'],
-            ($) => _p_unreachable_code_path(
+            ($) => _p.dictionary.resolve(
+                $['l dictionary'],
+                ($, id, $a, $c): t_out.Globals.text_types.D => _p_cc(
+                    $['l entry'],
+                    ($) => Text_Type(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        null,
+                        null
+                    )
+                )
             )
         )
         
         const prop_number_types = _p_cc(
             $['number types'],
-            ($) => _p_unreachable_code_path(
+            ($) => _p.dictionary.resolve(
+                $['l dictionary'],
+                ($, id, $a, $c): t_out.Globals.number_types.D => _p_cc(
+                    $['l entry'],
+                    ($) => Number_Type(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        null,
+                        null
+                    )
+                )
             )
         )
         return {
@@ -187,7 +229,47 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
     }
 )
 
-export const Group: t_signatures.Group = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Group.D => _p_cc(
+        $['l entry'],
+        ($) => _p.group.resolve(
+            () => {
+                
+                const prop_description = _p_cc(
+                    $['description'],
+                    ($) => _p_unreachable_code_path(
+                    )
+                )
+                
+                const prop_node = _p_cc(
+                    $['node'],
+                    ($) => Type_Node(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        {
+                            'noncircular sibling types': _pdev.implement_me(
+                                'selection'
+                            ),
+                            'possibly circular dependent sibling types': _pdev.implement_me(
+                                'selection'
+                            ),
+                        },
+                        {
+                            'globals': $p['globals'],
+                            'imports': $p['imports'],
+                        }
+                    )
+                )
+                return {
+                    'description': prop_description,
+                    'node': prop_node,
+                }
+            }
+        )
+    )
 )
 
 export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.group.resolve(
@@ -209,12 +291,8 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                     ),
                 },
                 {
-                    'globals': _pdev.implement_me(
-                        "parameter"
-                    ),
-                    'imports': _pdev.implement_me(
-                        "parameter"
-                    ),
+                    'globals': $p['globals'],
+                    'imports': $p['imports'],
                 }
             )
         )
@@ -256,13 +334,115 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
         
         const prop_values = _p_cc(
             $['values'],
-            ($) => _p_unreachable_code_path(
+            ($) => _p.dictionary.resolve(
+                $['l dictionary'],
+                ($, id, $a, $c): t_out.Signature_Parameters.values.D => _p_cc(
+                    $['l entry'],
+                    ($) => _p.group.resolve(
+                        () => {
+                            
+                            const prop_data_type = _p_cc(
+                                $['data type'],
+                                ($) => Type_Reference(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    {
+                                        'types': _pdev.implement_me(
+                                            'selection'
+                                        ),
+                                    },
+                                    {
+                                        'imports': _pdev.implement_me(
+                                            "optional"
+                                        ),
+                                    }
+                                )
+                            )
+                            
+                            const prop_presence = _p_cc(
+                                $['presence'],
+                                ($) => Presence(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    null,
+                                    null
+                                )
+                            )
+                            return {
+                                'data type': prop_data_type,
+                                'presence': prop_presence,
+                            }
+                        }
+                    )
+                )
             )
         )
         
         const prop_lookups = _p_cc(
             $['lookups'],
-            ($) => _p_unreachable_code_path(
+            ($) => _p.dictionary.resolve(
+                $['l dictionary'],
+                ($, id, $a, $c): t_out.Signature_Parameters.lookups.D => _p_cc(
+                    $['l entry'],
+                    ($) => _p.group.resolve(
+                        () => {
+                            
+                            const prop_referent = _p_cc(
+                                $['referent'],
+                                ($) => Type_Reference(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    {
+                                        'types': _pdev.implement_me(
+                                            'selection'
+                                        ),
+                                    },
+                                    {
+                                        'imports': _pdev.implement_me(
+                                            "optional"
+                                        ),
+                                    }
+                                )
+                            )
+                            
+                            const prop_dictionary = _p_cc(
+                                $['dictionary'],
+                                ($) => _p_unreachable_code_path(
+                                )
+                            )
+                            
+                            const prop_type = _p_cc(
+                                $['type'],
+                                ($) => _p_unreachable_code_path(
+                                )
+                            )
+                            
+                            const prop_presence = _p_cc(
+                                $['presence'],
+                                ($) => Presence(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    null,
+                                    null
+                                )
+                            )
+                            return {
+                                'referent': prop_referent,
+                                'dictionary': prop_dictionary,
+                                'type': prop_type,
+                                'presence': prop_presence,
+                            }
+                        }
+                    )
+                )
             )
         )
         return {
@@ -300,7 +480,29 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
     }
 )
 
-export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Signatures.D => _p_cc(
+        $['l entry'],
+        ($) => Signature(
+            $,
+            ($) => abort(
+                $
+            ),
+            {
+                'sibling signatures': _pdev.implement_me(
+                    'selection'
+                ),
+            },
+            {
+                'types': $p['types'],
+                'type': _pdev.implement_me(
+                    "required"
+                ),
+                'imports': $p['imports'],
+            }
+        )
+    )
 )
 
 export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p_unreachable_code_path(
@@ -368,7 +570,71 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
     }
 )
 
-export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Resolvers.D => _p_cc(
+        $['l entry'],
+        ($) => _p.group.resolve(
+            () => {
+                
+                const prop_signature = _p_cc(
+                    $['signature'],
+                    ($) => _p_unreachable_code_path(
+                    )
+                )
+                
+                const prop_type_resolver = _p_cc(
+                    $['type resolver'],
+                    ($) => Node_Resolver(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        {
+                            'sibling property resolvers': _pdev.implement_me(
+                                'not set'
+                            ),
+                            'parent sibling property resolvers': _pdev.implement_me(
+                                'not set'
+                            ),
+                        },
+                        {
+                            'option constraints': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'list cursor': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'linked entry': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'current ordered dictionary': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'current dictionary': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'signature': _pdev.implement_me(
+                                "required"
+                            ),
+                            'definition': _pdev.implement_me(
+                                "required"
+                            ),
+                            'signatures': $p['signatures'],
+                            'imports': _pdev.implement_me(
+                                "optional"
+                            ),
+                            'types': $p['types'],
+                        }
+                    )
+                )
+                return {
+                    'signature': prop_signature,
+                    'type resolver': prop_type_resolver,
+                }
+            }
+        )
+    )
 )
 
 export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.group.resolve(
@@ -398,7 +664,13 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
     }
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Option_Constraints.D => _p_cc(
+        $['l entry'],
+        ($) => _p_unreachable_code_path(
+        )
+    )
 )
 
 export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, $l, $p) => _p.group.resolve(
@@ -432,13 +704,79 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
     }
 )
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Property_Constraints: t_signatures.Property_Constraints = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Property_Constraints.D => _p_cc(
+        $['l entry'],
+        ($) => Property_Constraint(
+            $,
+            ($) => abort(
+                $
+            ),
+            {
+                'property constraints': _pdev.implement_me(
+                    'selection'
+                ),
+            },
+            null
+        )
+    )
 )
 
 export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $l, $p) => _p_unreachable_code_path(
 )
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Node_Resolver_Group.D => _p_cc(
+        $['l entry'],
+        ($) => _p.group.resolve(
+            () => {
+                
+                const prop_definition = _p_cc(
+                    $['definition'],
+                    ($) => _p_unreachable_code_path(
+                    )
+                )
+                
+                const prop_resolver = _p_cc(
+                    $['resolver'],
+                    ($) => Node_Resolver(
+                        $,
+                        ($) => abort(
+                            $
+                        ),
+                        {
+                            'sibling property resolvers': _pdev.implement_me(
+                                'selection'
+                            ),
+                            'parent sibling property resolvers': _pdev.implement_me(
+                                'selection'
+                            ),
+                        },
+                        {
+                            'definition': _pdev.implement_me(
+                                "required"
+                            ),
+                            'types': $p['types'],
+                            'imports': $p['imports'],
+                            'signature': $p['signature'],
+                            'signatures': $p['signatures'],
+                            'list cursor': $p['list cursor'],
+                            'linked entry': $p['linked entry'],
+                            'current dictionary': $p['current dictionary'],
+                            'option constraints': $p['option constraints'],
+                            'current ordered dictionary': $p['current ordered dictionary'],
+                        }
+                    )
+                )
+                return {
+                    'definition': prop_definition,
+                    'resolver': prop_resolver,
+                }
+            }
+        )
+    )
 )
 
 export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort, $l, $p) => Type_Reference(
@@ -452,9 +790,7 @@ export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result =
         ),
     },
     {
-        'imports': _pdev.implement_me(
-            "parameter"
-        ),
+        'imports': $p['imports'],
     }
 )
 
@@ -511,12 +847,8 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                             ),
                             null,
                             {
-                                'types': _pdev.implement_me(
-                                    "parameter"
-                                ),
-                                'imports': _pdev.implement_me(
-                                    "parameter"
-                                ),
+                                'types': $p['types'],
+                                'imports': $p['imports'],
                             }
                         )
                     )
@@ -539,12 +871,8 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                     'signatures': _pdev.implement_me(
                         "required"
                     ),
-                    'types': _pdev.implement_me(
-                        "parameter"
-                    ),
-                    'imports': _pdev.implement_me(
-                        "parameter"
-                    ),
+                    'types': $p['types'],
+                    'imports': $p['imports'],
                 }
             )
         )
@@ -555,7 +883,23 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
     }
 )
 
-export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Schemas.D => _p_cc(
+        $['l entry'],
+        ($) => Schema_Tree(
+            $,
+            ($) => abort(
+                $
+            ),
+            {
+                'sibling schemas': _pdev.implement_me(
+                    'stack'
+                ),
+            },
+            null
+        )
+    )
 )
 
 export const Type_Specification: t_signatures.Type_Specification = ($, abort, $l, $p) => _p.group.resolve(
@@ -662,5 +1006,29 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
     }
 )
 
-export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.resolve(
+    $['l dictionary'],
+    ($, id, $a, $c): t_out.Imports.D => _p_cc(
+        $['l entry'],
+        ($) => _p.group.resolve(
+            () => {
+                
+                const prop_schema_set_child = _p_cc(
+                    $['schema set child'],
+                    ($) => _p_unreachable_code_path(
+                    )
+                )
+                
+                const prop_schema = _p_cc(
+                    $['schema'],
+                    ($) => _p_unreachable_code_path(
+                    )
+                )
+                return {
+                    'schema set child': prop_schema_set_child,
+                    'schema': prop_schema,
+                }
+            }
+        )
+    )
 )

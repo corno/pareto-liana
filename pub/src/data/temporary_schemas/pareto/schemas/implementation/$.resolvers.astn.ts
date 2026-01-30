@@ -152,7 +152,8 @@ export const $: g_.Resolvers = resolvers(
                     })),
                     "resolve": state(r.group({
                         "source": r.component("Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {})
+                        "entry handler": r.component("Expression", {}, {}),
+                        "temp resulting entry node": r.component("Temp Type Node Reference", {}, {}),
                     })),
                 })),
                 "group": state(r.state({

@@ -580,16 +580,19 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
                 return ['list', {
                     'node': p_type,
-                    'result': $.result.__o_map(($) => Type_Reference(
-                        $,
-                        abort,
-                        {
-                            'types': $l['noncircular sibling types'],
-                        },
-                        {
-                            'imports': $p.imports,
-                        },
-                    ))
+                    'result': _p.optional.map(
+                        $.result,
+                        ($) => Type_Reference(
+                            $,
+                            abort,
+                            {
+                                'types': $l['noncircular sibling types'],
+                            },
+                            {
+                                'imports': $p.imports,
+                            },
+                        )
+                    )
                 }]
             })
             case 'nothing': return _p.ss($, ($) => ['nothing', null])
@@ -1341,23 +1344,26 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint("dictionary", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_benchmark = $.benchmark.__o_map(($) => {
-                    const p_selection = Guaranteed_Value_Selection(
-                        $.selection,
-                        abort,
-                        $l,
-                        $p,
-                    )
+                const p_benchmark = _p.optional.map(
+                    $.benchmark,
+                    ($) => {
+                        const p_selection = Guaranteed_Value_Selection(
+                            $.selection,
+                            abort,
+                            $l,
+                            $p,
+                        )
 
-                    const p_resulting_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint ('selection')
-                        ? _i_generic.abort.state_constraint("dictionary", p_selection['resulting node'], loc, abort)
-                        : p_selection['resulting node'][1]
-                    return {
-                        'selection': p_selection,
-                        'resulting dictionary': p_resulting_dictionary,
-                        'dense': $.dense
+                        const p_resulting_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint ('selection')
+                            ? _i_generic.abort.state_constraint("dictionary", p_selection['resulting node'], loc, abort)
+                            : p_selection['resulting node'][1]
+                        return {
+                            'selection': p_selection,
+                            'resulting dictionary': p_resulting_dictionary,
+                            'dense': $.dense
+                        }
                     }
-                })
+                )
                 return ['dictionary', {
                     'definition': p_definition,
                     'benchmark': p_benchmark,
@@ -1440,16 +1446,19 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 const p_definition = $p.definition[0] !== 'list'
                     ? _i_generic.abort.state_constraint("list", $p.definition, loc, abort)
                     : $p.definition[1]
-                const p_result = $.result.__o_map(($) => Type_Reference(
-                    $,
-                    abort,
-                    {
-                        'types': _p_temp.lookup_select_from_dictionary($p.types),
-                    },
-                    {
-                        'imports': $p.imports,
-                    },
-                ))
+                const p_result = _p.optional.map(
+                    $.result,
+                    ($) => Type_Reference(
+                        $,
+                        abort,
+                        {
+                            'types': _p_temp.lookup_select_from_dictionary($p.types),
+                        },
+                        {
+                            'imports': $p.imports,
+                        },
+                    )
+                )
                 const p_resolver = Node_Resolver(
                     $.resolver,
                     abort,

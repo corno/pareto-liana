@@ -149,12 +149,13 @@ export const Range: t_signatures.Range = ($, abort) => _p_cc(
     })
 )
 
-export const Errors: t_signatures.Errors = ($, abort) => v_unmarshalled_from_parse_tree.List(
-    $,
-    ($) => abort(
-        ['expected a list', null]
-    )
-).__l_map(
+export const Errors: t_signatures.Errors = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
     ($) => _p_cc(
         v_unmarshalled_from_parse_tree.Group(
             $,
@@ -227,12 +228,13 @@ export const Errors: t_signatures.Errors = ($, abort) => v_unmarshalled_from_par
                                                                                     ['no such entry', "expected"]
                                                                                 )
                                                                             ),
-                                                                            ($) => v_unmarshalled_from_parse_tree.List(
-                                                                                $,
-                                                                                ($) => abort(
-                                                                                    ['expected a list', null]
-                                                                                )
-                                                                            ).__l_map(
+                                                                            ($) => _p.list.map(
+                                                                                v_unmarshalled_from_parse_tree.List(
+                                                                                    $,
+                                                                                    ($) => abort(
+                                                                                        ['expected a list', null]
+                                                                                    )
+                                                                                ),
                                                                                 ($) => _p_cc(
                                                                                     v_unmarshalled_from_parse_tree.State(
                                                                                         $,
@@ -507,12 +509,13 @@ export const Errors: t_signatures.Errors = ($, abort) => v_unmarshalled_from_par
                                                                                                             ['no such entry', "expected"]
                                                                                                         )
                                                                                                     ),
-                                                                                                    ($) => v_unmarshalled_from_parse_tree.Dictionary(
-                                                                                                        $,
-                                                                                                        ($) => abort(
-                                                                                                            ['expected a dictionary', null]
-                                                                                                        )
-                                                                                                    ).__d_map(
+                                                                                                    ($) => _p.dictionary.map(
+                                                                                                        v_unmarshalled_from_parse_tree.Dictionary(
+                                                                                                            $,
+                                                                                                            ($) => abort(
+                                                                                                                ['expected a dictionary', null]
+                                                                                                            )
+                                                                                                        ),
                                                                                                         ($, id) => v_unmarshalled_from_parse_tree.Nothing(
                                                                                                             $,
                                                                                                             ($) => abort(

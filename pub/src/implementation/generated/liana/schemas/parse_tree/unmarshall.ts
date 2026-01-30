@@ -131,12 +131,13 @@ export const Text: t_signatures.Text = ($, abort) => _p_cc(
     })
 )
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => v_unmarshalled_from_parse_tree.List(
-    $,
-    ($) => abort(
-        ['expected a list', null]
-    )
-).__l_map(
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
     ($) => _p_cc(
         v_unmarshalled_from_parse_tree.Group(
             $,
@@ -166,12 +167,13 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => v_unmar
                         ['no such entry', "value"]
                     )
                 ),
-                ($) => v_unmarshalled_from_parse_tree.Optional(
-                    $,
-                    ($) => abort(
-                        ['expected an optional', null]
-                    )
-                ).__o_map(
+                ($) => _p.optional.map(
+                    v_unmarshalled_from_parse_tree.Optional(
+                        $,
+                        ($) => abort(
+                            ['expected an optional', null]
+                        )
+                    ),
                     ($) => _p_cc(
                         v_unmarshalled_from_parse_tree.Group(
                             $,
@@ -216,12 +218,13 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => v_unmar
     )
 )
 
-export const Items: t_signatures.Items = ($, abort) => v_unmarshalled_from_parse_tree.List(
-    $,
-    ($) => abort(
-        ['expected a list', null]
-    )
-).__l_map(
+export const Items: t_signatures.Items = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
     ($) => _p_cc(
         v_unmarshalled_from_parse_tree.Group(
             $,
@@ -876,12 +879,13 @@ export const Document: t_signatures.Document = ($, abort) => _p_cc(
                     ['no such entry', "header"]
                 )
             ),
-            ($) => v_unmarshalled_from_parse_tree.Optional(
-                $,
-                ($) => abort(
-                    ['expected an optional', null]
-                )
-            ).__o_map(
+            ($) => _p.optional.map(
+                v_unmarshalled_from_parse_tree.Optional(
+                    $,
+                    ($) => abort(
+                        ['expected an optional', null]
+                    )
+                ),
                 ($) => _p_cc(
                     v_unmarshalled_from_parse_tree.Group(
                         $,

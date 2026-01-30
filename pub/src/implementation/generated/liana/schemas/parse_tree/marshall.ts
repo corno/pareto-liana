@@ -64,7 +64,8 @@ export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionar
     }
 )]]
 
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', $.__l_map(
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.list.map(
+    $,
     ($) => ['group', ['verbose', _p.dictionary.literal(
         {
             'id': _p_cc(
@@ -75,7 +76,8 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', $.__l
             ),
             'value': _p_cc(
                 $['value'],
-                ($) => ['optional', $.__decide(
+                ($) => ['optional', _p.decide.optional(
+                    $,
                     ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                         {
                             ':': _p_cc(
@@ -99,7 +101,8 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', $.__l
     )]]
 )]
 
-export const Items: t_signatures.Items = ($) => ['list', $.__l_map(
+export const Items: t_signatures.Items = ($) => ['list', _p.list.map(
+    $,
     ($) => ['group', ['verbose', _p.dictionary.literal(
         {
             'value': _p_cc(
@@ -470,7 +473,8 @@ export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.d
     {
         'header': _p_cc(
             $['header'],
-            ($) => ['optional', $.__decide(
+            ($) => ['optional', _p.decide.optional(
+                $,
                 ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                     {
                         '!': _p_cc(

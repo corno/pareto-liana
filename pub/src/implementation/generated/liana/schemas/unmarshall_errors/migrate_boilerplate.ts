@@ -48,7 +48,8 @@ export const Range: t_signatures.Range = ($) => ({
     ),
 })
 
-export const Errors: t_signatures.Errors = ($) => $.__l_map(
+export const Errors: t_signatures.Errors = ($) => _p.list.map(
+    $,
     ($) => ({
         'range': _p_cc(
             $['range'],
@@ -75,7 +76,8 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                                     ($) => ['invalid value type', {
                                                         'expected': _p_cc(
                                                             $['expected'],
-                                                            ($) => $.__l_map(
+                                                            ($) => _p.list.map(
+                                                                $,
                                                                 ($) => _p.decide.state(
                                                                     $,
                                                                     ($): t_out.Errors.L.type_.error.invalid_value_type.expected.L => {
@@ -198,7 +200,8 @@ export const Errors: t_signatures.Errors = ($) => $.__l_map(
                                                                             ),
                                                                             'expected': _p_cc(
                                                                                 $['expected'],
-                                                                                ($) => $.__d_map(
+                                                                                ($) => _p.dictionary.map(
+                                                                                    $,
                                                                                     ($, id) => null
                                                                                 )
                                                                             ),

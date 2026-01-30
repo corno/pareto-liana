@@ -73,7 +73,8 @@ export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.diction
     }
 )]]
 
-export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
+export const Errors: t_signatures.Errors = ($) => ['list', _p.list.map(
+    $,
     ($) => ['group', ['verbose', _p.dictionary.literal(
         {
             'range': _p_cc(
@@ -106,7 +107,8 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                                     {
                                                                         'expected': _p_cc(
                                                                             $['expected'],
-                                                                            ($) => ['list', $.__l_map(
+                                                                            ($) => ['list', _p.list.map(
+                                                                                $,
                                                                                 ($) => ['state', _p.decide.state(
                                                                                     $,
                                                                                     ($): t_out.Value.state => {
@@ -299,7 +301,8 @@ export const Errors: t_signatures.Errors = ($) => ['list', $.__l_map(
                                                                                                 ),
                                                                                                 'expected': _p_cc(
                                                                                                     $['expected'],
-                                                                                                    ($) => ['dictionary', $.__d_map(
+                                                                                                    ($) => ['dictionary', _p.dictionary.map(
+                                                                                                        $,
                                                                                                         ($, id) => ['nothing', null]
                                                                                                     )]
                                                                                                 ),

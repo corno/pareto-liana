@@ -28,7 +28,7 @@ export const Optional_Node = (
     $p: {
         'definition': d_definition.Type_Node,
     }
-): d_out.Optional_Node => $.__o_map(
+): d_out.Optional_Node => _p.optional.map($,
     ($) => Node($, $p),
 )
 
@@ -99,7 +99,8 @@ export const Node_Type = (
                                         }
                                     })).__d_map(($) => op_expect_exactly_one_element($).__decide(
                                         ($): d_out.Entry => ['unique', Optional_Node(
-                                            $.value.__o_map(
+                                            _p.optional.map(
+                                                $.value,
                                                 ($) => $.value,
                                             ),
                                             {
@@ -108,7 +109,8 @@ export const Node_Type = (
                                         )],
                                         (): d_out.Entry => ['multiple', $.__l_map(($): d_out.Entry_Data => ({
                                             'node': Optional_Node(
-                                                $.value.__o_map(
+                                                _p.optional.map(
+                                                    $.value,
                                                     ($) => $.value,
                                                 ),
                                                 {
@@ -380,7 +382,8 @@ export const Node_Type = (
                                                     const value = $.value
                                                     return ['set', {
                                                         'value': $,
-                                                        'found state definition': def.__get_possible_entry($.option.value).__o_map(
+                                                        'found state definition': _p.optional.map(
+                                                            def.__get_possible_entry($.option.value),
                                                             ($) => ({
                                                                 'definition': $,
                                                                 'node': Node(

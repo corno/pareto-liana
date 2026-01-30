@@ -72,7 +72,8 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                                 ($) => ['exact', {
                                     'decimal separator offset': _p_cc(
                                         $['decimal separator offset'],
-                                        ($) => $.__o_map(
+                                        ($) => _p.optional.map(
+                                            $,
                                             ($) => $
                                         )
                                     ),
@@ -165,7 +166,8 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': $.__d_map(
+            'l dictionary': _p.dictionary.map(
+                $,
                 ($, id) => ({
                     'l entry': Text_Type(
                         $
@@ -187,7 +189,8 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': $.__d_map(
+            'l dictionary': _p.dictionary.map(
+                $,
                 ($, id) => ({
                     'l entry': Number_Type(
                         $
@@ -218,7 +221,8 @@ export const Types: t_signatures.Types = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Type(
                 $
@@ -354,7 +358,8 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l list': $.__l_map(
+            'l list': _p.list.map(
+                $,
                 ($) => ({
                     'l item': $,
                     'l location': {
@@ -378,7 +383,8 @@ export const Schemas: t_signatures.Schemas = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Schema_Tree(
                 $
@@ -398,7 +404,8 @@ export const Imports: t_signatures.Imports = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'schema set child': _p_cc(
@@ -470,7 +477,8 @@ export const Signatures: t_signatures.Signatures = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Signature(
                 $
@@ -490,7 +498,8 @@ export const Resolvers: t_signatures.Resolvers = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'signature': _p_cc(
@@ -519,12 +528,14 @@ export const Group: t_signatures.Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'description': _p_cc(
                     $['description'],
-                    ($) => $.__o_map(
+                    ($) => _p.optional.map(
+                        $,
                         ($) => $
                     )
                 ),
@@ -727,7 +738,8 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             ),
                             'result': _p_cc(
                                 $['result'],
-                                ($) => $.__o_map(
+                                ($) => _p.optional.map(
+                                    $,
                                     ($) => Type_Reference(
                                         $
                                     )
@@ -881,12 +893,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l dictionary': $.__d_map(
+                            'l dictionary': _p.dictionary.map(
+                                $,
                                 ($, id) => ({
                                     'l entry': {
                                         'description': _p_cc(
                                             $['description'],
-                                            ($) => $.__o_map(
+                                            ($) => _p.optional.map(
+                                                $,
                                                 ($) => $
                                             )
                                         ),
@@ -965,7 +979,8 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l list': $['l list'].__l_map(
+            'l list': _p.list.map(
+                $['l list'],
                 ($) => ({
                     'l item': _p_cc(
                         $['l item'],
@@ -1066,7 +1081,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': $.__d_map(
+            'l dictionary': _p.dictionary.map(
+                $,
                 ($, id) => ({
                     'l entry': {
                         'data type': _p_cc(
@@ -1099,7 +1115,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l dictionary': $.__d_map(
+            'l dictionary': _p.dictionary.map(
+                $,
                 ($, id) => ({
                     'l entry': {
                         'referent': _p_cc(
@@ -1226,7 +1243,8 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                 'line': 42,
                 'column': 42,
             },
-            'l list': $['l list'].__l_map(
+            'l list': _p.list.map(
+                $['l list'],
                 ($) => ({
                     'l item': _p_cc(
                         $['l item'],
@@ -1424,7 +1442,8 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'l location': {
@@ -1493,7 +1512,8 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': Property_Constraint(
                 $
@@ -1602,7 +1622,8 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l dictionary': $.__d_map(
+    'l dictionary': _p.dictionary.map(
+        $,
         ($, id) => ({
             'l entry': {
                 'definition': _p_cc(
@@ -1732,18 +1753,21 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'arguments': _p_cc(
                                 $['arguments'],
-                                ($) => $.__o_map(
+                                ($) => _p.optional.map(
+                                    $,
                                     ($) => ({
                                         'values': _p_cc(
                                             $['values'],
-                                            ($) => $.__o_map(
+                                            ($) => _p.optional.map(
+                                                $,
                                                 ($) => ({
                                                     'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l dictionary': $.__d_map(
+                                                    'l dictionary': _p.dictionary.map(
+                                                        $,
                                                         ($, id) => ({
                                                             'l entry': {
                                                                 'l location': {
@@ -1801,14 +1825,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                         ),
                                         'lookups': _p_cc(
                                             $['lookups'],
-                                            ($) => $.__o_map(
+                                            ($) => _p.optional.map(
+                                                $,
                                                 ($) => ({
                                                     'l location': {
                                                         'document resource identifier': "implement me",
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l dictionary': $.__d_map(
+                                                    'l dictionary': _p.dictionary.map(
+                                                        $,
                                                         ($, id) => ({
                                                             'l entry': {
                                                                 'l location': {
@@ -1900,7 +1926,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'benchmark': _p_cc(
                                 $['benchmark'],
-                                ($) => $.__o_map(
+                                ($) => _p.optional.map(
+                                    $,
                                     ($) => Benchmark(
                                         $
                                     )
@@ -1931,7 +1958,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'result': _p_cc(
                                 $['result'],
-                                ($) => $.__o_map(
+                                ($) => _p.optional.map(
+                                    $,
                                     ($) => Node_Resolver_List_Result(
                                         $
                                     )
@@ -2048,7 +2076,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l dictionary': $.__d_map(
+                                    'l dictionary': _p.dictionary.map(
+                                        $,
                                         ($, id) => ({
                                             'l entry': {
                                                 'constraints': _p_cc(

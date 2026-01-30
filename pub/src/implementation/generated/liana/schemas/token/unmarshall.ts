@@ -89,12 +89,13 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_cc(
                     ['no such entry', "comments"]
                 )
             ),
-            ($) => v_unmarshalled_from_parse_tree.List(
-                $,
-                ($) => abort(
-                    ['expected a list', null]
-                )
-            ).__l_map(
+            ($) => _p.list.map(
+                v_unmarshalled_from_parse_tree.List(
+                    $,
+                    ($) => abort(
+                        ['expected a list', null]
+                    )
+                ),
                 ($) => _p_cc(
                     v_unmarshalled_from_parse_tree.Group(
                         $,
@@ -574,12 +575,13 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
                     ['no such entry', "tokens"]
                 )
             ),
-            ($) => v_unmarshalled_from_parse_tree.List(
-                $,
-                ($) => abort(
-                    ['expected a list', null]
-                )
-            ).__l_map(
+            ($) => _p.list.map(
+                v_unmarshalled_from_parse_tree.List(
+                    $,
+                    ($) => abort(
+                        ['expected a list', null]
+                    )
+                ),
                 ($) => Annotated_Token(
                     $,
                     ($) => abort(

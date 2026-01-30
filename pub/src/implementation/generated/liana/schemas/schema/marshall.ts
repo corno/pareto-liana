@@ -85,7 +85,8 @@ export const Number_Type: t_signatures.Number_Type = ($) => ['group', ['verbose'
                                         {
                                             'decimal separator offset': _p_cc(
                                                 $['decimal separator offset'],
-                                                ($) => ['optional', $.__decide(
+                                                ($) => ['optional', _p.decide.optional(
+                                                    $,
                                                     ($): t_out.Value.optional => ['set', ['text', {
                                                         'delimiter': ['none', null],
                                                         'value': v_serialize_number.serialize(
@@ -182,7 +183,8 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
         ),
         'text types': _p_cc(
             $['text types'],
-            ($) => ['dictionary', $.__d_map(
+            ($) => ['dictionary', _p.dictionary.map(
+                $,
                 ($, id) => Text_Type(
                     $
                 )
@@ -190,7 +192,8 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
         ),
         'number types': _p_cc(
             $['number types'],
-            ($) => ['dictionary', $.__d_map(
+            ($) => ['dictionary', _p.dictionary.map(
+                $,
                 ($, id) => Number_Type(
                     $
                 )
@@ -210,7 +213,8 @@ export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionar
     }
 )]]
 
-export const Types: t_signatures.Types = ($) => ['dictionary', $.__d_map(
+export const Types: t_signatures.Types = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => Type(
         $
     )
@@ -337,7 +341,8 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ['grou
         ),
         'schema path': _p_cc(
             $['schema path'],
-            ($) => ['list', $.__l_map(
+            ($) => ['list', _p.list.map(
+                $,
                 ($) => ['text', {
                     'delimiter': ['quote', null],
                     'value': $,
@@ -354,13 +359,15 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ['grou
     }
 )]]
 
-export const Schemas: t_signatures.Schemas = ($) => ['dictionary', $.__d_map(
+export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => Schema_Tree(
         $
     )
 )]
 
-export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
+export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             'schema set child': _p_cc(
@@ -417,13 +424,15 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
     }
 )]]
 
-export const Signatures: t_signatures.Signatures = ($) => ['dictionary', $.__d_map(
+export const Signatures: t_signatures.Signatures = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => Signature(
         $
     )
 )]
 
-export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', $.__d_map(
+export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             'signature': _p_cc(
@@ -440,12 +449,14 @@ export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', $.__d_map
     )]]
 )]
 
-export const Group: t_signatures.Group = ($) => ['dictionary', $.__d_map(
+export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             'description': _p_cc(
                 $['description'],
-                ($) => ['optional', $.__decide(
+                ($) => ['optional', _p.decide.optional(
+                    $,
                     ($): t_out.Value.optional => ['set', ['text', {
                         'delimiter': ['quote', null],
                         'value': $,
@@ -634,7 +645,8 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                 ),
                                 'result': _p_cc(
                                     $['result'],
-                                    ($) => ['optional', $.__decide(
+                                    ($) => ['optional', _p.decide.optional(
+                                        $,
                                         ($): t_out.Value.optional => ['set', Type_Reference(
                                             $
                                         )],
@@ -799,12 +811,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                     $,
                     ($) => ({
                         'option': 'state',
-                        'value': ['dictionary', $.__d_map(
+                        'value': ['dictionary', _p.dictionary.map(
+                            $,
                             ($, id) => ['group', ['verbose', _p.dictionary.literal(
                                 {
                                     'description': _p_cc(
                                         $['description'],
-                                        ($) => ['optional', $.__decide(
+                                        ($) => ['optional', _p.decide.optional(
+                                            $,
                                             ($): t_out.Value.optional => ['set', ['text', {
                                                 'delimiter': ['quote', null],
                                                 'value': $,
@@ -874,7 +888,8 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['ve
     {
         'tail': _p_cc(
             $['tail'],
-            ($) => ['list', $['l list'].__l_map(
+            ($) => ['list', _p.list.map(
+                $['l list'],
                 ($) => _p_cc(
                     $['l item'],
                     ($) => ['state', _p.decide.state(
@@ -965,7 +980,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['
     {
         'values': _p_cc(
             $['values'],
-            ($) => ['dictionary', $.__d_map(
+            ($) => ['dictionary', _p.dictionary.map(
+                $,
                 ($, id) => ['group', ['verbose', _p.dictionary.literal(
                     {
                         'data type': _p_cc(
@@ -986,7 +1002,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['
         ),
         'lookups': _p_cc(
             $['lookups'],
-            ($) => ['dictionary', $.__d_map(
+            ($) => ['dictionary', _p.dictionary.map(
+                $,
                 ($, id) => ['group', ['verbose', _p.dictionary.literal(
                     {
                         'referent': _p_cc(
@@ -1102,7 +1119,8 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
     {
         'path': _p_cc(
             $['path'],
-            ($) => ['list', $['l list'].__l_map(
+            ($) => ['list', _p.list.map(
+                $['l list'],
                 ($) => _p_cc(
                     $['l item'],
                     ($) => ['state', _p.decide.state(
@@ -1293,7 +1311,8 @@ export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', 
     }
 )]]
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dictionary', $.__d_map(
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['state', _p.decide.state(
         $,
         ($): t_out.Value.state => {
@@ -1345,7 +1364,8 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dict
     )]
 )]
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($) => ['dictionary', $.__d_map(
+export const Property_Constraints: t_signatures.Property_Constraints = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => Property_Constraint(
         $
     )
@@ -1439,7 +1459,8 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
     }
 )]
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['dictionary', $.__d_map(
+export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['dictionary', _p.dictionary.map(
+    $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
             'definition': _p_cc(
@@ -1559,13 +1580,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'arguments': _p_cc(
                                     $['arguments'],
-                                    ($) => ['optional', $.__decide(
+                                    ($) => ['optional', _p.decide.optional(
+                                        $,
                                         ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                                             {
                                                 'values': _p_cc(
                                                     $['values'],
-                                                    ($) => ['optional', $.__decide(
-                                                        ($): t_out.Value.optional => ['set', ['dictionary', $.__d_map(
+                                                    ($) => ['optional', _p.decide.optional(
+                                                        $,
+                                                        ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
+                                                            $,
                                                             ($, id) => ['state', _p.decide.state(
                                                                 $,
                                                                 ($): t_out.Value.state => {
@@ -1614,8 +1638,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                 ),
                                                 'lookups': _p_cc(
                                                     $['lookups'],
-                                                    ($) => ['optional', $.__decide(
-                                                        ($): t_out.Value.optional => ['set', ['dictionary', $.__d_map(
+                                                    ($) => ['optional', _p.decide.optional(
+                                                        $,
+                                                        ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
+                                                            $,
                                                             ($, id) => ['state', _p.decide.state(
                                                                 $,
                                                                 ($): t_out.Value.state => {
@@ -1714,7 +1740,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'benchmark': _p_cc(
                                     $['benchmark'],
-                                    ($) => ['optional', $.__decide(
+                                    ($) => ['optional', _p.decide.optional(
+                                        $,
                                         ($): t_out.Value.optional => ['set', Benchmark(
                                             $
                                         )],
@@ -1754,7 +1781,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'result': _p_cc(
                                     $['result'],
-                                    ($) => ['optional', $.__decide(
+                                    ($) => ['optional', _p.decide.optional(
+                                        $,
                                         ($): t_out.Value.optional => ['set', Node_Resolver_List_Result(
                                             $
                                         )],
@@ -1890,7 +1918,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'states': _p_cc(
                                     $['states'],
-                                    ($) => ['dictionary', $.__d_map(
+                                    ($) => ['dictionary', _p.dictionary.map(
+                                        $,
                                         ($, id) => ['group', ['verbose', _p.dictionary.literal(
                                             {
                                                 'constraints': _p_cc(

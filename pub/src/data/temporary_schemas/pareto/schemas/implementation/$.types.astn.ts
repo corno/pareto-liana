@@ -162,7 +162,8 @@ export const $: g_.Types = types(
                     })),
                     "resolve": tstate(t.group({
                         "source": prop(t.component("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression"))
+                        "entry handler": prop(t.component_cyclic("Expression")),
+                        "temp resulting entry node": prop(t.component("Temp Type Node Reference")),
                     })),
                 })),
                 "group": tstate(t.state({
