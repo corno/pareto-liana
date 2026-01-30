@@ -383,7 +383,7 @@ export const Node_Type = (
                                                     return ['set', {
                                                         'value': $,
                                                         'found state definition': _p.optional.map(
-                                                            def.__get_possible_entry($.option.value),
+                                                            def.options.__get_possible_entry($.option.value),
                                                             ($) => ({
                                                                 'definition': $,
                                                                 'node': Node(

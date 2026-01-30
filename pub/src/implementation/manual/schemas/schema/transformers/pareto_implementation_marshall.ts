@@ -276,7 +276,7 @@ export const Value = (
             "state",
             sh.e.decide.state(
                 sh.s.context([]),
-                $.__d_map(($, id) => sh.e.group.literal({
+                $.options.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Value(
                         $.value,

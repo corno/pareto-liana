@@ -904,39 +904,69 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
             case 'state':
                 return _p.ss(
                     $,
-                    ($) => ['state', _p.dictionary.resolve(
-                        $['l dictionary'],
-                        ($, id, $a, $c): t_out.Value.state.D => _p_cc(
-                            $['l entry'],
-                            ($) => _p.group.resolve(
-                                () => {
-                                    
-                                    const prop_value = _p_cc(
-                                        $['value'],
-                                        ($) => Value(
-                                            $,
-                                            ($) => abort(
-                                                $
-                                            ),
-                                            $l,
-                                            $p
+                    ($) => ['state', _p.group.resolve(
+                        () => {
+                            
+                            const prop_options = _p_cc(
+                                $['options'],
+                                ($) => _p.dictionary.resolve(
+                                    $['l dictionary'],
+                                    ($, id, $a, $c): t_out.Value.state.options.D => _p_cc(
+                                        $['l entry'],
+                                        ($) => _p.group.resolve(
+                                            () => {
+                                                
+                                                const prop_value = _p_cc(
+                                                    $['value'],
+                                                    ($) => Value(
+                                                        $,
+                                                        ($) => abort(
+                                                            $
+                                                        ),
+                                                        $l,
+                                                        $p
+                                                    )
+                                                )
+                                                
+                                                const prop_description = _p_cc(
+                                                    $['description'],
+                                                    ($) => _p.optional.map(
+                                                        $,
+                                                        ($) => $
+                                                    )
+                                                )
+                                                return {
+                                                    'value': prop_value,
+                                                    'description': prop_description,
+                                                }
+                                            }
                                         )
                                     )
-                                    
-                                    const prop_description = _p_cc(
-                                        $['description'],
-                                        ($) => _p.optional.map(
-                                            $,
-                                            ($) => $
-                                        )
-                                    )
-                                    return {
-                                        'value': prop_value,
-                                        'description': prop_description,
-                                    }
-                                }
+                                )
                             )
-                        )
+                            
+                            const prop_constraints = _p_cc(
+                                $['constraints'],
+                                ($) => Value_Constraints(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    {
+                                        'modules': _pdev.implement_me(
+                                            "IM: selection"
+                                        ),
+                                    },
+                                    {
+                                        'imports': $p['imports'],
+                                    }
+                                )
+                            )
+                            return {
+                                'options': prop_options,
+                                'constraints': prop_constraints,
+                            }
+                        }
                     )]
                 )
             case 'text':

@@ -139,8 +139,8 @@ export type State = {
     'found value type': State_found_value_type
 }
 
-export type State_Definition_Found = {
-    'definition': d_schema.Value.state.D
+export type Option_Definition_Found = {
+    'definition': d_schema.Value.state.options.D
     'node': Node
 }
 
@@ -154,7 +154,7 @@ export type State_found_value__typevalid_value__typeSG_state_value_substatus =
 
 export type State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
     'value': d_astn_ast.Value.type_.concrete.state.status.set_
-    'found state definition': _pi.Optional_Value<State_Definition_Found>
+    'found state definition': _pi.Optional_Value<Option_Definition_Found>
 }
 
 export type State_found_value__typevalid = {

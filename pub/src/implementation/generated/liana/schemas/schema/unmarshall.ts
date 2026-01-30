@@ -1825,70 +1825,102 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['state', {
-                                'l location': v_parse_tree_to_location.Value(
-                                    $
-                                )['start']['relative'],
-                                'l dictionary': _p.dictionary.map(
-                                    v_unmarshalled_from_parse_tree.Dictionary(
-                                        $,
-                                        ($) => abort(
-                                            ['expected a dictionary', null]
-                                        )
-                                    ),
-                                    ($, id) => ({
-                                        'l location': v_parse_tree_to_location.Value(
-                                            $
-                                        )['start']['relative'],
-                                        'l entry': _p_cc(
-                                            v_unmarshalled_from_parse_tree.Group(
-                                                $,
-                                                ($) => abort(
-                                                    ['expected a group', null]
-                                                )
-                                            ),
-                                            ($) => ({
-                                                'description': _p_cc(
-                                                    $.__get_entry(
-                                                        'description',
-                                                        ($) => abort(
-                                                            ['no such entry', "description"]
-                                                        )
-                                                    ),
-                                                    ($) => _p.optional.map(
-                                                        v_unmarshalled_from_parse_tree.Optional(
+                            'l state': ['state', _p_cc(
+                                v_unmarshalled_from_parse_tree.Group(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a group', null]
+                                    )
+                                ),
+                                ($) => ({
+                                    'options': _p_cc(
+                                        $.__get_entry(
+                                            'options',
+                                            ($) => abort(
+                                                ['no such entry', "options"]
+                                            )
+                                        ),
+                                        ($) => ({
+                                            'l location': v_parse_tree_to_location.Value(
+                                                $
+                                            )['start']['relative'],
+                                            'l dictionary': _p.dictionary.map(
+                                                v_unmarshalled_from_parse_tree.Dictionary(
+                                                    $,
+                                                    ($) => abort(
+                                                        ['expected a dictionary', null]
+                                                    )
+                                                ),
+                                                ($, id) => ({
+                                                    'l location': v_parse_tree_to_location.Value(
+                                                        $
+                                                    )['start']['relative'],
+                                                    'l entry': _p_cc(
+                                                        v_unmarshalled_from_parse_tree.Group(
                                                             $,
                                                             ($) => abort(
-                                                                ['expected an optional', null]
+                                                                ['expected a group', null]
                                                             )
                                                         ),
-                                                        ($) => v_unmarshalled_from_parse_tree.Text(
-                                                            $,
-                                                            ($) => abort(
-                                                                ['expected a text', null]
-                                                            )
-                                                        )
-                                                    )
-                                                ),
-                                                'value': _p_cc(
-                                                    $.__get_entry(
-                                                        'value',
-                                                        ($) => abort(
-                                                            ['no such entry', "value"]
-                                                        )
+                                                        ($) => ({
+                                                            'description': _p_cc(
+                                                                $.__get_entry(
+                                                                    'description',
+                                                                    ($) => abort(
+                                                                        ['no such entry', "description"]
+                                                                    )
+                                                                ),
+                                                                ($) => _p.optional.map(
+                                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            ['expected an optional', null]
+                                                                        )
+                                                                    ),
+                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            ['expected a text', null]
+                                                                        )
+                                                                    )
+                                                                )
+                                                            ),
+                                                            'value': _p_cc(
+                                                                $.__get_entry(
+                                                                    'value',
+                                                                    ($) => abort(
+                                                                        ['no such entry', "value"]
+                                                                    )
+                                                                ),
+                                                                ($) => Value(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $
+                                                                    )
+                                                                )
+                                                            ),
+                                                        })
                                                     ),
-                                                    ($) => Value(
-                                                        $,
-                                                        ($) => abort(
-                                                            $
-                                                        )
-                                                    )
-                                                ),
-                                            })
+                                                })
+                                            ),
+                                        })
+                                    ),
+                                    'constraints': _p_cc(
+                                        $.__get_entry(
+                                            'constraints',
+                                            ($) => abort(
+                                                ['no such entry', "constraints"]
+                                            )
                                         ),
-                                    })
-                                ),
-                            }],
+                                        ($) => Value_Constraints(
+                                            $,
+                                            ($) => abort(
+                                                $
+                                            )
+                                        )
+                                    ),
+                                })
+                            )],
                         })
                     )
                 case 'text':

@@ -953,35 +953,46 @@ export const Value: t_signatures.Value = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['state', {
-                            'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
-                            },
-                            'l dictionary': _p.dictionary.map(
-                                $,
-                                ($, id) => ({
-                                    'l entry': {
-                                        'description': _p_cc(
-                                            $['description'],
-                                            ($) => _p.optional.map(
-                                                $,
-                                                ($) => $
-                                            )
-                                        ),
-                                        'value': _p_cc(
-                                            $['value'],
-                                            ($) => Value(
-                                                $
-                                            )
-                                        ),
-                                    },
+                            'options': _p_cc(
+                                $['options'],
+                                ($) => ({
                                     'l location': {
                                         'document resource identifier': "implement me",
                                         'line': 42,
                                         'column': 42,
                                     },
+                                    'l dictionary': _p.dictionary.map(
+                                        $,
+                                        ($, id) => ({
+                                            'l entry': {
+                                                'description': _p_cc(
+                                                    $['description'],
+                                                    ($) => _p.optional.map(
+                                                        $,
+                                                        ($) => $
+                                                    )
+                                                ),
+                                                'value': _p_cc(
+                                                    $['value'],
+                                                    ($) => Value(
+                                                        $
+                                                    )
+                                                ),
+                                            },
+                                            'l location': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                        })
+                                    ),
                                 })
+                            ),
+                            'constraints': _p_cc(
+                                $['constraints'],
+                                ($) => Value_Constraints(
+                                    $
+                                )
                             ),
                         }]
                     )

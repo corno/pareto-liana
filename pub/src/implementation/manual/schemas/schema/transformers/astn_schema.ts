@@ -99,7 +99,7 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
         }])
         case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.value)))])
         case 'optional': return _p.ss($, ($) => ['optional', Value($)])
-        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.__d_map(($) => Value($.value)))])
+        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.options.__d_map(($) => Value($.value)))])
         case 'text': return _p.ss($, ($) => ['text', sh.state(_p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', sh.reference("t" + $['l id'])])

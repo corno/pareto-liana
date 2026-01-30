@@ -61,7 +61,7 @@ export const prop = (
 
 export const tstate = (
     node: d_schema.Value,
-): d_schema.Value.l_state.state.l_dictionary.D.l_entry => ({
+): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'description': sh.optionalx.not_set(),
     'value': node,
 })
@@ -69,7 +69,7 @@ export const tstate = (
 export const tstated = (
     description: string,
     node: d_schema.Value,
-): d_schema.Value.l_state.state.l_dictionary.D.l_entry => ({
+): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'description': _p.optionalx.set(description),
     'value': node,
 })
@@ -366,15 +366,33 @@ export namespace t {
             'type': p_type,
         }])
     }
-    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.l_dictionary.D.l_entry>): d_schema.Value => {
-        return sh.state(['state', sh.dictionary(options)])
+
+    export const state = (
+        options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>
+    ): d_schema.Value => {
+        return sh.state(['state', {
+            'options': sh.dictionary(options),
+            'constraints': sh.optionalx.not_set(),
+        }])
     }
+    export const state_constrained = (
+        options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraints.O.l_dictionary.D.l_entry>,
+    ): d_schema.Value => {
+        return sh.state(['state', {
+            'options': sh.dictionary(options),
+            'constraints': sh.optionalx.set(sh.dictionary(constraints)),
+        }])
+    }
+
     export const text_global = (name: string): d_schema.Value => {
         return sh.state(['text', sh.state(['global', sh.reference(name)])])
     }
+    
     export const text_local = (bt: d_schema.Text_Type): d_schema.Value => {
         return sh.state(['text', sh.state(['local', bt])])
     }
+
     // export const type_parameter = (name: string): unresolved.Value => {
     //     return _psh.wrap_state(['type parameter', _psh.wrap_reference(name)])
     // }
@@ -602,7 +620,7 @@ export namespace al {
 /**
  * value selection path step
  */
-export namespace vst {
+export namespace rvs {
 
     export const component = (
     ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {

@@ -446,7 +446,7 @@ export const Value = (
                 ),
                 sh.e.decide.text(
                     sh.s.context(["option", "value"]),
-                    $.__d_map(
+                    $.options.__d_map(
                         ($, id) => sh.e.change_context(
                             sh.s.context(["value"]),
                             $p.constrained

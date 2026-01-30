@@ -995,49 +995,60 @@ export namespace Value_ {
         
         export namespace state {
             
-            export type l_location = i__location.Relative_Location
-            
-            export namespace l_dictionary {
+            export namespace options {
                 
-                export namespace D {
+                export type l_location = i__location.Relative_Location
+                
+                export namespace l_dictionary {
                     
-                    export type l_location = i__location.Relative_Location
-                    
-                    export namespace l_entry {
+                    export namespace D {
                         
-                        export namespace description {
+                        export type l_location = i__location.Relative_Location
+                        
+                        export namespace l_entry {
                             
-                            export type O = string
+                            export namespace description {
+                                
+                                export type O = string
+                                
+                            }
+                            
+                            export type description = _pi.Optional_Value<description.O>
+                            
+                            export type value = Value_
                             
                         }
                         
-                        export type description = _pi.Optional_Value<description.O>
-                        
-                        export type value = Value_
+                        export type l_entry = {
+                            readonly 'description': l_entry.description
+                            readonly 'value': l_entry.value
+                        }
                         
                     }
                     
-                    export type l_entry = {
-                        readonly 'description': l_entry.description
-                        readonly 'value': l_entry.value
+                    export type D = {
+                        readonly 'l location': D.l_location
+                        readonly 'l entry': D.l_entry
                     }
                     
                 }
                 
-                export type D = {
-                    readonly 'l location': D.l_location
-                    readonly 'l entry': D.l_entry
-                }
+                export type l_dictionary = _pi.Dictionary<l_dictionary.D>
                 
             }
             
-            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+            export type options = {
+                readonly 'l location': options.l_location
+                readonly 'l dictionary': options.l_dictionary
+            }
+            
+            export type constraints = Value_Constraints_
             
         }
         
         export type state = {
-            readonly 'l location': state.l_location
-            readonly 'l dictionary': state.l_dictionary
+            readonly 'options': state.options
+            readonly 'constraints': state.constraints
         }
         
         export namespace text {

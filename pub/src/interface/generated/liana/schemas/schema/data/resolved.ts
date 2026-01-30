@@ -618,28 +618,39 @@ export namespace Value_ {
     
     export namespace state {
         
-        export namespace D {
+        export namespace options {
             
-            export namespace description {
+            export namespace D {
                 
-                export type O = string
+                export namespace description {
+                    
+                    export type O = string
+                    
+                }
+                
+                export type description = _pi.Optional_Value<description.O>
+                
+                export type value = Value_
                 
             }
             
-            export type description = _pi.Optional_Value<description.O>
-            
-            export type value = Value_
+            export type D = {
+                readonly 'description': D.description
+                readonly 'value': D.value
+            }
             
         }
         
-        export type D = {
-            readonly 'description': D.description
-            readonly 'value': D.value
-        }
+        export type options = _pi.Dictionary<options.D>
+        
+        export type constraints = Value_Constraints_
         
     }
     
-    export type state = _pi.Dictionary<state.D>
+    export type state = {
+        readonly 'options': state.options
+        readonly 'constraints': state.constraints
+    }
     
     export namespace text {
         
@@ -691,7 +702,7 @@ export namespace Option_Constraints_ {
             
             export namespace option {
                 
-                export type l_entry = Value_.state.D
+                export type l_entry = Value_.state.options.D
                 
                 export type l_id = string
                 
@@ -1581,7 +1592,7 @@ export namespace Value_Path_ {
                     
                     export namespace state {
                         
-                        export type l_entry = Value_.state.D
+                        export type l_entry = Value_.state.options.D
                         
                         export type l_id = string
                         
@@ -1692,7 +1703,7 @@ export namespace Constraint_ {
             
             export namespace option {
                 
-                export type l_entry = Value_.state.D
+                export type l_entry = Value_.state.options.D
                 
                 export type l_id = string
                 

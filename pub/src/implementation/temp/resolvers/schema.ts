@@ -42,7 +42,7 @@ export const Imports: signatures.Imports = ($, abort, $l, $p) => _p_deprecated_b
         const p_schema: d_out.Imports.D.schema = _p_cc($['l entry']['schema'], ($) => _p_cc(p_schema_set_child['l entry'], ($) => { // reference constraint ('schema set child')
             switch ($[0]) {
                 case 'schema': return _p.ss($, ($) => $)
-                default: return _i_generic.abort.state_constraint("set", $, loc, abort)
+                default: return _i_generic.abort.state_constraint_found_expected("set", $, loc, abort)
             }
         }))
         return {
@@ -65,7 +65,7 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
                 )
 
                 const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
-                    ? _i_generic.abort.state_constraint(
+                    ? _i_generic.abort.state_constraint_found_expected(
                         "dictionary",
                         p_selection['resulting node'],
                         $.selection.start['l location'], //$['selected dictionary'].location,
@@ -193,7 +193,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                     switch ($[0]) {
                         case 'dictionary': return _p.ss($, ($) => $)
                         // default: return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}' @ ${$p['location 2 string'](lookups_loc)}`)
-                        default: return _i_generic.abort.state_constraint(
+                        default: return _i_generic.abort.state_constraint_found_expected(
                             "dictionary",
                             $,
                             lookups_loc,
@@ -467,6 +467,25 @@ export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
     }
 }
 
+export const Value_Constraints: signatures.Value_Constraints = ($, abort, $l, $p) => {
+    return _p.optional.map(
+        $,
+        ($) => _p.dictionary.resolve(
+            $['l dictionary'],
+            ($) => Value_Reference(
+                $['l entry'],
+                abort,
+                {
+                    'modules': $l.modules,
+                },
+                {
+                    'imports': $p.imports,
+                },
+            )
+        )
+    )
+}
+
 export const Value: signatures.Value = ($, abort, $l, $p) => {
     const loc = $['l location']
     return _p_cc($['l state'], ($): d_out.Value => {
@@ -549,21 +568,15 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         default: return _p.au($[0])
                     }
                 }),
-                'constraints': _p.optional.map(
+                'constraints': Value_Constraints(
                     $.constraints,
-                    ($) => _p.dictionary.resolve(
-                        $['l dictionary'],
-                        ($) => Value_Reference(
-                            $['l entry'],
-                            abort,
-                            {
-                                'modules': $l['noncircular sibling modules'],
-                            },
-                            {
-                                'imports': $p.imports,
-                            },
-                        )
-                    )
+                    abort,
+                    {
+                        'modules': $l['noncircular sibling modules'],
+                    },
+                    {
+                        'imports': $p.imports,
+                    },
                 )
             }])
             case 'dictionary': return _p.ss($, ($) => {
@@ -626,7 +639,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                 const temp = $p.globals.__decide(
                     ($) => {
                         $.complexity[0] === 'unconstrained'
-                            ? _i_generic.abort.state_constraint("constrained", $.complexity, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("constrained", $.complexity, loc, abort)
                             : $.complexity[1]
 
                     },
@@ -649,7 +662,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                                 'dictionary': _p_cc(p_referent.path['resulting node'], ($) => { // component constraint (referent)
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $)
-                                        default: return _i_generic.abort.state_constraint(
+                                        default: return _i_generic.abort.state_constraint_found_expected(
                                             "dictionary",
                                             $,
                                             loc,
@@ -698,18 +711,30 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                 //     }]
                 // }
             })
-            case 'state': return _p.ss($, ($) => ['state', _p.dictionary.resolve(
-                $['l dictionary'],
-                ($, id, $acyclic, $cyclic) => ({
-                    'description': $['l entry'].description,
-                    'value': Value(
-                        $['l entry'].value,
-                        abort,
-                        $l,
-                        $p,
-                    ),
-                }),
-            )])
+            case 'state': return _p.ss($, ($) => ['state', {
+                'options': _p.dictionary.resolve(
+                    $.options['l dictionary'],
+                    ($, id, $acyclic, $cyclic) => ({
+                        'description': $['l entry'].description,
+                        'value': Value(
+                            $['l entry'].value,
+                            abort,
+                            $l,
+                            $p,
+                        ),
+                    }),
+                ),
+                'constraints': Value_Constraints(
+                    $.constraints,
+                    abort,
+                    {
+                        'modules': $l['noncircular sibling modules'],
+                    },
+                    {
+                        'imports': $p.imports,
+                    },
+                )
+            }])
             // case 'type parameter': return _pt.ss($, ($) => ['type parameter', _i_generic.get_entry(
             //     _p_temp.dictionary_to_lookup(
             //         $p['type parameters'],
@@ -802,7 +827,7 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                     case 'dictionary': return _p.ss($, ($) => {
                         const sc_definition: d_out.Value.dictionary = _p_cc(current, ($) => {
                             if ($[0] !== 'dictionary') {
-                                return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -814,7 +839,7 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                     case 'group': return _p.ss($, ($) => {
                         const sc_definition: d_out.Value.group = _p_cc(current, ($) => {
                             if ($[0] !== 'group') {
-                                return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_found_expected("group", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -831,7 +856,7 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                     case 'list': return _p.ss($, ($) => {
                         const sc_definition: d_out.Value.list = _p_cc(current, ($) => {
                             if ($[0] !== 'list') {
-                                return _i_generic.abort.state_constraint("list", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_found_expected("list", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -843,7 +868,7 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                     case 'optional': return _p.ss($, ($) => {
                         const sc_definition: d_out.Value.optional = _p_cc(current, ($) => {
                             if ($[0] !== 'optional') {
-                                return _i_generic.abort.state_constraint("optional", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_found_expected("optional", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -855,12 +880,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                     case 'state': return _p.ss($, ($) => {
                         const P_state: d_out.Value.state = _p_cc(current, ($) => {
                             if ($[0] !== 'state') {
-                                return _i_generic.abort.state_constraint("state", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_found_expected("state", $, sg_loc, abort)
                             }
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_ls.acyclic.select_from_dictionary(P_state),
+                            _p_ls.acyclic.select_from_dictionary(P_state.options),
                             $,
                             abort,
                         )
@@ -899,7 +924,7 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                         $p,
                     ))
                     const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
-                        ? _i_generic.abort.state_constraint(
+                        ? _i_generic.abort.state_constraint_found_expected(
                             "state",
                             p_selection['resulting node'],
                             loc,
@@ -907,7 +932,7 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                         )
                         : p_selection['resulting node'][1]
                     const p_option: d_out.Option_Constraints.D.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
-                        _p_ls.acyclic.select_from_dictionary(p_selected_state),
+                        _p_ls.acyclic.select_from_dictionary(p_selected_state.options),
                         $,
                         abort,
                     ))
@@ -943,7 +968,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
         switch ($[0]) {
             case 'state': return _p.ss($, ($) => {
                 const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
-                    ? _i_generic.abort.state_constraint(
+                    ? _i_generic.abort.state_constraint_found_expected(
                         "state",
                         p_selection['resulting node'],
                         loc,
@@ -951,7 +976,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
                     )
                     : p_selection['resulting node'][1]
                 const p_option: d_out.Constraint.type_.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
-                    _p_ls.acyclic.select_from_dictionary(p_selected_state),
+                    _p_ls.acyclic.select_from_dictionary(p_selected_state.options),
                     $,
                     abort,
                 ))
@@ -962,7 +987,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
             })
             case 'optional value': return _p.ss($, ($) => {
                 const p_selected_optional_value = p_selection['resulting node'][0] !== 'optional' // component constraint ('selection')
-                    ? _i_generic.abort.state_constraint(
+                    ? _i_generic.abort.state_constraint_found_expected(
                         "optional",
                         p_selection['resulting node'],
                         loc,
@@ -1032,7 +1057,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'boolean'
-                    ? _i_generic.abort.state_constraint(
+                    ? _i_generic.abort.state_constraint_found_expected(
                         "boolean",
                         $p.definition,
                         loc,
@@ -1043,7 +1068,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'component': return _p.ss($, ($): d_out.Value_Resolver => {
                 const x = $p.definition[0] !== 'component'
-                    ? _i_generic.abort.state_constraint(
+                    ? _i_generic.abort.state_constraint_found_expected(
                         "component",
                         $p.definition,
                         loc,
@@ -1065,7 +1090,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                             const pc_constrained: d_out.Schema.complexity.constrained = _p_cc(p_import['l entry'].schema.complexity, ($) => {
                                 switch ($[0]) {
                                     case 'constrained': return _p.ss($, ($) => $)
-                                    default: return _i_generic.abort.state_constraint("constrained", $, loc, abort)
+                                    default: return _i_generic.abort.state_constraint_found_expected("constrained", $, loc, abort)
                                 }
                             })
                             return ['external', {
@@ -1227,7 +1252,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                                                         case 'optional': return _p.ss($, ($) => {
 
                                                             if (benchmark.presence[0] !== 'optional') {
-                                                                _i_generic.abort.state_constraint("optional", benchmark.presence, values_location, abort)
+                                                                _i_generic.abort.state_constraint_found_expected("optional", benchmark.presence, values_location, abort)
                                                             }
 
                                                             _p_cc($, ($) => {
@@ -1277,7 +1302,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                                                         })
                                                         case 'required': return _p.ss($, ($) => {
                                                             if (benchmark.presence[0] !== 'required') {
-                                                                _i_generic.abort.state_constraint("required", benchmark.presence, values_location, abort)
+                                                                _i_generic.abort.state_constraint_found_expected("required", benchmark.presence, values_location, abort)
                                                             }
                                                             if (walk_path_till_end(benchmark.module['resulting module']['root value']) !== walk_path_till_end($.tail['resulting node'])) {
                                                                 return _i_generic.abort.same_node_constraint(
@@ -1360,7 +1385,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'dictionary': return _p.ss($, ($) => {
                 const p_definition = $p.definition[0] !== 'dictionary'
-                    ? _i_generic.abort.state_constraint("dictionary", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("dictionary", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_benchmark = _p.optional.map(
@@ -1374,7 +1399,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                         )
 
                         const p_resulting_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint ('selection')
-                            ? _i_generic.abort.state_constraint("dictionary", p_selection['resulting node'], loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("dictionary", p_selection['resulting node'], loc, abort)
                             : p_selection['resulting node'][1]
                         return {
                             'selection': {
@@ -1383,7 +1408,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                                     'dictionary': p_resulting_dictionary,
                                 }
                                 // 'l constraints': {
-                                    
+
                                 // }
                             },
                             'resulting dictionary': p_resulting_dictionary,
@@ -1419,7 +1444,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'group': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'group'
-                    ? _i_generic.abort.state_constraint("group", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("group", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_properties = _i_generic.resolve_dense_dictionary(
@@ -1471,7 +1496,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'list': return _p.ss($, ($) => {
                 const p_definition = $p.definition[0] !== 'list'
-                    ? _i_generic.abort.state_constraint("list", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("list", $p.definition, loc, abort)
                     : $p.definition[1]
                 const p_result = _p.optional.map(
                     $.result,
@@ -1515,19 +1540,19 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'nothing': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'nothing'
-                    ? _i_generic.abort.state_constraint("nothing", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("nothing", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['nothing', null]
             })
             case 'number': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'number'
-                    ? _i_generic.abort.state_constraint("number", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("number", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['number', null]
             })
             case 'optional': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'optional'
-                    ? _i_generic.abort.state_constraint("optional", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraints(
@@ -1564,7 +1589,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'reference': return _p.ss($, ($): d_out.Value_Resolver => {
                 const p_definition = $p.definition[0] !== 'reference'
-                    ? _i_generic.abort.state_constraint("reference", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("reference", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['reference', {
                     'definition': p_definition,
@@ -1572,7 +1597,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'derived'
-                                    ? _i_generic.abort.state_constraint("derived", p_definition.type, loc, abort)
+                                    ? _i_generic.abort.state_constraint_found_expected("derived", p_definition.type, loc, abort)
                                     : p_definition.type[1]
                                 return ['derived', {
                                     'value': Guaranteed_Value_Selection(
@@ -1585,7 +1610,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                             })
                             case 'selected': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'selected'
-                                    ? _i_generic.abort.state_constraint("selected", p_definition.type, loc, abort)
+                                    ? _i_generic.abort.state_constraint_found_expected("selected", p_definition.type, loc, abort)
                                     : p_definition.type[1]
                                 const p_lookup = Lookup_Selection(
                                     $.lookup,
@@ -1614,18 +1639,18 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'state': return _p.ss($, ($): d_out.Value_Resolver => {
                 const p_definition = $p.definition[0] !== 'state'
-                    ? _i_generic.abort.state_constraint("state", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("state", $p.definition, loc, abort)
                     : $p.definition[1]
 
                 const p_states: d_out.Value_Resolver.state.states = _i_generic.resolve_dense_dictionary(
                     $.states['l dictionary'],
                     $.states['l location'],
                     abort,
-                    p_definition,
+                    p_definition.options,
                     ($, id, $acyclic, $cyclic) => {
 
                         const x2 = _i_generic.get_entry_acyclic(
-                            _p_ls.acyclic.select_from_dictionary(p_definition),
+                            _p_ls.acyclic.select_from_dictionary(p_definition.options),
                             {
                                 'l reference': id,
                                 'l location': $['l location'],
@@ -1738,7 +1763,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
             })
             case 'text': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'text'
-                    ? _i_generic.abort.state_constraint("text", $p.definition, loc, abort)
+                    ? _i_generic.abort.state_constraint_found_expected("text", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['text', null]
             })
@@ -1768,7 +1793,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
 
                         const sc_definition: d_out.Value.component = _p_cc(current, ($) => {
                             if ($[0] !== 'component') {
-                                return _i_generic.abort.state_constraint("component", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_expected_found("component", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -1787,7 +1812,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                     case 'group': return _p.ss($, ($) => {
                         const sc_definition: d_out.Value.group = _p_cc(current, ($) => {
                             if ($[0] !== 'group') {
-                                return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_expected_found("group", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -1805,7 +1830,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
 
                         const sc_definition: d_out.Value.reference = _p_cc(current, ($) => {
                             if ($[0] !== 'reference') {
-                                return _i_generic.abort.state_constraint("reference", $, sg_loc, abort)
+                                return _i_generic.abort.state_constraint_expected_found("reference", $, sg_loc, abort)
                             }
                             return $[1]
                         })
@@ -1816,7 +1841,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                                 case 'selected': return _p.ss($, ($) => _p_cc(referent.path['resulting node'], ($) => {
                                     switch ($[0]) {
                                         case 'dictionary': return _p.ss($, ($) => $.value)
-                                        default: return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
+                                        default: return _i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
                                     }
                                 }))
                                 default: return _p.au($[0])
@@ -1874,7 +1899,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                             abort,
                         ))
                         const P_state = _p_cc($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
-                            ? _i_generic.abort.state_constraint("state", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
 
                         const p_result = Module_Reference(
@@ -1901,7 +1926,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                             abort,
                         ))
                         const p_optional_value = _p_cc($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
-                            ? _i_generic.abort.state_constraint("optional", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
                         const p_result = Module_Reference(
                             $.result,
@@ -1942,7 +1967,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         ))
 
                         const x_component = p_sibling['l entry'].resolver[0] !== 'component'
-                            ? _i_generic.abort.state_constraint("component", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("component", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1]
 
                         const p_constraint = _p_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
@@ -1964,11 +1989,11 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         ))
 
                         const x_reference = p_sibling['l entry'].resolver[0] !== 'reference'
-                            ? _i_generic.abort.state_constraint("reference", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("reference", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1]
 
                         const x_reference_selected = x_reference.type[0] !== 'selected'
-                            ? _i_generic.abort.state_constraint("selected", x_reference.type, loc, abort)
+                            ? _i_generic.abort.state_constraint_expected_found("selected", x_reference.type, loc, abort)
                             : x_reference.type[1]
 
                         const p_constraint = _p_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
@@ -2012,7 +2037,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             abort,
                         ))
                         const p_list_result_a = _p_cc($['list result'], ($) => p_sibling['l entry'].resolver[0] !== 'list'
-                            ? _i_generic.abort.state_constraint("list", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("list", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
                         const p_list_result: d_out.Guaranteed_Value_Selection.start.result.list.list_result = p_list_result_a.result.__decide(
                             ($) => $,
@@ -2031,7 +2056,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             abort,
                         ))
                         const P_state = _p_cc($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
-                            ? _i_generic.abort.state_constraint("state", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
                         return ['state', {
                             'property': p_sibling,
@@ -2056,7 +2081,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             abort,
                         ))
                         const p_optional_value = _p_cc($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
-                            ? _i_generic.abort.state_constraint("optional", p_sibling['l entry'].resolver, loc, abort)
+                            ? _i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
                         return ['optional value', {
                             'property': p_sibling,

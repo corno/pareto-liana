@@ -306,12 +306,12 @@ export const Value = (
             case 'state': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "l location": location,
-                    "l state": sh.t.state($.__d_map(($, id) => Value(
+                    "l state": sh.t.state($.options.__d_map(($, id) => Value(
                         $.value,
                         $p
                     )))
                 })
-                : sh.t.state($.__d_map(($, id) => Value(
+                : sh.t.state($.options.__d_map(($, id) => Value(
                     $.value,
                     $p
                 )))

@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { resolvers, r, resolver, al, av, gvs, vst, ovi, state } from "../../../../../shorthands/schema"
+import { resolvers, r, resolver, al, av, gvs, rvs, ovi, state } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 

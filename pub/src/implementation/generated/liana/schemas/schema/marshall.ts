@@ -853,30 +853,43 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                     $,
                     ($) => ({
                         'option': 'state',
-                        'value': ['dictionary', _p.dictionary.map(
-                            $,
-                            ($, id) => ['group', ['verbose', _p.dictionary.literal(
-                                {
-                                    'description': _p_cc(
-                                        $['description'],
-                                        ($) => ['optional', _p.decide.optional(
-                                            $,
-                                            ($): t_out.Value.optional => ['set', ['text', {
-                                                'delimiter': ['quote', null],
-                                                'value': $,
-                                            }]],
-                                            () => ['not set', null]
-                                        )]
-                                    ),
-                                    'value': _p_cc(
-                                        $['value'],
-                                        ($) => Value(
-                                            $
-                                        )
-                                    ),
-                                }
-                            )]]
-                        )],
+                        'value': ['group', ['verbose', _p.dictionary.literal(
+                            {
+                                'options': _p_cc(
+                                    $['options'],
+                                    ($) => ['dictionary', _p.dictionary.map(
+                                        $,
+                                        ($, id) => ['group', ['verbose', _p.dictionary.literal(
+                                            {
+                                                'description': _p_cc(
+                                                    $['description'],
+                                                    ($) => ['optional', _p.decide.optional(
+                                                        $,
+                                                        ($): t_out.Value.optional => ['set', ['text', {
+                                                            'delimiter': ['quote', null],
+                                                            'value': $,
+                                                        }]],
+                                                        () => ['not set', null]
+                                                    )]
+                                                ),
+                                                'value': _p_cc(
+                                                    $['value'],
+                                                    ($) => Value(
+                                                        $
+                                                    )
+                                                ),
+                                            }
+                                        )]]
+                                    )]
+                                ),
+                                'constraints': _p_cc(
+                                    $['constraints'],
+                                    ($) => Value_Constraints(
+                                        $
+                                    )
+                                ),
+                            }
+                        )]],
                     })
                 )
             case 'text':

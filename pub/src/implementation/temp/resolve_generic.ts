@@ -62,7 +62,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
 }
 export namespace abort {
 
-    export const state_constraint = <T extends readonly [string, any]>(
+    export const state_constraint_found_expected = <T extends readonly [string, any]>(
         found: string,
         expected: T,
         location: gen_loc.Relative_Location,
@@ -71,6 +71,18 @@ export namespace abort {
         'type': ['constraint', ['state', {
             'expected': expected[0],
             'found': found,
+        }]],
+        'location': location,
+    })
+    export const state_constraint_expected_found = <T extends readonly [string, any]>(
+        expected: string,
+        found: T,
+        location: gen_loc.Relative_Location,
+        abort: _pi.Abort<gen_resolve.Error>,
+    ) => abort({
+        'type': ['constraint', ['state', {
+            'expected': expected,
+            'found': found[0],
         }]],
         'location': location,
     })

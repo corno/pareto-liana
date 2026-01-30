@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, al, ls, av, gvs, ovi, vst, state, state_constrained, oc, pc, pvs, reference,
+    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, state, state_constrained, oc, pc, pvs, reference,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -67,7 +67,7 @@ export const $: g_.Module_Resolvers = resolvers(
             "component": state(r.state({
                 "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                    "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
+                    "type": r.reference(gvs.dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("types"), rvs.component()]))),
                 })),
                 "internal": state(r.reference(ls.parameter("noncircular sibling modules"))),
                 "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
@@ -101,7 +101,7 @@ export const $: g_.Module_Resolvers = resolvers(
 
             "state": state(r.dictionary(r.component("Value", null, null))),
             "text": state(r.state({
-                "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
+                "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),
             })),
         })),
@@ -130,14 +130,14 @@ export const $: g_.Module_Resolvers = resolvers(
             }, {}),
             "types": r.component("Modules", {
                 "globals": av.optional(ovi.set(gvs.sibling("globals", []))),
-                "imports": av.optional(ovi.set(gvs.sibling("imports", [vst.component()]))),
+                "imports": av.optional(ovi.set(gvs.sibling("imports", [rvs.component()]))),
             }, {
             }),
         })),
 
         "Imports": resolver(r.dictionary(r.group({
             "schema set child": r.reference_stack(ls.parameter("sibling schemas"), {
-                "schema": pc.property([vst.component()], "schema"),
+                "schema": pc.property([rvs.component()], "schema"),
             }),
             "schema": r.reference_derived(gvs.reference("schema set child", "schema", [])),
         }))),

@@ -162,7 +162,7 @@ export const $: g_.Modules = modules(
                     "group": tstate(t.reference("Group", [])),
                     "list": tstate(t.nothing()),
                     "optional": tstate(t.nothing()),
-                    "state": tstate(t.reference("Value", [tr.s("state")])),
+                    "state": tstate(t.reference("Value", [tr.s("state"), tr.g("options")])),
                 }),
                 "Value"
             )),
@@ -242,7 +242,7 @@ export const $: g_.Modules = modules(
             "type": prop(t.state({
                 "state": tstate(t.group({
                     "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
-                    "option": prop(t.reference("Value", [tr.s("state")])),
+                    "option": prop(t.reference("Value", [tr.s("state"), tr.g("options")])),
                 })),
                 "optional value": tstate(t.group({
                     "selected optional value": prop(t.reference_derived("Value", [tr.s("optional")])),
@@ -254,7 +254,7 @@ export const $: g_.Modules = modules(
             "state": tstate(t.group({
                 "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
                 "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
-                "option": prop(t.reference("Value", [tr.s("state")])),
+                "option": prop(t.reference("Value", [tr.s("state"), tr.g("options")])),
             })),
             "assert is set": tstate(t.component_cyclic("Possible Value Selection")),
         }))),
@@ -324,10 +324,13 @@ export const $: g_.Modules = modules(
                     })),
                 })),
             })),
-            "state": tstate(t.dictionary(t.group({
-                "description": prop(t.optional(t.text_local(text('multi line')))),
-                "value": prop(t.component_cyclic("Value")),
-            }))),
+            "state": tstate(t.group({
+                "options": prop(t.dictionary(t.group({
+                    "description": prop(t.optional(t.text_local(text('multi line')))),
+                    "value": prop(t.component_cyclic("Value")),
+                }))),
+                "constraints": prop(t.component("Value Constraints")),
+            })),
             "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
                 "local": tstate(t.component("Text Type")),
@@ -339,7 +342,7 @@ export const $: g_.Modules = modules(
         "Value Resolver": module_(t.state({
             "boolean": tstate(t.nothing()),
             "component": tstate(t.group({
-                "definition": prop(t.reference_derived("Value", [tr.s("component"), ])),
+                "definition": prop(t.reference_derived("Value", [tr.s("component"),])),
 
                 "location": prop(t.state({
                     "external": tstate(t.group({
