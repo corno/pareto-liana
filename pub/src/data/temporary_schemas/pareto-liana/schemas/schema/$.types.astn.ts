@@ -12,6 +12,7 @@ import {
     propd,
     tstated,
 } from "../../../../../shorthands/schema"
+import * as sh from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $: g_.Types = types(
@@ -132,6 +133,14 @@ export const $: g_.Types = types(
             "signature": prop(t.reference_derived("Signatures", [tr.d()])),
             "type resolver": prop(t.component_cyclic("Node Resolver")),
         }))),
+
+        "Benchmark": type(t.group({
+            "selection": prop(t.component_constrained("Guaranteed Value Selection", {
+                "dictionary": sh.type_node_reference("Type Node", [tr.s("dictionary")])
+            })),
+            "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
+            "dense": prop(t.boolean()),
+        })),
 
         /**
          * the properties in a group are ordered. This way there is a canonical concise representation
@@ -275,22 +284,19 @@ export const $: g_.Types = types(
 
         "Node Resolver List Result": type(t.component("Type Reference")),
 
-        "Benchmark": type(t.group({
-            "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
-            "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
-            "dense": prop(t.boolean()),
-        })),
 
         "Type Node": type(t.state({
             "boolean": tstate(t.nothing()),
-            "component": tstate(t.state({
-                "external": tstate(t.group({
-                    "import": prop(t.reference("Imports", [])),
-                    "type": prop(t.reference("Types", [])),
+            "component": tstate(t.group({
+                "type": prop(t.state({
+                    "external": tstate(t.group({
+                        "import": prop(t.reference("Imports", [])),
+                        "type": prop(t.reference("Types", [])),
+                    })),
+                    "internal": tstate(t.reference("Types", [])),
+                    "internal cyclic": tstate(t.reference("Types", [], 'cyclic')),
                 })),
-                "internal": tstate(t.reference("Types", [])),
-                "internal cyclic": tstate(t.reference("Types", [], 'cyclic')),
-                // "constraints": prop(t.optional(t.component("Value Constraint Resolvers"))),
+                "constraints": prop(t.component("Value Constraints")),
             })),
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),
@@ -328,9 +334,13 @@ export const $: g_.Types = types(
             })),
         })),
 
+        "Value Constraints": type(t.optional(t.dictionary(t.component_cyclic("Type Node Reference")))),
+
         "Node Resolver": type(t.state({
             "boolean": tstate(t.nothing()),
             "component": tstate(t.group({
+                "definition": prop(t.reference_derived("Type Node", [tr.s("component"), ])),
+
                 "location": prop(t.state({
                     "external": tstate(t.group({
                         "import": prop(t.reference("Imports", [])),
@@ -360,7 +370,7 @@ export const $: g_.Types = types(
             "dictionary": tstate(t.group({
                 "definition": prop(t.reference_derived("Dictionary", [])),
                 "resolver": prop(t.component_cyclic("Node Resolver")),
-                "benchmark": prop(t.optional(t.component("Benchmark"))),
+                "benchmark": prop(t.optional(t.component_cyclic("Benchmark"))),
             })),
             "group": tstate(t.component("Node Resolver Group")),
             "list": tstate(t.group({

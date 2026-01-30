@@ -190,23 +190,31 @@ export const Type_Node = (
                     [],
                 )
             ))
-            case 'component': return _p.ss($, ($) => sh.e.select(
-                sh.s.call(
-                    _p.decide.state($, ($) => {
-                        switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.type['l id']))
-                            case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                            case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
-                            default: return _p.au($[0])
-                        }
-                    }),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.select(sh.s.context([])),
-                    sh.lookups.not_set(),
-                    sh.arguments_.not_set(),
-                    [],
+            case 'component': return _p.ss($, ($) => {
+                const x = sh.e.select(
+                    sh.s.call(
+                        _p.decide.state($.type, ($) => {
+                            switch ($[0]) {
+                                case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.type['l id']))
+                                case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
+                                case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
+                                default: return _p.au($[0])
+                            }
+                        }),
+                        sh.e.select(sh.s.context([])),
+                        sh.e.select(sh.s.context([])),
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
+                        [],
+                    )
                 )
-            ))
+                return _p.boolean.optional_is_set($.constraints)
+                    ? sh.e.group.literal({
+                        "l location": location,
+                        "l component": x
+                    })
+                    : x
+            })
             case 'dictionary': return _p.ss($, ($) => {
                 return $p.constrained
                     ? sh.e.group.literal({

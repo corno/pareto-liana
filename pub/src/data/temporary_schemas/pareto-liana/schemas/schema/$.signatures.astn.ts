@@ -45,6 +45,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
+        "Value Constraints": sig.same_as("Type Node Reference"),
+
         "Type": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),

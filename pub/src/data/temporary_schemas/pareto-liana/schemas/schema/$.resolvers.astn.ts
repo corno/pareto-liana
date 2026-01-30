@@ -109,6 +109,8 @@ export const $: g_.Resolvers = resolvers(
             "resulting node": r.reference_derived(gvs.list("tail", [])),
         })),
 
+        "Value Constraints": resolver(r.optional(r.dictionary(r.component("Type Node Reference", null, null)))),
+
         "Group": resolver(r.dictionary(r.group({
             "description": r.optional(r.text()),
             "node": r.component("Type Node",
@@ -138,16 +140,23 @@ export const $: g_.Resolvers = resolvers(
 
         "Type Node": resolver(r.state({
             "boolean": state(r.nothing()),
-            "component": state(r.state({
-                "external": state_constrained(
-                    {
-                        "import": oc.assert_set(pvs.parameter("imports"))
-                    }, r.group({
-                        "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                        "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
-                    })),
-                "internal": state(r.reference(ls.parameter("noncircular sibling types"))),
-                "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling types"))),
+            "component": state(r.group({
+                "type": r.state({
+                    "external": state_constrained(
+                        {
+                            "import": oc.assert_set(pvs.parameter("imports"))
+                        }, r.group({
+                            "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
+                            "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
+                        })),
+                    "internal": state(r.reference(ls.parameter("noncircular sibling types"))),
+                    "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling types"))),
+                }),
+                "constraints": r.component("Value Constraints", {
+                    "imports": av.parameter("imports"),
+                }, {
+                    "types": al.parameter("noncircular sibling types"),
+                }),
             })),
             "dictionary": state(r.component("Dictionary",
                 {
@@ -580,6 +589,7 @@ export const $: g_.Resolvers = resolvers(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "component")
                 }, r.group({
+                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "location": r.state(
                         {
                             "external": state_constrained(
@@ -657,7 +667,7 @@ export const $: g_.Resolvers = resolvers(
             "group": state_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "group")
-                }, 
+                },
                 r.component("Node Resolver Group",
                     {
                         "definition": av.required(gvs.option_constraint("definition", [])),

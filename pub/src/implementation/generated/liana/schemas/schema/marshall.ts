@@ -474,6 +474,35 @@ export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map
     )]]
 )]
 
+export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => ['group', ['verbose', _p.dictionary.literal(
+        {
+            'definition': _p_cc(
+                $['definition'],
+                ($) => ['nothing', null]
+            ),
+            'resolver': _p_cc(
+                $['resolver'],
+                ($) => Node_Resolver(
+                    $
+                )
+            ),
+        }
+    )]]
+)]
+
+export const Value_Constraints: t_signatures.Value_Constraints = ($) => ['optional', _p.decide.optional(
+    $,
+    ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
+        $,
+        ($, id) => Type_Node_Reference(
+            $
+        )
+    )]],
+    () => ['not set', null]
+)]
+
 export const Type_Reference: t_signatures.Type_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'location': _p_cc(
@@ -550,64 +579,77 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                     $,
                     ($) => ({
                         'option': 'component',
-                        'value': ['state', _p.decide.state(
-                            $,
-                            ($): t_out.Value.state => {
-                                switch ($[0]) {
-                                    case 'external':
-                                        return _p.ss(
-                                            $,
-                                            ($) => ({
-                                                'option': 'external',
-                                                'value': ['group', ['verbose', _p.dictionary.literal(
-                                                    {
-                                                        'import': _p_cc(
-                                                            $['import'],
-                                                            ($) => ['text', {
+                        'value': ['group', ['verbose', _p.dictionary.literal(
+                            {
+                                'type': _p_cc(
+                                    $['type'],
+                                    ($) => ['state', _p.decide.state(
+                                        $,
+                                        ($): t_out.Value.state => {
+                                            switch ($[0]) {
+                                                case 'external':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ({
+                                                            'option': 'external',
+                                                            'value': ['group', ['verbose', _p.dictionary.literal(
+                                                                {
+                                                                    'import': _p_cc(
+                                                                        $['import'],
+                                                                        ($) => ['text', {
+                                                                            'delimiter': ['backtick', null],
+                                                                            'value': $['l id'],
+                                                                        }]
+                                                                    ),
+                                                                    'type': _p_cc(
+                                                                        $['type'],
+                                                                        ($) => ['text', {
+                                                                            'delimiter': ['backtick', null],
+                                                                            'value': $['l id'],
+                                                                        }]
+                                                                    ),
+                                                                }
+                                                            )]],
+                                                        })
+                                                    )
+                                                case 'internal':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ({
+                                                            'option': 'internal',
+                                                            'value': ['text', {
                                                                 'delimiter': ['backtick', null],
                                                                 'value': $['l id'],
-                                                            }]
-                                                        ),
-                                                        'type': _p_cc(
-                                                            $['type'],
-                                                            ($) => ['text', {
+                                                            }],
+                                                        })
+                                                    )
+                                                case 'internal cyclic':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ({
+                                                            'option': 'internal cyclic',
+                                                            'value': ['text', {
                                                                 'delimiter': ['backtick', null],
                                                                 'value': $['l id'],
-                                                            }]
-                                                        ),
-                                                    }
-                                                )]],
-                                            })
-                                        )
-                                    case 'internal':
-                                        return _p.ss(
-                                            $,
-                                            ($) => ({
-                                                'option': 'internal',
-                                                'value': ['text', {
-                                                    'delimiter': ['backtick', null],
-                                                    'value': $['l id'],
-                                                }],
-                                            })
-                                        )
-                                    case 'internal cyclic':
-                                        return _p.ss(
-                                            $,
-                                            ($) => ({
-                                                'option': 'internal cyclic',
-                                                'value': ['text', {
-                                                    'delimiter': ['backtick', null],
-                                                    'value': $['l id'],
-                                                }],
-                                            })
-                                        )
-                                    default:
-                                        return _p.au(
-                                            $[0]
-                                        )
-                                }
+                                                            }],
+                                                        })
+                                                    )
+                                                default:
+                                                    return _p.au(
+                                                        $[0]
+                                                    )
+                                            }
+                                        }
+                                    )]
+                                ),
+                                'constraints': _p_cc(
+                                    $['constraints'],
+                                    ($) => Value_Constraints(
+                                        $
+                                    )
+                                ),
                             }
-                        )],
+                        )]],
                     })
                 )
             case 'dictionary':
@@ -884,97 +926,65 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
     }
 )]
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'tail': _p_cc(
-            $['tail'],
-            ($) => ['list', _p.list.map(
-                $['l list'],
-                ($) => _p_cc(
-                    $['l item'],
-                    ($) => ['state', _p.decide.state(
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => ['state', _p.decide.state(
+        $,
+        ($): t_out.Value.state => {
+            switch ($[0]) {
+                case 'state':
+                    return _p.ss(
                         $,
-                        ($): t_out.Value.state => {
-                            switch ($[0]) {
-                                case 'dictionary':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'dictionary',
-                                            'value': ['nothing', null],
-                                        })
-                                    )
-                                case 'group':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'group',
-                                            'value': ['text', {
-                                                'delimiter': ['backtick', null],
-                                                'value': $['l id'],
-                                            }],
-                                        })
-                                    )
-                                case 'list':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'list',
-                                            'value': ['nothing', null],
-                                        })
-                                    )
-                                case 'optional':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'optional',
-                                            'value': ['nothing', null],
-                                        })
-                                    )
-                                case 'state':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'state',
-                                            'value': ['text', {
-                                                'delimiter': ['backtick', null],
-                                                'value': $['l id'],
-                                            }],
-                                        })
-                                    )
-                                default:
-                                    return _p.au(
-                                        $[0]
-                                    )
-                            }
-                        }
-                    )]
-                )
-            )]
-        ),
-        'resulting node': _p_cc(
-            $['resulting node'],
-            ($) => ['nothing', null]
-        ),
-    }
-)]]
+                        ($) => ({
+                            'option': 'state',
+                            'value': ['group', ['verbose', _p.dictionary.literal(
+                                {
+                                    'selection': _p_cc(
+                                        $['selection'],
+                                        ($) => Guaranteed_Value_Selection(
+                                            $
+                                        )
+                                    ),
+                                    'selected state': _p_cc(
+                                        $['selected state'],
+                                        ($) => ['nothing', null]
+                                    ),
+                                    'option': _p_cc(
+                                        $['option'],
+                                        ($) => ['text', {
+                                            'delimiter': ['backtick', null],
+                                            'value': $['l id'],
+                                        }]
+                                    ),
+                                }
+                            )]],
+                        })
+                    )
+                case 'assert is set':
+                    return _p.ss(
+                        $,
+                        ($) => ({
+                            'option': 'assert is set',
+                            'value': Possible_Value_Selection(
+                                $
+                            ),
+                        })
+                    )
+                default:
+                    return _p.au(
+                        $[0]
+                    )
+            }
+        }
+    )]
+)]
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'type location': _p_cc(
-            $['type location'],
-            ($) => Type_Reference(
-                $
-            )
-        ),
-        'path': _p_cc(
-            $['path'],
-            ($) => Type_Node_Path(
-                $
-            )
-        ),
-    }
-)]]
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.map(
+    $,
+    ($, id) => Value_Constraint_Resolver(
+        $
+    )
+)]
 
 export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
@@ -1067,116 +1077,45 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['
     }
 )]]
 
-export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'type': _p_cc(
-            $['type'],
-            ($) => ['nothing', null]
-        ),
-        'parameters': _p_cc(
-            $['parameters'],
-            ($) => ['state', _p.decide.state(
-                $,
-                ($): t_out.Value.state => {
-                    switch ($[0]) {
-                        case 'local':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'local',
-                                    'value': Signature_Parameters(
-                                        $
-                                    ),
-                                })
-                            )
-                        case 'same as':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'same as',
-                                    'value': ['text', {
-                                        'delimiter': ['backtick', null],
-                                        'value': $['l id'],
-                                    }],
-                                })
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            )]
-        ),
-        'resolved parameters': _p_cc(
-            $['resolved parameters'],
-            ($) => ['nothing', null]
-        ),
-    }
-)]]
-
-export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'path': _p_cc(
-            $['path'],
-            ($) => ['list', _p.list.map(
-                $['l list'],
-                ($) => _p_cc(
-                    $['l item'],
-                    ($) => ['state', _p.decide.state(
-                        $,
-                        ($): t_out.Value.state => {
-                            switch ($[0]) {
-                                case 'component':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'component',
-                                            'value': ['nothing', null],
-                                        })
-                                    )
-                                case 'group':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'group',
-                                            'value': ['text', {
-                                                'delimiter': ['backtick', null],
-                                                'value': $['l id'],
-                                            }],
-                                        })
-                                    )
-                                case 'reference':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ({
-                                            'option': 'reference',
-                                            'value': ['group', ['verbose', _p.dictionary.literal(
-                                                {
-                                                    'definition': _p_cc(
-                                                        $['definition'],
-                                                        ($) => ['nothing', null]
-                                                    ),
-                                                }
-                                            )]],
-                                        })
-                                    )
-                                default:
-                                    return _p.au(
-                                        $[0]
-                                    )
-                            }
-                        }
-                    )]
+export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => ['state', _p.decide.state(
+    $,
+    ($): t_out.Value.state => {
+        switch ($[0]) {
+            case 'not set':
+                return _p.ss(
+                    $,
+                    ($) => ({
+                        'option': 'not set',
+                        'value': ['nothing', null],
+                    })
                 )
-            )]
-        ),
-        'resulting node': _p_cc(
-            $['resulting node'],
-            ($) => ['nothing', null]
-        ),
+            case 'set':
+                return _p.ss(
+                    $,
+                    ($) => ({
+                        'option': 'set',
+                        'value': Guaranteed_Value_Selection(
+                            $
+                        ),
+                    })
+                )
+            case 'selection':
+                return _p.ss(
+                    $,
+                    ($) => ({
+                        'option': 'selection',
+                        'value': Possible_Value_Selection(
+                            $
+                        ),
+                    })
+                )
+            default:
+                return _p.au(
+                    $[0]
+                )
+        }
     }
-)]]
+)]
 
 export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
@@ -1249,261 +1188,9 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
     }
 )]]
 
-export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'selection': _p_cc(
-            $['selection'],
-            ($) => Relative_Value_Selection(
-                $
-            )
-        ),
-        'type': _p_cc(
-            $['type'],
-            ($) => ['state', _p.decide.state(
-                $,
-                ($): t_out.Value.state => {
-                    switch ($[0]) {
-                        case 'state':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'state',
-                                    'value': ['group', ['verbose', _p.dictionary.literal(
-                                        {
-                                            'selected state': _p_cc(
-                                                $['selected state'],
-                                                ($) => ['nothing', null]
-                                            ),
-                                            'option': _p_cc(
-                                                $['option'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['backtick', null],
-                                                    'value': $['l id'],
-                                                }]
-                                            ),
-                                        }
-                                    )]],
-                                })
-                            )
-                        case 'optional value':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'optional value',
-                                    'value': ['group', ['verbose', _p.dictionary.literal(
-                                        {
-                                            'selected optional value': _p_cc(
-                                                $['selected optional value'],
-                                                ($) => ['nothing', null]
-                                            ),
-                                        }
-                                    )]],
-                                })
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            )]
-        ),
-    }
-)]]
-
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => ['state', _p.decide.state(
-        $,
-        ($): t_out.Value.state => {
-            switch ($[0]) {
-                case 'state':
-                    return _p.ss(
-                        $,
-                        ($) => ({
-                            'option': 'state',
-                            'value': ['group', ['verbose', _p.dictionary.literal(
-                                {
-                                    'selection': _p_cc(
-                                        $['selection'],
-                                        ($) => Guaranteed_Value_Selection(
-                                            $
-                                        )
-                                    ),
-                                    'selected state': _p_cc(
-                                        $['selected state'],
-                                        ($) => ['nothing', null]
-                                    ),
-                                    'option': _p_cc(
-                                        $['option'],
-                                        ($) => ['text', {
-                                            'delimiter': ['backtick', null],
-                                            'value': $['l id'],
-                                        }]
-                                    ),
-                                }
-                            )]],
-                        })
-                    )
-                case 'assert is set':
-                    return _p.ss(
-                        $,
-                        ($) => ({
-                            'option': 'assert is set',
-                            'value': Possible_Value_Selection(
-                                $
-                            ),
-                        })
-                    )
-                default:
-                    return _p.au(
-                        $[0]
-                    )
-            }
-        }
-    )]
-)]
-
-export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => Value_Constraint_Resolver(
-        $
-    )
-)]
-
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ['text', {
-    'delimiter': ['backtick', null],
-    'value': $['l id'],
-}]
-
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'start': _p_cc(
-            $['start'],
-            ($) => ['state', _p.decide.state(
-                $,
-                ($): t_out.Value.state => {
-                    switch ($[0]) {
-                        case 'property':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'property',
-                                    'value': ['nothing', null],
-                                })
-                            )
-                        case 'sibling':
-                            return _p.ss(
-                                $,
-                                ($) => ({
-                                    'option': 'sibling',
-                                    'value': Reference_To_Value_Constraint_Resolver(
-                                        $
-                                    ),
-                                })
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            )]
-        ),
-        'constraint': _p_cc(
-            $['constraint'],
-            ($) => Constraint(
-                $
-            )
-        ),
-    }
-)]]
-
-export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => ['state', _p.decide.state(
-    $,
-    ($): t_out.Value.state => {
-        switch ($[0]) {
-            case 'not set':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'not set',
-                        'value': ['nothing', null],
-                    })
-                )
-            case 'set':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'set',
-                        'value': Guaranteed_Value_Selection(
-                            $
-                        ),
-                    })
-                )
-            case 'selection':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'selection',
-                        'value': Possible_Value_Selection(
-                            $
-                        ),
-                    })
-                )
-            default:
-                return _p.au(
-                    $[0]
-                )
-        }
-    }
-)]
-
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['dictionary', _p.dictionary.map(
-    $,
-    ($, id) => ['group', ['verbose', _p.dictionary.literal(
-        {
-            'definition': _p_cc(
-                $['definition'],
-                ($) => ['nothing', null]
-            ),
-            'resolver': _p_cc(
-                $['resolver'],
-                ($) => Node_Resolver(
-                    $
-                )
-            ),
-        }
-    )]]
-)]
-
 export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => Type_Reference(
     $
 )
-
-export const Benchmark: t_signatures.Benchmark = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'selection': _p_cc(
-            $['selection'],
-            ($) => Guaranteed_Value_Selection(
-                $
-            )
-        ),
-        'resulting dictionary': _p_cc(
-            $['resulting dictionary'],
-            ($) => ['nothing', null]
-        ),
-        'dense': _p_cc(
-            $['dense'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_serialize_boolean.serialize(
-                    $
-                ),
-            }]
-        ),
-    }
-)]]
 
 export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.decide.state(
     $,
@@ -1524,6 +1211,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                         'option': 'component',
                         'value': ['group', ['verbose', _p.dictionary.literal(
                             {
+                                'definition': _p_cc(
+                                    $['definition'],
+                                    ($) => ['nothing', null]
+                                ),
                                 'location': _p_cc(
                                     $['location'],
                                     ($) => ['state', _p.decide.state(
@@ -1958,6 +1649,69 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
     }
 )]
 
+export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'path': _p_cc(
+            $['path'],
+            ($) => ['list', _p.list.map(
+                $['l list'],
+                ($) => _p_cc(
+                    $['l item'],
+                    ($) => ['state', _p.decide.state(
+                        $,
+                        ($): t_out.Value.state => {
+                            switch ($[0]) {
+                                case 'component':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'component',
+                                            'value': ['nothing', null],
+                                        })
+                                    )
+                                case 'group':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'group',
+                                            'value': ['text', {
+                                                'delimiter': ['backtick', null],
+                                                'value': $['l id'],
+                                            }],
+                                        })
+                                    )
+                                case 'reference':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'reference',
+                                            'value': ['group', ['verbose', _p.dictionary.literal(
+                                                {
+                                                    'definition': _p_cc(
+                                                        $['definition'],
+                                                        ($) => ['nothing', null]
+                                                    ),
+                                                }
+                                            )]],
+                                        })
+                                    )
+                                default:
+                                    return _p.au(
+                                        $[0]
+                                    )
+                            }
+                        }
+                    )]
+                )
+            )]
+        ),
+        'resulting node': _p_cc(
+            $['resulting node'],
+            ($) => ['nothing', null]
+        ),
+    }
+)]]
+
 export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'start': _p_cc(
@@ -2207,6 +1961,280 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
         'resulting node': _p_cc(
             $['resulting node'],
             ($) => ['nothing', null]
+        ),
+    }
+)]]
+
+export const Benchmark: t_signatures.Benchmark = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'selection': _p_cc(
+            $['selection'],
+            ($) => Guaranteed_Value_Selection(
+                $
+            )
+        ),
+        'resulting dictionary': _p_cc(
+            $['resulting dictionary'],
+            ($) => ['nothing', null]
+        ),
+        'dense': _p_cc(
+            $['dense'],
+            ($) => ['text', {
+                'delimiter': ['none', null],
+                'value': v_serialize_boolean.serialize(
+                    $
+                ),
+            }]
+        ),
+    }
+)]]
+
+export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'tail': _p_cc(
+            $['tail'],
+            ($) => ['list', _p.list.map(
+                $['l list'],
+                ($) => _p_cc(
+                    $['l item'],
+                    ($) => ['state', _p.decide.state(
+                        $,
+                        ($): t_out.Value.state => {
+                            switch ($[0]) {
+                                case 'dictionary':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'dictionary',
+                                            'value': ['nothing', null],
+                                        })
+                                    )
+                                case 'group':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'group',
+                                            'value': ['text', {
+                                                'delimiter': ['backtick', null],
+                                                'value': $['l id'],
+                                            }],
+                                        })
+                                    )
+                                case 'list':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'list',
+                                            'value': ['nothing', null],
+                                        })
+                                    )
+                                case 'optional':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'optional',
+                                            'value': ['nothing', null],
+                                        })
+                                    )
+                                case 'state':
+                                    return _p.ss(
+                                        $,
+                                        ($) => ({
+                                            'option': 'state',
+                                            'value': ['text', {
+                                                'delimiter': ['backtick', null],
+                                                'value': $['l id'],
+                                            }],
+                                        })
+                                    )
+                                default:
+                                    return _p.au(
+                                        $[0]
+                                    )
+                            }
+                        }
+                    )]
+                )
+            )]
+        ),
+        'resulting node': _p_cc(
+            $['resulting node'],
+            ($) => ['nothing', null]
+        ),
+    }
+)]]
+
+export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'type location': _p_cc(
+            $['type location'],
+            ($) => Type_Reference(
+                $
+            )
+        ),
+        'path': _p_cc(
+            $['path'],
+            ($) => Type_Node_Path(
+                $
+            )
+        ),
+    }
+)]]
+
+export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'type': _p_cc(
+            $['type'],
+            ($) => ['nothing', null]
+        ),
+        'parameters': _p_cc(
+            $['parameters'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'local':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'local',
+                                    'value': Signature_Parameters(
+                                        $
+                                    ),
+                                })
+                            )
+                        case 'same as':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'same as',
+                                    'value': ['text', {
+                                        'delimiter': ['backtick', null],
+                                        'value': $['l id'],
+                                    }],
+                                })
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            )]
+        ),
+        'resolved parameters': _p_cc(
+            $['resolved parameters'],
+            ($) => ['nothing', null]
+        ),
+    }
+)]]
+
+export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'selection': _p_cc(
+            $['selection'],
+            ($) => Relative_Value_Selection(
+                $
+            )
+        ),
+        'type': _p_cc(
+            $['type'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'state':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'state',
+                                    'value': ['group', ['verbose', _p.dictionary.literal(
+                                        {
+                                            'selected state': _p_cc(
+                                                $['selected state'],
+                                                ($) => ['nothing', null]
+                                            ),
+                                            'option': _p_cc(
+                                                $['option'],
+                                                ($) => ['text', {
+                                                    'delimiter': ['backtick', null],
+                                                    'value': $['l id'],
+                                                }]
+                                            ),
+                                        }
+                                    )]],
+                                })
+                            )
+                        case 'optional value':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'optional value',
+                                    'value': ['group', ['verbose', _p.dictionary.literal(
+                                        {
+                                            'selected optional value': _p_cc(
+                                                $['selected optional value'],
+                                                ($) => ['nothing', null]
+                                            ),
+                                        }
+                                    )]],
+                                })
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            )]
+        ),
+    }
+)]]
+
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ['text', {
+    'delimiter': ['backtick', null],
+    'value': $['l id'],
+}]
+
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'start': _p_cc(
+            $['start'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'property':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'property',
+                                    'value': ['nothing', null],
+                                })
+                            )
+                        case 'sibling':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'sibling',
+                                    'value': Reference_To_Value_Constraint_Resolver(
+                                        $
+                                    ),
+                                })
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            )]
+        ),
+        'constraint': _p_cc(
+            $['constraint'],
+            ($) => Constraint(
+                $
+            )
         ),
     }
 )]]

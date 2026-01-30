@@ -460,6 +460,24 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
     }
 )
 
+export const Value_Constraints: t_signatures.Value_Constraints = ($, abort, $l, $p) => _p.optional.map(
+    $,
+    ($) => _p.dictionary.resolve(
+        $['l dictionary'],
+        ($, id, $a, $c): t_out.Value_Constraints.O.D => _p_cc(
+            $['l entry'],
+            ($) => Type_Node_Reference(
+                $,
+                ($) => abort(
+                    $
+                ),
+                $l,
+                $p
+            )
+        )
+    )
+)
+
 export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
     ($, id, $a, $c): t_out.Group.D => _p_cc(
@@ -547,66 +565,96 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
             case 'component':
                 return _p.ss(
                     $,
-                    ($) => ['component', _p.decide.state(
-                        $['l state'],
-                        ($): t_out.Type_Node.component => {
-                            switch ($[0]) {
-                                case 'external':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ['external', _p.group.resolve(
-                                            () => {
-                                                
-                                                const prop_import = _p_cc(
-                                                    $['import'],
-                                                    ($) => ({
+                    ($) => ['component', _p.group.resolve(
+                        () => {
+                            
+                            const prop_type = _p_cc(
+                                $['type'],
+                                ($) => _p.decide.state(
+                                    $['l state'],
+                                    ($): t_out.Type_Node.component.type_ => {
+                                        switch ($[0]) {
+                                            case 'external':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['external', _p.group.resolve(
+                                                        () => {
+                                                            
+                                                            const prop_import = _p_cc(
+                                                                $['import'],
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "IM: FIXME ACYCLIC ENTRY"
+                                                                    ),
+                                                                    'l id': $['l reference'],
+                                                                })
+                                                            )
+                                                            
+                                                            const prop_type = _p_cc(
+                                                                $['type'],
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "IM: FIXME ACYCLIC ENTRY"
+                                                                    ),
+                                                                    'l id': $['l reference'],
+                                                                })
+                                                            )
+                                                            return {
+                                                                'import': prop_import,
+                                                                'type': prop_type,
+                                                            }
+                                                        }
+                                                    )]
+                                                )
+                                            case 'internal':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['internal', {
                                                         'l entry': _pdev.implement_me(
                                                             "IM: FIXME ACYCLIC ENTRY"
                                                         ),
                                                         'l id': $['l reference'],
-                                                    })
+                                                    }]
                                                 )
-                                                
-                                                const prop_type = _p_cc(
-                                                    $['type'],
-                                                    ($) => ({
+                                            case 'internal cyclic':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['internal cyclic', {
                                                         'l entry': _pdev.implement_me(
-                                                            "IM: FIXME ACYCLIC ENTRY"
+                                                            "IM: FIXME CYCLIC ENTRY"
                                                         ),
                                                         'l id': $['l reference'],
-                                                    })
+                                                    }]
                                                 )
-                                                return {
-                                                    'import': prop_import,
-                                                    'type': prop_type,
-                                                }
-                                            }
-                                        )]
-                                    )
-                                case 'internal':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ['internal', {
-                                            'l entry': _pdev.implement_me(
-                                                "IM: FIXME ACYCLIC ENTRY"
-                                            ),
-                                            'l id': $['l reference'],
-                                        }]
-                                    )
-                                case 'internal cyclic':
-                                    return _p.ss(
-                                        $,
-                                        ($) => ['internal cyclic', {
-                                            'l entry': _pdev.implement_me(
-                                                "IM: FIXME CYCLIC ENTRY"
-                                            ),
-                                            'l id': $['l reference'],
-                                        }]
-                                    )
-                                default:
-                                    return _p.au(
-                                        $[0]
-                                    )
+                                            default:
+                                                return _p.au(
+                                                    $[0]
+                                                )
+                                        }
+                                    }
+                                )
+                            )
+                            
+                            const prop_constraints = _p_cc(
+                                $['constraints'],
+                                ($) => Value_Constraints(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    ),
+                                    {
+                                        'types': _pdev.implement_me(
+                                            "IM: selection"
+                                        ),
+                                    },
+                                    {
+                                        'imports': $p['imports'],
+                                    }
+                                )
+                            )
+                            return {
+                                'type': prop_type,
+                                'constraints': prop_constraints,
                             }
                         }
                     )]
@@ -2237,7 +2285,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
         const prop_selection = _p_cc(
             $['selection'],
             ($) => Guaranteed_Value_Selection(
-                $,
+                $['l component'],
                 ($) => abort(
                     $
                 ),
@@ -2279,6 +2327,13 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                     $,
                     ($) => ['component', _p.group.resolve(
                         () => {
+                            
+                            const prop_definition = _p_cc(
+                                $['definition'],
+                                ($) => _pdev.implement_me(
+                                    "IM: OPTION CONSTRAINT"
+                                )
+                            )
                             
                             const prop_location = _p_cc(
                                 $['location'],
@@ -2515,6 +2570,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                 )
                             )
                             return {
+                                'definition': prop_definition,
                                 'location': prop_location,
                                 'signature': prop_signature,
                                 'arguments': prop_arguments,

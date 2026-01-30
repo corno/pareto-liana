@@ -514,40 +514,58 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'component': return _p.ss($, ($): d_out.Type_Node => ['component', _p_cc($['l state'], ($): d_out.Type_Node.component => {
-                switch ($[0]) {
-                    case 'external': return _p.ss($, ($) => {
-                        const sc_import = $p.imports.__decide(
-                            ($) => $,
-                            () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
-                        )
-                        const p_import = _i_generic.get_entry_acyclic(
-                            _p_ls.acyclic.select_from_dictionary(sc_import),
-                            $.import,
-                            abort,
-                        )
-                        return ['external', {
-                            'import': p_import,
-                            'type': _i_generic.get_entry_acyclic(
-                                _p_ls.acyclic.select_from_dictionary(p_import['l entry'].schema.types),
-                                $.type,
+            case 'component': return _p.ss($, ($): d_out.Type_Node => ['component', {
+                'type': _p_cc($.type['l state'], ($): d_out.Type_Node.component.type_ => {
+                    switch ($[0]) {
+                        case 'external': return _p.ss($, ($) => {
+                            const sc_import = $p.imports.__decide(
+                                ($) => $,
+                                () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
+                            )
+                            const p_import = _i_generic.get_entry_acyclic(
+                                _p_ls.acyclic.select_from_dictionary(sc_import),
+                                $.import,
                                 abort,
                             )
-                        }]
-                    })
-                    case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
-                        $l['noncircular sibling types'],
-                        $,
-                        abort,
-                    )])
-                    case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _i_generic.get_entry_cyclic(
-                        $l['possibly circular dependent sibling types'],
-                        $,
-                        abort
-                    )])
-                    default: return _p.au($[0])
-                }
-            })])
+                            return ['external', {
+                                'import': p_import,
+                                'type': _i_generic.get_entry_acyclic(
+                                    _p_ls.acyclic.select_from_dictionary(p_import['l entry'].schema.types),
+                                    $.type,
+                                    abort,
+                                )
+                            }]
+                        })
+                        case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
+                            $l['noncircular sibling types'],
+                            $,
+                            abort,
+                        )])
+                        case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _i_generic.get_entry_cyclic(
+                            $l['possibly circular dependent sibling types'],
+                            $,
+                            abort
+                        )])
+                        default: return _p.au($[0])
+                    }
+                }),
+                'constraints': _p.optional.map(
+                    $.constraints,
+                    ($) => _p.dictionary.resolve(
+                        $['l dictionary'],
+                        ($) => Type_Node_Reference(
+                            $['l entry'],
+                            abort,
+                            {
+                                'types': $l['noncircular sibling types'],
+                            },
+                            {
+                                'imports': $p.imports,
+                            },
+                        )
+                    )
+                )
+            }])
             case 'dictionary': return _p.ss($, ($) => {
                 const p_type = Type_Node(
                     $.node,
@@ -1076,7 +1094,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         default: return _p.au($[0])
                     }
                 })
-                const x_type: d_out.Types.D = _p_cc(x, ($) => {
+                const x_type: d_out.Types.D = _p_cc(x.type, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => $.type['l entry'])
                         case 'internal': return _p.ss($, ($) => $['l entry'])
@@ -1190,7 +1208,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                 const walk_path_till_end = ($: d_out.Type_Node): d_out.Type_Node => {
                                                     return _p_cc($, ($) => {
                                                         switch ($[0]) {
-                                                            case 'component': return _p.ss($, ($) => _p_cc($, ($) => {
+                                                            case 'component': return _p.ss($, ($) => _p_cc($.type, ($) => {
                                                                 switch ($[0]) {
                                                                     case 'external': return _p.ss($, ($) => $.type['l entry'].node)
                                                                     case 'internal': return _p.ss($, ($) => $['l entry'].node)
@@ -1333,6 +1351,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     }
                 )
                 return ['component', {
+                    'definition': x,
                     'location': p_location,
                     'signature': p_signature,
                     'arguments': p_arguments,
@@ -1348,7 +1367,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     $.benchmark,
                     ($) => {
                         const p_selection = Guaranteed_Value_Selection(
-                            $.selection,
+                            $.selection['l component'],
                             abort,
                             $l,
                             $p,
@@ -1747,7 +1766,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                         })
                         return {
                             'l item': ['component', null],
-                            'l result': _p_cc(sc_definition, ($) => {
+                            'l result': _p_cc(sc_definition.type, ($) => {
                                 switch ($[0]) {
                                     case 'external': return _p.ss($, ($) => $.type['l entry'].node)
                                     case 'internal': return _p.ss($, ($) => $['l entry'].node)

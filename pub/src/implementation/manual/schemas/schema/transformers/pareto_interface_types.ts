@@ -128,21 +128,29 @@ export const Type_Node = (
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.t.boolean())
-            case 'component': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                switch ($[0]) {
-                    case 'external': return _p.ss($, ($) => sh.t.component_imported(
-                        ` imports ${$.import['l id']}`,
-                        $.type['l id'],
-                    ))
-                    case 'internal': return _p.ss($, ($) => sh.t.component_sibling(
-                        $['l id'],
-                    ))
-                    case 'internal cyclic': return _p.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
-                        $['l id'],
-                    ))
-                    default: return _p.au($[0])
-                }
-            }))
+            case 'component': return _p.ss($, ($) => {
+                const x: d_out.Type_Node = _p.decide.state($.type, ($) => {
+                    switch ($[0]) {
+                        case 'external': return _p.ss($, ($) => sh.t.component_imported(
+                            ` imports ${$.import['l id']}`,
+                            $.type['l id'],
+                        ))
+                        case 'internal': return _p.ss($, ($) => sh.t.component_sibling(
+                            $['l id'],
+                        ))
+                        case 'internal cyclic': return _p.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
+                            $['l id'],
+                        ))
+                        default: return _p.au($[0])
+                    }
+                })
+                return add_location && _p.boolean.optional_is_set($.constraints)
+                    ? sh.t.group({
+                        "l location": location,
+                        "l component": x,
+                    })
+                    : x
+            })
             case 'dictionary': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "l location": location,

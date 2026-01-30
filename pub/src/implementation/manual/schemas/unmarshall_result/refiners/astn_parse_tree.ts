@@ -72,7 +72,7 @@ export const Node_Type = (
                 'node': Node(
                     $p['temp value'],
                     {
-                        'definition': _p.decide.state($, ($) => {
+                        'definition': _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => $.type['l entry'].node)
                                 case 'internal': return _p.ss($, ($) => $['l entry'].node)

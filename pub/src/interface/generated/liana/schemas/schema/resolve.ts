@@ -256,61 +256,6 @@ export type Type_Node_ = (
     },
 ) => Type_Node_.O
 
-export namespace Type_ {
-    
-    export type I = i_unresolved.Type
-    
-    export type O = i_resolved.Type
-    
-    export type E = i_generic.Error
-    
-    export namespace L {
-        
-        export type noncircular_sibling_types = i_resolved.Types_.D
-        
-    }
-    
-    export namespace L {
-        
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
-        
-    }
-    
-    export namespace P {
-        
-        export namespace globals {
-            
-            export type O = i_resolved.Globals_
-            
-        }
-        
-        export type globals = _pi.Optional_Value<globals.O>
-        
-        export namespace imports {
-            
-            export type O = i_resolved.Imports_
-            
-        }
-        
-        export type imports = _pi.Optional_Value<imports.O>
-        
-    }
-    
-}
-
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
-    lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
-    },
-    parameters: {
-        readonly 'globals': Type_.P.globals
-        readonly 'imports': Type_.P.imports
-    },
-) => Type_.O
-
 export namespace Type_Reference_ {
     
     export type I = i_unresolved.Type_Reference
@@ -388,6 +333,100 @@ export type Type_Node_Reference_ = (
         readonly 'imports': Type_Node_Reference_.P.imports
     },
 ) => Type_Node_Reference_.O
+
+export namespace Value_Constraints_ {
+    
+    export type I = i_unresolved.Value_Constraints
+    
+    export type O = i_resolved.Value_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type types = i_resolved.Types_.D
+        
+    }
+    
+    export namespace P {
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
+        }
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
+    }
+    
+}
+
+export type Value_Constraints_ = (
+    context: Value_Constraints_.I,
+    abort: _pi.Abort<Value_Constraints_.E>,
+    lookups: {
+        readonly 'types': _pi.Acyclic_Lookup<Value_Constraints_.L.types>
+    },
+    parameters: {
+        readonly 'imports': Value_Constraints_.P.imports
+    },
+) => Value_Constraints_.O
+
+export namespace Type_ {
+    
+    export type I = i_unresolved.Type
+    
+    export type O = i_resolved.Type
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type noncircular_sibling_types = i_resolved.Types_.D
+        
+    }
+    
+    export namespace L {
+        
+        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        
+    }
+    
+    export namespace P {
+        
+        export namespace globals {
+            
+            export type O = i_resolved.Globals_
+            
+        }
+        
+        export type globals = _pi.Optional_Value<globals.O>
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
+        }
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
+    }
+    
+}
+
+export type Type_ = (
+    context: Type_.I,
+    abort: _pi.Abort<Type_.E>,
+    lookups: {
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
+    },
+    parameters: {
+        readonly 'globals': Type_.P.globals
+        readonly 'imports': Type_.P.imports
+    },
+) => Type_.O
 
 export namespace Type_Node_Path_ {
     
@@ -1749,9 +1788,10 @@ export {
     Group_ as Group, 
     Dictionary_ as Dictionary, 
     Type_Node_ as Type_Node, 
-    Type_ as Type, 
     Type_Reference_ as Type_Reference, 
     Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Constraints_ as Value_Constraints, 
+    Type_ as Type, 
     Type_Node_Path_ as Type_Node_Path, 
     Node_Resolver_ as Node_Resolver, 
     Possible_Value_Selection_ as Possible_Value_Selection, 

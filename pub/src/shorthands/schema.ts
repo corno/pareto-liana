@@ -123,7 +123,7 @@ export const reference = (
     'resulting type': null,
 })
 
-export const part_reference = (
+export const type_node_reference = (
     type: string,
     tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
 
@@ -150,33 +150,59 @@ export namespace t {
     export const boolean = (): d_schema.Type_Node => {
         return sh.state(['boolean', null])
     }
+
     export const component = (type: string): d_schema.Type_Node => {
-        return sh.state(['component', sh.state(['internal', sh.reference(type)])])
+        return sh.state(['component', {
+            'type': sh.state(['internal', sh.reference(type)]),
+            'constraints': sh.optionalx.not_set(),
+        }])
     }
+
+    export const component_constrained = (
+        type: string,
+        constraints: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Constraints.O.l_dictionary.D.l_entry>,
+    ): d_schema.Type_Node => {
+        return sh.state(['component', {
+            'type': sh.state(['internal', sh.reference(type)]),
+            'constraints': sh.optionalx.set(sh.dictionary(constraints)),
+        }])
+    }
+
     export const component_cyclic = (type: string): d_schema.Type_Node => {
-        return sh.state(['component', sh.state(['internal cyclic', sh.reference(type)])])
+        return sh.state(['component', {
+            'type': sh.state(['internal cyclic', sh.reference(type)]),
+            'constraints': sh.optionalx.not_set(),
+        }])
     }
+
     export const component_external = (imp: string, type: string): d_schema.Type_Node => {
-        return sh.state(['component', sh.state(['external', {
-            'import': sh.reference(imp),
-            'type': sh.reference(type),
-        }])])
+        return sh.state(['component', {
+            'type': sh.state(['external', {
+                'import': sh.reference(imp),
+                'type': sh.reference(type),
+            }]),
+            'constraints': sh.optionalx.not_set(),
+        }])
     }
+
     export const dictionary = (type: d_schema.Type_Node): d_schema.Type_Node => {
         return sh.state(['dictionary', {
             'node': type,
             'benchmark': sh.optionalx.not_set(),
         }])
     }
+
     export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_schema.Group.l_dictionary.D.l_entry>): d_schema.Type_Node => {
         return sh.state(['group', sh.dictionary(properties)])
     }
+
     export const list = (type: d_schema.Type_Node): d_schema.Type_Node => {
         return sh.state(['list', {
             'node': type,
             'result': sh.optionalx.not_set(),
         }])
     }
+
     export const path_to_sibling = (
         type: d_schema.Type_Node,
         result: string,
@@ -189,18 +215,23 @@ export namespace t {
             }),
         }])
     }
+
     export const nothing = (): d_schema.Type_Node => {
         return sh.state(['nothing', null])
     }
+
     export const number_global = (name: string): d_schema.Type_Node => {
         return sh.state(['number', sh.state(['global', sh.reference(name)])])
     }
+
     export const number_local = (bt: d_schema.Number_Type): d_schema.Type_Node => {
         return sh.state(['number', sh.state(['local', bt])])
     }
+
     export const optional = (type: d_schema.Type_Node): d_schema.Type_Node => {
         return sh.state(['optional', type])
     }
+
     export const reference_derived = (
         type: string,
         tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
@@ -220,6 +251,7 @@ export namespace t {
             'type': sh.state(['derived', null]),
         }])
     }
+
     export const reference_derived_external = (
         imp: string,
         type: string,
@@ -980,6 +1012,7 @@ export namespace r {
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['component', {
+            'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': _p.optionalx.set({
@@ -996,6 +1029,7 @@ export namespace r {
         constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['component', {
+            'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': _p.optionalx.set({
@@ -1013,6 +1047,7 @@ export namespace r {
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['component', {
+            'definition': null,
             'location': sh.state(['external', {
                 'import': sh.reference(imp),
                 'type': sh.reference(type),
@@ -1043,7 +1078,7 @@ export namespace r {
             'definition': null,
             'resolver': resolver,
             'benchmark': _p.optionalx.set({
-                'selection': selection,
+                'selection': sh.component(selection),
                 'resulting dictionary': null,
                 'dense': dense === 'dense',
             }),

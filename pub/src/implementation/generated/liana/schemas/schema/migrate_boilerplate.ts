@@ -555,6 +555,60 @@ export const Group: t_signatures.Group = ($) => ({
     ),
 })
 
+export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l dictionary': _p.dictionary.map(
+        $,
+        ($, id) => ({
+            'l entry': {
+                'definition': _p_cc(
+                    $['definition'],
+                    ($) => null
+                ),
+                'resolver': _p_cc(
+                    $['resolver'],
+                    ($) => Node_Resolver(
+                        $
+                    )
+                ),
+            },
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        })
+    ),
+})
+
+export const Value_Constraints: t_signatures.Value_Constraints = ($) => _p.optional.map(
+    $,
+    ($) => ({
+        'l location': {
+            'document resource identifier': "implement me",
+            'line': 42,
+            'column': 42,
+        },
+        'l dictionary': _p.dictionary.map(
+            $,
+            ($, id) => ({
+                'l entry': Type_Node_Reference(
+                    $
+                ),
+                'l location': {
+                    'document resource identifier': "implement me",
+                    'line': 42,
+                    'column': 42,
+                },
+            })
+        ),
+    })
+)
+
 export const Type_Reference: t_signatures.Type_Reference = ($) => ({
     'location': _p_cc(
         $['location'],
@@ -642,73 +696,84 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['component', {
-                            'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
-                            },
-                            'l state': _p.decide.state(
-                                $,
-                                ($): t_out.Type_Node.l_state.component.l_state => {
-                                    switch ($[0]) {
-                                        case 'external':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['external', {
-                                                    'import': _p_cc(
-                                                        $['import'],
-                                                        ($) => ({
+                            'type': _p_cc(
+                                $['type'],
+                                ($) => ({
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                    'l state': _p.decide.state(
+                                        $,
+                                        ($): t_out.Type_Node.l_state.component.type_.l_state => {
+                                            switch ($[0]) {
+                                                case 'external':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['external', {
+                                                            'import': _p_cc(
+                                                                $['import'],
+                                                                ($) => ({
+                                                                    'l location': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                    'l reference': $['l id'],
+                                                                })
+                                                            ),
+                                                            'type': _p_cc(
+                                                                $['type'],
+                                                                ($) => ({
+                                                                    'l location': {
+                                                                        'document resource identifier': "implement me",
+                                                                        'line': 42,
+                                                                        'column': 42,
+                                                                    },
+                                                                    'l reference': $['l id'],
+                                                                })
+                                                            ),
+                                                        }]
+                                                    )
+                                                case 'internal':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['internal', {
                                                             'l location': {
                                                                 'document resource identifier': "implement me",
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
                                                             'l reference': $['l id'],
-                                                        })
-                                                    ),
-                                                    'type': _p_cc(
-                                                        $['type'],
-                                                        ($) => ({
+                                                        }]
+                                                    )
+                                                case 'internal cyclic':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['internal cyclic', {
                                                             'l location': {
                                                                 'document resource identifier': "implement me",
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
                                                             'l reference': $['l id'],
-                                                        })
-                                                    ),
-                                                }]
-                                            )
-                                        case 'internal':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['internal', {
-                                                    'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
-                                                    },
-                                                    'l reference': $['l id'],
-                                                }]
-                                            )
-                                        case 'internal cyclic':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['internal cyclic', {
-                                                    'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
-                                                    },
-                                                    'l reference': $['l id'],
-                                                }]
-                                            )
-                                        default:
-                                            return _p.au(
-                                                $[0]
-                                            )
-                                    }
-                                }
+                                                        }]
+                                                    )
+                                                default:
+                                                    return _p.au(
+                                                        $[0]
+                                                    )
+                                            }
+                                        }
+                                    ),
+                                })
+                            ),
+                            'constraints': _p_cc(
+                                $['constraints'],
+                                ($) => Value_Constraints(
+                                    $
+                                )
                             ),
                         }]
                     )
@@ -970,105 +1035,94 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
     ),
 })
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
-    'tail': _p_cc(
-        $['tail'],
-        ($) => ({
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l dictionary': _p.dictionary.map(
+        $,
+        ($, id) => ({
+            'l entry': {
+                'l location': {
+                    'document resource identifier': "implement me",
+                    'line': 42,
+                    'column': 42,
+                },
+                'l state': _p.decide.state(
+                    $,
+                    ($): t_out.Option_Constraints.l_dictionary.D.l_entry.l_state => {
+                        switch ($[0]) {
+                            case 'state':
+                                return _p.ss(
+                                    $,
+                                    ($) => ['state', {
+                                        'selection': _p_cc(
+                                            $['selection'],
+                                            ($) => Guaranteed_Value_Selection(
+                                                $
+                                            )
+                                        ),
+                                        'selected state': _p_cc(
+                                            $['selected state'],
+                                            ($) => null
+                                        ),
+                                        'option': _p_cc(
+                                            $['option'],
+                                            ($) => ({
+                                                'l location': {
+                                                    'document resource identifier': "implement me",
+                                                    'line': 42,
+                                                    'column': 42,
+                                                },
+                                                'l reference': $['l id'],
+                                            })
+                                        ),
+                                    }]
+                                )
+                            case 'assert is set':
+                                return _p.ss(
+                                    $,
+                                    ($) => ['assert is set', Possible_Value_Selection(
+                                        $
+                                    )]
+                                )
+                            default:
+                                return _p.au(
+                                    $[0]
+                                )
+                        }
+                    }
+                ),
+            },
             'l location': {
                 'document resource identifier': "implement me",
                 'line': 42,
                 'column': 42,
             },
-            'l list': _p.list.map(
-                $['l list'],
-                ($) => ({
-                    'l item': _p_cc(
-                        $['l item'],
-                        ($) => ({
-                            'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
-                            },
-                            'l state': _p.decide.state(
-                                $,
-                                ($): t_out.Type_Node_Path.tail.l_list.L.l_item.l_state => {
-                                    switch ($[0]) {
-                                        case 'dictionary':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['dictionary', null]
-                                            )
-                                        case 'group':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['group', {
-                                                    'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
-                                                    },
-                                                    'l reference': $['l id'],
-                                                }]
-                                            )
-                                        case 'list':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['list', null]
-                                            )
-                                        case 'optional':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['optional', null]
-                                            )
-                                        case 'state':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['state', {
-                                                    'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
-                                                    },
-                                                    'l reference': $['l id'],
-                                                }]
-                                            )
-                                        default:
-                                            return _p.au(
-                                                $[0]
-                                            )
-                                    }
-                                }
-                            ),
-                        })
-                    ),
-                    'l location': {
-                        'document resource identifier': "implement me",
-                        'line': 42,
-                        'column': 42,
-                    },
-                })
-            ),
         })
-    ),
-    'resulting node': _p_cc(
-        $['resulting node'],
-        ($) => null
     ),
 })
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ({
-    'type location': _p_cc(
-        $['type location'],
-        ($) => Type_Reference(
-            $
-        )
-    ),
-    'path': _p_cc(
-        $['path'],
-        ($) => Type_Node_Path(
-            $
-        )
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l dictionary': _p.dictionary.map(
+        $,
+        ($, id) => ({
+            'l entry': Value_Constraint_Resolver(
+                $
+            ),
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        })
     ),
 })
 
@@ -1183,129 +1237,41 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
     ),
 })
 
-export const Signature: t_signatures.Signature = ($) => ({
-    'type': _p_cc(
-        $['type'],
-        ($) => null
-    ),
-    'parameters': _p_cc(
-        $['parameters'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l state': _p.decide.state(
-                $,
-                ($): t_out.Signature.parameters.l_state => {
-                    switch ($[0]) {
-                        case 'local':
-                            return _p.ss(
-                                $,
-                                ($) => ['local', Signature_Parameters(
-                                    $
-                                )]
-                            )
-                        case 'same as':
-                            return _p.ss(
-                                $,
-                                ($) => ['same as', {
-                                    'l location': {
-                                        'document resource identifier': "implement me",
-                                        'line': 42,
-                                        'column': 42,
-                                    },
-                                    'l reference': $['l id'],
-                                }]
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            ),
-        })
-    ),
-    'resolved parameters': _p_cc(
-        $['resolved parameters'],
-        ($) => null
-    ),
-})
-
-export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => ({
-    'path': _p_cc(
-        $['path'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l list': _p.list.map(
-                $['l list'],
-                ($) => ({
-                    'l item': _p_cc(
-                        $['l item'],
-                        ($) => ({
-                            'l location': {
-                                'document resource identifier': "implement me",
-                                'line': 42,
-                                'column': 42,
-                            },
-                            'l state': _p.decide.state(
-                                $,
-                                ($): t_out.Relative_Value_Selection.path.l_list.L.l_item.l_state => {
-                                    switch ($[0]) {
-                                        case 'component':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['component', null]
-                                            )
-                                        case 'group':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['group', {
-                                                    'l location': {
-                                                        'document resource identifier': "implement me",
-                                                        'line': 42,
-                                                        'column': 42,
-                                                    },
-                                                    'l reference': $['l id'],
-                                                }]
-                                            )
-                                        case 'reference':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['reference', {
-                                                    'definition': _p_cc(
-                                                        $['definition'],
-                                                        ($) => null
-                                                    ),
-                                                }]
-                                            )
-                                        default:
-                                            return _p.au(
-                                                $[0]
-                                            )
-                                    }
-                                }
-                            ),
-                        })
-                    ),
-                    'l location': {
-                        'document resource identifier': "implement me",
-                        'line': 42,
-                        'column': 42,
-                    },
-                })
-            ),
-        })
-    ),
-    'resulting node': _p_cc(
-        $['resulting node'],
-        ($) => null
+export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l state': _p.decide.state(
+        $,
+        ($): t_out.Optional_Value_Initialization.l_state => {
+            switch ($[0]) {
+                case 'not set':
+                    return _p.ss(
+                        $,
+                        ($) => ['not set', null]
+                    )
+                case 'set':
+                    return _p.ss(
+                        $,
+                        ($) => ['set', Guaranteed_Value_Selection(
+                            $
+                        )]
+                    )
+                case 'selection':
+                    return _p.ss(
+                        $,
+                        ($) => ['selection', Possible_Value_Selection(
+                            $
+                        )]
+                    )
+                default:
+                    return _p.au(
+                        $[0]
+                    )
+            }
+        }
     ),
 })
 
@@ -1375,297 +1341,9 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
     ),
 })
 
-export const Constraint: t_signatures.Constraint = ($) => ({
-    'selection': _p_cc(
-        $['selection'],
-        ($) => Relative_Value_Selection(
-            $
-        )
-    ),
-    'type': _p_cc(
-        $['type'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l state': _p.decide.state(
-                $,
-                ($): t_out.Constraint.type_.l_state => {
-                    switch ($[0]) {
-                        case 'state':
-                            return _p.ss(
-                                $,
-                                ($) => ['state', {
-                                    'selected state': _p_cc(
-                                        $['selected state'],
-                                        ($) => null
-                                    ),
-                                    'option': _p_cc(
-                                        $['option'],
-                                        ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "implement me",
-                                                'line': 42,
-                                                'column': 42,
-                                            },
-                                            'l reference': $['l id'],
-                                        })
-                                    ),
-                                }]
-                            )
-                        case 'optional value':
-                            return _p.ss(
-                                $,
-                                ($) => ['optional value', {
-                                    'selected optional value': _p_cc(
-                                        $['selected optional value'],
-                                        ($) => null
-                                    ),
-                                }]
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            ),
-        })
-    ),
-})
-
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': {
-                'l location': {
-                    'document resource identifier': "implement me",
-                    'line': 42,
-                    'column': 42,
-                },
-                'l state': _p.decide.state(
-                    $,
-                    ($): t_out.Option_Constraints.l_dictionary.D.l_entry.l_state => {
-                        switch ($[0]) {
-                            case 'state':
-                                return _p.ss(
-                                    $,
-                                    ($) => ['state', {
-                                        'selection': _p_cc(
-                                            $['selection'],
-                                            ($) => Guaranteed_Value_Selection(
-                                                $
-                                            )
-                                        ),
-                                        'selected state': _p_cc(
-                                            $['selected state'],
-                                            ($) => null
-                                        ),
-                                        'option': _p_cc(
-                                            $['option'],
-                                            ($) => ({
-                                                'l location': {
-                                                    'document resource identifier': "implement me",
-                                                    'line': 42,
-                                                    'column': 42,
-                                                },
-                                                'l reference': $['l id'],
-                                            })
-                                        ),
-                                    }]
-                                )
-                            case 'assert is set':
-                                return _p.ss(
-                                    $,
-                                    ($) => ['assert is set', Possible_Value_Selection(
-                                        $
-                                    )]
-                                )
-                            default:
-                                return _p.au(
-                                    $[0]
-                                )
-                        }
-                    }
-                ),
-            },
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
-export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': Value_Constraint_Resolver(
-                $
-            ),
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l reference': $['l id'],
-})
-
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ({
-    'start': _p_cc(
-        $['start'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l state': _p.decide.state(
-                $,
-                ($): t_out.Value_Constraint_Resolver.start.l_state => {
-                    switch ($[0]) {
-                        case 'property':
-                            return _p.ss(
-                                $,
-                                ($) => ['property', null]
-                            )
-                        case 'sibling':
-                            return _p.ss(
-                                $,
-                                ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
-                                    $
-                                )]
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            ),
-        })
-    ),
-    'constraint': _p_cc(
-        $['constraint'],
-        ($) => Constraint(
-            $
-        )
-    ),
-})
-
-export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l state': _p.decide.state(
-        $,
-        ($): t_out.Optional_Value_Initialization.l_state => {
-            switch ($[0]) {
-                case 'not set':
-                    return _p.ss(
-                        $,
-                        ($) => ['not set', null]
-                    )
-                case 'set':
-                    return _p.ss(
-                        $,
-                        ($) => ['set', Guaranteed_Value_Selection(
-                            $
-                        )]
-                    )
-                case 'selection':
-                    return _p.ss(
-                        $,
-                        ($) => ['selection', Possible_Value_Selection(
-                            $
-                        )]
-                    )
-                default:
-                    return _p.au(
-                        $[0]
-                    )
-            }
-        }
-    ),
-})
-
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
-    'l location': {
-        'document resource identifier': "implement me",
-        'line': 42,
-        'column': 42,
-    },
-    'l dictionary': _p.dictionary.map(
-        $,
-        ($, id) => ({
-            'l entry': {
-                'definition': _p_cc(
-                    $['definition'],
-                    ($) => null
-                ),
-                'resolver': _p_cc(
-                    $['resolver'],
-                    ($) => Node_Resolver(
-                        $
-                    )
-                ),
-            },
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-        })
-    ),
-})
-
 export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => Type_Reference(
     $
 )
-
-export const Benchmark: t_signatures.Benchmark = ($) => ({
-    'selection': _p_cc(
-        $['selection'],
-        ($) => Guaranteed_Value_Selection(
-            $
-        )
-    ),
-    'resulting dictionary': _p_cc(
-        $['resulting dictionary'],
-        ($) => null
-    ),
-    'dense': _p_cc(
-        $['dense'],
-        ($) => $
-    ),
-})
 
 export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
     'l location': {
@@ -1686,6 +1364,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['component', {
+                            'definition': _p_cc(
+                                $['definition'],
+                                ($) => null
+                            ),
                             'location': _p_cc(
                                 $['location'],
                                 ($) => ({
@@ -2118,6 +1800,81 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
     ),
 })
 
+export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => ({
+    'path': _p_cc(
+        $['path'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l list': _p.list.map(
+                $['l list'],
+                ($) => ({
+                    'l item': _p_cc(
+                        $['l item'],
+                        ($) => ({
+                            'l location': {
+                                'document resource identifier': "implement me",
+                                'line': 42,
+                                'column': 42,
+                            },
+                            'l state': _p.decide.state(
+                                $,
+                                ($): t_out.Relative_Value_Selection.path.l_list.L.l_item.l_state => {
+                                    switch ($[0]) {
+                                        case 'component':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['component', null]
+                                            )
+                                        case 'group':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['group', {
+                                                    'l location': {
+                                                        'document resource identifier': "implement me",
+                                                        'line': 42,
+                                                        'column': 42,
+                                                    },
+                                                    'l reference': $['l id'],
+                                                }]
+                                            )
+                                        case 'reference':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['reference', {
+                                                    'definition': _p_cc(
+                                                        $['definition'],
+                                                        ($) => null
+                                                    ),
+                                                }]
+                                            )
+                                        default:
+                                            return _p.au(
+                                                $[0]
+                                            )
+                                    }
+                                }
+                            ),
+                        })
+                    ),
+                    'l location': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                })
+            ),
+        })
+    ),
+    'resulting node': _p_cc(
+        $['resulting node'],
+        ($) => null
+    ),
+})
+
 export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($) => ({
     'start': _p_cc(
         $['start'],
@@ -2382,6 +2139,295 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
     'resulting node': _p_cc(
         $['resulting node'],
         ($) => null
+    ),
+})
+
+export const Benchmark: t_signatures.Benchmark = ($) => ({
+    'selection': _p_cc(
+        $['selection'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l component': Guaranteed_Value_Selection(
+                $
+            ),
+        })
+    ),
+    'resulting dictionary': _p_cc(
+        $['resulting dictionary'],
+        ($) => null
+    ),
+    'dense': _p_cc(
+        $['dense'],
+        ($) => $
+    ),
+})
+
+export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
+    'tail': _p_cc(
+        $['tail'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l list': _p.list.map(
+                $['l list'],
+                ($) => ({
+                    'l item': _p_cc(
+                        $['l item'],
+                        ($) => ({
+                            'l location': {
+                                'document resource identifier': "implement me",
+                                'line': 42,
+                                'column': 42,
+                            },
+                            'l state': _p.decide.state(
+                                $,
+                                ($): t_out.Type_Node_Path.tail.l_list.L.l_item.l_state => {
+                                    switch ($[0]) {
+                                        case 'dictionary':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['dictionary', null]
+                                            )
+                                        case 'group':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['group', {
+                                                    'l location': {
+                                                        'document resource identifier': "implement me",
+                                                        'line': 42,
+                                                        'column': 42,
+                                                    },
+                                                    'l reference': $['l id'],
+                                                }]
+                                            )
+                                        case 'list':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['list', null]
+                                            )
+                                        case 'optional':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['optional', null]
+                                            )
+                                        case 'state':
+                                            return _p.ss(
+                                                $,
+                                                ($) => ['state', {
+                                                    'l location': {
+                                                        'document resource identifier': "implement me",
+                                                        'line': 42,
+                                                        'column': 42,
+                                                    },
+                                                    'l reference': $['l id'],
+                                                }]
+                                            )
+                                        default:
+                                            return _p.au(
+                                                $[0]
+                                            )
+                                    }
+                                }
+                            ),
+                        })
+                    ),
+                    'l location': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                })
+            ),
+        })
+    ),
+    'resulting node': _p_cc(
+        $['resulting node'],
+        ($) => null
+    ),
+})
+
+export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ({
+    'type location': _p_cc(
+        $['type location'],
+        ($) => Type_Reference(
+            $
+        )
+    ),
+    'path': _p_cc(
+        $['path'],
+        ($) => Type_Node_Path(
+            $
+        )
+    ),
+})
+
+export const Signature: t_signatures.Signature = ($) => ({
+    'type': _p_cc(
+        $['type'],
+        ($) => null
+    ),
+    'parameters': _p_cc(
+        $['parameters'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Signature.parameters.l_state => {
+                    switch ($[0]) {
+                        case 'local':
+                            return _p.ss(
+                                $,
+                                ($) => ['local', Signature_Parameters(
+                                    $
+                                )]
+                            )
+                        case 'same as':
+                            return _p.ss(
+                                $,
+                                ($) => ['same as', {
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                    'l reference': $['l id'],
+                                }]
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            ),
+        })
+    ),
+    'resolved parameters': _p_cc(
+        $['resolved parameters'],
+        ($) => null
+    ),
+})
+
+export const Constraint: t_signatures.Constraint = ($) => ({
+    'selection': _p_cc(
+        $['selection'],
+        ($) => Relative_Value_Selection(
+            $
+        )
+    ),
+    'type': _p_cc(
+        $['type'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Constraint.type_.l_state => {
+                    switch ($[0]) {
+                        case 'state':
+                            return _p.ss(
+                                $,
+                                ($) => ['state', {
+                                    'selected state': _p_cc(
+                                        $['selected state'],
+                                        ($) => null
+                                    ),
+                                    'option': _p_cc(
+                                        $['option'],
+                                        ($) => ({
+                                            'l location': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                            'l reference': $['l id'],
+                                        })
+                                    ),
+                                }]
+                            )
+                        case 'optional value':
+                            return _p.ss(
+                                $,
+                                ($) => ['optional value', {
+                                    'selected optional value': _p_cc(
+                                        $['selected optional value'],
+                                        ($) => null
+                                    ),
+                                }]
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            ),
+        })
+    ),
+})
+
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ({
+    'l location': {
+        'document resource identifier': "implement me",
+        'line': 42,
+        'column': 42,
+    },
+    'l reference': $['l id'],
+})
+
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ({
+    'start': _p_cc(
+        $['start'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Value_Constraint_Resolver.start.l_state => {
+                    switch ($[0]) {
+                        case 'property':
+                            return _p.ss(
+                                $,
+                                ($) => ['property', null]
+                            )
+                        case 'sibling':
+                            return _p.ss(
+                                $,
+                                ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
+                                    $
+                                )]
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            ),
+        })
+    ),
+    'constraint': _p_cc(
+        $['constraint'],
+        ($) => Constraint(
+            $
+        )
     ),
 })
 

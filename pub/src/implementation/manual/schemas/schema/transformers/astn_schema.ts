@@ -82,7 +82,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
                 default: return _p.au($[0])
             }
         }))
-        case 'component': return _p.ss($, ($) => ['component', sh.state(_p.decide.state($, ($): d_out.Type_Node.l_state.component.l_state => {
+        case 'component': return _p.ss($, ($) => ['component', sh.state(_p.decide.state($.type, ($): d_out.Type_Node.l_state.component.l_state => {
             switch ($[0]) {
                 case 'external': return _p.ss($, ($) => ['external', {
                     'import': sh.reference($.import['l id']),

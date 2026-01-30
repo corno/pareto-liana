@@ -290,7 +290,7 @@ export const Node_Resolver = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select(sh.s.context([])),
+                sh.e.select(sh.s.context(_p.boolean.optional_is_set($.definition.constraints) ? ["l component"] : [])),
                 sh.e.select(sh.s.context([])),
                 $.arguments.__decide(
                     ($) => $.lookups.__decide(

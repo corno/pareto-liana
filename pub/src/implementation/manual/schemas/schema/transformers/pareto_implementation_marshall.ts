@@ -130,7 +130,7 @@ export const Type_Node = (
         ))
         case 'component': return _p.ss($, ($) => sh.e.select(
             sh.s.call(
-                _p.decide.state($, ($) => {
+                _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.type['l id']))
                         case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))

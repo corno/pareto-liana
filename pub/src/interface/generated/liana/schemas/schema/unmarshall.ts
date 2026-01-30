@@ -311,6 +311,44 @@ export type Group_ = (
     abort: _pi.Abort<Group_.E>,
 ) => Group_.O
 
+export namespace Node_Resolver_Group_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Node_Resolver_Group
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Node_Resolver_Group_ = (
+    context: Node_Resolver_Group_.I,
+    abort: _pi.Abort<Node_Resolver_Group_.E>,
+) => Node_Resolver_Group_.O
+
+export namespace Value_Constraints_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Constraints_ = (
+    context: Value_Constraints_.I,
+    abort: _pi.Abort<Value_Constraints_.E>,
+) => Value_Constraints_.O
+
 export namespace Type_Reference_ {
     
     export type I = i_in.Value
@@ -348,139 +386,6 @@ export type Type_Node_ = (
     context: Type_Node_.I,
     abort: _pi.Abort<Type_Node_.E>,
 ) => Type_Node_.O
-
-export namespace Type_Node_Path_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Type_Node_Path
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Type_Node_Path_ = (
-    context: Type_Node_Path_.I,
-    abort: _pi.Abort<Type_Node_Path_.E>,
-) => Type_Node_Path_.O
-
-export namespace Type_Node_Reference_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Type_Node_Reference
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Type_Node_Reference_ = (
-    context: Type_Node_Reference_.I,
-    abort: _pi.Abort<Type_Node_Reference_.E>,
-) => Type_Node_Reference_.O
-
-export namespace Signature_Parameters_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Signature_Parameters
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Signature_Parameters_ = (
-    context: Signature_Parameters_.I,
-    abort: _pi.Abort<Signature_Parameters_.E>,
-) => Signature_Parameters_.O
-
-export namespace Signature_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Signature
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Signature_ = (
-    context: Signature_.I,
-    abort: _pi.Abort<Signature_.E>,
-) => Signature_.O
-
-export namespace Relative_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Relative_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Relative_Value_Selection_ = (
-    context: Relative_Value_Selection_.I,
-    abort: _pi.Abort<Relative_Value_Selection_.E>,
-) => Relative_Value_Selection_.O
-
-export namespace Lookup_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Lookup_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Lookup_Selection_ = (
-    context: Lookup_Selection_.I,
-    abort: _pi.Abort<Lookup_Selection_.E>,
-) => Lookup_Selection_.O
-
-export namespace Constraint_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Constraint
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Constraint_ = (
-    context: Constraint_.I,
-    abort: _pi.Abort<Constraint_.E>,
-) => Constraint_.O
 
 export namespace Option_Constraints_ {
     
@@ -520,6 +425,234 @@ export type Value_Constraint_Resolvers_ = (
     abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
 ) => Value_Constraint_Resolvers_.O
 
+export namespace Signature_Parameters_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Signature_Parameters
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Signature_Parameters_ = (
+    context: Signature_Parameters_.I,
+    abort: _pi.Abort<Signature_Parameters_.E>,
+) => Signature_Parameters_.O
+
+export namespace Optional_Value_Initialization_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Optional_Value_Initialization
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Optional_Value_Initialization_ = (
+    context: Optional_Value_Initialization_.I,
+    abort: _pi.Abort<Optional_Value_Initialization_.E>,
+) => Optional_Value_Initialization_.O
+
+export namespace Lookup_Selection_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Lookup_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Lookup_Selection_ = (
+    context: Lookup_Selection_.I,
+    abort: _pi.Abort<Lookup_Selection_.E>,
+) => Lookup_Selection_.O
+
+export namespace Node_Resolver_List_Result_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Node_Resolver_List_Result
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Node_Resolver_List_Result_ = (
+    context: Node_Resolver_List_Result_.I,
+    abort: _pi.Abort<Node_Resolver_List_Result_.E>,
+) => Node_Resolver_List_Result_.O
+
+export namespace Node_Resolver_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Node_Resolver
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Node_Resolver_ = (
+    context: Node_Resolver_.I,
+    abort: _pi.Abort<Node_Resolver_.E>,
+) => Node_Resolver_.O
+
+export namespace Relative_Value_Selection_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Relative_Value_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Relative_Value_Selection_ = (
+    context: Relative_Value_Selection_.I,
+    abort: _pi.Abort<Relative_Value_Selection_.E>,
+) => Relative_Value_Selection_.O
+
+export namespace Guaranteed_Value_Selection_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Guaranteed_Value_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Guaranteed_Value_Selection_ = (
+    context: Guaranteed_Value_Selection_.I,
+    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
+) => Guaranteed_Value_Selection_.O
+
+export namespace Benchmark_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Benchmark
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Benchmark_ = (
+    context: Benchmark_.I,
+    abort: _pi.Abort<Benchmark_.E>,
+) => Benchmark_.O
+
+export namespace Type_Node_Path_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Type_Node_Path
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Type_Node_Path_ = (
+    context: Type_Node_Path_.I,
+    abort: _pi.Abort<Type_Node_Path_.E>,
+) => Type_Node_Path_.O
+
+export namespace Type_Node_Reference_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Type_Node_Reference
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Type_Node_Reference_ = (
+    context: Type_Node_Reference_.I,
+    abort: _pi.Abort<Type_Node_Reference_.E>,
+) => Type_Node_Reference_.O
+
+export namespace Signature_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Signature
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Signature_ = (
+    context: Signature_.I,
+    abort: _pi.Abort<Signature_.E>,
+) => Signature_.O
+
+export namespace Constraint_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Constraint
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Constraint_ = (
+    context: Constraint_.I,
+    abort: _pi.Abort<Constraint_.E>,
+) => Constraint_.O
+
 export namespace Reference_To_Value_Constraint_Resolver_ {
     
     export type I = i_in.Value
@@ -558,120 +691,6 @@ export type Value_Constraint_Resolver_ = (
     abort: _pi.Abort<Value_Constraint_Resolver_.E>,
 ) => Value_Constraint_Resolver_.O
 
-export namespace Optional_Value_Initialization_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Optional_Value_Initialization
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Optional_Value_Initialization_ = (
-    context: Optional_Value_Initialization_.I,
-    abort: _pi.Abort<Optional_Value_Initialization_.E>,
-) => Optional_Value_Initialization_.O
-
-export namespace Node_Resolver_Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Node_Resolver_Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Node_Resolver_Group_ = (
-    context: Node_Resolver_Group_.I,
-    abort: _pi.Abort<Node_Resolver_Group_.E>,
-) => Node_Resolver_Group_.O
-
-export namespace Node_Resolver_List_Result_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Node_Resolver_List_Result
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Node_Resolver_List_Result_ = (
-    context: Node_Resolver_List_Result_.I,
-    abort: _pi.Abort<Node_Resolver_List_Result_.E>,
-) => Node_Resolver_List_Result_.O
-
-export namespace Benchmark_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Benchmark
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Benchmark_ = (
-    context: Benchmark_.I,
-    abort: _pi.Abort<Benchmark_.E>,
-) => Benchmark_.O
-
-export namespace Node_Resolver_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Node_Resolver
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Node_Resolver_ = (
-    context: Node_Resolver_.I,
-    abort: _pi.Abort<Node_Resolver_.E>,
-) => Node_Resolver_.O
-
-export namespace Guaranteed_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Guaranteed_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Guaranteed_Value_Selection_ = (
-    context: Guaranteed_Value_Selection_.I,
-    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
-) => Guaranteed_Value_Selection_.O
-
 export namespace Possible_Value_Selection_ {
     
     export type I = i_in.Value
@@ -708,24 +727,25 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
+    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Constraints_ as Value_Constraints, 
     Type_Reference_ as Type_Reference, 
     Type_Node_ as Type_Node, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Type_Node_Reference_ as Type_Node_Reference, 
-    Signature_Parameters_ as Signature_Parameters, 
-    Signature_ as Signature, 
-    Relative_Value_Selection_ as Relative_Value_Selection, 
-    Lookup_Selection_ as Lookup_Selection, 
-    Constraint_ as Constraint, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Signature_Parameters_ as Signature_Parameters, 
+    Optional_Value_Initialization_ as Optional_Value_Initialization, 
+    Lookup_Selection_ as Lookup_Selection, 
+    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
+    Node_Resolver_ as Node_Resolver, 
+    Relative_Value_Selection_ as Relative_Value_Selection, 
+    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
+    Benchmark_ as Benchmark, 
+    Type_Node_Path_ as Type_Node_Path, 
+    Type_Node_Reference_ as Type_Node_Reference, 
+    Signature_ as Signature, 
+    Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
-    Optional_Value_Initialization_ as Optional_Value_Initialization, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Benchmark_ as Benchmark, 
-    Node_Resolver_ as Node_Resolver, 
-    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
 }
