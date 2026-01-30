@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -14,12 +14,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Phrasing content": type(t.list(t.state({
+        "Phrasing content": module_(t.list(t.state({
             "text": tstate(t.text_global("TBD")),
             "element": tstate(t.component_cyclic("Phrasing")),
         }))),
 
-        "Flow content": type(t.list(t.state({
+        "Flow content": module_(t.list(t.state({
             "phrase": tstate(t.component("Phrasing content")),
             "flow": tstate(t.component_cyclic("Flow")),
         }))),
@@ -64,7 +64,7 @@ export const $: g_.Modules = modules(
         tr
         */
 
-        "Document": type(t.group({
+        "Document": module_(t.group({
             "lang": prop(t.optional(t.text_global("TBD"))),
             "head": prop(t.group({
                 "title": prop(t.text_global("TBD"))
@@ -72,12 +72,12 @@ export const $: g_.Modules = modules(
             "body": prop(t.component("Flow content"))
         })),
 
-        "Edit": type(t.group({
+        "Edit": module_(t.group({
             "cite": prop(t.optional(t.text_global("TBD"))),
             "datetime": prop(t.optional(t.text_global("TBD"))),
         })),
 
-        "Embedded": type(t.state({
+        "Embedded": module_(t.state({
             "audio": tstate(t.group({
                 /*FIXME*/
                 // If the element has a src attribute: zero or more track elements, then transparent, but with no media element descendants.
@@ -163,11 +163,11 @@ export const $: g_.Modules = modules(
             "svg": tstate(t.group({/*FIXME*/ })),
         })),
 
-        "Embedded content": type(t.list(t.component("Embedded"))),
+        "Embedded content": module_(t.list(t.component("Embedded"))),
 
-        "Template": type(t.component("Flow content")),
+        "Template": module_(t.component("Flow content")),
 
-        "Script supporting": type(t.state({
+        "Script supporting": module_(t.state({
             "script": tstate(t.group({
                 /*FIXME*/
                 // src — Address of the resource
@@ -187,7 +187,7 @@ export const $: g_.Modules = modules(
             "template": tstate(t.component("Template")),
         })),
 
-        "Heading": type(t.state({
+        "Heading": module_(t.state({
             "h1": tstate(t.component("Phrasing content")),
             "h2": tstate(t.component("Phrasing content")),
             "h3": tstate(t.component("Phrasing content")),
@@ -217,14 +217,14 @@ export const $: g_.Modules = modules(
         //"Heading content": type(list(component("Heading"))),
         //"Script supporting content": type(list(component("Script supporting"))),
 
-        "Sectioning content": type(t.state({
+        "Sectioning content": module_(t.state({
             "article": tstate(t.component("Flow content")),
             "aside": tstate(t.component("Flow content")),
             "nav": tstate(t.component("Flow content")),
             "section": tstate(t.component("Flow content")),
         })),
 
-        "Flow": type(t.state({
+        "Flow": module_(t.state({
             //generic attributes
             "id": tstate(t.group({
                 "id": prop(t.text_global("TBD")),
@@ -375,7 +375,7 @@ export const $: g_.Modules = modules(
             "sectioning": tstate(t.component("Sectioning content")),
         })),
 
-        "Phrasing": type(t.state({
+        "Phrasing": module_(t.state({
             //generic attributes
             "id": tstate(t.group({
                 "id": prop(t.text_global("TBD")),

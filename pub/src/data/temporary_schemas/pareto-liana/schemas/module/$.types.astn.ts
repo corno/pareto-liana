@@ -4,7 +4,7 @@ import {
     modules,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Module": type(t.group({
+        "Module": module_(t.group({
             "omit (de)serializer": prop(t.boolean()),
             "schema tree": prop(t.component_external("schema", "Schema Tree")),
         })),

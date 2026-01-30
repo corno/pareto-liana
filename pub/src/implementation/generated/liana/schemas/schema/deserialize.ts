@@ -135,7 +135,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $p) => v_unmarsh
     )
 )
 
-export const Type_Specification: t_signatures.Type_Specification = ($, abort, $p) => v_unmarshall.Type_Specification(
+export const Module_Specification: t_signatures.Module_Specification = ($, abort, $p) => v_unmarshall.Module_Specification(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -231,7 +231,7 @@ export const Signatures: t_signatures.Signatures = ($, abort, $p) => v_unmarshal
     )
 )
 
-export const Resolvers: t_signatures.Resolvers = ($, abort, $p) => v_unmarshall.Resolvers(
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort, $p) => v_unmarshall.Module_Resolvers(
     v_deserialize.Document(
         $,
         ($) => abort(

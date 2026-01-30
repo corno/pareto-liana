@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../../shorthands/schema"
@@ -16,7 +16,7 @@ export const $: g_.Modules = modules(
     {
 
 
-        "Graph": type(t.group({
+        "Graph": module_(t.group({
             "name": prop(t.optional(t.text_global("Text Value"))),
             "tree": prop(t.component("Tree")),
             "type": prop(t.state({
@@ -40,7 +40,7 @@ export const $: g_.Modules = modules(
         /**
          * a tree contains nodes and subgraphs
          */
-        "Tree": type(t.group({
+        "Tree": module_(t.group({
             "attributes": prop(t.component("Graph Attributes")),
             "elements": prop(t.dictionary(t.state({
                 "node": tstate(t.group({
@@ -58,7 +58,7 @@ export const $: g_.Modules = modules(
             })))
         })),
 
-        "End Point Specification": type(t.group({
+        "End Point Specification": module_(t.group({
             "start": prop(t.text_global("Text Value")),
             "tail": prop(t.list(t.text_global("Text Value"))),
             "port data": prop(t.optional(t.group({
@@ -69,7 +69,7 @@ export const $: g_.Modules = modules(
 
 
 
-        "Graph Attributes": type(t.list(t.state({
+        "Graph Attributes": module_(t.list(t.state({
             "concentrate": tstate(t.boolean()),
             "charset": tstate(t.text_global("Text Value")),
             "clusterrank": tstate(t.state({
@@ -168,7 +168,7 @@ export const $: g_.Modules = modules(
             "xlabel": tstate(t.text_global("Text Value")),
         }))),
 
-        "Node Attributes": type(t.list(t.state({
+        "Node Attributes": module_(t.list(t.state({
             "color": tstate(t.text_global("Text Value")),
             "colorscheme": tstate(t.text_global("Text Value")),
             "comment": tstate(t.text_global("Text Value")),
@@ -209,7 +209,7 @@ export const $: g_.Modules = modules(
             "xlp": tstate(t.text_global("Text Value")),
         }))),
 
-        "Edge Attributes": type(t.list(t.state({
+        "Edge Attributes": module_(t.list(t.state({
             "arrowhead": tstate(t.text_global("Text Value")),
             "arrowsize": tstate(t.number_local(n.approximation(10))),
             "arrowtail": tstate(t.text_global("Text Value")),
@@ -267,7 +267,7 @@ export const $: g_.Modules = modules(
         /**
          * 
          */
-        "Attribute Value": type(t.state({
+        "Attribute Value": module_(t.state({
             "number": tstate(t.text_global("Text Value")),
             "string": tstate(t.text_global("Text Value")),
             "html string": tstate(t.text_global("Text Value")),

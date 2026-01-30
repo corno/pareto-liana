@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 
@@ -20,7 +20,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
  */
 export const $: g_.Modules = modules(
     {
-        "Path": type(t.group({
+        "Path": module_(t.group({
             "up steps": prop(t.list(t.group({}))),
             "context": prop(t.group({
                 "sibling": prop(t.group({})),
@@ -43,7 +43,7 @@ export const $: g_.Modules = modules(
                 })),
             })))
         })),
-        "Node": type(t.group({
+        "Node": module_(t.group({
             "properties": prop(t.dictionary(t.group({
                 "type": prop(t.state({
                     "collection": tstate(t.group({
@@ -67,7 +67,7 @@ export const $: g_.Modules = modules(
                 }))
             })))
         })),
-        "Root": type(t.group({
+        "Root": module_(t.group({
             "numerical types": prop(t.dictionary(t.group({
 
             }))),

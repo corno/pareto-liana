@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "M3": type(t.group({
+        "M3": module_(t.group({
             "id": prop(t.component("ID")),
             "version": prop(t.text_local(text('single line'))),
             "dependencies": prop(t.list(t.component("Raw Reference"))),
@@ -58,11 +58,11 @@ export const $: g_.Modules = modules(
                 })),
             }))),
         })),
-        "ID": type(t.optional(t.group({
+        "ID": module_(t.optional(t.group({
             "key": prop(t.text_local(text('single line'))),
             "id": prop(t.text_local(text('single line'))),
         }))),
-        "Raw Reference": type(t.group({
+        "Raw Reference": module_(t.group({
             "resolveInfo": prop(t.text_local(text('single line'))),
             "reference": prop(t.optional(t.text_local(text('single line')))),
         })),

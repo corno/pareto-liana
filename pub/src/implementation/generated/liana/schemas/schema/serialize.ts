@@ -55,8 +55,8 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => v_serialize.Document
     )
 )
 
-export const Type_Specification: t_signatures.Type_Specification = ($) => v_serialize.Document(
-    v_marshall.Type_Specification(
+export const Module_Specification: t_signatures.Module_Specification = ($) => v_serialize.Document(
+    v_marshall.Module_Specification(
         $
     )
 )
@@ -91,8 +91,8 @@ export const Signatures: t_signatures.Signatures = ($) => v_serialize.Document(
     )
 )
 
-export const Resolvers: t_signatures.Resolvers = ($) => v_serialize.Document(
-    v_marshall.Resolvers(
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => v_serialize.Document(
+    v_marshall.Module_Resolvers(
         $
     )
 )

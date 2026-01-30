@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Serialization Chunk": type(t.group({
+        "Serialization Chunk": module_(t.group({
             "serializationFormatVersion": prop(t.text_local(text('single line'))),
             "languages": prop(t.list(t.group({
                 "key": prop(t.text_local(text('single line'))),
@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
             "node tree": prop(t.component("Node")),
         })),
 
-        "Node": type(t.group({
+        "Node": module_(t.group({
             "classifier": prop(t.text_local(text('single line'))),
             "properties": prop(t.dictionary(t.text_local(text('single line')))),
             "containments": prop(t.dictionary(t.dictionary(t.component_cyclic("Node")))),
@@ -31,7 +31,7 @@ export const $: g_.Modules = modules(
             "annotations": prop(t.list(t.text_local(text('single line')))),
         })),
 
-        "Targets": type(t.list(t.group({
+        "Targets": module_(t.list(t.group({
             "resolveInfo": prop(t.text_local(text('single line'))),
             "reference": prop(t.optional(t.text_local(text('single line')))),
         }))),

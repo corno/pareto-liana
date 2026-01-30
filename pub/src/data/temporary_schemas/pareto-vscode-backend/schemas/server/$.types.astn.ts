@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     text,
     prop,
@@ -14,24 +14,24 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Diagnostic Severity": type(t.state({
+        "Diagnostic Severity": module_(t.state({
             "error": tstate(t.group({})),
             "warning": tstate(t.group({})),
             "information": tstate(t.group({})),
             "hint": tstate(t.group({})),
         })),
 
-        "Position": type(t.group({
+        "Position": module_(t.group({
             "line": prop(t.number_local(n.natural(null))),
             "character": prop(t.number_local(n.natural(null))),
         })),
 
-        "Range": type(t.group({
+        "Range": module_(t.group({
             "start": prop(t.component("Position")),
             "end": prop(t.component("Position")),
         })),
 
-        "Diagnostic": type(t.group({
+        "Diagnostic": module_(t.group({
             "severity": prop(t.component("Diagnostic Severity")),
             "range": prop(t.component("Range")),
             "message": prop(t.text_local(text('single line'))),
@@ -44,61 +44,61 @@ export const $: g_.Modules = modules(
             })))),
         })),
 
-        "Diagnostics": type(t.list(t.component("Diagnostic"))),
+        "Diagnostics": module_(t.list(t.component("Diagnostic"))),
 
-        "Document Data": type(t.group({
+        "Document Data": module_(t.group({
             "file path": prop(t.text_local(text('single line'))),
             "content": prop(t.text_local(text('multi line'))),
         })),
 
-        "Hover Texts": type(t.list(t.text_local(text('single line')))),
+        "Hover Texts": module_(t.list(t.text_local(text('single line')))),
 
-        "Optional Hover Texts": type(t.optional(t.component("Hover Texts"))),
+        "Optional Hover Texts": module_(t.optional(t.component("Hover Texts"))),
 
-        "On Hover Result": type(t.group({
+        "On Hover Result": module_(t.group({
             "contents": prop(t.group({
                 "hover texts": prop(t.component("Optional Hover Texts")),
             })),
         })),
 
-        "Completion Items": type(t.list(t.group({
+        "Completion Items": module_(t.list(t.group({
             "label": prop(t.text_local(text('single line'))),
             "insert text": prop(t.text_local(text('single line'))),
             "documentation": prop(t.text_local(text('multi line'))),
         }))),
 
-        "Optional Completion Items": type(t.optional(t.component("Completion Items"))),
+        "Optional Completion Items": module_(t.optional(t.component("Completion Items"))),
 
-        "On Completion Result": type(t.group({
+        "On Completion Result": module_(t.group({
             "completion items": prop(t.component("Completion Items")),
         })),
 
-        "On Validate Document Result": type(t.group({
+        "On Validate Document Result": module_(t.group({
             "diagnostics": prop(t.component("Diagnostics")),
         })),
 
-        "Convert To JSON Parameters": type(t.group({
+        "Convert To JSON Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
         })),
 
-        "Seal Parameters": type(t.group({
+        "Seal Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
         })),
 
-        "On Completion Parameters": type(t.group({
+        "On Completion Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
             "file path": prop(t.text_local(text('single line'))),
             "position": prop(t.component("Position")),
             "indent": prop(t.text_local(text('single line'))),
         })),
 
-        "On Hover Parameters": type(t.group({
+        "On Hover Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
             "file path": prop(t.text_local(text('single line'))),
             "position": prop(t.component("Position")),
         })),
 
-        "Validate Document Parameters": type(t.group({
+        "Validate Document Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
             "file path": prop(t.text_local(text('single line'))),
             "tab size": prop(t.number_local(n.natural(null))),

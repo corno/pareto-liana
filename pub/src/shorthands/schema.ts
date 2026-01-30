@@ -44,8 +44,8 @@ export const globals = (
     }
 }
 
-export const type = (type: d_schema.Value): d_schema.Modules.l_dictionary.D.l_entry => ({
-    'value': type,
+export const module_ = (type: d_schema.Value): d_schema.Modules.l_dictionary.D.l_entry => ({
+    'root value': type,
 })
 
 export const text = (type: 'single line' | 'multi line'): d_schema.Text_Type => ({
@@ -120,7 +120,7 @@ export const reference = (
     type: string,
 ): d_schema.Module_Reference => ({
     'location': sh.state(['internal', sh.reference(type)]),
-    'resulting type': null,
+    'resulting module': null,
 })
 
 export const type_node_reference = (
@@ -129,9 +129,9 @@ export const type_node_reference = (
 
 ): d_schema.Value_Reference => {
     return {
-        'type location': {
+        'module': {
             'location': sh.state(['internal', sh.reference(type)]),
-            'resulting type': null,
+            'resulting module': null,
         },
         'path': {
 
@@ -179,7 +179,7 @@ export namespace t {
         return sh.state(['component', {
             'type': sh.state(['external', {
                 'import': sh.reference(imp),
-                'type': sh.reference(type),
+                'module': sh.reference(type),
             }]),
             'constraints': sh.optionalx.not_set(),
         }])
@@ -211,7 +211,7 @@ export namespace t {
             'value': type,
             'result': _p.optionalx.set<d_schema.Module_Reference>({
                 'location': sh.state(['internal', sh.reference(result)]),
-                'resulting type': null,
+                'resulting module': null,
             }),
         }])
     }
@@ -237,9 +237,9 @@ export namespace t {
         tail: d_schema.Value_Path.tail.l_list.L.l_item[],
     ): d_schema.Value => {
         const x: d_schema.Value_Reference = {
-            'type location': {
+            'module': {
                 'location': sh.state(['internal', sh.reference(type)]),
-                'resulting type': null,
+                'resulting module': null,
             },
             'path': {
                 'tail': sh.list(tail),
@@ -259,12 +259,12 @@ export namespace t {
 
     ): d_schema.Value => {
         const x: d_schema.Value_Reference = {
-            'type location': {
+            'module': {
                 'location': sh.state(['external', {
                     'import': sh.reference(imp),
-                    'type': sh.reference(type),
+                    'module': sh.reference(type),
                 }]),
-                'resulting type': null,
+                'resulting module': null,
             },
             'path': {
                 'tail': sh.list(tail),
@@ -286,7 +286,7 @@ export namespace t {
 
         const p_type: d_schema.Value.l_state.reference.type_ = sh.state(['selected', {
             'referent': {
-                'type location': {
+                'module': {
                     'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null
                 },
@@ -298,10 +298,10 @@ export namespace t {
         }])
         return sh.state(['reference', {
             'referent': {
-                'type location': {
+                'module': {
                     'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null,
-                    'resulting type': null,
+                    'resulting module': null,
                 },
                 'path': {
                     'tail': sh.list(tail),
@@ -323,10 +323,10 @@ export namespace t {
         }])
         return sh.state(['reference', {
             'referent': {
-                'type location': {
+                'module': {
                     'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null,
-                    'resulting type': null,
+                    'resulting module': null,
                 },
                 'path': {
                     'tail': sh.list(tail),
@@ -350,13 +350,13 @@ export namespace t {
         }])
         return sh.state(['reference', {
             'referent': {
-                'type location': {
+                'module': {
                     'location': sh.state(['external', {
                         'import': sh.reference(schema),
-                        'type': sh.reference(type),
+                        'module': sh.reference(type),
                     }]),
                     'resulting node': null,
-                    'resulting type': null,
+                    'resulting module': null,
                 },
                 'path': {
                     'tail': sh.list(tail),
@@ -448,7 +448,7 @@ export const value_parameter = (
     return {
         'module': {
             'location': sh.state(['internal', sh.reference(name)]),
-            'resulting type': null,
+            'resulting module': null,
         },
         'presence': presence === 'optional'
             ? sh.state(['optional', null])
@@ -465,9 +465,9 @@ export const value_parameter_external = (
         'module': {
             'location': sh.state(['external', {
                 'import': sh.reference(imp),
-                'type': sh.reference(type),
+                'module': sh.reference(type),
             }]),
-            'resulting type': null,
+            'resulting module': null,
         },
         'presence': presence === 'optional'
             ? sh.state(['optional', null])
@@ -483,7 +483,7 @@ export const lookup_parameter = (
     return {
         'referent': {
             'location': sh.state(['internal', sh.reference(name)]),
-            'resulting type': null,
+            'resulting module': null,
         },
         'dictionary': null,
         'type': type === 'cyclic'
@@ -1050,7 +1050,7 @@ export namespace r {
             'definition': null,
             'location': sh.state(['external', {
                 'import': sh.reference(imp),
-                'type': sh.reference(type),
+                'signature': sh.reference(type),
             }]),
             'signature': null,
             'arguments': _p.optionalx.set({
@@ -1197,11 +1197,11 @@ export namespace r {
 }
 
 export const resolver = (
-    type_resolver: d_schema.Value_Resolver
-): d_schema.Resolvers.l_dictionary.D.l_entry => {
+    value_resolver: d_schema.Value_Resolver
+): d_schema.Module_Resolvers.l_dictionary.D.l_entry => {
     return {
         'signature': null,
-        'type resolver': type_resolver,
+        'root value resolver': value_resolver,
     }
 }
 
@@ -1215,8 +1215,8 @@ export const signatures = (
 
 
 export const resolvers = (
-    resolvers: _p.Raw_Or_Normal_Dictionary<d_schema.Resolvers.l_dictionary.D.l_entry>,
-): d_schema.Resolvers => {
+    resolvers: _p.Raw_Or_Normal_Dictionary<d_schema.Module_Resolvers.l_dictionary.D.l_entry>,
+): d_schema.Module_Resolvers => {
     return sh.dictionary(resolvers)
 }
 export const import_ = (
@@ -1230,7 +1230,7 @@ export const import_ = (
 
 export const constrained = (
     signatures: d_schema.Resolve_Logic.signatures,
-    resolvers: d_schema.Resolvers,
+    resolvers: d_schema.Module_Resolvers,
 ): d_schema.Schema.complexity.l_state.constrained => {
     return {
         'signatures': signatures,

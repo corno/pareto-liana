@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,9 +13,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Parameters": type(t.component_external("path", "Node Path")),
+        "Parameters": module_(t.component_external("path", "Node Path")),
 
-        "Error": type(t.state({
+        "Error": module_(t.state({
             "file does not exist": tstate(t.nothing()),
             "node is not a file": tstate(t.nothing()),
             "permission denied": tstate(t.nothing()),
@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
             "device not ready": tstate(t.nothing()),
         })),
 
-        "Result": type(t.text_local(text('multi line'))),
+        "Result": module_(t.text_local(text('multi line'))),
 
     }
 )

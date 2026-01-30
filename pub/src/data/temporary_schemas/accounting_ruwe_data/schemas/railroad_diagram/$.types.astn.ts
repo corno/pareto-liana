@@ -8,7 +8,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -16,16 +16,16 @@ import {
 export const $: g_.Modules = modules(
     {
 
-        "Grammar": type(t.group({
+        "Grammar": module_(t.group({
             "productions": prop(t.component("Productions")),
             //"main rule": t.text_local(text('single line'))
         })),
-        "Production": type(t.state({
+        "Production": module_(t.state({
             "choice": tstate(t.component("Choice")),
             "link": tstate(t.text_global("url")),
         })),
-        "Choice": type(t.list(t.component("Composite Expression"))),
-        "Composite Expression": type(t.state({
+        "Choice": module_(t.list(t.component("Composite Expression"))),
+        "Composite Expression": module_(t.state({
             "item list": tstate(t.list(t.component("Item"))),
             "special": tstate(t.group({
                 "preceding item": prop(t.component("Item")),
@@ -37,7 +37,7 @@ export const $: g_.Modules = modules(
                 "succeeding item": prop(t.component("Item")),
             })),
         })),
-        "Item": type(t.group({
+        "Item": module_(t.group({
             "primary": prop(t.component("Primary")),
             "occurence": prop(t.state({
                 "once": tstate(t.nothing()),
@@ -46,7 +46,7 @@ export const $: g_.Modules = modules(
                 "optional": tstate(t.nothing()),
             })),
         })),
-        "Primary": type(t.state({
+        "Primary": module_(t.state({
             // "reference": t.reference("Productions", []), FIXME: make schema constrained first
             "literal": tstate(t.text_local(text('single line'))),
             "character code": tstate(t.number_local(n.natural(null))),
@@ -59,7 +59,7 @@ export const $: g_.Modules = modules(
             "choice": tstate(t.component_cyclic("Choice")),
 
         })),
-        "Productions": type(t.dictionary(t.component_cyclic("Production"))),
+        "Productions": module_(t.dictionary(t.component_cyclic("Production"))),
 
 
     }

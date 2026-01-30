@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Git Command": type(t.state({
+        "Git Command": module_(t.state({
             "view": tstate(t.state({
                 "workspace": tstate(t.state({
                     "status": tstate(t.group({ // git status
@@ -300,7 +300,7 @@ export const $: g_.Modules = modules(
         })),
 
         // Safety metadata types
-        "Safety Level": type(t.state({
+        "Safety Level": module_(t.state({
             'safe': tstate(t.group({ // ✅ Safe for collaboration
                 'description': prop(t.text_local(text('multi line'))),
             })),
@@ -316,7 +316,7 @@ export const $: g_.Modules = modules(
         })),
 
         // Command execution result
-        "Command Result": type(t.group({
+        "Command Result": module_(t.group({
             'command line': prop(t.text_local(text('single line'))), // the actual git command to execute
             'safety level': prop(t.text_local(text('single line'))), // references Safety Level
             'requires force push': prop(t.boolean()),

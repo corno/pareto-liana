@@ -4,7 +4,7 @@ import { resolvers, r, resolver, al, av, gvs, vst, ovi, state } from "../../../.
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolvers = resolvers(
+export const $: g_.Module_Resolvers = resolvers(
     {
         "Module": resolver(r.group({
             "omit (de)serializer": r.boolean(),

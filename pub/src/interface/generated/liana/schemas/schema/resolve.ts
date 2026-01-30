@@ -101,13 +101,13 @@ export namespace Group_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -137,8 +137,8 @@ export type Group_ = (
     context: Group_.I,
     abort: _pi.Abort<Group_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Group_.P.globals
@@ -156,13 +156,13 @@ export namespace Dictionary_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -192,8 +192,8 @@ export type Dictionary_ = (
     context: Dictionary_.I,
     abort: _pi.Abort<Dictionary_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Dictionary_.P.globals
@@ -211,13 +211,13 @@ export namespace Value_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -247,8 +247,8 @@ export type Value_ = (
     context: Value_.I,
     abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -383,13 +383,13 @@ export namespace Module_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
         
     }
     
@@ -419,8 +419,8 @@ export type Module_ = (
     context: Module_.I,
     abort: _pi.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Module_.P.globals
@@ -438,7 +438,7 @@ export namespace Value_Path_ {
     
     export namespace P {
         
-        export type type_ = i_resolved.Module_
+        export type module_ = i_resolved.Module_
         
     }
     
@@ -449,7 +449,7 @@ export type Value_Path_ = (
     abort: _pi.Abort<Value_Path_.E>,
     lookups: null,
     parameters: {
-        readonly 'type': Value_Path_.P.type_
+        readonly 'module': Value_Path_.P.module_
     },
 ) => Value_Path_.O
 
@@ -1494,7 +1494,7 @@ export namespace Signature_ {
         
         export type modules = i_resolved.Modules_
         
-        export type type_ = i_resolved.Module_
+        export type module_ = i_resolved.Module_
         
         export type imports = i_resolved.Imports_
         
@@ -1510,7 +1510,7 @@ export type Signature_ = (
     },
     parameters: {
         readonly 'modules': Signature_.P.modules
-        readonly 'type': Signature_.P.type_
+        readonly 'module': Signature_.P.module_
         readonly 'imports': Signature_.P.imports
     },
 ) => Signature_.O
@@ -1543,11 +1543,11 @@ export type Signatures_ = (
     },
 ) => Signatures_.O
 
-export namespace Resolvers_ {
+export namespace Module_Resolvers_ {
     
-    export type I = i_unresolved.Resolvers
+    export type I = i_unresolved.Module_Resolvers
     
-    export type O = i_resolved.Resolvers
+    export type O = i_resolved.Module_Resolvers
     
     export type E = i_generic.Error
     
@@ -1563,16 +1563,16 @@ export namespace Resolvers_ {
     
 }
 
-export type Resolvers_ = (
-    context: Resolvers_.I,
-    abort: _pi.Abort<Resolvers_.E>,
+export type Module_Resolvers_ = (
+    context: Module_Resolvers_.I,
+    abort: _pi.Abort<Module_Resolvers_.E>,
     lookups: null,
     parameters: {
-        readonly 'signatures': Resolvers_.P.signatures
-        readonly 'modules': Resolvers_.P.modules
-        readonly 'imports': Resolvers_.P.imports
+        readonly 'signatures': Module_Resolvers_.P.signatures
+        readonly 'modules': Module_Resolvers_.P.modules
+        readonly 'imports': Module_Resolvers_.P.imports
     },
-) => Resolvers_.O
+) => Module_Resolvers_.O
 
 export namespace Schemas_ {
     
@@ -1603,11 +1603,11 @@ export type Schemas_ = (
     parameters: null,
 ) => Schemas_.O
 
-export namespace Type_Specification_ {
+export namespace Module_Specification_ {
     
-    export type I = i_unresolved.Type_Specification
+    export type I = i_unresolved.Module_Specification
     
-    export type O = i_resolved.Type_Specification
+    export type O = i_resolved.Module_Specification
     
     export type E = i_generic.Error
     
@@ -1617,12 +1617,12 @@ export namespace Type_Specification_ {
     
 }
 
-export type Type_Specification_ = (
-    context: Type_Specification_.I,
-    abort: _pi.Abort<Type_Specification_.E>,
+export type Module_Specification_ = (
+    context: Module_Specification_.I,
+    abort: _pi.Abort<Module_Specification_.E>,
     lookups: null,
     parameters: null,
-) => Type_Specification_.O
+) => Module_Specification_.O
 
 export namespace Schema_Tree_ {
     
@@ -1810,9 +1810,9 @@ export {
     Signature_Parameters_ as Signature_Parameters, 
     Signature_ as Signature, 
     Signatures_ as Signatures, 
-    Resolvers_ as Resolvers, 
+    Module_Resolvers_ as Module_Resolvers, 
     Schemas_ as Schemas, 
-    Type_Specification_ as Type_Specification, 
+    Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Schema_ as Schema, 
     Imports_ as Imports, 

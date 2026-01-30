@@ -419,11 +419,11 @@ export const Module: t_signatures.Module = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'value': _p_cc(
+        'root value': _p_cc(
             $.__get_entry(
-                'value',
+                'root value',
                 ($) => abort(
-                    ['no such entry', "value"]
+                    ['no such entry', "root value"]
                 )
             ),
             ($) => Value(
@@ -508,7 +508,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_cc(
                     ['no such entry', "resolvers"]
                 )
             ),
-            ($) => Resolvers(
+            ($) => Module_Resolvers(
                 $,
                 ($) => abort(
                     $
@@ -678,7 +678,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => _p_cc(
     )
 )
 
-export const Type_Specification: t_signatures.Type_Specification = ($, abort) => _p_cc(
+export const Module_Specification: t_signatures.Module_Specification = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -732,11 +732,11 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort) =>
                 ),
             })
         ),
-        'type': _p_cc(
+        'module': _p_cc(
             $.__get_entry(
-                'type',
+                'module',
                 ($) => abort(
-                    ['no such entry', "type"]
+                    ['no such entry', "module"]
                 )
             ),
             ($) => v_unmarshalled_from_parse_tree.Text(
@@ -936,7 +936,7 @@ export const Signatures: t_signatures.Signatures = ($, abort) => ({
     ),
 })
 
-export const Resolvers: t_signatures.Resolvers = ($, abort) => ({
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -973,11 +973,11 @@ export const Resolvers: t_signatures.Resolvers = ($, abort) => ({
                             )
                         )
                     ),
-                    'type resolver': _p_cc(
+                    'root value resolver': _p_cc(
                         $.__get_entry(
-                            'type resolver',
+                            'root value resolver',
                             ($) => abort(
-                                ['no such entry', "type resolver"]
+                                ['no such entry', "root value resolver"]
                             )
                         ),
                         ($) => Value_Resolver(
@@ -1228,11 +1228,11 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
                                                         ),
                                                     })
                                                 ),
-                                                'type': _p_cc(
+                                                'module': _p_cc(
                                                     $.__get_entry(
-                                                        'type',
+                                                        'module',
                                                         ($) => abort(
-                                                            ['no such entry', "type"]
+                                                            ['no such entry', "module"]
                                                         )
                                                     ),
                                                     ($) => ({
@@ -1260,11 +1260,11 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
                 )
             )
         ),
-        'resulting type': _p_cc(
+        'resulting module': _p_cc(
             $.__get_entry(
-                'resulting type',
+                'resulting module',
                 ($) => abort(
-                    ['no such entry', "resulting type"]
+                    ['no such entry', "resulting module"]
                 )
             ),
             ($) => v_unmarshalled_from_parse_tree.Nothing(
@@ -1370,11 +1370,11 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                                                     ),
                                                                                 })
                                                                             ),
-                                                                            'type': _p_cc(
+                                                                            'module': _p_cc(
                                                                                 $.__get_entry(
-                                                                                    'type',
+                                                                                    'module',
                                                                                     ($) => abort(
-                                                                                        ['no such entry', "type"]
+                                                                                        ['no such entry', "module"]
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
@@ -2660,11 +2660,11 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
                                                                                     ),
                                                                                 })
                                                                             ),
-                                                                            'type': _p_cc(
+                                                                            'signature': _p_cc(
                                                                                 $.__get_entry(
-                                                                                    'type',
+                                                                                    'signature',
                                                                                     ($) => abort(
-                                                                                        ['no such entry', "type"]
+                                                                                        ['no such entry', "signature"]
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
@@ -4412,11 +4412,11 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort) => _p_cc
         )
     ),
     ($) => ({
-        'type location': _p_cc(
+        'module': _p_cc(
             $.__get_entry(
-                'type location',
+                'module',
                 ($) => abort(
-                    ['no such entry', "type location"]
+                    ['no such entry', "module"]
                 )
             ),
             ($) => Module_Reference(

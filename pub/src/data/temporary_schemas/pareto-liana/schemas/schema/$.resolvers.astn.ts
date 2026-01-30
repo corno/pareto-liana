@@ -7,15 +7,15 @@ import {
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 
-export const $: g_.Resolvers = resolvers(
+export const $: g_.Module_Resolvers = resolvers(
     {
         "Module": resolver(r.group({
-            "value": r.component("Value", {
+            "root value": r.component("Value", {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
             }, {
-                "noncircular sibling types": al.parameter(("noncircular sibling types")),
-                "possibly circular dependent sibling types": al.parameter(("possibly circular dependent sibling types")),
+                "noncircular sibling modules": al.parameter(("noncircular sibling modules")),
+                "possibly circular dependent sibling modules": al.parameter(("possibly circular dependent sibling modules")),
             })
         })),
 
@@ -23,8 +23,8 @@ export const $: g_.Resolvers = resolvers(
             "globals": av.parameter("globals"),
             "imports": av.parameter("imports"),
         }, {
-            "noncircular sibling types": al.not_circular_dependent_siblings(),
-            "possibly circular dependent sibling types": al.possibly_circular_dependent_siblings(),
+            "noncircular sibling modules": al.not_circular_dependent_siblings(),
+            "possibly circular dependent sibling modules": al.possibly_circular_dependent_siblings(),
         }))),
 
         "Globals": resolver(r.group({
@@ -68,16 +68,16 @@ export const $: g_.Resolvers = resolvers(
                             "import": oc.assert_set(pvs.parameter("imports"))
                         }, r.group({
                             "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                            "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("modules"), vst.component()]))),
+                            "module": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("modules"), vst.component()]))),
                         })),
                 }
             ),
-            "resulting type": r.reference_derived(gvs.state("location", reference("Module"), [])),
+            "resulting module": r.reference_derived(gvs.state("location", reference("Module"), [])),
         })),
 
         "Value Reference": resolver(r.group({
-            "type location": r.component("Module Reference", null, null),
-            "path": r.component("Value Path", { "type": av.required(gvs.sibling("type location", [vst.component(), vst.group("resulting type"), vst.reference()])) }, {}),
+            "module": r.component("Module Reference", null, null),
+            "path": r.component("Value Path", { "module": av.required(gvs.sibling("module", [vst.component(), vst.group("resulting module"), vst.reference()])) }, {}),
         })),
 
         "Value Path": resolver(r.group({
@@ -119,8 +119,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             ),
         }))),
@@ -132,8 +132,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             ),
         })),
@@ -147,15 +147,15 @@ export const $: g_.Resolvers = resolvers(
                             "import": oc.assert_set(pvs.parameter("imports"))
                         }, r.group({
                             "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                            "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("modules"), vst.component()]))),
+                            "module": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("modules"), vst.component()]))),
                         })),
-                    "internal": state(r.reference(ls.parameter("noncircular sibling types"))),
-                    "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling types"))),
+                    "internal": state(r.reference(ls.parameter("noncircular sibling modules"))),
+                    "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
                 }),
                 "constraints": r.component("Value Constraints", {
                     "imports": av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling types"),
+                    "modules": al.parameter("noncircular sibling modules"),
                 }),
             })),
             "dictionary": state(r.component("Dictionary",
@@ -164,8 +164,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
             "group": state(r.component("Group",
@@ -174,8 +174,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
             "list": state(r.group({
@@ -183,7 +183,7 @@ export const $: g_.Resolvers = resolvers(
                 "result": r.optional(r.component("Module Reference", {
                     "imports": av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling types"),
+                    "modules": al.parameter("noncircular sibling modules"),
                 })),
             })),
             "nothing": state(r.nothing()),
@@ -199,7 +199,7 @@ export const $: g_.Resolvers = resolvers(
                 "referent": r.component("Value Reference", {
                     "imports": av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling types"),
+                    "modules": al.parameter("noncircular sibling modules"),
                 }),
                 "type": r.state({
                     "derived": state(r.nothing()),
@@ -208,7 +208,7 @@ export const $: g_.Resolvers = resolvers(
                             "dictionary": oc.state(
                                 gvs.sibling(
                                     "referent",
-                                    [vst.component(), vst.group("type location"), vst.component(), vst.group("resulting type"), vst.reference(), vst.group("value"), vst.component()]
+                                    [vst.component(), vst.group("module"), vst.component(), vst.group("resulting module"), vst.reference(), vst.group("root value"), vst.component()]
                                 ),
                                 "dictionary"
                             )
@@ -280,7 +280,7 @@ export const $: g_.Resolvers = resolvers(
                 }, {
                     "modules": al.dictionary(gvs.parameter("modules", [])),
                 }, {
-                    "dictionary": pc.property([vst.group("resulting type"), vst.reference(), vst.group("value"), vst.component()], "dictionary"),
+                    "dictionary": pc.property([vst.group("resulting module"), vst.reference(), vst.group("root value"), vst.component()], "dictionary"),
                 }),
                 "dictionary": r.reference_derived(gvs.component("referent", "dictionary", [])),
                 "type": r.state({
@@ -293,7 +293,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Signature": resolver(r.group({
-            "module": r.reference_derived(gvs.parameter("type", [])),
+            "module": r.reference_derived(gvs.parameter("module", [])),
             "parameters": r.state(
                 {
                     "local": state(r.component("Signature Parameters", {
@@ -312,7 +312,7 @@ export const $: g_.Resolvers = resolvers(
             gvs.parameter("modules", []),
             r.component("Signature", {
                 "modules": av.parameter("modules"),
-                "type": av.required(gvs.linked_entry([vst.component()])),
+                "module": av.required(gvs.linked_entry([vst.component()])),
                 "imports": av.parameter("imports"),
             }, {
                 "sibling signatures": al.not_circular_dependent_siblings(),
@@ -456,12 +456,12 @@ export const $: g_.Resolvers = resolvers(
                 reference("Dictionary"), [])),
         })),
 
-        "Resolvers": resolver(r.dictionary_linked(
+        "Module Resolvers": resolver(r.dictionary_linked(
             'dense',
             gvs.parameter("signatures", []),
             r.group({
                 "signature": r.reference_derived(gvs.linked_entry([])),
-                "type resolver": r.component("Value Resolver",
+                "root value resolver": r.component("Value Resolver",
                     {
 
                         "option constraints": av.optional(ovi.not_set()),
@@ -471,7 +471,7 @@ export const $: g_.Resolvers = resolvers(
                         "current dictionary": av.optional(ovi.not_set()),
 
                         "signature": av.required(gvs.sibling("signature", [vst.reference()])),
-                        "definition": av.required(gvs.linked_entry([vst.component(), vst.group("module"), vst.reference(), vst.group("value")])),
+                        "definition": av.required(gvs.linked_entry([vst.component(), vst.group("module"), vst.reference(), vst.group("root value")])),
 
                         "signatures": av.parameter("signatures"),
                         "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
@@ -600,7 +600,7 @@ export const $: g_.Resolvers = resolvers(
                                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", [])), {
                                         "constrained": pc.property([vst.group("schema"), vst.reference(), vst.group("complexity")], "constrained"),
                                     }),
-                                    "type": r.reference(gvs.dictionary(gvs.reference("import", "constrained", [vst.component(), vst.group("signatures"), vst.group("signatures"), vst.component()]))),
+                                    "signature": r.reference(gvs.dictionary(gvs.reference("import", "constrained", [vst.component(), vst.group("signatures"), vst.group("signatures"), vst.component()]))),
                                 })
                             ),
                             "internal": state(r.reference(gvs.dictionary(gvs.parameter("signatures", [])))),
@@ -633,7 +633,7 @@ export const $: g_.Resolvers = resolvers(
                         ),
                     })),
                     "constraints": r.component("Value Constraint Resolvers", {
-                        "value": av.required(gvs.sibling("signature", [vst.reference(), vst.component(), vst.group("module"), vst.reference(), vst.group("value"), vst.component(),])),
+                        "value": av.required(gvs.sibling("signature", [vst.reference(), vst.component(), vst.group("module"), vst.reference(), vst.group("root value"), vst.component(),])),
                     }, {})
                 })),
             "dictionary": state_constrained(
@@ -817,7 +817,7 @@ export const $: g_.Resolvers = resolvers(
                 }, {
                 }),
             }),
-            "resolvers": r.component("Resolvers", {
+            "resolvers": r.component("Module Resolvers", {
                 "signatures": av.required(gvs.sibling("signatures", [vst.group("signatures")])),
                 "modules": av.parameter("modules"),
                 "imports": av.parameter("imports"),
@@ -832,12 +832,12 @@ export const $: g_.Resolvers = resolvers(
             ),
         }))),
 
-        "Type Specification": resolver(r.group({
+        "Module Specification": resolver(r.group({
             "schema": r.component("Schema Tree", {}, {
                 "sibling schemas": al.empty_stack(),
             }),
             "schema path": r.list(r.text()),
-            "type": r.text(),
+            "module": r.text(),
         })),
 
 

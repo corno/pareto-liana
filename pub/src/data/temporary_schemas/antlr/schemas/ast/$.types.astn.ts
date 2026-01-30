@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -12,7 +12,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Grammar": type(t.group({
+        "Grammar": module_(t.group({
             "name": prop(t.text_global("Text Value")),
             "file name": prop(t.optional(t.text_global("Text Value"))),
             "type": prop(t.state({
@@ -32,7 +32,7 @@ export const $: g_.Modules = modules(
             "imported grammars": prop(t.optional(t.list(t.component_cyclic("Grammar")))),
         })),
 
-        "Rule": type(t.group({
+        "Rule": module_(t.group({
             "modifiers": prop(t.optional(t.list(t.text_global("Text Value")))),
             "args": prop(t.optional(t.text_global("Multi Line Text"))),
             "returns": prop(t.optional(t.text_global("Multi Line Text"))),
@@ -42,13 +42,13 @@ export const $: g_.Modules = modules(
             "exceptions": prop(t.optional(t.list(t.text_global("Multi Line Text")))),
         })),
 
-        "Alternative": type(t.group({
+        "Alternative": module_(t.group({
             "items": prop(t.list(t.component("Item"))),
             "actions": prop(t.optional(t.list(t.text_global("Multi Line Text")))),
             "label": prop(t.optional(t.text_global("Text Value"))),
         })),
 
-        "Item": type(t.state({
+        "Item": module_(t.state({
             "token": tstate(t.group({
                 "name": prop(t.text_global("Text Value")),
                 "label": prop(t.optional(t.text_global("Text Value"))),

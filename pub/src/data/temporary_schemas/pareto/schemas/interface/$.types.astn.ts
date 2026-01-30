@@ -6,7 +6,7 @@ import {
     n,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate as toption,
 } from "../../../../../shorthands/schema"
@@ -15,12 +15,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Module Set": type(t.dictionary(t.state({
+        "Module Set": module_(t.dictionary(t.state({
             "module": toption(t.component("Module")),
             "set": toption(t.component_cyclic("Module Set")),
         }))),
 
-        "Module": type(t.group({
+        "Module": module_(t.group({
             "imports": prop(t.component("Imports")),
             "types": prop(t.dictionary(t.state({
                 "data": toption(t.component_cyclic("Value")),
@@ -44,7 +44,7 @@ export const $: g_.Modules = modules(
             }))),
         })),
 
-        "Imports": type(t.dictionary(t.group({
+        "Imports": module_(t.dictionary(t.group({
             "type": prop(t.state({
                 "external": toption(t.text_global("TBD")),
                 "ancestor": toption(t.group({
@@ -56,7 +56,7 @@ export const $: g_.Modules = modules(
             "tail": prop(t.list(t.text_global("TBD"))),
         }))),
 
-        "Value": type(t.state({
+        "Value": module_(t.state({
             "boolean": toption(t.nothing()),
             "component": toption(t.group({
                 "location": prop(t.component("Module Reference")),
@@ -88,7 +88,7 @@ export const $: g_.Modules = modules(
             "text": toption(t.nothing()),
         })),
 
-        "Module Reference": type(t.state({
+        "Module Reference": module_(t.state({
             "import": toption(t.group({
                 "import": prop(t.text_global("TBD")),
                 "type": prop(t.text_global("TBD")),

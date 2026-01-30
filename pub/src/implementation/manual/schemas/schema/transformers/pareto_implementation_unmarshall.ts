@@ -150,7 +150,7 @@ export const Schema: _pi.Transformer_With_Parameters<
             false,
             false,
             Value(
-                $.value,
+                $['root value'],
                 {
                     'temp type': id,
                     'temp subselection': _p.list.literal([]),
@@ -195,7 +195,7 @@ export const Value = (
                     sh.s.call(
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.type['l id']))
+                                case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                                 case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
                                 case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
                                 default: return _p.au($[0])

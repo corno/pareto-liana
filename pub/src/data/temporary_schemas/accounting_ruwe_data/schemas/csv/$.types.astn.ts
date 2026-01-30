@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,13 +15,13 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Annotation": type(t.group({
+        "Annotation": module_(t.group({
             "position": prop(t.number_local(n.natural(null))),
             "line": prop(t.number_local(n.natural(null))),
             "column": prop(t.number_local(n.natural(null))),
         })),
 
-        "Data Set": type(t.group({
+        "Data Set": module_(t.group({
             "lines": prop(t.list(t.group({
                 "fields": prop(t.list(t.group({
                     "annotation": prop(t.component("Annotation")),

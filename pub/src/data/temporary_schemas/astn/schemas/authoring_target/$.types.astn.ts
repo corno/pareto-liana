@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     text,
     n,
     prop,
@@ -13,12 +13,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Document": type(t.group({
+        "Document": module_(t.group({
             "header": prop(t.optional(t.component("Value"))),
             "content": prop(t.component("Value")),
         })),
 
-        "Value": type(t.group({
+        "Value": module_(t.group({
             "metadata": prop(t.group({
                 "comments": prop(t.list(t.text_local(text('single line')))),
             })),

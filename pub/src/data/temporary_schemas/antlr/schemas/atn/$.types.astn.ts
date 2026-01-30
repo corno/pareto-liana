@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -12,7 +12,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "ATN": type(t.group({
+        "ATN": module_(t.group({
             "grammar name": prop(t.text_global("Text Value")),
             "grammar type": prop(t.state({
                 "lexer": tstate(t.nothing()),
@@ -129,7 +129,7 @@ export const $: g_.Modules = modules(
             })))),
         })),
 
-        "Decision Info": type(t.group({
+        "Decision Info": module_(t.group({
             "decision": prop(t.number_global("Integer")),
             "non greedy": prop(t.boolean()),
         })),

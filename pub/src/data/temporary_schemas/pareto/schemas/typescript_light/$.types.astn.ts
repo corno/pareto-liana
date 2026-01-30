@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Directory": type(t.dictionary(
+        "Directory": module_(t.dictionary(
             t.state({
                 "file": tstate(t.group({
                     "statements": prop(t.component("Statements"))
@@ -24,9 +24,9 @@ export const $: g_.Modules = modules(
             })
         )),
 
-        "Block": type(t.component_cyclic("Statements")),
+        "Block": module_(t.component_cyclic("Statements")),
 
-        "Statements": type(t.list(t.state({
+        "Statements": module_(t.list(t.state({
             "block": tstate(t.component_cyclic("Block")),
             "export": tstate(t.group({
                 "type": prop(t.state({
@@ -84,7 +84,7 @@ export const $: g_.Modules = modules(
             })),
         }))),
 
-        "Type": type(t.state({
+        "Type": module_(t.state({
             "boolean": tstate(t.nothing()),
             "function": tstate(t.group({
                 "type parameters": prop(t.list(t.component_cyclic("Type"))),
@@ -114,12 +114,12 @@ export const $: g_.Modules = modules(
             "void": tstate(t.nothing()),
         })),
 
-        "Function Parameters": type(t.list(t.group({
+        "Function Parameters": module_(t.list(t.group({
             "name": prop(t.component("Identifier")),
             "type": prop(t.optional(t.component_cyclic("Type"))),
         }))),
 
-        "Expression": type(t.state({
+        "Expression": module_(t.state({
             "array literal": tstate(t.list(t.component_cyclic("Expression"))),
             "arrow function": tstate(t.group({
                 "parameters": prop(t.component("Function Parameters")),
@@ -184,7 +184,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "String Literal": type(t.group({
+        "String Literal": module_(t.group({
             "delimiter": prop(t.state({
                 "quote": tstate(t.nothing()),
                 "apostrophe": tstate(t.nothing()),
@@ -192,7 +192,7 @@ export const $: g_.Modules = modules(
             "value": prop(t.text_local(text('single line')))
         })),
 
-        "Identifier": type(t.group({
+        "Identifier": module_(t.group({
             "value": prop(t.text_local(text('single line')))
         })),
 

@@ -69,7 +69,7 @@ export const Module_Reference = (
         switch ($[0]) {
             case 'external': return _p.ss($, ($) => sh.mr.imported(
                 `imports ${$.import['l id']}`,
-                $.type['l id'],
+                $.module['l id'],
             ))
             case 'internal': return _p.ss($, ($) => sh.mr.imported(
                 "resolved",

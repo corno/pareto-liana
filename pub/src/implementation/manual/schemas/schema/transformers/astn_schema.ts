@@ -15,7 +15,7 @@ export const Schema: _pi.Transformer<d_in.Schema, d_out.Schema> = (
 ) => ({
     'globals': Globals($.globals),
     'imports': Imports($.imports),
-    'types': sh.dictionary($.modules.__d_map(($) => Type($))),
+    'types': sh.dictionary($.modules.__d_map(($) => Module($))),
 })
 
 export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
@@ -47,10 +47,10 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
     'schema set child': sh.reference($['schema set child']['l id'])
 })))
 
-export const Type: _pi.Transformer<d_in.Module, d_out.Module> = (
+export const Module: _pi.Transformer<d_in.Module, d_out.Module> = (
     $
 ) => ({
-    'node': Value($.value)
+    'node': Value($['root value'])
 })
 
 export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
@@ -86,7 +86,7 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
             switch ($[0]) {
                 case 'external': return _p.ss($, ($) => ['external', {
                     'import': sh.reference($.import['l id']),
-                    'type': sh.reference($.type['l id'])
+                    'type': sh.reference($.module['l id'])
                 }])
                 case 'internal': return _p.ss($, ($) => ['internal', sh.reference($['l id'])])
                 case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', sh.reference($['l id'])])

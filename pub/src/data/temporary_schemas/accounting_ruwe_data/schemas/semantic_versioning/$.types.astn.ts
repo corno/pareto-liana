@@ -5,7 +5,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -13,14 +13,14 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Semantic Version": type(t.group({
+        "Semantic Version": module_(t.group({
             "major": prop(t.text_global("Text Value")),
             "minor": prop(t.text_global("Text Value")),
             "patch": prop(t.text_global("Text Value")),
             "pre-release identifiers": prop(t.list(t.component("Number or Text"))),
             "build identifiers": prop(t.list(t.text_global("Text Value"))),
         })),
-        "Number or Text": type(t.state({
+        "Number or Text": module_(t.state({
             "numeric": tstate(t.text_global("Text Value")), //is this correct?
             "alphanumeric": tstate(t.text_global("Text Value")),
         })),

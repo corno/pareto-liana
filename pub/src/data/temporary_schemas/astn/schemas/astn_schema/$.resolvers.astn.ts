@@ -7,15 +7,15 @@ import {
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 
-export const $: g_.Resolvers = resolvers(
+export const $: g_.Module_Resolvers = resolvers(
     {
         "Module": resolver(r.group({
             "node": r.component("Value", {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
             }, {
-                "noncircular sibling types": al.parameter(("noncircular sibling types")),
-                "possibly circular dependent sibling types": al.parameter(("possibly circular dependent sibling types")),
+                "noncircular sibling modules": al.parameter(("noncircular sibling modules")),
+                "possibly circular dependent sibling modules": al.parameter(("possibly circular dependent sibling modules")),
             })
         })),
 
@@ -23,8 +23,8 @@ export const $: g_.Resolvers = resolvers(
             "globals": av.parameter("globals"),
             "imports": av.parameter("imports"),
         }, {
-            "noncircular sibling types": al.not_circular_dependent_siblings(),
-            "possibly circular dependent sibling types": al.possibly_circular_dependent_siblings(),
+            "noncircular sibling modules": al.not_circular_dependent_siblings(),
+            "possibly circular dependent sibling modules": al.possibly_circular_dependent_siblings(),
         }))),
 
         "Globals": resolver(r.group({
@@ -44,8 +44,8 @@ export const $: g_.Resolvers = resolvers(
                 "imports": av.parameter("imports"),
             },
             {
-                "noncircular sibling types": al.parameter("noncircular sibling types"),
-                "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
             }
         ))),
 
@@ -56,8 +56,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             ),
             "ordered": r.boolean(),
@@ -69,8 +69,8 @@ export const $: g_.Resolvers = resolvers(
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
                     "type": r.reference(gvs.dictionary(gvs.sibling("import", [vst.reference(), vst.group("schema"), vst.reference(), vst.group("types"), vst.component()]))),
                 })),
-                "internal": state(r.reference(ls.parameter("noncircular sibling types"))),
-                "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling types"))),
+                "internal": state(r.reference(ls.parameter("noncircular sibling modules"))),
+                "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
             })),
             "dictionary": state(r.component("Dictionary",
                 {
@@ -78,8 +78,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
             "group": state(r.component("Group",
@@ -88,8 +88,8 @@ export const $: g_.Resolvers = resolvers(
                     "imports": av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling types": al.parameter("noncircular sibling types"),
-                    "possibly circular dependent sibling types": al.parameter("possibly circular dependent sibling types"),
+                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
             "list": state(r.group({

@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,12 +13,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Document": type(t.group({
+        "Document": module_(t.group({
             "css": prop(t.text_local(text('multi line'))),
             "root": prop(t.component("Flow Content")),
         })),
 
-        "Flow Content": type(t.list(t.state({
+        "Flow Content": module_(t.list(t.state({
             "div": tstate(t.component_cyclic("Flow Content")),
             "dimensioned div": tstate(t.group({
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
@@ -74,9 +74,9 @@ export const $: g_.Modules = modules(
 
         }))),
 
-        "Classes": type(t.list(t.text_local(text('single line')))),
+        "Classes": module_(t.list(t.text_local(text('single line')))),
 
-        "Phrasing Content": type(t.list(t.state({
+        "Phrasing Content": module_(t.list(t.state({
             "span": tstate(t.component_cyclic("Phrasing Content")),
             "classified span": tstate(t.group({
                 "classes": prop(t.component("Classes")),

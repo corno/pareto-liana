@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,14 +15,14 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Error": type(t.group({
+        "Error": module_(t.group({
             "type": prop(t.state({
                 "lexer": tstate(t.component("Lexer Error")),
                 "parser": tstate(t.component("Parser Error")),
             })),
         })),
 
-        "Lexer Error": type(t.state({
+        "Lexer Error": module_(t.state({
             "dangling slash": tstate(t.group({
                 "range": prop(t.component_external("location", "Range")),
                 "at end of input": prop(t.boolean()),
@@ -63,7 +63,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Parser Error": type(t.group({
+        "Parser Error": module_(t.group({
             "expected": prop(t.list(t.component("Expected"))),
             "cause": prop(t.state({
                 "missing token": tstate(t.nothing()),
@@ -73,7 +73,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Expected": type(t.state({
+        "Expected": module_(t.state({
             "a text value": tstate(t.nothing()),
             "any value": tstate(t.nothing()),
             "!": tstate(t.nothing()),

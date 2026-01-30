@@ -6,7 +6,7 @@ import {
     n,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,18 +15,18 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Directory": type(t.dictionary(
+        "Directory": module_(t.dictionary(
             t.component("Node")
         )),
 
-        "Node": type(t.state({
+        "Node": module_(t.state({
             "file": tstate(t.component("Group")),
             "directory": tstate(t.component_cyclic("Directory")),
         })),
 
-        "Group": type(t.list(t.component("Group Part"))),
+        "Group": module_(t.list(t.component("Group Part"))),
 
-        "Group Part": type(t.state({
+        "Group Part": module_(t.state({
             "nested block": tstate(t.component("Block")),
             "block": tstate(t.text_global("Output")),
             "sub group": tstate(t.component_cyclic("Group")),
@@ -44,9 +44,9 @@ export const $: g_.Modules = modules(
             }))
         })),
 
-        "Block": type(t.list(t.component("Block Part"))),
+        "Block": module_(t.list(t.component("Block Part"))),
 
-        "Block Part": type(t.state({
+        "Block Part": module_(t.state({
             "snippet": tstate(t.text_global("Output")),
             "indent": tstate(t.component_cyclic("Group")),
             "sub block": tstate(t.component_cyclic("Block")),

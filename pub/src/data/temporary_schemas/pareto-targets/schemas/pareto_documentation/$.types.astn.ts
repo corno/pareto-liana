@@ -5,7 +5,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -19,7 +19,7 @@ export const $: g_.Modules = modules(
         //         "directory": t.component_cyclic("Railroad Directory"),
         //     })
         // )),
-        "Graphviz Directory": type(t.dictionary(
+        "Graphviz Directory": module_(t.dictionary(
             t.state({
                 "file": tstate(t.component_external("graphviz", "Graph")),
                 "directory": tstate(t.component_cyclic("Graphviz Directory")),

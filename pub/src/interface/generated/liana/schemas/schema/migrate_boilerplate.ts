@@ -133,11 +133,11 @@ export type Schema_Tree_ = (
     context: Schema_Tree_.I,
 ) => Schema_Tree_.O
 
-export namespace Type_Specification_ {
+export namespace Module_Specification_ {
     
-    export type I = i_in.Type_Specification
+    export type I = i_in.Module_Specification
     
-    export type O = i_out.Type_Specification
+    export type O = i_out.Module_Specification
     
     export namespace P {
         
@@ -145,9 +145,9 @@ export namespace Type_Specification_ {
     
 }
 
-export type Type_Specification_ = (
-    context: Type_Specification_.I,
-) => Type_Specification_.O
+export type Module_Specification_ = (
+    context: Module_Specification_.I,
+) => Module_Specification_.O
 
 export namespace Schemas_ {
     
@@ -229,11 +229,11 @@ export type Signatures_ = (
     context: Signatures_.I,
 ) => Signatures_.O
 
-export namespace Resolvers_ {
+export namespace Module_Resolvers_ {
     
-    export type I = i_in.Resolvers
+    export type I = i_in.Module_Resolvers
     
-    export type O = i_out.Resolvers
+    export type O = i_out.Module_Resolvers
     
     export namespace P {
         
@@ -241,9 +241,9 @@ export namespace Resolvers_ {
     
 }
 
-export type Resolvers_ = (
-    context: Resolvers_.I,
-) => Resolvers_.O
+export type Module_Resolvers_ = (
+    context: Module_Resolvers_.I,
+) => Module_Resolvers_.O
 
 export namespace Group_ {
     
@@ -606,13 +606,13 @@ export {
     Resolve_Logic_ as Resolve_Logic, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
-    Type_Specification_ as Type_Specification, 
+    Module_Specification_ as Module_Specification, 
     Schemas_ as Schemas, 
     Imports_ as Imports, 
     Presence_ as Presence, 
     Dictionary_ as Dictionary, 
     Signatures_ as Signatures, 
-    Resolvers_ as Resolvers, 
+    Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 

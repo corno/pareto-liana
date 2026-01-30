@@ -204,8 +204,8 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
 
 export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'value': _p_cc(
-            $['value'],
+        'root value': _p_cc(
+            $['root value'],
             ($) => Value(
                 $
             )
@@ -237,7 +237,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ['group', ['verb
         ),
         'resolvers': _p_cc(
             $['resolvers'],
-            ($) => Resolvers(
+            ($) => Module_Resolvers(
                 $
             )
         ),
@@ -331,7 +331,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
     }
 )]
 
-export const Type_Specification: t_signatures.Type_Specification = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Module_Specification: t_signatures.Module_Specification = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'schema': _p_cc(
             $['schema'],
@@ -349,8 +349,8 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ['grou
                 }]
             )]
         ),
-        'type': _p_cc(
-            $['type'],
+        'module': _p_cc(
+            $['module'],
             ($) => ['text', {
                 'delimiter': ['quote', null],
                 'value': $,
@@ -431,7 +431,7 @@ export const Signatures: t_signatures.Signatures = ($) => ['dictionary', _p.dict
     )
 )]
 
-export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', _p.dictionary.map(
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => ['dictionary', _p.dictionary.map(
     $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
@@ -439,8 +439,8 @@ export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', _p.dictio
                 $['signature'],
                 ($) => ['nothing', null]
             ),
-            'type resolver': _p_cc(
-                $['type resolver'],
+            'root value resolver': _p_cc(
+                $['root value resolver'],
                 ($) => Value_Resolver(
                     $
                 )
@@ -536,8 +536,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
                                                     'value': $['l id'],
                                                 }]
                                             ),
-                                            'type': _p_cc(
-                                                $['type'],
+                                            'module': _p_cc(
+                                                $['module'],
                                                 ($) => ['text', {
                                                     'delimiter': ['backtick', null],
                                                     'value': $['l id'],
@@ -555,8 +555,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
                 }
             )]
         ),
-        'resulting type': _p_cc(
-            $['resulting type'],
+        'resulting module': _p_cc(
+            $['resulting module'],
             ($) => ['nothing', null]
         ),
     }
@@ -601,8 +601,8 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                                             'value': $['l id'],
                                                                         }]
                                                                     ),
-                                                                    'type': _p_cc(
-                                                                        $['type'],
+                                                                    'module': _p_cc(
+                                                                        $['module'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
                                                                             'value': $['l id'],
@@ -1235,8 +1235,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                             'value': $['l id'],
                                                                         }]
                                                                     ),
-                                                                    'type': _p_cc(
-                                                                        $['type'],
+                                                                    'signature': _p_cc(
+                                                                        $['signature'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
                                                                             'value': $['l id'],
@@ -2066,8 +2066,8 @@ export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', 
 
 export const Value_Reference: t_signatures.Value_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'type location': _p_cc(
-            $['type location'],
+        'module': _p_cc(
+            $['module'],
             ($) => Module_Reference(
                 $
             )

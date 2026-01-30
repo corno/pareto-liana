@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     text,
     prop,
     tstate,
@@ -12,11 +12,11 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Array Definition": type(t.component_cyclic("Definition")),
-        "Boolean Definition": type(t.nothing()),
-        "Null Definition": type(t.nothing()),
-        "Number Definition": type(t.nothing()),
-        "Object Definition": type(t.group({
+        "Array Definition": module_(t.component_cyclic("Definition")),
+        "Boolean Definition": module_(t.nothing()),
+        "Null Definition": module_(t.nothing()),
+        "Number Definition": module_(t.nothing()),
+        "Object Definition": module_(t.group({
             "type": prop(t.state({
                 "static": tstate(t.group({
                     "properties": prop(t.dictionary(t.group({
@@ -27,11 +27,11 @@ export const $: g_.Modules = modules(
                 "dynamic": tstate(t.component_cyclic("Definition")),
             })),
         })),
-        "String Definition": type(t.state({
+        "String Definition": module_(t.state({
             "any": tstate(t.nothing()),
             "enum": tstate(t.dictionary(t.nothing())),
         })),
-        "Definition": type(t.state({
+        "Definition": module_(t.state({
             "any": tstate(t.nothing()),
             "any of": tstate(t.group({
                 "array": prop(t.optional(t.component("Array Definition"))),
@@ -52,12 +52,12 @@ export const $: g_.Modules = modules(
             "object": tstate(t.component("Object Definition")),
             "string": tstate(t.component("String Definition")),
         })),
-        "Schema": type(t.group({
+        "Schema": module_(t.group({
             "definitions": prop(t.dictionary(t.component("Definition"))),
             "root": prop(t.text_local(text("single line"))),
         })),
 
-        "Errors": type(t.list(t.group({
+        "Errors": module_(t.list(t.group({
             "path": prop(t.text_local(text("single line"))),
             "type": prop(t.state({
                 "not the right type": tstate(t.group({
@@ -75,7 +75,7 @@ export const $: g_.Modules = modules(
             })),
         }))),
 
-        "Value Type": type(t.state({
+        "Value Type": module_(t.state({
             "array": tstate(t.nothing()),
             "boolean": tstate(t.nothing()),
             "null": tstate(t.nothing()),

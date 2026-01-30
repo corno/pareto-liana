@@ -6,7 +6,7 @@ import {
     n,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -14,9 +14,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Lines": type(t.list(t.text_global("Output"))),
+        "Lines": module_(t.list(t.text_global("Output"))),
 
-        "Directory": type(t.dictionary(
+        "Directory": module_(t.dictionary(
             t.state({
                 "file": tstate(t.component("Lines")),
                 "directory": tstate(t.component_cyclic("Directory")),

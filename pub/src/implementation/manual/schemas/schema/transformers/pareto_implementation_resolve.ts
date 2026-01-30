@@ -24,8 +24,8 @@ const op_pad_dictionary_identifiers = <T>(
     () => _p_unreachable_code_path() // no possibility of duplicate id's
 )
 
-export const Resolvers = (
-    $: d_in.Resolvers,
+export const Module_Resolvers = (
+    $: d_in.Module_Resolvers,
     $p: {
         'path': _pi.List<string>,
         'imports': d_in.Imports
@@ -82,7 +82,7 @@ export const Resolvers = (
             true,
             true,
             Value_Resolver(
-                $['type resolver'],
+                $['root value resolver'],
                 {
                     'temp type': id,
                     'temp subselection': _p.list.literal([])
@@ -286,7 +286,7 @@ export const Value_Resolver = (
                 sh.s.call(
                     _p.decide.state($.location, ($) => {
                         switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.call.external("external " + $.import['l id'], $.type['l id']))
+                            case 'external': return _p.ss($, ($) => sh.call.external("external " + $.import['l id'], $.signature['l id']))
                             case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
                             default: return _p.au($[0])
                         }

@@ -159,11 +159,11 @@ export type Schema_Tree_ = (
     abort: _pi.Abort<Schema_Tree_.E>,
 ) => Schema_Tree_.O
 
-export namespace Type_Specification_ {
+export namespace Module_Specification_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Type_Specification
+    export type O = i_out.Module_Specification
     
     export type E = i_generic.Error
     
@@ -173,10 +173,10 @@ export namespace Type_Specification_ {
     
 }
 
-export type Type_Specification_ = (
-    context: Type_Specification_.I,
-    abort: _pi.Abort<Type_Specification_.E>,
-) => Type_Specification_.O
+export type Module_Specification_ = (
+    context: Module_Specification_.I,
+    abort: _pi.Abort<Module_Specification_.E>,
+) => Module_Specification_.O
 
 export namespace Schemas_ {
     
@@ -273,11 +273,11 @@ export type Signatures_ = (
     abort: _pi.Abort<Signatures_.E>,
 ) => Signatures_.O
 
-export namespace Resolvers_ {
+export namespace Module_Resolvers_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Resolvers
+    export type O = i_out.Module_Resolvers
     
     export type E = i_generic.Error
     
@@ -287,10 +287,10 @@ export namespace Resolvers_ {
     
 }
 
-export type Resolvers_ = (
-    context: Resolvers_.I,
-    abort: _pi.Abort<Resolvers_.E>,
-) => Resolvers_.O
+export type Module_Resolvers_ = (
+    context: Module_Resolvers_.I,
+    abort: _pi.Abort<Module_Resolvers_.E>,
+) => Module_Resolvers_.O
 
 export namespace Group_ {
     
@@ -719,13 +719,13 @@ export {
     Resolve_Logic_ as Resolve_Logic, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
-    Type_Specification_ as Type_Specification, 
+    Module_Specification_ as Module_Specification, 
     Schemas_ as Schemas, 
     Imports_ as Imports, 
     Presence_ as Presence, 
     Dictionary_ as Dictionary, 
     Signatures_ as Signatures, 
-    Resolvers_ as Resolvers, 
+    Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 

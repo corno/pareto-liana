@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -16,12 +16,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Module Set": type(t.dictionary(t.state({
+        "Module Set": module_(t.dictionary(t.state({
             "module": tstate(t.component("Module")),
             "set": tstate(t.component_cyclic("Module Set")),
         }))),
 
-        "Module": type(t.group({
+        "Module": module_(t.group({
             "type": prop(t.state({
                 "serializer": tstate(t.nothing()),
                 "deserializer": tstate(t.nothing()),
@@ -59,7 +59,7 @@ export const $: g_.Modules = modules(
             }))),
         })),
 
-        "Temp Type Node Reference": type(t.group({
+        "Temp Type Node Reference": module_(t.group({
             "type": prop(t.group({
                 "import": prop(t.text_global("TBD")),
                 "type": prop(t.text_global("TBD")),
@@ -73,7 +73,7 @@ export const $: g_.Modules = modules(
             }))),
         })),
 
-        "Expression": type(t.state({
+        "Expression": module_(t.state({
             "decide": tstate(t.group({
                 "type": prop(t.state({
                     "boolean": tstate(t.group({
@@ -280,7 +280,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Selection": type(t.state({
+        "Selection": module_(t.state({
             "implement me": tstate(t.text_local(text('single line'))),
             "regular": tstate(t.group({
                 "start": prop(t.state({
@@ -323,7 +323,7 @@ export const $: g_.Modules = modules(
             }))
         })),
 
-        "Lookup Selection": type(t.state({
+        "Lookup Selection": module_(t.state({
             "implement me": tstate(t.text_local(text('single line'))),
             "from resolved dictionary": tstate(t.component_cyclic("Selection")),
             "from siblings": tstate(t.group({

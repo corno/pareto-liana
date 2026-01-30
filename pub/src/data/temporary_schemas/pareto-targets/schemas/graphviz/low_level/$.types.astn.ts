@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../../shorthands/schema"
@@ -15,7 +15,7 @@ import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/
 export const $: g_.Modules = modules(
     {
 
-        "Graph": type(t.group({
+        "Graph": module_(t.group({
             "strict": prop(t.boolean()),
             "type": prop(t.state({
                 "graph": tstate(t.nothing()),
@@ -24,7 +24,7 @@ export const $: g_.Modules = modules(
             "name": prop(t.optional(t.component("ID"))),
             "statements": prop(t.component("Statement List")),
         })),
-        "Statement List": type(t.list(t.state({
+        "Statement List": module_(t.list(t.state({
             "node": tstate(t.group({
                 "node": prop(t.component("Node ID")),
                 "attribute list": prop(t.component("Attribute List")),
@@ -55,24 +55,24 @@ export const $: g_.Modules = modules(
             })),
             "subgraph": tstate(t.component("Subgraph")),
         }))),
-        "Attribute List": type(t.list(t.group({
+        "Attribute List": module_(t.list(t.group({
             "name": prop(t.component("ID")),
             "value": prop(t.component("ID")),
         }))),
-        "Node ID": type(t.group({
+        "Node ID": module_(t.group({
             "id": prop(t.component("ID")),
             "port": prop(t.optional(t.group({
                 "port": prop(t.component("ID")),
                 "compass point": prop(t.optional(t.component("ID"))),
             })))
         })),
-        "ID": type(t.state({
+        "ID": module_(t.state({
             "id": tstate(t.text_global("id")),
             "string": tstate(t.text_global("Text Value")),
             "html": tstate(t.text_global("Text Value")),
             "number": tstate(t.number_local(n.integer(null))),
         })),
-        "Subgraph": type(t.group({
+        "Subgraph": module_(t.group({
             "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?
             "statements": prop(t.component_cyclic("Statement List")),
         })),

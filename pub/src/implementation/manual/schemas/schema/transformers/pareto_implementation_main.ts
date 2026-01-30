@@ -37,7 +37,7 @@ export const Schema_Tree = (
                             })),
                             "resolve": _p.decide.state($.complexity, ($) => {
                                 switch ($[0]) {
-                                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Resolvers($.resolvers, {
+                                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Module_Resolvers($.resolvers, {
                                         'path': $p.path,
                                         'imports': imports
                                     })))

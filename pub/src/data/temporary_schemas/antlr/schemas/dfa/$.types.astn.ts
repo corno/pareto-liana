@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -12,7 +12,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "DFA": type(t.group({
+        "DFA": module_(t.group({
             "decision": prop(t.number_global("Integer")),
             "atn start state": prop(t.number_global("State Number")),
             "is precedence dfa": prop(t.boolean()),

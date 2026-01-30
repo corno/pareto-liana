@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     text,
@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Graph": type(t.group({
+        "Graph": module_(t.group({
             "attributes": prop(t.component("Attributes")),
             "nodes": prop(t.dictionary(t.group({
                 "attributes": prop(t.component("Attributes"))
@@ -26,7 +26,7 @@ export const $: g_.Modules = modules(
             }))),
         })),
 
-        "Attributes": type(t.list(t.state({
+        "Attributes": module_(t.list(t.state({
             "freeform": tstate(t.group({
                 "key": prop(t.text_local(text('single line'))),
                 "value": prop(t.text_local(text('single line'))),

@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     text,
     prop,
@@ -13,17 +13,17 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Position": type(t.group({
+        "Position": module_(t.group({
             "line": prop(t.number_local(n.natural(null))),
             "character": prop(t.number_local(n.natural(null))),
         })),
 
-        "Range": type(t.group({
+        "Range": module_(t.group({
             "start": prop(t.component("Position")),
             "end": prop(t.component("Position")),
         })),
 
-        "Format Options": type(t.group({
+        "Format Options": module_(t.group({
             "insert spaces": prop(t.boolean()),
             "preserve delimiters": prop(t.boolean()),
             "preserve final newline state": prop(t.boolean()),
@@ -31,7 +31,7 @@ export const $: g_.Modules = modules(
             "indent string": prop(t.text_local(text('single line'))),
         })),
 
-        "Text Edit": type(t.state({
+        "Text Edit": module_(t.state({
             "replace": tstate(t.component("Replace")),
             "delete": tstate(t.group({
                 "range": prop(t.component("Range")),
@@ -42,22 +42,22 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Replace": type(t.group({
+        "Replace": module_(t.group({
             "range": prop(t.component("Range")),
             "text": prop(t.text_local(text('multi line'))),
         })),
 
-        "Format Result": type(t.list(t.component("Text Edit"))),
+        "Format Result": module_(t.list(t.component("Text Edit"))),
 
-        "Format Error": type(t.group({
+        "Format Error": module_(t.group({
             "message": prop(t.text_local(text('single line'))),
         })),
 
-        "Format Parameters": type(t.group({
+        "Format Parameters": module_(t.group({
             "options": prop(t.component("Format Options")),
         })),
 
-        "Sort Alphabetically Parameters": type(t.group({
+        "Sort Alphabetically Parameters": module_(t.group({
             "position": prop(t.component("Position")),
         })),
     }

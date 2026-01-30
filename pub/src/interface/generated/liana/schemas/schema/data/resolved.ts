@@ -119,12 +119,12 @@ export type Globals_ = {
 
 export namespace Module_ {
     
-    export type value = Value_
+    export type root_value = Value_
     
 }
 
 export type Module_ = {
-    readonly 'value': Module_.value
+    readonly 'root value': Module_.root_value
 }
 
 export namespace Modules_ {
@@ -147,7 +147,7 @@ export namespace Resolve_Logic_ {
         readonly 'signatures': signatures.signatures
     }
     
-    export type resolvers = Resolvers_
+    export type resolvers = Module_Resolvers_
     
 }
 
@@ -197,7 +197,7 @@ export type Schema_Tree_ =
     | readonly ['schema', Schema_Tree_.schema]
     | readonly ['set', Schema_Tree_.set_]
 
-export namespace Type_Specification_ {
+export namespace Module_Specification_ {
     
     export type schema = Schema_Tree_
     
@@ -209,14 +209,14 @@ export namespace Type_Specification_ {
     
     export type schema_path = _pi.List<schema_path.L>
     
-    export type type_ = string
+    export type module_ = string
     
 }
 
-export type Type_Specification_ = {
-    readonly 'schema': Type_Specification_.schema
-    readonly 'schema path': Type_Specification_.schema_path
-    readonly 'type': Type_Specification_.type_
+export type Module_Specification_ = {
+    readonly 'schema': Module_Specification_.schema
+    readonly 'schema path': Module_Specification_.schema_path
+    readonly 'module': Module_Specification_.module_
 }
 
 export namespace Schemas_ {
@@ -290,24 +290,24 @@ export namespace Signatures_ {
 
 export type Signatures_ = _pi.Dictionary<Signatures_.D>
 
-export namespace Resolvers_ {
+export namespace Module_Resolvers_ {
     
     export namespace D {
         
         export type signature = Signatures_.D
         
-        export type type_resolver = Value_Resolver_
+        export type root_value_resolver = Value_Resolver_
         
     }
     
     export type D = {
         readonly 'signature': D.signature
-        readonly 'type resolver': D.type_resolver
+        readonly 'root value resolver': D.root_value_resolver
     }
     
 }
 
-export type Resolvers_ = _pi.Dictionary<Resolvers_.D>
+export type Module_Resolvers_ = _pi.Dictionary<Module_Resolvers_.D>
 
 export namespace Group_ {
     
@@ -399,7 +399,7 @@ export namespace Module_Reference_ {
                 readonly 'l id': import_.l_id
             }
             
-            export namespace type_ {
+            export namespace module_ {
                 
                 export type l_entry = Modules_.D
                 
@@ -407,16 +407,16 @@ export namespace Module_Reference_ {
                 
             }
             
-            export type type_ = {
-                readonly 'l entry': type_.l_entry
-                readonly 'l id': type_.l_id
+            export type module_ = {
+                readonly 'l entry': module_.l_entry
+                readonly 'l id': module_.l_id
             }
             
         }
         
         export type external = {
             readonly 'import': external.import_
-            readonly 'type': external.type_
+            readonly 'module': external.module_
         }
         
     }
@@ -425,13 +425,13 @@ export namespace Module_Reference_ {
         | readonly ['internal', location.internal]
         | readonly ['external', location.external]
     
-    export type resulting_type = Module_
+    export type resulting_module = Module_
     
 }
 
 export type Module_Reference_ = {
     readonly 'location': Module_Reference_.location
-    readonly 'resulting type': Module_Reference_.resulting_type
+    readonly 'resulting module': Module_Reference_.resulting_module
 }
 
 export namespace Value_ {
@@ -457,7 +457,7 @@ export namespace Value_ {
                     readonly 'l id': import_.l_id
                 }
                 
-                export namespace type_ {
+                export namespace module_ {
                     
                     export type l_entry = Modules_.D
                     
@@ -465,16 +465,16 @@ export namespace Value_ {
                     
                 }
                 
-                export type type_ = {
-                    readonly 'l entry': type_.l_entry
-                    readonly 'l id': type_.l_id
+                export type module_ = {
+                    readonly 'l entry': module_.l_entry
+                    readonly 'l id': module_.l_id
                 }
                 
             }
             
             export type external = {
                 readonly 'import': external.import_
-                readonly 'type': external.type_
+                readonly 'module': external.module_
             }
             
             export namespace internal {
@@ -889,7 +889,7 @@ export namespace Value_Resolver_ {
                     readonly 'l id': import_.l_id
                 }
                 
-                export namespace type_ {
+                export namespace signature {
                     
                     export type l_entry = Signatures_.D
                     
@@ -897,16 +897,16 @@ export namespace Value_Resolver_ {
                     
                 }
                 
-                export type type_ = {
-                    readonly 'l entry': type_.l_entry
-                    readonly 'l id': type_.l_id
+                export type signature = {
+                    readonly 'l entry': signature.l_entry
+                    readonly 'l id': signature.l_id
                 }
                 
             }
             
             export type external = {
                 readonly 'import': external.import_
-                readonly 'type': external.type_
+                readonly 'signature': external.signature
             }
             
             export namespace internal {
@@ -1632,14 +1632,14 @@ export type Value_Path_ = {
 
 export namespace Value_Reference_ {
     
-    export type type_location = Module_Reference_
+    export type module_ = Module_Reference_
     
     export type path = Value_Path_
     
 }
 
 export type Value_Reference_ = {
-    readonly 'type location': Value_Reference_.type_location
+    readonly 'module': Value_Reference_.module_
     readonly 'path': Value_Reference_.path
 }
 
@@ -1861,13 +1861,13 @@ export {
     Resolve_Logic_ as Resolve_Logic, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
-    Type_Specification_ as Type_Specification, 
+    Module_Specification_ as Module_Specification, 
     Schemas_ as Schemas, 
     Imports_ as Imports, 
     Presence_ as Presence, 
     Dictionary_ as Dictionary, 
     Signatures_ as Signatures, 
-    Resolvers_ as Resolvers, 
+    Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 

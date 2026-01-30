@@ -16,8 +16,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Modules"),
-                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -27,8 +27,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Modules"),
-                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -38,8 +38,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Modules"),
-                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -49,8 +49,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Modules"),
-                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 

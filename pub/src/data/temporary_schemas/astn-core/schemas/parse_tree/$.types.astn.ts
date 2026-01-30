@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Document": type(t.group({
+        "Document": module_(t.group({
             "header": prop(t.optional(t.group({
                 "!": prop(t.component("Structural Token")),
                 "value": prop(t.component("Value")),
@@ -23,9 +23,9 @@ export const $: g_.Modules = modules(
             "content": prop(t.component("Content")),
         })),
 
-        "Content": type(t.component("Value")),
+        "Content": module_(t.component("Value")),
 
-        "Value": type(t.group({
+        "Value": module_(t.group({
             "type": prop(t.state({
                 "concrete": tstate(t.state({
                     "dictionary": tstate(t.group({
@@ -84,19 +84,19 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Structural Token": type(t.group({
+        "Structural Token": module_(t.group({
             "trailing trivia": prop(t.component_external("token", "Trivia")),
             "range": prop(t.component_external("location", "Range")),
         })),
 
-        "Text": type(t.group({
+        "Text": module_(t.group({
             "trailing trivia": prop(t.component_external("token", "Trivia")),
             "range": prop(t.component_external("location", "Range")),
             "value": prop(t.text_local(text('single line'))),
             "type": prop(t.component_external("token", "Text Type")),
         })),
 
-        "ID Value Pairs": type(t.list(t.group({
+        "ID Value Pairs": module_(t.list(t.group({
             "id": prop(t.component("Text")),
             "value": prop(t.optional(t.group({
                 ":": prop(t.component("Structural Token")),
@@ -104,7 +104,7 @@ export const $: g_.Modules = modules(
             }))),
         }))),
 
-        "Items": type(t.list(t.group({
+        "Items": module_(t.list(t.group({
             "value": prop(t.component_cyclic("Value")),
         }))),
     },

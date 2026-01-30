@@ -74,9 +74,9 @@ export const Node_Type = (
                     {
                         'definition': _p.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'external': return _p.ss($, ($) => $.type['l entry'].value)
-                                case 'internal': return _p.ss($, ($) => $['l entry'].value)
-                                case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent().value)
+                                case 'external': return _p.ss($, ($) => $.module['l entry']['root value'])
+                                case 'internal': return _p.ss($, ($) => $['l entry']['root value'])
+                                case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value'])
                                 default: return _p.au($[0])
                             }
                         }),

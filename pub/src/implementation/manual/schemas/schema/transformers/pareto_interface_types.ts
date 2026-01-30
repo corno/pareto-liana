@@ -93,7 +93,7 @@ export const Schema = (
             () => _p_unreachable_code_path(),
         ),
         $.modules.__d_map(($) => sh.type.data(Value(
-            $.value,
+            $['root value'],
             {
                 'type': $p.type,
             }
@@ -108,7 +108,7 @@ export const Module_Reference = (
         case 'internal': return _p.ss($, ($) => sh.mr.local($['l id']))
         case 'external': return _p.ss($, ($) => sh.mr.imported(
             ` imports ${$.import['l id']}`,
-            $.type['l id'],
+            $.module['l id'],
         ))
         default: return _p.au($[0])
     }
@@ -133,7 +133,7 @@ export const Value = (
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.t.component_imported(
                             ` imports ${$.import['l id']}`,
-                            $.type['l id'],
+                            $.module['l id'],
                         ))
                         case 'internal': return _p.ss($, ($) => sh.t.component_sibling(
                             $['l id'],
@@ -261,7 +261,7 @@ export const Value = (
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
                                             "l entry": _p.optional.set(_p_cc($, ($) => {
                                                 return sh.t.reference(
-                                                    Module_Reference(referent['type location']),
+                                                    Module_Reference(referent['module']),
                                                     _p.list.nested_literal_old([
                                                         Value_Path(referent.path),
                                                         [
@@ -326,7 +326,7 @@ const Value_Reference = (
     $: d_in.Value_Reference,
 ): d_out.Value => {
     return sh.t.reference(
-        Module_Reference($['type location']),
+        Module_Reference($['module']),
         Value_Path($.path)
     )
 }

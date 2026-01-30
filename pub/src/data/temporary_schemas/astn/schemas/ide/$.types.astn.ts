@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Text Edits": type(t.list(t.state({
+        "Text Edits": module_(t.list(t.state({
             "insert": tstate(t.group({
                 "location": prop(t.component("Relative Location")),
                 "text": prop(t.text_local(text('single line'))),
@@ -28,14 +28,14 @@ export const $: g_.Modules = modules(
             })),
         }))),
 
-        "Relative Range": type(t.group({
+        "Relative Range": module_(t.group({
             "start": prop(t.component("Relative Location")),
             "end": prop(t.component("Relative Location")),
         })),
 
-        "ID Value Pairs To Be Sorted": type(t.dictionary(t.text_local(text('single line')))),
+        "ID Value Pairs To Be Sorted": module_(t.dictionary(t.text_local(text('single line')))),
 
-        "Relative Location": type(t.group({
+        "Relative Location": module_(t.group({
             "line": prop(t.number_local(n.natural(null))),
             "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),

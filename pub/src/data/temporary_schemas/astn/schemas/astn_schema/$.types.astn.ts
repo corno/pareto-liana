@@ -5,7 +5,7 @@ import {
     n,
     t,
     tr,
-    type,
+    module_,
     text,
     prop,
     tstate,
@@ -15,37 +15,37 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Schema Tree": type(t.state({
+        "Schema Tree": module_(t.state({
             "set": tstate(t.component("Schemas")),
             "schema": tstate(t.component("Schema")),
         })),
 
-        "Schemas": type(t.dictionary(t.component_cyclic("Schema Tree"))),
+        "Schemas": module_(t.dictionary(t.component_cyclic("Schema Tree"))),
 
-        "Schema": type(t.group({
+        "Schema": module_(t.group({
             "imports": prop(t.component_cyclic("Imports")),
             "globals": prop(t.component("Globals")),
             "types": prop(t.component("Modules")),
         })),
 
-        "Imports": type(t.dictionary(t.group({
+        "Imports": module_(t.dictionary(t.group({
             "schema set child": prop(t.reference_stack("Schemas", [])),
             "schema": prop(t.reference_derived("Schema", [])),
         }))),
 
-        "Globals": type(t.group({
+        "Globals": module_(t.group({
             "text types": prop(t.dictionary(t.component("Text Type"))),
             // "number types": t.dictionary(t.component("Number Type")),
         })),
 
-        "Modules": type(t.dictionary(t.component("Module"))),
+        "Modules": module_(t.dictionary(t.component("Module"))),
 
-        "Module": type(t.group({
+        "Module": module_(t.group({
             // "type parameters": t.component("Type Parameters"),
             "node": prop(t.component_cyclic("Value"))
         })),
 
-        "Value": type(t.state({
+        "Value": module_(t.state({
             //"boolean": t.nothing(),
             "component": tstate(t.state({
                 "external": tstate(t.group({
@@ -69,16 +69,16 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Text Type": type(t.group({
+        "Text Type": module_(t.group({
             "type": prop(t.state({
                 "multi line": tstate(t.nothing()),
                 "single line": tstate(t.nothing()),
             })),
         })),
 
-        "Group": type(t.dictionary(t.component_cyclic("Value"))),
+        "Group": module_(t.dictionary(t.component_cyclic("Value"))),
 
-        "Dictionary": type(t.group({
+        "Dictionary": module_(t.group({
             "node": prop(t.component_cyclic("Value")),
             "ordered": prop(t.boolean()),
         })),

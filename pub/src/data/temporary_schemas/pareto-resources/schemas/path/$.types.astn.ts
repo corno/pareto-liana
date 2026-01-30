@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -20,7 +20,7 @@ export const $: g_.Modules = modules(
         //     "node": prop(t.optional(t.text_local(text('single line')))),
         // })),
 
-        "Node Path": type(t.group({
+        "Node Path": module_(t.group({
             "context": prop(t.component("Context Path")),
             "node": prop(t.text_local(text('single line'))),
         })),
@@ -29,23 +29,23 @@ export const $: g_.Modules = modules(
         //     "subpath": prop(t.component("Directory Subpath")),
         // })),
 
-        "Context Path": type(t.group({
+        "Context Path": module_(t.group({
             "start": prop(t.component("Start")),
             "subpath": prop(t.component("Context Subpath")),
         })),
 
-        "Context Subpath": type(t.list(t.text_local(text('single line')))),
+        "Context Subpath": module_(t.list(t.text_local(text('single line')))),
 
-        "Start": type(t.state({
+        "Start": module_(t.state({
             "absolute": tstate(t.nothing()),
             "relative": tstate(t.group({
                 "up steps": prop(t.component("Up Steps")),
             })),
         })),
 
-        "Up Steps": type(t.number_local(n.natural(null))),
+        "Up Steps": module_(t.number_local(n.natural(null))),
 
-        "Non Normalized Path": type(t.group({
+        "Non Normalized Path": module_(t.group({
             "leading slash": prop(t.boolean()),
             "segments": prop(t.list(t.state({
                 "parent": tstate(t.nothing()),

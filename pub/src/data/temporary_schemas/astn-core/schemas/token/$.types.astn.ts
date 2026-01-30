@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,20 +15,20 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Tokenizer Result": type(t.group({
+        "Tokenizer Result": module_(t.group({
             "leading trivia": prop(t.component("Trivia")),
             "tokens": prop(t.list(t.component("Annotated Token"))),
             "end": prop(t.component_external("location", "Location")),
         })),
 
-        "Annotated Token": type(t.group({
+        "Annotated Token": module_(t.group({
             "start": prop(t.component_external("location", "Location")),
             "type": prop(t.component("Token Type")),
             "end": prop(t.component_external("location", "Location")),
             "trailing trivia": prop(t.component("Trivia")),
         })),
 
-        "Token Type": type(t.state({
+        "Token Type": module_(t.state({
             "!": tstate(t.nothing()), //header
 
             "@": tstate(t.nothing()), //include
@@ -58,14 +58,14 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Delimited Text": type(t.text_local(text('single line'))),
+        "Delimited Text": module_(t.text_local(text('single line'))),
 
-        "Whitespace": type(t.group({
+        "Whitespace": module_(t.group({
             "range": prop(t.component_external("location", "Range")),
             "value": prop(t.text_local(text('single line'))),
         })),
         
-        "Trivia": type(t.group({
+        "Trivia": module_(t.group({
             "leading whitespace": prop(t.component("Whitespace")),
             "comments": prop(t.list(t.group({
                 "type": prop(t.state({
@@ -78,7 +78,7 @@ export const $: g_.Modules = modules(
             }))),
         })),
 
-        "Text Type": type(t.state({
+        "Text Type": module_(t.state({
             "quoted": tstate(t.nothing()),
             "apostrophed": tstate(t.nothing()),
             "undelimited": tstate(t.nothing()),

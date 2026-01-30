@@ -7,7 +7,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Root": type(t.group({
+        "Root": module_(t.group({
             "Bankrekeningen": prop(t.dictionary(t.group({}))),
             "Beheer": prop(t.group({
                 "Balans": prop(t.group({
@@ -381,6 +381,6 @@ export const $: g_.Modules = modules(
         //     "Extensie": prop(t.text_local(text('single line'))),
         // }))  
 
-        "Bestandsnaam": type(t.text_local(text('single line'))),
+        "Bestandsnaam": module_(t.text_local(text('single line'))),
     }
 )

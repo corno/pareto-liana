@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import { resolvers, r, resolver, sig, state as option } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolvers = resolvers(
+export const $: g_.Module_Resolvers = resolvers(
     {
         "Module Set": resolver(r.dictionary(r.state({
             "module": option(r.component("Module", {}, {})),

@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,19 +13,19 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Parameters": type(t.group({
+        "Parameters": module_(t.group({
             "program": prop(t.text_local(text('single line'))),
             "args": prop(t.list(t.text_local(text('single line')))),
         })),
 
-        "Result": type(t.state({
+        "Result": module_(t.state({
             "success": tstate(t.group({
                 "stdout": prop(t.component_external("terminal output", "Message")),
             })),
             "error": tstate(t.component("Error")),
         })),
 
-        "Error": type(t.state({
+        "Error": module_(t.state({
             "failed to spawn": tstate(t.group({
                 "message": prop(t.component_external("terminal output", "Message")),
             })),

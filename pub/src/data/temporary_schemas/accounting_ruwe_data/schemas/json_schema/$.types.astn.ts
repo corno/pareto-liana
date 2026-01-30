@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -12,13 +12,13 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Document": type(t.group({
+        "Document": module_(t.group({
             "$schema": prop(t.text_global("url")),
             "$id": prop(t.text_global("url")),
             "type": prop(t.component("Type")),
         })),
 
-        "Type": type(t.state({
+        "Type": module_(t.state({
             "array": tstate(t.group({
                 "minItems": prop(t.optional(t.number_global("amount"))),
                 "maxItems": prop(t.optional(t.number_global("amount"))),

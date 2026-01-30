@@ -6,7 +6,7 @@ import {
     text,
     t,
     tr,
-    type,
+    module_,
     prop,
     tstate,
 } from "../../../../../shorthands/schema"
@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Errors": type(t.list(t.group({
+        "Errors": module_(t.list(t.group({
             "range": prop(t.component("Range")),
             "type": prop(t.state({
                 "error": tstate(t.state({
@@ -61,12 +61,12 @@ export const $: g_.Modules = modules(
             })),
         }))),
         
-        "Location": type(t.group({
+        "Location": module_(t.group({
             "relative": prop(t.component("Relative Location")),
             "absolute": prop(t.number_local(n.natural(null))),
         })),
 
-        "Relative Location": type(t.group({
+        "Relative Location": module_(t.group({
             "line": prop(t.number_local(n.natural(null))),
             "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
@@ -76,7 +76,7 @@ export const $: g_.Modules = modules(
         //     "range": t.component("Range"),
         // })),
 
-        "Range": type(t.group({
+        "Range": module_(t.group({
             "start": prop(t.component("Location")),
             "end": prop(t.component("Location")),
         })),

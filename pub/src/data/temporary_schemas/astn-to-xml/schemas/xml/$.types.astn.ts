@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "XML Document": type(t.group({
+        "XML Document": module_(t.group({
             "declaration": prop(t.optional(t.group({
                 "version": prop(t.text_local(text('single line'))), // typically "1.0"
                 "encoding": prop(t.optional(t.text_local(text('single line')))), // UTF-8, UTF-16, etc.
@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
             "processing instructions": prop(t.list(t.component("Processing Instruction"))),
         })),
 
-        "XML Element": type(t.group({
+        "XML Element": module_(t.group({
             "name": prop(t.text_local(text('single line'))),
             "namespace": prop(t.optional(t.text_local(text('single line')))), // namespace URI
             "prefix": prop(t.optional(t.text_local(text('single line')))), // namespace prefix
@@ -35,14 +35,14 @@ export const $: g_.Modules = modules(
             "self closing": prop(t.boolean()), // whether to render as <tag/> vs <tag></tag>
         })),
 
-        "XML Content": type(t.state({
+        "XML Content": module_(t.state({
             "empty": tstate(t.group({})),
             "text only": tstate(t.component("XML Text Content")),
             "elements only": tstate(t.list(t.component_cyclic("XML Element"))),
             "mixed": tstate(t.list(t.component("XML Node"))),
         })),
 
-        "XML Text Content": type(t.group({
+        "XML Text Content": module_(t.group({
             "value": prop(t.text_local(text('multi line'))),
             "preserve whitespace": prop(t.boolean()), // xml:space="preserve"
             "escape": prop(t.state({
@@ -52,7 +52,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "XML Node": type(t.state({
+        "XML Node": module_(t.state({
             "element": tstate(t.component_cyclic("XML Element")),
             "text": tstate(t.component("XML Text Content")),
             "comment": tstate(t.group({
@@ -64,13 +64,13 @@ export const $: g_.Modules = modules(
             "processing instruction": tstate(t.component("Processing Instruction")),
         })),
 
-        "Processing Instruction": type(t.group({
+        "Processing Instruction": module_(t.group({
             "target": prop(t.text_local(text('single line'))), // PI target name
             "data": prop(t.optional(t.text_local(text('multi line')))), // PI data
         })),
 
         // Complete formatting options
-        "XML Formatting Options": type(t.state({
+        "XML Formatting Options": module_(t.state({
             "compact": tstate(t.nothing()), // no unnecessary whitespace
             "pretty": tstate(t.group({
                 "indent": prop(t.text_local(text('single line'))),

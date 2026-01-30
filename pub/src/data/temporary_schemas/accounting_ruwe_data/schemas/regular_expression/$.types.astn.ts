@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    type,
+    module_,
     n,
     prop,
     tstate,
@@ -12,12 +12,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Regular Expression": type(t.group({
+        "Regular Expression": module_(t.group({
             "characters": prop(t.dictionary(t.number_local(n.positive_natural(null)))),
             "sequence": prop(t.component_cyclic("Sequence")),
         })),
 
-        "Sequence": type(t.list(t.group({
+        "Sequence": module_(t.list(t.group({
             "type": prop(t.state({
                 "literal": tstate(t.text_global("Text Value")),
                 "character class": tstate(t.group({

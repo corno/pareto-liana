@@ -207,8 +207,8 @@ export const Globals: t_signatures.Globals = ($) => ({
 })
 
 export const Module: t_signatures.Module = ($) => ({
-    'value': _p_cc(
-        $['value'],
+    'root value': _p_cc(
+        $['root value'],
         ($) => Value(
             $
         )
@@ -250,7 +250,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ({
     ),
     'resolvers': _p_cc(
         $['resolvers'],
-        ($) => Resolvers(
+        ($) => Module_Resolvers(
             $
         )
     ),
@@ -343,7 +343,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
     ),
 })
 
-export const Type_Specification: t_signatures.Type_Specification = ($) => ({
+export const Module_Specification: t_signatures.Module_Specification = ($) => ({
     'schema': _p_cc(
         $['schema'],
         ($) => Schema_Tree(
@@ -371,8 +371,8 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ({
             ),
         })
     ),
-    'type': _p_cc(
-        $['type'],
+    'module': _p_cc(
+        $['module'],
         ($) => $
     ),
 })
@@ -492,7 +492,7 @@ export const Signatures: t_signatures.Signatures = ($) => ({
     ),
 })
 
-export const Resolvers: t_signatures.Resolvers = ($) => ({
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -506,8 +506,8 @@ export const Resolvers: t_signatures.Resolvers = ($) => ({
                     $['signature'],
                     ($) => null
                 ),
-                'type resolver': _p_cc(
-                    $['type resolver'],
+                'root value resolver': _p_cc(
+                    $['root value resolver'],
                     ($) => Value_Resolver(
                         $
                     )
@@ -649,8 +649,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                             'l reference': $['l id'],
                                         })
                                     ),
-                                    'type': _p_cc(
-                                        $['type'],
+                                    'module': _p_cc(
+                                        $['module'],
                                         ($) => ({
                                             'l location': {
                                                 'document resource identifier': "implement me",
@@ -671,8 +671,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
             ),
         })
     ),
-    'resulting type': _p_cc(
-        $['resulting type'],
+    'resulting module': _p_cc(
+        $['resulting module'],
         ($) => null
     ),
 })
@@ -723,8 +723,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                                     'l reference': $['l id'],
                                                                 })
                                                             ),
-                                                            'type': _p_cc(
-                                                                $['type'],
+                                                            'module': _p_cc(
+                                                                $['module'],
                                                                 ($) => ({
                                                                     'l location': {
                                                                         'document resource identifier': "implement me",
@@ -1395,8 +1395,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                                                     'l reference': $['l id'],
                                                                 })
                                                             ),
-                                                            'type': _p_cc(
-                                                                $['type'],
+                                                            'signature': _p_cc(
+                                                                $['signature'],
                                                                 ($) => ({
                                                                     'l location': {
                                                                         'document resource identifier': "implement me",
@@ -2247,8 +2247,8 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
 })
 
 export const Value_Reference: t_signatures.Value_Reference = ($) => ({
-    'type location': _p_cc(
-        $['type location'],
+    'module': _p_cc(
+        $['module'],
         ($) => Module_Reference(
             $
         )

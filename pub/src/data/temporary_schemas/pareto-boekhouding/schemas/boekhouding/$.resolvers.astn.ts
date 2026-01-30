@@ -5,7 +5,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolvers = resolvers(
+export const $: g_.Module_Resolvers = resolvers(
     {
         "Fiscaal": resolver(r.group({
             "Balans Hoofdcategorieen": r.dictionary(r.group({

@@ -14,18 +14,18 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_value = _p_cc(
-            $['value'],
+        const prop_root_value = _p_cc(
+            $['root value'],
             ($) => Value(
                 $,
                 ($) => abort(
                     $
                 ),
                 {
-                    'noncircular sibling types': _pdev.implement_me(
+                    'noncircular sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
-                    'possibly circular dependent sibling types': _pdev.implement_me(
+                    'possibly circular dependent sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
                 },
@@ -36,7 +36,7 @@ export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolv
             )
         )
         return {
-            'value': prop_value,
+            'root value': prop_root_value,
         }
     }
 )
@@ -51,10 +51,10 @@ export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary
                 $
             ),
             {
-                'noncircular sibling types': _pdev.implement_me(
+                'noncircular sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
-                'possibly circular dependent sibling types': _pdev.implement_me(
+                'possibly circular dependent sibling modules': _pdev.implement_me(
                     "IM: selection"
                 ),
             },
@@ -294,8 +294,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                                             })
                                         )
                                         
-                                        const prop_type = _p_cc(
-                                            $['type'],
+                                        const prop_module = _p_cc(
+                                            $['module'],
                                             ($) => ({
                                                 'l entry': _pdev.implement_me(
                                                     "IM: FIXME ACYCLIC ENTRY"
@@ -305,7 +305,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                                         )
                                         return {
                                             'import': prop_import,
-                                            'type': prop_type,
+                                            'module': prop_module,
                                         }
                                     }
                                 )]
@@ -319,15 +319,15 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
             )
         )
         
-        const prop_resulting_type = _p_cc(
-            $['resulting type'],
+        const prop_resulting_module = _p_cc(
+            $['resulting module'],
             ($) => _pdev.implement_me(
                 "IM: STATE"
             )
         )
         return {
             'location': prop_location,
-            'resulting type': prop_resulting_type,
+            'resulting module': prop_resulting_module,
         }
     }
 )
@@ -335,8 +335,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
 export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_type_location = _p_cc(
-            $['type location'],
+        const prop_module = _p_cc(
+            $['module'],
             ($) => Module_Reference(
                 $,
                 ($) => abort(
@@ -356,14 +356,14 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
                 ),
                 null,
                 {
-                    'type': _pdev.implement_me(
+                    'module': _pdev.implement_me(
                         "IM: required"
                     ),
                 }
             )
         )
         return {
-            'type location': prop_type_location,
+            'module': prop_module,
             'path': prop_path,
         }
     }
@@ -501,10 +501,10 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                             $
                         ),
                         {
-                            'noncircular sibling types': _pdev.implement_me(
+                            'noncircular sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
-                            'possibly circular dependent sibling types': _pdev.implement_me(
+                            'possibly circular dependent sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
                         },
@@ -534,10 +534,10 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                     $
                 ),
                 {
-                    'noncircular sibling types': _pdev.implement_me(
+                    'noncircular sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
-                    'possibly circular dependent sibling types': _pdev.implement_me(
+                    'possibly circular dependent sibling modules': _pdev.implement_me(
                         "IM: selection"
                     ),
                 },
@@ -590,8 +590,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                                                 })
                                                             )
                                                             
-                                                            const prop_type = _p_cc(
-                                                                $['type'],
+                                                            const prop_module = _p_cc(
+                                                                $['module'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
                                                                         "IM: FIXME ACYCLIC ENTRY"
@@ -601,7 +601,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                                             )
                                                             return {
                                                                 'import': prop_import,
-                                                                'type': prop_type,
+                                                                'module': prop_module,
                                                             }
                                                         }
                                                     )]
@@ -668,10 +668,10 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling types': _pdev.implement_me(
+                            'noncircular sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
-                            'possibly circular dependent sibling types': _pdev.implement_me(
+                            'possibly circular dependent sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
                         },
@@ -690,10 +690,10 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             $
                         ),
                         {
-                            'noncircular sibling types': _pdev.implement_me(
+                            'noncircular sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
-                            'possibly circular dependent sibling types': _pdev.implement_me(
+                            'possibly circular dependent sibling modules': _pdev.implement_me(
                                 "IM: selection"
                             ),
                         },
@@ -1248,7 +1248,7 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
         
         const prop_module = _p_cc(
             $['module'],
-            ($) => $p['type']
+            ($) => $p['module']
         )
         
         const prop_parameters = _p_cc(
@@ -1321,7 +1321,7 @@ export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dict
             },
             {
                 'modules': $p['modules'],
-                'type': _pdev.implement_me(
+                'module': _pdev.implement_me(
                     "IM: required"
                 ),
                 'imports': $p['imports'],
@@ -1905,9 +1905,9 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
     }
 )
 
-export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Resolvers.D => _p_cc(
+    ($, id, $a, $c): t_out.Module_Resolvers.D => _p_cc(
         $['l entry'],
         ($) => _p.group.resolve(
             () => {
@@ -1919,8 +1919,8 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                     )
                 )
                 
-                const prop_type_resolver = _p_cc(
-                    $['type resolver'],
+                const prop_root_value_resolver = _p_cc(
+                    $['root value resolver'],
                     ($) => Value_Resolver(
                         $,
                         ($) => abort(
@@ -1961,7 +1961,7 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                 )
                 return {
                     'signature': prop_signature,
-                    'type resolver': prop_type_resolver,
+                    'root value resolver': prop_root_value_resolver,
                 }
             }
         )
@@ -2364,8 +2364,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                                 })
                                                             )
                                                             
-                                                            const prop_type = _p_cc(
-                                                                $['type'],
+                                                            const prop_signature = _p_cc(
+                                                                $['signature'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
                                                                         "IM: FIXME ACYCLIC ENTRY"
@@ -2375,7 +2375,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                             )
                                                             return {
                                                                 'import': prop_import,
-                                                                'type': prop_type,
+                                                                'signature': prop_signature,
                                                             }
                                                         }
                                                     )]
@@ -3036,7 +3036,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
         
         const prop_resolvers = _p_cc(
             $['resolvers'],
-            ($) => Resolvers(
+            ($) => Module_Resolvers(
                 $,
                 ($) => abort(
                     $
@@ -3077,7 +3077,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
     )
 )
 
-export const Type_Specification: t_signatures.Type_Specification = ($, abort, $l, $p) => _p.group.resolve(
+export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_schema = _p_cc(
@@ -3107,14 +3107,14 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort, $l
             )
         )
         
-        const prop_type = _p_cc(
-            $['type'],
+        const prop_module = _p_cc(
+            $['module'],
             ($) => $
         )
         return {
             'schema': prop_schema,
             'schema path': prop_schema_path,
-            'type': prop_type,
+            'module': prop_module,
         }
     }
 )
