@@ -23,10 +23,10 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
                 ),
                 {
                     'noncircular sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                     'possibly circular dependent sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 {
@@ -52,10 +52,10 @@ export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.res
             ),
             {
                 'noncircular sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
                 'possibly circular dependent sibling types': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
             },
             {
@@ -273,11 +273,9 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
                                 $,
                                 ($) => ['internal', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'external':
@@ -290,11 +288,9 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
                                             $['import'],
                                             ($) => ({
                                                 'l entry': _pdev.implement_me(
-                                                    "sss"
+                                                    "IM: FIXME ACYCLIC ENTRY"
                                                 ),
-                                                'l id': _pdev.implement_me(
-                                                    "sss"
-                                                ),
+                                                'l id': $['l id'],
                                             })
                                         )
                                         
@@ -302,11 +298,9 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
                                             $['type'],
                                             ($) => ({
                                                 'l entry': _pdev.implement_me(
-                                                    "sss"
+                                                    "IM: FIXME ACYCLIC ENTRY"
                                                 ),
-                                                'l id': _pdev.implement_me(
-                                                    "sss"
-                                                ),
+                                                'l id': $['l id'],
                                             })
                                         )
                                         return {
@@ -328,7 +322,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
         const prop_resulting_type = _p_cc(
             $['resulting type'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: STATE"
             )
         )
         return {
@@ -363,7 +357,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, 
                 null,
                 {
                     'type': _pdev.implement_me(
-                        "required"
+                        "IM: required"
                     ),
                 }
             )
@@ -384,7 +378,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                 'l list': _p.list.map_with_state(
                     $['l list'],
                     _pdev.implement_me(
-                        "initial state"
+                        "IM: initial state"
                     ),
                     ($) => ({
                         'l item': _p_cc(
@@ -403,11 +397,9 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                                                 $,
                                                 ($) => ['group', {
                                                     'l entry': _pdev.implement_me(
-                                                        "sss"
+                                                        "IM: FIXME ACYCLIC ENTRY"
                                                     ),
-                                                    'l id': _pdev.implement_me(
-                                                        "sss"
-                                                    ),
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         case 'list':
@@ -425,11 +417,9 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                                                 $,
                                                 ($) => ['state', {
                                                     'l entry': _pdev.implement_me(
-                                                        "sss"
+                                                        "IM: FIXME ACYCLIC ENTRY"
                                                     ),
-                                                    'l id': _pdev.implement_me(
-                                                        "sss"
-                                                    ),
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         default:
@@ -441,18 +431,18 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                             )
                         ),
                         'l result': _pdev.implement_me(
-                            "result aggregation"
+                            "IM: result aggregation"
                         ),
                     }),
                     ($, state) => _pdev.implement_me(
-                        "update state"
+                        "IM: update state"
                     ),
                     ($, state) => _pdev.implement_me(
-                        "wrapup"
+                        "IM: wrapup"
                     )
                 ),
                 'l result': _pdev.implement_me(
-                    "result aggregation"
+                    "IM: result aggregation"
                 ),
             })
         )
@@ -460,7 +450,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
         const prop_resulting_node = _p_cc(
             $['resulting node'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: LIST"
             )
         )
         return {
@@ -494,10 +484,10 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                         ),
                         {
                             'noncircular sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'possibly circular dependent sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
@@ -527,10 +517,10 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
                 ),
                 {
                     'noncircular sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                     'possibly circular dependent sibling types': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 {
@@ -571,11 +561,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                     $['import'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 
@@ -583,11 +571,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                     $['type'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 return {
@@ -602,11 +588,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['internal', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 case 'internal cyclic':
@@ -614,11 +598,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['internal cyclic', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME CYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 default:
@@ -639,10 +621,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                         ),
                         {
                             'noncircular sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'possibly circular dependent sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
@@ -661,10 +643,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                         ),
                         {
                             'noncircular sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'possibly circular dependent sibling types': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
@@ -702,7 +684,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         ),
                                         {
                                             'types': _pdev.implement_me(
-                                                'selection'
+                                                "IM: selection"
                                             ),
                                         },
                                         {
@@ -735,11 +717,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['global', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 case 'local':
@@ -789,7 +769,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                     ),
                                     {
                                         'types': _pdev.implement_me(
-                                            'selection'
+                                            "IM: selection"
                                         ),
                                     },
                                     {
@@ -818,7 +798,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                             const prop_dictionary = _p_cc(
                                                                 $['dictionary'],
                                                                 ($) => _pdev.implement_me(
-                                                                    "SDFS"
+                                                                    "IM: OPTION CONSTRAINT"
                                                                 )
                                                             )
                                                             
@@ -923,11 +903,9 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                         $,
                                         ($) => ['global', {
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         }]
                                     )
                                 case 'local':
@@ -967,7 +945,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                 'l list': _p.list.map_with_state(
                     $['l list'],
                     _pdev.implement_me(
-                        "initial state"
+                        "IM: initial state"
                     ),
                     ($) => ({
                         'l item': _p_cc(
@@ -986,11 +964,9 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                 $,
                                                 ($) => ['group', {
                                                     'l entry': _pdev.implement_me(
-                                                        "sss"
+                                                        "IM: FIXME ACYCLIC ENTRY"
                                                     ),
-                                                    'l id': _pdev.implement_me(
-                                                        "sss"
-                                                    ),
+                                                    'l id': $['l id'],
                                                 }]
                                             )
                                         case 'reference':
@@ -1002,7 +978,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                         const prop_definition = _p_cc(
                                                             $['definition'],
                                                             ($) => _pdev.implement_me(
-                                                                "SDFS"
+                                                                "IM: OPTION CONSTRAINT"
                                                             )
                                                         )
                                                         return {
@@ -1020,18 +996,18 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                             )
                         ),
                         'l result': _pdev.implement_me(
-                            "result aggregation"
+                            "IM: result aggregation"
                         ),
                     }),
                     ($, state) => _pdev.implement_me(
-                        "update state"
+                        "IM: update state"
                     ),
                     ($, state) => _pdev.implement_me(
-                        "wrapup"
+                        "IM: wrapup"
                     )
                 ),
                 'l result': _pdev.implement_me(
-                    "result aggregation"
+                    "IM: result aggregation"
                 ),
             })
         )
@@ -1039,7 +1015,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
         const prop_resulting_node = _p_cc(
             $['resulting node'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: LIST"
             )
         )
         return {
@@ -1092,7 +1068,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                     {
                                         'types': _pdev.implement_me(
-                                            'selection'
+                                            "IM: selection"
                                         ),
                                     },
                                     {
@@ -1142,7 +1118,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                     {
                                         'types': _pdev.implement_me(
-                                            'selection'
+                                            "IM: selection"
                                         ),
                                     },
                                     {
@@ -1156,7 +1132,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                             const prop_dictionary = _p_cc(
                                 $['dictionary'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: COMPONENT"
                                 )
                             )
                             
@@ -1224,9 +1200,7 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
         
         const prop_type = _p_cc(
             $['type'],
-            ($) => _pdev.implement_me(
-                "SDFS"
-            )
+            ($) => $p['type']
         )
         
         const prop_parameters = _p_cc(
@@ -1255,11 +1229,9 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
                                 $,
                                 ($) => ['same as', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         default:
@@ -1274,7 +1246,7 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
         const prop_resolved_parameters = _p_cc(
             $['resolved parameters'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: STATE"
             )
         )
         return {
@@ -1296,13 +1268,13 @@ export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dict
             ),
             {
                 'sibling signatures': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
             },
             {
                 'types': $p['types'],
                 'type': _pdev.implement_me(
-                    "required"
+                    "IM: required"
                 ),
                 'imports': $p['imports'],
             }
@@ -1360,11 +1332,9 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                     $,
                     ($) => ['parameter', {
                         'l entry': _pdev.implement_me(
-                            "sss"
+                            "IM: FIXME ACYCLIC ENTRY"
                         ),
-                        'l id': _pdev.implement_me(
-                            "sss"
-                        ),
+                        'l id': $['l id'],
                     }]
                 )
             case 'result':
@@ -1384,18 +1354,16 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                     $['property'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 
                                                 const prop_state = _p_cc(
                                                     $['state'],
                                                     ($) => _pdev.implement_me(
-                                                        "SDFS"
+                                                        "IM: REFERENCE"
                                                     )
                                                 )
                                                 
@@ -1408,7 +1376,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                         ),
                                                         {
                                                             'types': _pdev.implement_me(
-                                                                'selection'
+                                                                "IM: selection"
                                                             ),
                                                         },
                                                         {
@@ -1434,18 +1402,16 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                     $['property'],
                                                     ($) => ({
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     })
                                                 )
                                                 
                                                 const prop_optional_value = _p_cc(
                                                     $['optional value'],
                                                     ($) => _pdev.implement_me(
-                                                        "SDFS"
+                                                        "IM: REFERENCE"
                                                     )
                                                 )
                                                 
@@ -1458,7 +1424,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                         ),
                                                         {
                                                             'types': _pdev.implement_me(
-                                                                'selection'
+                                                                "IM: selection"
                                                             ),
                                                         },
                                                         {
@@ -1514,11 +1480,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 $,
                                 ($) => ['sibling', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'parent sibling':
@@ -1526,11 +1490,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 $,
                                 ($) => ['parent sibling', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'option constraint':
@@ -1538,11 +1500,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 $,
                                 ($) => ['option constraint', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'constraint':
@@ -1562,11 +1522,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['property'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
@@ -1574,11 +1532,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['constraint'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             return {
@@ -1598,11 +1554,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['property'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
@@ -1610,11 +1564,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['constraint'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             return {
@@ -1637,11 +1589,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 $,
                                 ($) => ['parameter', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'result':
@@ -1661,18 +1611,16 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['property'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
                                                             const prop_list_result = _p_cc(
                                                                 $['list result'],
                                                                 ($) => _pdev.implement_me(
-                                                                    "SDFS"
+                                                                    "IM: REFERENCE"
                                                                 )
                                                             )
                                                             return {
@@ -1692,18 +1640,16 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['property'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
                                                             const prop_state = _p_cc(
                                                                 $['state'],
                                                                 ($) => _pdev.implement_me(
-                                                                    "SDFS"
+                                                                    "IM: REFERENCE"
                                                                 )
                                                             )
                                                             
@@ -1716,7 +1662,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                     ),
                                                                     {
                                                                         'types': _pdev.implement_me(
-                                                                            'selection'
+                                                                            "IM: selection"
                                                                         ),
                                                                     },
                                                                     {
@@ -1742,18 +1688,16 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                 $['property'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
                                                             const prop_optional_value = _p_cc(
                                                                 $['optional value'],
                                                                 ($) => _pdev.implement_me(
-                                                                    "SDFS"
+                                                                    "IM: REFERENCE"
                                                                 )
                                                             )
                                                             
@@ -1766,7 +1710,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                     ),
                                                                     {
                                                                         'types': _pdev.implement_me(
-                                                                            'selection'
+                                                                            "IM: selection"
                                                                         ),
                                                                     },
                                                                     {
@@ -1809,7 +1753,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                 null,
                 {
                     'node': _pdev.implement_me(
-                        "required"
+                        "IM: required"
                     ),
                 }
             )
@@ -1817,9 +1761,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
         
         const prop_resulting_node = _p_cc(
             $['resulting node'],
-            ($) => _pdev.implement_me(
-                "SDFS"
-            )
+            ($) => prop_tail['resulting node']
         )
         return {
             'start': prop_start,
@@ -1859,7 +1801,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
                                         const prop_selected_dictionary = _p_cc(
                                             $['selected dictionary'],
                                             ($) => _pdev.implement_me(
-                                                "SDFS"
+                                                "IM: COMPONENT"
                                             )
                                         )
                                         return {
@@ -1874,25 +1816,23 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
                                 $,
                                 ($) => ['parameter', {
                                     'l entry': _pdev.implement_me(
-                                        "sss"
+                                        "IM: FIXME ACYCLIC ENTRY"
                                     ),
-                                    'l id': _pdev.implement_me(
-                                        "sss"
-                                    ),
+                                    'l id': $['l id'],
                                 }]
                             )
                         case 'not circular dependent siblings':
                             return _p.ss(
                                 $,
                                 ($) => ['not circular dependent siblings', _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )]
                             )
                         case 'possibly circular dependent siblings':
                             return _p.ss(
                                 $,
                                 ($) => ['possibly circular dependent siblings', _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )]
                             )
                         default:
@@ -1907,7 +1847,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
         const prop_resulting_dictionary = _p_cc(
             $['resulting dictionary'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: STATE"
             )
         )
         return {
@@ -1927,7 +1867,7 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                 const prop_signature = _p_cc(
                     $['signature'],
                     ($) => _pdev.implement_me(
-                        "SDFS"
+                        "IM: LINKED ENTRY"
                     )
                 )
                 
@@ -1940,10 +1880,10 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                         ),
                         {
                             'sibling property resolvers': _pdev.implement_me(
-                                'not set'
+                                "IM: not set"
                             ),
                             'parent sibling property resolvers': _pdev.implement_me(
-                                'not set'
+                                "IM: not set"
                             ),
                         },
                         {
@@ -1958,10 +1898,10 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                             'current dictionary': _p.optional.not_set(
                             ),
                             'signature': _pdev.implement_me(
-                                "required"
+                                "IM: required"
                             ),
                             'definition': _pdev.implement_me(
-                                "required"
+                                "IM: required"
                             ),
                             'signatures': $p['signatures'],
                             'imports': _p.optional.set(
@@ -2010,7 +1950,7 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
                                         const prop_selected_state = _p_cc(
                                             $['selected state'],
                                             ($) => _pdev.implement_me(
-                                                "SDFS"
+                                                "IM: OPTION CONSTRAINT"
                                             )
                                         )
                                         
@@ -2018,11 +1958,9 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
                                             $['option'],
                                             ($) => ({
                                                 'l entry': _pdev.implement_me(
-                                                    "sss"
+                                                    "IM: FIXME ACYCLIC ENTRY"
                                                 ),
-                                                'l id': _pdev.implement_me(
-                                                    "sss"
-                                                ),
+                                                'l id': $['l id'],
                                             })
                                         )
                                         return {
@@ -2041,7 +1979,7 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
                                         const prop_selected_optional_value = _p_cc(
                                             $['selected optional value'],
                                             ($) => _pdev.implement_me(
-                                                "SDFS"
+                                                "IM: OPTION CONSTRAINT"
                                             )
                                         )
                                         return {
@@ -2094,7 +2032,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l
                                     const prop_selected_state = _p_cc(
                                         $['selected state'],
                                         ($) => _pdev.implement_me(
-                                            "SDFS"
+                                            "IM: COMPONENT"
                                         )
                                     )
                                     
@@ -2102,11 +2040,9 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l
                                         $['option'],
                                         ($) => ({
                                             'l entry': _pdev.implement_me(
-                                                "sss"
+                                                "IM: FIXME ACYCLIC ENTRY"
                                             ),
-                                            'l id': _pdev.implement_me(
-                                                "sss"
-                                            ),
+                                            'l id': $['l id'],
                                         })
                                     )
                                     return {
@@ -2163,7 +2099,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
                                     ),
                                     {
                                         'property constraints': _pdev.implement_me(
-                                            'selection'
+                                            "IM: selection"
                                         ),
                                     },
                                     null
@@ -2188,7 +2124,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
                 null,
                 {
                     'node': _pdev.implement_me(
-                        "required"
+                        "IM: required"
                     ),
                 }
             )
@@ -2211,7 +2147,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
             ),
             {
                 'property constraints': _pdev.implement_me(
-                    'selection'
+                    "IM: selection"
                 ),
             },
             null
@@ -2221,11 +2157,9 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
 
 export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $l, $p) => ({
     'l entry': _pdev.implement_me(
-        "sss"
+        "IM: FIXME ACYCLIC ENTRY"
     ),
-    'l id': _pdev.implement_me(
-        "sss"
-    ),
+    'l id': $['l id'],
 })
 
 export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.resolve(
@@ -2238,7 +2172,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, 
                 const prop_definition = _p_cc(
                     $['definition'],
                     ($) => _pdev.implement_me(
-                        "SDFS"
+                        "IM: LINKED ENTRY"
                     )
                 )
                 
@@ -2251,15 +2185,15 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, 
                         ),
                         {
                             'sibling property resolvers': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'parent sibling property resolvers': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
                             'definition': _pdev.implement_me(
-                                "required"
+                                "IM: required"
                             ),
                             'types': $p['types'],
                             'imports': $p['imports'],
@@ -2289,7 +2223,7 @@ export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result =
     ),
     {
         'types': _pdev.implement_me(
-            'selection'
+            "IM: selection"
         ),
     },
     {
@@ -2315,7 +2249,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
         const prop_resulting_dictionary = _p_cc(
             $['resulting dictionary'],
             ($) => _pdev.implement_me(
-                "SDFS"
+                "IM: COMPONENT"
             )
         )
         
@@ -2362,11 +2296,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                                 $['import'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             
@@ -2374,11 +2306,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                                 $['type'],
                                                                 ($) => ({
                                                                     'l entry': _pdev.implement_me(
-                                                                        "sss"
+                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                     ),
-                                                                    'l id': _pdev.implement_me(
-                                                                        "sss"
-                                                                    ),
+                                                                    'l id': $['l id'],
                                                                 })
                                                             )
                                                             return {
@@ -2393,11 +2323,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                     $,
                                                     ($) => ['internal', {
                                                         'l entry': _pdev.implement_me(
-                                                            "sss"
+                                                            "IM: FIXME ACYCLIC ENTRY"
                                                         ),
-                                                        'l id': _pdev.implement_me(
-                                                            "sss"
-                                                        ),
+                                                        'l id': $['l id'],
                                                     }]
                                                 )
                                             default:
@@ -2412,7 +2340,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             const prop_signature = _p_cc(
                                 $['signature'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: STATE"
                                 )
                             )
                             
@@ -2464,11 +2392,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                                                 $,
                                                                                 ($) => ['parameter', {
                                                                                     'l entry': _pdev.implement_me(
-                                                                                        "sss"
+                                                                                        "IM: FIXME ACYCLIC ENTRY"
                                                                                     ),
-                                                                                    'l id': _pdev.implement_me(
-                                                                                        "sss"
-                                                                                    ),
+                                                                                    'l id': $['l id'],
                                                                                 }]
                                                                             )
                                                                         default:
@@ -2583,7 +2509,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     null,
                                     {
                                         'node': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                     }
                                 )
@@ -2606,7 +2532,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             const prop_definition = _p_cc(
                                 $['definition'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )
                             )
                             
@@ -2635,10 +2561,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     $l,
                                     {
                                         'linked entry': _pdev.implement_me(
-                                            'OPTIONAL VALUE2'
+                                            "IM: OPTIONAL VALUE2"
                                         ),
                                         'definition': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                         'current dictionary': _p.optional.set(
                                             prop_definition
@@ -2673,15 +2599,15 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                         ),
                         {
                             'sibling property resolvers': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                             'parent sibling property resolvers': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         {
                             'definition': _pdev.implement_me(
-                                "required"
+                                "IM: required"
                             ),
                             'types': $p['types'],
                             'imports': $p['imports'],
@@ -2704,7 +2630,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             const prop_definition = _p_cc(
                                 $['definition'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )
                             )
                             
@@ -2719,7 +2645,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                         ),
                                         {
                                             'types': _pdev.implement_me(
-                                                'selection'
+                                                "IM: selection"
                                             ),
                                         },
                                         {
@@ -2740,11 +2666,11 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     {
                                         'list cursor': _p.optional.set(
                                             _pdev.implement_me(
-                                                'OPTIONAL VALUE'
+                                                "IM: OPTIONAL VALUE"
                                             )
                                         ),
                                         'definition': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                         'types': $p['types'],
                                         'imports': $p['imports'],
@@ -2803,7 +2729,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     $l,
                                     {
                                         'definition': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                         'types': $p['types'],
                                         'imports': $p['imports'],
@@ -2833,7 +2759,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             const prop_definition = _p_cc(
                                 $['definition'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )
                             )
                             
@@ -2875,7 +2801,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                             const prop_definition = _p_cc(
                                                                 $['definition'],
                                                                 ($) => _pdev.implement_me(
-                                                                    "SDFS"
+                                                                    "IM: OPTION CONSTRAINT"
                                                                 )
                                                             )
                                                             
@@ -2901,7 +2827,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                                     null,
                                                                     {
                                                                         'node': _pdev.implement_me(
-                                                                            "required"
+                                                                            "IM: required"
                                                                         ),
                                                                     }
                                                                 )
@@ -2938,7 +2864,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             const prop_definition = _p_cc(
                                 $['definition'],
                                 ($) => _pdev.implement_me(
-                                    "SDFS"
+                                    "IM: OPTION CONSTRAINT"
                                 )
                             )
                             
@@ -2973,7 +2899,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                         $l,
                                                         {
                                                             'definition': _pdev.implement_me(
-                                                                "required"
+                                                                "IM: required"
                                                             ),
                                                             'types': $p['types'],
                                                             'imports': $p['imports'],
@@ -3055,7 +2981,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                 null,
                 {
                     'signatures': _pdev.implement_me(
-                        "required"
+                        "IM: required"
                     ),
                     'types': $p['types'],
                     'imports': $p['imports'],
@@ -3080,7 +3006,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
             ),
             {
                 'sibling schemas': _pdev.implement_me(
-                    'stack'
+                    "IM: stack"
                 ),
             },
             null
@@ -3100,7 +3026,7 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort, $l
                 ),
                 {
                     'sibling schemas': _pdev.implement_me(
-                        'empty stack'
+                        "IM: empty stack"
                     ),
                 },
                 null
@@ -3144,7 +3070,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                         ),
                         {
                             'sibling schemas': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         null
@@ -3160,7 +3086,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p.de
                         ),
                         {
                             'sibling schemas': _pdev.implement_me(
-                                'selection'
+                                "IM: selection"
                             ),
                         },
                         null
@@ -3186,7 +3112,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                 ),
                 {
                     'sibling schemas': _pdev.implement_me(
-                        'selection'
+                        "IM: selection"
                     ),
                 },
                 null
@@ -3241,10 +3167,10 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                                     null,
                                     {
                                         'imports': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                         'types': _pdev.implement_me(
-                                            "required"
+                                            "IM: required"
                                         ),
                                     }
                                 )]
@@ -3282,13 +3208,11 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                     $['schema set child'],
                     ($) => ({
                         'l entry': _pdev.implement_me(
-                            "sss"
+                            "IM: FIXME ENTRY FROM STACK"
                         ),
-                        'l id': _pdev.implement_me(
-                            "sss"
-                        ),
+                        'l id': $['l id'],
                         'l up steps': _pdev.implement_me(
-                            "sss"
+                            "IM: FIXME UPSTEPS"
                         ),
                     })
                 )
@@ -3296,7 +3220,7 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                 const prop_schema = _p_cc(
                     $['schema'],
                     ($) => _pdev.implement_me(
-                        "SDFS"
+                        "IM: REFERENCE"
                     )
                 )
                 return {

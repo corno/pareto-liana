@@ -17,9 +17,9 @@ export const $: g_.Types = types(
             "source": prop(t.component_external("path", "Node Path")),
             "target": prop(t.component_external("path", "Node Path")),
             "options": prop(t.group({
-                "recursive": prop(t.optional(t.boolean())),
-                "force": prop(t.optional(t.boolean())),
-                "errorOnExist": prop(t.optional(t.boolean())),
+                "recursive": prop(t.boolean()),
+                "force": prop(t.boolean()),
+                "errorOnExist": prop(t.boolean()),
             })),
         })),
 

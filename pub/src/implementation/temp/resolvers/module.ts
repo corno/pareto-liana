@@ -1,6 +1,6 @@
 import * as _p from 'pareto-core/dist/refiner'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p_temp from '../temp_core'
+import * as _p_temp from 'pareto-core/dist/lookup_selection'
 import { _p_deprecated_block } from 'pareto-core/dist/deprecated_block'
 import { _p_cc } from 'pareto-core/dist/change_context'
 

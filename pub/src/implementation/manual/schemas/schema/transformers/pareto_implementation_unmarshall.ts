@@ -275,7 +275,7 @@ export const Type_Node = (
                     [],
                 ),
                 sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
-                    sh.s.entry(
+                    sh.s.dictionary_entry(
                         sh.s.context([]),
                         sh.e.text.literal(id, 'identifier'),
                         sh.e.state.literal("no such entry", sh.e.text.literal(id, 'freeform')),

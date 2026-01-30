@@ -294,8 +294,13 @@ export const $: g_.Resolvers = resolvers(
                         })),
                     })),
                     "context": state(r.nothing()),
-                    "entry": state(r.group({
+                    "dictionary entry": state(r.group({
                         "dictionary": r.component("Selection", {}, {}),
+                        "id": r.component("Expression", {}, {}),
+                        "abort handler": r.component("Expression", {}, {}),
+                    })),
+                    "lookup entry": state(r.group({
+                        "lookup": r.component("Lookup Selection", {}, {}),
                         "id": r.component("Expression", {}, {}),
                         "abort handler": r.component("Expression", {}, {}),
                     })),

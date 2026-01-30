@@ -304,8 +304,13 @@ export const $: g_.Types = types(
                         }))),
                     })),
                     "context": tstate(t.nothing()),
-                    "entry": tstate(t.group({
+                    "dictionary entry": tstate(t.group({
                         "dictionary": prop(t.component_cyclic("Selection")),
+                        "id": prop(t.component_cyclic("Expression")),
+                        "abort handler": prop(t.component_cyclic("Expression")),
+                    })),
+                    "lookup entry": tstate(t.group({
+                        "lookup": prop(t.component_cyclic("Lookup Selection")),
                         "id": prop(t.component_cyclic("Expression")),
                         "abort handler": prop(t.component_cyclic("Expression")),
                     })),
