@@ -2229,18 +2229,7 @@ export type Guaranteed_Value_Selection_ = {
 
 export namespace Benchmark_ {
     
-    export namespace selection {
-        
-        export type l_location = i__location.Relative_Location
-        
-        export type l_component = Guaranteed_Value_Selection_
-        
-    }
-    
-    export type selection = {
-        readonly 'l location': selection.l_location
-        readonly 'l component': selection.l_component
-    }
+    export type selection = Guaranteed_Value_Selection_
     
     export type resulting_dictionary = null
     

@@ -1078,7 +1078,7 @@ export namespace r {
             'definition': null,
             'resolver': resolver,
             'benchmark': _p.optionalx.set({
-                'selection': sh.component(selection),
+                'selection': selection,
                 'resulting dictionary': null,
                 'dense': dense === 'dense',
             }),

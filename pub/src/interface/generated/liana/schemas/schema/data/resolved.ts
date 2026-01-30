@@ -1515,7 +1515,26 @@ export type Guaranteed_Value_Selection_ = {
 
 export namespace Benchmark_ {
     
-    export type selection = Guaranteed_Value_Selection_
+    export namespace selection {
+        
+        export type l_component = Guaranteed_Value_Selection_
+        
+        export namespace l_constraints {
+            
+            export type dictionary = Type_Node_.dictionary
+            
+        }
+        
+        export type l_constraints = {
+            readonly 'dictionary': l_constraints.dictionary
+        }
+        
+    }
+    
+    export type selection = {
+        readonly 'l component': selection.l_component
+        readonly 'l constraints': selection.l_constraints
+    }
     
     export type resulting_dictionary = Dictionary_
     

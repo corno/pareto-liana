@@ -1365,9 +1365,9 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
 
                 const p_benchmark = _p.optional.map(
                     $.benchmark,
-                    ($) => {
+                    ($): d_out.Node_Resolver.dictionary.benchmark.O => {
                         const p_selection = Guaranteed_Value_Selection(
-                            $.selection['l component'],
+                            $.selection,
                             abort,
                             $l,
                             $p,
@@ -1377,7 +1377,15 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             ? _i_generic.abort.state_constraint("dictionary", p_selection['resulting node'], loc, abort)
                             : p_selection['resulting node'][1]
                         return {
-                            'selection': p_selection,
+                            'selection': {
+                                'l component': p_selection,
+                                'l constraints': {
+                                    'dictionary': p_resulting_dictionary,
+                                }
+                                // 'l constraints': {
+                                    
+                                // }
+                            },
                             'resulting dictionary': p_resulting_dictionary,
                             'dense': $.dense
                         }

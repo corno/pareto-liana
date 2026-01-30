@@ -2145,16 +2145,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
 export const Benchmark: t_signatures.Benchmark = ($) => ({
     'selection': _p_cc(
         $['selection'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l component': Guaranteed_Value_Selection(
-                $
-            ),
-        })
+        ($) => Guaranteed_Value_Selection(
+            $['l component']
+        )
     ),
     'resulting dictionary': _p_cc(
         $['resulting dictionary'],

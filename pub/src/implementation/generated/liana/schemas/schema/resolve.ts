@@ -2284,14 +2284,21 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
         
         const prop_selection = _p_cc(
             $['selection'],
-            ($) => Guaranteed_Value_Selection(
-                $['l component'],
-                ($) => abort(
-                    $
+            ($) => ({
+                'l component': Guaranteed_Value_Selection(
+                    $,
+                    ($) => abort(
+                        $
+                    ),
+                    $l,
+                    $p
                 ),
-                $l,
-                $p
-            )
+                'l constraints': {
+                    'dictionary': _pdev.implement_me(
+                        "IM: constraint"
+                    ),
+                },
+            })
         )
         
         const prop_resulting_dictionary = _p_cc(

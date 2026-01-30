@@ -96,7 +96,7 @@ export const Type_Node = (
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
             case 'component': return _p.ss($, ($) => {
-                const x = sh.e.select(
+                return sh.e.select(
                     sh.s.call(
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
@@ -106,19 +106,13 @@ export const Type_Node = (
                                 default: return _p.au($[0])
                             }
                         }),
-                        sh.e.select(sh.s.context([])),
+                        sh.e.select(sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l component"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
                         [],
                     )
                 )
-                return _p.boolean.optional_is_set($.constraints)
-                    ? sh.e.group.literal({
-                        "l location": location,
-                        "l component": x
-                    })
-                    : x
             })
             case 'dictionary': return _p.ss($, ($) => {
 

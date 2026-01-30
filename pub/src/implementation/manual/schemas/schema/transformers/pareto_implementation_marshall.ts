@@ -138,7 +138,7 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select(sh.s.context([])),
+                sh.e.select(sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l component"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),

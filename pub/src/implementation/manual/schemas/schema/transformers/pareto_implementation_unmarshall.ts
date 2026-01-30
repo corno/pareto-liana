@@ -191,7 +191,7 @@ export const Type_Node = (
                 )
             ))
             case 'component': return _p.ss($, ($) => {
-                const x = sh.e.select(
+                return sh.e.select(
                     sh.s.call(
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
@@ -208,12 +208,6 @@ export const Type_Node = (
                         [],
                     )
                 )
-                return _p.boolean.optional_is_set($.constraints)
-                    ? sh.e.group.literal({
-                        "l location": location,
-                        "l component": x
-                    })
-                    : x
             })
             case 'dictionary': return _p.ss($, ($) => {
                 return $p.constrained

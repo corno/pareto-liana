@@ -4206,17 +4206,12 @@ export const Benchmark: t_signatures.Benchmark = ($, abort) => _p_cc(
                     ['no such entry', "selection"]
                 )
             ),
-            ($) => ({
-                'l location': v_parse_tree_to_location.Value(
+            ($) => Guaranteed_Value_Selection(
+                $,
+                ($) => abort(
                     $
-                )['start']['relative'],
-                'l component': Guaranteed_Value_Selection(
-                    $,
-                    ($) => abort(
-                        $
-                    )
-                ),
-            })
+                )
+            )
         ),
         'resulting dictionary': _p_cc(
             $.__get_entry(

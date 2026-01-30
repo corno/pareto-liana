@@ -1970,7 +1970,7 @@ export const Benchmark: t_signatures.Benchmark = ($) => ['group', ['verbose', _p
         'selection': _p_cc(
             $['selection'],
             ($) => Guaranteed_Value_Selection(
-                $
+                $['l component']
             )
         ),
         'resulting dictionary': _p_cc(

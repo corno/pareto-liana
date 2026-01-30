@@ -144,11 +144,18 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 })
-                return add_location && _p.boolean.optional_is_set($.constraints)
-                    ? sh.t.group({
-                        "l location": location,
-                        "l component": x,
-                    })
+                return $p.type[0] === 'resolved'
+                    ? _p.decide.optional(
+                        $.constraints,
+                        ($) => sh.t.group({
+                            "l component": x,
+                            "l constraints": sh.t.group(_p.dictionary.map(
+                                $,
+                                ($) => Type_Node_Reference($)
+                            )),
+                        }),
+                        () => x
+                    )
                     : x
             })
             case 'dictionary': return _p.ss($, ($) => add_location
@@ -240,10 +247,7 @@ export const Type_Node = (
                     switch ($[0]) {
                         case 'derived': return _p.ss($, ($) => add_location
                             ? sh.t.nothing()
-                            : sh.t.reference(
-                                Type_Reference(referent['type location']),
-                                Type_Node_Reference__tail(referent.path.tail)
-                            )
+                            : Type_Node_Reference(referent)
                         )
                         case 'selected': return _p.ss($, ($) => {
                             const selected = $
@@ -259,7 +263,7 @@ export const Type_Node = (
                                                 return sh.t.reference(
                                                     Type_Reference(referent['type location']),
                                                     _p.list.nested_literal_old([
-                                                        Type_Node_Reference__tail(referent.path.tail),
+                                                        Type_Node_Path(referent.path),
                                                         [
                                                             sh.sub.dictionary(),
                                                         ]
@@ -318,11 +322,20 @@ export const Type_Node = (
     })
 }
 
-const Type_Node_Reference__tail = (
-    $: d_in.Type_Node_Path.tail,
+const Type_Node_Reference = (
+    $: d_in.Type_Node_Reference,
+): d_out.Type_Node => {
+    return sh.t.reference(
+        Type_Reference($['type location']),
+        Type_Node_Path($.path)
+    )
+}
+
+const Type_Node_Path = (
+    $: d_in.Type_Node_Path,
 
 ): _pi.List<d_out.Type_Node.reference.sub_selection.L> => {
-    return $['l list'].__l_map(($) => _p.decide.state($['l item'], ($) => {
+    return $.tail['l list'].__l_map(($) => _p.decide.state($['l item'], ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($['l id']))
