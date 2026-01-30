@@ -1364,19 +1364,19 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dict
     )]
 )]
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($) => ['dictionary', _p.dictionary.map(
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.map(
     $,
-    ($, id) => Property_Constraint(
+    ($, id) => Value_Constraint_Resolver(
         $
     )
 )]
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($) => ['text', {
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ['text', {
     'delimiter': ['backtick', null],
     'value': $['l id'],
 }]
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'start': _p_cc(
             $['start'],
@@ -1397,7 +1397,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($) => ['gr
                                 $,
                                 ($) => ({
                                     'option': 'sibling',
-                                    'value': Reference_To_Property_Constraint(
+                                    'value': Reference_To_Value_Constraint_Resolver(
                                         $
                                     ),
                                 })
@@ -1713,7 +1713,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'constraints': _p_cc(
                                     $['constraints'],
-                                    ($) => Property_Constraints(
+                                    ($) => Value_Constraint_Resolvers(
                                         $
                                     )
                                 ),
@@ -1885,7 +1885,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                                     ),
                                                                     'constraints': _p_cc(
                                                                         $['constraints'],
-                                                                        ($) => Property_Constraints(
+                                                                        ($) => Value_Constraint_Resolvers(
                                                                             $
                                                                         )
                                                                     ),

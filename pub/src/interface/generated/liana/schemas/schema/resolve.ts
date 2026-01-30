@@ -1327,11 +1327,11 @@ export type Constraint_ = (
     },
 ) => Constraint_.O
 
-export namespace Property_Constraints_ {
+export namespace Value_Constraint_Resolvers_ {
     
-    export type I = i_unresolved.Property_Constraints
+    export type I = i_unresolved.Value_Constraint_Resolvers
     
-    export type O = i_resolved.Property_Constraints
+    export type O = i_resolved.Value_Constraint_Resolvers
     
     export type E = i_generic.Error
     
@@ -1343,26 +1343,26 @@ export namespace Property_Constraints_ {
     
 }
 
-export type Property_Constraints_ = (
-    context: Property_Constraints_.I,
-    abort: _pi.Abort<Property_Constraints_.E>,
+export type Value_Constraint_Resolvers_ = (
+    context: Value_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
     lookups: null,
     parameters: {
-        readonly 'node': Property_Constraints_.P.node
+        readonly 'node': Value_Constraint_Resolvers_.P.node
     },
-) => Property_Constraints_.O
+) => Value_Constraint_Resolvers_.O
 
-export namespace Property_Constraint_ {
+export namespace Value_Constraint_Resolver_ {
     
-    export type I = i_unresolved.Property_Constraint
+    export type I = i_unresolved.Value_Constraint_Resolver
     
-    export type O = i_resolved.Property_Constraint
+    export type O = i_resolved.Value_Constraint_Resolver
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Property_Constraints_.D
+        export type property_constraints = i_resolved.Value_Constraint_Resolvers_.D
         
     }
     
@@ -1372,14 +1372,14 @@ export namespace Property_Constraint_ {
     
 }
 
-export type Property_Constraint_ = (
-    context: Property_Constraint_.I,
-    abort: _pi.Abort<Property_Constraint_.E>,
+export type Value_Constraint_Resolver_ = (
+    context: Value_Constraint_Resolver_.I,
+    abort: _pi.Abort<Value_Constraint_Resolver_.E>,
     lookups: {
-        readonly 'property constraints': _pi.Acyclic_Lookup<Property_Constraint_.L.property_constraints>
+        readonly 'property constraints': _pi.Acyclic_Lookup<Value_Constraint_Resolver_.L.property_constraints>
     },
     parameters: null,
-) => Property_Constraint_.O
+) => Value_Constraint_Resolver_.O
 
 export namespace Resolve_Logic_ {
     
@@ -1672,17 +1672,17 @@ export type Imports_ = (
     parameters: null,
 ) => Imports_.O
 
-export namespace Reference_To_Property_Constraint_ {
+export namespace Reference_To_Value_Constraint_Resolver_ {
     
-    export type I = i_unresolved.Reference_To_Property_Constraint
+    export type I = i_unresolved.Reference_To_Value_Constraint_Resolver
     
-    export type O = i_resolved.Reference_To_Property_Constraint
+    export type O = i_resolved.Reference_To_Value_Constraint_Resolver
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Property_Constraints_.D
+        export type property_constraints = i_resolved.Value_Constraint_Resolvers_.D
         
     }
     
@@ -1692,14 +1692,14 @@ export namespace Reference_To_Property_Constraint_ {
     
 }
 
-export type Reference_To_Property_Constraint_ = (
-    context: Reference_To_Property_Constraint_.I,
-    abort: _pi.Abort<Reference_To_Property_Constraint_.E>,
+export type Reference_To_Value_Constraint_Resolver_ = (
+    context: Reference_To_Value_Constraint_Resolver_.I,
+    abort: _pi.Abort<Reference_To_Value_Constraint_Resolver_.E>,
     lookups: {
-        readonly 'property constraints': _pi.Acyclic_Lookup<Reference_To_Property_Constraint_.L.property_constraints>
+        readonly 'property constraints': _pi.Acyclic_Lookup<Reference_To_Value_Constraint_Resolver_.L.property_constraints>
     },
     parameters: null,
-) => Reference_To_Property_Constraint_.O
+) => Reference_To_Value_Constraint_Resolver_.O
 
 export namespace Types_ {
     
@@ -1764,8 +1764,8 @@ export {
     Node_Resolver_Group_ as Node_Resolver_Group, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Constraint_ as Constraint, 
-    Property_Constraints_ as Property_Constraints, 
-    Property_Constraint_ as Property_Constraint, 
+    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Resolve_Logic_ as Resolve_Logic, 
     Signature_Parameters_ as Signature_Parameters, 
     Signature_ as Signature, 
@@ -1776,6 +1776,6 @@ export {
     Schema_Tree_ as Schema_Tree, 
     Schema_ as Schema, 
     Imports_ as Imports, 
-    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint, 
+    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Types_ as Types, 
 }

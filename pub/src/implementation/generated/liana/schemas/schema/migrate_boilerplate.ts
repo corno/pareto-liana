@@ -1506,7 +1506,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
     ),
 })
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($) => ({
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -1515,7 +1515,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Property_Constraint(
+            'l entry': Value_Constraint_Resolver(
                 $
             ),
             'l location': {
@@ -1527,7 +1527,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($) => ({
     ),
 })
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($) => ({
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -1536,7 +1536,7 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
     'l reference': $['l id'],
 })
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($) => ({
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ({
     'start': _p_cc(
         $['start'],
         ($) => ({
@@ -1547,7 +1547,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($) => ({
             },
             'l state': _p.decide.state(
                 $,
-                ($): t_out.Property_Constraint.start.l_state => {
+                ($): t_out.Value_Constraint_Resolver.start.l_state => {
                     switch ($[0]) {
                         case 'property':
                             return _p.ss(
@@ -1557,7 +1557,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($) => ({
                         case 'sibling':
                             return _p.ss(
                                 $,
-                                ($) => ['sibling', Reference_To_Property_Constraint(
+                                ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
                                     $
                                 )]
                             )
@@ -1904,7 +1904,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'constraints': _p_cc(
                                 $['constraints'],
-                                ($) => Property_Constraints(
+                                ($) => Value_Constraint_Resolvers(
                                     $
                                 )
                             ),
@@ -2043,7 +2043,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                             ),
                                                             'constraints': _p_cc(
                                                                 $['constraints'],
-                                                                ($) => Property_Constraints(
+                                                                ($) => Value_Constraint_Resolvers(
                                                                     $
                                                                 )
                                                             ),

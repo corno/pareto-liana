@@ -129,11 +129,11 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             {},
         ),
         "Constraint": sig.same_as("Relative Value Selection"),
-        "Property Constraints": sig.same_as("Relative Value Selection"),
-        "Property Constraint": sig.local(
+        "Value Constraint Resolvers": sig.same_as("Relative Value Selection"),
+        "Value Constraint Resolver": sig.local(
             {},
             {
-                "property constraints": lookup_parameter("Property Constraints"),
+                "property constraints": lookup_parameter("Value Constraint Resolvers"),
             }
         ),
 
@@ -196,10 +196,10 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Schema": sig.same_as("Schemas"),
         "Imports": sig.same_as("Schemas"),
 
-        "Reference To Property Constraint": sig.local(
+        "Reference To Value Constraint Resolver": sig.local(
             {},
             {
-                "property constraints": lookup_parameter("Property Constraints"),
+                "property constraints": lookup_parameter("Value Constraint Resolvers"),
             }
         ),
 

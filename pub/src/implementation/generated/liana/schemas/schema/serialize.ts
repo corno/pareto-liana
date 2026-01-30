@@ -163,20 +163,20 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => v_seri
     )
 )
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($) => v_serialize.Document(
-    v_marshall.Property_Constraints(
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => v_serialize.Document(
+    v_marshall.Value_Constraint_Resolvers(
         $
     )
 )
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($) => v_serialize.Document(
-    v_marshall.Reference_To_Property_Constraint(
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => v_serialize.Document(
+    v_marshall.Reference_To_Value_Constraint_Resolver(
         $
     )
 )
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($) => v_serialize.Document(
-    v_marshall.Property_Constraint(
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => v_serialize.Document(
+    v_marshall.Value_Constraint_Resolver(
         $
     )
 )

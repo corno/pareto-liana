@@ -964,11 +964,11 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
     }
 }
 
-export const Property_Constraints: signatures.Property_Constraints = ($, abort, $l, $p) => {
+export const Value_Constraint_Resolvers: signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => {
     return _p_cc($, ($) => _p.dictionary.resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_cc($, ($) => _p_deprecated_block(() => {
-            const p_start: d_out.Property_Constraint.start = _p_cc($['l entry'].start['l state'], ($) => {
+            const p_start: d_out.Value_Constraint_Resolver.start = _p_cc($['l entry'].start['l state'], ($) => {
                 switch ($[0]) {
                     case 'property': return _p.ss($, ($) => ['property', null])
                     case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry_acyclic(
@@ -979,7 +979,7 @@ export const Property_Constraints: signatures.Property_Constraints = ($, abort, 
                     default: return _p.au($[0])
                 }
             })
-            const p_constraint: d_out.Property_Constraint.constraint = Constraint(
+            const p_constraint: d_out.Value_Constraint_Resolver.constraint = Constraint(
                 $['l entry'].constraint,
                 abort,
                 null,
@@ -1318,7 +1318,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         return _p.optional.not_set()
                     }
                 )
-                const p_constraints = Property_Constraints(
+                const p_constraints = Value_Constraint_Resolvers(
                     $.constraints,
                     abort,
                     null,
@@ -1566,7 +1566,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                     $l,
                                     $p,
                                 )
-                                const p_constraints = Property_Constraints(
+                                const p_constraints = Value_Constraint_Resolvers(
                                     $.constraints,
                                     abort,
                                     null,

@@ -421,25 +421,9 @@ export type Option_Constraints_ = (
     context: Option_Constraints_.I,
 ) => Option_Constraints_.O
 
-export namespace Property_Constraints_ {
+export namespace Value_Constraint_Resolvers_ {
     
-    export type I = i_in.Property_Constraints
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Property_Constraints_ = (
-    context: Property_Constraints_.I,
-) => Property_Constraints_.O
-
-export namespace Reference_To_Property_Constraint_ {
-    
-    export type I = i_in.Reference_To_Property_Constraint
+    export type I = i_in.Value_Constraint_Resolvers
     
     export type O = i_out.Value
     
@@ -449,13 +433,13 @@ export namespace Reference_To_Property_Constraint_ {
     
 }
 
-export type Reference_To_Property_Constraint_ = (
-    context: Reference_To_Property_Constraint_.I,
-) => Reference_To_Property_Constraint_.O
+export type Value_Constraint_Resolvers_ = (
+    context: Value_Constraint_Resolvers_.I,
+) => Value_Constraint_Resolvers_.O
 
-export namespace Property_Constraint_ {
+export namespace Reference_To_Value_Constraint_Resolver_ {
     
-    export type I = i_in.Property_Constraint
+    export type I = i_in.Reference_To_Value_Constraint_Resolver
     
     export type O = i_out.Value
     
@@ -465,9 +449,25 @@ export namespace Property_Constraint_ {
     
 }
 
-export type Property_Constraint_ = (
-    context: Property_Constraint_.I,
-) => Property_Constraint_.O
+export type Reference_To_Value_Constraint_Resolver_ = (
+    context: Reference_To_Value_Constraint_Resolver_.I,
+) => Reference_To_Value_Constraint_Resolver_.O
+
+export namespace Value_Constraint_Resolver_ {
+    
+    export type I = i_in.Value_Constraint_Resolver
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Constraint_Resolver_ = (
+    context: Value_Constraint_Resolver_.I,
+) => Value_Constraint_Resolver_.O
 
 export namespace Optional_Value_Initialization_ {
     
@@ -608,9 +608,9 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraints_ as Option_Constraints, 
-    Property_Constraints_ as Property_Constraints, 
-    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint, 
-    Property_Constraint_ as Property_Constraint, 
+    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
+    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Node_Resolver_Group_ as Node_Resolver_Group, 
     Node_Resolver_List_Result_ as Node_Resolver_List_Result, 

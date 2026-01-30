@@ -1053,34 +1053,34 @@ export namespace Option_Constraints_ {
 
 export type Option_Constraints_ = _pi.Dictionary<Option_Constraints_.D>
 
-export namespace Property_Constraints_ {
+export namespace Value_Constraint_Resolvers_ {
     
-    export type D = Property_Constraint_
+    export type D = Value_Constraint_Resolver_
     
 }
 
-export type Property_Constraints_ = _pi.Dictionary<Property_Constraints_.D>
+export type Value_Constraint_Resolvers_ = _pi.Dictionary<Value_Constraint_Resolvers_.D>
 
-export namespace Reference_To_Property_Constraint_ {
+export namespace Reference_To_Value_Constraint_Resolver_ {
     
-    export type l_entry = Property_Constraints_.D
+    export type l_entry = Value_Constraint_Resolvers_.D
     
     export type l_id = string
     
 }
 
-export type Reference_To_Property_Constraint_ = {
-    readonly 'l entry': Reference_To_Property_Constraint_.l_entry
-    readonly 'l id': Reference_To_Property_Constraint_.l_id
+export type Reference_To_Value_Constraint_Resolver_ = {
+    readonly 'l entry': Reference_To_Value_Constraint_Resolver_.l_entry
+    readonly 'l id': Reference_To_Value_Constraint_Resolver_.l_id
 }
 
-export namespace Property_Constraint_ {
+export namespace Value_Constraint_Resolver_ {
     
     export namespace start {
         
         export type property = null
         
-        export type sibling = Reference_To_Property_Constraint_
+        export type sibling = Reference_To_Value_Constraint_Resolver_
         
     }
     
@@ -1092,9 +1092,9 @@ export namespace Property_Constraint_ {
     
 }
 
-export type Property_Constraint_ = {
-    readonly 'start': Property_Constraint_.start
-    readonly 'constraint': Property_Constraint_.constraint
+export type Value_Constraint_Resolver_ = {
+    readonly 'start': Value_Constraint_Resolver_.start
+    readonly 'constraint': Value_Constraint_Resolver_.constraint
 }
 
 export namespace Optional_Value_Initialization_ {
@@ -1307,7 +1307,7 @@ export namespace Node_Resolver_ {
         
         export type arguments_ = _pi.Optional_Value<arguments_.O>
         
-        export type constraints = Property_Constraints_
+        export type constraints = Value_Constraint_Resolvers_
         
     }
     
@@ -1403,7 +1403,7 @@ export namespace Node_Resolver_ {
                 
                 export type lookup = Lookup_Selection_
                 
-                export type constraints = Property_Constraints_
+                export type constraints = Value_Constraint_Resolvers_
                 
             }
             
@@ -1539,7 +1539,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace constraint {
                     
-                    export type l_entry = Property_Constraints_.D
+                    export type l_entry = Value_Constraint_Resolvers_.D
                     
                     export type l_id = string
                     
@@ -1574,7 +1574,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace constraint {
                     
-                    export type l_entry = Property_Constraints_.D
+                    export type l_entry = Value_Constraint_Resolvers_.D
                     
                     export type l_id = string
                     
@@ -1832,9 +1832,9 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraints_ as Option_Constraints, 
-    Property_Constraints_ as Property_Constraints, 
-    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint, 
-    Property_Constraint_ as Property_Constraint, 
+    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
+    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Node_Resolver_Group_ as Node_Resolver_Group, 
     Node_Resolver_List_Result_ as Node_Resolver_List_Result, 

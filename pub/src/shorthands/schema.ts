@@ -916,7 +916,7 @@ export namespace pc {
     export const property = (
         value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
         state: string,
-    ): d_schema.Property_Constraints.l_dictionary.D.l_entry => {
+    ): d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['property', null]),
             'constraint': {
@@ -936,7 +936,7 @@ export namespace pc {
         constraint: string,
         value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
         state?: string,
-    ): d_schema.Property_Constraints.l_dictionary.D.l_entry => {
+    ): d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['sibling', sh.reference(constraint)]),
             'constraint': {
@@ -978,7 +978,6 @@ export namespace r {
         type: string,
         values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['component', {
             'location': sh.state(['internal', sh.reference(type)]),
@@ -987,7 +986,23 @@ export namespace r {
                 'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
-            'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
+            'constraints': sh.dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
+        }])
+    }
+    export const component_constrained = (
+        type: string,
+        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    ): d_schema.Node_Resolver => {
+        return sh.state(['component', {
+            'location': sh.state(['internal', sh.reference(type)]),
+            'signature': null,
+            'arguments': _p.optionalx.set({
+                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
+            }),
+            'constraints': sh.dictionary(constraints),
         }])
     }
     export const component_external = (
@@ -995,7 +1010,7 @@ export namespace r {
         type: string,
         values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['component', {
             'location': sh.state(['external', {
@@ -1110,7 +1125,7 @@ export namespace r {
 
     export const reference = (
         lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['reference', {
             'definition': null,
@@ -1124,7 +1139,7 @@ export namespace r {
 
     export const reference_stack = (
         lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
         return sh.state(['reference', {
             'definition': null,

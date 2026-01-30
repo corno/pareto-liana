@@ -250,14 +250,14 @@ export const $: g_.Types = types(
             "assert is set": tstate(t.component_cyclic("Possible Value Selection")),
         }))),
 
-        "Property Constraints": type(t.dictionary(t.component_cyclic("Property Constraint"))),
+        "Value Constraint Resolvers": type(t.dictionary(t.component_cyclic("Value Constraint Resolver"))),
 
-        "Reference To Property Constraint": type(t.reference("Property Constraints", [])), //FIXME : inline
+        "Reference To Value Constraint Resolver": type(t.reference("Value Constraint Resolvers", [])), //FIXME : inline
 
-        "Property Constraint": type(t.group({
+        "Value Constraint Resolver": type(t.group({
             "start": prop(t.state({
                 "property": tstate(t.nothing()),
-                "sibling": tstate(t.component("Reference To Property Constraint")),
+                "sibling": tstate(t.component("Reference To Value Constraint Resolver")),
             })),
             "constraint": prop(t.component("Constraint")),
         })),
@@ -290,6 +290,7 @@ export const $: g_.Types = types(
                 })),
                 "internal": tstate(t.reference("Types", [])),
                 "internal cyclic": tstate(t.reference("Types", [], 'cyclic')),
+                // "constraints": prop(t.optional(t.component("Value Constraint Resolvers"))),
             })),
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),
@@ -354,7 +355,7 @@ export const $: g_.Types = types(
                         })),
                     })))),
                 }))),
-                "constraints": prop(t.component("Property Constraints")),
+                "constraints": prop(t.component("Value Constraint Resolvers")),
             })),
             "dictionary": tstate(t.group({
                 "definition": prop(t.reference_derived("Dictionary", [])),
@@ -382,7 +383,7 @@ export const $: g_.Types = types(
                     "selected": tstate(t.group({
                         "definition": prop(t.reference_derived("Type Node", [tr.s("reference"), tr.g("type"), tr.s("selected")])),
                         "lookup": prop(t.component("Lookup Selection")),
-                        "constraints": prop(t.component("Property Constraints")),
+                        "constraints": prop(t.component("Value Constraint Resolvers")),
                     })),
                 })),
             })),
@@ -410,11 +411,11 @@ export const $: g_.Types = types(
                 "constraint": tstate(t.state({
                     "component": tstate(t.group({
                         "property": prop(t.reference("Node Resolver Group", [])),
-                        "constraint": prop(t.reference("Property Constraints", [])),
+                        "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
                     "reference": tstate(t.group({
                         "property": prop(t.reference("Node Resolver Group", [])),
-                        "constraint": prop(t.reference("Property Constraints", [])),
+                        "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
 
                 })),

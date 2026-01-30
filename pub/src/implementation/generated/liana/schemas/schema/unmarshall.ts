@@ -2904,7 +2904,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
     ),
 })
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($, abort) => ({
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -2919,7 +2919,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
             'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'l entry': Property_Constraint(
+            'l entry': Value_Constraint_Resolver(
                 $,
                 ($) => abort(
                     $
@@ -2929,7 +2929,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
     ),
 })
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort) => ({
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -2941,7 +2941,7 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
     ),
 })
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($, abort) => _p_cc(
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -2965,7 +2965,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort) 
                 ),
                 ($) => _p.decide.text(
                     $['option']['value'],
-                    ($t): t_out.Property_Constraint.start => {
+                    ($t): t_out.Value_Constraint_Resolver.start => {
                         switch ($t) {
                             case 'property':
                                 return _p_cc(
@@ -2989,7 +2989,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort) 
                                         'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'l state': ['sibling', Reference_To_Property_Constraint(
+                                        'l state': ['sibling', Reference_To_Value_Constraint_Resolver(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3650,7 +3650,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                 ['no such entry', "constraints"]
                                             )
                                         ),
-                                        ($) => Property_Constraints(
+                                        ($) => Value_Constraint_Resolvers(
                                             $,
                                             ($) => abort(
                                                 $
@@ -4021,7 +4021,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                         ['no such entry', "constraints"]
                                                                                     )
                                                                                 ),
-                                                                                ($) => Property_Constraints(
+                                                                                ($) => Value_Constraint_Resolvers(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         $

@@ -1569,7 +1569,7 @@ export type Option_Constraints_ = {
     readonly 'l dictionary': Option_Constraints_.l_dictionary
 }
 
-export namespace Property_Constraints_ {
+export namespace Value_Constraint_Resolvers_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -1579,7 +1579,7 @@ export namespace Property_Constraints_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Property_Constraint_
+            export type l_entry = Value_Constraint_Resolver_
             
         }
         
@@ -1594,12 +1594,12 @@ export namespace Property_Constraints_ {
     
 }
 
-export type Property_Constraints_ = {
-    readonly 'l location': Property_Constraints_.l_location
-    readonly 'l dictionary': Property_Constraints_.l_dictionary
+export type Value_Constraint_Resolvers_ = {
+    readonly 'l location': Value_Constraint_Resolvers_.l_location
+    readonly 'l dictionary': Value_Constraint_Resolvers_.l_dictionary
 }
 
-export namespace Reference_To_Property_Constraint_ {
+export namespace Reference_To_Value_Constraint_Resolver_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -1607,12 +1607,12 @@ export namespace Reference_To_Property_Constraint_ {
     
 }
 
-export type Reference_To_Property_Constraint_ = {
-    readonly 'l location': Reference_To_Property_Constraint_.l_location
-    readonly 'l reference': Reference_To_Property_Constraint_.l_reference
+export type Reference_To_Value_Constraint_Resolver_ = {
+    readonly 'l location': Reference_To_Value_Constraint_Resolver_.l_location
+    readonly 'l reference': Reference_To_Value_Constraint_Resolver_.l_reference
 }
 
-export namespace Property_Constraint_ {
+export namespace Value_Constraint_Resolver_ {
     
     export namespace start {
         
@@ -1622,7 +1622,7 @@ export namespace Property_Constraint_ {
             
             export type property = null
             
-            export type sibling = Reference_To_Property_Constraint_
+            export type sibling = Reference_To_Value_Constraint_Resolver_
             
         }
         
@@ -1641,9 +1641,9 @@ export namespace Property_Constraint_ {
     
 }
 
-export type Property_Constraint_ = {
-    readonly 'start': Property_Constraint_.start
-    readonly 'constraint': Property_Constraint_.constraint
+export type Value_Constraint_Resolver_ = {
+    readonly 'start': Value_Constraint_Resolver_.start
+    readonly 'constraint': Value_Constraint_Resolver_.constraint
 }
 
 export namespace Optional_Value_Initialization_ {
@@ -1970,7 +1970,7 @@ export namespace Node_Resolver_ {
             
             export type arguments_ = _pi.Optional_Value<arguments_.O>
             
-            export type constraints = Property_Constraints_
+            export type constraints = Value_Constraint_Resolvers_
             
         }
         
@@ -2070,7 +2070,7 @@ export namespace Node_Resolver_ {
                         
                         export type lookup = Lookup_Selection_
                         
-                        export type constraints = Property_Constraints_
+                        export type constraints = Value_Constraint_Resolvers_
                         
                     }
                     
@@ -2590,9 +2590,9 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraints_ as Option_Constraints, 
-    Property_Constraints_ as Property_Constraints, 
-    Reference_To_Property_Constraint_ as Reference_To_Property_Constraint, 
-    Property_Constraint_ as Property_Constraint, 
+    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
+    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Node_Resolver_Group_ as Node_Resolver_Group, 
     Node_Resolver_List_Result_ as Node_Resolver_List_Result, 

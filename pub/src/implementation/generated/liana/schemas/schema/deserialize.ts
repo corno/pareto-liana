@@ -423,7 +423,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $p
     )
 )
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($, abort, $p) => v_unmarshall.Property_Constraints(
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $p) => v_unmarshall.Value_Constraint_Resolvers(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -439,7 +439,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
     )
 )
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $p) => v_unmarshall.Reference_To_Property_Constraint(
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort, $p) => v_unmarshall.Reference_To_Value_Constraint_Resolver(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -455,7 +455,7 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
     )
 )
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, $p) => v_unmarshall.Property_Constraint(
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort, $p) => v_unmarshall.Value_Constraint_Resolver(
     v_deserialize.Document(
         $,
         ($) => abort(

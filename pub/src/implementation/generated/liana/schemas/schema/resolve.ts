@@ -2075,14 +2075,14 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l
     )
 )
 
-export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, $l, $p) => _p.group.resolve(
+export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_start = _p_cc(
             $['start'],
             ($) => _p.decide.state(
                 $['l state'],
-                ($): t_out.Property_Constraint.start => {
+                ($): t_out.Value_Constraint_Resolver.start => {
                     switch ($[0]) {
                         case 'property':
                             return _p.ss(
@@ -2092,7 +2092,7 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
                         case 'sibling':
                             return _p.ss(
                                 $,
-                                ($) => ['sibling', Reference_To_Property_Constraint(
+                                ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
                                     $,
                                     ($) => abort(
                                         $
@@ -2136,11 +2136,11 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
     }
 )
 
-export const Property_Constraints: t_signatures.Property_Constraints = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Property_Constraints.D => _p_cc(
+    ($, id, $a, $c): t_out.Value_Constraint_Resolvers.D => _p_cc(
         $['l entry'],
-        ($) => Property_Constraint(
+        ($) => Value_Constraint_Resolver(
             $,
             ($) => abort(
                 $
@@ -2155,7 +2155,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
     )
 )
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $l, $p) => ({
+export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort, $l, $p) => ({
     'l entry': _pdev.implement_me(
         "IM: FIXME ACYCLIC ENTRY"
     ),
@@ -2501,7 +2501,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_constraints = _p_cc(
                                 $['constraints'],
-                                ($) => Property_Constraints(
+                                ($) => Value_Constraint_Resolvers(
                                     $,
                                     ($) => abort(
                                         $
@@ -2819,7 +2819,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                             
                                                             const prop_constraints = _p_cc(
                                                                 $['constraints'],
-                                                                ($) => Property_Constraints(
+                                                                ($) => Value_Constraint_Resolvers(
                                                                     $,
                                                                     ($) => abort(
                                                                         $

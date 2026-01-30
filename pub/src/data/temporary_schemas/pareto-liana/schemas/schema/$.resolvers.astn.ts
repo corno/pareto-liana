@@ -266,7 +266,7 @@ export const $: g_.Resolvers = resolvers(
                 "presence": r.component("Presence", {}, {}),
             })),
             "lookups": r.dictionary(r.group({
-                "referent": r.component("Type Reference", {
+                "referent": r.component_constrained("Type Reference", {
                     "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
                 }, {
                     "types": al.dictionary(gvs.parameter("types", [])),
@@ -423,7 +423,7 @@ export const $: g_.Resolvers = resolvers(
             "type": r.state(
                 {
                     "dictionary": state(r.group({
-                        "selection": r.component("Guaranteed Value Selection", null, null, {
+                        "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
                             "dictionary": pc.property([vst.group("resulting node"), vst.reference()], "dictionary"),
                         }),
                         "selected dictionary": r.reference_derived(gvs.component("selection", "dictionary", []))
@@ -499,7 +499,7 @@ export const $: g_.Resolvers = resolvers(
 
         "Option Constraints": resolver(r.dictionary(r.state({
             "state": state(r.group({
-                "selection": r.component("Guaranteed Value Selection", null, null, {
+                "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
                     "state": pc.property([vst.group("resulting node"), vst.reference()], "state")
                 }),
                 "selected state": r.reference_derived(gvs.component("selection", "state", [])),
@@ -508,11 +508,11 @@ export const $: g_.Resolvers = resolvers(
             "assert is set": state(r.component("Possible Value Selection", null, null)),
         }))),
 
-        "Property Constraint": resolver(r.group({
+        "Value Constraint Resolver": resolver(r.group({
             "start": r.state(
                 {
                     "property": state(r.nothing()),
-                    "sibling": state(r.component("Reference To Property Constraint", {}, {
+                    "sibling": state(r.component("Reference To Value Constraint Resolver", {}, {
                         "property constraints": al.parameter("property constraints"),
                     })),
                 }
@@ -524,11 +524,11 @@ export const $: g_.Resolvers = resolvers(
         })),
 
 
-        "Property Constraints": resolver(r.dictionary(r.component("Property Constraint", {}, {
+        "Value Constraint Resolvers": resolver(r.dictionary(r.component("Value Constraint Resolver", {}, {
             "property constraints": al.not_circular_dependent_siblings(),
         }))),
 
-        "Reference To Property Constraint": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
+        "Reference To Value Constraint Resolver": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
 
         "Node Resolver Group": resolver(r.dictionary_linked(
             'dense',
@@ -564,7 +564,7 @@ export const $: g_.Resolvers = resolvers(
         })),
 
         "Benchmark": resolver(r.group({
-            "selection": r.component("Guaranteed Value Selection", null, null, {
+            "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
                 "dictionary": pc.property([vst.group("resulting node"), vst.reference()], "dictionary"),
             }),
             "resulting dictionary": r.reference_derived(gvs.component("selection", "dictionary", [])),
@@ -622,7 +622,7 @@ export const $: g_.Resolvers = resolvers(
                             }))
                         ),
                     })),
-                    "constraints": r.component("Property Constraints", {
+                    "constraints": r.component("Value Constraint Resolvers", {
                         "node": av.required(gvs.sibling("signature", [vst.reference(), vst.component(), vst.group("type"), vst.reference(), vst.group("node"), vst.component(),])),
                     }, {})
                 })),
@@ -757,7 +757,7 @@ export const $: g_.Resolvers = resolvers(
                             }, r.group({
                                 "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                                 "lookup": r.component("Lookup Selection", null, null),
-                                "constraints": r.component("Property Constraints", {
+                                "constraints": r.component("Value Constraint Resolvers", {
                                     "node": av.required(gvs.sibling("lookup", [vst.component(), vst.group("resulting dictionary"), vst.reference(), vst.group("node")])),
                                 }, {})
                             })),
