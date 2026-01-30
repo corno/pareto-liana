@@ -7,9 +7,9 @@ export namespace Text_Type_ {
     
     export namespace type_ {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export type multi_line = null
             
@@ -17,15 +17,15 @@ export namespace Text_Type_ {
             
         }
         
-        export type state = 
-            | readonly ['multi line', state.multi_line]
-            | readonly ['single line', state.single_line]
+        export type l_state = 
+            | readonly ['multi line', l_state.multi_line]
+            | readonly ['single line', l_state.single_line]
         
     }
     
     export type type_ = {
-        readonly 'location': type_.location
-        readonly 'state': type_.state
+        readonly 'l location': type_.l_location
+        readonly 'l state': type_.l_state
     }
     
 }
@@ -38,9 +38,9 @@ export namespace Number_Type_ {
     
     export namespace precision {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export namespace approximation {
                 
@@ -64,9 +64,9 @@ export namespace Number_Type_ {
                 
                 export namespace type_ {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export namespace state {
+                    export namespace l_state {
                         
                         export type integer = null
                         
@@ -76,16 +76,16 @@ export namespace Number_Type_ {
                         
                     }
                     
-                    export type state = 
-                        | readonly ['integer', state.integer]
-                        | readonly ['natural', state.natural]
-                        | readonly ['positive natural', state.positive_natural]
+                    export type l_state = 
+                        | readonly ['integer', l_state.integer]
+                        | readonly ['natural', l_state.natural]
+                        | readonly ['positive natural', l_state.positive_natural]
                     
                 }
                 
                 export type type_ = {
-                    readonly 'location': type_.location
-                    readonly 'state': type_.state
+                    readonly 'l location': type_.l_location
+                    readonly 'l state': type_.l_state
                 }
                 
             }
@@ -97,15 +97,15 @@ export namespace Number_Type_ {
             
         }
         
-        export type state = 
-            | readonly ['approximation', state.approximation]
-            | readonly ['exact', state.exact]
+        export type l_state = 
+            | readonly ['approximation', l_state.approximation]
+            | readonly ['exact', l_state.exact]
         
     }
     
     export type precision = {
-        readonly 'location': precision.location
-        readonly 'state': precision.state
+        readonly 'l location': precision.l_location
+        readonly 'l state': precision.l_state
     }
     
 }
@@ -118,9 +118,9 @@ export namespace Globals_ {
     
     export namespace complexity {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export type constrained = null
             
@@ -128,75 +128,75 @@ export namespace Globals_ {
             
         }
         
-        export type state = 
-            | readonly ['constrained', state.constrained]
-            | readonly ['unconstrained', state.unconstrained]
+        export type l_state = 
+            | readonly ['constrained', l_state.constrained]
+            | readonly ['unconstrained', l_state.unconstrained]
         
     }
     
     export type complexity = {
-        readonly 'location': complexity.location
-        readonly 'state': complexity.state
+        readonly 'l location': complexity.l_location
+        readonly 'l state': complexity.l_state
     }
     
     export namespace text_types {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace dictionary {
+        export namespace l_dictionary {
             
             export namespace D {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type entry = Text_Type_
+                export type l_entry = Text_Type_
                 
             }
             
             export type D = {
-                readonly 'location': D.location
-                readonly 'entry': D.entry
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
             }
             
         }
         
-        export type dictionary = _pi.Dictionary<dictionary.D>
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
         
     }
     
     export type text_types = {
-        readonly 'location': text_types.location
-        readonly 'dictionary': text_types.dictionary
+        readonly 'l location': text_types.l_location
+        readonly 'l dictionary': text_types.l_dictionary
     }
     
     export namespace number_types {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace dictionary {
+        export namespace l_dictionary {
             
             export namespace D {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type entry = Number_Type_
+                export type l_entry = Number_Type_
                 
             }
             
             export type D = {
-                readonly 'location': D.location
-                readonly 'entry': D.entry
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
             }
             
         }
         
-        export type dictionary = _pi.Dictionary<dictionary.D>
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
         
     }
     
     export type number_types = {
-        readonly 'location': number_types.location
-        readonly 'dictionary': number_types.dictionary
+        readonly 'l location': number_types.l_location
+        readonly 'l dictionary': number_types.l_dictionary
     }
     
 }
@@ -219,32 +219,32 @@ export type Type_ = {
 
 export namespace Types_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export type entry = Type_
+            export type l_entry = Type_
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Types_ = {
-    readonly 'location': Types_.location
-    readonly 'dictionary': Types_.dictionary
+    readonly 'l location': Types_.l_location
+    readonly 'l dictionary': Types_.l_dictionary
 }
 
 export namespace Resolve_Logic_ {
@@ -278,9 +278,9 @@ export namespace Schema_ {
     
     export namespace complexity {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export type constrained = Resolve_Logic_
             
@@ -288,15 +288,15 @@ export namespace Schema_ {
             
         }
         
-        export type state = 
-            | readonly ['constrained', state.constrained]
-            | readonly ['unconstrained', state.unconstrained]
+        export type l_state = 
+            | readonly ['constrained', l_state.constrained]
+            | readonly ['unconstrained', l_state.unconstrained]
         
     }
     
     export type complexity = {
-        readonly 'location': complexity.location
-        readonly 'state': complexity.state
+        readonly 'l location': complexity.l_location
+        readonly 'l state': complexity.l_state
     }
     
 }
@@ -310,9 +310,9 @@ export type Schema_ = {
 
 export namespace Schema_Tree_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export type schema = Schema_
         
@@ -320,15 +320,15 @@ export namespace Schema_Tree_ {
         
     }
     
-    export type state = 
-        | readonly ['schema', state.schema]
-        | readonly ['set', state.set_]
+    export type l_state = 
+        | readonly ['schema', l_state.schema]
+        | readonly ['set', l_state.set_]
     
 }
 
 export type Schema_Tree_ = {
-    readonly 'location': Schema_Tree_.location
-    readonly 'state': Schema_Tree_.state
+    readonly 'l location': Schema_Tree_.l_location
+    readonly 'l state': Schema_Tree_.l_state
 }
 
 export namespace Type_Specification_ {
@@ -337,32 +337,32 @@ export namespace Type_Specification_ {
     
     export namespace schema_path {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace list {
+        export namespace l_list {
             
             export namespace L {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type item = string
+                export type l_item = string
                 
             }
             
             export type L = {
-                readonly 'location': L.location
-                readonly 'item': L.item
+                readonly 'l location': L.l_location
+                readonly 'l item': L.l_item
             }
             
         }
         
-        export type list = _pi.List<list.L>
+        export type l_list = _pi.List<l_list.L>
         
     }
     
     export type schema_path = {
-        readonly 'location': schema_path.location
-        readonly 'list': schema_path.list
+        readonly 'l location': schema_path.l_location
+        readonly 'l list': schema_path.l_list
     }
     
     export type type_ = string
@@ -377,91 +377,91 @@ export type Type_Specification_ = {
 
 export namespace Schemas_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export type entry = Schema_Tree_
+            export type l_entry = Schema_Tree_
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Schemas_ = {
-    readonly 'location': Schemas_.location
-    readonly 'dictionary': Schemas_.dictionary
+    readonly 'l location': Schemas_.l_location
+    readonly 'l dictionary': Schemas_.l_dictionary
 }
 
 export namespace Imports_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace entry {
+            export namespace l_entry {
                 
                 export namespace schema_set_child {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type schema_set_child = {
-                    readonly 'location': schema_set_child.location
-                    readonly 'id': schema_set_child.id
+                    readonly 'l location': schema_set_child.l_location
+                    readonly 'l id': schema_set_child.l_id
                 }
                 
                 export type schema = null
                 
             }
             
-            export type entry = {
-                readonly 'schema set child': entry.schema_set_child
-                readonly 'schema': entry.schema
+            export type l_entry = {
+                readonly 'schema set child': l_entry.schema_set_child
+                readonly 'schema': l_entry.schema
             }
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Imports_ = {
-    readonly 'location': Imports_.location
-    readonly 'dictionary': Imports_.dictionary
+    readonly 'l location': Imports_.l_location
+    readonly 'l dictionary': Imports_.l_dictionary
 }
 
 export namespace Presence_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export type optional = null
         
@@ -469,15 +469,15 @@ export namespace Presence_ {
         
     }
     
-    export type state = 
-        | readonly ['optional', state.optional]
-        | readonly ['required', state.required]
+    export type l_state = 
+        | readonly ['optional', l_state.optional]
+        | readonly ['required', l_state.required]
     
 }
 
 export type Presence_ = {
-    readonly 'location': Presence_.location
-    readonly 'state': Presence_.state
+    readonly 'l location': Presence_.l_location
+    readonly 'l state': Presence_.l_state
 }
 
 export namespace Dictionary_ {
@@ -492,45 +492,45 @@ export type Dictionary_ = {
 
 export namespace Signatures_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export type entry = Signature_
+            export type l_entry = Signature_
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Signatures_ = {
-    readonly 'location': Signatures_.location
-    readonly 'dictionary': Signatures_.dictionary
+    readonly 'l location': Signatures_.l_location
+    readonly 'l dictionary': Signatures_.l_dictionary
 }
 
 export namespace Resolvers_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace entry {
+            export namespace l_entry {
                 
                 export type signature = null
                 
@@ -538,40 +538,40 @@ export namespace Resolvers_ {
                 
             }
             
-            export type entry = {
-                readonly 'signature': entry.signature
-                readonly 'type resolver': entry.type_resolver
+            export type l_entry = {
+                readonly 'signature': l_entry.signature
+                readonly 'type resolver': l_entry.type_resolver
             }
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Resolvers_ = {
-    readonly 'location': Resolvers_.location
-    readonly 'dictionary': Resolvers_.dictionary
+    readonly 'l location': Resolvers_.l_location
+    readonly 'l dictionary': Resolvers_.l_dictionary
 }
 
 export namespace Group_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace entry {
+            export namespace l_entry {
                 
                 export namespace description {
                     
@@ -585,76 +585,76 @@ export namespace Group_ {
                 
             }
             
-            export type entry = {
-                readonly 'description': entry.description
-                readonly 'node': entry.node
+            export type l_entry = {
+                readonly 'description': l_entry.description
+                readonly 'node': l_entry.node
             }
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Group_ = {
-    readonly 'location': Group_.location
-    readonly 'dictionary': Group_.dictionary
+    readonly 'l location': Group_.l_location
+    readonly 'l dictionary': Group_.l_dictionary
 }
 
 export namespace Type_Reference_ {
     
     export namespace location {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export namespace internal {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type internal = {
-                readonly 'location': internal.location
-                readonly 'id': internal.id
+                readonly 'l location': internal.l_location
+                readonly 'l id': internal.l_id
             }
             
             export namespace external {
                 
                 export namespace import_ {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type import_ = {
-                    readonly 'location': import_.location
-                    readonly 'id': import_.id
+                    readonly 'l location': import_.l_location
+                    readonly 'l id': import_.l_id
                 }
                 
                 export namespace type_ {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type type_ = {
-                    readonly 'location': type_.location
-                    readonly 'id': type_.id
+                    readonly 'l location': type_.l_location
+                    readonly 'l id': type_.l_id
                 }
                 
             }
@@ -666,15 +666,15 @@ export namespace Type_Reference_ {
             
         }
         
-        export type state = 
-            | readonly ['internal', state.internal]
-            | readonly ['external', state.external]
+        export type l_state = 
+            | readonly ['internal', l_state.internal]
+            | readonly ['external', l_state.external]
         
     }
     
     export type location = {
-        readonly 'location': location.location
-        readonly 'state': location.state
+        readonly 'l location': location.l_location
+        readonly 'l state': location.l_state
     }
     
     export type resulting_type = null
@@ -688,44 +688,44 @@ export type Type_Reference_ = {
 
 export namespace Type_Node_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export type boolean_ = null
         
         export namespace component {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace state {
+            export namespace l_state {
                 
                 export namespace external {
                     
                     export namespace import_ {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type import_ = {
-                        readonly 'location': import_.location
-                        readonly 'id': import_.id
+                        readonly 'l location': import_.l_location
+                        readonly 'l id': import_.l_id
                     }
                     
                     export namespace type_ {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type type_ = {
-                        readonly 'location': type_.location
-                        readonly 'id': type_.id
+                        readonly 'l location': type_.l_location
+                        readonly 'l id': type_.l_id
                     }
                     
                 }
@@ -737,42 +737,42 @@ export namespace Type_Node_ {
                 
                 export namespace internal {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type internal = {
-                    readonly 'location': internal.location
-                    readonly 'id': internal.id
+                    readonly 'l location': internal.l_location
+                    readonly 'l id': internal.l_id
                 }
                 
                 export namespace internal_cyclic {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type internal_cyclic = {
-                    readonly 'location': internal_cyclic.location
-                    readonly 'id': internal_cyclic.id
+                    readonly 'l location': internal_cyclic.l_location
+                    readonly 'l id': internal_cyclic.l_id
                 }
                 
             }
             
-            export type state = 
-                | readonly ['external', state.external]
-                | readonly ['internal', state.internal]
-                | readonly ['internal cyclic', state.internal_cyclic]
+            export type l_state = 
+                | readonly ['external', l_state.external]
+                | readonly ['internal', l_state.internal]
+                | readonly ['internal cyclic', l_state.internal_cyclic]
             
         }
         
         export type component = {
-            readonly 'location': component.location
-            readonly 'state': component.state
+            readonly 'l location': component.l_location
+            readonly 'l state': component.l_state
         }
         
         export type dictionary = Dictionary_
@@ -802,36 +802,36 @@ export namespace Type_Node_ {
         
         export namespace number_ {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace state {
+            export namespace l_state {
                 
                 export namespace global {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type global = {
-                    readonly 'location': global.location
-                    readonly 'id': global.id
+                    readonly 'l location': global.l_location
+                    readonly 'l id': global.l_id
                 }
                 
                 export type local = Number_Type_
                 
             }
             
-            export type state = 
-                | readonly ['global', state.global]
-                | readonly ['local', state.local]
+            export type l_state = 
+                | readonly ['global', l_state.global]
+                | readonly ['local', l_state.local]
             
         }
         
         export type number_ = {
-            readonly 'location': number_.location
-            readonly 'state': number_.state
+            readonly 'l location': number_.l_location
+            readonly 'l state': number_.l_state
         }
         
         export type optional = Type_Node_
@@ -842,9 +842,9 @@ export namespace Type_Node_ {
             
             export namespace type_ {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export type derived = null
                     
@@ -854,9 +854,9 @@ export namespace Type_Node_ {
                         
                         export namespace dependency {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export namespace state {
+                            export namespace l_state {
                                 
                                 export type acyclic = null
                                 
@@ -866,16 +866,16 @@ export namespace Type_Node_ {
                                 
                             }
                             
-                            export type state = 
-                                | readonly ['acyclic', state.acyclic]
-                                | readonly ['cyclic', state.cyclic]
-                                | readonly ['stack', state.stack]
+                            export type l_state = 
+                                | readonly ['acyclic', l_state.acyclic]
+                                | readonly ['cyclic', l_state.cyclic]
+                                | readonly ['stack', l_state.stack]
                             
                         }
                         
                         export type dependency = {
-                            readonly 'location': dependency.location
-                            readonly 'state': dependency.state
+                            readonly 'l location': dependency.l_location
+                            readonly 'l state': dependency.l_state
                         }
                         
                     }
@@ -887,15 +887,15 @@ export namespace Type_Node_ {
                     
                 }
                 
-                export type state = 
-                    | readonly ['derived', state.derived]
-                    | readonly ['selected', state.selected]
+                export type l_state = 
+                    | readonly ['derived', l_state.derived]
+                    | readonly ['selected', l_state.selected]
                 
             }
             
             export type type_ = {
-                readonly 'location': type_.location
-                readonly 'state': type_.state
+                readonly 'l location': type_.l_location
+                readonly 'l state': type_.l_state
             }
             
         }
@@ -907,15 +907,15 @@ export namespace Type_Node_ {
         
         export namespace state {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace dictionary {
+            export namespace l_dictionary {
                 
                 export namespace D {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export namespace entry {
+                    export namespace l_entry {
                         
                         export namespace description {
                             
@@ -929,116 +929,116 @@ export namespace Type_Node_ {
                         
                     }
                     
-                    export type entry = {
-                        readonly 'description': entry.description
-                        readonly 'node': entry.node
+                    export type l_entry = {
+                        readonly 'description': l_entry.description
+                        readonly 'node': l_entry.node
                     }
                     
                 }
                 
                 export type D = {
-                    readonly 'location': D.location
-                    readonly 'entry': D.entry
+                    readonly 'l location': D.l_location
+                    readonly 'l entry': D.l_entry
                 }
                 
             }
             
-            export type dictionary = _pi.Dictionary<dictionary.D>
+            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
             
         }
         
         export type state = {
-            readonly 'location': state.location
-            readonly 'dictionary': state.dictionary
+            readonly 'l location': state.l_location
+            readonly 'l dictionary': state.l_dictionary
         }
         
         export namespace text {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace state {
+            export namespace l_state {
                 
                 export namespace global {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type global = {
-                    readonly 'location': global.location
-                    readonly 'id': global.id
+                    readonly 'l location': global.l_location
+                    readonly 'l id': global.l_id
                 }
                 
                 export type local = Text_Type_
                 
             }
             
-            export type state = 
-                | readonly ['global', state.global]
-                | readonly ['local', state.local]
+            export type l_state = 
+                | readonly ['global', l_state.global]
+                | readonly ['local', l_state.local]
             
         }
         
         export type text = {
-            readonly 'location': text.location
-            readonly 'state': text.state
+            readonly 'l location': text.l_location
+            readonly 'l state': text.l_state
         }
         
     }
     
-    export type state = 
-        | readonly ['boolean', state.boolean_]
-        | readonly ['component', state.component]
-        | readonly ['dictionary', state.dictionary]
-        | readonly ['group', state.group]
-        | readonly ['list', state.list]
-        | readonly ['nothing', state.nothing]
-        | readonly ['number', state.number_]
-        | readonly ['optional', state.optional]
-        | readonly ['reference', state.reference]
-        | readonly ['state', state.state]
-        | readonly ['text', state.text]
+    export type l_state = 
+        | readonly ['boolean', l_state.boolean_]
+        | readonly ['component', l_state.component]
+        | readonly ['dictionary', l_state.dictionary]
+        | readonly ['group', l_state.group]
+        | readonly ['list', l_state.list]
+        | readonly ['nothing', l_state.nothing]
+        | readonly ['number', l_state.number_]
+        | readonly ['optional', l_state.optional]
+        | readonly ['reference', l_state.reference]
+        | readonly ['state', l_state.state]
+        | readonly ['text', l_state.text]
     
 }
 
 export type Type_Node_ = {
-    readonly 'location': Type_Node_.location
-    readonly 'state': Type_Node_.state
+    readonly 'l location': Type_Node_.l_location
+    readonly 'l state': Type_Node_.l_state
 }
 
 export namespace Type_Node_Path_ {
     
     export namespace tail {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace list {
+        export namespace l_list {
             
             export namespace L {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace item {
+                export namespace l_item {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export namespace state {
+                    export namespace l_state {
                         
                         export type dictionary = null
                         
                         export namespace group {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type group = {
-                            readonly 'location': group.location
-                            readonly 'id': group.id
+                            readonly 'l location': group.l_location
+                            readonly 'l id': group.l_id
                         }
                         
                         export type list = null
@@ -1047,49 +1047,49 @@ export namespace Type_Node_Path_ {
                         
                         export namespace state {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type state = {
-                            readonly 'location': state.location
-                            readonly 'id': state.id
+                            readonly 'l location': state.l_location
+                            readonly 'l id': state.l_id
                         }
                         
                     }
                     
-                    export type state = 
-                        | readonly ['dictionary', state.dictionary]
-                        | readonly ['group', state.group]
-                        | readonly ['list', state.list]
-                        | readonly ['optional', state.optional]
-                        | readonly ['state', state.state]
+                    export type l_state = 
+                        | readonly ['dictionary', l_state.dictionary]
+                        | readonly ['group', l_state.group]
+                        | readonly ['list', l_state.list]
+                        | readonly ['optional', l_state.optional]
+                        | readonly ['state', l_state.state]
                     
                 }
                 
-                export type item = {
-                    readonly 'location': item.location
-                    readonly 'state': item.state
+                export type l_item = {
+                    readonly 'l location': l_item.l_location
+                    readonly 'l state': l_item.l_state
                 }
                 
             }
             
             export type L = {
-                readonly 'location': L.location
-                readonly 'item': L.item
+                readonly 'l location': L.l_location
+                readonly 'l item': L.l_item
             }
             
         }
         
-        export type list = _pi.List<list.L>
+        export type l_list = _pi.List<l_list.L>
         
     }
     
     export type tail = {
-        readonly 'location': tail.location
-        readonly 'list': tail.list
+        readonly 'l location': tail.l_location
+        readonly 'l list': tail.l_list
     }
     
     export type resulting_node = null
@@ -1118,15 +1118,15 @@ export namespace Signature_Parameters_ {
     
     export namespace values {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace dictionary {
+        export namespace l_dictionary {
             
             export namespace D {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace entry {
+                export namespace l_entry {
                     
                     export type data_type = Type_Reference_
                     
@@ -1134,40 +1134,40 @@ export namespace Signature_Parameters_ {
                     
                 }
                 
-                export type entry = {
-                    readonly 'data type': entry.data_type
-                    readonly 'presence': entry.presence
+                export type l_entry = {
+                    readonly 'data type': l_entry.data_type
+                    readonly 'presence': l_entry.presence
                 }
                 
             }
             
             export type D = {
-                readonly 'location': D.location
-                readonly 'entry': D.entry
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
             }
             
         }
         
-        export type dictionary = _pi.Dictionary<dictionary.D>
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
         
     }
     
     export type values = {
-        readonly 'location': values.location
-        readonly 'dictionary': values.dictionary
+        readonly 'l location': values.l_location
+        readonly 'l dictionary': values.l_dictionary
     }
     
     export namespace lookups {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace dictionary {
+        export namespace l_dictionary {
             
             export namespace D {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace entry {
+                export namespace l_entry {
                     
                     export type referent = Type_Reference_
                     
@@ -1175,9 +1175,9 @@ export namespace Signature_Parameters_ {
                     
                     export namespace type_ {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export namespace state {
+                        export namespace l_state {
                             
                             export type cyclic = null
                             
@@ -1187,45 +1187,45 @@ export namespace Signature_Parameters_ {
                             
                         }
                         
-                        export type state = 
-                            | readonly ['cyclic', state.cyclic]
-                            | readonly ['acyclic', state.acyclic]
-                            | readonly ['stack', state.stack]
+                        export type l_state = 
+                            | readonly ['cyclic', l_state.cyclic]
+                            | readonly ['acyclic', l_state.acyclic]
+                            | readonly ['stack', l_state.stack]
                         
                     }
                     
                     export type type_ = {
-                        readonly 'location': type_.location
-                        readonly 'state': type_.state
+                        readonly 'l location': type_.l_location
+                        readonly 'l state': type_.l_state
                     }
                     
                     export type presence = Presence_
                     
                 }
                 
-                export type entry = {
-                    readonly 'referent': entry.referent
-                    readonly 'dictionary': entry.dictionary
-                    readonly 'type': entry.type_
-                    readonly 'presence': entry.presence
+                export type l_entry = {
+                    readonly 'referent': l_entry.referent
+                    readonly 'dictionary': l_entry.dictionary
+                    readonly 'type': l_entry.type_
+                    readonly 'presence': l_entry.presence
                 }
                 
             }
             
             export type D = {
-                readonly 'location': D.location
-                readonly 'entry': D.entry
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
             }
             
         }
         
-        export type dictionary = _pi.Dictionary<dictionary.D>
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
         
     }
     
     export type lookups = {
-        readonly 'location': lookups.location
-        readonly 'dictionary': lookups.dictionary
+        readonly 'l location': lookups.l_location
+        readonly 'l dictionary': lookups.l_dictionary
     }
     
 }
@@ -1241,36 +1241,36 @@ export namespace Signature_ {
     
     export namespace parameters {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export type local = Signature_Parameters_
             
             export namespace same_as {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type same_as = {
-                readonly 'location': same_as.location
-                readonly 'id': same_as.id
+                readonly 'l location': same_as.l_location
+                readonly 'l id': same_as.l_id
             }
             
         }
         
-        export type state = 
-            | readonly ['local', state.local]
-            | readonly ['same as', state.same_as]
+        export type l_state = 
+            | readonly ['local', l_state.local]
+            | readonly ['same as', l_state.same_as]
         
     }
     
     export type parameters = {
-        readonly 'location': parameters.location
-        readonly 'state': parameters.state
+        readonly 'l location': parameters.l_location
+        readonly 'l state': parameters.l_state
     }
     
     export type resolved_parameters = null
@@ -1287,33 +1287,33 @@ export namespace Relative_Value_Selection_ {
     
     export namespace path {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace list {
+        export namespace l_list {
             
             export namespace L {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace item {
+                export namespace l_item {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export namespace state {
+                    export namespace l_state {
                         
                         export type component = null
                         
                         export namespace group {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type group = {
-                            readonly 'location': group.location
-                            readonly 'id': group.id
+                            readonly 'l location': group.l_location
+                            readonly 'l id': group.l_id
                         }
                         
                         export namespace reference {
@@ -1328,34 +1328,34 @@ export namespace Relative_Value_Selection_ {
                         
                     }
                     
-                    export type state = 
-                        | readonly ['component', state.component]
-                        | readonly ['group', state.group]
-                        | readonly ['reference', state.reference]
+                    export type l_state = 
+                        | readonly ['component', l_state.component]
+                        | readonly ['group', l_state.group]
+                        | readonly ['reference', l_state.reference]
                     
                 }
                 
-                export type item = {
-                    readonly 'location': item.location
-                    readonly 'state': item.state
+                export type l_item = {
+                    readonly 'l location': l_item.l_location
+                    readonly 'l state': l_item.l_state
                 }
                 
             }
             
             export type L = {
-                readonly 'location': L.location
-                readonly 'item': L.item
+                readonly 'l location': L.l_location
+                readonly 'l item': L.l_item
             }
             
         }
         
-        export type list = _pi.List<list.L>
+        export type l_list = _pi.List<l_list.L>
         
     }
     
     export type path = {
-        readonly 'location': path.location
-        readonly 'list': path.list
+        readonly 'l location': path.l_location
+        readonly 'l list': path.l_list
     }
     
     export type resulting_node = null
@@ -1371,9 +1371,9 @@ export namespace Lookup_Selection_ {
     
     export namespace type_ {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export namespace dictionary {
                 
@@ -1390,15 +1390,15 @@ export namespace Lookup_Selection_ {
             
             export namespace parameter {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type parameter = {
-                readonly 'location': parameter.location
-                readonly 'id': parameter.id
+                readonly 'l location': parameter.l_location
+                readonly 'l id': parameter.l_id
             }
             
             export type not_circular_dependent_siblings = null
@@ -1407,17 +1407,17 @@ export namespace Lookup_Selection_ {
             
         }
         
-        export type state = 
-            | readonly ['dictionary', state.dictionary]
-            | readonly ['parameter', state.parameter]
-            | readonly ['not circular dependent siblings', state.not_circular_dependent_siblings]
-            | readonly ['possibly circular dependent siblings', state.possibly_circular_dependent_siblings]
+        export type l_state = 
+            | readonly ['dictionary', l_state.dictionary]
+            | readonly ['parameter', l_state.parameter]
+            | readonly ['not circular dependent siblings', l_state.not_circular_dependent_siblings]
+            | readonly ['possibly circular dependent siblings', l_state.possibly_circular_dependent_siblings]
         
     }
     
     export type type_ = {
-        readonly 'location': type_.location
-        readonly 'state': type_.state
+        readonly 'l location': type_.l_location
+        readonly 'l state': type_.l_state
     }
     
     export type resulting_dictionary = null
@@ -1435,9 +1435,9 @@ export namespace Constraint_ {
     
     export namespace type_ {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export namespace state {
                 
@@ -1445,15 +1445,15 @@ export namespace Constraint_ {
                 
                 export namespace option {
                     
-                    export type location = i__location.Relative_Location
+                    export type l_location = i__location.Relative_Location
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type option = {
-                    readonly 'location': option.location
-                    readonly 'id': option.id
+                    readonly 'l location': option.l_location
+                    readonly 'l id': option.l_id
                 }
                 
             }
@@ -1475,15 +1475,15 @@ export namespace Constraint_ {
             
         }
         
-        export type state = 
-            | readonly ['state', state.state]
-            | readonly ['optional value', state.optional_value]
+        export type l_state = 
+            | readonly ['state', l_state.state]
+            | readonly ['optional value', l_state.optional_value]
         
     }
     
     export type type_ = {
-        readonly 'location': type_.location
-        readonly 'state': type_.state
+        readonly 'l location': type_.l_location
+        readonly 'l state': type_.l_state
     }
     
 }
@@ -1495,19 +1495,19 @@ export type Constraint_ = {
 
 export namespace Option_Constraints_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace entry {
+            export namespace l_entry {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export namespace state {
                         
@@ -1517,15 +1517,15 @@ export namespace Option_Constraints_ {
                         
                         export namespace option {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type option = {
-                            readonly 'location': option.location
-                            readonly 'id': option.id
+                            readonly 'l location': option.l_location
+                            readonly 'l id': option.l_id
                         }
                         
                     }
@@ -1540,85 +1540,85 @@ export namespace Option_Constraints_ {
                     
                 }
                 
-                export type state = 
-                    | readonly ['state', state.state]
-                    | readonly ['assert is set', state.assert_is_set]
+                export type l_state = 
+                    | readonly ['state', l_state.state]
+                    | readonly ['assert is set', l_state.assert_is_set]
                 
             }
             
-            export type entry = {
-                readonly 'location': entry.location
-                readonly 'state': entry.state
+            export type l_entry = {
+                readonly 'l location': l_entry.l_location
+                readonly 'l state': l_entry.l_state
             }
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Option_Constraints_ = {
-    readonly 'location': Option_Constraints_.location
-    readonly 'dictionary': Option_Constraints_.dictionary
+    readonly 'l location': Option_Constraints_.l_location
+    readonly 'l dictionary': Option_Constraints_.l_dictionary
 }
 
 export namespace Property_Constraints_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export type entry = Property_Constraint_
+            export type l_entry = Property_Constraint_
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Property_Constraints_ = {
-    readonly 'location': Property_Constraints_.location
-    readonly 'dictionary': Property_Constraints_.dictionary
+    readonly 'l location': Property_Constraints_.l_location
+    readonly 'l dictionary': Property_Constraints_.l_dictionary
 }
 
 export namespace Reference_To_Property_Constraint_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export type id = string
+    export type l_id = string
     
 }
 
 export type Reference_To_Property_Constraint_ = {
-    readonly 'location': Reference_To_Property_Constraint_.location
-    readonly 'id': Reference_To_Property_Constraint_.id
+    readonly 'l location': Reference_To_Property_Constraint_.l_location
+    readonly 'l id': Reference_To_Property_Constraint_.l_id
 }
 
 export namespace Property_Constraint_ {
     
     export namespace start {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export type property = null
             
@@ -1626,15 +1626,15 @@ export namespace Property_Constraint_ {
             
         }
         
-        export type state = 
-            | readonly ['property', state.property]
-            | readonly ['sibling', state.sibling]
+        export type l_state = 
+            | readonly ['property', l_state.property]
+            | readonly ['sibling', l_state.sibling]
         
     }
     
     export type start = {
-        readonly 'location': start.location
-        readonly 'state': start.state
+        readonly 'l location': start.l_location
+        readonly 'l state': start.l_state
     }
     
     export type constraint = Constraint_
@@ -1648,9 +1648,9 @@ export type Property_Constraint_ = {
 
 export namespace Optional_Value_Initialization_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export type not_set = null
         
@@ -1660,29 +1660,29 @@ export namespace Optional_Value_Initialization_ {
         
     }
     
-    export type state = 
-        | readonly ['not set', state.not_set]
-        | readonly ['set', state.set_]
-        | readonly ['selection', state.selection]
+    export type l_state = 
+        | readonly ['not set', l_state.not_set]
+        | readonly ['set', l_state.set_]
+        | readonly ['selection', l_state.selection]
     
 }
 
 export type Optional_Value_Initialization_ = {
-    readonly 'location': Optional_Value_Initialization_.location
-    readonly 'state': Optional_Value_Initialization_.state
+    readonly 'l location': Optional_Value_Initialization_.l_location
+    readonly 'l state': Optional_Value_Initialization_.l_state
 }
 
 export namespace Node_Resolver_Group_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace dictionary {
+    export namespace l_dictionary {
         
         export namespace D {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace entry {
+            export namespace l_entry {
                 
                 export type definition = null
                 
@@ -1690,27 +1690,27 @@ export namespace Node_Resolver_Group_ {
                 
             }
             
-            export type entry = {
-                readonly 'definition': entry.definition
-                readonly 'resolver': entry.resolver
+            export type l_entry = {
+                readonly 'definition': l_entry.definition
+                readonly 'resolver': l_entry.resolver
             }
             
         }
         
         export type D = {
-            readonly 'location': D.location
-            readonly 'entry': D.entry
+            readonly 'l location': D.l_location
+            readonly 'l entry': D.l_entry
         }
         
     }
     
-    export type dictionary = _pi.Dictionary<dictionary.D>
+    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
     
 }
 
 export type Node_Resolver_Group_ = {
-    readonly 'location': Node_Resolver_Group_.location
-    readonly 'dictionary': Node_Resolver_Group_.dictionary
+    readonly 'l location': Node_Resolver_Group_.l_location
+    readonly 'l dictionary': Node_Resolver_Group_.l_dictionary
 }
 
 export type Node_Resolver_List_Result_ = Type_Reference_
@@ -1733,9 +1733,9 @@ export type Benchmark_ = {
 
 export namespace Node_Resolver_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export type boolean_ = null
         
@@ -1743,36 +1743,36 @@ export namespace Node_Resolver_ {
             
             export namespace location {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export namespace external {
                         
                         export namespace import_ {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type import_ = {
-                            readonly 'location': import_.location
-                            readonly 'id': import_.id
+                            readonly 'l location': import_.l_location
+                            readonly 'l id': import_.l_id
                         }
                         
                         export namespace type_ {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type type_ = {
-                            readonly 'location': type_.location
-                            readonly 'id': type_.id
+                            readonly 'l location': type_.l_location
+                            readonly 'l id': type_.l_id
                         }
                         
                     }
@@ -1784,28 +1784,28 @@ export namespace Node_Resolver_ {
                     
                     export namespace internal {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type internal = {
-                        readonly 'location': internal.location
-                        readonly 'id': internal.id
+                        readonly 'l location': internal.l_location
+                        readonly 'l id': internal.l_id
                     }
                     
                 }
                 
-                export type state = 
-                    | readonly ['external', state.external]
-                    | readonly ['internal', state.internal]
+                export type l_state = 
+                    | readonly ['external', l_state.external]
+                    | readonly ['internal', l_state.internal]
                 
             }
             
             export type location = {
-                readonly 'location': location.location
-                readonly 'state': location.state
+                readonly 'l location': location.l_location
+                readonly 'l state': location.l_state
             }
             
             export type signature = null
@@ -1818,19 +1818,19 @@ export namespace Node_Resolver_ {
                         
                         export namespace O {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export namespace dictionary {
+                            export namespace l_dictionary {
                                 
                                 export namespace D {
                                     
-                                    export type location = i__location.Relative_Location
+                                    export type l_location = i__location.Relative_Location
                                     
-                                    export namespace entry {
+                                    export namespace l_entry {
                                         
-                                        export type location = i__location.Relative_Location
+                                        export type l_location = i__location.Relative_Location
                                         
-                                        export namespace state {
+                                        export namespace l_state {
                                             
                                             export type optional = Optional_Value_Initialization_
                                             
@@ -1838,47 +1838,47 @@ export namespace Node_Resolver_ {
                                             
                                             export namespace parameter {
                                                 
-                                                export type location = i__location.Relative_Location
+                                                export type l_location = i__location.Relative_Location
                                                 
-                                                export type id = string
+                                                export type l_id = string
                                                 
                                             }
                                             
                                             export type parameter = {
-                                                readonly 'location': parameter.location
-                                                readonly 'id': parameter.id
+                                                readonly 'l location': parameter.l_location
+                                                readonly 'l id': parameter.l_id
                                             }
                                             
                                         }
                                         
-                                        export type state = 
-                                            | readonly ['optional', state.optional]
-                                            | readonly ['required', state.required]
-                                            | readonly ['parameter', state.parameter]
+                                        export type l_state = 
+                                            | readonly ['optional', l_state.optional]
+                                            | readonly ['required', l_state.required]
+                                            | readonly ['parameter', l_state.parameter]
                                         
                                     }
                                     
-                                    export type entry = {
-                                        readonly 'location': entry.location
-                                        readonly 'state': entry.state
+                                    export type l_entry = {
+                                        readonly 'l location': l_entry.l_location
+                                        readonly 'l state': l_entry.l_state
                                     }
                                     
                                 }
                                 
                                 export type D = {
-                                    readonly 'location': D.location
-                                    readonly 'entry': D.entry
+                                    readonly 'l location': D.l_location
+                                    readonly 'l entry': D.l_entry
                                 }
                                 
                             }
                             
-                            export type dictionary = _pi.Dictionary<dictionary.D>
+                            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
                             
                         }
                         
                         export type O = {
-                            readonly 'location': O.location
-                            readonly 'dictionary': O.dictionary
+                            readonly 'l location': O.l_location
+                            readonly 'l dictionary': O.l_dictionary
                         }
                         
                     }
@@ -1889,19 +1889,19 @@ export namespace Node_Resolver_ {
                         
                         export namespace O {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export namespace dictionary {
+                            export namespace l_dictionary {
                                 
                                 export namespace D {
                                     
-                                    export type location = i__location.Relative_Location
+                                    export type l_location = i__location.Relative_Location
                                     
-                                    export namespace entry {
+                                    export namespace l_entry {
                                         
-                                        export type location = i__location.Relative_Location
+                                        export type l_location = i__location.Relative_Location
                                         
-                                        export namespace state {
+                                        export namespace l_state {
                                             
                                             export type empty_stack = null
                                             
@@ -1924,35 +1924,35 @@ export namespace Node_Resolver_ {
                                             
                                         }
                                         
-                                        export type state = 
-                                            | readonly ['empty stack', state.empty_stack]
-                                            | readonly ['not set', state.not_set]
-                                            | readonly ['selection', state.selection]
-                                            | readonly ['stack', state.stack]
+                                        export type l_state = 
+                                            | readonly ['empty stack', l_state.empty_stack]
+                                            | readonly ['not set', l_state.not_set]
+                                            | readonly ['selection', l_state.selection]
+                                            | readonly ['stack', l_state.stack]
                                         
                                     }
                                     
-                                    export type entry = {
-                                        readonly 'location': entry.location
-                                        readonly 'state': entry.state
+                                    export type l_entry = {
+                                        readonly 'l location': l_entry.l_location
+                                        readonly 'l state': l_entry.l_state
                                     }
                                     
                                 }
                                 
                                 export type D = {
-                                    readonly 'location': D.location
-                                    readonly 'entry': D.entry
+                                    readonly 'l location': D.l_location
+                                    readonly 'l entry': D.l_entry
                                 }
                                 
                             }
                             
-                            export type dictionary = _pi.Dictionary<dictionary.D>
+                            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
                             
                         }
                         
                         export type O = {
-                            readonly 'location': O.location
-                            readonly 'dictionary': O.dictionary
+                            readonly 'l location': O.l_location
+                            readonly 'l dictionary': O.l_dictionary
                         }
                         
                     }
@@ -2050,9 +2050,9 @@ export namespace Node_Resolver_ {
             
             export namespace type_ {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export namespace derived {
                         
@@ -2082,15 +2082,15 @@ export namespace Node_Resolver_ {
                     
                 }
                 
-                export type state = 
-                    | readonly ['derived', state.derived]
-                    | readonly ['selected', state.selected]
+                export type l_state = 
+                    | readonly ['derived', l_state.derived]
+                    | readonly ['selected', l_state.selected]
                 
             }
             
             export type type_ = {
-                readonly 'location': type_.location
-                readonly 'state': type_.state
+                readonly 'l location': type_.l_location
+                readonly 'l state': type_.l_state
             }
             
         }
@@ -2106,15 +2106,15 @@ export namespace Node_Resolver_ {
             
             export namespace states {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace dictionary {
+                export namespace l_dictionary {
                     
                     export namespace D {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export namespace entry {
+                        export namespace l_entry {
                             
                             export type constraints = Option_Constraints_
                             
@@ -2122,27 +2122,27 @@ export namespace Node_Resolver_ {
                             
                         }
                         
-                        export type entry = {
-                            readonly 'constraints': entry.constraints
-                            readonly 'resolver': entry.resolver
+                        export type l_entry = {
+                            readonly 'constraints': l_entry.constraints
+                            readonly 'resolver': l_entry.resolver
                         }
                         
                     }
                     
                     export type D = {
-                        readonly 'location': D.location
-                        readonly 'entry': D.entry
+                        readonly 'l location': D.l_location
+                        readonly 'l entry': D.l_entry
                     }
                     
                 }
                 
-                export type dictionary = _pi.Dictionary<dictionary.D>
+                export type l_dictionary = _pi.Dictionary<l_dictionary.D>
                 
             }
             
             export type states = {
-                readonly 'location': states.location
-                readonly 'dictionary': states.dictionary
+                readonly 'l location': states.l_location
+                readonly 'l dictionary': states.l_dictionary
             }
             
         }
@@ -2156,71 +2156,71 @@ export namespace Node_Resolver_ {
         
     }
     
-    export type state = 
-        | readonly ['boolean', state.boolean_]
-        | readonly ['component', state.component]
-        | readonly ['dictionary', state.dictionary]
-        | readonly ['group', state.group]
-        | readonly ['list', state.list]
-        | readonly ['nothing', state.nothing]
-        | readonly ['number', state.number_]
-        | readonly ['optional', state.optional]
-        | readonly ['reference', state.reference]
-        | readonly ['state', state.state]
-        | readonly ['text', state.text]
+    export type l_state = 
+        | readonly ['boolean', l_state.boolean_]
+        | readonly ['component', l_state.component]
+        | readonly ['dictionary', l_state.dictionary]
+        | readonly ['group', l_state.group]
+        | readonly ['list', l_state.list]
+        | readonly ['nothing', l_state.nothing]
+        | readonly ['number', l_state.number_]
+        | readonly ['optional', l_state.optional]
+        | readonly ['reference', l_state.reference]
+        | readonly ['state', l_state.state]
+        | readonly ['text', l_state.text]
     
 }
 
 export type Node_Resolver_ = {
-    readonly 'location': Node_Resolver_.location
-    readonly 'state': Node_Resolver_.state
+    readonly 'l location': Node_Resolver_.l_location
+    readonly 'l state': Node_Resolver_.l_state
 }
 
 export namespace Guaranteed_Value_Selection_ {
     
     export namespace start {
         
-        export type location = i__location.Relative_Location
+        export type l_location = i__location.Relative_Location
         
-        export namespace state {
+        export namespace l_state {
             
             export namespace sibling {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type sibling = {
-                readonly 'location': sibling.location
-                readonly 'id': sibling.id
+                readonly 'l location': sibling.l_location
+                readonly 'l id': sibling.l_id
             }
             
             export namespace parent_sibling {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type parent_sibling = {
-                readonly 'location': parent_sibling.location
-                readonly 'id': parent_sibling.id
+                readonly 'l location': parent_sibling.l_location
+                readonly 'l id': parent_sibling.l_id
             }
             
             export namespace option_constraint {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type option_constraint = {
-                readonly 'location': option_constraint.location
-                readonly 'id': option_constraint.id
+                readonly 'l location': option_constraint.l_location
+                readonly 'l id': option_constraint.l_id
             }
             
             export type list_cursor = null
@@ -2229,36 +2229,36 @@ export namespace Guaranteed_Value_Selection_ {
             
             export namespace constraint {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export namespace component {
                         
                         export namespace property {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type property = {
-                            readonly 'location': property.location
-                            readonly 'id': property.id
+                            readonly 'l location': property.l_location
+                            readonly 'l id': property.l_id
                         }
                         
                         export namespace constraint {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type constraint = {
-                            readonly 'location': constraint.location
-                            readonly 'id': constraint.id
+                            readonly 'l location': constraint.l_location
+                            readonly 'l id': constraint.l_id
                         }
                         
                     }
@@ -2272,28 +2272,28 @@ export namespace Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type property = {
-                            readonly 'location': property.location
-                            readonly 'id': property.id
+                            readonly 'l location': property.l_location
+                            readonly 'l id': property.l_id
                         }
                         
                         export namespace constraint {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type constraint = {
-                            readonly 'location': constraint.location
-                            readonly 'id': constraint.id
+                            readonly 'l location': constraint.l_location
+                            readonly 'l id': constraint.l_id
                         }
                         
                     }
@@ -2305,49 +2305,49 @@ export namespace Guaranteed_Value_Selection_ {
                     
                 }
                 
-                export type state = 
-                    | readonly ['component', state.component]
-                    | readonly ['reference', state.reference]
+                export type l_state = 
+                    | readonly ['component', l_state.component]
+                    | readonly ['reference', l_state.reference]
                 
             }
             
             export type constraint = {
-                readonly 'location': constraint.location
-                readonly 'state': constraint.state
+                readonly 'l location': constraint.l_location
+                readonly 'l state': constraint.l_state
             }
             
             export namespace parameter {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type parameter = {
-                readonly 'location': parameter.location
-                readonly 'id': parameter.id
+                readonly 'l location': parameter.l_location
+                readonly 'l id': parameter.l_id
             }
             
             export namespace result {
                 
-                export type location = i__location.Relative_Location
+                export type l_location = i__location.Relative_Location
                 
-                export namespace state {
+                export namespace l_state {
                     
                     export namespace list {
                         
                         export namespace property {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type property = {
-                            readonly 'location': property.location
-                            readonly 'id': property.id
+                            readonly 'l location': property.l_location
+                            readonly 'l id': property.l_id
                         }
                         
                         export type list_result = null
@@ -2363,15 +2363,15 @@ export namespace Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type property = {
-                            readonly 'location': property.location
-                            readonly 'id': property.id
+                            readonly 'l location': property.l_location
+                            readonly 'l id': property.l_id
                         }
                         
                         export type state = null
@@ -2390,15 +2390,15 @@ export namespace Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type location = i__location.Relative_Location
+                            export type l_location = i__location.Relative_Location
                             
-                            export type id = string
+                            export type l_id = string
                             
                         }
                         
                         export type property = {
-                            readonly 'location': property.location
-                            readonly 'id': property.id
+                            readonly 'l location': property.l_location
+                            readonly 'l id': property.l_id
                         }
                         
                         export type optional_value = null
@@ -2415,35 +2415,35 @@ export namespace Guaranteed_Value_Selection_ {
                     
                 }
                 
-                export type state = 
-                    | readonly ['list', state.list]
-                    | readonly ['state', state.state]
-                    | readonly ['optional value', state.optional_value]
+                export type l_state = 
+                    | readonly ['list', l_state.list]
+                    | readonly ['state', l_state.state]
+                    | readonly ['optional value', l_state.optional_value]
                 
             }
             
             export type result = {
-                readonly 'location': result.location
-                readonly 'state': result.state
+                readonly 'l location': result.l_location
+                readonly 'l state': result.l_state
             }
             
         }
         
-        export type state = 
-            | readonly ['sibling', state.sibling]
-            | readonly ['parent sibling', state.parent_sibling]
-            | readonly ['option constraint', state.option_constraint]
-            | readonly ['list cursor', state.list_cursor]
-            | readonly ['linked entry', state.linked_entry]
-            | readonly ['constraint', state.constraint]
-            | readonly ['parameter', state.parameter]
-            | readonly ['result', state.result]
+        export type l_state = 
+            | readonly ['sibling', l_state.sibling]
+            | readonly ['parent sibling', l_state.parent_sibling]
+            | readonly ['option constraint', l_state.option_constraint]
+            | readonly ['list cursor', l_state.list_cursor]
+            | readonly ['linked entry', l_state.linked_entry]
+            | readonly ['constraint', l_state.constraint]
+            | readonly ['parameter', l_state.parameter]
+            | readonly ['result', l_state.result]
         
     }
     
     export type start = {
-        readonly 'location': start.location
-        readonly 'state': start.state
+        readonly 'l location': start.l_location
+        readonly 'l state': start.l_state
     }
     
     export type tail = Relative_Value_Selection_
@@ -2460,42 +2460,42 @@ export type Guaranteed_Value_Selection_ = {
 
 export namespace Possible_Value_Selection_ {
     
-    export type location = i__location.Relative_Location
+    export type l_location = i__location.Relative_Location
     
-    export namespace state {
+    export namespace l_state {
         
         export namespace parameter {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type parameter = {
-            readonly 'location': parameter.location
-            readonly 'id': parameter.id
+            readonly 'l location': parameter.l_location
+            readonly 'l id': parameter.l_id
         }
         
         export namespace result {
             
-            export type location = i__location.Relative_Location
+            export type l_location = i__location.Relative_Location
             
-            export namespace state {
+            export namespace l_state {
                 
                 export namespace state {
                     
                     export namespace property {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type property = {
-                        readonly 'location': property.location
-                        readonly 'id': property.id
+                        readonly 'l location': property.l_location
+                        readonly 'l id': property.l_id
                     }
                     
                     export type state = null
@@ -2514,15 +2514,15 @@ export namespace Possible_Value_Selection_ {
                     
                     export namespace property {
                         
-                        export type location = i__location.Relative_Location
+                        export type l_location = i__location.Relative_Location
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type property = {
-                        readonly 'location': property.location
-                        readonly 'id': property.id
+                        readonly 'l location': property.l_location
+                        readonly 'l id': property.l_id
                     }
                     
                     export type optional_value = null
@@ -2539,28 +2539,28 @@ export namespace Possible_Value_Selection_ {
                 
             }
             
-            export type state = 
-                | readonly ['state', state.state]
-                | readonly ['optional value', state.optional_value]
+            export type l_state = 
+                | readonly ['state', l_state.state]
+                | readonly ['optional value', l_state.optional_value]
             
         }
         
         export type result = {
-            readonly 'location': result.location
-            readonly 'state': result.state
+            readonly 'l location': result.l_location
+            readonly 'l state': result.l_state
         }
         
     }
     
-    export type state = 
-        | readonly ['parameter', state.parameter]
-        | readonly ['result', state.result]
+    export type l_state = 
+        | readonly ['parameter', l_state.parameter]
+        | readonly ['result', l_state.result]
     
 }
 
 export type Possible_Value_Selection_ = {
-    readonly 'location': Possible_Value_Selection_.location
-    readonly 'state': Possible_Value_Selection_.state
+    readonly 'l location': Possible_Value_Selection_.l_location
+    readonly 'l state': Possible_Value_Selection_.l_state
 }
 
 export { 

@@ -47,10 +47,10 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['multi line', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['multi line', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -62,10 +62,10 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['single line', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['single line', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -115,10 +115,10 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['approximation', _p_cc(
+                                        'l state': ['approximation', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -153,10 +153,10 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['exact', _p_cc(
+                                        'l state': ['exact', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -206,16 +206,16 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_cc(
                                                         ),
                                                         ($) => _p.decide.text(
                                                             $['option']['value'],
-                                                            ($t): t_out.Number_Type.precision.state.exact.type_ => {
+                                                            ($t): t_out.Number_Type.precision.l_state.exact.type_ => {
                                                                 switch ($t) {
                                                                     case 'integer':
                                                                         return _p_cc(
                                                                             $['value'],
                                                                             ($) => ({
-                                                                                'location': v_parse_tree_to_location.Value(
+                                                                                'l location': v_parse_tree_to_location.Value(
                                                                                     $
                                                                                 )['start']['relative'],
-                                                                                'state': ['integer', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                'l state': ['integer', v_unmarshalled_from_parse_tree.Nothing(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         ['expected a nothing', null]
@@ -227,10 +227,10 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_cc(
                                                                         return _p_cc(
                                                                             $['value'],
                                                                             ($) => ({
-                                                                                'location': v_parse_tree_to_location.Value(
+                                                                                'l location': v_parse_tree_to_location.Value(
                                                                                     $
                                                                                 )['start']['relative'],
-                                                                                'state': ['natural', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                'l state': ['natural', v_unmarshalled_from_parse_tree.Nothing(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         ['expected a nothing', null]
@@ -242,10 +242,10 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_cc(
                                                                         return _p_cc(
                                                                             $['value'],
                                                                             ($) => ({
-                                                                                'location': v_parse_tree_to_location.Value(
+                                                                                'l location': v_parse_tree_to_location.Value(
                                                                                     $
                                                                                 )['start']['relative'],
-                                                                                'state': ['positive natural', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                'l state': ['positive natural', v_unmarshalled_from_parse_tree.Nothing(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         ['expected a nothing', null]
@@ -308,10 +308,10 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['constrained', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['constrained', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -323,10 +323,10 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['unconstrained', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['unconstrained', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -351,20 +351,20 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                     $,
                     ($) => abort(
                         ['expected a dictionary', null]
                     )
                 ).__d_map(
                     ($, id) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'entry': Text_Type(
+                        'l entry': Text_Type(
                             $,
                             ($) => abort(
                                 $
@@ -382,20 +382,20 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                     $,
                     ($) => abort(
                         ['expected a dictionary', null]
                     )
                 ).__d_map(
                     ($, id) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'entry': Number_Type(
+                        'l entry': Number_Type(
                             $,
                             ($) => abort(
                                 $
@@ -434,20 +434,20 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
 )
 
 export const Types: t_signatures.Types = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': Type(
+            'l entry': Type(
                 $,
                 ($) => abort(
                     $
@@ -586,10 +586,10 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['constrained', Resolve_Logic(
+                                        'l state': ['constrained', Resolve_Logic(
                                             $,
                                             ($) => abort(
                                                 $
@@ -601,10 +601,10 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['unconstrained', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['unconstrained', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -639,10 +639,10 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['schema', Schema(
+                            'l state': ['schema', Schema(
                                 $,
                                 ($) => abort(
                                     $
@@ -654,10 +654,10 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['set', Schemas(
+                            'l state': ['set', Schemas(
                                 $,
                                 ($) => abort(
                                     $
@@ -704,20 +704,20 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort) =>
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'list': v_unmarshalled_from_parse_tree.List(
+                'l list': v_unmarshalled_from_parse_tree.List(
                     $,
                     ($) => abort(
                         ['expected a list', null]
                     )
                 ).__l_map(
                     ($) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'item': v_unmarshalled_from_parse_tree.Text(
+                        'l item': v_unmarshalled_from_parse_tree.Text(
                             $,
                             ($) => abort(
                                 ['expected a text', null]
@@ -745,20 +745,20 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort) =>
 )
 
 export const Schemas: t_signatures.Schemas = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': Schema_Tree(
+            'l entry': Schema_Tree(
                 $,
                 ($) => abort(
                     $
@@ -769,20 +769,20 @@ export const Schemas: t_signatures.Schemas = ($, abort) => ({
 })
 
 export const Imports: t_signatures.Imports = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': _p_cc(
+            'l entry': _p_cc(
                 v_unmarshalled_from_parse_tree.Group(
                     $,
                     ($) => abort(
@@ -798,10 +798,10 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
                             )
                         ),
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'id': v_unmarshalled_from_parse_tree.Text(
+                            'l id': v_unmarshalled_from_parse_tree.Text(
                                 $,
                                 ($) => abort(
                                     ['expected a text', null]
@@ -844,10 +844,10 @@ export const Presence: t_signatures.Presence = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['optional', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['optional', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -859,10 +859,10 @@ export const Presence: t_signatures.Presence = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['required', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['required', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -905,20 +905,20 @@ export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_cc(
 )
 
 export const Signatures: t_signatures.Signatures = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': Signature(
+            'l entry': Signature(
                 $,
                 ($) => abort(
                     $
@@ -929,20 +929,20 @@ export const Signatures: t_signatures.Signatures = ($, abort) => ({
 })
 
 export const Resolvers: t_signatures.Resolvers = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': _p_cc(
+            'l entry': _p_cc(
                 v_unmarshalled_from_parse_tree.Group(
                     $,
                     ($) => abort(
@@ -985,20 +985,20 @@ export const Resolvers: t_signatures.Resolvers = ($, abort) => ({
 })
 
 export const Group: t_signatures.Group = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': _p_cc(
+            'l entry': _p_cc(
                 v_unmarshalled_from_parse_tree.Group(
                     $,
                     ($) => abort(
@@ -1077,14 +1077,14 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['internal', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['internal', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -1097,10 +1097,10 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['external', _p_cc(
+                                        'l state': ['external', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -1116,10 +1116,10 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                                         )
                                                     ),
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -1135,10 +1135,10 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                                                         )
                                                     ),
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -1191,10 +1191,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -1206,10 +1206,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['component', _p_cc(
+                            'l state': ['component', _p_cc(
                                 v_unmarshalled_from_parse_tree.State(
                                     $,
                                     ($) => abort(
@@ -1218,16 +1218,16 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.state.component => {
+                                    ($t): t_out.Type_Node.l_state.component => {
                                         switch ($t) {
                                             case 'external':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['external', _p_cc(
+                                                        'l state': ['external', _p_cc(
                                                             v_unmarshalled_from_parse_tree.Group(
                                                                 $,
                                                                 ($) => abort(
@@ -1243,10 +1243,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                         )
                                                                     ),
                                                                     ($) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                             $,
                                                                             ($) => abort(
                                                                                 ['expected a text', null]
@@ -1262,10 +1262,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                         )
                                                                     ),
                                                                     ($) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                             $,
                                                                             ($) => abort(
                                                                                 ['expected a text', null]
@@ -1281,14 +1281,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal', {
-                                                            'location': v_parse_tree_to_location.Value(
+                                                        'l state': ['internal', {
+                                                            'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
-                                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
                                                                 ($) => abort(
                                                                     ['expected a text', null]
@@ -1301,14 +1301,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['internal cyclic', {
-                                                            'location': v_parse_tree_to_location.Value(
+                                                        'l state': ['internal cyclic', {
+                                                            'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
-                                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
                                                                 ($) => abort(
                                                                     ['expected a text', null]
@@ -1331,10 +1331,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['dictionary', Dictionary(
+                            'l state': ['dictionary', Dictionary(
                                 $,
                                 ($) => abort(
                                     $
@@ -1346,10 +1346,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['group', Group(
+                            'l state': ['group', Group(
                                 $,
                                 ($) => abort(
                                     $
@@ -1361,10 +1361,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['list', _p_cc(
+                            'l state': ['list', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -1415,10 +1415,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['nothing', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['nothing', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -1430,10 +1430,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['number', _p_cc(
+                            'l state': ['number', _p_cc(
                                 v_unmarshalled_from_parse_tree.State(
                                     $,
                                     ($) => abort(
@@ -1442,20 +1442,20 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.state.number_ => {
+                                    ($t): t_out.Type_Node.l_state.number_ => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['global', {
-                                                            'location': v_parse_tree_to_location.Value(
+                                                        'l state': ['global', {
+                                                            'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
-                                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
                                                                 ($) => abort(
                                                                     ['expected a text', null]
@@ -1468,10 +1468,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['local', Number_Type(
+                                                        'l state': ['local', Number_Type(
                                                             $,
                                                             ($) => abort(
                                                                 $
@@ -1493,10 +1493,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['optional', Type_Node(
+                            'l state': ['optional', Type_Node(
                                 $,
                                 ($) => abort(
                                     $
@@ -1508,10 +1508,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['reference', _p_cc(
+                            'l state': ['reference', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -1549,16 +1549,16 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Type_Node.state.reference.type_ => {
+                                                ($t): t_out.Type_Node.l_state.reference.type_ => {
                                                     switch ($t) {
                                                         case 'derived':
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['derived', v_unmarshalled_from_parse_tree.Nothing(
+                                                                    'l state': ['derived', v_unmarshalled_from_parse_tree.Nothing(
                                                                         $,
                                                                         ($) => abort(
                                                                             ['expected a nothing', null]
@@ -1570,10 +1570,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['selected', _p_cc(
+                                                                    'l state': ['selected', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -1611,16 +1611,16 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                                     ),
                                                                                     ($) => _p.decide.text(
                                                                                         $['option']['value'],
-                                                                                        ($t): t_out.Type_Node.state.reference.type_.state.selected.dependency => {
+                                                                                        ($t): t_out.Type_Node.l_state.reference.type_.l_state.selected.dependency => {
                                                                                             switch ($t) {
                                                                                                 case 'acyclic':
                                                                                                     return _p_cc(
                                                                                                         $['value'],
                                                                                                         ($) => ({
-                                                                                                            'location': v_parse_tree_to_location.Value(
+                                                                                                            'l location': v_parse_tree_to_location.Value(
                                                                                                                 $
                                                                                                             )['start']['relative'],
-                                                                                                            'state': ['acyclic', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                            'l state': ['acyclic', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                                 $,
                                                                                                                 ($) => abort(
                                                                                                                     ['expected a nothing', null]
@@ -1632,10 +1632,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                                                     return _p_cc(
                                                                                                         $['value'],
                                                                                                         ($) => ({
-                                                                                                            'location': v_parse_tree_to_location.Value(
+                                                                                                            'l location': v_parse_tree_to_location.Value(
                                                                                                                 $
                                                                                                             )['start']['relative'],
-                                                                                                            'state': ['cyclic', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                            'l state': ['cyclic', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                                 $,
                                                                                                                 ($) => abort(
                                                                                                                     ['expected a nothing', null]
@@ -1647,10 +1647,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                                                     return _p_cc(
                                                                                                         $['value'],
                                                                                                         ($) => ({
-                                                                                                            'location': v_parse_tree_to_location.Value(
+                                                                                                            'l location': v_parse_tree_to_location.Value(
                                                                                                                 $
                                                                                                             )['start']['relative'],
-                                                                                                            'state': ['stack', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                            'l state': ['stack', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                                 $,
                                                                                                                 ($) => abort(
                                                                                                                     ['expected a nothing', null]
@@ -1688,24 +1688,24 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['state', {
-                                'location': v_parse_tree_to_location.Value(
+                            'l state': ['state', {
+                                'l location': v_parse_tree_to_location.Value(
                                     $
                                 )['start']['relative'],
-                                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                                     $,
                                     ($) => abort(
                                         ['expected a dictionary', null]
                                     )
                                 ).__d_map(
                                     ($, id) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'entry': _p_cc(
+                                        'l entry': _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -1759,10 +1759,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['text', _p_cc(
+                            'l state': ['text', _p_cc(
                                 v_unmarshalled_from_parse_tree.State(
                                     $,
                                     ($) => abort(
@@ -1771,20 +1771,20 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.state.text => {
+                                    ($t): t_out.Type_Node.l_state.text => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['global', {
-                                                            'location': v_parse_tree_to_location.Value(
+                                                        'l state': ['global', {
+                                                            'l location': v_parse_tree_to_location.Value(
                                                                 $
                                                             )['start']['relative'],
-                                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                                 $,
                                                                 ($) => abort(
                                                                     ['expected a text', null]
@@ -1797,10 +1797,10 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['local', Text_Type(
+                                                        'l state': ['local', Text_Type(
                                                             $,
                                                             ($) => abort(
                                                                 $
@@ -1843,20 +1843,20 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'list': v_unmarshalled_from_parse_tree.List(
+                'l list': v_unmarshalled_from_parse_tree.List(
                     $,
                     ($) => abort(
                         ['expected a list', null]
                     )
                 ).__l_map(
                     ($) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'item': _p_cc(
+                        'l item': _p_cc(
                             v_unmarshalled_from_parse_tree.State(
                                 $,
                                 ($) => abort(
@@ -1865,16 +1865,16 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                             ),
                             ($) => _p.decide.text(
                                 $['option']['value'],
-                                ($t): t_out.Type_Node_Path.tail.list.L.item => {
+                                ($t): t_out.Type_Node_Path.tail.l_list.L.l_item => {
                                     switch ($t) {
                                         case 'dictionary':
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['dictionary', v_unmarshalled_from_parse_tree.Nothing(
+                                                    'l state': ['dictionary', v_unmarshalled_from_parse_tree.Nothing(
                                                         $,
                                                         ($) => abort(
                                                             ['expected a nothing', null]
@@ -1886,14 +1886,14 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['group', {
-                                                        'location': v_parse_tree_to_location.Value(
+                                                    'l state': ['group', {
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -1906,10 +1906,10 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['list', v_unmarshalled_from_parse_tree.Nothing(
+                                                    'l state': ['list', v_unmarshalled_from_parse_tree.Nothing(
                                                         $,
                                                         ($) => abort(
                                                             ['expected a nothing', null]
@@ -1921,10 +1921,10 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['optional', v_unmarshalled_from_parse_tree.Nothing(
+                                                    'l state': ['optional', v_unmarshalled_from_parse_tree.Nothing(
                                                         $,
                                                         ($) => abort(
                                                             ['expected a nothing', null]
@@ -1936,14 +1936,14 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['state', {
-                                                        'location': v_parse_tree_to_location.Value(
+                                                    'l state': ['state', {
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -2036,20 +2036,20 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                     $,
                     ($) => abort(
                         ['expected a dictionary', null]
                     )
                 ).__d_map(
                     ($, id) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'entry': _p_cc(
+                        'l entry': _p_cc(
                             v_unmarshalled_from_parse_tree.Group(
                                 $,
                                 ($) => abort(
@@ -2099,20 +2099,20 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                     $,
                     ($) => abort(
                         ['expected a dictionary', null]
                     )
                 ).__d_map(
                     ($, id) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'entry': _p_cc(
+                        'l entry': _p_cc(
                             v_unmarshalled_from_parse_tree.Group(
                                 $,
                                 ($) => abort(
@@ -2164,16 +2164,16 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                         ),
                                         ($) => _p.decide.text(
                                             $['option']['value'],
-                                            ($t): t_out.Signature_Parameters.lookups.dictionary.D.entry.type_ => {
+                                            ($t): t_out.Signature_Parameters.lookups.l_dictionary.D.l_entry.type_ => {
                                                 switch ($t) {
                                                     case 'cyclic':
                                                         return _p_cc(
                                                             $['value'],
                                                             ($) => ({
-                                                                'location': v_parse_tree_to_location.Value(
+                                                                'l location': v_parse_tree_to_location.Value(
                                                                     $
                                                                 )['start']['relative'],
-                                                                'state': ['cyclic', v_unmarshalled_from_parse_tree.Nothing(
+                                                                'l state': ['cyclic', v_unmarshalled_from_parse_tree.Nothing(
                                                                     $,
                                                                     ($) => abort(
                                                                         ['expected a nothing', null]
@@ -2185,10 +2185,10 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                                         return _p_cc(
                                                             $['value'],
                                                             ($) => ({
-                                                                'location': v_parse_tree_to_location.Value(
+                                                                'l location': v_parse_tree_to_location.Value(
                                                                     $
                                                                 )['start']['relative'],
-                                                                'state': ['acyclic', v_unmarshalled_from_parse_tree.Nothing(
+                                                                'l state': ['acyclic', v_unmarshalled_from_parse_tree.Nothing(
                                                                     $,
                                                                     ($) => abort(
                                                                         ['expected a nothing', null]
@@ -2200,10 +2200,10 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                                         return _p_cc(
                                                             $['value'],
                                                             ($) => ({
-                                                                'location': v_parse_tree_to_location.Value(
+                                                                'l location': v_parse_tree_to_location.Value(
                                                                     $
                                                                 )['start']['relative'],
-                                                                'state': ['stack', v_unmarshalled_from_parse_tree.Nothing(
+                                                                'l state': ['stack', v_unmarshalled_from_parse_tree.Nothing(
                                                                     $,
                                                                     ($) => abort(
                                                                         ['expected a nothing', null]
@@ -2287,10 +2287,10 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['local', Signature_Parameters(
+                                        'l state': ['local', Signature_Parameters(
                                             $,
                                             ($) => abort(
                                                 $
@@ -2302,14 +2302,14 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['same as', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['same as', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -2360,20 +2360,20 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                 )
             ),
             ($) => ({
-                'location': v_parse_tree_to_location.Value(
+                'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'list': v_unmarshalled_from_parse_tree.List(
+                'l list': v_unmarshalled_from_parse_tree.List(
                     $,
                     ($) => abort(
                         ['expected a list', null]
                     )
                 ).__l_map(
                     ($) => ({
-                        'location': v_parse_tree_to_location.Value(
+                        'l location': v_parse_tree_to_location.Value(
                             $
                         )['start']['relative'],
-                        'item': _p_cc(
+                        'l item': _p_cc(
                             v_unmarshalled_from_parse_tree.State(
                                 $,
                                 ($) => abort(
@@ -2382,16 +2382,16 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                             ),
                             ($) => _p.decide.text(
                                 $['option']['value'],
-                                ($t): t_out.Relative_Value_Selection.path.list.L.item => {
+                                ($t): t_out.Relative_Value_Selection.path.l_list.L.l_item => {
                                     switch ($t) {
                                         case 'component':
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['component', v_unmarshalled_from_parse_tree.Nothing(
+                                                    'l state': ['component', v_unmarshalled_from_parse_tree.Nothing(
                                                         $,
                                                         ($) => abort(
                                                             ['expected a nothing', null]
@@ -2403,14 +2403,14 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['group', {
-                                                        'location': v_parse_tree_to_location.Value(
+                                                    'l state': ['group', {
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -2423,10 +2423,10 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                             return _p_cc(
                                                 $['value'],
                                                 ($) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'state': ['reference', _p_cc(
+                                                    'l state': ['reference', _p_cc(
                                                         v_unmarshalled_from_parse_tree.Group(
                                                             $,
                                                             ($) => abort(
@@ -2511,10 +2511,10 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['dictionary', _p_cc(
+                                        'l state': ['dictionary', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -2558,14 +2558,14 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parameter', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['parameter', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -2578,10 +2578,10 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['not circular dependent siblings', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['not circular dependent siblings', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -2593,10 +2593,10 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['possibly circular dependent siblings', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['possibly circular dependent siblings', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -2674,10 +2674,10 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['state', _p_cc(
+                                        'l state': ['state', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -2707,10 +2707,10 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_cc(
                                                         )
                                                     ),
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -2726,10 +2726,10 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_cc(
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['optional value', _p_cc(
+                                        'l state': ['optional value', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -2768,20 +2768,20 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_cc(
 )
 
 export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': _p_cc(
+            'l entry': _p_cc(
                 v_unmarshalled_from_parse_tree.State(
                     $,
                     ($) => abort(
@@ -2790,16 +2790,16 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
                 ),
                 ($) => _p.decide.text(
                     $['option']['value'],
-                    ($t): t_out.Option_Constraints.dictionary.D.entry => {
+                    ($t): t_out.Option_Constraints.l_dictionary.D.l_entry => {
                         switch ($t) {
                             case 'state':
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['state', _p_cc(
+                                        'l state': ['state', _p_cc(
                                             v_unmarshalled_from_parse_tree.Group(
                                                 $,
                                                 ($) => abort(
@@ -2843,10 +2843,10 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
                                                         )
                                                     ),
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                             $,
                                                             ($) => abort(
                                                                 ['expected a text', null]
@@ -2862,10 +2862,10 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['assert is set', Possible_Value_Selection(
+                                        'l state': ['assert is set', Possible_Value_Selection(
                                             $,
                                             ($) => abort(
                                                 $
@@ -2886,20 +2886,20 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
 })
 
 export const Property_Constraints: t_signatures.Property_Constraints = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': Property_Constraint(
+            'l entry': Property_Constraint(
                 $,
                 ($) => abort(
                     $
@@ -2910,10 +2910,10 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
 })
 
 export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'id': v_unmarshalled_from_parse_tree.Text(
+    'l id': v_unmarshalled_from_parse_tree.Text(
         $,
         ($) => abort(
             ['expected a text', null]
@@ -2951,10 +2951,10 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort) 
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['property', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['property', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -2966,10 +2966,10 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort) 
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['sibling', Reference_To_Property_Constraint(
+                                        'l state': ['sibling', Reference_To_Property_Constraint(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3018,10 +3018,10 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['not set', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['not set', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -3033,10 +3033,10 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['set', Guaranteed_Value_Selection(
+                            'l state': ['set', Guaranteed_Value_Selection(
                                 $,
                                 ($) => abort(
                                     $
@@ -3048,10 +3048,10 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['selection', Possible_Value_Selection(
+                            'l state': ['selection', Possible_Value_Selection(
                                 $,
                                 ($) => abort(
                                     $
@@ -3069,20 +3069,20 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
 )
 
 export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort) => ({
-    'location': v_parse_tree_to_location.Value(
+    'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
-    'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+    'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
             ['expected a dictionary', null]
         )
     ).__d_map(
         ($, id) => ({
-            'location': v_parse_tree_to_location.Value(
+            'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'entry': _p_cc(
+            'l entry': _p_cc(
                 v_unmarshalled_from_parse_tree.Group(
                     $,
                     ($) => abort(
@@ -3204,10 +3204,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -3219,10 +3219,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['component', _p_cc(
+                            'l state': ['component', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -3246,16 +3246,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Node_Resolver.state.component.location => {
+                                                ($t): t_out.Node_Resolver.l_state.component.location => {
                                                     switch ($t) {
                                                         case 'external':
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['external', _p_cc(
+                                                                    'l state': ['external', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -3271,10 +3271,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -3290,10 +3290,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -3309,14 +3309,14 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['internal', {
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                    'l state': ['internal', {
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                             $,
                                                                             ($) => abort(
                                                                                 ['expected a text', null]
@@ -3383,20 +3383,20 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                             )
                                                         ).__o_map(
                                                             ($) => ({
-                                                                'location': v_parse_tree_to_location.Value(
+                                                                'l location': v_parse_tree_to_location.Value(
                                                                     $
                                                                 )['start']['relative'],
-                                                                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                                                                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                                                                     $,
                                                                     ($) => abort(
                                                                         ['expected a dictionary', null]
                                                                     )
                                                                 ).__d_map(
                                                                     ($, id) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'entry': _p_cc(
+                                                                        'l entry': _p_cc(
                                                                             v_unmarshalled_from_parse_tree.State(
                                                                                 $,
                                                                                 ($) => abort(
@@ -3405,16 +3405,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                             ),
                                                                             ($) => _p.decide.text(
                                                                                 $['option']['value'],
-                                                                                ($t): t_out.Node_Resolver.state.component.arguments_.O.values.O.dictionary.D.entry => {
+                                                                                ($t): t_out.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
                                                                                     switch ($t) {
                                                                                         case 'optional':
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['optional', Optional_Value_Initialization(
+                                                                                                    'l state': ['optional', Optional_Value_Initialization(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $
@@ -3426,10 +3426,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['required', Guaranteed_Value_Selection(
+                                                                                                    'l state': ['required', Guaranteed_Value_Selection(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $
@@ -3441,14 +3441,14 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['parameter', {
-                                                                                                        'location': v_parse_tree_to_location.Value(
+                                                                                                    'l state': ['parameter', {
+                                                                                                        'l location': v_parse_tree_to_location.Value(
                                                                                                             $
                                                                                                         )['start']['relative'],
-                                                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                                             $,
                                                                                                             ($) => abort(
                                                                                                                 ['expected a text', null]
@@ -3484,20 +3484,20 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                             )
                                                         ).__o_map(
                                                             ($) => ({
-                                                                'location': v_parse_tree_to_location.Value(
+                                                                'l location': v_parse_tree_to_location.Value(
                                                                     $
                                                                 )['start']['relative'],
-                                                                'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                                                                'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                                                                     $,
                                                                     ($) => abort(
                                                                         ['expected a dictionary', null]
                                                                     )
                                                                 ).__d_map(
                                                                     ($, id) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'entry': _p_cc(
+                                                                        'l entry': _p_cc(
                                                                             v_unmarshalled_from_parse_tree.State(
                                                                                 $,
                                                                                 ($) => abort(
@@ -3506,16 +3506,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                             ),
                                                                             ($) => _p.decide.text(
                                                                                 $['option']['value'],
-                                                                                ($t): t_out.Node_Resolver.state.component.arguments_.O.lookups.O.dictionary.D.entry => {
+                                                                                ($t): t_out.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
                                                                                     switch ($t) {
                                                                                         case 'empty stack':
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['empty stack', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                    'l state': ['empty stack', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             ['expected a nothing', null]
@@ -3527,10 +3527,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['not set', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                    'l state': ['not set', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             ['expected a nothing', null]
@@ -3542,10 +3542,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['selection', Lookup_Selection(
+                                                                                                    'l state': ['selection', Lookup_Selection(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $
@@ -3557,10 +3557,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                                             return _p_cc(
                                                                                                 $['value'],
                                                                                                 ($) => ({
-                                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                                         $
                                                                                                     )['start']['relative'],
-                                                                                                    'state': ['stack', _p_cc(
+                                                                                                    'l state': ['stack', _p_cc(
                                                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                                                             $,
                                                                                                             ($) => abort(
@@ -3639,10 +3639,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['dictionary', _p_cc(
+                            'l state': ['dictionary', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -3707,10 +3707,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['group', Node_Resolver_Group(
+                            'l state': ['group', Node_Resolver_Group(
                                 $,
                                 ($) => abort(
                                     $
@@ -3722,10 +3722,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['list', _p_cc(
+                            'l state': ['list', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -3790,10 +3790,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['nothing', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['nothing', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -3805,10 +3805,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['number', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['number', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -3820,10 +3820,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['optional', _p_cc(
+                            'l state': ['optional', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -3867,10 +3867,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['reference', _p_cc(
+                            'l state': ['reference', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -3908,16 +3908,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Node_Resolver.state.reference.type_ => {
+                                                ($t): t_out.Node_Resolver.l_state.reference.type_ => {
                                                     switch ($t) {
                                                         case 'derived':
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['derived', _p_cc(
+                                                                    'l state': ['derived', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -3947,10 +3947,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['selected', _p_cc(
+                                                                    'l state': ['selected', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4021,10 +4021,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['state', _p_cc(
+                            'l state': ['state', _p_cc(
                                 v_unmarshalled_from_parse_tree.Group(
                                     $,
                                     ($) => abort(
@@ -4054,20 +4054,20 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                             )
                                         ),
                                         ($) => ({
-                                            'location': v_parse_tree_to_location.Value(
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'dictionary': v_unmarshalled_from_parse_tree.Dictionary(
+                                            'l dictionary': v_unmarshalled_from_parse_tree.Dictionary(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a dictionary', null]
                                                 )
                                             ).__d_map(
                                                 ($, id) => ({
-                                                    'location': v_parse_tree_to_location.Value(
+                                                    'l location': v_parse_tree_to_location.Value(
                                                         $
                                                     )['start']['relative'],
-                                                    'entry': _p_cc(
+                                                    'l entry': _p_cc(
                                                         v_unmarshalled_from_parse_tree.Group(
                                                             $,
                                                             ($) => abort(
@@ -4117,10 +4117,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['text', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['text', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     ['expected a nothing', null]
@@ -4167,14 +4167,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['sibling', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['sibling', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -4187,14 +4187,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parent sibling', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['parent sibling', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -4207,14 +4207,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['option constraint', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['option constraint', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -4227,10 +4227,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['list cursor', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['list cursor', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -4242,10 +4242,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['linked entry', v_unmarshalled_from_parse_tree.Nothing(
+                                        'l state': ['linked entry', v_unmarshalled_from_parse_tree.Nothing(
                                             $,
                                             ($) => abort(
                                                 ['expected a nothing', null]
@@ -4257,10 +4257,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['constraint', _p_cc(
+                                        'l state': ['constraint', _p_cc(
                                             v_unmarshalled_from_parse_tree.State(
                                                 $,
                                                 ($) => abort(
@@ -4269,16 +4269,16 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Guaranteed_Value_Selection.start.state.constraint => {
+                                                ($t): t_out.Guaranteed_Value_Selection.start.l_state.constraint => {
                                                     switch ($t) {
                                                         case 'component':
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['component', _p_cc(
+                                                                    'l state': ['component', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4294,10 +4294,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4313,10 +4313,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4332,10 +4332,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['reference', _p_cc(
+                                                                    'l state': ['reference', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4351,10 +4351,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4370,10 +4370,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4399,14 +4399,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['parameter', {
-                                            'location': v_parse_tree_to_location.Value(
+                                        'l state': ['parameter', {
+                                            'l location': v_parse_tree_to_location.Value(
                                                 $
                                             )['start']['relative'],
-                                            'id': v_unmarshalled_from_parse_tree.Text(
+                                            'l id': v_unmarshalled_from_parse_tree.Text(
                                                 $,
                                                 ($) => abort(
                                                     ['expected a text', null]
@@ -4419,10 +4419,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                 return _p_cc(
                                     $['value'],
                                     ($) => ({
-                                        'location': v_parse_tree_to_location.Value(
+                                        'l location': v_parse_tree_to_location.Value(
                                             $
                                         )['start']['relative'],
-                                        'state': ['result', _p_cc(
+                                        'l state': ['result', _p_cc(
                                             v_unmarshalled_from_parse_tree.State(
                                                 $,
                                                 ($) => abort(
@@ -4431,16 +4431,16 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Guaranteed_Value_Selection.start.state.result => {
+                                                ($t): t_out.Guaranteed_Value_Selection.start.l_state.result => {
                                                     switch ($t) {
                                                         case 'list':
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['list', _p_cc(
+                                                                    'l state': ['list', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4456,10 +4456,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4489,10 +4489,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['state', _p_cc(
+                                                                    'l state': ['state', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4508,10 +4508,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4555,10 +4555,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             return _p_cc(
                                                                 $['value'],
                                                                 ($) => ({
-                                                                    'location': v_parse_tree_to_location.Value(
+                                                                    'l location': v_parse_tree_to_location.Value(
                                                                         $
                                                                     )['start']['relative'],
-                                                                    'state': ['optional value', _p_cc(
+                                                                    'l state': ['optional value', _p_cc(
                                                                         v_unmarshalled_from_parse_tree.Group(
                                                                             $,
                                                                             ($) => abort(
@@ -4574,10 +4574,10 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                     )
                                                                                 ),
                                                                                 ($) => ({
-                                                                                    'location': v_parse_tree_to_location.Value(
+                                                                                    'l location': v_parse_tree_to_location.Value(
                                                                                         $
                                                                                     )['start']['relative'],
-                                                                                    'id': v_unmarshalled_from_parse_tree.Text(
+                                                                                    'l id': v_unmarshalled_from_parse_tree.Text(
                                                                                         $,
                                                                                         ($) => abort(
                                                                                             ['expected a text', null]
@@ -4682,14 +4682,14 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['parameter', {
-                                'location': v_parse_tree_to_location.Value(
+                            'l state': ['parameter', {
+                                'l location': v_parse_tree_to_location.Value(
                                     $
                                 )['start']['relative'],
-                                'id': v_unmarshalled_from_parse_tree.Text(
+                                'l id': v_unmarshalled_from_parse_tree.Text(
                                     $,
                                     ($) => abort(
                                         ['expected a text', null]
@@ -4702,10 +4702,10 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                     return _p_cc(
                         $['value'],
                         ($) => ({
-                            'location': v_parse_tree_to_location.Value(
+                            'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'state': ['result', _p_cc(
+                            'l state': ['result', _p_cc(
                                 v_unmarshalled_from_parse_tree.State(
                                     $,
                                     ($) => abort(
@@ -4714,16 +4714,16 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Possible_Value_Selection.state.result => {
+                                    ($t): t_out.Possible_Value_Selection.l_state.result => {
                                         switch ($t) {
                                             case 'state':
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['state', _p_cc(
+                                                        'l state': ['state', _p_cc(
                                                             v_unmarshalled_from_parse_tree.Group(
                                                                 $,
                                                                 ($) => abort(
@@ -4739,10 +4739,10 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                         )
                                                                     ),
                                                                     ($) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                             $,
                                                                             ($) => abort(
                                                                                 ['expected a text', null]
@@ -4786,10 +4786,10 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                 return _p_cc(
                                                     $['value'],
                                                     ($) => ({
-                                                        'location': v_parse_tree_to_location.Value(
+                                                        'l location': v_parse_tree_to_location.Value(
                                                             $
                                                         )['start']['relative'],
-                                                        'state': ['optional value', _p_cc(
+                                                        'l state': ['optional value', _p_cc(
                                                             v_unmarshalled_from_parse_tree.Group(
                                                                 $,
                                                                 ($) => abort(
@@ -4805,10 +4805,10 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                         )
                                                                     ),
                                                                     ($) => ({
-                                                                        'location': v_parse_tree_to_location.Value(
+                                                                        'l location': v_parse_tree_to_location.Value(
                                                                             $
                                                                         )['start']['relative'],
-                                                                        'id': v_unmarshalled_from_parse_tree.Text(
+                                                                        'l id': v_unmarshalled_from_parse_tree.Text(
                                                                             $,
                                                                             ($) => abort(
                                                                                 ['expected a text', null]

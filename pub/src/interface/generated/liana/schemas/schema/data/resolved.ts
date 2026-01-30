@@ -233,18 +233,18 @@ export namespace Imports_ {
         
         export namespace schema_set_child {
             
-            export type entry = Schemas_.D
+            export type l_entry = Schemas_.D
             
-            export type id = string
+            export type l_id = string
             
-            export type up_steps = number
+            export type l_up_steps = number
             
         }
         
         export type schema_set_child = {
-            readonly 'entry': schema_set_child.entry
-            readonly 'id': schema_set_child.id
-            readonly 'up steps': schema_set_child.up_steps
+            readonly 'l entry': schema_set_child.l_entry
+            readonly 'l id': schema_set_child.l_id
+            readonly 'l up steps': schema_set_child.l_up_steps
         }
         
         export type schema = Schema_
@@ -340,43 +340,43 @@ export namespace Type_Reference_ {
         
         export namespace internal {
             
-            export type entry = Types_.D
+            export type l_entry = Types_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type internal = {
-            readonly 'entry': internal.entry
-            readonly 'id': internal.id
+            readonly 'l entry': internal.l_entry
+            readonly 'l id': internal.l_id
         }
         
         export namespace external {
             
             export namespace import_ {
                 
-                export type entry = Imports_.D
+                export type l_entry = Imports_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type import_ = {
-                readonly 'entry': import_.entry
-                readonly 'id': import_.id
+                readonly 'l entry': import_.l_entry
+                readonly 'l id': import_.l_id
             }
             
             export namespace type_ {
                 
-                export type entry = Types_.D
+                export type l_entry = Types_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type type_ = {
-                readonly 'entry': type_.entry
-                readonly 'id': type_.id
+                readonly 'l entry': type_.l_entry
+                readonly 'l id': type_.l_id
             }
             
         }
@@ -411,28 +411,28 @@ export namespace Type_Node_ {
             
             export namespace import_ {
                 
-                export type entry = Imports_.D
+                export type l_entry = Imports_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type import_ = {
-                readonly 'entry': import_.entry
-                readonly 'id': import_.id
+                readonly 'l entry': import_.l_entry
+                readonly 'l id': import_.l_id
             }
             
             export namespace type_ {
                 
-                export type entry = Types_.D
+                export type l_entry = Types_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type type_ = {
-                readonly 'entry': type_.entry
-                readonly 'id': type_.id
+                readonly 'l entry': type_.l_entry
+                readonly 'l id': type_.l_id
             }
             
         }
@@ -444,28 +444,28 @@ export namespace Type_Node_ {
         
         export namespace internal {
             
-            export type entry = Types_.D
+            export type l_entry = Types_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type internal = {
-            readonly 'entry': internal.entry
-            readonly 'id': internal.id
+            readonly 'l entry': internal.l_entry
+            readonly 'l id': internal.l_id
         }
         
         export namespace internal_cyclic {
             
-            export type entry = _pi.Circular_Dependency<Types_.D>
+            export type l_entry = _pi.Circular_Dependency<Types_.D>
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type internal_cyclic = {
-            readonly 'entry': internal_cyclic.entry
-            readonly 'id': internal_cyclic.id
+            readonly 'l entry': internal_cyclic.l_entry
+            readonly 'l id': internal_cyclic.l_id
         }
         
     }
@@ -504,15 +504,15 @@ export namespace Type_Node_ {
         
         export namespace global {
             
-            export type entry = Globals_.number_types.D
+            export type l_entry = Globals_.number_types.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type global = {
-            readonly 'entry': global.entry
-            readonly 'id': global.id
+            readonly 'l entry': global.l_entry
+            readonly 'l id': global.l_id
         }
         
         export type local = Number_Type_
@@ -601,15 +601,15 @@ export namespace Type_Node_ {
         
         export namespace global {
             
-            export type entry = Globals_.text_types.D
+            export type l_entry = Globals_.text_types.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type global = {
-            readonly 'entry': global.entry
-            readonly 'id': global.id
+            readonly 'l entry': global.l_entry
+            readonly 'l id': global.l_id
         }
         
         export type local = Text_Type_
@@ -639,27 +639,27 @@ export namespace Type_Node_Path_ {
     
     export namespace tail {
         
-        export namespace list {
+        export namespace l_list {
             
             export namespace L {
                 
-                export type result = Type_Node_
+                export type l_result = Type_Node_
                 
-                export namespace item {
+                export namespace l_item {
                     
                     export type dictionary = null
                     
                     export namespace group {
                         
-                        export type entry = Group_.D
+                        export type l_entry = Group_.D
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type group = {
-                        readonly 'entry': group.entry
-                        readonly 'id': group.id
+                        readonly 'l entry': group.l_entry
+                        readonly 'l id': group.l_id
                     }
                     
                     export type list = null
@@ -668,44 +668,44 @@ export namespace Type_Node_Path_ {
                     
                     export namespace state {
                         
-                        export type entry = Type_Node_.state.D
+                        export type l_entry = Type_Node_.state.D
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type state = {
-                        readonly 'entry': state.entry
-                        readonly 'id': state.id
+                        readonly 'l entry': state.l_entry
+                        readonly 'l id': state.l_id
                     }
                     
                 }
                 
-                export type item = 
-                    | readonly ['dictionary', item.dictionary]
-                    | readonly ['group', item.group]
-                    | readonly ['list', item.list]
-                    | readonly ['optional', item.optional]
-                    | readonly ['state', item.state]
+                export type l_item = 
+                    | readonly ['dictionary', l_item.dictionary]
+                    | readonly ['group', l_item.group]
+                    | readonly ['list', l_item.list]
+                    | readonly ['optional', l_item.optional]
+                    | readonly ['state', l_item.state]
                 
             }
             
             export type L = {
-                readonly 'result': L.result
-                readonly 'item': L.item
+                readonly 'l result': L.l_result
+                readonly 'l item': L.l_item
             }
             
         }
         
-        export type list = _pi.List<list.L>
+        export type l_list = _pi.List<l_list.L>
         
-        export type result = Type_Node_
+        export type l_result = Type_Node_
         
     }
     
     export type tail = {
-        readonly 'list': tail.list
-        readonly 'result': tail.result
+        readonly 'l list': tail.l_list
+        readonly 'l result': tail.l_result
     }
     
     export type resulting_node = Type_Node_
@@ -806,15 +806,15 @@ export namespace Signature_ {
         
         export namespace same_as {
             
-            export type entry = Signatures_.D
+            export type l_entry = Signatures_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type same_as = {
-            readonly 'entry': same_as.entry
-            readonly 'id': same_as.id
+            readonly 'l entry': same_as.l_entry
+            readonly 'l id': same_as.l_id
         }
         
     }
@@ -837,27 +837,27 @@ export namespace Relative_Value_Selection_ {
     
     export namespace path {
         
-        export namespace list {
+        export namespace l_list {
             
             export namespace L {
                 
-                export type result = Type_Node_
+                export type l_result = Type_Node_
                 
-                export namespace item {
+                export namespace l_item {
                     
                     export type component = null
                     
                     export namespace group {
                         
-                        export type entry = Group_.D
+                        export type l_entry = Group_.D
                         
-                        export type id = string
+                        export type l_id = string
                         
                     }
                     
                     export type group = {
-                        readonly 'entry': group.entry
-                        readonly 'id': group.id
+                        readonly 'l entry': group.l_entry
+                        readonly 'l id': group.l_id
                     }
                     
                     export namespace reference {
@@ -872,29 +872,29 @@ export namespace Relative_Value_Selection_ {
                     
                 }
                 
-                export type item = 
-                    | readonly ['component', item.component]
-                    | readonly ['group', item.group]
-                    | readonly ['reference', item.reference]
+                export type l_item = 
+                    | readonly ['component', l_item.component]
+                    | readonly ['group', l_item.group]
+                    | readonly ['reference', l_item.reference]
                 
             }
             
             export type L = {
-                readonly 'result': L.result
-                readonly 'item': L.item
+                readonly 'l result': L.l_result
+                readonly 'l item': L.l_item
             }
             
         }
         
-        export type list = _pi.List<list.L>
+        export type l_list = _pi.List<l_list.L>
         
-        export type result = Type_Node_
+        export type l_result = Type_Node_
         
     }
     
     export type path = {
-        readonly 'list': path.list
-        readonly 'result': path.result
+        readonly 'l list': path.l_list
+        readonly 'l result': path.l_result
     }
     
     export type resulting_node = Type_Node_
@@ -925,15 +925,15 @@ export namespace Lookup_Selection_ {
         
         export namespace parameter {
             
-            export type entry = Signature_Parameters_.lookups.D
+            export type l_entry = Signature_Parameters_.lookups.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type parameter = {
-            readonly 'entry': parameter.entry
-            readonly 'id': parameter.id
+            readonly 'l entry': parameter.l_entry
+            readonly 'l id': parameter.l_id
         }
         
         export type not_circular_dependent_siblings = Dictionary_
@@ -969,15 +969,15 @@ export namespace Constraint_ {
             
             export namespace option {
                 
-                export type entry = Type_Node_.state.D
+                export type l_entry = Type_Node_.state.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type option = {
-                readonly 'entry': option.entry
-                readonly 'id': option.id
+                readonly 'l entry': option.l_entry
+                readonly 'l id': option.l_id
             }
             
         }
@@ -1022,15 +1022,15 @@ export namespace Option_Constraints_ {
             
             export namespace option {
                 
-                export type entry = Type_Node_.state.D
+                export type l_entry = Type_Node_.state.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type option = {
-                readonly 'entry': option.entry
-                readonly 'id': option.id
+                readonly 'l entry': option.l_entry
+                readonly 'l id': option.l_id
             }
             
         }
@@ -1063,15 +1063,15 @@ export type Property_Constraints_ = _pi.Dictionary<Property_Constraints_.D>
 
 export namespace Reference_To_Property_Constraint_ {
     
-    export type entry = Property_Constraints_.D
+    export type l_entry = Property_Constraints_.D
     
-    export type id = string
+    export type l_id = string
     
 }
 
 export type Reference_To_Property_Constraint_ = {
-    readonly 'entry': Reference_To_Property_Constraint_.entry
-    readonly 'id': Reference_To_Property_Constraint_.id
+    readonly 'l entry': Reference_To_Property_Constraint_.l_entry
+    readonly 'l id': Reference_To_Property_Constraint_.l_id
 }
 
 export namespace Property_Constraint_ {
@@ -1161,28 +1161,28 @@ export namespace Node_Resolver_ {
                 
                 export namespace import_ {
                     
-                    export type entry = Imports_.D
+                    export type l_entry = Imports_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type import_ = {
-                    readonly 'entry': import_.entry
-                    readonly 'id': import_.id
+                    readonly 'l entry': import_.l_entry
+                    readonly 'l id': import_.l_id
                 }
                 
                 export namespace type_ {
                     
-                    export type entry = Signatures_.D
+                    export type l_entry = Signatures_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type type_ = {
-                    readonly 'entry': type_.entry
-                    readonly 'id': type_.id
+                    readonly 'l entry': type_.l_entry
+                    readonly 'l id': type_.l_id
                 }
                 
             }
@@ -1194,15 +1194,15 @@ export namespace Node_Resolver_ {
             
             export namespace internal {
                 
-                export type entry = Signatures_.D
+                export type l_entry = Signatures_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type internal = {
-                readonly 'entry': internal.entry
-                readonly 'id': internal.id
+                readonly 'l entry': internal.l_entry
+                readonly 'l id': internal.l_id
             }
             
         }
@@ -1229,15 +1229,15 @@ export namespace Node_Resolver_ {
                             
                             export namespace parameter {
                                 
-                                export type entry = Signature_Parameters_.values.D
+                                export type l_entry = Signature_Parameters_.values.D
                                 
-                                export type id = string
+                                export type l_id = string
                                 
                             }
                             
                             export type parameter = {
-                                readonly 'entry': parameter.entry
-                                readonly 'id': parameter.id
+                                readonly 'l entry': parameter.l_entry
+                                readonly 'l id': parameter.l_id
                             }
                             
                         }
@@ -1479,41 +1479,41 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace sibling {
             
-            export type entry = Node_Resolver_Group_.D
+            export type l_entry = Node_Resolver_Group_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type sibling = {
-            readonly 'entry': sibling.entry
-            readonly 'id': sibling.id
+            readonly 'l entry': sibling.l_entry
+            readonly 'l id': sibling.l_id
         }
         
         export namespace parent_sibling {
             
-            export type entry = Node_Resolver_Group_.D
+            export type l_entry = Node_Resolver_Group_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type parent_sibling = {
-            readonly 'entry': parent_sibling.entry
-            readonly 'id': parent_sibling.id
+            readonly 'l entry': parent_sibling.l_entry
+            readonly 'l id': parent_sibling.l_id
         }
         
         export namespace option_constraint {
             
-            export type entry = Option_Constraints_.D
+            export type l_entry = Option_Constraints_.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type option_constraint = {
-            readonly 'entry': option_constraint.entry
-            readonly 'id': option_constraint.id
+            readonly 'l entry': option_constraint.l_entry
+            readonly 'l id': option_constraint.l_id
         }
         
         export type list_cursor = null
@@ -1526,28 +1526,28 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type entry = Node_Resolver_Group_.D
+                    export type l_entry = Node_Resolver_Group_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type property = {
-                    readonly 'entry': property.entry
-                    readonly 'id': property.id
+                    readonly 'l entry': property.l_entry
+                    readonly 'l id': property.l_id
                 }
                 
                 export namespace constraint {
                     
-                    export type entry = Property_Constraints_.D
+                    export type l_entry = Property_Constraints_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type constraint = {
-                    readonly 'entry': constraint.entry
-                    readonly 'id': constraint.id
+                    readonly 'l entry': constraint.l_entry
+                    readonly 'l id': constraint.l_id
                 }
                 
             }
@@ -1561,28 +1561,28 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type entry = Node_Resolver_Group_.D
+                    export type l_entry = Node_Resolver_Group_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type property = {
-                    readonly 'entry': property.entry
-                    readonly 'id': property.id
+                    readonly 'l entry': property.l_entry
+                    readonly 'l id': property.l_id
                 }
                 
                 export namespace constraint {
                     
-                    export type entry = Property_Constraints_.D
+                    export type l_entry = Property_Constraints_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type constraint = {
-                    readonly 'entry': constraint.entry
-                    readonly 'id': constraint.id
+                    readonly 'l entry': constraint.l_entry
+                    readonly 'l id': constraint.l_id
                 }
                 
             }
@@ -1600,15 +1600,15 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace parameter {
             
-            export type entry = Signature_Parameters_.values.D
+            export type l_entry = Signature_Parameters_.values.D
             
-            export type id = string
+            export type l_id = string
             
         }
         
         export type parameter = {
-            readonly 'entry': parameter.entry
-            readonly 'id': parameter.id
+            readonly 'l entry': parameter.l_entry
+            readonly 'l id': parameter.l_id
         }
         
         export namespace result {
@@ -1617,15 +1617,15 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type entry = Node_Resolver_Group_.D
+                    export type l_entry = Node_Resolver_Group_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type property = {
-                    readonly 'entry': property.entry
-                    readonly 'id': property.id
+                    readonly 'l entry': property.l_entry
+                    readonly 'l id': property.l_id
                 }
                 
                 export type list_result = Node_Resolver_.list.result.O
@@ -1641,15 +1641,15 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type entry = Node_Resolver_Group_.D
+                    export type l_entry = Node_Resolver_Group_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type property = {
-                    readonly 'entry': property.entry
-                    readonly 'id': property.id
+                    readonly 'l entry': property.l_entry
+                    readonly 'l id': property.l_id
                 }
                 
                 export type state = Node_Resolver_.state
@@ -1668,15 +1668,15 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type entry = Node_Resolver_Group_.D
+                    export type l_entry = Node_Resolver_Group_.D
                     
-                    export type id = string
+                    export type l_id = string
                     
                 }
                 
                 export type property = {
-                    readonly 'entry': property.entry
-                    readonly 'id': property.id
+                    readonly 'l entry': property.l_entry
+                    readonly 'l id': property.l_id
                 }
                 
                 export type optional_value = Node_Resolver_.optional
@@ -1726,15 +1726,15 @@ export namespace Possible_Value_Selection_ {
     
     export namespace parameter {
         
-        export type entry = Signature_Parameters_.values.D
+        export type l_entry = Signature_Parameters_.values.D
         
-        export type id = string
+        export type l_id = string
         
     }
     
     export type parameter = {
-        readonly 'entry': parameter.entry
-        readonly 'id': parameter.id
+        readonly 'l entry': parameter.l_entry
+        readonly 'l id': parameter.l_id
     }
     
     export namespace result {
@@ -1743,15 +1743,15 @@ export namespace Possible_Value_Selection_ {
             
             export namespace property {
                 
-                export type entry = Node_Resolver_Group_.D
+                export type l_entry = Node_Resolver_Group_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type property = {
-                readonly 'entry': property.entry
-                readonly 'id': property.id
+                readonly 'l entry': property.l_entry
+                readonly 'l id': property.l_id
             }
             
             export type state = Node_Resolver_.state
@@ -1770,15 +1770,15 @@ export namespace Possible_Value_Selection_ {
             
             export namespace property {
                 
-                export type entry = Node_Resolver_Group_.D
+                export type l_entry = Node_Resolver_Group_.D
                 
-                export type id = string
+                export type l_id = string
                 
             }
             
             export type property = {
-                readonly 'entry': property.entry
-                readonly 'id': property.id
+                readonly 'l entry': property.l_entry
+                readonly 'l id': property.l_id
             }
             
             export type optional_value = Node_Resolver_.optional

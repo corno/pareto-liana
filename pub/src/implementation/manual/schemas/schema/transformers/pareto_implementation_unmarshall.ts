@@ -76,7 +76,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]),
                     ),
                 }),
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"])),
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"])),
             }),
             {
                 'separator': "",
@@ -135,7 +135,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]
                     ),
                 }),
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["unmarshall"]))
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"]))
             }),
             {
                 'separator': "",
@@ -191,9 +191,9 @@ export const Type_Node = (
                 sh.s.call(
                     _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
-                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import['l id']}`, $.type['l id'], []))
+                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
                             default: return _p.au($[0])
                         }
                     }),
@@ -206,8 +206,8 @@ export const Type_Node = (
             case 'dictionary': return _p.ss($, ($) => {
                 return $p.constrained
                     ? sh.e.group.literal({
-                        "location": location,
-                        "dictionary": sh.e.dictionary.map(
+                        "l location": location,
+                        "l dictionary": sh.e.dictionary.map(
                             sh.s.call(
                                 sh.s.from_variable_import("unmarshalled from parse tree", "Dictionary", []),
                                 sh.e.select(sh.s.from_context([])),
@@ -216,17 +216,17 @@ export const Type_Node = (
                                 [],
                             ),
                             sh.e.group.literal({
-                                "location": location,
-                                "entry": Type_Node(
+                                "l location": location,
+                                "l entry": Type_Node(
                                     $.node,
                                     {
                                         'temp type': $p['temp type'],
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
-                                                sh_i.sub.group("dictionary"),
+                                                sh_i.sub.group("l dictionary"),
                                                 sh_i.sub.dictionary(),
-                                                sh_i.sub.group("entry"),
+                                                sh_i.sub.group("l entry"),
 
                                             ]
                                         ]),
@@ -292,8 +292,8 @@ export const Type_Node = (
             case 'list': return _p.ss($, ($) => {
                 return $p.constrained
                     ? sh.e.group.literal({
-                        "location": location,
-                        "list": sh.e.list.map(
+                        "l location": location,
+                        "l list": sh.e.list.map(
                             sh.s.call(
                                 sh.s.from_variable_import("unmarshalled from parse tree", "List", []),
                                 sh.e.select(sh.s.from_context([])),
@@ -302,17 +302,17 @@ export const Type_Node = (
                                 [],
                             ),
                             sh.e.group.literal({
-                                "location": location,
-                                "item": Type_Node(
+                                "l location": location,
+                                "l item": Type_Node(
                                     $.node,
                                     {
                                         'temp type': $p['temp type'],
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
-                                                sh_i.sub.group("list"),
+                                                sh_i.sub.group("l list"),
                                                 sh_i.sub.list(),
-                                                sh_i.sub.group("item"),
+                                                sh_i.sub.group("l item"),
                                             ]
                                         ]),
                                         'constrained': $p.constrained
@@ -404,8 +404,8 @@ export const Type_Node = (
                         )
                     ))
                     case 'selected': return _p.ss($, ($) => sh.e.group.literal({
-                        "location": location,
-                        "id": sh.e.select(
+                        "l location": location,
+                        "l id": sh.e.select(
                             sh.s.call(
                                 sh.s.from_variable_import("unmarshalled from parse tree", "Text", []),
                                 sh.e.select(sh.s.from_context([])),
@@ -433,8 +433,8 @@ export const Type_Node = (
                             sh.s.from_context(["value"]),
                             $p.constrained
                                 ? sh.e.group.literal({
-                                    "location": location,
-                                    "state": sh.e.state.literal(
+                                    "l location": location,
+                                    "l state": sh.e.state.literal(
                                         id,
                                         Type_Node(
                                             $.node,
@@ -443,7 +443,7 @@ export const Type_Node = (
                                                 'temp subselection': _p.list.nested_literal_old([
                                                     $p['temp subselection'],
                                                     [
-                                                        sh_i.sub.group("state"),
+                                                        sh_i.sub.group("l state"),
                                                         sh_i.sub.state(id),
                                                     ]
                                                 ]),

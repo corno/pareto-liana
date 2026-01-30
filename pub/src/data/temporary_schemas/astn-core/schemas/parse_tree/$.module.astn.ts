@@ -8,7 +8,7 @@ import { schema_, constrained, import_ } from "../../../../../shorthands/schema"
 import { $ as schema } from "./$.types.astn"
 import { $ as globals } from "./$.globals.astn"
 
-export const $: g_.Schemas.dictionary.D.entry = schema_(
+export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
         "token": import_("token"),
         "location": import_("location"),

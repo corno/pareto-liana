@@ -24,8 +24,10 @@ export const $: g_.Types = types(
             })
         )),
 
+        "Block": type(t.component_cyclic("Statements")),
+
         "Statements": type(t.list(t.state({
-            "block": tstate(t.component_cyclic("Statements")),
+            "block": tstate(t.component_cyclic("Block")),
             "export": tstate(t.group({
                 "type": prop(t.state({
                     "named exports": tstate(t.group({
@@ -53,7 +55,7 @@ export const $: g_.Types = types(
             "module declaration": tstate(t.group({ //namespace
                 "export": prop(t.boolean()),
                 "name": prop(t.component("Identifier")),
-                "block": prop(t.component_cyclic("Statements")),
+                "block": prop(t.component_cyclic("Block")),
             })),
 
             "return": tstate(t.optional(t.component_cyclic("Expression"))),
@@ -123,7 +125,7 @@ export const $: g_.Types = types(
                 "parameters": prop(t.component("Function Parameters")),
                 "return type": prop(t.optional(t.component_cyclic("Type"))),
                 "body": prop(t.state({
-                    "block": tstate(t.component_cyclic("Statements")),
+                    "block": tstate(t.component_cyclic("Block")),
                     "expression": tstate(t.component_cyclic("Expression")),
                 })),
             })),

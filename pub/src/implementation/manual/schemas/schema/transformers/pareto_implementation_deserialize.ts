@@ -59,7 +59,7 @@ export const Schema = (
                     "unmarshall": sh_i.import_.sibling("unmarshall", _p.list.nested_literal_old([
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["deserialize"]))
+                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["deserialize"]))
             }),
             {
                 'separator': "",

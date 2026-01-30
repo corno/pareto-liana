@@ -82,7 +82,7 @@ export const Schema = (
                     ]),
                 ),
             }),
-            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["marshall"]))
+            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["marshall"]))
         }),
         {
             'separator': " ",
@@ -131,9 +131,9 @@ export const Type_Node = (
             sh.s.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import.id}`, $.type.id, []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import['l id']}`, $.type['l id'], []))
+                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
                         default: return _p.au($[0])
                     }
                 }),
@@ -201,12 +201,12 @@ export const Type_Node = (
                 "list",
                 sh.e.list.map(
                     sh.s.from_context($.result.__decide(
-                        ($) => ["list"],
+                        ($) => ["l list"],
                         () => []
                     )),
                     $.result.__decide(
                         ($) => sh.e.change_context(
-                            sh.s.from_context(["item"]),
+                            sh.s.from_context(["l item"]),
                             x,
                         ),
                         () => x
@@ -264,7 +264,7 @@ export const Type_Node = (
                 case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
                 case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group.literal({
                     "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
-                    "value": sh.e.text.copy(sh.s.from_context(["id"])),
+                    "value": sh.e.text.copy(sh.s.from_context(["l id"])),
                 })))
                 default: return _p.au($[0])
             }

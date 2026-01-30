@@ -66,7 +66,7 @@ export const Schema = (
             ])
         ),
     }),
-    $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["migrate boilerplate"])),
+    $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["migrate boilerplate"])),
     $.types.__d_map(($, id) => sh.algorithm(
         "signatures",
         id,
@@ -99,9 +99,9 @@ export const Type_Node = (
                 sh.s.call(
                     _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import.id}`, $.type.id, []))
-                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($.id, []))
-                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($.id, []))
+                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import['l id']}`, $.type['l id'], []))
+                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
                             default: return _p.au($[0])
                         }
                     }),
@@ -115,26 +115,26 @@ export const Type_Node = (
 
                 return $p.constrained
                     ? sh.e.group.literal({
-                        "location": location,
-                        "dictionary": sh.e.dictionary.map(
+                        "l location": location,
+                        "l dictionary": sh.e.dictionary.map(
                             sh.s.from_context([]),
                             sh.e.group.literal({
-                                "entry": Type_Node(
+                                "l entry": Type_Node(
                                     $.node,
                                     {
                                         'type name': $p['type name'],
                                         'subselection': _p.list.nested_literal_old([
                                             $p.subselection,
                                             [
-                                                sh.sub.group("dictionary"),
+                                                sh.sub.group("l dictionary"),
                                                 sh.sub.dictionary(),
-                                                sh.sub.group("entry"),
+                                                sh.sub.group("l entry"),
                                             ]
                                         ]),
                                         'constrained': $p.constrained,
                                     }
                                 ),
-                                "location": location
+                                "l location": location
                             })
                         )
                     })
@@ -175,16 +175,16 @@ export const Type_Node = (
 
                 return $p.constrained
                     ? sh.e.group.literal({
-                        "location": location,
-                        "list": sh.e.list.map(
+                        "l location": location,
+                        "l list": sh.e.list.map(
                             sh.s.from_context(
                                 $.result.__decide(
-                                    ($) => ["list"],
+                                    ($) => ["l list"],
                                     () => [],
                                 )
                             ),
                             sh.e.group.literal({
-                                "item": _p_cc($, ($) => {
+                                "l item": _p_cc($, ($) => {
                                     const tn = Type_Node(
                                         $.node,
                                         {
@@ -192,9 +192,9 @@ export const Type_Node = (
                                             'subselection': _p.list.nested_literal_old([
                                                 $p.subselection,
                                                 [
-                                                    sh.sub.group("list"),
+                                                    sh.sub.group("l list"),
                                                     sh.sub.list(),
-                                                    sh.sub.group("item"),
+                                                    sh.sub.group("l item"),
                                                 ]
                                             ]),
                                             'constrained': $p.constrained,
@@ -202,13 +202,13 @@ export const Type_Node = (
                                     )
                                     return $.result.__decide(
                                         ($) => sh.e.change_context(
-                                            sh.s.from_context(["item"]),
+                                            sh.s.from_context(["l item"]),
                                             tn
                                         ),
                                         () => tn
                                     )
                                 }),
-                                "location": location
+                                "l location": location
                             })
                         )
                     })
@@ -252,12 +252,12 @@ export const Type_Node = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.nothing())
                     case 'selected': return _p.ss($, ($) => {
-                        const tn = sh.e.select(sh.s.from_context(["id"]))
+                        const tn = sh.e.select(sh.s.from_context(["l id"]))
 
                         return $p.constrained
                             ? sh.e.group.literal({
-                                "location": location,
-                                "id": tn
+                                "l location": location,
+                                "l id": tn
                             })
                             : tn
                     })
@@ -275,7 +275,7 @@ export const Type_Node = (
                                 $p.subselection,
                                 $p.constrained
                                     ? [
-                                        sh.sub.group("state"),
+                                        sh.sub.group("l state"),
                                         sh.sub.state(id)
                                     ]
                                     : [
@@ -292,7 +292,7 @@ export const Type_Node = (
                             $p.subselection,
                             $p.constrained
                                 ? [
-                                    sh.sub.group("state"),
+                                    sh.sub.group("l state"),
                                 ]
                                 : [
                                 ]
@@ -301,8 +301,8 @@ export const Type_Node = (
                 )
                 return $p.constrained
                     ? sh.e.group.literal({
-                        "location": location,
-                        "state": tn
+                        "l location": location,
+                        "l state": tn
                     })
                     : tn
             })

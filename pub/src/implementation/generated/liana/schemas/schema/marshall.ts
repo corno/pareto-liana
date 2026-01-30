@@ -367,7 +367,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', $.__d_map(
                 $['schema set child'],
                 ($) => ['text', {
                     'delimiter': ['backtick', null],
-                    'value': $['id'],
+                    'value': $['l id'],
                 }]
             ),
             'schema': _p_cc(
@@ -478,7 +478,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ['group', ['ve
                                     'option': 'internal',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -493,14 +493,14 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ['group', ['ve
                                                 $['import'],
                                                 ($) => ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }]
                                             ),
                                             'type': _p_cc(
                                                 $['type'],
                                                 ($) => ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }]
                                             ),
                                         }
@@ -554,14 +554,14 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                             $['import'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                         'type': _p_cc(
                                                             $['type'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                     }
@@ -575,7 +575,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'internal',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -586,7 +586,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'internal cyclic',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -669,7 +669,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'global',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -839,7 +839,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                                 'option': 'global',
                                                 'value': ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }],
                                             })
                                         )
@@ -874,9 +874,9 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['ve
     {
         'tail': _p_cc(
             $['tail'],
-            ($) => ['list', $['list'].__l_map(
+            ($) => ['list', $['l list'].__l_map(
                 ($) => _p_cc(
-                    $['item'],
+                    $['l item'],
                     ($) => ['state', _p.decide.state(
                         $,
                         ($): t_out.Value.state => {
@@ -896,7 +896,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['ve
                                             'option': 'group',
                                             'value': ['text', {
                                                 'delimiter': ['backtick', null],
-                                                'value': $['id'],
+                                                'value': $['l id'],
                                             }],
                                         })
                                     )
@@ -923,7 +923,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['ve
                                             'option': 'state',
                                             'value': ['text', {
                                                 'delimiter': ['backtick', null],
-                                                'value': $['id'],
+                                                'value': $['l id'],
                                             }],
                                         })
                                     )
@@ -1079,7 +1079,7 @@ export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p
                                     'option': 'same as',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -1102,9 +1102,9 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
     {
         'path': _p_cc(
             $['path'],
-            ($) => ['list', $['list'].__l_map(
+            ($) => ['list', $['l list'].__l_map(
                 ($) => _p_cc(
-                    $['item'],
+                    $['l item'],
                     ($) => ['state', _p.decide.state(
                         $,
                         ($): t_out.Value.state => {
@@ -1124,7 +1124,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                             'option': 'group',
                                             'value': ['text', {
                                                 'delimiter': ['backtick', null],
-                                                'value': $['id'],
+                                                'value': $['l id'],
                                             }],
                                         })
                                     )
@@ -1196,7 +1196,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
                                     'option': 'parameter',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -1260,7 +1260,7 @@ export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', 
                                                 $['option'],
                                                 ($) => ['text', {
                                                     'delimiter': ['backtick', null],
-                                                    'value': $['id'],
+                                                    'value': $['l id'],
                                                 }]
                                             ),
                                         }
@@ -1319,7 +1319,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dict
                                         $['option'],
                                         ($) => ['text', {
                                             'delimiter': ['backtick', null],
-                                            'value': $['id'],
+                                            'value': $['l id'],
                                         }]
                                     ),
                                 }
@@ -1353,7 +1353,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($) => ['
 
 export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($) => ['text', {
     'delimiter': ['backtick', null],
-    'value': $['id'],
+    'value': $['l id'],
 }]
 
 export const Property_Constraint: t_signatures.Property_Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
@@ -1520,14 +1520,14 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                                         $['import'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'type': _p_cc(
                                                                         $['type'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                 }
@@ -1541,7 +1541,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                             'option': 'internal',
                                                             'value': ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }],
                                                         })
                                                     )
@@ -1597,7 +1597,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                                                     'option': 'parameter',
                                                                                     'value': ['text', {
                                                                                         'delimiter': ['backtick', null],
-                                                                                        'value': $['id'],
+                                                                                        'value': $['l id'],
                                                                                     }],
                                                                                 })
                                                                             )
@@ -1944,7 +1944,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'option': 'sibling',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -1955,7 +1955,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'option': 'parent sibling',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -1966,7 +1966,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'option': 'option constraint',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -2006,14 +2006,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $['property'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'constraint': _p_cc(
                                                                         $['constraint'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                 }
@@ -2031,14 +2031,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $['property'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'constraint': _p_cc(
                                                                         $['constraint'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                 }
@@ -2061,7 +2061,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                     'option': 'parameter',
                                     'value': ['text', {
                                         'delimiter': ['backtick', null],
-                                        'value': $['id'],
+                                        'value': $['l id'],
                                     }],
                                 })
                             )
@@ -2085,7 +2085,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $['property'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'list result': _p_cc(
@@ -2107,7 +2107,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $['property'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'state': _p_cc(
@@ -2135,7 +2135,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $['property'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
-                                                                            'value': $['id'],
+                                                                            'value': $['l id'],
                                                                         }]
                                                                     ),
                                                                     'optional value': _p_cc(
@@ -2193,7 +2193,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                         'option': 'parameter',
                         'value': ['text', {
                             'delimiter': ['backtick', null],
-                            'value': $['id'],
+                            'value': $['l id'],
                         }],
                     })
                 )
@@ -2217,7 +2217,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             $['property'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                         'state': _p_cc(
@@ -2245,7 +2245,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             $['property'],
                                                             ($) => ['text', {
                                                                 'delimiter': ['backtick', null],
-                                                                'value': $['id'],
+                                                                'value': $['l id'],
                                                             }]
                                                         ),
                                                         'optional value': _p_cc(

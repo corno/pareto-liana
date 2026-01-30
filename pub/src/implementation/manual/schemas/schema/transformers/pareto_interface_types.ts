@@ -57,8 +57,8 @@ export const Schema = (
                 " imports ": _p_cc($, ($) => {
                     // const types = $p['what to generate']
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
-                        $p.depth + 1 + $['schema set child']['up steps'],
-                        $['schema set child'].id,
+                        $p.depth + 1 + $['schema set child']['l up steps'],
+                        $['schema set child']['l id'],
                         _p.decide.state($.schema.complexity, ($) => {
                             switch ($[0]) {
                                 case 'unconstrained': return _p.ss($, ($) => [
@@ -105,10 +105,10 @@ export const Type_Reference = (
     $: d_in.Type_Reference,
 ): d_out.Type_Reference => _p.decide.state($.location, ($) => {
     switch ($[0]) {
-        case 'internal': return _p.ss($, ($) => sh.tr.local($.id))
+        case 'internal': return _p.ss($, ($) => sh.tr.local($['l id']))
         case 'external': return _p.ss($, ($) => sh.tr.imported(
-            ` imports ${$.import.id}`,
-            $.type.id,
+            ` imports ${$.import['l id']}`,
+            $.type['l id'],
         ))
         default: return _p.au($[0])
     }
@@ -131,24 +131,24 @@ export const Type_Node = (
             case 'component': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'external': return _p.ss($, ($) => sh.t.component_imported(
-                        ` imports ${$.import.id}`,
-                        $.type.id,
+                        ` imports ${$.import['l id']}`,
+                        $.type['l id'],
                     ))
                     case 'internal': return _p.ss($, ($) => sh.t.component_sibling(
-                        $.id,
+                        $['l id'],
                     ))
                     case 'internal cyclic': return _p.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
-                        $.id,
+                        $['l id'],
                     ))
                     default: return _p.au($[0])
                 }
             }))
             case 'dictionary': return _p.ss($, ($) => add_location
                 ? sh.t.group({
-                    "location": location,
-                    "dictionary": sh.t.dictionary(sh.t.group({
-                        "location": location,
-                        "entry": Type_Node(
+                    "l location": location,
+                    "l dictionary": sh.t.dictionary(sh.t.group({
+                        "l location": location,
+                        "l entry": Type_Node(
                             $.node,
                             {
                                 'type': $p.type,
@@ -177,10 +177,10 @@ export const Type_Node = (
                             $p
                         )))
                         case 'unresolved': return _p.ss($, ($) => sh.t.group({
-                            "location": location,
-                            "list": sh.t.list(sh.t.group({
-                                "location": location,
-                                "item": Type_Node(
+                            "l location": location,
+                            "l list": sh.t.list(sh.t.group({
+                                "l location": location,
+                                "l item": Type_Node(
                                     list.node,
                                     $p
                                 )
@@ -188,17 +188,17 @@ export const Type_Node = (
                         }))
                         case 'resolved': return _p.ss($, ($) => list.result.__decide(
                             ($) => sh.t.group({
-                                "list": sh.t.list(sh.t.group({
-                                    "result": sh.t.reference(
+                                "l list": sh.t.list(sh.t.group({
+                                    "l result": sh.t.reference(
                                         Type_Reference($),
                                         []
                                     ),
-                                    "item": Type_Node(
+                                    "l item": Type_Node(
                                         list.node,
                                         $p
                                     )
                                 })),
-                                "result": sh.t.reference(
+                                "l result": sh.t.reference(
                                     Type_Reference($),
                                     []
                                 )
@@ -216,7 +216,7 @@ export const Type_Node = (
             case 'nothing': return _p.ss($, ($) => sh.t.nothing())
             case 'number': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($) => Number_Type($.entry))
+                    case 'global': return _p.ss($, ($) => Number_Type($['l entry']))
                     case 'local': return _p.ss($, ($) => Number_Type($))
                     default: return _p.au($[0])
                 }
@@ -242,12 +242,12 @@ export const Type_Node = (
                             return _p.decide.state($p.type, ($) => {
                                 switch ($[0]) {
                                     case 'unconstrained': return _p.ss($, ($) => sh.t.group({ //this is weird; a reference in an unconstrained schema
-                                        "location": location,
-                                        "id": sh.t.text(),
+                                        "l location": location,
+                                        "l id": sh.t.text(),
                                     }))
                                     case 'resolved': return _p.ss($, ($) => sh.t.group(_p.dictionary.filter(
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Type_Node>>({
-                                            "entry": _p.optional.set(_p_cc($, ($) => {
+                                            "l entry": _p.optional.set(_p_cc($, ($) => {
                                                 return sh.t.reference(
                                                     Type_Reference(referent['type location']),
                                                     _p.list.nested_literal_old([
@@ -267,8 +267,8 @@ export const Type_Node = (
                                                     })
                                                 )
                                             })),
-                                            "id": _p.optional.set(sh.t.text()),
-                                            "up steps": _p.decide.state(selected.dependency, ($) => {
+                                            "l id": _p.optional.set(sh.t.text()),
+                                            "l up steps": _p.decide.state(selected.dependency, ($) => {
                                                 switch ($[0]) {
                                                     case 'acyclic': return _p.ss($, ($) => _p.optional.not_set())
                                                     case 'cyclic': return _p.ss($, ($) => _p.optional.not_set())
@@ -280,8 +280,8 @@ export const Type_Node = (
                                         ($) => $,
                                     )))
                                     case 'unresolved': return _p.ss($, ($) => sh.t.group({
-                                        "location": location,
-                                        "id": sh.t.text(),
+                                        "l location": location,
+                                        "l id": sh.t.text(),
                                     }))
                                     default: return _p.au($[0])
                                 }
@@ -293,8 +293,8 @@ export const Type_Node = (
             })
             case 'state': return _p.ss($, ($) => add_location
                 ? sh.t.group({
-                    "location": location,
-                    "state": sh.t.state($.__d_map(($, id) => Type_Node(
+                    "l location": location,
+                    "l state": sh.t.state($.__d_map(($, id) => Type_Node(
                         $.node,
                         $p
                     )))
@@ -314,13 +314,13 @@ const Type_Node_Reference__tail = (
     $: d_in.Type_Node_Path.tail,
 
 ): _pi.List<d_out.Type_Node.reference.sub_selection.L> => {
-    return $.list.__l_map(($) => _p.decide.state($.item, ($) => {
+    return $['l list'].__l_map(($) => _p.decide.state($['l item'], ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
-            case 'group': return _p.ss($, ($) => sh.sub.group($.id))
+            case 'group': return _p.ss($, ($) => sh.sub.group($['l id']))
             case 'list': return _p.ss($, ($) => sh.sub.list())
             case 'optional': return _p.ss($, ($) => sh.sub.optional())
-            case 'state': return _p.ss($, ($) => sh.sub.state($.id))
+            case 'state': return _p.ss($, ($) => sh.sub.state($['l id']))
             default: return _p.au($[0])
         }
     }))

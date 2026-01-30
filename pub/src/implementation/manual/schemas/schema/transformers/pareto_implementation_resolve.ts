@@ -78,7 +78,7 @@ export const Resolvers = (
                         ])
                     ),
                 }),
-                "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["resolve"]))
+                "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["resolve"]))
 
             }),
             {
@@ -119,7 +119,7 @@ export const Possible_Value_Selection = (
                 _p.list.nested_literal_old([
                     [
                         "values",
-                        $.id
+                        $['l id']
                     ],
                     $p.tail(),
                 ]),
@@ -159,11 +159,11 @@ export const Guaranteed_Value_Selection = (
 ): d_out.Selection => {
     const tail = (): _pi.List<d_out.Selection.regular.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
-            $.tail.path.list,
-            ($) => _p.decide.state($.item, ($): _pi.List<d_out.Selection.regular.tail.L> => {
+            $.tail.path['l list'],
+            ($) => _p.decide.state($['l item'], ($): _pi.List<d_out.Selection.regular.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
-                    case 'group': return _p.ss($, ($) => _p.list.literal([$.id]))
+                    case 'group': return _p.ss($, ($) => _p.list.literal([$['l id']]))
                     case 'reference': return _p.ss($, ($) => _p.decide.state($.definition.type, ($) => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => _p.list.literal([]))
@@ -192,7 +192,7 @@ export const Guaranteed_Value_Selection = (
                 _p.list.nested_literal_old([
                     [
                         "values",
-                        $.id
+                        $['l id']
                     ],
                     tail(),
                 ]),
@@ -215,15 +215,15 @@ export const Guaranteed_Value_Selection = (
                 tail(),
             ))
             case 'option constraint': return _p.ss($, ($) => sh.s.from_variable(
-                `c ${$.id}`,//FIXME: do the upsteps
+                `c ${$['l id']}`,//FIXME: do the upsteps
                 tail(),
             ))
             case 'sibling': return _p.ss($, ($) => sh.s.from_variable(
-                `p ${$.id}`,
+                `p ${$['l id']}`,
                 tail(),
             ))
             case 'parent sibling': return _p.ss($, ($) => sh.s.from_variable(
-                `p ${$.id}`,//FIXME: do the upstep
+                `p ${$['l id']}`,//FIXME: do the upstep
                 tail(),
             ))
             default: return _p.au($[0])
@@ -253,7 +253,7 @@ export const Lookup_Selection = (
         ))
         case 'parameter': return _p.ss($, ($) => sh.s.from_variable(
             "params",
-            ["lookups", $.id],
+            ["lookups", $['l id']],
         ))
         case 'possibly circular dependent siblings': return _p.ss($, ($) => sh.s.from_parameter(
             "possibly circular dependent siblings",
