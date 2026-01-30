@@ -59,9 +59,9 @@ export const Type: _pi.Transformer<d_in.Type, d_out.Type> = (
 
 export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
     $
-) => wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_state => {
+) => wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_value => {
     switch ($[0]) {
-        case 'number': return _p.ss($, ($): d_out.Type_Node.l_state => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_state.text.l_state => {
+        case 'number': return _p.ss($, ($): d_out.Type_Node.l_value => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_value.text.l_value => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', wrap_reference("n" + $['l id'])])
                 case 'local': return _p.ss($, ($) => ['local', {
@@ -70,7 +70,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
                 default: return _p.au($[0])
             }
         }))]) //FIXME
-        case 'boolean': return _p.ss($, ($) => ['text', wrap_state<d_out.Type_Node.l_state.text.l_state>(['local', {
+        case 'boolean': return _p.ss($, ($) => ['text', wrap_state<d_out.Type_Node.l_value.text.l_value>(['local', {
             'type': wrap_state(['single line', null])
         }])])
         case 'list': return _p.ss($, ($) => ['list', {
@@ -80,13 +80,13 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => ['nothing', null])
-                case 'selected': return _p.ss($, ($) => ['text', wrap_state<d_out.Type_Node.l_state.text.l_state>(['local', {
+                case 'selected': return _p.ss($, ($) => ['text', wrap_state<d_out.Type_Node.l_value.text.l_value>(['local', {
                     'type': wrap_state(['single line', null])
                 }])])
                 default: return _p.au($[0])
             }
         }))
-        case 'component': return _p.ss($, ($) => ['component', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_state.component.l_state => {
+        case 'component': return _p.ss($, ($) => ['component', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_value.component.l_value => {
             switch ($[0]) {
                 case 'external': return _p.ss($, ($) => ['external', {
                     'import': wrap_reference($.import['l id']),
@@ -104,7 +104,7 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         case 'group': return _p.ss($, ($) => ['group', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
         case 'optional': return _p.ss($, ($) => ['optional', Type_Node($)])
         case 'state': return _p.ss($, ($) => ['state', wrap_dictionary($.__d_map(($) => Type_Node($.node)))])
-        case 'text': return _p.ss($, ($) => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_state.text.l_state => {
+        case 'text': return _p.ss($, ($) => ['text', wrap_state(_p.decide.state($, ($): d_out.Type_Node.l_value.text.l_value => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', wrap_reference("t" + $['l id'])])
                 case 'local': return _p.ss($, ($) => ['local', Text_Type($)])

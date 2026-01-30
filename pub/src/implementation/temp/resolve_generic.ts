@@ -11,7 +11,7 @@ import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
 
 export type Unresolved_Reference = {
     'l location': gen_loc.Relative_Location
-    'l id': string
+    'l value': string
 }
 
 export type Resolved_Reference<T> = {
@@ -101,14 +101,14 @@ export const get_entry_acyclic = <T>(
 ): Resolved_Reference<T> => {
     return {
         'l entry': lookup.get_entry(
-            ref['l id'],
+            ref['l value'],
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', ref['l id']]],
+                    'type': ['lookup', ['cyclic lookup in acyclic context', ref['l value']]],
                     'location': ref['l location'],
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', ref['l id']]],
+                    'type': ['lookup', ['no such entry', ref['l value']]],
                     'location': ref['l location'],
                 }),
                 no_context_lookup: () => abort({
@@ -117,7 +117,7 @@ export const get_entry_acyclic = <T>(
                 })
             }
         ),
-        'l id': ref['l id'],
+        'l id': ref['l value'],
     }
 }
 
@@ -127,13 +127,13 @@ export const get_entry_cyclic = <T>(
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
     return {
-        'l id': reference['l id'],
+        'l id': reference['l value'],
         'l entry': lookup.get_entry(
-            reference['l id'],
+            reference['l value'],
             {
                 accessing_cyclic_before_resolved: () => _p_unreachable_code_path(),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference['l id']]],
+                    'type': ['lookup', ['no such entry', reference['l value']]],
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
@@ -151,16 +151,16 @@ export const get_entry_stack = <T>(
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
     return {
-        'l id': reference['l id'],
+        'l id': reference['l value'],
         'l up steps': stack.get_entry_depth(
-            reference['l id'],
+            reference['l value'],
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l id']]],
+                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l value']]],
                     'location': reference['l location'],
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference['l id']]],
+                    'type': ['lookup', ['no such entry', reference['l value']]],
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
@@ -170,14 +170,14 @@ export const get_entry_stack = <T>(
             },
         ),
         'l entry': stack.get_entry(
-            reference['l id'],
+            reference['l value'],
             {
                 cyclic: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l id']]],
+                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l value']]],
                     'location': reference['l location'],
                 }),
                 no_such_entry: () => abort({
-                    'type': ['lookup', ['no such entry', reference['l id']]],
+                    'type': ['lookup', ['no such entry', reference['l value']]],
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
