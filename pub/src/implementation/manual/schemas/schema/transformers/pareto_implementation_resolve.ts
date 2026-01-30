@@ -342,7 +342,7 @@ export const Node_Resolver = (
             const resolver = $.resolver
             return $.benchmark.__decide(
                 ($) => sh.e.dictionary.resolve( //FIXME: validate denseness
-                    sh.s.context(["l value"]),
+                    sh.s.context(["l dictionary"]),
                     sh.e.change_context(
                         sh.s.context(["l entry"]),
                         Node_Resolver(
@@ -368,7 +368,7 @@ export const Node_Resolver = (
 
                 ),
                 () => sh.e.dictionary.resolve(
-                    sh.s.context(["l value"]),
+                    sh.s.context(["l dictionary"]),
                     sh.e.change_context(
                         sh.s.context(["l entry"]),
                         Node_Resolver(
@@ -500,7 +500,7 @@ export const Node_Resolver = (
                     "l result": sh.e.implement_me("IM: result aggregation") //depends on the aggregation
                 }),
                 () => sh.e.list.map(
-                    sh.s.context(["l value"]),
+                    sh.s.context(["l list"]),
                     sh.e.change_context(
                         sh.s.context(["l item"]),
                         Node_Resolver(
@@ -591,18 +591,18 @@ export const Node_Resolver = (
                             case 'stack': return _p.ss($, ($) => sh.e.group.literal({
                                 "l entry": sh.e.implement_me("IM: FIXME ENTRY FROM STACK"),
                                 // "l entry": sh.e.select(Lookup_Selection(x)),
-                                "l id": sh.e.select(sh.s.context(["l value"])),
+                                "l id": sh.e.select(sh.s.context(["l reference"])),
                                 "l up steps": sh.e.implement_me("IM: FIXME UPSTEPS"),
                             }))
                             case 'acyclic': return _p.ss($, ($) => sh.e.group.literal({
                                 "l entry": sh.e.implement_me("IM: FIXME ACYCLIC ENTRY"),
                                 // "l entry": sh.e.select(Lookup_Selection(x)),
-                                "l id": sh.e.select(sh.s.context(["l value"])),
+                                "l id": sh.e.select(sh.s.context(["l reference"])),
                             }))
                             case 'cyclic': return _p.ss($, ($) => sh.e.group.literal({
                                 "l entry": sh.e.implement_me("IM: FIXME CYCLIC ENTRY"),
                                 // "l entry": sh.e.select(Lookup_Selection(x)),
-                                "l id": sh.e.select(sh.s.context(["l value"])),
+                                "l id": sh.e.select(sh.s.context(["l reference"])),
                             }))
                             default: return _p.au($[0])
                         }
@@ -653,7 +653,7 @@ export const Node_Resolver = (
         //     }
         // })))
         case 'state': return _p.ss($, ($) => sh.e.decide.state(
-            sh.s.context(["l value"]),
+            sh.s.context(["l state"]),
             $.states.__d_map(($, id) => sh.e.state.literal(id, Node_Resolver(
                 $['resolver'],
                 {

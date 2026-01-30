@@ -1,6 +1,7 @@
 import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
 import * as _pi from 'pareto-core/dist/interface'
 
+import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -12,72 +13,72 @@ export namespace st {
     export const set = (
         schemas: _p.Raw_Or_Normal_Dictionary<d_schema.Schema_Tree>,
     ): d_schema.Schema_Tree => {
-        return _p.wrap_state(['set', _p.wrap_dictionary(schemas)])
+        return sh.state(['set', sh.dictionary(schemas)])
     }
 
     export const schema = (
         schema: d_schema.Schema,
     ): d_schema.Schema_Tree => {
-        return _p.wrap_state(['schema', schema])
+        return sh.state(['schema', schema])
     }
 
 }
 
 export const types = (
-    types: _p.Raw_Or_Normal_Dictionary<d_schema.Types.l_value.D.l_entry>,
+    types: _p.Raw_Or_Normal_Dictionary<d_schema.Types.l_dictionary.D.l_entry>,
 ): d_schema.Types => {
-    return _p.wrap_dictionary(types)
+    return sh.dictionary(types)
 }
 
 export const globals = (
     complexity: 'unconstrained' | 'constrained',
-    text_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.text_types.l_value.D.l_entry>,
-    number_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.number_types.l_value.D.l_entry>,
+    text_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.text_types.l_dictionary.D.l_entry>,
+    number_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.number_types.l_dictionary.D.l_entry>,
 ): d_schema.Globals => {
     return {
         'complexity': complexity === 'unconstrained'
-            ? _p.wrap_state(['unconstrained', null])
-            : _p.wrap_state(['constrained', null]),
-        'text types': _p.wrap_dictionary(text_types),
-        'number types': _p.wrap_dictionary(number_types),
+            ? sh.state(['unconstrained', null])
+            : sh.state(['constrained', null]),
+        'text types': sh.dictionary(text_types),
+        'number types': sh.dictionary(number_types),
     }
 }
 
-export const type = (type: d_schema.Type_Node): d_schema.Types.l_value.D.l_entry => ({
+export const type = (type: d_schema.Type_Node): d_schema.Types.l_dictionary.D.l_entry => ({
     'node': type,
 })
 
 export const text = (type: 'single line' | 'multi line'): d_schema.Text_Type => ({
-    'type': type === 'single line' ? _p.wrap_state(['single line', null]) : _p.wrap_state(['multi line', null]),
+    'type': type === 'single line' ? sh.state(['single line', null]) : sh.state(['multi line', null]),
 })
 
 export const prop = (
     node: d_schema.Type_Node,
-): d_schema.Group.l_value.D.l_entry => ({
-    'description': _p.optional.not_set(),
+): d_schema.Group.l_dictionary.D.l_entry => ({
+    'description': sh.optionalx.not_set(),
     'node': node,
 })
 
 export const tstate = (
     node: d_schema.Type_Node,
-): d_schema.Type_Node.l_value.state.l_value.D.l_entry => ({
-    'description': _p.optional.not_set(),
+): d_schema.Type_Node.l_state.state.l_dictionary.D.l_entry => ({
+    'description': sh.optionalx.not_set(),
     'node': node,
 })
 
 export const tstated = (
     description: string,
     node: d_schema.Type_Node,
-): d_schema.Type_Node.l_value.state.l_value.D.l_entry => ({
-    'description': _p.optional.set(description),
+): d_schema.Type_Node.l_state.state.l_dictionary.D.l_entry => ({
+    'description': _p.optionalx.set(description),
     'node': node,
 })
 
 export const propd = (
     description: string,
     node: d_schema.Type_Node,
-): d_schema.Group.l_value.D.l_entry => ({
-    'description': _p.optional.set(description),
+): d_schema.Group.l_dictionary.D.l_entry => ({
+    'description': _p.optionalx.set(description),
     'node': node,
 })
 
@@ -87,29 +88,29 @@ export const propd = (
 export namespace n {
 
     export const integer = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state<d_schema.Number_Type.precision.l_value>(['exact', {
-            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
-            'type': _p.wrap_state(['integer', null]),
+        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
+            'type': sh.state(['integer', null]),
         }])
     })
 
     export const approximation = (significant_digits: number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state<d_schema.Number_Type.precision.l_value>(['approximation', {
+        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['approximation', {
             'significant digits': significant_digits,
         }])
     })
 
     export const natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state<d_schema.Number_Type.precision.l_value>(['exact', {
-            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
-            'type': _p.wrap_state(['natural', null]),
+        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
+            'type': sh.state(['natural', null]),
         }])
     })
 
     export const positive_natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': _p.wrap_state<d_schema.Number_Type.precision.l_value>(['exact', {
-            'decimal separator offset': _p.optional.literal<number>(decimal_separator_offset),
-            'type': _p.wrap_state(['positive natural', null]),
+        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
+            'type': sh.state(['positive natural', null]),
         }])
     })
 
@@ -118,23 +119,23 @@ export namespace n {
 export const reference = (
     type: string,
 ): d_schema.Type_Reference => ({
-    'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+    'location': sh.state(['internal', sh.reference(type)]),
     'resulting type': null,
 })
 
 export const part_reference = (
     type: string,
-    tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+    tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
 
 ): d_schema.Type_Node_Reference => {
     return {
         'type location': {
-            'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+            'location': sh.state(['internal', sh.reference(type)]),
             'resulting type': null,
         },
         'path': {
 
-            'tail': _p.wrap_list(tail),
+            'tail': sh.list(tail),
 
             'resulting node': null,
         }
@@ -147,131 +148,131 @@ export const part_reference = (
 export namespace t {
 
     export const boolean = (): d_schema.Type_Node => {
-        return _p.wrap_state(['boolean', null])
+        return sh.state(['boolean', null])
     }
     export const component = (type: string): d_schema.Type_Node => {
-        return _p.wrap_state(['component', _p.wrap_state(['internal', _p.wrap_reference(type)])])
+        return sh.state(['component', sh.state(['internal', sh.reference(type)])])
     }
     export const component_cyclic = (type: string): d_schema.Type_Node => {
-        return _p.wrap_state(['component', _p.wrap_state(['internal cyclic', _p.wrap_reference(type)])])
+        return sh.state(['component', sh.state(['internal cyclic', sh.reference(type)])])
     }
     export const component_external = (imp: string, type: string): d_schema.Type_Node => {
-        return _p.wrap_state(['component', _p.wrap_state(['external', {
-            'import': _p.wrap_reference(imp),
-            'type': _p.wrap_reference(type),
+        return sh.state(['component', sh.state(['external', {
+            'import': sh.reference(imp),
+            'type': sh.reference(type),
         }])])
     }
     export const dictionary = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state(['dictionary', {
+        return sh.state(['dictionary', {
             'node': type,
-            'benchmark': _p.optional.not_set(),
+            'benchmark': sh.optionalx.not_set(),
         }])
     }
-    export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_schema.Group.l_value.D.l_entry>): d_schema.Type_Node => {
-        return _p.wrap_state(['group', _p.wrap_dictionary(properties)])
+    export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_schema.Group.l_dictionary.D.l_entry>): d_schema.Type_Node => {
+        return sh.state(['group', sh.dictionary(properties)])
     }
     export const list = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state(['list', {
+        return sh.state(['list', {
             'node': type,
-            'result': _p.optional.not_set(),
+            'result': sh.optionalx.not_set(),
         }])
     }
     export const path_to_sibling = (
         type: d_schema.Type_Node,
         result: string,
     ): d_schema.Type_Node => {
-        return _p.wrap_state(['list', {
+        return sh.state(['list', {
             'node': type,
-            'result': _p.optional.set<d_schema.Type_Reference>({
-                'location': _p.wrap_state(['internal', _p.wrap_reference(result)]),
+            'result': _p.optionalx.set<d_schema.Type_Reference>({
+                'location': sh.state(['internal', sh.reference(result)]),
                 'resulting type': null,
             }),
         }])
     }
     export const nothing = (): d_schema.Type_Node => {
-        return _p.wrap_state(['nothing', null])
+        return sh.state(['nothing', null])
     }
     export const number_global = (name: string): d_schema.Type_Node => {
-        return _p.wrap_state(['number', _p.wrap_state(['global', _p.wrap_reference(name)])])
+        return sh.state(['number', sh.state(['global', sh.reference(name)])])
     }
     export const number_local = (bt: d_schema.Number_Type): d_schema.Type_Node => {
-        return _p.wrap_state(['number', _p.wrap_state(['local', bt])])
+        return sh.state(['number', sh.state(['local', bt])])
     }
     export const optional = (type: d_schema.Type_Node): d_schema.Type_Node => {
-        return _p.wrap_state(['optional', type])
+        return sh.state(['optional', type])
     }
     export const reference_derived = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+        tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
-                'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+                'location': sh.state(['internal', sh.reference(type)]),
                 'resulting type': null,
             },
             'path': {
-                'tail': _p.wrap_list(tail),
+                'tail': sh.list(tail),
                 'resulting node': null
             }
         }
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'referent': x,
-            'type': _p.wrap_state(['derived', null]),
+            'type': sh.state(['derived', null]),
         }])
     }
     export const reference_derived_external = (
         imp: string,
         type: string,
-        tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+        tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
 
     ): d_schema.Type_Node => {
         const x: d_schema.Type_Node_Reference = {
             'type location': {
-                'location': _p.wrap_state(['external', {
-                    'import': _p.wrap_reference(imp),
-                    'type': _p.wrap_reference(type),
+                'location': sh.state(['external', {
+                    'import': sh.reference(imp),
+                    'type': sh.reference(type),
                 }]),
                 'resulting type': null,
             },
             'path': {
-                'tail': _p.wrap_list(tail),
+                'tail': sh.list(tail),
                 'resulting node': null
             }
         }
 
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'referent': x,
-            'type': _p.wrap_state(['derived', null]),
+            'type': sh.state(['derived', null]),
         }])
     }
 
     export const reference = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+        tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
         dependency?: "cyclic" | "acyclic",
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.l_value.reference.type_ = _p.wrap_state(['selected', {
+        const p_type: d_schema.Type_Node.l_state.reference.type_ = sh.state(['selected', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+                    'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null
                 },
-                'tail': _p.wrap_list(tail),
+                'tail': sh.list(tail),
                 'resulting node': null
             },
             'dictionary': null,
-            'dependency': dependency === "cyclic" ? _p.wrap_state(['cyclic', null]) : _p.wrap_state(['acyclic', null])
+            'dependency': dependency === "cyclic" ? sh.state(['cyclic', null]) : sh.state(['acyclic', null])
         }])
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+                    'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null,
                     'resulting type': null,
                 },
                 'path': {
-                    'tail': _p.wrap_list(tail),
+                    'tail': sh.list(tail),
                     'resulting node': null
                 }
             },
@@ -281,22 +282,22 @@ export namespace t {
 
     export const reference_stack = (
         type: string,
-        tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+        tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.l_value.reference.type_ = _p.wrap_state(['selected', {
+        const p_type: d_schema.Type_Node.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
-            'dependency': _p.wrap_state(['stack', null])
+            'dependency': sh.state(['stack', null])
         }])
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+                    'location': sh.state(['internal', sh.reference(type)]),
                     'resulting node': null,
                     'resulting type': null,
                 },
                 'path': {
-                    'tail': _p.wrap_list(tail),
+                    'tail': sh.list(tail),
                     'resulting node': null
                 }
             },
@@ -308,39 +309,39 @@ export namespace t {
         schema: string,
 
         type: string,
-        tail: d_schema.Type_Node_Path.tail.l_value.L.l_item[],
+        tail: d_schema.Type_Node_Path.tail.l_list.L.l_item[],
     ): d_schema.Type_Node => {
 
-        const p_type: d_schema.Type_Node.l_value.reference.type_ = _p.wrap_state(['selected', {
+        const p_type: d_schema.Type_Node.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
-            'dependency': _p.wrap_state(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
+            'dependency': sh.state(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
         }])
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'referent': {
                 'type location': {
-                    'location': _p.wrap_state(['external', {
-                        'import': _p.wrap_reference(schema),
-                        'type': _p.wrap_reference(type),
+                    'location': sh.state(['external', {
+                        'import': sh.reference(schema),
+                        'type': sh.reference(type),
                     }]),
                     'resulting node': null,
                     'resulting type': null,
                 },
                 'path': {
-                    'tail': _p.wrap_list(tail),
+                    'tail': sh.list(tail),
                     'resulting node': null
                 }
             },
             'type': p_type,
         }])
     }
-    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.l_value.state.l_value.D.l_entry>): d_schema.Type_Node => {
-        return _p.wrap_state(['state', _p.wrap_dictionary(options)])
+    export const state = (options: _p.Raw_Or_Normal_Dictionary<d_schema.Type_Node.l_state.state.l_dictionary.D.l_entry>): d_schema.Type_Node => {
+        return sh.state(['state', sh.dictionary(options)])
     }
     export const text_global = (name: string): d_schema.Type_Node => {
-        return _p.wrap_state(['text', _p.wrap_state(['global', _p.wrap_reference(name)])])
+        return sh.state(['text', sh.state(['global', sh.reference(name)])])
     }
     export const text_local = (bt: d_schema.Text_Type): d_schema.Type_Node => {
-        return _p.wrap_state(['text', _p.wrap_state(['local', bt])])
+        return sh.state(['text', sh.state(['local', bt])])
     }
     // export const type_parameter = (name: string): unresolved.Type_Node => {
     //     return _psh.wrap_state(['type parameter', _psh.wrap_reference(name)])
@@ -352,29 +353,29 @@ export namespace t {
  */
 export namespace tr {
 
-    export const d = (): d_schema.Type_Node_Path.tail.l_value.L.l_item => {
-        return _p.wrap_state(['dictionary', null])
+    export const d = (): d_schema.Type_Node_Path.tail.l_list.L.l_item => {
+        return sh.state(['dictionary', null])
     }
-    export const g = (grp: string): d_schema.Type_Node_Path.tail.l_value.L.l_item => {
-        return _p.wrap_state(['group', _p.wrap_reference(grp)])
+    export const g = (grp: string): d_schema.Type_Node_Path.tail.l_list.L.l_item => {
+        return sh.state(['group', sh.reference(grp)])
     }
-    export const s = (state: string): d_schema.Type_Node_Path.tail.l_value.L.l_item => {
-        return _p.wrap_state(['state', _p.wrap_reference(state)])
+    export const s = (state: string): d_schema.Type_Node_Path.tail.l_list.L.l_item => {
+        return sh.state(['state', sh.reference(state)])
     }
-    export const o = (): d_schema.Type_Node_Path.tail.l_value.L.l_item => {
-        return _p.wrap_state(['optional', null])
+    export const o = (): d_schema.Type_Node_Path.tail.l_list.L.l_item => {
+        return sh.state(['optional', null])
     }
 }
 
 
 
 export const sig_params = (
-    values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_value.D.l_entry>,
-    lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_value.D.l_entry>,
+    values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_dictionary.D.l_entry>,
+    lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
 ): d_schema.Signature_Parameters => {
     return {
-        'values': _p.wrap_dictionary(values),
-        'lookups': _p.wrap_dictionary(lookups),
+        'values': sh.dictionary(values),
+        'lookups': sh.dictionary(lookups),
     }
 }
 
@@ -384,14 +385,14 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_value.D.l_entry>,
-        lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_value.D.l_entry>,
-    ): d_schema.Signatures.l_value.D.l_entry => {
+        values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_dictionary.D.l_entry>,
+        lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    ): d_schema.Signatures.l_dictionary.D.l_entry => {
         return {
             'type': null,
-            'parameters': _p.wrap_state(['local', {
-                'values': _p.wrap_dictionary(values),
-                'lookups': _p.wrap_dictionary(lookups),
+            'parameters': sh.state(['local', {
+                'values': sh.dictionary(values),
+                'lookups': sh.dictionary(lookups),
             }]),
             'resolved parameters': null,
         }
@@ -399,10 +400,10 @@ export namespace sig {
 
     export const same_as = (
         name: string
-    ): d_schema.Signatures.l_value.D.l_entry => {
+    ): d_schema.Signatures.l_dictionary.D.l_entry => {
         return {
             'type': null,
-            'parameters': _p.wrap_state(['same as', _p.wrap_reference(name)]),
+            'parameters': sh.state(['same as', sh.reference(name)]),
             'resolved parameters': null,
         }
     }
@@ -411,15 +412,15 @@ export namespace sig {
 export const value_parameter = (
     name: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.values.l_value.D.l_entry => {
+): d_schema.Signature_Parameters.values.l_dictionary.D.l_entry => {
     return {
         'data type': {
-            'location': _p.wrap_state(['internal', _p.wrap_reference(name)]),
+            'location': sh.state(['internal', sh.reference(name)]),
             'resulting type': null,
         },
         'presence': presence === 'optional'
-            ? _p.wrap_state(['optional', null])
-            : _p.wrap_state(['required', null]),
+            ? sh.state(['optional', null])
+            : sh.state(['required', null]),
     }
 }
 
@@ -427,18 +428,18 @@ export const value_parameter_external = (
     imp: string,
     type: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.values.l_value.D.l_entry => {
+): d_schema.Signature_Parameters.values.l_dictionary.D.l_entry => {
     return {
         'data type': {
-            'location': _p.wrap_state(['external', {
-                'import': _p.wrap_reference(imp),
-                'type': _p.wrap_reference(type),
+            'location': sh.state(['external', {
+                'import': sh.reference(imp),
+                'type': sh.reference(type),
             }]),
             'resulting type': null,
         },
         'presence': presence === 'optional'
-            ? _p.wrap_state(['optional', null])
-            : _p.wrap_state(['required', null]),
+            ? sh.state(['optional', null])
+            : sh.state(['required', null]),
     }
 }
 
@@ -446,21 +447,21 @@ export const lookup_parameter = (
     name: string,
     type?: 'acyclic' | 'cyclic' | 'stack',
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.lookups.l_value.D.l_entry => {
+): d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry => {
     return {
         'referent': {
-            'location': _p.wrap_state(['internal', _p.wrap_reference(name)]),
+            'location': sh.state(['internal', sh.reference(name)]),
             'resulting type': null,
         },
         'dictionary': null,
         'type': type === 'cyclic'
-            ? _p.wrap_state(['cyclic', null])
+            ? sh.state(['cyclic', null])
             : type === 'stack'
-                ? _p.wrap_state(['stack', null])
-                : _p.wrap_state(['acyclic', null]),
+                ? sh.state(['stack', null])
+                : sh.state(['acyclic', null]),
         'presence': presence === 'optional'
-            ? _p.wrap_state(['optional', null])
-            : _p.wrap_state(['required', null]),
+            ? sh.state(['optional', null])
+            : sh.state(['required', null]),
     }
 }
 
@@ -471,19 +472,19 @@ export namespace ls {
 
     export const parameter = (parameter: string): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state(['parameter', _p.wrap_reference(parameter)]),
+            'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null
         }
     }
     export const not_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state(['not circular dependent siblings', null]),
+            'type': sh.state(['not circular dependent siblings', null]),
             'resulting dictionary': null
         }
     }
     export const possibly_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state(['possibly circular dependent siblings', null]),
+            'type': sh.state(['possibly circular dependent siblings', null]),
             'resulting dictionary': null
         }
     }
@@ -498,14 +499,14 @@ export namespace al {
 
     export const not_set = (
 
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['not set', null])
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['not set', null])
     }
 
     export const empty_stack = (
 
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['empty stack', null])
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['empty stack', null])
     }
 
     /**
@@ -514,8 +515,8 @@ export namespace al {
     export const stack = (
         stack: d_schema.Lookup_Selection,
         element: d_schema.Lookup_Selection,
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['stack', {
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['stack', {
             'stack': stack,
             'element': element,
         }])
@@ -524,9 +525,9 @@ export namespace al {
     /**
      * provides a dictionary by selecting a value (that is guaranteed to be a dictionary)
      */
-    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['selection', {
-            'type': _p.wrap_state(['dictionary', {
+    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['selection', {
+            'type': sh.state(['dictionary', {
                 'selection': value_selection,
                 'selected dictionary': null,
             }]),
@@ -537,9 +538,9 @@ export namespace al {
     /**
      * selects a lookup parameter of this resolver and passes it to the next resolver
      */
-    export const parameter = (parameter: string): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['selection', {
-            'type': _p.wrap_state(['parameter', _p.wrap_reference(parameter)]),
+    export const parameter = (parameter: string): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['selection', {
+            'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null,
         }])
     }
@@ -547,9 +548,9 @@ export namespace al {
     /**
      * this one is only usable in the context of an ordered dictionary
      */
-    export const not_circular_dependent_siblings = (): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['selection', {
-            'type': _p.wrap_state(['not circular dependent siblings', null]),
+    export const not_circular_dependent_siblings = (): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['selection', {
+            'type': sh.state(['not circular dependent siblings', null]),
             'resulting dictionary': null,
         }])
     }
@@ -557,9 +558,9 @@ export namespace al {
     /**
      * this one is only usable in the context of a dictionary (ordered or not)
      */
-    export const possibly_circular_dependent_siblings = (): d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry => {
-        return _p.wrap_state(['selection', {
-            'type': _p.wrap_state(['possibly circular dependent siblings', null]),
+    export const possibly_circular_dependent_siblings = (): d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        return sh.state(['selection', {
+            'type': sh.state(['possibly circular dependent siblings', null]),
             'resulting dictionary': null,
         }])
     }
@@ -572,19 +573,19 @@ export namespace al {
 export namespace vst {
 
     export const component = (
-    ): d_schema.Relative_Value_Selection.path.l_value.L.l_item => {
-        return _p.wrap_state(['component', null])
+    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+        return sh.state(['component', null])
     }
 
     export const group = (
         property: string,
-    ): d_schema.Relative_Value_Selection.path.l_value.L.l_item => {
-        return _p.wrap_state(['group', _p.wrap_reference(property)])
+    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+        return sh.state(['group', sh.reference(property)])
     }
 
     export const reference = (
-    ): d_schema.Relative_Value_Selection.path.l_value.L.l_item => {
-        return _p.wrap_state(['reference', {
+    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+        return sh.state(['reference', {
             'definition': null,
         }])
     }
@@ -599,19 +600,19 @@ export namespace ovi {
     export const not_set = (
 
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state(['not set', null])
+        return sh.state(['not set', null])
     }
 
     export const set = (
         value: d_schema.Guaranteed_Value_Selection,
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state(['set', value])
+        return sh.state(['set', value])
     }
 
     export const selection = (
         selection: d_schema.Possible_Value_Selection,
     ): d_schema.Optional_Value_Initialization => {
-        return _p.wrap_state(['selection', selection])
+        return sh.state(['selection', selection])
     }
 
 }
@@ -624,8 +625,8 @@ export namespace pvs {
         state: string,
         result: d_schema.Type_Reference,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state<d_schema.Possible_Value_Selection.l_value>(['result', _p.wrap_state<d_schema.Possible_Value_Selection.l_value.result.l_value>(['state', {
-            'property': _p.wrap_reference(state),
+        return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['state', {
+            'property': sh.reference(state),
             'state': null,
             'result': result,
         }])])
@@ -635,8 +636,8 @@ export namespace pvs {
         optional_value: string,
         result: d_schema.Type_Reference,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state<d_schema.Possible_Value_Selection.l_value>(['result', _p.wrap_state<d_schema.Possible_Value_Selection.l_value.result.l_value>(['optional value', {
-            'property': _p.wrap_reference(optional_value),
+        return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+            'property': sh.reference(optional_value),
             'optional value': null,
             'result': result,
         }])])
@@ -645,7 +646,7 @@ export namespace pvs {
     export const parameter = (
         parameter: string,
     ): d_schema.Possible_Value_Selection => {
-        return _p.wrap_state(['parameter', _p.wrap_reference(parameter)])
+        return sh.state(['parameter', sh.reference(parameter)])
     }
 
 }
@@ -657,7 +658,7 @@ export namespace gvs {
 
     export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Lookup_Selection => {
         return {
-            'type': _p.wrap_state(['dictionary', {
+            'type': sh.state(['dictionary', {
                 'selection': value_selection,
                 'selected dictionary': null,
             }]),
@@ -667,15 +668,15 @@ export namespace gvs {
     export const component = (
         component: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['constraint', _p.wrap_state<d_schema.Guaranteed_Value_Selection.start.l_value.constraint.l_value>(['component', {
-                'property': _p.wrap_reference(component),
-                'constraint': _p.wrap_reference(constraint),
+            'start': sh.state(['constraint', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['component', {
+                'property': sh.reference(component),
+                'constraint': sh.reference(constraint),
             }])]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -685,15 +686,15 @@ export namespace gvs {
     export const reference = (
         reference: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['constraint', _p.wrap_state<d_schema.Guaranteed_Value_Selection.start.l_value.constraint.l_value>(['reference', {
-                'property': _p.wrap_reference(reference),
-                'constraint': _p.wrap_reference(constraint),
+            'start': sh.state(['constraint', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['reference', {
+                'property': sh.reference(reference),
+                'constraint': sh.reference(constraint),
             }])]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -702,15 +703,15 @@ export namespace gvs {
 
     export const list = (
         list: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state<d_schema.Guaranteed_Value_Selection.start.l_value>(['result', _p.wrap_state<d_schema.Guaranteed_Value_Selection.start.l_value.result.l_value>(['list', {
-                'property': _p.wrap_reference(list),
+            'start': sh.state<d_schema.Guaranteed_Value_Selection.start.l_state>(['result', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.result.l_state>(['list', {
+                'property': sh.reference(list),
                 'list result': null,
             }])]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -720,16 +721,16 @@ export namespace gvs {
     export const state = (
         state: string,
         result: d_schema.Type_Reference,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state<d_schema.Possible_Value_Selection.l_value>(['result', _p.wrap_state<d_schema.Possible_Value_Selection.l_value.result.l_value>(['state', {
-                'property': _p.wrap_reference(state),
+            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['state', {
+                'property': sh.reference(state),
                 'state': null,
                 'result': result,
             }])]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -739,16 +740,16 @@ export namespace gvs {
     export const optional_value = (
         optional_value: string,
         result: d_schema.Type_Reference,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state<d_schema.Possible_Value_Selection.l_value>(['result', _p.wrap_state<d_schema.Possible_Value_Selection.l_value.result.l_value>(['optional value', {
-                'property': _p.wrap_reference(optional_value),
+            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+                'property': sh.reference(optional_value),
                 'optional value': null,
                 'result': result,
             }])]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -757,12 +758,12 @@ export namespace gvs {
 
     export const parameter = (
         parameter: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state<d_schema.Possible_Value_Selection.l_value>(['parameter', _p.wrap_reference(parameter)]),
+            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['parameter', sh.reference(parameter)]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -770,12 +771,12 @@ export namespace gvs {
     }
 
     export const list_cursor = (
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['list cursor', null]),
+            'start': sh.state(['list cursor', null]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -783,12 +784,12 @@ export namespace gvs {
     }
 
     export const linked_entry = (
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['linked entry', null]),
+            'start': sh.state(['linked entry', null]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -797,12 +798,12 @@ export namespace gvs {
 
     export const sibling = (
         sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['sibling', _p.wrap_reference(sibling)]),
+            'start': sh.state(['sibling', sh.reference(sibling)]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -811,12 +812,12 @@ export namespace gvs {
 
     export const parent_sibling = (
         parent_sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['parent sibling', _p.wrap_reference(parent_sibling)]),
+            'start': sh.state(['parent sibling', sh.reference(parent_sibling)]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -825,12 +826,12 @@ export namespace gvs {
 
     export const option_constraint = (
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
-            'start': _p.wrap_state(['option constraint', _p.wrap_reference(constraint)]),
+            'start': sh.state(['option constraint', sh.reference(constraint)]),
             'tail': {
-                'path': _p.wrap_list(tail),
+                'path': sh.list(tail),
                 'resulting node': null,
             },
             'resulting node': null,
@@ -846,39 +847,39 @@ export namespace av {
 
     export const parameter = (
         parameter: string,
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry => {
-        return _p.wrap_state(['parameter', _p.wrap_reference(parameter)])
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+        return sh.state(['parameter', sh.reference(parameter)])
     }
 
     export const required = (
         value: d_schema.Guaranteed_Value_Selection,
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry => {
-        return _p.wrap_state(['required', value])
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+        return sh.state(['required', value])
     }
 
     export const optional = (
         value: d_schema.Optional_Value_Initialization,
-    ): d_schema.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry => {
-        return _p.wrap_state(['optional', value])
+    ): d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+        return sh.state(['optional', value])
     }
 
 }
 
 export const state = (
     resolver: d_schema.Node_Resolver,
-): d_schema.Node_Resolver.l_value.state.states.l_value.D.l_entry => {
+): d_schema.Node_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
-        'constraints': _p.wrap_dictionary({}),
+        'constraints': sh.dictionary({}),
         'resolver': resolver,
     }
 }
 
 export const state_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_value.D.l_entry>,
+    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>,
     resolver: d_schema.Node_Resolver,
-): d_schema.Node_Resolver.l_value.state.states.l_value.D.l_entry => {
+): d_schema.Node_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
-        'constraints': _p.wrap_dictionary(constraints),
+        'constraints': sh.dictionary(constraints),
         'resolver': resolver,
     }
 }
@@ -891,18 +892,18 @@ export namespace oc {
     export const state = (
         value_selection: d_schema.Guaranteed_Value_Selection,
         state: string,
-    ): d_schema.Option_Constraints.l_value.D.l_entry => {
-        return _p.wrap_state(['state', {
+    ): d_schema.Option_Constraints.l_dictionary.D.l_entry => {
+        return sh.state(['state', {
             'selection': value_selection,
             'selected state': null,
-            'option': _p.wrap_reference(state),
+            'option': sh.reference(state),
         }])
     }
 
     export const assert_set = (
         possibly_optional: d_schema.Possible_Value_Selection,
-    ): d_schema.Option_Constraints.l_value.D.l_entry => {
-        return _p.wrap_state(['assert is set', possibly_optional])
+    ): d_schema.Option_Constraints.l_dictionary.D.l_entry => {
+        return sh.state(['assert is set', possibly_optional])
     }
 
 }
@@ -913,19 +914,19 @@ export namespace oc {
 export namespace pc {
 
     export const property = (
-        value_selection_tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
         state: string,
-    ): d_schema.Property_Constraints.l_value.D.l_entry => {
+    ): d_schema.Property_Constraints.l_dictionary.D.l_entry => {
         return {
-            'start': _p.wrap_state(['property', null]),
+            'start': sh.state(['property', null]),
             'constraint': {
                 'selection': {
-                    'path': _p.wrap_list(value_selection_tail),
+                    'path': sh.list(value_selection_tail),
                     'resulting node': null,
                 },
-                'type': _p.wrap_state(['state', {
+                'type': sh.state(['state', {
                     'selected state': null,
-                    'option': _p.wrap_reference(state),
+                    'option': sh.reference(state),
                 }])
             },
         }
@@ -933,23 +934,23 @@ export namespace pc {
 
     export const constraint = (
         constraint: string,
-        value_selection_tail: d_schema.Relative_Value_Selection.path.l_value.L.l_item[],
+        value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
         state?: string,
-    ): d_schema.Property_Constraints.l_value.D.l_entry => {
+    ): d_schema.Property_Constraints.l_dictionary.D.l_entry => {
         return {
-            'start': _p.wrap_state(['sibling', _p.wrap_reference(constraint)]),
+            'start': sh.state(['sibling', sh.reference(constraint)]),
             'constraint': {
                 'selection': {
-                    'path': _p.wrap_list(value_selection_tail),
+                    'path': sh.list(value_selection_tail),
                     'resulting node': null,
                 },
                 'type': state === undefined
-                    ? _p.wrap_state(['optional value', {
+                    ? sh.state(['optional value', {
                         'selected optional value': null,
                     }])
-                    : _p.wrap_state(['state', {
+                    : sh.state(['state', {
                         'selected state': null,
-                        'option': _p.wrap_reference(state),
+                        'option': sh.reference(state),
                     }])
             },
         }
@@ -963,58 +964,58 @@ export namespace pc {
 export namespace r {
 
     export const text = (): d_schema.Node_Resolver => {
-        return _p.wrap_state(['text', null])
+        return sh.state(['text', null])
     }
 
     export const boolean = (): d_schema.Node_Resolver => {
-        return _p.wrap_state(['boolean', null])
+        return sh.state(['boolean', null])
     }
 
     export const number = (): d_schema.Node_Resolver => {
-        return _p.wrap_state(['number', null])
+        return sh.state(['number', null])
     }
     export const component = (
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_value.D.l_entry>,
+        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['component', {
-            'location': _p.wrap_state(['internal', _p.wrap_reference(type)]),
+        return sh.state(['component', {
+            'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
-            'arguments': _p.optional.set({
-                'values': values === null ? _p.optional.not_set() : _p.optional.set(_p.wrap_dictionary(values)),
-                'lookups': lookups === null ? _p.optional.not_set() : _p.optional.set(_p.wrap_dictionary(lookups)),
+            'arguments': _p.optionalx.set({
+                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
-            'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
+            'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
         }])
     }
     export const component_external = (
         imp: string,
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_value.D.l_entry>,
+        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['component', {
-            'location': _p.wrap_state(['external', {
-                'import': _p.wrap_reference(imp),
-                'type': _p.wrap_reference(type),
+        return sh.state(['component', {
+            'location': sh.state(['external', {
+                'import': sh.reference(imp),
+                'type': sh.reference(type),
             }]),
             'signature': null,
-            'arguments': _p.optional.set({
-                'values': values === null ? _p.optional.not_set() : _p.optional.set(_p.wrap_dictionary(values)),
-                'lookups': lookups === null ? _p.optional.not_set() : _p.optional.set(_p.wrap_dictionary(lookups)),
+            'arguments': _p.optionalx.set({
+                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
-            'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
+            'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
         }])
     }
 
     export const dictionary = (resolver: d_schema.Node_Resolver): d_schema.Node_Resolver => {
-        return _p.wrap_state(['dictionary', {
+        return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
-            'benchmark': _p.optional.not_set(),
+            'benchmark': sh.optionalx.not_set(),
         }])
     }
 
@@ -1023,10 +1024,10 @@ export namespace r {
         selection: d_schema.Guaranteed_Value_Selection,
         resolver: d_schema.Node_Resolver,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['dictionary', {
+        return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
-            'benchmark': _p.optional.set({
+            'benchmark': _p.optionalx.set({
                 'selection': selection,
                 'resulting dictionary': null,
                 'dense': dense === 'dense',
@@ -1035,12 +1036,12 @@ export namespace r {
     }
 
     export const group = (
-        properties: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver_Group.l_value.D.l_entry.resolver> //FIXME: remove the 'this entry' step
+        properties: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
     ): d_schema.Node_Resolver => {
-        const temp_dict = _p.wrap_dictionary(properties)
-        return _p.wrap_state(['group', {
+        const temp_dict = sh.dictionary(properties)
+        return sh.state(['group', {
             'l location': temp_dict['l location'],
-            'l value': temp_dict['l value'].__d_map(($) => {
+            'l dictionary': temp_dict['l dictionary'].__d_map(($) => {
                 return {
                     'l location': $['l location'],
                     'l entry': {
@@ -1055,10 +1056,10 @@ export namespace r {
     export const list = (
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['list', {
+        return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': _p.optional.not_set<d_schema.Node_Resolver.l_value.list.result.O>(),
+            'result': _p.optionalx.not_set<d_schema.Node_Resolver.l_state.list.result.O>(),
         }])
     }
     export const list_with_result = (
@@ -1066,32 +1067,32 @@ export namespace r {
         result: d_schema.Type_Reference,
 
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['list', {
+        return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': _p.optional.set(result),
+            'result': _p.optionalx.set(result),
         }])
     }
 
     export const nothing = (): d_schema.Node_Resolver => {
-        return _p.wrap_state(['nothing', null])
+        return sh.state(['nothing', null])
     }
 
     export const optional = (
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['optional', {
-            'constraints': _p.wrap_dictionary<d_schema.Option_Constraints.l_value.D.l_entry>({}),
+        return sh.state(['optional', {
+            'constraints': sh.dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>({}),
             'resolver': type_resolver,
         }])
     }
 
     export const optional_constrained = (
-        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_value.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>,
         type_resolver: d_schema.Node_Resolver
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['optional', {
-            'constraints': _p.wrap_dictionary(constraints),
+        return sh.state(['optional', {
+            'constraints': sh.dictionary(constraints),
             'resolver': type_resolver,
         }])
     }
@@ -1099,9 +1100,9 @@ export namespace r {
     export const reference_derived = (
         value_selection: d_schema.Guaranteed_Value_Selection
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'definition': null,
-            'type': _p.wrap_state(['derived', {
+            'type': sh.state(['derived', {
                 'value': value_selection,
             }])
         }])
@@ -1109,45 +1110,45 @@ export namespace r {
 
     export const reference = (
         lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_value.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'definition': null,
-            'type': _p.wrap_state(['selected', {
+            'type': sh.state(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
-                'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
+                'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
             }])
         }])
     }
 
     export const reference_stack = (
         lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_value.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Property_Constraints.l_dictionary.D.l_entry>,
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['reference', {
+        return sh.state(['reference', {
             'definition': null,
-            'type': _p.wrap_state(['selected', {
+            'type': sh.state(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
-                'constraints': _p.wrap_dictionary(constraints === undefined ? {} : constraints),
+                'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
             }])
         }])
     }
 
     export const state = (
-        states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_value.state.states.l_value.D.l_entry>
+        states: _p.Raw_Or_Normal_Dictionary<d_schema.Node_Resolver.l_state.state.states.l_dictionary.D.l_entry>
     ): d_schema.Node_Resolver => {
-        return _p.wrap_state(['state', {
+        return sh.state(['state', {
             'definition': null,
-            'states': _p.wrap_dictionary(states),
+            'states': sh.dictionary(states),
         }])
     }
 }
 
 export const resolver = (
     type_resolver: d_schema.Node_Resolver
-): d_schema.Resolvers.l_value.D.l_entry => {
+): d_schema.Resolvers.l_dictionary.D.l_entry => {
     return {
         'signature': null,
         'type resolver': type_resolver,
@@ -1155,24 +1156,24 @@ export const resolver = (
 }
 
 export const signatures = (
-    signatures: _p.Raw_Or_Normal_Dictionary<d_schema.Signatures.l_value.D.l_entry>,
+    signatures: _p.Raw_Or_Normal_Dictionary<d_schema.Signatures.l_dictionary.D.l_entry>,
 ): d_schema.Resolve_Logic.signatures => {
     return {
-        'types': _p.wrap_dictionary(signatures)
+        'types': sh.dictionary(signatures)
     }
 }
 
 
 export const resolvers = (
-    resolvers: _p.Raw_Or_Normal_Dictionary<d_schema.Resolvers.l_value.D.l_entry>,
+    resolvers: _p.Raw_Or_Normal_Dictionary<d_schema.Resolvers.l_dictionary.D.l_entry>,
 ): d_schema.Resolvers => {
-    return _p.wrap_dictionary(resolvers)
+    return sh.dictionary(resolvers)
 }
 export const import_ = (
     name: string,
-): d_schema.Imports.l_value.D.l_entry => {
+): d_schema.Imports.l_dictionary.D.l_entry => {
     return {
-        'schema set child': _p.wrap_stack_reference(name),
+        'schema set child': sh.reference(name),
         'schema': null,
     }
 }
@@ -1180,7 +1181,7 @@ export const import_ = (
 export const constrained = (
     signatures: d_schema.Resolve_Logic.signatures,
     resolvers: d_schema.Resolvers,
-): d_schema.Schema.complexity.l_value.constrained => {
+): d_schema.Schema.complexity.l_state.constrained => {
     return {
         'signatures': signatures,
         'resolvers': resolvers,
@@ -1188,21 +1189,21 @@ export const constrained = (
 }
 
 export const unconstrained = (
-): d_schema.Schema.complexity.l_value.unconstrained => {
+): d_schema.Schema.complexity.l_state.unconstrained => {
     return null
 }
 export const schema_ = (
-    imports: _p.Raw_Or_Normal_Dictionary<d_schema.Imports.l_value.D.l_entry>,
+    imports: _p.Raw_Or_Normal_Dictionary<d_schema.Imports.l_dictionary.D.l_entry>,
     globals: d_schema.Globals,
     types: d_schema.Types,
-    resolve: null | d_schema.Schema.complexity.l_value.constrained,
-): d_schema.Schemas.l_value.D.l_entry => {
-    return _p.wrap_state(['schema', {
-        'imports': _p.wrap_dictionary(imports),
+    resolve: null | d_schema.Schema.complexity.l_state.constrained,
+): d_schema.Schemas.l_dictionary.D.l_entry => {
+    return sh.state(['schema', {
+        'imports': sh.dictionary(imports),
         'globals': globals,
         'types': types,
         'complexity': resolve === null
-            ? _p.wrap_state(['unconstrained', null])
-            : _p.wrap_state(['constrained', resolve])
+            ? sh.state(['unconstrained', null])
+            : sh.state(['constrained', resolve])
     }])
 }

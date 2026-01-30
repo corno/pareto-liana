@@ -18,9 +18,9 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Text_Type.type_.l_value => {
+                ($): t_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
                             return _p.ss(
@@ -52,9 +52,9 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Number_Type.precision.l_value => {
+                ($): t_out.Number_Type.precision.l_state => {
                     switch ($[0]) {
                         case 'approximation':
                             return _p.ss(
@@ -85,9 +85,9 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             },
-                                            'l value': _p.decide.state(
+                                            'l state': _p.decide.state(
                                                 $,
-                                                ($): t_out.Number_Type.precision.l_value.exact.type_.l_value => {
+                                                ($): t_out.Number_Type.precision.l_state.exact.type_.l_state => {
                                                     switch ($[0]) {
                                                         case 'integer':
                                                             return _p.ss(
@@ -135,9 +135,9 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Globals.complexity.l_value => {
+                ($): t_out.Globals.complexity.l_state => {
                     switch ($[0]) {
                         case 'constrained':
                             return _p.ss(
@@ -166,7 +166,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.dictionary.map(
+            'l dictionary': _p.dictionary.map(
                 $,
                 ($, id) => ({
                     'l entry': Text_Type(
@@ -189,7 +189,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.dictionary.map(
+            'l dictionary': _p.dictionary.map(
                 $,
                 ($, id) => ({
                     'l entry': Number_Type(
@@ -221,7 +221,7 @@ export const Types: t_signatures.Types = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Type(
@@ -283,9 +283,9 @@ export const Schema: t_signatures.Schema = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Schema.complexity.l_value => {
+                ($): t_out.Schema.complexity.l_state => {
                     switch ($[0]) {
                         case 'constrained':
                             return _p.ss(
@@ -316,9 +316,9 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Schema_Tree.l_value => {
+        ($): t_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'schema':
                     return _p.ss(
@@ -358,7 +358,7 @@ export const Type_Specification: t_signatures.Type_Specification = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.list.map(
+            'l list': _p.list.map(
                 $,
                 ($) => ({
                     'l item': $,
@@ -383,7 +383,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Schema_Tree(
@@ -404,7 +404,7 @@ export const Imports: t_signatures.Imports = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -416,7 +416,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                             'line': 42,
                             'column': 42,
                         },
-                        'l value': $['l id'],
+                        'l reference': $['l id'],
                     })
                 ),
                 'schema': _p_cc(
@@ -439,9 +439,9 @@ export const Presence: t_signatures.Presence = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Presence.l_value => {
+        ($): t_out.Presence.l_state => {
             switch ($[0]) {
                 case 'optional':
                     return _p.ss(
@@ -477,7 +477,7 @@ export const Signatures: t_signatures.Signatures = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Signature(
@@ -498,7 +498,7 @@ export const Resolvers: t_signatures.Resolvers = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -528,7 +528,7 @@ export const Group: t_signatures.Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -564,9 +564,9 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Type_Reference.location.l_value => {
+                ($): t_out.Type_Reference.location.l_state => {
                     switch ($[0]) {
                         case 'internal':
                             return _p.ss(
@@ -577,7 +577,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'external':
@@ -592,7 +592,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             },
-                                            'l value': $['l id'],
+                                            'l reference': $['l id'],
                                         })
                                     ),
                                     'type': _p_cc(
@@ -603,7 +603,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             },
-                                            'l value': $['l id'],
+                                            'l reference': $['l id'],
                                         })
                                     ),
                                 }]
@@ -629,9 +629,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Type_Node.l_value => {
+        ($): t_out.Type_Node.l_state => {
             switch ($[0]) {
                 case 'boolean':
                     return _p.ss(
@@ -647,9 +647,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_value.component.l_value => {
+                                ($): t_out.Type_Node.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
                                             return _p.ss(
@@ -663,7 +663,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                     'type': _p_cc(
@@ -674,7 +674,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                 }]
@@ -688,7 +688,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'internal cyclic':
@@ -700,7 +700,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         default:
@@ -761,9 +761,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_value.number_.l_value => {
+                                ($): t_out.Type_Node.l_state.number_.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -774,7 +774,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'local':
@@ -818,9 +818,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.decide.state(
+                                    'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Type_Node.l_value.reference.type_.l_value => {
+                                        ($): t_out.Type_Node.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived':
                                                     return _p.ss(
@@ -843,9 +843,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': _p.decide.state(
+                                                                    'l state': _p.decide.state(
                                                                         $,
-                                                                        ($): t_out.Type_Node.l_value.reference.type_.l_value.selected.dependency.l_value => {
+                                                                        ($): t_out.Type_Node.l_state.reference.type_.l_state.selected.dependency.l_state => {
                                                                             switch ($[0]) {
                                                                                 case 'acyclic':
                                                                                     return _p.ss(
@@ -893,7 +893,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.dictionary.map(
+                            'l dictionary': _p.dictionary.map(
                                 $,
                                 ($, id) => ({
                                     'l entry': {
@@ -929,9 +929,9 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_value.text.l_value => {
+                                ($): t_out.Type_Node.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -942,7 +942,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'local':
@@ -979,7 +979,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.list.map(
+            'l list': _p.list.map(
                 $['l list'],
                 ($) => ({
                     'l item': _p_cc(
@@ -990,9 +990,9 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node_Path.tail.l_value.L.l_item.l_value => {
+                                ($): t_out.Type_Node_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'dictionary':
                                             return _p.ss(
@@ -1008,7 +1008,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'list':
@@ -1030,7 +1030,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         default:
@@ -1081,7 +1081,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.dictionary.map(
+            'l dictionary': _p.dictionary.map(
                 $,
                 ($, id) => ({
                     'l entry': {
@@ -1115,7 +1115,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.dictionary.map(
+            'l dictionary': _p.dictionary.map(
                 $,
                 ($, id) => ({
                     'l entry': {
@@ -1137,9 +1137,9 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                                     'line': 42,
                                     'column': 42,
                                 },
-                                'l value': _p.decide.state(
+                                'l state': _p.decide.state(
                                     $,
-                                    ($): t_out.Signature_Parameters.lookups.l_value.D.l_entry.type_.l_value => {
+                                    ($): t_out.Signature_Parameters.lookups.l_dictionary.D.l_entry.type_.l_state => {
                                         switch ($[0]) {
                                             case 'cyclic':
                                                 return _p.ss(
@@ -1196,9 +1196,9 @@ export const Signature: t_signatures.Signature = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Signature.parameters.l_value => {
+                ($): t_out.Signature.parameters.l_state => {
                     switch ($[0]) {
                         case 'local':
                             return _p.ss(
@@ -1216,7 +1216,7 @@ export const Signature: t_signatures.Signature = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         default:
@@ -1243,7 +1243,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.list.map(
+            'l list': _p.list.map(
                 $['l list'],
                 ($) => ({
                     'l item': _p_cc(
@@ -1254,9 +1254,9 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Relative_Value_Selection.path.l_value.L.l_item.l_value => {
+                                ($): t_out.Relative_Value_Selection.path.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'component':
                                             return _p.ss(
@@ -1272,7 +1272,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': $['l id'],
+                                                    'l reference': $['l id'],
                                                 }]
                                             )
                                         case 'reference':
@@ -1318,9 +1318,9 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Lookup_Selection.type_.l_value => {
+                ($): t_out.Lookup_Selection.type_.l_state => {
                     switch ($[0]) {
                         case 'dictionary':
                             return _p.ss(
@@ -1347,7 +1347,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'not circular dependent siblings':
@@ -1390,9 +1390,9 @@ export const Constraint: t_signatures.Constraint = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Constraint.type_.l_value => {
+                ($): t_out.Constraint.type_.l_state => {
                     switch ($[0]) {
                         case 'state':
                             return _p.ss(
@@ -1410,7 +1410,7 @@ export const Constraint: t_signatures.Constraint = ($) => ({
                                                 'line': 42,
                                                 'column': 42,
                                             },
-                                            'l value': $['l id'],
+                                            'l reference': $['l id'],
                                         })
                                     ),
                                 }]
@@ -1442,7 +1442,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -1451,9 +1451,9 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
                     'line': 42,
                     'column': 42,
                 },
-                'l value': _p.decide.state(
+                'l state': _p.decide.state(
                     $,
-                    ($): t_out.Option_Constraints.l_value.D.l_entry.l_value => {
+                    ($): t_out.Option_Constraints.l_dictionary.D.l_entry.l_state => {
                         switch ($[0]) {
                             case 'state':
                                 return _p.ss(
@@ -1477,7 +1477,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
                                                     'line': 42,
                                                     'column': 42,
                                                 },
-                                                'l value': $['l id'],
+                                                'l reference': $['l id'],
                                             })
                                         ),
                                     }]
@@ -1512,7 +1512,7 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': Property_Constraint(
@@ -1533,7 +1533,7 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
         'line': 42,
         'column': 42,
     },
-    'l value': $['l id'],
+    'l reference': $['l id'],
 })
 
 export const Property_Constraint: t_signatures.Property_Constraint = ($) => ({
@@ -1545,9 +1545,9 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($) => ({
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Property_Constraint.start.l_value => {
+                ($): t_out.Property_Constraint.start.l_state => {
                     switch ($[0]) {
                         case 'property':
                             return _p.ss(
@@ -1584,9 +1584,9 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Optional_Value_Initialization.l_value => {
+        ($): t_out.Optional_Value_Initialization.l_state => {
             switch ($[0]) {
                 case 'not set':
                     return _p.ss(
@@ -1622,7 +1622,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.dictionary.map(
+    'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
             'l entry': {
@@ -1673,9 +1673,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Node_Resolver.l_value => {
+        ($): t_out.Node_Resolver.l_state => {
             switch ($[0]) {
                 case 'boolean':
                     return _p.ss(
@@ -1694,9 +1694,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.decide.state(
+                                    'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Node_Resolver.l_value.component.location.l_value => {
+                                        ($): t_out.Node_Resolver.l_state.component.location.l_state => {
                                             switch ($[0]) {
                                                 case 'external':
                                                     return _p.ss(
@@ -1710,7 +1710,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'type': _p_cc(
@@ -1721,7 +1721,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                         }]
@@ -1735,7 +1735,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         }]
                                                     )
                                                 default:
@@ -1766,7 +1766,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': _p.dictionary.map(
+                                                    'l dictionary': _p.dictionary.map(
                                                         $,
                                                         ($, id) => ({
                                                             'l entry': {
@@ -1775,9 +1775,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                     'line': 42,
                                                                     'column': 42,
                                                                 },
-                                                                'l value': _p.decide.state(
+                                                                'l state': _p.decide.state(
                                                                     $,
-                                                                    ($): t_out.Node_Resolver.l_value.component.arguments_.O.values.O.l_value.D.l_entry.l_value => {
+                                                                    ($): t_out.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'optional':
                                                                                 return _p.ss(
@@ -1802,7 +1802,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                                             'line': 42,
                                                                                             'column': 42,
                                                                                         },
-                                                                                        'l value': $['l id'],
+                                                                                        'l reference': $['l id'],
                                                                                     }]
                                                                                 )
                                                                             default:
@@ -1833,7 +1833,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                         'line': 42,
                                                         'column': 42,
                                                     },
-                                                    'l value': _p.dictionary.map(
+                                                    'l dictionary': _p.dictionary.map(
                                                         $,
                                                         ($, id) => ({
                                                             'l entry': {
@@ -1842,9 +1842,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                     'line': 42,
                                                                     'column': 42,
                                                                 },
-                                                                'l value': _p.decide.state(
+                                                                'l state': _p.decide.state(
                                                                     $,
-                                                                    ($): t_out.Node_Resolver.l_value.component.arguments_.O.lookups.O.l_value.D.l_entry.l_value => {
+                                                                    ($): t_out.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'empty stack':
                                                                                 return _p.ss(
@@ -2011,9 +2011,9 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.decide.state(
+                                    'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Node_Resolver.l_value.reference.type_.l_value => {
+                                        ($): t_out.Node_Resolver.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived':
                                                     return _p.ss(
@@ -2076,7 +2076,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.dictionary.map(
+                                    'l dictionary': _p.dictionary.map(
                                         $,
                                         ($, id) => ({
                                             'l entry': {
@@ -2127,9 +2127,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                 'line': 42,
                 'column': 42,
             },
-            'l value': _p.decide.state(
+            'l state': _p.decide.state(
                 $,
-                ($): t_out.Guaranteed_Value_Selection.start.l_value => {
+                ($): t_out.Guaranteed_Value_Selection.start.l_state => {
                     switch ($[0]) {
                         case 'sibling':
                             return _p.ss(
@@ -2140,7 +2140,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'parent sibling':
@@ -2152,7 +2152,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'option constraint':
@@ -2164,7 +2164,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'list cursor':
@@ -2186,9 +2186,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.decide.state(
+                                    'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Guaranteed_Value_Selection.start.l_value.constraint.l_value => {
+                                        ($): t_out.Guaranteed_Value_Selection.start.l_state.constraint.l_state => {
                                             switch ($[0]) {
                                                 case 'component':
                                                     return _p.ss(
@@ -2202,7 +2202,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'constraint': _p_cc(
@@ -2213,7 +2213,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                         }]
@@ -2230,7 +2230,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'constraint': _p_cc(
@@ -2241,7 +2241,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                         }]
@@ -2264,7 +2264,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': $['l id'],
+                                    'l reference': $['l id'],
                                 }]
                             )
                         case 'result':
@@ -2276,9 +2276,9 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                         'line': 42,
                                         'column': 42,
                                     },
-                                    'l value': _p.decide.state(
+                                    'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Guaranteed_Value_Selection.start.l_value.result.l_value => {
+                                        ($): t_out.Guaranteed_Value_Selection.start.l_state.result.l_state => {
                                             switch ($[0]) {
                                                 case 'list':
                                                     return _p.ss(
@@ -2292,7 +2292,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'list result': _p_cc(
@@ -2313,7 +2313,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'state': _p_cc(
@@ -2340,7 +2340,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         'line': 42,
                                                                         'column': 42,
                                                                     },
-                                                                    'l value': $['l id'],
+                                                                    'l reference': $['l id'],
                                                                 })
                                                             ),
                                                             'optional value': _p_cc(
@@ -2391,9 +2391,9 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
         'line': 42,
         'column': 42,
     },
-    'l value': _p.decide.state(
+    'l state': _p.decide.state(
         $,
-        ($): t_out.Possible_Value_Selection.l_value => {
+        ($): t_out.Possible_Value_Selection.l_state => {
             switch ($[0]) {
                 case 'parameter':
                     return _p.ss(
@@ -2404,7 +2404,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': $['l id'],
+                            'l reference': $['l id'],
                         }]
                     )
                 case 'result':
@@ -2416,9 +2416,9 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                 'line': 42,
                                 'column': 42,
                             },
-                            'l value': _p.decide.state(
+                            'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Possible_Value_Selection.l_value.result.l_value => {
+                                ($): t_out.Possible_Value_Selection.l_state.result.l_state => {
                                     switch ($[0]) {
                                         case 'state':
                                             return _p.ss(
@@ -2432,7 +2432,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                     'state': _p_cc(
@@ -2459,7 +2459,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                 'line': 42,
                                                                 'column': 42,
                                                             },
-                                                            'l value': $['l id'],
+                                                            'l reference': $['l id'],
                                                         })
                                                     ),
                                                     'optional value': _p_cc(

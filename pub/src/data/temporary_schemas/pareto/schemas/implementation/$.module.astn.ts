@@ -10,7 +10,7 @@ import { $ as globals } from "./$.globals.astn"
 import { $ as signatures } from "./$.signatures.astn"
 import { $ as resolver } from "./$.resolvers.astn"
 
-export const $: g_.Schemas.l_value.D.l_entry = schema_(
+export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
         "interface": import_("interface"),
     },

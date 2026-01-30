@@ -146,7 +146,7 @@ export const Type_Node = (
             case 'dictionary': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "l location": location,
-                    "l value": sh.t.dictionary(sh.t.group({
+                    "l dictionary": sh.t.dictionary(sh.t.group({
                         "l location": location,
                         "l entry": Type_Node(
                             $.node,
@@ -178,7 +178,7 @@ export const Type_Node = (
                         )))
                         case 'unresolved': return _p.ss($, ($) => sh.t.group({
                             "l location": location,
-                            "l value": sh.t.list(sh.t.group({
+                            "l list": sh.t.list(sh.t.group({
                                 "l location": location,
                                 "l item": Type_Node(
                                     list.node,
@@ -243,7 +243,7 @@ export const Type_Node = (
                                 switch ($[0]) {
                                     case 'unconstrained': return _p.ss($, ($) => sh.t.group({ //this is weird; a reference in an unconstrained schema
                                         "l location": location,
-                                        "l value": sh.t.text(),
+                                        "l reference": sh.t.text(),
                                     }))
                                     case 'resolved': return _p.ss($, ($) => sh.t.group(_p.dictionary.filter(
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Type_Node>>({
@@ -281,7 +281,7 @@ export const Type_Node = (
                                     )))
                                     case 'unresolved': return _p.ss($, ($) => sh.t.group({
                                         "l location": location,
-                                        "l value": sh.t.text(),
+                                        "l reference": sh.t.text(),
                                     }))
                                     default: return _p.au($[0])
                                 }
@@ -294,7 +294,7 @@ export const Type_Node = (
             case 'state': return _p.ss($, ($) => add_location
                 ? sh.t.group({
                     "l location": location,
-                    "l value": sh.t.state($.__d_map(($, id) => Type_Node(
+                    "l state": sh.t.state($.__d_map(($, id) => Type_Node(
                         $.node,
                         $p
                     )))
