@@ -489,7 +489,58 @@ export const Node_Resolver = (
                 )
             )
         ))
-        case 'list': return _p.ss($, ($) => sh.e.unreachable())
+        case 'list': return _p.ss($, ($) => {
+            const resolver = $.resolver
+            return $.result.__decide(
+                ($) => sh.e.group.literal({
+                    "l list": sh.e.list.map_with_state(
+                        sh.s.from_context(["l list"]),
+                        sh.e.implement_me("initial state"), //depends on the aggregation
+                        sh.e.group.literal({
+                            "l item": sh.e.change_context(
+                                sh.s.from_context(["l item"]),
+                                Node_Resolver(
+                                    resolver,
+                                    {
+                                        'temp type': $p['temp type'],
+                                        'temp subselection': _p.list.nested_literal_old([
+                                            $p['temp subselection'],
+                                            [
+                                                sh_i.sub.group("l list"),
+                                                sh_i.sub.list(),
+                                                sh_i.sub.group("l item"),
+                                            ]
+                                        ]),
+                                    }
+                                ),
+                            ),
+                            "l result": sh.e.implement_me("result aggregation") //depends on the aggregation
+                        }),
+                        sh.e.implement_me("update state"),
+                        sh.e.implement_me("wrapup"),
+                    ),
+                    "l result": sh.e.implement_me("result aggregation") //depends on the aggregation
+                }),
+                () => sh.e.list.map(
+                    sh.s.from_context(["l list"]),
+                    sh.e.change_context(
+                        sh.s.from_context(["l item"]),
+                        Node_Resolver(
+                            $.resolver,
+                            {
+                                'temp type': $p['temp type'],
+                                'temp subselection': _p.list.nested_literal_old([
+                                    $p['temp subselection'],
+                                    [
+                                        sh_i.sub.list()
+                                    ]
+                                ]),
+                            }
+                        )
+                    )
+                )
+            )
+        })
         // case 'list': return _p.ss($, ($) => sh.e.list.map(
         //     sh.s.from_context(["list"]),
         //     sh.e.change_context(
@@ -510,7 +561,21 @@ export const Node_Resolver = (
         // ))
         case 'nothing': return _p.ss($, ($) => sh.e.nothing())
         case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-        case 'optional': return _p.ss($, ($) => sh.e.unreachable())
+        case 'optional': return _p.ss($, ($) => sh.e.optional.map(
+            sh.s.from_context([]),
+            Node_Resolver(
+                $.resolver,
+                {
+                    'temp type': $p['temp type'],
+                    'temp subselection': _p.list.nested_literal_old([
+                        $p['temp subselection'],
+                        [
+                            sh_i.sub.optional()
+                        ]
+                    ]),
+                }
+            )
+        ))
         // case 'optional': return _p.ss($, ($) => sh.e.optional.map(
         //     sh.s.from_context([]),
         //     Option_Constraints(
@@ -576,7 +641,26 @@ export const Node_Resolver = (
         //         default: return _p.au($[0])
         //     }
         // })))
-        case 'state': return _p.ss($, ($) => sh.e.unreachable())
+        case 'state': return _p.ss($, ($) => sh.e.decide.state(
+            sh.s.from_context(["l state"]),
+            $.states.__d_map(($, id) => sh.e.state.literal(id, Node_Resolver(
+                $['resolver'],
+                {
+                    'temp type': $p['temp type'],
+                    'temp subselection': _p.list.nested_literal_old([
+                        $p['temp subselection'],
+                        [
+                            sh_i.sub.state(id)
+                        ]
+                    ]),
+                }
+            ))),
+            sh.type_node_reference(
+                "out",
+                $p['temp type'],
+                $p['temp subselection'],
+            ),
+        ))
         // case 'state': return _p.ss($, ($) => sh.e.decide.state(
         //     sh.s.from_context(['state']),
         //     $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
