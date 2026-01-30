@@ -19,8 +19,8 @@ export const Module: signatures.Module = ($, abort, $l, $p) => _p_deprecated_blo
         },
         null,
     ))
-    return ({
+    return {
         'omit (de)serializer': $['omit (de)serializer'],
         'schema tree': p_schema_tree,
-    })
+    }
 })

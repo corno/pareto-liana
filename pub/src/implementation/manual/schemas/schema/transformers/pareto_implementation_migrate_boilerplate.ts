@@ -11,7 +11,7 @@ import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-const location = sh.e.group({
+const location = sh.e.group.literal({
     "document resource identifier": sh.e.text.literal("implement me", 'freeform'),
     "line": sh.e.number.integer_literal(42),
     "column": sh.e.number.integer_literal(42),
@@ -114,11 +114,11 @@ export const Type_Node = (
             case 'dictionary': return _p.ss($, ($) => {
 
                 return $p.constrained
-                    ? sh.e.group({
+                    ? sh.e.group.literal({
                         "location": location,
                         "dictionary": sh.e.dictionary.map(
                             sh.s.from_context([]),
-                            sh.e.group({
+                            sh.e.group.literal({
                                 "entry": Type_Node(
                                     $.node,
                                     {
@@ -155,7 +155,7 @@ export const Type_Node = (
                         )
                     )
             })
-            case 'group': return _p.ss($, ($) => sh.e.group($.__d_map(($, id) => sh.e.change_context(
+            case 'group': return _p.ss($, ($) => sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
                 sh.s.from_context([id]),
                 Type_Node(
                     $.node,
@@ -174,7 +174,7 @@ export const Type_Node = (
             case 'list': return _p.ss($, ($) => {
 
                 return $p.constrained
-                    ? sh.e.group({
+                    ? sh.e.group.literal({
                         "location": location,
                         "list": sh.e.list.map(
                             sh.s.from_context(
@@ -183,7 +183,7 @@ export const Type_Node = (
                                     () => [],
                                 )
                             ),
-                            sh.e.group({
+                            sh.e.group.literal({
                                 "item": _p_cc($, ($) => {
                                     const tn = Type_Node(
                                         $.node,
@@ -255,7 +255,7 @@ export const Type_Node = (
                         const tn = sh.e.select(sh.s.from_context(["id"]))
 
                         return $p.constrained
-                            ? sh.e.group({
+                            ? sh.e.group.literal({
                                 "location": location,
                                 "id": tn
                             })
@@ -300,7 +300,7 @@ export const Type_Node = (
                     ),
                 )
                 return $p.constrained
-                    ? sh.e.group({
+                    ? sh.e.group.literal({
                         "location": location,
                         "state": tn
                     })

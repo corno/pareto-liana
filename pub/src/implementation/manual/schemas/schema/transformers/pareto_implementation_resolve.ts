@@ -37,31 +37,31 @@ export const Resolvers = (
         true,
         false,
         false,
-        false,
+        true,
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "generic": sh_i.import_.external(
-                        "pareto-core-internals",
-                        [
-                            "dist",
-                            "algorithm types",
-                            "refiner",
-                            "resolve"
-                        ]
-                    ),
+                    // "generic": sh_i.import_.external(
+                    //     "pareto-core-internals",
+                    //     [
+                    //         "dist",
+                    //         "algorithm types",
+                    //         "refiner",
+                    //         "resolve"
+                    //     ]
+                    // ),
+
                     "out": sh_i.import_.ancestor(
                         5,
                         "interface",
                         _p.list.nested_literal_old([
                             _p.list.literal([
                                 "generated",
-                                "pareto",
+                                "liana",
                                 "schemas"
-                            ]
-                            ),
+                            ]),
                             $p.path,
-                            _p.list.literal(["data", "resolved"]),
+                            _p.list.literal(["data", "resolved"])
                         ])
                     ),
                     "signatures": sh_i.import_.ancestor(
@@ -70,23 +70,16 @@ export const Resolvers = (
                         _p.list.nested_literal_old([
                             _p.list.literal([
                                 "generated",
-                                "pareto",
+                                "liana",
                                 "schemas"
                             ]),
                             $p.path,
-                            _p.list.literal([
-                                "data types",
-                                "resolve"
-                            ]),
+                            _p.list.literal(["resolve"])
                         ])
                     ),
                 }),
-                "r ": $p.imports.__d_map(
-                    ($, id) => sh_i.import_.ancestor(
-                        1,
-                        $['schema set child'].id,
-                        ["resolve"])
-                )
+                "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child'].id, ["resolve"]))
+
             }),
             {
                 'separator': "",
@@ -107,7 +100,6 @@ export const Resolvers = (
                     'temp subselection': _p.list.literal([])
                 }
             ),
-
         ))
     )
 }
@@ -302,123 +294,114 @@ export const Node_Resolver = (
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-        case 'component': return _p.ss($, ($) => sh.e.select(
-            sh.s.call(
-                _p.decide.state($.location, ($) => {
-                    switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.id}`, `r ${$.type.id}`, []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable(`r ${$.id}`, []))
-                        default: return _p.au($[0])
-                    }
-                }),
-                sh.e.select(sh.s.from_context([])),
-                null,
-                {
-                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                    "parameters": $.arguments.__decide(
-                        ($) => sh.e.group({
-                            "values": $.values.__decide(
-                                ($) => sh.e.group($.__d_map(($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($, null))
-                                        case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.from_variable(
-                                            "params",
-                                            ["values", $.id],
-                                        )))
-                                        case 'required': return _p.ss($, ($) => sh.e.select(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
+        case 'component': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'component': return _p.ss($, ($) => sh.e.select(
+        //     sh.s.call(
+        //         _p.decide.state($.location, ($) => {
+        //             switch ($[0]) {
+        //                 case 'external': return _p.ss($, ($) => sh.s.from_variable_import(` i r ${$.import.id}`, `r ${$.type.id}`, []))
+        //                 case 'internal': return _p.ss($, ($) => sh.s.from_variable(`r ${$.id}`, []))
+        //                 default: return _p.au($[0])
+        //             }
+        //         }),
+        //         sh.e.select(sh.s.from_context([])),
+        //         null,
+        //         {
+        //             "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+        //             "parameters": $.arguments.__decide(
+        //                 ($) => sh.e.group.literal({
+        //                     "values": $.values.__decide(
+        //                         ($) => sh.e.group.literal($.__d_map(($) => _p.decide.state($, ($) => {
+        //                             switch ($[0]) {
+        //                                 case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($, null))
+        //                                 case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.from_variable(
+        //                                     "params",
+        //                                     ["values", $.id],
+        //                                 )))
+        //                                 case 'required': return _p.ss($, ($) => sh.e.select(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
 
-                                        default: return _p.au($[0])
-                                    }
-                                }))),
-                                () => sh.e.select(sh.s.from_variable("params", ["values"])),
-                            ),
-                            "lookups": $.lookups.__decide(
-                                ($) => sh.e.group($.__d_map(($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
-                                        case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
-                                        case 'selection': return _p.ss($, ($) => sh.e.select(Lookup_Selection($, {})))
-                                        case 'stack': return _p.ss($, ($) => sh.e.implement_me("stack")) // quite some work
-                                        default: return _p.au($[0])
-                                    }
-                                }))),
-                                () => sh.e.select(sh.s.from_variable("params", ["lookups"])),
-                            ),
-                        }),
-                        () => sh.e.select(sh.s.from_variable("params", []))
-                    )
-                },
-                []
-            )
-        ))
-        case 'dictionary': return _p.ss($, ($) => sh.e.block(
-            [],
-            $.benchmark.__decide(
-                ($) => _p.dictionary.literal({
-                    // "linked entry": e.call(
-                    //     s.from_context([]), //Value_Selection($.selection, { 'tail': pa.list.literal([]) }),
-                    //     e.string("FIXME", 'backtick'),
-                    // ),
-                    "benchmark": sh.variable(null, sh.e.select(Guaranteed_Value_Selection($.selection, { 'tail': () => _p.list.literal([]) }))),
-                }),
-                () => _p.dictionary.literal({})
-            ),
-            sh.e.select(
-                sh.s.call(
-                    sh.s.from_variable_import(" i generic", "resolve dictionary", []),
-                    sh.e.select(sh.s.from_context([])),
-                    null,
-                    {
-                        //"denseness benchmark": e.not_set(),
-                        // "map": sh.e.function_deprecated(true, sh.e.block(
-                        //     [],
-                        //     $.benchmark.__decide(
-                        //         ($) => _p.dictionary.literal({
-                        //             // "linked entry": e.call(
-                        //             //     s.from_context([]), //Value_Selection($.selection, { 'tail': pa.list.literal([]) }),
-                        //             //     e.string("FIXME", 'backtick'),
-                        //             // ),
-                        //             "linked entry": sh.variable(null, sh.e.implement_me()), // quite some work; a call to get_entry() from the selection (Guaranteed_Value_Selection), and then transform an optional value
-                        //         }),
-                        //         () => _p.dictionary.literal({})
-                        //     ),
-                        //     sh.e.change_context(
-                        //         sh.s.from_context(["value"]),
-                        //         Node_Resolver(
-                        //             $.resolver,
-                        //             {
-                        //                 'temp type': $p['temp type'],
-                        //                 'temp subselection': _p.list.nested_literal_old([
-                        //                     $p['temp subselection'],
-                        //                     [
-                        //                         sh_i.sub.dictionary()
-                        //                     ]
-                        //                 ]),
-                        //             }
-                        //         )
-                        //     )
-                        // )),
-                        "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+        //                                 default: return _p.au($[0])
+        //                             }
+        //                         }))),
+        //                         () => sh.e.select(sh.s.from_variable("params", ["values"])),
+        //                     ),
+        //                     "lookups": $.lookups.__decide(
+        //                         ($) => sh.e.group.literal($.__d_map(($) => _p.decide.state($, ($) => {
+        //                             switch ($[0]) {
+        //                                 case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
+        //                                 case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
+        //                                 case 'selection': return _p.ss($, ($) => sh.e.select(Lookup_Selection($, {})))
+        //                                 case 'stack': return _p.ss($, ($) => sh.e.implement_me("stack")) // quite some work
+        //                                 default: return _p.au($[0])
+        //                             }
+        //                         }))),
+        //                         () => sh.e.select(sh.s.from_variable("params", ["lookups"])),
+        //                     ),
+        //                 }),
+        //                 () => sh.e.select(sh.s.from_variable("params", []))
+        //             )
+        //         },
+        //         []
+        //     )
+        // ))
+        case 'dictionary': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'dictionary': return _p.ss($, ($) => sh.e.block(
+        //     [],
+        //     $.benchmark.__decide(
+        //         ($) => _p.dictionary.literal({
+        //             // "linked entry": e.call(
+        //             //     s.from_context([]), //Value_Selection($.selection, { 'tail': pa.list.literal([]) }),
+        //             //     e.string("FIXME", 'backtick'),
+        //             // ),
+        //             "benchmark": sh.variable(null, sh.e.select(Guaranteed_Value_Selection($.selection, { 'tail': () => _p.list.literal([]) }))),
+        //         }),
+        //         () => _p.dictionary.literal({})
+        //     ),
+        //     sh.e.select(
+        //         sh.s.call(
+        //             sh.s.from_variable_import(" i generic", "resolve dictionary", []),
+        //             sh.e.select(sh.s.from_context([])),
+        //             null,
+        //             {
+        //                 //"denseness benchmark": e.not_set(),
+        //                 // "map": sh.e.function_deprecated(true, sh.e.block(
+        //                 //     [],
+        //                 //     $.benchmark.__decide(
+        //                 //         ($) => _p.dictionary.literal({
+        //                 //             // "linked entry": e.call(
+        //                 //             //     s.from_context([]), //Value_Selection($.selection, { 'tail': pa.list.literal([]) }),
+        //                 //             //     e.string("FIXME", 'backtick'),
+        //                 //             // ),
+        //                 //             "linked entry": sh.variable(null, sh.e.implement_me()), // quite some work; a call to get_entry() from the selection (Guaranteed_Value_Selection), and then transform an optional value
+        //                 //         }),
+        //                 //         () => _p.dictionary.literal({})
+        //                 //     ),
+        //                 //     sh.e.change_context(
+        //                 //         sh.s.from_context(["value"]),
+        //                 //         Node_Resolver(
+        //                 //             $.resolver,
+        //                 //             {
+        //                 //                 'temp type': $p['temp type'],
+        //                 //                 'temp subselection': _p.list.nested_literal_old([
+        //                 //                     $p['temp subselection'],
+        //                 //                     [
+        //                 //                         sh_i.sub.dictionary()
+        //                 //                     ]
+        //                 //                 ]),
+        //                 //             }
+        //                 //         )
+        //                 //     )
+        //                 // )),
+        //                 "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
 
-                    },
-                    [],
-                )
-            )
-        ))
-        case 'group': return _p.ss($, ($) => sh.e.block(
-            $.__to_list(($, id) => sh.temp_ordered_variable(
-                `p ${id}`,
-                sh.type_node_reference(
-                    "out",
-                    $p['temp type'],
-                    _p.list.nested_literal_old([
-                        $p['temp subselection'],
-                        [
-                            sh.sub.group(id)
-                        ]
-                    ]),
-                ),
-                sh.e.change_context(
+        //             },
+        //             [],
+        //         )
+        //     )
+        // ))
+        case 'group': return _p.ss($, ($) => sh.e.group.resolve(
+            $.__d_map(
+                ($, id) => sh.e.change_context(
                     sh.s.from_context([id]),
                     Node_Resolver(
                         $.resolver,
@@ -427,125 +410,127 @@ export const Node_Resolver = (
                             'temp subselection': _p.list.nested_literal_old([
                                 $p['temp subselection'],
                                 [
-                                    sh.sub.group(id)
+                                    sh_i.sub.group(id)
                                 ]
                             ]),
                         }
                     )
                 )
-            )),
-            {},
-            sh.e.group($.__d_map(($, id) => sh.e.select(sh.s.from_variable(`p ${id}`, []))))
-        ))
-        case 'list': return _p.ss($, ($) => sh.e.list.map(
-            sh.s.from_context(["list"]),
-            sh.e.change_context(
-                sh.s.from_context(["element"]),
-                Node_Resolver(
-                    $.resolver,
-                    {
-                        'temp type': $p['temp type'],
-                        'temp subselection': _p.list.nested_literal_old([
-                            $p['temp subselection'],
-                            [
-                                sh.sub.list()
-                            ]
-                        ]),
-                    }
-                )
             )
         ))
+        case 'list': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'list': return _p.ss($, ($) => sh.e.list.map(
+        //     sh.s.from_context(["list"]),
+        //     sh.e.change_context(
+        //         sh.s.from_context(["element"]),
+        //         Node_Resolver(
+        //             $.resolver,
+        //             {
+        //                 'temp type': $p['temp type'],
+        //                 'temp subselection': _p.list.nested_literal_old([
+        //                     $p['temp subselection'],
+        //                     [
+        //                         sh.sub.list()
+        //                     ]
+        //                 ]),
+        //             }
+        //         )
+        //     )
+        // ))
         case 'nothing': return _p.ss($, ($) => sh.e.nothing())
         case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-        case 'optional': return _p.ss($, ($) => sh.e.optional.map(
-            sh.s.from_context([]),
-            Option_Constraints(
-                $.constraints,
-                {
-                    'sub': () => Node_Resolver(
-                        $['resolver'],
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh.sub.optional()
-                                ]
-                            ]),
-                        }
-                    )
-                }
-            )
-        ))
-        case 'reference': return _p.ss($, ($) => sh.e.select(_p.decide.state($.type, ($): d_out.Selection => {
-            switch ($[0]) {
-                case 'derived': return _p.ss($, ($) => Guaranteed_Value_Selection($.value, { 'tail': () => _p.list.literal([]) }))
-                case 'selected': return _p.ss($, ($) => {
-                    const context = $
-                    return _p.decide.state($.definition.dependency, ($) => {
-                        switch ($[0]) {
-                            case 'acyclic': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get entry", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            case 'cyclic': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get possibly circular dependent sibling entry", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            case 'stack': return _p.ss($, ($) => sh.s.call(
-                                sh.s.from_variable_import(" i generic", "get entry from stack", []),
-                                sh.e.select(Lookup_Selection(context.lookup, {})),
-                                null,
-                                {
-                                    "reference": sh.e.select(sh.s.from_context([])),
-                                    "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
-                                },
-                                [],
-                            ))
-                            default: return _p.au($[0])
-                        }
-                    })
-                })
-                default: return _p.au($[0])
-            }
-        })))
-        case 'state': return _p.ss($, ($) => sh.e.decide.state(
-            sh.s.from_context(['state']),
-            $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
-                $.constraints,
-                {
-                    'sub': () => Node_Resolver(
-                        $['resolver'],
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh.sub.state(id)
-                                ]
-                            ]),
-                        }
-                    )
-                }
-            ))),
-            sh.type_node_reference(
-                "out",
-                $p['temp type'],
-                $p['temp subselection'],
-            ),
-        ))
+        case 'optional': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'optional': return _p.ss($, ($) => sh.e.optional.map(
+        //     sh.s.from_context([]),
+        //     Option_Constraints(
+        //         $.constraints,
+        //         {
+        //             'sub': () => Node_Resolver(
+        //                 $['resolver'],
+        //                 {
+        //                     'temp type': $p['temp type'],
+        //                     'temp subselection': _p.list.nested_literal_old([
+        //                         $p['temp subselection'],
+        //                         [
+        //                             sh.sub.optional()
+        //                         ]
+        //                     ]),
+        //                 }
+        //             )
+        //         }
+        //     )
+        // ))
+        case 'reference': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'reference': return _p.ss($, ($) => sh.e.select(_p.decide.state($.type, ($): d_out.Selection => {
+        //     switch ($[0]) {
+        //         case 'derived': return _p.ss($, ($) => Guaranteed_Value_Selection($.value, { 'tail': () => _p.list.literal([]) }))
+        //         case 'selected': return _p.ss($, ($) => {
+        //             const context = $
+        //             return _p.decide.state($.definition.dependency, ($) => {
+        //                 switch ($[0]) {
+        //                     case 'acyclic': return _p.ss($, ($) => sh.s.call(
+        //                         sh.s.from_variable_import(" i generic", "get entry", []),
+        //                         sh.e.select(Lookup_Selection(context.lookup, {})),
+        //                         null,
+        //                         {
+        //                             "reference": sh.e.select(sh.s.from_context([])),
+        //                             "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+        //                         },
+        //                         [],
+        //                     ))
+        //                     case 'cyclic': return _p.ss($, ($) => sh.s.call(
+        //                         sh.s.from_variable_import(" i generic", "get possibly circular dependent sibling entry", []),
+        //                         sh.e.select(Lookup_Selection(context.lookup, {})),
+        //                         null,
+        //                         {
+        //                             "reference": sh.e.select(sh.s.from_context([])),
+        //                             "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+        //                         },
+        //                         [],
+        //                     ))
+        //                     case 'stack': return _p.ss($, ($) => sh.s.call(
+        //                         sh.s.from_variable_import(" i generic", "get entry from stack", []),
+        //                         sh.e.select(Lookup_Selection(context.lookup, {})),
+        //                         null,
+        //                         {
+        //                             "reference": sh.e.select(sh.s.from_context([])),
+        //                             "location 2 string": sh.e.select(sh.s.from_variable("l2s", [])),
+        //                         },
+        //                         [],
+        //                     ))
+        //                     default: return _p.au($[0])
+        //                 }
+        //             })
+        //         })
+        //         default: return _p.au($[0])
+        //     }
+        // })))
+        case 'state': return _p.ss($, ($) => sh.e.unreachable())
+        // case 'state': return _p.ss($, ($) => sh.e.decide.state(
+        //     sh.s.from_context(['state']),
+        //     $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
+        //         $.constraints,
+        //         {
+        //             'sub': () => Node_Resolver(
+        //                 $['resolver'],
+        //                 {
+        //                     'temp type': $p['temp type'],
+        //                     'temp subselection': _p.list.nested_literal_old([
+        //                         $p['temp subselection'],
+        //                         [
+        //                             sh.sub.state(id)
+        //                         ]
+        //                     ]),
+        //                 }
+        //             )
+        //         }
+        //     ))),
+        //     sh.type_node_reference(
+        //         "out",
+        //         $p['temp type'],
+        //         $p['temp subselection'],
+        //     ),
+        // ))
         case 'text': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
         default: return _p.au($[0])
     }

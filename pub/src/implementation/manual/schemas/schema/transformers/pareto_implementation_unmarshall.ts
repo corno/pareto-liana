@@ -205,7 +205,7 @@ export const Type_Node = (
             ))
             case 'dictionary': return _p.ss($, ($) => {
                 return $p.constrained
-                    ? sh.e.group({
+                    ? sh.e.group.literal({
                         "location": location,
                         "dictionary": sh.e.dictionary.map(
                             sh.s.call(
@@ -215,7 +215,7 @@ export const Type_Node = (
                                 null,
                                 [],
                             ),
-                            sh.e.group({
+                            sh.e.group.literal({
                                 "location": location,
                                 "entry": Type_Node(
                                     $.node,
@@ -267,7 +267,7 @@ export const Type_Node = (
                     null,
                     [],
                 ),
-                sh.e.group($.__d_map(($, id) => sh.e.change_context(
+                sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
                     sh.s.from_entry(
                         sh.s.from_context([]),
                         sh.e.text.literal(id, 'identifier'),
@@ -291,7 +291,7 @@ export const Type_Node = (
             ))
             case 'list': return _p.ss($, ($) => {
                 return $p.constrained
-                    ? sh.e.group({
+                    ? sh.e.group.literal({
                         "location": location,
                         "list": sh.e.list.map(
                             sh.s.call(
@@ -301,7 +301,7 @@ export const Type_Node = (
                                 null,
                                 [],
                             ),
-                            sh.e.group({
+                            sh.e.group.literal({
                                 "location": location,
                                 "item": Type_Node(
                                     $.node,
@@ -403,7 +403,7 @@ export const Type_Node = (
                             [],
                         )
                     ))
-                    case 'selected': return _p.ss($, ($) => sh.e.group({
+                    case 'selected': return _p.ss($, ($) => sh.e.group.literal({
                         "location": location,
                         "id": sh.e.select(
                             sh.s.call(
@@ -432,7 +432,7 @@ export const Type_Node = (
                         ($, id) => sh.e.change_context(
                             sh.s.from_context(["value"]),
                             $p.constrained
-                                ? sh.e.group({
+                                ? sh.e.group.literal({
                                     "location": location,
                                     "state": sh.e.state.literal(
                                         id,

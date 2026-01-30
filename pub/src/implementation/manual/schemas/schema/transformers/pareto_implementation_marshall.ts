@@ -115,7 +115,7 @@ export const Type_Node = (
     switch ($[0]) {
         case 'boolean': return _p.ss($, ($) => sh.e.state.literal(
             "text",
-            sh.e.group({
+            sh.e.group.literal({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
                     sh.s.call(
@@ -217,7 +217,7 @@ export const Type_Node = (
         case 'nothing': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
         case 'number': return _p.ss($, ($) => sh.e.state.literal(
             "text",
-            sh.e.group({
+            sh.e.group.literal({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
                     sh.s.call(
@@ -262,7 +262,7 @@ export const Type_Node = (
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
-                case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group({
+                case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group.literal({
                     "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
                     "value": sh.e.text.copy(sh.s.from_context(["id"])),
                 })))
@@ -273,7 +273,7 @@ export const Type_Node = (
             "state",
             sh.e.decide.state(
                 sh.s.from_context([]),
-                $.__d_map(($, id) => sh.e.group({
+                $.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Type_Node(
                         $.node,
@@ -297,7 +297,7 @@ export const Type_Node = (
         ))
         case 'text': return _p.ss($, ($) => sh.e.state.literal(
             "text",
-            sh.e.group({
+            sh.e.group.literal({
                 "delimiter": sh.e.state.literal("quote", sh.e.nothing()),
                 "value": sh.e.text.copy(sh.s.from_context([])),
             })

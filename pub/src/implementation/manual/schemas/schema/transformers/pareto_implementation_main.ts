@@ -35,16 +35,16 @@ export const Schema_Tree = (
                                 'imports': $.imports,
                                 'constrained': $.complexity[0] === 'constrained'
                             })),
-                            // "resolve": _p.decide.state($.complexity, ($) => {
-                            //     switch ($[0]) {
-                            //         case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Resolvers($.resolvers, {
-                            //             'path': $p.path,
-                            //             'imports': imports
-                            //         })))
-                            //         case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
-                            //         default: return _p.au($[0])
-                            //     }
-                            // }),
+                            "resolve": _p.decide.state($.complexity, ($) => {
+                                switch ($[0]) {
+                                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Resolvers($.resolvers, {
+                                        'path': $p.path,
+                                        'imports': imports
+                                    })))
+                                    case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
+                                    default: return _p.au($[0])
+                                }
+                            }),
                             "marshall": _p.optional.from_boolean(
                                 !$p['omit (de)serializer'],
                                 t_marshall.Schema(
