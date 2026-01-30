@@ -294,6 +294,7 @@ export const $: g_.Resolvers = resolvers(
                         "source": r.component("Selection", {}, {}),
                         "context": r.component("Expression", {}, {}),
                         "abort": r.optional(r.component("Expression", {}, {})),
+                        "lookups": r.optional(r.dictionary(r.component("Lookup Selection", {}, {}))),
                         "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
                     })),
                     "context": state(r.nothing()),
@@ -313,6 +314,16 @@ export const $: g_.Resolvers = resolvers(
                 }),
                 "tail": r.list(r.text()),
             }))
+        })),
+
+        "Lookup Selection": resolver(r.state({
+            "implement me": state(r.text()),
+            "from resolved dictionary": state(r.component("Selection", {}, {})),
+            "from siblings": state(r.group({
+                "cycles allowed": r.boolean()
+            })),
+            "from parameter": state(r.text()),
+            "not set": state(r.nothing()),
         })),
 
     })

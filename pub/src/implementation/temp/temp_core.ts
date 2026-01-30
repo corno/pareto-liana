@@ -34,7 +34,7 @@ export namespace stack {
 
 }
 
-export const dictionary_to_lookup = <T>(
+export const lookup_select_from_dictionary = <T>(
     dict: _pi.Dictionary<T>,
 ): _pi.Acyclic_Lookup<T> => ({
     get_entry: (id, abort) => dict.__get_entry(

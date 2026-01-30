@@ -79,6 +79,7 @@ export const Schema = (
                         sh.s.from_variable_import("deserialize", "Document", []),
                         sh.e.select(sh.s.from_context([])),
                         sh.e.state.literal("tbd", sh.e.nothing()),
+        null,
                         {
                             "document resource identifier": sh.e.text.copy(sh.s.from_parameter("document resource identifier", [])),
                             "tab size": sh.e.number.integer_copy(sh.s.from_parameter("tab size", []))
@@ -88,6 +89,7 @@ export const Schema = (
                 ),
                 sh.e.state.literal("tbd", sh.e.nothing()),
                 null,
+        null,
                 []
             ))
         )),

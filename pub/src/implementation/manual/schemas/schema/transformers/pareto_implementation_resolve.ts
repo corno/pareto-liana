@@ -35,7 +35,7 @@ export const Resolvers = (
         'refiner',
         false,
         true,
-        false,
+        true,
         false,
         true,
         op_flatten_dictionary(
@@ -78,15 +78,21 @@ export const Resolvers = (
                         ])
                     ),
                 }),
-                "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["resolve"]))
-
             }),
             {
                 'separator': "",
             },
             () => _p_unreachable_code_path(),
         ),
-        {},
+        op_flatten_dictionary(
+            _p.dictionary.literal({
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["resolve"]))
+            }),
+            {
+                'separator': "",
+            },
+            () => _p_unreachable_code_path(),
+        ),
         $.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
@@ -245,6 +251,7 @@ export const Lookup_Selection = (
             })),
             null,
             null,
+            null,
             []
         ))
         case 'not circular dependent siblings': return _p.ss($, ($) => sh.s.from_parameter(
@@ -294,7 +301,54 @@ export const Node_Resolver = (
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
-        case 'component': return _p.ss($, ($) => sh.e.unreachable())
+
+        case 'component': return _p.ss($, ($) => sh.e.select(
+            sh.s.call(
+                _p.decide.state($.location, ($) => {
+                    switch ($[0]) {
+                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import['l id']}`, $.type['l id'], []))
+                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                        default: return _p.au($[0])
+                    }
+                }),
+                sh.e.select(sh.s.from_context([])),
+                sh.e.select(sh.s.from_context([])),
+                $.arguments.__decide(
+                    ($) => $.lookups.__decide(
+                        ($) => $.__d_map(
+                            ($) => _p.decide.state($, ($) => {
+                                switch ($[0]) {
+                                    case 'empty stack': return _p.ss($, ($) => sh.ls.implement_me("empty stack"))
+                                    case 'not set': return _p.ss($, ($) => sh.ls.implement_me("not set"))
+                                    case 'selection': return _p.ss($, ($) => sh.ls.implement_me("selection"))
+                                    case 'stack':return _p.ss($, ($) => sh.ls.implement_me("stack"))
+                                    default: return _p.au($[0])
+                                }
+                            }),
+                        ),
+                        () => ({}) //copy the current parameters (I think)
+                    ),
+                    () => ({})
+                ),
+                $.arguments.__decide(
+                    ($) => $.values.__decide(
+                        ($) => $.__d_map(
+                            ($) => _p.decide.state($, ($) => {
+                                switch ($[0]) {
+                                    case 'optional': return _p.ss($, ($) => sh.e.implement_me("optional"))
+                                    case 'required': return _p.ss($, ($) => sh.e.implement_me("required"))
+                                    case 'parameter': return _p.ss($, ($) => sh.e.implement_me("parameter"))
+                                    default: return _p.au($[0])
+                                }
+                            }),
+                        ),
+                        () => ({}) //copy the current parameters (I think)
+                    ),
+                    () => ({})
+                ),
+                [],
+            )
+        ))
         // case 'component': return _p.ss($, ($) => sh.e.select(
         //     sh.s.call(
         //         _p.decide.state($.location, ($) => {

@@ -10,5 +10,7 @@ export const $: g_.Resolve_Logic.signatures  = signatures(
         "Temp Type Node Reference": sig.local({}, {}),
         "Expression": sig.local({}, {}),
         "Selection": sig.local({}, {}),
+        "Lookup Selection": sig.local({}, {}),
+
     },
 )

@@ -9,6 +9,8 @@ import {
     _p_cc,
 } from "pareto-core/dist/change_context"
 
+import * as _pdev from "pareto-core-dev"
+
 import * as t_out from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/schema/resolve"
@@ -18,7 +20,27 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Node(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'noncircular sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                    'possibly circular dependent sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                {
+                    'globals': _pdev.implement_me(
+                        "parameter"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "parameter"
+                    ),
+                }
             )
         )
         return {
@@ -112,13 +134,29 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, 
         
         const prop_type_location = _p_cc(
             $['type location'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Reference(
+                $,
+                ($) => abort(
+                    $
+                ),
+                $l,
+                $p,
             )
         )
         
         const prop_path = _p_cc(
             $['path'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Node_Path(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'type': _pdev.implement_me(
+                        "required"
+                    ),
+                }
             )
         )
         return {
@@ -157,7 +195,27 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => _p_unreachable_code_path(
+            ($) => Type_Node(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'noncircular sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                    'possibly circular dependent sibling types': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                {
+                    'globals': _pdev.implement_me(
+                        "parameter"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "parameter"
+                    ),
+                }
             )
         )
         return {
@@ -262,7 +320,17 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
         
         const prop_tail = _p_cc(
             $['tail'],
-            ($) => _p_unreachable_code_path(
+            ($) => Relative_Value_Selection(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'node': _pdev.implement_me(
+                        "required"
+                    ),
+                }
             )
         )
         
@@ -308,7 +376,13 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
         
         const prop_selection = _p_cc(
             $['selection'],
-            ($) => _p_unreachable_code_path(
+            ($) => Relative_Value_Selection(
+                $,
+                ($) => abort(
+                    $
+                ),
+                $l,
+                $p,
             )
         )
         
@@ -338,7 +412,17 @@ export const Property_Constraint: t_signatures.Property_Constraint = ($, abort, 
         
         const prop_constraint = _p_cc(
             $['constraint'],
-            ($) => _p_unreachable_code_path(
+            ($) => Constraint(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'node': _pdev.implement_me(
+                        "required"
+                    ),
+                }
             )
         )
         return {
@@ -357,7 +441,21 @@ export const Reference_To_Property_Constraint: t_signatures.Reference_To_Propert
 export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p_unreachable_code_path(
 )
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort, $l, $p) => _p_unreachable_code_path(
+export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort, $l, $p) => Type_Reference(
+    $,
+    ($) => abort(
+        $
+    ),
+    {
+        'types': _pdev.implement_me(
+            'selection'
+        ),
+    },
+    {
+        'imports': _pdev.implement_me(
+            "parameter"
+        ),
+    }
 )
 
 export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.resolve(
@@ -365,7 +463,13 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
         
         const prop_selection = _p_cc(
             $['selection'],
-            ($) => _p_unreachable_code_path(
+            ($) => Guaranteed_Value_Selection(
+                $,
+                ($) => abort(
+                    $
+                ),
+                $l,
+                $p
             )
         )
         
@@ -400,7 +504,20 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                     
                     const prop_types = _p_cc(
                         $['types'],
-                        ($) => _p_unreachable_code_path(
+                        ($) => Signatures(
+                            $,
+                            ($) => abort(
+                                $
+                            ),
+                            null,
+                            {
+                                'types': _pdev.implement_me(
+                                    "parameter"
+                                ),
+                                'imports': _pdev.implement_me(
+                                    "parameter"
+                                ),
+                            }
                         )
                     )
                     return {
@@ -412,7 +529,23 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
         
         const prop_resolvers = _p_cc(
             $['resolvers'],
-            ($) => _p_unreachable_code_path(
+            ($) => Resolvers(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'signatures': _pdev.implement_me(
+                        "required"
+                    ),
+                    'types': _pdev.implement_me(
+                        "parameter"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "parameter"
+                    ),
+                }
             )
         )
         return {
@@ -430,7 +563,17 @@ export const Type_Specification: t_signatures.Type_Specification = ($, abort, $l
         
         const prop_schema = _p_cc(
             $['schema'],
-            ($) => _p_unreachable_code_path(
+            ($) => Schema_Tree(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'sibling schemas': _pdev.implement_me(
+                        'empty stack'
+                    ),
+                },
+                null
             )
         )
         
@@ -460,19 +603,48 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
         
         const prop_imports = _p_cc(
             $['imports'],
-            ($) => _p_unreachable_code_path(
+            ($) => Imports(
+                $,
+                ($) => abort(
+                    $
+                ),
+                {
+                    'sibling schemas': _pdev.implement_me(
+                        'selection'
+                    ),
+                },
+                null
             )
         )
         
         const prop_globals = _p_cc(
             $['globals'],
-            ($) => _p_unreachable_code_path(
+            ($) => Globals(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                null
             )
         )
         
         const prop_types = _p_cc(
             $['types'],
-            ($) => _p_unreachable_code_path(
+            ($) => Types(
+                $,
+                ($) => abort(
+                    $
+                ),
+                null,
+                {
+                    'globals': _pdev.implement_me(
+                        "optional"
+                    ),
+                    'imports': _pdev.implement_me(
+                        "optional"
+                    ),
+                }
             )
         )
         

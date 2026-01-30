@@ -83,7 +83,7 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
                 () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
             )])
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].lookups),
+                _p_temp.lookup_select_from_dictionary($p.signature['resolved parameters'].lookups),
                 $,
                 abort
             )])
@@ -147,7 +147,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                 $['l entry']['data type'],
                 abort,
                 {
-                    'types': _p_temp.dictionary_to_lookup($p.types),
+                    'types': _p_temp.lookup_select_from_dictionary($p.types),
                 },
                 {
                     'imports': _p.optional.not_set(),
@@ -170,7 +170,7 @@ export const Signature_Parameters: signatures.Signature_Parameters = ($, abort, 
                 $['l entry'].referent,
                 abort,
                 {
-                    'types': _p_temp.dictionary_to_lookup($p.types),
+                    'types': _p_temp.lookup_select_from_dictionary($p.types),
                 },
                 {
                     'imports': _p.optional.not_set(),
@@ -279,7 +279,7 @@ export const Signatures: signatures.Signatures = ($, abort, $l, $p) => {
         $p.types,
         ($, id, $acyclic, $cyclic) => {
             const p_linked_entry = _i_generic.get_entry_acyclic(
-                _p_temp.dictionary_to_lookup($p.types),
+                _p_temp.lookup_select_from_dictionary($p.types),
                 {
                     'l id': id,
                     'l location': $['l location'],
@@ -371,7 +371,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_depr
                             ($, id, $acyclic, $cyclic) => {
 
                                 const p_linked_entry = _i_generic.get_entry_acyclic(
-                                    _p_temp.dictionary_to_lookup(p_types),
+                                    _p_temp.lookup_select_from_dictionary(p_types),
                                     {
                                         'l id': id,
                                         'l location': $['l location'],
@@ -379,7 +379,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_depr
                                     abort,
                                 )
                                 const p_signature = _i_generic.get_entry_acyclic(
-                                    _p_temp.dictionary_to_lookup(p_signatures.types),
+                                    _p_temp.lookup_select_from_dictionary(p_signatures.types),
                                     {
                                         'l id': id,
                                         'l location': $['l location'],
@@ -475,7 +475,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p_cc($['l state'], ($): d_out.Type_Node.number_ => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($): d_out.Type_Node.number_ => ['global', _i_generic.get_entry_acyclic(
-                        _p_temp.dictionary_to_lookup(
+                        _p_temp.lookup_select_from_dictionary(
                             $p.globals.__decide(
                                 ($) => $['number types'],
                                 () => _i_generic.abort.is_set_assertion("globals", $['l location'], abort)
@@ -496,7 +496,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
             case 'text': return _p.ss($, ($): d_out.Type_Node => ['text', _p_cc($['l state'], ($): d_out.Type_Node.text => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($): d_out.Type_Node.text => ['global', _i_generic.get_entry_acyclic(
-                        _p_temp.dictionary_to_lookup(
+                        _p_temp.lookup_select_from_dictionary(
                             $p.globals.__decide(
                                 ($) => $['text types'],
                                 () => _i_generic.abort.is_set_assertion("globals", $['l location'], abort)
@@ -522,14 +522,14 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                             () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
                         )
                         const p_import = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(sc_import),
+                            _p_temp.lookup_select_from_dictionary(sc_import),
                             $.import,
                             abort,
                         )
                         return ['external', {
                             'import': p_import,
                             'type': _i_generic.get_entry_acyclic(
-                                _p_temp.dictionary_to_lookup(p_import['l entry'].schema.types),
+                                _p_temp.lookup_select_from_dictionary(p_import['l entry'].schema.types),
                                 $.type,
                                 abort,
                             )
@@ -713,14 +713,14 @@ export const Type_Reference: signatures.Type_Reference = ($, abort, $l, $p) => {
                     () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
                 )
                 const p_import = _i_generic.get_entry_acyclic(
-                    _p_temp.dictionary_to_lookup(sc_import),
+                    _p_temp.lookup_select_from_dictionary(sc_import),
                     $.import,
                     abort
                 )
                 return ['external', {
                     'import': p_import,
                     'type': _i_generic.get_entry_acyclic(
-                        _p_temp.dictionary_to_lookup(p_import['l entry'].schema.types),
+                        _p_temp.lookup_select_from_dictionary(p_import['l entry'].schema.types),
                         $.type,
                         abort,
                     )
@@ -798,7 +798,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(sc_definition),
+                            _p_temp.lookup_select_from_dictionary(sc_definition),
                             $,
                             abort,
                         )
@@ -839,7 +839,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(P_state),
+                            _p_temp.lookup_select_from_dictionary(P_state),
                             $,
                             abort,
                         )
@@ -886,7 +886,7 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                         )
                         : p_selection['resulting node'][1]
                     const p_option: d_out.Option_Constraints.D.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
-                        _p_temp.dictionary_to_lookup(p_selected_state),
+                        _p_temp.lookup_select_from_dictionary(p_selected_state),
                         $,
                         abort,
                     ))
@@ -930,7 +930,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
                     )
                     : p_selection['resulting node'][1]
                 const p_option: d_out.Constraint.type_.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
-                    _p_temp.dictionary_to_lookup(p_selected_state),
+                    _p_temp.lookup_select_from_dictionary(p_selected_state),
                     $,
                     abort,
                 ))
@@ -1037,7 +1037,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                 () => _i_generic.abort.is_set_assertion("imports", loc, abort)
                             )
                             const p_import = _i_generic.get_entry_acyclic(
-                                _p_temp.dictionary_to_lookup(sc_import),
+                                _p_temp.lookup_select_from_dictionary(sc_import),
                                 $.import,
                                 abort,
                             )
@@ -1050,14 +1050,14 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             return ['external', {
                                 'import': p_import,
                                 'type': _i_generic.get_entry_acyclic(
-                                    _p_temp.dictionary_to_lookup(pc_constrained.signatures.types),
+                                    _p_temp.lookup_select_from_dictionary(pc_constrained.signatures.types),
                                     $.type,
                                     abort,
                                 )
                             }]
                         })
                         case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(
+                            _p_temp.lookup_select_from_dictionary(
                                 $p['signatures'],
                             ),
                             $,
@@ -1150,7 +1150,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                         p_signature['resolved parameters'].values,
                                         ($, id, $acyclic, $cyclic) => _p_cc($, ($) => {
                                             const linked_entry = _i_generic.get_entry_acyclic(
-                                                _p_temp.dictionary_to_lookup(p_signature['resolved parameters'].values),
+                                                _p_temp.lookup_select_from_dictionary(p_signature['resolved parameters'].values),
                                                 {
                                                     'l id': id,
                                                     'l location': $['l location'],
@@ -1166,7 +1166,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                         $p,
                                                     )])
                                                     case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                                                        _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
+                                                        _p_temp.lookup_select_from_dictionary($p.signature['resolved parameters'].values),
                                                         $,
                                                         abort,
                                                     )])
@@ -1397,7 +1397,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     ($, id, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
 
                         const p_definition = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(x),
+                            _p_temp.lookup_select_from_dictionary(x),
                             {
                                 'l id': id,
                                 'l location': $['l location'],
@@ -1444,7 +1444,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     $,
                     abort,
                     {
-                        'types': _p_temp.dictionary_to_lookup($p.types),
+                        'types': _p_temp.lookup_select_from_dictionary($p.types),
                     },
                     {
                         'imports': $p.imports,
@@ -1589,7 +1589,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     ($, id, $acyclic, $cyclic) => {
 
                         const x2 = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(p_definition),
+                            _p_temp.lookup_select_from_dictionary(p_definition),
                             {
                                 'l id': id,
                                 'l location': $['l location'],
@@ -1756,7 +1756,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(sc_definition,),
+                            _p_temp.lookup_select_from_dictionary(sc_definition,),
                             $,
                             abort,
                         )
@@ -1824,7 +1824,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
     return _p_cc($['l state'], ($) => {
         switch ($[0]) {
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
+                _p_temp.lookup_select_from_dictionary($p.signature['resolved parameters'].values),
                 $,
                 abort,
             )])
@@ -1845,7 +1845,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                             $.result,
                             abort,
                             {
-                                'types': _p_temp.dictionary_to_lookup($p.types),
+                                'types': _p_temp.lookup_select_from_dictionary($p.types),
                             },
                             {
                                 'imports': $p.imports,
@@ -1871,7 +1871,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
                             $.result,
                             abort,
                             {
-                                'types': _p_temp.dictionary_to_lookup($p.types),
+                                'types': _p_temp.lookup_select_from_dictionary($p.types),
                             },
                             {
                                 'imports': $p.imports,
@@ -1910,7 +1910,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             : p_sibling['l entry'].resolver[1]
 
                         const p_constraint = _p_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(x_component.constraints),
+                            _p_temp.lookup_select_from_dictionary(x_component.constraints),
                             $,
                             abort,
                         ))
@@ -1936,7 +1936,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                             : x_reference.type[1]
 
                         const p_constraint = _p_cc($['constraint'], ($) => _i_generic.get_entry_acyclic(
-                            _p_temp.dictionary_to_lookup(x_reference_selected.constraints),
+                            _p_temp.lookup_select_from_dictionary(x_reference_selected.constraints),
                             $,
                             abort,
                         ))
@@ -1956,13 +1956,13 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     () => _i_generic.abort.is_set_assertion("option constraints", start_location, abort)
                 )
                 return ['option constraint', _i_generic.get_entry_acyclic(
-                    _p_temp.dictionary_to_lookup(sc),
+                    _p_temp.lookup_select_from_dictionary(sc),
                     $,
                     abort,
                 )]
             })
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_temp.dictionary_to_lookup($p.signature['resolved parameters'].values),
+                _p_temp.lookup_select_from_dictionary($p.signature['resolved parameters'].values),
                 $,
                 abort,
             )])
@@ -2004,7 +2004,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                                 $.result,
                                 abort,
                                 {
-                                    'types': _p_temp.dictionary_to_lookup($p.types),
+                                    'types': _p_temp.lookup_select_from_dictionary($p.types),
                                 },
                                 {
                                     'imports': $p.imports,
@@ -2029,7 +2029,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                                 $.result,
                                 abort,
                                 {
-                                    'types': _p_temp.dictionary_to_lookup($p.types),
+                                    'types': _p_temp.lookup_select_from_dictionary($p.types),
                                 },
                                 {
                                     'imports': $p.imports,

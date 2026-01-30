@@ -304,6 +304,7 @@ export const $: g_.Types = types(
                         "source": prop(t.component_cyclic("Selection")),
                         "context": prop(t.component_cyclic("Expression")),
                         "abort": prop(t.optional(t.component_cyclic("Expression"))),
+                        "lookups": prop(t.optional(t.dictionary(t.component_cyclic("Lookup Selection")))),
                         "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
                     })),
                     "context": tstate(t.nothing()),
@@ -323,6 +324,16 @@ export const $: g_.Types = types(
                 })),
                 "tail": prop(t.list(t.text_global("TBD"))),
             }))
+        })),
+
+        "Lookup Selection": type(t.state({
+            "implement me": tstate(t.text_local(text('single line'))),
+            "from resolved dictionary": tstate(t.component_cyclic("Selection")),
+            "from siblings": tstate(t.group({
+                "cycles allowed": prop(t.boolean()),
+            })),
+            "from parameter": tstate(t.text_global("TBD")),
+            "not set": tstate(t.nothing()),
         })),
 
     }
