@@ -42,10 +42,10 @@ export const $: g_.Types = types(
 
         "Type": type(t.group({
             // "type parameters": t.component("Type Parameters"),
-            "node": prop(t.component_cyclic("Type Node"))
+            "node": prop(t.component_cyclic("Value"))
         })),
 
-        "Type Node": type(t.state({
+        "Value": type(t.state({
             //"boolean": t.nothing(),
             "component": tstate(t.state({
                 "external": tstate(t.group({
@@ -58,11 +58,11 @@ export const $: g_.Types = types(
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),
             "list": tstate(t.group({
-                "node": prop(t.component_cyclic("Type Node")),
+                "node": prop(t.component_cyclic("Value")),
             })),
             "nothing": tstate(t.nothing()),
-            "optional": tstate(t.component_cyclic("Type Node")),
-            "state": tstate(t.dictionary(t.component_cyclic("Type Node"))),
+            "optional": tstate(t.component_cyclic("Value")),
+            "state": tstate(t.dictionary(t.component_cyclic("Value"))),
             "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
                 "local": tstate(t.component("Text Type")),
@@ -76,10 +76,10 @@ export const $: g_.Types = types(
             })),
         })),
 
-        "Group": type(t.dictionary(t.component_cyclic("Type Node"))),
+        "Group": type(t.dictionary(t.component_cyclic("Value"))),
 
         "Dictionary": type(t.group({
-            "node": prop(t.component_cyclic("Type Node")),
+            "node": prop(t.component_cyclic("Value")),
             "ordered": prop(t.boolean()),
         })),
 

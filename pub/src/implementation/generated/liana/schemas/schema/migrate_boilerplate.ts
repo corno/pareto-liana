@@ -209,7 +209,7 @@ export const Globals: t_signatures.Globals = ($) => ({
 export const Type: t_signatures.Type = ($) => ({
     'node': _p_cc(
         $['node'],
-        ($) => Type_Node(
+        ($) => Value(
             $
         )
     ),
@@ -465,7 +465,7 @@ export const Presence: t_signatures.Presence = ($) => ({
 export const Dictionary: t_signatures.Dictionary = ($) => ({
     'node': _p_cc(
         $['node'],
-        ($) => Type_Node(
+        ($) => Value(
             $
         )
     ),
@@ -508,7 +508,7 @@ export const Resolvers: t_signatures.Resolvers = ($) => ({
                 ),
                 'type resolver': _p_cc(
                     $['type resolver'],
-                    ($) => Node_Resolver(
+                    ($) => Value_Resolver(
                         $
                     )
                 ),
@@ -541,7 +541,7 @@ export const Group: t_signatures.Group = ($) => ({
                 ),
                 'node': _p_cc(
                     $['node'],
-                    ($) => Type_Node(
+                    ($) => Value(
                         $
                     )
                 ),
@@ -555,7 +555,7 @@ export const Group: t_signatures.Group = ($) => ({
     ),
 })
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -571,7 +571,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ({
                 ),
                 'resolver': _p_cc(
                     $['resolver'],
-                    ($) => Node_Resolver(
+                    ($) => Value_Resolver(
                         $
                     )
                 ),
@@ -596,7 +596,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($) => _p.optio
         'l dictionary': _p.dictionary.map(
             $,
             ($, id) => ({
-                'l entry': Type_Node_Reference(
+                'l entry': Value_Reference(
                     $
                 ),
                 'l location': {
@@ -677,7 +677,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
     ),
 })
 
-export const Type_Node: t_signatures.Type_Node = ($) => ({
+export const Value: t_signatures.Value = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -685,7 +685,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
     },
     'l state': _p.decide.state(
         $,
-        ($): t_out.Type_Node.l_state => {
+        ($): t_out.Value.l_state => {
             switch ($[0]) {
                 case 'boolean':
                     return _p.ss(
@@ -706,7 +706,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                     },
                                     'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Type_Node.l_state.component.type_.l_state => {
+                                        ($): t_out.Value.l_state.component.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'external':
                                                     return _p.ss(
@@ -797,7 +797,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                         ($) => ['list', {
                             'node': _p_cc(
                                 $['node'],
-                                ($) => Type_Node(
+                                ($) => Value(
                                     $
                                 )
                             ),
@@ -828,7 +828,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             },
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_state.number_.l_state => {
+                                ($): t_out.Value.l_state.number_.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -861,7 +861,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                 case 'optional':
                     return _p.ss(
                         $,
-                        ($) => ['optional', Type_Node(
+                        ($) => ['optional', Value(
                             $
                         )]
                     )
@@ -871,7 +871,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                         ($) => ['reference', {
                             'referent': _p_cc(
                                 $['referent'],
-                                ($) => Type_Node_Reference(
+                                ($) => Value_Reference(
                                     $
                                 )
                             ),
@@ -885,7 +885,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                     },
                                     'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Type_Node.l_state.reference.type_.l_state => {
+                                        ($): t_out.Value.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived':
                                                     return _p.ss(
@@ -910,7 +910,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                                                     },
                                                                     'l state': _p.decide.state(
                                                                         $,
-                                                                        ($): t_out.Type_Node.l_state.reference.type_.l_state.selected.dependency.l_state => {
+                                                                        ($): t_out.Value.l_state.reference.type_.l_state.selected.dependency.l_state => {
                                                                             switch ($[0]) {
                                                                                 case 'acyclic':
                                                                                     return _p.ss(
@@ -971,7 +971,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                                         ),
                                         'node': _p_cc(
                                             $['node'],
-                                            ($) => Type_Node(
+                                            ($) => Value(
                                                 $
                                             )
                                         ),
@@ -996,7 +996,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ({
                             },
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node.l_state.text.l_state => {
+                                ($): t_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -1341,11 +1341,11 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
     ),
 })
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Type_Reference(
     $
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
+export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -1353,7 +1353,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
     },
     'l state': _p.decide.state(
         $,
-        ($): t_out.Node_Resolver.l_state => {
+        ($): t_out.Value_Resolver.l_state => {
             switch ($[0]) {
                 case 'boolean':
                     return _p.ss(
@@ -1378,7 +1378,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                     },
                                     'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Node_Resolver.l_state.component.location.l_state => {
+                                        ($): t_out.Value_Resolver.l_state.component.location.l_state => {
                                             switch ($[0]) {
                                                 case 'external':
                                                     return _p.ss(
@@ -1459,7 +1459,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                 },
                                                                 'l state': _p.decide.state(
                                                                     $,
-                                                                    ($): t_out.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry.l_state => {
+                                                                    ($): t_out.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'optional':
                                                                                 return _p.ss(
@@ -1526,7 +1526,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                                 },
                                                                 'l state': _p.decide.state(
                                                                     $,
-                                                                    ($): t_out.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
+                                                                    ($): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'empty stack':
                                                                                 return _p.ss(
@@ -1602,7 +1602,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'resolver': _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $
                                 )
                             ),
@@ -1620,7 +1620,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                 case 'group':
                     return _p.ss(
                         $,
-                        ($) => ['group', Node_Resolver_Group(
+                        ($) => ['group', Value_Resolver_Group(
                             $
                         )]
                     )
@@ -1634,7 +1634,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'resolver': _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $
                                 )
                             ),
@@ -1642,7 +1642,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                 $['result'],
                                 ($) => _p.optional.map(
                                     $,
-                                    ($) => Node_Resolver_List_Result(
+                                    ($) => Value_Resolver_List_Result(
                                         $
                                     )
                                 )
@@ -1671,7 +1671,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                             ),
                             'resolver': _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $
                                 )
                             ),
@@ -1695,7 +1695,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                     },
                                     'l state': _p.decide.state(
                                         $,
-                                        ($): t_out.Node_Resolver.l_state.reference.type_.l_state => {
+                                        ($): t_out.Value_Resolver.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived':
                                                     return _p.ss(
@@ -1770,7 +1770,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ({
                                                 ),
                                                 'resolver': _p_cc(
                                                     $['resolver'],
-                                                    ($) => Node_Resolver(
+                                                    ($) => Value_Resolver(
                                                         $
                                                     )
                                                 ),
@@ -2159,7 +2159,7 @@ export const Benchmark: t_signatures.Benchmark = ($) => ({
     ),
 })
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
+export const Value_Path: t_signatures.Value_Path = ($) => ({
     'tail': _p_cc(
         $['tail'],
         ($) => ({
@@ -2181,7 +2181,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
                             },
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Type_Node_Path.tail.l_list.L.l_item.l_state => {
+                                ($): t_out.Value_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'dictionary':
                                             return _p.ss(
@@ -2246,7 +2246,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ({
     ),
 })
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ({
+export const Value_Reference: t_signatures.Value_Reference = ($) => ({
     'type location': _p_cc(
         $['type location'],
         ($) => Type_Reference(
@@ -2255,7 +2255,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ({
     ),
     'path': _p_cc(
         $['path'],
-        ($) => Type_Node_Path(
+        ($) => Value_Path(
             $
         )
     ),

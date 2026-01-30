@@ -263,7 +263,7 @@ export const Group: t_signatures.Group = ($, abort, $p) => v_unmarshall.Group(
     )
 )
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $p) => v_unmarshall.Node_Resolver_Group(
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort, $p) => v_unmarshall.Value_Resolver_Group(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -311,7 +311,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $p) => v_u
     )
 )
 
-export const Type_Node: t_signatures.Type_Node = ($, abort, $p) => v_unmarshall.Type_Node(
+export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -407,7 +407,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $p) =>
     )
 )
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort, $p) => v_unmarshall.Node_Resolver_List_Result(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $p) => v_unmarshall.Value_Resolver_List_Result(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -423,7 +423,7 @@ export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result =
     )
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $p) => v_unmarshall.Node_Resolver(
+export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $p) => v_unmarshall.Value_Resolver(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -487,7 +487,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $p) => v_unmarshall.
     )
 )
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $p) => v_unmarshall.Type_Node_Path(
+export const Value_Path: t_signatures.Value_Path = ($, abort, $p) => v_unmarshall.Value_Path(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -503,7 +503,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $p) => v_u
     )
 )
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, $p) => v_unmarshall.Type_Node_Reference(
+export const Value_Reference: t_signatures.Value_Reference = ($, abort, $p) => v_unmarshall.Value_Reference(
     v_deserialize.Document(
         $,
         ($) => abort(

@@ -73,7 +73,7 @@ export const Schema = (
         false,
         false,
         false,
-        Type_Node(
+        Value(
             $.node,
             {
                 'type name': id,
@@ -84,8 +84,8 @@ export const Schema = (
     )),
 )
 
-export const Type_Node = (
-    $: d_in.Type_Node,
+export const Value = (
+    $: d_in.Value,
     $p: {
         'type name': string
         'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
@@ -122,7 +122,7 @@ export const Type_Node = (
                         "l dictionary": sh.e.dictionary.map(
                             sh.s.context([]),
                             sh.e.group.literal({
-                                "l entry": Type_Node(
+                                "l entry": Value(
                                     $.node,
                                     {
                                         'type name': $p['type name'],
@@ -143,7 +143,7 @@ export const Type_Node = (
                     })
                     : sh.e.dictionary.map(
                         sh.s.context([]),
-                        Type_Node(
+                        Value(
                             $.node,
                             {
                                 'type name': $p['type name'],
@@ -160,7 +160,7 @@ export const Type_Node = (
             })
             case 'group': return _p.ss($, ($) => sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
                 sh.s.context([id]),
-                Type_Node(
+                Value(
                     $.node,
                     {
                         'type name': $p['type name'],
@@ -188,7 +188,7 @@ export const Type_Node = (
                             ),
                             sh.e.group.literal({
                                 "l item": _p_cc($, ($) => {
-                                    const tn = Type_Node(
+                                    const tn = Value(
                                         $.node,
                                         {
                                             'type name': $p['type name'],
@@ -217,7 +217,7 @@ export const Type_Node = (
                     })
                     : sh.e.list.map(
                         sh.s.context([]),
-                        Type_Node(
+                        Value(
                             $.node,
                             {
                                 'type name': $p['type name'],
@@ -237,7 +237,7 @@ export const Type_Node = (
             case 'number': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
             case 'optional': return _p.ss($, ($) => sh.e.optional.map(
                 sh.s.context([]),
-                Type_Node(
+                Value(
                     $,
                     {
                         'type name': $p['type name'],
@@ -270,7 +270,7 @@ export const Type_Node = (
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.e.decide.state(
                     sh.s.context([]),
-                    $.__d_map(($, id) => sh.e.state.literal(id, Type_Node(
+                    $.__d_map(($, id) => sh.e.state.literal(id, Value(
                         $.node,
                         {
                             'type name': $p['type name'],

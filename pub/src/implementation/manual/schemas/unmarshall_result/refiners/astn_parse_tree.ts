@@ -26,7 +26,7 @@ const op_group = <T>(
 export const Optional_Node = (
     $: _pi.Optional_Value<d_in.Value>,
     $p: {
-        'definition': d_definition.Type_Node,
+        'definition': d_definition.Value,
     }
 ): d_out.Optional_Node => _p.optional.map($,
     ($) => Node($, $p),
@@ -35,7 +35,7 @@ export const Optional_Node = (
 export const Node_Type = (
     $: d_in.Value.type_.concrete,
     $p: {
-        'definition': d_definition.Type_Node,
+        'definition': d_definition.Value,
         'range': d_in_location.Range,
         'temp value': d_in.Value,
     }
@@ -483,7 +483,7 @@ export const Node_Type = (
 export const Node = (
     $: d_in.Value,
     $p: {
-        'definition': d_definition.Type_Node,
+        'definition': d_definition.Value,
     }
 ): d_out.Node => {
     const datax = $

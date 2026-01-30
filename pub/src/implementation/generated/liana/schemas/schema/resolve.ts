@@ -16,7 +16,7 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -332,7 +332,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
     }
 )
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, $l, $p) => _p.group.resolve(
+export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_type_location = _p_cc(
@@ -349,7 +349,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, 
         
         const prop_path = _p_cc(
             $['path'],
-            ($) => Type_Node_Path(
+            ($) => Value_Path(
                 $,
                 ($) => abort(
                     $
@@ -369,7 +369,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort, 
     }
 )
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) => _p.group.resolve(
+export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_tail = _p_cc(
@@ -385,7 +385,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                             $['l item'],
                             ($) => _p.decide.state(
                                 $['l state'],
-                                ($): t_out.Type_Node_Path.tail.l_list.L.l_item => {
+                                ($): t_out.Value_Path.tail.l_list.L.l_item => {
                                     switch ($[0]) {
                                         case 'dictionary':
                                             return _p.ss(
@@ -466,7 +466,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($, abort, $l, 
         $['l dictionary'],
         ($, id, $a, $c): t_out.Value_Constraints.O.D => _p_cc(
             $['l entry'],
-            ($) => Type_Node_Reference(
+            ($) => Value_Reference(
                 $,
                 ($) => abort(
                     $
@@ -495,7 +495,7 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                 
                 const prop_node = _p_cc(
                     $['node'],
-                    ($) => Type_Node(
+                    ($) => Value(
                         $,
                         ($) => abort(
                             $
@@ -528,7 +528,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
         
         const prop_node = _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -553,9 +553,9 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
     }
 )
 
-export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide.state(
+export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
     $['l state'],
-    ($): t_out.Type_Node => {
+    ($): t_out.Value => {
         switch ($[0]) {
             case 'boolean':
                 return _p.ss(
@@ -572,7 +572,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 $['type'],
                                 ($) => _p.decide.state(
                                     $['l state'],
-                                    ($): t_out.Type_Node.component.type_ => {
+                                    ($): t_out.Value.component.type_ => {
                                         switch ($[0]) {
                                             case 'external':
                                                 return _p.ss(
@@ -711,7 +711,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                             
                             const prop_node = _p_cc(
                                 $['node'],
-                                ($) => Type_Node(
+                                ($) => Value(
                                     $,
                                     ($) => abort(
                                         $
@@ -758,7 +758,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                     $,
                     ($) => ['number', _p.decide.state(
                         $['l state'],
-                        ($): t_out.Type_Node.number_ => {
+                        ($): t_out.Value.number_ => {
                             switch ($[0]) {
                                 case 'global':
                                     return _p.ss(
@@ -793,7 +793,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
             case 'optional':
                 return _p.ss(
                     $,
-                    ($) => ['optional', Type_Node(
+                    ($) => ['optional', Value(
                         $,
                         ($) => abort(
                             $
@@ -810,7 +810,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                             
                             const prop_referent = _p_cc(
                                 $['referent'],
-                                ($) => Type_Node_Reference(
+                                ($) => Value_Reference(
                                     $,
                                     ($) => abort(
                                         $
@@ -830,7 +830,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 $['type'],
                                 ($) => _p.decide.state(
                                     $['l state'],
-                                    ($): t_out.Type_Node.reference.type_ => {
+                                    ($): t_out.Value.reference.type_ => {
                                         switch ($[0]) {
                                             case 'derived':
                                                 return _p.ss(
@@ -854,7 +854,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                                 $['dependency'],
                                                                 ($) => _p.decide.state(
                                                                     $['l state'],
-                                                                    ($): t_out.Type_Node.reference.type_.selected.dependency => {
+                                                                    ($): t_out.Value.reference.type_.selected.dependency => {
                                                                         switch ($[0]) {
                                                                             case 'acyclic':
                                                                                 return _p.ss(
@@ -906,14 +906,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                     $,
                     ($) => ['state', _p.dictionary.resolve(
                         $['l dictionary'],
-                        ($, id, $a, $c): t_out.Type_Node.state.D => _p_cc(
+                        ($, id, $a, $c): t_out.Value.state.D => _p_cc(
                             $['l entry'],
                             ($) => _p.group.resolve(
                                 () => {
                                     
                                     const prop_node = _p_cc(
                                         $['node'],
-                                        ($) => Type_Node(
+                                        ($) => Value(
                                             $,
                                             ($) => abort(
                                                 $
@@ -944,7 +944,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                     $,
                     ($) => ['text', _p.decide.state(
                         $['l state'],
-                        ($): t_out.Type_Node.text => {
+                        ($): t_out.Value.text => {
                             switch ($[0]) {
                                 case 'global':
                                     return _p.ss(
@@ -1921,7 +1921,7 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                 
                 const prop_type_resolver = _p_cc(
                     $['type resolver'],
-                    ($) => Node_Resolver(
+                    ($) => Value_Resolver(
                         $,
                         ($) => abort(
                             $
@@ -2210,9 +2210,9 @@ export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_V
     'l id': $['l reference'],
 })
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Node_Resolver_Group.D => _p_cc(
+    ($, id, $a, $c): t_out.Value_Resolver_Group.D => _p_cc(
         $['l entry'],
         ($) => _p.group.resolve(
             () => {
@@ -2226,7 +2226,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, 
                 
                 const prop_resolver = _p_cc(
                     $['resolver'],
-                    ($) => Node_Resolver(
+                    ($) => Value_Resolver(
                         $,
                         ($) => abort(
                             $
@@ -2264,7 +2264,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, 
     )
 )
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort, $l, $p) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $l, $p) => Type_Reference(
     $,
     ($) => abort(
         $
@@ -2320,9 +2320,9 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
     }
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _p.decide.state(
+export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) => _p.decide.state(
     $['l state'],
-    ($): t_out.Node_Resolver => {
+    ($): t_out.Value_Resolver => {
         switch ($[0]) {
             case 'boolean':
                 return _p.ss(
@@ -2346,7 +2346,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                 $['location'],
                                 ($) => _p.decide.state(
                                     $['l state'],
-                                    ($): t_out.Node_Resolver.component.location => {
+                                    ($): t_out.Value_Resolver.component.location => {
                                         switch ($[0]) {
                                             case 'external':
                                                 return _p.ss(
@@ -2419,11 +2419,11 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                     $,
                                                     ($) => _p.dictionary.resolve(
                                                         $['l dictionary'],
-                                                        ($, id, $a, $c): t_out.Node_Resolver.component.arguments_.O.values.O.D => _p_cc(
+                                                        ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.values.O.D => _p_cc(
                                                             $['l entry'],
                                                             ($) => _p.decide.state(
                                                                 $['l state'],
-                                                                ($): t_out.Node_Resolver.component.arguments_.O.values.O.D => {
+                                                                ($): t_out.Value_Resolver.component.arguments_.O.values.O.D => {
                                                                     switch ($[0]) {
                                                                         case 'optional':
                                                                             return _p.ss(
@@ -2477,11 +2477,11 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                     $,
                                                     ($) => _p.dictionary.resolve(
                                                         $['l dictionary'],
-                                                        ($, id, $a, $c): t_out.Node_Resolver.component.arguments_.O.lookups.O.D => _p_cc(
+                                                        ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.lookups.O.D => _p_cc(
                                                             $['l entry'],
                                                             ($) => _p.decide.state(
                                                                 $['l state'],
-                                                                ($): t_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
+                                                                ($): t_out.Value_Resolver.component.arguments_.O.lookups.O.D => {
                                                                     switch ($[0]) {
                                                                         case 'empty stack':
                                                                             return _p.ss(
@@ -2616,7 +2616,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_resolver = _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $,
                                     ($) => abort(
                                         $
@@ -2655,7 +2655,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
             case 'group':
                 return _p.ss(
                     $,
-                    ($) => ['group', Node_Resolver_Group(
+                    ($) => ['group', Value_Resolver_Group(
                         $,
                         ($) => abort(
                             $
@@ -2701,7 +2701,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                 $['result'],
                                 ($) => _p.optional.map(
                                     $,
-                                    ($) => Node_Resolver_List_Result(
+                                    ($) => Value_Resolver_List_Result(
                                         $,
                                         ($) => abort(
                                             $
@@ -2720,7 +2720,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_resolver = _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $,
                                     ($) => abort(
                                         $
@@ -2784,7 +2784,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_resolver = _p_cc(
                                 $['resolver'],
-                                ($) => Node_Resolver(
+                                ($) => Value_Resolver(
                                     $,
                                     ($) => abort(
                                         $
@@ -2830,7 +2830,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                 $['type'],
                                 ($) => _p.decide.state(
                                     $['l state'],
-                                    ($): t_out.Node_Resolver.reference.type_ => {
+                                    ($): t_out.Value_Resolver.reference.type_ => {
                                         switch ($[0]) {
                                             case 'derived':
                                                 return _p.ss(
@@ -2935,7 +2935,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                 $['states'],
                                 ($) => _p.dictionary.resolve(
                                     $['l dictionary'],
-                                    ($, id, $a, $c): t_out.Node_Resolver.state.states.D => _p_cc(
+                                    ($, id, $a, $c): t_out.Value_Resolver.state.states.D => _p_cc(
                                         $['l entry'],
                                         ($) => _p.group.resolve(
                                             () => {
@@ -2954,7 +2954,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                 
                                                 const prop_resolver = _p_cc(
                                                     $['resolver'],
-                                                    ($) => Node_Resolver(
+                                                    ($) => Value_Resolver(
                                                         $,
                                                         ($) => abort(
                                                             $

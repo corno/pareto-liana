@@ -426,7 +426,7 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
                     ['no such entry', "node"]
                 )
             ),
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -901,7 +901,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_cc(
                     ['no such entry', "node"]
                 )
             ),
-            ($) => Type_Node(
+            ($) => Value(
                 $,
                 ($) => abort(
                     $
@@ -980,7 +980,7 @@ export const Resolvers: t_signatures.Resolvers = ($, abort) => ({
                                 ['no such entry', "type resolver"]
                             )
                         ),
-                        ($) => Node_Resolver(
+                        ($) => Value_Resolver(
                             $,
                             ($) => abort(
                                 $
@@ -1045,7 +1045,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
                                 ['no such entry', "node"]
                             )
                         ),
-                        ($) => Type_Node(
+                        ($) => Value(
                             $,
                             ($) => abort(
                                 $
@@ -1058,7 +1058,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
     ),
 })
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort) => ({
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -1102,7 +1102,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort) 
                                 ['no such entry', "resolver"]
                             )
                         ),
-                        ($) => Node_Resolver(
+                        ($) => Value_Resolver(
                             $,
                             ($) => abort(
                                 $
@@ -1137,7 +1137,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($, abort) => _
                 'l location': v_parse_tree_to_location.Value(
                     $
                 )['start']['relative'],
-                'l entry': Type_Node_Reference(
+                'l entry': Value_Reference(
                     $,
                     ($) => abort(
                         $
@@ -1277,7 +1277,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
     })
 )
 
-export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
+export const Value: t_signatures.Value = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -1286,7 +1286,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
     ),
     ($) => _p.decide.text(
         $['option']['value'],
-        ($t): t_out.Type_Node => {
+        ($t): t_out.Value => {
             switch ($t) {
                 case 'boolean':
                     return _p_cc(
@@ -1334,7 +1334,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Type_Node.l_state.component.type_ => {
+                                                ($t): t_out.Value.l_state.component.type_ => {
                                                     switch ($t) {
                                                         case 'external':
                                                             return _p_cc(
@@ -1512,7 +1512,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 ['no such entry', "node"]
                                             )
                                         ),
-                                        ($) => Type_Node(
+                                        ($) => Value(
                                             $,
                                             ($) => abort(
                                                 $
@@ -1576,7 +1576,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.l_state.number_ => {
+                                    ($t): t_out.Value.l_state.number_ => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_cc(
@@ -1630,7 +1630,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['optional', Type_Node(
+                            'l state': ['optional', Value(
                                 $,
                                 ($) => abort(
                                     $
@@ -1660,7 +1660,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                 ['no such entry', "referent"]
                                             )
                                         ),
-                                        ($) => Type_Node_Reference(
+                                        ($) => Value_Reference(
                                             $,
                                             ($) => abort(
                                                 $
@@ -1683,7 +1683,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Type_Node.l_state.reference.type_ => {
+                                                ($t): t_out.Value.l_state.reference.type_ => {
                                                     switch ($t) {
                                                         case 'derived':
                                                             return _p_cc(
@@ -1745,7 +1745,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                                                     ),
                                                                                     ($) => _p.decide.text(
                                                                                         $['option']['value'],
-                                                                                        ($t): t_out.Type_Node.l_state.reference.type_.l_state.selected.dependency => {
+                                                                                        ($t): t_out.Value.l_state.reference.type_.l_state.selected.dependency => {
                                                                                             switch ($t) {
                                                                                                 case 'acyclic':
                                                                                                     return _p_cc(
@@ -1877,7 +1877,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                                             ['no such entry', "node"]
                                                         )
                                                     ),
-                                                    ($) => Type_Node(
+                                                    ($) => Value(
                                                         $,
                                                         ($) => abort(
                                                             $
@@ -1907,7 +1907,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort) => _p_cc(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['value'],
-                                    ($t): t_out.Type_Node.l_state.text => {
+                                    ($t): t_out.Value.l_state.text => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_cc(
@@ -2546,14 +2546,14 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
     })
 )
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($, abort) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort) => Type_Reference(
     $,
     ($) => abort(
         $
     )
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
+export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -2562,7 +2562,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
     ),
     ($) => _p.decide.text(
         $['option']['value'],
-        ($t): t_out.Node_Resolver => {
+        ($t): t_out.Value_Resolver => {
             switch ($t) {
                 case 'boolean':
                     return _p_cc(
@@ -2624,7 +2624,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Node_Resolver.l_state.component.location => {
+                                                ($t): t_out.Value_Resolver.l_state.component.location => {
                                                     switch ($t) {
                                                         case 'external':
                                                             return _p_cc(
@@ -2786,7 +2786,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                             ),
                                                                             ($) => _p.decide.text(
                                                                                 $['option']['value'],
-                                                                                ($t): t_out.Node_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+                                                                                ($t): t_out.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
                                                                                     switch ($t) {
                                                                                         case 'optional':
                                                                                             return _p_cc(
@@ -2889,7 +2889,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                             ),
                                                                             ($) => _p.decide.text(
                                                                                 $['option']['value'],
-                                                                                ($t): t_out.Node_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+                                                                                ($t): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
                                                                                     switch ($t) {
                                                                                         case 'empty stack':
                                                                                             return _p_cc(
@@ -3054,7 +3054,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                 ['no such entry', "resolver"]
                                             )
                                         ),
-                                        ($) => Node_Resolver(
+                                        ($) => Value_Resolver(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3094,7 +3094,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                             'l location': v_parse_tree_to_location.Value(
                                 $
                             )['start']['relative'],
-                            'l state': ['group', Node_Resolver_Group(
+                            'l state': ['group', Value_Resolver_Group(
                                 $,
                                 ($) => abort(
                                     $
@@ -3138,7 +3138,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                 ['no such entry', "resolver"]
                                             )
                                         ),
-                                        ($) => Node_Resolver(
+                                        ($) => Value_Resolver(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3159,7 +3159,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                     ['expected an optional', null]
                                                 )
                                             ),
-                                            ($) => Node_Resolver_List_Result(
+                                            ($) => Value_Resolver_List_Result(
                                                 $,
                                                 ($) => abort(
                                                     $
@@ -3237,7 +3237,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                 ['no such entry', "resolver"]
                                             )
                                         ),
-                                        ($) => Node_Resolver(
+                                        ($) => Value_Resolver(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3293,7 +3293,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                             ),
                                             ($) => _p.decide.text(
                                                 $['option']['value'],
-                                                ($t): t_out.Node_Resolver.l_state.reference.type_ => {
+                                                ($t): t_out.Value_Resolver.l_state.reference.type_ => {
                                                     switch ($t) {
                                                         case 'derived':
                                                             return _p_cc(
@@ -3482,7 +3482,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort) => _p_cc(
                                                                         ['no such entry', "resolver"]
                                                                     )
                                                                 ),
-                                                                ($) => Node_Resolver(
+                                                                ($) => Value_Resolver(
                                                                     $,
                                                                     ($) => abort(
                                                                         $
@@ -4249,7 +4249,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort) => _p_cc(
     })
 )
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
+export const Value_Path: t_signatures.Value_Path = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -4288,7 +4288,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
                             ),
                             ($) => _p.decide.text(
                                 $['option']['value'],
-                                ($t): t_out.Type_Node_Path.tail.l_list.L.l_item => {
+                                ($t): t_out.Value_Path.tail.l_list.L.l_item => {
                                     switch ($t) {
                                         case 'dictionary':
                                             return _p_cc(
@@ -4404,7 +4404,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort) => _p_cc(
     })
 )
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort) => _p_cc(
+export const Value_Reference: t_signatures.Value_Reference = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -4433,7 +4433,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($, abort) 
                     ['no such entry', "path"]
                 )
             ),
-            ($) => Type_Node_Path(
+            ($) => Value_Path(
                 $,
                 ($) => abort(
                     $

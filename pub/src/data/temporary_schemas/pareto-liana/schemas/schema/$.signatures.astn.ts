@@ -34,7 +34,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Type Node": sig.local(
+        "Value": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),
@@ -45,7 +45,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Value Constraints": sig.same_as("Type Node Reference"),
+        "Value Constraints": sig.same_as("Value Reference"),
 
         "Type": sig.local(
             {
@@ -66,9 +66,9 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "types": lookup_parameter("Types"),
             },
         ),
-        "Type Node Reference": sig.same_as("Type Reference"),
+        "Value Reference": sig.same_as("Type Reference"),
 
-        "Type Node Path": sig.local(
+        "Value Path": sig.local(
             {
                 "type": value_parameter("Type"),
             },
@@ -76,10 +76,10 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         ),
 
 
-        "Node Resolver": sig.local(
+        "Value Resolver": sig.local(
             {
-                "definition": value_parameter("Type Node"),
-                "list cursor": value_parameter("Node Resolver List Result", 'optional'),
+                "definition": value_parameter("Value"),
+                "list cursor": value_parameter("Value Resolver List Result", 'optional'),
                 "linked entry": value_parameter("Benchmark", 'optional'),
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
@@ -90,24 +90,24 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "option constraints": value_parameter("Option Constraints", 'optional'),
             },
             {
-                // "sibling property resolver stack": lookup_parameter("Node Resolver Group", 'stack'),
-                "sibling property resolvers": lookup_parameter("Node Resolver Group"),
-                "parent sibling property resolvers": lookup_parameter("Node Resolver Group"),
+                // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),
+                "sibling property resolvers": lookup_parameter("Value Resolver Group"),
+                "parent sibling property resolvers": lookup_parameter("Value Resolver Group"),
             }
         ),
 
-        "Possible Value Selection": sig.same_as("Node Resolver"),
-        "Guaranteed Value Selection": sig.same_as("Node Resolver"),
-        "Benchmark": sig.same_as("Node Resolver"),
-        "Optional Value Initialization": sig.same_as("Node Resolver"),
-        "Lookup Selection": sig.same_as("Node Resolver"),
-        "Option Constraints": sig.same_as("Node Resolver"),
+        "Possible Value Selection": sig.same_as("Value Resolver"),
+        "Guaranteed Value Selection": sig.same_as("Value Resolver"),
+        "Benchmark": sig.same_as("Value Resolver"),
+        "Optional Value Initialization": sig.same_as("Value Resolver"),
+        "Lookup Selection": sig.same_as("Value Resolver"),
+        "Option Constraints": sig.same_as("Value Resolver"),
 
-        "Node Resolver List Result": sig.same_as("Type Reference"),
-        "Node Resolver Group": sig.local(
+        "Value Resolver List Result": sig.same_as("Type Reference"),
+        "Value Resolver Group": sig.local(
             {
                 "definition": value_parameter("Group"),
-                "list cursor": value_parameter("Node Resolver List Result", 'optional'),
+                "list cursor": value_parameter("Value Resolver List Result", 'optional'),
                 "linked entry": value_parameter("Benchmark", 'optional'),
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
@@ -118,15 +118,15 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "option constraints": value_parameter("Option Constraints", 'optional'),
             },
             {
-                // "sibling property resolver stack": lookup_parameter("Node Resolver Group", 'stack'),
-                "sibling property resolvers": lookup_parameter("Node Resolver Group"),
-                "parent sibling property resolvers": lookup_parameter("Node Resolver Group"),
+                // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),
+                "sibling property resolvers": lookup_parameter("Value Resolver Group"),
+                "parent sibling property resolvers": lookup_parameter("Value Resolver Group"),
             }
         ),
 
         "Relative Value Selection": sig.local(
             {
-                "node": value_parameter("Type Node"),
+                "node": value_parameter("Value"),
             },
             {},
         ),

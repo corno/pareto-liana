@@ -437,11 +437,11 @@ export type Group_ = (
     },
 ) => Group_.O
 
-export namespace Node_Resolver_Group_ {
+export namespace Value_Resolver_Group_ {
     
     export type I = string
     
-    export type O = i_out.Node_Resolver_Group
+    export type O = i_out.Value_Resolver_Group
     
     export type E = i_generic.Error
     
@@ -455,14 +455,14 @@ export namespace Node_Resolver_Group_ {
     
 }
 
-export type Node_Resolver_Group_ = (
-    context: Node_Resolver_Group_.I,
-    abort: _pi.Abort<Node_Resolver_Group_.E>,
+export type Value_Resolver_Group_ = (
+    context: Value_Resolver_Group_.I,
+    abort: _pi.Abort<Value_Resolver_Group_.E>,
     parameters: {
-        readonly 'document resource identifier': Node_Resolver_Group_.P.document_resource_identifier
-        readonly 'tab size': Node_Resolver_Group_.P.tab_size
+        readonly 'document resource identifier': Value_Resolver_Group_.P.document_resource_identifier
+        readonly 'tab size': Value_Resolver_Group_.P.tab_size
     },
-) => Node_Resolver_Group_.O
+) => Value_Resolver_Group_.O
 
 export namespace Value_Constraints_ {
     
@@ -518,11 +518,11 @@ export type Type_Reference_ = (
     },
 ) => Type_Reference_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export type I = string
     
-    export type O = i_out.Type_Node
+    export type O = i_out.Value
     
     export type E = i_generic.Error
     
@@ -536,14 +536,14 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-    abort: _pi.Abort<Type_Node_.E>,
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
     parameters: {
-        readonly 'document resource identifier': Type_Node_.P.document_resource_identifier
-        readonly 'tab size': Type_Node_.P.tab_size
+        readonly 'document resource identifier': Value_.P.document_resource_identifier
+        readonly 'tab size': Value_.P.tab_size
     },
-) => Type_Node_.O
+) => Value_.O
 
 export namespace Option_Constraints_ {
     
@@ -680,11 +680,11 @@ export type Lookup_Selection_ = (
     },
 ) => Lookup_Selection_.O
 
-export namespace Node_Resolver_List_Result_ {
+export namespace Value_Resolver_List_Result_ {
     
     export type I = string
     
-    export type O = i_out.Node_Resolver_List_Result
+    export type O = i_out.Value_Resolver_List_Result
     
     export type E = i_generic.Error
     
@@ -698,20 +698,20 @@ export namespace Node_Resolver_List_Result_ {
     
 }
 
-export type Node_Resolver_List_Result_ = (
-    context: Node_Resolver_List_Result_.I,
-    abort: _pi.Abort<Node_Resolver_List_Result_.E>,
+export type Value_Resolver_List_Result_ = (
+    context: Value_Resolver_List_Result_.I,
+    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
     parameters: {
-        readonly 'document resource identifier': Node_Resolver_List_Result_.P.document_resource_identifier
-        readonly 'tab size': Node_Resolver_List_Result_.P.tab_size
+        readonly 'document resource identifier': Value_Resolver_List_Result_.P.document_resource_identifier
+        readonly 'tab size': Value_Resolver_List_Result_.P.tab_size
     },
-) => Node_Resolver_List_Result_.O
+) => Value_Resolver_List_Result_.O
 
-export namespace Node_Resolver_ {
+export namespace Value_Resolver_ {
     
     export type I = string
     
-    export type O = i_out.Node_Resolver
+    export type O = i_out.Value_Resolver
     
     export type E = i_generic.Error
     
@@ -725,14 +725,14 @@ export namespace Node_Resolver_ {
     
 }
 
-export type Node_Resolver_ = (
-    context: Node_Resolver_.I,
-    abort: _pi.Abort<Node_Resolver_.E>,
+export type Value_Resolver_ = (
+    context: Value_Resolver_.I,
+    abort: _pi.Abort<Value_Resolver_.E>,
     parameters: {
-        readonly 'document resource identifier': Node_Resolver_.P.document_resource_identifier
-        readonly 'tab size': Node_Resolver_.P.tab_size
+        readonly 'document resource identifier': Value_Resolver_.P.document_resource_identifier
+        readonly 'tab size': Value_Resolver_.P.tab_size
     },
-) => Node_Resolver_.O
+) => Value_Resolver_.O
 
 export namespace Relative_Value_Selection_ {
     
@@ -815,11 +815,11 @@ export type Benchmark_ = (
     },
 ) => Benchmark_.O
 
-export namespace Type_Node_Path_ {
+export namespace Value_Path_ {
     
     export type I = string
     
-    export type O = i_out.Type_Node_Path
+    export type O = i_out.Value_Path
     
     export type E = i_generic.Error
     
@@ -833,20 +833,20 @@ export namespace Type_Node_Path_ {
     
 }
 
-export type Type_Node_Path_ = (
-    context: Type_Node_Path_.I,
-    abort: _pi.Abort<Type_Node_Path_.E>,
+export type Value_Path_ = (
+    context: Value_Path_.I,
+    abort: _pi.Abort<Value_Path_.E>,
     parameters: {
-        readonly 'document resource identifier': Type_Node_Path_.P.document_resource_identifier
-        readonly 'tab size': Type_Node_Path_.P.tab_size
+        readonly 'document resource identifier': Value_Path_.P.document_resource_identifier
+        readonly 'tab size': Value_Path_.P.tab_size
     },
-) => Type_Node_Path_.O
+) => Value_Path_.O
 
-export namespace Type_Node_Reference_ {
+export namespace Value_Reference_ {
     
     export type I = string
     
-    export type O = i_out.Type_Node_Reference
+    export type O = i_out.Value_Reference
     
     export type E = i_generic.Error
     
@@ -860,14 +860,14 @@ export namespace Type_Node_Reference_ {
     
 }
 
-export type Type_Node_Reference_ = (
-    context: Type_Node_Reference_.I,
-    abort: _pi.Abort<Type_Node_Reference_.E>,
+export type Value_Reference_ = (
+    context: Value_Reference_.I,
+    abort: _pi.Abort<Value_Reference_.E>,
     parameters: {
-        readonly 'document resource identifier': Type_Node_Reference_.P.document_resource_identifier
-        readonly 'tab size': Type_Node_Reference_.P.tab_size
+        readonly 'document resource identifier': Value_Reference_.P.document_resource_identifier
+        readonly 'tab size': Value_Reference_.P.tab_size
     },
-) => Type_Node_Reference_.O
+) => Value_Reference_.O
 
 export namespace Signature_ {
     
@@ -1021,22 +1021,22 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Type_Reference_ as Type_Reference, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_ as Node_Resolver, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Resolver_ as Value_Resolver, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Path_ as Value_Path, 
+    Value_Reference_ as Value_Reference, 
     Signature_ as Signature, 
     Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 

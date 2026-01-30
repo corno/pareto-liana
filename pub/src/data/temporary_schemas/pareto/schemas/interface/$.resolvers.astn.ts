@@ -13,23 +13,23 @@ export const $: g_.Resolvers = resolvers(
         "Module": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
             "types": r.dictionary(r.state({
-                "data": option(r.component("Type Node", {}, {})),
+                "data": option(r.component("Value", {}, {})),
                 "algorithm": option(r.group({
-                    "result": r.component("Type Node", {}, {}),
-                    "context": r.component("Type Node", {}, {}),
+                    "result": r.component("Value", {}, {}),
+                    "context": r.component("Value", {}, {}),
                     "type": r.state({
                         "transformer": option(r.group({
                         })),
                         "refiner": option(r.group({
-                            "error": r.optional(r.component("Type Node", {}, {})),
+                            "error": r.optional(r.component("Value", {}, {})),
                             "lookups": r.optional(r.dictionary(r.state({
-                                "acyclic": option(r.component("Type Node", {}, {})),
-                                "cyclic": option(r.component("Type Node", {}, {})),
-                                "stack": option(r.component("Type Node", {}, {})),
+                                "acyclic": option(r.component("Value", {}, {})),
+                                "cyclic": option(r.component("Value", {}, {})),
+                                "stack": option(r.component("Value", {}, {})),
                             }))),
                         })),
                     }),
-                    "parameters": r.optional(r.dictionary(r.component("Type Node", {}, {}))),
+                    "parameters": r.optional(r.dictionary(r.component("Value", {}, {}))),
                 })),
             })),
         })),
@@ -46,15 +46,15 @@ export const $: g_.Resolvers = resolvers(
             "tail": r.list(r.text()),
         }))),
 
-        "Type Node": resolver(r.state({
+        "Value": resolver(r.state({
 
             "boolean": option(r.nothing()),
             "component": option(r.group({
                 "location": r.component("Type Reference", {}, {}),
             })),
-            "dictionary": option(r.component("Type Node", {}, {})),
-            "group": option(r.dictionary(r.component("Type Node", {}, {}))),
-            "list": option(r.component("Type Node", {}, {})),
+            "dictionary": option(r.component("Value", {}, {})),
+            "group": option(r.dictionary(r.component("Value", {}, {}))),
+            "list": option(r.component("Value", {}, {})),
             "nothing": option(r.nothing()),
 
             "number": option(r.state({
@@ -64,7 +64,7 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "approximation": option(r.nothing()),
             })),
-            "optional": option(r.component("Type Node", {}, {})),
+            "optional": option(r.component("Value", {}, {})),
             "reference": option(r.group({
                 "location": r.component("Type Reference", {}, {}),
                 "sub selection": r.list(r.state({
@@ -76,7 +76,7 @@ export const $: g_.Resolvers = resolvers(
                 })),
                 "cyclic": r.boolean(),
             })),
-            "state": option(r.dictionary(r.component("Type Node", {}, {}))),
+            "state": option(r.dictionary(r.component("Value", {}, {}))),
             "text": option(r.nothing()),
         })),
 

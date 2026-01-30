@@ -26,7 +26,7 @@ export type Property =
     | ['multiple', _pi.List<Entry_Data>]
 
 export type Node = {
-    'definition': d_schema.Type_Node
+    'definition': d_schema.Value
     'value': d_astn_ast.Value
     'type': Node_Type //the type is determined by the definition
 }
@@ -46,7 +46,7 @@ export type Node_Type =
 
 
 export type Boolean = {
-    'definition': d_schema.Type_Node.boolean_
+    'definition': d_schema.Value.boolean_
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
@@ -57,12 +57,12 @@ export type Boolean = {
 }
 
 export type Component = {
-    'definition': d_schema.Type_Node.component
+    'definition': d_schema.Value.component
     'node': Node
 }
 
 export type Dictionary = {
-    'definition': d_schema.Type_Node.dictionary
+    'definition': d_schema.Value.dictionary
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.dictionary
@@ -72,7 +72,7 @@ export type Dictionary = {
 }
 
 export type Group = {
-    'definition': d_schema.Type_Node.group
+    'definition': d_schema.Value.group
     'found value type': Group_Found_Value_Type
 }
 
@@ -101,7 +101,7 @@ export type Group_Content = {
 }
 
 export type List = {
-    'definition': d_schema.Type_Node.list
+    'definition': d_schema.Value.list
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.list
@@ -111,7 +111,7 @@ export type List = {
 }
 
 export type Optional = {
-    'definition': d_schema.Type_Node.optional
+    'definition': d_schema.Value.optional
     'found value type':
     | ['valid',
         | ['set', {
@@ -126,7 +126,7 @@ export type Optional = {
 }
 
 export type Reference = {
-    'definition': d_schema.Type_Node.reference
+    'definition': d_schema.Value.reference
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
@@ -135,12 +135,12 @@ export type Reference = {
 }
 
 export type State = {
-    'definition': d_schema.Type_Node.state
+    'definition': d_schema.Value.state
     'found value type': State_found_value_type
 }
 
 export type State_Definition_Found = {
-    'definition': d_schema.Type_Node.state.D
+    'definition': d_schema.Value.state.D
     'node': Node
 }
 
@@ -185,7 +185,7 @@ export type State_found_value_type =
 
 
 export type Nothing = {
-    'definition': d_schema.Type_Node.nothing
+    'definition': d_schema.Value.nothing
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.nothing
@@ -194,7 +194,7 @@ export type Nothing = {
 }
 
 export type Text = {
-    'definition': d_schema.Type_Node.text
+    'definition': d_schema.Value.text
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text
@@ -203,7 +203,7 @@ export type Text = {
 }
 
 export type Number = {
-    'definition': d_schema.Type_Node.number_
+    'definition': d_schema.Value.number_
     'found value type':
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.text

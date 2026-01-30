@@ -50,14 +50,14 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
 export const Type: _pi.Transformer<d_in.Type, d_out.Type> = (
     $
 ) => ({
-    'node': Type_Node($.node)
+    'node': Value($.node)
 })
 
-export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
+export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
     $
-) => sh.state(_p.decide.state($, ($): d_out.Type_Node.l_state => {
+) => sh.state(_p.decide.state($, ($): d_out.Value.l_state => {
     switch ($[0]) {
-        case 'number': return _p.ss($, ($): d_out.Type_Node.l_state => ['text', sh.state(_p.decide.state($, ($): d_out.Type_Node.l_state.text.l_state => {
+        case 'number': return _p.ss($, ($): d_out.Value.l_state => ['text', sh.state(_p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
                 case 'local': return _p.ss($, ($) => ['local', {
@@ -66,23 +66,23 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
                 default: return _p.au($[0])
             }
         }))]) //FIXME
-        case 'boolean': return _p.ss($, ($) => ['text', sh.state<d_out.Type_Node.l_state.text.l_state>(['local', {
+        case 'boolean': return _p.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
             'type': sh.state(['single line', null])
         }])])
         case 'list': return _p.ss($, ($) => ['list', {
-            'node': Type_Node($.node)
+            'node': Value($.node)
         }])
         case 'nothing': return _p.ss($, ($) => ['nothing', null])
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => ['nothing', null])
-                case 'selected': return _p.ss($, ($) => ['text', sh.state<d_out.Type_Node.l_state.text.l_state>(['local', {
+                case 'selected': return _p.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
                     'type': sh.state(['single line', null])
                 }])])
                 default: return _p.au($[0])
             }
         }))
-        case 'component': return _p.ss($, ($) => ['component', sh.state(_p.decide.state($.type, ($): d_out.Type_Node.l_state.component.l_state => {
+        case 'component': return _p.ss($, ($) => ['component', sh.state(_p.decide.state($.type, ($): d_out.Value.l_state.component.l_state => {
             switch ($[0]) {
                 case 'external': return _p.ss($, ($) => ['external', {
                     'import': sh.reference($.import['l id']),
@@ -95,12 +95,12 @@ export const Type_Node: _pi.Transformer<d_in.Type_Node, d_out.Type_Node> = (
         }))])
         case 'dictionary': return _p.ss($, ($) => ['dictionary', {
             'ordered': false,
-            'node': Type_Node($.node)
+            'node': Value($.node)
         }])
-        case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Type_Node($.node)))])
-        case 'optional': return _p.ss($, ($) => ['optional', Type_Node($)])
-        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.__d_map(($) => Type_Node($.node)))])
-        case 'text': return _p.ss($, ($) => ['text', sh.state(_p.decide.state($, ($): d_out.Type_Node.l_state.text.l_state => {
+        case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.node)))])
+        case 'optional': return _p.ss($, ($) => ['optional', Value($)])
+        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.__d_map(($) => Value($.node)))])
+        case 'text': return _p.ss($, ($) => ['text', sh.state(_p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', sh.reference("t" + $['l id'])])
                 case 'local': return _p.ss($, ($) => ['local', Text_Type($)])

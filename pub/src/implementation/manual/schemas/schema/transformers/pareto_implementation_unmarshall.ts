@@ -149,7 +149,7 @@ export const Schema: _pi.Transformer_With_Parameters<
             true,
             false,
             false,
-            Type_Node(
+            Value(
                 $.node,
                 {
                     'temp type': id,
@@ -161,11 +161,11 @@ export const Schema: _pi.Transformer_With_Parameters<
     )
 }
 
-export const Type_Node = (
-    $: d_in.Type_Node,
+export const Value = (
+    $: d_in.Value,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out_interface.Type_Node.reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
         'constrained': boolean
     },
 ): d_out.Expression => {
@@ -224,7 +224,7 @@ export const Type_Node = (
                             ),
                             sh.e.group.literal({
                                 "l location": location,
-                                "l entry": Type_Node(
+                                "l entry": Value(
                                     $.node,
                                     {
                                         'temp type': $p['temp type'],
@@ -252,7 +252,7 @@ export const Type_Node = (
                             sh.arguments_.not_set(),
                             [],
                         ),
-                        Type_Node(
+                        Value(
                             $.node,
                             {
                                 'temp type': $p['temp type'],
@@ -283,7 +283,7 @@ export const Type_Node = (
                         sh.e.state.literal("no such entry", sh.e.text.literal(id, 'freeform')),
                         []
                     ),
-                    Type_Node(
+                    Value(
                         $.node,
                         {
                             'temp type': $p['temp type'],
@@ -313,7 +313,7 @@ export const Type_Node = (
                             ),
                             sh.e.group.literal({
                                 "l location": location,
-                                "l item": Type_Node(
+                                "l item": Value(
                                     $.node,
                                     {
                                         'temp type': $p['temp type'],
@@ -340,7 +340,7 @@ export const Type_Node = (
                             sh.arguments_.not_set(),
                             [],
                         ),
-                        Type_Node(
+                        Value(
                             $.node,
                             {
                                 'temp type': $p['temp type'],
@@ -393,7 +393,7 @@ export const Type_Node = (
                     sh.arguments_.not_set(),
                     [],
                 ),
-                Type_Node(
+                Value(
                     $,
                     {
                         'temp type': $p['temp type'],
@@ -454,7 +454,7 @@ export const Type_Node = (
                                     "l location": location,
                                     "l state": sh.e.state.literal(
                                         id,
-                                        Type_Node(
+                                        Value(
                                             $.node,
                                             {
                                                 'temp type': $p['temp type'],
@@ -472,7 +472,7 @@ export const Type_Node = (
                                 })
                                 : sh.e.state.literal(
                                     id,
-                                    Type_Node(
+                                    Value(
                                         $.node,
                                         {
                                             'temp type': $p['temp type'],

@@ -261,9 +261,9 @@ export type Group_ = (
     context: Group_.I,
 ) => Group_.O
 
-export namespace Node_Resolver_Group_ {
+export namespace Value_Resolver_Group_ {
     
-    export type I = i_in.Node_Resolver_Group
+    export type I = i_in.Value_Resolver_Group
     
     export type O = i_out.Value
     
@@ -273,9 +273,9 @@ export namespace Node_Resolver_Group_ {
     
 }
 
-export type Node_Resolver_Group_ = (
-    context: Node_Resolver_Group_.I,
-) => Node_Resolver_Group_.O
+export type Value_Resolver_Group_ = (
+    context: Value_Resolver_Group_.I,
+) => Value_Resolver_Group_.O
 
 export namespace Value_Constraints_ {
     
@@ -309,9 +309,9 @@ export type Type_Reference_ = (
     context: Type_Reference_.I,
 ) => Type_Reference_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
-    export type I = i_in.Type_Node
+    export type I = i_in.Value
     
     export type O = i_out.Value
     
@@ -321,9 +321,9 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-) => Type_Node_.O
+export type Value_ = (
+    context: Value_.I,
+) => Value_.O
 
 export namespace Option_Constraints_ {
     
@@ -405,25 +405,9 @@ export type Lookup_Selection_ = (
     context: Lookup_Selection_.I,
 ) => Lookup_Selection_.O
 
-export namespace Node_Resolver_List_Result_ {
+export namespace Value_Resolver_List_Result_ {
     
-    export type I = i_in.Node_Resolver_List_Result
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Node_Resolver_List_Result_ = (
-    context: Node_Resolver_List_Result_.I,
-) => Node_Resolver_List_Result_.O
-
-export namespace Node_Resolver_ {
-    
-    export type I = i_in.Node_Resolver
+    export type I = i_in.Value_Resolver_List_Result
     
     export type O = i_out.Value
     
@@ -433,9 +417,25 @@ export namespace Node_Resolver_ {
     
 }
 
-export type Node_Resolver_ = (
-    context: Node_Resolver_.I,
-) => Node_Resolver_.O
+export type Value_Resolver_List_Result_ = (
+    context: Value_Resolver_List_Result_.I,
+) => Value_Resolver_List_Result_.O
+
+export namespace Value_Resolver_ {
+    
+    export type I = i_in.Value_Resolver
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Resolver_ = (
+    context: Value_Resolver_.I,
+) => Value_Resolver_.O
 
 export namespace Relative_Value_Selection_ {
     
@@ -485,25 +485,9 @@ export type Benchmark_ = (
     context: Benchmark_.I,
 ) => Benchmark_.O
 
-export namespace Type_Node_Path_ {
+export namespace Value_Path_ {
     
-    export type I = i_in.Type_Node_Path
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Type_Node_Path_ = (
-    context: Type_Node_Path_.I,
-) => Type_Node_Path_.O
-
-export namespace Type_Node_Reference_ {
-    
-    export type I = i_in.Type_Node_Reference
+    export type I = i_in.Value_Path
     
     export type O = i_out.Value
     
@@ -513,9 +497,25 @@ export namespace Type_Node_Reference_ {
     
 }
 
-export type Type_Node_Reference_ = (
-    context: Type_Node_Reference_.I,
-) => Type_Node_Reference_.O
+export type Value_Path_ = (
+    context: Value_Path_.I,
+) => Value_Path_.O
+
+export namespace Value_Reference_ {
+    
+    export type I = i_in.Value_Reference
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Reference_ = (
+    context: Value_Reference_.I,
+) => Value_Reference_.O
 
 export namespace Signature_ {
     
@@ -614,22 +614,22 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Type_Reference_ as Type_Reference, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_ as Node_Resolver, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Resolver_ as Value_Resolver, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Path_ as Value_Path, 
+    Value_Reference_ as Value_Reference, 
     Signature_ as Signature, 
     Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 

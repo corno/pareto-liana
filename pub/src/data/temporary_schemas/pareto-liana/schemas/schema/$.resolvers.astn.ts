@@ -10,7 +10,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Resolvers = resolvers(
     {
         "Type": resolver(r.group({
-            "node": r.component("Type Node", {
+            "node": r.component("Value", {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
             }, {
@@ -75,12 +75,12 @@ export const $: g_.Resolvers = resolvers(
             "resulting type": r.reference_derived(gvs.state("location", reference("Type"), [])),
         })),
 
-        "Type Node Reference": resolver(r.group({
+        "Value Reference": resolver(r.group({
             "type location": r.component("Type Reference", null, null),
-            "path": r.component("Type Node Path", { "type": av.required(gvs.sibling("type location", [vst.component(), vst.group("resulting type"), vst.reference()])) }, {}),
+            "path": r.component("Value Path", { "type": av.required(gvs.sibling("type location", [vst.component(), vst.group("resulting type"), vst.reference()])) }, {}),
         })),
 
-        "Type Node Path": resolver(r.group({
+        "Value Path": resolver(r.group({
             "tail": r.list_with_result(
                 r.state({
                     "dictionary": state_constrained(
@@ -104,16 +104,16 @@ export const $: g_.Resolvers = resolvers(
                             "definition": oc.state(gvs.list_cursor([]), "state")
                         }, r.reference(gvs.dictionary(gvs.option_constraint("definition", [])))),
                 }),
-                reference("Type Node"),
+                reference("Value"),
             ),
             "resulting node": r.reference_derived(gvs.list("tail", [])),
         })),
 
-        "Value Constraints": resolver(r.optional(r.dictionary(r.component("Type Node Reference", null, null)))),
+        "Value Constraints": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
 
         "Group": resolver(r.dictionary(r.group({
             "description": r.optional(r.text()),
-            "node": r.component("Type Node",
+            "node": r.component("Value",
                 {
                     "globals": av.parameter("globals"),
                     "imports": av.parameter("imports"),
@@ -126,7 +126,7 @@ export const $: g_.Resolvers = resolvers(
         }))),
 
         "Dictionary": resolver(r.group({
-            "node": r.component("Type Node",
+            "node": r.component("Value",
                 {
                     "globals": av.parameter("globals"),
                     "imports": av.parameter("imports"),
@@ -138,7 +138,7 @@ export const $: g_.Resolvers = resolvers(
             ),
         })),
 
-        "Type Node": resolver(r.state({
+        "Value": resolver(r.state({
             "boolean": state(r.nothing()),
             "component": state(r.group({
                 "type": r.state({
@@ -179,7 +179,7 @@ export const $: g_.Resolvers = resolvers(
                 }
             )),
             "list": state(r.group({
-                "node": r.component("Type Node", null, null),
+                "node": r.component("Value", null, null),
                 "result": r.optional(r.component("Type Reference", {
                     "imports": av.parameter("imports"),
                 }, {
@@ -194,9 +194,9 @@ export const $: g_.Resolvers = resolvers(
                     }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("number types")])))),
                 "local": state(r.component("Number Type", {}, {})),
             })),
-            "optional": state(r.component("Type Node", null, null)),
+            "optional": state(r.component("Value", null, null)),
             "reference": state(r.group({
-                "referent": r.component("Type Node Reference", {
+                "referent": r.component("Value Reference", {
                     "imports": av.parameter("imports"),
                 }, {
                     "types": al.parameter("noncircular sibling types"),
@@ -223,7 +223,7 @@ export const $: g_.Resolvers = resolvers(
                 }),
             })),
             "state": state(r.dictionary(r.group({
-                "node": r.component("Type Node", null, null),
+                "node": r.component("Value", null, null),
                 "description": r.optional(r.text()),
             }))),
             "text": state(r.state({
@@ -255,7 +255,7 @@ export const $: g_.Resolvers = resolvers(
                         })
                     ),
                 }),
-                reference("Type Node"),
+                reference("Value"),
             ),
             "resulting node": r.reference_derived(gvs.list("path", [])),
         })),
@@ -423,7 +423,7 @@ export const $: g_.Resolvers = resolvers(
             ),
             "tail": r.component("Relative Value Selection", {
                 "node": av.required(gvs.state("start",
-                    reference("Type Node"), [])),
+                    reference("Value"), [])),
             }, {}),
             "resulting node": r.reference_derived(gvs.sibling("tail", [vst.component(), vst.group("resulting node"), vst.reference()])),
         })),
@@ -461,7 +461,7 @@ export const $: g_.Resolvers = resolvers(
             gvs.parameter("signatures", []),
             r.group({
                 "signature": r.reference_derived(gvs.linked_entry([])),
-                "type resolver": r.component("Node Resolver",
+                "type resolver": r.component("Value Resolver",
                     {
 
                         "option constraints": av.optional(ovi.not_set()),
@@ -528,7 +528,7 @@ export const $: g_.Resolvers = resolvers(
             ),
             "constraint": r.component("Constraint", {
                 "node": av.required(gvs.state("start",
-                    reference("Type Node"), [])),
+                    reference("Value"), [])),
             }, {}),
         })),
 
@@ -539,12 +539,12 @@ export const $: g_.Resolvers = resolvers(
 
         "Reference To Value Constraint Resolver": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
 
-        "Node Resolver Group": resolver(r.dictionary_linked(
+        "Value Resolver Group": resolver(r.dictionary_linked(
             'dense',
             gvs.parameter("definition", []),
             r.group({
                 "definition": r.reference_derived(gvs.linked_entry([])),
-                "resolver": r.component("Node Resolver",
+                "resolver": r.component("Value Resolver",
                     {
                         "definition": av.required(gvs.linked_entry([vst.group("node"), vst.component()])),
 
@@ -566,7 +566,7 @@ export const $: g_.Resolvers = resolvers(
             })
         )),
 
-        "Node Resolver List Result": resolver(r.component("Type Reference", {
+        "Value Resolver List Result": resolver(r.component("Type Reference", {
             "imports": av.parameter("imports"),
         }, {
             "types": al.parameter("types"),
@@ -580,7 +580,7 @@ export const $: g_.Resolvers = resolvers(
             "dense": r.boolean(),
         })),
 
-        "Node Resolver": resolver(r.state({
+        "Value Resolver": resolver(r.state({
             "boolean": state_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "boolean")
@@ -645,7 +645,7 @@ export const $: g_.Resolvers = resolvers(
                     "benchmark": r.optional(
                         r.component("Benchmark", null, null)
                     ),
-                    "resolver": r.component("Node Resolver",
+                    "resolver": r.component("Value Resolver",
                         {
                             "linked entry": av.optional(ovi.selection(pvs.optional_value("benchmark",
                                 reference("Benchmark"),))),
@@ -668,7 +668,7 @@ export const $: g_.Resolvers = resolvers(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "group")
                 },
-                r.component("Node Resolver Group",
+                r.component("Value Resolver Group",
                     {
                         "definition": av.required(gvs.option_constraint("definition", [])),
 
@@ -695,16 +695,16 @@ export const $: g_.Resolvers = resolvers(
                 }, r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "result": r.optional(
-                        r.component("Node Resolver List Result", {
+                        r.component("Value Resolver List Result", {
                             "imports": av.parameter("imports"),
                         }, {
                             "types": al.dictionary(gvs.parameter("types", [])),
                         }),
                     ),
-                    "resolver": r.component("Node Resolver",
+                    "resolver": r.component("Value Resolver",
                         {
                             "list cursor": av.optional(ovi.set(gvs.optional_value("result",
-                                reference("Node Resolver List Result"), [vst.component()]))),
+                                reference("Value Resolver List Result"), [vst.component()]))),
                             "definition": av.required(gvs.option_constraint("definition", [vst.group("node")])),
 
                             "types": av.parameter("types"),
@@ -732,7 +732,7 @@ export const $: g_.Resolvers = resolvers(
                     "definition": oc.state(gvs.parameter("definition", []), "optional")
                 }, r.group({
                     "constraints": r.component("Option Constraints", null, null),
-                    "resolver": r.component("Node Resolver",
+                    "resolver": r.component("Value Resolver",
                         {
                             "definition": av.required(gvs.option_constraint("definition", [vst.component()])),
 
@@ -783,7 +783,7 @@ export const $: g_.Resolvers = resolvers(
                         gvs.option_constraint("definition", []),
                         r.group({
                             "constraints": r.component("Option Constraints", null, null),
-                            "resolver": r.component("Node Resolver",
+                            "resolver": r.component("Value Resolver",
                                 {
                                     "definition": av.required(gvs.linked_entry([vst.group("node")])),
 

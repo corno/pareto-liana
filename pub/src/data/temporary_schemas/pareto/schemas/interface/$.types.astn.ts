@@ -23,23 +23,23 @@ export const $: g_.Types = types(
         "Module": type(t.group({
             "imports": prop(t.component("Imports")),
             "types": prop(t.dictionary(t.state({
-                "data": toption(t.component_cyclic("Type Node")),
+                "data": toption(t.component_cyclic("Value")),
                 "algorithm": toption(t.group({
-                    "result": prop(t.component_cyclic("Type Node")),
-                    "context": prop(t.component_cyclic("Type Node")),
+                    "result": prop(t.component_cyclic("Value")),
+                    "context": prop(t.component_cyclic("Value")),
                     "type": prop(t.state({
                         "transformer": toption(t.group({
                         })),
                         "refiner": toption(t.group({
-                            "error": prop(t.optional(t.component_cyclic("Type Node"))),
+                            "error": prop(t.optional(t.component_cyclic("Value"))),
                             "lookups": prop(t.optional(t.dictionary(t.state({
-                                "acyclic": toption(t.component_cyclic("Type Node")),
-                                "cyclic": toption(t.component_cyclic("Type Node")),
-                                "stack": toption(t.component_cyclic("Type Node")),
+                                "acyclic": toption(t.component_cyclic("Value")),
+                                "cyclic": toption(t.component_cyclic("Value")),
+                                "stack": toption(t.component_cyclic("Value")),
                             })))),
                         }))
                     })),
-                    "parameters": prop(t.optional(t.dictionary(t.component_cyclic("Type Node")))),
+                    "parameters": prop(t.optional(t.dictionary(t.component_cyclic("Value")))),
                 })),
             }))),
         })),
@@ -56,14 +56,14 @@ export const $: g_.Types = types(
             "tail": prop(t.list(t.text_global("TBD"))),
         }))),
 
-        "Type Node": type(t.state({
+        "Value": type(t.state({
             "boolean": toption(t.nothing()),
             "component": toption(t.group({
                 "location": prop(t.component("Type Reference")),
             })),
-            "dictionary": toption(t.component_cyclic("Type Node")),
-            "group": toption(t.dictionary(t.component_cyclic("Type Node"))),
-            "list": toption(t.component_cyclic("Type Node")),
+            "dictionary": toption(t.component_cyclic("Value")),
+            "group": toption(t.dictionary(t.component_cyclic("Value"))),
+            "list": toption(t.component_cyclic("Value")),
             "nothing": toption(t.nothing()),
             "number": toption(t.state({
                 "exact": toption(t.state({
@@ -72,7 +72,7 @@ export const $: g_.Types = types(
                 })),
                 "approximation": toption(t.nothing()),
             })),
-            "optional": toption(t.component_cyclic("Type Node")),
+            "optional": toption(t.component_cyclic("Value")),
             "reference": toption(t.group({
                 "location": prop(t.component("Type Reference")),
                 "sub selection": prop(t.list(t.state({
@@ -84,7 +84,7 @@ export const $: g_.Types = types(
                 }))),
                 "cyclic": prop(t.boolean()),
             })),
-            "state": toption(t.dictionary(t.component_cyclic("Type Node"))),
+            "state": toption(t.dictionary(t.component_cyclic("Value"))),
             "text": toption(t.nothing()),
         })),
 

@@ -114,7 +114,7 @@ export const $: g_.Types = types(
         })),
 
         "Type": type(t.group({
-            "node": prop(t.component_cyclic("Type Node"))
+            "node": prop(t.component_cyclic("Value"))
         })),
 
         //FIXME: inline
@@ -124,19 +124,19 @@ export const $: g_.Types = types(
         })),
 
         "Dictionary": type(t.group({
-            "node": prop(t.component_cyclic("Type Node")),
+            "node": prop(t.component_cyclic("Value")),
         })),
 
         "Signatures": type(t.dictionary(t.component_cyclic("Signature"))),
 
         "Resolvers": type(t.dictionary(t.group({
             "signature": prop(t.reference_derived("Signatures", [tr.d()])),
-            "type resolver": prop(t.component_cyclic("Node Resolver")),
+            "type resolver": prop(t.component_cyclic("Value Resolver")),
         }))),
 
         "Benchmark": type(t.group({
             "selection": prop(t.component_constrained("Guaranteed Value Selection", {
-                "dictionary": sh.type_node_reference("Type Node", [tr.s("dictionary")])
+                "dictionary": sh.type_node_reference("Value", [tr.s("dictionary")])
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
             "dense": prop(t.boolean()),
@@ -147,26 +147,26 @@ export const $: g_.Types = types(
          */
         "Group": type(t.dictionary(t.group({
             "description": prop(t.optional(t.text_local(text('multi line')))),
-            "node": prop(t.component_cyclic("Type Node"))
+            "node": prop(t.component_cyclic("Value"))
         }))),
 
-        "Type Node Reference": type(t.group({ //FIXME: inline
+        "Value Reference": type(t.group({ //FIXME: inline
             "type location": prop(t.component("Type Reference")),
-            "path": prop(t.component("Type Node Path")),
+            "path": prop(t.component("Value Path")),
         })),
 
-        "Type Node Path": type(t.group({
+        "Value Path": type(t.group({
             "tail": prop(t.path_to_sibling(
                 t.state({
                     "dictionary": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),
                     "list": tstate(t.nothing()),
                     "optional": tstate(t.nothing()),
-                    "state": tstate(t.reference("Type Node", [tr.s("state")])),
+                    "state": tstate(t.reference("Value", [tr.s("state")])),
                 }),
-                "Type Node"
+                "Value"
             )),
-            "resulting node": prop(t.reference_derived("Type Node", [])),
+            "resulting node": prop(t.reference_derived("Value", [])),
 
         })),
 
@@ -213,12 +213,12 @@ export const $: g_.Types = types(
                     "component": tstate(t.nothing()),
                     "group": tstate(t.reference("Group", [])),
                     "reference": tstate(t.group({
-                        "definition": prop(t.reference_derived("Type Node", [tr.s("reference")])),
+                        "definition": prop(t.reference_derived("Value", [tr.s("reference")])),
                     })),
                 }),
-                "Type Node"
+                "Value"
             )),
-            "resulting node": prop(t.reference_derived("Type Node", [])),
+            "resulting node": prop(t.reference_derived("Value", [])),
         })),
 
         //FIXME: there has to be a guaranteed lookup selection and a possible lookup selection
@@ -241,11 +241,11 @@ export const $: g_.Types = types(
             //maybe this is reusable
             "type": prop(t.state({
                 "state": tstate(t.group({
-                    "selected state": prop(t.reference_derived("Type Node", [tr.s("state")])),
-                    "option": prop(t.reference("Type Node", [tr.s("state")])),
+                    "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
+                    "option": prop(t.reference("Value", [tr.s("state")])),
                 })),
                 "optional value": tstate(t.group({
-                    "selected optional value": prop(t.reference_derived("Type Node", [tr.s("optional")])),
+                    "selected optional value": prop(t.reference_derived("Value", [tr.s("optional")])),
                 })),
             })),
         })),
@@ -253,8 +253,8 @@ export const $: g_.Types = types(
         "Option Constraints": type(t.dictionary(t.state({
             "state": tstate(t.group({
                 "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
-                "selected state": prop(t.reference_derived("Type Node", [tr.s("state")])),
-                "option": prop(t.reference("Type Node", [tr.s("state")])),
+                "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
+                "option": prop(t.reference("Value", [tr.s("state")])),
             })),
             "assert is set": tstate(t.component_cyclic("Possible Value Selection")),
         }))),
@@ -277,15 +277,15 @@ export const $: g_.Types = types(
             "selection": tstate(t.component_cyclic("Possible Value Selection")),
         })),
 
-        "Node Resolver Group": type(t.dictionary(t.group({
+        "Value Resolver Group": type(t.dictionary(t.group({
             "definition": prop(t.reference_derived("Group", [tr.d()])),
-            "resolver": prop(t.component_cyclic("Node Resolver")),
+            "resolver": prop(t.component_cyclic("Value Resolver")),
         }))),
 
-        "Node Resolver List Result": type(t.component("Type Reference")),
+        "Value Resolver List Result": type(t.component("Type Reference")),
 
 
-        "Type Node": type(t.state({
+        "Value": type(t.state({
             "boolean": tstate(t.nothing()),
             "component": tstate(t.group({
                 "type": prop(t.state({
@@ -301,7 +301,7 @@ export const $: g_.Types = types(
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),
             "list": tstate(t.group({
-                "node": prop(t.component_cyclic("Type Node")),
+                "node": prop(t.component_cyclic("Value")),
                 "result": prop(t.optional(t.component("Type Reference"))),
             })),
             "nothing": tstate(t.nothing()),
@@ -309,9 +309,9 @@ export const $: g_.Types = types(
                 "global": tstate(t.reference("Globals", [tr.g("number types")])),
                 "local": tstate(t.component("Number Type")),
             })),
-            "optional": tstate(t.component_cyclic("Type Node")),
+            "optional": tstate(t.component_cyclic("Value")),
             "reference": tstate(t.group({
-                "referent": prop(t.component_cyclic("Type Node Reference")),
+                "referent": prop(t.component_cyclic("Value Reference")),
                 "type": prop(t.state({
                     "derived": tstate(t.nothing()),
                     "selected": tstate(t.group({
@@ -326,7 +326,7 @@ export const $: g_.Types = types(
             })),
             "state": tstate(t.dictionary(t.group({
                 "description": prop(t.optional(t.text_local(text('multi line')))),
-                "node": prop(t.component_cyclic("Type Node")),
+                "node": prop(t.component_cyclic("Value")),
             }))),
             "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
@@ -334,12 +334,12 @@ export const $: g_.Types = types(
             })),
         })),
 
-        "Value Constraints": type(t.optional(t.dictionary(t.component_cyclic("Type Node Reference")))),
+        "Value Constraints": type(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
 
-        "Node Resolver": type(t.state({
+        "Value Resolver": type(t.state({
             "boolean": tstate(t.nothing()),
             "component": tstate(t.group({
-                "definition": prop(t.reference_derived("Type Node", [tr.s("component"), ])),
+                "definition": prop(t.reference_derived("Value", [tr.s("component"), ])),
 
                 "location": prop(t.state({
                     "external": tstate(t.group({
@@ -369,39 +369,39 @@ export const $: g_.Types = types(
             })),
             "dictionary": tstate(t.group({
                 "definition": prop(t.reference_derived("Dictionary", [])),
-                "resolver": prop(t.component_cyclic("Node Resolver")),
+                "resolver": prop(t.component_cyclic("Value Resolver")),
                 "benchmark": prop(t.optional(t.component_cyclic("Benchmark"))),
             })),
-            "group": tstate(t.component("Node Resolver Group")),
+            "group": tstate(t.component("Value Resolver Group")),
             "list": tstate(t.group({
-                "definition": prop(t.reference_derived("Type Node", [tr.s("list")])),
-                "resolver": prop(t.component_cyclic("Node Resolver")),
-                "result": prop(t.optional(t.component("Node Resolver List Result"))),
+                "definition": prop(t.reference_derived("Value", [tr.s("list")])),
+                "resolver": prop(t.component_cyclic("Value Resolver")),
+                "result": prop(t.optional(t.component("Value Resolver List Result"))),
             })),
             "nothing": tstate(t.nothing()),
             "number": tstate(t.nothing()),
             "optional": tstate(t.group({
                 "constraints": prop(t.component("Option Constraints")),
-                "resolver": prop(t.component_cyclic("Node Resolver")),
+                "resolver": prop(t.component_cyclic("Value Resolver")),
             })),
             "reference": tstate(t.group({
-                "definition": prop(t.reference_derived("Type Node", [tr.s("reference")])),
+                "definition": prop(t.reference_derived("Value", [tr.s("reference")])),
                 "type": prop(t.state({
                     "derived": tstate(t.group({
                         "value": prop(t.component_cyclic("Guaranteed Value Selection")),
                     })),
                     "selected": tstate(t.group({
-                        "definition": prop(t.reference_derived("Type Node", [tr.s("reference"), tr.g("type"), tr.s("selected")])),
+                        "definition": prop(t.reference_derived("Value", [tr.s("reference"), tr.g("type"), tr.s("selected")])),
                         "lookup": prop(t.component("Lookup Selection")),
                         "constraints": prop(t.component("Value Constraint Resolvers")),
                     })),
                 })),
             })),
             "state": tstate(t.group({
-                "definition": prop(t.reference_derived("Type Node", [tr.s("state")])),
+                "definition": prop(t.reference_derived("Value", [tr.s("state")])),
                 "states": prop(t.dictionary(t.group({
                     "constraints": prop(t.component("Option Constraints")),
-                    "resolver": prop(t.component_cyclic("Node Resolver")),
+                    "resolver": prop(t.component_cyclic("Value Resolver")),
                 }))),
             })),
             "text": tstate(t.nothing()),
@@ -411,8 +411,8 @@ export const $: g_.Types = types(
         "Guaranteed Value Selection": type(t.group({
             "start": prop(t.state({
                 //stack
-                "sibling": tstate(t.reference("Node Resolver Group", [])),
-                "parent sibling": tstate(t.reference("Node Resolver Group", [])),
+                "sibling": tstate(t.reference("Value Resolver Group", [])),
+                "parent sibling": tstate(t.reference("Value Resolver Group", [])),
                 "option constraint": tstate(t.reference("Option Constraints", [])),
                 "list cursor": tstate(t.nothing()),
                 "linked entry": tstate(t.nothing()),
@@ -420,11 +420,11 @@ export const $: g_.Types = types(
                 //siblings
                 "constraint": tstate(t.state({
                     "component": tstate(t.group({
-                        "property": prop(t.reference("Node Resolver Group", [])),
+                        "property": prop(t.reference("Value Resolver Group", [])),
                         "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
                     "reference": tstate(t.group({
-                        "property": prop(t.reference("Node Resolver Group", [])),
+                        "property": prop(t.reference("Value Resolver Group", [])),
                         "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
 
@@ -432,36 +432,36 @@ export const $: g_.Types = types(
                 "parameter": tstate(t.reference("Signature Parameters", [tr.g("values")])), //FIXME: validate that presence is 'required'
                 "result": tstate(t.state({
                     "list": tstate(t.group({
-                        "property": prop(t.reference("Node Resolver Group", [])),
-                        "list result": prop(t.reference_derived("Node Resolver", [tr.s("list"), tr.g("result"), tr.o()])),
+                        "property": prop(t.reference("Value Resolver Group", [])),
+                        "list result": prop(t.reference_derived("Value Resolver", [tr.s("list"), tr.g("result"), tr.o()])),
                     })),
                     "state": tstate(t.group({
-                        "property": prop(t.reference("Node Resolver Group", [])),
-                        "state": prop(t.reference_derived("Node Resolver", [tr.s("state")])),
+                        "property": prop(t.reference("Value Resolver Group", [])),
+                        "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
                         "result": prop(t.component("Type Reference")),
                     })),
                     "optional value": tstate(t.group({
-                        "property": prop(t.reference("Node Resolver Group", [])),
-                        "optional value": prop(t.reference_derived("Node Resolver", [tr.s("optional")])),
+                        "property": prop(t.reference("Value Resolver Group", [])),
+                        "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
                         "result": prop(t.component("Type Reference")),
                     })),
                 }))
             })),
             "tail": prop(t.component("Relative Value Selection")),
-            "resulting node": prop(t.reference_derived("Type Node", [])),
+            "resulting node": prop(t.reference_derived("Value", [])),
         })),
 
         "Possible Value Selection": type(t.state({
             "parameter": tstate(t.reference("Signature Parameters", [tr.g("values")])), //FIXME: validate that presence is 'optional'
             "result": tstate(t.state({
                 "state": tstate(t.group({
-                    "property": prop(t.reference("Node Resolver Group", [])),
-                    "state": prop(t.reference_derived("Node Resolver", [tr.s("state")])),
+                    "property": prop(t.reference("Value Resolver Group", [])),
+                    "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
                     "result": prop(t.component("Type Reference")),
                 })),
                 "optional value": tstate(t.group({
-                    "property": prop(t.reference("Node Resolver Group", [])),
-                    "optional value": prop(t.reference_derived("Node Resolver", [tr.s("optional")])),
+                    "property": prop(t.reference("Value Resolver Group", [])),
+                    "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
                     "result": prop(t.component("Type Reference")),
                 })),
             }))

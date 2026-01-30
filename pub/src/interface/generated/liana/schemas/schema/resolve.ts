@@ -201,11 +201,11 @@ export type Dictionary_ = (
     },
 ) => Dictionary_.O
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
-    export type I = i_unresolved.Type_Node
+    export type I = i_unresolved.Value
     
-    export type O = i_resolved.Type_Node
+    export type O = i_resolved.Value
     
     export type E = i_generic.Error
     
@@ -243,18 +243,18 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = (
-    context: Type_Node_.I,
-    abort: _pi.Abort<Type_Node_.E>,
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_Node_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_Node_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_types>
     },
     parameters: {
-        readonly 'globals': Type_Node_.P.globals
-        readonly 'imports': Type_Node_.P.imports
+        readonly 'globals': Value_.P.globals
+        readonly 'imports': Value_.P.imports
     },
-) => Type_Node_.O
+) => Value_.O
 
 export namespace Type_Reference_ {
     
@@ -295,11 +295,11 @@ export type Type_Reference_ = (
     },
 ) => Type_Reference_.O
 
-export namespace Type_Node_Reference_ {
+export namespace Value_Reference_ {
     
-    export type I = i_unresolved.Type_Node_Reference
+    export type I = i_unresolved.Value_Reference
     
-    export type O = i_resolved.Type_Node_Reference
+    export type O = i_resolved.Value_Reference
     
     export type E = i_generic.Error
     
@@ -323,16 +323,16 @@ export namespace Type_Node_Reference_ {
     
 }
 
-export type Type_Node_Reference_ = (
-    context: Type_Node_Reference_.I,
-    abort: _pi.Abort<Type_Node_Reference_.E>,
+export type Value_Reference_ = (
+    context: Value_Reference_.I,
+    abort: _pi.Abort<Value_Reference_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Type_Node_Reference_.L.types>
+        readonly 'types': _pi.Acyclic_Lookup<Value_Reference_.L.types>
     },
     parameters: {
-        readonly 'imports': Type_Node_Reference_.P.imports
+        readonly 'imports': Value_Reference_.P.imports
     },
-) => Type_Node_Reference_.O
+) => Value_Reference_.O
 
 export namespace Value_Constraints_ {
     
@@ -428,11 +428,11 @@ export type Type_ = (
     },
 ) => Type_.O
 
-export namespace Type_Node_Path_ {
+export namespace Value_Path_ {
     
-    export type I = i_unresolved.Type_Node_Path
+    export type I = i_unresolved.Value_Path
     
-    export type O = i_resolved.Type_Node_Path
+    export type O = i_resolved.Value_Path
     
     export type E = i_generic.Error
     
@@ -444,42 +444,42 @@ export namespace Type_Node_Path_ {
     
 }
 
-export type Type_Node_Path_ = (
-    context: Type_Node_Path_.I,
-    abort: _pi.Abort<Type_Node_Path_.E>,
+export type Value_Path_ = (
+    context: Value_Path_.I,
+    abort: _pi.Abort<Value_Path_.E>,
     lookups: null,
     parameters: {
-        readonly 'type': Type_Node_Path_.P.type_
+        readonly 'type': Value_Path_.P.type_
     },
-) => Type_Node_Path_.O
+) => Value_Path_.O
 
-export namespace Node_Resolver_ {
+export namespace Value_Resolver_ {
     
-    export type I = i_unresolved.Node_Resolver
+    export type I = i_unresolved.Value_Resolver
     
-    export type O = i_resolved.Node_Resolver
+    export type O = i_resolved.Value_Resolver
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -535,26 +535,26 @@ export namespace Node_Resolver_ {
     
 }
 
-export type Node_Resolver_ = (
-    context: Node_Resolver_.I,
-    abort: _pi.Abort<Node_Resolver_.E>,
+export type Value_Resolver_ = (
+    context: Value_Resolver_.I,
+    abort: _pi.Abort<Value_Resolver_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Node_Resolver_.P.definition
-        readonly 'list cursor': Node_Resolver_.P.list_cursor
-        readonly 'linked entry': Node_Resolver_.P.linked_entry
-        readonly 'current dictionary': Node_Resolver_.P.current_dictionary
-        readonly 'current ordered dictionary': Node_Resolver_.P.current_ordered_dictionary
-        readonly 'signature': Node_Resolver_.P.signature
-        readonly 'imports': Node_Resolver_.P.imports
-        readonly 'signatures': Node_Resolver_.P.signatures
-        readonly 'types': Node_Resolver_.P.types
-        readonly 'option constraints': Node_Resolver_.P.option_constraints
+        readonly 'definition': Value_Resolver_.P.definition
+        readonly 'list cursor': Value_Resolver_.P.list_cursor
+        readonly 'linked entry': Value_Resolver_.P.linked_entry
+        readonly 'current dictionary': Value_Resolver_.P.current_dictionary
+        readonly 'current ordered dictionary': Value_Resolver_.P.current_ordered_dictionary
+        readonly 'signature': Value_Resolver_.P.signature
+        readonly 'imports': Value_Resolver_.P.imports
+        readonly 'signatures': Value_Resolver_.P.signatures
+        readonly 'types': Value_Resolver_.P.types
+        readonly 'option constraints': Value_Resolver_.P.option_constraints
     },
-) => Node_Resolver_.O
+) => Value_Resolver_.O
 
 export namespace Possible_Value_Selection_ {
     
@@ -566,23 +566,23 @@ export namespace Possible_Value_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -669,23 +669,23 @@ export namespace Guaranteed_Value_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -772,23 +772,23 @@ export namespace Benchmark_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -875,23 +875,23 @@ export namespace Optional_Value_Initialization_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -978,23 +978,23 @@ export namespace Lookup_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -1081,23 +1081,23 @@ export namespace Option_Constraints_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Type_Node_
+        export type definition = i_resolved.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -1174,11 +1174,11 @@ export type Option_Constraints_ = (
     },
 ) => Option_Constraints_.O
 
-export namespace Node_Resolver_List_Result_ {
+export namespace Value_Resolver_List_Result_ {
     
-    export type I = i_unresolved.Node_Resolver_List_Result
+    export type I = i_unresolved.Value_Resolver_List_Result
     
-    export type O = i_resolved.Node_Resolver_List_Result
+    export type O = i_resolved.Value_Resolver_List_Result
     
     export type E = i_generic.Error
     
@@ -1202,34 +1202,34 @@ export namespace Node_Resolver_List_Result_ {
     
 }
 
-export type Node_Resolver_List_Result_ = (
-    context: Node_Resolver_List_Result_.I,
-    abort: _pi.Abort<Node_Resolver_List_Result_.E>,
+export type Value_Resolver_List_Result_ = (
+    context: Value_Resolver_List_Result_.I,
+    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Node_Resolver_List_Result_.L.types>
+        readonly 'types': _pi.Acyclic_Lookup<Value_Resolver_List_Result_.L.types>
     },
     parameters: {
-        readonly 'imports': Node_Resolver_List_Result_.P.imports
+        readonly 'imports': Value_Resolver_List_Result_.P.imports
     },
-) => Node_Resolver_List_Result_.O
+) => Value_Resolver_List_Result_.O
 
-export namespace Node_Resolver_Group_ {
+export namespace Value_Resolver_Group_ {
     
-    export type I = i_unresolved.Node_Resolver_Group
+    export type I = i_unresolved.Value_Resolver_Group
     
-    export type O = i_resolved.Node_Resolver_Group
+    export type O = i_resolved.Value_Resolver_Group
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Node_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
         
     }
     
@@ -1239,7 +1239,7 @@ export namespace Node_Resolver_Group_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Node_Resolver_List_Result_
+            export type O = i_resolved.Value_Resolver_List_Result_
             
         }
         
@@ -1295,26 +1295,26 @@ export namespace Node_Resolver_Group_ {
     
 }
 
-export type Node_Resolver_Group_ = (
-    context: Node_Resolver_Group_.I,
-    abort: _pi.Abort<Node_Resolver_Group_.E>,
+export type Value_Resolver_Group_ = (
+    context: Value_Resolver_Group_.I,
+    abort: _pi.Abort<Value_Resolver_Group_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_Group_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Node_Resolver_Group_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_Group_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_Group_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Node_Resolver_Group_.P.definition
-        readonly 'list cursor': Node_Resolver_Group_.P.list_cursor
-        readonly 'linked entry': Node_Resolver_Group_.P.linked_entry
-        readonly 'current dictionary': Node_Resolver_Group_.P.current_dictionary
-        readonly 'current ordered dictionary': Node_Resolver_Group_.P.current_ordered_dictionary
-        readonly 'signature': Node_Resolver_Group_.P.signature
-        readonly 'imports': Node_Resolver_Group_.P.imports
-        readonly 'signatures': Node_Resolver_Group_.P.signatures
-        readonly 'types': Node_Resolver_Group_.P.types
-        readonly 'option constraints': Node_Resolver_Group_.P.option_constraints
+        readonly 'definition': Value_Resolver_Group_.P.definition
+        readonly 'list cursor': Value_Resolver_Group_.P.list_cursor
+        readonly 'linked entry': Value_Resolver_Group_.P.linked_entry
+        readonly 'current dictionary': Value_Resolver_Group_.P.current_dictionary
+        readonly 'current ordered dictionary': Value_Resolver_Group_.P.current_ordered_dictionary
+        readonly 'signature': Value_Resolver_Group_.P.signature
+        readonly 'imports': Value_Resolver_Group_.P.imports
+        readonly 'signatures': Value_Resolver_Group_.P.signatures
+        readonly 'types': Value_Resolver_Group_.P.types
+        readonly 'option constraints': Value_Resolver_Group_.P.option_constraints
     },
-) => Node_Resolver_Group_.O
+) => Value_Resolver_Group_.O
 
 export namespace Relative_Value_Selection_ {
     
@@ -1326,7 +1326,7 @@ export namespace Relative_Value_Selection_ {
     
     export namespace P {
         
-        export type node = i_resolved.Type_Node_
+        export type node = i_resolved.Value_
         
     }
     
@@ -1351,7 +1351,7 @@ export namespace Constraint_ {
     
     export namespace P {
         
-        export type node = i_resolved.Type_Node_
+        export type node = i_resolved.Value_
         
     }
     
@@ -1376,7 +1376,7 @@ export namespace Value_Constraint_Resolvers_ {
     
     export namespace P {
         
-        export type node = i_resolved.Type_Node_
+        export type node = i_resolved.Value_
         
     }
     
@@ -1787,21 +1787,21 @@ export {
     Globals_ as Globals, 
     Group_ as Group, 
     Dictionary_ as Dictionary, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Type_Reference_ as Type_Reference, 
-    Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Reference_ as Value_Reference, 
     Value_Constraints_ as Value_Constraints, 
     Type_ as Type, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Node_Resolver_ as Node_Resolver, 
+    Value_Path_ as Value_Path, 
+    Value_Resolver_ as Value_Resolver, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
     Option_Constraints_ as Option_Constraints, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Constraint_ as Constraint, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 

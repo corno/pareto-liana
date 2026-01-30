@@ -209,7 +209,7 @@ export type Globals_ = {
 
 export namespace Type_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -482,7 +482,7 @@ export type Presence_ = {
 
 export namespace Dictionary_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -534,7 +534,7 @@ export namespace Resolvers_ {
                 
                 export type signature = null
                 
-                export type type_resolver = Node_Resolver_
+                export type type_resolver = Value_Resolver_
                 
             }
             
@@ -581,7 +581,7 @@ export namespace Group_ {
                 
                 export type description = _pi.Optional_Value<description.O>
                 
-                export type node = Type_Node_
+                export type node = Value_
                 
             }
             
@@ -608,7 +608,7 @@ export type Group_ = {
     readonly 'l dictionary': Group_.l_dictionary
 }
 
-export namespace Node_Resolver_Group_ {
+export namespace Value_Resolver_Group_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -622,7 +622,7 @@ export namespace Node_Resolver_Group_ {
                 
                 export type definition = null
                 
-                export type resolver = Node_Resolver_
+                export type resolver = Value_Resolver_
                 
             }
             
@@ -644,9 +644,9 @@ export namespace Node_Resolver_Group_ {
     
 }
 
-export type Node_Resolver_Group_ = {
-    readonly 'l location': Node_Resolver_Group_.l_location
-    readonly 'l dictionary': Node_Resolver_Group_.l_dictionary
+export type Value_Resolver_Group_ = {
+    readonly 'l location': Value_Resolver_Group_.l_location
+    readonly 'l dictionary': Value_Resolver_Group_.l_dictionary
 }
 
 export namespace Value_Constraints_ {
@@ -661,7 +661,7 @@ export namespace Value_Constraints_ {
                 
                 export type l_location = i__location.Relative_Location
                 
-                export type l_entry = Type_Node_Reference_
+                export type l_entry = Value_Reference_
                 
             }
             
@@ -763,7 +763,7 @@ export type Type_Reference_ = {
     readonly 'resulting type': Type_Reference_.resulting_type
 }
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -869,7 +869,7 @@ export namespace Type_Node_ {
         
         export namespace list {
             
-            export type node = Type_Node_
+            export type node = Value_
             
             export namespace result {
                 
@@ -922,11 +922,11 @@ export namespace Type_Node_ {
             readonly 'l state': number_.l_state
         }
         
-        export type optional = Type_Node_
+        export type optional = Value_
         
         export namespace reference {
             
-            export type referent = Type_Node_Reference_
+            export type referent = Value_Reference_
             
             export namespace type_ {
                 
@@ -1013,7 +1013,7 @@ export namespace Type_Node_ {
                         
                         export type description = _pi.Optional_Value<description.O>
                         
-                        export type node = Type_Node_
+                        export type node = Value_
                         
                     }
                     
@@ -1091,9 +1091,9 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = {
-    readonly 'l location': Type_Node_.l_location
-    readonly 'l state': Type_Node_.l_state
+export type Value_ = {
+    readonly 'l location': Value_.l_location
+    readonly 'l state': Value_.l_state
 }
 
 export namespace Option_Constraints_ {
@@ -1411,9 +1411,9 @@ export type Lookup_Selection_ = {
     readonly 'resulting dictionary': Lookup_Selection_.resulting_dictionary
 }
 
-export type Node_Resolver_List_Result_ = Type_Reference_
+export type Value_Resolver_List_Result_ = Type_Reference_
 
-export namespace Node_Resolver_ {
+export namespace Value_Resolver_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -1670,7 +1670,7 @@ export namespace Node_Resolver_ {
             
             export type definition = null
             
-            export type resolver = Node_Resolver_
+            export type resolver = Value_Resolver_
             
             export namespace benchmark {
                 
@@ -1688,17 +1688,17 @@ export namespace Node_Resolver_ {
             readonly 'benchmark': dictionary.benchmark
         }
         
-        export type group = Node_Resolver_Group_
+        export type group = Value_Resolver_Group_
         
         export namespace list {
             
             export type definition = null
             
-            export type resolver = Node_Resolver_
+            export type resolver = Value_Resolver_
             
             export namespace result {
                 
-                export type O = Node_Resolver_List_Result_
+                export type O = Value_Resolver_List_Result_
                 
             }
             
@@ -1720,7 +1720,7 @@ export namespace Node_Resolver_ {
             
             export type constraints = Option_Constraints_
             
-            export type resolver = Node_Resolver_
+            export type resolver = Value_Resolver_
             
         }
         
@@ -1803,7 +1803,7 @@ export namespace Node_Resolver_ {
                             
                             export type constraints = Option_Constraints_
                             
-                            export type resolver = Node_Resolver_
+                            export type resolver = Value_Resolver_
                             
                         }
                         
@@ -1856,9 +1856,9 @@ export namespace Node_Resolver_ {
     
 }
 
-export type Node_Resolver_ = {
-    readonly 'l location': Node_Resolver_.l_location
-    readonly 'l state': Node_Resolver_.l_state
+export type Value_Resolver_ = {
+    readonly 'l location': Value_Resolver_.l_location
+    readonly 'l state': Value_Resolver_.l_state
 }
 
 export namespace Relative_Value_Selection_ {
@@ -2243,7 +2243,7 @@ export type Benchmark_ = {
     readonly 'dense': Benchmark_.dense
 }
 
-export namespace Type_Node_Path_ {
+export namespace Value_Path_ {
     
     export namespace tail {
         
@@ -2331,22 +2331,22 @@ export namespace Type_Node_Path_ {
     
 }
 
-export type Type_Node_Path_ = {
-    readonly 'tail': Type_Node_Path_.tail
-    readonly 'resulting node': Type_Node_Path_.resulting_node
+export type Value_Path_ = {
+    readonly 'tail': Value_Path_.tail
+    readonly 'resulting node': Value_Path_.resulting_node
 }
 
-export namespace Type_Node_Reference_ {
+export namespace Value_Reference_ {
     
     export type type_location = Type_Reference_
     
-    export type path = Type_Node_Path_
+    export type path = Value_Path_
     
 }
 
-export type Type_Node_Reference_ = {
-    readonly 'type location': Type_Node_Reference_.type_location
-    readonly 'path': Type_Node_Reference_.path
+export type Value_Reference_ = {
+    readonly 'type location': Value_Reference_.type_location
+    readonly 'path': Value_Reference_.path
 }
 
 export namespace Signature_ {
@@ -2630,22 +2630,22 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Type_Reference_ as Type_Reference, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_ as Node_Resolver, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Resolver_ as Value_Resolver, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Path_ as Value_Path, 
+    Value_Reference_ as Value_Reference, 
     Signature_ as Signature, 
     Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 

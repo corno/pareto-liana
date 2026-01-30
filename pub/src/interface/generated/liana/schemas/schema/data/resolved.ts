@@ -119,7 +119,7 @@ export type Globals_ = {
 
 export namespace Type_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -274,7 +274,7 @@ export type Presence_ =
 
 export namespace Dictionary_ {
     
-    export type node = Type_Node_
+    export type node = Value_
     
 }
 
@@ -296,7 +296,7 @@ export namespace Resolvers_ {
         
         export type signature = Signatures_.D
         
-        export type type_resolver = Node_Resolver_
+        export type type_resolver = Value_Resolver_
         
     }
     
@@ -321,7 +321,7 @@ export namespace Group_ {
         
         export type description = _pi.Optional_Value<description.O>
         
-        export type node = Type_Node_
+        export type node = Value_
         
     }
     
@@ -334,13 +334,13 @@ export namespace Group_ {
 
 export type Group_ = _pi.Dictionary<Group_.D>
 
-export namespace Node_Resolver_Group_ {
+export namespace Value_Resolver_Group_ {
     
     export namespace D {
         
         export type definition = Group_.D
         
-        export type resolver = Node_Resolver_
+        export type resolver = Value_Resolver_
         
     }
     
@@ -351,13 +351,13 @@ export namespace Node_Resolver_Group_ {
     
 }
 
-export type Node_Resolver_Group_ = _pi.Dictionary<Node_Resolver_Group_.D>
+export type Value_Resolver_Group_ = _pi.Dictionary<Value_Resolver_Group_.D>
 
 export namespace Value_Constraints_ {
     
     export namespace O {
         
-        export type D = Type_Node_Reference_
+        export type D = Value_Reference_
         
     }
     
@@ -434,7 +434,7 @@ export type Type_Reference_ = {
     readonly 'resulting type': Type_Reference_.resulting_type
 }
 
-export namespace Type_Node_ {
+export namespace Value_ {
     
     export type boolean_ = null
     
@@ -525,7 +525,7 @@ export namespace Type_Node_ {
     
     export namespace list {
         
-        export type node = Type_Node_
+        export type node = Value_
         
         export namespace result {
             
@@ -567,11 +567,11 @@ export namespace Type_Node_ {
         | readonly ['global', number_.global]
         | readonly ['local', number_.local]
     
-    export type optional = Type_Node_
+    export type optional = Value_
     
     export namespace reference {
         
-        export type referent = Type_Node_Reference_
+        export type referent = Value_Reference_
         
         export namespace type_ {
             
@@ -628,7 +628,7 @@ export namespace Type_Node_ {
             
             export type description = _pi.Optional_Value<description.O>
             
-            export type node = Type_Node_
+            export type node = Value_
             
         }
         
@@ -666,18 +666,18 @@ export namespace Type_Node_ {
     
 }
 
-export type Type_Node_ = 
-    | readonly ['boolean', Type_Node_.boolean_]
-    | readonly ['component', Type_Node_.component]
-    | readonly ['dictionary', Type_Node_.dictionary]
-    | readonly ['group', Type_Node_.group]
-    | readonly ['list', Type_Node_.list]
-    | readonly ['nothing', Type_Node_.nothing]
-    | readonly ['number', Type_Node_.number_]
-    | readonly ['optional', Type_Node_.optional]
-    | readonly ['reference', Type_Node_.reference]
-    | readonly ['state', Type_Node_.state]
-    | readonly ['text', Type_Node_.text]
+export type Value_ = 
+    | readonly ['boolean', Value_.boolean_]
+    | readonly ['component', Value_.component]
+    | readonly ['dictionary', Value_.dictionary]
+    | readonly ['group', Value_.group]
+    | readonly ['list', Value_.list]
+    | readonly ['nothing', Value_.nothing]
+    | readonly ['number', Value_.number_]
+    | readonly ['optional', Value_.optional]
+    | readonly ['reference', Value_.reference]
+    | readonly ['state', Value_.state]
+    | readonly ['text', Value_.text]
 
 export namespace Option_Constraints_ {
     
@@ -687,11 +687,11 @@ export namespace Option_Constraints_ {
             
             export type selection = Guaranteed_Value_Selection_
             
-            export type selected_state = Type_Node_.state
+            export type selected_state = Value_.state
             
             export namespace option {
                 
-                export type l_entry = Type_Node_.state.D
+                export type l_entry = Value_.state.D
                 
                 export type l_id = string
                 
@@ -862,15 +862,15 @@ export type Lookup_Selection_ = {
     readonly 'resulting dictionary': Lookup_Selection_.resulting_dictionary
 }
 
-export type Node_Resolver_List_Result_ = Type_Reference_
+export type Value_Resolver_List_Result_ = Type_Reference_
 
-export namespace Node_Resolver_ {
+export namespace Value_Resolver_ {
     
     export type boolean_ = null
     
     export namespace component {
         
-        export type definition = Type_Node_.component
+        export type definition = Value_.component
         
         export namespace location {
             
@@ -1040,7 +1040,7 @@ export namespace Node_Resolver_ {
         
         export type definition = Dictionary_
         
-        export type resolver = Node_Resolver_
+        export type resolver = Value_Resolver_
         
         export namespace benchmark {
             
@@ -1058,17 +1058,17 @@ export namespace Node_Resolver_ {
         readonly 'benchmark': dictionary.benchmark
     }
     
-    export type group = Node_Resolver_Group_
+    export type group = Value_Resolver_Group_
     
     export namespace list {
         
-        export type definition = Type_Node_.list
+        export type definition = Value_.list
         
-        export type resolver = Node_Resolver_
+        export type resolver = Value_Resolver_
         
         export namespace result {
             
-            export type O = Node_Resolver_List_Result_
+            export type O = Value_Resolver_List_Result_
             
         }
         
@@ -1090,7 +1090,7 @@ export namespace Node_Resolver_ {
         
         export type constraints = Option_Constraints_
         
-        export type resolver = Node_Resolver_
+        export type resolver = Value_Resolver_
         
     }
     
@@ -1101,7 +1101,7 @@ export namespace Node_Resolver_ {
     
     export namespace reference {
         
-        export type definition = Type_Node_.reference
+        export type definition = Value_.reference
         
         export namespace type_ {
             
@@ -1117,7 +1117,7 @@ export namespace Node_Resolver_ {
             
             export namespace selected {
                 
-                export type definition = Type_Node_.reference.type_.selected
+                export type definition = Value_.reference.type_.selected
                 
                 export type lookup = Lookup_Selection_
                 
@@ -1146,7 +1146,7 @@ export namespace Node_Resolver_ {
     
     export namespace state {
         
-        export type definition = Type_Node_.state
+        export type definition = Value_.state
         
         export namespace states {
             
@@ -1154,7 +1154,7 @@ export namespace Node_Resolver_ {
                 
                 export type constraints = Option_Constraints_
                 
-                export type resolver = Node_Resolver_
+                export type resolver = Value_Resolver_
                 
             }
             
@@ -1178,18 +1178,18 @@ export namespace Node_Resolver_ {
     
 }
 
-export type Node_Resolver_ = 
-    | readonly ['boolean', Node_Resolver_.boolean_]
-    | readonly ['component', Node_Resolver_.component]
-    | readonly ['dictionary', Node_Resolver_.dictionary]
-    | readonly ['group', Node_Resolver_.group]
-    | readonly ['list', Node_Resolver_.list]
-    | readonly ['nothing', Node_Resolver_.nothing]
-    | readonly ['number', Node_Resolver_.number_]
-    | readonly ['optional', Node_Resolver_.optional]
-    | readonly ['reference', Node_Resolver_.reference]
-    | readonly ['state', Node_Resolver_.state]
-    | readonly ['text', Node_Resolver_.text]
+export type Value_Resolver_ = 
+    | readonly ['boolean', Value_Resolver_.boolean_]
+    | readonly ['component', Value_Resolver_.component]
+    | readonly ['dictionary', Value_Resolver_.dictionary]
+    | readonly ['group', Value_Resolver_.group]
+    | readonly ['list', Value_Resolver_.list]
+    | readonly ['nothing', Value_Resolver_.nothing]
+    | readonly ['number', Value_Resolver_.number_]
+    | readonly ['optional', Value_Resolver_.optional]
+    | readonly ['reference', Value_Resolver_.reference]
+    | readonly ['state', Value_Resolver_.state]
+    | readonly ['text', Value_Resolver_.text]
 
 export namespace Relative_Value_Selection_ {
     
@@ -1199,7 +1199,7 @@ export namespace Relative_Value_Selection_ {
             
             export namespace L {
                 
-                export type l_result = Type_Node_
+                export type l_result = Value_
                 
                 export namespace l_item {
                     
@@ -1220,7 +1220,7 @@ export namespace Relative_Value_Selection_ {
                     
                     export namespace reference {
                         
-                        export type definition = Type_Node_.reference
+                        export type definition = Value_.reference
                         
                     }
                     
@@ -1246,7 +1246,7 @@ export namespace Relative_Value_Selection_ {
         
         export type l_list = _pi.List<l_list.L>
         
-        export type l_result = Type_Node_
+        export type l_result = Value_
         
     }
     
@@ -1255,7 +1255,7 @@ export namespace Relative_Value_Selection_ {
         readonly 'l result': path.l_result
     }
     
-    export type resulting_node = Type_Node_
+    export type resulting_node = Value_
     
 }
 
@@ -1270,7 +1270,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace sibling {
             
-            export type l_entry = Node_Resolver_Group_.D
+            export type l_entry = Value_Resolver_Group_.D
             
             export type l_id = string
             
@@ -1283,7 +1283,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace parent_sibling {
             
-            export type l_entry = Node_Resolver_Group_.D
+            export type l_entry = Value_Resolver_Group_.D
             
             export type l_id = string
             
@@ -1317,7 +1317,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type l_entry = Node_Resolver_Group_.D
+                    export type l_entry = Value_Resolver_Group_.D
                     
                     export type l_id = string
                     
@@ -1352,7 +1352,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type l_entry = Node_Resolver_Group_.D
+                    export type l_entry = Value_Resolver_Group_.D
                     
                     export type l_id = string
                     
@@ -1408,7 +1408,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type l_entry = Node_Resolver_Group_.D
+                    export type l_entry = Value_Resolver_Group_.D
                     
                     export type l_id = string
                     
@@ -1419,7 +1419,7 @@ export namespace Guaranteed_Value_Selection_ {
                     readonly 'l id': property.l_id
                 }
                 
-                export type list_result = Node_Resolver_.list.result.O
+                export type list_result = Value_Resolver_.list.result.O
                 
             }
             
@@ -1432,7 +1432,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type l_entry = Node_Resolver_Group_.D
+                    export type l_entry = Value_Resolver_Group_.D
                     
                     export type l_id = string
                     
@@ -1443,7 +1443,7 @@ export namespace Guaranteed_Value_Selection_ {
                     readonly 'l id': property.l_id
                 }
                 
-                export type state = Node_Resolver_.state
+                export type state = Value_Resolver_.state
                 
                 export type result = Type_Reference_
                 
@@ -1459,7 +1459,7 @@ export namespace Guaranteed_Value_Selection_ {
                 
                 export namespace property {
                     
-                    export type l_entry = Node_Resolver_Group_.D
+                    export type l_entry = Value_Resolver_Group_.D
                     
                     export type l_id = string
                     
@@ -1470,7 +1470,7 @@ export namespace Guaranteed_Value_Selection_ {
                     readonly 'l id': property.l_id
                 }
                 
-                export type optional_value = Node_Resolver_.optional
+                export type optional_value = Value_Resolver_.optional
                 
                 export type result = Type_Reference_
                 
@@ -1503,7 +1503,7 @@ export namespace Guaranteed_Value_Selection_ {
     
     export type tail = Relative_Value_Selection_
     
-    export type resulting_node = Type_Node_
+    export type resulting_node = Value_
     
 }
 
@@ -1521,7 +1521,7 @@ export namespace Benchmark_ {
         
         export namespace l_constraints {
             
-            export type dictionary = Type_Node_.dictionary
+            export type dictionary = Value_.dictionary
             
         }
         
@@ -1548,7 +1548,7 @@ export type Benchmark_ = {
     readonly 'dense': Benchmark_.dense
 }
 
-export namespace Type_Node_Path_ {
+export namespace Value_Path_ {
     
     export namespace tail {
         
@@ -1556,7 +1556,7 @@ export namespace Type_Node_Path_ {
             
             export namespace L {
                 
-                export type l_result = Type_Node_
+                export type l_result = Value_
                 
                 export namespace l_item {
                     
@@ -1581,7 +1581,7 @@ export namespace Type_Node_Path_ {
                     
                     export namespace state {
                         
-                        export type l_entry = Type_Node_.state.D
+                        export type l_entry = Value_.state.D
                         
                         export type l_id = string
                         
@@ -1612,7 +1612,7 @@ export namespace Type_Node_Path_ {
         
         export type l_list = _pi.List<l_list.L>
         
-        export type l_result = Type_Node_
+        export type l_result = Value_
         
     }
     
@@ -1621,26 +1621,26 @@ export namespace Type_Node_Path_ {
         readonly 'l result': tail.l_result
     }
     
-    export type resulting_node = Type_Node_
+    export type resulting_node = Value_
     
 }
 
-export type Type_Node_Path_ = {
-    readonly 'tail': Type_Node_Path_.tail
-    readonly 'resulting node': Type_Node_Path_.resulting_node
+export type Value_Path_ = {
+    readonly 'tail': Value_Path_.tail
+    readonly 'resulting node': Value_Path_.resulting_node
 }
 
-export namespace Type_Node_Reference_ {
+export namespace Value_Reference_ {
     
     export type type_location = Type_Reference_
     
-    export type path = Type_Node_Path_
+    export type path = Value_Path_
     
 }
 
-export type Type_Node_Reference_ = {
-    readonly 'type location': Type_Node_Reference_.type_location
-    readonly 'path': Type_Node_Reference_.path
+export type Value_Reference_ = {
+    readonly 'type location': Value_Reference_.type_location
+    readonly 'path': Value_Reference_.path
 }
 
 export namespace Signature_ {
@@ -1688,11 +1688,11 @@ export namespace Constraint_ {
         
         export namespace state {
             
-            export type selected_state = Type_Node_.state
+            export type selected_state = Value_.state
             
             export namespace option {
                 
-                export type l_entry = Type_Node_.state.D
+                export type l_entry = Value_.state.D
                 
                 export type l_id = string
                 
@@ -1712,7 +1712,7 @@ export namespace Constraint_ {
         
         export namespace optional_value {
             
-            export type selected_optional_value = Type_Node_.optional
+            export type selected_optional_value = Value_.optional
             
         }
         
@@ -1790,7 +1790,7 @@ export namespace Possible_Value_Selection_ {
             
             export namespace property {
                 
-                export type l_entry = Node_Resolver_Group_.D
+                export type l_entry = Value_Resolver_Group_.D
                 
                 export type l_id = string
                 
@@ -1801,7 +1801,7 @@ export namespace Possible_Value_Selection_ {
                 readonly 'l id': property.l_id
             }
             
-            export type state = Node_Resolver_.state
+            export type state = Value_Resolver_.state
             
             export type result = Type_Reference_
             
@@ -1817,7 +1817,7 @@ export namespace Possible_Value_Selection_ {
             
             export namespace property {
                 
-                export type l_entry = Node_Resolver_Group_.D
+                export type l_entry = Value_Resolver_Group_.D
                 
                 export type l_id = string
                 
@@ -1828,7 +1828,7 @@ export namespace Possible_Value_Selection_ {
                 readonly 'l id': property.l_id
             }
             
-            export type optional_value = Node_Resolver_.optional
+            export type optional_value = Value_Resolver_.optional
             
             export type result = Type_Reference_
             
@@ -1869,22 +1869,22 @@ export {
     Signatures_ as Signatures, 
     Resolvers_ as Resolvers, 
     Group_ as Group, 
-    Node_Resolver_Group_ as Node_Resolver_Group, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Type_Reference_ as Type_Reference, 
-    Type_Node_ as Type_Node, 
+    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
-    Node_Resolver_List_Result_ as Node_Resolver_List_Result, 
-    Node_Resolver_ as Node_Resolver, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Resolver_ as Value_Resolver, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
-    Type_Node_Path_ as Type_Node_Path, 
-    Type_Node_Reference_ as Type_Node_Reference, 
+    Value_Path_ as Value_Path, 
+    Value_Reference_ as Value_Reference, 
     Signature_ as Signature, 
     Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 

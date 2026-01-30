@@ -32,7 +32,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Type Node": sig.local(
+        "Value": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),

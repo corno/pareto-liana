@@ -94,7 +94,7 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
             default: return _p.au($[0])
         }
     }))
-    const p_resulting_dictionary = _p_cc(p_type, ($): d_out.Type_Node.dictionary => {
+    const p_resulting_dictionary = _p_cc(p_type, ($): d_out.Value.dictionary => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => $['selected dictionary'])
             case 'not circular dependent siblings': return _p.ss($, ($) => $)
@@ -326,7 +326,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_depr
             const p_types: d_out.Types = _p.dictionary.resolve(
                 $.types['l dictionary'],
                 ($, id, $acyclic, $cyclic) => {
-                    const p_type = Type_Node(
+                    const p_type = Value(
                         $['l entry'].node,
                         abort,
                         {
@@ -387,7 +387,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_depr
                                     abort,
                                 )
 
-                                const p_type_resolver = Node_Resolver(
+                                const p_type_resolver = Value_Resolver(
                                     $['l entry']['type resolver'],
                                     abort,
                                     {
@@ -467,14 +467,14 @@ export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
     }
 }
 
-export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
+export const Value: signatures.Value = ($, abort, $l, $p) => {
     const loc = $['l location']
-    return _p_cc($['l state'], ($): d_out.Type_Node => {
+    return _p_cc($['l state'], ($): d_out.Value => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($): d_out.Type_Node => ['boolean', null])
-            case 'number': return _p.ss($, ($): d_out.Type_Node => ['number', _p_cc($['l state'], ($): d_out.Type_Node.number_ => {
+            case 'boolean': return _p.ss($, ($): d_out.Value => ['boolean', null])
+            case 'number': return _p.ss($, ($): d_out.Value => ['number', _p_cc($['l state'], ($): d_out.Value.number_ => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($): d_out.Type_Node.number_ => ['global', _i_generic.get_entry_acyclic(
+                    case 'global': return _p.ss($, ($): d_out.Value.number_ => ['global', _i_generic.get_entry_acyclic(
                         _p_ls.acyclic.select_from_dictionary(
                             $p.globals.__decide(
                                 ($) => $['number types'],
@@ -493,9 +493,9 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'text': return _p.ss($, ($): d_out.Type_Node => ['text', _p_cc($['l state'], ($): d_out.Type_Node.text => {
+            case 'text': return _p.ss($, ($): d_out.Value => ['text', _p_cc($['l state'], ($): d_out.Value.text => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($): d_out.Type_Node.text => ['global', _i_generic.get_entry_acyclic(
+                    case 'global': return _p.ss($, ($): d_out.Value.text => ['global', _i_generic.get_entry_acyclic(
                         _p_ls.acyclic.select_from_dictionary(
                             $p.globals.__decide(
                                 ($) => $['text types'],
@@ -514,8 +514,8 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'component': return _p.ss($, ($): d_out.Type_Node => ['component', {
-                'type': _p_cc($.type['l state'], ($): d_out.Type_Node.component.type_ => {
+            case 'component': return _p.ss($, ($): d_out.Value => ['component', {
+                'type': _p_cc($.type['l state'], ($): d_out.Value.component.type_ => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
@@ -553,7 +553,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     $.constraints,
                     ($) => _p.dictionary.resolve(
                         $['l dictionary'],
-                        ($) => Type_Node_Reference(
+                        ($) => Value_Reference(
                             $['l entry'],
                             abort,
                             {
@@ -567,7 +567,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 )
             }])
             case 'dictionary': return _p.ss($, ($) => {
-                const p_type = Type_Node(
+                const p_type = Value(
                     $.node,
                     abort,
                     $l,
@@ -581,7 +581,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 $['l dictionary'],
                 ($, id, $acyclic, $cyclic) => ({
                     'description': $['l entry'].description,
-                    'node': Type_Node(
+                    'node': Value(
                         $['l entry'].node,
                         abort,
                         $l,
@@ -589,8 +589,8 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     )
                 }),
             )])
-            case 'list': return _p.ss($, ($): d_out.Type_Node => {
-                const p_type = Type_Node(
+            case 'list': return _p.ss($, ($): d_out.Value => {
+                const p_type = Value(
                     $.node,
                     abort,
                     $l,
@@ -614,14 +614,14 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 }]
             })
             case 'nothing': return _p.ss($, ($) => ['nothing', null])
-            case 'optional': return _p.ss($, ($) => ['optional', Type_Node(
+            case 'optional': return _p.ss($, ($) => ['optional', Value(
                 $,
                 abort,
                 $l,
                 $p,
             )])
 
-            case 'reference': return _p.ss($, ($): d_out.Type_Node => {
+            case 'reference': return _p.ss($, ($): d_out.Value => {
                 const loc = $.referent['type location'].location['l location']
                 const temp = $p.globals.__decide(
                     ($) => {
@@ -632,7 +632,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                     },
                     () => _i_generic.abort.is_set_assertion("globals", loc, abort)
                 )
-                const p_referent = Type_Node_Reference(
+                const p_referent = Value_Reference(
                     $.referent,
                     abort,
                     {
@@ -642,7 +642,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                         'imports': $p.imports,
                     },
                 )
-                const p_type: d_out.Type_Node.reference.type_ = _p_cc($.type['l state'], ($) => {
+                const p_type: d_out.Value.reference.type_ = _p_cc($.type['l state'], ($) => {
                     switch ($[0]) {
                         case 'selected': return _p.ss($, ($) => {
                             return ['selected', {
@@ -682,7 +682,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 //     $,
                 //     $p
                 // )])
-                // : resolved.Type_Node => {
+                // : resolved.Value => {
                 //     const p_type = Type_Reference(
                 //         $.type,
                 //         $p,
@@ -702,7 +702,7 @@ export const Type_Node: signatures.Type_Node = ($, abort, $l, $p) => {
                 $['l dictionary'],
                 ($, id, $acyclic, $cyclic) => ({
                     'description': $['l entry'].description,
-                    'node': Type_Node(
+                    'node': Value(
                         $['l entry'].node,
                         abort,
                         $l,
@@ -770,7 +770,7 @@ export const Type_Reference: signatures.Type_Reference = ($, abort, $l, $p) => {
 }
 
 
-export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l, $p) => {
+export const Value_Reference: signatures.Value_Reference = ($, abort, $l, $p) => {
     const p_type_location = Type_Reference(
         $['type location'],
         abort,
@@ -779,7 +779,7 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
     )
     return {
         'type location': p_type_location,
-        'path': Type_Node_Path(
+        'path': Value_Path(
             $.path,
             abort,
             null,
@@ -791,16 +791,16 @@ export const Type_Node_Reference: signatures.Type_Node_Reference = ($, abort, $l
 }
 
 
-export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
-    const p_tail_x: d_out.Type_Node_Path.tail = _p.list.map_with_state(
+export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
+    const p_tail_x: d_out.Value_Path.tail = _p.list.map_with_state(
         $.tail['l list'],
         $p.type.node,
-        ($, current): d_out.Type_Node_Path.tail.l_list.L => {
+        ($, current): d_out.Value_Path.tail.l_list.L => {
             const sg_loc = $['l location']
-            return _p_cc($['l item']['l state'], ($): d_out.Type_Node_Path.tail.l_list.L => {
+            return _p_cc($['l item']['l state'], ($): d_out.Value_Path.tail.l_list.L => {
                 switch ($[0]) {
                     case 'dictionary': return _p.ss($, ($) => {
-                        const sc_definition: d_out.Type_Node.dictionary = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.dictionary = _p_cc(current, ($) => {
                             if ($[0] !== 'dictionary') {
                                 return _i_generic.abort.state_constraint("dictionary", $, sg_loc, abort)
                             }
@@ -812,7 +812,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
-                        const sc_definition: d_out.Type_Node.group = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.group = _p_cc(current, ($) => {
                             if ($[0] !== 'group') {
                                 return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
                             }
@@ -829,7 +829,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'list': return _p.ss($, ($) => {
-                        const sc_definition: d_out.Type_Node.list = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.list = _p_cc(current, ($) => {
                             if ($[0] !== 'list') {
                                 return _i_generic.abort.state_constraint("list", $, sg_loc, abort)
                             }
@@ -841,7 +841,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'optional': return _p.ss($, ($) => {
-                        const sc_definition: d_out.Type_Node.optional = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.optional = _p_cc(current, ($) => {
                             if ($[0] !== 'optional') {
                                 return _i_generic.abort.state_constraint("optional", $, sg_loc, abort)
                             }
@@ -853,7 +853,7 @@ export const Type_Node_Path: signatures.Type_Node_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'state': return _p.ss($, ($) => {
-                        const P_state: d_out.Type_Node.state = _p_cc(current, ($) => {
+                        const P_state: d_out.Value.state = _p_cc(current, ($) => {
                             if ($[0] !== 'state') {
                                 return _i_generic.abort.state_constraint("state", $, sg_loc, abort)
                             }
@@ -1026,9 +1026,9 @@ export const Value_Constraint_Resolvers: signatures.Value_Constraint_Resolvers =
     ))
 }
 
-export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
+export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
     const loc = $['l location']
-    const p_type = _p_cc($['l state'], ($): d_out.Node_Resolver => {
+    const p_type = _p_cc($['l state'], ($): d_out.Value_Resolver => {
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'boolean'
@@ -1041,7 +1041,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     : $p.definition[1]
                 return ['boolean', null]
             })
-            case 'component': return _p.ss($, ($): d_out.Node_Resolver => {
+            case 'component': return _p.ss($, ($): d_out.Value_Resolver => {
                 const x = $p.definition[0] !== 'component'
                     ? _i_generic.abort.state_constraint(
                         "component",
@@ -1050,7 +1050,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         abort,
                     )
                     : $p.definition[1]
-                const p_location = _p_cc($.location['l state'], ($): d_out.Node_Resolver.component.location => {
+                const p_location = _p_cc($.location['l state'], ($): d_out.Value_Resolver.component.location => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
@@ -1087,7 +1087,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         default: return _p.au($[0])
                     }
                 })
-                const p_signature: d_out.Node_Resolver.component.signature = _p_cc(p_location, ($) => {
+                const p_signature: d_out.Value_Resolver.component.signature = _p_cc(p_location, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => $.type['l entry'])
                         case 'internal': return _p.ss($, ($) => $['l entry'])
@@ -1105,9 +1105,9 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 if (p_signature.type.node !== x_type.node) {
                     _i_generic.abort.same_node_constraint("type.node", loc, abort)
                 }
-                const p_arguments: d_out.Node_Resolver.component.arguments_ = $.arguments.__decide(
+                const p_arguments: d_out.Value_Resolver.component.arguments_ = $.arguments.__decide(
                     ($) => {
-                        const x: d_out.Node_Resolver.component.arguments_.O = {
+                        const x: d_out.Value_Resolver.component.arguments_.O = {
                             'lookups': $.lookups.__decide(
                                 ($) => _p.optional.set(_i_generic.resolve_dense_dictionary(
                                     $['l dictionary'],
@@ -1116,7 +1116,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                     p_signature['resolved parameters'].lookups,
                                     ($, id, $acyclic, $cyclic) => _p_cc($, ($) => {
                                         //do additional validation
-                                        return _p_cc($['l entry']['l state'], ($): d_out.Node_Resolver.component.arguments_.O.lookups.O.D => {
+                                        return _p_cc($['l entry']['l state'], ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
                                                 case 'empty stack': return _p.ss($, ($) => ['empty stack', null])
                                                 case 'not set': return _p.ss($, ($) => ['not set', null])
@@ -1178,7 +1178,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                 },
                                                 abort,
                                             )
-                                            const out = _p_cc($['l entry']['l state'], ($): d_out.Node_Resolver.component.arguments_.O.values.O.D => {
+                                            const out = _p_cc($['l entry']['l state'], ($): d_out.Value_Resolver.component.arguments_.O.values.O.D => {
                                                 switch ($[0]) {
                                                     case 'optional': return _p.ss($, ($) => ['optional', Possible_Value_Selection(
                                                         $,
@@ -1205,7 +1205,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                                                 const benchmark = linked_entry['l entry']
                                                 const focus = out
 
-                                                const walk_path_till_end = ($: d_out.Type_Node): d_out.Type_Node => {
+                                                const walk_path_till_end = ($: d_out.Value): d_out.Value => {
                                                     return _p_cc($, ($) => {
                                                         switch ($[0]) {
                                                             case 'component': return _p.ss($, ($) => _p_cc($.type, ($) => {
@@ -1341,7 +1341,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     abort,
                     null,
                     {
-                        'node': _p_cc(p_location, ($): d_out.Type_Node => {
+                        'node': _p_cc(p_location, ($): d_out.Value => {
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => $.type['l entry'].type.node)
                                 case 'internal': return _p.ss($, ($) => $['l entry'].type.node)
@@ -1365,7 +1365,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
 
                 const p_benchmark = _p.optional.map(
                     $.benchmark,
-                    ($): d_out.Node_Resolver.dictionary.benchmark.O => {
+                    ($): d_out.Value_Resolver.dictionary.benchmark.O => {
                         const p_selection = Guaranteed_Value_Selection(
                             $.selection,
                             abort,
@@ -1394,7 +1394,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 return ['dictionary', {
                     'definition': p_definition,
                     'benchmark': p_benchmark,
-                    'resolver': Node_Resolver(
+                    'resolver': Value_Resolver(
                         $.resolver,
                         abort,
                         $l,
@@ -1427,7 +1427,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     $['l location'],
                     abort,
                     x,
-                    ($, id, $acyclic, $cyclic): d_out.Node_Resolver_Group.D => {
+                    ($, id, $acyclic, $cyclic): d_out.Value_Resolver_Group.D => {
 
                         const p_definition = _i_generic.get_entry_acyclic(
                             _p_ls.acyclic.select_from_dictionary(x),
@@ -1437,7 +1437,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_resolver = Node_Resolver(
+                        const p_resolver = Value_Resolver(
                             $['l entry'].resolver,
                             abort,
                             {
@@ -1486,7 +1486,7 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                         },
                     )
                 )
-                const p_resolver = Node_Resolver(
+                const p_resolver = Value_Resolver(
                     $.resolver,
                     abort,
                     $l,
@@ -1530,13 +1530,13 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_constraints: d_out.Node_Resolver.state.states.D.constraints = Option_Constraints(
+                const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraints(
                     $.constraints,
                     abort,
                     $l,
                     $p,
                 )
-                const p_resolver = Node_Resolver(
+                const p_resolver = Value_Resolver(
                     $.resolver,
                     abort,
                     {
@@ -1562,13 +1562,13 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     'resolver': p_resolver,
                 }]
             })
-            case 'reference': return _p.ss($, ($): d_out.Node_Resolver => {
+            case 'reference': return _p.ss($, ($): d_out.Value_Resolver => {
                 const p_definition = $p.definition[0] !== 'reference'
                     ? _i_generic.abort.state_constraint("reference", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['reference', {
                     'definition': p_definition,
-                    'type': _p_cc($.type['l state'], ($): d_out.Node_Resolver.reference.type_ => {
+                    'type': _p_cc($.type['l state'], ($): d_out.Value_Resolver.reference.type_ => {
                         switch ($[0]) {
                             case 'derived': return _p.ss($, ($) => {
                                 const p_definition_2 = p_definition.type[0] !== 'derived'
@@ -1612,12 +1612,12 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                     })
                 }]
             })
-            case 'state': return _p.ss($, ($): d_out.Node_Resolver => {
+            case 'state': return _p.ss($, ($): d_out.Value_Resolver => {
                 const p_definition = $p.definition[0] !== 'state'
                     ? _i_generic.abort.state_constraint("state", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_states: d_out.Node_Resolver.state.states = _i_generic.resolve_dense_dictionary(
+                const p_states: d_out.Value_Resolver.state.states = _i_generic.resolve_dense_dictionary(
                     $.states['l dictionary'],
                     $.states['l location'],
                     abort,
@@ -1632,13 +1632,13 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_constraints: d_out.Node_Resolver.state.states.D.constraints = Option_Constraints(
+                        const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraints(
                             $['l entry'].constraints,
                             abort,
                             $l,
                             $p,
                         )
-                        const vr = Node_Resolver(
+                        const vr = Value_Resolver(
                             $['l entry']['resolver'],
                             abort,
                             {
@@ -1668,10 +1668,10 @@ export const Node_Resolver: signatures.Node_Resolver = ($, abort, $l, $p) => {
                 )
 
 
-                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Relative_Value_Selection.tail.L, _i_out.Type_Node> => pa.deprecated_block(() => {
+                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Relative_Value_Selection.tail.L, _i_out.Value> => pa.deprecated_block(() => {
                 //     return pa.deprecated_block(() => {
 
-                //         const sc_definition: _i_out.Type_Node.state = pa.deprecated_cc(current, ($) => {
+                //         const sc_definition: _i_out.Value.state = pa.deprecated_cc(current, ($) => {
                 //             if ($[0] !== 'state') {
                 //                 return pa.panic(`not a 'state' but a '${$[0]}' @ ${$p['location 2 string'](sg_loc)}`)
                 //             }
@@ -1766,7 +1766,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => {
 
-                        const sc_definition: d_out.Type_Node.component = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.component = _p_cc(current, ($) => {
                             if ($[0] !== 'component') {
                                 return _i_generic.abort.state_constraint("component", $, sg_loc, abort)
                             }
@@ -1785,7 +1785,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
-                        const sc_definition: d_out.Type_Node.group = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.group = _p_cc(current, ($) => {
                             if ($[0] !== 'group') {
                                 return _i_generic.abort.state_constraint("group", $, sg_loc, abort)
                             }
@@ -1803,14 +1803,14 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                     })
                     case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.l_list.L => {
 
-                        const sc_definition: d_out.Type_Node.reference = _p_cc(current, ($) => {
+                        const sc_definition: d_out.Value.reference = _p_cc(current, ($) => {
                             if ($[0] !== 'reference') {
                                 return _i_generic.abort.state_constraint("reference", $, sg_loc, abort)
                             }
                             return $[1]
                         })
-                        const referent: d_out.Type_Node_Reference = sc_definition.referent
-                        const x: d_out.Type_Node = _p_cc(sc_definition.type, ($) => {
+                        const referent: d_out.Value_Reference = sc_definition.referent
+                        const x: d_out.Value = _p_cc(sc_definition.type, ($) => {
                             switch ($[0]) {
                                 case 'derived': return _p.ss($, ($) => referent.path['resulting node'])
                                 case 'selected': return _p.ss($, ($) => _p_cc(referent.path['resulting node'], ($) => {
@@ -2095,7 +2095,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
         null,
         {
             'node': _p_deprecated_block(() => {
-                const pvs = ($: d_out.Possible_Value_Selection) => _p_cc($, ($): d_out.Type_Node => {
+                const pvs = ($: d_out.Possible_Value_Selection) => _p_cc($, ($): d_out.Value => {
                     return _p_cc($, ($) => {
                         switch ($[0]) {
                             case 'parameter': return _p.ss($, ($) => $['l entry']['data type']['resulting type'].node)
@@ -2111,7 +2111,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                     })
                 })
                 const start_loc = $.start['l location']
-                const gvs_start = ($: d_out.Guaranteed_Value_Selection.start) => _p_cc($, ($): d_out.Type_Node => {
+                const gvs_start = ($: d_out.Guaranteed_Value_Selection.start) => _p_cc($, ($): d_out.Value => {
                     switch ($[0]) {
                         case 'constraint': return _p.ss($, ($) => _p_cc($, ($) => {
                             switch ($[0]) {
@@ -2167,7 +2167,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
             })
         },
     )
-    const p_resulting_type: d_out.Type_Node = p_tail['resulting node']
+    const p_resulting_type: d_out.Value = p_tail['resulting node']
     return ({
         'start': p_start,
         'tail': p_tail,

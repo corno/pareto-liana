@@ -10,7 +10,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Resolvers = resolvers(
     {
         "Type": resolver(r.group({
-            "node": r.component("Type Node", {
+            "node": r.component("Value", {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
             }, {
@@ -38,7 +38,7 @@ export const $: g_.Resolvers = resolvers(
             }),
         })),
 
-        "Group": resolver(r.dictionary(r.component("Type Node",
+        "Group": resolver(r.dictionary(r.component("Value",
             {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
@@ -50,7 +50,7 @@ export const $: g_.Resolvers = resolvers(
         ))),
 
         "Dictionary": resolver(r.group({
-            "node": r.component("Type Node",
+            "node": r.component("Value",
                 {
                     "globals": av.parameter("globals"),
                     "imports": av.parameter("imports"),
@@ -63,7 +63,7 @@ export const $: g_.Resolvers = resolvers(
             "ordered": r.boolean(),
         })),
 
-        "Type Node": resolver(r.state({
+        "Value": resolver(r.state({
             "component": state(r.state({
                 "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
@@ -93,13 +93,13 @@ export const $: g_.Resolvers = resolvers(
                 }
             )),
             "list": state(r.group({
-                "node": r.component("Type Node", null, null),
+                "node": r.component("Value", null, null),
             })),
             "nothing": state(r.nothing()),
 
-            "optional": state(r.component("Type Node", null, null)),
+            "optional": state(r.component("Value", null, null)),
 
-            "state": state(r.dictionary(r.component("Type Node", null, null))),
+            "state": state(r.dictionary(r.component("Value", null, null))),
             "text": state(r.state({
                 "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [vst.group("text types")])))),
                 "local": state(r.component("Text Type", {}, {})),

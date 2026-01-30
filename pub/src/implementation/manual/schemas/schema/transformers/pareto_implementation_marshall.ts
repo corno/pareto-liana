@@ -95,7 +95,7 @@ export const Schema = (
         false,
         false,
         false,
-        Type_Node(
+        Value(
             $.node,
             {
                 'type': id,
@@ -105,8 +105,8 @@ export const Schema = (
     )),
 )
 
-export const Type_Node = (
-    $: d_in.Type_Node,
+export const Value = (
+    $: d_in.Value,
     $p: {
         'type': string
         'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
@@ -149,7 +149,7 @@ export const Type_Node = (
             "dictionary",
             sh.e.dictionary.map(
                 sh.s.context([]),
-                Type_Node(
+                Value(
                     $.node,
                     {
                         'type': $p.type,
@@ -169,7 +169,7 @@ export const Type_Node = (
                 "verbose",
                 sh.e.dictionary.literal($.__d_map(($, id) => sh.e.change_context(
                     sh.s.context([id]),
-                    Type_Node(
+                    Value(
                         $.node,
                         {
                             'type': $p.type,
@@ -186,7 +186,7 @@ export const Type_Node = (
         ))
         case 'list': return _p.ss($, ($) => {
 
-            const x = Type_Node(
+            const x = Value(
                 $.node,
                 {
                     'type': $p.type,
@@ -239,7 +239,7 @@ export const Type_Node = (
                 sh.s.context([]),
                 sh.e.state.literal(
                     "set",
-                    Type_Node(
+                    Value(
                         $,
                         {
                             'type': $p.type,
@@ -278,7 +278,7 @@ export const Type_Node = (
                 sh.s.context([]),
                 $.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
-                    "value": Type_Node(
+                    "value": Value(
                         $.node,
                         {
                             'type': $p.type,

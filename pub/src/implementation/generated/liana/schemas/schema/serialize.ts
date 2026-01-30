@@ -103,8 +103,8 @@ export const Group: t_signatures.Group = ($) => v_serialize.Document(
     )
 )
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => v_serialize.Document(
-    v_marshall.Node_Resolver_Group(
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => v_serialize.Document(
+    v_marshall.Value_Resolver_Group(
         $
     )
 )
@@ -121,8 +121,8 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => v_serialize.Do
     )
 )
 
-export const Type_Node: t_signatures.Type_Node = ($) => v_serialize.Document(
-    v_marshall.Type_Node(
+export const Value: t_signatures.Value = ($) => v_serialize.Document(
+    v_marshall.Value(
         $
     )
 )
@@ -157,14 +157,14 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => v_serializ
     )
 )
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => v_serialize.Document(
-    v_marshall.Node_Resolver_List_Result(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => v_serialize.Document(
+    v_marshall.Value_Resolver_List_Result(
         $
     )
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($) => v_serialize.Document(
-    v_marshall.Node_Resolver(
+export const Value_Resolver: t_signatures.Value_Resolver = ($) => v_serialize.Document(
+    v_marshall.Value_Resolver(
         $
     )
 )
@@ -187,14 +187,14 @@ export const Benchmark: t_signatures.Benchmark = ($) => v_serialize.Document(
     )
 )
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => v_serialize.Document(
-    v_marshall.Type_Node_Path(
+export const Value_Path: t_signatures.Value_Path = ($) => v_serialize.Document(
+    v_marshall.Value_Path(
         $
     )
 )
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => v_serialize.Document(
-    v_marshall.Type_Node_Reference(
+export const Value_Reference: t_signatures.Value_Reference = ($) => v_serialize.Document(
+    v_marshall.Value_Reference(
         $
     )
 )

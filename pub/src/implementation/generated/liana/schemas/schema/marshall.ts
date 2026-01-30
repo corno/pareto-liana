@@ -206,7 +206,7 @@ export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionar
     {
         'node': _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $
             )
         ),
@@ -417,7 +417,7 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
     {
         'node': _p_cc(
             $['node'],
-            ($) => Type_Node(
+            ($) => Value(
                 $
             )
         ),
@@ -441,7 +441,7 @@ export const Resolvers: t_signatures.Resolvers = ($) => ['dictionary', _p.dictio
             ),
             'type resolver': _p_cc(
                 $['type resolver'],
-                ($) => Node_Resolver(
+                ($) => Value_Resolver(
                     $
                 )
             ),
@@ -466,7 +466,7 @@ export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map
             ),
             'node': _p_cc(
                 $['node'],
-                ($) => Type_Node(
+                ($) => Value(
                     $
                 )
             ),
@@ -474,7 +474,7 @@ export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map
     )]]
 )]
 
-export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['dictionary', _p.dictionary.map(
+export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ['dictionary', _p.dictionary.map(
     $,
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
         {
@@ -484,7 +484,7 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($) => ['di
             ),
             'resolver': _p_cc(
                 $['resolver'],
-                ($) => Node_Resolver(
+                ($) => Value_Resolver(
                     $
                 )
             ),
@@ -496,7 +496,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($) => ['option
     $,
     ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
         $,
-        ($, id) => Type_Node_Reference(
+        ($, id) => Value_Reference(
             $
         )
     )]],
@@ -562,7 +562,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ['group', ['ve
     }
 )]]
 
-export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.state(
+export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
@@ -681,7 +681,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                             {
                                 'node': _p_cc(
                                     $['node'],
-                                    ($) => Type_Node(
+                                    ($) => Value(
                                         $
                                     )
                                 ),
@@ -751,7 +751,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                     $,
                     ($) => ({
                         'option': 'optional',
-                        'value': Type_Node(
+                        'value': Value(
                             $
                         ),
                     })
@@ -765,7 +765,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                             {
                                 'referent': _p_cc(
                                     $['referent'],
-                                    ($) => Type_Node_Reference(
+                                    ($) => Value_Reference(
                                         $
                                     )
                                 ),
@@ -870,7 +870,7 @@ export const Type_Node: t_signatures.Type_Node = ($) => ['state', _p.decide.stat
                                     ),
                                     'node': _p_cc(
                                         $['node'],
-                                        ($) => Type_Node(
+                                        ($) => Value(
                                             $
                                         )
                                     ),
@@ -1188,11 +1188,11 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
     }
 )]]
 
-export const Node_Resolver_List_Result: t_signatures.Node_Resolver_List_Result = ($) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Type_Reference(
     $
 )
 
-export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.decide.state(
+export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
@@ -1425,7 +1425,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'resolver': _p_cc(
                                     $['resolver'],
-                                    ($) => Node_Resolver(
+                                    ($) => Value_Resolver(
                                         $
                                     )
                                 ),
@@ -1448,7 +1448,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                     $,
                     ($) => ({
                         'option': 'group',
-                        'value': Node_Resolver_Group(
+                        'value': Value_Resolver_Group(
                             $
                         ),
                     })
@@ -1466,7 +1466,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'resolver': _p_cc(
                                     $['resolver'],
-                                    ($) => Node_Resolver(
+                                    ($) => Value_Resolver(
                                         $
                                     )
                                 ),
@@ -1474,7 +1474,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                     $['result'],
                                     ($) => ['optional', _p.decide.optional(
                                         $,
-                                        ($): t_out.Value.optional => ['set', Node_Resolver_List_Result(
+                                        ($): t_out.Value.optional => ['set', Value_Resolver_List_Result(
                                             $
                                         )],
                                         () => ['not set', null]
@@ -1515,7 +1515,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                 ),
                                 'resolver': _p_cc(
                                     $['resolver'],
-                                    ($) => Node_Resolver(
+                                    ($) => Value_Resolver(
                                         $
                                     )
                                 ),
@@ -1621,7 +1621,7 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($) => ['state', _p.dec
                                                 ),
                                                 'resolver': _p_cc(
                                                     $['resolver'],
-                                                    ($) => Node_Resolver(
+                                                    ($) => Value_Resolver(
                                                         $
                                                     )
                                                 ),
@@ -1989,7 +1989,7 @@ export const Benchmark: t_signatures.Benchmark = ($) => ['group', ['verbose', _p
     }
 )]]
 
-export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'tail': _p_cc(
             $['tail'],
@@ -2064,7 +2064,7 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($) => ['group', ['ve
     }
 )]]
 
-export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Value_Reference: t_signatures.Value_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'type location': _p_cc(
             $['type location'],
@@ -2074,7 +2074,7 @@ export const Type_Node_Reference: t_signatures.Type_Node_Reference = ($) => ['gr
         ),
         'path': _p_cc(
             $['path'],
-            ($) => Type_Node_Path(
+            ($) => Value_Path(
                 $
             )
         ),

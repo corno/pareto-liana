@@ -81,7 +81,7 @@ export const Resolvers = (
             true,
             true,
             true,
-            Node_Resolver(
+            Value_Resolver(
                 $['type resolver'],
                 {
                     'temp type': id,
@@ -271,8 +271,8 @@ export const Option_Constraints = (
 //     $p.sub(),
 // )
 
-export const Node_Resolver = (
-    $: d_in.Node_Resolver,
+export const Value_Resolver = (
+    $: d_in.Value_Resolver,
     $p: {
         'temp type': string
         'temp subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L> //can be removed when exupery has type inference
@@ -358,7 +358,7 @@ export const Node_Resolver = (
                     sh.s.context(["l dictionary"]),
                     sh.e.change_context(
                         sh.s.context(["l entry"]),
-                        Node_Resolver(
+                        Value_Resolver(
                             resolver,
                             {
                                 'temp type': $p['temp type'],
@@ -384,7 +384,7 @@ export const Node_Resolver = (
                     sh.s.context(["l dictionary"]),
                     sh.e.change_context(
                         sh.s.context(["l entry"]),
-                        Node_Resolver(
+                        Value_Resolver(
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
@@ -441,7 +441,7 @@ export const Node_Resolver = (
         //                 //     ),
         //                 //     sh.e.change_context(
         //                 //         sh.s.context(["value"]),
-        //                 //         Node_Resolver(
+        //                 //         Value_Resolver(
         //                 //             $.resolver,
         //                 //             {
         //                 //                 'temp type': $p['temp type'],
@@ -465,7 +465,7 @@ export const Node_Resolver = (
             $.__d_map(
                 ($, id) => sh.e.change_context(
                     sh.s.context([id]),
-                    Node_Resolver(
+                    Value_Resolver(
                         $.resolver,
                         {
                             'temp type': $p['temp type'],
@@ -481,7 +481,7 @@ export const Node_Resolver = (
             )
         ))
         case 'list': return _p.ss($, ($) => {
-            const resolver: d_in.Node_Resolver = $.resolver
+            const resolver: d_in.Value_Resolver = $.resolver
             return $.result.__decide(
                 ($) => sh.e.group.literal({
                     "l list": sh.e.list.map_with_state(
@@ -490,7 +490,7 @@ export const Node_Resolver = (
                         sh.e.group.literal({
                             "l item": sh.e.change_context(
                                 sh.s.context(["l item"]),
-                                Node_Resolver(
+                                Value_Resolver(
                                     resolver,
                                     {
                                         'temp type': $p['temp type'],
@@ -516,7 +516,7 @@ export const Node_Resolver = (
                     sh.s.context(["l list"]),
                     sh.e.change_context(
                         sh.s.context(["l item"]),
-                        Node_Resolver(
+                        Value_Resolver(
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
@@ -536,7 +536,7 @@ export const Node_Resolver = (
         //     sh.s.context(["list"]),
         //     sh.e.change_context(
         //         sh.s.context(["element"]),
-        //         Node_Resolver(
+        //         Value_Resolver(
         //             $.resolver,
         //             {
         //                 'temp type': $p['temp type'],
@@ -554,7 +554,7 @@ export const Node_Resolver = (
         case 'number': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
         case 'optional': return _p.ss($, ($) => sh.e.optional.map(
             sh.s.context([]),
-            Node_Resolver(
+            Value_Resolver(
                 $.resolver,
                 {
                     'temp type': $p['temp type'],
@@ -572,7 +572,7 @@ export const Node_Resolver = (
         //     Option_Constraints(
         //         $.constraints,
         //         {
-        //             'sub': () => Node_Resolver(
+        //             'sub': () => Value_Resolver(
         //                 $['resolver'],
         //                 {
         //                     'temp type': $p['temp type'],
@@ -667,7 +667,7 @@ export const Node_Resolver = (
         // })))
         case 'state': return _p.ss($, ($) => sh.e.decide.state(
             sh.s.context(["l state"]),
-            $.states.__d_map(($, id) => sh.e.state.literal(id, Node_Resolver(
+            $.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
                 $['resolver'],
                 {
                     'temp type': $p['temp type'],
@@ -690,7 +690,7 @@ export const Node_Resolver = (
         //     $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(
         //         $.constraints,
         //         {
-        //             'sub': () => Node_Resolver(
+        //             'sub': () => Value_Resolver(
         //                 $['resolver'],
         //                 {
         //                     'temp type': $p['temp type'],
