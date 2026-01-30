@@ -275,8 +275,14 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
                         case 'internal':
                             return _p.ss(
                                 $,
-                                ($) => ['internal', _p_unreachable_code_path(
-                                )]
+                                ($) => ['internal', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'external':
                             return _p.ss(
@@ -286,14 +292,26 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
                                         
                                         const prop_import = _p_cc(
                                             $['import'],
-                                            ($) => _p_unreachable_code_path(
-                                            )
+                                            ($) => ({
+                                                'l entry': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                                'l id': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                            })
                                         )
                                         
                                         const prop_type = _p_cc(
                                             $['type'],
-                                            ($) => _p_unreachable_code_path(
-                                            )
+                                            ($) => ({
+                                                'l entry': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                                'l id': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                            })
                                         )
                                         return {
                                             'import': prop_import,
@@ -313,7 +331,8 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) =>
         
         const prop_resulting_type = _p_cc(
             $['resulting type'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -386,8 +405,14 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                                         case 'group':
                                             return _p.ss(
                                                 $,
-                                                ($) => ['group', _p_unreachable_code_path(
-                                                )]
+                                                ($) => ['group', {
+                                                    'l entry': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                    'l id': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                }]
                                             )
                                         case 'list':
                                             return _p.ss(
@@ -402,8 +427,14 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
                                         case 'state':
                                             return _p.ss(
                                                 $,
-                                                ($) => ['state', _p_unreachable_code_path(
-                                                )]
+                                                ($) => ['state', {
+                                                    'l entry': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                    'l id': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                }]
                                             )
                                         default:
                                             return _p.au(
@@ -432,7 +463,8 @@ export const Type_Node_Path: t_signatures.Type_Node_Path = ($, abort, $l, $p) =>
         
         const prop_resulting_node = _p_cc(
             $['resulting node'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -541,14 +573,26 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                 
                                                 const prop_import = _p_cc(
                                                     $['import'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 
                                                 const prop_type = _p_cc(
                                                     $['type'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 return {
                                                     'import': prop_import,
@@ -560,14 +604,26 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 case 'internal':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['internal', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 case 'internal cyclic':
                                     return _p.ss(
                                         $,
-                                        ($) => ['internal cyclic', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['internal cyclic', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 default:
                                     return _p.au(
@@ -683,8 +739,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 case 'global':
                                     return _p.ss(
                                         $,
-                                        ($) => ['global', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['global', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 case 'local':
                                     return _p.ss(
@@ -761,7 +823,8 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                                             
                                                             const prop_dictionary = _p_cc(
                                                                 $['dictionary'],
-                                                                ($) => _p_unreachable_code_path(
+                                                                ($) => _pdev.implement_me(
+                                                                    "SDFS"
                                                                 )
                                                             )
                                                             
@@ -864,8 +927,14 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                 case 'global':
                                     return _p.ss(
                                         $,
-                                        ($) => ['global', _p_unreachable_code_path(
-                                        )]
+                                        ($) => ['global', {
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        }]
                                     )
                                 case 'local':
                                     return _p.ss(
@@ -921,8 +990,14 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                         case 'group':
                                             return _p.ss(
                                                 $,
-                                                ($) => ['group', _p_unreachable_code_path(
-                                                )]
+                                                ($) => ['group', {
+                                                    'l entry': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                    'l id': _pdev.implement_me(
+                                                        "sss"
+                                                    ),
+                                                }]
                                             )
                                         case 'reference':
                                             return _p.ss(
@@ -932,7 +1007,8 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                         
                                                         const prop_definition = _p_cc(
                                                             $['definition'],
-                                                            ($) => _p_unreachable_code_path(
+                                                            ($) => _pdev.implement_me(
+                                                                "SDFS"
                                                             )
                                                         )
                                                         return {
@@ -968,7 +1044,8 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
         
         const prop_resulting_node = _p_cc(
             $['resulting node'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -1084,7 +1161,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                             
                             const prop_dictionary = _p_cc(
                                 $['dictionary'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -1152,7 +1230,8 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
         
         const prop_type = _p_cc(
             $['type'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         
@@ -1180,8 +1259,14 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
                         case 'same as':
                             return _p.ss(
                                 $,
-                                ($) => ['same as', _p_unreachable_code_path(
-                                )]
+                                ($) => ['same as', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         default:
                             return _p.au(
@@ -1194,7 +1279,8 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
         
         const prop_resolved_parameters = _p_cc(
             $['resolved parameters'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -1278,8 +1364,14 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
             case 'parameter':
                 return _p.ss(
                     $,
-                    ($) => ['parameter', _p_unreachable_code_path(
-                    )]
+                    ($) => ['parameter', {
+                        'l entry': _pdev.implement_me(
+                            "sss"
+                        ),
+                        'l id': _pdev.implement_me(
+                            "sss"
+                        ),
+                    }]
                 )
             case 'result':
                 return _p.ss(
@@ -1296,13 +1388,20 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                 
                                                 const prop_property = _p_cc(
                                                     $['property'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 
                                                 const prop_state = _p_cc(
                                                     $['state'],
-                                                    ($) => _p_unreachable_code_path(
+                                                    ($) => _pdev.implement_me(
+                                                        "SDFS"
                                                     )
                                                 )
                                                 
@@ -1339,13 +1438,20 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                 
                                                 const prop_property = _p_cc(
                                                     $['property'],
-                                                    ($) => _p_unreachable_code_path(
-                                                    )
+                                                    ($) => ({
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    })
                                                 )
                                                 
                                                 const prop_optional_value = _p_cc(
                                                     $['optional value'],
-                                                    ($) => _p_unreachable_code_path(
+                                                    ($) => _pdev.implement_me(
+                                                        "SDFS"
                                                     )
                                                 )
                                                 
@@ -1412,20 +1518,38 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                         case 'sibling':
                             return _p.ss(
                                 $,
-                                ($) => ['sibling', _p_unreachable_code_path(
-                                )]
+                                ($) => ['sibling', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'parent sibling':
                             return _p.ss(
                                 $,
-                                ($) => ['parent sibling', _p_unreachable_code_path(
-                                )]
+                                ($) => ['parent sibling', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'option constraint':
                             return _p.ss(
                                 $,
-                                ($) => ['option constraint', _p_unreachable_code_path(
-                                )]
+                                ($) => ['option constraint', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'constraint':
                             return _p.ss(
@@ -1442,14 +1566,26 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_property = _p_cc(
                                                                 $['property'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_constraint = _p_cc(
                                                                 $['constraint'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             return {
                                                                 'property': prop_property,
@@ -1466,14 +1602,26 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_property = _p_cc(
                                                                 $['property'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_constraint = _p_cc(
                                                                 $['constraint'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             return {
                                                                 'property': prop_property,
@@ -1493,8 +1641,14 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                         case 'parameter':
                             return _p.ss(
                                 $,
-                                ($) => ['parameter', _p_unreachable_code_path(
-                                )]
+                                ($) => ['parameter', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'result':
                             return _p.ss(
@@ -1511,13 +1665,20 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_property = _p_cc(
                                                                 $['property'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_list_result = _p_cc(
                                                                 $['list result'],
-                                                                ($) => _p_unreachable_code_path(
+                                                                ($) => _pdev.implement_me(
+                                                                    "SDFS"
                                                                 )
                                                             )
                                                             return {
@@ -1535,13 +1696,20 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_property = _p_cc(
                                                                 $['property'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_state = _p_cc(
                                                                 $['state'],
-                                                                ($) => _p_unreachable_code_path(
+                                                                ($) => _pdev.implement_me(
+                                                                    "SDFS"
                                                                 )
                                                             )
                                                             
@@ -1578,13 +1746,20 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_property = _p_cc(
                                                                 $['property'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_optional_value = _p_cc(
                                                                 $['optional value'],
-                                                                ($) => _p_unreachable_code_path(
+                                                                ($) => _pdev.implement_me(
+                                                                    "SDFS"
                                                                 )
                                                             )
                                                             
@@ -1648,7 +1823,8 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
         
         const prop_resulting_node = _p_cc(
             $['resulting node'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -1688,7 +1864,8 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
                                         
                                         const prop_selected_dictionary = _p_cc(
                                             $['selected dictionary'],
-                                            ($) => _p_unreachable_code_path(
+                                            ($) => _pdev.implement_me(
+                                                "SDFS"
                                             )
                                         )
                                         return {
@@ -1701,19 +1878,27 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
                         case 'parameter':
                             return _p.ss(
                                 $,
-                                ($) => ['parameter', _p_unreachable_code_path(
-                                )]
+                                ($) => ['parameter', {
+                                    'l entry': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                    'l id': _pdev.implement_me(
+                                        "sss"
+                                    ),
+                                }]
                             )
                         case 'not circular dependent siblings':
                             return _p.ss(
                                 $,
-                                ($) => ['not circular dependent siblings', _p_unreachable_code_path(
+                                ($) => ['not circular dependent siblings', _pdev.implement_me(
+                                    "SDFS"
                                 )]
                             )
                         case 'possibly circular dependent siblings':
                             return _p.ss(
                                 $,
-                                ($) => ['possibly circular dependent siblings', _p_unreachable_code_path(
+                                ($) => ['possibly circular dependent siblings', _pdev.implement_me(
+                                    "SDFS"
                                 )]
                             )
                         default:
@@ -1727,7 +1912,8 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p
         
         const prop_resulting_dictionary = _p_cc(
             $['resulting dictionary'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         return {
@@ -1746,7 +1932,8 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                 
                 const prop_signature = _p_cc(
                     $['signature'],
-                    ($) => _p_unreachable_code_path(
+                    ($) => _pdev.implement_me(
+                        "SDFS"
                     )
                 )
                 
@@ -1833,14 +2020,21 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
                                         
                                         const prop_selected_state = _p_cc(
                                             $['selected state'],
-                                            ($) => _p_unreachable_code_path(
+                                            ($) => _pdev.implement_me(
+                                                "SDFS"
                                             )
                                         )
                                         
                                         const prop_option = _p_cc(
                                             $['option'],
-                                            ($) => _p_unreachable_code_path(
-                                            )
+                                            ($) => ({
+                                                'l entry': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                                'l id': _pdev.implement_me(
+                                                    "sss"
+                                                ),
+                                            })
                                         )
                                         return {
                                             'selected state': prop_selected_state,
@@ -1857,7 +2051,8 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
                                         
                                         const prop_selected_optional_value = _p_cc(
                                             $['selected optional value'],
-                                            ($) => _p_unreachable_code_path(
+                                            ($) => _pdev.implement_me(
+                                                "SDFS"
                                             )
                                         )
                                         return {
@@ -1909,14 +2104,21 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l
                                     
                                     const prop_selected_state = _p_cc(
                                         $['selected state'],
-                                        ($) => _p_unreachable_code_path(
+                                        ($) => _pdev.implement_me(
+                                            "SDFS"
                                         )
                                     )
                                     
                                     const prop_option = _p_cc(
                                         $['option'],
-                                        ($) => _p_unreachable_code_path(
-                                        )
+                                        ($) => ({
+                                            'l entry': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                            'l id': _pdev.implement_me(
+                                                "sss"
+                                            ),
+                                        })
                                     )
                                     return {
                                         'selection': prop_selection,
@@ -2028,8 +2230,14 @@ export const Property_Constraints: t_signatures.Property_Constraints = ($, abort
     )
 )
 
-export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $l, $p) => _p_unreachable_code_path(
-)
+export const Reference_To_Property_Constraint: t_signatures.Reference_To_Property_Constraint = ($, abort, $l, $p) => ({
+    'l entry': _pdev.implement_me(
+        "sss"
+    ),
+    'l id': _pdev.implement_me(
+        "sss"
+    ),
+})
 
 export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
@@ -2040,7 +2248,8 @@ export const Node_Resolver_Group: t_signatures.Node_Resolver_Group = ($, abort, 
                 
                 const prop_definition = _p_cc(
                     $['definition'],
-                    ($) => _p_unreachable_code_path(
+                    ($) => _pdev.implement_me(
+                        "SDFS"
                     )
                 )
                 
@@ -2116,7 +2325,8 @@ export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.
         
         const prop_resulting_dictionary = _p_cc(
             $['resulting dictionary'],
-            ($) => _p_unreachable_code_path(
+            ($) => _pdev.implement_me(
+                "SDFS"
             )
         )
         
@@ -2161,14 +2371,26 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                             
                                                             const prop_import = _p_cc(
                                                                 $['import'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             
                                                             const prop_type = _p_cc(
                                                                 $['type'],
-                                                                ($) => _p_unreachable_code_path(
-                                                                )
+                                                                ($) => ({
+                                                                    'l entry': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                    'l id': _pdev.implement_me(
+                                                                        "sss"
+                                                                    ),
+                                                                })
                                                             )
                                                             return {
                                                                 'import': prop_import,
@@ -2180,8 +2402,14 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                             case 'internal':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['internal', _p_unreachable_code_path(
-                                                    )]
+                                                    ($) => ['internal', {
+                                                        'l entry': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                        'l id': _pdev.implement_me(
+                                                            "sss"
+                                                        ),
+                                                    }]
                                                 )
                                             default:
                                                 return _p.au(
@@ -2194,7 +2422,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_signature = _p_cc(
                                 $['signature'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -2244,8 +2473,14 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                                         case 'parameter':
                                                                             return _p.ss(
                                                                                 $,
-                                                                                ($) => ['parameter', _p_unreachable_code_path(
-                                                                                )]
+                                                                                ($) => ['parameter', {
+                                                                                    'l entry': _pdev.implement_me(
+                                                                                        "sss"
+                                                                                    ),
+                                                                                    'l id': _pdev.implement_me(
+                                                                                        "sss"
+                                                                                    ),
+                                                                                }]
                                                                             )
                                                                         default:
                                                                             return _p.au(
@@ -2381,7 +2616,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_definition = _p_cc(
                                 $['definition'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -2478,7 +2714,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_definition = _p_cc(
                                 $['definition'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -2604,7 +2841,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_definition = _p_cc(
                                 $['definition'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -2645,7 +2883,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                                             
                                                             const prop_definition = _p_cc(
                                                                 $['definition'],
-                                                                ($) => _p_unreachable_code_path(
+                                                                ($) => _pdev.implement_me(
+                                                                    "SDFS"
                                                                 )
                                                             )
                                                             
@@ -2707,7 +2946,8 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                             
                             const prop_definition = _p_cc(
                                 $['definition'],
-                                ($) => _p_unreachable_code_path(
+                                ($) => _pdev.implement_me(
+                                    "SDFS"
                                 )
                             )
                             
@@ -3049,13 +3289,23 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                 
                 const prop_schema_set_child = _p_cc(
                     $['schema set child'],
-                    ($) => _p_unreachable_code_path(
-                    )
+                    ($) => ({
+                        'l entry': _pdev.implement_me(
+                            "sss"
+                        ),
+                        'l id': _pdev.implement_me(
+                            "sss"
+                        ),
+                        'l up steps': _pdev.implement_me(
+                            "sss"
+                        ),
+                    })
                 )
                 
                 const prop_schema = _p_cc(
                     $['schema'],
-                    ($) => _p_unreachable_code_path(
+                    ($) => _pdev.implement_me(
+                        "SDFS"
                     )
                 )
                 return {

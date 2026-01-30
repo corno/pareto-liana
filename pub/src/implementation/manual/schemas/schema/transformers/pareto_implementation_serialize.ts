@@ -61,7 +61,6 @@ export const Schema = (
                     "marshall": sh_i.import_.sibling("marshall", _p.list.nested_literal_old([
                     ])),
                 }),
-                "r ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["serialize"]))
             }),
             {
                 'separator': "",
@@ -76,10 +75,10 @@ export const Schema = (
             false,
             sh.e.select(
                 sh.s.call(
-                    sh.s.from_variable_import("serialize", "Document", []),
+                    sh.call.external("serialize", "Document"),
                     sh.e.select(
                         sh.s.call(
-                            sh.s.from_variable_import("marshall", id, []),
+                            sh.call.external("marshall", id),
                             sh.e.select(sh.s.from_context([])),
                             null,
                             sh.lookups.not_set(),

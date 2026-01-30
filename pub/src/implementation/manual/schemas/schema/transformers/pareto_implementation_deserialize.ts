@@ -73,10 +73,10 @@ export const Schema = (
             false,
             true,
             sh.e.select(sh.s.call(
-                sh.s.from_variable_import("unmarshall", id, []),
+                sh.call.external("unmarshall", id),
                 sh.e.select(
                     sh.s.call(
-                        sh.s.from_variable_import("deserialize", "Document", []),
+                        sh.call.external("deserialize", "Document"),
                         sh.e.select(sh.s.from_context([])),
                         sh.e.state.literal("tbd", sh.e.nothing()),
                         sh.lookups.not_set(),

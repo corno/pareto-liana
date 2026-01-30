@@ -267,18 +267,6 @@ export const $: g_.Types = types(
                     "tester": prop(t.component_cyclic("Expression")),
                     "normal flow": prop(t.component_cyclic("Expression")),
                 })),
-                "block": tstate(t.group({
-                    "variables": prop(t.dictionary(t.group({
-                        "type": prop(t.optional(t.component("Temp Type Node Reference"))),
-                        "expression": prop(t.component_cyclic("Expression")),
-                    }))),
-                    "temp ordered variables": prop(t.list(t.group({ //FIXME: remove this as soon as the dependencies can be determined in the variables dictionary
-                        "name": prop(t.text_global("Identifier")),
-                        "type": prop(t.optional(t.component("Temp Type Node Reference"))),
-                        "expression": prop(t.component_cyclic("Expression")),
-                    }))),
-                    "expression": prop(t.component_cyclic("Expression")),
-                })),
                 "change context": tstate(t.group({
                     "new context": prop(t.component("Selection")),
                     "expression": prop(t.component_cyclic("Expression")),
@@ -289,11 +277,6 @@ export const $: g_.Types = types(
                     "handler": prop(t.component_cyclic("Expression")),
                 })),
                 "unreachable": tstate(t.nothing()),
-                // "deprecated function": tstate(t.group({
-                //     "expression": prop(t.component_cyclic("Expression")),
-                //     "temp has parameters": prop(t.boolean()),
-                //     "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
-                // })),
             })),
         })),
 
@@ -302,7 +285,13 @@ export const $: g_.Types = types(
             "regular": tstate(t.group({
                 "start": prop(t.state({
                     "call": tstate(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
+                        "source": prop(t.state({
+                            "local": tstate(t.text_global("TBD")),
+                            "imported": tstate(t.group({
+                                "import": prop(t.text_global("TBD")),
+                                "variable": prop(t.text_global("TBD")),
+                            }))
+                        })),
                         "context": prop(t.component_cyclic("Expression")),
                         "abort": prop(t.optional(t.component_cyclic("Expression"))),
                         "lookups": prop(t.optional(t.state({

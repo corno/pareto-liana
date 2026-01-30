@@ -119,7 +119,7 @@ export const Type_Node = (
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
                     sh.s.call(
-                        sh.s.from_variable_import("serialize boolean", "serialize", []),
+                        sh.call.external("serialize boolean", "serialize"),
                         sh.e.select(sh.s.from_context([])),
                         null,
                         sh.lookups.not_set(),
@@ -132,9 +132,9 @@ export const Type_Node = (
             sh.s.call(
                 _p.decide.state($, ($) => {
                     switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`external ${$.import['l id']}`, $.type['l id'], []))
-                        case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                        case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.type['l id']))
+                        case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
+                        case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
                         default: return _p.au($[0])
                     }
                 }),
@@ -223,7 +223,7 @@ export const Type_Node = (
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
                     sh.s.call(
-                        sh.s.from_variable_import("serialize number", "serialize", []),
+                        sh.call.external("serialize number", "serialize"),
                         sh.e.select(sh.s.from_context([])),
                         null,
                         sh.lookups.not_set(),

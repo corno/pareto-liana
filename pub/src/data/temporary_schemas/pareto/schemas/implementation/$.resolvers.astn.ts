@@ -257,18 +257,6 @@ export const $: g_.Resolvers = resolvers(
                     "tester": r.component("Expression", {}, {}),
                     "normal flow": r.component("Expression", {}, {}),
                 })),
-                "block": state(r.group({
-                    "variables": r.dictionary(r.group({
-                        "type": r.optional(r.component("Temp Type Node Reference", {}, {})),
-                        "expression": r.component("Expression", {}, {}),
-                    })),
-                    "temp ordered variables": r.list(r.group({
-                        "name": r.text(),
-                        "type": r.optional(r.component("Temp Type Node Reference", {}, {})),
-                        "expression": r.component("Expression", {}, {}),
-                    })),
-                    "expression": r.component("Expression", {}, {}),
-                })),
                 "change context": state(r.group({
                     "new context": r.component("Selection", {}, {}),
                     "expression": r.component("Expression", {}, {}),
@@ -279,11 +267,6 @@ export const $: g_.Resolvers = resolvers(
                     "handler": r.component("Expression", {}, {}),
                 })),
                 "unreachable": state(r.nothing()),
-                // "deprecated function": state(r.group({
-                //     "expression": r.component("Expression", {}, {}),
-                //     "temp has parameters": r.boolean(),
-                //     "temp resulting node": r.optional(r.component("Temp Type Node Reference", {}, {})),
-                // })),
             })),
         })),
 
@@ -292,7 +275,13 @@ export const $: g_.Resolvers = resolvers(
             "regular": state(r.group({
                 "start": r.state({
                     "call": state(r.group({
-                        "source": r.component("Selection", {}, {}),
+                        "source": r.state({
+                            "local": state(r.text()),
+                            "imported": state(r.group({
+                                "import": r.text(),
+                                "variable": r.text(),
+                            })),
+                        }),
                         "context": r.component("Expression", {}, {}),
                         "abort": r.optional(r.component("Expression", {}, {})),
                         "lookups": r.optional(r.state({

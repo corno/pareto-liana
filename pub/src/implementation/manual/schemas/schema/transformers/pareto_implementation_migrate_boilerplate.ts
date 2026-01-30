@@ -99,9 +99,9 @@ export const Type_Node = (
                 sh.s.call(
                     _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.s.from_variable_import(`${$.import['l id']}`, $.type['l id'], []))
-                            case 'internal': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
-                            case 'internal cyclic': return _p.ss($, ($) => sh.s.from_variable($['l id'], []))
+                            case 'external': return _p.ss($, ($) => sh.call.external($.import['l id'], $.type['l id']))
+                            case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
+                            case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
                             default: return _p.au($[0])
                         }
                     }),
