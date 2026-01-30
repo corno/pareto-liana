@@ -2,10 +2,6 @@
 import * as _p from "pareto-core/dist/refiner"
 
 import {
-    _p_unreachable_code_path,
-} from "pareto-core/dist/unreachable_code_path"
-
-import {
     _p_cc,
 } from "pareto-core/dist/change_context"
 
@@ -710,9 +706,7 @@ export const Type_Node: t_signatures.Type_Node = ($, abort, $l, $p) => _p.decide
                                             ),
                                         },
                                         {
-                                            'imports': _pdev.implement_me(
-                                                "optional"
-                                            ),
+                                            'imports': $p['imports'],
                                         }
                                     )
                                 )
@@ -1102,8 +1096,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                         ),
                                     },
                                     {
-                                        'imports': _pdev.implement_me(
-                                            "optional"
+                                        'imports': _p.optional.set(
+                                            $p['imports']
                                         ),
                                     }
                                 )
@@ -1152,8 +1146,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                         ),
                                     },
                                     {
-                                        'imports': _pdev.implement_me(
-                                            "optional"
+                                        'imports': _p.optional.set(
+                                            $p['imports']
                                         ),
                                     }
                                 )
@@ -1953,20 +1947,15 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                             ),
                         },
                         {
-                            'option constraints': _pdev.implement_me(
-                                "optional"
+                            'option constraints': _p.optional.not_set(
                             ),
-                            'list cursor': _pdev.implement_me(
-                                "optional"
+                            'list cursor': _p.optional.not_set(
                             ),
-                            'linked entry': _pdev.implement_me(
-                                "optional"
+                            'linked entry': _p.optional.not_set(
                             ),
-                            'current ordered dictionary': _pdev.implement_me(
-                                "optional"
+                            'current ordered dictionary': _p.optional.not_set(
                             ),
-                            'current dictionary': _pdev.implement_me(
-                                "optional"
+                            'current dictionary': _p.optional.not_set(
                             ),
                             'signature': _pdev.implement_me(
                                 "required"
@@ -1975,8 +1964,8 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                                 "required"
                             ),
                             'signatures': $p['signatures'],
-                            'imports': _pdev.implement_me(
-                                "optional"
+                            'imports': _p.optional.set(
+                                $p['imports']
                             ),
                             'types': $p['types'],
                         }
@@ -2646,16 +2635,16 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     $l,
                                     {
                                         'linked entry': _pdev.implement_me(
-                                            "optional"
+                                            'OPTIONAL VALUE2'
                                         ),
                                         'definition': _pdev.implement_me(
                                             "required"
                                         ),
-                                        'current dictionary': _pdev.implement_me(
-                                            "optional"
+                                        'current dictionary': _p.optional.set(
+                                            prop_definition
                                         ),
-                                        'current ordered dictionary': _pdev.implement_me(
-                                            "optional"
+                                        'current ordered dictionary': _p.optional.set(
+                                            prop_definition
                                         ),
                                         'types': $p['types'],
                                         'imports': $p['imports'],
@@ -2749,8 +2738,10 @@ export const Node_Resolver: t_signatures.Node_Resolver = ($, abort, $l, $p) => _
                                     ),
                                     $l,
                                     {
-                                        'list cursor': _pdev.implement_me(
-                                            "optional"
+                                        'list cursor': _p.optional.set(
+                                            _pdev.implement_me(
+                                                'OPTIONAL VALUE'
+                                            )
                                         ),
                                         'definition': _pdev.implement_me(
                                             "required"
@@ -3223,11 +3214,11 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                 ),
                 null,
                 {
-                    'globals': _pdev.implement_me(
-                        "optional"
+                    'globals': _p.optional.set(
+                        prop_globals
                     ),
-                    'imports': _pdev.implement_me(
-                        "optional"
+                    'imports': _p.optional.set(
+                        prop_imports
                     ),
                 }
             )

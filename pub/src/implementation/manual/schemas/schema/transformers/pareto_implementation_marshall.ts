@@ -120,7 +120,7 @@ export const Type_Node = (
                 "value": sh.e.select(
                     sh.s.call(
                         sh.call.external("serialize boolean", "serialize"),
-                        sh.e.select(sh.s.from_context([])),
+                        sh.e.select(sh.s.context([])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -138,7 +138,7 @@ export const Type_Node = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select(sh.s.from_context([])),
+                sh.e.select(sh.s.context([])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
@@ -148,7 +148,7 @@ export const Type_Node = (
         case 'dictionary': return _p.ss($, ($) => sh.e.state.literal(
             "dictionary",
             sh.e.dictionary.map(
-                sh.s.from_context([]),
+                sh.s.context([]),
                 Type_Node(
                     $.node,
                     {
@@ -168,7 +168,7 @@ export const Type_Node = (
             sh.e.state.literal(
                 "verbose",
                 sh.e.dictionary.literal($.__d_map(($, id) => sh.e.change_context(
-                    sh.s.from_context([id]),
+                    sh.s.context([id]),
                     Type_Node(
                         $.node,
                         {
@@ -202,13 +202,13 @@ export const Type_Node = (
             return sh.e.state.literal(
                 "list",
                 sh.e.list.map(
-                    sh.s.from_context($.result.__decide(
+                    sh.s.context($.result.__decide(
                         ($) => ["l list"],
                         () => []
                     )),
                     $.result.__decide(
                         ($) => sh.e.change_context(
-                            sh.s.from_context(["l item"]),
+                            sh.s.context(["l item"]),
                             x,
                         ),
                         () => x
@@ -224,7 +224,7 @@ export const Type_Node = (
                 "value": sh.e.select(
                     sh.s.call(
                         sh.call.external("serialize number", "serialize"),
-                        sh.e.select(sh.s.from_context([])),
+                        sh.e.select(sh.s.context([])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -236,7 +236,7 @@ export const Type_Node = (
         case 'optional': return _p.ss($, ($) => sh.e.state.literal(
             "optional",
             sh.e.decide.optional(
-                sh.s.from_context([]),
+                sh.s.context([]),
                 sh.e.state.literal(
                     "set",
                     Type_Node(
@@ -267,7 +267,7 @@ export const Type_Node = (
                 case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
                 case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group.literal({
                     "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
-                    "value": sh.e.text.copy(sh.s.from_context(["l id"])),
+                    "value": sh.e.text.copy(sh.s.context(["l id"])),
                 })))
                 default: return _p.au($[0])
             }
@@ -275,7 +275,7 @@ export const Type_Node = (
         case 'state': return _p.ss($, ($) => sh.e.state.literal(
             "state",
             sh.e.decide.state(
-                sh.s.from_context([]),
+                sh.s.context([]),
                 $.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Type_Node(
@@ -302,7 +302,7 @@ export const Type_Node = (
             "text",
             sh.e.group.literal({
                 "delimiter": sh.e.state.literal("quote", sh.e.nothing()),
-                "value": sh.e.text.copy(sh.s.from_context([])),
+                "value": sh.e.text.copy(sh.s.context([])),
             })
         ))
         default: return _p.au($[0])

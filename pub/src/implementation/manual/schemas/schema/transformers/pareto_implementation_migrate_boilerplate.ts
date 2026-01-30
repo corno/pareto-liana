@@ -94,7 +94,7 @@ export const Type_Node = (
 ): d_out.Expression => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
+            case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
             case 'component': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
                     _p.decide.state($, ($) => {
@@ -105,7 +105,7 @@ export const Type_Node = (
                             default: return _p.au($[0])
                         }
                     }),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     null,
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
@@ -118,7 +118,7 @@ export const Type_Node = (
                     ? sh.e.group.literal({
                         "l location": location,
                         "l dictionary": sh.e.dictionary.map(
-                            sh.s.from_context([]),
+                            sh.s.context([]),
                             sh.e.group.literal({
                                 "l entry": Type_Node(
                                     $.node,
@@ -140,7 +140,7 @@ export const Type_Node = (
                         )
                     })
                     : sh.e.dictionary.map(
-                        sh.s.from_context([]),
+                        sh.s.context([]),
                         Type_Node(
                             $.node,
                             {
@@ -157,7 +157,7 @@ export const Type_Node = (
                     )
             })
             case 'group': return _p.ss($, ($) => sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
-                sh.s.from_context([id]),
+                sh.s.context([id]),
                 Type_Node(
                     $.node,
                     {
@@ -178,7 +178,7 @@ export const Type_Node = (
                     ? sh.e.group.literal({
                         "l location": location,
                         "l list": sh.e.list.map(
-                            sh.s.from_context(
+                            sh.s.context(
                                 $.result.__decide(
                                     ($) => ["l list"],
                                     () => [],
@@ -203,7 +203,7 @@ export const Type_Node = (
                                     )
                                     return $.result.__decide(
                                         ($) => sh.e.change_context(
-                                            sh.s.from_context(["l item"]),
+                                            sh.s.context(["l item"]),
                                             tn
                                         ),
                                         () => tn
@@ -214,7 +214,7 @@ export const Type_Node = (
                         )
                     })
                     : sh.e.list.map(
-                        sh.s.from_context([]),
+                        sh.s.context([]),
                         Type_Node(
                             $.node,
                             {
@@ -232,9 +232,9 @@ export const Type_Node = (
 
             })
             case 'nothing': return _p.ss($, ($) => sh.e.nothing())
-            case 'number': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
+            case 'number': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
             case 'optional': return _p.ss($, ($) => sh.e.optional.map(
-                sh.s.from_context([]),
+                sh.s.context([]),
                 Type_Node(
                     $,
                     {
@@ -253,7 +253,7 @@ export const Type_Node = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.e.nothing())
                     case 'selected': return _p.ss($, ($) => {
-                        const tn = sh.e.select(sh.s.from_context(["l id"]))
+                        const tn = sh.e.select(sh.s.context(["l id"]))
 
                         return $p.constrained
                             ? sh.e.group.literal({
@@ -267,7 +267,7 @@ export const Type_Node = (
             }))
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.e.decide.state(
-                    sh.s.from_context([]),
+                    sh.s.context([]),
                     $.__d_map(($, id) => sh.e.state.literal(id, Type_Node(
                         $.node,
                         {
@@ -307,7 +307,7 @@ export const Type_Node = (
                     })
                     : tn
             })
-            case 'text': return _p.ss($, ($) => sh.e.select(sh.s.from_context([])))
+            case 'text': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
             default: return _p.au($[0])
         }
     })

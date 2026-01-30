@@ -18,7 +18,7 @@ import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary
 const location = sh.e.select(
     sh.s.call(
         sh.call.external("parse tree to location", "Value"),
-        sh.e.select(sh.s.from_context([])),
+        sh.e.select(sh.s.context([])),
         null,
         sh.lookups.not_set(),
         sh.arguments_.not_set(),
@@ -177,7 +177,7 @@ export const Type_Node = (
                     sh.e.select(
                         sh.s.call(
                             sh.call.external("unmarshalled from parse tree", "Text"),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             sh.e.state.literal("expected a text", sh.e.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
@@ -200,8 +200,8 @@ export const Type_Node = (
                             default: return _p.au($[0])
                         }
                     }),
-                    sh.e.select(sh.s.from_context([])),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
@@ -214,7 +214,7 @@ export const Type_Node = (
                         "l dictionary": sh.e.dictionary.map(
                             sh.s.call(
                                 sh.call.external("unmarshalled from parse tree", "Dictionary"),
-                                sh.e.select(sh.s.from_context([])),
+                                sh.e.select(sh.s.context([])),
                                 sh.e.state.literal("expected a dictionary", sh.e.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
@@ -244,7 +244,7 @@ export const Type_Node = (
                     : sh.e.dictionary.map(
                         sh.s.call(
                             sh.call.external("unmarshalled from parse tree", "Dictionary"),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             sh.e.state.literal("expected a dictionary", sh.e.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
@@ -268,15 +268,15 @@ export const Type_Node = (
             case 'group': return _p.ss($, ($) => sh.e.change_context(
                 sh.s.call(
                     sh.call.external("unmarshalled from parse tree", "Group"),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.e.state.literal("expected a group", sh.e.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 ),
                 sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
-                    sh.s.from_entry(
-                        sh.s.from_context([]),
+                    sh.s.entry(
+                        sh.s.context([]),
                         sh.e.text.literal(id, 'identifier'),
                         sh.e.state.literal("no such entry", sh.e.text.literal(id, 'freeform')),
                         []
@@ -303,7 +303,7 @@ export const Type_Node = (
                         "l list": sh.e.list.map(
                             sh.s.call(
                                 sh.call.external("unmarshalled from parse tree", "List"),
-                                sh.e.select(sh.s.from_context([])),
+                                sh.e.select(sh.s.context([])),
                                 sh.e.state.literal("expected a list", sh.e.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
@@ -332,7 +332,7 @@ export const Type_Node = (
                     : sh.e.list.map(
                         sh.s.call(
                             sh.call.external("unmarshalled from parse tree", "List"),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             sh.e.state.literal("expected a list", sh.e.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
@@ -356,7 +356,7 @@ export const Type_Node = (
             case 'nothing': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
                     sh.call.external("unmarshalled from parse tree", "Nothing"),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.e.state.literal("expected a nothing", sh.e.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
@@ -369,7 +369,7 @@ export const Type_Node = (
                     sh.e.select(
                         sh.s.call(
                             sh.call.external("unmarshalled from parse tree", "Text"),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             sh.e.state.literal("expected a text", sh.e.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
@@ -385,7 +385,7 @@ export const Type_Node = (
             case 'optional': return _p.ss($, ($) => sh.e.optional.map(
                 sh.s.call(
                     sh.call.external("unmarshalled from parse tree", "Optional"),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.e.state.literal("expected an optional", sh.e.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
@@ -410,7 +410,7 @@ export const Type_Node = (
                     case 'derived': return _p.ss($, ($) => sh.e.select(
                         sh.s.call(
                             sh.call.external("unmarshalled from parse tree", "Nothing"),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             sh.e.state.literal("expected a nothing", sh.e.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
@@ -422,7 +422,7 @@ export const Type_Node = (
                         "l id": sh.e.select(
                             sh.s.call(
                                 sh.call.external("unmarshalled from parse tree", "Text"),
-                                sh.e.select(sh.s.from_context([])),
+                                sh.e.select(sh.s.context([])),
                                 sh.e.state.literal("expected a text", sh.e.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
@@ -436,17 +436,17 @@ export const Type_Node = (
             case 'state': return _p.ss($, ($) => sh.e.change_context(
                 sh.s.call(
                     sh.call.external("unmarshalled from parse tree", "State"),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.e.state.literal("expected a state", sh.e.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 ),
                 sh.e.decide.text(
-                    sh.s.from_context(["option", "value"]),
+                    sh.s.context(["option", "value"]),
                     $.__d_map(
                         ($, id) => sh.e.change_context(
-                            sh.s.from_context(["value"]),
+                            sh.s.context(["value"]),
                             $p.constrained
                                 ? sh.e.group.literal({
                                     "l location": location,
@@ -486,7 +486,7 @@ export const Type_Node = (
                                 )
                         ),
                     ),
-                    sh.e.abort(sh.e.state.literal("unknown option", sh.e.select(sh.s.from_context(["option", "value"])))),
+                    sh.e.abort(sh.e.state.literal("unknown option", sh.e.select(sh.s.context(["option", "value"])))),
                     sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
@@ -497,7 +497,7 @@ export const Type_Node = (
             case 'text': return _p.ss($, ($) => sh.e.select(
                 sh.s.call(
                     sh.call.external("unmarshalled from parse tree", "Text"),
-                    sh.e.select(sh.s.from_context([])),
+                    sh.e.select(sh.s.context([])),
                     sh.e.state.literal("expected a text", sh.e.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),

@@ -300,13 +300,9 @@ export const $: g_.Resolvers = resolvers(
                         "abort handler": r.component("Expression", {}, {}),
                     })),
                     "parameter": state(r.text()),
-                    "variable": state(r.state({
-                        "local": state(r.text()),
-                        "imported": state(r.group({
-                            "import": r.text(),
-                            "variable": r.text(),
-                        })),
-                    })),
+                    "parent sibling": state(r.text()),
+                    "sibling": state(r.text()),
+                    "state": state(r.nothing()),
                 }),
                 "tail": r.list(r.text()),
             }))

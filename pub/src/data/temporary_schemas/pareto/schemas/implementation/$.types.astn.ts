@@ -309,14 +309,10 @@ export const $: g_.Types = types(
                         "id": prop(t.component_cyclic("Expression")),
                         "abort handler": prop(t.component_cyclic("Expression")),
                     })),
-                    "variable": tstate(t.state({
-                        "local": tstate(t.text_global("TBD")),
-                        "imported": tstate(t.group({
-                            "import": prop(t.text_global("TBD")),
-                            "variable": prop(t.text_global("TBD")),
-                        }))
-                    })),
                     "parameter": tstate(t.text_global("TBD")),
+                    "parent sibling": tstate(t.text_global("TBD")),
+                    "sibling": tstate(t.text_global("TBD")),
+                    "state": tstate(t.nothing()),
                 })),
                 "tail": prop(t.list(t.text_global("TBD"))),
             }))

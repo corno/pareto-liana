@@ -79,7 +79,7 @@ export const Schema = (
                     sh.e.select(
                         sh.s.call(
                             sh.call.external("marshall", id),
-                            sh.e.select(sh.s.from_context([])),
+                            sh.e.select(sh.s.context([])),
                             null,
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),

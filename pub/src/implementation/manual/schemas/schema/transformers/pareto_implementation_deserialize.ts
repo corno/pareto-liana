@@ -77,12 +77,12 @@ export const Schema = (
                 sh.e.select(
                     sh.s.call(
                         sh.call.external("deserialize", "Document"),
-                        sh.e.select(sh.s.from_context([])),
+                        sh.e.select(sh.s.context([])),
                         sh.e.state.literal("tbd", sh.e.nothing()),
                         sh.lookups.not_set(),
                         sh.arguments_.initialize({
-                            "document resource identifier": sh.e.text.copy(sh.s.from_parameter("document resource identifier", [])),
-                            "tab size": sh.e.number.integer_copy(sh.s.from_parameter("tab size", []))
+                            "document resource identifier": sh.e.text.copy(sh.s.parameter("document resource identifier", [])),
+                            "tab size": sh.e.number.integer_copy(sh.s.parameter("tab size", []))
                         }),
                         ["content"]
                     )
