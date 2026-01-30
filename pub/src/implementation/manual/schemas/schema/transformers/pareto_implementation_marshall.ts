@@ -122,8 +122,8 @@ export const Type_Node = (
                         sh.s.from_variable_import("serialize boolean", "serialize", []),
                         sh.e.select(sh.s.from_context([])),
                         null,
-                        null,
-        null,
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
                         [],
                     )),
             })
@@ -140,8 +140,8 @@ export const Type_Node = (
                 }),
                 sh.e.select(sh.s.from_context([])),
                 null,
-                null,
-        null,
+                sh.lookups.not_set(),
+                sh.arguments_.not_set(),
                 [],
             )
         ))
@@ -226,8 +226,8 @@ export const Type_Node = (
                         sh.s.from_variable_import("serialize number", "serialize", []),
                         sh.e.select(sh.s.from_context([])),
                         null,
-                        null,
-        null,
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
                         [],
                     )
                 )

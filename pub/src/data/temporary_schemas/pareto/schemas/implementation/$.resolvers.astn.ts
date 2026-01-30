@@ -294,8 +294,14 @@ export const $: g_.Resolvers = resolvers(
                         "source": r.component("Selection", {}, {}),
                         "context": r.component("Expression", {}, {}),
                         "abort": r.optional(r.component("Expression", {}, {})),
-                        "lookups": r.optional(r.dictionary(r.component("Lookup Selection", {}, {}))),
-                        "arguments": r.optional(r.dictionary(r.component("Expression", {}, {}))),
+                        "lookups": r.optional(r.state({
+                            "initialize": state(r.dictionary(r.component("Lookup Selection", {}, {}))),
+                            "pass through": state(r.nothing()),
+                        })),
+                        "arguments": r.optional(r.state({
+                            "initialize": state(r.dictionary(r.component("Expression", {}, {}))),
+                            "pass through": state(r.nothing()),
+                        })),
                     })),
                     "context": state(r.nothing()),
                     "entry": state(r.group({

@@ -26,7 +26,7 @@ export const Schema = (
         false,
         false,
         false,
-    false,
+        false,
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 5,
@@ -82,14 +82,14 @@ export const Schema = (
                             sh.s.from_variable_import("marshall", id, []),
                             sh.e.select(sh.s.from_context([])),
                             null,
-                            null,
-                            null,
+                            sh.lookups.not_set(),
+                            sh.arguments_.not_set(),
                             [],
                         )
                     ),
                     null,
-                    null,
-                    null,
+                    sh.lookups.not_set(),
+                    sh.arguments_.not_set(),
                     [],
                 )
             )

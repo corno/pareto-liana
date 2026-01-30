@@ -304,8 +304,14 @@ export const $: g_.Types = types(
                         "source": prop(t.component_cyclic("Selection")),
                         "context": prop(t.component_cyclic("Expression")),
                         "abort": prop(t.optional(t.component_cyclic("Expression"))),
-                        "lookups": prop(t.optional(t.dictionary(t.component_cyclic("Lookup Selection")))),
-                        "arguments": prop(t.optional(t.dictionary(t.component_cyclic("Expression")))),
+                        "lookups": prop(t.optional(t.state({
+                            "initialize": tstate(t.dictionary(t.component_cyclic("Lookup Selection"))),
+                            "pass through": tstate(t.nothing()),
+                        }))),
+                        "arguments": prop(t.optional(t.state({
+                            "initialize": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                            "pass through": tstate(t.nothing()),
+                        }))),
                     })),
                     "context": tstate(t.nothing()),
                     "entry": tstate(t.group({

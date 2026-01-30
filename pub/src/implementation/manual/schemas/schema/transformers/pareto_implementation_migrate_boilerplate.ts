@@ -107,8 +107,8 @@ export const Type_Node = (
                     }),
                     sh.e.select(sh.s.from_context([])),
                     null,
-        null,
-                    null,
+                    sh.lookups.not_set(),
+                    sh.arguments_.not_set(),
                     [],
                 )
             ))

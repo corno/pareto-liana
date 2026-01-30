@@ -29,8 +29,10 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
 import * as r_liana_module from "../../temp/resolvers/module"
-import * as t_liana_module_to_fountain_pen_block__implementation from "../schemas/module/transformers/temp_typescript_implementation"
-import * as t_liana_module_to_fountain_pen_block__interface from "../schemas/module/transformers/temp_typescript_interface"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/implementation/transformers/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/interface/transformers/serialized_typescript"
+import * as t_liana_to_pareto_implementation from "../schemas/module/transformers/pareto_implementation"
+import * as t_liana_to_pareto_interface from "../schemas/module/transformers/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as ds_context_path from "pareto-resources/dist/implementation/manual/schemas/context_path/deserializers"
 import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
@@ -143,8 +145,10 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': interface_module_path,
-                                            'directory': t_liana_module_to_fountain_pen_block__interface.Module(
-                                                $,
+                                            'directory': t_pareto_interface_to_serialized_typescript.Module_Set(
+                                                t_liana_to_pareto_interface.Module(
+                                                    $,
+                                                )
                                             ),
                                             'indentation': "    ",
                                             'newline': "\n",
@@ -157,8 +161,10 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': implementation_module_path,
-                                            'directory': t_liana_module_to_fountain_pen_block__implementation.Module(
-                                                $,
+                                            'directory': t_pareto_implementation_to_serialized_typescript.Module_Set(
+                                                t_liana_to_pareto_implementation.Module(
+                                                    $,
+                                                )
                                             ),
                                             'indentation': "    ",
                                             'newline': "\n",

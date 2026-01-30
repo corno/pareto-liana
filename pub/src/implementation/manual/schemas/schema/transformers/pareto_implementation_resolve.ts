@@ -250,8 +250,8 @@ export const Lookup_Selection = (
                 'tail': () => _p.list.literal([]),
             })),
             null,
-            null,
-            null,
+                            sh.lookups.not_set(),
+                            sh.arguments_.not_set(),
             []
         ))
         case 'not circular dependent siblings': return _p.ss($, ($) => sh.s.from_parameter(
@@ -315,7 +315,7 @@ export const Node_Resolver = (
                 sh.e.select(sh.s.from_context([])),
                 $.arguments.__decide(
                     ($) => $.lookups.__decide(
-                        ($) => $.__d_map(
+                        ($) => sh.lookups.initialize( $.__d_map(
                             ($) => _p.decide.state($, ($) => {
                                 switch ($[0]) {
                                     case 'empty stack': return _p.ss($, ($) => sh.ls.implement_me("empty stack"))
@@ -325,14 +325,14 @@ export const Node_Resolver = (
                                     default: return _p.au($[0])
                                 }
                             }),
-                        ),
-                        () => ({}) //copy the current parameters (I think)
+                        )),
+                        () => sh.lookups.pass_through()
                     ),
-                    () => ({})
+                    () => sh.lookups.not_set()
                 ),
                 $.arguments.__decide(
                     ($) => $.values.__decide(
-                        ($) => $.__d_map(
+                        ($) => sh.arguments_.initialize($.__d_map(
                             ($) => _p.decide.state($, ($) => {
                                 switch ($[0]) {
                                     case 'optional': return _p.ss($, ($) => sh.e.implement_me("optional"))
@@ -341,10 +341,10 @@ export const Node_Resolver = (
                                     default: return _p.au($[0])
                                 }
                             }),
-                        ),
-                        () => ({}) //copy the current parameters (I think)
+                        )),
+                        () => sh.arguments_.pass_through()
                     ),
-                    () => ({})
+                    () => sh.arguments_.not_set()
                 ),
                 [],
             )
