@@ -9,7 +9,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Resolvers = resolvers(
     {
-        "Type": resolver(r.group({
+        "Module": resolver(r.group({
             "node": r.component("Value", {
                 "globals": av.parameter("globals"),
                 "imports": av.parameter("imports"),
@@ -19,7 +19,7 @@ export const $: g_.Resolvers = resolvers(
             })
         })),
 
-        "Types": resolver(r.dictionary(r.component("Type", {
+        "Modules": resolver(r.dictionary(r.component("Module", {
             "globals": av.parameter("globals"),
             "imports": av.parameter("imports"),
         }, {
@@ -128,7 +128,7 @@ export const $: g_.Resolvers = resolvers(
             }),
             "globals": r.component("Globals", {
             }, {}),
-            "types": r.component("Types", {
+            "types": r.component("Modules", {
                 "globals": av.optional(ovi.set(gvs.sibling("globals", []))),
                 "imports": av.optional(ovi.set(gvs.sibling("imports", [vst.component()]))),
             }, {

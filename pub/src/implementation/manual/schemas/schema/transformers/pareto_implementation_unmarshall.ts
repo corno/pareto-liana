@@ -143,14 +143,14 @@ export const Schema: _pi.Transformer_With_Parameters<
             },
             () => _p_unreachable_code_path(),
         ),
-        $.types.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
             true,
             false,
             false,
             Value(
-                $.node,
+                $.value,
                 {
                     'temp type': id,
                     'temp subselection': _p.list.literal([]),
@@ -225,7 +225,7 @@ export const Value = (
                             sh.e.group.literal({
                                 "l location": location,
                                 "l entry": Value(
-                                    $.node,
+                                    $.value,
                                     {
                                         'temp type': $p['temp type'],
                                         'temp subselection': _p.list.nested_literal_old([
@@ -253,7 +253,7 @@ export const Value = (
                             [],
                         ),
                         Value(
-                            $.node,
+                            $.value,
                             {
                                 'temp type': $p['temp type'],
                                 'temp subselection': _p.list.nested_literal_old([
@@ -284,7 +284,7 @@ export const Value = (
                         []
                     ),
                     Value(
-                        $.node,
+                        $.value,
                         {
                             'temp type': $p['temp type'],
                             'temp subselection': _p.list.nested_literal_old([
@@ -314,7 +314,7 @@ export const Value = (
                             sh.e.group.literal({
                                 "l location": location,
                                 "l item": Value(
-                                    $.node,
+                                    $.value,
                                     {
                                         'temp type': $p['temp type'],
                                         'temp subselection': _p.list.nested_literal_old([
@@ -341,7 +341,7 @@ export const Value = (
                             [],
                         ),
                         Value(
-                            $.node,
+                            $.value,
                             {
                                 'temp type': $p['temp type'],
                                 'temp subselection': _p.list.nested_literal_old([
@@ -455,7 +455,7 @@ export const Value = (
                                     "l state": sh.e.state.literal(
                                         id,
                                         Value(
-                                            $.node,
+                                            $.value,
                                             {
                                                 'temp type': $p['temp type'],
                                                 'temp subselection': _p.list.nested_literal_old([
@@ -473,7 +473,7 @@ export const Value = (
                                 : sh.e.state.literal(
                                     id,
                                     Value(
-                                        $.node,
+                                        $.value,
                                         {
                                             'temp type': $p['temp type'],
                                             'temp subselection': _p.list.nested_literal_old([

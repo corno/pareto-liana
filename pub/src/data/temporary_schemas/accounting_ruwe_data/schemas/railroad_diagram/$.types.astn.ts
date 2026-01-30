@@ -4,7 +4,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 import {
     n,
-    types,
+    modules,
     text,
     t,
     tr,
@@ -13,7 +13,7 @@ import {
     tstate,
 } from "../../../../../shorthands/schema"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
 
         "Grammar": type(t.group({

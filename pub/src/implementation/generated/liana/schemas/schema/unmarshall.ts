@@ -411,7 +411,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_cc(
     })
 )
 
-export const Type: t_signatures.Type = ($, abort) => _p_cc(
+export const Module: t_signatures.Module = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -419,11 +419,11 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'node': _p_cc(
+        'value': _p_cc(
             $.__get_entry(
-                'node',
+                'value',
                 ($) => abort(
-                    ['no such entry', "node"]
+                    ['no such entry', "value"]
                 )
             ),
             ($) => Value(
@@ -436,7 +436,7 @@ export const Type: t_signatures.Type = ($, abort) => _p_cc(
     })
 )
 
-export const Types: t_signatures.Types = ($, abort) => ({
+export const Modules: t_signatures.Modules = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -451,7 +451,7 @@ export const Types: t_signatures.Types = ($, abort) => ({
             'l location': v_parse_tree_to_location.Value(
                 $
             )['start']['relative'],
-            'l entry': Type(
+            'l entry': Module(
                 $,
                 ($) => abort(
                     $
@@ -484,11 +484,11 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_cc(
                     )
                 ),
                 ($) => ({
-                    'types': _p_cc(
+                    'signatures': _p_cc(
                         $.__get_entry(
-                            'types',
+                            'signatures',
                             ($) => abort(
-                                ['no such entry', "types"]
+                                ['no such entry', "signatures"]
                             )
                         ),
                         ($) => Signatures(
@@ -554,14 +554,14 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_cc(
                 )
             )
         ),
-        'types': _p_cc(
+        'modules': _p_cc(
             $.__get_entry(
-                'types',
+                'modules',
                 ($) => abort(
-                    ['no such entry', "types"]
+                    ['no such entry', "modules"]
                 )
             ),
-            ($) => Types(
+            ($) => Modules(
                 $,
                 ($) => abort(
                     $
@@ -894,11 +894,11 @@ export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'node': _p_cc(
+        'value': _p_cc(
             $.__get_entry(
-                'node',
+                'value',
                 ($) => abort(
-                    ['no such entry', "node"]
+                    ['no such entry', "value"]
                 )
             ),
             ($) => Value(
@@ -1038,11 +1038,11 @@ export const Group: t_signatures.Group = ($, abort) => ({
                             )
                         )
                     ),
-                    'node': _p_cc(
+                    'value': _p_cc(
                         $.__get_entry(
-                            'node',
+                            'value',
                             ($) => abort(
-                                ['no such entry', "node"]
+                                ['no such entry', "value"]
                             )
                         ),
                         ($) => Value(
@@ -1148,7 +1148,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($, abort) => _
     })
 )
 
-export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
+export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -1172,7 +1172,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($, abort) => _p_cc(
                 ),
                 ($) => _p.decide.text(
                     $['option']['value'],
-                    ($t): t_out.Type_Reference.location => {
+                    ($t): t_out.Module_Reference.location => {
                         switch ($t) {
                             case 'internal':
                                 return _p_cc(
@@ -1505,11 +1505,11 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                     )
                                 ),
                                 ($) => ({
-                                    'node': _p_cc(
+                                    'value': _p_cc(
                                         $.__get_entry(
-                                            'node',
+                                            'value',
                                             ($) => abort(
-                                                ['no such entry', "node"]
+                                                ['no such entry', "value"]
                                             )
                                         ),
                                         ($) => Value(
@@ -1533,7 +1533,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                     ['expected an optional', null]
                                                 )
                                             ),
-                                            ($) => Type_Reference(
+                                            ($) => Module_Reference(
                                                 $,
                                                 ($) => abort(
                                                     $
@@ -1870,11 +1870,11 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                         )
                                                     )
                                                 ),
-                                                'node': _p_cc(
+                                                'value': _p_cc(
                                                     $.__get_entry(
-                                                        'node',
+                                                        'value',
                                                         ($) => abort(
-                                                            ['no such entry', "node"]
+                                                            ['no such entry', "value"]
                                                         )
                                                     ),
                                                     ($) => Value(
@@ -2115,11 +2115,11 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
         )
     ),
     ($) => ({
-        'values': _p_cc(
+        'modules': _p_cc(
             $.__get_entry(
-                'values',
+                'modules',
                 ($) => abort(
-                    ['no such entry', "values"]
+                    ['no such entry', "modules"]
                 )
             ),
             ($) => ({
@@ -2145,14 +2145,14 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                 )
                             ),
                             ($) => ({
-                                'data type': _p_cc(
+                                'module': _p_cc(
                                     $.__get_entry(
-                                        'data type',
+                                        'module',
                                         ($) => abort(
-                                            ['no such entry', "data type"]
+                                            ['no such entry', "module"]
                                         )
                                     ),
-                                    ($) => Type_Reference(
+                                    ($) => Module_Reference(
                                         $,
                                         ($) => abort(
                                             $
@@ -2216,7 +2216,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                             ['no such entry', "referent"]
                                         )
                                     ),
-                                    ($) => Type_Reference(
+                                    ($) => Module_Reference(
                                         $,
                                         ($) => abort(
                                             $
@@ -2546,7 +2546,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
     })
 )
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort) => Module_Reference(
     $,
     ($) => abort(
         $
@@ -2748,11 +2748,11 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
                                                     )
                                                 ),
                                                 ($) => ({
-                                                    'values': _p_cc(
+                                                    'modules': _p_cc(
                                                         $.__get_entry(
-                                                            'values',
+                                                            'modules',
                                                             ($) => abort(
-                                                                ['no such entry', "values"]
+                                                                ['no such entry', "modules"]
                                                             )
                                                         ),
                                                         ($) => _p.optional.map(
@@ -2786,7 +2786,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
                                                                             ),
                                                                             ($) => _p.decide.text(
                                                                                 $['option']['value'],
-                                                                                ($t): t_out.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+                                                                                ($t): t_out.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
                                                                                     switch ($t) {
                                                                                         case 'optional':
                                                                                             return _p_cc(
@@ -4064,7 +4064,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                         ['no such entry', "result"]
                                                                                     )
                                                                                 ),
-                                                                                ($) => Type_Reference(
+                                                                                ($) => Module_Reference(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         $
@@ -4130,7 +4130,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                         ['no such entry', "result"]
                                                                                     )
                                                                                 ),
-                                                                                ($) => Type_Reference(
+                                                                                ($) => Module_Reference(
                                                                                     $,
                                                                                     ($) => abort(
                                                                                         $
@@ -4419,7 +4419,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort) => _p_cc
                     ['no such entry', "type location"]
                 )
             ),
-            ($) => Type_Reference(
+            ($) => Module_Reference(
                 $,
                 ($) => abort(
                     $
@@ -4451,11 +4451,11 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'type': _p_cc(
+        'module': _p_cc(
             $.__get_entry(
-                'type',
+                'module',
                 ($) => abort(
-                    ['no such entry', "type"]
+                    ['no such entry', "module"]
                 )
             ),
             ($) => v_unmarshalled_from_parse_tree.Nothing(
@@ -4879,7 +4879,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                             ['no such entry', "result"]
                                                                         )
                                                                     ),
-                                                                    ($) => Type_Reference(
+                                                                    ($) => Module_Reference(
                                                                         $,
                                                                         ($) => abort(
                                                                             $
@@ -4945,7 +4945,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                             ['no such entry', "result"]
                                                                         )
                                                                     ),
-                                                                    ($) => Type_Reference(
+                                                                    ($) => Module_Reference(
                                                                         $,
                                                                         ($) => abort(
                                                                             $

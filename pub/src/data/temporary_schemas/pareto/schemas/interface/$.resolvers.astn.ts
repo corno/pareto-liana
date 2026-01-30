@@ -50,7 +50,7 @@ export const $: g_.Resolvers = resolvers(
 
             "boolean": option(r.nothing()),
             "component": option(r.group({
-                "location": r.component("Type Reference", {}, {}),
+                "location": r.component("Module Reference", {}, {}),
             })),
             "dictionary": option(r.component("Value", {}, {})),
             "group": option(r.dictionary(r.component("Value", {}, {}))),
@@ -66,7 +66,7 @@ export const $: g_.Resolvers = resolvers(
             })),
             "optional": option(r.component("Value", {}, {})),
             "reference": option(r.group({
-                "location": r.component("Type Reference", {}, {}),
+                "location": r.component("Module Reference", {}, {}),
                 "sub selection": r.list(r.state({
                     "dictionary": option(r.nothing()),
                     "group": option(r.text()),
@@ -80,7 +80,7 @@ export const $: g_.Resolvers = resolvers(
             "text": option(r.nothing()),
         })),
 
-        "Type Reference": resolver(r.state({
+        "Module Reference": resolver(r.state({
             "import": option(r.group({
                 "import": r.text(),
                 "type": r.text(),

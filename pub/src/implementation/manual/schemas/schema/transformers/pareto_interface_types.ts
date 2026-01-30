@@ -92,8 +92,8 @@ export const Schema = (
             },
             () => _p_unreachable_code_path(),
         ),
-        $.types.__d_map(($) => sh.type.data(Value(
-            $.node,
+        $.modules.__d_map(($) => sh.type.data(Value(
+            $.value,
             {
                 'type': $p.type,
             }
@@ -101,12 +101,12 @@ export const Schema = (
     )
 }
 
-export const Type_Reference = (
-    $: d_in.Type_Reference,
-): d_out.Type_Reference => _p.decide.state($.location, ($) => {
+export const Module_Reference = (
+    $: d_in.Module_Reference,
+): d_out.Module_Reference => _p.decide.state($.location, ($) => {
     switch ($[0]) {
-        case 'internal': return _p.ss($, ($) => sh.tr.local($['l id']))
-        case 'external': return _p.ss($, ($) => sh.tr.imported(
+        case 'internal': return _p.ss($, ($) => sh.mr.local($['l id']))
+        case 'external': return _p.ss($, ($) => sh.mr.imported(
             ` imports ${$.import['l id']}`,
             $.type['l id'],
         ))
@@ -164,7 +164,7 @@ export const Value = (
                     "l dictionary": sh.t.dictionary(sh.t.group({
                         "l location": location,
                         "l entry": Value(
-                            $.node,
+                            $.value,
                             {
                                 'type': $p.type,
                             }
@@ -172,12 +172,12 @@ export const Value = (
                     }))
                 })
                 : sh.t.dictionary(Value(
-                    $.node,
+                    $.value,
                     $p
                 ))
             )
             case 'group': return _p.ss($, ($) => sh.t.group($.__d_map(($, id) => Value(
-                $.node,
+                $.value,
                 {
                     'type': $p.type,
                 }
@@ -188,7 +188,7 @@ export const Value = (
                 return _p.decide.state($p.type, ($) => {
                     switch ($[0]) {
                         case 'unconstrained': return _p.ss($, ($) => sh.t.list(Value(
-                            list.node,
+                            list.value,
                             $p
                         )))
                         case 'unresolved': return _p.ss($, ($) => sh.t.group({
@@ -196,7 +196,7 @@ export const Value = (
                             "l list": sh.t.list(sh.t.group({
                                 "l location": location,
                                 "l item": Value(
-                                    list.node,
+                                    list.value,
                                     $p
                                 )
                             }))
@@ -205,21 +205,21 @@ export const Value = (
                             ($) => sh.t.group({
                                 "l list": sh.t.list(sh.t.group({
                                     "l result": sh.t.reference(
-                                        Type_Reference($),
+                                        Module_Reference($),
                                         []
                                     ),
                                     "l item": Value(
-                                        list.node,
+                                        list.value,
                                         $p
                                     )
                                 })),
                                 "l result": sh.t.reference(
-                                    Type_Reference($),
+                                    Module_Reference($),
                                     []
                                 )
                             }),
                             () => sh.t.list(Value(
-                                list.node,
+                                list.value,
                                 $p
                             ))
                         ))
@@ -261,7 +261,7 @@ export const Value = (
                                         _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
                                             "l entry": _p.optional.set(_p_cc($, ($) => {
                                                 return sh.t.reference(
-                                                    Type_Reference(referent['type location']),
+                                                    Module_Reference(referent['type location']),
                                                     _p.list.nested_literal_old([
                                                         Value_Path(referent.path),
                                                         [
@@ -307,12 +307,12 @@ export const Value = (
                 ? sh.t.group({
                     "l location": location,
                     "l state": sh.t.state($.__d_map(($, id) => Value(
-                        $.node,
+                        $.value,
                         $p
                     )))
                 })
                 : sh.t.state($.__d_map(($, id) => Value(
-                    $.node,
+                    $.value,
                     $p
                 )))
             )
@@ -326,7 +326,7 @@ const Value_Reference = (
     $: d_in.Value_Reference,
 ): d_out.Value => {
     return sh.t.reference(
-        Type_Reference($['type location']),
+        Module_Reference($['type location']),
         Value_Path($.path)
     )
 }

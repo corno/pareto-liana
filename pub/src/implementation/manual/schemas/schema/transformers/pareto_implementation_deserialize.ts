@@ -66,7 +66,7 @@ export const Schema = (
             },
             () => _p_unreachable_code_path(),
         ),
-        $.types.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
             true,

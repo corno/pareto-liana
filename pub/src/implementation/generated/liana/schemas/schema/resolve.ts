@@ -11,11 +11,11 @@ import * as t_out from "../../../../../interface/generated/liana/schemas/schema/
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/schema/resolve"
 
-export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
+export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_node = _p_cc(
-            $['node'],
+        const prop_value = _p_cc(
+            $['value'],
             ($) => Value(
                 $,
                 ($) => abort(
@@ -36,16 +36,16 @@ export const Type: t_signatures.Type = ($, abort, $l, $p) => _p.group.resolve(
             )
         )
         return {
-            'node': prop_node,
+            'value': prop_value,
         }
     }
 )
 
-export const Types: t_signatures.Types = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Types.D => _p_cc(
+    ($, id, $a, $c): t_out.Modules.D => _p_cc(
         $['l entry'],
-        ($) => Type(
+        ($) => Module(
             $,
             ($) => abort(
                 $
@@ -259,14 +259,14 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.
     }
 )
 
-export const Type_Reference: t_signatures.Type_Reference = ($, abort, $l, $p) => _p.group.resolve(
+export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
         const prop_location = _p_cc(
             $['location'],
             ($) => _p.decide.state(
                 $['l state'],
-                ($): t_out.Type_Reference.location => {
+                ($): t_out.Module_Reference.location => {
                     switch ($[0]) {
                         case 'internal':
                             return _p.ss(
@@ -337,7 +337,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
         
         const prop_type_location = _p_cc(
             $['type location'],
-            ($) => Type_Reference(
+            ($) => Module_Reference(
                 $,
                 ($) => abort(
                     $
@@ -493,8 +493,8 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                     )
                 )
                 
-                const prop_node = _p_cc(
-                    $['node'],
+                const prop_value = _p_cc(
+                    $['value'],
                     ($) => Value(
                         $,
                         ($) => abort(
@@ -516,7 +516,7 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
                 )
                 return {
                     'description': prop_description,
-                    'node': prop_node,
+                    'value': prop_value,
                 }
             }
         )
@@ -526,8 +526,8 @@ export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.res
 export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_node = _p_cc(
-            $['node'],
+        const prop_value = _p_cc(
+            $['value'],
             ($) => Value(
                 $,
                 ($) => abort(
@@ -548,7 +548,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.grou
             )
         )
         return {
-            'node': prop_node,
+            'value': prop_value,
         }
     }
 )
@@ -643,7 +643,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                         $
                                     ),
                                     {
-                                        'types': _pdev.implement_me(
+                                        'modules': _pdev.implement_me(
                                             "IM: selection"
                                         ),
                                     },
@@ -709,8 +709,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                     ($) => ['list', _p.group.resolve(
                         () => {
                             
-                            const prop_node = _p_cc(
-                                $['node'],
+                            const prop_value = _p_cc(
+                                $['value'],
                                 ($) => Value(
                                     $,
                                     ($) => abort(
@@ -725,13 +725,13 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                 $['result'],
                                 ($) => _p.optional.map(
                                     $,
-                                    ($) => Type_Reference(
+                                    ($) => Module_Reference(
                                         $,
                                         ($) => abort(
                                             $
                                         ),
                                         {
-                                            'types': _pdev.implement_me(
+                                            'modules': _pdev.implement_me(
                                                 "IM: selection"
                                             ),
                                         },
@@ -742,7 +742,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                 )
                             )
                             return {
-                                'node': prop_node,
+                                'value': prop_value,
                                 'result': prop_result,
                             }
                         }
@@ -816,7 +816,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                         $
                                     ),
                                     {
-                                        'types': _pdev.implement_me(
+                                        'modules': _pdev.implement_me(
                                             "IM: selection"
                                         ),
                                     },
@@ -911,8 +911,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                             ($) => _p.group.resolve(
                                 () => {
                                     
-                                    const prop_node = _p_cc(
-                                        $['node'],
+                                    const prop_value = _p_cc(
+                                        $['value'],
                                         ($) => Value(
                                             $,
                                             ($) => abort(
@@ -931,7 +931,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                         )
                                     )
                                     return {
-                                        'node': prop_node,
+                                        'value': prop_value,
                                         'description': prop_description,
                                     }
                                 }
@@ -1098,24 +1098,24 @@ export const Presence: t_signatures.Presence = ($, abort, $l, $p) => _p.decide.s
 export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_values = _p_cc(
-            $['values'],
+        const prop_modules = _p_cc(
+            $['modules'],
             ($) => _p.dictionary.resolve(
                 $['l dictionary'],
-                ($, id, $a, $c): t_out.Signature_Parameters.values.D => _p_cc(
+                ($, id, $a, $c): t_out.Signature_Parameters.modules.D => _p_cc(
                     $['l entry'],
                     ($) => _p.group.resolve(
                         () => {
                             
-                            const prop_data_type = _p_cc(
-                                $['data type'],
-                                ($) => Type_Reference(
+                            const prop_module = _p_cc(
+                                $['module'],
+                                ($) => Module_Reference(
                                     $,
                                     ($) => abort(
                                         $
                                     ),
                                     {
-                                        'types': _pdev.implement_me(
+                                        'modules': _pdev.implement_me(
                                             "IM: selection"
                                         ),
                                     },
@@ -1139,7 +1139,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                 )
                             )
                             return {
-                                'data type': prop_data_type,
+                                'module': prop_module,
                                 'presence': prop_presence,
                             }
                         }
@@ -1159,13 +1159,13 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                             
                             const prop_referent = _p_cc(
                                 $['referent'],
-                                ($) => Type_Reference(
+                                ($) => Module_Reference(
                                     $,
                                     ($) => abort(
                                         $
                                     ),
                                     {
-                                        'types': _pdev.implement_me(
+                                        'modules': _pdev.implement_me(
                                             "IM: selection"
                                         ),
                                     },
@@ -1237,7 +1237,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
             )
         )
         return {
-            'values': prop_values,
+            'modules': prop_modules,
             'lookups': prop_lookups,
         }
     }
@@ -1246,8 +1246,8 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
 export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.resolve(
     () => {
         
-        const prop_type = _p_cc(
-            $['type'],
+        const prop_module = _p_cc(
+            $['module'],
             ($) => $p['type']
         )
         
@@ -1267,7 +1267,7 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
                                     ),
                                     null,
                                     {
-                                        'types': $p['types'],
+                                        'modules': $p['modules'],
                                         'imports': $p['imports'],
                                     }
                                 )]
@@ -1298,7 +1298,7 @@ export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.
             )
         )
         return {
-            'type': prop_type,
+            'module': prop_module,
             'parameters': prop_parameters,
             'resolved parameters': prop_resolved_parameters,
         }
@@ -1320,7 +1320,7 @@ export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dict
                 ),
             },
             {
-                'types': $p['types'],
+                'modules': $p['modules'],
                 'type': _pdev.implement_me(
                     "IM: required"
                 ),
@@ -1417,13 +1417,13 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                 
                                                 const prop_result = _p_cc(
                                                     $['result'],
-                                                    ($) => Type_Reference(
+                                                    ($) => Module_Reference(
                                                         $,
                                                         ($) => abort(
                                                             $
                                                         ),
                                                         {
-                                                            'types': _pdev.implement_me(
+                                                            'modules': _pdev.implement_me(
                                                                 "IM: selection"
                                                             ),
                                                         },
@@ -1465,13 +1465,13 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                 
                                                 const prop_result = _p_cc(
                                                     $['result'],
-                                                    ($) => Type_Reference(
+                                                    ($) => Module_Reference(
                                                         $,
                                                         ($) => abort(
                                                             $
                                                         ),
                                                         {
-                                                            'types': _pdev.implement_me(
+                                                            'modules': _pdev.implement_me(
                                                                 "IM: selection"
                                                             ),
                                                         },
@@ -1703,13 +1703,13 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_result = _p_cc(
                                                                 $['result'],
-                                                                ($) => Type_Reference(
+                                                                ($) => Module_Reference(
                                                                     $,
                                                                     ($) => abort(
                                                                         $
                                                                     ),
                                                                     {
-                                                                        'types': _pdev.implement_me(
+                                                                        'modules': _pdev.implement_me(
                                                                             "IM: selection"
                                                                         ),
                                                                     },
@@ -1751,13 +1751,13 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             
                                                             const prop_result = _p_cc(
                                                                 $['result'],
-                                                                ($) => Type_Reference(
+                                                                ($) => Module_Reference(
                                                                     $,
                                                                     ($) => abort(
                                                                         $
                                                                     ),
                                                                     {
-                                                                        'types': _pdev.implement_me(
+                                                                        'modules': _pdev.implement_me(
                                                                             "IM: selection"
                                                                         ),
                                                                     },
@@ -1800,7 +1800,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                 ),
                 null,
                 {
-                    'node': _pdev.implement_me(
+                    'value': _pdev.implement_me(
                         "IM: required"
                     ),
                 }
@@ -1955,7 +1955,7 @@ export const Resolvers: t_signatures.Resolvers = ($, abort, $l, $p) => _p.dictio
                             'imports': _p.optional.set(
                                 $p['imports']
                             ),
-                            'types': $p['types'],
+                            'modules': $p['modules'],
                         }
                     )
                 )
@@ -2171,7 +2171,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                 ),
                 null,
                 {
-                    'node': _pdev.implement_me(
+                    'value': _pdev.implement_me(
                         "IM: required"
                     ),
                 }
@@ -2243,7 +2243,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
                             'definition': _pdev.implement_me(
                                 "IM: required"
                             ),
-                            'types': $p['types'],
+                            'modules': $p['modules'],
                             'imports': $p['imports'],
                             'signature': $p['signature'],
                             'signatures': $p['signatures'],
@@ -2264,13 +2264,13 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
     )
 )
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $l, $p) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $l, $p) => Module_Reference(
     $,
     ($) => abort(
         $
     ),
     {
-        'types': _pdev.implement_me(
+        'modules': _pdev.implement_me(
             "IM: selection"
         ),
     },
@@ -2413,17 +2413,17 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                     ($) => _p.group.resolve(
                                         () => {
                                             
-                                            const prop_values = _p_cc(
-                                                $['values'],
+                                            const prop_modules = _p_cc(
+                                                $['modules'],
                                                 ($) => _p.optional.map(
                                                     $,
                                                     ($) => _p.dictionary.resolve(
                                                         $['l dictionary'],
-                                                        ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.values.O.D => _p_cc(
+                                                        ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.modules.O.D => _p_cc(
                                                             $['l entry'],
                                                             ($) => _p.decide.state(
                                                                 $['l state'],
-                                                                ($): t_out.Value_Resolver.component.arguments_.O.values.O.D => {
+                                                                ($): t_out.Value_Resolver.component.arguments_.O.modules.O.D => {
                                                                     switch ($[0]) {
                                                                         case 'optional':
                                                                             return _p.ss(
@@ -2553,7 +2553,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                 )
                                             )
                                             return {
-                                                'values': prop_values,
+                                                'modules': prop_modules,
                                                 'lookups': prop_lookups,
                                             }
                                         }
@@ -2570,7 +2570,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                     ),
                                     null,
                                     {
-                                        'node': _pdev.implement_me(
+                                        'value': _pdev.implement_me(
                                             "IM: required"
                                         ),
                                     }
@@ -2635,7 +2635,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                         'current ordered dictionary': _p.optional.set(
                                             prop_definition
                                         ),
-                                        'types': $p['types'],
+                                        'modules': $p['modules'],
                                         'imports': $p['imports'],
                                         'signature': $p['signature'],
                                         'signatures': $p['signatures'],
@@ -2672,7 +2672,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                             'definition': _pdev.implement_me(
                                 "IM: required"
                             ),
-                            'types': $p['types'],
+                            'modules': $p['modules'],
                             'imports': $p['imports'],
                             'signature': $p['signature'],
                             'signatures': $p['signatures'],
@@ -2707,7 +2707,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                             $
                                         ),
                                         {
-                                            'types': _pdev.implement_me(
+                                            'modules': _pdev.implement_me(
                                                 "IM: selection"
                                             ),
                                         },
@@ -2735,7 +2735,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                         'definition': _pdev.implement_me(
                                             "IM: required"
                                         ),
-                                        'types': $p['types'],
+                                        'modules': $p['modules'],
                                         'imports': $p['imports'],
                                         'signature': $p['signature'],
                                         'signatures': $p['signatures'],
@@ -2794,7 +2794,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                         'definition': _pdev.implement_me(
                                             "IM: required"
                                         ),
-                                        'types': $p['types'],
+                                        'modules': $p['modules'],
                                         'imports': $p['imports'],
                                         'signature': $p['signature'],
                                         'signatures': $p['signatures'],
@@ -2889,7 +2889,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                                     ),
                                                                     null,
                                                                     {
-                                                                        'node': _pdev.implement_me(
+                                                                        'value': _pdev.implement_me(
                                                                             "IM: required"
                                                                         ),
                                                                     }
@@ -2964,7 +2964,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                             'definition': _pdev.implement_me(
                                                                 "IM: required"
                                                             ),
-                                                            'types': $p['types'],
+                                                            'modules': $p['modules'],
                                                             'imports': $p['imports'],
                                                             'signature': $p['signature'],
                                                             'signatures': $p['signatures'],
@@ -3013,8 +3013,8 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
             ($) => _p.group.resolve(
                 () => {
                     
-                    const prop_types = _p_cc(
-                        $['types'],
+                    const prop_signatures = _p_cc(
+                        $['signatures'],
                         ($) => Signatures(
                             $,
                             ($) => abort(
@@ -3022,13 +3022,13 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                             ),
                             null,
                             {
-                                'types': $p['types'],
+                                'modules': $p['modules'],
                                 'imports': $p['imports'],
                             }
                         )
                     )
                     return {
-                        'types': prop_types,
+                        'signatures': prop_signatures,
                     }
                 }
             )
@@ -3046,7 +3046,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                     'signatures': _pdev.implement_me(
                         "IM: required"
                     ),
-                    'types': $p['types'],
+                    'modules': $p['modules'],
                     'imports': $p['imports'],
                 }
             )
@@ -3194,9 +3194,9 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
             )
         )
         
-        const prop_types = _p_cc(
-            $['types'],
-            ($) => Types(
+        const prop_modules = _p_cc(
+            $['modules'],
+            ($) => Modules(
                 $,
                 ($) => abort(
                     $
@@ -3232,7 +3232,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                                         'imports': _pdev.implement_me(
                                             "IM: required"
                                         ),
-                                        'types': _pdev.implement_me(
+                                        'modules': _pdev.implement_me(
                                             "IM: required"
                                         ),
                                     }
@@ -3254,7 +3254,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
         return {
             'imports': prop_imports,
             'globals': prop_globals,
-            'types': prop_types,
+            'modules': prop_modules,
             'complexity': prop_complexity,
         }
     }

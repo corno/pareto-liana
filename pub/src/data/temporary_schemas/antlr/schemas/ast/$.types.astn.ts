@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    types,
+    modules,
     t,
     type,
     n,
@@ -10,7 +10,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
         "Grammar": type(t.group({
             "name": prop(t.text_global("Text Value")),

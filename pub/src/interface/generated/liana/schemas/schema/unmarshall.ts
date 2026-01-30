@@ -64,11 +64,11 @@ export type Globals_ = (
     abort: _pi.Abort<Globals_.E>,
 ) => Globals_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Type
+    export type O = i_out.Module
     
     export type E = i_generic.Error
     
@@ -78,16 +78,16 @@ export namespace Type_ {
     
 }
 
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
-) => Type_.O
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
+) => Module_.O
 
-export namespace Types_ {
+export namespace Modules_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Types
+    export type O = i_out.Modules
     
     export type E = i_generic.Error
     
@@ -97,10 +97,10 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-    abort: _pi.Abort<Types_.E>,
-) => Types_.O
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
+) => Modules_.O
 
 export namespace Resolve_Logic_ {
     
@@ -349,11 +349,11 @@ export type Value_Constraints_ = (
     abort: _pi.Abort<Value_Constraints_.E>,
 ) => Value_Constraints_.O
 
-export namespace Type_Reference_ {
+export namespace Module_Reference_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Type_Reference
+    export type O = i_out.Module_Reference
     
     export type E = i_generic.Error
     
@@ -363,10 +363,10 @@ export namespace Type_Reference_ {
     
 }
 
-export type Type_Reference_ = (
-    context: Type_Reference_.I,
-    abort: _pi.Abort<Type_Reference_.E>,
-) => Type_Reference_.O
+export type Module_Reference_ = (
+    context: Module_Reference_.I,
+    abort: _pi.Abort<Module_Reference_.E>,
+) => Module_Reference_.O
 
 export namespace Value_ {
     
@@ -714,8 +714,8 @@ export {
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Resolve_Logic_ as Resolve_Logic, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
@@ -729,7 +729,7 @@ export {
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
-    Type_Reference_ as Type_Reference, 
+    Module_Reference_ as Module_Reference, 
     Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 

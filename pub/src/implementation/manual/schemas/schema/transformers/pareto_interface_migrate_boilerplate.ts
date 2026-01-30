@@ -32,7 +32,7 @@ export const Schema = (
                 : [],
         )
     },
-    $.types.__d_map(
+    $.modules.__d_map(
         ($, id) => sh.type.transformer(
             sh.t.component_imported(
                 "in",

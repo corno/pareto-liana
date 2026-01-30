@@ -207,17 +207,17 @@ export type Globals_ = {
     readonly 'number types': Globals_.number_types
 }
 
-export namespace Type_ {
+export namespace Module_ {
     
-    export type node = Value_
+    export type value = Value_
     
 }
 
-export type Type_ = {
-    readonly 'node': Type_.node
+export type Module_ = {
+    readonly 'value': Module_.value
 }
 
-export namespace Types_ {
+export namespace Modules_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -227,7 +227,7 @@ export namespace Types_ {
             
             export type l_location = i__location.Relative_Location
             
-            export type l_entry = Type_
+            export type l_entry = Module_
             
         }
         
@@ -242,21 +242,21 @@ export namespace Types_ {
     
 }
 
-export type Types_ = {
-    readonly 'l location': Types_.l_location
-    readonly 'l dictionary': Types_.l_dictionary
+export type Modules_ = {
+    readonly 'l location': Modules_.l_location
+    readonly 'l dictionary': Modules_.l_dictionary
 }
 
 export namespace Resolve_Logic_ {
     
     export namespace signatures {
         
-        export type types = Signatures_
+        export type signatures = Signatures_
         
     }
     
     export type signatures = {
-        readonly 'types': signatures.types
+        readonly 'signatures': signatures.signatures
     }
     
     export type resolvers = Resolvers_
@@ -274,7 +274,7 @@ export namespace Schema_ {
     
     export type globals = Globals_
     
-    export type types = Types_
+    export type modules = Modules_
     
     export namespace complexity {
         
@@ -304,7 +304,7 @@ export namespace Schema_ {
 export type Schema_ = {
     readonly 'imports': Schema_.imports
     readonly 'globals': Schema_.globals
-    readonly 'types': Schema_.types
+    readonly 'modules': Schema_.modules
     readonly 'complexity': Schema_.complexity
 }
 
@@ -482,12 +482,12 @@ export type Presence_ = {
 
 export namespace Dictionary_ {
     
-    export type node = Value_
+    export type value = Value_
     
 }
 
 export type Dictionary_ = {
-    readonly 'node': Dictionary_.node
+    readonly 'value': Dictionary_.value
 }
 
 export namespace Signatures_ {
@@ -581,13 +581,13 @@ export namespace Group_ {
                 
                 export type description = _pi.Optional_Value<description.O>
                 
-                export type node = Value_
+                export type value = Value_
                 
             }
             
             export type l_entry = {
                 readonly 'description': l_entry.description
-                readonly 'node': l_entry.node
+                readonly 'value': l_entry.value
             }
             
         }
@@ -685,7 +685,7 @@ export namespace Value_Constraints_ {
 
 export type Value_Constraints_ = _pi.Optional_Value<Value_Constraints_.O>
 
-export namespace Type_Reference_ {
+export namespace Module_Reference_ {
     
     export namespace location {
         
@@ -758,9 +758,9 @@ export namespace Type_Reference_ {
     
 }
 
-export type Type_Reference_ = {
-    readonly 'location': Type_Reference_.location
-    readonly 'resulting type': Type_Reference_.resulting_type
+export type Module_Reference_ = {
+    readonly 'location': Module_Reference_.location
+    readonly 'resulting type': Module_Reference_.resulting_type
 }
 
 export namespace Value_ {
@@ -869,11 +869,11 @@ export namespace Value_ {
         
         export namespace list {
             
-            export type node = Value_
+            export type value = Value_
             
             export namespace result {
                 
-                export type O = Type_Reference_
+                export type O = Module_Reference_
                 
             }
             
@@ -882,7 +882,7 @@ export namespace Value_ {
         }
         
         export type list = {
-            readonly 'node': list.node
+            readonly 'value': list.value
             readonly 'result': list.result
         }
         
@@ -1013,13 +1013,13 @@ export namespace Value_ {
                         
                         export type description = _pi.Optional_Value<description.O>
                         
-                        export type node = Value_
+                        export type value = Value_
                         
                     }
                     
                     export type l_entry = {
                         readonly 'description': l_entry.description
-                        readonly 'node': l_entry.node
+                        readonly 'value': l_entry.value
                     }
                     
                 }
@@ -1204,7 +1204,7 @@ export type Value_Constraint_Resolvers_ = {
 
 export namespace Signature_Parameters_ {
     
-    export namespace values {
+    export namespace modules {
         
         export type l_location = i__location.Relative_Location
         
@@ -1216,14 +1216,14 @@ export namespace Signature_Parameters_ {
                 
                 export namespace l_entry {
                     
-                    export type data_type = Type_Reference_
+                    export type module_ = Module_Reference_
                     
                     export type presence = Presence_
                     
                 }
                 
                 export type l_entry = {
-                    readonly 'data type': l_entry.data_type
+                    readonly 'module': l_entry.module_
                     readonly 'presence': l_entry.presence
                 }
                 
@@ -1240,9 +1240,9 @@ export namespace Signature_Parameters_ {
         
     }
     
-    export type values = {
-        readonly 'l location': values.l_location
-        readonly 'l dictionary': values.l_dictionary
+    export type modules = {
+        readonly 'l location': modules.l_location
+        readonly 'l dictionary': modules.l_dictionary
     }
     
     export namespace lookups {
@@ -1257,7 +1257,7 @@ export namespace Signature_Parameters_ {
                 
                 export namespace l_entry {
                     
-                    export type referent = Type_Reference_
+                    export type referent = Module_Reference_
                     
                     export type dictionary = null
                     
@@ -1319,7 +1319,7 @@ export namespace Signature_Parameters_ {
 }
 
 export type Signature_Parameters_ = {
-    readonly 'values': Signature_Parameters_.values
+    readonly 'modules': Signature_Parameters_.modules
     readonly 'lookups': Signature_Parameters_.lookups
 }
 
@@ -1411,7 +1411,7 @@ export type Lookup_Selection_ = {
     readonly 'resulting dictionary': Lookup_Selection_.resulting_dictionary
 }
 
-export type Value_Resolver_List_Result_ = Type_Reference_
+export type Value_Resolver_List_Result_ = Module_Reference_
 
 export namespace Value_Resolver_ {
     
@@ -1498,7 +1498,7 @@ export namespace Value_Resolver_ {
                 
                 export namespace O {
                     
-                    export namespace values {
+                    export namespace modules {
                         
                         export namespace O {
                             
@@ -1567,7 +1567,7 @@ export namespace Value_Resolver_ {
                         
                     }
                     
-                    export type values = _pi.Optional_Value<values.O>
+                    export type modules = _pi.Optional_Value<modules.O>
                     
                     export namespace lookups {
                         
@@ -1646,7 +1646,7 @@ export namespace Value_Resolver_ {
                 }
                 
                 export type O = {
-                    readonly 'values': O.values
+                    readonly 'modules': O.modules
                     readonly 'lookups': O.lookups
                 }
                 
@@ -2145,7 +2145,7 @@ export namespace Guaranteed_Value_Selection_ {
                         
                         export type state = null
                         
-                        export type result = Type_Reference_
+                        export type result = Module_Reference_
                         
                     }
                     
@@ -2172,7 +2172,7 @@ export namespace Guaranteed_Value_Selection_ {
                         
                         export type optional_value = null
                         
-                        export type result = Type_Reference_
+                        export type result = Module_Reference_
                         
                     }
                     
@@ -2338,7 +2338,7 @@ export type Value_Path_ = {
 
 export namespace Value_Reference_ {
     
-    export type type_location = Type_Reference_
+    export type type_location = Module_Reference_
     
     export type path = Value_Path_
     
@@ -2351,7 +2351,7 @@ export type Value_Reference_ = {
 
 export namespace Signature_ {
     
-    export type type_ = null
+    export type module_ = null
     
     export namespace parameters {
         
@@ -2392,7 +2392,7 @@ export namespace Signature_ {
 }
 
 export type Signature_ = {
-    readonly 'type': Signature_.type_
+    readonly 'module': Signature_.module_
     readonly 'parameters': Signature_.parameters
     readonly 'resolved parameters': Signature_.resolved_parameters
 }
@@ -2550,7 +2550,7 @@ export namespace Possible_Value_Selection_ {
                     
                     export type state = null
                     
-                    export type result = Type_Reference_
+                    export type result = Module_Reference_
                     
                 }
                 
@@ -2577,7 +2577,7 @@ export namespace Possible_Value_Selection_ {
                     
                     export type optional_value = null
                     
-                    export type result = Type_Reference_
+                    export type result = Module_Reference_
                     
                 }
                 
@@ -2617,8 +2617,8 @@ export {
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Globals_ as Globals, 
-    Type_ as Type, 
-    Types_ as Types, 
+    Module_ as Module, 
+    Modules_ as Modules, 
     Resolve_Logic_ as Resolve_Logic, 
     Schema_ as Schema, 
     Schema_Tree_ as Schema_Tree, 
@@ -2632,7 +2632,7 @@ export {
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
-    Type_Reference_ as Type_Reference, 
+    Module_Reference_ as Module_Reference, 
     Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 

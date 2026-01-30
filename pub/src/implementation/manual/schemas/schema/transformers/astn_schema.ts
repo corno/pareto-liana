@@ -15,7 +15,7 @@ export const Schema: _pi.Transformer<d_in.Schema, d_out.Schema> = (
 ) => ({
     'globals': Globals($.globals),
     'imports': Imports($.imports),
-    'types': sh.dictionary($.types.__d_map(($) => Type($))),
+    'types': sh.dictionary($.modules.__d_map(($) => Type($))),
 })
 
 export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
@@ -47,10 +47,10 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
     'schema set child': sh.reference($['schema set child']['l id'])
 })))
 
-export const Type: _pi.Transformer<d_in.Type, d_out.Type> = (
+export const Type: _pi.Transformer<d_in.Module, d_out.Module> = (
     $
 ) => ({
-    'node': Value($.node)
+    'node': Value($.value)
 })
 
 export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
@@ -70,7 +70,7 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
             'type': sh.state(['single line', null])
         }])])
         case 'list': return _p.ss($, ($) => ['list', {
-            'node': Value($.node)
+            'node': Value($.value)
         }])
         case 'nothing': return _p.ss($, ($) => ['nothing', null])
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
@@ -95,11 +95,11 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
         }))])
         case 'dictionary': return _p.ss($, ($) => ['dictionary', {
             'ordered': false,
-            'node': Value($.node)
+            'node': Value($.value)
         }])
-        case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.node)))])
+        case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.value)))])
         case 'optional': return _p.ss($, ($) => ['optional', Value($)])
-        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.__d_map(($) => Value($.node)))])
+        case 'state': return _p.ss($, ($) => ['state', sh.dictionary($.__d_map(($) => Value($.value)))])
         case 'text': return _p.ss($, ($) => ['text', sh.state(_p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
                 case 'global': return _p.ss($, ($) => ['global', sh.reference("t" + $['l id'])])

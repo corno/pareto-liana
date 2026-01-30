@@ -9,6 +9,6 @@ export const $: g_.Resolve_Logic.signatures  = signatures(
         "Module Set": sig.local({}, {}),
         "Imports": sig.local({}, {}),
         "Value": sig.local({}, {}),
-        "Type Reference": sig.local({}, {}),
+        "Module Reference": sig.local({}, {}),
     },
 )

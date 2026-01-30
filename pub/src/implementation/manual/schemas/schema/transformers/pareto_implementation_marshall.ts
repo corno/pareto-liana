@@ -89,14 +89,14 @@ export const Schema = (
         },
         () => _p_unreachable_code_path(),
     ),
-    $.types.__d_map(($, id) => sh.algorithm(
+    $.modules.__d_map(($, id) => sh.algorithm(
         "signatures",
         id,
         false,
         false,
         false,
         Value(
-            $.node,
+            $.value,
             {
                 'type': id,
                 'subselection': _p.list.literal([])
@@ -150,7 +150,7 @@ export const Value = (
             sh.e.dictionary.map(
                 sh.s.context([]),
                 Value(
-                    $.node,
+                    $.value,
                     {
                         'type': $p.type,
                         'subselection': _p.list.nested_literal_old([
@@ -170,7 +170,7 @@ export const Value = (
                 sh.e.dictionary.literal($.__d_map(($, id) => sh.e.change_context(
                     sh.s.context([id]),
                     Value(
-                        $.node,
+                        $.value,
                         {
                             'type': $p.type,
                             'subselection': _p.list.nested_literal_old([
@@ -187,7 +187,7 @@ export const Value = (
         case 'list': return _p.ss($, ($) => {
 
             const x = Value(
-                $.node,
+                $.value,
                 {
                     'type': $p.type,
                     'subselection': _p.list.nested_literal_old([
@@ -279,7 +279,7 @@ export const Value = (
                 $.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Value(
-                        $.node,
+                        $.value,
                         {
                             'type': $p.type,
                             'subselection': _p.list.nested_literal_old([

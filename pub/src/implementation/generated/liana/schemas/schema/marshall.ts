@@ -202,10 +202,10 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
     }
 )]]
 
-export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'node': _p_cc(
-            $['node'],
+        'value': _p_cc(
+            $['value'],
             ($) => Value(
                 $
             )
@@ -213,9 +213,9 @@ export const Type: t_signatures.Type = ($) => ['group', ['verbose', _p.dictionar
     }
 )]]
 
-export const Types: t_signatures.Types = ($) => ['dictionary', _p.dictionary.map(
+export const Modules: t_signatures.Modules = ($) => ['dictionary', _p.dictionary.map(
     $,
-    ($, id) => Type(
+    ($, id) => Module(
         $
     )
 )]
@@ -226,8 +226,8 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ['group', ['verb
             $['signatures'],
             ($) => ['group', ['verbose', _p.dictionary.literal(
                 {
-                    'types': _p_cc(
-                        $['types'],
+                    'signatures': _p_cc(
+                        $['signatures'],
                         ($) => Signatures(
                             $
                         )
@@ -258,9 +258,9 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
                 $
             )
         ),
-        'types': _p_cc(
-            $['types'],
-            ($) => Types(
+        'modules': _p_cc(
+            $['modules'],
+            ($) => Modules(
                 $
             )
         ),
@@ -415,8 +415,8 @@ export const Presence: t_signatures.Presence = ($) => ['state', _p.decide.state(
 
 export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'node': _p_cc(
-            $['node'],
+        'value': _p_cc(
+            $['value'],
             ($) => Value(
                 $
             )
@@ -464,8 +464,8 @@ export const Group: t_signatures.Group = ($) => ['dictionary', _p.dictionary.map
                     () => ['not set', null]
                 )]
             ),
-            'node': _p_cc(
-                $['node'],
+            'value': _p_cc(
+                $['value'],
                 ($) => Value(
                     $
                 )
@@ -503,7 +503,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($) => ['option
     () => ['not set', null]
 )]
 
-export const Type_Reference: t_signatures.Type_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         'location': _p_cc(
             $['location'],
@@ -679,8 +679,8 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                         'option': 'list',
                         'value': ['group', ['verbose', _p.dictionary.literal(
                             {
-                                'node': _p_cc(
-                                    $['node'],
+                                'value': _p_cc(
+                                    $['value'],
                                     ($) => Value(
                                         $
                                     )
@@ -689,7 +689,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                     $['result'],
                                     ($) => ['optional', _p.decide.optional(
                                         $,
-                                        ($): t_out.Value.optional => ['set', Type_Reference(
+                                        ($): t_out.Value.optional => ['set', Module_Reference(
                                             $
                                         )],
                                         () => ['not set', null]
@@ -868,8 +868,8 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             () => ['not set', null]
                                         )]
                                     ),
-                                    'node': _p_cc(
-                                        $['node'],
+                                    'value': _p_cc(
+                                        $['value'],
                                         ($) => Value(
                                             $
                                         )
@@ -988,15 +988,15 @@ export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers
 
 export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'values': _p_cc(
-            $['values'],
+        'modules': _p_cc(
+            $['modules'],
             ($) => ['dictionary', _p.dictionary.map(
                 $,
                 ($, id) => ['group', ['verbose', _p.dictionary.literal(
                     {
-                        'data type': _p_cc(
-                            $['data type'],
-                            ($) => Type_Reference(
+                        'module': _p_cc(
+                            $['module'],
+                            ($) => Module_Reference(
                                 $
                             )
                         ),
@@ -1018,7 +1018,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['
                     {
                         'referent': _p_cc(
                             $['referent'],
-                            ($) => Type_Reference(
+                            ($) => Module_Reference(
                                 $
                             )
                         ),
@@ -1188,7 +1188,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
     }
 )]]
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Module_Reference(
     $
 )
 
@@ -1275,8 +1275,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                         $,
                                         ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                                             {
-                                                'values': _p_cc(
-                                                    $['values'],
+                                                'modules': _p_cc(
+                                                    $['modules'],
                                                     ($) => ['optional', _p.decide.optional(
                                                         $,
                                                         ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
@@ -1899,7 +1899,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                     ),
                                                                     'result': _p_cc(
                                                                         $['result'],
-                                                                        ($) => Type_Reference(
+                                                                        ($) => Module_Reference(
                                                                             $
                                                                         )
                                                                     ),
@@ -1927,7 +1927,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                     ),
                                                                     'result': _p_cc(
                                                                         $['result'],
-                                                                        ($) => Type_Reference(
+                                                                        ($) => Module_Reference(
                                                                             $
                                                                         )
                                                                     ),
@@ -2068,7 +2068,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($) => ['group', ['
     {
         'type location': _p_cc(
             $['type location'],
-            ($) => Type_Reference(
+            ($) => Module_Reference(
                 $
             )
         ),
@@ -2083,8 +2083,8 @@ export const Value_Reference: t_signatures.Value_Reference = ($) => ['group', ['
 
 export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'type': _p_cc(
-            $['type'],
+        'module': _p_cc(
+            $['module'],
             ($) => ['nothing', null]
         ),
         'parameters': _p_cc(
@@ -2283,7 +2283,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                         ),
                                                         'result': _p_cc(
                                                             $['result'],
-                                                            ($) => Type_Reference(
+                                                            ($) => Module_Reference(
                                                                 $
                                                             )
                                                         ),
@@ -2311,7 +2311,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                         ),
                                                         'result': _p_cc(
                                                             $['result'],
-                                                            ($) => Type_Reference(
+                                                            ($) => Module_Reference(
                                                                 $
                                                             )
                                                         ),

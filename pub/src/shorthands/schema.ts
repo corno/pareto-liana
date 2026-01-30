@@ -24,10 +24,10 @@ export namespace st {
 
 }
 
-export const types = (
-    types: _p.Raw_Or_Normal_Dictionary<d_schema.Types.l_dictionary.D.l_entry>,
-): d_schema.Types => {
-    return sh.dictionary(types)
+export const modules = (
+    modules: _p.Raw_Or_Normal_Dictionary<d_schema.Modules.l_dictionary.D.l_entry>,
+): d_schema.Modules => {
+    return sh.dictionary(modules)
 }
 
 export const globals = (
@@ -44,8 +44,8 @@ export const globals = (
     }
 }
 
-export const type = (type: d_schema.Value): d_schema.Types.l_dictionary.D.l_entry => ({
-    'node': type,
+export const type = (type: d_schema.Value): d_schema.Modules.l_dictionary.D.l_entry => ({
+    'value': type,
 })
 
 export const text = (type: 'single line' | 'multi line'): d_schema.Text_Type => ({
@@ -56,14 +56,14 @@ export const prop = (
     node: d_schema.Value,
 ): d_schema.Group.l_dictionary.D.l_entry => ({
     'description': sh.optionalx.not_set(),
-    'node': node,
+    'value': node,
 })
 
 export const tstate = (
     node: d_schema.Value,
 ): d_schema.Value.l_state.state.l_dictionary.D.l_entry => ({
     'description': sh.optionalx.not_set(),
-    'node': node,
+    'value': node,
 })
 
 export const tstated = (
@@ -71,7 +71,7 @@ export const tstated = (
     node: d_schema.Value,
 ): d_schema.Value.l_state.state.l_dictionary.D.l_entry => ({
     'description': _p.optionalx.set(description),
-    'node': node,
+    'value': node,
 })
 
 export const propd = (
@@ -79,7 +79,7 @@ export const propd = (
     node: d_schema.Value,
 ): d_schema.Group.l_dictionary.D.l_entry => ({
     'description': _p.optionalx.set(description),
-    'node': node,
+    'value': node,
 })
 
 /**
@@ -118,7 +118,7 @@ export namespace n {
 
 export const reference = (
     type: string,
-): d_schema.Type_Reference => ({
+): d_schema.Module_Reference => ({
     'location': sh.state(['internal', sh.reference(type)]),
     'resulting type': null,
 })
@@ -187,7 +187,7 @@ export namespace t {
 
     export const dictionary = (type: d_schema.Value): d_schema.Value => {
         return sh.state(['dictionary', {
-            'node': type,
+            'value': type,
             'benchmark': sh.optionalx.not_set(),
         }])
     }
@@ -198,7 +198,7 @@ export namespace t {
 
     export const list = (type: d_schema.Value): d_schema.Value => {
         return sh.state(['list', {
-            'node': type,
+            'value': type,
             'result': sh.optionalx.not_set(),
         }])
     }
@@ -208,8 +208,8 @@ export namespace t {
         result: string,
     ): d_schema.Value => {
         return sh.state(['list', {
-            'node': type,
-            'result': _p.optionalx.set<d_schema.Type_Reference>({
+            'value': type,
+            'result': _p.optionalx.set<d_schema.Module_Reference>({
                 'location': sh.state(['internal', sh.reference(result)]),
                 'resulting type': null,
             }),
@@ -402,11 +402,11 @@ export namespace tr {
 
 
 export const sig_params = (
-    values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_dictionary.D.l_entry>,
+    modules: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry>,
     lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
 ): d_schema.Signature_Parameters => {
     return {
-        'values': sh.dictionary(values),
+        'modules': sh.dictionary(modules),
         'lookups': sh.dictionary(lookups),
     }
 }
@@ -417,13 +417,13 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        values: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.values.l_dictionary.D.l_entry>,
+        modules: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry>,
         lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
     ): d_schema.Signatures.l_dictionary.D.l_entry => {
         return {
-            'type': null,
+            'module': null,
             'parameters': sh.state(['local', {
-                'values': sh.dictionary(values),
+                'modules': sh.dictionary(modules),
                 'lookups': sh.dictionary(lookups),
             }]),
             'resolved parameters': null,
@@ -434,7 +434,7 @@ export namespace sig {
         name: string
     ): d_schema.Signatures.l_dictionary.D.l_entry => {
         return {
-            'type': null,
+            'module': null,
             'parameters': sh.state(['same as', sh.reference(name)]),
             'resolved parameters': null,
         }
@@ -444,9 +444,9 @@ export namespace sig {
 export const value_parameter = (
     name: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.values.l_dictionary.D.l_entry => {
+): d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
-        'data type': {
+        'module': {
             'location': sh.state(['internal', sh.reference(name)]),
             'resulting type': null,
         },
@@ -460,9 +460,9 @@ export const value_parameter_external = (
     imp: string,
     type: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.values.l_dictionary.D.l_entry => {
+): d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
-        'data type': {
+        'module': {
             'location': sh.state(['external', {
                 'import': sh.reference(imp),
                 'type': sh.reference(type),
@@ -655,7 +655,7 @@ export namespace ovi {
 export namespace pvs {
     export const state = (
         state: string,
-        result: d_schema.Type_Reference,
+        result: d_schema.Module_Reference,
     ): d_schema.Possible_Value_Selection => {
         return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['state', {
             'property': sh.reference(state),
@@ -666,7 +666,7 @@ export namespace pvs {
 
     export const optional_value = (
         optional_value: string,
-        result: d_schema.Type_Reference,
+        result: d_schema.Module_Reference,
     ): d_schema.Possible_Value_Selection => {
         return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
             'property': sh.reference(optional_value),
@@ -752,7 +752,7 @@ export namespace gvs {
 
     export const state = (
         state: string,
-        result: d_schema.Type_Reference,
+        result: d_schema.Module_Reference,
         tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
@@ -771,7 +771,7 @@ export namespace gvs {
 
     export const optional_value = (
         optional_value: string,
-        result: d_schema.Type_Reference,
+        result: d_schema.Module_Reference,
         tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
     ): d_schema.Guaranteed_Value_Selection => {
         return {
@@ -879,19 +879,19 @@ export namespace av {
 
     export const parameter = (
         parameter: string,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['parameter', sh.reference(parameter)])
     }
 
     export const required = (
         value: d_schema.Guaranteed_Value_Selection,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['required', value])
     }
 
     export const optional = (
         value: d_schema.Optional_Value_Initialization,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry => {
+    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['optional', value])
     }
 
@@ -1008,7 +1008,7 @@ export namespace r {
     }
     export const component = (
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
     ): d_schema.Value_Resolver => {
         return sh.state(['component', {
@@ -1016,7 +1016,7 @@ export namespace r {
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': _p.optionalx.set({
-                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'modules': modules === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(modules)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
@@ -1024,7 +1024,7 @@ export namespace r {
     }
     export const component_constrained = (
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
         constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Value_Resolver => {
@@ -1033,7 +1033,7 @@ export namespace r {
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': _p.optionalx.set({
-                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'modules': modules === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(modules)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints),
@@ -1042,7 +1042,7 @@ export namespace r {
     export const component_external = (
         imp: string,
         type: string,
-        values: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry>,
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
         lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
         constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
     ): d_schema.Value_Resolver => {
@@ -1054,7 +1054,7 @@ export namespace r {
             }]),
             'signature': null,
             'arguments': _p.optionalx.set({
-                'values': values === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(values)),
+                'modules': modules === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(modules)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
@@ -1114,7 +1114,7 @@ export namespace r {
     }
     export const list_with_result = (
         type_resolver: d_schema.Value_Resolver,
-        result: d_schema.Type_Reference,
+        result: d_schema.Module_Reference,
 
     ): d_schema.Value_Resolver => {
         return sh.state(['list', {
@@ -1209,7 +1209,7 @@ export const signatures = (
     signatures: _p.Raw_Or_Normal_Dictionary<d_schema.Signatures.l_dictionary.D.l_entry>,
 ): d_schema.Resolve_Logic.signatures => {
     return {
-        'types': sh.dictionary(signatures)
+        'signatures': sh.dictionary(signatures)
     }
 }
 
@@ -1245,13 +1245,13 @@ export const unconstrained = (
 export const schema_ = (
     imports: _p.Raw_Or_Normal_Dictionary<d_schema.Imports.l_dictionary.D.l_entry>,
     globals: d_schema.Globals,
-    types: d_schema.Types,
+    modules: d_schema.Modules,
     resolve: null | d_schema.Schema.complexity.l_state.constrained,
 ): d_schema.Schemas.l_dictionary.D.l_entry => {
     return sh.state(['schema', {
         'imports': sh.dictionary(imports),
         'globals': globals,
-        'types': types,
+        'modules': modules,
         'complexity': resolve === null
             ? sh.state(['unconstrained', null])
             : sh.state(['constrained', resolve])

@@ -29,7 +29,7 @@ export const Signatures = (
                 sh.t.component_imported("generic", "Error"),
                 $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
                     const y = sh.t.reference(
-                        Type_Reference($.referent),
+                        Module_Reference($.referent),
                         _p.list.literal([
                             sh.sub.dictionary()
                         ])
@@ -43,9 +43,9 @@ export const Signatures = (
                         }
                     })
                 }),
-                $['resolved parameters'].values.__d_map(($) => {
+                $['resolved parameters'].modules.__d_map(($) => {
                     const temp_2 = sh.t.reference(
-                        Type_Reference($['data type']),
+                        Module_Reference($['module']),
                         _p.list.literal([])
                     )
                     return _p.decide.state($.presence, ($) => {
@@ -61,17 +61,17 @@ export const Signatures = (
     )
 }
 
-export const Type_Reference = (
-    $: d_in.Type_Reference,
-): d_out.Type_Reference => {
+export const Module_Reference = (
+    $: d_in.Module_Reference,
+): d_out.Module_Reference => {
 
     return _p.decide.state($.location, ($) => {
         switch ($[0]) {
-            case 'external': return _p.ss($, ($) => sh.tr.imported(
+            case 'external': return _p.ss($, ($) => sh.mr.imported(
                 `imports ${$.import['l id']}`,
                 $.type['l id'],
             ))
-            case 'internal': return _p.ss($, ($) => sh.tr.imported(
+            case 'internal': return _p.ss($, ($) => sh.mr.imported(
                 "resolved",
                 $['l id'],
             ))
@@ -104,7 +104,7 @@ export const Value_Path = (
 
 // ): d_out.Type => {
 
-//     return Type_Reference(
+//     return Module_Reference(
 //         $['type location'],
 //         {
 //             'reference sub part': Type_Node_Path($.path.tail),

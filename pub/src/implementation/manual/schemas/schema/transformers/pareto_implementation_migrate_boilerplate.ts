@@ -67,14 +67,14 @@ export const Schema = (
         ),
     }),
     $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["migrate boilerplate"])),
-    $.types.__d_map(($, id) => sh.algorithm(
+    $.modules.__d_map(($, id) => sh.algorithm(
         "signatures",
         id,
         false,
         false,
         false,
         Value(
-            $.node,
+            $.value,
             {
                 'type name': id,
                 'subselection': _p.list.literal([]),
@@ -123,7 +123,7 @@ export const Value = (
                             sh.s.context([]),
                             sh.e.group.literal({
                                 "l entry": Value(
-                                    $.node,
+                                    $.value,
                                     {
                                         'type name': $p['type name'],
                                         'subselection': _p.list.nested_literal_old([
@@ -144,7 +144,7 @@ export const Value = (
                     : sh.e.dictionary.map(
                         sh.s.context([]),
                         Value(
-                            $.node,
+                            $.value,
                             {
                                 'type name': $p['type name'],
                                 'subselection': _p.list.nested_literal_old([
@@ -161,7 +161,7 @@ export const Value = (
             case 'group': return _p.ss($, ($) => sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
                 sh.s.context([id]),
                 Value(
-                    $.node,
+                    $.value,
                     {
                         'type name': $p['type name'],
                         'subselection': _p.list.nested_literal_old([
@@ -189,7 +189,7 @@ export const Value = (
                             sh.e.group.literal({
                                 "l item": _p_cc($, ($) => {
                                     const tn = Value(
-                                        $.node,
+                                        $.value,
                                         {
                                             'type name': $p['type name'],
                                             'subselection': _p.list.nested_literal_old([
@@ -218,7 +218,7 @@ export const Value = (
                     : sh.e.list.map(
                         sh.s.context([]),
                         Value(
-                            $.node,
+                            $.value,
                             {
                                 'type name': $p['type name'],
                                 'subselection': _p.list.nested_literal_old([
@@ -271,7 +271,7 @@ export const Value = (
                 const tn = sh.e.decide.state(
                     sh.s.context([]),
                     $.__d_map(($, id) => sh.e.state.literal(id, Value(
-                        $.node,
+                        $.value,
                         {
                             'type name': $p['type name'],
                             'subselection': _p.list.nested_literal_old([

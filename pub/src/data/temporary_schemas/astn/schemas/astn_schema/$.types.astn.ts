@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    types,
+    modules,
     n,
     t,
     tr,
@@ -12,7 +12,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
 
         "Schema Tree": type(t.state({
@@ -25,7 +25,7 @@ export const $: g_.Types = types(
         "Schema": type(t.group({
             "imports": prop(t.component_cyclic("Imports")),
             "globals": prop(t.component("Globals")),
-            "types": prop(t.component("Types")),
+            "types": prop(t.component("Modules")),
         })),
 
         "Imports": type(t.dictionary(t.group({
@@ -38,9 +38,9 @@ export const $: g_.Types = types(
             // "number types": t.dictionary(t.component("Number Type")),
         })),
 
-        "Types": type(t.dictionary(t.component("Type"))),
+        "Modules": type(t.dictionary(t.component("Module"))),
 
-        "Type": type(t.group({
+        "Module": type(t.group({
             // "type parameters": t.component("Type Parameters"),
             "node": prop(t.component_cyclic("Value"))
         })),
@@ -50,10 +50,10 @@ export const $: g_.Types = types(
             "component": tstate(t.state({
                 "external": tstate(t.group({
                     "import": prop(t.reference("Imports", [])),
-                    "type": prop(t.reference("Types", [])),
+                    "type": prop(t.reference("Modules", [])),
                 })),
-                "internal": tstate(t.reference("Types", [])),
-                "internal cyclic": tstate(t.reference("Types", [], 'cyclic')),
+                "internal": tstate(t.reference("Modules", [])),
+                "internal cyclic": tstate(t.reference("Modules", [], 'cyclic')),
             })),
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),

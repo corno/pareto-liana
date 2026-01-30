@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    types,
+    modules,
     t,
     tr,
     type,
@@ -11,7 +11,7 @@ import {
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
         "Module": type(t.group({
             "omit (de)serializer": prop(t.boolean()),

@@ -206,16 +206,16 @@ export const Globals: t_signatures.Globals = ($) => ({
     ),
 })
 
-export const Type: t_signatures.Type = ($) => ({
-    'node': _p_cc(
-        $['node'],
+export const Module: t_signatures.Module = ($) => ({
+    'value': _p_cc(
+        $['value'],
         ($) => Value(
             $
         )
     ),
 })
 
-export const Types: t_signatures.Types = ($) => ({
+export const Modules: t_signatures.Modules = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -224,7 +224,7 @@ export const Types: t_signatures.Types = ($) => ({
     'l dictionary': _p.dictionary.map(
         $,
         ($, id) => ({
-            'l entry': Type(
+            'l entry': Module(
                 $
             ),
             'l location': {
@@ -240,8 +240,8 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ({
     'signatures': _p_cc(
         $['signatures'],
         ($) => ({
-            'types': _p_cc(
-                $['types'],
+            'signatures': _p_cc(
+                $['signatures'],
                 ($) => Signatures(
                     $
                 )
@@ -269,9 +269,9 @@ export const Schema: t_signatures.Schema = ($) => ({
             $
         )
     ),
-    'types': _p_cc(
-        $['types'],
-        ($) => Types(
+    'modules': _p_cc(
+        $['modules'],
+        ($) => Modules(
             $
         )
     ),
@@ -463,8 +463,8 @@ export const Presence: t_signatures.Presence = ($) => ({
 })
 
 export const Dictionary: t_signatures.Dictionary = ($) => ({
-    'node': _p_cc(
-        $['node'],
+    'value': _p_cc(
+        $['value'],
         ($) => Value(
             $
         )
@@ -539,8 +539,8 @@ export const Group: t_signatures.Group = ($) => ({
                         ($) => $
                     )
                 ),
-                'node': _p_cc(
-                    $['node'],
+                'value': _p_cc(
+                    $['value'],
                     ($) => Value(
                         $
                     )
@@ -609,7 +609,7 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($) => _p.optio
     })
 )
 
-export const Type_Reference: t_signatures.Type_Reference = ($) => ({
+export const Module_Reference: t_signatures.Module_Reference = ($) => ({
     'location': _p_cc(
         $['location'],
         ($) => ({
@@ -620,7 +620,7 @@ export const Type_Reference: t_signatures.Type_Reference = ($) => ({
             },
             'l state': _p.decide.state(
                 $,
-                ($): t_out.Type_Reference.location.l_state => {
+                ($): t_out.Module_Reference.location.l_state => {
                     switch ($[0]) {
                         case 'internal':
                             return _p.ss(
@@ -795,8 +795,8 @@ export const Value: t_signatures.Value = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['list', {
-                            'node': _p_cc(
-                                $['node'],
+                            'value': _p_cc(
+                                $['value'],
                                 ($) => Value(
                                     $
                                 )
@@ -805,7 +805,7 @@ export const Value: t_signatures.Value = ($) => ({
                                 $['result'],
                                 ($) => _p.optional.map(
                                     $,
-                                    ($) => Type_Reference(
+                                    ($) => Module_Reference(
                                         $
                                     )
                                 )
@@ -969,8 +969,8 @@ export const Value: t_signatures.Value = ($) => ({
                                                 ($) => $
                                             )
                                         ),
-                                        'node': _p_cc(
-                                            $['node'],
+                                        'value': _p_cc(
+                                            $['value'],
                                             ($) => Value(
                                                 $
                                             )
@@ -1127,8 +1127,8 @@ export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers
 })
 
 export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
-    'values': _p_cc(
-        $['values'],
+    'modules': _p_cc(
+        $['modules'],
         ($) => ({
             'l location': {
                 'document resource identifier': "implement me",
@@ -1139,9 +1139,9 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                 $,
                 ($, id) => ({
                     'l entry': {
-                        'data type': _p_cc(
-                            $['data type'],
-                            ($) => Type_Reference(
+                        'module': _p_cc(
+                            $['module'],
+                            ($) => Module_Reference(
                                 $
                             )
                         ),
@@ -1175,7 +1175,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ({
                     'l entry': {
                         'referent': _p_cc(
                             $['referent'],
-                            ($) => Type_Reference(
+                            ($) => Module_Reference(
                                 $
                             )
                         ),
@@ -1341,7 +1341,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
     ),
 })
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Type_Reference(
+export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Module_Reference(
     $
 )
 
@@ -1438,8 +1438,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                 ($) => _p.optional.map(
                                     $,
                                     ($) => ({
-                                        'values': _p_cc(
-                                            $['values'],
+                                        'modules': _p_cc(
+                                            $['modules'],
                                             ($) => _p.optional.map(
                                                 $,
                                                 ($) => ({
@@ -1459,7 +1459,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                                                 },
                                                                 'l state': _p.decide.state(
                                                                     $,
-                                                                    ($): t_out.Value_Resolver.l_state.component.arguments_.O.values.O.l_dictionary.D.l_entry.l_state => {
+                                                                    ($): t_out.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'optional':
                                                                                 return _p.ss(
@@ -2079,7 +2079,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             ),
                                                             'result': _p_cc(
                                                                 $['result'],
-                                                                ($) => Type_Reference(
+                                                                ($) => Module_Reference(
                                                                     $
                                                                 )
                                                             ),
@@ -2106,7 +2106,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                             ),
                                                             'result': _p_cc(
                                                                 $['result'],
-                                                                ($) => Type_Reference(
+                                                                ($) => Module_Reference(
                                                                     $
                                                                 )
                                                             ),
@@ -2249,7 +2249,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
 export const Value_Reference: t_signatures.Value_Reference = ($) => ({
     'type location': _p_cc(
         $['type location'],
-        ($) => Type_Reference(
+        ($) => Module_Reference(
             $
         )
     ),
@@ -2262,8 +2262,8 @@ export const Value_Reference: t_signatures.Value_Reference = ($) => ({
 })
 
 export const Signature: t_signatures.Signature = ($) => ({
-    'type': _p_cc(
-        $['type'],
+    'module': _p_cc(
+        $['module'],
         ($) => null
     ),
     'parameters': _p_cc(
@@ -2480,7 +2480,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                     ),
                                                     'result': _p_cc(
                                                         $['result'],
-                                                        ($) => Type_Reference(
+                                                        ($) => Module_Reference(
                                                             $
                                                         )
                                                     ),
@@ -2507,7 +2507,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                     ),
                                                     'result': _p_cc(
                                                         $['result'],
-                                                        ($) => Type_Reference(
+                                                        ($) => Module_Reference(
                                                             $
                                                         )
                                                     ),

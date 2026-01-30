@@ -16,8 +16,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -27,8 +27,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -38,19 +38,19 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Type": sig.local(
+        "Module": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -70,7 +70,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Schema": sig.same_as("Schemas"),
         "Imports": sig.same_as("Schemas"),
 
-        "Types": sig.local(
+        "Modules": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),

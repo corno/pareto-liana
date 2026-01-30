@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    types,
+    modules,
     n,
     t,
     tr,
@@ -15,7 +15,7 @@ import {
 import * as sh from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
 
         "Type Specification": type(t.group({
@@ -34,7 +34,7 @@ export const $: g_.Types = types(
         "Schema": type(t.group({
             "imports": prop(t.component_cyclic("Imports")),
             "globals": prop(t.component("Globals")),
-            "types": prop(t.component("Types")),
+            "modules": prop(t.component("Modules")),
             "complexity": prop(t.state({
                 "constrained": tstate(t.component("Resolve Logic")),
                 "unconstrained": tstate(t.nothing()),
@@ -55,11 +55,11 @@ export const $: g_.Types = types(
             "number types": prop(t.dictionary(t.component("Number Type"))),
         })),
 
-        "Types": type(t.dictionary(t.component("Type"))),
+        "Modules": type(t.dictionary(t.component("Module"))),
 
         "Resolve Logic": type(t.group({ //FIXME: inline
             "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
-                "types": prop(t.component_cyclic("Signatures"))
+                "signatures": prop(t.component_cyclic("Signatures"))
             })),
             "resolvers": prop(t.component_cyclic("Resolvers")),
         })),
@@ -113,8 +113,8 @@ export const $: g_.Types = types(
             }))
         })),
 
-        "Type": type(t.group({
-            "node": prop(t.component_cyclic("Value"))
+        "Module": type(t.group({
+            "value": prop(t.component_cyclic("Value"))
         })),
 
         //FIXME: inline
@@ -124,7 +124,7 @@ export const $: g_.Types = types(
         })),
 
         "Dictionary": type(t.group({
-            "node": prop(t.component_cyclic("Value")),
+            "value": prop(t.component_cyclic("Value")),
         })),
 
         "Signatures": type(t.dictionary(t.component_cyclic("Signature"))),
@@ -147,11 +147,11 @@ export const $: g_.Types = types(
          */
         "Group": type(t.dictionary(t.group({
             "description": prop(t.optional(t.text_local(text('multi line')))),
-            "node": prop(t.component_cyclic("Value"))
+            "value": prop(t.component_cyclic("Value"))
         }))),
 
         "Value Reference": type(t.group({ //FIXME: inline
-            "type location": prop(t.component("Type Reference")),
+            "type location": prop(t.component("Module Reference")),
             "path": prop(t.component("Value Path")),
         })),
 
@@ -170,24 +170,24 @@ export const $: g_.Types = types(
 
         })),
 
-        "Type Reference": type(t.group({
+        "Module Reference": type(t.group({
             "location": prop(t.state({
-                "internal": tstate(t.reference("Types", [])),
+                "internal": tstate(t.reference("Modules", [])),
                 "external": tstate(t.group({
                     "import": prop(t.reference("Imports", [])),
-                    "type": prop(t.reference("Types", [])),
+                    "type": prop(t.reference("Modules", [])),
                 })),
             })),
-            "resulting type": prop(t.reference_derived("Type", [])),
+            "resulting type": prop(t.reference_derived("Module", [])),
         })),
 
         "Signature Parameters": type(t.group({ //FIME: inline
-            "values": prop(t.dictionary(t.group({
-                "data type": prop(t.component("Type Reference")),
+            "modules": prop(t.dictionary(t.group({
+                "module": prop(t.component("Module Reference")),
                 "presence": prop(t.component("Presence")),
             }))),
             "lookups": prop(t.dictionary(t.group({
-                "referent": prop(t.component("Type Reference")),
+                "referent": prop(t.component("Module Reference")),
                 "dictionary": prop(t.reference_derived("Dictionary", [])),
                 "type": prop(t.state({
                     "cyclic": tstate(t.nothing()),
@@ -199,7 +199,7 @@ export const $: g_.Types = types(
         })),
 
         "Signature": type(t.group({
-            "type": prop(t.reference_derived("Type", [])),
+            "module": prop(t.reference_derived("Module", [])),
             "parameters": prop(t.state({
                 "local": tstate(t.component("Signature Parameters")),
                 "same as": tstate(t.reference("Signatures", [])),
@@ -282,7 +282,7 @@ export const $: g_.Types = types(
             "resolver": prop(t.component_cyclic("Value Resolver")),
         }))),
 
-        "Value Resolver List Result": type(t.component("Type Reference")),
+        "Value Resolver List Result": type(t.component("Module Reference")),
 
 
         "Value": type(t.state({
@@ -291,18 +291,18 @@ export const $: g_.Types = types(
                 "type": prop(t.state({
                     "external": tstate(t.group({
                         "import": prop(t.reference("Imports", [])),
-                        "type": prop(t.reference("Types", [])),
+                        "type": prop(t.reference("Modules", [])),
                     })),
-                    "internal": tstate(t.reference("Types", [])),
-                    "internal cyclic": tstate(t.reference("Types", [], 'cyclic')),
+                    "internal": tstate(t.reference("Modules", [])),
+                    "internal cyclic": tstate(t.reference("Modules", [], 'cyclic')),
                 })),
                 "constraints": prop(t.component("Value Constraints")),
             })),
             "dictionary": tstate(t.component("Dictionary")),
             "group": tstate(t.component("Group")),
             "list": tstate(t.group({
-                "node": prop(t.component_cyclic("Value")),
-                "result": prop(t.optional(t.component("Type Reference"))),
+                "value": prop(t.component_cyclic("Value")),
+                "result": prop(t.optional(t.component("Module Reference"))),
             })),
             "nothing": tstate(t.nothing()),
             "number": tstate(t.state({
@@ -326,7 +326,7 @@ export const $: g_.Types = types(
             })),
             "state": tstate(t.dictionary(t.group({
                 "description": prop(t.optional(t.text_local(text('multi line')))),
-                "node": prop(t.component_cyclic("Value")),
+                "value": prop(t.component_cyclic("Value")),
             }))),
             "text": tstate(t.state({
                 "global": tstate(t.reference("Globals", [tr.g("text types")])),
@@ -350,10 +350,10 @@ export const $: g_.Types = types(
                 })),
                 "signature": prop(t.reference_derived("Signatures", [tr.d()])),
                 "arguments": prop(t.optional(t.group({
-                    "values": prop(t.optional(t.dictionary(t.state({
+                    "modules": prop(t.optional(t.dictionary(t.state({
                         "optional": tstate(t.component("Optional Value Initialization")),
                         "required": tstate(t.component_cyclic("Guaranteed Value Selection")),
-                        "parameter": tstate(t.reference("Signature Parameters", [tr.g("values")])),
+                        "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])),
                     })))),
                     "lookups": prop(t.optional(t.dictionary(t.state({
                         "empty stack": tstate(t.nothing()),
@@ -429,7 +429,7 @@ export const $: g_.Types = types(
                     })),
 
                 })),
-                "parameter": tstate(t.reference("Signature Parameters", [tr.g("values")])), //FIXME: validate that presence is 'required'
+                "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])), //FIXME: validate that presence is 'required'
                 "result": tstate(t.state({
                     "list": tstate(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
@@ -438,12 +438,12 @@ export const $: g_.Types = types(
                     "state": tstate(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
                         "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
-                        "result": prop(t.component("Type Reference")),
+                        "result": prop(t.component("Module Reference")),
                     })),
                     "optional value": tstate(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
                         "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
-                        "result": prop(t.component("Type Reference")),
+                        "result": prop(t.component("Module Reference")),
                     })),
                 }))
             })),
@@ -452,17 +452,17 @@ export const $: g_.Types = types(
         })),
 
         "Possible Value Selection": type(t.state({
-            "parameter": tstate(t.reference("Signature Parameters", [tr.g("values")])), //FIXME: validate that presence is 'optional'
+            "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])), //FIXME: validate that presence is 'optional'
             "result": tstate(t.state({
                 "state": tstate(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
                     "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
-                    "result": prop(t.component("Type Reference")),
+                    "result": prop(t.component("Module Reference")),
                 })),
                 "optional value": tstate(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
                     "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
-                    "result": prop(t.component("Type Reference")),
+                    "result": prop(t.component("Module Reference")),
                 })),
             }))
         })),

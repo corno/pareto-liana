@@ -42,7 +42,7 @@ export const Schema = (
                 ],
             ),
         },
-        $.types.__d_map(($, id) => sh.type.refiner(
+        $.modules.__d_map(($, id) => sh.type.refiner(
             sh.t.component_imported(
                 "in",
                 "Value",

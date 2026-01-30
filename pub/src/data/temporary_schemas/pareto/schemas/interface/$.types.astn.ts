@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import {
     text,
-    types,
+    modules,
     n,
     t,
     tr,
@@ -13,7 +13,7 @@ import {
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
         "Module Set": type(t.dictionary(t.state({
             "module": toption(t.component("Module")),
@@ -59,7 +59,7 @@ export const $: g_.Types = types(
         "Value": type(t.state({
             "boolean": toption(t.nothing()),
             "component": toption(t.group({
-                "location": prop(t.component("Type Reference")),
+                "location": prop(t.component("Module Reference")),
             })),
             "dictionary": toption(t.component_cyclic("Value")),
             "group": toption(t.dictionary(t.component_cyclic("Value"))),
@@ -74,7 +74,7 @@ export const $: g_.Types = types(
             })),
             "optional": toption(t.component_cyclic("Value")),
             "reference": toption(t.group({
-                "location": prop(t.component("Type Reference")),
+                "location": prop(t.component("Module Reference")),
                 "sub selection": prop(t.list(t.state({
                     "dictionary": toption(t.nothing()),
                     "group": toption(t.text_global("TBD")),
@@ -88,7 +88,7 @@ export const $: g_.Types = types(
             "text": toption(t.nothing()),
         })),
 
-        "Type Reference": type(t.state({
+        "Module Reference": type(t.state({
             "import": toption(t.group({
                 "import": prop(t.text_global("TBD")),
                 "type": prop(t.text_global("TBD")),

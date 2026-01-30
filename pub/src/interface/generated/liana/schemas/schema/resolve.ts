@@ -101,13 +101,13 @@ export namespace Group_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -156,13 +156,13 @@ export namespace Dictionary_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -211,13 +211,13 @@ export namespace Value_ {
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -256,17 +256,17 @@ export type Value_ = (
     },
 ) => Value_.O
 
-export namespace Type_Reference_ {
+export namespace Module_Reference_ {
     
-    export type I = i_unresolved.Type_Reference
+    export type I = i_unresolved.Module_Reference
     
-    export type O = i_resolved.Type_Reference
+    export type O = i_resolved.Module_Reference
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type types = i_resolved.Types_.D
+        export type modules = i_resolved.Modules_.D
         
     }
     
@@ -284,16 +284,16 @@ export namespace Type_Reference_ {
     
 }
 
-export type Type_Reference_ = (
-    context: Type_Reference_.I,
-    abort: _pi.Abort<Type_Reference_.E>,
+export type Module_Reference_ = (
+    context: Module_Reference_.I,
+    abort: _pi.Abort<Module_Reference_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Type_Reference_.L.types>
+        readonly 'modules': _pi.Acyclic_Lookup<Module_Reference_.L.modules>
     },
     parameters: {
-        readonly 'imports': Type_Reference_.P.imports
+        readonly 'imports': Module_Reference_.P.imports
     },
-) => Type_Reference_.O
+) => Module_Reference_.O
 
 export namespace Value_Reference_ {
     
@@ -305,7 +305,7 @@ export namespace Value_Reference_ {
     
     export namespace L {
         
-        export type types = i_resolved.Types_.D
+        export type modules = i_resolved.Modules_.D
         
     }
     
@@ -327,7 +327,7 @@ export type Value_Reference_ = (
     context: Value_Reference_.I,
     abort: _pi.Abort<Value_Reference_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Value_Reference_.L.types>
+        readonly 'modules': _pi.Acyclic_Lookup<Value_Reference_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Reference_.P.imports
@@ -344,7 +344,7 @@ export namespace Value_Constraints_ {
     
     export namespace L {
         
-        export type types = i_resolved.Types_.D
+        export type modules = i_resolved.Modules_.D
         
     }
     
@@ -366,30 +366,30 @@ export type Value_Constraints_ = (
     context: Value_Constraints_.I,
     abort: _pi.Abort<Value_Constraints_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Value_Constraints_.L.types>
+        readonly 'modules': _pi.Acyclic_Lookup<Value_Constraints_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Constraints_.P.imports
     },
 ) => Value_Constraints_.O
 
-export namespace Type_ {
+export namespace Module_ {
     
-    export type I = i_unresolved.Type
+    export type I = i_unresolved.Module
     
-    export type O = i_resolved.Type
+    export type O = i_resolved.Module
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_types = i_resolved.Types_.D
+        export type noncircular_sibling_types = i_resolved.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_types = i_resolved.Types_.D
+        export type possibly_circular_dependent_sibling_types = i_resolved.Modules_.D
         
     }
     
@@ -415,18 +415,18 @@ export namespace Type_ {
     
 }
 
-export type Type_ = (
-    context: Type_.I,
-    abort: _pi.Abort<Type_.E>,
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Type_.L.noncircular_sibling_types>
-        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Type_.L.possibly_circular_dependent_sibling_types>
+        readonly 'noncircular sibling types': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_types>
+        readonly 'possibly circular dependent sibling types': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_types>
     },
     parameters: {
-        readonly 'globals': Type_.P.globals
-        readonly 'imports': Type_.P.imports
+        readonly 'globals': Module_.P.globals
+        readonly 'imports': Module_.P.imports
     },
-) => Type_.O
+) => Module_.O
 
 export namespace Value_Path_ {
     
@@ -438,7 +438,7 @@ export namespace Value_Path_ {
     
     export namespace P {
         
-        export type type_ = i_resolved.Type_
+        export type type_ = i_resolved.Module_
         
     }
     
@@ -521,7 +521,7 @@ export namespace Value_Resolver_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -551,7 +551,7 @@ export type Value_Resolver_ = (
         readonly 'signature': Value_Resolver_.P.signature
         readonly 'imports': Value_Resolver_.P.imports
         readonly 'signatures': Value_Resolver_.P.signatures
-        readonly 'types': Value_Resolver_.P.types
+        readonly 'modules': Value_Resolver_.P.modules
         readonly 'option constraints': Value_Resolver_.P.option_constraints
     },
 ) => Value_Resolver_.O
@@ -624,7 +624,7 @@ export namespace Possible_Value_Selection_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -654,7 +654,7 @@ export type Possible_Value_Selection_ = (
         readonly 'signature': Possible_Value_Selection_.P.signature
         readonly 'imports': Possible_Value_Selection_.P.imports
         readonly 'signatures': Possible_Value_Selection_.P.signatures
-        readonly 'types': Possible_Value_Selection_.P.types
+        readonly 'modules': Possible_Value_Selection_.P.modules
         readonly 'option constraints': Possible_Value_Selection_.P.option_constraints
     },
 ) => Possible_Value_Selection_.O
@@ -727,7 +727,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -757,7 +757,7 @@ export type Guaranteed_Value_Selection_ = (
         readonly 'signature': Guaranteed_Value_Selection_.P.signature
         readonly 'imports': Guaranteed_Value_Selection_.P.imports
         readonly 'signatures': Guaranteed_Value_Selection_.P.signatures
-        readonly 'types': Guaranteed_Value_Selection_.P.types
+        readonly 'modules': Guaranteed_Value_Selection_.P.modules
         readonly 'option constraints': Guaranteed_Value_Selection_.P.option_constraints
     },
 ) => Guaranteed_Value_Selection_.O
@@ -830,7 +830,7 @@ export namespace Benchmark_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -860,7 +860,7 @@ export type Benchmark_ = (
         readonly 'signature': Benchmark_.P.signature
         readonly 'imports': Benchmark_.P.imports
         readonly 'signatures': Benchmark_.P.signatures
-        readonly 'types': Benchmark_.P.types
+        readonly 'modules': Benchmark_.P.modules
         readonly 'option constraints': Benchmark_.P.option_constraints
     },
 ) => Benchmark_.O
@@ -933,7 +933,7 @@ export namespace Optional_Value_Initialization_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -963,7 +963,7 @@ export type Optional_Value_Initialization_ = (
         readonly 'signature': Optional_Value_Initialization_.P.signature
         readonly 'imports': Optional_Value_Initialization_.P.imports
         readonly 'signatures': Optional_Value_Initialization_.P.signatures
-        readonly 'types': Optional_Value_Initialization_.P.types
+        readonly 'modules': Optional_Value_Initialization_.P.modules
         readonly 'option constraints': Optional_Value_Initialization_.P.option_constraints
     },
 ) => Optional_Value_Initialization_.O
@@ -1036,7 +1036,7 @@ export namespace Lookup_Selection_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -1066,7 +1066,7 @@ export type Lookup_Selection_ = (
         readonly 'signature': Lookup_Selection_.P.signature
         readonly 'imports': Lookup_Selection_.P.imports
         readonly 'signatures': Lookup_Selection_.P.signatures
-        readonly 'types': Lookup_Selection_.P.types
+        readonly 'modules': Lookup_Selection_.P.modules
         readonly 'option constraints': Lookup_Selection_.P.option_constraints
     },
 ) => Lookup_Selection_.O
@@ -1139,7 +1139,7 @@ export namespace Option_Constraints_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -1169,7 +1169,7 @@ export type Option_Constraints_ = (
         readonly 'signature': Option_Constraints_.P.signature
         readonly 'imports': Option_Constraints_.P.imports
         readonly 'signatures': Option_Constraints_.P.signatures
-        readonly 'types': Option_Constraints_.P.types
+        readonly 'modules': Option_Constraints_.P.modules
         readonly 'option constraints': Option_Constraints_.P.option_constraints
     },
 ) => Option_Constraints_.O
@@ -1184,7 +1184,7 @@ export namespace Value_Resolver_List_Result_ {
     
     export namespace L {
         
-        export type types = i_resolved.Types_.D
+        export type modules = i_resolved.Modules_.D
         
     }
     
@@ -1206,7 +1206,7 @@ export type Value_Resolver_List_Result_ = (
     context: Value_Resolver_List_Result_.I,
     abort: _pi.Abort<Value_Resolver_List_Result_.E>,
     lookups: {
-        readonly 'types': _pi.Acyclic_Lookup<Value_Resolver_List_Result_.L.types>
+        readonly 'modules': _pi.Acyclic_Lookup<Value_Resolver_List_Result_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Resolver_List_Result_.P.imports
@@ -1281,7 +1281,7 @@ export namespace Value_Resolver_Group_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
@@ -1311,7 +1311,7 @@ export type Value_Resolver_Group_ = (
         readonly 'signature': Value_Resolver_Group_.P.signature
         readonly 'imports': Value_Resolver_Group_.P.imports
         readonly 'signatures': Value_Resolver_Group_.P.signatures
-        readonly 'types': Value_Resolver_Group_.P.types
+        readonly 'modules': Value_Resolver_Group_.P.modules
         readonly 'option constraints': Value_Resolver_Group_.P.option_constraints
     },
 ) => Value_Resolver_Group_.O
@@ -1326,7 +1326,7 @@ export namespace Relative_Value_Selection_ {
     
     export namespace P {
         
-        export type node = i_resolved.Value_
+        export type value = i_resolved.Value_
         
     }
     
@@ -1337,7 +1337,7 @@ export type Relative_Value_Selection_ = (
     abort: _pi.Abort<Relative_Value_Selection_.E>,
     lookups: null,
     parameters: {
-        readonly 'node': Relative_Value_Selection_.P.node
+        readonly 'value': Relative_Value_Selection_.P.value
     },
 ) => Relative_Value_Selection_.O
 
@@ -1351,7 +1351,7 @@ export namespace Constraint_ {
     
     export namespace P {
         
-        export type node = i_resolved.Value_
+        export type value = i_resolved.Value_
         
     }
     
@@ -1362,7 +1362,7 @@ export type Constraint_ = (
     abort: _pi.Abort<Constraint_.E>,
     lookups: null,
     parameters: {
-        readonly 'node': Constraint_.P.node
+        readonly 'value': Constraint_.P.value
     },
 ) => Constraint_.O
 
@@ -1376,7 +1376,7 @@ export namespace Value_Constraint_Resolvers_ {
     
     export namespace P {
         
-        export type node = i_resolved.Value_
+        export type value = i_resolved.Value_
         
     }
     
@@ -1387,7 +1387,7 @@ export type Value_Constraint_Resolvers_ = (
     abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
     lookups: null,
     parameters: {
-        readonly 'node': Value_Constraint_Resolvers_.P.node
+        readonly 'value': Value_Constraint_Resolvers_.P.value
     },
 ) => Value_Constraint_Resolvers_.O
 
@@ -1430,7 +1430,7 @@ export namespace Resolve_Logic_ {
     
     export namespace P {
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export type imports = i_resolved.Imports_
         
@@ -1443,7 +1443,7 @@ export type Resolve_Logic_ = (
     abort: _pi.Abort<Resolve_Logic_.E>,
     lookups: null,
     parameters: {
-        readonly 'types': Resolve_Logic_.P.types
+        readonly 'modules': Resolve_Logic_.P.modules
         readonly 'imports': Resolve_Logic_.P.imports
     },
 ) => Resolve_Logic_.O
@@ -1458,7 +1458,7 @@ export namespace Signature_Parameters_ {
     
     export namespace P {
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export type imports = i_resolved.Imports_
         
@@ -1471,7 +1471,7 @@ export type Signature_Parameters_ = (
     abort: _pi.Abort<Signature_Parameters_.E>,
     lookups: null,
     parameters: {
-        readonly 'types': Signature_Parameters_.P.types
+        readonly 'modules': Signature_Parameters_.P.modules
         readonly 'imports': Signature_Parameters_.P.imports
     },
 ) => Signature_Parameters_.O
@@ -1492,9 +1492,9 @@ export namespace Signature_ {
     
     export namespace P {
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
-        export type type_ = i_resolved.Type_
+        export type type_ = i_resolved.Module_
         
         export type imports = i_resolved.Imports_
         
@@ -1509,7 +1509,7 @@ export type Signature_ = (
         readonly 'sibling signatures': _pi.Acyclic_Lookup<Signature_.L.sibling_signatures>
     },
     parameters: {
-        readonly 'types': Signature_.P.types
+        readonly 'modules': Signature_.P.modules
         readonly 'type': Signature_.P.type_
         readonly 'imports': Signature_.P.imports
     },
@@ -1525,7 +1525,7 @@ export namespace Signatures_ {
     
     export namespace P {
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export type imports = i_resolved.Imports_
         
@@ -1538,7 +1538,7 @@ export type Signatures_ = (
     abort: _pi.Abort<Signatures_.E>,
     lookups: null,
     parameters: {
-        readonly 'types': Signatures_.P.types
+        readonly 'modules': Signatures_.P.modules
         readonly 'imports': Signatures_.P.imports
     },
 ) => Signatures_.O
@@ -1555,7 +1555,7 @@ export namespace Resolvers_ {
         
         export type signatures = i_resolved.Signatures_
         
-        export type types = i_resolved.Types_
+        export type modules = i_resolved.Modules_
         
         export type imports = i_resolved.Imports_
         
@@ -1569,7 +1569,7 @@ export type Resolvers_ = (
     lookups: null,
     parameters: {
         readonly 'signatures': Resolvers_.P.signatures
-        readonly 'types': Resolvers_.P.types
+        readonly 'modules': Resolvers_.P.modules
         readonly 'imports': Resolvers_.P.imports
     },
 ) => Resolvers_.O
@@ -1740,11 +1740,11 @@ export type Reference_To_Value_Constraint_Resolver_ = (
     parameters: null,
 ) => Reference_To_Value_Constraint_Resolver_.O
 
-export namespace Types_ {
+export namespace Modules_ {
     
-    export type I = i_unresolved.Types
+    export type I = i_unresolved.Modules
     
-    export type O = i_resolved.Types
+    export type O = i_resolved.Modules
     
     export type E = i_generic.Error
     
@@ -1770,15 +1770,15 @@ export namespace Types_ {
     
 }
 
-export type Types_ = (
-    context: Types_.I,
-    abort: _pi.Abort<Types_.E>,
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
     lookups: null,
     parameters: {
-        readonly 'globals': Types_.P.globals
-        readonly 'imports': Types_.P.imports
+        readonly 'globals': Modules_.P.globals
+        readonly 'imports': Modules_.P.imports
     },
-) => Types_.O
+) => Modules_.O
 
 export { 
     Presence_ as Presence, 
@@ -1788,10 +1788,10 @@ export {
     Group_ as Group, 
     Dictionary_ as Dictionary, 
     Value_ as Value, 
-    Type_Reference_ as Type_Reference, 
+    Module_Reference_ as Module_Reference, 
     Value_Reference_ as Value_Reference, 
     Value_Constraints_ as Value_Constraints, 
-    Type_ as Type, 
+    Module_ as Module, 
     Value_Path_ as Value_Path, 
     Value_Resolver_ as Value_Resolver, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
@@ -1817,5 +1817,5 @@ export {
     Schema_ as Schema, 
     Imports_ as Imports, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
-    Types_ as Types, 
+    Modules_ as Modules, 
 }

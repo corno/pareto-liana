@@ -74,9 +74,9 @@ export const Node_Type = (
                     {
                         'definition': _p.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'external': return _p.ss($, ($) => $.type['l entry'].node)
-                                case 'internal': return _p.ss($, ($) => $['l entry'].node)
-                                case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent().node)
+                                case 'external': return _p.ss($, ($) => $.type['l entry'].value)
+                                case 'internal': return _p.ss($, ($) => $['l entry'].value)
+                                case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent().value)
                                 default: return _p.au($[0])
                             }
                         }),
@@ -84,7 +84,7 @@ export const Node_Type = (
                 )
             }])
             case 'dictionary': return _p.ss($, ($): d_out.Node_Type => {
-                const prop_def = $.node
+                const prop_def = $.value
                 return ['dictionary', {
                     'definition': $,
                     'found value type': _p.decide.state(data, ($) => {
@@ -269,7 +269,7 @@ export const Node_Type = (
                 }]
             })
             case 'list': return _p.ss($, ($) => {
-                const prop_def = $.node
+                const prop_def = $.value
                 return ['list', {
                     'definition': $,
                     'found value type': _p.decide.state(data, ($) => {
@@ -389,7 +389,7 @@ export const Node_Type = (
                                                                 'node': Node(
                                                                     value,
                                                                     {
-                                                                        'definition': $.node,
+                                                                        'definition': $.value,
                                                                     }
                                                                 )
                                                             })

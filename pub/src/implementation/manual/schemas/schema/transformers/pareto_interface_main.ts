@@ -65,7 +65,7 @@ export const Schema = (
             "resolve": _p.decide.state($.complexity, ($) => {
                 switch ($[0]) {
                     case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Signatures(
-                        $.signatures.types
+                        $.signatures.signatures
                     )))
                     case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
                     default: return _p.au($[0])

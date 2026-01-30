@@ -18,8 +18,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -29,8 +29,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
@@ -40,37 +40,37 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
         "Value Constraints": sig.same_as("Value Reference"),
 
-        "Type": sig.local(
+        "Module": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "noncircular sibling types": lookup_parameter("Types"),
-                "possibly circular dependent sibling types": lookup_parameter("Types", 'cyclic'),
+                "noncircular sibling types": lookup_parameter("Modules"),
+                "possibly circular dependent sibling types": lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Type Reference": sig.local(
+        "Module Reference": sig.local(
             {
                 "imports": value_parameter("Imports", 'optional'),
             },
             {
-                "types": lookup_parameter("Types"),
+                "modules": lookup_parameter("Modules"),
             },
         ),
-        "Value Reference": sig.same_as("Type Reference"),
+        "Value Reference": sig.same_as("Module Reference"),
 
         "Value Path": sig.local(
             {
-                "type": value_parameter("Type"),
+                "type": value_parameter("Module"),
             },
             {},
         ),
@@ -86,7 +86,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "signature": value_parameter("Signature"),
                 "imports": value_parameter("Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
-                "types": value_parameter("Types"),
+                "modules": value_parameter("Modules"),
                 "option constraints": value_parameter("Option Constraints", 'optional'),
             },
             {
@@ -103,7 +103,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Lookup Selection": sig.same_as("Value Resolver"),
         "Option Constraints": sig.same_as("Value Resolver"),
 
-        "Value Resolver List Result": sig.same_as("Type Reference"),
+        "Value Resolver List Result": sig.same_as("Module Reference"),
         "Value Resolver Group": sig.local(
             {
                 "definition": value_parameter("Group"),
@@ -114,7 +114,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "signature": value_parameter("Signature"),
                 "imports": value_parameter("Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
-                "types": value_parameter("Types"),
+                "modules": value_parameter("Modules"),
                 "option constraints": value_parameter("Option Constraints", 'optional'),
             },
             {
@@ -126,7 +126,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Relative Value Selection": sig.local(
             {
-                "node": value_parameter("Value"),
+                "value": value_parameter("Value"),
             },
             {},
         ),
@@ -141,7 +141,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Resolve Logic": sig.local(
             {
-                "types": value_parameter("Types"),
+                "modules": value_parameter("Modules"),
                 "imports": value_parameter("Imports"),
             },
             {},
@@ -150,8 +150,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Signature": sig.local(
             {
-                "types": value_parameter("Types"),
-                "type": value_parameter("Type"),
+                "modules": value_parameter("Modules"),
+                "type": value_parameter("Module"),
                 "imports": value_parameter("Imports"),
             },
             {
@@ -161,7 +161,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Signatures": sig.local(
             {
-                "types": value_parameter("Types"),
+                "modules": value_parameter("Modules"),
                 "imports": value_parameter("Imports"),
             },
             {},
@@ -170,7 +170,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Resolvers": sig.local(
             {
                 "signatures": value_parameter("Signatures"),
-                "types": value_parameter("Types"),
+                "modules": value_parameter("Modules"),
                 "imports": value_parameter("Imports"),
             },
             {},
@@ -205,7 +205,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Types": sig.local(
+        "Modules": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),

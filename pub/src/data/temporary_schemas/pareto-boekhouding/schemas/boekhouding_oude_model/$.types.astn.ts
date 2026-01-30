@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import {
     n,
-    types,
+    modules,
 
     text,
     t,
@@ -13,7 +13,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Types = types(
+export const $: g_.Modules = modules(
     {
         "Root": type(t.group({
             "Bankrekeningen": prop(t.dictionary(t.group({}))),
