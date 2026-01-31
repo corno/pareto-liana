@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -18,8 +18,8 @@ export const $: g_.Modules = modules(
         })),
 
         "Error": module_(t.state({
-            "directory does not exist": tstate(t.nothing()),
-            "node is not a directory": tstate(t.nothing()),
+            "directory does not exist": toption(t.nothing()),
+            "node is not a directory": toption(t.nothing()),
         })),
 
         "Result": module_(t.dictionary(t.group({
@@ -34,9 +34,9 @@ export const $: g_.Modules = modules(
         }))),
 
         "Node Type": module_(t.state({
-            "file": tstate(t.nothing()),
-            "directory": tstate(t.nothing()),
-            "other": tstate(t.nothing()),
+            "file": toption(t.nothing()),
+            "directory": toption(t.nothing()),
+            "other": toption(t.nothing()),
         })),
     }
 )

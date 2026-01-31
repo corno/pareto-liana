@@ -6,7 +6,7 @@ import {
     module_,
     text,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -14,7 +14,7 @@ export const $: g_.Modules = modules(
     {
         "Array Definition": module_(t.group({
             "type": prop(t.state({
-                "list": tstate(t.component_cyclic("Definition"))
+                "list": toption(t.component_cyclic("Definition"))
                 //FIXME concise group
             }))
         })),
@@ -23,22 +23,22 @@ export const $: g_.Modules = modules(
         "Number Definition": module_(t.nothing()),
         "Object Definition": module_(t.group({
             "type": prop(t.state({
-                "verbose group": tstate(t.group({
+                "verbose group": toption(t.group({
                     "properties": prop(t.dictionary(t.group({
                         "definition": prop(t.component_cyclic("Definition")),
                         "optional": prop(t.boolean()),
                     }))),
                 })),
-                "dictionary": tstate(t.component_cyclic("Definition")),
+                "dictionary": toption(t.component_cyclic("Definition")),
             })),
         })),
         "String Definition": module_(t.state({
-            "any": tstate(t.nothing()),
-            "enum": tstate(t.dictionary(t.nothing())),
+            "any": toption(t.nothing()),
+            "enum": toption(t.dictionary(t.nothing())),
         })),
         "Definition": module_(t.state({
-            "any": tstate(t.nothing()),
-            "any of": tstate(t.group({
+            "any": toption(t.nothing()),
+            "any of": toption(t.group({
                 "array": prop(t.optional(t.component("Array Definition"))),
                 "boolean": prop(t.optional(t.component("Boolean Definition"))),
                 "null": prop(t.optional(t.component("Null Definition"))),
@@ -48,14 +48,14 @@ export const $: g_.Modules = modules(
 
                 "else": prop(t.optional(t.text_local(text("single line")))),//reference to a definition
             })),
-            "definition reference": tstate(t.text_local(text("single line"))),
+            "definition reference": toption(t.text_local(text("single line"))),
 
-            "array": tstate(t.component("Array Definition")),
-            "boolean": tstate(t.component("Boolean Definition")),
-            "null": tstate(t.component("Null Definition")),
-            "number": tstate(t.component("Number Definition")),
-            "object": tstate(t.component("Object Definition")),
-            "string": tstate(t.component("String Definition")),
+            "array": toption(t.component("Array Definition")),
+            "boolean": toption(t.component("Boolean Definition")),
+            "null": toption(t.component("Null Definition")),
+            "number": toption(t.component("Number Definition")),
+            "object": toption(t.component("Object Definition")),
+            "string": toption(t.component("String Definition")),
         })),
         "Schema": module_(t.group({
             "definitions": prop(t.dictionary(t.component("Definition"))),
@@ -65,15 +65,15 @@ export const $: g_.Modules = modules(
         "Error": module_(t.group({
             "path": prop(t.text_local(text("single line"))),
             "type": prop(t.state({
-                "not the right type": tstate(t.group({
+                "not the right type": toption(t.group({
                     "expected": prop(t.component("Value Type")),
                     "actual": prop(t.component("Value Type")),
                 })),
-                "type not allowed": tstate(t.group({
+                "type not allowed": toption(t.group({
                     "type": prop(t.component("Value Type")),
                 })),
-                "missing property": tstate(t.text_local(text("single line"))),
-                "superfluous property": tstate(t.group({
+                "missing property": toption(t.text_local(text("single line"))),
+                "superfluous property": toption(t.group({
                     "name": prop(t.text_local(text("single line"))),
                     "type": prop(t.component("Value Type")),
                 })),
@@ -81,12 +81,12 @@ export const $: g_.Modules = modules(
         })),
 
         "Value Type": module_(t.state({
-            "array": tstate(t.nothing()),
-            "boolean": tstate(t.nothing()),
-            "null": tstate(t.nothing()),
-            "number": tstate(t.nothing()),
-            "object": tstate(t.nothing()),
-            "string": tstate(t.nothing()),
+            "array": toption(t.nothing()),
+            "boolean": toption(t.nothing()),
+            "null": toption(t.nothing()),
+            "number": toption(t.nothing()),
+            "object": toption(t.nothing()),
+            "string": toption(t.nothing()),
         })),
     }
 )

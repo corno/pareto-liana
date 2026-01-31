@@ -5,25 +5,25 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $: g_.Modules = modules(
     {
         "Text Edits": module_(t.list(t.state({
-            "insert": tstate(t.group({
+            "insert": toption(t.group({
                 "location": prop(t.component("Relative Location")),
                 "text": prop(t.text_local(text('single line'))),
             })),
-            "replace": tstate(t.group({
+            "replace": toption(t.group({
                 "range": prop(t.component("Relative Range")),
                 "text": prop(t.text_local(text('single line'))),
             })),
-            "delete": tstate(t.group({
+            "delete": toption(t.group({
                 "range": prop(t.component("Relative Range")),
             })),
         }))),

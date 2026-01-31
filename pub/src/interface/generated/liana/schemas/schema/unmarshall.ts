@@ -368,6 +368,25 @@ export type Module_Reference_ = (
     abort: _pi.Abort<Module_Reference_.E>,
 ) => Module_Reference_.O
 
+export namespace Option_Constraints_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Option_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Option_Constraints_ = (
+    context: Option_Constraints_.I,
+    abort: _pi.Abort<Option_Constraints_.E>,
+) => Option_Constraints_.O
+
 export namespace Value_ {
     
     export type I = i_in.Value
@@ -387,11 +406,11 @@ export type Value_ = (
     abort: _pi.Abort<Value_.E>,
 ) => Value_.O
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Option_Constraints
+    export type O = i_out.Option_Constraint_Resolvers
     
     export type E = i_generic.Error
     
@@ -401,10 +420,10 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
-) => Option_Constraints_.O
+export type Option_Constraint_Resolvers_ = (
+    context: Option_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
+) => Option_Constraint_Resolvers_.O
 
 export namespace Value_Constraint_Resolvers_ {
     
@@ -730,8 +749,9 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Module_Reference_ as Module_Reference, 
-    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
+    Value_ as Value, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 

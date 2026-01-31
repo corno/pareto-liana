@@ -4,11 +4,11 @@ import {
     modules,
     n,
     t,
-    tr,
+    vp,
     module_,
     text,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -16,8 +16,8 @@ export const $: g_.Modules = modules(
     {
 
         "Schema Tree": module_(t.state({
-            "set": tstate(t.component("Schemas")),
-            "schema": tstate(t.component("Schema")),
+            "set": toption(t.component("Schemas")),
+            "schema": toption(t.component("Schema")),
         })),
 
         "Schemas": module_(t.dictionary(t.component_cyclic("Schema Tree"))),
@@ -47,32 +47,32 @@ export const $: g_.Modules = modules(
 
         "Value": module_(t.state({
             //"boolean": t.nothing(),
-            "component": tstate(t.state({
-                "external": tstate(t.group({
+            "component": toption(t.state({
+                "external": toption(t.group({
                     "import": prop(t.reference("Imports", [])),
                     "type": prop(t.reference("Modules", [])),
                 })),
-                "internal": tstate(t.reference("Modules", [])),
-                "internal cyclic": tstate(t.reference("Modules", [], 'cyclic')),
+                "internal": toption(t.reference("Modules", [])),
+                "internal cyclic": toption(t.reference("Modules", [], 'cyclic')),
             })),
-            "dictionary": tstate(t.component("Dictionary")),
-            "group": tstate(t.component("Group")),
-            "list": tstate(t.group({
+            "dictionary": toption(t.component("Dictionary")),
+            "group": toption(t.component("Group")),
+            "list": toption(t.group({
                 "node": prop(t.component_cyclic("Value")),
             })),
-            "nothing": tstate(t.nothing()),
-            "optional": tstate(t.component_cyclic("Value")),
-            "state": tstate(t.dictionary(t.component_cyclic("Value"))),
-            "text": tstate(t.state({
-                "global": tstate(t.reference("Globals", [tr.g("text types")])),
-                "local": tstate(t.component("Text Type")),
+            "nothing": toption(t.nothing()),
+            "optional": toption(t.component_cyclic("Value")),
+            "state": toption(t.dictionary(t.component_cyclic("Value"))),
+            "text": toption(t.state({
+                "global": toption(t.reference("Globals", [vp.g("text types")])),
+                "local": toption(t.component("Text Type")),
             })),
         })),
 
         "Text Type": module_(t.group({
             "type": prop(t.state({
-                "multi line": tstate(t.nothing()),
-                "single line": tstate(t.nothing()),
+                "multi line": toption(t.nothing()),
+                "single line": toption(t.nothing()),
             })),
         })),
 

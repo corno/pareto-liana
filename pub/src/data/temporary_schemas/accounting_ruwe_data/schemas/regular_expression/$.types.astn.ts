@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -19,26 +19,26 @@ export const $: g_.Modules = modules(
 
         "Sequence": module_(t.list(t.group({
             "type": prop(t.state({
-                "literal": tstate(t.text_global("Text Value")),
-                "character class": tstate(t.group({
+                "literal": toption(t.text_global("Text Value")),
+                "character class": toption(t.group({
                     "negated": prop(t.boolean()),
                     "ranges": prop(t.list(t.state({
-                        "literal": tstate(t.number_global("Character")), //should be a reference to a character in the dictionary
-                        "range": tstate(t.group({
+                        "literal": toption(t.number_global("Character")), //should be a reference to a character in the dictionary
+                        "range": toption(t.group({
                             "from": prop(t.number_global("Character")),
                             "to": prop(t.number_global("Character")),
                         })),
                     }))),
                 })),
-                "group": tstate(t.group({
+                "group": toption(t.group({
                     "expression": prop(t.component_cyclic("Sequence")),
                 })),
-                "alternation": tstate(t.list(t.component_cyclic("Sequence"))),
+                "alternation": toption(t.list(t.component_cyclic("Sequence"))),
             })),
             "quantifier": prop(t.optional(t.state({
-                "optional": tstate(t.nothing()), // ?
-                "multiple": tstate(t.nothing()), // *
-                "one or more": tstate(t.nothing()), // +
+                "optional": toption(t.nothing()), // ?
+                "multiple": toption(t.nothing()), // *
+                "one or more": toption(t.nothing()), // +
                 // "exact": t.number_local(n.natural(null)), // {n}
                 // "between": t.group({
                 //     "min": t.number_local(n.natural(null)), // {n,m}

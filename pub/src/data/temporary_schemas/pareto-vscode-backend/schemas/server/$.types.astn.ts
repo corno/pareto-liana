@@ -7,7 +7,7 @@ import {
     n,
     text,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -15,10 +15,10 @@ export const $: g_.Modules = modules(
     {
 
         "Diagnostic Severity": module_(t.state({
-            "error": tstate(t.group({})),
-            "warning": tstate(t.group({})),
-            "information": tstate(t.group({})),
-            "hint": tstate(t.group({})),
+            "error": toption(t.group({})),
+            "warning": toption(t.group({})),
+            "information": toption(t.group({})),
+            "hint": toption(t.group({})),
         })),
 
         "Position": module_(t.group({

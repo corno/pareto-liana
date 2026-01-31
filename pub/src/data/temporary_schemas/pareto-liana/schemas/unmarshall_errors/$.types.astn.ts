@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -18,45 +18,45 @@ export const $: g_.Modules = modules(
         "Errors": module_(t.list(t.group({
             "range": prop(t.component("Range")),
             "type": prop(t.state({
-                "error": tstate(t.state({
-                    "invalid value type": tstate(t.group({
+                "error": toption(t.state({
+                    "invalid value type": toption(t.group({
                         "expected": prop(t.list(t.state({
-                            "text": tstate(t.nothing()),
-                            "verbose group": tstate(t.nothing()),
-                            "concise group": tstate(t.nothing()),
-                            "dictionary": tstate(t.nothing()),
-                            "not set": tstate(t.nothing()),
-                            "set": tstate(t.nothing()),
-                            "list": tstate(t.nothing()),
-                            "state": tstate(t.nothing()),
+                            "text": toption(t.nothing()),
+                            "verbose group": toption(t.nothing()),
+                            "concise group": toption(t.nothing()),
+                            "dictionary": toption(t.nothing()),
+                            "not set": toption(t.nothing()),
+                            "set": toption(t.nothing()),
+                            "list": toption(t.nothing()),
+                            "state": toption(t.nothing()),
                         }))),
                     })),
-                    "duplicate property": tstate(t.group({
+                    "duplicate property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
-                    "missing property": tstate(t.group({
+                    "missing property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
-                    "superfluous property": tstate(t.group({
+                    "superfluous property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
-                    "state": tstate(t.state({
-                        "more than 2 items": tstate(t.nothing()),
-                        "missing state name": tstate(t.nothing()),
-                        "state is not a string": tstate(t.nothing()),
-                        "missing value": tstate(t.nothing()),
-                        "unknown state": tstate(t.group({
+                    "state": toption(t.state({
+                        "more than 2 items": toption(t.nothing()),
+                        "missing state name": toption(t.nothing()),
+                        "state is not a string": toption(t.nothing()),
+                        "missing value": toption(t.nothing()),
+                        "unknown state": toption(t.group({
                             "found": prop(t.text_local(text('single line'))),
                             "expected": prop(t.dictionary(t.nothing())),
                         })),
-                        "missing data marker": tstate(t.nothing()),
+                        "missing data marker": toption(t.nothing()),
                     })),
                 })),
-                "warning": tstate(t.state({
-                    "expected apostrophed string": tstate(t.nothing()),
-                    "expected quoted string": tstate(t.nothing()),
-                    "expected backticked string": tstate(t.nothing()),
-                    "expected undelimited string": tstate(t.nothing()),
+                "warning": toption(t.state({
+                    "expected apostrophed string": toption(t.nothing()),
+                    "expected quoted string": toption(t.nothing()),
+                    "expected backticked string": toption(t.nothing()),
+                    "expected undelimited string": toption(t.nothing()),
                 })),
             })),
         }))),

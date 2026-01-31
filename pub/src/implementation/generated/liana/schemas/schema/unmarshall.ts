@@ -1277,6 +1277,39 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
     })
 )
 
+export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) => _p.optional.map(
+    v_unmarshalled_from_parse_tree.Optional(
+        $,
+        ($) => abort(
+            ['expected an optional', null]
+        )
+    ),
+    ($) => ({
+        'l location': v_parse_tree_to_location.Value(
+            $
+        )['start']['relative'],
+        'l dictionary': _p.dictionary.map(
+            v_unmarshalled_from_parse_tree.Dictionary(
+                $,
+                ($) => abort(
+                    ['expected a dictionary', null]
+                )
+            ),
+            ($, id) => ({
+                'l location': v_parse_tree_to_location.Value(
+                    $
+                )['start']['relative'],
+                'l entry': Value_Reference(
+                    $,
+                    ($) => abort(
+                        $
+                    )
+                ),
+            })
+        ),
+    })
+)
+
 export const Value: t_signatures.Value = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.State(
         $,
@@ -1863,6 +1896,20 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
                                                             )
                                                         ),
                                                         ($) => ({
+                                                            'constraints': _p_cc(
+                                                                $.__get_entry(
+                                                                    'constraints',
+                                                                    ($) => abort(
+                                                                        ['no such entry', "constraints"]
+                                                                    )
+                                                                ),
+                                                                ($) => Option_Constraints(
+                                                                    $,
+                                                                    ($) => abort(
+                                                                        $
+                                                                    )
+                                                                )
+                                                            ),
                                                             'description': _p_cc(
                                                                 $.__get_entry(
                                                                     'description',
@@ -1995,7 +2042,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
     )
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) => ({
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $
     )['start']['relative'],
@@ -2019,7 +2066,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
                 ),
                 ($) => _p.decide.text(
                     $['option']['value'],
-                    ($t): t_out.Option_Constraints.l_dictionary.D.l_entry => {
+                    ($t): t_out.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
                         switch ($t) {
                             case 'state':
                                 return _p_cc(
@@ -3255,7 +3302,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
                                                 ['no such entry', "constraints"]
                                             )
                                         ),
-                                        ($) => Option_Constraints(
+                                        ($) => Option_Constraint_Resolvers(
                                             $,
                                             ($) => abort(
                                                 $
@@ -3500,7 +3547,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_cc(
                                                                         ['no such entry', "constraints"]
                                                                     )
                                                                 ),
-                                                                ($) => Option_Constraints(
+                                                                ($) => Option_Constraint_Resolvers(
                                                                     $,
                                                                     ($) => abort(
                                                                         $

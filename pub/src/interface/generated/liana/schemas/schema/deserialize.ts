@@ -518,6 +518,33 @@ export type Module_Reference_ = (
     },
 ) => Module_Reference_.O
 
+export namespace Option_Constraints_ {
+    
+    export type I = string
+    
+    export type O = i_out.Option_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Option_Constraints_ = (
+    context: Option_Constraints_.I,
+    abort: _pi.Abort<Option_Constraints_.E>,
+    parameters: {
+        readonly 'document resource identifier': Option_Constraints_.P.document_resource_identifier
+        readonly 'tab size': Option_Constraints_.P.tab_size
+    },
+) => Option_Constraints_.O
+
 export namespace Value_ {
     
     export type I = string
@@ -545,11 +572,11 @@ export type Value_ = (
     },
 ) => Value_.O
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
     export type I = string
     
-    export type O = i_out.Option_Constraints
+    export type O = i_out.Option_Constraint_Resolvers
     
     export type E = i_generic.Error
     
@@ -563,14 +590,14 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
+export type Option_Constraint_Resolvers_ = (
+    context: Option_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
     parameters: {
-        readonly 'document resource identifier': Option_Constraints_.P.document_resource_identifier
-        readonly 'tab size': Option_Constraints_.P.tab_size
+        readonly 'document resource identifier': Option_Constraint_Resolvers_.P.document_resource_identifier
+        readonly 'tab size': Option_Constraint_Resolvers_.P.tab_size
     },
-) => Option_Constraints_.O
+) => Option_Constraint_Resolvers_.O
 
 export namespace Value_Constraint_Resolvers_ {
     
@@ -1024,8 +1051,9 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Module_Reference_ as Module_Reference, 
-    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
+    Value_ as Value, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 

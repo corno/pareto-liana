@@ -4,10 +4,10 @@ import {
     modules,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -21,8 +21,8 @@ export const $: g_.Modules = modules(
             "build identifiers": prop(t.list(t.text_global("Text Value"))),
         })),
         "Number or Text": module_(t.state({
-            "numeric": tstate(t.text_global("Text Value")), //is this correct?
-            "alphanumeric": tstate(t.text_global("Text Value")),
+            "numeric": toption(t.text_global("Text Value")), //is this correct?
+            "alphanumeric": toption(t.text_global("Text Value")),
         })),
     }
 )

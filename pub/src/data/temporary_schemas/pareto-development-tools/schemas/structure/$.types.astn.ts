@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -15,25 +15,25 @@ export const $: g_.Modules = modules(
     {
 
         "Directory": module_(t.state({
-            "dictionary": tstate(t.component_cyclic("Directory")),
-            "group": tstate(t.dictionary(t.state({
-                "directory": tstate(t.component_cyclic("Directory")),
-                "file": tstate(t.state({
-                    "manual": tstate(t.nothing()),
-                    "generated": tstate(t.group({
+            "dictionary": toption(t.component_cyclic("Directory")),
+            "group": toption(t.dictionary(t.state({
+                "directory": toption(t.component_cyclic("Directory")),
+                "file": toption(t.state({
+                    "manual": toption(t.nothing()),
+                    "generated": toption(t.group({
                         "commit to git": prop(t.boolean())
                     })),
                 })),
             }))),
-            "wildcards": tstate(t.group({
+            "wildcards": toption(t.group({
                 "required directories": prop(t.number_local(n.natural(null))),
                 "additional directories allowed": prop(t.boolean()),
                 "extensions": prop(t.list(t.text_local(text('single line')))),
                 "warn": prop(t.boolean()),
             })),
-            "freeform": tstate(t.nothing()),
-            "ignore": tstate(t.nothing()),
-            "generated": prop(t.group({
+            "freeform": toption(t.nothing()),
+            "ignore": toption(t.nothing()),
+            "generated": toption(t.group({
                 "commit to git": prop(t.boolean())
             })),
         })),

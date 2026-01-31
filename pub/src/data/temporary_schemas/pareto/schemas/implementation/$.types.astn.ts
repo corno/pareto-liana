@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -17,20 +17,20 @@ export const $: g_.Modules = modules(
     {
 
         "Module Set": module_(t.dictionary(t.state({
-            "module": tstate(t.component("Module")),
-            "set": tstate(t.component_cyclic("Module Set")),
+            "module": toption(t.component("Module")),
+            "set": toption(t.component_cyclic("Module Set")),
         }))),
 
         "Module": module_(t.group({
             "type": prop(t.state({
-                "serializer": tstate(t.nothing()),
-                "deserializer": tstate(t.nothing()),
-                "transformer": tstate(t.nothing()),
-                "refiner": tstate(t.nothing()),
+                "serializer": toption(t.nothing()),
+                "deserializer": toption(t.nothing()),
+                "transformer": toption(t.nothing()),
+                "refiner": toption(t.nothing()),
             })),
             "specials": prop(t.group({
                 "abort": prop(t.boolean()),
-                "change context": tstate(t.boolean()),
+                "change context": toption(t.boolean()),
                 "implement me": prop(t.boolean()),
                 "iterate": prop(t.boolean()),
                 "unreachable code path": prop(t.boolean()),
@@ -39,12 +39,12 @@ export const $: g_.Modules = modules(
             "variable imports": prop(t.dictionary(t.group({
                 "tail": prop(t.list(t.text_global("TBD"))),
                 "type": prop(t.state({
-                    "ancestor": tstate(t.group({
+                    "ancestor": toption(t.group({
                         "dependency": prop(t.text_global("TBD")),
                         "number of steps": prop(t.number_local(n.natural(null))),
                     })),
-                    "external": tstate(t.text_global("TBD")),
-                    "sibling": tstate(t.text_global("TBD")),
+                    "external": toption(t.text_global("TBD")),
+                    "sibling": toption(t.text_global("TBD")),
                 })),
             }))),
             "algorithms": prop(t.dictionary(t.group({
@@ -65,67 +65,67 @@ export const $: g_.Modules = modules(
                 "type": prop(t.text_global("TBD")),
             })),
             "sub selection": prop(t.list(t.state({
-                "dictionary": tstate(t.nothing()),
-                "group": tstate(t.text_global("TBD")),
-                "list": tstate(t.nothing()),
-                "optional": tstate(t.nothing()),
-                "state": tstate(t.text_global("TBD")),
+                "dictionary": toption(t.nothing()),
+                "group": toption(t.text_global("TBD")),
+                "list": toption(t.nothing()),
+                "optional": toption(t.nothing()),
+                "state": toption(t.text_global("TBD")),
             }))),
         })),
 
         "Expression": module_(t.state({
-            "decide": tstate(t.group({
+            "decide": toption(t.group({
                 "type": prop(t.state({
-                    "boolean": tstate(t.group({
+                    "boolean": toption(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "if false": prop(t.component_cyclic("Expression")),
                         "if true": prop(t.component_cyclic("Expression")),
                     })),
-                    "dictionary": tstate(t.state({
-                        "has entries": tstate(t.group({
+                    "dictionary": toption(t.state({
+                        "has entries": toption(t.group({
                             "dictionary": prop(t.component("Selection")),
                             "if true": prop(t.component_cyclic("Expression")),
                             "if false": prop(t.component_cyclic("Expression")),
                         }))
                     })),
-                    "list": tstate(t.state({
-                        "has first item": tstate(t.group({
+                    "list": toption(t.state({
+                        "has first item": toption(t.group({
                             "list": prop(t.component("Selection")),
                             "if true": prop(t.component_cyclic("Expression")),
                             "if false": prop(t.component_cyclic("Expression")),
                         })),
-                        "has last item": tstate(t.group({
+                        "has last item": toption(t.group({
                             "list": prop(t.component("Selection")),
                             "if true": prop(t.component_cyclic("Expression")),
                             "if false": prop(t.component_cyclic("Expression")),
                         })),
-                        "has items": tstate(t.group({
+                        "has items": toption(t.group({
                             "list": prop(t.component("Selection")),
                             "if true": prop(t.component_cyclic("Expression")),
                             "if false": prop(t.component_cyclic("Expression")),
                         }))
                     })),
-                    "optional": tstate(t.group({
+                    "optional": toption(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "if not set": prop(t.component_cyclic("Expression")),
                         "if set": prop(t.component_cyclic("Expression")),
                     })),
-                    "state": tstate(t.group({
+                    "state": toption(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "type": prop(t.state({
-                            "partial": tstate(t.group({
+                            "partial": toption(t.group({
                                 "options": prop(t.dictionary(t.component_cyclic("Expression"))),
                                 "default": prop(t.component_cyclic("Expression")),
                             })),
-                            "full": tstate(t.group({
+                            "full": toption(t.group({
                                 "options": prop(t.dictionary(t.component_cyclic("Expression"))),
                             }))
                         })),
                     })),
-                    "text": tstate(t.group({
+                    "text": toption(t.group({
                         "source": prop(t.component_cyclic("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "cases": prop(t.dictionary(t.component_cyclic("Expression"))),
@@ -133,161 +133,161 @@ export const $: g_.Modules = modules(
                     })),
                 })),
             })),
-            "initialize": tstate(t.state({
-                "boolean": tstate(t.state({
-                    "literal": tstate(t.state({
-                        "false": tstate(t.nothing()),
-                        "true": tstate(t.nothing()),
+            "initialize": toption(t.state({
+                "boolean": toption(t.state({
+                    "literal": toption(t.state({
+                        "false": toption(t.nothing()),
+                        "true": toption(t.nothing()),
                     })),
-                    "not": tstate(t.component("Selection")),
-                    "copy": tstate(t.component("Selection")),
-                    "dictionary is empty": tstate(t.component("Selection")),
-                    "list is empty": tstate(t.component("Selection")),
+                    "not": toption(t.component("Selection")),
+                    "copy": toption(t.component("Selection")),
+                    "dictionary is empty": toption(t.component("Selection")),
+                    "list is empty": toption(t.component("Selection")),
                 })),
-                "dictionary": tstate(t.state({
-                    "filter": tstate(t.group({
+                "dictionary": toption(t.state({
+                    "filter": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "entry handler": prop(t.component_cyclic("Expression"))
                     })),
-                    "from list": tstate(t.group({
+                    "from list": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "get id": prop(t.component_cyclic("Expression")),
                         "get entry": prop(t.component_cyclic("Expression")),
                         "abort": prop(t.component_cyclic("Expression")),
                     })),
-                    "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                    "map": tstate(t.group({
+                    "literal": toption(t.dictionary(t.component_cyclic("Expression"))),
+                    "map": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "entry handler": prop(t.component_cyclic("Expression"))
                     })),
-                    "resolve": tstate(t.group({
+                    "resolve": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "entry handler": prop(t.component_cyclic("Expression")),
                         "temp resulting entry node": prop(t.component("Temp Type Node Reference")),
                     })),
                 })),
-                "group": tstate(t.state({
-                    "literal": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                    "resolve": tstate(t.dictionary(t.component_cyclic("Expression"))),
+                "group": toption(t.state({
+                    "literal": toption(t.dictionary(t.component_cyclic("Expression"))),
+                    "resolve": toption(t.dictionary(t.component_cyclic("Expression"))),
                 })),
-                "list": tstate(t.state({
-                    "filter": tstate(t.group({
+                "list": toption(t.state({
+                    "filter": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "entry handler": prop(t.component_cyclic("Expression"))
                     })),
-                    "from dictionary": tstate(t.group({
+                    "from dictionary": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "get item": prop(t.component_cyclic("Expression")),
                     })),
-                    "literal": tstate(t.list(t.component_cyclic("Expression"))),
-                    "map": tstate(t.group({
+                    "literal": toption(t.list(t.component_cyclic("Expression"))),
+                    "map": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "item handler": prop(t.component_cyclic("Expression"))
                     })),
-                    "map with state": tstate(t.group({
+                    "map with state": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "initial state": prop(t.component_cyclic("Expression")),
                         "item handler": prop(t.component_cyclic("Expression")),
                         "update state": prop(t.component_cyclic("Expression")),
                         "wrap up": prop(t.component_cyclic("Expression")),
                     })),
-                    "reduce": tstate(t.group({
+                    "reduce": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "initial state": prop(t.component_cyclic("Expression")),
                         "item handler": prop(t.component_cyclic("Expression")),
                     })),
-                    "reverse": tstate(t.group({
+                    "reverse": toption(t.group({
                         "source": prop(t.component("Selection")),
                     })),
                 })),
-                "nothing": tstate(t.nothing()),
-                "number": tstate(t.state({
-                    "approximation": tstate(t.state({
-                        "literal": tstate(t.number_local(n.approximation(10))),
-                        "copy": tstate(t.component("Selection")),
+                "nothing": toption(t.nothing()),
+                "number": toption(t.state({
+                    "approximation": toption(t.state({
+                        "literal": toption(t.number_local(n.approximation(10))),
+                        "copy": toption(t.component("Selection")),
                     })),
-                    "integer": tstate(t.state({
-                        "copy": tstate(t.component("Selection")),
-                        "divide": tstate(t.group({
+                    "integer": toption(t.state({
+                        "copy": toption(t.component("Selection")),
+                        "divide": toption(t.group({
                             "divident": prop(t.component("Selection")),
                             "divisor": prop(t.component("Selection")),
                             "abort": prop(t.component_cyclic("Expression")),
                         })),
-                        "literal": tstate(t.number_local(n.integer(null))),
+                        "literal": toption(t.number_local(n.integer(null))),
                     })),
-                    "natural": tstate(t.state({
-                        "literal": tstate(t.number_local(n.natural(null))),
-                        "copy": tstate(t.component("Selection")),
-                        "number of dictionary entries": tstate(t.group({
+                    "natural": toption(t.state({
+                        "literal": toption(t.number_local(n.natural(null))),
+                        "copy": toption(t.component("Selection")),
+                        "number of dictionary entries": toption(t.group({
                             "dictionary": prop(t.component("Selection"))
                         })),
-                        "number of list items": tstate(t.group({
+                        "number of list items": toption(t.group({
                             "list": prop(t.component("Selection"))
                         })),
-                        "source column": tstate(t.nothing()),
-                        "source line": tstate(t.nothing()),
+                        "source column": toption(t.nothing()),
+                        "source line": toption(t.nothing()),
                     })),
                 })),
-                "optional": tstate(t.state({
-                    "from boolean": tstate(t.group({
+                "optional": toption(t.state({
+                    "from boolean": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "get set": prop(t.component_cyclic("Expression")),
                     })),
-                    "literal": tstate(t.state({
-                        "not set": tstate(t.nothing()),
-                        "set": tstate(t.component_cyclic("Expression")),
+                    "literal": toption(t.state({
+                        "not set": toption(t.nothing()),
+                        "set": toption(t.component_cyclic("Expression")),
                     })),
-                    "map": tstate(t.group({
+                    "map": toption(t.group({
                         "source": prop(t.component("Selection")),
                         "set handler": prop(t.component_cyclic("Expression"))
                     })),
                 })),
-                "state": tstate(t.state({
-                    "literal": tstate(t.group({
+                "state": toption(t.state({
+                    "literal": toption(t.group({
                         "option": prop(t.text_global("Identifier")),
                         "value": prop(t.component_cyclic("Expression")),
                     }))
                 })),
-                "text": tstate(t.state({
-                    "copy": tstate(t.component("Selection")),
-                    "literal": tstate(t.group({
+                "text": toption(t.state({
+                    "copy": toption(t.component("Selection")),
+                    "literal": toption(t.group({
                         "type": prop(t.state({
-                            "identifier": tstate(t.nothing()),
-                            "freeform": tstate(t.nothing()),
+                            "identifier": toption(t.nothing()),
+                            "freeform": toption(t.nothing()),
                         })),
                         "value": prop(t.text_local(text('single line'))),
                     })),
-                    "source document": tstate(t.nothing()),
+                    "source document": toption(t.nothing()),
                 })),
             })),
-            "select": tstate(t.component("Selection")),
-            "special": tstate(t.state({
-                "abort": tstate(t.component_cyclic("Expression")),
-                "assert": tstate(t.group({
+            "select": toption(t.component("Selection")),
+            "special": toption(t.state({
+                "abort": toption(t.component_cyclic("Expression")),
+                "assert": toption(t.group({
                     "tester": prop(t.component_cyclic("Expression")),
                     "normal flow": prop(t.component_cyclic("Expression")),
                 })),
-                "change context": tstate(t.group({
+                "change context": toption(t.group({
                     "new context": prop(t.component("Selection")),
                     "expression": prop(t.component_cyclic("Expression")),
                 })),
-                "implement me": tstate(t.text_local(text('single line'))),
-                "iterate": tstate(t.group({
+                "implement me": toption(t.text_local(text('single line'))),
+                "iterate": toption(t.group({
                     "list": prop(t.component("Selection")),
                     "handler": prop(t.component_cyclic("Expression")),
                 })),
-                "unreachable": tstate(t.nothing()),
+                "unreachable": toption(t.nothing()),
             })),
         })),
 
         "Selection": module_(t.state({
-            "implement me": tstate(t.text_local(text('single line'))),
-            "regular": tstate(t.group({
+            "implement me": toption(t.text_local(text('single line'))),
+            "regular": toption(t.group({
                 "start": prop(t.state({
-                    "call": tstate(t.group({
+                    "call": toption(t.group({
                         "source": prop(t.state({
-                            "local": tstate(t.text_global("TBD")),
-                            "imported": tstate(t.group({
+                            "local": toption(t.text_global("TBD")),
+                            "imported": toption(t.group({
                                 "import": prop(t.text_global("TBD")),
                                 "variable": prop(t.text_global("TBD")),
                             }))
@@ -295,42 +295,42 @@ export const $: g_.Modules = modules(
                         "context": prop(t.component_cyclic("Expression")),
                         "abort": prop(t.optional(t.component_cyclic("Expression"))),
                         "lookups": prop(t.optional(t.state({
-                            "initialize": tstate(t.dictionary(t.component_cyclic("Lookup Selection"))),
-                            "pass through": tstate(t.nothing()),
+                            "initialize": toption(t.dictionary(t.component_cyclic("Lookup Selection"))),
+                            "pass through": toption(t.nothing()),
                         }))),
                         "arguments": prop(t.optional(t.state({
-                            "initialize": tstate(t.dictionary(t.component_cyclic("Expression"))),
-                            "pass through": tstate(t.nothing()),
+                            "initialize": toption(t.dictionary(t.component_cyclic("Expression"))),
+                            "pass through": toption(t.nothing()),
                         }))),
                     })),
-                    "context": tstate(t.nothing()),
-                    "dictionary entry": tstate(t.group({
+                    "context": toption(t.nothing()),
+                    "dictionary entry": toption(t.group({
                         "dictionary": prop(t.component_cyclic("Selection")),
                         "id": prop(t.component_cyclic("Expression")),
                         "abort handler": prop(t.component_cyclic("Expression")),
                     })),
-                    "lookup entry": tstate(t.group({
+                    "lookup entry": toption(t.group({
                         "lookup": prop(t.component_cyclic("Lookup Selection")),
                         "id": prop(t.component_cyclic("Expression")),
                         "abort handler": prop(t.component_cyclic("Expression")),
                     })),
-                    "parameter": tstate(t.text_global("TBD")),
-                    "parent sibling": tstate(t.text_global("TBD")),
-                    "sibling": tstate(t.text_global("TBD")),
-                    "state": tstate(t.nothing()),
+                    "parameter": toption(t.text_global("TBD")),
+                    "parent sibling": toption(t.text_global("TBD")),
+                    "sibling": toption(t.text_global("TBD")),
+                    "state": toption(t.nothing()),
                 })),
                 "tail": prop(t.list(t.text_global("TBD"))),
             }))
         })),
 
         "Lookup Selection": module_(t.state({
-            "implement me": tstate(t.text_local(text('single line'))),
-            "from resolved dictionary": tstate(t.component_cyclic("Selection")),
-            "from siblings": tstate(t.group({
+            "implement me": toption(t.text_local(text('single line'))),
+            "from resolved dictionary": toption(t.component_cyclic("Selection")),
+            "from siblings": toption(t.group({
                 "cycles allowed": prop(t.boolean()),
             })),
-            "from parameter": tstate(t.text_global("TBD")),
-            "not set": tstate(t.nothing()),
+            "from parameter": toption(t.text_global("TBD")),
+            "not set": toption(t.nothing()),
         })),
 
     }

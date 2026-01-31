@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -14,48 +14,48 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Git Command": module_(t.state({
-            "view": tstate(t.state({
-                "workspace": tstate(t.state({
-                    "status": tstate(t.group({ // git status
+            "view": toption(t.state({
+                "workspace": toption(t.state({
+                    "status": toption(t.group({ // git status
                         'porcelain': prop(t.optional(t.text_local(text('single line')))),
                         'short': prop(t.boolean()),
                         'branch': prop(t.boolean()),
                         'show stash': prop(t.boolean()),
                     })),
-                    "diff": tstate(t.group({ // git diff
+                    "diff": toption(t.group({ // git diff
                         'cached': prop(t.boolean()), // --cached for staged changes
                         'name only': prop(t.boolean()),
                         'stat': prop(t.boolean()),
                         'files': prop(t.optional(t.list(t.text_local(text('single line'))))),
                     })),
-                    "show": tstate(t.group({ // git show
+                    "show": toption(t.group({ // git show
                         'commit': prop(t.optional(t.text_local(text('single line')))),
                         'name only': prop(t.boolean()),
                         'stat': prop(t.boolean()),
                     })),
                 })),
-                "index": tstate(t.state({
-                    "diff cached": tstate(t.group({ // git diff --cached
+                "index": toption(t.state({
+                    "diff cached": toption(t.group({ // git diff --cached
                         'name only': prop(t.boolean()),
                         'stat': prop(t.boolean()),
                         'files': prop(t.optional(t.list(t.text_local(text('single line'))))),
                     })),
-                    "status": tstate(t.group({ // git status (shows staged files)
+                    "status": toption(t.group({ // git status (shows staged files)
                         'porcelain': prop(t.optional(t.text_local(text('single line')))),
                         'short': prop(t.boolean()),
                     })),
                 })),
-                "stash": tstate(t.state({
-                    "list": tstate(t.group({ // git stash.b.st
+                "stash": toption(t.state({
+                    "list": toption(t.group({ // git stash.b.st
                         'oneline': prop(t.boolean()),
                     })),
-                    "show": tstate(t.group({ // git stash show
+                    "show": toption(t.group({ // git stash show
                         'stash': prop(t.optional(t.text_local(text('single line')))),
                         'patch': prop(t.boolean()),
                     })),
                 })),
-                "local repo": tstate(t.state({
-                    "log": tstate(t.group({ // git log
+                "local repo": toption(t.state({
+                    "log": toption(t.group({ // git log
                         'oneline': prop(t.boolean()),
                         'graph': prop(t.boolean()),
                         'all': prop(t.boolean()),
@@ -65,35 +65,35 @@ export const $: g_.Modules = modules(
                         'grep': prop(t.optional(t.text_local(text('single line')))),
                         'max count': prop(t.optional(t.number_local(n.natural(null)))),
                     })),
-                    "branch": tstate(t.group({ // git branch (list)
+                    "branch": toption(t.group({ // git branch (list)
                         'all': prop(t.boolean()),
                         'remote': prop(t.boolean()),
                         'verbose': prop(t.boolean()),
                     })),
-                    "tag": tstate(t.group({ // git tag (list)
+                    "tag": toption(t.group({ // git tag (list)
                         'list': prop(t.optional(t.text_local(text('single line')))), // pattern
                     })),
-                    "reflog": tstate(t.group({ // git reflog
+                    "reflog": toption(t.group({ // git reflog
                         'branch': prop(t.optional(t.text_local(text('single line')))),
                         'oneline': prop(t.boolean()),
                     })),
                 })),
-                "remote repo": tstate(t.state({
-                    "remote": tstate(t.group({ // git remote
+                "remote repo": toption(t.state({
+                    "remote": toption(t.group({ // git remote
                         'verbose': prop(t.boolean()),
                     })),
-                    "ls remote": tstate(t.group({ // git ls-remote
+                    "ls remote": toption(t.group({ // git ls-remote
                         'heads': prop(t.boolean()),
                         'tags': prop(t.boolean()),
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                     })),
-                    "fetch dry run": tstate(t.group({ // git fetch --dry-run
+                    "fetch dry run": toption(t.group({ // git fetch --dry-run
                         'all': prop(t.boolean()),
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                     })),
                 })),
-                "configuration": tstate(t.state({
-                    "config": tstate(t.group({ // git config
+                "configuration": toption(t.state({
+                    "config": toption(t.group({ // git config
                         'list': prop(t.boolean()),
                         'global': prop(t.boolean()),
                         'local': prop(t.boolean()),
@@ -102,155 +102,155 @@ export const $: g_.Modules = modules(
                     })),
                 })),
             })),
-            "change": tstate(t.state({
-                "workspace": tstate(t.state({
-                    "checkout file": tstate(t.group({ // git checkout -- file (restore workspace)
+            "change": toption(t.state({
+                "workspace": toption(t.state({
+                    "checkout file": toption(t.group({ // git checkout -- file (restore workspace)
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'force': prop(t.boolean()),
                     })),
-                    "restore": tstate(t.group({ // git restore (restore workspace)
+                    "restore": toption(t.group({ // git restore (restore workspace)
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'source': prop(t.optional(t.text_local(text('single line')))),
                         'worktree': prop(t.boolean()),
                     })),
-                    "clean": tstate(t.group({ // git clean
+                    "clean": toption(t.group({ // git clean
                         'dry run': prop(t.boolean()),
                         'force': prop(t.boolean()),
                         'directories': prop(t.boolean()),
                         'ignored': prop(t.boolean()),
                     })),
                 })),
-                "index": tstate(t.state({
-                    "add": tstate(t.group({ // git add
+                "index": toption(t.state({
+                    "add": toption(t.group({ // git add
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'all': prop(t.boolean()),
                         'patch': prop(t.boolean()),
                         'update': prop(t.boolean()),
                     })),
-                    "reset files": tstate(t.group({ // git reset -- files (unstage)
+                    "reset files": toption(t.group({ // git reset -- files (unstage)
                         'files': prop(t.list(t.text_local(text('single line')))),
                     })),
-                    "restore staged": tstate(t.group({ // git restore --staged
+                    "restore staged": toption(t.group({ // git restore --staged
                         'files': prop(t.list(t.text_local(text('single line')))),
                     })),
-                    "rm": tstate(t.group({ // git rm
+                    "rm": toption(t.group({ // git rm
                         'files': prop(t.list(t.text_local(text('single line')))),
                         'cached': prop(t.boolean()), // remove from index only
                         'force': prop(t.boolean()),
                     })),
                 })),
-                "stash": tstate(t.state({
-                    "push": tstate(t.group({ // git stash push
+                "stash": toption(t.state({
+                    "push": toption(t.group({ // git stash push
                         'message': prop(t.optional(t.text_local(text('single line')))),
                         'keep index': prop(t.boolean()),
                         'include untracked': prop(t.boolean()),
                         'files': prop(t.optional(t.list(t.text_local(text('single line'))))),
                     })),
-                    "pop": tstate(t.group({ // git stash pop
+                    "pop": toption(t.group({ // git stash pop
                         'stash': prop(t.optional(t.text_local(text('single line')))),
                         'index': prop(t.boolean()),
                     })),
-                    "apply": tstate(t.group({ // git stash apply
+                    "apply": toption(t.group({ // git stash apply
                         'stash': prop(t.optional(t.text_local(text('single line')))),
                         'index': prop(t.boolean()),
                     })),
-                    "drop": tstate(t.group({ // git stash drop
+                    "drop": toption(t.group({ // git stash drop
                         'stash': prop(t.optional(t.text_local(text('single line')))),
                     })),
-                    "clear": tstate(t.group({})), // git stash clear
+                    "clear": toption(t.group({})), // git stash clear
                 })),
-                "local repo": tstate(t.state({
-                    "append": tstate(t.state({ // ✅ Safe operations - append-only
-                        "commit": tstate(t.group({ // git commit
+                "local repo": toption(t.state({
+                    "append": toption(t.state({ // ✅ Safe operations - append-only
+                        "commit": toption(t.group({ // git commit
                             'message': prop(t.text_local(text('single line'))),
                             'amend': prop(t.boolean()), // Note: amend is actually destructive if commit is published
                             'all': prop(t.boolean()),
                             'no verify': prop(t.boolean()),
                             'signoff': prop(t.boolean()),
                         })),
-                        "merge": tstate(t.group({ // git merge (fast-forward or merge commit)
+                        "merge": toption(t.group({ // git merge (fast-forward or merge commit)
                             'branch': prop(t.text_local(text('single line'))),
                             'no ff': prop(t.boolean()),
                             'ff only': prop(t.boolean()),
                             'no commit': prop(t.boolean()),
                             'message': prop(t.optional(t.text_local(text('single line')))),
                         })),
-                        "cherry pick": tstate(t.group({ // git cherry-pick
+                        "cherry pick": toption(t.group({ // git cherry-pick
                             'commits': prop(t.list(t.text_local(text('single line')))),
                             'no commit': prop(t.boolean()),
                             'mainline': prop(t.optional(t.number_local(n.natural(null)))),
                         })),
-                        "revert": tstate(t.group({ // git revert
+                        "revert": toption(t.group({ // git revert
                             'commits': prop(t.list(t.text_local(text('single line')))),
                             'no commit': prop(t.boolean()),
                             'mainline': prop(t.optional(t.number_local(n.natural(null)))),
                         })),
-                        "branch create": tstate(t.group({ // git branch <name>
+                        "branch create": toption(t.group({ // git branch <name>
                             'name': prop(t.text_local(text('single line'))),
                             'start point': prop(t.optional(t.text_local(text('single line')))),
                         })),
-                        "tag create": tstate(t.group({ // git tag <name>
+                        "tag create": toption(t.group({ // git tag <name>
                             'name': prop(t.text_local(text('single line'))),
                             'commit': prop(t.optional(t.text_local(text('single line')))),
                             'message': prop(t.optional(t.text_local(text('single line')))),
                             'annotated': prop(t.boolean()),
                         })),
-                        "pull rebase private": tstate(t.group({ // git pull --rebase (only safe if commits not published)
+                        "pull rebase private": toption(t.group({ // git pull --rebase (only safe if commits not published)
                             'remote': prop(t.optional(t.text_local(text('single line')))),
                             'branch': prop(t.optional(t.text_local(text('single line')))),
                         })),
                     })),
-                    "destroy": tstate(t.state({ // ⚠️ History-rewriting operations - force push required
-                        "reset": tstate(t.group({ // git reset (moves branch pointer backward)
+                    "destroy": toption(t.state({ // ⚠️ History-rewriting operations - force push required
+                        "reset": toption(t.group({ // git reset (moves branch pointer backward)
                             'mode': prop(t.state({
-                                'soft': tstate(t.group({})), // keeps workspace and index
-                                'mixed': tstate(t.group({})), // keeps workspace, resets index (default)
-                                'hard': tstate(t.group({})), // ⚠️ DANGEROUS: resets workspace and index
+                                'soft': toption(t.group({})), // keeps workspace and index
+                                'mixed': toption(t.group({})), // keeps workspace, resets index (default)
+                                'hard': toption(t.group({})), // ⚠️ DANGEROUS: resets workspace and index
                             })),
                             'target': prop(t.text_local(text('single line'))), // commit/branch to reset to
                         })),
-                        "commit amend": tstate(t.group({ // git commit --amend (rewrites last commit)
+                        "commit amend": toption(t.group({ // git commit --amend (rewrites last commit)
                             'message': prop(t.optional(t.text_local(text('single line')))),
                             'no edit': prop(t.boolean()),
                             'all': prop(t.boolean()),
                         })),
-                        "rebase": tstate(t.group({ // git rebase (rewrites commits)
+                        "rebase": toption(t.group({ // git rebase (rewrites commits)
                             'onto': prop(t.text_local(text('single line'))),
                             'interactive': prop(t.boolean()),
                             'preserve merges': prop(t.boolean()),
                             'strategy': prop(t.optional(t.text_local(text('single line')))),
                         })),
-                        "filter repo": tstate(t.group({ // git filter-repo (rewrites large parts of history)
+                        "filter repo": toption(t.group({ // git filter-repo (rewrites large parts of history)
                             'path': prop(t.optional(t.text_local(text('single line')))),
                             'invert paths': prop(t.boolean()),
                             'force': prop(t.boolean()),
                         })),
-                        "tag force": tstate(t.group({ // git tag -f (reassign tag to new commit)
+                        "tag force": toption(t.group({ // git tag -f (reassign tag to new commit)
                             'name': prop(t.text_local(text('single line'))),
                             'commit': prop(t.optional(t.text_local(text('single line')))),
                             'message': prop(t.optional(t.text_local(text('single line')))),
                         })),
-                        "branch delete": tstate(t.group({ // git branch -d/-D
+                        "branch delete": toption(t.group({ // git branch -d/-D
                             'name': prop(t.text_local(text('single line'))),
                             'force': prop(t.boolean()), // -D vs -d
                         })),
-                        "tag delete": tstate(t.group({ // git tag -d
+                        "tag delete": toption(t.group({ // git tag -d
                             'name': prop(t.text_local(text('single line'))),
                         })),
-                        "gc": tstate(t.group({ // git gc (garbage collect unreachable commits)
+                        "gc": toption(t.group({ // git gc (garbage collect unreachable commits)
                             'aggressive': prop(t.boolean()),
                             'prune': prop(t.optional(t.text_local(text('single line')))), // prune date
                         })),
                     })),
                 })),
-                "remote repo": tstate(t.state({
-                    "fetch": tstate(t.group({ // git fetch
+                "remote repo": toption(t.state({
+                    "fetch": toption(t.group({ // git fetch
                         'all': prop(t.boolean()),
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                         'branch': prop(t.optional(t.text_local(text('single line')))),
                         'prune': prop(t.boolean()),
                     })),
-                    "push": tstate(t.group({ // git push
+                    "push": toption(t.group({ // git push
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                         'branch': prop(t.optional(t.text_local(text('single line')))),
                         'force': prop(t.boolean()), // ⚠️ DANGEROUS
@@ -259,37 +259,37 @@ export const $: g_.Modules = modules(
                         'tags': prop(t.boolean()),
                         'delete': prop(t.optional(t.text_local(text('single line')))), // delete remote branch
                     })),
-                    "pull": tstate(t.group({ // git pull
+                    "pull": toption(t.group({ // git pull
                         'remote': prop(t.optional(t.text_local(text('single line')))),
                         'branch': prop(t.optional(t.text_local(text('single line')))),
                         'rebase': prop(t.boolean()),
                         'no rebase': prop(t.boolean()),
                         'ff only': prop(t.boolean()),
                     })),
-                    "clone": tstate(t.group({ // git clone
+                    "clone": toption(t.group({ // git clone
                         'url': prop(t.text_local(text('single line'))),
                         'directory': prop(t.optional(t.text_local(text('single line')))),
                         'branch': prop(t.optional(t.text_local(text('single line')))),
                         'depth': prop(t.optional(t.number_local(n.natural(null)))),
                         'recursive': prop(t.boolean()),
                     })),
-                    "remote add": tstate(t.group({ // git remote add
+                    "remote add": toption(t.group({ // git remote add
                         'name': prop(t.text_local(text('single line'))),
                         'url': prop(t.text_local(text('single line'))),
                     })),
-                    "remote remove": tstate(t.group({ // git remote remove
+                    "remote remove": toption(t.group({ // git remote remove
                         'name': prop(t.text_local(text('single line'))),
                     })),
                 })),
-                "configuration": tstate(t.state({
-                    "config set": tstate(t.group({ // git config <key> <value>
+                "configuration": toption(t.state({
+                    "config set": toption(t.group({ // git config <key> <value>
                         'key': prop(t.text_local(text('single line'))),
                         'value': prop(t.text_local(text('single line'))),
                         'global': prop(t.boolean()),
                         'local': prop(t.boolean()),
                         'system': prop(t.boolean()),
                     })),
-                    "config unset": tstate(t.group({ // git config --unset <key>
+                    "config unset": toption(t.group({ // git config --unset <key>
                         'key': prop(t.text_local(text('single line'))),
                         'global': prop(t.boolean()),
                         'local': prop(t.boolean()),
@@ -301,14 +301,14 @@ export const $: g_.Modules = modules(
 
         // Safety metadata types
         "Safety Level": module_(t.state({
-            'safe': tstate(t.group({ // ✅ Safe for collaboration
+            'safe': toption(t.group({ // ✅ Safe for collaboration
                 'description': prop(t.text_local(text('multi line'))),
             })),
-            'risky': tstate(t.group({ // ⚠️ Requires force push
+            'risky': toption(t.group({ // ⚠️ Requires force push
                 'description': prop(t.text_local(text('multi line'))),
                 'areas affected': prop(t.list(t.text_local(text('single line')))), // which areas are modified
             })),
-            'destructive': tstate(t.group({ // ❌ Black swan - multiple area effects
+            'destructive': toption(t.group({ // ❌ Black swan - multiple area effects
                 'description': prop(t.text_local(text('multi line'))),
                 'areas affected': prop(t.list(t.text_local(text('single line')))),
                 'warning': prop(t.text_local(text('multi line'))),

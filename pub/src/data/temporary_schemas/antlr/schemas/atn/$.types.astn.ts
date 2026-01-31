@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -15,82 +15,82 @@ export const $: g_.Modules = modules(
         "ATN": module_(t.group({
             "grammar name": prop(t.text_global("Text Value")),
             "grammar type": prop(t.state({
-                "lexer": tstate(t.nothing()),
-                "parser": tstate(t.nothing()),
-                "unknown": tstate(t.nothing()),
+                "lexer": toption(t.nothing()),
+                "parser": toption(t.nothing()),
+                "unknown": toption(t.nothing()),
             })),
             "max token type": prop(t.number_global("Integer")),
             "states": prop(t.list(t.group({
                 "state number": prop(t.number_global("State Number")),
                 "type": prop(t.state({
-                    "null": tstate(t.nothing()),
-                    "normal": tstate(t.group({
+                    "null": toption(t.nothing()),
+                    "normal": toption(t.group({
                         "rule index": prop(t.number_global("Integer")),
                         "transitions": prop(t.list(t.group({
                             "target": prop(t.number_global("State Number")),
                             "type": prop(t.state({
-                                "atom": tstate(t.group({
+                                "atom": toption(t.group({
                                     "label": prop(t.number_global("Integer")),
                                 })),
-                                "set": tstate(t.group({
+                                "set": toption(t.group({
                                     "set": prop(t.text_global("Text Value")),
                                 })),
-                                "range": tstate(t.group({
+                                "range": toption(t.group({
                                     "from": prop(t.number_global("Integer")),
                                     "to": prop(t.number_global("Integer")),
                                 })),
-                                "rule": tstate(t.group({
+                                "rule": toption(t.group({
                                     "rule index": prop(t.number_global("Integer")),
                                     "precedence": prop(t.number_global("Integer")),
                                     "follow state": prop(t.optional(t.number_global("State Number"))),
                                 })),
-                                "predicate": tstate(t.group({
+                                "predicate": toption(t.group({
                                     "rule index": prop(t.number_global("Integer")),
                                     "pred index": prop(t.number_global("Integer")),
                                     "is ctx dependent": prop(t.boolean()),
                                 })),
-                                "action": tstate(t.group({
+                                "action": toption(t.group({
                                     "rule index": prop(t.number_global("Integer")),
                                     "action index": prop(t.number_global("Integer")),
                                     "is ctx dependent": prop(t.boolean()),
                                 })),
-                                "epsilon": tstate(t.nothing()),
-                                "wildcard": tstate(t.nothing()),
-                                "unknown": tstate(t.nothing()),
+                                "epsilon": toption(t.nothing()),
+                                "wildcard": toption(t.nothing()),
+                                "unknown": toption(t.nothing()),
                             })),
                         }))),
                         "state type": prop(t.state({
-                            "rule start": tstate(t.group({
+                            "rule start": toption(t.group({
                                 "is left recursive rule": prop(t.boolean()),
                                 "stop state number": prop(t.optional(t.number_global("State Number"))),
                             })),
-                            "rule stop": tstate(t.nothing()),
-                            "tokens start": tstate(t.nothing()),
-                            "plus block start": tstate(t.group({
+                            "rule stop": toption(t.nothing()),
+                            "tokens start": toption(t.nothing()),
+                            "plus block start": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                                 "loop back state number": prop(t.optional(t.number_global("State Number"))),
                             })),
-                            "star block start": tstate(t.group({
+                            "star block start": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                             })),
-                            "plus loopback": tstate(t.group({
+                            "plus loopback": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                             })),
-                            "star loopback": tstate(t.group({
+                            "star loopback": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                             })),
-                            "loop end": tstate(t.nothing()),
-                            "block start": tstate(t.group({
+                            "loop end": toption(t.nothing()),
+                            "block start": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                             })),
-                            "block end": tstate(t.group({
+                            "block end": toption(t.group({
                                 "start state number": prop(t.optional(t.number_global("State Number"))),
                             })),
-                            "basic": tstate(t.nothing()),
-                            "decision": tstate(t.group({
+                            "basic": toption(t.nothing()),
+                            "decision": toption(t.group({
                                 "decision info": prop(t.component("Decision Info")),
                             })),
-                            "unknown": tstate(t.nothing()),
+                            "unknown": toption(t.nothing()),
                         })),
                     })),
                 })),

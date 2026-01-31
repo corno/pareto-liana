@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -20,15 +20,15 @@ export const $: g_.Modules = modules(
             "entities": prop(t.dictionary(t.group({
                 "id": prop(t.component("ID")),
                 "type": prop(t.state({
-                    "classifier": tstate(t.group({
+                    "classifier": toption(t.group({
                         "type": prop(t.state({
-                            "concept": tstate(t.group({
+                            "concept": toption(t.group({
                                 "abstract": prop(t.text_local(text('single line'))),
                                 "partition": prop(t.text_local(text('single line'))),
                                 "extends": prop(t.optional(t.component("Raw Reference"))),
                                 "implements": prop(t.list(t.component("Raw Reference"))),
                             })),
-                            "interface": tstate(t.group({
+                            "interface": toption(t.group({
                                 "extends": prop(t.list(t.component("Raw Reference"))),
                             })),
                             //annotation needs to be implemented
@@ -37,22 +37,22 @@ export const $: g_.Modules = modules(
                             "id": prop(t.component("ID")),
                             "optional": prop(t.text_local(text('single line'))),
                             "type": prop(t.state({
-                                "property": tstate(t.group({
+                                "property": toption(t.group({
                                     "type": prop(t.component("Raw Reference")),
                                 })),
-                                "link": tstate(t.group({
+                                "link": toption(t.group({
                                     "multiple": prop(t.text_local(text('single line'))),
                                     "type": prop(t.component("Raw Reference")),
                                     "link type": prop(t.state({
-                                        "containment": tstate(t.nothing()),
-                                        "reference": tstate(t.nothing()),
+                                        "containment": toption(t.nothing()),
+                                        "reference": toption(t.nothing()),
                                     }))
                                 })),
                             })),
                         }))),
                     })),
-                    "datatype": tstate(t.state({
-                        "enumeration": tstate(t.dictionary(t.component("ID"))),
+                    "datatype": toption(t.state({
+                        "enumeration": toption(t.dictionary(t.component("ID"))),
                         // structured data type and primitive type need to be implemented
                     })),
                 })),

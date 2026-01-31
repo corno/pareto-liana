@@ -677,6 +677,30 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
     ),
 })
 
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.optional.map(
+    $,
+    ($) => ({
+        'l location': {
+            'document resource identifier': "implement me",
+            'line': 42,
+            'column': 42,
+        },
+        'l dictionary': _p.dictionary.map(
+            $,
+            ($, id) => ({
+                'l entry': Value_Reference(
+                    $
+                ),
+                'l location': {
+                    'document resource identifier': "implement me",
+                    'line': 42,
+                    'column': 42,
+                },
+            })
+        ),
+    })
+)
+
 export const Value: t_signatures.Value = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
@@ -965,6 +989,12 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                         ($, id) => ({
                                             'l entry': {
+                                                'constraints': _p_cc(
+                                                    $['constraints'],
+                                                    ($) => Option_Constraints(
+                                                        $
+                                                    )
+                                                ),
                                                 'description': _p_cc(
                                                     $['description'],
                                                     ($) => _p.optional.map(
@@ -1046,7 +1076,7 @@ export const Value: t_signatures.Value = ($) => ({
     ),
 })
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($) => ({
     'l location': {
         'document resource identifier': "implement me",
         'line': 42,
@@ -1063,7 +1093,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ({
                 },
                 'l state': _p.decide.state(
                     $,
-                    ($): t_out.Option_Constraints.l_dictionary.D.l_entry.l_state => {
+                    ($): t_out.Option_Constraint_Resolvers.l_dictionary.D.l_entry.l_state => {
                         switch ($[0]) {
                             case 'state':
                                 return _p.ss(
@@ -1676,7 +1706,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                         ($) => ['optional', {
                             'constraints': _p_cc(
                                 $['constraints'],
-                                ($) => Option_Constraints(
+                                ($) => Option_Constraint_Resolvers(
                                     $
                                 )
                             ),
@@ -1775,7 +1805,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                             'l entry': {
                                                 'constraints': _p_cc(
                                                     $['constraints'],
-                                                    ($) => Option_Constraints(
+                                                    ($) => Option_Constraint_Resolvers(
                                                         $
                                                     )
                                                 ),
@@ -2191,7 +2221,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                 'column': 42,
                             },
                             'l state': _p.decide.state(
-                                $,
+                                $['l state'],
                                 ($): t_out.Value_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'dictionary':

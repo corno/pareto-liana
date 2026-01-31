@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -40,20 +40,20 @@ export const $: g_.Modules = modules(
         "Node": module_(t.group({
             "properties": prop(t.dictionary(t.group({
                 "type": prop(t.state({
-                    "collection": tstate(t.group({
+                    "collection": toption(t.group({
                         "node": prop(t.component_cyclic("Node")),
                         "key": prop(t.component("Identifier")),
                     })),
-                    "group": tstate(t.group({
+                    "group": toption(t.group({
                         "node": prop(t.component_cyclic("Node")),
                     })),
-                    "text": tstate(t.group({
+                    "text": toption(t.group({
                         "constraint": prop(t.optional(t.group({
                             "path": prop(t.component("Path")),
                             "dictionary": prop(t.component("Identifier")),
                         }))),
                     })),
-                    "state group": tstate(t.group({
+                    "state group": toption(t.group({
                         "states": prop(t.dictionary(t.group({
                             "constraints": prop(t.dictionary(t.group({
                                 "path": prop(t.component("Path"))

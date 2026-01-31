@@ -467,6 +467,25 @@ export const Text_Type: signatures.Text_Type = ($, abort, $l, $p) => {
     }
 }
 
+export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, $p) => {
+    return _p.optional.map(
+        $,
+        ($) => _p.dictionary.resolve(
+            $['l dictionary'],
+            ($) => Value_Reference(
+                $['l entry'],
+                abort,
+                {
+                    'modules': $l.modules,
+                },
+                {
+                    'imports': $p.imports,
+                },
+            )
+        )
+    )
+}
+
 export const Value_Constraints: signatures.Value_Constraints = ($, abort, $l, $p) => {
     return _p.optional.map(
         $,
@@ -715,6 +734,16 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                 'options': _p.dictionary.resolve(
                     $.options['l dictionary'],
                     ($, id, $acyclic, $cyclic) => ({
+                        'constraints': Option_Constraints(
+                            $['l entry'].constraints,
+                            abort,
+                            {
+                                'modules': $l['noncircular sibling modules'],
+                            },
+                            {
+                                'imports': $p.imports,
+                            },
+                        ),
                         'description': $['l entry'].description,
                         'value': Value(
                             $['l entry'].value,
@@ -832,7 +861,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'l item': ['dictionary', null],
+                            'l item': {
+                                'l state': ['dictionary', null],
+                                'l constraints': {
+                                    'value': sc_definition.value,
+                                }
+                            },
                             'l result': sc_definition.value
                         }
                     })
@@ -849,7 +883,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            'l item': ['group', p_child],
+                            'l item': {
+                                'l state': ['group', p_child],
+                                'l constraints': {
+                                    'value': p_child['l entry'].value,
+                                }
+                            },
                             'l result': p_child['l entry'].value
                         }
                     })
@@ -861,7 +900,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'l item': ['list', null],
+                            'l item': {
+                                'l state': ['list', null],
+                                'l constraints': {
+                                    'value': sc_definition.value
+                                }
+                            },
                             'l result': sc_definition.value
                         }
                     })
@@ -873,7 +917,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         return {
-                            'l item': ['optional', null],
+                            'l item': {
+                                'l state': ['optional', null],
+                                'l constraints': {
+                                    'value': sc_definition
+                                }
+                            },
                             'l result': sc_definition
                         }
                     })
@@ -890,7 +939,12 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                             abort,
                         )
                         return {
-                            'l item': ['state', p_child],
+                            'l item': {
+                                'l state': ['state', p_child],
+                                'l constraints': {
+                                    'value': p_child['l entry'].value
+                                }
+                            },
                             'l result': p_child['l entry'].value
                         }
                     })
@@ -910,14 +964,14 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
     }
 }
 
-export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, $p) => {
+export const Option_Constraint_Resolvers: signatures.Option_Constraint_Resolvers = ($, abort, $l, $p) => {
     return _p_cc($, ($) => _p.dictionary.resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_cc($, ($) => _p_cc($['l entry']['l state'], ($) => {
             switch ($[0]) {
                 case 'state': return _p.ss($, ($) => ['state', _p_deprecated_block(() => {
                     const loc = $.selection.start['l location']
-                    const p_selection: d_out.Option_Constraints.D.state.selection = _p_cc($['selection'], ($) => Guaranteed_Value_Selection(
+                    const p_selection: d_out.Option_Constraint_Resolvers.D.state.selection = _p_cc($['selection'], ($) => Guaranteed_Value_Selection(
                         $,
                         abort,
                         $l,
@@ -931,7 +985,7 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
                             abort,
                         )
                         : p_selection['resulting node'][1]
-                    const p_option: d_out.Option_Constraints.D.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
+                    const p_option: d_out.Option_Constraint_Resolvers.D.state.option = _p_cc($['option'], ($) => _i_generic.get_entry_acyclic(
                         _p_ls.acyclic.select_from_dictionary(p_selected_state.options),
                         $,
                         abort,
@@ -1555,7 +1609,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint_found_expected("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraints(
+                const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraint_Resolvers(
                     $.constraints,
                     abort,
                     $l,
@@ -1657,7 +1711,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraints(
+                        const p_constraints: d_out.Value_Resolver.state.states.D.constraints = Option_Constraint_Resolvers(
                             $['l entry'].constraints,
                             abort,
                             $l,

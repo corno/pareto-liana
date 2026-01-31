@@ -373,6 +373,45 @@ export type Value_Constraints_ = (
     },
 ) => Value_Constraints_.O
 
+export namespace Option_Constraints_ {
+    
+    export type I = i_unresolved.Option_Constraints
+    
+    export type O = i_resolved.Option_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type modules = i_resolved.Modules_.D
+        
+    }
+    
+    export namespace P {
+        
+        export namespace imports {
+            
+            export type O = i_resolved.Imports_
+            
+        }
+        
+        export type imports = _pi.Optional_Value<imports.O>
+        
+    }
+    
+}
+
+export type Option_Constraints_ = (
+    context: Option_Constraints_.I,
+    abort: _pi.Abort<Option_Constraints_.E>,
+    lookups: {
+        readonly 'modules': _pi.Acyclic_Lookup<Option_Constraints_.L.modules>
+    },
+    parameters: {
+        readonly 'imports': Option_Constraints_.P.imports
+    },
+) => Option_Constraints_.O
+
 export namespace Module_ {
     
     export type I = i_unresolved.Module
@@ -525,7 +564,7 @@ export namespace Value_Resolver_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -628,7 +667,7 @@ export namespace Possible_Value_Selection_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -731,7 +770,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -834,7 +873,7 @@ export namespace Benchmark_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -937,7 +976,7 @@ export namespace Optional_Value_Initialization_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -1040,7 +1079,7 @@ export namespace Lookup_Selection_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -1071,11 +1110,11 @@ export type Lookup_Selection_ = (
     },
 ) => Lookup_Selection_.O
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
-    export type I = i_unresolved.Option_Constraints
+    export type I = i_unresolved.Option_Constraint_Resolvers
     
-    export type O = i_resolved.Option_Constraints
+    export type O = i_resolved.Option_Constraint_Resolvers
     
     export type E = i_generic.Error
     
@@ -1143,7 +1182,7 @@ export namespace Option_Constraints_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -1153,26 +1192,26 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
+export type Option_Constraint_Resolvers_ = (
+    context: Option_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraints_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraints_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraint_Resolvers_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraint_Resolvers_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Option_Constraints_.P.definition
-        readonly 'list cursor': Option_Constraints_.P.list_cursor
-        readonly 'linked entry': Option_Constraints_.P.linked_entry
-        readonly 'current dictionary': Option_Constraints_.P.current_dictionary
-        readonly 'current ordered dictionary': Option_Constraints_.P.current_ordered_dictionary
-        readonly 'signature': Option_Constraints_.P.signature
-        readonly 'imports': Option_Constraints_.P.imports
-        readonly 'signatures': Option_Constraints_.P.signatures
-        readonly 'modules': Option_Constraints_.P.modules
-        readonly 'option constraints': Option_Constraints_.P.option_constraints
+        readonly 'definition': Option_Constraint_Resolvers_.P.definition
+        readonly 'list cursor': Option_Constraint_Resolvers_.P.list_cursor
+        readonly 'linked entry': Option_Constraint_Resolvers_.P.linked_entry
+        readonly 'current dictionary': Option_Constraint_Resolvers_.P.current_dictionary
+        readonly 'current ordered dictionary': Option_Constraint_Resolvers_.P.current_ordered_dictionary
+        readonly 'signature': Option_Constraint_Resolvers_.P.signature
+        readonly 'imports': Option_Constraint_Resolvers_.P.imports
+        readonly 'signatures': Option_Constraint_Resolvers_.P.signatures
+        readonly 'modules': Option_Constraint_Resolvers_.P.modules
+        readonly 'option constraints': Option_Constraint_Resolvers_.P.option_constraints
     },
-) => Option_Constraints_.O
+) => Option_Constraint_Resolvers_.O
 
 export namespace Value_Resolver_List_Result_ {
     
@@ -1285,7 +1324,7 @@ export namespace Value_Resolver_Group_ {
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraints_
+            export type O = i_resolved.Option_Constraint_Resolvers_
             
         }
         
@@ -1791,6 +1830,7 @@ export {
     Module_Reference_ as Module_Reference, 
     Value_Reference_ as Value_Reference, 
     Value_Constraints_ as Value_Constraints, 
+    Option_Constraints_ as Option_Constraints, 
     Module_ as Module, 
     Value_Path_ as Value_Path, 
     Value_Resolver_ as Value_Resolver, 
@@ -1799,7 +1839,7 @@ export {
     Benchmark_ as Benchmark, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 
-    Option_Constraints_ as Option_Constraints, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Relative_Value_Selection_ as Relative_Value_Selection, 

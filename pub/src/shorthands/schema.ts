@@ -59,22 +59,33 @@ export const prop = (
     'value': node,
 })
 
-export const tstate = (
+export const toption = (
     node: d_schema.Value,
 ): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    'constraints': _p.optionalx.not_set(),
     'description': sh.optionalx.not_set(),
     'value': node,
 })
 
-export const tstated = (
+export const toption_constrained = (
+    node: d_schema.Value,
+    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.O.l_dictionary.D.l_entry>,
+): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    'constraints': _p.optionalx.set(sh.dictionary(constraints)),
+    'description': sh.optionalx.not_set(),
+    'value': node,
+})
+
+export const toption_with_description = (
     description: string,
     node: d_schema.Value,
 ): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    'constraints': _p.optionalx.not_set(),
     'description': _p.optionalx.set(description),
     'value': node,
 })
 
-export const propd = (
+export const prop_with_description = (
     description: string,
     node: d_schema.Value,
 ): d_schema.Group.l_dictionary.D.l_entry => ({
@@ -116,14 +127,14 @@ export namespace n {
 
 }
 
-export const reference = (
+export const module_reference = (
     type: string,
 ): d_schema.Module_Reference => ({
     'location': sh.state(['internal', sh.reference(type)]),
     'resulting module': null,
 })
 
-export const type_node_reference = (
+export const value_reference = (
     type: string,
     tail: d_schema.Value_Path.tail.l_list.L.l_item[],
 
@@ -375,7 +386,7 @@ export namespace t {
             'constraints': sh.optionalx.not_set(),
         }])
     }
-    export const state_constrained = (
+    export const state_with_result = (
         options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>,
         constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraints.O.l_dictionary.D.l_entry>,
     ): d_schema.Value => {
@@ -399,9 +410,9 @@ export namespace t {
 }
 
 /**
- * type node reference tail step
+ * Value Path tail step
  */
-export namespace tr {
+export namespace vp {
 
     export const d = (): d_schema.Value_Path.tail.l_list.L.l_item => {
         return sh.state(['dictionary', null])
@@ -915,7 +926,7 @@ export namespace av {
 
 }
 
-export const state = (
+export const option = (
     resolver: d_schema.Value_Resolver,
 ): d_schema.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
@@ -924,8 +935,8 @@ export const state = (
     }
 }
 
-export const state_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>,
+export const option_constrained = (
+    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
     resolver: d_schema.Value_Resolver,
 ): d_schema.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
@@ -942,7 +953,7 @@ export namespace oc {
     export const state = (
         value_selection: d_schema.Guaranteed_Value_Selection,
         state: string,
-    ): d_schema.Option_Constraints.l_dictionary.D.l_entry => {
+    ): d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return sh.state(['state', {
             'selection': value_selection,
             'selected state': null,
@@ -952,7 +963,7 @@ export namespace oc {
 
     export const assert_set = (
         possibly_optional: d_schema.Possible_Value_Selection,
-    ): d_schema.Option_Constraints.l_dictionary.D.l_entry => {
+    ): d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return sh.state(['assert is set', possibly_optional])
     }
 
@@ -1150,13 +1161,13 @@ export namespace r {
         type_resolver: d_schema.Value_Resolver
     ): d_schema.Value_Resolver => {
         return sh.state(['optional', {
-            'constraints': sh.dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>({}),
+            'constraints': sh.dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
             'resolver': type_resolver,
         }])
     }
 
     export const optional_constrained = (
-        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.l_dictionary.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
         type_resolver: d_schema.Value_Resolver
     ): d_schema.Value_Resolver => {
         return sh.state(['optional', {

@@ -47,6 +47,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Value Constraints": sig.same_as("Value Reference"),
 
+        "Option Constraints": sig.same_as("Value Reference"),
+
         "Module": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
@@ -87,7 +89,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
                 "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Option Constraints", 'optional'),
+                "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
             },
             {
                 // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),
@@ -101,7 +103,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Benchmark": sig.same_as("Value Resolver"),
         "Optional Value Initialization": sig.same_as("Value Resolver"),
         "Lookup Selection": sig.same_as("Value Resolver"),
-        "Option Constraints": sig.same_as("Value Resolver"),
+        "Option Constraint Resolvers": sig.same_as("Value Resolver"),
 
         "Value Resolver List Result": sig.same_as("Module Reference"),
         "Value Resolver Group": sig.local(
@@ -115,7 +117,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "imports": value_parameter("Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
                 "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Option Constraints", 'optional'),
+                "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
             },
             {
                 // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),

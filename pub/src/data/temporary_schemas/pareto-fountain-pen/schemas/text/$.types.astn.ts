@@ -5,10 +5,10 @@ import {
     text,
     n,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -18,8 +18,8 @@ export const $: g_.Modules = modules(
 
         "Directory": module_(t.dictionary(
             t.state({
-                "file": tstate(t.component("Lines")),
-                "directory": tstate(t.component_cyclic("Directory")),
+                "file": toption(t.component("Lines")),
+                "directory": toption(t.component_cyclic("Directory")),
             })
         )),
     }

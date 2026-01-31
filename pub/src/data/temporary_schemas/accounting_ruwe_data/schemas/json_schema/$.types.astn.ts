@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -19,7 +19,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Type": module_(t.state({
-            "array": tstate(t.group({
+            "array": toption(t.group({
                 "minItems": prop(t.optional(t.number_global("amount"))),
                 "maxItems": prop(t.optional(t.number_global("amount"))),
                 "uniqueItems": prop(t.optional(t.boolean())),
@@ -27,14 +27,14 @@ export const $: g_.Modules = modules(
                 "maxContains": prop(t.optional(t.number_global("amount"))),
                 "minContains": prop(t.optional(t.number_global("amount"))),
             })),
-            "number": tstate(t.group({
+            "number": toption(t.group({
                 "multipleOf": prop(t.optional(t.number_global("amount"))),
                 "minimum": prop(t.optional(t.number_global("amount"))),
                 "maximum": prop(t.optional(t.number_global("amount"))),
                 "exclusiveMinimum": prop(t.optional(t.number_global("amount"))),
                 "exclusiveMaximum": prop(t.optional(t.number_global("amount"))),
             })),
-            "object": tstate(t.group({
+            "object": toption(t.group({
                 "minProperties": prop(t.optional(t.number_global("amount"))),
                 "maxProperties": prop(t.optional(t.number_global("amount"))),
                 "required": prop(t.optional(t.list(t.text_global("identifier")))),
@@ -52,7 +52,7 @@ export const $: g_.Modules = modules(
                 // "minContains": t.optional(t.number_global("amount")),
                 // "maxContains": t.optional(t.number_global("amount")),
             })),
-            "string": tstate(t.group({
+            "string": toption(t.group({
                 "minLength": prop(t.optional(t.number_global("amount"))),
                 "maxLength": prop(t.optional(t.number_global("amount"))),
                 "pattern": prop(t.optional(t.text_global("regex"))),

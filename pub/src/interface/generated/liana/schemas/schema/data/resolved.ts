@@ -434,6 +434,20 @@ export type Module_Reference_ = {
     readonly 'resulting module': Module_Reference_.resulting_module
 }
 
+export namespace Option_Constraints_ {
+    
+    export namespace O {
+        
+        export type D = Value_Reference_
+        
+    }
+    
+    export type O = _pi.Dictionary<O.D>
+    
+}
+
+export type Option_Constraints_ = _pi.Optional_Value<Option_Constraints_.O>
+
 export namespace Value_ {
     
     export type boolean_ = null
@@ -622,6 +636,8 @@ export namespace Value_ {
             
             export namespace D {
                 
+                export type constraints = Option_Constraints_
+                
                 export namespace description {
                     
                     export type O = string
@@ -635,6 +651,7 @@ export namespace Value_ {
             }
             
             export type D = {
+                readonly 'constraints': D.constraints
                 readonly 'description': D.description
                 readonly 'value': D.value
             }
@@ -690,7 +707,7 @@ export type Value_ =
     | readonly ['state', Value_.state]
     | readonly ['text', Value_.text]
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
     export namespace D {
         
@@ -731,7 +748,7 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = _pi.Dictionary<Option_Constraints_.D>
+export type Option_Constraint_Resolvers_ = _pi.Dictionary<Option_Constraint_Resolvers_.D>
 
 export namespace Value_Constraint_Resolvers_ {
     
@@ -1099,7 +1116,7 @@ export namespace Value_Resolver_ {
     
     export namespace optional {
         
-        export type constraints = Option_Constraints_
+        export type constraints = Option_Constraint_Resolvers_
         
         export type resolver = Value_Resolver_
         
@@ -1163,7 +1180,7 @@ export namespace Value_Resolver_ {
             
             export namespace D {
                 
-                export type constraints = Option_Constraints_
+                export type constraints = Option_Constraint_Resolvers_
                 
                 export type resolver = Value_Resolver_
                 
@@ -1307,7 +1324,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace option_constraint {
             
-            export type l_entry = Option_Constraints_.D
+            export type l_entry = Option_Constraint_Resolvers_.D
             
             export type l_id = string
             
@@ -1571,46 +1588,65 @@ export namespace Value_Path_ {
                 
                 export namespace l_item {
                     
-                    export type dictionary = null
-                    
-                    export namespace group {
+                    export namespace l_constraints {
                         
-                        export type l_entry = Group_.D
-                        
-                        export type l_id = string
+                        export type value = Value_
                         
                     }
                     
-                    export type group = {
-                        readonly 'l entry': group.l_entry
-                        readonly 'l id': group.l_id
+                    export type l_constraints = {
+                        readonly 'value': l_constraints.value
                     }
                     
-                    export type list = null
-                    
-                    export type optional = null
-                    
-                    export namespace state {
+                    export namespace l_state {
                         
-                        export type l_entry = Value_.state.options.D
+                        export type dictionary = null
                         
-                        export type l_id = string
+                        export namespace group {
+                            
+                            export type l_entry = Group_.D
+                            
+                            export type l_id = string
+                            
+                        }
+                        
+                        export type group = {
+                            readonly 'l entry': group.l_entry
+                            readonly 'l id': group.l_id
+                        }
+                        
+                        export type list = null
+                        
+                        export type optional = null
+                        
+                        export namespace state {
+                            
+                            export type l_entry = Value_.state.options.D
+                            
+                            export type l_id = string
+                            
+                        }
+                        
+                        export type state = {
+                            readonly 'l entry': state.l_entry
+                            readonly 'l id': state.l_id
+                        }
                         
                     }
                     
-                    export type state = {
-                        readonly 'l entry': state.l_entry
-                        readonly 'l id': state.l_id
-                    }
+                    export type l_state = 
+                        | readonly ['dictionary', l_state.dictionary]
+                        | readonly ['group', l_state.group]
+                        | readonly ['list', l_state.list]
+                        | readonly ['optional', l_state.optional]
+                        | readonly ['state', l_state.state]
                     
                 }
                 
-                export type l_item = 
-                    | readonly ['dictionary', l_item.dictionary]
-                    | readonly ['group', l_item.group]
-                    | readonly ['list', l_item.list]
-                    | readonly ['optional', l_item.optional]
-                    | readonly ['state', l_item.state]
+                export type l_item = {
+                    readonly 'l constraints': l_item.l_constraints
+                    readonly 'l state': l_item.l_state
+                }
                 
             }
             
@@ -1883,8 +1919,9 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Module_Reference_ as Module_Reference, 
-    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
+    Value_ as Value, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 

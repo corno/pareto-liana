@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -16,26 +16,26 @@ export const $: g_.Modules = modules(
         "Document": module_(t.component("Value")),
 
         "Value": module_(t.state({
-            "list": tstate(t.list(t.component_cyclic("Value"))),
-            "dictionary": tstate(t.dictionary(t.component_cyclic("Value"))),
-            "group": tstate(t.state({
-                "verbose": tstate(t.dictionary(t.component_cyclic("Value"))),
+            "list": toption(t.list(t.component_cyclic("Value"))),
+            "dictionary": toption(t.dictionary(t.component_cyclic("Value"))),
+            "group": toption(t.state({
+                "verbose": toption(t.dictionary(t.component_cyclic("Value"))),
             })),
-            "nothing": tstate(t.nothing()),
-            "optional": tstate(t.state({
-                "not set": tstate(t.nothing()),
-                "set": tstate(t.component_cyclic("Value")),
+            "nothing": toption(t.nothing()),
+            "optional": toption(t.state({
+                "not set": toption(t.nothing()),
+                "set": toption(t.component_cyclic("Value")),
             })),
-            "state": tstate(t.group({
+            "state": toption(t.group({
                 "option": prop(t.text_global("Text Value")),
                 "value": prop(t.component_cyclic("Value"))
             })),
-            "text": tstate(t.group({
+            "text": toption(t.group({
                 "value": prop(t.text_global("Text Value")),
                 "delimiter": prop(t.state({
-                    "none": tstate(t.nothing()),
-                    "quote": tstate(t.nothing()),
-                    "backtick": tstate(t.nothing()),
+                    "none": toption(t.nothing()),
+                    "quote": toption(t.nothing()),
+                    "backtick": toption(t.nothing()),
                 })),
             })),
         })),

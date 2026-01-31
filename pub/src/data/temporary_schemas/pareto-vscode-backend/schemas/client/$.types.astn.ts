@@ -7,7 +7,7 @@ import {
     n,
     text,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -32,11 +32,11 @@ export const $: g_.Modules = modules(
         })),
 
         "Text Edit": module_(t.state({
-            "replace": tstate(t.component("Replace")),
-            "delete": tstate(t.group({
+            "replace": toption(t.component("Replace")),
+            "delete": toption(t.group({
                 "range": prop(t.component("Range")),
             })),
-            "insert": tstate(t.group({
+            "insert": toption(t.group({
                 "location": prop(t.component("Position")),
                 "text": prop(t.text_local(text('multi line'))),
             })),

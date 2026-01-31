@@ -303,18 +303,34 @@ export const Value = (
                     }
                 })
             })
-            case 'state': return _p.ss($, ($) => add_location
-                ? sh.t.group({
-                    "l location": location,
-                    "l state": sh.t.state($.options.__d_map(($, id) => Value(
-                        $.value,
-                        $p
-                    )))
-                })
-                : sh.t.state($.options.__d_map(($, id) => Value(
+            case 'state': return _p.ss($, ($) => {
+                const constraints = $.constraints
+                const i = sh.t.state($.options.__d_map(($, id) => Value(
                     $.value,
                     $p
                 )))
+                return _p.decide.state($p.type, ($) => {
+                    switch ($[0]) {
+                        case 'unconstrained': return _p.ss($, ($) => i)
+                        case 'unresolved': return _p.ss($, ($) => sh.t.group({
+                            "l location": location,
+                            "l state": i
+                        }))
+                        case 'resolved': return _p.ss($, ($) => _p.decide.optional(
+                            constraints,
+                            ($) => sh.t.group({
+                                "l constraints": sh.t.group(_p.dictionary.map(
+                                    $,
+                                    ($) => Value_Reference($)
+                                )),
+                                "l state": i
+                            }),
+                            () => i
+                        ))
+                        default: return _p.au($[0])
+                    }
+                })
+            }
             )
             case 'text': return _p.ss($, ($) => sh.t.text())
             default: return _p.au($[0])
@@ -335,7 +351,7 @@ const Value_Path = (
     $: d_in.Value_Path,
 
 ): _pi.List<d_out.Value.reference.sub_selection.L> => {
-    return $.tail['l list'].__l_map(($) => _p.decide.state($['l item'], ($) => {
+    return $.tail['l list'].__l_map(($) => _p.decide.state($['l item']['l state'], ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($['l id']))

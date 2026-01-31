@@ -275,7 +275,7 @@ export const Value = (
         case 'state': return _p.ss($, ($) => sh.e.state.literal(
             "state",
             sh.e.decide.state(
-                sh.s.context([]),
+                sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l state"] : []),
                 $.options.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Value(

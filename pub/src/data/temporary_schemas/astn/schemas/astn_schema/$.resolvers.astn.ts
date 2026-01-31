@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, state, state_constrained, oc, pc, pvs, reference,
+    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, pc, pvs, module_reference,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -33,8 +33,8 @@ export const $: g_.Module_Resolvers = resolvers(
 
         "Text Type": resolver(r.group({
             "type": r.state({
-                "multi line": state(r.nothing()),
-                "single line": state(r.nothing()),
+                "multi line": option(r.nothing()),
+                "single line": option(r.nothing()),
             }),
         })),
 
@@ -64,15 +64,15 @@ export const $: g_.Module_Resolvers = resolvers(
         })),
 
         "Value": resolver(r.state({
-            "component": state(r.state({
-                "external": state_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
+            "component": option(r.state({
+                "external": option_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
                     "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
                     "type": r.reference(gvs.dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("types"), rvs.component()]))),
                 })),
-                "internal": state(r.reference(ls.parameter("noncircular sibling modules"))),
-                "internal cyclic": state(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
+                "internal": option(r.reference(ls.parameter("noncircular sibling modules"))),
+                "internal cyclic": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
             })),
-            "dictionary": state(r.component("Dictionary",
+            "dictionary": option(r.component("Dictionary",
                 {
                     "globals": av.parameter("globals"),
                     "imports": av.parameter("imports"),
@@ -82,7 +82,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
-            "group": state(r.component("Group",
+            "group": option(r.component("Group",
                 {
                     "globals": av.parameter("globals"),
                     "imports": av.parameter("imports"),
@@ -92,17 +92,17 @@ export const $: g_.Module_Resolvers = resolvers(
                     "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
-            "list": state(r.group({
+            "list": option(r.group({
                 "node": r.component("Value", null, null),
             })),
-            "nothing": state(r.nothing()),
+            "nothing": option(r.nothing()),
 
-            "optional": state(r.component("Value", null, null)),
+            "optional": option(r.component("Value", null, null)),
 
-            "state": state(r.dictionary(r.component("Value", null, null))),
-            "text": state(r.state({
-                "global": state_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
-                "local": state(r.component("Text Type", {}, {})),
+            "state": option(r.dictionary(r.component("Value", null, null))),
+            "text": option(r.state({
+                "global": option_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
+                "local": option(r.component("Text Type", {}, {})),
             })),
         })),
 
@@ -114,10 +114,10 @@ export const $: g_.Module_Resolvers = resolvers(
         }))),
 
         "Schema Tree": resolver(r.state({
-            "schema": state(r.component("Schema", {}, {
+            "schema": option(r.component("Schema", {}, {
                 "sibling schemas": al.parameter("sibling schemas"),
             })),
-            "set": state(r.component("Schemas", {}, {
+            "set": option(r.component("Schemas", {}, {
                 "sibling schemas": al.parameter("sibling schemas"),
             }))
         })),

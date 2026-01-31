@@ -383,52 +383,59 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => _p.grou
                     ($) => ({
                         'l item': _p_cc(
                             $['l item'],
-                            ($) => _p.decide.state(
-                                $['l state'],
-                                ($): t_out.Value_Path.tail.l_list.L.l_item => {
-                                    switch ($[0]) {
-                                        case 'dictionary':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['dictionary', null]
-                                            )
-                                        case 'group':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['group', {
-                                                    'l entry': _pdev.implement_me(
-                                                        "IM: FIXME ACYCLIC ENTRY"
-                                                    ),
-                                                    'l id': $['l reference'],
-                                                }]
-                                            )
-                                        case 'list':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['list', null]
-                                            )
-                                        case 'optional':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['optional', null]
-                                            )
-                                        case 'state':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['state', {
-                                                    'l entry': _pdev.implement_me(
-                                                        "IM: FIXME ACYCLIC ENTRY"
-                                                    ),
-                                                    'l id': $['l reference'],
-                                                }]
-                                            )
-                                        default:
-                                            return _p.au(
-                                                $[0]
-                                            )
+                            ($) => ({
+                                'l state': _p.decide.state(
+                                    $['l state'],
+                                    ($): t_out.Value_Path.tail.l_list.L.l_item.l_state => {
+                                        switch ($[0]) {
+                                            case 'dictionary':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['dictionary', null]
+                                                )
+                                            case 'group':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['group', {
+                                                        'l entry': _pdev.implement_me(
+                                                            "IM: FIXME ACYCLIC ENTRY"
+                                                        ),
+                                                        'l id': $['l reference'],
+                                                    }]
+                                                )
+                                            case 'list':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['list', null]
+                                                )
+                                            case 'optional':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['optional', null]
+                                                )
+                                            case 'state':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['state', {
+                                                        'l entry': _pdev.implement_me(
+                                                            "IM: FIXME ACYCLIC ENTRY"
+                                                        ),
+                                                        'l id': $['l reference'],
+                                                    }]
+                                                )
+                                            default:
+                                                return _p.au(
+                                                    $[0]
+                                                )
+                                        }
                                     }
-                                }
-                            )
+                                ),
+                                'l constraints': {
+                                    'value': _pdev.implement_me(
+                                        "IM: constraint"
+                                    ),
+                                },
+                            })
                         ),
                         'l result': _pdev.implement_me(
                             "IM: result aggregation"
@@ -465,6 +472,24 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($, abort, $l, 
     ($) => _p.dictionary.resolve(
         $['l dictionary'],
         ($, id, $a, $c): t_out.Value_Constraints.O.D => _p_cc(
+            $['l entry'],
+            ($) => Value_Reference(
+                $,
+                ($) => abort(
+                    $
+                ),
+                $l,
+                $p
+            )
+        )
+    )
+)
+
+export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => _p.optional.map(
+    $,
+    ($) => _p.dictionary.resolve(
+        $['l dictionary'],
+        ($, id, $a, $c): t_out.Option_Constraints.O.D => _p_cc(
             $['l entry'],
             ($) => Value_Reference(
                 $,
@@ -916,6 +941,24 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                         ($) => _p.group.resolve(
                                             () => {
                                                 
+                                                const prop_constraints = _p_cc(
+                                                    $['constraints'],
+                                                    ($) => Option_Constraints(
+                                                        $,
+                                                        ($) => abort(
+                                                            $
+                                                        ),
+                                                        {
+                                                            'modules': _pdev.implement_me(
+                                                                "IM: selection"
+                                                            ),
+                                                        },
+                                                        {
+                                                            'imports': $p['imports'],
+                                                        }
+                                                    )
+                                                )
+                                                
                                                 const prop_value = _p_cc(
                                                     $['value'],
                                                     ($) => Value(
@@ -936,6 +979,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                                     )
                                                 )
                                                 return {
+                                                    'constraints': prop_constraints,
                                                     'value': prop_value,
                                                     'description': prop_description,
                                                 }
@@ -2081,13 +2125,13 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.grou
     }
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => _p.dictionary.resolve(
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($, abort, $l, $p) => _p.dictionary.resolve(
     $['l dictionary'],
-    ($, id, $a, $c): t_out.Option_Constraints.D => _p_cc(
+    ($, id, $a, $c): t_out.Option_Constraint_Resolvers.D => _p_cc(
         $['l entry'],
         ($) => _p.decide.state(
             $['l state'],
-            ($): t_out.Option_Constraints.D => {
+            ($): t_out.Option_Constraint_Resolvers.D => {
                 switch ($[0]) {
                     case 'state':
                         return _p.ss(
@@ -2802,7 +2846,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                             
                             const prop_constraints = _p_cc(
                                 $['constraints'],
-                                ($) => Option_Constraints(
+                                ($) => Option_Constraint_Resolvers(
                                     $,
                                     ($) => abort(
                                         $
@@ -2972,7 +3016,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                 
                                                 const prop_constraints = _p_cc(
                                                     $['constraints'],
-                                                    ($) => Option_Constraints(
+                                                    ($) => Option_Constraint_Resolvers(
                                                         $,
                                                         ($) => abort(
                                                             $

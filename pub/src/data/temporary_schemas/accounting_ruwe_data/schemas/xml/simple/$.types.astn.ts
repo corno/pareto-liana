@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../../shorthands/schema"
 import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -21,15 +21,15 @@ export const $: g_.Modules = modules(
         })),
         "Attributes": module_(t.dictionary(t.text_global("Text Value"))),
         "Children": module_(t.list(t.state({
-            "cdata": tstate(t.text_global("Text Value")),
-            "comment": tstate(t.text_global("Text Value")),
-            "element": tstate(t.component_cyclic("Element")),
-            "processing instruction": tstate(t.group({
+            "cdata": toption(t.text_global("Text Value")),
+            "comment": toption(t.text_global("Text Value")),
+            "element": toption(t.component_cyclic("Element")),
+            "processing instruction": toption(t.group({
                 "target": prop(t.text_global("Text Value")),
                 "data": prop(t.text_global("Text Value")),
             })),
-            "text": tstate(t.text_global("Text Value")),
-            "entity reference": tstate(t.text_global("Text Value")),
+            "text": toption(t.text_global("Text Value")),
+            "entity reference": toption(t.text_global("Text Value")),
         }))),
         "Element": module_(t.group({
             "name": prop(t.text_global("Text Value")),

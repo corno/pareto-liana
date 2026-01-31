@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -17,48 +17,48 @@ export const $: g_.Modules = modules(
 
         "Error": module_(t.group({
             "type": prop(t.state({
-                "lexer": tstate(t.component("Lexer Error")),
-                "parser": tstate(t.component("Parser Error")),
+                "lexer": toption(t.component("Lexer Error")),
+                "parser": toption(t.component("Parser Error")),
             })),
         })),
 
         "Lexer Error": module_(t.state({
-            "dangling slash": tstate(t.group({
+            "dangling slash": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
                 "at end of input": prop(t.boolean()),
             })),
-            "invalid unicode escape sequence": tstate(t.group({
+            "invalid unicode escape sequence": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "missing character after escape": tstate(t.group({
+            "missing character after escape": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
             // "unexpected character": tstate(t.group({
             //     "character": prop(t.number_local(n.natural(null))),
             //     "location": prop(t.component_external("token", "Location")),
             // })),
-            "unexpected control character": tstate(t.group({
+            "unexpected control character": toption(t.group({
                 "character": prop(t.number_local(n.natural(null))),
                 "location": prop(t.component_external("location", "Location")),
             })),
-            "unexpected control character in text": tstate(t.group({
+            "unexpected control character in text": toption(t.group({
                 "character": prop(t.number_local(n.natural(null))),
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "unexpected end of line in delimited text": tstate(t.group({
+            "unexpected end of line in delimited text": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "unknown escape character": tstate(t.group({
+            "unknown escape character": toption(t.group({
                 "character": prop(t.number_local(n.natural(null))),
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "unterminated block comment": tstate(t.group({
+            "unterminated block comment": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "unterminated text": tstate(t.group({
+            "unterminated text": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
-            "unterminated unicode escape sequence": tstate(t.group({
+            "unterminated unicode escape sequence": toption(t.group({
                 "range": prop(t.component_external("location", "Range")),
             })),
         })),
@@ -66,25 +66,25 @@ export const $: g_.Modules = modules(
         "Parser Error": module_(t.group({
             "expected": prop(t.list(t.component("Expected"))),
             "cause": prop(t.state({
-                "missing token": tstate(t.nothing()),
-                "unexpected token": tstate(t.group({
+                "missing token": toption(t.nothing()),
+                "unexpected token": toption(t.group({
                     "found": prop(t.component_external("token", "Annotated Token")),
                 })),
             })),
         })),
 
         "Expected": module_(t.state({
-            "a text value": tstate(t.nothing()),
-            "any value": tstate(t.nothing()),
-            "!": tstate(t.nothing()),
-            ">": tstate(t.nothing()),
-            "}": tstate(t.nothing()),
-            "@": tstate(t.nothing()),
-            ",": tstate(t.nothing()),
-            ":": tstate(t.nothing()),
-            ")": tstate(t.nothing()),
-            "]": tstate(t.nothing()),
-            "#": tstate(t.nothing()),
+            "a text value": toption(t.nothing()),
+            "any value": toption(t.nothing()),
+            "!": toption(t.nothing()),
+            ">": toption(t.nothing()),
+            "}": toption(t.nothing()),
+            "@": toption(t.nothing()),
+            ",": toption(t.nothing()),
+            ":": toption(t.nothing()),
+            ")": toption(t.nothing()),
+            "]": toption(t.nothing()),
+            "#": toption(t.nothing()),
         }))
 
     }

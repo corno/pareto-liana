@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -16,11 +16,11 @@ export const $: g_.Modules = modules(
         "Parameters": module_(t.component_external("path", "Node Path")),
 
         "Error": module_(t.state({
-            "file does not exist": tstate(t.nothing()),
-            "node is not a file": tstate(t.nothing()),
-            "permission denied": tstate(t.nothing()),
-            "file too large": tstate(t.nothing()),
-            "device not ready": tstate(t.nothing()),
+            "file does not exist": toption(t.nothing()),
+            "node is not a file": toption(t.nothing()),
+            "permission denied": toption(t.nothing()),
+            "file too large": toption(t.nothing()),
+            "device not ready": toption(t.nothing()),
         })),
 
         "Result": module_(t.text_local(text('multi line'))),

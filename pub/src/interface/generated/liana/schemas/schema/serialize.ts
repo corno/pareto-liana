@@ -307,6 +307,22 @@ export type Module_Reference_ = (
     context: Module_Reference_.I,
 ) => Module_Reference_.O
 
+export namespace Option_Constraints_ {
+    
+    export type I = i_in.Option_Constraints
+    
+    export type O = string
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Option_Constraints_ = (
+    context: Option_Constraints_.I,
+) => Option_Constraints_.O
+
 export namespace Value_ {
     
     export type I = i_in.Value
@@ -323,9 +339,9 @@ export type Value_ = (
     context: Value_.I,
 ) => Value_.O
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
-    export type I = i_in.Option_Constraints
+    export type I = i_in.Option_Constraint_Resolvers
     
     export type O = string
     
@@ -335,9 +351,9 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-) => Option_Constraints_.O
+export type Option_Constraint_Resolvers_ = (
+    context: Option_Constraint_Resolvers_.I,
+) => Option_Constraint_Resolvers_.O
 
 export namespace Value_Constraint_Resolvers_ {
     
@@ -615,8 +631,9 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Module_Reference_ as Module_Reference, 
-    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
+    Value_ as Value, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 

@@ -83,7 +83,7 @@ export const Module_Reference = (
 export const Value_Path = (
     $: d_in.Value_Path,
 ): d_out.Value.reference.sub_selection => {
-    const tail: _pi.List<d_out.Value.reference.sub_selection.L> = $.tail['l list'].__l_map(($) => _p.decide.state($['l item'], ($) => {
+    const tail: _pi.List<d_out.Value.reference.sub_selection.L> = $.tail['l list'].__l_map(($) => _p.decide.state($['l item']['l state'], ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($['l id']))

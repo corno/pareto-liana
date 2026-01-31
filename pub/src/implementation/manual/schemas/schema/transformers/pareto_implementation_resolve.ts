@@ -665,26 +665,63 @@ export const Value_Resolver = (
         //         default: return _p.au($[0])
         //     }
         // })))
-        case 'state': return _p.ss($, ($) => sh.e.decide.state(
-            sh.s.context(["l state"]),
-            $.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
-                $['resolver'],
-                {
-                    'temp type': $p['temp type'],
-                    'temp subselection': _p.list.nested_literal_old([
+        case 'state': return _p.ss($, ($) => {
+            const yy = $
+            return _p.decide.optional(
+                $.definition.constraints,
+                ($) => sh.e.group.literal({
+                    "l state": sh.e.decide.state(
+                        sh.s.context(["l state"]),
+                        yy.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
+                            $['resolver'],
+                            {
+                                'temp type': $p['temp type'],
+                                'temp subselection': _p.list.nested_literal_old([
+                                    $p['temp subselection'],
+                                    [
+                                        sh_i.sub.group("l state"),
+                                        sh_i.sub.state(id),
+                                    ]
+                                ]),
+                            }
+                        ))),
+                        sh.type_node_reference(
+                            "out",
+                            $p['temp type'], _p.list.nested_literal_old([
+                                $p['temp subselection'],
+                                [
+                                    sh_i.sub.group("l state"),
+                                ]
+                            ]),
+                        ),
+                    ),
+                    "l constraints": sh.e.group.literal(_p.dictionary.map(
+                        $,
+                        () => sh.e.implement_me("IM: constraint")
+                    ))
+                }),
+                () => sh.e.decide.state(
+                    sh.s.context(["l state"]),
+                    $.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
+                        $['resolver'],
+                        {
+                            'temp type': $p['temp type'],
+                            'temp subselection': _p.list.nested_literal_old([
+                                $p['temp subselection'],
+                                [
+                                    sh_i.sub.state(id)
+                                ]
+                            ]),
+                        }
+                    ))),
+                    sh.type_node_reference(
+                        "out",
+                        $p['temp type'],
                         $p['temp subselection'],
-                        [
-                            sh_i.sub.state(id)
-                        ]
-                    ]),
-                }
-            ))),
-            sh.type_node_reference(
-                "out",
-                $p['temp type'],
-                $p['temp subselection'],
-            ),
-        ))
+                    ),
+                ),
+            )
+        })
         // case 'state': return _p.ss($, ($) => sh.e.decide.state(
         //     sh.s.context(['state']),
         //     $.states.__d_map(($, id) => sh.e.state.literal(id, Option_Constraints(

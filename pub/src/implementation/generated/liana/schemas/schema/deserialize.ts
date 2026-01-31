@@ -311,6 +311,22 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $p) =>
     )
 )
 
+export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $p) => v_unmarshall.Option_Constraints(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        }
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)
+
 export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     v_deserialize.Document(
         $,
@@ -327,7 +343,7 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     )
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $p) => v_unmarshall.Option_Constraints(
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($, abort, $p) => v_unmarshall.Option_Constraint_Resolvers(
     v_deserialize.Document(
         $,
         ($) => abort(

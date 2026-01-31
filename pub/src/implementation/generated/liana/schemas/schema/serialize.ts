@@ -121,14 +121,20 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => v_serializ
     )
 )
 
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => v_serialize.Document(
+    v_marshall.Option_Constraints(
+        $
+    )
+)
+
 export const Value: t_signatures.Value = ($) => v_serialize.Document(
     v_marshall.Value(
         $
     )
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => v_serialize.Document(
-    v_marshall.Option_Constraints(
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($) => v_serialize.Document(
+    v_marshall.Option_Constraint_Resolvers(
         $
     )
 )

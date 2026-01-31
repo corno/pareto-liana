@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -19,7 +19,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Error": module_(t.state({
-            "permission denied": tstate(t.nothing()),
+            "permission denied": toption(t.nothing()),
         })),
     }
 )

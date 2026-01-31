@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -18,10 +18,10 @@ export const $: g_.Modules = modules(
         })),
 
         "Error": module_(t.state({
-            "failed to spawn": tstate(t.group({
+            "failed to spawn": toption(t.group({
                 "message": prop(t.component_external("terminal output", "Message")),
             })),
-            "non zero exit code": tstate(t.group({
+            "non zero exit code": toption(t.group({
                 "exit code": prop(t.optional(t.number_local(n.integer(null)))),
                 "stderr": prop(t.component_external("terminal output", "Message")),
                 /**

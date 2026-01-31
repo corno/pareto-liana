@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -16,14 +16,14 @@ export const $: g_.Modules = modules(
         "Parameters": module_(t.component_external("path", "Node Path")),
 
         "Error": module_(t.state({
-            "node does not exist": tstate(t.nothing()),
+            "node does not exist": toption(t.nothing()),
         })),
 
         "Result": module_(t.component("Node Type")),
 
         "Node Type": module_(t.state({
-            "file": tstate(t.nothing()),
-            "directory": tstate(t.nothing()),
+            "file": toption(t.nothing()),
+            "directory": toption(t.nothing()),
         })),
     }
 )

@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -16,8 +16,8 @@ export const $: g_.Modules = modules(
         "Parameters": module_(t.component_external("path", "Node Path")),
 
         "Error": module_(t.state({
-            "directory already exists": tstate(t.nothing()),
-            "permission denied": tstate(t.nothing()),
+            "directory already exists": toption(t.nothing()),
+            "permission denied": toption(t.nothing()),
         })),
 
     }

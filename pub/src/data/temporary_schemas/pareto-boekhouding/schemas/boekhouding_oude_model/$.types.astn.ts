@@ -6,10 +6,10 @@ import {
 
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -23,14 +23,14 @@ export const $: g_.Modules = modules(
                         "Hoofdcategorie": prop(t.text_global("Pseudo Reference")),
                         "Subcategorie": prop(t.text_global("Pseudo Reference")),
                         "Zijde": prop(t.state({
-                            "Activa": tstate(t.group({})),
-                            "Passiva": tstate(t.group({})),
+                            "Activa": toption(t.group({})),
+                            "Passiva": toption(t.group({})),
                         })),
                     }))),
                     "Hoofdcategorieen": prop(t.dictionary(t.group({
                         "Zijde": prop(t.state({
-                            "Activa": tstate(t.group({})),
-                            "Passiva": tstate(t.group({})),
+                            "Activa": toption(t.group({})),
+                            "Passiva": toption(t.group({})),
                         })),
                         "Subcategorieen": prop(t.dictionary(t.group({
                             "Hoofdcategorie fiscus": prop(t.text_global("Pseudo Reference")),
@@ -39,18 +39,18 @@ export const $: g_.Modules = modules(
                     }))),
                     "Hoofdcategorieen fiscus": prop(t.dictionary(t.group({
                         "Zijde": prop(t.state({
-                            "Activa": tstate(t.group({})),
-                            "Passiva": tstate(t.group({})),
+                            "Activa": toption(t.group({})),
+                            "Passiva": toption(t.group({})),
                         })),
                         "Subcategorieen": prop(t.dictionary(t.group({})))
                     }))),
                 })),
                 "BTW-categorieen": prop(t.dictionary(t.group({
                     "BTW-heffing": prop(t.state({
-                        "Ja": tstate(t.group({
+                        "Ja": toption(t.group({
                             "BTW-promillage": prop(t.number_global("Promillage")),
                         })),
-                        "Nee": tstate(t.group({}))
+                        "Nee": toption(t.group({}))
                     }))
                 }))),
                 "Gebruikers": prop(t.dictionary(t.group({
@@ -66,21 +66,21 @@ export const $: g_.Modules = modules(
                         "Hoofdcategorie": prop(t.text_global("Pseudo Reference")),
                         "Subcategorie": prop(t.text_global("Pseudo Reference")),
                         "Zijde": prop(t.state({
-                            "Kosten": tstate(t.group({
+                            "Kosten": toption(t.group({
                                 "Correctie op vennootschapsbelasting": prop(t.state({
-                                    "Ja": tstate(t.group({
+                                    "Ja": toption(t.group({
                                         "Correctietype": prop(t.text_global("Pseudo Reference")),
                                     })),
-                                    "Nee": tstate(t.group({})),
+                                    "Nee": toption(t.group({})),
                                 }))
                             })),
-                            "Opbrengsten": tstate(t.group({})),
+                            "Opbrengsten": toption(t.group({})),
                         })),
                     }))),
                     "Hoofdcategorieen": prop(t.dictionary(t.group({
                         "Zijde": prop(t.state({
-                            "Kosten": tstate(t.group({})),
-                            "Opbrengsten": tstate(t.group({})),
+                            "Kosten": toption(t.group({})),
+                            "Opbrengsten": toption(t.group({})),
                         })),
                         "Subcategorieen": prop(t.dictionary(t.group({
                             "Hoofdcategorie fiscus": prop(t.text_global("Pseudo Reference")),
@@ -89,8 +89,8 @@ export const $: g_.Modules = modules(
                     }))),
                     "Hoofdcategorieen fiscus": prop(t.dictionary(t.group({
                         "Zijde": prop(t.state({
-                            "Kosten": tstate(t.group({})),
-                            "Opbrengsten": tstate(t.group({})),
+                            "Kosten": toption(t.group({})),
+                            "Opbrengsten": toption(t.group({})),
                         })),
                         "Subcategorieen": prop(t.dictionary(t.group({})))
                     }))),
@@ -99,14 +99,14 @@ export const $: g_.Modules = modules(
             "Informele rekeningen": prop(t.dictionary(t.group({}))),
             "Jaren": prop(t.dictionary(t.group({
                 "Afgesloten": prop(t.state({
-                    "Ja": tstate(t.group({})),
-                    "Nee": tstate(t.group({})),
+                    "Ja": toption(t.group({})),
+                    "Nee": toption(t.group({})),
                 })),
                 "Balans grootboekrekeningen": prop(t.dictionary(t.group({
                     "Type": prop(t.state({
-                        "Bankrekening": tstate(t.group({})),
-                        "Overig": tstate(t.group({})),
-                        "Informele rekening": tstate(t.group({})),
+                        "Bankrekening": toption(t.group({})),
+                        "Overig": toption(t.group({})),
+                        "Informele rekening": toption(t.group({})),
                     }))
                 }))),
                 "Bankrekeningen": prop(t.dictionary(t.group({
@@ -117,25 +117,25 @@ export const $: g_.Modules = modules(
                         "Datum": prop(t.number_global("Datum")),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                         "Status": prop(t.state({
-                            "Nog te verwerken": tstate(t.group({})),
-                            "Verwerkt": tstate(t.group({
+                            "Nog te verwerken": toption(t.group({})),
+                            "Verwerkt": toption(t.group({
                                 "Afhandeling": prop(t.state({
-                                    "Inkoop": tstate(t.group({
+                                    "Inkoop": toption(t.group({
                                         "Jaar": prop(t.text_global("Pseudo Reference")),
                                         "Inkoop": prop(t.text_global("Pseudo Reference")),
                                     })),
-                                    "Verrekenpost": tstate(t.group({
+                                    "Verrekenpost": toption(t.group({
                                         "Verrekenpost": prop(t.text_global("Pseudo Reference")),
                                     })),
-                                    "BTW-periode": tstate(t.group({
+                                    "BTW-periode": toption(t.group({
                                         "Jaar": prop(t.text_global("Pseudo Reference")),
                                         "BTW-periode": prop(t.text_global("Pseudo Reference")),
                                     })),
-                                    "Verkoop": tstate(t.group({
+                                    "Verkoop": toption(t.group({
                                         "Jaar": prop(t.text_global("Pseudo Reference")),
                                         "Verkoop": prop(t.text_global("Pseudo Reference")),
                                     })),
-                                    "Informele rekening": tstate(t.group({
+                                    "Informele rekening": toption(t.group({
                                         "Informele rekening": prop(t.text_global("Pseudo Reference")),
                                     })),
                                 }))
@@ -143,8 +143,8 @@ export const $: g_.Modules = modules(
                         }))
                     }))),
                     "Nieuw": prop(t.state({
-                        "Ja": tstate(t.group({})),
-                        "Nee": tstate(t.group({
+                        "Ja": toption(t.group({})),
+                        "Nee": toption(t.group({
                             "Jaar": prop(t.text_global("Pseudo Reference")),
                             "Rekening": prop(t.text_global("Pseudo Reference")),
                         })),
@@ -162,17 +162,17 @@ export const $: g_.Modules = modules(
                     }))),
                     "Omschrijving": prop(t.text_global("Omschrijving")),
                     "Status": prop(t.state({
-                        "Aangegeven": tstate(t.group({
+                        "Aangegeven": toption(t.group({
                             "Afronding": prop(t.number_global("Bedrag")),
                             "Bedrag": prop(t.number_global("Bedrag")),
                             "Datum": prop(t.number_global("Datum")),
                         })),
-                        "Openstaand": tstate(t.group({})),
+                        "Openstaand": toption(t.group({})),
                     })),
                 }))),
                 "Eerste boekjaar": prop(t.state({
-                    "Ja": tstate(t.group({})),
-                    "Nee": tstate(t.group({
+                    "Ja": toption(t.group({})),
+                    "Nee": toption(t.group({
                         "Vorig boekjaar": prop(t.text_global("Pseudo Reference")),
                     })),
                 })),
@@ -184,8 +184,8 @@ export const $: g_.Modules = modules(
                     "Beginsaldo": prop(t.number_global("Bedrag")),
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                     "Nieuw": prop(t.state({
-                        "Ja": tstate(t.group({})),
-                        "Nee": tstate(t.group({
+                        "Ja": toption(t.group({})),
+                        "Nee": toption(t.group({
                             "Jaar": prop(t.text_global("Pseudo Reference")),
                             "Rekening": prop(t.text_global("Pseudo Reference")),
                         })),
@@ -193,58 +193,58 @@ export const $: g_.Modules = modules(
                 }))),
                 "Inkopen": prop(t.dictionary(t.group({
                     "Afhandeling": prop(t.state({
-                        "Mutaties": tstate(t.group({})),
-                        "Rekening courant": tstate(t.group({
+                        "Mutaties": toption(t.group({})),
+                        "Rekening courant": toption(t.group({
                             "Rekening courant": prop(t.text_global("Pseudo Reference")),
                         })),
                     })),
                     "BTW-regime": prop(t.state({
-                        "Binnenland: heffing verlegd": tstate(t.group({})),
-                        "Geen BTW van toepassing": tstate(t.group({
+                        "Binnenland: heffing verlegd": toption(t.group({})),
+                        "Geen BTW van toepassing": toption(t.group({
                             "BTW-periode": prop(t.text_global("Pseudo Reference")),
                         })),
-                        "Import van buiten de EU": tstate(t.group({})),
-                        "Intracommunautair": tstate(t.group({})),
-                        "Standaard": tstate(t.group({
+                        "Import van buiten de EU": toption(t.group({})),
+                        "Intracommunautair": toption(t.group({})),
+                        "Standaard": toption(t.group({
                             "BTW-periode": prop(t.text_global("Pseudo Reference")),
                         })),
                     })),
                     "Brondocument": prop(t.state({
-                        "Toegevoegd": tstate(t.group({
+                        "Toegevoegd": toption(t.group({
                             "Document": prop(t.component("Bestandsnaam")),
                         })),
-                        "Niet van toepassing": tstate(t.group({})),
-                        "Ontbreekt": tstate(t.group({})),
-                        "Nog toevoegen": tstate(t.group({})),
+                        "Niet van toepassing": toption(t.group({})),
+                        "Ontbreekt": toption(t.group({})),
+                        "Nog toevoegen": toption(t.group({})),
                     })),
                     "Datum": prop(t.number_global("Datum")),
                     "Regels": prop(t.dictionary(t.group({
                         "Bedrag": prop(t.state({
-                            "Bekend": tstate(t.group({
+                            "Bekend": toption(t.group({
                                 "BTW-bedrag": prop(t.number_global("Bedrag")),
                                 "Bedrag inclusief geheven BTW": prop(t.number_global("Bedrag")),
                             }))
                         })),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                         "Type": prop(t.state({
-                            "Balans": tstate(t.group({
+                            "Balans": toption(t.group({
                                 "Balans item": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "Kosten": tstate(t.group({
+                            "Kosten": toption(t.group({
                                 "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                             })),
                         })),
                     }))),
                     "Type": prop(t.state({
-                        "Bonnetje": tstate(t.group({})),
-                        "Inkoop (met crediteur)": tstate(t.group({
+                        "Bonnetje": toption(t.group({})),
+                        "Inkoop (met crediteur)": toption(t.group({
                             "Crediteur": prop(t.text_global("Pseudo Reference")),
                             "Factuurnummer": prop(t.text_global("Benaming"))
                         })),
-                        "Loonheffing": tstate(t.group({
+                        "Loonheffing": toption(t.group({
                             "Ronde": prop(t.text_global("Pseudo Reference")),
                         })),
-                        "Salaris": tstate(t.group({
+                        "Salaris": toption(t.group({
                             "Ronde": prop(t.text_global("Pseudo Reference")),
                             "Medewerker": prop(t.text_global("Pseudo Reference")),
                         })),
@@ -263,8 +263,8 @@ export const $: g_.Modules = modules(
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                     }))),
                     "Nieuw": prop(t.state({
-                        "Ja": tstate(t.group({})),
-                        "Nee": tstate(t.group({
+                        "Ja": toption(t.group({})),
+                        "Nee": toption(t.group({
                             "Jaar": prop(t.text_global("Pseudo Reference")),
                             "Balans item": prop(t.text_global("Pseudo Reference")),
                         })),
@@ -278,24 +278,24 @@ export const $: g_.Modules = modules(
                 })),
                 "Verkopen": prop(t.dictionary(t.group({
                     "Afhandeling": prop(t.state({
-                        "Mutaties": tstate(t.group({})),
-                        "Rekening courant": tstate(t.group({
+                        "Mutaties": toption(t.group({})),
+                        "Rekening courant": toption(t.group({
                             "Rekening courant": prop(t.text_global("Pseudo Reference"))
                         })),
                     })),
                     "Betalingstermijn": prop(t.number_global("Dagen")),
                     "BTW-periode": prop(t.text_global("Pseudo Reference")),
                     "Brondocument": prop(t.state({
-                        "Toegevoegd": tstate(t.group({
+                        "Toegevoegd": toption(t.group({
                             "Document": prop(t.component("Bestandsnaam"))
                         })),
                     })),
                     "Contracttype": prop(t.state({
-                        "Project": tstate(t.group({
+                        "Project": toption(t.group({
                             "Project": prop(t.text_global("Pseudo Reference")),
                             "Offerte": prop(t.text_global("Pseudo Reference")),
                         })),
-                        "Licentieovereenkomst": tstate(t.group({
+                        "Licentieovereenkomst": toption(t.group({
                             "Overeenkomst": prop(t.text_global("Pseudo Reference")),
                         })),
                     })),
@@ -303,28 +303,28 @@ export const $: g_.Modules = modules(
                     "Debiteur": prop(t.text_global("Pseudo Reference")),
                     "Regels": prop(t.dictionary(t.group({
                         "BTW-regime": prop(t.state({
-                            "Intracommunautair": tstate(t.group({})),
-                            "Standaard": tstate(t.group({
+                            "Intracommunautair": toption(t.group({})),
+                            "Standaard": toption(t.group({
                                 "BTW-categorie": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "Binnenland: heffing verlegd": tstate(t.group({})),
+                            "Binnenland: heffing verlegd": toption(t.group({})),
                         })),
                         "Bedrag exclusief BTW": prop(t.number_global("Bedrag")),
                         "Contracttype": prop(t.state({
-                            "Project": tstate(t.group({
+                            "Project": toption(t.group({
                                 "Opbrengst": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "Los": tstate(t.group({})),
-                            "Licentieovereenkomst": tstate(t.group({
+                            "Los": toption(t.group({})),
+                            "Licentieovereenkomst": toption(t.group({
                                 "Periode": prop(t.text_global("Pseudo Reference"))
                             })),
                         })),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                         "Type": prop(t.state({
-                            "Opbrengsten": tstate(t.group({
+                            "Opbrengsten": toption(t.group({
                                 "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "Balans": tstate(t.group({
+                            "Balans": toption(t.group({
                                 "Balans item": prop(t.text_global("Pseudo Reference")),
                             })),
                         })),
@@ -334,18 +334,18 @@ export const $: g_.Modules = modules(
                     "Mutaties": prop(t.dictionary(t.group({
                         "Bedrag": prop(t.number_global("Bedrag")),
                         "Afhandeling": prop(t.state({
-                            "Inkoop": tstate(t.group({
+                            "Inkoop": toption(t.group({
                                 "Jaar": prop(t.text_global("Pseudo Reference")),
                                 "Inkoop": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "Informele rekening": tstate(t.group({
+                            "Informele rekening": toption(t.group({
                                 "Informele rekening": prop(t.text_global("Pseudo Reference"))
                             })),
-                            "Verkoop": tstate(t.group({
+                            "Verkoop": toption(t.group({
                                 "Jaar": prop(t.text_global("Pseudo Reference")),
                                 "Verkoop": prop(t.text_global("Pseudo Reference")),
                             })),
-                            "BTW-periode": tstate(t.group({
+                            "BTW-periode": toption(t.group({
                                 "Jaar": prop(t.text_global("Pseudo Reference")),
                                 "BTW-periode": prop(t.text_global("Pseudo Reference")),
                             })),
@@ -363,7 +363,7 @@ export const $: g_.Modules = modules(
                     "Offertes": prop(t.dictionary(t.group({
                         "Opbrengsten": prop(t.dictionary(t.group({
                             "Type": prop(t.state({
-                                "Project": tstate(t.group({
+                                "Project": toption(t.group({
                                     "Bedrag": prop(t.number_global("Bedrag")),
                                     "Betaaldatum": prop(t.number_global("Datum")),
                                 })),

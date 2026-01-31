@@ -4,13 +4,14 @@ import {
     modules,
     n,
     t,
-    tr,
+    vp,
     module_,
     text,
     prop,
-    tstate,
-    propd,
-    tstated,
+    toption,
+    prop_with_description,
+    toption_with_description,
+    value_reference
 } from "../../../../../shorthands/schema"
 import * as sh from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -19,14 +20,14 @@ export const $: g_.Modules = modules(
     {
 
         "Module Specification": module_(t.group({
-            "schema": propd("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
-            "schema path": propd("selects the schema in which the module is specified", t.list(t.text_local(text('single line')))),
-            "module": propd("the module that is the root of the document", t.text_local(text('single line'))),
+            "schema": prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
+            "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_local(text('single line')))),
+            "module": prop_with_description("the module that is the root of the document", t.text_local(text('single line'))),
         })),
 
         "Schema Tree": module_(t.state({
-            "schema": tstated("a single schema", t.component("Schema")),
-            "set": tstated("a hierarchy of schemas", t.component_cyclic("Schemas")),
+            "schema": toption_with_description("a single schema", t.component("Schema")),
+            "set": toption_with_description("a hierarchy of schemas", t.component_cyclic("Schemas")),
         })),
 
         "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
@@ -36,8 +37,8 @@ export const $: g_.Modules = modules(
             "globals": prop(t.component("Globals")),
             "modules": prop(t.component("Modules")),
             "complexity": prop(t.state({
-                "constrained": tstate(t.component("Resolve Logic")),
-                "unconstrained": tstate(t.nothing()),
+                "constrained": toption(t.component("Resolve Logic")),
+                "unconstrained": toption(t.nothing()),
             })),
         })),
 
@@ -48,8 +49,8 @@ export const $: g_.Modules = modules(
 
         "Globals": module_(t.group({
             "complexity": prop(t.state({
-                "constrained": tstate(t.nothing()),
-                "unconstrained": tstate(t.nothing()),
+                "constrained": toption(t.nothing()),
+                "unconstrained": toption(t.nothing()),
             })),
             "text types": prop(t.dictionary(t.component("Text Type"))),
             "number types": prop(t.dictionary(t.component("Number Type"))),
@@ -66,8 +67,8 @@ export const $: g_.Modules = modules(
 
         "Text Type": module_(t.group({
             "type": prop(t.state({
-                "multi line": tstate(t.nothing()),
-                "single line": tstate(t.nothing()),
+                "multi line": toption(t.nothing()),
+                "single line": toption(t.nothing()),
             })),
         })),
 
@@ -81,7 +82,7 @@ export const $: g_.Modules = modules(
                 /**
                  * variable is similar to scientific notation or floating point (in programming languages)
                  */
-                "approximation": tstate(t.group({
+                "approximation": toption(t.group({
                     /**
                      * the total number of digits in the number
                      */
@@ -90,7 +91,7 @@ export const $: g_.Modules = modules(
                 /**
                  * fixed is similar to integers/signed integers
                  */
-                "exact": tstate(t.group({
+                "exact": toption(t.group({
                     /**
                      * the number of digits after the decimal point
                      * in the strict mathematical sense, a natural or an integer is a whole number,
@@ -105,9 +106,9 @@ export const $: g_.Modules = modules(
                      * else > 'positive natural'
                      */
                     "type": prop(t.state({
-                        "integer": tstate(t.nothing()),
-                        "natural": tstate(t.nothing()),
-                        "positive natural": tstate(t.nothing()),
+                        "integer": toption(t.nothing()),
+                        "natural": toption(t.nothing()),
+                        "positive natural": toption(t.nothing()),
                     })),
                 })),
             }))
@@ -119,8 +120,8 @@ export const $: g_.Modules = modules(
 
         //FIXME: inline
         "Presence": module_(t.state({
-            "optional": tstate(t.nothing()),
-            "required": tstate(t.nothing()),
+            "optional": toption(t.nothing()),
+            "required": toption(t.nothing()),
         })),
 
         "Dictionary": module_(t.group({
@@ -130,13 +131,13 @@ export const $: g_.Modules = modules(
         "Signatures": module_(t.dictionary(t.component_cyclic("Signature"))),
 
         "Module Resolvers": module_(t.dictionary(t.group({
-            "signature": prop(t.reference_derived("Signatures", [tr.d()])),
+            "signature": prop(t.reference_derived("Signatures", [vp.d()])),
             "root value resolver": prop(t.component_cyclic("Value Resolver")),
         }))),
 
         "Benchmark": module_(t.group({
             "selection": prop(t.component_constrained("Guaranteed Value Selection", {
-                "dictionary": sh.type_node_reference("Value", [tr.s("dictionary")])
+                "dictionary": sh.value_reference("Value", [vp.s("dictionary")])
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
             "dense": prop(t.boolean()),
@@ -157,13 +158,19 @@ export const $: g_.Modules = modules(
 
         "Value Path": module_(t.group({
             "tail": prop(t.path_to_sibling(
-                t.state({
-                    "dictionary": tstate(t.nothing()),
-                    "group": tstate(t.reference("Group", [])),
-                    "list": tstate(t.nothing()),
-                    "optional": tstate(t.nothing()),
-                    "state": tstate(t.reference("Value", [tr.s("state"), tr.g("options")])),
-                }),
+                t.state_with_result(
+                    {
+                        "dictionary": toption(t.nothing()),
+                        "group": toption(t.reference("Group", [])),
+                        "list": toption(t.nothing()),
+                        "optional": toption(t.nothing()),
+                        "state": toption(t.reference("Value", [vp.s("state"), vp.g("options")])),
+                    },
+                    {
+                        "value": value_reference("Value", [])
+                    }
+
+                ),
                 "Value"
             )),
             "resulting node": prop(t.reference_derived("Value", [])),
@@ -172,8 +179,8 @@ export const $: g_.Modules = modules(
 
         "Module Reference": module_(t.group({
             "location": prop(t.state({
-                "internal": tstate(t.reference("Modules", [])),
-                "external": tstate(t.group({
+                "internal": toption(t.reference("Modules", [])),
+                "external": toption(t.group({
                     "import": prop(t.reference("Imports", [])),
                     "module": prop(t.reference("Modules", [])),
                 })),
@@ -190,9 +197,9 @@ export const $: g_.Modules = modules(
                 "referent": prop(t.component("Module Reference")),
                 "dictionary": prop(t.reference_derived("Dictionary", [])),
                 "type": prop(t.state({
-                    "cyclic": tstate(t.nothing()),
-                    "acyclic": tstate(t.nothing()),
-                    "stack": tstate(t.nothing()),
+                    "cyclic": toption(t.nothing()),
+                    "acyclic": toption(t.nothing()),
+                    "stack": toption(t.nothing()),
                 })),
                 "presence": prop(t.component("Presence")),
             })))
@@ -201,8 +208,8 @@ export const $: g_.Modules = modules(
         "Signature": module_(t.group({
             "module": prop(t.reference_derived("Module", [])),
             "parameters": prop(t.state({
-                "local": tstate(t.component("Signature Parameters")),
-                "same as": tstate(t.reference("Signatures", [])),
+                "local": toption(t.component("Signature Parameters")),
+                "same as": toption(t.reference("Signatures", [])),
             })),
             "resolved parameters": prop(t.reference_derived("Signature Parameters", [])),
         })),
@@ -210,10 +217,10 @@ export const $: g_.Modules = modules(
         "Relative Value Selection": module_(t.group({
             "path": prop(t.path_to_sibling(
                 t.state({
-                    "component": tstate(t.nothing()),
-                    "group": tstate(t.reference("Group", [])),
-                    "reference": tstate(t.group({
-                        "definition": prop(t.reference_derived("Value", [tr.s("reference")])),
+                    "component": toption(t.nothing()),
+                    "group": toption(t.reference("Group", [])),
+                    "reference": toption(t.group({
+                        "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
                     })),
                 }),
                 "Value"
@@ -224,13 +231,13 @@ export const $: g_.Modules = modules(
         //FIXME: there has to be a guaranteed lookup selection and a possible lookup selection
         "Lookup Selection": module_(t.group({
             "type": prop(t.state({
-                "dictionary": tstate(t.group({
+                "dictionary": toption(t.group({
                     "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
                     "selected dictionary": prop(t.reference_derived("Dictionary", [])),
                 })),
-                "parameter": tstate(t.reference("Signature Parameters", [tr.g("lookups")])),
-                "not circular dependent siblings": tstate(t.reference_derived("Dictionary", [])),
-                "possibly circular dependent siblings": tstate(t.reference_derived("Dictionary", [])),
+                "parameter": toption(t.reference("Signature Parameters", [vp.g("lookups")])),
+                "not circular dependent siblings": toption(t.reference_derived("Dictionary", [])),
+                "possibly circular dependent siblings": toption(t.reference_derived("Dictionary", [])),
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
         })),
@@ -240,23 +247,23 @@ export const $: g_.Modules = modules(
             "selection": prop(t.component("Relative Value Selection")),
             //maybe this is reusable
             "type": prop(t.state({
-                "state": tstate(t.group({
-                    "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
-                    "option": prop(t.reference("Value", [tr.s("state"), tr.g("options")])),
+                "state": toption(t.group({
+                    "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
+                    "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
                 })),
-                "optional value": tstate(t.group({
-                    "selected optional value": prop(t.reference_derived("Value", [tr.s("optional")])),
+                "optional value": toption(t.group({
+                    "selected optional value": prop(t.reference_derived("Value", [vp.s("optional")])),
                 })),
             })),
         })),
 
-        "Option Constraints": module_(t.dictionary(t.state({
-            "state": tstate(t.group({
+        "Option Constraint Resolvers": module_(t.dictionary(t.state({
+            "state": toption(t.group({
                 "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
-                "selected state": prop(t.reference_derived("Value", [tr.s("state")])),
-                "option": prop(t.reference("Value", [tr.s("state"), tr.g("options")])),
+                "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
+                "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
             })),
-            "assert is set": tstate(t.component_cyclic("Possible Value Selection")),
+            "assert is set": toption(t.component_cyclic("Possible Value Selection")),
         }))),
 
         "Value Constraint Resolvers": module_(t.dictionary(t.component_cyclic("Value Constraint Resolver"))),
@@ -265,20 +272,20 @@ export const $: g_.Modules = modules(
 
         "Value Constraint Resolver": module_(t.group({
             "start": prop(t.state({
-                "property": tstate(t.nothing()),
-                "sibling": tstate(t.component("Reference To Value Constraint Resolver")),
+                "property": toption(t.nothing()),
+                "sibling": toption(t.component("Reference To Value Constraint Resolver")),
             })),
             "constraint": prop(t.component("Constraint")),
         })),
 
         "Optional Value Initialization": module_(t.state({
-            "not set": tstate(t.nothing()),
-            "set": tstate(t.component_cyclic("Guaranteed Value Selection")),
-            "selection": tstate(t.component_cyclic("Possible Value Selection")),
+            "not set": toption(t.nothing()),
+            "set": toption(t.component_cyclic("Guaranteed Value Selection")),
+            "selection": toption(t.component_cyclic("Possible Value Selection")),
         })),
 
         "Value Resolver Group": module_(t.dictionary(t.group({
-            "definition": prop(t.reference_derived("Group", [tr.d()])),
+            "definition": prop(t.reference_derived("Group", [vp.d()])),
             "resolver": prop(t.component_cyclic("Value Resolver")),
         }))),
 
@@ -286,83 +293,86 @@ export const $: g_.Modules = modules(
 
 
         "Value": module_(t.state({
-            "boolean": tstate(t.nothing()),
-            "component": tstate(t.group({
+            "boolean": toption(t.nothing()),
+            "component": toption(t.group({
                 "type": prop(t.state({
-                    "external": tstate(t.group({
+                    "external": toption(t.group({
                         "import": prop(t.reference("Imports", [])),
                         "module": prop(t.reference("Modules", [])),
                     })),
-                    "internal": tstate(t.reference("Modules", [])),
-                    "internal cyclic": tstate(t.reference("Modules", [], 'cyclic')),
+                    "internal": toption(t.reference("Modules", [])),
+                    "internal cyclic": toption(t.reference("Modules", [], 'cyclic')),
                 })),
                 "constraints": prop(t.component("Value Constraints")),
             })),
-            "dictionary": tstate(t.component("Dictionary")),
-            "group": tstate(t.component("Group")),
-            "list": tstate(t.group({
+            "dictionary": toption(t.component("Dictionary")),
+            "group": toption(t.component("Group")),
+            "list": toption(t.group({
                 "value": prop(t.component_cyclic("Value")),
                 "result": prop(t.optional(t.component("Module Reference"))),
             })),
-            "nothing": tstate(t.nothing()),
-            "number": tstate(t.state({
-                "global": tstate(t.reference("Globals", [tr.g("number types")])),
-                "local": tstate(t.component("Number Type")),
+            "nothing": toption(t.nothing()),
+            "number": toption(t.state({
+                "global": toption(t.reference("Globals", [vp.g("number types")])),
+                "local": toption(t.component("Number Type")),
             })),
-            "optional": tstate(t.component_cyclic("Value")),
-            "reference": tstate(t.group({
+            "optional": toption(t.component_cyclic("Value")),
+            "reference": toption(t.group({
                 "referent": prop(t.component_cyclic("Value Reference")),
                 "type": prop(t.state({
-                    "derived": tstate(t.nothing()),
-                    "selected": tstate(t.group({
+                    "derived": toption(t.nothing()),
+                    "selected": toption(t.group({
                         "dictionary": prop(t.reference_derived("Dictionary", [])),
                         "dependency": prop(t.state({
-                            "acyclic": tstate(t.nothing()),
-                            "cyclic": tstate(t.nothing()),
-                            "stack": tstate(t.nothing()),
+                            "acyclic": toption(t.nothing()),
+                            "cyclic": toption(t.nothing()),
+                            "stack": toption(t.nothing()),
                         })),
                     })),
                 })),
             })),
-            "state": tstate(t.group({
+            "state": toption(t.group({
                 "options": prop(t.dictionary(t.group({
+                    "constraints": prop(t.component("Option Constraints")),
                     "description": prop(t.optional(t.text_local(text('multi line')))),
                     "value": prop(t.component_cyclic("Value")),
                 }))),
                 "constraints": prop(t.component("Value Constraints")),
             })),
-            "text": tstate(t.state({
-                "global": tstate(t.reference("Globals", [tr.g("text types")])),
-                "local": tstate(t.component("Text Type")),
+            "text": toption(t.state({
+                "global": toption(t.reference("Globals", [vp.g("text types")])),
+                "local": toption(t.component("Text Type")),
             })),
         })),
 
         "Value Constraints": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
 
+        "Option Constraints": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
+
         "Value Resolver": module_(t.state({
-            "boolean": tstate(t.nothing()),
-            "component": tstate(t.group({
-                "definition": prop(t.reference_derived("Value", [tr.s("component"),])),
+            "boolean": toption(t.nothing()),
+            "component": toption(t.group({
+                "definition": prop(t.reference_derived("Value", [vp.s("component"),])),
 
                 "location": prop(t.state({
-                    "external": tstate(t.group({
+                    "external": toption(t.group({
                         "import": prop(t.reference("Imports", [])),
                         "signature": prop(t.reference("Signatures", [])),
                     })),
-                    "internal": tstate(t.reference("Signatures", [])),
+                    "internal": toption(t.reference("Signatures", [])),
                 })),
-                "signature": prop(t.reference_derived("Signatures", [tr.d()])),
+                "signature": prop(t.reference_derived("Signatures", [vp.d()])),
                 "arguments": prop(t.optional(t.group({
                     "modules": prop(t.optional(t.dictionary(t.state({
-                        "optional": tstate(t.component("Optional Value Initialization")),
-                        "required": tstate(t.component_cyclic("Guaranteed Value Selection")),
-                        "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])),
+                        "optional": toption(t.component("Optional Value Initialization")),
+                        "required": toption(t.component_cyclic("Guaranteed Value Selection")),
+                        "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
                     })))),
                     "lookups": prop(t.optional(t.dictionary(t.state({
-                        "empty stack": tstate(t.nothing()),
-                        "not set": tstate(t.nothing()),
-                        "selection": tstate(t.component("Lookup Selection")),
-                        "stack": tstate(t.group({
+                        "empty stack": toption(t.nothing()),
+                        "not set": toption(t.nothing()),
+                        "selection": toption(t.component("Lookup Selection")),
+                        "stack": toption(t.group({
                             "stack": prop(t.component("Lookup Selection")),
                             "element": prop(t.component("Lookup Selection")),
                         })),
@@ -370,82 +380,82 @@ export const $: g_.Modules = modules(
                 }))),
                 "constraints": prop(t.component("Value Constraint Resolvers")),
             })),
-            "dictionary": tstate(t.group({
+            "dictionary": toption(t.group({
                 "definition": prop(t.reference_derived("Dictionary", [])),
                 "resolver": prop(t.component_cyclic("Value Resolver")),
                 "benchmark": prop(t.optional(t.component_cyclic("Benchmark"))),
             })),
-            "group": tstate(t.component("Value Resolver Group")),
-            "list": tstate(t.group({
-                "definition": prop(t.reference_derived("Value", [tr.s("list")])),
+            "group": toption(t.component("Value Resolver Group")),
+            "list": toption(t.group({
+                "definition": prop(t.reference_derived("Value", [vp.s("list")])),
                 "resolver": prop(t.component_cyclic("Value Resolver")),
                 "result": prop(t.optional(t.component("Value Resolver List Result"))),
             })),
-            "nothing": tstate(t.nothing()),
-            "number": tstate(t.nothing()),
-            "optional": tstate(t.group({
-                "constraints": prop(t.component("Option Constraints")),
+            "nothing": toption(t.nothing()),
+            "number": toption(t.nothing()),
+            "optional": toption(t.group({
+                "constraints": prop(t.component("Option Constraint Resolvers")),
                 "resolver": prop(t.component_cyclic("Value Resolver")),
             })),
-            "reference": tstate(t.group({
-                "definition": prop(t.reference_derived("Value", [tr.s("reference")])),
+            "reference": toption(t.group({
+                "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
                 "type": prop(t.state({
-                    "derived": tstate(t.group({
+                    "derived": toption(t.group({
                         "value": prop(t.component_cyclic("Guaranteed Value Selection")),
                     })),
-                    "selected": tstate(t.group({
-                        "definition": prop(t.reference_derived("Value", [tr.s("reference"), tr.g("type"), tr.s("selected")])),
+                    "selected": toption(t.group({
+                        "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
                         "lookup": prop(t.component("Lookup Selection")),
                         "constraints": prop(t.component("Value Constraint Resolvers")),
                     })),
                 })),
             })),
-            "state": tstate(t.group({
-                "definition": prop(t.reference_derived("Value", [tr.s("state")])),
+            "state": toption(t.group({
+                "definition": prop(t.reference_derived("Value", [vp.s("state")])),
                 "states": prop(t.dictionary(t.group({
-                    "constraints": prop(t.component("Option Constraints")),
+                    "constraints": prop(t.component("Option Constraint Resolvers")),
                     "resolver": prop(t.component_cyclic("Value Resolver")),
                 }))),
             })),
-            "text": tstate(t.nothing()),
+            "text": toption(t.nothing()),
             // "type parameter": t.nothing(),
         })),
 
         "Guaranteed Value Selection": module_(t.group({
             "start": prop(t.state({
                 //stack
-                "sibling": tstate(t.reference("Value Resolver Group", [])),
-                "parent sibling": tstate(t.reference("Value Resolver Group", [])),
-                "option constraint": tstate(t.reference("Option Constraints", [])),
-                "list cursor": tstate(t.nothing()),
-                "linked entry": tstate(t.nothing()),
+                "sibling": toption(t.reference("Value Resolver Group", [])),
+                "parent sibling": toption(t.reference("Value Resolver Group", [])),
+                "option constraint": toption(t.reference("Option Constraint Resolvers", [])),
+                "list cursor": toption(t.nothing()),
+                "linked entry": toption(t.nothing()),
 
                 //siblings
-                "constraint": tstate(t.state({
-                    "component": tstate(t.group({
+                "constraint": toption(t.state({
+                    "component": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
                         "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
-                    "reference": tstate(t.group({
+                    "reference": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
                         "constraint": prop(t.reference("Value Constraint Resolvers", [])),
                     })),
 
                 })),
-                "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])), //FIXME: validate that presence is 'required'
-                "result": tstate(t.state({
-                    "list": tstate(t.group({
+                "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'required'
+                "result": toption(t.state({
+                    "list": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "list result": prop(t.reference_derived("Value Resolver", [tr.s("list"), tr.g("result"), tr.o()])),
+                        "list result": prop(t.reference_derived("Value Resolver", [vp.s("list"), vp.g("result"), vp.o()])),
                     })),
-                    "state": tstate(t.group({
+                    "state": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
+                        "state": prop(t.reference_derived("Value Resolver", [vp.s("state")])),
                         "result": prop(t.component("Module Reference")),
                     })),
-                    "optional value": tstate(t.group({
+                    "optional value": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
+                        "optional value": prop(t.reference_derived("Value Resolver", [vp.s("optional")])),
                         "result": prop(t.component("Module Reference")),
                     })),
                 }))
@@ -455,16 +465,16 @@ export const $: g_.Modules = modules(
         })),
 
         "Possible Value Selection": module_(t.state({
-            "parameter": tstate(t.reference("Signature Parameters", [tr.g("modules")])), //FIXME: validate that presence is 'optional'
-            "result": tstate(t.state({
-                "state": tstate(t.group({
+            "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'optional'
+            "result": toption(t.state({
+                "state": toption(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
-                    "state": prop(t.reference_derived("Value Resolver", [tr.s("state")])),
+                    "state": prop(t.reference_derived("Value Resolver", [vp.s("state")])),
                     "result": prop(t.component("Module Reference")),
                 })),
-                "optional value": tstate(t.group({
+                "optional value": toption(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
-                    "optional value": prop(t.reference_derived("Value Resolver", [tr.s("optional")])),
+                    "optional value": prop(t.reference_derived("Value Resolver", [vp.s("optional")])),
                     "result": prop(t.component("Module Reference")),
                 })),
             }))

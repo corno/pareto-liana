@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../../shorthands/schema"
 import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -18,42 +18,42 @@ export const $: g_.Modules = modules(
         "Graph": module_(t.group({
             "strict": prop(t.boolean()),
             "type": prop(t.state({
-                "graph": tstate(t.nothing()),
-                "digraph": tstate(t.nothing()),
+                "graph": toption(t.nothing()),
+                "digraph": toption(t.nothing()),
             })),
             "name": prop(t.optional(t.component("ID"))),
             "statements": prop(t.component("Statement List")),
         })),
         "Statement List": module_(t.list(t.state({
-            "node": tstate(t.group({
+            "node": toption(t.group({
                 "node": prop(t.component("Node ID")),
                 "attribute list": prop(t.component("Attribute List")),
             })),
-            "edge": tstate(t.group({
+            "edge": toption(t.group({
                 "left": prop(t.state({
-                    "node": tstate(t.component("Node ID")),
-                    "subgraph": tstate(t.component("Subgraph")),
+                    "node": toption(t.component("Node ID")),
+                    "subgraph": toption(t.component("Subgraph")),
                 })),
                 //the operator (-- or ->) can be derived from the graph type
                 "right": prop(t.list(t.state({
-                    "node": tstate(t.component("Node ID")),
-                    "subgraph": tstate(t.component("Subgraph")),
+                    "node": toption(t.component("Node ID")),
+                    "subgraph": toption(t.component("Subgraph")),
                 }))),
                 "attributes": prop(t.component("Attribute List")),
             })),
-            "attribute list": tstate(t.group({
+            "attribute list": toption(t.group({
                 "type": prop(t.state({
-                    "graph": tstate(t.nothing()),
-                    "node": tstate(t.nothing()),
-                    "edge": tstate(t.nothing()),
+                    "graph": toption(t.nothing()),
+                    "node": toption(t.nothing()),
+                    "edge": toption(t.nothing()),
                 })),
                 "attributes": prop(t.component("Attribute List")),
             })),
-            "attribute assignment": tstate(t.group({
+            "attribute assignment": toption(t.group({
                 "name": prop(t.component("ID")),
                 "value": prop(t.component("ID")),
             })),
-            "subgraph": tstate(t.component("Subgraph")),
+            "subgraph": toption(t.component("Subgraph")),
         }))),
         "Attribute List": module_(t.list(t.group({
             "name": prop(t.component("ID")),
@@ -67,10 +67,10 @@ export const $: g_.Modules = modules(
             })))
         })),
         "ID": module_(t.state({
-            "id": tstate(t.text_global("id")),
-            "string": tstate(t.text_global("Text Value")),
-            "html": tstate(t.text_global("Text Value")),
-            "number": tstate(t.number_local(n.integer(null))),
+            "id": toption(t.text_global("id")),
+            "string": toption(t.text_global("Text Value")),
+            "html": toption(t.text_global("Text Value")),
+            "number": toption(t.number_local(n.integer(null))),
         })),
         "Subgraph": module_(t.group({
             "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?

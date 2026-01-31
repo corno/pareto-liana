@@ -5,10 +5,10 @@ import {
     modules,
     n,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate as toption,
+    toption as toption,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -67,8 +67,8 @@ export const $: g_.Modules = modules(
             "nothing": toption(t.nothing()),
             "number": toption(t.state({
                 "exact": toption(t.state({
-                    "natural": prop(t.nothing()),
-                    "integer": prop(t.nothing()),
+                    "natural": toption(t.nothing()),
+                    "integer": toption(t.nothing()),
                 })),
                 "approximation": toption(t.nothing()),
             })),

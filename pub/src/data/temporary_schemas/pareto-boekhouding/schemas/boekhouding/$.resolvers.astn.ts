@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, state, state_constrained, al, ls, av, gvs, rvs, oc,
+    resolvers, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -10,15 +10,15 @@ export const $: g_.Module_Resolvers = resolvers(
         "Fiscaal": resolver(r.group({
             "Balans Hoofdcategorieen": r.dictionary(r.group({
                 "Zijde": r.state({
-                    "Activa": state(r.nothing()),
-                    "Passiva": state(r.nothing())
+                    "Activa": option(r.nothing()),
+                    "Passiva": option(r.nothing())
                 }),
                 "Subcategorieen": r.dictionary(r.nothing())
             })),
             "Resultaat Hoofdcategorieen": r.dictionary(r.group({
                 "Zijde": r.state({
-                    "Kosten": state(r.nothing()),
-                    "Opbrengsten": state(r.nothing())
+                    "Kosten": option(r.nothing()),
+                    "Opbrengsten": option(r.nothing())
                 }),
                 "Subcategorieen": r.dictionary(r.nothing())
             })),
@@ -30,8 +30,8 @@ export const $: g_.Module_Resolvers = resolvers(
             })),
             "Balans": r.dictionary(r.group({
                 "Zijde": r.state({
-                    "Activa": state(r.nothing()),
-                    "Passiva": state(r.nothing())
+                    "Activa": option(r.nothing()),
+                    "Passiva": option(r.nothing())
                 }),
                 "Subcategorieen": r.dictionary(r.group({
                     "Hoofdcategorie fiscus": r.reference(gvs.dictionary(gvs.parameter("Fiscaal", [rvs.group("Balans Hoofdcategorieen")]))),
@@ -40,8 +40,8 @@ export const $: g_.Module_Resolvers = resolvers(
             })),
             "Resultaat": r.dictionary(r.group({
                 "Zijde": r.state({
-                    "Kosten": state(r.nothing()),
-                    "Opbrengsten": state(r.nothing())
+                    "Kosten": option(r.nothing()),
+                    "Opbrengsten": option(r.nothing())
                 }),
                 "Subcategorieen": r.dictionary(r.group({
                     "Hoofdcategorie fiscus": r.reference(gvs.dictionary(gvs.parameter("Fiscaal", [rvs.group("Resultaat Hoofdcategorieen")]))),
@@ -53,7 +53,7 @@ export const $: g_.Module_Resolvers = resolvers(
         "Beheer": resolver(r.group({
             "BTW-categorieen": r.dictionary(r.group({
                 "BTW-heffing": r.state({
-                    "Ja": state(r.group({
+                    "Ja": option(r.group({
                         "BTW-promillage": r.number(),
                     }))
                 })
@@ -63,23 +63,23 @@ export const $: g_.Module_Resolvers = resolvers(
                     "Hoofdcategorie": r.reference(gvs.dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Balans")]))),
                     "Subcategorie": r.reference(gvs.dictionary(gvs.sibling("Hoofdcategorie", [rvs.reference(), rvs.group("Subcategorieen")]))),
                     "Zijde": r.state({
-                        "Activa": state(r.nothing()),
-                        "Passiva": state(r.nothing())
+                        "Activa": option(r.nothing()),
+                        "Passiva": option(r.nothing())
                     }),
                 })),
                 "Resultaat": r.dictionary(r.group({
                     "Hoofdcategorie": r.reference(gvs.dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Resultaat")]))),
                     "Subcategorie": r.reference(gvs.dictionary(gvs.sibling("Hoofdcategorie", [rvs.reference(), rvs.group("Subcategorieen")]))),
                     "Zijde": r.state({
-                        "Kosten": state(r.group({
+                        "Kosten": option(r.group({
                             "Correctie op vennootschapsbelasting": r.state({
-                                "Ja": state(r.group({
+                                "Ja": option(r.group({
                                     "Correctietype": r.reference(gvs.dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Correctietypes vennootschapsbelasting")]))),
                                 })),
-                                "Nee": state(r.nothing()),
+                                "Nee": option(r.nothing()),
                             })
                         })),
-                        "Opbrengsten": state(r.nothing())
+                        "Opbrengsten": option(r.nothing())
                     }),
                 })),
             }),
@@ -102,7 +102,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "Offertes": r.dictionary(r.group({
                         "Opbrengsten": r.dictionary(r.group({
                             "Type": r.state({
-                                "Project": state(r.group({
+                                "Project": option(r.group({
                                     "Bedrag": r.number(),
                                     "Betaaldatum": r.number(),
                                 })),
@@ -118,9 +118,9 @@ export const $: g_.Module_Resolvers = resolvers(
         "Grootboekrekeningen": resolver(r.group({
             "Balans": r.dictionary(r.group({
                 "Type": r.state({
-                    "Bankrekening": state(r.nothing()),
-                    "Overig": state(r.nothing()),
-                    "Informele rekening": state(r.nothing())
+                    "Bankrekening": option(r.nothing()),
+                    "Overig": option(r.nothing()),
+                    "Informele rekening": option(r.nothing())
                 })
             })),
             "Resultaat": r.dictionary(r.nothing()),
@@ -137,12 +137,12 @@ export const $: g_.Module_Resolvers = resolvers(
                     })),
                     "Omschrijving": r.text(),
                     "Status": r.state({
-                        "Aangegeven": state(r.group({
+                        "Aangegeven": option(r.group({
                             "Afronding": r.number(),
                             "Bedrag": r.number(),
                             "Datum": r.number(),
                         })),
-                        "Openstaand": state(r.nothing()),
+                        "Openstaand": option(r.nothing()),
                     }),
                 })),
             }),
@@ -158,8 +158,8 @@ export const $: g_.Module_Resolvers = resolvers(
                     "Beginsaldo": r.number(),
                     "Grootboekrekening": r.reference(gvs.dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
                     "Nieuw": r.state({
-                        "Ja": state(r.nothing()),
-                        "Nee": state_constrained(
+                        "Ja": option(r.nothing()),
+                        "Nee": option_constrained(
                             {
                                 "Niet Nieuw": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
                             },
@@ -175,8 +175,8 @@ export const $: g_.Module_Resolvers = resolvers(
                     "Beginsaldo": r.number(),
                     "Grootboekrekening": r.reference(gvs.dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
                     "Nieuw": r.state({
-                        "Ja": state(r.nothing()),
-                        "Nee": state_constrained(
+                        "Ja": option(r.nothing()),
+                        "Nee": option_constrained(
                             {
                                 "Niet Nieuw": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
                             },
@@ -203,8 +203,8 @@ export const $: g_.Module_Resolvers = resolvers(
             "Beginsaldo": r.number(),
             "Grootboekrekening": r.reference(gvs.dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
             "Nieuw": r.state({
-                "Ja": state(r.nothing()),
-                "Nee": state_constrained(
+                "Ja": option(r.nothing()),
+                "Nee": option_constrained(
                     {
                         "Volgend boekjaar": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
                     },
@@ -221,55 +221,55 @@ export const $: g_.Module_Resolvers = resolvers(
         "Handelstransacties": resolver(r.group({
             "Inkopen": r.dictionary(r.group({
                 "Afhandeling": r.state({
-                    "Mutaties": state(r.nothing()),
-                    "Rekening courant": state(r.group({
+                    "Mutaties": option(r.nothing()),
+                    "Rekening courant": option(r.group({
                         "Rekening courant": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
                     })),
                 }),
                 "BTW-regime": r.state({
-                    "Binnenland: heffing verlegd": state(r.nothing()),
-                    "Geen BTW van toepassing": state(r.nothing()),
-                    "Import van buiten de EU": state(r.nothing()),
-                    "Intracommunautair": state(r.nothing()),
-                    "Standaard": state(r.group({
+                    "Binnenland: heffing verlegd": option(r.nothing()),
+                    "Geen BTW van toepassing": option(r.nothing()),
+                    "Import van buiten de EU": option(r.nothing()),
+                    "Intracommunautair": option(r.nothing()),
+                    "Standaard": option(r.group({
                         "BTW-periode": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
                     })),
                 }),
                 "Brondocument": r.state({
-                    "Toegevoegd": state(r.group({
+                    "Toegevoegd": option(r.group({
                         "Document": r.text(),
                     })),
-                    "Niet van toepassing": state(r.nothing()),
-                    "Ontbreekt": state(r.nothing()),
+                    "Niet van toepassing": option(r.nothing()),
+                    "Ontbreekt": option(r.nothing()),
                 }),
                 "Datum": r.number(),
                 "Regels": r.dictionary(r.group({
                     "Bedrag": r.state({
-                        "Bekend": state(r.group({
+                        "Bekend": option(r.group({
                             "BTW-bedrag": r.number(),
                             "Bedrag inclusief geheven BTW": r.number(),
                         }))
                     }),
                     "Omschrijving": r.text(),
                     "Type": r.state({
-                        "Balans": state(r.group({
+                        "Balans": option(r.group({
                             "Balans item": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]))),
                         })),
-                        "Kosten": state(r.group({
+                        "Kosten": option(r.group({
                             "Grootboekrekening": r.reference(gvs.dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Resultaat")]))),
                         })),
                     }),
                 })),
                 "Type": r.state({
-                    "Bonnetje": state(r.nothing()),
-                    "Inkoop (met crediteur)": state(r.group({
+                    "Bonnetje": option(r.nothing()),
+                    "Inkoop (met crediteur)": option(r.group({
                         "Crediteur": r.reference(gvs.dictionary(gvs.parameter("Beheer", [rvs.group("Leveranciers")]))),
                         "Factuurnummer": r.text()
                     })),
-                    "Loonheffing": state(r.group({
+                    "Loonheffing": option(r.group({
                         "Ronde": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("Salarisrondes")]))),
                     })),
-                    "Salaris": state(r.group({
+                    "Salaris": option(r.group({
                         "Ronde": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("Salarisrondes")]))),
                         "Medewerker": r.reference(gvs.dictionary(gvs.parameter("Beheer", [rvs.group("Medewerkers")]))),
                     })),
@@ -280,50 +280,50 @@ export const $: g_.Module_Resolvers = resolvers(
                 "Betalingstermijn": r.number(),
                 "BTW-periode": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
                 "Brondocument": r.state({
-                    "Toegevoegd": state(r.group({
+                    "Toegevoegd": option(r.group({
                         "Document": r.text()
                     })),
                 }),
                 "Debiteur": r.reference(gvs.dictionary(gvs.parameter("Beheer", [rvs.group("Klanten")]))),
                 "Contracttype": r.state({
-                    "Project": state(r.group({
+                    "Project": option(r.group({
                         "Project": r.reference(gvs.dictionary(gvs.parent_sibling("Debiteur", [rvs.reference(), rvs.group("Projecten")]))),
                         "Offerte": r.reference(gvs.dictionary(gvs.sibling("Project", [rvs.reference(), rvs.group("Offertes")]))),
                     })),
-                    "Licentieovereenkomst": state(r.group({
+                    "Licentieovereenkomst": option(r.group({
                         "Overeenkomst": r.reference(gvs.dictionary(gvs.parent_sibling("Debiteur", [rvs.reference(), rvs.group("Licentieovereenkomsten")]))),
                     })),
                 }),
                 "Afhandeling": r.state({
-                    "Mutaties": state(r.nothing()),
-                    "Rekening courant": state(r.group({
+                    "Mutaties": option(r.nothing()),
+                    "Rekening courant": option(r.group({
                         "Rekening courant": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")]))),
                     })),
                 }),
                 "Regels": r.dictionary(r.group({
                     "BTW-regime": r.state({
-                        "Intracommunautair": state(r.nothing()),
-                        "Standaard": state(r.group({
+                        "Intracommunautair": option(r.nothing()),
+                        "Standaard": option(r.group({
                             "BTW-categorie": r.reference(gvs.dictionary(gvs.parameter("Beheer", [rvs.group("BTW-categorieen")]))),
                         })),
-                        "Binnenland: heffing verlegd": state(r.nothing()),
+                        "Binnenland: heffing verlegd": option(r.nothing()),
                     }),
                     "Bedrag exclusief BTW": r.number(),
                     "Contracttype": r.state({
-                        "Project": state_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Project"), }, r.group({
+                        "Project": option_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Project"), }, r.group({
                             "Opbrengst": r.reference(gvs.dictionary(gvs.option_constraint("Definitie", [rvs.group("Offerte"), rvs.reference(), rvs.group("Opbrengsten")]))),
                         })),
-                        "Los": state(r.nothing()),
-                        "Licentieovereenkomst": state_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Licentieovereenkomst"), }, r.group({
+                        "Los": option(r.nothing()),
+                        "Licentieovereenkomst": option_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Licentieovereenkomst"), }, r.group({
                             "Periode": r.reference(gvs.dictionary(gvs.option_constraint("Definitie", [rvs.group("Overeenkomst"), rvs.reference(), rvs.group("Periodes")]))),
                         })),
                     }),
                     "Omschrijving": r.text(),
                     "Type": r.state({
-                        "Opbrengsten": state(r.group({
+                        "Opbrengsten": option(r.group({
                             "Grootboekrekening": r.reference(gvs.dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Resultaat")]))),
                         })),
-                        "Balans": state(r.group({
+                        "Balans": option(r.group({
                             "Balans item": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]))),
                         })),
                     }),
@@ -334,9 +334,9 @@ export const $: g_.Module_Resolvers = resolvers(
         "Balans Resultaat Mutatie": resolver(r.group({
             "Jaar": r.optional(r.reference(ls.parameter("Jaren"))),
             "type": r.state({
-                "Inkoop": state(r.reference(gvs.dictionary(gvs.parameter("Handelstransacties", [rvs.group("Inkopen")])))),
-                "Verkoop": state(r.reference(gvs.dictionary(gvs.parameter("Handelstransacties", [rvs.group("Verkopen")])))),
-                "BTW-periode": state(r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")])))),
+                "Inkoop": option(r.reference(gvs.dictionary(gvs.parameter("Handelstransacties", [rvs.group("Inkopen")])))),
+                "Verkoop": option(r.reference(gvs.dictionary(gvs.parameter("Handelstransacties", [rvs.group("Verkopen")])))),
+                "BTW-periode": option(r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")])))),
             })
         })),
 
@@ -347,9 +347,9 @@ export const $: g_.Module_Resolvers = resolvers(
                 r.dictionary(r.group({
                     "Bedrag": r.number(),
                     "Afhandeling": r.state({
-                        "Resultaat": state(r.component("Balans Resultaat Mutatie", null, null)),
-                        "Balans": state(r.state({
-                            "Informele rekening": state(r.group({
+                        "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                        "Balans": option(r.state({
+                            "Informele rekening": option(r.group({
                                 "Informele rekening": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
                             })),
 
@@ -361,12 +361,12 @@ export const $: g_.Module_Resolvers = resolvers(
                 'sparse',
                 gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Bankrekeningen")]),
                 r.dictionary(r.state({
-                    "Resultaat": state(r.component("Balans Resultaat Mutatie", null, null)),
-                    "Balans": state(r.state({
-                        "Verrekenpost": state(r.group({
+                    "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                    "Balans": option(r.state({
+                        "Verrekenpost": option(r.group({
                             "Verrekenpost": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
                         })),
-                        "Informele rekening": state(r.group({
+                        "Informele rekening": option(r.group({
                             "Informele rekening": r.reference(gvs.dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
                         })),
                     })),
@@ -385,16 +385,16 @@ export const $: g_.Module_Resolvers = resolvers(
         })),
 
         "Eerste boekjaar": resolver(r.state({
-            "Ja": state(r.nothing()),
-            "Nee": state(r.group({
+            "Ja": option(r.nothing()),
+            "Nee": option(r.group({
                 "Vorig boekjaar": r.reference(ls.parameter("Jaren"))
             })),
         })),
 
         "Jaren": resolver(r.dictionary(r.group({
             "Afgesloten": r.state({
-                "Ja": state(r.nothing()),
-                "Nee": state(r.nothing()),
+                "Ja": option(r.nothing()),
+                "Nee": option(r.nothing()),
             }),
             "Startdatum boekjaar": r.number(),
             "Grootboekrekeningen": r.component("Grootboekrekeningen", {}, {}),

@@ -7,7 +7,7 @@ import {
     text,
     n,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -23,36 +23,36 @@ export const $: g_.Modules = modules(
                 "comments": prop(t.list(t.text_local(text('single line')))),
             })),
             "data": prop(t.state({
-                "missing": tstate(t.nothing()),
-                "include": tstate(t.group({
+                "missing": toption(t.nothing()),
+                "include": toption(t.group({
                     "path": prop(t.text_local(text('single line'))),
                 })),
-                "concrete": tstate(t.group({
+                "concrete": toption(t.group({
                     "type": prop(t.state({
-                        "dictionary": tstate(t.dictionary(t.optional(t.component_cyclic("Value")))),
-                        "group": tstate(t.state({
-                            "concise": tstate(t.list(t.component_cyclic("Value"))),
-                            "verbose": tstate(t.dictionary(t.optional(t.component_cyclic("Value")))),
+                        "dictionary": toption(t.dictionary(t.optional(t.component_cyclic("Value")))),
+                        "group": toption(t.state({
+                            "concise": toption(t.list(t.component_cyclic("Value"))),
+                            "verbose": toption(t.dictionary(t.optional(t.component_cyclic("Value")))),
                         })),
-                        "list": tstate(t.list(t.component_cyclic("Value"))),
-                        "nothing": tstate(t.nothing()),
-                        "optional": tstate(t.state({
-                            "not set": tstate(t.nothing()),
-                            "set": tstate(t.component_cyclic("Value")),
+                        "list": toption(t.list(t.component_cyclic("Value"))),
+                        "nothing": toption(t.nothing()),
+                        "optional": toption(t.state({
+                            "not set": toption(t.nothing()),
+                            "set": toption(t.component_cyclic("Value")),
                         })),
-                        "state": tstate(t.state({
-                            "missing data": tstate(t.nothing()),
-                            "set": tstate(t.group({
+                        "state": toption(t.state({
+                            "missing data": toption(t.nothing()),
+                            "set": toption(t.group({
                                 "option": prop(t.text_global("Text Value")),
                                 "value": prop(t.component_cyclic("Value"))
                             }))
                         })),
-                        "text": tstate(t.group({
+                        "text": toption(t.group({
                             "value": prop(t.text_global("Text Value")),
                             "delimiter": prop(t.state({
-                                "none": tstate(t.nothing()),
-                                "quote": tstate(t.nothing()),
-                                "backtick": tstate(t.nothing()),
+                                "none": toption(t.nothing()),
+                                "quote": toption(t.nothing()),
+                                "backtick": toption(t.nothing()),
                             })),
                         })),
                     })),

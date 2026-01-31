@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -37,8 +37,8 @@ export const $: g_.Modules = modules(
         "Context Subpath": module_(t.list(t.text_local(text('single line')))),
 
         "Start": module_(t.state({
-            "absolute": tstate(t.nothing()),
-            "relative": tstate(t.group({
+            "absolute": toption(t.nothing()),
+            "relative": toption(t.group({
                 "up steps": prop(t.component("Up Steps")),
             })),
         })),
@@ -48,10 +48,10 @@ export const $: g_.Modules = modules(
         "Non Normalized Path": module_(t.group({
             "leading slash": prop(t.boolean()),
             "segments": prop(t.list(t.state({
-                "parent": tstate(t.nothing()),
-                "child": tstate(t.text_local(text('single line'))),
-                "current": tstate(t.nothing()),
-                "nothing": tstate(t.nothing()),
+                "parent": toption(t.nothing()),
+                "child": toption(t.text_local(text('single line'))),
+                "current": toption(t.nothing()),
+                "nothing": toption(t.nothing()),
             }))),
             "trailing slash": prop(t.boolean()),
         }))

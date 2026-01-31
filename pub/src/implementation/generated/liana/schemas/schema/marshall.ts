@@ -562,6 +562,17 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
     }
 )]]
 
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['optional', _p.decide.optional(
+    $,
+    ($): t_out.Value.optional => ['set', ['dictionary', _p.dictionary.map(
+        $,
+        ($, id) => Value_Reference(
+            $
+        )
+    )]],
+    () => ['not set', null]
+)]
+
 export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
@@ -861,6 +872,12 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                         $,
                                         ($, id) => ['group', ['verbose', _p.dictionary.literal(
                                             {
+                                                'constraints': _p_cc(
+                                                    $['constraints'],
+                                                    ($) => Option_Constraints(
+                                                        $
+                                                    )
+                                                ),
                                                 'description': _p_cc(
                                                     $['description'],
                                                     ($) => ['optional', _p.decide.optional(
@@ -939,7 +956,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     }
 )]
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['dictionary', _p.dictionary.map(
+export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.map(
     $,
     ($, id) => ['state', _p.decide.state(
         $,
@@ -1522,7 +1539,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                             {
                                 'constraints': _p_cc(
                                     $['constraints'],
-                                    ($) => Option_Constraints(
+                                    ($) => Option_Constraint_Resolvers(
                                         $
                                     )
                                 ),
@@ -1628,7 +1645,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                             {
                                                 'constraints': _p_cc(
                                                     $['constraints'],
-                                                    ($) => Option_Constraints(
+                                                    ($) => Option_Constraint_Resolvers(
                                                         $
                                                     )
                                                 ),
@@ -2011,7 +2028,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', 
                 ($) => _p_cc(
                     $['l item'],
                     ($) => ['state', _p.decide.state(
-                        $,
+                        $['l state'],
                         ($): t_out.Value.state => {
                             switch ($[0]) {
                                 case 'dictionary':

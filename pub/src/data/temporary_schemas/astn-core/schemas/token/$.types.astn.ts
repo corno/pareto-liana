@@ -5,10 +5,10 @@ import {
     n,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -29,30 +29,30 @@ export const $: g_.Modules = modules(
         })),
 
         "Token Type": module_(t.state({
-            "!": tstate(t.nothing()), //header
+            "!": toption(t.nothing()), //header
 
-            "@": tstate(t.nothing()), //include
-            ":": tstate(t.nothing()), //colon
-            "#": tstate(t.nothing()), //missing data
+            "@": toption(t.nothing()), //include
+            ":": toption(t.nothing()), //colon
+            "#": toption(t.nothing()), //missing data
 
             //concrete values
-            "{": tstate(t.nothing()), //dictionary open
-            "}": tstate(t.nothing()), //dictionary close
+            "{": toption(t.nothing()), //dictionary open
+            "}": toption(t.nothing()), //dictionary close
 
-            "[": tstate(t.nothing()), //list open
-            "]": tstate(t.nothing()), //list close
+            "[": toption(t.nothing()), //list open
+            "]": toption(t.nothing()), //list close
 
-            "(": tstate(t.nothing()), //verbose group open
-            ")": tstate(t.nothing()), //verbose group close
-            "<": tstate(t.nothing()), //concise group open
-            ">": tstate(t.nothing()), //concise group close
+            "(": toption(t.nothing()), //verbose group open
+            ")": toption(t.nothing()), //verbose group close
+            "<": toption(t.nothing()), //concise group open
+            ">": toption(t.nothing()), //concise group close
 
-            "~": tstate(t.nothing()), //nothing / not set
-            "*": tstate(t.nothing()), //set
+            "~": toption(t.nothing()), //nothing / not set
+            "*": toption(t.nothing()), //set
 
-            "|": tstate(t.nothing()), //state
+            "|": toption(t.nothing()), //state
 
-            "text": tstate(t.group({
+            "text": toption(t.group({
                 "value": prop(t.component("Delimited Text")),
                 "type": prop(t.component("Text Type")),
             })),
@@ -69,8 +69,8 @@ export const $: g_.Modules = modules(
             "leading whitespace": prop(t.component("Whitespace")),
             "comments": prop(t.list(t.group({
                 "type": prop(t.state({
-                    "line": tstate(t.nothing()),
-                    "block": tstate(t.nothing()),
+                    "line": toption(t.nothing()),
+                    "block": toption(t.nothing()),
                 })),
                 "content": prop(t.text_local(text('single line'))),
                 "range": prop(t.component_external("location", "Range")),
@@ -79,10 +79,10 @@ export const $: g_.Modules = modules(
         })),
 
         "Text Type": module_(t.state({
-            "quoted": tstate(t.nothing()),
-            "apostrophed": tstate(t.nothing()),
-            "undelimited": tstate(t.nothing()),
-            "backticked": tstate(t.nothing()),
+            "quoted": toption(t.nothing()),
+            "apostrophed": toption(t.nothing()),
+            "undelimited": toption(t.nothing()),
+            "backticked": toption(t.nothing()),
         })),
     }
 )

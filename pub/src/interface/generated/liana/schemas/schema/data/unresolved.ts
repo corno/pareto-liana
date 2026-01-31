@@ -763,6 +763,42 @@ export type Module_Reference_ = {
     readonly 'resulting module': Module_Reference_.resulting_module
 }
 
+export namespace Option_Constraints_ {
+    
+    export namespace O {
+        
+        export type l_location = i__location.Relative_Location
+        
+        export namespace l_dictionary {
+            
+            export namespace D {
+                
+                export type l_location = i__location.Relative_Location
+                
+                export type l_entry = Value_Reference_
+                
+            }
+            
+            export type D = {
+                readonly 'l location': D.l_location
+                readonly 'l entry': D.l_entry
+            }
+            
+        }
+        
+        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        
+    }
+    
+    export type O = {
+        readonly 'l location': O.l_location
+        readonly 'l dictionary': O.l_dictionary
+    }
+    
+}
+
+export type Option_Constraints_ = _pi.Optional_Value<Option_Constraints_.O>
+
 export namespace Value_ {
     
     export type l_location = i__location.Relative_Location
@@ -1007,6 +1043,8 @@ export namespace Value_ {
                         
                         export namespace l_entry {
                             
+                            export type constraints = Option_Constraints_
+                            
                             export namespace description {
                                 
                                 export type O = string
@@ -1020,6 +1058,7 @@ export namespace Value_ {
                         }
                         
                         export type l_entry = {
+                            readonly 'constraints': l_entry.constraints
                             readonly 'description': l_entry.description
                             readonly 'value': l_entry.value
                         }
@@ -1107,7 +1146,7 @@ export type Value_ = {
     readonly 'l state': Value_.l_state
 }
 
-export namespace Option_Constraints_ {
+export namespace Option_Constraint_Resolvers_ {
     
     export type l_location = i__location.Relative_Location
     
@@ -1178,9 +1217,9 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = {
-    readonly 'l location': Option_Constraints_.l_location
-    readonly 'l dictionary': Option_Constraints_.l_dictionary
+export type Option_Constraint_Resolvers_ = {
+    readonly 'l location': Option_Constraint_Resolvers_.l_location
+    readonly 'l dictionary': Option_Constraint_Resolvers_.l_dictionary
 }
 
 export namespace Value_Constraint_Resolvers_ {
@@ -1729,7 +1768,7 @@ export namespace Value_Resolver_ {
         
         export namespace optional {
             
-            export type constraints = Option_Constraints_
+            export type constraints = Option_Constraint_Resolvers_
             
             export type resolver = Value_Resolver_
             
@@ -1812,7 +1851,7 @@ export namespace Value_Resolver_ {
                         
                         export namespace l_entry {
                             
-                            export type constraints = Option_Constraints_
+                            export type constraints = Option_Constraint_Resolvers_
                             
                             export type resolver = Value_Resolver_
                             
@@ -2644,8 +2683,9 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Constraints_ as Value_Constraints, 
     Module_Reference_ as Module_Reference, 
-    Value_ as Value, 
     Option_Constraints_ as Option_Constraints, 
+    Value_ as Value, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 

@@ -6,7 +6,7 @@ import {
     module_,
     n,
     prop,
-    tstate,
+    toption,
     text,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -19,30 +19,30 @@ export const $: g_.Modules = modules(
         })),
 
         "Flow Content": module_(t.list(t.state({
-            "div": tstate(t.component_cyclic("Flow Content")),
-            "dimensioned div": tstate(t.group({
+            "div": toption(t.component_cyclic("Flow Content")),
+            "dimensioned div": toption(t.group({
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
                 "height": prop(t.optional(t.number_local(n.natural(null)))),
                 "content": prop(t.component_cyclic("Flow Content")),
             })),
-            "classified div": tstate(t.group({
+            "classified div": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "content": prop(t.component_cyclic("Flow Content")),
             })),
-            "table": tstate(t.group({
+            "table": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "sections": prop(t.list(t.group({
                     "classes": prop(t.component("Classes")),
                     "type": prop(t.state({
-                        "header": tstate(t.nothing()),
-                        "body": tstate(t.nothing()),
-                        "footer": tstate(t.nothing()),
+                        "header": toption(t.nothing()),
+                        "body": toption(t.nothing()),
+                        "footer": toption(t.nothing()),
                     })),
                     "rows": prop(t.list(t.group({
                         "classes": prop(t.component("Classes")),
                         "type": prop(t.state({
-                            "th": tstate(t.nothing()),
-                            "td": tstate(t.nothing()),
+                            "th": toption(t.nothing()),
+                            "td": toption(t.nothing()),
                         })),
                         "height": prop(t.optional(t.number_local(n.natural(null)))),
                         "cells": prop(t.list(t.group({
@@ -52,20 +52,20 @@ export const $: g_.Modules = modules(
                     }))),
                 }))),
             })),
-            "span": tstate(t.component("Phrasing Content")),
-            "label": tstate(t.group({
+            "span": toption(t.component("Phrasing Content")),
+            "label": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "text": prop(t.text_local(text('single line'))),
                 "content": prop(t.component_cyclic("Flow Content")),
             })),
-            "img": tstate(t.group({
+            "img": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "src": prop(t.text_local(text('single line'))),
                 "alt": prop(t.text_local(text('single line'))),
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
                 "height": prop(t.optional(t.number_local(n.natural(null)))),
             })),
-            "svg": tstate(t.group({
+            "svg": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "content": prop(t.text_local(text('multi line'))),
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
@@ -77,20 +77,20 @@ export const $: g_.Modules = modules(
         "Classes": module_(t.list(t.text_local(text('single line')))),
 
         "Phrasing Content": module_(t.list(t.state({
-            "span": tstate(t.component_cyclic("Phrasing Content")),
-            "classified span": tstate(t.group({
+            "span": toption(t.component_cyclic("Phrasing Content")),
+            "classified span": toption(t.group({
                 "classes": prop(t.component("Classes")),
                 "content": prop(t.component_cyclic("Phrasing Content")),
             })),
-            "titled span": tstate(t.group({
+            "titled span": toption(t.group({
                 "title": prop(t.text_local(text('single line'))),
                 "content": prop(t.component_cyclic("Phrasing Content")),
             })),
-            "a": tstate(t.group({
+            "a": toption(t.group({
                 "text": prop(t.text_local(text('single line'))),
                 "href": prop(t.text_local(text('single line'))),
             })),
-            "p": tstate(t.group({
+            "p": toption(t.group({
                 "text": prop(t.text_local(text('single line'))),
             })),
         }))),

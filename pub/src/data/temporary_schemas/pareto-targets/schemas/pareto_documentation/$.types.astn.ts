@@ -4,10 +4,10 @@ import {
     modules,
     text,
     t,
-    tr,
+    vp,
     module_,
     prop,
-    tstate,
+    toption,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
@@ -21,8 +21,8 @@ export const $: g_.Modules = modules(
         // )),
         "Graphviz Directory": module_(t.dictionary(
             t.state({
-                "file": tstate(t.component_external("graphviz", "Graph")),
-                "directory": tstate(t.component_cyclic("Graphviz Directory")),
+                "file": toption(t.component_external("graphviz", "Graph")),
+                "directory": toption(t.component_cyclic("Graphviz Directory")),
             })
         )),
     }
