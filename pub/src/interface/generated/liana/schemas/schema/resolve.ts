@@ -334,11 +334,11 @@ export type Value_Reference_ = (
     },
 ) => Value_Reference_.O
 
-export namespace Value_Constraints_ {
+export namespace Value_Results_ {
     
-    export type I = i_unresolved.Value_Constraints
+    export type I = i_unresolved.Value_Results
     
-    export type O = i_resolved.Value_Constraints
+    export type O = i_resolved.Value_Results
     
     export type E = i_generic.Error
     
@@ -362,16 +362,16 @@ export namespace Value_Constraints_ {
     
 }
 
-export type Value_Constraints_ = (
-    context: Value_Constraints_.I,
-    abort: _pi.Abort<Value_Constraints_.E>,
+export type Value_Results_ = (
+    context: Value_Results_.I,
+    abort: _pi.Abort<Value_Results_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Value_Constraints_.L.modules>
+        readonly 'modules': _pi.Acyclic_Lookup<Value_Results_.L.modules>
     },
     parameters: {
-        readonly 'imports': Value_Constraints_.P.imports
+        readonly 'imports': Value_Results_.P.imports
     },
-) => Value_Constraints_.O
+) => Value_Results_.O
 
 export namespace Option_Constraints_ {
     
@@ -1829,7 +1829,7 @@ export {
     Value_ as Value, 
     Module_Reference_ as Module_Reference, 
     Value_Reference_ as Value_Reference, 
-    Value_Constraints_ as Value_Constraints, 
+    Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Module_ as Module, 
     Value_Path_ as Value_Path, 

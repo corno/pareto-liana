@@ -145,16 +145,11 @@ export const Value = (
                     }
                 })
                 return $p.type[0] === 'resolved'
-                    ? _p.decide.optional(
-                        $.constraints,
-                        ($) => sh.t.group({
-                            "l component": x,
-                            "l constraints": sh.t.group(_p.dictionary.map(
-                                $,
-                                ($) => Value_Reference($)
-                            )),
-                        }),
-                        () => x
+                    ? Value_Results(
+                        $.results,
+                        {
+                            'base type': x,
+                        }
                     )
                     : x
             })
@@ -201,27 +196,27 @@ export const Value = (
                                 )
                             }))
                         }))
-                        case 'resolved': return _p.ss($, ($) => list.result.__decide(
-                            ($) => sh.t.group({
-                                "l list": sh.t.list(sh.t.group({
-                                    "l result": sh.t.reference(
-                                        Module_Reference($),
-                                        []
-                                    ),
-                                    "l item": Value(
+                        case 'resolved': return _p.ss($, ($) => Value_Results(
+                            list.results,
+                            {
+                                'base type': sh.t.list(_p.decide.optional(
+                                    list.results,
+                                    ($) => sh.t.group({
+                                        "l results": sh.t.group(_p.dictionary.map(
+                                            $,
+                                            ($) => Value_Reference($)
+                                        )),
+                                        "l item": Value(
+                                            list.value,
+                                            $p
+                                        )
+                                    }),
+                                    () => Value(
                                         list.value,
                                         $p
                                     )
-                                })),
-                                "l result": sh.t.reference(
-                                    Module_Reference($),
-                                    []
-                                )
-                            }),
-                            () => sh.t.list(Value(
-                                list.value,
-                                $p
-                            ))
+                                )),
+                            }
                         ))
                         default: return _p.au($[0])
                     }
@@ -304,7 +299,7 @@ export const Value = (
                 })
             })
             case 'state': return _p.ss($, ($) => {
-                const constraints = $.constraints
+                const results = $.results
                 const i = sh.t.state($.options.__d_map(($, id) => Value(
                     $.value,
                     $p
@@ -316,16 +311,11 @@ export const Value = (
                             "l location": location,
                             "l state": i
                         }))
-                        case 'resolved': return _p.ss($, ($) => _p.decide.optional(
-                            constraints,
-                            ($) => sh.t.group({
-                                "l constraints": sh.t.group(_p.dictionary.map(
-                                    $,
-                                    ($) => Value_Reference($)
-                                )),
-                                "l state": i
-                            }),
-                            () => i
+                        case 'resolved': return _p.ss($, ($) => Value_Results(
+                            results,
+                            {
+                                'base type': i,
+                            }
                         ))
                         default: return _p.au($[0])
                     }
@@ -336,6 +326,25 @@ export const Value = (
             default: return _p.au($[0])
         }
     })
+}
+
+const Value_Results = (
+    $: d_in.Value_Results,
+    $p: {
+        'base type': d_out.Value
+    }
+): d_out.Value => {
+    return _p.decide.optional(
+        $,
+        ($) => sh.t.group({
+            "l results": sh.t.group(_p.dictionary.map(
+                $,
+                ($) => Value_Reference($)
+            )),
+            "l value": $p['base type'],
+        }),
+        () => $p['base type']
+    )
 }
 
 const Value_Reference = (
@@ -351,7 +360,7 @@ const Value_Path = (
     $: d_in.Value_Path,
 
 ): _pi.List<d_out.Value.reference.sub_selection.L> => {
-    return $.tail['l list'].__l_map(($) => _p.decide.state($['l item']['l state'], ($) => {
+    return $.tail['l value'].__l_map(($) => _p.decide.state($['l item']['l value'], ($) => {
         switch ($[0]) {
             case 'dictionary': return _p.ss($, ($) => sh.sub.dictionary())
             case 'group': return _p.ss($, ($) => sh.sub.group($['l id']))

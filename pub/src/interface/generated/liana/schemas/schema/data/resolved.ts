@@ -353,7 +353,7 @@ export namespace Value_Resolver_Group_ {
 
 export type Value_Resolver_Group_ = _pi.Dictionary<Value_Resolver_Group_.D>
 
-export namespace Value_Constraints_ {
+export namespace Value_Results_ {
     
     export namespace O {
         
@@ -365,74 +365,7 @@ export namespace Value_Constraints_ {
     
 }
 
-export type Value_Constraints_ = _pi.Optional_Value<Value_Constraints_.O>
-
-export namespace Module_Reference_ {
-    
-    export namespace location {
-        
-        export namespace internal {
-            
-            export type l_entry = Modules_.D
-            
-            export type l_id = string
-            
-        }
-        
-        export type internal = {
-            readonly 'l entry': internal.l_entry
-            readonly 'l id': internal.l_id
-        }
-        
-        export namespace external {
-            
-            export namespace import_ {
-                
-                export type l_entry = Imports_.D
-                
-                export type l_id = string
-                
-            }
-            
-            export type import_ = {
-                readonly 'l entry': import_.l_entry
-                readonly 'l id': import_.l_id
-            }
-            
-            export namespace module_ {
-                
-                export type l_entry = Modules_.D
-                
-                export type l_id = string
-                
-            }
-            
-            export type module_ = {
-                readonly 'l entry': module_.l_entry
-                readonly 'l id': module_.l_id
-            }
-            
-        }
-        
-        export type external = {
-            readonly 'import': external.import_
-            readonly 'module': external.module_
-        }
-        
-    }
-    
-    export type location = 
-        | readonly ['internal', location.internal]
-        | readonly ['external', location.external]
-    
-    export type resulting_module = Module_
-    
-}
-
-export type Module_Reference_ = {
-    readonly 'location': Module_Reference_.location
-    readonly 'resulting module': Module_Reference_.resulting_module
-}
+export type Value_Results_ = _pi.Optional_Value<Value_Results_.O>
 
 export namespace Option_Constraints_ {
     
@@ -524,13 +457,13 @@ export namespace Value_ {
             | readonly ['internal', type_.internal]
             | readonly ['internal cyclic', type_.internal_cyclic]
         
-        export type constraints = Value_Constraints_
+        export type results = Value_Results_
         
     }
     
     export type component = {
         readonly 'type': component.type_
-        readonly 'constraints': component.constraints
+        readonly 'results': component.results
     }
     
     export type dictionary = Dictionary_
@@ -541,19 +474,13 @@ export namespace Value_ {
         
         export type value = Value_
         
-        export namespace result {
-            
-            export type O = Module_Reference_
-            
-        }
-        
-        export type result = _pi.Optional_Value<result.O>
+        export type results = Value_Results_
         
     }
     
     export type list = {
         readonly 'value': list.value
-        readonly 'result': list.result
+        readonly 'results': list.results
     }
     
     export type nothing = null
@@ -660,13 +587,13 @@ export namespace Value_ {
         
         export type options = _pi.Dictionary<options.D>
         
-        export type constraints = Value_Constraints_
+        export type results = Value_Results_
         
     }
     
     export type state = {
         readonly 'options': state.options
-        readonly 'constraints': state.constraints
+        readonly 'results': state.results
     }
     
     export namespace text {
@@ -757,6 +684,73 @@ export namespace Value_Constraint_Resolvers_ {
 }
 
 export type Value_Constraint_Resolvers_ = _pi.Dictionary<Value_Constraint_Resolvers_.D>
+
+export namespace Module_Reference_ {
+    
+    export namespace location {
+        
+        export namespace internal {
+            
+            export type l_entry = Modules_.D
+            
+            export type l_id = string
+            
+        }
+        
+        export type internal = {
+            readonly 'l entry': internal.l_entry
+            readonly 'l id': internal.l_id
+        }
+        
+        export namespace external {
+            
+            export namespace import_ {
+                
+                export type l_entry = Imports_.D
+                
+                export type l_id = string
+                
+            }
+            
+            export type import_ = {
+                readonly 'l entry': import_.l_entry
+                readonly 'l id': import_.l_id
+            }
+            
+            export namespace module_ {
+                
+                export type l_entry = Modules_.D
+                
+                export type l_id = string
+                
+            }
+            
+            export type module_ = {
+                readonly 'l entry': module_.l_entry
+                readonly 'l id': module_.l_id
+            }
+            
+        }
+        
+        export type external = {
+            readonly 'import': external.import_
+            readonly 'module': external.module_
+        }
+        
+    }
+    
+    export type location = 
+        | readonly ['internal', location.internal]
+        | readonly ['external', location.external]
+    
+    export type resulting_module = Module_
+    
+}
+
+export type Module_Reference_ = {
+    readonly 'location': Module_Reference_.location
+    readonly 'resulting module': Module_Reference_.resulting_module
+}
 
 export namespace Signature_Parameters_ {
     
@@ -1223,11 +1217,29 @@ export namespace Relative_Value_Selection_ {
     
     export namespace path {
         
-        export namespace l_list {
+        export namespace l_results {
+            
+            export type result = Value_
+            
+        }
+        
+        export type l_results = {
+            readonly 'result': l_results.result
+        }
+        
+        export namespace l_value {
             
             export namespace L {
                 
-                export type l_result = Value_
+                export namespace l_results {
+                    
+                    export type result = Value_
+                    
+                }
+                
+                export type l_results = {
+                    readonly 'result': l_results.result
+                }
                 
                 export namespace l_item {
                     
@@ -1266,21 +1278,19 @@ export namespace Relative_Value_Selection_ {
             }
             
             export type L = {
-                readonly 'l result': L.l_result
+                readonly 'l results': L.l_results
                 readonly 'l item': L.l_item
             }
             
         }
         
-        export type l_list = _pi.List<l_list.L>
-        
-        export type l_result = Value_
+        export type l_value = _pi.List<l_value.L>
         
     }
     
     export type path = {
-        readonly 'l list': path.l_list
-        readonly 'l result': path.l_result
+        readonly 'l results': path.l_results
+        readonly 'l value': path.l_value
     }
     
     export type resulting_node = Value_
@@ -1545,23 +1555,23 @@ export namespace Benchmark_ {
     
     export namespace selection {
         
-        export type l_component = Guaranteed_Value_Selection_
-        
-        export namespace l_constraints {
+        export namespace l_results {
             
             export type dictionary = Value_.dictionary
             
         }
         
-        export type l_constraints = {
-            readonly 'dictionary': l_constraints.dictionary
+        export type l_results = {
+            readonly 'dictionary': l_results.dictionary
         }
+        
+        export type l_value = Guaranteed_Value_Selection_
         
     }
     
     export type selection = {
-        readonly 'l component': selection.l_component
-        readonly 'l constraints': selection.l_constraints
+        readonly 'l results': selection.l_results
+        readonly 'l value': selection.l_value
     }
     
     export type resulting_dictionary = Dictionary_
@@ -1580,25 +1590,43 @@ export namespace Value_Path_ {
     
     export namespace tail {
         
-        export namespace l_list {
+        export namespace l_results {
+            
+            export type result = Value_
+            
+        }
+        
+        export type l_results = {
+            readonly 'result': l_results.result
+        }
+        
+        export namespace l_value {
             
             export namespace L {
                 
-                export type l_result = Value_
+                export namespace l_results {
+                    
+                    export type result = Value_
+                    
+                }
+                
+                export type l_results = {
+                    readonly 'result': l_results.result
+                }
                 
                 export namespace l_item {
                     
-                    export namespace l_constraints {
+                    export namespace l_results {
                         
                         export type value = Value_
                         
                     }
                     
-                    export type l_constraints = {
-                        readonly 'value': l_constraints.value
+                    export type l_results = {
+                        readonly 'value': l_results.value
                     }
                     
-                    export namespace l_state {
+                    export namespace l_value {
                         
                         export type dictionary = null
                         
@@ -1634,38 +1662,36 @@ export namespace Value_Path_ {
                         
                     }
                     
-                    export type l_state = 
-                        | readonly ['dictionary', l_state.dictionary]
-                        | readonly ['group', l_state.group]
-                        | readonly ['list', l_state.list]
-                        | readonly ['optional', l_state.optional]
-                        | readonly ['state', l_state.state]
+                    export type l_value = 
+                        | readonly ['dictionary', l_value.dictionary]
+                        | readonly ['group', l_value.group]
+                        | readonly ['list', l_value.list]
+                        | readonly ['optional', l_value.optional]
+                        | readonly ['state', l_value.state]
                     
                 }
                 
                 export type l_item = {
-                    readonly 'l constraints': l_item.l_constraints
-                    readonly 'l state': l_item.l_state
+                    readonly 'l results': l_item.l_results
+                    readonly 'l value': l_item.l_value
                 }
                 
             }
             
             export type L = {
-                readonly 'l result': L.l_result
+                readonly 'l results': L.l_results
                 readonly 'l item': L.l_item
             }
             
         }
         
-        export type l_list = _pi.List<l_list.L>
-        
-        export type l_result = Value_
+        export type l_value = _pi.List<l_value.L>
         
     }
     
     export type tail = {
-        readonly 'l list': tail.l_list
-        readonly 'l result': tail.l_result
+        readonly 'l results': tail.l_results
+        readonly 'l value': tail.l_value
     }
     
     export type resulting_node = Value_
@@ -1917,12 +1943,12 @@ export {
     Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Constraints_ as Value_Constraints, 
-    Module_Reference_ as Module_Reference, 
+    Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Value_ as Value, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Module_Reference_ as Module_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 

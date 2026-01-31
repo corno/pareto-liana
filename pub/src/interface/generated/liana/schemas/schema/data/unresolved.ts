@@ -649,7 +649,7 @@ export type Value_Resolver_Group_ = {
     readonly 'l dictionary': Value_Resolver_Group_.l_dictionary
 }
 
-export namespace Value_Constraints_ {
+export namespace Value_Results_ {
     
     export namespace O {
         
@@ -683,85 +683,7 @@ export namespace Value_Constraints_ {
     
 }
 
-export type Value_Constraints_ = _pi.Optional_Value<Value_Constraints_.O>
-
-export namespace Module_Reference_ {
-    
-    export namespace location {
-        
-        export type l_location = i__location.Relative_Location
-        
-        export namespace l_state {
-            
-            export namespace internal {
-                
-                export type l_location = i__location.Relative_Location
-                
-                export type l_reference = string
-                
-            }
-            
-            export type internal = {
-                readonly 'l location': internal.l_location
-                readonly 'l reference': internal.l_reference
-            }
-            
-            export namespace external {
-                
-                export namespace import_ {
-                    
-                    export type l_location = i__location.Relative_Location
-                    
-                    export type l_reference = string
-                    
-                }
-                
-                export type import_ = {
-                    readonly 'l location': import_.l_location
-                    readonly 'l reference': import_.l_reference
-                }
-                
-                export namespace module_ {
-                    
-                    export type l_location = i__location.Relative_Location
-                    
-                    export type l_reference = string
-                    
-                }
-                
-                export type module_ = {
-                    readonly 'l location': module_.l_location
-                    readonly 'l reference': module_.l_reference
-                }
-                
-            }
-            
-            export type external = {
-                readonly 'import': external.import_
-                readonly 'module': external.module_
-            }
-            
-        }
-        
-        export type l_state = 
-            | readonly ['internal', l_state.internal]
-            | readonly ['external', l_state.external]
-        
-    }
-    
-    export type location = {
-        readonly 'l location': location.l_location
-        readonly 'l state': location.l_state
-    }
-    
-    export type resulting_module = null
-    
-}
-
-export type Module_Reference_ = {
-    readonly 'location': Module_Reference_.location
-    readonly 'resulting module': Module_Reference_.resulting_module
-}
+export type Value_Results_ = _pi.Optional_Value<Value_Results_.O>
 
 export namespace Option_Constraints_ {
     
@@ -890,13 +812,13 @@ export namespace Value_ {
                 readonly 'l state': type_.l_state
             }
             
-            export type constraints = Value_Constraints_
+            export type results = Value_Results_
             
         }
         
         export type component = {
             readonly 'type': component.type_
-            readonly 'constraints': component.constraints
+            readonly 'results': component.results
         }
         
         export type dictionary = Dictionary_
@@ -907,19 +829,13 @@ export namespace Value_ {
             
             export type value = Value_
             
-            export namespace result {
-                
-                export type O = Module_Reference_
-                
-            }
-            
-            export type result = _pi.Optional_Value<result.O>
+            export type results = Value_Results_
             
         }
         
         export type list = {
             readonly 'value': list.value
-            readonly 'result': list.result
+            readonly 'results': list.results
         }
         
         export type nothing = null
@@ -1081,13 +997,13 @@ export namespace Value_ {
                 readonly 'l dictionary': options.l_dictionary
             }
             
-            export type constraints = Value_Constraints_
+            export type results = Value_Results_
             
         }
         
         export type state = {
             readonly 'options': state.options
-            readonly 'constraints': state.constraints
+            readonly 'results': state.results
         }
         
         export namespace text {
@@ -1250,6 +1166,84 @@ export namespace Value_Constraint_Resolvers_ {
 export type Value_Constraint_Resolvers_ = {
     readonly 'l location': Value_Constraint_Resolvers_.l_location
     readonly 'l dictionary': Value_Constraint_Resolvers_.l_dictionary
+}
+
+export namespace Module_Reference_ {
+    
+    export namespace location {
+        
+        export type l_location = i__location.Relative_Location
+        
+        export namespace l_state {
+            
+            export namespace internal {
+                
+                export type l_location = i__location.Relative_Location
+                
+                export type l_reference = string
+                
+            }
+            
+            export type internal = {
+                readonly 'l location': internal.l_location
+                readonly 'l reference': internal.l_reference
+            }
+            
+            export namespace external {
+                
+                export namespace import_ {
+                    
+                    export type l_location = i__location.Relative_Location
+                    
+                    export type l_reference = string
+                    
+                }
+                
+                export type import_ = {
+                    readonly 'l location': import_.l_location
+                    readonly 'l reference': import_.l_reference
+                }
+                
+                export namespace module_ {
+                    
+                    export type l_location = i__location.Relative_Location
+                    
+                    export type l_reference = string
+                    
+                }
+                
+                export type module_ = {
+                    readonly 'l location': module_.l_location
+                    readonly 'l reference': module_.l_reference
+                }
+                
+            }
+            
+            export type external = {
+                readonly 'import': external.import_
+                readonly 'module': external.module_
+            }
+            
+        }
+        
+        export type l_state = 
+            | readonly ['internal', l_state.internal]
+            | readonly ['external', l_state.external]
+        
+    }
+    
+    export type location = {
+        readonly 'l location': location.l_location
+        readonly 'l state': location.l_state
+    }
+    
+    export type resulting_module = null
+    
+}
+
+export type Module_Reference_ = {
+    readonly 'location': Module_Reference_.location
+    readonly 'resulting module': Module_Reference_.resulting_module
 }
 
 export namespace Signature_Parameters_ {
@@ -2681,12 +2675,12 @@ export {
     Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Constraints_ as Value_Constraints, 
-    Module_Reference_ as Module_Reference, 
+    Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Value_ as Value, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Module_Reference_ as Module_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 

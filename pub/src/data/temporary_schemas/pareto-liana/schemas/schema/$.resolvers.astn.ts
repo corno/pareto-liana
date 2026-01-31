@@ -109,7 +109,7 @@ export const $: g_.Module_Resolvers = resolvers(
             "resulting node": r.reference_derived(gvs.list("tail", [])),
         })),
 
-        "Value Constraints": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
+        "Value Results": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
 
         "Option Constraints": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
 
@@ -154,7 +154,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "internal": option(r.reference(ls.parameter("noncircular sibling modules"))),
                     "internal cyclic": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
                 }),
-                "constraints": r.component("Value Constraints", {
+                "results": r.component("Value Results", {
                     "imports": av.parameter("imports"),
                 }, {
                     "modules": al.parameter("noncircular sibling modules"),
@@ -182,11 +182,11 @@ export const $: g_.Module_Resolvers = resolvers(
             )),
             "list": option(r.group({
                 "value": r.component("Value", null, null),
-                "result": r.optional(r.component("Module Reference", {
+                "results": r.component("Value Results", {
                     "imports": av.parameter("imports"),
                 }, {
                     "modules": al.parameter("noncircular sibling modules"),
-                })),
+                }),
             })),
             "nothing": option(r.nothing()),
             "number": option(r.state({
@@ -234,7 +234,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "value": r.component("Value", null, null),
                     "description": r.optional(r.text()),
                 })),
-                "constraints": r.component("Value Constraints", {
+                "results": r.component("Value Results", {
                     "imports": av.parameter("imports"),
                 }, {
                     "modules": al.parameter("noncircular sibling modules"),

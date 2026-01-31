@@ -275,25 +275,9 @@ export type Value_Resolver_Group_ = (
     context: Value_Resolver_Group_.I,
 ) => Value_Resolver_Group_.O
 
-export namespace Value_Constraints_ {
+export namespace Value_Results_ {
     
-    export type I = i_in.Value_Constraints
-    
-    export type O = string
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_Constraints_ = (
-    context: Value_Constraints_.I,
-) => Value_Constraints_.O
-
-export namespace Module_Reference_ {
-    
-    export type I = i_in.Module_Reference
+    export type I = i_in.Value_Results
     
     export type O = string
     
@@ -303,9 +287,9 @@ export namespace Module_Reference_ {
     
 }
 
-export type Module_Reference_ = (
-    context: Module_Reference_.I,
-) => Module_Reference_.O
+export type Value_Results_ = (
+    context: Value_Results_.I,
+) => Value_Results_.O
 
 export namespace Option_Constraints_ {
     
@@ -370,6 +354,22 @@ export namespace Value_Constraint_Resolvers_ {
 export type Value_Constraint_Resolvers_ = (
     context: Value_Constraint_Resolvers_.I,
 ) => Value_Constraint_Resolvers_.O
+
+export namespace Module_Reference_ {
+    
+    export type I = i_in.Module_Reference
+    
+    export type O = string
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Module_Reference_ = (
+    context: Module_Reference_.I,
+) => Module_Reference_.O
 
 export namespace Signature_Parameters_ {
     
@@ -629,12 +629,12 @@ export {
     Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Constraints_ as Value_Constraints, 
-    Module_Reference_ as Module_Reference, 
+    Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Value_ as Value, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Module_Reference_ as Module_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 

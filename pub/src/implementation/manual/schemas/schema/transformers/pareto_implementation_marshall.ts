@@ -138,7 +138,7 @@ export const Value = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select(sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l component"] : [])),
+                sh.e.select(sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
@@ -202,11 +202,8 @@ export const Value = (
             return sh.e.state.literal(
                 "list",
                 sh.e.list.map(
-                    sh.s.context($.result.__decide(
-                        ($) => ["l list"],
-                        () => []
-                    )),
-                    $.result.__decide(
+                    sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                    $.results.__decide(
                         ($) => sh.e.change_context(
                             sh.s.context(["l item"]),
                             x,
@@ -275,7 +272,7 @@ export const Value = (
         case 'state': return _p.ss($, ($) => sh.e.state.literal(
             "state",
             sh.e.decide.state(
-                sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l state"] : []),
+                sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                 $.options.__d_map(($, id) => sh.e.group.literal({
                     "option": sh.e.text.literal(id, 'identifier'),
                     "value": Value(

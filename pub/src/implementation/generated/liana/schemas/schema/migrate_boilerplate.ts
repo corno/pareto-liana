@@ -585,7 +585,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ({
     ),
 })
 
-export const Value_Constraints: t_signatures.Value_Constraints = ($) => _p.optional.map(
+export const Value_Results: t_signatures.Value_Results = ($) => _p.optional.map(
     $,
     ($) => ({
         'l location': {
@@ -608,74 +608,6 @@ export const Value_Constraints: t_signatures.Value_Constraints = ($) => _p.optio
         ),
     })
 )
-
-export const Module_Reference: t_signatures.Module_Reference = ($) => ({
-    'location': _p_cc(
-        $['location'],
-        ($) => ({
-            'l location': {
-                'document resource identifier': "implement me",
-                'line': 42,
-                'column': 42,
-            },
-            'l state': _p.decide.state(
-                $,
-                ($): t_out.Module_Reference.location.l_state => {
-                    switch ($[0]) {
-                        case 'internal':
-                            return _p.ss(
-                                $,
-                                ($) => ['internal', {
-                                    'l location': {
-                                        'document resource identifier': "implement me",
-                                        'line': 42,
-                                        'column': 42,
-                                    },
-                                    'l reference': $['l id'],
-                                }]
-                            )
-                        case 'external':
-                            return _p.ss(
-                                $,
-                                ($) => ['external', {
-                                    'import': _p_cc(
-                                        $['import'],
-                                        ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "implement me",
-                                                'line': 42,
-                                                'column': 42,
-                                            },
-                                            'l reference': $['l id'],
-                                        })
-                                    ),
-                                    'module': _p_cc(
-                                        $['module'],
-                                        ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "implement me",
-                                                'line': 42,
-                                                'column': 42,
-                                            },
-                                            'l reference': $['l id'],
-                                        })
-                                    ),
-                                }]
-                            )
-                        default:
-                            return _p.au(
-                                $[0]
-                            )
-                    }
-                }
-            ),
-        })
-    ),
-    'resulting module': _p_cc(
-        $['resulting module'],
-        ($) => null
-    ),
-})
 
 export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.optional.map(
     $,
@@ -793,9 +725,9 @@ export const Value: t_signatures.Value = ($) => ({
                                     ),
                                 })
                             ),
-                            'constraints': _p_cc(
-                                $['constraints'],
-                                ($) => Value_Constraints(
+                            'results': _p_cc(
+                                $['results'],
+                                ($) => Value_Results(
                                     $
                                 )
                             ),
@@ -825,13 +757,10 @@ export const Value: t_signatures.Value = ($) => ({
                                     $
                                 )
                             ),
-                            'result': _p_cc(
-                                $['result'],
-                                ($) => _p.optional.map(
-                                    $,
-                                    ($) => Module_Reference(
-                                        $
-                                    )
+                            'results': _p_cc(
+                                $['results'],
+                                ($) => Value_Results(
+                                    $
                                 )
                             ),
                         }]
@@ -1018,9 +947,9 @@ export const Value: t_signatures.Value = ($) => ({
                                     ),
                                 })
                             ),
-                            'constraints': _p_cc(
-                                $['constraints'],
-                                ($) => Value_Constraints(
+                            'results': _p_cc(
+                                $['results'],
+                                ($) => Value_Results(
                                     $
                                 )
                             ),
@@ -1164,6 +1093,74 @@ export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers
                 'column': 42,
             },
         })
+    ),
+})
+
+export const Module_Reference: t_signatures.Module_Reference = ($) => ({
+    'location': _p_cc(
+        $['location'],
+        ($) => ({
+            'l location': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Module_Reference.location.l_state => {
+                    switch ($[0]) {
+                        case 'internal':
+                            return _p.ss(
+                                $,
+                                ($) => ['internal', {
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                    'l reference': $['l id'],
+                                }]
+                            )
+                        case 'external':
+                            return _p.ss(
+                                $,
+                                ($) => ['external', {
+                                    'import': _p_cc(
+                                        $['import'],
+                                        ($) => ({
+                                            'l location': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                            'l reference': $['l id'],
+                                        })
+                                    ),
+                                    'module': _p_cc(
+                                        $['module'],
+                                        ($) => ({
+                                            'l location': {
+                                                'document resource identifier': "implement me",
+                                                'line': 42,
+                                                'column': 42,
+                                            },
+                                            'l reference': $['l id'],
+                                        })
+                                    ),
+                                }]
+                            )
+                        default:
+                            return _p.au(
+                                $[0]
+                            )
+                    }
+                }
+            ),
+        })
+    ),
+    'resulting module': _p_cc(
+        $['resulting module'],
+        ($) => null
     ),
 })
 
@@ -1851,7 +1848,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                 'column': 42,
             },
             'l list': _p.list.map(
-                $['l list'],
+                $['l value'],
                 ($) => ({
                     'l item': _p_cc(
                         $['l item'],
@@ -2187,7 +2184,7 @@ export const Benchmark: t_signatures.Benchmark = ($) => ({
     'selection': _p_cc(
         $['selection'],
         ($) => Guaranteed_Value_Selection(
-            $['l component']
+            $['l value']
         )
     ),
     'resulting dictionary': _p_cc(
@@ -2210,7 +2207,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                 'column': 42,
             },
             'l list': _p.list.map(
-                $['l list'],
+                $['l value'],
                 ($) => ({
                     'l item': _p_cc(
                         $['l item'],
@@ -2221,7 +2218,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                 'column': 42,
                             },
                             'l state': _p.decide.state(
-                                $['l state'],
+                                $['l value'],
                                 ($): t_out.Value_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'dictionary':

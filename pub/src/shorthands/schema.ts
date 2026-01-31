@@ -165,24 +165,24 @@ export namespace t {
     export const component = (type: string): d_schema.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal', sh.reference(type)]),
-            'constraints': sh.optionalx.not_set(),
+            'results': sh.optionalx.not_set(),
         }])
     }
 
-    export const component_constrained = (
+    export const component_with_results = (
         type: string,
-        constraints: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Constraints.O.l_dictionary.D.l_entry>,
+        results: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_schema.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal', sh.reference(type)]),
-            'constraints': sh.optionalx.set(sh.dictionary(constraints)),
+            'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 
     export const component_cyclic = (type: string): d_schema.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal cyclic', sh.reference(type)]),
-            'constraints': sh.optionalx.not_set(),
+            'results': sh.optionalx.not_set(),
         }])
     }
 
@@ -192,7 +192,7 @@ export namespace t {
                 'import': sh.reference(imp),
                 'module': sh.reference(type),
             }]),
-            'constraints': sh.optionalx.not_set(),
+            'results': sh.optionalx.not_set(),
         }])
     }
 
@@ -210,20 +210,17 @@ export namespace t {
     export const list = (type: d_schema.Value): d_schema.Value => {
         return sh.state(['list', {
             'value': type,
-            'result': sh.optionalx.not_set(),
+            'results': sh.optionalx.not_set(),
         }])
     }
 
-    export const path_to_sibling = (
+    export const list_with_results = (
         type: d_schema.Value,
-        result: string,
+        results: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_schema.Value => {
         return sh.state(['list', {
             'value': type,
-            'result': _p.optionalx.set<d_schema.Module_Reference>({
-                'location': sh.state(['internal', sh.reference(result)]),
-                'resulting module': null,
-            }),
+            'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 
@@ -383,16 +380,16 @@ export namespace t {
     ): d_schema.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
-            'constraints': sh.optionalx.not_set(),
+            'results': sh.optionalx.not_set(),
         }])
     }
     export const state_with_result = (
         options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>,
-        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraints.O.l_dictionary.D.l_entry>,
+        results: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_schema.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
-            'constraints': sh.optionalx.set(sh.dictionary(constraints)),
+            'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 

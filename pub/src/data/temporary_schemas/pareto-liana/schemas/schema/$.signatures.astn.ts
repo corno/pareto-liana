@@ -45,7 +45,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Value Constraints": sig.same_as("Value Reference"),
+        "Value Results": sig.same_as("Value Reference"),
 
         "Option Constraints": sig.same_as("Value Reference"),
 

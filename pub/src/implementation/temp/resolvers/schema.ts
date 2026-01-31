@@ -486,7 +486,7 @@ export const Option_Constraints: signatures.Option_Constraints = ($, abort, $l, 
     )
 }
 
-export const Value_Constraints: signatures.Value_Constraints = ($, abort, $l, $p) => {
+export const Value_Results: signatures.Value_Results = ($, abort, $l, $p) => {
     return _p.optional.map(
         $,
         ($) => _p.dictionary.resolve(
@@ -587,8 +587,8 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         default: return _p.au($[0])
                     }
                 }),
-                'constraints': Value_Constraints(
-                    $.constraints,
+                'results': Value_Results(
+                    $.results,
                     abort,
                     {
                         'modules': $l['noncircular sibling modules'],
@@ -630,18 +630,15 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                 )
                 return ['list', {
                     'value': p_type,
-                    'result': _p.optional.map(
-                        $.result,
-                        ($) => Module_Reference(
-                            $,
-                            abort,
-                            {
-                                'modules': $l['noncircular sibling modules'],
-                            },
-                            {
-                                'imports': $p.imports,
-                            },
-                        )
+                    'results': Value_Results(
+                        $.results,
+                        abort,
+                        {
+                            'modules': $l['noncircular sibling modules'],
+                        },
+                        {
+                            'imports': $p.imports,
+                        },
                     )
                 }]
             })
@@ -753,8 +750,8 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         ),
                     }),
                 ),
-                'constraints': Value_Constraints(
-                    $.constraints,
+                'results': Value_Results(
+                    $.results,
                     abort,
                     {
                         'modules': $l['noncircular sibling modules'],
@@ -849,11 +846,11 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
     const p_tail_x: d_out.Value_Path.tail = _p.list.map_with_state(
         $.tail['l list'],
         $p.module['root value'],
-        ($, current): d_out.Value_Path.tail.l_list.L => {
+        ($, current): d_out.Value_Path.tail.l_value.L => {
             const sg_loc = $['l location']
-            return _p_cc($['l item']['l state'], ($): d_out.Value_Path.tail.l_list.L => {
+            return _p_cc($['l item']['l state'], ($): d_out.Value_Path.tail.l_value.L => {
                 switch ($[0]) {
-                    case 'dictionary': return _p.ss($, ($) => {
+                    case 'dictionary': return _p.ss($, ($): d_out.Value_Path.tail.l_value.L => {
                         const sc_definition: d_out.Value.dictionary = _p_cc(current, ($) => {
                             if ($[0] !== 'dictionary') {
                                 return _i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
@@ -862,12 +859,14 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                         })
                         return {
                             'l item': {
-                                'l state': ['dictionary', null],
-                                'l constraints': {
+                                'l value': ['dictionary', null],
+                                'l results': {
                                     'value': sc_definition.value,
                                 }
                             },
-                            'l result': sc_definition.value
+                            'l results': {
+                                'result': sc_definition.value
+                            }
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
@@ -884,12 +883,14 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                         )
                         return {
                             'l item': {
-                                'l state': ['group', p_child],
-                                'l constraints': {
+                                'l value': ['group', p_child],
+                                'l results': {
                                     'value': p_child['l entry'].value,
                                 }
                             },
-                            'l result': p_child['l entry'].value
+                            'l results': {
+                                'result': p_child['l entry'].value
+                            }
                         }
                     })
                     case 'list': return _p.ss($, ($) => {
@@ -901,15 +902,17 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                         })
                         return {
                             'l item': {
-                                'l state': ['list', null],
-                                'l constraints': {
+                                'l value': ['list', null],
+                                'l results': {
                                     'value': sc_definition.value
                                 }
                             },
-                            'l result': sc_definition.value
+                            'l results': {
+                                'result': sc_definition.value
+                            }
                         }
                     })
-                    case 'optional': return _p.ss($, ($) => {
+                    case 'optional': return _p.ss($, ($): d_out.Value_Path.tail.l_value.L => {
                         const sc_definition: d_out.Value.optional = _p_cc(current, ($) => {
                             if ($[0] !== 'optional') {
                                 return _i_generic.abort.state_constraint_found_expected("optional", $, sg_loc, abort)
@@ -918,15 +921,17 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                         })
                         return {
                             'l item': {
-                                'l state': ['optional', null],
-                                'l constraints': {
+                                'l value': ['optional', null],
+                                'l results': {
                                     'value': sc_definition
                                 }
                             },
-                            'l result': sc_definition
+                            'l results': {
+                                'result': sc_definition
+                            }
                         }
                     })
-                    case 'state': return _p.ss($, ($) => {
+                    case 'state': return _p.ss($, ($): d_out.Value_Path.tail.l_value.L => {
                         const P_state: d_out.Value.state = _p_cc(current, ($) => {
                             if ($[0] !== 'state') {
                                 return _i_generic.abort.state_constraint_found_expected("state", $, sg_loc, abort)
@@ -940,27 +945,31 @@ export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
                         )
                         return {
                             'l item': {
-                                'l state': ['state', p_child],
-                                'l constraints': {
+                                'l value': ['state', p_child],
+                                'l results': {
                                     'value': p_child['l entry'].value
                                 }
                             },
-                            'l result': p_child['l entry'].value
+                            'l results': {
+                                'result': p_child['l entry'].value
+                            }
                         }
                     })
                     default: return _p.au($[0])
                 }
             })
         },
-        ($, current) => $['l result'],
+        ($, current) => $['l results'].result,
         (list, result) => ({
-            'l list': list,
-            'l result': result,
+            'l value': list,
+            'l results': {
+                'result': result,
+            },
         })
     )
     return {
         'tail': p_tail_x,
-        'resulting node': p_tail_x['l result']
+        'resulting node': p_tail_x['l results'].result
     }
 }
 
@@ -1457,8 +1466,8 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                             : p_selection['resulting node'][1]
                         return {
                             'selection': {
-                                'l component': p_selection,
-                                'l constraints': {
+                                'l value': p_selection,
+                                'l results': {
                                     'dictionary': p_resulting_dictionary,
                                 }
                                 // 'l constraints': {
@@ -1839,11 +1848,11 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
     const p_path: d_out.Relative_Value_Selection.path = _p.list.map_with_state(
         $.path['l list'],
         $p.value,
-        ($, current): d_out.Relative_Value_Selection.path.l_list.L => {
+        ($, current): d_out.Relative_Value_Selection.path.l_value.L => {
             const sg_loc = $['l location']
-            return _p_cc($['l item']['l state'], ($): d_out.Relative_Value_Selection.path.l_list.L => {
+            return _p_cc($['l item']['l state'], ($): d_out.Relative_Value_Selection.path.l_value.L => {
                 switch ($[0]) {
-                    case 'component': return _p.ss($, ($) => {
+                    case 'component': return _p.ss($, ($): d_out.Relative_Value_Selection.path.l_value.L => {
 
                         const sc_definition: d_out.Value.component = _p_cc(current, ($) => {
                             if ($[0] !== 'component') {
@@ -1853,14 +1862,16 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                         })
                         return {
                             'l item': ['component', null],
-                            'l result': _p_cc(sc_definition.type, ($) => {
-                                switch ($[0]) {
-                                    case 'external': return _p.ss($, ($) => $.module['l entry']['root value'])
-                                    case 'internal': return _p.ss($, ($) => $['l entry']['root value'])
-                                    case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
-                                    default: return _p.au($[0])
-                                }
-                            })
+                            'l results': {
+                                'result': _p_cc(sc_definition.type, ($) => {
+                                    switch ($[0]) {
+                                        case 'external': return _p.ss($, ($) => $.module['l entry']['root value'])
+                                        case 'internal': return _p.ss($, ($) => $['l entry']['root value'])
+                                        case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
+                                        default: return _p.au($[0])
+                                    }
+                                })
+                            }
                         }
                     })
                     case 'group': return _p.ss($, ($) => {
@@ -1877,10 +1888,12 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                         )
                         return {
                             'l item': ['group', p_child],
-                            'l result': p_child['l entry'].value
+                            'l results': {
+                                'result': p_child['l entry'].value
+                            }
                         }
                     })
-                    case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.l_list.L => {
+                    case 'reference': return _p.ss($, ($): d_out.Relative_Value_Selection.path.l_value.L => {
 
                         const sc_definition: d_out.Value.reference = _p_cc(current, ($) => {
                             if ($[0] !== 'reference') {
@@ -1905,22 +1918,26 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                             'l item': ['reference', {
                                 'definition': sc_definition
                             }],
-                            'l result': x
+                            'l results': {
+                                'result': x
+                            }
                         }
                     })
                     default: return _p.au($[0])
                 }
             })
         },
-        ($) => $['l result'],
+        ($) => $['l results'].result,
         (list, result) => ({
-            'l list': list,
-            'l result': result,
+            'l value': list,
+            'l results': {
+                'result': result,
+            }
         }),
     )
     return {
         'path': p_path,
-        'resulting node': p_path['l result'], // list result
+        'resulting node': p_path['l results'].result, // list result
     }
 })
 

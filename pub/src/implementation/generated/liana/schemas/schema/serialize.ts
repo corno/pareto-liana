@@ -109,14 +109,8 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => v_
     )
 )
 
-export const Value_Constraints: t_signatures.Value_Constraints = ($) => v_serialize.Document(
-    v_marshall.Value_Constraints(
-        $
-    )
-)
-
-export const Module_Reference: t_signatures.Module_Reference = ($) => v_serialize.Document(
-    v_marshall.Module_Reference(
+export const Value_Results: t_signatures.Value_Results = ($) => v_serialize.Document(
+    v_marshall.Value_Results(
         $
     )
 )
@@ -141,6 +135,12 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
 
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => v_serialize.Document(
     v_marshall.Value_Constraint_Resolvers(
+        $
+    )
+)
+
+export const Module_Reference: t_signatures.Module_Reference = ($) => v_serialize.Document(
+    v_marshall.Module_Reference(
         $
     )
 )

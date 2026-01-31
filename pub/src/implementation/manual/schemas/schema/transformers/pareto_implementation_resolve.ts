@@ -147,7 +147,7 @@ export const Guaranteed_Value_Selection = (
 ): d_out.Selection => {
     const tail = (): _pi.List<d_out.Selection.regular.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
-            $.tail.path['l list'],
+            $.tail.path['l value'],
             ($) => _p.decide.state($['l item'], ($): _pi.List<d_out.Selection.regular.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
@@ -282,73 +282,70 @@ export const Value_Resolver = (
         case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
 
         case 'component': return _p.ss($, ($) => {
-            const x = sh.e.select(
-                sh.s.call(
-                    _p.decide.state($.location, ($) => {
-                        switch ($[0]) {
-                            case 'external': return _p.ss($, ($) => sh.call.external("external " + $.import['l id'], $.signature['l id']))
-                            case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                            default: return _p.au($[0])
-                        }
-                    }),
-                    sh.e.select(sh.s.context(_p.boolean.optional_is_set($.definition.constraints) ? [] : [])),
-                    sh.e.select(sh.s.context([])),
-                    $.arguments.__decide(
-                        ($) => $.lookups.__decide(
-                            ($) => sh.lookups.initialize($.__d_map(
-                                ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'empty stack': return _p.ss($, ($) => sh.ls.implement_me("IM: empty stack"))
-                                        case 'not set': return _p.ss($, ($) => sh.ls.implement_me("IM: not set"))
-                                        case 'selection': return _p.ss($, ($) => sh.ls.implement_me("IM: selection"))
-                                        case 'stack': return _p.ss($, ($) => sh.ls.implement_me("IM: stack"))
-                                        //                                 case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
-                                        //                                 case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
-                                        //                                 case 'selection': return _p.ss($, ($) => sh.e.select(Lookup_Selection($, {})))
-                                        //                                 case 'stack': return _p.ss($, ($) => sh.e.implement_me("IM: stack")) // quite some work
-                                        default: return _p.au($[0])
-                                    }
-                                }),
-                            )),
-                            () => sh.lookups.pass_through()
-                        ),
-                        () => sh.lookups.not_set()
-                    ),
-                    $.arguments.__decide(
-                        ($) => $.modules.__decide(
-                            ($) => sh.arguments_.initialize($.__d_map(
-                                ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($))
-                                        case 'required': return _p.ss($, ($) => sh.e.implement_me("IM: required"))
-                                        case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.parameter($['l id'], [])))
-                                        //                                 case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($, null))
-                                        //                                 case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.from_variable(
-                                        //                                     "params",
-                                        //                                     ["values", $.id],
-                                        //                                 )))
-                                        //                                 case 'required': return _p.ss($, ($) => sh.e.select(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
-                                        default: return _p.au($[0])
-                                    }
-                                }),
-                            )),
-                            () => sh.arguments_.pass_through()
-                        ),
-                        () => sh.arguments_.not_set()
-                    ),
-                    [],
-                )
-            )
-            return _p.decide.optional(
-                $.definition.constraints,
-                ($) => sh.e.group.literal({
-                    "l component": x,
-                    "l constraints": sh.e.group.literal(_p.dictionary.map(
-                        $,
-                        () => sh.e.implement_me("IM: constraint")
-                    ))
-                }),
-                () => x,
+
+            const results = $.definition.results
+
+            return Value_Results(
+                $.definition.results,
+                {
+                    'base type': sh.e.select(
+                        sh.s.call(
+                            _p.decide.state($.location, ($) => {
+                                switch ($[0]) {
+                                    case 'external': return _p.ss($, ($) => sh.call.external("external " + $.import['l id'], $.signature['l id']))
+                                    case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
+                                    default: return _p.au($[0])
+                                }
+                            }),
+                            sh.e.select(sh.s.context(_p.boolean.optional_is_set($.definition.results) ? [] : [])),
+                            sh.e.select(sh.s.context([])),
+                            $.arguments.__decide(
+                                ($) => $.lookups.__decide(
+                                    ($) => sh.lookups.initialize($.__d_map(
+                                        ($) => _p.decide.state($, ($) => {
+                                            switch ($[0]) {
+                                                case 'empty stack': return _p.ss($, ($) => sh.ls.implement_me("IM: empty stack"))
+                                                case 'not set': return _p.ss($, ($) => sh.ls.implement_me("IM: not set"))
+                                                case 'selection': return _p.ss($, ($) => sh.ls.implement_me("IM: selection"))
+                                                case 'stack': return _p.ss($, ($) => sh.ls.implement_me("IM: stack"))
+                                                //                                 case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
+                                                //                                 case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
+                                                //                                 case 'selection': return _p.ss($, ($) => sh.e.select(Lookup_Selection($, {})))
+                                                //                                 case 'stack': return _p.ss($, ($) => sh.e.implement_me("IM: stack")) // quite some work
+                                                default: return _p.au($[0])
+                                            }
+                                        }),
+                                    )),
+                                    () => sh.lookups.pass_through()
+                                ),
+                                () => sh.lookups.not_set()
+                            ),
+                            $.arguments.__decide(
+                                ($) => $.modules.__decide(
+                                    ($) => sh.arguments_.initialize($.__d_map(
+                                        ($) => _p.decide.state($, ($) => {
+                                            switch ($[0]) {
+                                                case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($))
+                                                case 'required': return _p.ss($, ($) => sh.e.implement_me("IM: required"))
+                                                case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.parameter($['l id'], [])))
+                                                //                                 case 'optional': return _p.ss($, ($) => Optional_Value_Initialization($, null))
+                                                //                                 case 'parameter': return _p.ss($, ($) => sh.e.select(sh.s.from_variable(
+                                                //                                     "params",
+                                                //                                     ["values", $.id],
+                                                //                                 )))
+                                                //                                 case 'required': return _p.ss($, ($) => sh.e.select(Guaranteed_Value_Selection($, { 'tail': () => _p.list.literal([]) })))
+                                                default: return _p.au($[0])
+                                            }
+                                        }),
+                                    )),
+                                    () => sh.arguments_.pass_through()
+                                ),
+                                () => sh.arguments_.not_set()
+                            ),
+                            [],
+                        )
+                    )
+                }
             )
         })
         case 'dictionary': return _p.ss($, ($) => {
@@ -482,9 +479,10 @@ export const Value_Resolver = (
         ))
         case 'list': return _p.ss($, ($) => {
             const resolver: d_in.Value_Resolver = $.resolver
+            const results = $.definition.results
             return $.result.__decide(
                 ($) => sh.e.group.literal({
-                    "l list": sh.e.list.map_with_state(
+                    "l value": sh.e.list.map_with_state(
                         sh.s.context(["l list"]),
                         sh.e.implement_me("IM: initial state"), //depends on the aggregation
                         sh.e.group.literal({
@@ -497,7 +495,7 @@ export const Value_Resolver = (
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
-                                                sh_i.sub.group("l list"),
+                                                sh_i.sub.group("l value"),
                                                 sh_i.sub.list(),
                                                 sh_i.sub.group("l item"),
                                             ]
@@ -510,7 +508,9 @@ export const Value_Resolver = (
                         sh.e.implement_me("IM: update state"),
                         sh.e.implement_me("IM: wrapup"),
                     ),
-                    "l result": sh.e.implement_me("IM: result aggregation") //depends on the aggregation
+                    "l results": sh.e.group.literal({
+                        "result": sh.e.implement_me("IM: result aggregation") //depends on the aggregation
+                    })
                 }),
                 () => sh.e.list.map(
                     sh.s.context(["l list"]),
@@ -666,22 +666,28 @@ export const Value_Resolver = (
         //     }
         // })))
         case 'state': return _p.ss($, ($) => {
-            const yy = $
-            return _p.decide.optional(
-                $.definition.constraints,
-                ($) => sh.e.group.literal({
-                    "l state": sh.e.decide.state(
+            const results = $.definition.results
+            return Value_Results(
+                $.definition.results,
+                {
+                    'base type': sh.e.decide.state(
                         sh.s.context(["l state"]),
-                        yy.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
+                        $.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
                             $['resolver'],
                             {
                                 'temp type': $p['temp type'],
                                 'temp subselection': _p.list.nested_literal_old([
                                     $p['temp subselection'],
-                                    [
-                                        sh_i.sub.group("l state"),
-                                        sh_i.sub.state(id),
-                                    ]
+                                    _p.decide.optional(
+                                        results,
+                                        () => [
+                                            sh_i.sub.group("l value"),
+                                            sh_i.sub.state(id),
+                                        ],
+                                        () => [
+                                            sh_i.sub.state(id),
+                                        ]
+                                    )
                                 ]),
                             }
                         ))),
@@ -689,37 +695,17 @@ export const Value_Resolver = (
                             "out",
                             $p['temp type'], _p.list.nested_literal_old([
                                 $p['temp subselection'],
-                                [
-                                    sh_i.sub.group("l state"),
-                                ]
+                                _p.decide.optional(
+                                    results,
+                                    () => [
+                                        sh_i.sub.group("l value"),
+                                    ],
+                                    () => []
+                                ),
                             ]),
                         ),
-                    ),
-                    "l constraints": sh.e.group.literal(_p.dictionary.map(
-                        $,
-                        () => sh.e.implement_me("IM: constraint")
-                    ))
-                }),
-                () => sh.e.decide.state(
-                    sh.s.context(["l state"]),
-                    $.states.__d_map(($, id) => sh.e.state.literal(id, Value_Resolver(
-                        $['resolver'],
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh_i.sub.state(id)
-                                ]
-                            ]),
-                        }
-                    ))),
-                    sh.type_node_reference(
-                        "out",
-                        $p['temp type'],
-                        $p['temp subselection'],
-                    ),
-                ),
+                    )
+                }
             )
         })
         // case 'state': return _p.ss($, ($) => sh.e.decide.state(
@@ -751,3 +737,22 @@ export const Value_Resolver = (
         default: return _p.au($[0])
     }
 })
+
+export const Value_Results = (
+    $: d_in.Value_Results,
+    $p: {
+        'base type': d_out.Expression
+    }
+): d_out.Expression => {
+    return _p.decide.optional(
+        $,
+        ($) => sh.e.group.literal({
+            "l results": sh.e.group.literal(_p.dictionary.map(
+                $,
+                (): d_out.Expression => sh.e.implement_me("IM: result")
+            )),
+            "l value": $p['base type'],
+        }),
+        () => $p['base type']
+    )
+}

@@ -464,11 +464,11 @@ export type Value_Resolver_Group_ = (
     },
 ) => Value_Resolver_Group_.O
 
-export namespace Value_Constraints_ {
+export namespace Value_Results_ {
     
     export type I = string
     
-    export type O = i_out.Value_Constraints
+    export type O = i_out.Value_Results
     
     export type E = i_generic.Error
     
@@ -482,41 +482,14 @@ export namespace Value_Constraints_ {
     
 }
 
-export type Value_Constraints_ = (
-    context: Value_Constraints_.I,
-    abort: _pi.Abort<Value_Constraints_.E>,
+export type Value_Results_ = (
+    context: Value_Results_.I,
+    abort: _pi.Abort<Value_Results_.E>,
     parameters: {
-        readonly 'document resource identifier': Value_Constraints_.P.document_resource_identifier
-        readonly 'tab size': Value_Constraints_.P.tab_size
+        readonly 'document resource identifier': Value_Results_.P.document_resource_identifier
+        readonly 'tab size': Value_Results_.P.tab_size
     },
-) => Value_Constraints_.O
-
-export namespace Module_Reference_ {
-    
-    export type I = string
-    
-    export type O = i_out.Module_Reference
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Module_Reference_ = (
-    context: Module_Reference_.I,
-    abort: _pi.Abort<Module_Reference_.E>,
-    parameters: {
-        readonly 'document resource identifier': Module_Reference_.P.document_resource_identifier
-        readonly 'tab size': Module_Reference_.P.tab_size
-    },
-) => Module_Reference_.O
+) => Value_Results_.O
 
 export namespace Option_Constraints_ {
     
@@ -625,6 +598,33 @@ export type Value_Constraint_Resolvers_ = (
         readonly 'tab size': Value_Constraint_Resolvers_.P.tab_size
     },
 ) => Value_Constraint_Resolvers_.O
+
+export namespace Module_Reference_ {
+    
+    export type I = string
+    
+    export type O = i_out.Module_Reference
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Module_Reference_ = (
+    context: Module_Reference_.I,
+    abort: _pi.Abort<Module_Reference_.E>,
+    parameters: {
+        readonly 'document resource identifier': Module_Reference_.P.document_resource_identifier
+        readonly 'tab size': Module_Reference_.P.tab_size
+    },
+) => Module_Reference_.O
 
 export namespace Signature_Parameters_ {
     
@@ -1049,12 +1049,12 @@ export {
     Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Constraints_ as Value_Constraints, 
-    Module_Reference_ as Module_Reference, 
+    Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Value_ as Value, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Module_Reference_ as Module_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
     Lookup_Selection_ as Lookup_Selection, 

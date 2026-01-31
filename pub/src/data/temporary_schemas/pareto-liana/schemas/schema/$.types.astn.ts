@@ -136,7 +136,7 @@ export const $: g_.Modules = modules(
         }))),
 
         "Benchmark": module_(t.group({
-            "selection": prop(t.component_constrained("Guaranteed Value Selection", {
+            "selection": prop(t.component_with_results("Guaranteed Value Selection", {
                 "dictionary": sh.value_reference("Value", [vp.s("dictionary")])
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
@@ -157,7 +157,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Value Path": module_(t.group({
-            "tail": prop(t.path_to_sibling(
+            "tail": prop(t.list_with_results(
                 t.state_with_result(
                     {
                         "dictionary": toption(t.nothing()),
@@ -171,7 +171,9 @@ export const $: g_.Modules = modules(
                     }
 
                 ),
-                "Value"
+                {
+                    "result": value_reference("Value", [])
+                }
             )),
             "resulting node": prop(t.reference_derived("Value", [])),
 
@@ -215,7 +217,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Relative Value Selection": module_(t.group({
-            "path": prop(t.path_to_sibling(
+            "path": prop(t.list_with_results(
                 t.state({
                     "component": toption(t.nothing()),
                     "group": toption(t.reference("Group", [])),
@@ -223,7 +225,9 @@ export const $: g_.Modules = modules(
                         "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
                     })),
                 }),
-                "Value"
+                {
+                    "result": value_reference("Value", [])
+                }
             )),
             "resulting node": prop(t.reference_derived("Value", [])),
         })),
@@ -303,13 +307,13 @@ export const $: g_.Modules = modules(
                     "internal": toption(t.reference("Modules", [])),
                     "internal cyclic": toption(t.reference("Modules", [], 'cyclic')),
                 })),
-                "constraints": prop(t.component("Value Constraints")),
+                "results": prop(t.component("Value Results")),
             })),
             "dictionary": toption(t.component("Dictionary")),
             "group": toption(t.component("Group")),
             "list": toption(t.group({
                 "value": prop(t.component_cyclic("Value")),
-                "result": prop(t.optional(t.component("Module Reference"))),
+                "results": prop(t.component("Value Results")),
             })),
             "nothing": toption(t.nothing()),
             "number": toption(t.state({
@@ -337,7 +341,7 @@ export const $: g_.Modules = modules(
                     "description": prop(t.optional(t.text_local(text('multi line')))),
                     "value": prop(t.component_cyclic("Value")),
                 }))),
-                "constraints": prop(t.component("Value Constraints")),
+                "results": prop(t.component("Value Results")),
             })),
             "text": toption(t.state({
                 "global": toption(t.reference("Globals", [vp.g("text types")])),
@@ -345,7 +349,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Value Constraints": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
+        "Value Results": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
 
         "Option Constraints": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
 

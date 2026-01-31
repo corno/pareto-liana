@@ -279,23 +279,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
     )
 )
 
-export const Value_Constraints: t_signatures.Value_Constraints = ($, abort, $p) => v_unmarshall.Value_Constraints(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['tbd', null]
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        }
-    )['content'],
-    ($) => abort(
-        ['tbd', null]
-    )
-)
-
-export const Module_Reference: t_signatures.Module_Reference = ($, abort, $p) => v_unmarshall.Module_Reference(
+export const Value_Results: t_signatures.Value_Results = ($, abort, $p) => v_unmarshall.Value_Results(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -360,6 +344,22 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
 )
 
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $p) => v_unmarshall.Value_Constraint_Resolvers(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['tbd', null]
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        }
+    )['content'],
+    ($) => abort(
+        ['tbd', null]
+    )
+)
+
+export const Module_Reference: t_signatures.Module_Reference = ($, abort, $p) => v_unmarshall.Module_Reference(
     v_deserialize.Document(
         $,
         ($) => abort(

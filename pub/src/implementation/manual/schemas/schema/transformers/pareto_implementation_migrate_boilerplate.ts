@@ -106,7 +106,7 @@ export const Value = (
                                 default: return _p.au($[0])
                             }
                         }),
-                        sh.e.select(sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l component"] : [])),
+                        sh.e.select(sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -180,12 +180,7 @@ export const Value = (
                     ? sh.e.group.literal({
                         "l location": location,
                         "l list": sh.e.list.map(
-                            sh.s.context(
-                                $.result.__decide(
-                                    ($) => ["l list"],
-                                    () => [],
-                                )
-                            ),
+                            sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                             sh.e.group.literal({
                                 "l item": _p_cc($, ($) => {
                                     const tn = Value(
@@ -203,7 +198,7 @@ export const Value = (
                                             'constrained': $p.constrained,
                                         }
                                     )
-                                    return $.result.__decide(
+                                    return $.results.__decide(
                                         ($) => sh.e.change_context(
                                             sh.s.context(["l item"]),
                                             tn
@@ -269,7 +264,7 @@ export const Value = (
             }))
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.e.decide.state(
-                       sh.s.context(_p.boolean.optional_is_set($.constraints) ? ["l state"] : []),
+                sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                     $.options.__d_map(($, id) => sh.e.state.literal(id, Value(
                         $.value,
                         {
