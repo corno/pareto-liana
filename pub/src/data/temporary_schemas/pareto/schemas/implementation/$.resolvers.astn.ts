@@ -303,7 +303,11 @@ export const $: g_.Module_Resolvers = resolvers(
                     "lookup entry": option(r.group({
                         "lookup": r.component("Lookup Selection", {}, {}),
                         "id": r.component("Expression", {}, {}),
-                        "abort handler": r.component("Expression", {}, {}),
+                        "abort handlers": r.group({
+                            "no such entry": r.component("Expression", {}, {}),
+                            "no context lookup": r.component("Expression", {}, {}),
+                            "cycle detected": r.component("Expression", {}, {}),
+                        }),
                     })),
                     "parameter": option(r.text()),
                     "parent sibling": option(r.text()),

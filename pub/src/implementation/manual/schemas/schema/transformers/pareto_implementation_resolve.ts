@@ -633,6 +633,7 @@ export const Value_Resolver = (
                 ))
                 case 'selected': return _p.ss($, ($) => {
                     const x = $.lookup
+                    const x_out = Lookup_Selection(x)
                     return _p.decide.state($.definition.dependency, ($) => {
                         switch ($[0]) {
                             case 'stack': return _p.ss($, ($) => sh.e.group.literal({
@@ -642,8 +643,42 @@ export const Value_Resolver = (
                                 "l up steps": sh.e.implement_me("IM: FIXME UPSTEPS"),
                             }))
                             case 'acyclic': return _p.ss($, ($) => sh.e.group.literal({
-                                "l entry": sh.e.implement_me("IM: FIXME ACYCLIC ENTRY"),
-                                // "l entry": sh.e.select(Lookup_Selection(x)),
+                                // "l entry": sh.e.implement_me("IM: FIXME ACYCLIC ENTRY"),
+                                "l entry": sh.e.select(sh.s.lookup_entry(
+                                    x_out,
+                                    sh.e.select(sh.s.context(["l reference"])),
+                                    sh.e.group.literal({
+                                        "type": sh.e.state.literal(
+                                            "lookup",
+                                            sh.e.state.literal(
+                                                "no such entry",
+                                                sh.e.select(sh.s.context(["l reference"]))
+                                            )
+                                        ),
+                                        "location": sh.e.select(sh.s.context(["l location"])),
+                                    }),
+                                    sh.e.group.literal({
+                                        "type": sh.e.state.literal(
+                                            "lookup",
+                                            sh.e.state.literal(
+                                                "no context lookup",
+                                                sh.e.nothing()
+                                            )
+                                        ),
+                                        "location": sh.e.select(sh.s.context(["l location"])),
+                                    }),
+                                    sh.e.group.literal({
+                                        "type": sh.e.state.literal(
+                                            "lookup",
+                                            sh.e.state.literal(
+                                                "cycle detected",
+                                                sh.e.nothing()
+                                            )
+                                        ),
+                                        "location": sh.e.select(sh.s.context(["l location"])),
+                                    }),
+
+                                )),
                                 "l id": sh.e.select(sh.s.context(["l reference"])),
                             }))
                             case 'cyclic': return _p.ss($, ($) => sh.e.group.literal({

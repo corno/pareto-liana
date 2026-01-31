@@ -313,7 +313,11 @@ export const $: g_.Modules = modules(
                     "lookup entry": toption(t.group({
                         "lookup": prop(t.component("Lookup Selection")),
                         "id": prop(t.component("Expression")),
-                        "abort handler": prop(t.component("Expression")),
+                        "abort handlers": prop(t.group({
+                            "no such entry": prop(t.component("Expression")),
+                            "no context lookup": prop(t.component("Expression")),
+                            "cycle detected": prop(t.component("Expression")),
+                        })),
                     })),
                     "parameter": toption(t.text_global("TBD")),
                     "parent sibling": toption(t.text_global("TBD")),

@@ -59,8 +59,8 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                                 "same node": sh.t.text(),
                             }),
                             "lookup": sh.t.state({
-                                "cyclic lookup in acyclic context": sh.t.text(),
-                                "optional lookup not set": sh.t.nothing(),
+                                "cycle detected": sh.t.nothing(),
+                                "no context lookup": sh.t.nothing(),
                                 "no such entry": sh.t.text(),
                             }),
                             "missing required entries": sh.t.dictionary(sh.t.nothing()),

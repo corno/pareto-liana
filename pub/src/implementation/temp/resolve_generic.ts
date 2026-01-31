@@ -115,7 +115,7 @@ export const get_entry_acyclic = <T>(
         'l entry': lookup.get_entry(
             ref['l reference'],
             {
-                cyclic: () => abort({
+                cycle_detected: () => abort({
                     'type': ['lookup', ['cyclic lookup in acyclic context', ref['l reference']]],
                     'location': ref['l location'],
                 }),
@@ -167,7 +167,7 @@ export const get_entry_stack = <T>(
         'l up steps': stack.get_entry_depth(
             reference['l reference'],
             {
-                cyclic: () => abort({
+                cycle_detected: () => abort({
                     'type': ['lookup', ['cyclic lookup in acyclic context', reference['l reference']]],
                     'location': reference['l location'],
                 }),
@@ -184,7 +184,7 @@ export const get_entry_stack = <T>(
         'l entry': stack.get_entry(
             reference['l reference'],
             {
-                cyclic: () => abort({
+                cycle_detected: () => abort({
                     'type': ['lookup', ['cyclic lookup in acyclic context', reference['l reference']]],
                     'location': reference['l location'],
                 }),
