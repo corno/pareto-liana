@@ -35,30 +35,28 @@ export const $: g_.Modules = modules(
 
         "Globals": module_(t.group({
             "text types": prop(t.dictionary(t.component("Text Type"))),
-            // "number types": t.dictionary(t.component("Number Type")),
         })),
 
-        "Modules": module_(t.dictionary(t.component("Module"))),
-
-        "Module": module_(t.group({
-            // "type parameters": t.component("Type Parameters"),
-            "node": prop(t.component("Value"))
-        })),
+        "Modules": module_(t.dictionary(t.group({
+            "root value": prop(t.component("Value"))
+        }))),
 
         "Value": module_(t.state({
-            //"boolean": t.nothing(),
             "component": toption(t.state({
                 "external": toption(t.group({
                     "import": prop(t.reference("Imports", [])),
                     "type": prop(t.reference("Modules", [])),
                 })),
-                "internal": toption(t.reference("Modules", [])),
-                "internal cyclic": toption(t.reference("Modules", [], 'cyclic')),
+                "internal acyclic": toption(t.reference("Modules", [])),
+                "internal": toption(t.reference("Modules", [], 'cyclic')),
             })),
-            "dictionary": toption(t.component("Dictionary")),
-            "group": toption(t.component("Group")),
+            "dictionary": toption(t.group({
+                "value": prop(t.component("Value")),
+                "ordered": prop(t.boolean()),
+            })),
+            "group": toption(t.dictionary(t.component("Value"))),
             "list": toption(t.group({
-                "node": prop(t.component("Value")),
+                "value": prop(t.component("Value")),
             })),
             "nothing": toption(t.nothing()),
             "optional": toption(t.component("Value")),
@@ -74,13 +72,6 @@ export const $: g_.Modules = modules(
                 "multi line": toption(t.nothing()),
                 "single line": toption(t.nothing()),
             })),
-        })),
-
-        "Group": module_(t.dictionary(t.component("Value"))),
-
-        "Dictionary": module_(t.group({
-            "node": prop(t.component("Value")),
-            "ordered": prop(t.boolean()),
         })),
 
     }

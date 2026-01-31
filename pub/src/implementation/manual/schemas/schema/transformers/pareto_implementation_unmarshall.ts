@@ -198,7 +198,7 @@ export const Value = (
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                                 case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                                case 'internal cyclic': return _p.ss($, ($) => sh.call.local($['l id']))
+                                case 'internal acyclic': return _p.ss($, ($) => sh.call.local($['l id']))
                                 default: return _p.au($[0])
                             }
                         }),

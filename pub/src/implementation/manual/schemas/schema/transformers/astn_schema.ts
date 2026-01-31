@@ -47,30 +47,34 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
     'schema set child': sh.reference($['schema set child']['l id'])
 })))
 
-export const Module: _pi.Transformer<d_in.Module, d_out.Module> = (
+export const Module: _pi.Transformer<d_in.Module, d_out.Modules.l_dictionary.D.l_entry> = (
     $
 ) => ({
-    'node': Value($['root value'])
+    'root value': Value($['root value'])
 })
 
 export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
     $
 ) => sh.state(_p.decide.state($, ($): d_out.Value.l_state => {
     switch ($[0]) {
-        case 'number': return _p.ss($, ($): d_out.Value.l_state => ['text', sh.state(_p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
-            switch ($[0]) {
-                case 'global': return _p.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
-                case 'local': return _p.ss($, ($) => ['local', {
-                    'type': sh.state(['single line', null])
-                }])
-                default: return _p.au($[0])
-            }
-        }))]) //FIXME
-        case 'boolean': return _p.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
-            'type': sh.state(['single line', null])
-        }])])
+        case 'number': return _p.ss($, ($): d_out.Value.l_state => ['text', sh.state(
+            _p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
+                switch ($[0]) {
+                    case 'global': return _p.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
+                    case 'local': return _p.ss($, ($) => ['local', {
+                        'type': sh.state(['single line', null])
+                    }])
+                    default: return _p.au($[0])
+                }
+            })
+        )])
+        case 'boolean': return _p.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(
+            ['local', {
+                'type': sh.state(['single line', null])
+            }]
+        )])
         case 'list': return _p.ss($, ($) => ['list', {
-            'node': Value($.value)
+            'value': Value($.value)
         }])
         case 'nothing': return _p.ss($, ($) => ['nothing', null])
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
@@ -88,14 +92,14 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
                     'import': sh.reference($.import['l id']),
                     'type': sh.reference($.module['l id'])
                 }])
+                case 'internal acyclic': return _p.ss($, ($) => ['internal acyclic', sh.reference($['l id'])])
                 case 'internal': return _p.ss($, ($) => ['internal', sh.reference($['l id'])])
-                case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', sh.reference($['l id'])])
                 default: return _p.au($[0])
             }
         }))])
         case 'dictionary': return _p.ss($, ($) => ['dictionary', {
             'ordered': false,
-            'node': Value($.value)
+            'value': Value($.value)
         }])
         case 'group': return _p.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.value)))])
         case 'optional': return _p.ss($, ($) => ['optional', Value($)])

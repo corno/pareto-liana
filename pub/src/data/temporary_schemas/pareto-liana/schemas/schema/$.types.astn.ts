@@ -19,6 +19,188 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
+        "Value": module_(t.state({
+            "boolean": toption(t.nothing()),
+            "component": toption(t.group({
+                "type": prop(t.state({
+                    "external": toption(t.group({
+                        "import": prop(t.reference("Imports", [])),
+                        "module": prop(t.reference("Modules", [])),
+                    })),
+                    "internal": toption(t.reference("Modules", [], 'cyclic')),
+                    "internal acyclic": toption(t.reference("Modules", [])), //I don't think this will ever be needed
+                })),
+                "results": prop(t.component("Value Results")),
+            })),
+            "dictionary": toption(t.component("Dictionary")),
+            "group": toption(t.component("Group")),
+            "list": toption(t.group({
+                "value": prop(t.component("Value")),
+                "results": prop(t.component("Value Results")),
+            })),
+            "nothing": toption(t.nothing()),
+            "number": toption(t.state({
+                "global": toption(t.reference("Globals", [vp.g("number types")])),
+                "local": toption(t.component("Number Type")),
+            })),
+            "optional": toption(t.component("Value")),
+            "reference": toption(t.group({
+                "referent": prop(t.component("Value Reference")),
+                "type": prop(t.state({
+                    "derived": toption(t.nothing()),
+                    "selected": toption(t.group({
+                        "dictionary": prop(t.reference_derived("Dictionary", [])),
+                        "dependency": prop(t.state({
+                            "acyclic": toption(t.nothing()),
+                            "cyclic": toption(t.nothing()),
+                            "stack": toption(t.nothing()),
+                        })),
+                    })),
+                })),
+            })),
+            "state": toption(t.group({
+                "options": prop(t.dictionary(t.group({
+                    "constraints": prop(t.component("Option Constraints")),
+                    "description": prop(t.optional(t.text_local(text('multi line')))),
+                    "value": prop(t.component("Value")),
+                }))),
+                "results": prop(t.component("Value Results")),
+            })),
+            "text": toption(t.state({
+                "global": toption(t.reference("Globals", [vp.g("text types")])),
+                "local": toption(t.component("Text Type")),
+            })),
+        })),
+
+        "Value Resolver": module_(t.state({
+            "boolean": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("boolean")])
+                },
+                t.nothing()
+            ),
+            "component": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("component")])
+                },
+                t.group({
+                    "definition": prop(t.reference_derived("Value", [vp.s("component"),])),
+
+                    "location": prop(t.state({
+                        "external": toption(t.group({
+                            "import": prop(t.reference("Imports", [])),
+                            "signature": prop(t.reference("Signatures", [])),
+                        })),
+                        "internal": toption(t.reference("Signatures", [])),
+                    })),
+                    "signature": prop(t.reference_derived("Signatures", [vp.d()])),
+                    "arguments": prop(t.optional(t.group({
+                        "modules": prop(t.optional(t.dictionary(t.state({
+                            "optional": toption(t.component("Optional Value Initialization")),
+                            "required": toption(t.component("Guaranteed Value Selection")),
+                            "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
+                        })))),
+                        "lookups": prop(t.optional(t.dictionary(t.state({
+                            "stack": toption(t.state({
+                                "empty": toption(t.nothing()),
+                                "push": toption(t.group({
+                                    "stack": prop(t.component("Lookup Selection")),
+                                    "item": prop(t.component("Lookup Selection")),
+                                })),
+                            })),
+                            "acyclic": toption(t.state({
+                                "not set": toption(t.nothing()),
+                            })),
+                            "cyclic": toption(t.state({
+                                "not set": toption(t.nothing()),
+                            })),
+                            "selection": toption(t.component("Lookup Selection")),
+                        })))),
+                    }))),
+                    "constraints": prop(t.component("Value Constraint Resolvers")),
+                })
+            ),
+            "dictionary": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("dictionary")])
+                },
+                t.group({
+                    "definition": prop(t.reference_derived("Dictionary", [])),
+                    "resolver": prop(t.component("Value Resolver")),
+                    "benchmark": prop(t.optional(t.component("Benchmark"))),
+                })
+            ),
+            "group": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("group")])
+                },
+                t.component("Value Resolver Group")
+            ),
+            "list": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("list")])
+                },
+                t.group({
+                    "definition": prop(t.reference_derived("Value", [vp.s("list")])),
+                    "resolver": prop(t.component("Value Resolver")),
+                    "result": prop(t.optional(t.component("Value Resolver List Result"))),
+                })
+            ),
+            "nothing": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("nothing")])
+                },
+                t.nothing()
+            ),
+            "number": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("number")])
+                },
+                t.nothing()
+            ),
+            "optional": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("optional")])
+                },
+                t.group({
+                    "constraints": prop(t.component("Option Constraint Resolvers")),
+                    "resolver": prop(t.component("Value Resolver")),
+                })
+            ),
+            "reference": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("reference")])
+                },
+                t.group({
+                    "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
+                    "type": prop(t.state({
+                        "derived": toption(t.group({
+                            "value": prop(t.component("Guaranteed Value Selection")),
+                        })),
+                        "selected": toption(t.group({
+                            "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
+                            "lookup": prop(t.component("Lookup Selection")),
+                            "constraints": prop(t.component("Value Constraint Resolvers")),
+                        })),
+                    })),
+                })
+            ),
+            "state": sh.toption_constrained(
+                {
+                    "definition": value_reference("Value", [vp.s("state")])
+                },
+                t.group({
+                    "definition": prop(t.reference_derived("Value", [vp.s("state")])),
+                    "states": prop(t.dictionary(t.group({
+                        "constraints": prop(t.component("Option Constraint Resolvers")),
+                        "resolver": prop(t.component("Value Resolver")),
+                    }))
+                    ),
+                })),
+            "text": toption(t.nothing()),
+            // "type parameter": t.nothing(),
+        })),
+
         "Module Specification": module_(t.group({
             "schema": prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
             "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_local(text('single line')))),
@@ -298,191 +480,9 @@ export const $: g_.Modules = modules(
 
         "Value Resolver List Result": module_(t.component("Module Reference")),
 
-        "Value": module_(t.state({
-            "boolean": toption(t.nothing()),
-            "component": toption(t.group({
-                "type": prop(t.state({
-                    "external": toption(t.group({
-                        "import": prop(t.reference("Imports", [])),
-                        "module": prop(t.reference("Modules", [])),
-                    })),
-                    "internal": toption(t.reference("Modules", [])),
-                    "internal cyclic": toption(t.reference("Modules", [], 'cyclic')),
-                })),
-                "results": prop(t.component("Value Results")),
-            })),
-            "dictionary": toption(t.component("Dictionary")),
-            "group": toption(t.component("Group")),
-            "list": toption(t.group({
-                "value": prop(t.component("Value")),
-                "results": prop(t.component("Value Results")),
-            })),
-            "nothing": toption(t.nothing()),
-            "number": toption(t.state({
-                "global": toption(t.reference("Globals", [vp.g("number types")])),
-                "local": toption(t.component("Number Type")),
-            })),
-            "optional": toption(t.component("Value")),
-            "reference": toption(t.group({
-                "referent": prop(t.component("Value Reference")),
-                "type": prop(t.state({
-                    "derived": toption(t.nothing()),
-                    "selected": toption(t.group({
-                        "dictionary": prop(t.reference_derived("Dictionary", [])),
-                        "dependency": prop(t.state({
-                            "acyclic": toption(t.nothing()),
-                            "cyclic": toption(t.nothing()),
-                            "stack": toption(t.nothing()),
-                        })),
-                    })),
-                })),
-            })),
-            "state": toption(t.group({
-                "options": prop(t.dictionary(t.group({
-                    "constraints": prop(t.component("Option Constraints")),
-                    "description": prop(t.optional(t.text_local(text('multi line')))),
-                    "value": prop(t.component("Value")),
-                }))),
-                "results": prop(t.component("Value Results")),
-            })),
-            "text": toption(t.state({
-                "global": toption(t.reference("Globals", [vp.g("text types")])),
-                "local": toption(t.component("Text Type")),
-            })),
-        })),
-
         "Value Results": module_(t.optional(t.dictionary(t.component("Value Reference")))),
 
         "Option Constraints": module_(t.optional(t.dictionary(t.component("Value Reference")))),
-
-        "Value Resolver": module_(t.state({
-            "boolean": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("boolean")])
-                },
-                t.nothing()
-            ),
-            "component": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("component")])
-                },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("component"),])),
-
-                    "location": prop(t.state({
-                        "external": toption(t.group({
-                            "import": prop(t.reference("Imports", [])),
-                            "signature": prop(t.reference("Signatures", [])),
-                        })),
-                        "internal": toption(t.reference("Signatures", [])),
-                    })),
-                    "signature": prop(t.reference_derived("Signatures", [vp.d()])),
-                    "arguments": prop(t.optional(t.group({
-                        "modules": prop(t.optional(t.dictionary(t.state({
-                            "optional": toption(t.component("Optional Value Initialization")),
-                            "required": toption(t.component("Guaranteed Value Selection")),
-                            "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
-                        })))),
-                        "lookups": prop(t.optional(t.dictionary(t.state({
-                            "stack": toption(t.state({
-                                "empty": toption(t.nothing()),
-                                "push": toption(t.group({
-                                    "stack": prop(t.component("Lookup Selection")),
-                                    "item": prop(t.component("Lookup Selection")),
-                                })),
-                            })),
-                            "acyclic": toption(t.state({
-                                "not set": toption(t.nothing()),
-                            })),
-                            "cyclic": toption(t.state({
-                                "not set": toption(t.nothing()),
-                            })),
-                            "selection": toption(t.component("Lookup Selection")),
-                        })))),
-                    }))),
-                    "constraints": prop(t.component("Value Constraint Resolvers")),
-                })
-            ),
-            "dictionary": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("dictionary")])
-                },
-                t.group({
-                    "definition": prop(t.reference_derived("Dictionary", [])),
-                    "resolver": prop(t.component("Value Resolver")),
-                    "benchmark": prop(t.optional(t.component("Benchmark"))),
-                })
-            ),
-            "group": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("group")])
-                },
-                t.component("Value Resolver Group")
-            ),
-            "list": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("list")])
-                },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("list")])),
-                    "resolver": prop(t.component("Value Resolver")),
-                    "result": prop(t.optional(t.component("Value Resolver List Result"))),
-                })
-            ),
-            "nothing": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("nothing")])
-                },
-                t.nothing()
-            ),
-            "number": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("number")])
-                },
-                t.nothing()
-            ),
-            "optional": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("optional")])
-                },
-                t.group({
-                    "constraints": prop(t.component("Option Constraint Resolvers")),
-                    "resolver": prop(t.component("Value Resolver")),
-                })
-            ),
-            "reference": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("reference")])
-                },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
-                    "type": prop(t.state({
-                        "derived": toption(t.group({
-                            "value": prop(t.component("Guaranteed Value Selection")),
-                        })),
-                        "selected": toption(t.group({
-                            "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
-                            "lookup": prop(t.component("Lookup Selection")),
-                            "constraints": prop(t.component("Value Constraint Resolvers")),
-                        })),
-                    })),
-                })
-            ),
-            "state": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("state")])
-                },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("state")])),
-                    "states": prop(t.dictionary(t.group({
-                        "constraints": prop(t.component("Option Constraint Resolvers")),
-                        "resolver": prop(t.component("Value Resolver")),
-                    }))
-                    ),
-                })),
-            "text": toption(t.nothing()),
-            // "type parameter": t.nothing(),
-        })),
 
         "Guaranteed Value Selection": module_(t.group({
             "start": prop(t.state({

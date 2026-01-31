@@ -7,44 +7,6 @@ import * as i_out from "./data/unresolved"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
-export namespace Module_Specification_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module_Specification
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Module_Specification_ = (
-    context: Module_Specification_.I,
-    abort: _pi.Abort<Module_Specification_.E>,
-) => Module_Specification_.O
-
-export namespace Schema_Tree_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schema_Tree
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Schema_Tree_ = (
-    context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
-) => Schema_Tree_.O
-
 export namespace Schemas_ {
     
     export type I = i_in.Value
@@ -102,6 +64,25 @@ export type Imports_ = (
     abort: _pi.Abort<Imports_.E>,
 ) => Imports_.O
 
+export namespace Modules_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Modules
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Modules_ = (
+    context: Modules_.I,
+    abort: _pi.Abort<Modules_.E>,
+) => Modules_.O
+
 export namespace Globals_ {
     
     export type I = i_in.Value
@@ -121,11 +102,11 @@ export type Globals_ = (
     abort: _pi.Abort<Globals_.E>,
 ) => Globals_.O
 
-export namespace Modules_ {
+export namespace Dictionary_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Modules
+    export type O = i_out.Dictionary
     
     export type E = i_generic.Error
     
@@ -135,10 +116,124 @@ export namespace Modules_ {
     
 }
 
-export type Modules_ = (
-    context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
-) => Modules_.O
+export type Dictionary_ = (
+    context: Dictionary_.I,
+    abort: _pi.Abort<Dictionary_.E>,
+) => Dictionary_.O
+
+export namespace Value_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
+) => Value_.O
+
+export namespace Signatures_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Signatures
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Signatures_ = (
+    context: Signatures_.I,
+    abort: _pi.Abort<Signatures_.E>,
+) => Signatures_.O
+
+export namespace Signature_Parameters_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Signature_Parameters
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Signature_Parameters_ = (
+    context: Signature_Parameters_.I,
+    abort: _pi.Abort<Signature_Parameters_.E>,
+) => Signature_Parameters_.O
+
+export namespace Value_Resolver_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value_Resolver
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Resolver_ = (
+    context: Value_Resolver_.I,
+    abort: _pi.Abort<Value_Resolver_.E>,
+) => Value_Resolver_.O
+
+export namespace Module_Specification_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Module_Specification
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Module_Specification_ = (
+    context: Module_Specification_.I,
+    abort: _pi.Abort<Module_Specification_.E>,
+) => Module_Specification_.O
+
+export namespace Schema_Tree_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Schema_Tree
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Schema_Tree_ = (
+    context: Schema_Tree_.I,
+    abort: _pi.Abort<Schema_Tree_.E>,
+) => Schema_Tree_.O
 
 export namespace Resolve_Logic_ {
     
@@ -235,44 +330,6 @@ export type Presence_ = (
     abort: _pi.Abort<Presence_.E>,
 ) => Presence_.O
 
-export namespace Dictionary_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Dictionary
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
-) => Dictionary_.O
-
-export namespace Signatures_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Signatures
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Signatures_ = (
-    context: Signatures_.I,
-    abort: _pi.Abort<Signatures_.E>,
-) => Signatures_.O
-
 export namespace Module_Resolvers_ {
     
     export type I = i_in.Value
@@ -292,158 +349,6 @@ export type Module_Resolvers_ = (
     abort: _pi.Abort<Module_Resolvers_.E>,
 ) => Module_Resolvers_.O
 
-export namespace Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Group_ = (
-    context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
-) => Group_.O
-
-export namespace Value_Resolver_Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Resolver_Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_Resolver_Group_ = (
-    context: Value_Resolver_Group_.I,
-    abort: _pi.Abort<Value_Resolver_Group_.E>,
-) => Value_Resolver_Group_.O
-
-export namespace Value_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_ = (
-    context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
-) => Value_.O
-
-export namespace Option_Constraint_Resolvers_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Option_Constraint_Resolvers
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Option_Constraint_Resolvers_ = (
-    context: Option_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
-) => Option_Constraint_Resolvers_.O
-
-export namespace Value_Constraint_Resolvers_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Constraint_Resolvers
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_Constraint_Resolvers_ = (
-    context: Value_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
-) => Value_Constraint_Resolvers_.O
-
-export namespace Signature_Parameters_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Signature_Parameters
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Signature_Parameters_ = (
-    context: Signature_Parameters_.I,
-    abort: _pi.Abort<Signature_Parameters_.E>,
-) => Signature_Parameters_.O
-
-export namespace Value_Resolver_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Resolver
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_Resolver_ = (
-    context: Value_Resolver_.I,
-    abort: _pi.Abort<Value_Resolver_.E>,
-) => Value_Resolver_.O
-
-export namespace Guaranteed_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Guaranteed_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Guaranteed_Value_Selection_ = (
-    context: Guaranteed_Value_Selection_.I,
-    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
-) => Guaranteed_Value_Selection_.O
-
 export namespace Benchmark_ {
     
     export type I = i_in.Value
@@ -462,6 +367,25 @@ export type Benchmark_ = (
     context: Benchmark_.I,
     abort: _pi.Abort<Benchmark_.E>,
 ) => Benchmark_.O
+
+export namespace Group_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Group
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Group_ = (
+    context: Group_.I,
+    abort: _pi.Abort<Group_.E>,
+) => Group_.O
 
 export namespace Value_Reference_ {
     
@@ -596,6 +520,44 @@ export type Constraint_ = (
     abort: _pi.Abort<Constraint_.E>,
 ) => Constraint_.O
 
+export namespace Option_Constraint_Resolvers_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Option_Constraint_Resolvers
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Option_Constraint_Resolvers_ = (
+    context: Option_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
+) => Option_Constraint_Resolvers_.O
+
+export namespace Value_Constraint_Resolvers_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value_Constraint_Resolvers
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Constraint_Resolvers_ = (
+    context: Value_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
+) => Value_Constraint_Resolvers_.O
+
 export namespace Reference_To_Value_Constraint_Resolver_ {
     
     export type I = i_in.Value
@@ -652,6 +614,25 @@ export type Optional_Value_Initialization_ = (
     context: Optional_Value_Initialization_.I,
     abort: _pi.Abort<Optional_Value_Initialization_.E>,
 ) => Optional_Value_Initialization_.O
+
+export namespace Value_Resolver_Group_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value_Resolver_Group
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_Resolver_Group_ = (
+    context: Value_Resolver_Group_.I,
+    abort: _pi.Abort<Value_Resolver_Group_.E>,
+) => Value_Resolver_Group_.O
 
 export namespace Value_Resolver_List_Result_ {
     
@@ -710,6 +691,25 @@ export type Option_Constraints_ = (
     abort: _pi.Abort<Option_Constraints_.E>,
 ) => Option_Constraints_.O
 
+export namespace Guaranteed_Value_Selection_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Guaranteed_Value_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Guaranteed_Value_Selection_ = (
+    context: Guaranteed_Value_Selection_.I,
+    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
+) => Guaranteed_Value_Selection_.O
+
 export namespace Possible_Value_Selection_ {
     
     export type I = i_in.Value
@@ -730,30 +730,26 @@ export type Possible_Value_Selection_ = (
 ) => Possible_Value_Selection_.O
 
 export { 
-    Module_Specification_ as Module_Specification, 
-    Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
     Imports_ as Imports, 
-    Globals_ as Globals, 
     Modules_ as Modules, 
+    Globals_ as Globals, 
+    Dictionary_ as Dictionary, 
+    Value_ as Value, 
+    Signatures_ as Signatures, 
+    Signature_Parameters_ as Signature_Parameters, 
+    Value_Resolver_ as Value_Resolver, 
+    Module_Specification_ as Module_Specification, 
+    Schema_Tree_ as Schema_Tree, 
     Resolve_Logic_ as Resolve_Logic, 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Module_ as Module, 
     Presence_ as Presence, 
-    Dictionary_ as Dictionary, 
-    Signatures_ as Signatures, 
     Module_Resolvers_ as Module_Resolvers, 
-    Group_ as Group, 
-    Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_ as Value, 
-    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
-    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
-    Signature_Parameters_ as Signature_Parameters, 
-    Value_Resolver_ as Value_Resolver, 
-    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
+    Group_ as Group, 
     Value_Reference_ as Value_Reference, 
     Value_Path_ as Value_Path, 
     Module_Reference_ as Module_Reference, 
@@ -761,11 +757,15 @@ export {
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
+    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Optional_Value_Initialization_ as Optional_Value_Initialization, 
+    Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
     Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
+    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
 }

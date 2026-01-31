@@ -10,40 +10,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Text Type": sig.local({}, {}),
         "Globals": sig.local({}, {}),
 
-        "Group": sig.local(
-            {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
-            },
-            {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
-            }
-        ),
-
-        "Dictionary": sig.local(
-            {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
-            },
-            {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
-            }
-        ),
-
         "Value": sig.local(
-            {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
-            },
-            {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
-            }
-        ),
-
-        "Module": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
                 "imports": value_parameter("Imports", 'optional'),

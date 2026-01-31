@@ -619,20 +619,20 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p.decide.state(
                                                         }
                                                     )]
                                                 )
-                                            case 'internal':
+                                            case 'internal acyclic':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['internal', {
+                                                    ($) => ['internal acyclic', {
                                                         'l entry': _pdev.implement_me(
                                                             "IM: FIXME ACYCLIC ENTRY"
                                                         ),
                                                         'l id': $['l reference'],
                                                     }]
                                                 )
-                                            case 'internal cyclic':
+                                            case 'internal':
                                                 return _p.ss(
                                                     $,
-                                                    ($) => ['internal cyclic', {
+                                                    ($) => ['internal', {
                                                         'l entry': _pdev.implement_me(
                                                             "IM: FIXME CYCLIC ENTRY"
                                                         ),

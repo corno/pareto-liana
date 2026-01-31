@@ -138,7 +138,7 @@ export const Value = (
                         case 'internal': return _p.ss($, ($) => sh.t.component_sibling(
                             $['l id'],
                         ))
-                        case 'internal cyclic': return _p.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
+                        case 'internal acyclic': return _p.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
                             $['l id'],
                         ))
                         default: return _p.au($[0])

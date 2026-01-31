@@ -151,8 +151,8 @@ export const $: g_.Module_Resolvers = resolvers(
                             "import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("import", []))),
                             "module": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("modules"), rvs.component()]))),
                         })),
-                    "internal": option(r.reference(ls.parameter("noncircular sibling modules"))),
-                    "internal cyclic": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
+                    "internal acyclic": option(r.reference(ls.parameter("noncircular sibling modules"))),
+                    "internal": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
                 }),
                 "results": r.component("Value Results", {
                     "imports": av.parameter("imports"),

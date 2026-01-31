@@ -594,12 +594,12 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                                 )
                             }]
                         })
-                        case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
+                        case 'internal acyclic': return _p.ss($, ($) => ['internal acyclic', _i_generic.get_entry_acyclic(
                             $l['noncircular sibling modules'],
                             $,
                             abort,
                         )])
-                        case 'internal cyclic': return _p.ss($, ($) => ['internal cyclic', _i_generic.get_entry_cyclic(
+                        case 'internal': return _p.ss($, ($) => ['internal', _i_generic.get_entry_cyclic(
                             $l['possibly circular dependent sibling modules'],
                             $,
                             abort
@@ -1205,8 +1205,8 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                 const x_type: d_out.Modules.D = _p_cc(x.type, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => $.module['l entry'])
-                        case 'internal': return _p.ss($, ($) => $['l entry'])
-                        case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent())
+                        case 'internal acyclic': return _p.ss($, ($) => $['l entry'])
+                        case 'internal': return _p.ss($, ($) => $['l entry'].get_circular_dependent())
                         default: return _p.au($[0])
                     }
                 })
@@ -1335,8 +1335,8 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                                                             case 'component': return _p.ss($, ($) => _p_cc($.type, ($) => {
                                                                 switch ($[0]) {
                                                                     case 'external': return _p.ss($, ($) => $.module['l entry']['root value'])
-                                                                    case 'internal': return _p.ss($, ($) => $['l entry']['root value'])
-                                                                    case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //IS THIS SAFE? I Am using a computed value (only available after resolving)
+                                                                    case 'internal acyclic': return _p.ss($, ($) => $['l entry']['root value'])
+                                                                    case 'internal': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, once we are resolving value resolvers, all value are resolved
                                                                     default: return _p.au($[0])
                                                                 }
                                                             }))
@@ -1902,8 +1902,8 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
                                 'result': _p_cc(sc_definition.type, ($) => {
                                     switch ($[0]) {
                                         case 'external': return _p.ss($, ($) => $.module['l entry']['root value'])
-                                        case 'internal': return _p.ss($, ($) => $['l entry']['root value'])
-                                        case 'internal cyclic': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
+                                        case 'internal acyclic': return _p.ss($, ($) => $['l entry']['root value'])
+                                        case 'internal': return _p.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
                                         default: return _p.au($[0])
                                     }
                                 })

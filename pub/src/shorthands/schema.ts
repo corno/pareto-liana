@@ -164,7 +164,7 @@ export namespace t {
 
     export const component_acyclic = (type: string): d_schema.Value => {
         return sh.state(['component', {
-            'type': sh.state(['internal', sh.reference(type)]),
+            'type': sh.state(['internal acyclic', sh.reference(type)]),
             'results': sh.optionalx.not_set(),
         }])
     }
@@ -181,7 +181,7 @@ export namespace t {
 
     export const component = (type: string): d_schema.Value => {
         return sh.state(['component', {
-            'type': sh.state(['internal cyclic', sh.reference(type)]),
+            'type': sh.state(['internal', sh.reference(type)]),
             'results': sh.optionalx.not_set(),
         }])
     }
