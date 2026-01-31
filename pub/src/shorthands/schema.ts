@@ -68,8 +68,8 @@ export const toption = (
 })
 
 export const toption_constrained = (
-    node: d_schema.Value,
     constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.O.l_dictionary.D.l_entry>,
+    node: d_schema.Value,
 ): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'constraints': _p.optionalx.set(sh.dictionary(constraints)),
     'description': sh.optionalx.not_set(),
