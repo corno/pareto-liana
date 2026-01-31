@@ -17,29 +17,29 @@ export const $: g_.Modules = modules(
     {
         "Module Set": module_(t.dictionary(t.state({
             "module": toption(t.component("Module")),
-            "set": toption(t.component_cyclic("Module Set")),
+            "set": toption(t.component("Module Set")),
         }))),
 
         "Module": module_(t.group({
             "imports": prop(t.component("Imports")),
             "types": prop(t.dictionary(t.state({
-                "data": toption(t.component_cyclic("Value")),
+                "data": toption(t.component("Value")),
                 "algorithm": toption(t.group({
-                    "result": prop(t.component_cyclic("Value")),
-                    "context": prop(t.component_cyclic("Value")),
+                    "result": prop(t.component("Value")),
+                    "context": prop(t.component("Value")),
                     "type": prop(t.state({
                         "transformer": toption(t.group({
                         })),
                         "refiner": toption(t.group({
-                            "error": prop(t.optional(t.component_cyclic("Value"))),
+                            "error": prop(t.optional(t.component("Value"))),
                             "lookups": prop(t.optional(t.dictionary(t.state({
-                                "acyclic": toption(t.component_cyclic("Value")),
-                                "cyclic": toption(t.component_cyclic("Value")),
-                                "stack": toption(t.component_cyclic("Value")),
+                                "acyclic": toption(t.component("Value")),
+                                "cyclic": toption(t.component("Value")),
+                                "stack": toption(t.component("Value")),
                             })))),
                         }))
                     })),
-                    "parameters": prop(t.optional(t.dictionary(t.component_cyclic("Value")))),
+                    "parameters": prop(t.optional(t.dictionary(t.component("Value")))),
                 })),
             }))),
         })),
@@ -61,9 +61,9 @@ export const $: g_.Modules = modules(
             "component": toption(t.group({
                 "location": prop(t.component("Module Reference")),
             })),
-            "dictionary": toption(t.component_cyclic("Value")),
-            "group": toption(t.dictionary(t.component_cyclic("Value"))),
-            "list": toption(t.component_cyclic("Value")),
+            "dictionary": toption(t.component("Value")),
+            "group": toption(t.dictionary(t.component("Value"))),
+            "list": toption(t.component("Value")),
             "nothing": toption(t.nothing()),
             "number": toption(t.state({
                 "exact": toption(t.state({
@@ -72,7 +72,7 @@ export const $: g_.Modules = modules(
                 })),
                 "approximation": toption(t.nothing()),
             })),
-            "optional": toption(t.component_cyclic("Value")),
+            "optional": toption(t.component("Value")),
             "reference": toption(t.group({
                 "location": prop(t.component("Module Reference")),
                 "sub selection": prop(t.list(t.state({
@@ -84,7 +84,7 @@ export const $: g_.Modules = modules(
                 }))),
                 "cyclic": prop(t.boolean()),
             })),
-            "state": toption(t.dictionary(t.component_cyclic("Value"))),
+            "state": toption(t.dictionary(t.component("Value"))),
             "text": toption(t.nothing()),
         })),
 

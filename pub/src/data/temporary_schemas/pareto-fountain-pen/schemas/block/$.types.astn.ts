@@ -21,7 +21,7 @@ export const $: g_.Modules = modules(
 
         "Node": module_(t.state({
             "file": toption(t.component("Group")),
-            "directory": toption(t.component_cyclic("Directory")),
+            "directory": toption(t.component("Directory")),
         })),
 
         "Group": module_(t.list(t.component("Group Part"))),
@@ -29,17 +29,17 @@ export const $: g_.Modules = modules(
         "Group Part": module_(t.state({
             "nested block": toption(t.component("Block")),
             "block": toption(t.text_global("Output")),
-            "sub group": toption(t.component_cyclic("Group")),
-            "optional": toption(t.optional(t.component_cyclic("Group Part"))),
+            "sub group": toption(t.component("Group")),
+            "optional": toption(t.optional(t.component("Group Part"))),
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
-                "items": prop(t.list(t.component_cyclic("Group Part"))),
-                "if empty": prop(t.component_cyclic("Group Part")),
+                "items": prop(t.list(t.component("Group Part"))),
+                "if empty": prop(t.component("Group Part")),
                 "if not empty": prop(t.group({
                     "indent": prop(t.boolean()),
-                    "before": prop(t.component_cyclic("Group Part")),
-                    "separator": prop(t.component_cyclic("Group Part")),
-                    "after": prop(t.component_cyclic("Group Part")),
+                    "before": prop(t.component("Group Part")),
+                    "separator": prop(t.component("Group Part")),
+                    "after": prop(t.component("Group Part")),
                 })),
             }))
         })),
@@ -48,17 +48,17 @@ export const $: g_.Modules = modules(
 
         "Block Part": module_(t.state({
             "snippet": toption(t.text_global("Output")),
-            "indent": toption(t.component_cyclic("Group")),
-            "sub block": toption(t.component_cyclic("Block")),
-            "optional": toption(t.optional(t.component_cyclic("Block Part"))),
+            "indent": toption(t.component("Group")),
+            "sub block": toption(t.component("Block")),
+            "optional": toption(t.optional(t.component("Block Part"))),
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
-                "items": prop(t.list(t.component_cyclic("Block Part"))),
-                "if empty": prop(t.component_cyclic("Block Part")),
+                "items": prop(t.list(t.component("Block Part"))),
+                "if empty": prop(t.component("Block Part")),
                 "if not empty": prop(t.group({
-                    "before": prop(t.component_cyclic("Block Part")),
-                    "separator": prop(t.component_cyclic("Block Part")),
-                    "after": prop(t.component_cyclic("Block Part")),
+                    "before": prop(t.component("Block Part")),
+                    "separator": prop(t.component("Block Part")),
+                    "after": prop(t.component("Block Part")),
                 })),
             }))
         })),

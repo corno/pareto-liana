@@ -21,7 +21,7 @@ export const $: g_.Modules = modules(
                 })),
                 "parser": toption(t.nothing()),
                 "combined": toption(t.group({
-                    "implicit lexer": prop(t.optional(t.component_cyclic("Grammar"))),
+                    "implicit lexer": prop(t.optional(t.component("Grammar"))),
                 })),
                 "unknown": toption(t.nothing()),
             })),
@@ -29,7 +29,7 @@ export const $: g_.Modules = modules(
             "token name to type map": prop(t.dictionary(t.number_global("Integer"))),
             "string literal to type map": prop(t.dictionary(t.number_global("Integer"))),
             "named actions": prop(t.optional(t.dictionary(t.text_global("Multi Line Text")))),
-            "imported grammars": prop(t.optional(t.list(t.component_cyclic("Grammar")))),
+            "imported grammars": prop(t.optional(t.list(t.component("Grammar")))),
         })),
 
         "Rule": module_(t.group({
@@ -65,7 +65,7 @@ export const $: g_.Modules = modules(
                 "code": prop(t.text_global("Multi Line Text")),
             })),
             "set": toption(t.group({
-                "items": prop(t.list(t.component_cyclic("Item"))),
+                "items": prop(t.list(t.component("Item"))),
             })),
             "range": toption(t.group({
                 "from": prop(t.text_global("Text Value")),
@@ -73,7 +73,7 @@ export const $: g_.Modules = modules(
             })),
             "wildcard": toption(t.nothing()),
             "block": toption(t.group({
-                "alternatives": prop(t.list(t.component_cyclic("Alternative"))),
+                "alternatives": prop(t.list(t.component("Alternative"))),
                 "ebnf": prop(t.optional(t.state({
                     "plus": toption(t.nothing()),
                     "star": toption(t.nothing()),

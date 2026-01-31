@@ -9,45 +9,6 @@ import * as t_signatures from "../../../../../interface/generated/liana/schemas/
 
 import * as t_out from "../../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 
-export const Relative_Location: t_signatures.Relative_Location = ($) => ({
-    'line': _p_cc(
-        $['line'],
-        ($) => $
-    ),
-    'column': _p_cc(
-        $['column'],
-        ($) => $
-    ),
-})
-
-export const Location: t_signatures.Location = ($) => ({
-    'relative': _p_cc(
-        $['relative'],
-        ($) => Relative_Location(
-            $
-        )
-    ),
-    'absolute': _p_cc(
-        $['absolute'],
-        ($) => $
-    ),
-})
-
-export const Range: t_signatures.Range = ($) => ({
-    'start': _p_cc(
-        $['start'],
-        ($) => Location(
-            $
-        )
-    ),
-    'end': _p_cc(
-        $['end'],
-        ($) => Location(
-            $
-        )
-    ),
-})
-
 export const Errors: t_signatures.Errors = ($) => _p.list.map(
     $,
     ($) => ({
@@ -273,3 +234,42 @@ export const Errors: t_signatures.Errors = ($) => _p.list.map(
         ),
     })
 )
+
+export const Location: t_signatures.Location = ($) => ({
+    'relative': _p_cc(
+        $['relative'],
+        ($) => Relative_Location(
+            $
+        )
+    ),
+    'absolute': _p_cc(
+        $['absolute'],
+        ($) => $
+    ),
+})
+
+export const Relative_Location: t_signatures.Relative_Location = ($) => ({
+    'line': _p_cc(
+        $['line'],
+        ($) => $
+    ),
+    'column': _p_cc(
+        $['column'],
+        ($) => $
+    ),
+})
+
+export const Range: t_signatures.Range = ($) => ({
+    'start': _p_cc(
+        $['start'],
+        ($) => Location(
+            $
+        )
+    ),
+    'end': _p_cc(
+        $['end'],
+        ($) => Location(
+            $
+        )
+    ),
+})

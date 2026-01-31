@@ -56,10 +56,10 @@ export const $: g_.Modules = modules(
             //         "char": t.nothing(),
             //     }),
             // }),
-            "choice": toption(t.component_cyclic("Choice")),
+            "choice": toption(t.component("Choice")),
 
         })),
-        "Productions": module_(t.dictionary(t.component_cyclic("Production"))),
+        "Productions": module_(t.dictionary(t.component("Production"))),
 
 
     }

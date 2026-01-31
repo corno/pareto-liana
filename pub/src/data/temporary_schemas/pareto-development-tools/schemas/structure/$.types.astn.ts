@@ -15,9 +15,9 @@ export const $: g_.Modules = modules(
     {
 
         "Directory": module_(t.state({
-            "dictionary": toption(t.component_cyclic("Directory")),
+            "dictionary": toption(t.component("Directory")),
             "group": toption(t.dictionary(t.state({
-                "directory": toption(t.component_cyclic("Directory")),
+                "directory": toption(t.component("Directory")),
                 "file": toption(t.state({
                     "manual": toption(t.nothing()),
                     "generated": toption(t.group({

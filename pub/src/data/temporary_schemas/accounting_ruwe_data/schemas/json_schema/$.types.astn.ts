@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
                 "minItems": prop(t.optional(t.number_global("amount"))),
                 "maxItems": prop(t.optional(t.number_global("amount"))),
                 "uniqueItems": prop(t.optional(t.boolean())),
-                "oneOf": prop(t.optional(t.list(t.component_cyclic("Type")))),
+                "oneOf": prop(t.optional(t.list(t.component("Type")))),
                 "maxContains": prop(t.optional(t.number_global("amount"))),
                 "minContains": prop(t.optional(t.number_global("amount"))),
             })),

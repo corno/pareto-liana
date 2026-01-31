@@ -20,10 +20,10 @@ export const $: g_.Modules = modules(
             "schema": toption(t.component("Schema")),
         })),
 
-        "Schemas": module_(t.dictionary(t.component_cyclic("Schema Tree"))),
+        "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
 
         "Schema": module_(t.group({
-            "imports": prop(t.component_cyclic("Imports")),
+            "imports": prop(t.component("Imports")),
             "globals": prop(t.component("Globals")),
             "types": prop(t.component("Modules")),
         })),
@@ -42,7 +42,7 @@ export const $: g_.Modules = modules(
 
         "Module": module_(t.group({
             // "type parameters": t.component("Type Parameters"),
-            "node": prop(t.component_cyclic("Value"))
+            "node": prop(t.component("Value"))
         })),
 
         "Value": module_(t.state({
@@ -58,11 +58,11 @@ export const $: g_.Modules = modules(
             "dictionary": toption(t.component("Dictionary")),
             "group": toption(t.component("Group")),
             "list": toption(t.group({
-                "node": prop(t.component_cyclic("Value")),
+                "node": prop(t.component("Value")),
             })),
             "nothing": toption(t.nothing()),
-            "optional": toption(t.component_cyclic("Value")),
-            "state": toption(t.dictionary(t.component_cyclic("Value"))),
+            "optional": toption(t.component("Value")),
+            "state": toption(t.dictionary(t.component("Value"))),
             "text": toption(t.state({
                 "global": toption(t.reference("Globals", [vp.g("text types")])),
                 "local": toption(t.component("Text Type")),
@@ -76,10 +76,10 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Group": module_(t.dictionary(t.component_cyclic("Value"))),
+        "Group": module_(t.dictionary(t.component("Value"))),
 
         "Dictionary": module_(t.group({
-            "node": prop(t.component_cyclic("Value")),
+            "node": prop(t.component("Value")),
             "ordered": prop(t.boolean()),
         })),
 

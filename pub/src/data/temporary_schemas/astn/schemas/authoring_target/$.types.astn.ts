@@ -29,22 +29,22 @@ export const $: g_.Modules = modules(
                 })),
                 "concrete": toption(t.group({
                     "type": prop(t.state({
-                        "dictionary": toption(t.dictionary(t.optional(t.component_cyclic("Value")))),
+                        "dictionary": toption(t.dictionary(t.optional(t.component("Value")))),
                         "group": toption(t.state({
-                            "concise": toption(t.list(t.component_cyclic("Value"))),
-                            "verbose": toption(t.dictionary(t.optional(t.component_cyclic("Value")))),
+                            "concise": toption(t.list(t.component("Value"))),
+                            "verbose": toption(t.dictionary(t.optional(t.component("Value")))),
                         })),
-                        "list": toption(t.list(t.component_cyclic("Value"))),
+                        "list": toption(t.list(t.component("Value"))),
                         "nothing": toption(t.nothing()),
                         "optional": toption(t.state({
                             "not set": toption(t.nothing()),
-                            "set": toption(t.component_cyclic("Value")),
+                            "set": toption(t.component("Value")),
                         })),
                         "state": toption(t.state({
                             "missing data": toption(t.nothing()),
                             "set": toption(t.group({
                                 "option": prop(t.text_global("Text Value")),
-                                "value": prop(t.component_cyclic("Value"))
+                                "value": prop(t.component("Value"))
                             }))
                         })),
                         "text": toption(t.group({

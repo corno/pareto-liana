@@ -47,11 +47,11 @@ export const $: g_.Modules = modules(
             "properties": prop(t.dictionary(t.group({
                 "type": prop(t.state({
                     "collection": toption(t.group({
-                        "node": prop(t.component_cyclic("Node")),
+                        "node": prop(t.component("Node")),
                     })),
                     "file": toption(t.nothing()),
                     "group": toption(t.group({
-                        "node": prop(t.component_cyclic("Node")),
+                        "node": prop(t.component("Node")),
                     })),
                     "natural": toption(t.text_local(text('single line'))), //why is this not a number?
                     "text": toption(t.nothing()),
@@ -61,7 +61,7 @@ export const $: g_.Modules = modules(
                             // "constraints": t.dictionary(t.group({
                             //     "path": t.component("Path")
                             // })),
-                            "node": prop(t.component_cyclic("Node"))
+                            "node": prop(t.component("Node"))
                         })))
                     }))
                 }))

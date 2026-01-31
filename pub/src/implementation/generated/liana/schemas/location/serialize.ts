@@ -7,8 +7,8 @@ import * as v_serialize from "astn-core/dist/implementation/manual/schemas/seale
 
 import * as v_marshall from "./marshall"
 
-export const Relative_Location: t_signatures.Relative_Location = ($) => v_serialize.Document(
-    v_marshall.Relative_Location(
+export const Range: t_signatures.Range = ($) => v_serialize.Document(
+    v_marshall.Range(
         $
     )
 )
@@ -19,8 +19,8 @@ export const Location: t_signatures.Location = ($) => v_serialize.Document(
     )
 )
 
-export const Range: t_signatures.Range = ($) => v_serialize.Document(
-    v_marshall.Range(
+export const Relative_Location: t_signatures.Relative_Location = ($) => v_serialize.Document(
+    v_marshall.Relative_Location(
         $
     )
 )

@@ -56,7 +56,7 @@ export const $: g_.Modules = modules(
                     "optional": toption(t.state({
                         "set": toption(t.group({
                             "*": prop(t.component("Structural Token")),
-                            "value": prop(t.component_cyclic("Value")),
+                            "value": prop(t.component("Value")),
                         })),
                         //not set is the same as 'nothing'
                     })),
@@ -68,7 +68,7 @@ export const $: g_.Modules = modules(
                             })),
                             "set": toption(t.group({
                                 "option": prop(t.component("Text")),
-                                "value": prop(t.component_cyclic("Value")),
+                                "value": prop(t.component("Value")),
                             }))
                         })),
                     })),
@@ -100,12 +100,12 @@ export const $: g_.Modules = modules(
             "id": prop(t.component("Text")),
             "value": prop(t.optional(t.group({
                 ":": prop(t.component("Structural Token")),
-                "value": prop(t.component_cyclic("Value")),
+                "value": prop(t.component("Value")),
             }))),
         }))),
 
         "Items": module_(t.list(t.group({
-            "value": prop(t.component_cyclic("Value")),
+            "value": prop(t.component("Value")),
         }))),
     },
 )

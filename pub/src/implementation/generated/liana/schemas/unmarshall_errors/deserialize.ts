@@ -7,7 +7,7 @@ import * as v_deserialize from "astn-core/dist/implementation/manual/schemas/par
 
 import * as v_unmarshall from "./unmarshall"
 
-export const Relative_Location: t_signatures.Relative_Location = ($, abort, $p) => v_unmarshall.Relative_Location(
+export const Errors: t_signatures.Errors = ($, abort, $p) => v_unmarshall.Errors(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -39,7 +39,7 @@ export const Location: t_signatures.Location = ($, abort, $p) => v_unmarshall.Lo
     )
 )
 
-export const Range: t_signatures.Range = ($, abort, $p) => v_unmarshall.Range(
+export const Relative_Location: t_signatures.Relative_Location = ($, abort, $p) => v_unmarshall.Relative_Location(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -55,7 +55,7 @@ export const Range: t_signatures.Range = ($, abort, $p) => v_unmarshall.Range(
     )
 )
 
-export const Errors: t_signatures.Errors = ($, abort, $p) => v_unmarshall.Errors(
+export const Range: t_signatures.Range = ($, abort, $p) => v_unmarshall.Range(
     v_deserialize.Document(
         $,
         ($) => abort(

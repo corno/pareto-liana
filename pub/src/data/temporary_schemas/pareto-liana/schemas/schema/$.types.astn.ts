@@ -27,13 +27,13 @@ export const $: g_.Modules = modules(
 
         "Schema Tree": module_(t.state({
             "schema": toption_with_description("a single schema", t.component("Schema")),
-            "set": toption_with_description("a hierarchy of schemas", t.component_cyclic("Schemas")),
+            "set": toption_with_description("a hierarchy of schemas", t.component("Schemas")),
         })),
 
         "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
 
         "Schema": module_(t.group({
-            "imports": prop(t.component_cyclic("Imports")),
+            "imports": prop(t.component("Imports")),
             "globals": prop(t.component("Globals")),
             "modules": prop(t.component("Modules")),
             "complexity": prop(t.state({
@@ -60,9 +60,9 @@ export const $: g_.Modules = modules(
 
         "Resolve Logic": module_(t.group({ //FIXME: inline
             "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
-                "signatures": prop(t.component_cyclic("Signatures"))
+                "signatures": prop(t.component("Signatures"))
             })),
-            "resolvers": prop(t.component_cyclic("Module Resolvers")),
+            "resolvers": prop(t.component("Module Resolvers")),
         })),
 
         "Text Type": module_(t.group({
@@ -115,7 +115,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Module": module_(t.group({
-            "root value": prop(t.component_cyclic("Value"))
+            "root value": prop(t.component("Value"))
         })),
 
         //FIXME: inline
@@ -125,14 +125,14 @@ export const $: g_.Modules = modules(
         })),
 
         "Dictionary": module_(t.group({
-            "value": prop(t.component_cyclic("Value")),
+            "value": prop(t.component("Value")),
         })),
 
-        "Signatures": module_(t.dictionary(t.component_cyclic("Signature"))),
+        "Signatures": module_(t.dictionary(t.component("Signature"))),
 
         "Module Resolvers": module_(t.dictionary(t.group({
             "signature": prop(t.reference_derived("Signatures", [vp.d()])),
-            "root value resolver": prop(t.component_cyclic("Value Resolver")),
+            "root value resolver": prop(t.component("Value Resolver")),
         }))),
 
         "Benchmark": module_(t.group({
@@ -148,7 +148,7 @@ export const $: g_.Modules = modules(
          */
         "Group": module_(t.dictionary(t.group({
             "description": prop(t.optional(t.text_local(text('multi line')))),
-            "value": prop(t.component_cyclic("Value"))
+            "value": prop(t.component("Value"))
         }))),
 
         "Value Reference": module_(t.group({ //FIXME: inline
@@ -232,13 +232,12 @@ export const $: g_.Modules = modules(
             "resulting node": prop(t.reference_derived("Value", [])),
         })),
 
-        //FIXME: there has to be a guaranteed lookup selection and a possible lookup selection
         "Lookup Selection": module_(t.group({
             "type": prop(t.state({
                 "acyclic": toption(t.state({
                     "siblings": toption(t.reference_derived("Dictionary", [])),
                     "resolved dictionary": toption(t.group({
-                        "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
+                        "selection": prop(t.component("Guaranteed Value Selection")),
                         "selected dictionary": prop(t.reference_derived("Dictionary", [])),
                     })),
                 })),
@@ -251,7 +250,7 @@ export const $: g_.Modules = modules(
         })),
 
         //FIXME: inline
-        "Constraint": module_(t.group({
+        "Constraint": module_(t.group({ //should be "Constraint Resolver"
             "selection": prop(t.component("Relative Value Selection")),
             //maybe this is reusable
             "type": prop(t.state({
@@ -267,14 +266,14 @@ export const $: g_.Modules = modules(
 
         "Option Constraint Resolvers": module_(t.dictionary(t.state({
             "state": toption(t.group({
-                "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
+                "selection": prop(t.component("Guaranteed Value Selection")),
                 "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
                 "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
             })),
-            "assert is set": toption(t.component_cyclic("Possible Value Selection")),
+            "assert is set": toption(t.component("Possible Value Selection")),
         }))),
 
-        "Value Constraint Resolvers": module_(t.dictionary(t.component_cyclic("Value Constraint Resolver"))),
+        "Value Constraint Resolvers": module_(t.dictionary(t.component("Value Constraint Resolver"))),
 
         "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [])), //FIXME : inline
 
@@ -288,17 +287,16 @@ export const $: g_.Modules = modules(
 
         "Optional Value Initialization": module_(t.state({
             "not set": toption(t.nothing()),
-            "set": toption(t.component_cyclic("Guaranteed Value Selection")),
-            "selection": toption(t.component_cyclic("Possible Value Selection")),
+            "set": toption(t.component("Guaranteed Value Selection")),
+            "selection": toption(t.component("Possible Value Selection")),
         })),
 
         "Value Resolver Group": module_(t.dictionary(t.group({
             "definition": prop(t.reference_derived("Group", [vp.d()])),
-            "resolver": prop(t.component_cyclic("Value Resolver")),
+            "resolver": prop(t.component("Value Resolver")),
         }))),
 
         "Value Resolver List Result": module_(t.component("Module Reference")),
-
 
         "Value": module_(t.state({
             "boolean": toption(t.nothing()),
@@ -316,7 +314,7 @@ export const $: g_.Modules = modules(
             "dictionary": toption(t.component("Dictionary")),
             "group": toption(t.component("Group")),
             "list": toption(t.group({
-                "value": prop(t.component_cyclic("Value")),
+                "value": prop(t.component("Value")),
                 "results": prop(t.component("Value Results")),
             })),
             "nothing": toption(t.nothing()),
@@ -324,9 +322,9 @@ export const $: g_.Modules = modules(
                 "global": toption(t.reference("Globals", [vp.g("number types")])),
                 "local": toption(t.component("Number Type")),
             })),
-            "optional": toption(t.component_cyclic("Value")),
+            "optional": toption(t.component("Value")),
             "reference": toption(t.group({
-                "referent": prop(t.component_cyclic("Value Reference")),
+                "referent": prop(t.component("Value Reference")),
                 "type": prop(t.state({
                     "derived": toption(t.nothing()),
                     "selected": toption(t.group({
@@ -343,7 +341,7 @@ export const $: g_.Modules = modules(
                 "options": prop(t.dictionary(t.group({
                     "constraints": prop(t.component("Option Constraints")),
                     "description": prop(t.optional(t.text_local(text('multi line')))),
-                    "value": prop(t.component_cyclic("Value")),
+                    "value": prop(t.component("Value")),
                 }))),
                 "results": prop(t.component("Value Results")),
             })),
@@ -353,9 +351,9 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Value Results": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
+        "Value Results": module_(t.optional(t.dictionary(t.component("Value Reference")))),
 
-        "Option Constraints": module_(t.optional(t.dictionary(t.component_cyclic("Value Reference")))),
+        "Option Constraints": module_(t.optional(t.dictionary(t.component("Value Reference")))),
 
         "Value Resolver": module_(t.state({
             "boolean": sh.toption_constrained(
@@ -382,7 +380,7 @@ export const $: g_.Modules = modules(
                     "arguments": prop(t.optional(t.group({
                         "modules": prop(t.optional(t.dictionary(t.state({
                             "optional": toption(t.component("Optional Value Initialization")),
-                            "required": toption(t.component_cyclic("Guaranteed Value Selection")),
+                            "required": toption(t.component("Guaranteed Value Selection")),
                             "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
                         })))),
                         "lookups": prop(t.optional(t.dictionary(t.state({
@@ -411,8 +409,8 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "definition": prop(t.reference_derived("Dictionary", [])),
-                    "resolver": prop(t.component_cyclic("Value Resolver")),
-                    "benchmark": prop(t.optional(t.component_cyclic("Benchmark"))),
+                    "resolver": prop(t.component("Value Resolver")),
+                    "benchmark": prop(t.optional(t.component("Benchmark"))),
                 })
             ),
             "group": sh.toption_constrained(
@@ -427,7 +425,7 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "definition": prop(t.reference_derived("Value", [vp.s("list")])),
-                    "resolver": prop(t.component_cyclic("Value Resolver")),
+                    "resolver": prop(t.component("Value Resolver")),
                     "result": prop(t.optional(t.component("Value Resolver List Result"))),
                 })
             ),
@@ -449,7 +447,7 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "constraints": prop(t.component("Option Constraint Resolvers")),
-                    "resolver": prop(t.component_cyclic("Value Resolver")),
+                    "resolver": prop(t.component("Value Resolver")),
                 })
             ),
             "reference": sh.toption_constrained(
@@ -460,7 +458,7 @@ export const $: g_.Modules = modules(
                     "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
                     "type": prop(t.state({
                         "derived": toption(t.group({
-                            "value": prop(t.component_cyclic("Guaranteed Value Selection")),
+                            "value": prop(t.component("Guaranteed Value Selection")),
                         })),
                         "selected": toption(t.group({
                             "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
@@ -478,7 +476,7 @@ export const $: g_.Modules = modules(
                     "definition": prop(t.reference_derived("Value", [vp.s("state")])),
                     "states": prop(t.dictionary(t.group({
                         "constraints": prop(t.component("Option Constraint Resolvers")),
-                        "resolver": prop(t.component_cyclic("Value Resolver")),
+                        "resolver": prop(t.component("Value Resolver")),
                     }))
                     ),
                 })),

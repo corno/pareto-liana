@@ -1158,7 +1158,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                         $
                                     ),
                                     {
-                                        'modules': _p_ls.acyclic.select_from_dictionary(
+                                        'modules': _p_ls.acyclic.from_resolved_dictionary(
                                             $p['modules']
                                         ),
                                     },
@@ -1208,7 +1208,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                         $
                                     ),
                                     {
-                                        'modules': _p_ls.acyclic.select_from_dictionary(
+                                        'modules': _p_ls.acyclic.from_resolved_dictionary(
                                             $p['modules']
                                         ),
                                     },
@@ -1464,7 +1464,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             $
                                                         ),
                                                         {
-                                                            'modules': _p_ls.acyclic.select_from_dictionary(
+                                                            'modules': _p_ls.acyclic.from_resolved_dictionary(
                                                                 $p['modules']
                                                             ),
                                                         },
@@ -1512,7 +1512,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             $
                                                         ),
                                                         {
-                                                            'modules': _p_ls.acyclic.select_from_dictionary(
+                                                            'modules': _p_ls.acyclic.from_resolved_dictionary(
                                                                 $p['modules']
                                                             ),
                                                         },
@@ -1750,7 +1750,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $
                                                                     ),
                                                                     {
-                                                                        'modules': _p_ls.acyclic.select_from_dictionary(
+                                                                        'modules': _p_ls.acyclic.from_resolved_dictionary(
                                                                             $p['modules']
                                                                         ),
                                                                     },
@@ -1798,7 +1798,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         $
                                                                     ),
                                                                     {
-                                                                        'modules': _p_ls.acyclic.select_from_dictionary(
+                                                                        'modules': _p_ls.acyclic.from_resolved_dictionary(
                                                                             $p['modules']
                                                                         ),
                                                                     },
@@ -2812,7 +2812,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                             $
                                         ),
                                         {
-                                            'modules': _p_ls.acyclic.select_from_dictionary(
+                                            'modules': _p_ls.acyclic.from_resolved_dictionary(
                                                 $p['modules']
                                             ),
                                         },

@@ -12,7 +12,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Array Definition": module_(t.component_cyclic("Definition")),
+        "Array Definition": module_(t.component("Definition")),
         "Boolean Definition": module_(t.nothing()),
         "Null Definition": module_(t.nothing()),
         "Number Definition": module_(t.nothing()),
@@ -20,11 +20,11 @@ export const $: g_.Modules = modules(
             "type": prop(t.state({
                 "static": toption(t.group({
                     "properties": prop(t.dictionary(t.group({
-                        "definition": prop(t.component_cyclic("Definition")),
+                        "definition": prop(t.component("Definition")),
                         "optional": prop(t.boolean()),
                     }))),
                 })),
-                "dynamic": toption(t.component_cyclic("Definition")),
+                "dynamic": toption(t.component("Definition")),
             })),
         })),
         "String Definition": module_(t.state({

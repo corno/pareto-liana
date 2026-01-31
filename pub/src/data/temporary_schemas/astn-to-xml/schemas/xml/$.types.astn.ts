@@ -38,7 +38,7 @@ export const $: g_.Modules = modules(
         "XML Content": module_(t.state({
             "empty": toption(t.group({})),
             "text only": toption(t.component("XML Text Content")),
-            "elements only": toption(t.list(t.component_cyclic("XML Element"))),
+            "elements only": toption(t.list(t.component("XML Element"))),
             "mixed": toption(t.list(t.component("XML Node"))),
         })),
 
@@ -53,7 +53,7 @@ export const $: g_.Modules = modules(
         })),
 
         "XML Node": module_(t.state({
-            "element": toption(t.component_cyclic("XML Element")),
+            "element": toption(t.component("XML Element")),
             "text": toption(t.component("XML Text Content")),
             "comment": toption(t.group({
                 "content": prop(t.text_local(text('multi line'))),

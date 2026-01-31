@@ -5,11 +5,11 @@ import * as i_generic from "../../generic/deserialize"
 
 import * as i_out from "./data/unresolved"
 
-export namespace Text_Type_ {
+export namespace Module_Specification_ {
     
     export type I = string
     
-    export type O = i_out.Text_Type
+    export type O = i_out.Module_Specification
     
     export type E = i_generic.Error
     
@@ -23,20 +23,20 @@ export namespace Text_Type_ {
     
 }
 
-export type Text_Type_ = (
-    context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
+export type Module_Specification_ = (
+    context: Module_Specification_.I,
+    abort: _pi.Abort<Module_Specification_.E>,
     parameters: {
-        readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
-        readonly 'tab size': Text_Type_.P.tab_size
+        readonly 'document resource identifier': Module_Specification_.P.document_resource_identifier
+        readonly 'tab size': Module_Specification_.P.tab_size
     },
-) => Text_Type_.O
+) => Module_Specification_.O
 
-export namespace Number_Type_ {
+export namespace Schema_Tree_ {
     
     export type I = string
     
-    export type O = i_out.Number_Type
+    export type O = i_out.Schema_Tree
     
     export type E = i_generic.Error
     
@@ -50,14 +50,95 @@ export namespace Number_Type_ {
     
 }
 
-export type Number_Type_ = (
-    context: Number_Type_.I,
-    abort: _pi.Abort<Number_Type_.E>,
+export type Schema_Tree_ = (
+    context: Schema_Tree_.I,
+    abort: _pi.Abort<Schema_Tree_.E>,
     parameters: {
-        readonly 'document resource identifier': Number_Type_.P.document_resource_identifier
-        readonly 'tab size': Number_Type_.P.tab_size
+        readonly 'document resource identifier': Schema_Tree_.P.document_resource_identifier
+        readonly 'tab size': Schema_Tree_.P.tab_size
     },
-) => Number_Type_.O
+) => Schema_Tree_.O
+
+export namespace Schemas_ {
+    
+    export type I = string
+    
+    export type O = i_out.Schemas
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Schemas_ = (
+    context: Schemas_.I,
+    abort: _pi.Abort<Schemas_.E>,
+    parameters: {
+        readonly 'document resource identifier': Schemas_.P.document_resource_identifier
+        readonly 'tab size': Schemas_.P.tab_size
+    },
+) => Schemas_.O
+
+export namespace Schema_ {
+    
+    export type I = string
+    
+    export type O = i_out.Schema
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Schema_ = (
+    context: Schema_.I,
+    abort: _pi.Abort<Schema_.E>,
+    parameters: {
+        readonly 'document resource identifier': Schema_.P.document_resource_identifier
+        readonly 'tab size': Schema_.P.tab_size
+    },
+) => Schema_.O
+
+export namespace Imports_ {
+    
+    export type I = string
+    
+    export type O = i_out.Imports
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Imports_ = (
+    context: Imports_.I,
+    abort: _pi.Abort<Imports_.E>,
+    parameters: {
+        readonly 'document resource identifier': Imports_.P.document_resource_identifier
+        readonly 'tab size': Imports_.P.tab_size
+    },
+) => Imports_.O
 
 export namespace Globals_ {
     
@@ -85,33 +166,6 @@ export type Globals_ = (
         readonly 'tab size': Globals_.P.tab_size
     },
 ) => Globals_.O
-
-export namespace Module_ {
-    
-    export type I = string
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Module_ = (
-    context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
-    parameters: {
-        readonly 'document resource identifier': Module_.P.document_resource_identifier
-        readonly 'tab size': Module_.P.tab_size
-    },
-) => Module_.O
 
 export namespace Modules_ {
     
@@ -167,11 +221,11 @@ export type Resolve_Logic_ = (
     },
 ) => Resolve_Logic_.O
 
-export namespace Schema_ {
+export namespace Text_Type_ {
     
     export type I = string
     
-    export type O = i_out.Schema
+    export type O = i_out.Text_Type
     
     export type E = i_generic.Error
     
@@ -185,20 +239,20 @@ export namespace Schema_ {
     
 }
 
-export type Schema_ = (
-    context: Schema_.I,
-    abort: _pi.Abort<Schema_.E>,
+export type Text_Type_ = (
+    context: Text_Type_.I,
+    abort: _pi.Abort<Text_Type_.E>,
     parameters: {
-        readonly 'document resource identifier': Schema_.P.document_resource_identifier
-        readonly 'tab size': Schema_.P.tab_size
+        readonly 'document resource identifier': Text_Type_.P.document_resource_identifier
+        readonly 'tab size': Text_Type_.P.tab_size
     },
-) => Schema_.O
+) => Text_Type_.O
 
-export namespace Schema_Tree_ {
+export namespace Number_Type_ {
     
     export type I = string
     
-    export type O = i_out.Schema_Tree
+    export type O = i_out.Number_Type
     
     export type E = i_generic.Error
     
@@ -212,20 +266,20 @@ export namespace Schema_Tree_ {
     
 }
 
-export type Schema_Tree_ = (
-    context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
+export type Number_Type_ = (
+    context: Number_Type_.I,
+    abort: _pi.Abort<Number_Type_.E>,
     parameters: {
-        readonly 'document resource identifier': Schema_Tree_.P.document_resource_identifier
-        readonly 'tab size': Schema_Tree_.P.tab_size
+        readonly 'document resource identifier': Number_Type_.P.document_resource_identifier
+        readonly 'tab size': Number_Type_.P.tab_size
     },
-) => Schema_Tree_.O
+) => Number_Type_.O
 
-export namespace Module_Specification_ {
+export namespace Module_ {
     
     export type I = string
     
-    export type O = i_out.Module_Specification
+    export type O = i_out.Module
     
     export type E = i_generic.Error
     
@@ -239,68 +293,14 @@ export namespace Module_Specification_ {
     
 }
 
-export type Module_Specification_ = (
-    context: Module_Specification_.I,
-    abort: _pi.Abort<Module_Specification_.E>,
+export type Module_ = (
+    context: Module_.I,
+    abort: _pi.Abort<Module_.E>,
     parameters: {
-        readonly 'document resource identifier': Module_Specification_.P.document_resource_identifier
-        readonly 'tab size': Module_Specification_.P.tab_size
+        readonly 'document resource identifier': Module_.P.document_resource_identifier
+        readonly 'tab size': Module_.P.tab_size
     },
-) => Module_Specification_.O
-
-export namespace Schemas_ {
-    
-    export type I = string
-    
-    export type O = i_out.Schemas
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Schemas_ = (
-    context: Schemas_.I,
-    abort: _pi.Abort<Schemas_.E>,
-    parameters: {
-        readonly 'document resource identifier': Schemas_.P.document_resource_identifier
-        readonly 'tab size': Schemas_.P.tab_size
-    },
-) => Schemas_.O
-
-export namespace Imports_ {
-    
-    export type I = string
-    
-    export type O = i_out.Imports
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Imports_ = (
-    context: Imports_.I,
-    abort: _pi.Abort<Imports_.E>,
-    parameters: {
-        readonly 'document resource identifier': Imports_.P.document_resource_identifier
-        readonly 'tab size': Imports_.P.tab_size
-    },
-) => Imports_.O
+) => Module_.O
 
 export namespace Presence_ {
     
@@ -464,60 +464,6 @@ export type Value_Resolver_Group_ = (
     },
 ) => Value_Resolver_Group_.O
 
-export namespace Value_Results_ {
-    
-    export type I = string
-    
-    export type O = i_out.Value_Results
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Value_Results_ = (
-    context: Value_Results_.I,
-    abort: _pi.Abort<Value_Results_.E>,
-    parameters: {
-        readonly 'document resource identifier': Value_Results_.P.document_resource_identifier
-        readonly 'tab size': Value_Results_.P.tab_size
-    },
-) => Value_Results_.O
-
-export namespace Option_Constraints_ {
-    
-    export type I = string
-    
-    export type O = i_out.Option_Constraints
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
-    parameters: {
-        readonly 'document resource identifier': Option_Constraints_.P.document_resource_identifier
-        readonly 'tab size': Option_Constraints_.P.tab_size
-    },
-) => Option_Constraints_.O
-
 export namespace Value_ {
     
     export type I = string
@@ -599,33 +545,6 @@ export type Value_Constraint_Resolvers_ = (
     },
 ) => Value_Constraint_Resolvers_.O
 
-export namespace Module_Reference_ {
-    
-    export type I = string
-    
-    export type O = i_out.Module_Reference
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Module_Reference_ = (
-    context: Module_Reference_.I,
-    abort: _pi.Abort<Module_Reference_.E>,
-    parameters: {
-        readonly 'document resource identifier': Module_Reference_.P.document_resource_identifier
-        readonly 'tab size': Module_Reference_.P.tab_size
-    },
-) => Module_Reference_.O
-
 export namespace Signature_Parameters_ {
     
     export type I = string
@@ -653,87 +572,6 @@ export type Signature_Parameters_ = (
     },
 ) => Signature_Parameters_.O
 
-export namespace Optional_Value_Initialization_ {
-    
-    export type I = string
-    
-    export type O = i_out.Optional_Value_Initialization
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Optional_Value_Initialization_ = (
-    context: Optional_Value_Initialization_.I,
-    abort: _pi.Abort<Optional_Value_Initialization_.E>,
-    parameters: {
-        readonly 'document resource identifier': Optional_Value_Initialization_.P.document_resource_identifier
-        readonly 'tab size': Optional_Value_Initialization_.P.tab_size
-    },
-) => Optional_Value_Initialization_.O
-
-export namespace Lookup_Selection_ {
-    
-    export type I = string
-    
-    export type O = i_out.Lookup_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Lookup_Selection_ = (
-    context: Lookup_Selection_.I,
-    abort: _pi.Abort<Lookup_Selection_.E>,
-    parameters: {
-        readonly 'document resource identifier': Lookup_Selection_.P.document_resource_identifier
-        readonly 'tab size': Lookup_Selection_.P.tab_size
-    },
-) => Lookup_Selection_.O
-
-export namespace Value_Resolver_List_Result_ {
-    
-    export type I = string
-    
-    export type O = i_out.Value_Resolver_List_Result
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Value_Resolver_List_Result_ = (
-    context: Value_Resolver_List_Result_.I,
-    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
-    parameters: {
-        readonly 'document resource identifier': Value_Resolver_List_Result_.P.document_resource_identifier
-        readonly 'tab size': Value_Resolver_List_Result_.P.tab_size
-    },
-) => Value_Resolver_List_Result_.O
-
 export namespace Value_Resolver_ {
     
     export type I = string
@@ -760,33 +598,6 @@ export type Value_Resolver_ = (
         readonly 'tab size': Value_Resolver_.P.tab_size
     },
 ) => Value_Resolver_.O
-
-export namespace Relative_Value_Selection_ {
-    
-    export type I = string
-    
-    export type O = i_out.Relative_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Relative_Value_Selection_ = (
-    context: Relative_Value_Selection_.I,
-    abort: _pi.Abort<Relative_Value_Selection_.E>,
-    parameters: {
-        readonly 'document resource identifier': Relative_Value_Selection_.P.document_resource_identifier
-        readonly 'tab size': Relative_Value_Selection_.P.tab_size
-    },
-) => Relative_Value_Selection_.O
 
 export namespace Guaranteed_Value_Selection_ {
     
@@ -842,33 +653,6 @@ export type Benchmark_ = (
     },
 ) => Benchmark_.O
 
-export namespace Value_Path_ {
-    
-    export type I = string
-    
-    export type O = i_out.Value_Path
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Value_Path_ = (
-    context: Value_Path_.I,
-    abort: _pi.Abort<Value_Path_.E>,
-    parameters: {
-        readonly 'document resource identifier': Value_Path_.P.document_resource_identifier
-        readonly 'tab size': Value_Path_.P.tab_size
-    },
-) => Value_Path_.O
-
 export namespace Value_Reference_ {
     
     export type I = string
@@ -896,6 +680,60 @@ export type Value_Reference_ = (
     },
 ) => Value_Reference_.O
 
+export namespace Value_Path_ {
+    
+    export type I = string
+    
+    export type O = i_out.Value_Path
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Value_Path_ = (
+    context: Value_Path_.I,
+    abort: _pi.Abort<Value_Path_.E>,
+    parameters: {
+        readonly 'document resource identifier': Value_Path_.P.document_resource_identifier
+        readonly 'tab size': Value_Path_.P.tab_size
+    },
+) => Value_Path_.O
+
+export namespace Module_Reference_ {
+    
+    export type I = string
+    
+    export type O = i_out.Module_Reference
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Module_Reference_ = (
+    context: Module_Reference_.I,
+    abort: _pi.Abort<Module_Reference_.E>,
+    parameters: {
+        readonly 'document resource identifier': Module_Reference_.P.document_resource_identifier
+        readonly 'tab size': Module_Reference_.P.tab_size
+    },
+) => Module_Reference_.O
+
 export namespace Signature_ {
     
     export type I = string
@@ -922,6 +760,60 @@ export type Signature_ = (
         readonly 'tab size': Signature_.P.tab_size
     },
 ) => Signature_.O
+
+export namespace Relative_Value_Selection_ {
+    
+    export type I = string
+    
+    export type O = i_out.Relative_Value_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Relative_Value_Selection_ = (
+    context: Relative_Value_Selection_.I,
+    abort: _pi.Abort<Relative_Value_Selection_.E>,
+    parameters: {
+        readonly 'document resource identifier': Relative_Value_Selection_.P.document_resource_identifier
+        readonly 'tab size': Relative_Value_Selection_.P.tab_size
+    },
+) => Relative_Value_Selection_.O
+
+export namespace Lookup_Selection_ {
+    
+    export type I = string
+    
+    export type O = i_out.Lookup_Selection
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Lookup_Selection_ = (
+    context: Lookup_Selection_.I,
+    abort: _pi.Abort<Lookup_Selection_.E>,
+    parameters: {
+        readonly 'document resource identifier': Lookup_Selection_.P.document_resource_identifier
+        readonly 'tab size': Lookup_Selection_.P.tab_size
+    },
+) => Lookup_Selection_.O
 
 export namespace Constraint_ {
     
@@ -1004,6 +896,114 @@ export type Value_Constraint_Resolver_ = (
     },
 ) => Value_Constraint_Resolver_.O
 
+export namespace Optional_Value_Initialization_ {
+    
+    export type I = string
+    
+    export type O = i_out.Optional_Value_Initialization
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Optional_Value_Initialization_ = (
+    context: Optional_Value_Initialization_.I,
+    abort: _pi.Abort<Optional_Value_Initialization_.E>,
+    parameters: {
+        readonly 'document resource identifier': Optional_Value_Initialization_.P.document_resource_identifier
+        readonly 'tab size': Optional_Value_Initialization_.P.tab_size
+    },
+) => Optional_Value_Initialization_.O
+
+export namespace Value_Resolver_List_Result_ {
+    
+    export type I = string
+    
+    export type O = i_out.Value_Resolver_List_Result
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Value_Resolver_List_Result_ = (
+    context: Value_Resolver_List_Result_.I,
+    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
+    parameters: {
+        readonly 'document resource identifier': Value_Resolver_List_Result_.P.document_resource_identifier
+        readonly 'tab size': Value_Resolver_List_Result_.P.tab_size
+    },
+) => Value_Resolver_List_Result_.O
+
+export namespace Value_Results_ {
+    
+    export type I = string
+    
+    export type O = i_out.Value_Results
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Value_Results_ = (
+    context: Value_Results_.I,
+    abort: _pi.Abort<Value_Results_.E>,
+    parameters: {
+        readonly 'document resource identifier': Value_Results_.P.document_resource_identifier
+        readonly 'tab size': Value_Results_.P.tab_size
+    },
+) => Value_Results_.O
+
+export namespace Option_Constraints_ {
+    
+    export type I = string
+    
+    export type O = i_out.Option_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Option_Constraints_ = (
+    context: Option_Constraints_.I,
+    abort: _pi.Abort<Option_Constraints_.E>,
+    parameters: {
+        readonly 'document resource identifier': Option_Constraints_.P.document_resource_identifier
+        readonly 'tab size': Option_Constraints_.P.tab_size
+    },
+) => Option_Constraints_.O
+
 export namespace Possible_Value_Selection_ {
     
     export type I = string
@@ -1032,42 +1032,42 @@ export type Possible_Value_Selection_ = (
 ) => Possible_Value_Selection_.O
 
 export { 
-    Text_Type_ as Text_Type, 
-    Number_Type_ as Number_Type, 
+    Module_Specification_ as Module_Specification, 
+    Schema_Tree_ as Schema_Tree, 
+    Schemas_ as Schemas, 
+    Schema_ as Schema, 
+    Imports_ as Imports, 
     Globals_ as Globals, 
-    Module_ as Module, 
     Modules_ as Modules, 
     Resolve_Logic_ as Resolve_Logic, 
-    Schema_ as Schema, 
-    Schema_Tree_ as Schema_Tree, 
-    Module_Specification_ as Module_Specification, 
-    Schemas_ as Schemas, 
-    Imports_ as Imports, 
+    Text_Type_ as Text_Type, 
+    Number_Type_ as Number_Type, 
+    Module_ as Module, 
     Presence_ as Presence, 
     Dictionary_ as Dictionary, 
     Signatures_ as Signatures, 
     Module_Resolvers_ as Module_Resolvers, 
     Group_ as Group, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Results_ as Value_Results, 
-    Option_Constraints_ as Option_Constraints, 
     Value_ as Value, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
-    Module_Reference_ as Module_Reference, 
     Signature_Parameters_ as Signature_Parameters, 
-    Optional_Value_Initialization_ as Optional_Value_Initialization, 
-    Lookup_Selection_ as Lookup_Selection, 
-    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
     Value_Resolver_ as Value_Resolver, 
-    Relative_Value_Selection_ as Relative_Value_Selection, 
     Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
     Benchmark_ as Benchmark, 
-    Value_Path_ as Value_Path, 
     Value_Reference_ as Value_Reference, 
+    Value_Path_ as Value_Path, 
+    Module_Reference_ as Module_Reference, 
     Signature_ as Signature, 
+    Relative_Value_Selection_ as Relative_Value_Selection, 
+    Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
+    Optional_Value_Initialization_ as Optional_Value_Initialization, 
+    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Value_Results_ as Value_Results, 
+    Option_Constraints_ as Option_Constraints, 
     Possible_Value_Selection_ as Possible_Value_Selection, 
 }

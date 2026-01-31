@@ -18,7 +18,7 @@ export const $: g_.Modules = modules(
 
         "Module Set": module_(t.dictionary(t.state({
             "module": toption(t.component("Module")),
-            "set": toption(t.component_cyclic("Module Set")),
+            "set": toption(t.component("Module Set")),
         }))),
 
         "Module": module_(t.group({
@@ -53,7 +53,7 @@ export const $: g_.Modules = modules(
                     "import": prop(t.text_global("TBD")),
                     "type": prop(t.text_global("TBD")),
                 })),
-                "expression": prop(t.component_cyclic("Expression")),
+                "expression": prop(t.component("Expression")),
                 "temp has abort": prop(t.boolean()),
                 "temp has lookups": prop(t.boolean()),
                 "temp has parameters": prop(t.boolean()),
@@ -78,59 +78,59 @@ export const $: g_.Modules = modules(
             "decide": toption(t.group({
                 "type": prop(t.state({
                     "boolean": toption(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
+                        "source": prop(t.component("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
-                        "if false": prop(t.component_cyclic("Expression")),
-                        "if true": prop(t.component_cyclic("Expression")),
+                        "if false": prop(t.component("Expression")),
+                        "if true": prop(t.component("Expression")),
                     })),
                     "dictionary": toption(t.state({
                         "has entries": toption(t.group({
                             "dictionary": prop(t.component("Selection")),
-                            "if true": prop(t.component_cyclic("Expression")),
-                            "if false": prop(t.component_cyclic("Expression")),
+                            "if true": prop(t.component("Expression")),
+                            "if false": prop(t.component("Expression")),
                         }))
                     })),
                     "list": toption(t.state({
                         "has first item": toption(t.group({
                             "list": prop(t.component("Selection")),
-                            "if true": prop(t.component_cyclic("Expression")),
-                            "if false": prop(t.component_cyclic("Expression")),
+                            "if true": prop(t.component("Expression")),
+                            "if false": prop(t.component("Expression")),
                         })),
                         "has last item": toption(t.group({
                             "list": prop(t.component("Selection")),
-                            "if true": prop(t.component_cyclic("Expression")),
-                            "if false": prop(t.component_cyclic("Expression")),
+                            "if true": prop(t.component("Expression")),
+                            "if false": prop(t.component("Expression")),
                         })),
                         "has items": toption(t.group({
                             "list": prop(t.component("Selection")),
-                            "if true": prop(t.component_cyclic("Expression")),
-                            "if false": prop(t.component_cyclic("Expression")),
+                            "if true": prop(t.component("Expression")),
+                            "if false": prop(t.component("Expression")),
                         }))
                     })),
                     "optional": toption(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
+                        "source": prop(t.component("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
-                        "if not set": prop(t.component_cyclic("Expression")),
-                        "if set": prop(t.component_cyclic("Expression")),
+                        "if not set": prop(t.component("Expression")),
+                        "if set": prop(t.component("Expression")),
                     })),
                     "state": toption(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
+                        "source": prop(t.component("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
                         "type": prop(t.state({
                             "partial": toption(t.group({
-                                "options": prop(t.dictionary(t.component_cyclic("Expression"))),
-                                "default": prop(t.component_cyclic("Expression")),
+                                "options": prop(t.dictionary(t.component("Expression"))),
+                                "default": prop(t.component("Expression")),
                             })),
                             "full": toption(t.group({
-                                "options": prop(t.dictionary(t.component_cyclic("Expression"))),
+                                "options": prop(t.dictionary(t.component("Expression"))),
                             }))
                         })),
                     })),
                     "text": toption(t.group({
-                        "source": prop(t.component_cyclic("Selection")),
+                        "source": prop(t.component("Selection")),
                         "temp resulting node": prop(t.optional(t.component("Temp Type Node Reference"))),
-                        "cases": prop(t.dictionary(t.component_cyclic("Expression"))),
-                        "default": prop(t.component_cyclic("Expression")),
+                        "cases": prop(t.dictionary(t.component("Expression"))),
+                        "default": prop(t.component("Expression")),
                     })),
                 })),
             })),
@@ -148,54 +148,54 @@ export const $: g_.Modules = modules(
                 "dictionary": toption(t.state({
                     "filter": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression"))
+                        "entry handler": prop(t.component("Expression"))
                     })),
                     "from list": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "get id": prop(t.component_cyclic("Expression")),
-                        "get entry": prop(t.component_cyclic("Expression")),
-                        "abort": prop(t.component_cyclic("Expression")),
+                        "get id": prop(t.component("Expression")),
+                        "get entry": prop(t.component("Expression")),
+                        "abort": prop(t.component("Expression")),
                     })),
-                    "literal": toption(t.dictionary(t.component_cyclic("Expression"))),
+                    "literal": toption(t.dictionary(t.component("Expression"))),
                     "map": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression"))
+                        "entry handler": prop(t.component("Expression"))
                     })),
                     "resolve": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression")),
+                        "entry handler": prop(t.component("Expression")),
                         "temp resulting entry node": prop(t.component("Temp Type Node Reference")),
                     })),
                 })),
                 "group": toption(t.state({
-                    "literal": toption(t.dictionary(t.component_cyclic("Expression"))),
-                    "resolve": toption(t.dictionary(t.component_cyclic("Expression"))),
+                    "literal": toption(t.dictionary(t.component("Expression"))),
+                    "resolve": toption(t.dictionary(t.component("Expression"))),
                 })),
                 "list": toption(t.state({
                     "filter": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "entry handler": prop(t.component_cyclic("Expression"))
+                        "entry handler": prop(t.component("Expression"))
                     })),
                     "from dictionary": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "get item": prop(t.component_cyclic("Expression")),
+                        "get item": prop(t.component("Expression")),
                     })),
-                    "literal": toption(t.list(t.component_cyclic("Expression"))),
+                    "literal": toption(t.list(t.component("Expression"))),
                     "map": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "item handler": prop(t.component_cyclic("Expression"))
+                        "item handler": prop(t.component("Expression"))
                     })),
                     "map with state": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "initial state": prop(t.component_cyclic("Expression")),
-                        "item handler": prop(t.component_cyclic("Expression")),
-                        "update state": prop(t.component_cyclic("Expression")),
-                        "wrap up": prop(t.component_cyclic("Expression")),
+                        "initial state": prop(t.component("Expression")),
+                        "item handler": prop(t.component("Expression")),
+                        "update state": prop(t.component("Expression")),
+                        "wrap up": prop(t.component("Expression")),
                     })),
                     "reduce": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "initial state": prop(t.component_cyclic("Expression")),
-                        "item handler": prop(t.component_cyclic("Expression")),
+                        "initial state": prop(t.component("Expression")),
+                        "item handler": prop(t.component("Expression")),
                     })),
                     "reverse": toption(t.group({
                         "source": prop(t.component("Selection")),
@@ -212,7 +212,7 @@ export const $: g_.Modules = modules(
                         "divide": toption(t.group({
                             "divident": prop(t.component("Selection")),
                             "divisor": prop(t.component("Selection")),
-                            "abort": prop(t.component_cyclic("Expression")),
+                            "abort": prop(t.component("Expression")),
                         })),
                         "literal": toption(t.number_local(n.integer(null))),
                     })),
@@ -232,21 +232,21 @@ export const $: g_.Modules = modules(
                 "optional": toption(t.state({
                     "from boolean": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "get set": prop(t.component_cyclic("Expression")),
+                        "get set": prop(t.component("Expression")),
                     })),
                     "literal": toption(t.state({
                         "not set": toption(t.nothing()),
-                        "set": toption(t.component_cyclic("Expression")),
+                        "set": toption(t.component("Expression")),
                     })),
                     "map": toption(t.group({
                         "source": prop(t.component("Selection")),
-                        "set handler": prop(t.component_cyclic("Expression"))
+                        "set handler": prop(t.component("Expression"))
                     })),
                 })),
                 "state": toption(t.state({
                     "literal": toption(t.group({
                         "option": prop(t.text_global("Identifier")),
-                        "value": prop(t.component_cyclic("Expression")),
+                        "value": prop(t.component("Expression")),
                     }))
                 })),
                 "text": toption(t.state({
@@ -263,19 +263,19 @@ export const $: g_.Modules = modules(
             })),
             "select": toption(t.component("Selection")),
             "special": toption(t.state({
-                "abort": toption(t.component_cyclic("Expression")),
+                "abort": toption(t.component("Expression")),
                 "assert": toption(t.group({
-                    "tester": prop(t.component_cyclic("Expression")),
-                    "normal flow": prop(t.component_cyclic("Expression")),
+                    "tester": prop(t.component("Expression")),
+                    "normal flow": prop(t.component("Expression")),
                 })),
                 "change context": toption(t.group({
                     "new context": prop(t.component("Selection")),
-                    "expression": prop(t.component_cyclic("Expression")),
+                    "expression": prop(t.component("Expression")),
                 })),
                 "implement me": toption(t.text_local(text('single line'))),
                 "iterate": toption(t.group({
                     "list": prop(t.component("Selection")),
-                    "handler": prop(t.component_cyclic("Expression")),
+                    "handler": prop(t.component("Expression")),
                 })),
                 "unreachable": toption(t.nothing()),
             })),
@@ -293,27 +293,27 @@ export const $: g_.Modules = modules(
                                 "variable": prop(t.text_global("TBD")),
                             }))
                         })),
-                        "context": prop(t.component_cyclic("Expression")),
-                        "abort": prop(t.optional(t.component_cyclic("Expression"))),
+                        "context": prop(t.component("Expression")),
+                        "abort": prop(t.optional(t.component("Expression"))),
                         "lookups": prop(t.optional(t.state({
-                            "initialize": toption(t.dictionary(t.component_cyclic("Lookup Selection"))),
+                            "initialize": toption(t.dictionary(t.component("Lookup Selection"))),
                             "pass through": toption(t.nothing()),
                         }))),
                         "arguments": prop(t.optional(t.state({
-                            "initialize": toption(t.dictionary(t.component_cyclic("Expression"))),
+                            "initialize": toption(t.dictionary(t.component("Expression"))),
                             "pass through": toption(t.nothing()),
                         }))),
                     })),
                     "context": toption(t.nothing()),
                     "dictionary entry": toption(t.group({
-                        "dictionary": prop(t.component_cyclic("Selection")),
-                        "id": prop(t.component_cyclic("Expression")),
-                        "abort handler": prop(t.component_cyclic("Expression")),
+                        "dictionary": prop(t.component("Selection")),
+                        "id": prop(t.component("Expression")),
+                        "abort handler": prop(t.component("Expression")),
                     })),
                     "lookup entry": toption(t.group({
-                        "lookup": prop(t.component_cyclic("Lookup Selection")),
-                        "id": prop(t.component_cyclic("Expression")),
-                        "abort handler": prop(t.component_cyclic("Expression")),
+                        "lookup": prop(t.component("Lookup Selection")),
+                        "id": prop(t.component("Expression")),
+                        "abort handler": prop(t.component("Expression")),
                     })),
                     "parameter": toption(t.text_global("TBD")),
                     "parent sibling": toption(t.text_global("TBD")),
@@ -330,14 +330,14 @@ export const $: g_.Modules = modules(
             "stack": toption(t.state({
                 "empty": toption(t.nothing()),
                 "push": toption(t.group({
-                    "stack": prop(t.component_cyclic("Lookup Selection")),
-                    "acyclic": toption(t.component_cyclic("Lookup Selection")),
+                    "stack": prop(t.component("Lookup Selection")),
+                    "acyclic": toption(t.component("Lookup Selection")),
                 })),
             })),
             "acyclic": toption(t.state({
                 "not set": toption(t.nothing()),
                 "siblings": toption(t.nothing()),
-                "resolved dictionary": toption(t.component_cyclic("Selection")),
+                "resolved dictionary": toption(t.component("Selection")),
             })),
             "cyclic": toption(t.state({
                 "not set": toption(t.nothing()),

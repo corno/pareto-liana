@@ -25,7 +25,7 @@ import * as v_external_token from "../token/unmarshall"
 
 import * as v_external_location from "../location/unmarshall"
 
-export const Structural_Token: t_signatures.Structural_Token = ($, abort) => _p_cc(
+export const Document: t_signatures.Document = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -33,221 +33,81 @@ export const Structural_Token: t_signatures.Structural_Token = ($, abort) => _p_
         )
     ),
     ($) => ({
-        'trailing trivia': _p_cc(
+        'header': _p_cc(
             $.__get_entry(
-                'trailing trivia',
+                'header',
                 ($) => abort(
-                    ['no such entry', "trailing trivia"]
+                    ['no such entry', "header"]
                 )
             ),
-            ($) => v_external_token.Trivia(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'range': _p_cc(
-            $.__get_entry(
-                'range',
-                ($) => abort(
-                    ['no such entry', "range"]
-                )
-            ),
-            ($) => v_external_location.Range(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-    })
-)
-
-export const Text: t_signatures.Text = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.Group(
-        $,
-        ($) => abort(
-            ['expected a group', null]
-        )
-    ),
-    ($) => ({
-        'trailing trivia': _p_cc(
-            $.__get_entry(
-                'trailing trivia',
-                ($) => abort(
-                    ['no such entry', "trailing trivia"]
-                )
-            ),
-            ($) => v_external_token.Trivia(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'range': _p_cc(
-            $.__get_entry(
-                'range',
-                ($) => abort(
-                    ['no such entry', "range"]
-                )
-            ),
-            ($) => v_external_location.Range(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'value': _p_cc(
-            $.__get_entry(
-                'value',
-                ($) => abort(
-                    ['no such entry', "value"]
-                )
-            ),
-            ($) => v_unmarshalled_from_parse_tree.Text(
-                $,
-                ($) => abort(
-                    ['expected a text', null]
-                )
-            )
-        ),
-        'type': _p_cc(
-            $.__get_entry(
-                'type',
-                ($) => abort(
-                    ['no such entry', "type"]
-                )
-            ),
-            ($) => v_external_token.Text_Type(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-    })
-)
-
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => _p.list.map(
-    v_unmarshalled_from_parse_tree.List(
-        $,
-        ($) => abort(
-            ['expected a list', null]
-        )
-    ),
-    ($) => _p_cc(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null]
-            )
-        ),
-        ($) => ({
-            'id': _p_cc(
-                $.__get_entry(
-                    'id',
-                    ($) => abort(
-                        ['no such entry', "id"]
-                    )
-                ),
-                ($) => Text(
+            ($) => _p.optional.map(
+                v_unmarshalled_from_parse_tree.Optional(
                     $,
                     ($) => abort(
-                        $
-                    )
-                )
-            ),
-            'value': _p_cc(
-                $.__get_entry(
-                    'value',
-                    ($) => abort(
-                        ['no such entry', "value"]
+                        ['expected an optional', null]
                     )
                 ),
-                ($) => _p.optional.map(
-                    v_unmarshalled_from_parse_tree.Optional(
+                ($) => _p_cc(
+                    v_unmarshalled_from_parse_tree.Group(
                         $,
                         ($) => abort(
-                            ['expected an optional', null]
+                            ['expected a group', null]
                         )
                     ),
-                    ($) => _p_cc(
-                        v_unmarshalled_from_parse_tree.Group(
-                            $,
-                            ($) => abort(
-                                ['expected a group', null]
+                    ($) => ({
+                        '!': _p_cc(
+                            $.__get_entry(
+                                '!',
+                                ($) => abort(
+                                    ['no such entry', "!"]
+                                )
+                            ),
+                            ($) => Structural_Token(
+                                $,
+                                ($) => abort(
+                                    $
+                                )
                             )
                         ),
-                        ($) => ({
-                            ':': _p_cc(
-                                $.__get_entry(
-                                    ':',
-                                    ($) => abort(
-                                        ['no such entry', ":"]
-                                    )
-                                ),
-                                ($) => Structural_Token(
-                                    $,
-                                    ($) => abort(
-                                        $
-                                    )
+                        'value': _p_cc(
+                            $.__get_entry(
+                                'value',
+                                ($) => abort(
+                                    ['no such entry', "value"]
                                 )
                             ),
-                            'value': _p_cc(
-                                $.__get_entry(
-                                    'value',
-                                    ($) => abort(
-                                        ['no such entry', "value"]
-                                    )
-                                ),
-                                ($) => Value(
-                                    $,
-                                    ($) => abort(
-                                        $
-                                    )
+                            ($) => Value(
+                                $,
+                                ($) => abort(
+                                    $
                                 )
-                            ),
-                        })
-                    )
+                            )
+                        ),
+                    })
                 )
-            ),
-        })
-    )
-)
-
-export const Items: t_signatures.Items = ($, abort) => _p.list.map(
-    v_unmarshalled_from_parse_tree.List(
-        $,
-        ($) => abort(
-            ['expected a list', null]
-        )
-    ),
-    ($) => _p_cc(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null]
             )
         ),
-        ($) => ({
-            'value': _p_cc(
-                $.__get_entry(
-                    'value',
-                    ($) => abort(
-                        ['no such entry', "value"]
-                    )
-                ),
-                ($) => Value(
-                    $,
-                    ($) => abort(
-                        $
-                    )
+        'content': _p_cc(
+            $.__get_entry(
+                'content',
+                ($) => abort(
+                    ['no such entry', "content"]
                 )
             ),
-        })
+            ($) => Content(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+    })
+)
+
+export const Content: t_signatures.Content = ($, abort) => Value(
+    $,
+    ($) => abort(
+        $
     )
 )
 
@@ -857,14 +717,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_cc(
     })
 )
 
-export const Content: t_signatures.Content = ($, abort) => Value(
-    $,
-    ($) => abort(
-        $
-    )
-)
-
-export const Document: t_signatures.Document = ($, abort) => _p_cc(
+export const Structural_Token: t_signatures.Structural_Token = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -872,68 +725,28 @@ export const Document: t_signatures.Document = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'header': _p_cc(
+        'trailing trivia': _p_cc(
             $.__get_entry(
-                'header',
+                'trailing trivia',
                 ($) => abort(
-                    ['no such entry', "header"]
+                    ['no such entry', "trailing trivia"]
                 )
             ),
-            ($) => _p.optional.map(
-                v_unmarshalled_from_parse_tree.Optional(
-                    $,
-                    ($) => abort(
-                        ['expected an optional', null]
-                    )
-                ),
-                ($) => _p_cc(
-                    v_unmarshalled_from_parse_tree.Group(
-                        $,
-                        ($) => abort(
-                            ['expected a group', null]
-                        )
-                    ),
-                    ($) => ({
-                        '!': _p_cc(
-                            $.__get_entry(
-                                '!',
-                                ($) => abort(
-                                    ['no such entry', "!"]
-                                )
-                            ),
-                            ($) => Structural_Token(
-                                $,
-                                ($) => abort(
-                                    $
-                                )
-                            )
-                        ),
-                        'value': _p_cc(
-                            $.__get_entry(
-                                'value',
-                                ($) => abort(
-                                    ['no such entry', "value"]
-                                )
-                            ),
-                            ($) => Value(
-                                $,
-                                ($) => abort(
-                                    $
-                                )
-                            )
-                        ),
-                    })
+            ($) => v_external_token.Trivia(
+                $,
+                ($) => abort(
+                    $
                 )
             )
         ),
-        'content': _p_cc(
+        'range': _p_cc(
             $.__get_entry(
-                'content',
+                'range',
                 ($) => abort(
-                    ['no such entry', "content"]
+                    ['no such entry', "range"]
                 )
             ),
-            ($) => Content(
+            ($) => v_external_location.Range(
                 $,
                 ($) => abort(
                     $
@@ -941,4 +754,191 @@ export const Document: t_signatures.Document = ($, abort) => _p_cc(
             )
         ),
     })
+)
+
+export const Text: t_signatures.Text = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null]
+        )
+    ),
+    ($) => ({
+        'trailing trivia': _p_cc(
+            $.__get_entry(
+                'trailing trivia',
+                ($) => abort(
+                    ['no such entry', "trailing trivia"]
+                )
+            ),
+            ($) => v_external_token.Trivia(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+        'range': _p_cc(
+            $.__get_entry(
+                'range',
+                ($) => abort(
+                    ['no such entry', "range"]
+                )
+            ),
+            ($) => v_external_location.Range(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+        'value': _p_cc(
+            $.__get_entry(
+                'value',
+                ($) => abort(
+                    ['no such entry', "value"]
+                )
+            ),
+            ($) => v_unmarshalled_from_parse_tree.Text(
+                $,
+                ($) => abort(
+                    ['expected a text', null]
+                )
+            )
+        ),
+        'type': _p_cc(
+            $.__get_entry(
+                'type',
+                ($) => abort(
+                    ['no such entry', "type"]
+                )
+            ),
+            ($) => v_external_token.Text_Type(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+    })
+)
+
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
+    ($) => _p_cc(
+        v_unmarshalled_from_parse_tree.Group(
+            $,
+            ($) => abort(
+                ['expected a group', null]
+            )
+        ),
+        ($) => ({
+            'id': _p_cc(
+                $.__get_entry(
+                    'id',
+                    ($) => abort(
+                        ['no such entry', "id"]
+                    )
+                ),
+                ($) => Text(
+                    $,
+                    ($) => abort(
+                        $
+                    )
+                )
+            ),
+            'value': _p_cc(
+                $.__get_entry(
+                    'value',
+                    ($) => abort(
+                        ['no such entry', "value"]
+                    )
+                ),
+                ($) => _p.optional.map(
+                    v_unmarshalled_from_parse_tree.Optional(
+                        $,
+                        ($) => abort(
+                            ['expected an optional', null]
+                        )
+                    ),
+                    ($) => _p_cc(
+                        v_unmarshalled_from_parse_tree.Group(
+                            $,
+                            ($) => abort(
+                                ['expected a group', null]
+                            )
+                        ),
+                        ($) => ({
+                            ':': _p_cc(
+                                $.__get_entry(
+                                    ':',
+                                    ($) => abort(
+                                        ['no such entry', ":"]
+                                    )
+                                ),
+                                ($) => Structural_Token(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    )
+                                )
+                            ),
+                            'value': _p_cc(
+                                $.__get_entry(
+                                    'value',
+                                    ($) => abort(
+                                        ['no such entry', "value"]
+                                    )
+                                ),
+                                ($) => Value(
+                                    $,
+                                    ($) => abort(
+                                        $
+                                    )
+                                )
+                            ),
+                        })
+                    )
+                )
+            ),
+        })
+    )
+)
+
+export const Items: t_signatures.Items = ($, abort) => _p.list.map(
+    v_unmarshalled_from_parse_tree.List(
+        $,
+        ($) => abort(
+            ['expected a list', null]
+        )
+    ),
+    ($) => _p_cc(
+        v_unmarshalled_from_parse_tree.Group(
+            $,
+            ($) => abort(
+                ['expected a group', null]
+            )
+        ),
+        ($) => ({
+            'value': _p_cc(
+                $.__get_entry(
+                    'value',
+                    ($) => abort(
+                        ['no such entry', "value"]
+                    )
+                ),
+                ($) => Value(
+                    $,
+                    ($) => abort(
+                        $
+                    )
+                )
+            ),
+        })
+    )
 )

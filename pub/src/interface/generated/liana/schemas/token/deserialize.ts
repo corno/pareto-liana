@@ -5,6 +5,114 @@ import * as i_generic from "../../generic/deserialize"
 
 import * as i_out from "./data"
 
+export namespace Tokenizer_Result_ {
+    
+    export type I = string
+    
+    export type O = i_out.Tokenizer_Result
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Tokenizer_Result_ = (
+    context: Tokenizer_Result_.I,
+    abort: _pi.Abort<Tokenizer_Result_.E>,
+    parameters: {
+        readonly 'document resource identifier': Tokenizer_Result_.P.document_resource_identifier
+        readonly 'tab size': Tokenizer_Result_.P.tab_size
+    },
+) => Tokenizer_Result_.O
+
+export namespace Annotated_Token_ {
+    
+    export type I = string
+    
+    export type O = i_out.Annotated_Token
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Annotated_Token_ = (
+    context: Annotated_Token_.I,
+    abort: _pi.Abort<Annotated_Token_.E>,
+    parameters: {
+        readonly 'document resource identifier': Annotated_Token_.P.document_resource_identifier
+        readonly 'tab size': Annotated_Token_.P.tab_size
+    },
+) => Annotated_Token_.O
+
+export namespace Token_Type_ {
+    
+    export type I = string
+    
+    export type O = i_out.Token_Type
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Token_Type_ = (
+    context: Token_Type_.I,
+    abort: _pi.Abort<Token_Type_.E>,
+    parameters: {
+        readonly 'document resource identifier': Token_Type_.P.document_resource_identifier
+        readonly 'tab size': Token_Type_.P.tab_size
+    },
+) => Token_Type_.O
+
+export namespace Delimited_Text_ {
+    
+    export type I = string
+    
+    export type O = i_out.Delimited_Text
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Delimited_Text_ = (
+    context: Delimited_Text_.I,
+    abort: _pi.Abort<Delimited_Text_.E>,
+    parameters: {
+        readonly 'document resource identifier': Delimited_Text_.P.document_resource_identifier
+        readonly 'tab size': Delimited_Text_.P.tab_size
+    },
+) => Delimited_Text_.O
+
 export namespace Whitespace_ {
     
     export type I = string
@@ -59,33 +167,6 @@ export type Trivia_ = (
     },
 ) => Trivia_.O
 
-export namespace Delimited_Text_ {
-    
-    export type I = string
-    
-    export type O = i_out.Delimited_Text
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Delimited_Text_ = (
-    context: Delimited_Text_.I,
-    abort: _pi.Abort<Delimited_Text_.E>,
-    parameters: {
-        readonly 'document resource identifier': Delimited_Text_.P.document_resource_identifier
-        readonly 'tab size': Delimited_Text_.P.tab_size
-    },
-) => Delimited_Text_.O
-
 export namespace Text_Type_ {
     
     export type I = string
@@ -113,93 +194,12 @@ export type Text_Type_ = (
     },
 ) => Text_Type_.O
 
-export namespace Token_Type_ {
-    
-    export type I = string
-    
-    export type O = i_out.Token_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Token_Type_ = (
-    context: Token_Type_.I,
-    abort: _pi.Abort<Token_Type_.E>,
-    parameters: {
-        readonly 'document resource identifier': Token_Type_.P.document_resource_identifier
-        readonly 'tab size': Token_Type_.P.tab_size
-    },
-) => Token_Type_.O
-
-export namespace Annotated_Token_ {
-    
-    export type I = string
-    
-    export type O = i_out.Annotated_Token
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Annotated_Token_ = (
-    context: Annotated_Token_.I,
-    abort: _pi.Abort<Annotated_Token_.E>,
-    parameters: {
-        readonly 'document resource identifier': Annotated_Token_.P.document_resource_identifier
-        readonly 'tab size': Annotated_Token_.P.tab_size
-    },
-) => Annotated_Token_.O
-
-export namespace Tokenizer_Result_ {
-    
-    export type I = string
-    
-    export type O = i_out.Tokenizer_Result
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Tokenizer_Result_ = (
-    context: Tokenizer_Result_.I,
-    abort: _pi.Abort<Tokenizer_Result_.E>,
-    parameters: {
-        readonly 'document resource identifier': Tokenizer_Result_.P.document_resource_identifier
-        readonly 'tab size': Tokenizer_Result_.P.tab_size
-    },
-) => Tokenizer_Result_.O
-
 export { 
+    Tokenizer_Result_ as Tokenizer_Result, 
+    Annotated_Token_ as Annotated_Token, 
+    Token_Type_ as Token_Type, 
+    Delimited_Text_ as Delimited_Text, 
     Whitespace_ as Whitespace, 
     Trivia_ as Trivia, 
-    Delimited_Text_ as Delimited_Text, 
     Text_Type_ as Text_Type, 
-    Token_Type_ as Token_Type, 
-    Annotated_Token_ as Annotated_Token, 
-    Tokenizer_Result_ as Tokenizer_Result, 
 }

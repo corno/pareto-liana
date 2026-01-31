@@ -41,11 +41,11 @@ export const $: g_.Modules = modules(
             "properties": prop(t.dictionary(t.group({
                 "type": prop(t.state({
                     "collection": toption(t.group({
-                        "node": prop(t.component_cyclic("Node")),
+                        "node": prop(t.component("Node")),
                         "key": prop(t.component("Identifier")),
                     })),
                     "group": toption(t.group({
-                        "node": prop(t.component_cyclic("Node")),
+                        "node": prop(t.component("Node")),
                     })),
                     "text": toption(t.group({
                         "constraint": prop(t.optional(t.group({
@@ -58,7 +58,7 @@ export const $: g_.Modules = modules(
                             "constraints": prop(t.dictionary(t.group({
                                 "path": prop(t.component("Path"))
                             }))),
-                            "node": prop(t.component_cyclic("Node"))
+                            "node": prop(t.component("Node"))
                         })))
                     })),
                 })),

@@ -165,7 +165,7 @@ export const $: g_.Modules = modules(
                     "Nieuw": prop(t.state({
                         "Ja": toption(t.nothing()),
                         "Nee": toption(t.group({
-                            "Rekening": prop(t.component_cyclic("Verwijzing naar Informele rekening")),
+                            "Rekening": prop(t.component("Verwijzing naar Informele rekening")),
                         })),
                     }))
                 }))),
@@ -175,7 +175,7 @@ export const $: g_.Modules = modules(
                     "Nieuw": prop(t.state({
                         "Ja": toption(t.nothing()),
                         "Nee": toption(t.group({
-                            "Rekening": prop(t.component_cyclic("Verwijzing naar Bankrekening")),
+                            "Rekening": prop(t.component("Verwijzing naar Bankrekening")),
                         })),
                     })),
                     "Mutaties": prop(t.dictionary(t.group({
@@ -184,7 +184,7 @@ export const $: g_.Modules = modules(
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                     }))),
                 }))),
-                "Overige balans items": prop(t.dictionary(t.component_cyclic("Overige balans item"))),
+                "Overige balans items": prop(t.dictionary(t.component("Overige balans item"))),
                 "Verrekenposten": prop(t.dictionary(t.nothing())),
             })),
         })),
@@ -321,7 +321,7 @@ export const $: g_.Modules = modules(
             "Verrekenpost mutaties": prop(t.dictionary(t.dictionary(t.group({
                 "Bedrag": prop(t.number_global("Bedrag")),
                 "Afhandeling": prop(t.state({
-                    "Resultaat": toption(t.component_cyclic("Balans Resultaat Mutatie")),
+                    "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
                     "Balans": toption(t.state({
                         "Informele rekening": toption(t.group({
                             "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
@@ -330,7 +330,7 @@ export const $: g_.Modules = modules(
                 }))
             })))),
             "Bankrekening Mutatie Verwerkingen": prop(t.dictionary(t.dictionary(t.state({
-                "Resultaat": toption(t.component_cyclic("Balans Resultaat Mutatie")),
+                "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
                 "Balans": toption(t.state({
                     "Informele rekening": toption(t.group({
                         "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
@@ -364,7 +364,7 @@ export const $: g_.Modules = modules(
             })),
             "Startdatum boekjaar": prop(t.number_global("Datum")),
             "Grootboekrekeningen": prop(t.component("Grootboekrekeningen")),
-            "Eerste boekjaar": prop(t.component_cyclic("Eerste boekjaar")),
+            "Eerste boekjaar": prop(t.component("Eerste boekjaar")),
             "Jaarbeheer": prop(t.component("Jaarbeheer")),
             "Handelstransacties": prop(t.component("Handelstransacties")),
             "Mutaties": prop(t.component("Mutaties")),

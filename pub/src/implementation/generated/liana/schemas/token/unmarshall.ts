@@ -21,7 +21,7 @@ import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/
 
 import * as v_external_location from "../location/unmarshall"
 
-export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_cc(
+export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -29,64 +29,25 @@ export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_cc(
         )
     ),
     ($) => ({
-        'range': _p_cc(
+        'leading trivia': _p_cc(
             $.__get_entry(
-                'range',
+                'leading trivia',
                 ($) => abort(
-                    ['no such entry', "range"]
+                    ['no such entry', "leading trivia"]
                 )
             ),
-            ($) => v_external_location.Range(
+            ($) => Trivia(
                 $,
                 ($) => abort(
                     $
                 )
             )
         ),
-        'value': _p_cc(
+        'tokens': _p_cc(
             $.__get_entry(
-                'value',
+                'tokens',
                 ($) => abort(
-                    ['no such entry', "value"]
-                )
-            ),
-            ($) => v_unmarshalled_from_parse_tree.Text(
-                $,
-                ($) => abort(
-                    ['expected a text', null]
-                )
-            )
-        ),
-    })
-)
-
-export const Trivia: t_signatures.Trivia = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.Group(
-        $,
-        ($) => abort(
-            ['expected a group', null]
-        )
-    ),
-    ($) => ({
-        'leading whitespace': _p_cc(
-            $.__get_entry(
-                'leading whitespace',
-                ($) => abort(
-                    ['no such entry', "leading whitespace"]
-                )
-            ),
-            ($) => Whitespace(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'comments': _p_cc(
-            $.__get_entry(
-                'comments',
-                ($) => abort(
-                    ['no such entry', "comments"]
+                    ['no such entry', "tokens"]
                 )
             ),
             ($) => _p.list.map(
@@ -96,175 +57,96 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_cc(
                         ['expected a list', null]
                     )
                 ),
-                ($) => _p_cc(
-                    v_unmarshalled_from_parse_tree.Group(
-                        $,
-                        ($) => abort(
-                            ['expected a group', null]
-                        )
-                    ),
-                    ($) => ({
-                        'type': _p_cc(
-                            $.__get_entry(
-                                'type',
-                                ($) => abort(
-                                    ['no such entry', "type"]
-                                )
-                            ),
-                            ($) => _p_cc(
-                                v_unmarshalled_from_parse_tree.State(
-                                    $,
-                                    ($) => abort(
-                                        ['expected a state', null]
-                                    )
-                                ),
-                                ($) => _p.decide.text(
-                                    $['option']['value'],
-                                    ($t): t_out.Trivia.comments.L.type_ => {
-                                        switch ($t) {
-                                            case 'line':
-                                                return _p_cc(
-                                                    $['value'],
-                                                    ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
-                                                        $,
-                                                        ($) => abort(
-                                                            ['expected a nothing', null]
-                                                        )
-                                                    )]
-                                                )
-                                            case 'block':
-                                                return _p_cc(
-                                                    $['value'],
-                                                    ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
-                                                        $,
-                                                        ($) => abort(
-                                                            ['expected a nothing', null]
-                                                        )
-                                                    )]
-                                                )
-                                            default:
-                                                return abort(
-                                                    ['unknown option', $['option']['value']]
-                                                )
-                                        }
-                                    }
-                                )
-                            )
-                        ),
-                        'content': _p_cc(
-                            $.__get_entry(
-                                'content',
-                                ($) => abort(
-                                    ['no such entry', "content"]
-                                )
-                            ),
-                            ($) => v_unmarshalled_from_parse_tree.Text(
-                                $,
-                                ($) => abort(
-                                    ['expected a text', null]
-                                )
-                            )
-                        ),
-                        'range': _p_cc(
-                            $.__get_entry(
-                                'range',
-                                ($) => abort(
-                                    ['no such entry', "range"]
-                                )
-                            ),
-                            ($) => v_external_location.Range(
-                                $,
-                                ($) => abort(
-                                    $
-                                )
-                            )
-                        ),
-                        'trailing whitespace': _p_cc(
-                            $.__get_entry(
-                                'trailing whitespace',
-                                ($) => abort(
-                                    ['no such entry', "trailing whitespace"]
-                                )
-                            ),
-                            ($) => Whitespace(
-                                $,
-                                ($) => abort(
-                                    $
-                                )
-                            )
-                        ),
-                    })
+                ($) => Annotated_Token(
+                    $,
+                    ($) => abort(
+                        $
+                    )
+                )
+            )
+        ),
+        'end': _p_cc(
+            $.__get_entry(
+                'end',
+                ($) => abort(
+                    ['no such entry', "end"]
+                )
+            ),
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $
                 )
             )
         ),
     })
 )
 
-export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmarshalled_from_parse_tree.Text(
-    $,
-    ($) => abort(
-        ['expected a text', null]
-    )
-)
-
-export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
-    v_unmarshalled_from_parse_tree.State(
+export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
-            ['expected a state', null]
+            ['expected a group', null]
         )
     ),
-    ($) => _p.decide.text(
-        $['option']['value'],
-        ($t): t_out.Text_Type => {
-            switch ($t) {
-                case 'quoted':
-                    return _p_cc(
-                        $['value'],
-                        ($) => ['quoted', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                ['expected a nothing', null]
-                            )
-                        )]
-                    )
-                case 'apostrophed':
-                    return _p_cc(
-                        $['value'],
-                        ($) => ['apostrophed', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                ['expected a nothing', null]
-                            )
-                        )]
-                    )
-                case 'undelimited':
-                    return _p_cc(
-                        $['value'],
-                        ($) => ['undelimited', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                ['expected a nothing', null]
-                            )
-                        )]
-                    )
-                case 'backticked':
-                    return _p_cc(
-                        $['value'],
-                        ($) => ['backticked', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                ['expected a nothing', null]
-                            )
-                        )]
-                    )
-                default:
-                    return abort(
-                        ['unknown option', $['option']['value']]
-                    )
-            }
-        }
-    )
+    ($) => ({
+        'start': _p_cc(
+            $.__get_entry(
+                'start',
+                ($) => abort(
+                    ['no such entry', "start"]
+                )
+            ),
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+        'type': _p_cc(
+            $.__get_entry(
+                'type',
+                ($) => abort(
+                    ['no such entry', "type"]
+                )
+            ),
+            ($) => Token_Type(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+        'end': _p_cc(
+            $.__get_entry(
+                'end',
+                ($) => abort(
+                    ['no such entry', "end"]
+                )
+            ),
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+        'trailing trivia': _p_cc(
+            $.__get_entry(
+                'trailing trivia',
+                ($) => abort(
+                    ['no such entry', "trailing trivia"]
+                )
+            ),
+            ($) => Trivia(
+                $,
+                ($) => abort(
+                    $
+                )
+            )
+        ),
+    })
 )
 
 export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_cc(
@@ -479,7 +361,14 @@ export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_cc(
     )
 )
 
-export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_cc(
+export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmarshalled_from_parse_tree.Text(
+    $,
+    ($) => abort(
+        ['expected a text', null]
+    )
+)
+
+export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -487,66 +376,38 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_cc
         )
     ),
     ($) => ({
-        'start': _p_cc(
+        'range': _p_cc(
             $.__get_entry(
-                'start',
+                'range',
                 ($) => abort(
-                    ['no such entry', "start"]
+                    ['no such entry', "range"]
                 )
             ),
-            ($) => v_external_location.Location(
+            ($) => v_external_location.Range(
                 $,
                 ($) => abort(
                     $
                 )
             )
         ),
-        'type': _p_cc(
+        'value': _p_cc(
             $.__get_entry(
-                'type',
+                'value',
                 ($) => abort(
-                    ['no such entry', "type"]
+                    ['no such entry', "value"]
                 )
             ),
-            ($) => Token_Type(
+            ($) => v_unmarshalled_from_parse_tree.Text(
                 $,
                 ($) => abort(
-                    $
-                )
-            )
-        ),
-        'end': _p_cc(
-            $.__get_entry(
-                'end',
-                ($) => abort(
-                    ['no such entry', "end"]
-                )
-            ),
-            ($) => v_external_location.Location(
-                $,
-                ($) => abort(
-                    $
-                )
-            )
-        ),
-        'trailing trivia': _p_cc(
-            $.__get_entry(
-                'trailing trivia',
-                ($) => abort(
-                    ['no such entry', "trailing trivia"]
-                )
-            ),
-            ($) => Trivia(
-                $,
-                ($) => abort(
-                    $
+                    ['expected a text', null]
                 )
             )
         ),
     })
 )
 
-export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_cc(
+export const Trivia: t_signatures.Trivia = ($, abort) => _p_cc(
     v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
@@ -554,25 +415,25 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
         )
     ),
     ($) => ({
-        'leading trivia': _p_cc(
+        'leading whitespace': _p_cc(
             $.__get_entry(
-                'leading trivia',
+                'leading whitespace',
                 ($) => abort(
-                    ['no such entry', "leading trivia"]
+                    ['no such entry', "leading whitespace"]
                 )
             ),
-            ($) => Trivia(
+            ($) => Whitespace(
                 $,
                 ($) => abort(
                     $
                 )
             )
         ),
-        'tokens': _p_cc(
+        'comments': _p_cc(
             $.__get_entry(
-                'tokens',
+                'comments',
                 ($) => abort(
-                    ['no such entry', "tokens"]
+                    ['no such entry', "comments"]
                 )
             ),
             ($) => _p.list.map(
@@ -582,27 +443,166 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
                         ['expected a list', null]
                     )
                 ),
-                ($) => Annotated_Token(
-                    $,
-                    ($) => abort(
-                        $
-                    )
-                )
-            )
-        ),
-        'end': _p_cc(
-            $.__get_entry(
-                'end',
-                ($) => abort(
-                    ['no such entry', "end"]
-                )
-            ),
-            ($) => v_external_location.Location(
-                $,
-                ($) => abort(
-                    $
+                ($) => _p_cc(
+                    v_unmarshalled_from_parse_tree.Group(
+                        $,
+                        ($) => abort(
+                            ['expected a group', null]
+                        )
+                    ),
+                    ($) => ({
+                        'type': _p_cc(
+                            $.__get_entry(
+                                'type',
+                                ($) => abort(
+                                    ['no such entry', "type"]
+                                )
+                            ),
+                            ($) => _p_cc(
+                                v_unmarshalled_from_parse_tree.State(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a state', null]
+                                    )
+                                ),
+                                ($) => _p.decide.text(
+                                    $['option']['value'],
+                                    ($t): t_out.Trivia.comments.L.type_ => {
+                                        switch ($t) {
+                                            case 'line':
+                                                return _p_cc(
+                                                    $['value'],
+                                                    ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null]
+                                                        )
+                                                    )]
+                                                )
+                                            case 'block':
+                                                return _p_cc(
+                                                    $['value'],
+                                                    ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null]
+                                                        )
+                                                    )]
+                                                )
+                                            default:
+                                                return abort(
+                                                    ['unknown option', $['option']['value']]
+                                                )
+                                        }
+                                    }
+                                )
+                            )
+                        ),
+                        'content': _p_cc(
+                            $.__get_entry(
+                                'content',
+                                ($) => abort(
+                                    ['no such entry', "content"]
+                                )
+                            ),
+                            ($) => v_unmarshalled_from_parse_tree.Text(
+                                $,
+                                ($) => abort(
+                                    ['expected a text', null]
+                                )
+                            )
+                        ),
+                        'range': _p_cc(
+                            $.__get_entry(
+                                'range',
+                                ($) => abort(
+                                    ['no such entry', "range"]
+                                )
+                            ),
+                            ($) => v_external_location.Range(
+                                $,
+                                ($) => abort(
+                                    $
+                                )
+                            )
+                        ),
+                        'trailing whitespace': _p_cc(
+                            $.__get_entry(
+                                'trailing whitespace',
+                                ($) => abort(
+                                    ['no such entry', "trailing whitespace"]
+                                )
+                            ),
+                            ($) => Whitespace(
+                                $,
+                                ($) => abort(
+                                    $
+                                )
+                            )
+                        ),
+                    })
                 )
             )
         ),
     })
+)
+
+export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_cc(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            ['expected a state', null]
+        )
+    ),
+    ($) => _p.decide.text(
+        $['option']['value'],
+        ($t): t_out.Text_Type => {
+            switch ($t) {
+                case 'quoted':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['quoted', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'apostrophed':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['apostrophed', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'undelimited':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['undelimited', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                case 'backticked':
+                    return _p_cc(
+                        $['value'],
+                        ($) => ['backticked', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null]
+                            )
+                        )]
+                    )
+                default:
+                    return abort(
+                        ['unknown option', $['option']['value']]
+                    )
+            }
+        }
+    )
 )

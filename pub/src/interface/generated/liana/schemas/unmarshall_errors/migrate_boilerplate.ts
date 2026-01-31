@@ -5,11 +5,11 @@ import * as i_out from "./data"
 
 import * as i_in from "./data"
 
-export namespace Relative_Location_ {
+export namespace Errors_ {
     
-    export type I = i_in.Relative_Location
+    export type I = i_in.Errors
     
-    export type O = i_out.Relative_Location
+    export type O = i_out.Errors
     
     export namespace P {
         
@@ -17,9 +17,9 @@ export namespace Relative_Location_ {
     
 }
 
-export type Relative_Location_ = (
-    context: Relative_Location_.I,
-) => Relative_Location_.O
+export type Errors_ = (
+    context: Errors_.I,
+) => Errors_.O
 
 export namespace Location_ {
     
@@ -37,6 +37,22 @@ export type Location_ = (
     context: Location_.I,
 ) => Location_.O
 
+export namespace Relative_Location_ {
+    
+    export type I = i_in.Relative_Location
+    
+    export type O = i_out.Relative_Location
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Relative_Location_ = (
+    context: Relative_Location_.I,
+) => Relative_Location_.O
+
 export namespace Range_ {
     
     export type I = i_in.Range
@@ -53,25 +69,9 @@ export type Range_ = (
     context: Range_.I,
 ) => Range_.O
 
-export namespace Errors_ {
-    
-    export type I = i_in.Errors
-    
-    export type O = i_out.Errors
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Errors_ = (
-    context: Errors_.I,
-) => Errors_.O
-
 export { 
-    Relative_Location_ as Relative_Location, 
-    Location_ as Location, 
-    Range_ as Range, 
     Errors_ as Errors, 
+    Location_ as Location, 
+    Relative_Location_ as Relative_Location, 
+    Range_ as Range, 
 }

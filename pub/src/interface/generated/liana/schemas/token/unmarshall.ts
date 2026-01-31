@@ -7,6 +7,82 @@ import * as i_out from "./data"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
+export namespace Tokenizer_Result_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Tokenizer_Result
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Tokenizer_Result_ = (
+    context: Tokenizer_Result_.I,
+    abort: _pi.Abort<Tokenizer_Result_.E>,
+) => Tokenizer_Result_.O
+
+export namespace Annotated_Token_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Annotated_Token
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Annotated_Token_ = (
+    context: Annotated_Token_.I,
+    abort: _pi.Abort<Annotated_Token_.E>,
+) => Annotated_Token_.O
+
+export namespace Token_Type_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Token_Type
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Token_Type_ = (
+    context: Token_Type_.I,
+    abort: _pi.Abort<Token_Type_.E>,
+) => Token_Type_.O
+
+export namespace Delimited_Text_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Delimited_Text
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Delimited_Text_ = (
+    context: Delimited_Text_.I,
+    abort: _pi.Abort<Delimited_Text_.E>,
+) => Delimited_Text_.O
+
 export namespace Whitespace_ {
     
     export type I = i_in.Value
@@ -45,25 +121,6 @@ export type Trivia_ = (
     abort: _pi.Abort<Trivia_.E>,
 ) => Trivia_.O
 
-export namespace Delimited_Text_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Delimited_Text
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Delimited_Text_ = (
-    context: Delimited_Text_.I,
-    abort: _pi.Abort<Delimited_Text_.E>,
-) => Delimited_Text_.O
-
 export namespace Text_Type_ {
     
     export type I = i_in.Value
@@ -83,69 +140,12 @@ export type Text_Type_ = (
     abort: _pi.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
-export namespace Token_Type_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Token_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Token_Type_ = (
-    context: Token_Type_.I,
-    abort: _pi.Abort<Token_Type_.E>,
-) => Token_Type_.O
-
-export namespace Annotated_Token_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Annotated_Token
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Annotated_Token_ = (
-    context: Annotated_Token_.I,
-    abort: _pi.Abort<Annotated_Token_.E>,
-) => Annotated_Token_.O
-
-export namespace Tokenizer_Result_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Tokenizer_Result
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Tokenizer_Result_ = (
-    context: Tokenizer_Result_.I,
-    abort: _pi.Abort<Tokenizer_Result_.E>,
-) => Tokenizer_Result_.O
-
 export { 
+    Tokenizer_Result_ as Tokenizer_Result, 
+    Annotated_Token_ as Annotated_Token, 
+    Token_Type_ as Token_Type, 
+    Delimited_Text_ as Delimited_Text, 
     Whitespace_ as Whitespace, 
     Trivia_ as Trivia, 
-    Delimited_Text_ as Delimited_Text, 
     Text_Type_ as Text_Type, 
-    Token_Type_ as Token_Type, 
-    Annotated_Token_ as Annotated_Token, 
-    Tokenizer_Result_ as Tokenizer_Result, 
 }

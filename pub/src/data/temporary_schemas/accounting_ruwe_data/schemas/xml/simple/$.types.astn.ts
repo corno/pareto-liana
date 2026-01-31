@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
         "Children": module_(t.list(t.state({
             "cdata": toption(t.text_global("Text Value")),
             "comment": toption(t.text_global("Text Value")),
-            "element": toption(t.component_cyclic("Element")),
+            "element": toption(t.component("Element")),
             "processing instruction": toption(t.group({
                 "target": prop(t.text_global("Text Value")),
                 "data": prop(t.text_global("Text Value")),
@@ -35,7 +35,7 @@ export const $: g_.Modules = modules(
             "name": prop(t.text_global("Text Value")),
             "attributes": prop(t.component("Attributes")),
             //"mixed": t.boolean(),
-            "children": prop(t.component_cyclic("Children")),
+            "children": prop(t.component("Children")),
         })),
     }
 )

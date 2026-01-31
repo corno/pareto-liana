@@ -17,103 +17,43 @@ import * as v_external_token from "../token/marshall"
 
 import * as v_external_location from "../location/marshall"
 
-export const Structural_Token: t_signatures.Structural_Token = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'trailing trivia': _p_cc(
-            $['trailing trivia'],
-            ($) => v_external_token.Trivia(
-                $
-            )
+        'header': _p_cc(
+            $['header'],
+            ($) => ['optional', _p.decide.optional(
+                $,
+                ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
+                    {
+                        '!': _p_cc(
+                            $['!'],
+                            ($) => Structural_Token(
+                                $
+                            )
+                        ),
+                        'value': _p_cc(
+                            $['value'],
+                            ($) => Value(
+                                $
+                            )
+                        ),
+                    }
+                )]]],
+                () => ['not set', null]
+            )]
         ),
-        'range': _p_cc(
-            $['range'],
-            ($) => v_external_location.Range(
+        'content': _p_cc(
+            $['content'],
+            ($) => Content(
                 $
             )
         ),
     }
 )]]
 
-export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        'trailing trivia': _p_cc(
-            $['trailing trivia'],
-            ($) => v_external_token.Trivia(
-                $
-            )
-        ),
-        'range': _p_cc(
-            $['range'],
-            ($) => v_external_location.Range(
-                $
-            )
-        ),
-        'value': _p_cc(
-            $['value'],
-            ($) => ['text', {
-                'delimiter': ['quote', null],
-                'value': $,
-            }]
-        ),
-        'type': _p_cc(
-            $['type'],
-            ($) => v_external_token.Text_Type(
-                $
-            )
-        ),
-    }
-)]]
-
-export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.list.map(
-    $,
-    ($) => ['group', ['verbose', _p.dictionary.literal(
-        {
-            'id': _p_cc(
-                $['id'],
-                ($) => Text(
-                    $
-                )
-            ),
-            'value': _p_cc(
-                $['value'],
-                ($) => ['optional', _p.decide.optional(
-                    $,
-                    ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
-                        {
-                            ':': _p_cc(
-                                $[':'],
-                                ($) => Structural_Token(
-                                    $
-                                )
-                            ),
-                            'value': _p_cc(
-                                $['value'],
-                                ($) => Value(
-                                    $
-                                )
-                            ),
-                        }
-                    )]]],
-                    () => ['not set', null]
-                )]
-            ),
-        }
-    )]]
-)]
-
-export const Items: t_signatures.Items = ($) => ['list', _p.list.map(
-    $,
-    ($) => ['group', ['verbose', _p.dictionary.literal(
-        {
-            'value': _p_cc(
-                $['value'],
-                ($) => Value(
-                    $
-                )
-            ),
-        }
-    )]]
-)]
+export const Content: t_signatures.Content = ($) => Value(
+    $
+)
 
 export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
@@ -465,40 +405,100 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
     }
 )]]
 
-export const Content: t_signatures.Content = ($) => Value(
-    $
-)
-
-export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Structural_Token: t_signatures.Structural_Token = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        'header': _p_cc(
-            $['header'],
-            ($) => ['optional', _p.decide.optional(
-                $,
-                ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
-                    {
-                        '!': _p_cc(
-                            $['!'],
-                            ($) => Structural_Token(
-                                $
-                            )
-                        ),
-                        'value': _p_cc(
-                            $['value'],
-                            ($) => Value(
-                                $
-                            )
-                        ),
-                    }
-                )]]],
-                () => ['not set', null]
-            )]
+        'trailing trivia': _p_cc(
+            $['trailing trivia'],
+            ($) => v_external_token.Trivia(
+                $
+            )
         ),
-        'content': _p_cc(
-            $['content'],
-            ($) => Content(
+        'range': _p_cc(
+            $['range'],
+            ($) => v_external_location.Range(
                 $
             )
         ),
     }
 )]]
+
+export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        'trailing trivia': _p_cc(
+            $['trailing trivia'],
+            ($) => v_external_token.Trivia(
+                $
+            )
+        ),
+        'range': _p_cc(
+            $['range'],
+            ($) => v_external_location.Range(
+                $
+            )
+        ),
+        'value': _p_cc(
+            $['value'],
+            ($) => ['text', {
+                'delimiter': ['quote', null],
+                'value': $,
+            }]
+        ),
+        'type': _p_cc(
+            $['type'],
+            ($) => v_external_token.Text_Type(
+                $
+            )
+        ),
+    }
+)]]
+
+export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.list.map(
+    $,
+    ($) => ['group', ['verbose', _p.dictionary.literal(
+        {
+            'id': _p_cc(
+                $['id'],
+                ($) => Text(
+                    $
+                )
+            ),
+            'value': _p_cc(
+                $['value'],
+                ($) => ['optional', _p.decide.optional(
+                    $,
+                    ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
+                        {
+                            ':': _p_cc(
+                                $[':'],
+                                ($) => Structural_Token(
+                                    $
+                                )
+                            ),
+                            'value': _p_cc(
+                                $['value'],
+                                ($) => Value(
+                                    $
+                                )
+                            ),
+                        }
+                    )]]],
+                    () => ['not set', null]
+                )]
+            ),
+        }
+    )]]
+)]
+
+export const Items: t_signatures.Items = ($) => ['list', _p.list.map(
+    $,
+    ($) => ['group', ['verbose', _p.dictionary.literal(
+        {
+            'value': _p_cc(
+                $['value'],
+                ($) => Value(
+                    $
+                )
+            ),
+        }
+    )]]
+)]

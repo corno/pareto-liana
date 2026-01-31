@@ -14,7 +14,7 @@ export const $: g_.Modules = modules(
     {
         "Array Definition": module_(t.group({
             "type": prop(t.state({
-                "list": toption(t.component_cyclic("Definition"))
+                "list": toption(t.component("Definition"))
                 //FIXME concise group
             }))
         })),
@@ -25,11 +25,11 @@ export const $: g_.Modules = modules(
             "type": prop(t.state({
                 "verbose group": toption(t.group({
                     "properties": prop(t.dictionary(t.group({
-                        "definition": prop(t.component_cyclic("Definition")),
+                        "definition": prop(t.component("Definition")),
                         "optional": prop(t.boolean()),
                     }))),
                 })),
-                "dictionary": toption(t.component_cyclic("Definition")),
+                "dictionary": toption(t.component("Definition")),
             })),
         })),
         "String Definition": module_(t.state({

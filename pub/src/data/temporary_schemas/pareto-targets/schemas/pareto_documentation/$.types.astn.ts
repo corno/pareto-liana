@@ -22,7 +22,7 @@ export const $: g_.Modules = modules(
         "Graphviz Directory": module_(t.dictionary(
             t.state({
                 "file": toption(t.component_external("graphviz", "Graph")),
-                "directory": toption(t.component_cyclic("Graphviz Directory")),
+                "directory": toption(t.component("Graphviz Directory")),
             })
         )),
     }

@@ -26,7 +26,7 @@ export const $: g_.Modules = modules(
         "Node": module_(t.group({
             "classifier": prop(t.text_local(text('single line'))),
             "properties": prop(t.dictionary(t.text_local(text('single line')))),
-            "containments": prop(t.dictionary(t.dictionary(t.component_cyclic("Node")))),
+            "containments": prop(t.dictionary(t.dictionary(t.component("Node")))),
             "references": prop(t.dictionary(t.component("Targets"))),
             "annotations": prop(t.list(t.text_local(text('single line')))),
         })),

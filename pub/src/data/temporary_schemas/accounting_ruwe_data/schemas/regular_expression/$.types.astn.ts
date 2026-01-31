@@ -14,7 +14,7 @@ export const $: g_.Modules = modules(
     {
         "Regular Expression": module_(t.group({
             "characters": prop(t.dictionary(t.number_local(n.positive_natural(null)))),
-            "sequence": prop(t.component_cyclic("Sequence")),
+            "sequence": prop(t.component("Sequence")),
         })),
 
         "Sequence": module_(t.list(t.group({
@@ -31,9 +31,9 @@ export const $: g_.Modules = modules(
                     }))),
                 })),
                 "group": toption(t.group({
-                    "expression": prop(t.component_cyclic("Sequence")),
+                    "expression": prop(t.component("Sequence")),
                 })),
-                "alternation": toption(t.list(t.component_cyclic("Sequence"))),
+                "alternation": toption(t.list(t.component("Sequence"))),
             })),
             "quantifier": prop(t.optional(t.state({
                 "optional": toption(t.nothing()), // ?

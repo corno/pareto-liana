@@ -74,7 +74,7 @@ export const $: g_.Modules = modules(
         })),
         "Subgraph": module_(t.group({
             "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?
-            "statements": prop(t.component_cyclic("Statement List")),
+            "statements": prop(t.component("Statement List")),
         })),
     }
 )

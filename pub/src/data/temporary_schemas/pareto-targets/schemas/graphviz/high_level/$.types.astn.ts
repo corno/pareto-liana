@@ -52,7 +52,7 @@ export const $: g_.Modules = modules(
                         "cluster": toption(t.nothing()),
                         "subgraph": toption(t.nothing()),
                     })),
-                    "tree": prop(t.component_cyclic("Tree")),
+                    "tree": prop(t.component("Tree")),
                 })),
                 //}), 'ordered') cannot be ordered until the schema is constrained
             })))

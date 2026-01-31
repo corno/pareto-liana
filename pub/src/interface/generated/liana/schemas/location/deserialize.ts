@@ -5,11 +5,11 @@ import * as i_generic from "../../generic/deserialize"
 
 import * as i_out from "./data"
 
-export namespace Relative_Location_ {
+export namespace Range_ {
     
     export type I = string
     
-    export type O = i_out.Relative_Location
+    export type O = i_out.Range
     
     export type E = i_generic.Error
     
@@ -23,14 +23,14 @@ export namespace Relative_Location_ {
     
 }
 
-export type Relative_Location_ = (
-    context: Relative_Location_.I,
-    abort: _pi.Abort<Relative_Location_.E>,
+export type Range_ = (
+    context: Range_.I,
+    abort: _pi.Abort<Range_.E>,
     parameters: {
-        readonly 'document resource identifier': Relative_Location_.P.document_resource_identifier
-        readonly 'tab size': Relative_Location_.P.tab_size
+        readonly 'document resource identifier': Range_.P.document_resource_identifier
+        readonly 'tab size': Range_.P.tab_size
     },
-) => Relative_Location_.O
+) => Range_.O
 
 export namespace Location_ {
     
@@ -59,11 +59,11 @@ export type Location_ = (
     },
 ) => Location_.O
 
-export namespace Range_ {
+export namespace Relative_Location_ {
     
     export type I = string
     
-    export type O = i_out.Range
+    export type O = i_out.Relative_Location
     
     export type E = i_generic.Error
     
@@ -77,17 +77,17 @@ export namespace Range_ {
     
 }
 
-export type Range_ = (
-    context: Range_.I,
-    abort: _pi.Abort<Range_.E>,
+export type Relative_Location_ = (
+    context: Relative_Location_.I,
+    abort: _pi.Abort<Relative_Location_.E>,
     parameters: {
-        readonly 'document resource identifier': Range_.P.document_resource_identifier
-        readonly 'tab size': Range_.P.tab_size
+        readonly 'document resource identifier': Relative_Location_.P.document_resource_identifier
+        readonly 'tab size': Relative_Location_.P.tab_size
     },
-) => Range_.O
+) => Relative_Location_.O
 
 export { 
-    Relative_Location_ as Relative_Location, 
-    Location_ as Location, 
     Range_ as Range, 
+    Location_ as Location, 
+    Relative_Location_ as Relative_Location, 
 }

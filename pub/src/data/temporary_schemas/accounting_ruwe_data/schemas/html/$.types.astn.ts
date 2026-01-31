@@ -16,12 +16,12 @@ export const $: g_.Modules = modules(
     {
         "Phrasing content": module_(t.list(t.state({
             "text": toption(t.text_global("TBD")),
-            "element": toption(t.component_cyclic("Phrasing")),
+            "element": toption(t.component("Phrasing")),
         }))),
 
         "Flow content": module_(t.list(t.state({
             "phrase": toption(t.component("Phrasing content")),
-            "flow": toption(t.component_cyclic("Flow")),
+            "flow": toption(t.component("Flow")),
         }))),
 
         /*
@@ -128,7 +128,7 @@ export const $: g_.Modules = modules(
                 // form — Associates the element with a form element
                 // width — Horizontal dimension
                 // height — Vertical dimension
-                "content": prop(t.component_cyclic("Embedded content"))
+                "content": prop(t.component("Embedded content"))
             })),
             "video": toption(t.group({
                 /*FIXME*/
@@ -228,11 +228,11 @@ export const $: g_.Modules = modules(
             //generic attributes
             "id": toption(t.group({
                 "id": prop(t.text_global("TBD")),
-                "child": prop(t.component_cyclic("Flow")),
+                "child": prop(t.component("Flow")),
             })),
             "class": toption(t.group({
                 "class": prop(t.text_global("TBD")),
-                "child": prop(t.component_cyclic("Flow")),
+                "child": prop(t.component("Flow")),
             })),
             /**
              * a'phrase' element does not exist in HTML, but this deviation from the standard is needed to handle whitespace properly 
@@ -379,11 +379,11 @@ export const $: g_.Modules = modules(
             //generic attributes
             "id": toption(t.group({
                 "id": prop(t.text_global("TBD")),
-                "child": prop(t.component_cyclic("Phrasing"))
+                "child": prop(t.component("Phrasing"))
             })),
             "class": toption(t.group({
                 "class": prop(t.text_global("TBD")),
-                "child": prop(t.component_cyclic("Phrasing"))
+                "child": prop(t.component("Phrasing"))
             })),
 
             //elements

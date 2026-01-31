@@ -20,14 +20,14 @@ export const $: g_.Modules = modules(
                 "file": toption(t.group({
                     "statements": prop(t.component("Statements"))
                 })),
-                "directory": toption(t.component_cyclic("Directory")),
+                "directory": toption(t.component("Directory")),
             })
         )),
 
-        "Block": module_(t.component_cyclic("Statements")),
+        "Block": module_(t.component("Statements")),
 
         "Statements": module_(t.list(t.state({
-            "block": toption(t.component_cyclic("Block")),
+            "block": toption(t.component("Block")),
             "export": toption(t.group({
                 "type": prop(t.state({
                     "named exports": toption(t.group({
@@ -39,7 +39,7 @@ export const $: g_.Modules = modules(
                     })),
                 })),
             })),
-            "expression": toption(t.component_cyclic("Expression")),
+            "expression": toption(t.component("Expression")),
             "import": toption(t.group({
                 "type": prop(t.state({
                     "namespace": toption(t.component("Identifier")),
@@ -55,18 +55,18 @@ export const $: g_.Modules = modules(
             "module declaration": toption(t.group({ //namespace
                 "export": prop(t.boolean()),
                 "name": prop(t.component("Identifier")),
-                "block": prop(t.component_cyclic("Block")),
+                "block": prop(t.component("Block")),
             })),
 
-            "return": toption(t.optional(t.component_cyclic("Expression"))),
+            "return": toption(t.optional(t.component("Expression"))),
             "switch": toption(t.group({
-                "expression": prop(t.component_cyclic("Expression")),
+                "expression": prop(t.component("Expression")),
                 "clauses": prop(t.list(t.group({
                     "type": prop(t.state({
-                        "case": toption(t.component_cyclic("Expression")),
+                        "case": toption(t.component("Expression")),
                         "default": toption(t.nothing()),
                     })),
-                    "statements": prop(t.component_cyclic("Statements")),
+                    "statements": prop(t.component("Statements")),
                 }))),
             })),
             "type alias declaration": toption(t.group({
@@ -79,7 +79,7 @@ export const $: g_.Modules = modules(
                 "export": prop(t.boolean()),
                 "const": prop(t.boolean()),
                 "name": prop(t.component("Identifier")),
-                "type": prop(t.optional(t.component_cyclic("Type"))),
+                "type": prop(t.optional(t.component("Type"))),
                 "expression": prop(t.optional(t.component("Expression"))),
             })),
         }))),
@@ -87,9 +87,9 @@ export const $: g_.Modules = modules(
         "Type": module_(t.state({
             "boolean": toption(t.nothing()),
             "function": toption(t.group({
-                "type parameters": prop(t.list(t.component_cyclic("Type"))),
+                "type parameters": prop(t.list(t.component("Type"))),
                 "parameters": prop(t.component("Function Parameters")),
-                "return": prop(t.component_cyclic("Type")),
+                "return": prop(t.component("Type")),
             })),
             "literal type": toption(t.component("String Literal")),
             "null": toption(t.nothing()),
@@ -97,48 +97,48 @@ export const $: g_.Modules = modules(
             "string": toption(t.nothing()),
             "tuple": toption(t.group({
                 "readonly": prop(t.boolean()),
-                "elements": prop(t.list(t.component_cyclic("Type"))),
+                "elements": prop(t.list(t.component("Type"))),
             })),
             "type literal": toption(t.group({
                 "properties": prop(t.dictionary(t.group({
                     "readonly": prop(t.boolean()),
-                    "type": prop(t.component_cyclic("Type")),
+                    "type": prop(t.component("Type")),
                 }))),
             })),
             "type reference": toption(t.group({
                 "start": prop(t.component("Identifier")),
                 "tail": prop(t.list(t.component("Identifier"))),
-                "type arguments": prop(t.list(t.component_cyclic("Type"))),
+                "type arguments": prop(t.list(t.component("Type"))),
             })),
-            "union": toption(t.list(t.component_cyclic("Type"))),
+            "union": toption(t.list(t.component("Type"))),
             "void": toption(t.nothing()),
         })),
 
         "Function Parameters": module_(t.list(t.group({
             "name": prop(t.component("Identifier")),
-            "type": prop(t.optional(t.component_cyclic("Type"))),
+            "type": prop(t.optional(t.component("Type"))),
         }))),
 
         "Expression": module_(t.state({
-            "array literal": toption(t.list(t.component_cyclic("Expression"))),
+            "array literal": toption(t.list(t.component("Expression"))),
             "arrow function": toption(t.group({
                 "parameters": prop(t.component("Function Parameters")),
-                "return type": prop(t.optional(t.component_cyclic("Type"))),
+                "return type": prop(t.optional(t.component("Type"))),
                 "body": prop(t.state({
-                    "block": toption(t.component_cyclic("Block")),
-                    "expression": toption(t.component_cyclic("Expression")),
+                    "block": toption(t.component("Block")),
+                    "expression": toption(t.component("Expression")),
                 })),
             })),
             "assignment": toption(t.group({
-                "left": prop(t.component_cyclic("Expression")),
-                "right": prop(t.component_cyclic("Expression")),
+                "left": prop(t.component("Expression")),
+                "right": prop(t.component("Expression")),
             })),
             "call": toption(t.group({
-                "function selection": prop(t.component_cyclic("Expression")),
-                "arguments": prop(t.list(t.component_cyclic("Expression"))),
+                "function selection": prop(t.component("Expression")),
+                "arguments": prop(t.list(t.component("Expression"))),
             })),
             "compare": toption(t.group({
-                "left": prop(t.component_cyclic("Expression")),
+                "left": prop(t.component("Expression")),
                 "operator": prop(t.state({
                     "loosely equal": toption(t.nothing()),
                     "strictly equal": toption(t.nothing()),
@@ -149,16 +149,16 @@ export const $: g_.Modules = modules(
                     "greater than": toption(t.nothing()),
                     "greater than or equal": toption(t.nothing()),
                 })),
-                "right": prop(t.component_cyclic("Expression")),
+                "right": prop(t.component("Expression")),
             })),
             "conditional": toption(t.group({
-                "condition": prop(t.component_cyclic("Expression")),
-                "if true": prop(t.component_cyclic("Expression")),
-                "if false": prop(t.component_cyclic("Expression")),
+                "condition": prop(t.component("Expression")),
+                "if true": prop(t.component("Expression")),
+                "if false": prop(t.component("Expression")),
             })),
             "element access": toption(t.group({
-                "collection": prop(t.component_cyclic("Expression")),
-                "index": prop(t.component_cyclic("Expression")),
+                "collection": prop(t.component("Expression")),
+                "index": prop(t.component("Expression")),
             })),
 
             "identifier": toption(t.component("Identifier")),
@@ -166,11 +166,11 @@ export const $: g_.Modules = modules(
             "null": toption(t.nothing()),
             "number literal": toption(t.number_local(n.approximation(10))),
             "object literal": toption(t.group({
-                "properties": prop(t.dictionary(t.component_cyclic("Expression"))),
+                "properties": prop(t.dictionary(t.component("Expression"))),
             })),
-            "parenthesized": toption(t.component_cyclic("Expression")),
+            "parenthesized": toption(t.component("Expression")),
             "property access": toption(t.group({
-                "object": prop(t.component_cyclic("Expression")),
+                "object": prop(t.component("Expression")),
                 "property": prop(t.component("Identifier")),
             })),
             "string literal": toption(t.component("String Literal")),
@@ -180,7 +180,7 @@ export const $: g_.Modules = modules(
                     "negation": toption(t.nothing()),
                     "logical not": toption(t.nothing()),
                 })),
-                "operand": prop(t.component_cyclic("Expression")),
+                "operand": prop(t.component("Expression")),
             })),
         })),
 

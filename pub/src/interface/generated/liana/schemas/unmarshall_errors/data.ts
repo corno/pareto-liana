@@ -1,45 +1,6 @@
 
 import * as _pi from "pareto-core/dist/interface"
 
-export namespace Relative_Location_ {
-    
-    export type line = number
-    
-    export type column = number
-    
-}
-
-export type Relative_Location_ = {
-    readonly 'line': Relative_Location_.line
-    readonly 'column': Relative_Location_.column
-}
-
-export namespace Location_ {
-    
-    export type relative = Relative_Location_
-    
-    export type absolute = number
-    
-}
-
-export type Location_ = {
-    readonly 'relative': Location_.relative
-    readonly 'absolute': Location_.absolute
-}
-
-export namespace Range_ {
-    
-    export type start = Location_
-    
-    export type end = Location_
-    
-}
-
-export type Range_ = {
-    readonly 'start': Range_.start
-    readonly 'end': Range_.end
-}
-
 export namespace Errors_ {
     
     export namespace L {
@@ -209,9 +170,48 @@ export namespace Errors_ {
 
 export type Errors_ = _pi.List<Errors_.L>
 
+export namespace Location_ {
+    
+    export type relative = Relative_Location_
+    
+    export type absolute = number
+    
+}
+
+export type Location_ = {
+    readonly 'relative': Location_.relative
+    readonly 'absolute': Location_.absolute
+}
+
+export namespace Relative_Location_ {
+    
+    export type line = number
+    
+    export type column = number
+    
+}
+
+export type Relative_Location_ = {
+    readonly 'line': Relative_Location_.line
+    readonly 'column': Relative_Location_.column
+}
+
+export namespace Range_ {
+    
+    export type start = Location_
+    
+    export type end = Location_
+    
+}
+
+export type Range_ = {
+    readonly 'start': Range_.start
+    readonly 'end': Range_.end
+}
+
 export { 
-    Relative_Location_ as Relative_Location, 
-    Location_ as Location, 
-    Range_ as Range, 
     Errors_ as Errors, 
+    Location_ as Location, 
+    Relative_Location_ as Relative_Location, 
+    Range_ as Range, 
 }

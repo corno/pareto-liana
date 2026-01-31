@@ -7,6 +7,63 @@ import * as i_out from "./data"
 
 import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
+export namespace Document_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Document
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Document_ = (
+    context: Document_.I,
+    abort: _pi.Abort<Document_.E>,
+) => Document_.O
+
+export namespace Content_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Content
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Content_ = (
+    context: Content_.I,
+    abort: _pi.Abort<Content_.E>,
+) => Content_.O
+
+export namespace Value_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Value
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Value_ = (
+    context: Value_.I,
+    abort: _pi.Abort<Value_.E>,
+) => Value_.O
+
 export namespace Structural_Token_ {
     
     export type I = i_in.Value
@@ -83,69 +140,12 @@ export type Items_ = (
     abort: _pi.Abort<Items_.E>,
 ) => Items_.O
 
-export namespace Value_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Value_ = (
-    context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
-) => Value_.O
-
-export namespace Content_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Content
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Content_ = (
-    context: Content_.I,
-    abort: _pi.Abort<Content_.E>,
-) => Content_.O
-
-export namespace Document_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Document
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Document_ = (
-    context: Document_.I,
-    abort: _pi.Abort<Document_.E>,
-) => Document_.O
-
 export { 
+    Document_ as Document, 
+    Content_ as Content, 
+    Value_ as Value, 
     Structural_Token_ as Structural_Token, 
     Text_ as Text, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
     Items_ as Items, 
-    Value_ as Value, 
-    Content_ as Content, 
-    Document_ as Document, 
 }

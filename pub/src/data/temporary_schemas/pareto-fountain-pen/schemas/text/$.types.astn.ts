@@ -19,7 +19,7 @@ export const $: g_.Modules = modules(
         "Directory": module_(t.dictionary(
             t.state({
                 "file": toption(t.component("Lines")),
-                "directory": toption(t.component_cyclic("Directory")),
+                "directory": toption(t.component("Directory")),
             })
         )),
     }
