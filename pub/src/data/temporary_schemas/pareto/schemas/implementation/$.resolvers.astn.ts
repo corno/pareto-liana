@@ -24,6 +24,7 @@ export const $: g_.Module_Resolvers = resolvers(
                 "implement me": r.boolean(),
                 "iterate": r.boolean(),
                 "unreachable code path": r.boolean(),
+                "lookups": r.boolean(),
             }),
             "type imports": r.component_external("interface", "Imports", {}, {}),
             "variable imports": r.dictionary(r.group({
@@ -315,12 +316,23 @@ export const $: g_.Module_Resolvers = resolvers(
 
         "Lookup Selection": resolver(r.state({
             "implement me": option(r.text()),
-            "from resolved dictionary": option(r.component("Selection", {}, {})),
-            "from siblings": option(r.group({
-                "cycles allowed": r.boolean()
-            })),
             "from parameter": option(r.text()),
-            "not set": option(r.nothing()),
+            "acyclic": option(r.state({
+                "not set": option(r.nothing()),
+                "siblings": option(r.nothing()),
+                "resolved dictionary": option(r.component("Selection", {}, {})),
+            })),
+            "cyclic": option(r.state({
+                "not set": option(r.nothing()),
+                "siblings": option(r.nothing()),
+            })),
+            "stack": option(r.state({
+                "empty": option(r.nothing()),
+                "push": option(r.group({
+                    "stack": r.component("Lookup Selection", {}, {}),
+                    "acyclic": r.component("Lookup Selection", {}, {}),
+                })),
+            })),
         })),
 
     })

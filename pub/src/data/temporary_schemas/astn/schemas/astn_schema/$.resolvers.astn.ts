@@ -23,8 +23,8 @@ export const $: g_.Module_Resolvers = resolvers(
             "globals": av.parameter("globals"),
             "imports": av.parameter("imports"),
         }, {
-            "noncircular sibling modules": al.not_circular_dependent_siblings(),
-            "possibly circular dependent sibling modules": al.possibly_circular_dependent_siblings(),
+            "noncircular sibling modules": al.acyclic.siblings(),
+            "possibly circular dependent sibling modules": al.cyclic.siblings(),
         }))),
 
         "Globals": resolver(r.group({
@@ -66,8 +66,8 @@ export const $: g_.Module_Resolvers = resolvers(
         "Value": resolver(r.state({
             "component": option(r.state({
                 "external": option_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
-                    "import": r.reference(gvs.dictionary(gvs.option_constraint("import", []))),
-                    "type": r.reference(gvs.dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("types"), rvs.component()]))),
+                    "import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("import", []))),
+                    "type": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("types"), rvs.component()]))),
                 })),
                 "internal": option(r.reference(ls.parameter("noncircular sibling modules"))),
                 "internal cyclic": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
@@ -101,15 +101,15 @@ export const $: g_.Module_Resolvers = resolvers(
 
             "state": option(r.dictionary(r.component("Value", null, null))),
             "text": option(r.state({
-                "global": option_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(gvs.dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
+                "global": option_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
                 "local": option(r.component("Text Type", {}, {})),
             })),
         })),
 
         "Schemas": resolver(r.dictionary(r.component("Schema Tree", {}, {
-            "sibling schemas": al.stack(
+            "sibling schemas": al.stack.push(
                 ls.parameter("sibling schemas"),
-                ls.not_circular_dependent_siblings()
+                ls.acyclic.siblings()
             ),
         }))),
 

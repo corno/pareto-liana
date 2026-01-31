@@ -1401,17 +1401,58 @@ export namespace Lookup_Selection_ {
         
         export namespace l_state {
             
-            export namespace dictionary {
+            export namespace acyclic {
                 
-                export type selection = Guaranteed_Value_Selection_
+                export type l_location = i__location.Relative_Location
                 
-                export type selected_dictionary = null
+                export namespace l_state {
+                    
+                    export type siblings = null
+                    
+                    export namespace resolved_dictionary {
+                        
+                        export type selection = Guaranteed_Value_Selection_
+                        
+                        export type selected_dictionary = null
+                        
+                    }
+                    
+                    export type resolved_dictionary = {
+                        readonly 'selection': resolved_dictionary.selection
+                        readonly 'selected dictionary': resolved_dictionary.selected_dictionary
+                    }
+                    
+                }
+                
+                export type l_state = 
+                    | readonly ['siblings', l_state.siblings]
+                    | readonly ['resolved dictionary', l_state.resolved_dictionary]
                 
             }
             
-            export type dictionary = {
-                readonly 'selection': dictionary.selection
-                readonly 'selected dictionary': dictionary.selected_dictionary
+            export type acyclic = {
+                readonly 'l location': acyclic.l_location
+                readonly 'l state': acyclic.l_state
+            }
+            
+            export namespace cyclic {
+                
+                export type l_location = i__location.Relative_Location
+                
+                export namespace l_state {
+                    
+                    export type siblings = null
+                    
+                }
+                
+                export type l_state = 
+                    | readonly ['siblings', l_state.siblings]
+                
+            }
+            
+            export type cyclic = {
+                readonly 'l location': cyclic.l_location
+                readonly 'l state': cyclic.l_state
             }
             
             export namespace parameter {
@@ -1427,17 +1468,12 @@ export namespace Lookup_Selection_ {
                 readonly 'l reference': parameter.l_reference
             }
             
-            export type not_circular_dependent_siblings = null
-            
-            export type possibly_circular_dependent_siblings = null
-            
         }
         
         export type l_state = 
-            | readonly ['dictionary', l_state.dictionary]
+            | readonly ['acyclic', l_state.acyclic]
+            | readonly ['cyclic', l_state.cyclic]
             | readonly ['parameter', l_state.parameter]
-            | readonly ['not circular dependent siblings', l_state.not_circular_dependent_siblings]
-            | readonly ['possibly circular dependent siblings', l_state.possibly_circular_dependent_siblings]
         
     }
     
@@ -1631,32 +1667,89 @@ export namespace Value_Resolver_ {
                                         
                                         export namespace l_state {
                                             
-                                            export type empty_stack = null
-                                            
-                                            export type not_set = null
-                                            
-                                            export type selection = Lookup_Selection_
-                                            
                                             export namespace stack {
                                                 
-                                                export type stack = Lookup_Selection_
+                                                export type l_location = i__location.Relative_Location
                                                 
-                                                export type element = Lookup_Selection_
+                                                export namespace l_state {
+                                                    
+                                                    export type empty = null
+                                                    
+                                                    export namespace push {
+                                                        
+                                                        export type stack = Lookup_Selection_
+                                                        
+                                                        export type item = Lookup_Selection_
+                                                        
+                                                    }
+                                                    
+                                                    export type push = {
+                                                        readonly 'stack': push.stack
+                                                        readonly 'item': push.item
+                                                    }
+                                                    
+                                                }
+                                                
+                                                export type l_state = 
+                                                    | readonly ['empty', l_state.empty]
+                                                    | readonly ['push', l_state.push]
                                                 
                                             }
                                             
                                             export type stack = {
-                                                readonly 'stack': stack.stack
-                                                readonly 'element': stack.element
+                                                readonly 'l location': stack.l_location
+                                                readonly 'l state': stack.l_state
                                             }
+                                            
+                                            export namespace acyclic {
+                                                
+                                                export type l_location = i__location.Relative_Location
+                                                
+                                                export namespace l_state {
+                                                    
+                                                    export type not_set = null
+                                                    
+                                                }
+                                                
+                                                export type l_state = 
+                                                    | readonly ['not set', l_state.not_set]
+                                                
+                                            }
+                                            
+                                            export type acyclic = {
+                                                readonly 'l location': acyclic.l_location
+                                                readonly 'l state': acyclic.l_state
+                                            }
+                                            
+                                            export namespace cyclic {
+                                                
+                                                export type l_location = i__location.Relative_Location
+                                                
+                                                export namespace l_state {
+                                                    
+                                                    export type not_set = null
+                                                    
+                                                }
+                                                
+                                                export type l_state = 
+                                                    | readonly ['not set', l_state.not_set]
+                                                
+                                            }
+                                            
+                                            export type cyclic = {
+                                                readonly 'l location': cyclic.l_location
+                                                readonly 'l state': cyclic.l_state
+                                            }
+                                            
+                                            export type selection = Lookup_Selection_
                                             
                                         }
                                         
                                         export type l_state = 
-                                            | readonly ['empty stack', l_state.empty_stack]
-                                            | readonly ['not set', l_state.not_set]
-                                            | readonly ['selection', l_state.selection]
                                             | readonly ['stack', l_state.stack]
+                                            | readonly ['acyclic', l_state.acyclic]
+                                            | readonly ['cyclic', l_state.cyclic]
+                                            | readonly ['selection', l_state.selection]
                                         
                                     }
                                     

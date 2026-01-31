@@ -9,7 +9,7 @@ export const $: g_.Module_Resolvers = resolvers(
         "Module": resolver(r.group({
             "omit (de)serializer": r.boolean(),
             "schema tree": r.component_external("schema", "Schema Tree", {}, {
-                "sibling schemas": al.empty_stack(),
+                "sibling schemas": al.stack.empty(),
             }),
 
         })),

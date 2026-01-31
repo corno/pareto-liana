@@ -396,7 +396,7 @@ export namespace t {
     export const text_global = (name: string): d_schema.Value => {
         return sh.state(['text', sh.state(['global', sh.reference(name)])])
     }
-    
+
     export const text_local = (bt: d_schema.Text_Type): d_schema.Value => {
         return sh.state(['text', sh.state(['local', bt])])
     }
@@ -534,16 +534,36 @@ export namespace ls {
             'resulting dictionary': null
         }
     }
-    export const not_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
-        return {
-            'type': sh.state(['not circular dependent siblings', null]),
-            'resulting dictionary': null
+
+    export namespace acyclic {
+
+        export const siblings = (): d_schema.Lookup_Selection => {
+            return {
+                'type': sh.state(['acyclic', sh.state(['siblings', null])]),
+                'resulting dictionary': null
+            }
+        }
+
+        export const resolved_dictionary = (
+            value_selection: d_schema.Guaranteed_Value_Selection
+        ): d_schema.Lookup_Selection => {
+            return {
+                'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
+                    'selection': value_selection,
+                    'selected dictionary': null,
+                }])]),
+                'resulting dictionary': null,
+            }
         }
     }
-    export const possibly_circular_dependent_siblings = (): d_schema.Lookup_Selection => {
-        return {
-            'type': sh.state(['possibly circular dependent siblings', null]),
-            'resulting dictionary': null
+
+    export namespace cyclic {
+
+        export const siblings = (): d_schema.Lookup_Selection => {
+            return {
+                'type': sh.state(['cyclic', sh.state(['siblings', null])]),
+                'resulting dictionary': null
+            }
         }
     }
 
@@ -554,44 +574,79 @@ export namespace ls {
  */
 export namespace al {
 
+    export namespace acyclic {
 
-    export const not_set = (
+        export const not_set = (
+        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['acyclic', sh.state(['not set', null])])
+        }
 
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['not set', null])
+        /**
+         * this one is only usable in the context of an ordered dictionary
+         */
+        export const siblings = (): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['selection', {
+                'type': sh.state(['acyclic', sh.state(['siblings', null])]),
+                'resulting dictionary': null,
+            }])
+        }
+
+        export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['selection', {
+                'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
+                    'selection': value_selection,
+                    'selected dictionary': null,
+                }])]),
+
+                'resulting dictionary': null,
+            }])
+        }
+
     }
 
-    export const empty_stack = (
+    export namespace cyclic {
 
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['empty stack', null])
+
+        /**
+         * this one is only usable in the context of a dictionary (ordered or not)
+         */
+        export const siblings = (
+
+        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['selection', {
+                'type': sh.state(['cyclic', sh.state(['siblings', null])]),
+                'resulting dictionary': null,
+            }])
+        }
+
+
+        export const not_set = (
+        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['cyclic', sh.state(['not set', null])])
+        }
     }
 
-    /**
-     * creates a new stack of lookup selections from an existing stack and a new element
-     */
-    export const stack = (
-        stack: d_schema.Lookup_Selection,
-        element: d_schema.Lookup_Selection,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['stack', {
-            'stack': stack,
-            'element': element,
-        }])
+    export namespace stack {
+
+        export const empty = (
+
+        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['stack', sh.state(['empty', null])])
+        }
+
+
+        export const push = (
+            stack: d_schema.Lookup_Selection,
+            item: d_schema.Lookup_Selection,
+        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            return sh.state(['stack', sh.state(['push', {
+                'stack': stack,
+                'item': item,
+            }])])
+        }
+
     }
 
-    /**
-     * provides a dictionary by selecting a value (that is guaranteed to be a dictionary)
-     */
-    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['selection', {
-            'type': sh.state(['dictionary', {
-                'selection': value_selection,
-                'selected dictionary': null,
-            }]),
-            'resulting dictionary': null,
-        }])
-    }
 
     /**
      * selects a lookup parameter of this resolver and passes it to the next resolver
@@ -603,25 +658,7 @@ export namespace al {
         }])
     }
 
-    /**
-     * this one is only usable in the context of an ordered dictionary
-     */
-    export const not_circular_dependent_siblings = (): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['selection', {
-            'type': sh.state(['not circular dependent siblings', null]),
-            'resulting dictionary': null,
-        }])
-    }
 
-    /**
-     * this one is only usable in the context of a dictionary (ordered or not)
-     */
-    export const possibly_circular_dependent_siblings = (): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
-        return sh.state(['selection', {
-            'type': sh.state(['possibly circular dependent siblings', null]),
-            'resulting dictionary': null,
-        }])
-    }
 
 }
 
@@ -714,15 +751,6 @@ export namespace pvs {
  */
 export namespace gvs {
 
-    export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Lookup_Selection => {
-        return {
-            'type': sh.state(['dictionary', {
-                'selection': value_selection,
-                'selected dictionary': null,
-            }]),
-            'resulting dictionary': null,
-        }
-    }
     export const component = (
         component: string,
         constraint: string,

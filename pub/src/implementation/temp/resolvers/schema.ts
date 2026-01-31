@@ -56,50 +56,70 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
     const loc = $.type['l location']
     const p_type: d_out.Lookup_Selection.type_ = _p_cc($['type'], ($) => _p_cc($['l state'], ($): d_out.Lookup_Selection.type_ => {
         switch ($[0]) {
-            case 'dictionary': return _p.ss($, ($) => {
-                const p_selection = Guaranteed_Value_Selection(
-                    $.selection,
-                    abort,
-                    $l,
-                    $p,
-                )
+            case 'acyclic': return _p.ss($, ($): d_out.Lookup_Selection.type_ => ['acyclic', _p.decide.state($['l state'], ($): d_out.Lookup_Selection.type_.acyclic => {
+                switch ($[0]) {
+                    case 'resolved dictionary': return _p.ss($, ($) => {
+                        const p_selection = Guaranteed_Value_Selection(
+                            $.selection,
+                            abort,
+                            $l,
+                            $p,
+                        )
 
-                const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
-                    ? _i_generic.abort.state_constraint_found_expected(
-                        "dictionary",
-                        p_selection['resulting node'],
-                        $.selection.start['l location'], //$['selected dictionary'].location,
-                        abort,
-                    )
-                    : p_selection['resulting node'][1]
+                        const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
+                            ? _i_generic.abort.state_constraint_found_expected(
+                                "dictionary",
+                                p_selection['resulting node'],
+                                $.selection.start['l location'], //$['selected dictionary'].location,
+                                abort,
+                            )
+                            : p_selection['resulting node'][1]
 
-                return ['dictionary', {
-                    'selection': p_selection,
-                    'selected dictionary': p_selected_dictionary,
-                }]
-            })
-            case 'not circular dependent siblings': return _p.ss($, ($) => ['not circular dependent siblings', $p['current dictionary'].__decide(
-                ($) => $,
-                () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
-            )])
+                        return ['resolved dictionary', {
+                            'selection': p_selection,
+                            'selected dictionary': p_selected_dictionary,
+                        }]
+                    })
+                    case 'siblings': return _p.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
+                        ($) => $,
+                        () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
+                    )])
+                    default: return _p.au($[0])
+                }
+            })])
+            case 'cyclic': return _p.ss($, ($) => ['cyclic', _p.decide.state($['l state'], ($): d_out.Lookup_Selection.type_.cyclic => {
+                switch ($[0]) {
+                    case 'siblings': return _p.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
+                        ($) => $,
+                        () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
+                    )])
+                    default: return _p.au($[0])
+                }
+            })])
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
                 _p_ls.acyclic.select_from_dictionary($p.signature['resolved parameters'].lookups),
                 $,
                 abort
-            )])
-            case 'possibly circular dependent siblings': return _p.ss($, ($) => ['possibly circular dependent siblings', $p['current dictionary'].__decide(
-                ($) => $,
-                () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
             )])
             default: return _p.au($[0])
         }
     }))
     const p_resulting_dictionary = _p_cc(p_type, ($): d_out.Value.dictionary => {
         switch ($[0]) {
-            case 'dictionary': return _p.ss($, ($) => $['selected dictionary'])
-            case 'not circular dependent siblings': return _p.ss($, ($) => $)
+            case 'acyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                switch ($[0]) {
+                    case 'siblings': return _p.ss($, ($) => $)
+                    case 'resolved dictionary': return _p.ss($, ($) => $['selected dictionary'])
+                    default: return _p.au($[0])
+                }
+            }))
+            case 'cyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                switch ($[0]) {
+                    case 'siblings': return _p.ss($, ($) => $)
+                    default: return _p.au($[0])
+                }
+            }))
             case 'parameter': return _p.ss($, ($) => $['l entry'].dictionary)
-            case 'possibly circular dependent siblings': return _p.ss($, ($) => $)
             default: return _p.au($[0])
         }
     })
@@ -1206,32 +1226,48 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                                         //do additional validation
                                         return _p_cc($['l entry']['l state'], ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
-                                                case 'empty stack': return _p.ss($, ($) => ['empty stack', null])
-                                                case 'not set': return _p.ss($, ($) => ['not set', null])
+                                                case 'acyclic': return _p.ss($, ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D => ['acyclic', _p.decide.state($['l state'], ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D.acyclic => {
+                                                    switch ($[0]) {
+                                                        case 'not set': return _p.ss($, ($) => ['not set', null])
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })])
+                                                case 'cyclic': return _p.ss($, ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D => ['cyclic', _p.decide.state($['l state'], ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D.cyclic => {
+                                                    switch ($[0]) {
+                                                        case 'not set': return _p.ss($, ($) => ['not set', null])
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })])
+                                                case 'stack': return _p.ss($, ($) => ['stack', _p.decide.state($['l state'], ($): d_out.Value_Resolver.component.arguments_.O.lookups.O.D.stack => {
+                                                    switch ($[0]) {
+                                                        case 'empty': return _p.ss($, ($) => ['empty', null])
+                                                        case 'push': return _p.ss($, ($) => {
+                                                            const p_stack = Lookup_Selection(
+                                                                $.stack,
+                                                                abort,
+                                                                $l,
+                                                                $p,
+                                                            )
+                                                            const p_element = Lookup_Selection(
+                                                                $.item,
+                                                                abort,
+                                                                $l,
+                                                                $p,
+                                                            )
+                                                            return ['push', {
+                                                                'stack': p_stack,
+                                                                'item': p_element
+                                                            }]
+                                                        })
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })])
                                                 case 'selection': return _p.ss($, ($) => ['selection', Lookup_Selection(
                                                     $,
                                                     abort,
                                                     $l,
                                                     $p,
                                                 )])
-                                                case 'stack': return _p.ss($, ($) => {
-                                                    const p_stack = Lookup_Selection(
-                                                        $.stack,
-                                                        abort,
-                                                        $l,
-                                                        $p,
-                                                    )
-                                                    const p_element = Lookup_Selection(
-                                                        $.element,
-                                                        abort,
-                                                        $l,
-                                                        $p,
-                                                    )
-                                                    return ['stack', {
-                                                        'stack': p_stack,
-                                                        'element': p_element
-                                                    }]
-                                                })
                                                 default: return _p.au($[0])
                                             }
                                         })

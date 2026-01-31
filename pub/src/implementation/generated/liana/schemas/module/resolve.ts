@@ -7,6 +7,8 @@ import {
 
 import * as _pdev from "pareto-core-dev"
 
+import * as _p_ls from "pareto-core/dist/lookup_selection"
+
 import * as t_out from "../../../../../interface/generated/liana/schemas/module/data/resolved"
 
 import * as t_signatures from "../../../../../interface/generated/liana/schemas/module/resolve"
@@ -29,8 +31,7 @@ export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolv
                     $
                 ),
                 {
-                    'sibling schemas': _pdev.implement_me(
-                        "IM: empty stack"
+                    'sibling schemas': _p_ls.stack.empty(
                     ),
                 },
                 null

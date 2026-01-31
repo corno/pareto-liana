@@ -837,18 +837,37 @@ export namespace Lookup_Selection_ {
     
     export namespace type_ {
         
-        export namespace dictionary {
+        export namespace acyclic {
             
-            export type selection = Guaranteed_Value_Selection_
+            export type siblings = Dictionary_
             
-            export type selected_dictionary = Dictionary_
+            export namespace resolved_dictionary {
+                
+                export type selection = Guaranteed_Value_Selection_
+                
+                export type selected_dictionary = Dictionary_
+                
+            }
+            
+            export type resolved_dictionary = {
+                readonly 'selection': resolved_dictionary.selection
+                readonly 'selected dictionary': resolved_dictionary.selected_dictionary
+            }
             
         }
         
-        export type dictionary = {
-            readonly 'selection': dictionary.selection
-            readonly 'selected dictionary': dictionary.selected_dictionary
+        export type acyclic = 
+            | readonly ['siblings', acyclic.siblings]
+            | readonly ['resolved dictionary', acyclic.resolved_dictionary]
+        
+        export namespace cyclic {
+            
+            export type siblings = Dictionary_
+            
         }
+        
+        export type cyclic = 
+            | readonly ['siblings', cyclic.siblings]
         
         export namespace parameter {
             
@@ -863,17 +882,12 @@ export namespace Lookup_Selection_ {
             readonly 'l id': parameter.l_id
         }
         
-        export type not_circular_dependent_siblings = Dictionary_
-        
-        export type possibly_circular_dependent_siblings = Dictionary_
-        
     }
     
     export type type_ = 
-        | readonly ['dictionary', type_.dictionary]
+        | readonly ['acyclic', type_.acyclic]
+        | readonly ['cyclic', type_.cyclic]
         | readonly ['parameter', type_.parameter]
-        | readonly ['not circular dependent siblings', type_.not_circular_dependent_siblings]
-        | readonly ['possibly circular dependent siblings', type_.possibly_circular_dependent_siblings]
     
     export type resulting_dictionary = Dictionary_
     
@@ -1000,32 +1014,56 @@ export namespace Value_Resolver_ {
                         
                         export namespace D {
                             
-                            export type empty_stack = null
-                            
-                            export type not_set = null
-                            
-                            export type selection = Lookup_Selection_
-                            
                             export namespace stack {
                                 
-                                export type stack = Lookup_Selection_
+                                export type empty = null
                                 
-                                export type element = Lookup_Selection_
+                                export namespace push {
+                                    
+                                    export type stack = Lookup_Selection_
+                                    
+                                    export type item = Lookup_Selection_
+                                    
+                                }
+                                
+                                export type push = {
+                                    readonly 'stack': push.stack
+                                    readonly 'item': push.item
+                                }
                                 
                             }
                             
-                            export type stack = {
-                                readonly 'stack': stack.stack
-                                readonly 'element': stack.element
+                            export type stack = 
+                                | readonly ['empty', stack.empty]
+                                | readonly ['push', stack.push]
+                            
+                            export namespace acyclic {
+                                
+                                export type not_set = null
+                                
                             }
+                            
+                            export type acyclic = 
+                                | readonly ['not set', acyclic.not_set]
+                            
+                            export namespace cyclic {
+                                
+                                export type not_set = null
+                                
+                            }
+                            
+                            export type cyclic = 
+                                | readonly ['not set', cyclic.not_set]
+                            
+                            export type selection = Lookup_Selection_
                             
                         }
                         
                         export type D = 
-                            | readonly ['empty stack', D.empty_stack]
-                            | readonly ['not set', D.not_set]
-                            | readonly ['selection', D.selection]
                             | readonly ['stack', D.stack]
+                            | readonly ['acyclic', D.acyclic]
+                            | readonly ['cyclic', D.cyclic]
+                            | readonly ['selection', D.selection]
                         
                     }
                     

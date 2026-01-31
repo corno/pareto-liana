@@ -38,6 +38,7 @@ export const Module_Resolvers = (
         true,
         false,
         false,
+        true,
         _p.dictionary.literal({
             "out": sh_i.import_.ancestor(
                 5,
@@ -217,10 +218,28 @@ export const Lookup_Selection = (
     $: d_in.Lookup_Selection,
 ): d_out.Lookup_Selection => _p.decide.state($.type, ($) => {
     switch ($[0]) {
-        case 'dictionary': return _p.ss($, ($) => sh.ls.implement_me("IM: LS1"))
-        case 'parameter': return _p.ss($, ($) => sh.ls.implement_me("IM: LS2"))
-        case 'not circular dependent siblings': return _p.ss($, ($) => sh.ls.implement_me("IM: LS3"))
-        case 'possibly circular dependent siblings': return _p.ss($, ($) => sh.ls.implement_me("IM: LS4"))
+        case 'acyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+            switch ($[0]) {
+                case 'resolved dictionary': return _p.ss($, ($) => sh.ls.acyclic.resolved_dictionary(
+                    Guaranteed_Value_Selection(
+                        $.selection,
+                        {
+                            'tail': _p.list.literal([]),
+                        }
+                    )
+                ))
+                case 'siblings': return _p.ss($, ($) => sh.ls.acyclic.siblings())
+                default: return _p.au($[0])
+            }
+        }))
+        case 'cyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+            switch ($[0]) {
+                case 'siblings': return _p.ss($, ($) => sh.ls.cyclic.siblings())
+
+                default: return _p.au($[0])
+            }
+        }))
+        case 'parameter': return _p.ss($, ($) => sh.ls.from_parameter($['l id']))
         // case 'dictionary': return _p.ss($, ($) => sh.s.call(
         //     sh.call.external(" i generic", "lookup from dictionary"),
         //     sh.e.select(Guaranteed_Value_Selection($.selection, {
@@ -304,14 +323,29 @@ export const Value_Resolver = (
                                     ($) => sh.lookups.initialize($.__d_map(
                                         ($) => _p.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'empty stack': return _p.ss($, ($) => sh.ls.implement_me("IM: empty stack"))
-                                                case 'not set': return _p.ss($, ($) => sh.ls.implement_me("IM: not set"))
-                                                case 'selection': return _p.ss($, ($) => sh.ls.implement_me("IM: selection"))
-                                                case 'stack': return _p.ss($, ($) => sh.ls.implement_me("IM: stack"))
-                                                //                                 case 'empty stack': return _p.ss($, ($) => sh.e.list.literal([]))
-                                                //                                 case 'not set': return _p.ss($, ($) => sh.e.optional.not_set())
-                                                //                                 case 'selection': return _p.ss($, ($) => sh.e.select(Lookup_Selection($, {})))
-                                                //                                 case 'stack': return _p.ss($, ($) => sh.e.implement_me("IM: stack")) // quite some work
+                                                case 'acyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                                    switch ($[0]) {
+                                                        case 'not set': return _p.ss($, ($) => sh.ls.acyclic.not_set())
+                                                        default: return _p.au($[0])
+                                                    }
+                                                }))
+                                                case 'cyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                                    switch ($[0]) {
+                                                        case 'not set': return _p.ss($, ($) => sh.ls.cyclic.not_set())
+                                                        default: return _p.au($[0])
+                                                    }
+                                                }))
+                                                case 'stack': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                                    switch ($[0]) {
+                                                        case 'empty': return _p.ss($, ($) => sh.ls.stack.empty())
+                                                        case 'push': return _p.ss($, ($) => sh.ls.stack.push(
+                                                            Lookup_Selection($['stack']),
+                                                            Lookup_Selection($['item']),
+                                                        ))
+                                                        default: return _p.au($[0])
+                                                    }
+                                                }))
+                                                case 'selection': return _p.ss($, ($) => Lookup_Selection($))
                                                 default: return _p.au($[0])
                                             }
                                         }),

@@ -34,6 +34,7 @@ export const $: g_.Modules = modules(
                 "implement me": prop(t.boolean()),
                 "iterate": prop(t.boolean()),
                 "unreachable code path": prop(t.boolean()),
+                "lookups": prop(t.boolean()),
             })),
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
@@ -325,12 +326,23 @@ export const $: g_.Modules = modules(
 
         "Lookup Selection": module_(t.state({
             "implement me": toption(t.text_local(text('single line'))),
-            "from resolved dictionary": toption(t.component_cyclic("Selection")),
-            "from siblings": toption(t.group({
-                "cycles allowed": prop(t.boolean()),
-            })),
             "from parameter": toption(t.text_global("TBD")),
-            "not set": toption(t.nothing()),
+            "stack": toption(t.state({
+                "empty": toption(t.nothing()),
+                "push": toption(t.group({
+                    "stack": prop(t.component_cyclic("Lookup Selection")),
+                    "acyclic": toption(t.component_cyclic("Lookup Selection")),
+                })),
+            })),
+            "acyclic": toption(t.state({
+                "not set": toption(t.nothing()),
+                "siblings": toption(t.nothing()),
+                "resolved dictionary": toption(t.component_cyclic("Selection")),
+            })),
+            "cyclic": toption(t.state({
+                "not set": toption(t.nothing()),
+                "siblings": toption(t.nothing()),
+            })),
         })),
 
     }

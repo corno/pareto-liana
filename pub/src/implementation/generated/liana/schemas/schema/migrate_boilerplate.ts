@@ -1326,19 +1326,73 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
                 $,
                 ($): t_out.Lookup_Selection.type_.l_state => {
                     switch ($[0]) {
-                        case 'dictionary':
+                        case 'acyclic':
                             return _p.ss(
                                 $,
-                                ($) => ['dictionary', {
-                                    'selection': _p_cc(
-                                        $['selection'],
-                                        ($) => Guaranteed_Value_Selection(
-                                            $
-                                        )
+                                ($) => ['acyclic', {
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                    'l state': _p.decide.state(
+                                        $,
+                                        ($): t_out.Lookup_Selection.type_.l_state.acyclic.l_state => {
+                                            switch ($[0]) {
+                                                case 'siblings':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['siblings', null]
+                                                    )
+                                                case 'resolved dictionary':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['resolved dictionary', {
+                                                            'selection': _p_cc(
+                                                                $['selection'],
+                                                                ($) => Guaranteed_Value_Selection(
+                                                                    $
+                                                                )
+                                                            ),
+                                                            'selected dictionary': _p_cc(
+                                                                $['selected dictionary'],
+                                                                ($) => null
+                                                            ),
+                                                        }]
+                                                    )
+                                                default:
+                                                    return _p.au(
+                                                        $[0]
+                                                    )
+                                            }
+                                        }
                                     ),
-                                    'selected dictionary': _p_cc(
-                                        $['selected dictionary'],
-                                        ($) => null
+                                }]
+                            )
+                        case 'cyclic':
+                            return _p.ss(
+                                $,
+                                ($) => ['cyclic', {
+                                    'l location': {
+                                        'document resource identifier': "implement me",
+                                        'line': 42,
+                                        'column': 42,
+                                    },
+                                    'l state': _p.decide.state(
+                                        $,
+                                        ($): t_out.Lookup_Selection.type_.l_state.cyclic.l_state => {
+                                            switch ($[0]) {
+                                                case 'siblings':
+                                                    return _p.ss(
+                                                        $,
+                                                        ($) => ['siblings', null]
+                                                    )
+                                                default:
+                                                    return _p.au(
+                                                        $[0]
+                                                    )
+                                            }
+                                        }
                                     ),
                                 }]
                             )
@@ -1353,16 +1407,6 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ({
                                     },
                                     'l reference': $['l id'],
                                 }]
-                            )
-                        case 'not circular dependent siblings':
-                            return _p.ss(
-                                $,
-                                ($) => ['not circular dependent siblings', null]
-                            )
-                        case 'possibly circular dependent siblings':
-                            return _p.ss(
-                                $,
-                                ($) => ['possibly circular dependent siblings', null]
                             )
                         default:
                             return _p.au(
@@ -1566,15 +1610,104 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                                                     $,
                                                                     ($): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
-                                                                            case 'empty stack':
+                                                                            case 'stack':
                                                                                 return _p.ss(
                                                                                     $,
-                                                                                    ($) => ['empty stack', null]
+                                                                                    ($) => ['stack', {
+                                                                                        'l location': {
+                                                                                            'document resource identifier': "implement me",
+                                                                                            'line': 42,
+                                                                                            'column': 42,
+                                                                                        },
+                                                                                        'l state': _p.decide.state(
+                                                                                            $,
+                                                                                            ($): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack.l_state => {
+                                                                                                switch ($[0]) {
+                                                                                                    case 'empty':
+                                                                                                        return _p.ss(
+                                                                                                            $,
+                                                                                                            ($) => ['empty', null]
+                                                                                                        )
+                                                                                                    case 'push':
+                                                                                                        return _p.ss(
+                                                                                                            $,
+                                                                                                            ($) => ['push', {
+                                                                                                                'stack': _p_cc(
+                                                                                                                    $['stack'],
+                                                                                                                    ($) => Lookup_Selection(
+                                                                                                                        $
+                                                                                                                    )
+                                                                                                                ),
+                                                                                                                'item': _p_cc(
+                                                                                                                    $['item'],
+                                                                                                                    ($) => Lookup_Selection(
+                                                                                                                        $
+                                                                                                                    )
+                                                                                                                ),
+                                                                                                            }]
+                                                                                                        )
+                                                                                                    default:
+                                                                                                        return _p.au(
+                                                                                                            $[0]
+                                                                                                        )
+                                                                                                }
+                                                                                            }
+                                                                                        ),
+                                                                                    }]
                                                                                 )
-                                                                            case 'not set':
+                                                                            case 'acyclic':
                                                                                 return _p.ss(
                                                                                     $,
-                                                                                    ($) => ['not set', null]
+                                                                                    ($) => ['acyclic', {
+                                                                                        'l location': {
+                                                                                            'document resource identifier': "implement me",
+                                                                                            'line': 42,
+                                                                                            'column': 42,
+                                                                                        },
+                                                                                        'l state': _p.decide.state(
+                                                                                            $,
+                                                                                            ($): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic.l_state => {
+                                                                                                switch ($[0]) {
+                                                                                                    case 'not set':
+                                                                                                        return _p.ss(
+                                                                                                            $,
+                                                                                                            ($) => ['not set', null]
+                                                                                                        )
+                                                                                                    default:
+                                                                                                        return _p.au(
+                                                                                                            $[0]
+                                                                                                        )
+                                                                                                }
+                                                                                            }
+                                                                                        ),
+                                                                                    }]
+                                                                                )
+                                                                            case 'cyclic':
+                                                                                return _p.ss(
+                                                                                    $,
+                                                                                    ($) => ['cyclic', {
+                                                                                        'l location': {
+                                                                                            'document resource identifier': "implement me",
+                                                                                            'line': 42,
+                                                                                            'column': 42,
+                                                                                        },
+                                                                                        'l state': _p.decide.state(
+                                                                                            $,
+                                                                                            ($): t_out.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic.l_state => {
+                                                                                                switch ($[0]) {
+                                                                                                    case 'not set':
+                                                                                                        return _p.ss(
+                                                                                                            $,
+                                                                                                            ($) => ['not set', null]
+                                                                                                        )
+                                                                                                    default:
+                                                                                                        return _p.au(
+                                                                                                            $[0]
+                                                                                                        )
+                                                                                                }
+                                                                                            }
+                                                                                        ),
+                                                                                    }]
                                                                                 )
                                                                             case 'selection':
                                                                                 return _p.ss(
@@ -1582,24 +1715,6 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                                                                     ($) => ['selection', Lookup_Selection(
                                                                                         $
                                                                                     )]
-                                                                                )
-                                                                            case 'stack':
-                                                                                return _p.ss(
-                                                                                    $,
-                                                                                    ($) => ['stack', {
-                                                                                        'stack': _p_cc(
-                                                                                            $['stack'],
-                                                                                            ($) => Lookup_Selection(
-                                                                                                $
-                                                                                            )
-                                                                                        ),
-                                                                                        'element': _p_cc(
-                                                                                            $['element'],
-                                                                                            ($) => Lookup_Selection(
-                                                                                                $
-                                                                                            )
-                                                                                        ),
-                                                                                    }]
                                                                                 )
                                                                             default:
                                                                                 return _p.au(

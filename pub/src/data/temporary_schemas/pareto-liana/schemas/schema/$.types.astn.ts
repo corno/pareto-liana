@@ -235,13 +235,17 @@ export const $: g_.Modules = modules(
         //FIXME: there has to be a guaranteed lookup selection and a possible lookup selection
         "Lookup Selection": module_(t.group({
             "type": prop(t.state({
-                "dictionary": toption(t.group({
-                    "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
-                    "selected dictionary": prop(t.reference_derived("Dictionary", [])),
+                "acyclic": toption(t.state({
+                    "siblings": toption(t.reference_derived("Dictionary", [])),
+                    "resolved dictionary": toption(t.group({
+                        "selection": prop(t.component_cyclic("Guaranteed Value Selection")),
+                        "selected dictionary": prop(t.reference_derived("Dictionary", [])),
+                    })),
+                })),
+                "cyclic": toption(t.state({
+                    "siblings": toption(t.reference_derived("Dictionary", [])),
                 })),
                 "parameter": toption(t.reference("Signature Parameters", [vp.g("lookups")])),
-                "not circular dependent siblings": toption(t.reference_derived("Dictionary", [])),
-                "possibly circular dependent siblings": toption(t.reference_derived("Dictionary", [])),
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
         })),
@@ -382,13 +386,20 @@ export const $: g_.Modules = modules(
                             "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
                         })))),
                         "lookups": prop(t.optional(t.dictionary(t.state({
-                            "empty stack": toption(t.nothing()),
-                            "not set": toption(t.nothing()),
-                            "selection": toption(t.component("Lookup Selection")),
-                            "stack": toption(t.group({
-                                "stack": prop(t.component("Lookup Selection")),
-                                "element": prop(t.component("Lookup Selection")),
+                            "stack": toption(t.state({
+                                "empty": toption(t.nothing()),
+                                "push": toption(t.group({
+                                    "stack": prop(t.component("Lookup Selection")),
+                                    "item": prop(t.component("Lookup Selection")),
+                                })),
                             })),
+                            "acyclic": toption(t.state({
+                                "not set": toption(t.nothing()),
+                            })),
+                            "cyclic": toption(t.state({
+                                "not set": toption(t.nothing()),
+                            })),
+                            "selection": toption(t.component("Lookup Selection")),
                         })))),
                     }))),
                     "constraints": prop(t.component("Value Constraint Resolvers")),
