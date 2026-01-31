@@ -350,9 +350,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
                 ),
                 null,
                 {
-                    'module': _pdev.implement_me(
-                        "IM: required"
-                    ),
+                    'module': prop_module['resulting module'],
                 }
             )
         )
@@ -1363,7 +1361,7 @@ export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dict
             {
                 'modules': $p['modules'],
                 'module': _pdev.implement_me(
-                    "IM: required"
+                    "IM: LINKED ENTRY"
                 ),
                 'imports': $p['imports'],
             }
@@ -1842,7 +1840,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                 null,
                 {
                     'value': _pdev.implement_me(
-                        "IM: required"
+                        "IM: STATE"
                     ),
                 }
             )
@@ -2014,11 +2012,9 @@ export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort, $l, $p
                             ),
                             'current dictionary': _p.optional.not_set(
                             ),
-                            'signature': _pdev.implement_me(
-                                "IM: required"
-                            ),
+                            'signature': prop_signature,
                             'definition': _pdev.implement_me(
-                                "IM: required"
+                                "IM: LINKED ENTRY"
                             ),
                             'signatures': $p['signatures'],
                             'imports': _p.optional.set(
@@ -2239,7 +2235,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                 null,
                 {
                     'value': _pdev.implement_me(
-                        "IM: required"
+                        "IM: STATE"
                     ),
                 }
             )
@@ -2302,7 +2298,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
                         },
                         {
                             'definition': _pdev.implement_me(
-                                "IM: required"
+                                "IM: LINKED ENTRY"
                             ),
                             'modules': $p['modules'],
                             'imports': $p['imports'],
@@ -2679,9 +2675,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                     ),
                                     null,
                                     {
-                                        'value': _pdev.implement_me(
-                                            "IM: required"
-                                        ),
+                                        'value': prop_signature['module']['root value'],
                                     }
                                 )
                             )
@@ -2735,9 +2729,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                         'linked entry': _pdev.implement_me(
                                             "IM: OPTIONAL VALUE2"
                                         ),
-                                        'definition': _pdev.implement_me(
-                                            "IM: required"
-                                        ),
+                                        'definition': prop_definition['value'],
                                         'current dictionary': _p.optional.set(
                                             prop_definition
                                         ),
@@ -2775,7 +2767,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                         },
                         {
                             'definition': _pdev.implement_me(
-                                "IM: required"
+                                "IM: OPTION CONSTRAINT"
                             ),
                             'modules': $p['modules'],
                             'imports': $p['imports'],
@@ -2838,7 +2830,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                             )
                                         ),
                                         'definition': _pdev.implement_me(
-                                            "IM: required"
+                                            "IM: OPTION CONSTRAINT"
                                         ),
                                         'modules': $p['modules'],
                                         'imports': $p['imports'],
@@ -2897,7 +2889,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                     $l,
                                     {
                                         'definition': _pdev.implement_me(
-                                            "IM: required"
+                                            "IM: OPTION CONSTRAINT"
                                         ),
                                         'modules': $p['modules'],
                                         'imports': $p['imports'],
@@ -2994,9 +2986,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                                     ),
                                                                     null,
                                                                     {
-                                                                        'value': _pdev.implement_me(
-                                                                            "IM: required"
-                                                                        ),
+                                                                        'value': prop_lookup['resulting dictionary']['value'],
                                                                     }
                                                                 )
                                                             )
@@ -3067,7 +3057,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                                         $l,
                                                         {
                                                             'definition': _pdev.implement_me(
-                                                                "IM: required"
+                                                                "IM: LINKED ENTRY"
                                                             ),
                                                             'modules': $p['modules'],
                                                             'imports': $p['imports'],
@@ -3148,9 +3138,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _
                 ),
                 null,
                 {
-                    'signatures': _pdev.implement_me(
-                        "IM: required"
-                    ),
+                    'signatures': prop_signatures['signatures'],
                     'modules': $p['modules'],
                     'imports': $p['imports'],
                 }
@@ -3328,12 +3316,8 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.resolv
                                     ),
                                     null,
                                     {
-                                        'imports': _pdev.implement_me(
-                                            "IM: required"
-                                        ),
-                                        'modules': _pdev.implement_me(
-                                            "IM: required"
-                                        ),
+                                        'imports': prop_imports,
+                                        'modules': prop_modules,
                                     }
                                 )]
                             )

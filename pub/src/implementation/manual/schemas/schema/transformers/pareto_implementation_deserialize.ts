@@ -17,15 +17,10 @@ export const Schema = (
         'path': _pi.List<string>,
         'imports': d_in.Imports,
     }
-): d_out.Module_Set.D => {
-    return sh.m.module(
+): d_out.Package_Set.D => {
+    return sh.m.package_(
         'deserializer',
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
+        [],
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 5,

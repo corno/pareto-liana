@@ -8,8 +8,8 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as t_pareto_implementation_main from "../../../../manual/schemas/schema/transformers/pareto_implementation_main"
 
 
-export const Module = ($: d_in.Module): d_out.Module_Set => {
-    return _p.dictionary.literal<d_out.Module_Set.D>({
+export const Module = ($: d_in.Module): d_out.Package_Set => {
+    return _p.dictionary.literal<d_out.Package_Set.D>({
         'schemas': t_pareto_implementation_main.Schema_Tree(
             $['schema tree'],
             {

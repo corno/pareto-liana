@@ -101,7 +101,16 @@ export namespace abort {
         location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
-        'type': ['constraint', ['optional value', ['set', parameter]]],
+        'type': ['constraint', ['missingoptional value', null]],
+        'location': location,
+    })
+
+    export const parameter_is_set_assertion = (
+        parameter: string,
+        location: gen_loc.Relative_Location,
+        abort: _pi.Abort<gen_resolve.Error>,
+    ) => abort({
+        'type': ['constraint', ['missingoptional value', null]],
         'location': location,
     })
 }
@@ -116,7 +125,7 @@ export const get_entry_acyclic = <T>(
             ref['l reference'],
             {
                 cycle_detected: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', ref['l reference']]],
+                    'type': ['lookup', ['cycle detected', null]],
                     'location': ref['l location'],
                 }),
                 no_such_entry: () => abort({
@@ -124,7 +133,7 @@ export const get_entry_acyclic = <T>(
                     'location': ref['l location'],
                 }),
                 no_context_lookup: () => abort({
-                    'type': ['lookup', ['optional lookup not set', null]],
+                    'type': ['lookup', ['no context lookup', null]],
                     'location': ref['l location'],
                 })
             }
@@ -149,7 +158,7 @@ export const get_entry_cyclic = <T>(
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
-                    'type': ['lookup', ['optional lookup not set', null]],
+                    'type': ['lookup', ['no context lookup', null]],
                     'location': reference['l location'],
                 })
             }
@@ -168,7 +177,7 @@ export const get_entry_stack = <T>(
             reference['l reference'],
             {
                 cycle_detected: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l reference']]],
+                    'type': ['lookup', ['cycle detected', null]],
                     'location': reference['l location'],
                 }),
                 no_such_entry: () => abort({
@@ -176,7 +185,7 @@ export const get_entry_stack = <T>(
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
-                    'type': ['lookup', ['optional lookup not set', null]],
+                    'type': ['lookup', ['no context lookup', null]],
                     'location': reference['l location'],
                 })
             },
@@ -185,7 +194,7 @@ export const get_entry_stack = <T>(
             reference['l reference'],
             {
                 cycle_detected: () => abort({
-                    'type': ['lookup', ['cyclic lookup in acyclic context', reference['l reference']]],
+                    'type': ['lookup', ['cycle detected', null]],
                     'location': reference['l location'],
                 }),
                 no_such_entry: () => abort({
@@ -193,7 +202,7 @@ export const get_entry_stack = <T>(
                     'location': reference['l location'],
                 }),
                 no_context_lookup: () => abort({
-                    'type': ['lookup', ['optional lookup not set', null]],
+                    'type': ['lookup', ['no context lookup', null]],
                     'location': reference['l location'],
                 })
             }

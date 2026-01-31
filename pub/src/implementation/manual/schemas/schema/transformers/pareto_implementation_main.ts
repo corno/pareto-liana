@@ -22,14 +22,14 @@ export const Schema_Tree = (
         'path': _pi.List<string>,
         'omit (de)serializer': boolean
     }
-): d_out.Module_Set.D => {
+): d_out.Package_Set.D => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'schema': return _p.ss($, ($) => {
                 const imports = $.imports
                 return sh.m.set(
                     _p.dictionary.filter(
-                        _p.dictionary.literal<_pi.Optional_Value<d_out.Module_Set.D>>({
+                        _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
                             "migrate boilerplate": _p.optional.set(t_migration_boilerplate.Schema($, {
                                 'path': $p.path,
                                 'imports': $.imports,
@@ -84,7 +84,7 @@ export const Schema_Tree = (
                     )
                 )
             })
-            case 'set': return _p.ss($, ($): d_out.Module_Set.D => Schemas(
+            case 'set': return _p.ss($, ($): d_out.Package_Set.D => Schemas(
                 $,
                 {
                     'path': $p.path,
@@ -102,7 +102,7 @@ export const Schemas = (
         'path': _pi.List<string>,
         'omit (de)serializer': boolean
     }
-): d_out.Module_Set.D => {
+): d_out.Package_Set.D => {
     return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
         'path': _p.list.nested_literal_old([
             $p.path,

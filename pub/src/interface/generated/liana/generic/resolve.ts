@@ -22,14 +22,7 @@ export namespace Error_ {
                 readonly 'found': state.found
             }
             
-            export namespace optional_value {
-                
-                export type set_ = string
-                
-            }
-            
-            export type optional_value = 
-                | readonly ['set', optional_value.set_]
+            export type missingoptional_value = null
             
             export type same_node = string
             
@@ -37,22 +30,22 @@ export namespace Error_ {
         
         export type constraint = 
             | readonly ['state', constraint.state]
-            | readonly ['optional value', constraint.optional_value]
+            | readonly ['missingoptional value', constraint.missingoptional_value]
             | readonly ['same node', constraint.same_node]
         
         export namespace lookup {
             
-            export type cyclic_lookup_in_acyclic_context = string
+            export type cycle_detected = null
             
-            export type optional_lookup_not_set = null
+            export type no_context_lookup = null
             
             export type no_such_entry = string
             
         }
         
         export type lookup = 
-            | readonly ['cyclic lookup in acyclic context', lookup.cyclic_lookup_in_acyclic_context]
-            | readonly ['optional lookup not set', lookup.optional_lookup_not_set]
+            | readonly ['cycle detected', lookup.cycle_detected]
+            | readonly ['no context lookup', lookup.no_context_lookup]
             | readonly ['no such entry', lookup.no_such_entry]
         
         export namespace missing_required_entries {

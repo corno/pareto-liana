@@ -6,12 +6,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Module_Resolvers = resolvers(
     {
 
-        "Module Set": resolver(r.dictionary(r.state({
-            "module": option(r.component("Module", {}, {})),
-            "set": option(r.component("Module Set", {}, {})),
+        "Package Set": resolver(r.dictionary(r.state({
+            "package": option(r.component("Package", {}, {})),
+            "set": option(r.component("Package Set", {}, {})),
         }))),
 
-        "Module": resolver(r.group({
+        "Package": resolver(r.group({
             "type": r.state({
                 "serializer": option(r.nothing()),
                 "deserializer": option(r.nothing()),
@@ -23,8 +23,9 @@ export const $: g_.Module_Resolvers = resolvers(
                 "change context": r.boolean(),
                 "implement me": r.boolean(),
                 "iterate": r.boolean(),
-                "unreachable code path": r.boolean(),
                 "lookups": r.boolean(),
+                "unreachable code path": r.boolean(),
+                "variables": r.boolean(),
             }),
             "type imports": r.component_external("interface", "Imports", {}, {}),
             "variable imports": r.dictionary(r.group({
@@ -113,7 +114,13 @@ export const $: g_.Module_Resolvers = resolvers(
                             })),
                             "full": option(r.group({
                                 "options": r.dictionary(r.component("Expression", {}, {})),
-                            }))
+                            })),
+                            "single": option(r.group({
+                                "option": r.text(),
+                                "if true": r.component("Expression", {}, {}),
+                                "if false": r.component("Expression", {}, {}),
+                            })),
+
                         }),
                     })),
                     "text": option(r.group({
@@ -262,6 +269,10 @@ export const $: g_.Module_Resolvers = resolvers(
                     "new context": r.component("Selection", {}, {}),
                     "expression": r.component("Expression", {}, {}),
                 })),
+                "variables": option(r.group({
+                    "variables": r.dictionary(r.component("Expression", {}, {})),
+                    "callback": r.component("Expression", {}, {}),
+                })),
                 "implement me": option(r.text()),
                 "iterate": option(r.group({
                     "list": r.component("Selection", {}, {}),
@@ -309,10 +320,20 @@ export const $: g_.Module_Resolvers = resolvers(
                             "cycle detected": r.component("Expression", {}, {}),
                         }),
                     })),
+                    "lookup entry depth": option(r.group({
+                        "lookup": r.component("Lookup Selection", {}, {}),
+                        "id": r.component("Expression", {}, {}),
+                        "abort handlers": r.group({
+                            "no such entry": r.component("Expression", {}, {}),
+                            "no context lookup": r.component("Expression", {}, {}),
+                            "cycle detected": r.component("Expression", {}, {}),
+                        }),
+                    })),
                     "parameter": option(r.text()),
                     "parent sibling": option(r.text()),
                     "sibling": option(r.text()),
                     "state": option(r.nothing()),
+                    "variable": option(r.text()),
                 }),
                 "tail": r.list(r.text()),
             }))

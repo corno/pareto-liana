@@ -19,15 +19,10 @@ export const Schema = (
         'imports': d_in.Imports,
         'constrained': boolean
     }
-): d_out.Module_Set.D => {
-    return sh.m.module(
+): d_out.Package_Set.D => {
+    return sh.m.package_(
         'serializer',
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
+        [],
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 5,

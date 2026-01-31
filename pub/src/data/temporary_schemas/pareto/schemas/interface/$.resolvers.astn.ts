@@ -5,12 +5,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Module_Resolvers = resolvers(
     {
-        "Module Set": resolver(r.dictionary(r.state({
-            "module": option(r.component("Module", {}, {})),
-            "set": option(r.component("Module Set", {}, {})),
+        "Package Set": resolver(r.dictionary(r.state({
+            "package": option(r.component("Package", {}, {})),
+            "set": option(r.component("Package Set", {}, {})),
         }))),
 
-        "Module": resolver(r.group({
+        "Package": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
             "types": r.dictionary(r.state({
                 "data": option(r.component("Value", {}, {})),

@@ -13,7 +13,7 @@ export const Schema = (
     $p: {
         'constrained': boolean
     }
-): d_out.Module_Set.D => sh.m.module(
+): d_out.Package_Set.D => sh.m.package_(
     {
         "out": sh.import_.sibling(
             "data",

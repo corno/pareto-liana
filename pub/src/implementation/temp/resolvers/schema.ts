@@ -82,7 +82,7 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
                     })
                     case 'siblings': return _p.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
                         ($) => $,
-                        () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
+                        () => _i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                     )])
                     default: return _p.au($[0])
                 }
@@ -91,7 +91,7 @@ export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) 
                 switch ($[0]) {
                     case 'siblings': return _p.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
                         ($) => $,
-                        () => _i_generic.abort.is_set_assertion("current directory", loc, abort)
+                        () => _i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                     )])
                     default: return _p.au($[0])
                 }
@@ -536,7 +536,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         _p_ls.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
                                 ($) => $['number types'],
-                                () => _i_generic.abort.is_set_assertion("globals", $['l location'], abort)
+                                () => _i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
                             ),
                         ),
                         $,
@@ -557,7 +557,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         _p_ls.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
                                 ($) => $['text types'],
-                                () => _i_generic.abort.is_set_assertion("globals", $['l location'], abort)
+                                () => _i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
                             ),
                         ),
                         $,
@@ -578,7 +578,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
                                 ($) => $,
-                                () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
+                                () => _i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                             )
                             const p_import = _i_generic.get_entry_acyclic(
                                 _p_ls.acyclic.from_resolved_dictionary(sc_import),
@@ -679,7 +679,7 @@ export const Value: signatures.Value = ($, abort, $l, $p) => {
                             : $.complexity[1]
 
                     },
-                    () => _i_generic.abort.is_set_assertion("globals", loc, abort)
+                    () => _i_generic.abort.parameter_is_set_assertion("globals", loc, abort)
                 )
                 const p_referent = Value_Reference(
                     $.referent,
@@ -802,7 +802,7 @@ export const Module_Reference: signatures.Module_Reference = ($, abort, $l, $p) 
             case 'external': return _p.ss($, ($): d_out.Module_Reference.location => {
                 const sc_import = $p.imports.__decide(
                     ($) => $,
-                    () => _i_generic.abort.is_set_assertion("imports", $.import['l location'], abort)
+                    () => _i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                 )
                 const p_import = _i_generic.get_entry_acyclic(
                     _p_ls.acyclic.from_resolved_dictionary(sc_import),
@@ -1163,7 +1163,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
                         case 'external': return _p.ss($, ($) => {
                             const sc_import = $p.imports.__decide(
                                 ($) => $,
-                                () => _i_generic.abort.is_set_assertion("imports", loc, abort)
+                                () => _i_generic.abort.parameter_is_set_assertion("imports", loc, abort)
                             )
                             const p_import = _i_generic.get_entry_acyclic(
                                 _p_ls.acyclic.from_resolved_dictionary(sc_import),
@@ -2121,7 +2121,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
             case 'option constraint': return _p.ss($, ($): d_out.Guaranteed_Value_Selection.start => {
                 const sc = $p['option constraints'].__decide(
                     ($) => $,
-                    () => _i_generic.abort.is_set_assertion("option constraints", start_location, abort)
+                    () => _i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
                 )
                 return ['option constraint', _i_generic.get_entry_acyclic(
                     _p_ls.acyclic.from_resolved_dictionary(sc),
@@ -2277,11 +2277,11 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
                         }))
                         case 'list cursor': return _p.ss($, ($) => $p['list cursor'].__decide(
                             ($) => $['resulting module']['root value'],
-                            () => _i_generic.abort.is_set_assertion("list cursor", start_loc, abort)
+                            () => _i_generic.abort.parameter_is_set_assertion("list cursor", start_loc, abort)
                         ))
                         case 'linked entry': return _p.ss($, ($) => $p['linked entry'].__decide(
                             ($) => $['resulting dictionary'].value,
-                            () => _i_generic.abort.is_set_assertion("linked entry", start_loc, abort)
+                            () => _i_generic.abort.parameter_is_set_assertion("linked entry", start_loc, abort)
                         ))
                         case 'option constraint': return _p.ss($, ($) => _p_cc($['l entry'], ($) => {
                             switch ($[0]) {

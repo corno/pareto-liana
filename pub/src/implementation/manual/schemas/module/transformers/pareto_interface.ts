@@ -10,10 +10,10 @@ import * as sh from "pareto/dist/shorthands/interface"
 import * as t_pareto_interface_main from "../../../../manual/schemas/schema/transformers/pareto_interface_main"
 
 
-export const Module = ($: d_in.Module): d_out.Module_Set => {
+export const Module = ($: d_in.Module): d_out.Package_Set => {
     return _psh.dictionary.literal({
         "generic": sh.m.set({
-            "location": sh.m.module(
+            "location": sh.m.package_(
                 {},
                 {
                     "Location": sh.type.data(sh.t.group({
@@ -23,7 +23,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     })),
                 }
             ),
-            "unmarshall": sh.m.module(
+            "unmarshall": sh.m.package_(
                 {},
                 {
                     "Error": sh.type.data(sh.t.state({
@@ -41,7 +41,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     }))
                 }
             ),
-            "resolve": sh.m.module(
+            "resolve": sh.m.package_(
                 {
                     "location": sh.import_.sibling("location", []),
                 },
@@ -53,9 +53,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                                     "expected": sh.t.text(),
                                     "found": sh.t.text(),
                                 }),
-                                "optional value": sh.t.state({
-                                    "set": sh.t.text(),
-                                }),
+                                "optional value is not set": sh.t.nothing(),
                                 "same node": sh.t.text(),
                             }),
                             "lookup": sh.t.state({
@@ -69,7 +67,7 @@ export const Module = ($: d_in.Module): d_out.Module_Set => {
                     })),
                 }
             ),
-            "deserialize": sh.m.module(
+            "deserialize": sh.m.package_(
                 {
                     "unmarshall": sh.import_.sibling("unmarshall", []),
                 },

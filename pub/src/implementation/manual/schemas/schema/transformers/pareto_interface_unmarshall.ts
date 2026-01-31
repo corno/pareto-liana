@@ -13,8 +13,8 @@ export const Schema = (
     $p: {
         'constrained': boolean
     }
-): d_out.Module_Set.D => {
-    return sh.m.module(
+): d_out.Package_Set.D => {
+    return sh.m.package_(
         {
             "generic": sh.import_.ancestor(
                 2,

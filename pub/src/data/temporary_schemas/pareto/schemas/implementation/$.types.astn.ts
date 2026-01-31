@@ -16,12 +16,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Module Set": module_(t.dictionary(t.state({
-            "module": toption(t.component("Module")),
-            "set": toption(t.component("Module Set")),
+        "Package Set": module_(t.dictionary(t.state({
+            "package": toption(t.component("Package")),
+            "set": toption(t.component("Package Set")),
         }))),
 
-        "Module": module_(t.group({
+        "Package": module_(t.group({
             "type": prop(t.state({
                 "serializer": toption(t.nothing()),
                 "deserializer": toption(t.nothing()),
@@ -33,8 +33,9 @@ export const $: g_.Modules = modules(
                 "change context": toption(t.boolean()),
                 "implement me": prop(t.boolean()),
                 "iterate": prop(t.boolean()),
-                "unreachable code path": prop(t.boolean()),
                 "lookups": prop(t.boolean()),
+                "unreachable code path": prop(t.boolean()),
+                "variables": prop(t.boolean()),
             })),
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
@@ -123,7 +124,12 @@ export const $: g_.Modules = modules(
                             })),
                             "full": toption(t.group({
                                 "options": prop(t.dictionary(t.component("Expression"))),
-                            }))
+                            })),
+                            "single": toption(t.group({
+                                "option": prop(t.text_global("Identifier")),
+                                "if true": prop(t.component("Expression")),
+                                "if false": prop(t.component("Expression")),
+                            })),
                         })),
                     })),
                     "text": toption(t.group({
@@ -272,6 +278,10 @@ export const $: g_.Modules = modules(
                     "new context": prop(t.component("Selection")),
                     "expression": prop(t.component("Expression")),
                 })),
+                "variables": toption(t.group({
+                    "variables": prop(t.dictionary(t.component("Expression"))),
+                    "callback": prop(t.component("Expression")),
+                })),
                 "implement me": toption(t.text_local(text('single line'))),
                 "iterate": toption(t.group({
                     "list": prop(t.component("Selection")),
@@ -319,10 +329,20 @@ export const $: g_.Modules = modules(
                             "cycle detected": prop(t.component("Expression")),
                         })),
                     })),
+                    "lookup entry depth": toption(t.group({
+                        "lookup": prop(t.component("Lookup Selection")),
+                        "id": prop(t.component("Expression")),
+                        "abort handlers": prop(t.group({
+                            "no such entry": prop(t.component("Expression")),
+                            "no context lookup": prop(t.component("Expression")),
+                            "cycle detected": prop(t.component("Expression")),
+                        })),
+                    })),
                     "parameter": toption(t.text_global("TBD")),
                     "parent sibling": toption(t.text_global("TBD")),
                     "sibling": toption(t.text_global("TBD")),
                     "state": toption(t.nothing()),
+                    "variable": toption(t.text_global("TBD")),
                 })),
                 "tail": prop(t.list(t.text_global("TBD"))),
             }))

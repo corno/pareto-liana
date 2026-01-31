@@ -57,21 +57,16 @@ export const Error = ($: Error): d_fp.Group_Part => {
                                 case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
                                         case 'state': return _p.ss($, ($) => sh.b.snippet(`expected '${$.expected}' but found '${$.found}'`))
-                                        case 'optional value': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                            switch ($[0]) {
-                                                case 'set': return _p.ss($, ($) => sh.b.snippet(`expected ${$} to be set`))
-                                                default: return _p.au($[0])
-                                            }
-                                        }))
+                                        case 'missingoptional value': return _p.ss($, ($) => sh.b.snippet(`expected value/parameter to be set`))
                                         case 'same node': return _p.ss($, ($) => sh.b.snippet(`${$}, not the same node`))
                                         default: return _p.au($[0])
                                     }
                                 }))
                                 case 'lookup': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'cyclic lookup in acyclic context': return _p.ss($, ($) => sh.b.snippet(`cyclic lookup in acyclic context: ${$}`))
+                                        case 'cycle detected': return _p.ss($, ($) => sh.b.snippet(`cycle detected`))
                                         case 'no such entry': return _p.ss($, ($) => sh.b.snippet(`no such entry: ${$}`))
-                                        case 'optional lookup not set': return _p.ss($, ($) => sh.b.snippet(`there is is no context where this entry can be looked up`))
+                                        case 'no context lookup': return _p.ss($, ($) => sh.b.snippet(`there is is no context where this entry can be looked up`))
                                         default: return _p.au($[0])
                                     }
                                 }))
@@ -145,7 +140,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': interface_module_path,
-                                            'directory': t_pareto_interface_to_serialized_typescript.Module_Set(
+                                            'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
                                                 t_liana_to_pareto_interface.Module(
                                                     $,
                                                 )
@@ -161,7 +156,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'escape spaces in path': true,
                                             'path': implementation_module_path,
-                                            'directory': t_pareto_implementation_to_serialized_typescript.Module_Set(
+                                            'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
                                                 t_liana_to_pareto_implementation.Module(
                                                     $,
                                                 )
@@ -220,7 +215,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
             ($) => [
                 $cr.log.execute(
                     {
-                        'lines': t_fp_to_lines.Group_Part(Error($), {'indentation': '    '})
+                        'lines': t_fp_to_lines.Group_Part(Error($), { 'indentation': '    ' })
                     },
                     ($) => ({
                         'exit code': 1

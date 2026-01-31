@@ -16,8 +16,6 @@ const location = sh.t.component_imported(
     "Relative Location",
 )
 
-// const location = sh.t.nothing()
-
 export const Schema = (
     $: d_in.Schema,
     $p: {
@@ -28,10 +26,10 @@ export const Schema = (
         | ['unresolved', null]
         | ['resolved', null]
     }
-): d_out.Module_Set.D => {
+): d_out.Package_Set.D => {
     const add_location = $p.type[0] === 'unresolved'
 
-    return sh.m.module(
+    return sh.m.package_(
         op_flatten_dictionary(
             _p.dictionary.literal({
                 " location": _p.dictionary.filter(

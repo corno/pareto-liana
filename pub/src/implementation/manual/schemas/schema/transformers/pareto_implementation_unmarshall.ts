@@ -31,21 +31,16 @@ const location = sh.e.select(
 
 export const Schema: _pi.Transformer_With_Parameters<
     d_in.Schema,
-    d_out.Module_Set.D,
+    d_out.Package_Set.D,
     {
         'path': _pi.List<string>,
         'imports': d_in.Imports,
         'constrained': boolean
     }
 > = ($, $p) => {
-    return sh.m.module(
+    return sh.m.package_(
         'refiner',
-        false,
-        true,
-        false,
-        false,
-        false,
-        false,
+        ['change context'],
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({

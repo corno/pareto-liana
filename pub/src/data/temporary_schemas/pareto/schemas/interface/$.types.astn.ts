@@ -15,12 +15,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Module Set": module_(t.dictionary(t.state({
-            "module": toption(t.component("Module")),
-            "set": toption(t.component("Module Set")),
+        "Package Set": module_(t.dictionary(t.state({
+            "package": toption(t.component("Package")),
+            "set": toption(t.component("Package Set")),
         }))),
 
-        "Module": module_(t.group({
+        "Package": module_(t.group({
             "imports": prop(t.component("Imports")),
             "types": prop(t.dictionary(t.state({
                 "data": toption(t.component("Value")),

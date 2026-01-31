@@ -19,14 +19,9 @@ export const Schema = (
         'imports': d_in.Imports,
         'constrained': boolean
     }
-): d_out.Module_Set.D => sh.m.module(
+): d_out.Package_Set.D => sh.m.package_(
     'transformer',
-    false,
-    true,
-    false,
-    false,
-    false,
-    false,
+    ['change context'],
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
             5,

@@ -11,8 +11,8 @@ import * as sh from "pareto/dist/shorthands/interface"
 
 export const Signatures = (
     $: d_in.Signatures,
-): d_out.Module_Set.D => {
-    return sh.m.module(
+): d_out.Package_Set.D => {
+    return sh.m.package_(
         {
             "generic": sh.import_.ancestor(
                 2,
@@ -27,7 +27,7 @@ export const Signatures = (
                 sh.t.component_imported("unresolved", id),
                 sh.t.component_imported("resolved", id),
                 sh.t.component_imported("generic", "Error"),
-                $['resolved parameters'].lookups.__d_map(($): d_out.Module.types.D.algorithm.type_.refiner.lookups.O.D => {
+                $['resolved parameters'].lookups.__d_map(($): d_out.Package.types.D.algorithm.type_.refiner.lookups.O.D => {
                     const y = sh.t.reference(
                         Module_Reference($.referent),
                         _p.list.literal([
