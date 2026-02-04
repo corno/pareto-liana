@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unconstrained'
 
@@ -13,16 +13,16 @@ import * as t_pareto_interface_main from "../../../../manual/schemas/schema/tran
 export const Module = ($: d_in.Module): d_out.Package_Set => {
     return _psh.dictionary.literal({
         "generic": sh.m.set({
-            "location": sh.m.package_(
-                {},
-                {
-                    "Location": sh.type.data(sh.t.group({
-                        "document resource identifier": sh.t.text(),
-                        "line": sh.t.natural(),
-                        "column": sh.t.natural(),
-                    })),
-                }
-            ),
+            // "location": sh.m.package_(
+            //     {},
+            //     {
+            //         "Location": sh.type.data(sh.t.group({
+            //             "document resource identifier": sh.t.text(),
+            //             "line": sh.t.natural(),
+            //             "column": sh.t.natural(),
+            //         })),
+            //     }
+            // ),
             "unmarshall": sh.m.package_(
                 {},
                 {
@@ -43,7 +43,7 @@ export const Module = ($: d_in.Module): d_out.Package_Set => {
             ),
             "resolve": sh.m.package_(
                 {
-                    "location": sh.import_.sibling("location", []),
+                    // "location": sh.import_.external("location", []),
                 },
                 {
                     "Error": sh.type.data(sh.t.group({
@@ -84,24 +84,6 @@ export const Module = ($: d_in.Module): d_out.Package_Set => {
             ),
 
         }),
-
-        // "operations": m.module(
-        //     {
-        //         "core": i.sibling(
-        //             "core",
-        //             [
-        //                 "resolved"
-        //             ],
-        //             {
-        //                 "Source": pa.sg($, ($) => t.null_()),
-        //             },
-        //         )
-        //     },
-        //     {},
-        //     {
-        //         "operations": type({}, Operations($.operations))
-        //     },
-        // ),
         "schemas": t_pareto_interface_main.Schema_Tree(
             $['schema tree'],
             {

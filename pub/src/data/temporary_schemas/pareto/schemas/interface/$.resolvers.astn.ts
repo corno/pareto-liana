@@ -12,14 +12,13 @@ export const $: g_.Module_Resolvers = resolvers(
 
         "Package": resolver(r.group({
             "imports": r.component("Imports", {}, {}),
-            "types": r.dictionary(r.state({
-                "data": option(r.component("Value", {}, {})),
-                "algorithm": option(r.group({
+            "content": r.state({
+                "data modules": option(r.dictionary(r.component("Value", {}, {}))),
+                "functions": option(r.dictionary(r.group({
                     "result": r.component("Value", {}, {}),
                     "context": r.component("Value", {}, {}),
                     "type": r.state({
-                        "transformer": option(r.group({
-                        })),
+                        "transformer": option(r.nothing()),
                         "refiner": option(r.group({
                             "error": r.optional(r.component("Value", {}, {})),
                             "lookups": r.optional(r.dictionary(r.state({
@@ -30,8 +29,8 @@ export const $: g_.Module_Resolvers = resolvers(
                         })),
                     }),
                     "parameters": r.optional(r.dictionary(r.component("Value", {}, {}))),
-                })),
-            })),
+                }))),
+            }),
         })),
 
         "Imports": resolver(r.dictionary(r.group({

@@ -7,9 +7,9 @@ export const $: g_.Resolve_Logic.signatures  = signatures(
     {
         "Package Set": sig.local({}, {}),
         "Package": sig.local({}, {}),
-        "Temp Type Node Reference": sig.local({}, {}),
+        "Temp Value Type Specification": sig.local({}, {}),
         "Expression": sig.local({}, {}),
-        "Selection": sig.local({}, {}),
+        "Value Selection": sig.local({}, {}),
         "Lookup Selection": sig.local({}, {}),
 
     },

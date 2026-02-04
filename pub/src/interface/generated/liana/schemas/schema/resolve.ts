@@ -137,8 +137,8 @@ export type Group_ = (
     context: Group_.I,
     abort: _pi.Abort<Group_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Group_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Group_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': _pi.lookup.Acyclic<Group_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.lookup.Cyclic<Group_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Group_.P.globals
@@ -192,8 +192,8 @@ export type Dictionary_ = (
     context: Dictionary_.I,
     abort: _pi.Abort<Dictionary_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Dictionary_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Dictionary_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': _pi.lookup.Acyclic<Dictionary_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.lookup.Cyclic<Dictionary_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Dictionary_.P.globals
@@ -247,8 +247,8 @@ export type Value_ = (
     context: Value_.I,
     abort: _pi.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Value_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Value_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': _pi.lookup.Acyclic<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -288,7 +288,7 @@ export type Module_Reference_ = (
     context: Module_Reference_.I,
     abort: _pi.Abort<Module_Reference_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Module_Reference_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Module_Reference_.L.modules>
     },
     parameters: {
         readonly 'imports': Module_Reference_.P.imports
@@ -327,7 +327,7 @@ export type Value_Reference_ = (
     context: Value_Reference_.I,
     abort: _pi.Abort<Value_Reference_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Value_Reference_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Value_Reference_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Reference_.P.imports
@@ -366,7 +366,7 @@ export type Value_Results_ = (
     context: Value_Results_.I,
     abort: _pi.Abort<Value_Results_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Value_Results_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Value_Results_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Results_.P.imports
@@ -405,7 +405,7 @@ export type Option_Constraints_ = (
     context: Option_Constraints_.I,
     abort: _pi.Abort<Option_Constraints_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Option_Constraints_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Option_Constraints_.L.modules>
     },
     parameters: {
         readonly 'imports': Option_Constraints_.P.imports
@@ -458,8 +458,8 @@ export type Module_ = (
     context: Module_.I,
     abort: _pi.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.Acyclic_Lookup<Module_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.Cyclic_Lookup<Module_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': _pi.lookup.Acyclic<Module_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': _pi.lookup.Cyclic<Module_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Module_.P.globals
@@ -578,8 +578,8 @@ export type Value_Resolver_ = (
     context: Value_Resolver_.I,
     abort: _pi.Abort<Value_Resolver_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Value_Resolver_.P.definition
@@ -681,8 +681,8 @@ export type Possible_Value_Selection_ = (
     context: Possible_Value_Selection_.I,
     abort: _pi.Abort<Possible_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Possible_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Possible_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Possible_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Possible_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Possible_Value_Selection_.P.definition
@@ -784,8 +784,8 @@ export type Guaranteed_Value_Selection_ = (
     context: Guaranteed_Value_Selection_.I,
     abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Guaranteed_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Guaranteed_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Guaranteed_Value_Selection_.P.definition
@@ -887,8 +887,8 @@ export type Benchmark_ = (
     context: Benchmark_.I,
     abort: _pi.Abort<Benchmark_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Benchmark_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Benchmark_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Benchmark_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Benchmark_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Benchmark_.P.definition
@@ -990,8 +990,8 @@ export type Optional_Value_Initialization_ = (
     context: Optional_Value_Initialization_.I,
     abort: _pi.Abort<Optional_Value_Initialization_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Optional_Value_Initialization_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Optional_Value_Initialization_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Optional_Value_Initialization_.P.definition
@@ -1093,8 +1093,8 @@ export type Lookup_Selection_ = (
     context: Lookup_Selection_.I,
     abort: _pi.Abort<Lookup_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Lookup_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Lookup_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Lookup_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Lookup_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Lookup_Selection_.P.definition
@@ -1196,8 +1196,8 @@ export type Option_Constraint_Resolvers_ = (
     context: Option_Constraint_Resolvers_.I,
     abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraint_Resolvers_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Option_Constraint_Resolvers_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Option_Constraint_Resolvers_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Option_Constraint_Resolvers_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Option_Constraint_Resolvers_.P.definition
@@ -1245,7 +1245,7 @@ export type Value_Resolver_List_Result_ = (
     context: Value_Resolver_List_Result_.I,
     abort: _pi.Abort<Value_Resolver_List_Result_.E>,
     lookups: {
-        readonly 'modules': _pi.Acyclic_Lookup<Value_Resolver_List_Result_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Value_Resolver_List_Result_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Resolver_List_Result_.P.imports
@@ -1338,8 +1338,8 @@ export type Value_Resolver_Group_ = (
     context: Value_Resolver_Group_.I,
     abort: _pi.Abort<Value_Resolver_Group_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_Group_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.Acyclic_Lookup<Value_Resolver_Group_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_Group_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_Group_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Value_Resolver_Group_.P.definition
@@ -1454,7 +1454,7 @@ export type Value_Constraint_Resolver_ = (
     context: Value_Constraint_Resolver_.I,
     abort: _pi.Abort<Value_Constraint_Resolver_.E>,
     lookups: {
-        readonly 'property constraints': _pi.Acyclic_Lookup<Value_Constraint_Resolver_.L.property_constraints>
+        readonly 'property constraints': _pi.lookup.Acyclic<Value_Constraint_Resolver_.L.property_constraints>
     },
     parameters: null,
 ) => Value_Constraint_Resolver_.O
@@ -1545,7 +1545,7 @@ export type Signature_ = (
     context: Signature_.I,
     abort: _pi.Abort<Signature_.E>,
     lookups: {
-        readonly 'sibling signatures': _pi.Acyclic_Lookup<Signature_.L.sibling_signatures>
+        readonly 'sibling signatures': _pi.lookup.Acyclic<Signature_.L.sibling_signatures>
     },
     parameters: {
         readonly 'modules': Signature_.P.modules
@@ -1637,7 +1637,7 @@ export type Schemas_ = (
     context: Schemas_.I,
     abort: _pi.Abort<Schemas_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schemas_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schemas_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schemas_.O
@@ -1687,7 +1687,7 @@ export type Schema_Tree_ = (
     context: Schema_Tree_.I,
     abort: _pi.Abort<Schema_Tree_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_Tree_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schema_Tree_.O
@@ -1716,7 +1716,7 @@ export type Schema_ = (
     context: Schema_.I,
     abort: _pi.Abort<Schema_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Schema_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schema_.L.sibling_schemas>
     },
     parameters: null,
 ) => Schema_.O
@@ -1745,7 +1745,7 @@ export type Imports_ = (
     context: Imports_.I,
     abort: _pi.Abort<Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.Stack_Lookup<Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Imports_.L.sibling_schemas>
     },
     parameters: null,
 ) => Imports_.O
@@ -1774,7 +1774,7 @@ export type Reference_To_Value_Constraint_Resolver_ = (
     context: Reference_To_Value_Constraint_Resolver_.I,
     abort: _pi.Abort<Reference_To_Value_Constraint_Resolver_.E>,
     lookups: {
-        readonly 'property constraints': _pi.Acyclic_Lookup<Reference_To_Value_Constraint_Resolver_.L.property_constraints>
+        readonly 'property constraints': _pi.lookup.Acyclic<Reference_To_Value_Constraint_Resolver_.L.property_constraints>
     },
     parameters: null,
 ) => Reference_To_Value_Constraint_Resolver_.O

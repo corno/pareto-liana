@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pdev from 'pareto-core-dev'
-import { _p_cc } from 'pareto-core/dist/change_context'
+import _p_change_context from 'pareto-core/dist/_p_change_context'
 
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -21,10 +21,10 @@ export const Schema = (
     $: d_in.Schema,
     $p: {
         'path': _pi.List<string>,
-        'imports': d_in.Imports,
-        'constrained': boolean,
     }
-): d_out.Package_Set.D => sh.m.package_(
+): d_out.Package_Set.D => {
+    const constrained = $.complexity[0] === 'constrained'
+    return sh.m.package_(
     'transformer',
     ['change context'],
     _p.dictionary.literal({
@@ -51,7 +51,7 @@ export const Schema = (
                     "schemas"
                 ]),
                 $p.path,
-                $p.constrained
+                constrained
                     ? _p.list.literal([
                         "data",
                         "unresolved",
@@ -62,7 +62,7 @@ export const Schema = (
             ])
         ),
     }),
-    $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["migrate boilerplate"])),
+    $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["migrate boilerplate"])),
     $.modules.__d_map(($, id) => sh.algorithm(
         "signatures",
         id,
@@ -74,12 +74,13 @@ export const Schema = (
             {
                 'type name': id,
                 'subselection': _p.list.literal([]),
-                'constrained': $p.constrained,
+                'constrained': constrained,
             }
         ),
     )),
 )
 
+}
 export const Value = (
     $: d_in.Value,
     $p: {
@@ -178,7 +179,7 @@ export const Value = (
                         "l list": sh.e.list.map(
                             sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                             sh.e.group.literal({
-                                "l item": _p_cc($, ($) => {
+                                "l item": _p_change_context($, ($) => {
                                     const tn = Value(
                                         $.value,
                                         {

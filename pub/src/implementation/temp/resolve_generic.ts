@@ -1,8 +1,8 @@
-import * as _p from 'pareto-core/dist/refiner'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
-import * as _p_temp from 'pareto-core/dist/lookup_selection'
-import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
+import * as _p_temp from 'pareto-core/dist/select_lookup'
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as gen_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
@@ -35,8 +35,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     handle_entry: (
         $: Unresolved,
         id: string,
-        $acyclic: _pi.Acyclic_Lookup<Resolved>,
-        $cyclic: _pi.Cyclic_Lookup<Resolved>,
+        $acyclic: _pi.lookup.Acyclic<Resolved>,
+        $cyclic: _pi.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
     const xx  = _p.decide.dictionary.has_entries(
@@ -116,7 +116,7 @@ export namespace abort {
 }
 
 export const get_entry_acyclic = <T>(
-    lookup: _pi.Acyclic_Lookup<T>,
+    lookup: _pi.lookup.Acyclic<T>,
     ref: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
@@ -143,7 +143,7 @@ export const get_entry_acyclic = <T>(
 }
 
 export const get_entry_cyclic = <T>(
-    lookup: _pi.Cyclic_Lookup<T>,
+    lookup: _pi.lookup.Cyclic<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
@@ -167,7 +167,7 @@ export const get_entry_cyclic = <T>(
 }
 
 export const get_entry_stack = <T>(
-    stack: _pi.Stack_Lookup<T>,
+    stack: _pi.lookup.Stack<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {

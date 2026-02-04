@@ -22,14 +22,13 @@ export const $: g_.Modules = modules(
 
         "Package": module_(t.group({
             "imports": prop(t.component("Imports")),
-            "types": prop(t.dictionary(t.state({
-                "data": toption(t.component("Value")),
-                "algorithm": toption(t.group({
+            "content": prop(t.state({
+                "data modules": toption(t.dictionary(t.component("Value"))),
+                "functions": toption(t.dictionary(t.group({
                     "result": prop(t.component("Value")),
                     "context": prop(t.component("Value")),
                     "type": prop(t.state({
-                        "transformer": toption(t.group({
-                        })),
+                        "transformer": toption(t.nothing()),
                         "refiner": toption(t.group({
                             "error": prop(t.optional(t.component("Value"))),
                             "lookups": prop(t.optional(t.dictionary(t.state({
@@ -40,8 +39,8 @@ export const $: g_.Modules = modules(
                         }))
                     })),
                     "parameters": prop(t.optional(t.dictionary(t.component("Value")))),
-                })),
-            }))),
+                })))
+            }))
         })),
 
         "Imports": module_(t.dictionary(t.group({

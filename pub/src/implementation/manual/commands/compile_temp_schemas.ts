@@ -1,6 +1,7 @@
 import * as _p from 'pareto-core/dist/command'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _pt from 'pareto-core/dist/transformer'
+import * as _pt from 'pareto-core/dist/expression'
+import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -34,44 +35,57 @@ import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implem
 import * as t_liana_to_pareto_implementation from "../schemas/module/transformers/pareto_implementation"
 import * as t_liana_to_pareto_interface from "../schemas/module/transformers/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
-import * as ds_context_path from "pareto-resources/dist/implementation/manual/schemas/context_path/deserializers"
+import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
 import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
 
 export const Error = ($: Error): d_fp.Group_Part => {
     return sh.g.sub($.__to_list(
         ($, id) => sh.g.nested_block([
-            sh.b.snippet(`error in package ${id}: `),
+            sh.b.literal("error in package '"),
+            sh.b.literal(id),
+            sh.b.literal("': "),
             _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'could not log': return _p.ss($, ($) => sh.b.snippet(`could not log`))
-                    case 'could not remove interface': return _p.ss($, ($) => sh.b.snippet(`could not remove interface`))
-                    case 'could not remove implementation': return _p.ss($, ($) => sh.b.snippet(`could not remove implementation`))
-                    case 'could not write interface': return _p.ss($, ($) => sh.b.snippet(`could not write interface`))
-                    case 'could not write implementation': return _p.ss($, ($) => sh.b.snippet(`could not write implementation`))
-                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.b.snippet(`could not copy generic implementation`))
-                    case 'could not copy core interface': return _p.ss($, ($) => sh.b.snippet(`could not copy core interface`))
+                    case 'could not log': return _p.ss($, ($) => sh.b.literal("could not log"))
+                    case 'could not remove interface': return _p.ss($, ($) => sh.b.literal("could not remove interface"))
+                    case 'could not remove implementation': return _p.ss($, ($) => sh.b.literal("could not remove implementation"))
+                    case 'could not write interface': return _p.ss($, ($) => sh.b.literal("could not write interface"))
+                    case 'could not write implementation': return _p.ss($, ($) => sh.b.literal("could not write implementation"))
+                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.b.literal("could not copy generic implementation"))
+                    case 'could not copy core interface': return _p.ss($, ($) => sh.b.literal("could not copy core interface"))
                     case 'could not deserialize module': return _p.ss($, ($) => sh.b.sub([
-                        sh.b.snippet($.location['document resource identifier'] + `:` + $.location.line + `:` + $.location.column + `: `),
+                        sh.b.literal($.location['document resource identifier']),
+                        sh.b.literal(":"),
+                        sh.b.decimal($.location.line),
+                        sh.b.literal(":"),
+                        sh.b.decimal($.location.column),
+                        sh.b.literal(": "),
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'state': return _p.ss($, ($) => sh.b.snippet(`expected '${$.expected}' but found '${$.found}'`))
-                                        case 'missingoptional value': return _p.ss($, ($) => sh.b.snippet(`expected value/parameter to be set`))
-                                        case 'same node': return _p.ss($, ($) => sh.b.snippet(`${$}, not the same node`))
+                                        case 'state': return _p.ss($, ($) => sh.b.sub([
+                                            sh.b.literal("expected '"),
+                                            sh.b.literal($.expected),
+                                            sh.b.literal("' but found '"),
+                                            sh.b.literal($.found),
+                                            sh.b.literal("'"),
+                                        ]))
+                                        case 'missingoptional value': return _p.ss($, ($) => sh.b.literal("expected value/parameter to be set"))
+                                        case 'same node': return _p.ss($, ($) => sh.b.literal("${$}, not the same node"))
                                         default: return _p.au($[0])
                                     }
                                 }))
                                 case 'lookup': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'cycle detected': return _p.ss($, ($) => sh.b.snippet(`cycle detected`))
-                                        case 'no such entry': return _p.ss($, ($) => sh.b.snippet(`no such entry: ${$}`))
-                                        case 'no context lookup': return _p.ss($, ($) => sh.b.snippet(`there is is no context where this entry can be looked up`))
+                                        case 'cycle detected': return _p.ss($, ($) => sh.b.literal("cycle detected"))
+                                        case 'no such entry': return _p.ss($, ($) => sh.b.literal("no such entry: ${$}"))
+                                        case 'no context lookup': return _p.ss($, ($) => sh.b.literal("there is is no context where this entry can be looked up"))
                                         default: return _p.au($[0])
                                     }
                                 }))
                                 case 'missing required entries': return _p.ss($, ($) => sh.b.sub([
-                                    sh.b.snippet(`missing required entries:`),
+                                    sh.b.literal("missing required entries:"),
                                     sh.b.indent([
                                         sh.g.sub($.__to_list(($, id) => sh.g.simple_block(`- ${id}`)))
                                     ])
@@ -104,8 +118,28 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                     poormans_modules,
                     ($, id) => {
 
-                        const interface_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${id}`), `interface`)
-                        const implementation_module_path = t_path_to_path.create_node_path(ds_context_path.Context_Path(`./out/source_code/${id}`), `implementation`)
+                        const interface_module_path = t_path_to_path.create_node_path(
+                            r_context_path_from_text.Context_Path(
+                                _p_list_from_text(
+                                    `./out/source_code/${id}`,
+                                    ($) => $
+                                )
+                            ),
+                            {
+                                'node': `interface`
+                            }
+                        )
+                        const implementation_module_path = t_path_to_path.create_node_path(
+                            r_context_path_from_text.Context_Path(
+                                _p_list_from_text(
+                                    `./out/source_code/${id}`,
+                                    ($) => $
+                                )
+                            ),
+                            {
+                                'node': `implementation`
+                            }
+                        )
 
                         return [
 

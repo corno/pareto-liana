@@ -1,7 +1,7 @@
 import * as _pdev from 'pareto-core-dev'
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
-import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 

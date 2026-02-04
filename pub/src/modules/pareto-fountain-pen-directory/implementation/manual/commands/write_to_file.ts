@@ -1,9 +1,9 @@
 import * as _p from 'pareto-core/dist/command'
-import * as _pt from 'pareto-core/dist/transformer'
+import * as _pt from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _ps from 'pareto-core/dist/serializer'
-import * as _pds from 'pareto-core/dist/deserializer'
-import { _p_cc } from 'pareto-core/dist/change_context'
+import _p_change_context from 'pareto-core/dist/_p_change_context'
+import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
+import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -23,16 +23,16 @@ export const $$: signatures.commands.write_to_file = _p.command_procedure(
         ),
         $cr['write file'].execute(
             {
-                'path': _p_cc(
+                'path': _p_change_context(
                     t_path_to_path.extend_node_path($p['directory path'], { 'addition': $p.filename }),
                     ($) => $p['escape spaces in path']
                         ? replace_space_in_context_path($)
                         : $,
                 ),
-                'data': _ps.text.from_list(
+                'data': _p_text_from_list(
                     _pt.list.flatten(
                         t_block_2_lines.Group($p.group, { 'indentation': $p.indentation }).__l_map(($) => $ + $p.newline),
-                        ($) => _pds.list.from_text($, ($) => $)
+                        ($) => _p_list_from_text($, ($) => $)
                     ),
                     ($) => $
                 ),

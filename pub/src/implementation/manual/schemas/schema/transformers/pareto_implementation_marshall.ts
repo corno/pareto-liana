@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pdev from 'pareto-core-dev'
-import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -16,8 +16,6 @@ export const Schema = (
     $: d_in.Schema,
     $p: {
         'path': _pi.List<string>,
-        'imports': d_in.Imports,
-        'constrained': boolean
     }
 ): d_out.Package_Set.D => sh.m.package_(
     'transformer',
@@ -78,7 +76,7 @@ export const Schema = (
                     ]),
                 ),
             }),
-            "external": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["marshall"]))
+            "external": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["marshall"]))
         }),
         {
             'separator': " ",

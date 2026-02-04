@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -27,62 +27,73 @@ export const Schema_Tree = (
         switch ($[0]) {
             case 'schema': return _p.ss($, ($) => {
                 const imports = $.imports
-                return sh.m.set(
-                    _p.dictionary.filter(
-                        _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
-                            "migrate boilerplate": _p.optional.set(t_migration_boilerplate.Schema($, {
-                                'path': $p.path,
-                                'imports': $.imports,
-                                'constrained': $.complexity[0] === 'constrained'
-                            })),
-                            "resolve": _p.decide.state($.complexity, ($) => {
-                                switch ($[0]) {
-                                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Module_Resolvers($.resolvers, {
+                const schema = $
+                
+                return _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                    switch ($[0]) {
+                        case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                            "resolved": sh.m.set({
+                                "transformers": sh.m.set({
+                                    "astn sealed target": t_marshall.Schema(
+                                        schema,
+                                        {
+                                            'path': $p.path,
+                                            // 'depth': 3
+                                        }
+                                    ),
+                                    //boilerplate for migrate
+                                    "unresolved": t_migration_boilerplate.Schema(schema, {
+                                        'path': $p.path,
+                                    }),
+                                    "text": t_serialize.Schema(schema, {
+                                        'path': $p.path,
+                                    })
+                                }),
+                                "refiners": sh.m.set({
+                                    "unresolved": t_resolve.Module_Resolvers($.resolvers, {
                                         'path': $p.path,
                                         'imports': imports
-                                    })))
-                                    case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
-                                    default: return _p.au($[0])
-                                }
+                                    })
+                                }),
                             }),
-                            "marshall": _p.optional.from_boolean(
-                                !$p['omit (de)serializer'],
-                                t_marshall.Schema(
-                                    $,
+                            "unresolved": sh.m.set({
+                                "refiners": sh.m.set({
+                                    "astn parse tree": t_unmarshall.Schema(schema, {
+                                        'path': $p.path,
+                                    }),
+                                    "text": t_deserialize.Schema(schema, {
+                                        'path': $p.path,
+                                    }),
+                                }),
+                            }),
+                        }))
+                        case 'unconstrained': return _p.ss($, ($) => sh.m.set({
+                            "transformers": sh.m.set({
+                                "astn sealed target": t_marshall.Schema(
+                                    schema,
                                     {
                                         'path': $p.path,
-                                        'imports': $.imports,
-                                        'constrained': $.complexity[0] === 'constrained'
                                     }
-                                )
-                            ),
-                            "unmarshall": _p.optional.from_boolean(
-                                !$p['omit (de)serializer'],
-                                t_unmarshall.Schema($, {
+                                ),
+                                "text": t_serialize.Schema(schema, {
                                     'path': $p.path,
-                                    'imports': $.imports,
-                                    'constrained': $.complexity[0] === 'constrained'
-                                })
-                            ),
-                            "serialize": _p.optional.from_boolean(
-                                !$p['omit (de)serializer'],
-                                t_serialize.Schema($, {
+                                }),
+                                "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
                                     'path': $p.path,
-                                    'imports': $.imports,
-                                    'constrained': $.complexity[0] === 'constrained'
-                                })
-                            ),
-                            "deserialize": _p.optional.from_boolean(
-                                !$p['omit (de)serializer'],
-                                t_deserialize.Schema($, {
+                                }),
+                            }),
+                            "refiners": sh.m.set({
+                                "astn parse tree": t_unmarshall.Schema(schema, {
                                     'path': $p.path,
-                                    'imports': $.imports,
-                                })
-                            ),
-                        }),
-                        ($) => $
-                    )
-                )
+                                }),
+                                "text": t_deserialize.Schema(schema, {
+                                    'path': $p.path,
+                                }),
+                            }),
+                        }))
+                        default: return _p.au($[0])
+                    }
+                })
             })
             case 'set': return _p.ss($, ($): d_out.Package_Set.D => Schemas(
                 $,

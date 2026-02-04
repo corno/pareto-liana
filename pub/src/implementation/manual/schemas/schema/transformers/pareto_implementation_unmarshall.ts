@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/transformer'
+import * as _p from 'pareto-core/dist/expression'
 import * as _pdev from 'pareto-core-dev'
-import { _p_unreachable_code_path } from 'pareto-core/dist/unreachable_code_path'
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 //data types
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -34,10 +34,9 @@ export const Schema: _pi.Transformer_With_Parameters<
     d_out.Package_Set.D,
     {
         'path': _pi.List<string>,
-        'imports': d_in.Imports,
-        'constrained': boolean
     }
 > = ($, $p) => {
+    const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         'refiner',
         ['change context'],
@@ -67,13 +66,13 @@ export const Schema: _pi.Transformer_With_Parameters<
                                 "schemas"
                             ]),
                             $p.path,
-                            $p.constrained
+                            $.complexity[0] === 'constrained'
                                 ? _p.list.literal(["data", "unresolved"])
                                 : _p.list.literal(["data"]),
                         ]),
                     ),
                 }),
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"])),
+                "external ": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"])),
             }),
             {
                 'separator': "",
@@ -132,7 +131,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]
                     ),
                 }),
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"]))
+                "external ": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"]))
             }),
             {
                 'separator': "",
@@ -150,7 +149,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                 {
                     'temp type': id,
                     'temp subselection': _p.list.literal([]),
-                    'constrained': $p.constrained
+                    'constrained': constrained
                 }
             ),
         )),
