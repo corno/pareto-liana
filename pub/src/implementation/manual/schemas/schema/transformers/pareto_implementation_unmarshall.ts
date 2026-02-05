@@ -140,9 +140,7 @@ export const Schema: _pi.Transformer_With_Parameters<
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
-            true,
-            false,
-            false,
+            ['abort'],
             Value(
                 $['root value'],
                 {

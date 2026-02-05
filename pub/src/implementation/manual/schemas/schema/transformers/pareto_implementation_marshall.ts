@@ -16,87 +16,93 @@ export const Schema = (
     $: d_in.Schema,
     $p: {
         'path': _pi.List<string>,
+        'depth': number
     }
-): d_out.Package_Set.D => sh.m.package_(
-    ['change context'],
-    _p.dictionary.literal({
-        "signatures": sh_i.import_.ancestor(
-            5,
-            "interface",
-            _p.list.nested_literal_old([
-                _p.list.literal([
+): d_out.Package_Set.D => {
+    const constrained = $.complexity[0] === 'constrained'
+
+    return sh.m.package_(
+        ['change context', 'text from list'],
+        _p.dictionary.literal({
+            "signatures": sh_i.import_.ancestor(
+                $p.depth,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    _p.list.literal(["marshall"])
+                ])
+            ),
+            "out": sh_i.import_.external(
+                "astn-core",
+                [
+                    "dist",
+                    "interface",
                     "generated",
                     "liana",
-                    "schemas"
-                ]),
-                $p.path,
-                _p.list.literal(["marshall"])
-            ])
-        ),
-        "out": sh_i.import_.external(
-            "astn-core",
-            [
-                "dist",
-                "interface",
-                "generated",
-                "liana",
-                "schemas",
-                "sealed target",
-                "data",
-            ],
-        ),
+                    "schemas",
+                    "sealed target",
+                    "data",
+                ],
+            ),
 
-    }),
-    op_flatten_dictionary(
-        _p.dictionary.literal({
-            "serialize": _p.dictionary.literal({
-                "number": sh_i.import_.external(
-                    "liana-core",
-                    _p.list.literal([
-                        "dist",
-                        "implementation",
-                        "manual",
-                        "primitives",
-                        "integer",
-                        "serializers",
-                        "decimal",
-                    ]),
-                ),
-                "boolean": sh_i.import_.external(
-                    "liana-core",
-                    _p.list.literal([
-                        "dist",
-                        "implementation",
-                        "manual",
-                        "primitives",
-                        "boolean",
-                        "serializers",
-                        "true false",
-                    ]),
+        }),
+        op_flatten_dictionary(
+            _p.dictionary.literal({
+                "serialize": _p.dictionary.literal({
+                    "number": sh_i.import_.external(
+                        "liana-core",
+                        _p.list.literal([
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "primitives",
+                            "integer",
+                            "serializers",
+                            "decimal",
+                        ]),
+                    ),
+                    "boolean": sh_i.import_.external(
+                        "liana-core",
+                        _p.list.literal([
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "primitives",
+                            "boolean",
+                            "serializers",
+                            "true false",
+                        ]),
+                    ),
+                }),
+                "external": $.imports.__d_map(($, id) => constrained
+                    ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "transformers", "astn sealed target"])
+                    : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "astn sealed target"])
                 ),
             }),
-            "external": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["marshall"]))
-        }),
-        {
-            'separator': " ",
-        },
-        () => _p_unreachable_code_path(),
-    ),
-    $.modules.__d_map(($, id) => sh.algorithm(
-        "signatures",
-        id,
-        false,
-        false,
-        false,
-        Value(
-            $['root value'],
             {
-                'type': id,
-                'subselection': _p.list.literal([])
-            }
+                'separator': " ",
+            },
+            () => _p_unreachable_code_path(),
         ),
-    )),
-)
+        $.modules.__d_map(($, id) => sh.algorithm(
+            "signatures",
+            id,
+            [],
+            Value(
+                $['root value'],
+                {
+                    'type': id,
+                    'subselection': _p.list.literal([])
+                }
+            ),
+        )),
+    )
+}
 
 export const Value = (
     $: d_in.Value,
@@ -111,14 +117,20 @@ export const Value = (
             sh.e.group.literal({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
-                    sh.s.call(
-                        sh.call.external("serialize boolean", "serialize"),
+                    sh.s.text_from_list(
+                        sh.e.select(sh.s.call(
+                            sh.call.external("serialize boolean", "serialize"),
+                            sh.e.select(sh.s.context([])),
+                            null,
+                            sh.lookups.not_set(),
+                            sh.arguments_.not_set(),
+                            [],
+                        ),
+                        ),
                         sh.e.select(sh.s.context([])),
-                        null,
-                        sh.lookups.not_set(),
-                        sh.arguments_.not_set(),
-                        [],
-                    )),
+                        []
+                    )
+                ),
             })
         ))
         case 'component': return _p.ss($, ($) => sh.e.select(
@@ -212,15 +224,20 @@ export const Value = (
             sh.e.group.literal({
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
-                    sh.s.call(
-                        sh.call.external("serialize number", "serialize"),
+                    sh.s.text_from_list(
+                        sh.e.select(sh.s.call(
+                            sh.call.external("serialize number", "serialize"),
+                            sh.e.select(sh.s.context([])),
+                            null,
+                            sh.lookups.not_set(),
+                            sh.arguments_.not_set(),
+                            [],
+                        ),
+                        ),
                         sh.e.select(sh.s.context([])),
-                        null,
-                        sh.lookups.not_set(),
-                        sh.arguments_.not_set(),
-                        [],
+                        []
                     )
-                )
+                ),
             })
         ))
         case 'optional': return _p.ss($, ($) => sh.e.state.literal(

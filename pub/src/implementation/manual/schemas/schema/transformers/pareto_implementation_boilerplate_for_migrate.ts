@@ -68,9 +68,7 @@ export const Schema = (
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
-            false,
-            false,
-            false,
+            [],
             Value(
                 $['root value'],
                 {

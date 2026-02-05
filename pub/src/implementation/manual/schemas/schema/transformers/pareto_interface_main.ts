@@ -6,7 +6,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/
 
 import { m } from "pareto/dist/shorthands/interface"
 
-import * as t_migrate_boilerplate from "./pareto_interface_migrate_boilerplate"
+import * as t_migrate_boilerplate from "./pareto_interface_boilerplate_for_migrate"
 import * as t_resolve from "./pareto_interface_resolve"
 import * as t_types from "./pareto_interface_types"
 

@@ -29,37 +29,66 @@ export const Schema_Tree = (
                 const imports = $.imports
                 const schema = $
 
-                return _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
-                    switch ($[0]) {
-                        case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
-                            "resolved": sh.m.set({
-                                "transformers": sh.m.set({
-                                    // "astn sealed target": t_marshall.Schema(
-                                    //     schema,
-                                    //     {
-                                    //         'path': $p.path,
-                                    //         // 'depth': 3
-                                    //     }
-                                    // ),
-                                    "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
-                                        'depth': 7,
-                                        'path': $p.path,
+                return $p['omit (de)serializer']
+                    ? sh.m.set({})
+                    : _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                        switch ($[0]) {
+                            case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                                "resolved": sh.m.set({
+                                    "transformers": sh.m.set({
+                                        // "astn sealed target": t_marshall.Schema(
+                                        //     schema,
+                                        //     {
+                                        //         'path': $p.path,
+                                        //         // 'depth': 3
+                                        //     }
+                                        // ),
+                                        "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                            'depth': 7,
+                                            'path': $p.path,
+                                        }),
+                                        // "unresolved": t_migration_boilerplate.Schema(schema, {
+                                        //     'path': $p.path,
+                                        // }),
+                                        // "text": t_serialize.Schema(schema, {
+                                        //     'path': $p.path,
+                                        // })
                                     }),
-                                    // "unresolved": t_migration_boilerplate.Schema(schema, {
-                                    //     'path': $p.path,
-                                    // }),
+                                    "refiners": sh.m.set({
+                                        // "unresolved": t_resolve.Module_Resolvers($.resolvers, {
+                                        //     'path': $p.path,
+                                        //     'imports': imports
+                                        // })
+                                    }),
+                                }),
+                                "unresolved": sh.m.set({
+                                    "refiners": sh.m.set({
+                                        // "astn parse tree": t_unmarshall.Schema(schema, {
+                                        //     'path': $p.path,
+                                        // }),
+                                        // "text": t_deserialize.Schema(schema, {
+                                        //     'path': $p.path,
+                                        // }),
+                                    }),
+                                }),
+                            }))
+                            case 'unconstrained': return _p.ss($, ($) => sh.m.set({
+                                "transformers": sh.m.set({
+                                    "astn sealed target": t_marshall.Schema(
+                                        schema,
+                                        {
+                                            'path': $p.path,
+                                            'depth': 6,
+                                        }
+                                    ),
                                     // "text": t_serialize.Schema(schema, {
                                     //     'path': $p.path,
-                                    // })
+                                    // }),
+                                    "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                        'depth': 6,
+                                        'path': $p.path,
+                                    }),
                                 }),
-                                "refiners": sh.m.set({
-                                    // "unresolved": t_resolve.Module_Resolvers($.resolvers, {
-                                    //     'path': $p.path,
-                                    //     'imports': imports
-                                    // })
-                                }),
-                            }),
-                            "unresolved": sh.m.set({
                                 "refiners": sh.m.set({
                                     // "astn parse tree": t_unmarshall.Schema(schema, {
                                     //     'path': $p.path,
@@ -68,44 +97,18 @@ export const Schema_Tree = (
                                     //     'path': $p.path,
                                     // }),
                                 }),
-                            }),
-                        }))
-                        case 'unconstrained': return _p.ss($, ($) => sh.m.set({
-                            "transformers": sh.m.set({
-                                // "astn sealed target": t_marshall.Schema(
-                                //     schema,
-                                //     {
-                                //         'path': $p.path,
-                                //     }
-                                // ),
-                                // "text": t_serialize.Schema(schema, {
-                                //     'path': $p.path,
-                                // }),
-                                "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
-                                    'depth': 6,
-                                    'path': $p.path,
-                                }),
-                            }),
-                            "refiners": sh.m.set({
-                                // "astn parse tree": t_unmarshall.Schema(schema, {
-                                //     'path': $p.path,
-                                // }),
-                                // "text": t_deserialize.Schema(schema, {
-                                //     'path': $p.path,
-                                // }),
-                            }),
-                        }))
-                        default: return _p.au($[0])
-                    }
-                })
+                            }))
+                            default: return _p.au($[0])
+                        }
+                    })
             })
             case 'set': return _p.ss($, ($): d_out.Package_Set.D => Schemas(
-                $,
-                {
-                    'path': $p.path,
-                    'omit (de)serializer': $p['omit (de)serializer'],
-                }
-            ))
+                        $,
+                        {
+                            'path': $p.path,
+                            'omit (de)serializer': $p['omit (de)serializer'],
+                        }
+                    ))
             default: return _p.au($[0])
         }
     })

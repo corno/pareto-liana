@@ -116,9 +116,7 @@ export const Module_Resolvers = (
         $.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
-            true,
-            true,
-            true,
+            ['abort', 'lookups', 'parameters'],
             Value_Resolver(
                 $['root value resolver'],
                 {

@@ -63,9 +63,7 @@ export const Schema = (
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
-            true,
-            false,
-            true,
+            ['abort', 'parameters'],
             sh.e.select(sh.s.call(
                 sh.call.external("unmarshall", id),
                 sh.e.select(

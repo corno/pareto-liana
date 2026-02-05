@@ -28,6 +28,8 @@ export const $: g_.Modules = modules(
                 "implement me": prop(t.boolean()),
                 "iterate": prop(t.boolean()),
                 "lookups": prop(t.boolean()),
+                "list from text": prop(t.boolean()),
+                "text from list": prop(t.boolean()),
                 "unreachable code path": prop(t.boolean()),
                 "variables": prop(t.boolean()),
             })),
@@ -316,6 +318,10 @@ export const $: g_.Modules = modules(
                         "id": prop(t.component("Expression")),
                         "abort handler": prop(t.component("Expression")),
                     })),
+                    "list from text": toption(t.group({
+                        "source": prop(t.component("Expression")),
+                        "character handler": prop(t.component("Expression")),
+                    })),
                     "lookup entry": toption(t.group({
                         "lookup": prop(t.component("Lookup Selection")),
                         "id": prop(t.component("Expression")),
@@ -338,6 +344,10 @@ export const $: g_.Modules = modules(
                     "parent sibling": toption(t.text_global("TBD")),
                     "sibling": toption(t.text_global("TBD")),
                     "state": toption(t.nothing()),
+                    "text from list": toption(t.group({
+                        "source": prop(t.component("Expression")),
+                        "item handler": prop(t.component("Expression")),
+                    })),
                     "variable": toption(t.text_global("TBD")),
                 })),
                 "tail": prop(t.list(t.text_global("TBD"))),

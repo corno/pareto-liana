@@ -18,6 +18,8 @@ export const $: g_.Module_Resolvers = resolvers(
                 "implement me": r.boolean(),
                 "iterate": r.boolean(),
                 "lookups": r.boolean(),
+                "list from text": r.boolean(),
+                "text from list": r.boolean(),
                 "unreachable code path": r.boolean(),
                 "variables": r.boolean(),
             }),
@@ -307,6 +309,10 @@ export const $: g_.Module_Resolvers = resolvers(
                         "id": r.component("Expression", {}, {}),
                         "abort handler": r.component("Expression", {}, {}),
                     })),
+                    "list from text": option(r.group({
+                        "source": r.component("Expression", {}, {}),
+                        "character handler": r.component("Expression", {}, {}),
+                    })),
                     "lookup entry": option(r.group({
                         "lookup": r.component("Lookup Selection", {}, {}),
                         "id": r.component("Expression", {}, {}),
@@ -329,6 +335,10 @@ export const $: g_.Module_Resolvers = resolvers(
                     "parent sibling": option(r.text()),
                     "sibling": option(r.text()),
                     "state": option(r.nothing()),
+                    "text from list": option(r.group({
+                        "source": r.component("Expression", {}, {}),
+                        "item handler": r.component("Expression", {}, {}),
+                    })),
                     "variable": option(r.text()),
                 }),
                 "tail": r.list(r.text()),

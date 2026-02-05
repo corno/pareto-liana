@@ -63,9 +63,7 @@ export const Schema = (
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,
-            false,
-            false,
-            false,
+            [],
             sh.e.select(
                 sh.s.call(
                     sh.call.external("serialize", "Document"),
