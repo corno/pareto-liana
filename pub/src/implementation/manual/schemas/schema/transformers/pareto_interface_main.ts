@@ -71,7 +71,7 @@ export const Schema = (
                     default: return _p.au($[0])
                 }
             }),
-            "migrate boilerplate": _p.optional.set(t_migrate_boilerplate.Schema(
+            "boilerplate for migrate": _p.optional.set(t_migrate_boilerplate.Schema(
                 schema,
                 {
                     'constrained': constrained

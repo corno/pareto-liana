@@ -20,6 +20,7 @@ const location = sh.e.group.literal({
 export const Schema = (
     $: d_in.Schema,
     $p: {
+        'depth': number,
         'path': _pi.List<string>,
     }
 ): d_out.Package_Set.D => {
@@ -28,7 +29,7 @@ export const Schema = (
     ['change context'],
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
-            5,
+            $p.depth,
             "interface",
             _p.list.nested_literal_old([
                 _p.list.literal([
@@ -37,11 +38,11 @@ export const Schema = (
                     "schemas"
                 ]),
                 $p.path,
-                _p.list.literal(["migrate boilerplate"])
+                _p.list.literal(["boilerplate for migrate"])
             ])
         ),
         "out": sh_i.import_.ancestor(
-            5,
+            $p.depth,
             "interface",
             _p.list.nested_literal_old([
                 _p.list.literal([
@@ -61,7 +62,7 @@ export const Schema = (
             ])
         ),
     }),
-    $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["migrate boilerplate"])),
+    $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["boilerplate for migrate"])),
     $.modules.__d_map(($, id) => sh.algorithm(
         "signatures",
         id,

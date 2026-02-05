@@ -32,64 +32,65 @@ export const Schema_Tree = (
                 return _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
                     switch ($[0]) {
                         case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
-                            // "resolved": sh.m.set({
-                            //     "transformers": sh.m.set({
-                            //         "astn sealed target": t_marshall.Schema(
-                            //             schema,
-                            //             {
-                            //                 'path': $p.path,
-                            //                 // 'depth': 3
-                            //             }
-                            //         ),
-                            //         //boilerplate for migrate
-                            //         "unresolved": t_migration_boilerplate.Schema(schema, {
-                            //             'path': $p.path,
-                            //         }),
-                            //         "text": t_serialize.Schema(schema, {
-                            //             'path': $p.path,
-                            //         })
-                            //     }),
-                            //     "refiners": sh.m.set({
-                            //         "unresolved": t_resolve.Module_Resolvers($.resolvers, {
-                            //             'path': $p.path,
-                            //             'imports': imports
-                            //         })
-                            //     }),
-                            // }),
-                            // "unresolved": sh.m.set({
-                            //     "refiners": sh.m.set({
-                            //         "astn parse tree": t_unmarshall.Schema(schema, {
-                            //             'path': $p.path,
-                            //         }),
-                            //         "text": t_deserialize.Schema(schema, {
-                            //             'path': $p.path,
-                            //         }),
-                            //     }),
-                            // }),
+                            "resolved": sh.m.set({
+                                "transformers": sh.m.set({
+                                    // "astn sealed target": t_marshall.Schema(
+                                    //     schema,
+                                    //     {
+                                    //         'path': $p.path,
+                                    //         // 'depth': 3
+                                    //     }
+                                    // ),
+                                    // //boilerplate for migrate
+                                    // "unresolved": t_migration_boilerplate.Schema(schema, {
+                                    //     'path': $p.path,
+                                    // }),
+                                    // "text": t_serialize.Schema(schema, {
+                                    //     'path': $p.path,
+                                    // })
+                                }),
+                                "refiners": sh.m.set({
+                                    // "unresolved": t_resolve.Module_Resolvers($.resolvers, {
+                                    //     'path': $p.path,
+                                    //     'imports': imports
+                                    // })
+                                }),
+                            }),
+                            "unresolved": sh.m.set({
+                                "refiners": sh.m.set({
+                                    // "astn parse tree": t_unmarshall.Schema(schema, {
+                                    //     'path': $p.path,
+                                    // }),
+                                    // "text": t_deserialize.Schema(schema, {
+                                    //     'path': $p.path,
+                                    // }),
+                                }),
+                            }),
                         }))
                         case 'unconstrained': return _p.ss($, ($) => sh.m.set({
-                            // "transformers": sh.m.set({
-                            //     "astn sealed target": t_marshall.Schema(
-                            //         schema,
-                            //         {
-                            //             'path': $p.path,
-                            //         }
-                            //     ),
-                            //     "text": t_serialize.Schema(schema, {
-                            //         'path': $p.path,
-                            //     }),
-                            //     "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
-                            //         'path': $p.path,
-                            //     }),
-                            // }),
-                            // "refiners": sh.m.set({
-                            //     "astn parse tree": t_unmarshall.Schema(schema, {
-                            //         'path': $p.path,
-                            //     }),
-                            //     "text": t_deserialize.Schema(schema, {
-                            //         'path': $p.path,
-                            //     }),
-                            // }),
+                            "transformers": sh.m.set({
+                                // "astn sealed target": t_marshall.Schema(
+                                //     schema,
+                                //     {
+                                //         'path': $p.path,
+                                //     }
+                                // ),
+                                // "text": t_serialize.Schema(schema, {
+                                //     'path': $p.path,
+                                // }),
+                                "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                    'depth': 6,
+                                    'path': $p.path,
+                                }),
+                            }),
+                            "refiners": sh.m.set({
+                                // "astn parse tree": t_unmarshall.Schema(schema, {
+                                //     'path': $p.path,
+                                // }),
+                                // "text": t_deserialize.Schema(schema, {
+                                //     'path': $p.path,
+                                // }),
+                            }),
                         }))
                         default: return _p.au($[0])
                     }

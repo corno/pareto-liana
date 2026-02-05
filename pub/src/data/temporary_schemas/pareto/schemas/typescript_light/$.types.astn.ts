@@ -42,6 +42,7 @@ export const $: g_.Modules = modules(
             "expression": toption(t.component("Expression")),
             "import": toption(t.group({
                 "type": prop(t.state({
+                    "default": toption(t.component("Identifier")),
                     "namespace": toption(t.component("Identifier")),
                     "named": toption(t.group({
                         "specifiers": prop(t.list(t.group({

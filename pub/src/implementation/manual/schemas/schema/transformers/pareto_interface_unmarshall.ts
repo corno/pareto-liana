@@ -16,10 +16,14 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     return sh.m.package_functions(
         {
-            "generic": sh.import_.ancestor(
-                2,
-                "generic",
-                ["unmarshall"]
+            "generic": sh.import_.external(
+                "astn-core",
+                [
+                    "dist",
+                    "interface",
+                    "to be generated",
+                    "unmarshall",
+                ],
             ),
             "out": sh.import_.sibling(
                 "data",

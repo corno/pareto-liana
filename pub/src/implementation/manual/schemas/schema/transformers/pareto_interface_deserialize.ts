@@ -15,10 +15,14 @@ export const Schema = (
     }
 ): d_out.Package_Set.D => sh.m.package_functions(
     {
-        "generic": sh.import_.ancestor(
-            2,
-            "generic",
-            ["deserialize"]
+        "generic": sh.import_.external(
+            "astn-core",
+            [
+                "dist",
+                "interface",
+                "to be generated",
+                "deserialize",
+            ],
         ),
         "out": sh.import_.sibling(
             "data",
