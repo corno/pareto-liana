@@ -63,9 +63,10 @@ export const Schema_Tree = (
                                 }),
                                 "unresolved": sh.m.set({
                                     "refiners": sh.m.set({
-                                        // "astn parse tree": t_unmarshall.Schema(schema, {
-                                        //     'path': $p.path,
-                                        // }),
+                                        "astn parse tree": t_unmarshall.Schema(schema, {
+                                            'depth': 7,
+                                            'path': $p.path,
+                                        }),
                                         // "text": t_deserialize.Schema(schema, {
                                         //     'path': $p.path,
                                         // }),
