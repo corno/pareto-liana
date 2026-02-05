@@ -67,9 +67,10 @@ export const Schema_Tree = (
                                             'depth': 7,
                                             'path': $p.path,
                                         }),
-                                        // "text": t_deserialize.Schema(schema, {
-                                        //     'path': $p.path,
-                                        // }),
+                                        "text": t_deserialize.Schema(schema, {
+                                            'depth': 7,
+                                            'path': $p.path,
+                                        }),
                                     }),
                                 }),
                             }))
