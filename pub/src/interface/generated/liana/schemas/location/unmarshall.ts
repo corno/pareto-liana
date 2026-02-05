@@ -1,71 +1,71 @@
-
-import * as _pi from "pareto-core/dist/interface"
-
-import * as i_generic from "../../generic/unmarshall"
-
-import * as i_out from "./data"
-
-import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-
-export namespace Range_ {
     
-    export type I = i_in.Value
+    import * as _pi from "pareto-core/dist/interface"
     
-    export type O = i_out.Range
+    import * as i_generic from "../../generic/unmarshall"
     
-    export type E = i_generic.Error
+    import * as i_out from "./data"
     
-    export namespace P {
+    import * as i_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
+    
+    export namespace Range_ {
+        
+        export type I = i_in.Value
+        
+        export type O = i_out.Range
+        
+        export type E = i_generic.Error
+        
+        export namespace P {
+            
+        }
         
     }
     
-}
-
-export type Range_ = (
-    context: Range_.I,
-    abort: _pi.Abort<Range_.E>,
-) => Range_.O
-
-export namespace Location_ {
+    export type Range_ = (
+        context: Range_.I,
+        abort: _pi.Abort<Range_.E>,
+    ) => Range_.O
     
-    export type I = i_in.Value
-    
-    export type O = i_out.Location
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
+    export namespace Location_ {
+        
+        export type I = i_in.Value
+        
+        export type O = i_out.Location
+        
+        export type E = i_generic.Error
+        
+        export namespace P {
+            
+        }
         
     }
     
-}
-
-export type Location_ = (
-    context: Location_.I,
-    abort: _pi.Abort<Location_.E>,
-) => Location_.O
-
-export namespace Relative_Location_ {
+    export type Location_ = (
+        context: Location_.I,
+        abort: _pi.Abort<Location_.E>,
+    ) => Location_.O
     
-    export type I = i_in.Value
-    
-    export type O = i_out.Relative_Location
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
+    export namespace Relative_Location_ {
+        
+        export type I = i_in.Value
+        
+        export type O = i_out.Relative_Location
+        
+        export type E = i_generic.Error
+        
+        export namespace P {
+            
+        }
         
     }
     
-}
-
-export type Relative_Location_ = (
-    context: Relative_Location_.I,
-    abort: _pi.Abort<Relative_Location_.E>,
-) => Relative_Location_.O
-
-export { 
-    Range_ as Range, 
-    Location_ as Location, 
-    Relative_Location_ as Relative_Location, 
-}
+    export type Relative_Location_ = (
+        context: Relative_Location_.I,
+        abort: _pi.Abort<Relative_Location_.E>,
+    ) => Relative_Location_.O
+    
+    export { 
+        Range_ as Range, 
+        Location_ as Location, 
+        Relative_Location_ as Relative_Location, 
+    }
