@@ -36,23 +36,21 @@ export const Schema_Tree = (
                             case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
                                 "resolved": sh.m.set({
                                     "transformers": sh.m.set({
-                                        // "astn sealed target": t_marshall.Schema(
-                                        //     schema,
-                                        //     {
-                                        //         'path': $p.path,
-                                        //         // 'depth': 3
-                                        //     }
-                                        // ),
+                                        "astn sealed target": t_marshall.Schema(
+                                            schema,
+                                            {
+                                                'path': $p.path,
+                                                'depth': 7,
+                                            }
+                                        ),
                                         "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
                                             'depth': 7,
                                             'path': $p.path,
                                         }),
-                                        // "unresolved": t_migration_boilerplate.Schema(schema, {
-                                        //     'path': $p.path,
-                                        // }),
-                                        // "text": t_serialize.Schema(schema, {
-                                        //     'path': $p.path,
-                                        // })
+                                        "fountain pen": t_serialize.Schema(schema, {
+                                            'path': $p.path,
+                                            'depth': 7,
+                                        })
                                     }),
                                     "refiners": sh.m.set({
                                         // "unresolved": t_resolve.Module_Resolvers($.resolvers, {
@@ -67,7 +65,7 @@ export const Schema_Tree = (
                                             'depth': 7,
                                             'path': $p.path,
                                         }),
-                                        "text": t_deserialize.Schema(schema, {
+                                        "list of characters": t_deserialize.Schema(schema, {
                                             'depth': 7,
                                             'path': $p.path,
                                         }),
