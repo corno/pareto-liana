@@ -3,11 +3,13 @@
     
     import * as i_generic from "astn-core/dist/interface/to_be_generated/deserialize"
     
+    import * as i_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+    
     import * as i_out from "./data"
     
     export namespace Tokenizer_Result_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Tokenizer_Result
         
@@ -34,7 +36,7 @@
     
     export namespace Annotated_Token_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Annotated_Token
         
@@ -61,7 +63,7 @@
     
     export namespace Token_Type_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Token_Type
         
@@ -88,7 +90,7 @@
     
     export namespace Delimited_Text_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Delimited_Text
         
@@ -115,7 +117,7 @@
     
     export namespace Whitespace_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Whitespace
         
@@ -142,7 +144,7 @@
     
     export namespace Trivia_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Trivia
         
@@ -169,7 +171,7 @@
     
     export namespace Text_Type_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Text_Type
         

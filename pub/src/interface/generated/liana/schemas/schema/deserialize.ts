@@ -3,11 +3,13 @@
     
     import * as i_generic from "astn-core/dist/interface/to_be_generated/deserialize"
     
+    import * as i_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+    
     import * as i_out from "./data/unresolved"
     
     export namespace Schemas_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schemas
         
@@ -34,7 +36,7 @@
     
     export namespace Schema_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schema
         
@@ -61,7 +63,7 @@
     
     export namespace Imports_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Imports
         
@@ -88,7 +90,7 @@
     
     export namespace Modules_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Modules
         
@@ -115,7 +117,7 @@
     
     export namespace Globals_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Globals
         
@@ -142,7 +144,7 @@
     
     export namespace Dictionary_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Dictionary
         
@@ -169,7 +171,7 @@
     
     export namespace Value_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value
         
@@ -196,7 +198,7 @@
     
     export namespace Signatures_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Signatures
         
@@ -223,7 +225,7 @@
     
     export namespace Signature_Parameters_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Signature_Parameters
         
@@ -250,7 +252,7 @@
     
     export namespace Value_Resolver_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Resolver
         
@@ -277,7 +279,7 @@
     
     export namespace Module_Specification_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Module_Specification
         
@@ -304,7 +306,7 @@
     
     export namespace Schema_Tree_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Schema_Tree
         
@@ -331,7 +333,7 @@
     
     export namespace Resolve_Logic_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Resolve_Logic
         
@@ -358,7 +360,7 @@
     
     export namespace Text_Type_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Text_Type
         
@@ -385,7 +387,7 @@
     
     export namespace Number_Type_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Number_Type
         
@@ -412,7 +414,7 @@
     
     export namespace Module_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Module
         
@@ -439,7 +441,7 @@
     
     export namespace Presence_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Presence
         
@@ -466,7 +468,7 @@
     
     export namespace Module_Resolvers_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Module_Resolvers
         
@@ -493,7 +495,7 @@
     
     export namespace Benchmark_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Benchmark
         
@@ -520,7 +522,7 @@
     
     export namespace Group_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Group
         
@@ -547,7 +549,7 @@
     
     export namespace Value_Reference_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Reference
         
@@ -574,7 +576,7 @@
     
     export namespace Value_Path_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Path
         
@@ -601,7 +603,7 @@
     
     export namespace Module_Reference_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Module_Reference
         
@@ -628,7 +630,7 @@
     
     export namespace Signature_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Signature
         
@@ -655,7 +657,7 @@
     
     export namespace Relative_Value_Selection_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Relative_Value_Selection
         
@@ -682,7 +684,7 @@
     
     export namespace Lookup_Selection_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Lookup_Selection
         
@@ -709,7 +711,7 @@
     
     export namespace Constraint_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Constraint
         
@@ -736,7 +738,7 @@
     
     export namespace Option_Constraint_Resolvers_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Option_Constraint_Resolvers
         
@@ -763,7 +765,7 @@
     
     export namespace Value_Constraint_Resolvers_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Constraint_Resolvers
         
@@ -790,7 +792,7 @@
     
     export namespace Reference_To_Value_Constraint_Resolver_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Reference_To_Value_Constraint_Resolver
         
@@ -817,7 +819,7 @@
     
     export namespace Value_Constraint_Resolver_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Constraint_Resolver
         
@@ -844,7 +846,7 @@
     
     export namespace Optional_Value_Initialization_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Optional_Value_Initialization
         
@@ -871,7 +873,7 @@
     
     export namespace Value_Resolver_Group_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Resolver_Group
         
@@ -898,7 +900,7 @@
     
     export namespace Value_Resolver_List_Result_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Resolver_List_Result
         
@@ -925,7 +927,7 @@
     
     export namespace Value_Results_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Value_Results
         
@@ -952,7 +954,7 @@
     
     export namespace Option_Constraints_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Option_Constraints
         
@@ -979,7 +981,7 @@
     
     export namespace Guaranteed_Value_Selection_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Guaranteed_Value_Selection
         
@@ -1006,7 +1008,7 @@
     
     export namespace Possible_Value_Selection_ {
         
-        export type I = string
+        export type I = i_in.List_of_Characters
         
         export type O = i_out.Possible_Value_Selection
         

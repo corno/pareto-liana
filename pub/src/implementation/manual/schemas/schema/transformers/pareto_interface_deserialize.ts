@@ -24,6 +24,15 @@ export const Schema = (
                 "deserialize",
             ],
         ),
+        "in": sh.import_.external(
+            "pareto-fountain-pen",
+            [
+                "dist",
+                "interface",
+                "to be generated",
+                "list of characters",
+            ],
+        ),
         "out": sh.import_.sibling(
             "data",
             $p.constrained
@@ -34,7 +43,10 @@ export const Schema = (
         ),
     },
     $.modules.__d_map(($, id) => sh.type.refiner(
-        sh.t.text(),
+        sh.t.component_imported(
+            "in",
+            "List of Characters",
+        ),
         sh.t.component_imported(
             "out",
             id,

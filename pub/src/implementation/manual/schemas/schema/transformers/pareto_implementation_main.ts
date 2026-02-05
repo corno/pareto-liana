@@ -95,9 +95,10 @@ export const Schema_Tree = (
                                         'depth': 6,
                                         'path': $p.path,
                                     }),
-                                    // "text": t_deserialize.Schema(schema, {
-                                    //     'path': $p.path,
-                                    // }),
+                                    "list of characters": t_deserialize.Schema(schema, {
+                                        'depth': 6,
+                                        'path': $p.path,
+                                    }),
                                 }),
                             }))
                             default: return _p.au($[0])
