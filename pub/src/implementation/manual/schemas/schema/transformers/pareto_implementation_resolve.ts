@@ -75,7 +75,6 @@ export const Module_Resolvers = (
     }
 ): d_out.Package_Set.D => {
     return sh.m.package_(
-        'refiner',
         ['change context', 'variables', 'implement me', 'lookups'],
         _p.dictionary.literal({
             "out": sh_i.import_.ancestor(
@@ -136,9 +135,9 @@ export const Module_Resolvers = (
 export const Possible_Value_Selection = (
     $: d_in.Possible_Value_Selection,
     $p: {
-        'tail': _pi.List<d_out.Selection.regular.tail.L>
+        'tail': _pi.List<d_out.Value_Selection.regular.tail.L>
     },
-): d_out.Selection => {
+): d_out.Value_Selection => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'parameter': return _p.ss($, ($) => sh.s.parameter($['l id'], $p.tail))
@@ -171,13 +170,13 @@ export const Optional_Argument_Initialization = (
 export const Guaranteed_Value_Selection = (
     $: d_in.Guaranteed_Value_Selection,
     $p: {
-        'tail': _pi.List<d_out.Selection.regular.tail.L>
+        'tail': _pi.List<d_out.Value_Selection.regular.tail.L>
     },
-): d_out.Selection => {
-    const tail = (): _pi.List<d_out.Selection.regular.tail.L> => _p.list.nested_literal_old([
+): d_out.Value_Selection => {
+    const tail = (): _pi.List<d_out.Value_Selection.regular.tail.L> => _p.list.nested_literal_old([
         _p.list.flatten(
             $.tail.path['l value'],
-            ($) => _p.decide.state($['l item'], ($): _pi.List<d_out.Selection.regular.tail.L> => {
+            ($) => _p.decide.state($['l item'], ($): _pi.List<d_out.Value_Selection.regular.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
                     case 'group': return _p.ss($, ($) => _p.list.literal([$['l id']]))
@@ -329,7 +328,7 @@ export const Value_Resolver = (
     $: d_in.Value_Resolver,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when exupery has type inference
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {

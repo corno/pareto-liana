@@ -14,7 +14,7 @@ export const Schema = (
         'constrained': boolean
     }
 ): d_out.Package_Set.D => {
-    return sh.m.package_(
+    return sh.m.package_functions(
         {
             "generic": sh.import_.ancestor(
                 2,

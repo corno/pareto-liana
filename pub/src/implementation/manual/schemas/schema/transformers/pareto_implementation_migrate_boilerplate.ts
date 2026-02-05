@@ -25,7 +25,6 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-    'transformer',
     ['change context'],
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
@@ -85,7 +84,7 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type name': string
-        'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
+        'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
         'constrained': boolean
     },
 ): d_out.Expression => {

@@ -9,11 +9,13 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_write_to_file from "../../../interface/to_be_generated/write_to_file"
+import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+import * as d_loc from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //dependencies
-import * as t_block_2_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import { replace_space_in_context_path } from "../schemas/path/transformers/path"
+import * as t_paragraph_to_lines_of_characters from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/list_of_characters"
 
 export const $$: signatures.commands.write_to_file = _p.command_procedure(
     ($p, $cr) => [
@@ -29,12 +31,12 @@ export const $$: signatures.commands.write_to_file = _p.command_procedure(
                         ? replace_space_in_context_path($)
                         : $,
                 ),
-                'data': _p_text_from_list(
-                    _pt.list.flatten(
-                        t_block_2_lines.Group($p.group, { 'indentation': $p.indentation }).__l_map(($) => $ + $p.newline),
-                        ($) => _p_list_from_text($, ($) => $)
-                    ),
-                    ($) => $
+                'data': t_paragraph_to_lines_of_characters.Paragraph(
+                    $p.paragraph,
+                    {
+                        'indentation': $p.indentation,
+                        'newline': $p.newline,
+                    }
                 ),
             },
             ($) => ['write file', $],

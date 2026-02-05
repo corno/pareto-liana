@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
             "device not ready": toption(t.nothing()),
         })),
 
-        "Result": module_(t.text_local(text('multi line'))),
+        "Result": module_(t.component_external("list of characters", "List of Characters")),
 
     }
 )

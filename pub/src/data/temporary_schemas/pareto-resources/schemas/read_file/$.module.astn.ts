@@ -10,7 +10,8 @@ import { $ as globals } from "./$.globals.astn"
 
 export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
-        "path": import_("path")
+        "path": import_("path"),
+        "list of characters": import_("list of characters"),
     },
     globals,
     schema,

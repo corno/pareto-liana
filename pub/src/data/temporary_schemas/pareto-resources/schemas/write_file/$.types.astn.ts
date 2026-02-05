@@ -15,7 +15,7 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.group({
             "path": prop(t.component_external("path", "Node Path")),
-            "data": prop(t.text_local(text('multi line'))),
+            "data": prop(t.component_external("list of characters", "List of Characters")),
         })),
 
         "Error": module_(t.state({

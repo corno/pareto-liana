@@ -1,4 +1,5 @@
 import * as _p from 'pareto-core/dist/query'
+import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -19,7 +20,10 @@ export const $$x: signatures.queries.load_pareto_file = _p.query_function(
             },
         )(
             {
-                'content': $,
+                'content': _p_text_from_list(
+                    $,
+                    ($) => $
+                ),
                 'file path': $p['file path'],
             },
             ($): d.Error => ['document', $]

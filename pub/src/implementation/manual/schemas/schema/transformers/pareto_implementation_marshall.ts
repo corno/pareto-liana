@@ -18,7 +18,6 @@ export const Schema = (
         'path': _pi.List<string>,
     }
 ): d_out.Package_Set.D => sh.m.package_(
-    'transformer',
     ['change context'],
     _p.dictionary.literal({
         "signatures": sh_i.import_.ancestor(
@@ -103,7 +102,7 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type': string
-        'subselection': _pi.List<d_out.Temp_Type_Node_Reference.sub_selection.L>
+        'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
     },
 ): d_out.Expression => _p.decide.state($, ($) => {
     switch ($[0]) {

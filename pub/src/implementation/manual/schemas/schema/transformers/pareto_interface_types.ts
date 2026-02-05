@@ -29,7 +29,7 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     const add_location = $p.type[0] === 'unresolved'
 
-    return sh.m.package_(
+    return sh.m.package_data(
         op_flatten_dictionary(
             _p.dictionary.literal({
                 " location": _p.dictionary.filter(

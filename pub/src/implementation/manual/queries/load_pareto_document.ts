@@ -41,7 +41,10 @@ export const $$x: signatures.queries.load_pareto_document = _p.query_function(
                         t_path_to_text.Node_Path($p['file path']),
                         ($) => $,
                     ),
-                    'schema content': $,
+                    'schema content': _p_text_from_list(
+                        $,
+                        ($) => $
+                    ),
                     'schema path': schema_path_text,
                 },
             ),

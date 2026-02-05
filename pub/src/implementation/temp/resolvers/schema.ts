@@ -863,7 +863,7 @@ export const Value_Reference: signatures.Value_Reference = ($, abort, $l, $p) =>
 
 
 export const Value_Path: signatures.Value_Path = ($, abort, $l, $p) => {
-    const p_tail_x: d_out.Value_Path.tail = _p.list.map_with_state(
+    const p_tail_x: d_out.Value_Path.tail = _p.group.map_list_with_state(
         $.tail['l list'],
         $p.module['root value'],
         ($, current): d_out.Value_Path.tail.l_value.L => {
@@ -1881,7 +1881,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
 
 export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p_block_deprecated(() => {
 
-    const p_path: d_out.Relative_Value_Selection.path = _p.list.map_with_state(
+    const p_path: d_out.Relative_Value_Selection.path = _p.group.map_list_with_state(
         $.path['l list'],
         $p.value,
         ($, current): d_out.Relative_Value_Selection.path.l_value.L => {

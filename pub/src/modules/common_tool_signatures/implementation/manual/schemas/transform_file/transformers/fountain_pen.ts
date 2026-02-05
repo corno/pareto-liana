@@ -10,16 +10,16 @@ import * as t_file_in_file_out_to_fp from "../../file_in_file_out/transformers/f
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
-export const My_Error = ($: d_in.Error): d_out.Block_Part => {
-    return _p.decide.state($, ($): d_out.Block_Part => {
+export const My_Error = ($: d_in.Error): d_out.Phrase => {
+    return _p.decide.state($, ($): d_out.Phrase => {
         switch ($[0]) {
-            case 'processing': return _p.ss($, ($) => sh.b.sub([
-                sh.b.literal("processing error: "),
+            case 'processing': return _p.ss($, ($) => sh.ph.composed([
+                sh.ph.literal("processing error: "),
 
                 $
             ]))
-            case 'file in file out': return _p.ss($, ($) => sh.b.sub([
-                sh.b.literal("file in file out: "),
+            case 'file in file out': return _p.ss($, ($) => sh.ph.composed([
+                sh.ph.literal("file in file out: "),
                 t_file_in_file_out_to_fp.Command_Error($)
             ]))
             default: return _p.au($[0])

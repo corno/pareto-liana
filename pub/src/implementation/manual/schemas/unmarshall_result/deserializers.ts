@@ -23,7 +23,7 @@ export type Parameters = {
 
 import * as d_unmarshall_result_types from "../../../../interface/to_be_generated/temp_unmashall_result"
 import * as d_deserialize_unmarshall_result from "../../../../interface/to_be_generated/deserialize_unmarshall_result"
-import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/text"
+import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 import * as api from "../../../../interface/to_be_generated/load_pareto_document"
 
@@ -37,7 +37,7 @@ import { $x as load_schema } from "../schema/deserializers"
 
 //implementation
 
-export const $$x: _pi.Refiner_With_Parameters<d_unmarshall_result_types.Node, d_deserialize_unmarshall_result.Error, d_text.Text, Parameters> = ($, abort, $p) => {
+export const $$x: _pi.Refiner_With_Parameters<d_unmarshall_result_types.Node, d_deserialize_unmarshall_result.Error, d_text.List_of_Characters, Parameters> = ($, abort, $p) => {
     const x = load_schema(
         _p_list_from_text(
             $p['schema content'],

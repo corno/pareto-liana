@@ -19,7 +19,6 @@ export const Schema = (
     }
 ): d_out.Package_Set.D => {
     return sh.m.package_(
-        'serializer',
         [],
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(

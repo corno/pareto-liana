@@ -13,7 +13,7 @@ export const Schema = (
     $p: {
         'constrained': boolean
     }
-): d_out.Package_Set.D => sh.m.package_(
+): d_out.Package_Set.D => sh.m.package_functions(
     {
         "out": sh.import_.external(
             "astn-core",

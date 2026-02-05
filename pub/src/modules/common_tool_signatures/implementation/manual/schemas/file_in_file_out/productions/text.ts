@@ -9,9 +9,9 @@ import * as d_file_in_file_out from "../../../../../interface/to_be_generated/fi
 export type Signature = _pi.Production<d_file_in_file_out.Path, d_file_in_file_out.Path_Error, string>
 
 //dependencies
-import * as ds_path from "pareto-resources/dist/implementation/manual/schemas/node_path/deserializers"
+import * as r_node_path_to_text from "pareto-resources/dist/implementation/manual/schemas/node_path/refiners/text"
 
-export const Path: Signature = (iterator, abort) => ds_path.Node_Path(
+export const Path: Signature = (iterator, abort) => r_node_path_to_text.Node_Path(
     _list_from_text(
         iterator.consume(
             ($) => $,

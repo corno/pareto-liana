@@ -5,7 +5,7 @@ import * as d_in from "../../../../../interface/to_be_generated/load_pareto_file
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 export namespace signatures {
-    export type Error = _pi.Transformer<d_in.Error, d_out.Block_Part>
+    export type Error = _pi.Transformer<d_in.Error, d_out.Phrase>
 }
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"

@@ -20,48 +20,59 @@ export const $: g_.Modules = modules(
         )),
 
         "Node": module_(t.state({
-            "file": toption(t.component("Group")),
+            "file": toption(t.component("Paragraph")),
             "directory": toption(t.component("Directory")),
         })),
 
-        "Group": module_(t.list(t.component("Group Part"))),
-
-        "Group Part": module_(t.state({
-            "nested block": toption(t.component("Block")),
-            "block": toption(t.text_global("Output")),
-            "sub group": toption(t.component("Group")),
-            "optional": toption(t.optional(t.component("Group Part"))),
+        "Paragraph": module_(t.state({
+            "composed": toption(t.list(t.component("Paragraph"))),
+            "sentences": toption(t.list(t.component("Phrase"))),
+            "optional": toption(t.optional(t.component("Paragraph"))),
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Group Part"))),
-                "if empty": prop(t.component("Group Part")),
+                "items": prop(t.list(t.component("Paragraph"))),
+                "if empty": prop(t.component("Paragraph")),
                 "if not empty": prop(t.group({
                     "indent": prop(t.boolean()),
-                    "before": prop(t.component("Group Part")),
-                    "separator": prop(t.component("Group Part")),
-                    "after": prop(t.component("Group Part")),
+                    "before": prop(t.component("Paragraph")),
+                    "separator": prop(t.component("Paragraph")),
+                    "after": prop(t.component("Paragraph")),
                 })),
             }))
         })),
 
-        "Block": module_(t.list(t.component("Block Part"))),
-
-        "Block Part": module_(t.state({
-            "snippet": toption(t.text_global("Output")),
-            "indent": toption(t.component("Group")),
-            "sub block": toption(t.component("Block")),
-            "optional": toption(t.optional(t.component("Block Part"))),
+        "Phrase": module_(t.state({
+            "single line": toption(t.component("Single Line")),
+            "indent": toption(t.component("Paragraph")),
+            "composed": toption(t.list(t.component("Phrase"))),
+            "optional": toption(t.optional(t.component("Phrase"))),
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Block Part"))),
-                "if empty": prop(t.component("Block Part")),
+                "items": prop(t.list(t.component("Phrase"))),
+                "if empty": prop(t.component("Phrase")),
                 "if not empty": prop(t.group({
-                    "before": prop(t.component("Block Part")),
-                    "separator": prop(t.component("Block Part")),
-                    "after": prop(t.component("Block Part")),
+                    "before": prop(t.component("Phrase")),
+                    "separator": prop(t.component("Phrase")),
+                    "after": prop(t.component("Phrase")),
                 })),
-            }))
+            })),
         })),
+
+        "Single Line": module_(t.list(t.state({
+            "snippet": toption(t.text_global("Output")),
+            "serialize": toption(t.component("List of Characters")),
+            "rich list": toption(t.group({
+                "items": prop(t.list(t.component("Single Line"))),
+                "if empty": prop(t.component("Single Line")),
+                "if not empty": prop(t.group({
+                    "before": prop(t.component("Single Line")),
+                    "separator": prop(t.component("Single Line")),
+                    "after": prop(t.component("Single Line")),
+                })),
+            })),
+        }))),
+
+        "List of Characters": module_(t.list(t.number_local(n.natural(null)))),
     }
 )
 

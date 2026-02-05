@@ -8,7 +8,7 @@ import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_deserialize_schema from "../../../../interface/to_be_generated/deserialize_schema"
 import * as d_resolve from "../../../../interface/generated/liana/generic/resolve"
-import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/text"
+import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //dependencies
 import * as r_pareto_schema from "../../../temp/resolvers/schema"
@@ -46,7 +46,7 @@ export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<El
 }
 
 
-export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_schema.Error, d_text.Text, { 'uri': string }> = ($, abort, $p) => {
+export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_schema.Error, d_text.List_of_Characters, { 'uri': string }> = ($, abort, $p) => {
 
     const x = r_parse_tree_from_text.Document(
         $,

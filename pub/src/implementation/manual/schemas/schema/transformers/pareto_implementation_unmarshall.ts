@@ -38,7 +38,6 @@ export const Schema: _pi.Transformer_With_Parameters<
 > = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-        'refiner',
         ['change context'],
         op_flatten_dictionary(
             _p.dictionary.literal({

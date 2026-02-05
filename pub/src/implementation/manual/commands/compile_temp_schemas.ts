@@ -9,7 +9,9 @@ import * as signatures from "../../../interface/signatures"
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "../../../interface/generated/liana/generic/resolve"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+
 export type Error = _pi.Dictionary<Package_Error>
+
 export type Package_Error =
     | ['could not log', null]
     | ['could not remove interface', null]
@@ -26,8 +28,6 @@ export type Package_Error =
 //data
 import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
-
 //dependencies
 import * as r_liana_module from "../../temp/resolvers/module"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/implementation/transformers/serialized_typescript"
@@ -38,57 +38,67 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/sch
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
 import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
 
-export const Error = ($: Error): d_fp.Group_Part => {
-    return sh.g.sub($.__to_list(
-        ($, id) => sh.g.nested_block([
-            sh.b.literal("error in package '"),
-            sh.b.literal(id),
-            sh.b.literal("': "),
+//shorthands
+import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+
+export const Error = ($: Error): d_fp.Paragraph => {
+    return sh.pg.sentences($.__to_list(
+        ($, id) => sh.ph.composed([
+            sh.ph.literal("error in package '"),
+            sh.ph.literal(id),
+            sh.ph.literal("': "),
             _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'could not log': return _p.ss($, ($) => sh.b.literal("could not log"))
-                    case 'could not remove interface': return _p.ss($, ($) => sh.b.literal("could not remove interface"))
-                    case 'could not remove implementation': return _p.ss($, ($) => sh.b.literal("could not remove implementation"))
-                    case 'could not write interface': return _p.ss($, ($) => sh.b.literal("could not write interface"))
-                    case 'could not write implementation': return _p.ss($, ($) => sh.b.literal("could not write implementation"))
-                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.b.literal("could not copy generic implementation"))
-                    case 'could not copy core interface': return _p.ss($, ($) => sh.b.literal("could not copy core interface"))
-                    case 'could not deserialize module': return _p.ss($, ($) => sh.b.sub([
-                        sh.b.literal($.location['document resource identifier']),
-                        sh.b.literal(":"),
-                        sh.b.decimal($.location.line),
-                        sh.b.literal(":"),
-                        sh.b.decimal($.location.column),
-                        sh.b.literal(": "),
+                    case 'could not log': return _p.ss($, ($) => sh.ph.literal("could not log"))
+                    case 'could not remove interface': return _p.ss($, ($) => sh.ph.literal("could not remove interface"))
+                    case 'could not remove implementation': return _p.ss($, ($) => sh.ph.literal("could not remove implementation"))
+                    case 'could not write interface': return _p.ss($, ($) => sh.ph.literal("could not write interface"))
+                    case 'could not write implementation': return _p.ss($, ($) => sh.ph.literal("could not write implementation"))
+                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
+                    case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
+                    case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
+                        sh.ph.literal($.location['document resource identifier']),
+                        sh.ph.literal(":"),
+                        sh.ph.decimal($.location.line),
+                        sh.ph.literal(":"),
+                        sh.ph.decimal($.location.column),
+                        sh.ph.literal(": "),
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'state': return _p.ss($, ($) => sh.b.sub([
-                                            sh.b.literal("expected '"),
-                                            sh.b.literal($.expected),
-                                            sh.b.literal("' but found '"),
-                                            sh.b.literal($.found),
-                                            sh.b.literal("'"),
+                                        case 'state': return _p.ss($, ($) => sh.ph.composed([
+                                            sh.ph.literal("expected '"),
+                                            sh.ph.literal($.expected),
+                                            sh.ph.literal("' but found '"),
+                                            sh.ph.literal($.found),
+                                            sh.ph.literal("'"),
                                         ]))
-                                        case 'missingoptional value': return _p.ss($, ($) => sh.b.literal("expected value/parameter to be set"))
-                                        case 'same node': return _p.ss($, ($) => sh.b.literal("${$}, not the same node"))
+                                        case 'missingoptional value': return _p.ss($, ($) => sh.ph.literal("expected value/parameter to be set"))
+                                        case 'same node': return _p.ss($, ($) => sh.ph.literal("${$}, not the same node"))
                                         default: return _p.au($[0])
                                     }
                                 }))
                                 case 'lookup': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'cycle detected': return _p.ss($, ($) => sh.b.literal("cycle detected"))
-                                        case 'no such entry': return _p.ss($, ($) => sh.b.literal("no such entry: ${$}"))
-                                        case 'no context lookup': return _p.ss($, ($) => sh.b.literal("there is is no context where this entry can be looked up"))
+                                        case 'cycle detected': return _p.ss($, ($) => sh.ph.literal("cycle detected"))
+                                        case 'no such entry': return _p.ss($, ($) => sh.ph.composed([
+                                            sh.ph.literal("no such entry: '"),
+                                            sh.ph.literal($),
+                                            sh.ph.literal("'")
+                                        ]))
+                                        case 'no context lookup': return _p.ss($, ($) => sh.ph.literal("there is is no context where this entry can be looked up"))
                                         default: return _p.au($[0])
                                     }
                                 }))
-                                case 'missing required entries': return _p.ss($, ($) => sh.b.sub([
-                                    sh.b.literal("missing required entries:"),
-                                    sh.b.indent([
-                                        sh.g.sub($.__to_list(($, id) => sh.g.simple_block(`- ${id}`)))
-                                    ])
+                                case 'missing required entries': return _p.ss($, ($) => sh.ph.composed([
+                                    sh.ph.literal("missing required entries:"),
+                                    sh.ph.indent(
+                                        sh.pg.sentences($.__to_list(($, id) => sh.ph.composed([
+                                            sh.ph.literal(`- `),
+                                            sh.ph.literal(id)
+                                        ])))
+                                    )
                                 ]))
                                 default: return _p.au($[0])
                             }
@@ -105,7 +115,9 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
 
         $cr.log.execute(
             {
-                'lines': _p.list.literal([`generating...`])
+                'message': sh.pg.sentences([
+                    sh.ph.literal("generating..."),
+                ])
             },
             ($): d_main.Error => ({
                 'exit code': 1
@@ -237,7 +249,13 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //log
                             $cr.log.execute(
                                 {
-                                    'lines': _p.list.literal([`generated package: ${id}`])
+                                    'message': sh.pg.sentences([
+                                        sh.ph.composed([
+
+                                            sh.ph.literal(`generated package: `),
+                                            sh.ph.literal(id),
+                                        ])
+                                    ]),
                                 },
                                 ($) => ['could not log', null]
                             ),
@@ -249,7 +267,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
             ($) => [
                 $cr.log.execute(
                     {
-                        'lines': t_fp_to_lines.Group_Part(Error($), { 'indentation': '    ' })
+                        'message': Error($)
                     },
                     ($) => ({
                         'exit code': 1

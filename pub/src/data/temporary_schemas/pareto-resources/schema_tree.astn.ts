@@ -10,6 +10,7 @@ import { $ as m_execute_any_smelly_command_executable } from "./schemas/execute_
 import { $ as m_execute_command_executable } from "./schemas/execute_command_executable/$.module.astn"
 import { $ as m_execute_query_executable } from "./schemas/execute_query_executable/$.module.astn"
 import { $ as m_execute_query_executable_and_catch } from "./schemas/execute_query_executable_and_catch/$.module.astn"
+import { $ as m_fountain_pen_multiline } from "../pareto-fountain-pen/schemas/block/$.module.astn"
 import { $ as m_execute_smelly_command_executable } from "./schemas/execute_smelly_command_executable/$.module.astn"
 import { $ as m_get_instream_data } from "./schemas/get_instream_data/$.module.astn"
 import { $ as m_log } from "./schemas/log/$.module.astn"
@@ -21,7 +22,7 @@ import { $ as m_read_file } from "./schemas/read_file/$.module.astn"
 import { $ as m_remove } from "./schemas/remove/$.module.astn"
 import { $ as m_stat } from "./schemas/stat/$.module.astn"
 import { $ as m_terminal_output} from "./schemas/terminal_output/$.module.astn"
-import { $ as m_text } from "./schemas/text/$.module.astn"
+import { $ as m_list_of_characters } from "./schemas/list_of_characters/$.module.astn"
 import { $ as m_write_file } from "./schemas/write_file/$.module.astn"
 import { $ as m_write_to_stderr } from "./schemas/write_to_stderr/$.module.astn"
 import { $ as m_write_to_stdout } from "./schemas/write_to_stdout/$.module.astn"
@@ -35,6 +36,7 @@ export const $: g_.Schema_Tree = st.set({
     "execute query executable and catch": m_execute_query_executable_and_catch,
     "execute query executable": m_execute_query_executable,
     "execute smelly command executable": m_execute_smelly_command_executable,
+    "fountain pen multiline": m_fountain_pen_multiline,
     "get instream data": m_get_instream_data,
     "log error": m_log_error,
     "log": m_log,
@@ -45,7 +47,7 @@ export const $: g_.Schema_Tree = st.set({
     "remove": m_remove,
     "stat": m_stat,
     "terminal output": m_terminal_output,
-    "text": m_text,
+    "list of characters": m_list_of_characters,
     "write file": m_write_file,
     "write to stderr": m_write_to_stderr,
     "write to stdout": m_write_to_stdout,
