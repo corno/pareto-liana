@@ -3,11 +3,13 @@
     
     import * as i_in from "./data/resolved"
     
+    import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+    
     export namespace Schemas_ {
         
         export type I = i_in.Schemas
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -23,7 +25,7 @@
         
         export type I = i_in.Schema
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -39,7 +41,7 @@
         
         export type I = i_in.Imports
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -55,7 +57,7 @@
         
         export type I = i_in.Modules
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -71,7 +73,7 @@
         
         export type I = i_in.Globals
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -87,7 +89,7 @@
         
         export type I = i_in.Dictionary
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -103,7 +105,7 @@
         
         export type I = i_in.Value
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -119,7 +121,7 @@
         
         export type I = i_in.Signatures
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -135,7 +137,7 @@
         
         export type I = i_in.Signature_Parameters
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -151,7 +153,7 @@
         
         export type I = i_in.Value_Resolver
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -167,7 +169,7 @@
         
         export type I = i_in.Module_Specification
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -183,7 +185,7 @@
         
         export type I = i_in.Schema_Tree
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -199,7 +201,7 @@
         
         export type I = i_in.Resolve_Logic
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -215,7 +217,7 @@
         
         export type I = i_in.Text_Type
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -231,7 +233,7 @@
         
         export type I = i_in.Number_Type
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -247,7 +249,7 @@
         
         export type I = i_in.Module
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -263,7 +265,7 @@
         
         export type I = i_in.Presence
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -279,7 +281,7 @@
         
         export type I = i_in.Module_Resolvers
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -295,7 +297,7 @@
         
         export type I = i_in.Benchmark
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -311,7 +313,7 @@
         
         export type I = i_in.Group
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -327,7 +329,7 @@
         
         export type I = i_in.Value_Reference
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -343,7 +345,7 @@
         
         export type I = i_in.Value_Path
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -359,7 +361,7 @@
         
         export type I = i_in.Module_Reference
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -375,7 +377,7 @@
         
         export type I = i_in.Signature
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -391,7 +393,7 @@
         
         export type I = i_in.Relative_Value_Selection
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -407,7 +409,7 @@
         
         export type I = i_in.Lookup_Selection
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -423,7 +425,7 @@
         
         export type I = i_in.Constraint
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -439,7 +441,7 @@
         
         export type I = i_in.Option_Constraint_Resolvers
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -455,7 +457,7 @@
         
         export type I = i_in.Value_Constraint_Resolvers
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -471,7 +473,7 @@
         
         export type I = i_in.Reference_To_Value_Constraint_Resolver
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -487,7 +489,7 @@
         
         export type I = i_in.Value_Constraint_Resolver
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -503,7 +505,7 @@
         
         export type I = i_in.Optional_Value_Initialization
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -519,7 +521,7 @@
         
         export type I = i_in.Value_Resolver_Group
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -535,7 +537,7 @@
         
         export type I = i_in.Value_Resolver_List_Result
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -551,7 +553,7 @@
         
         export type I = i_in.Value_Results
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -567,7 +569,7 @@
         
         export type I = i_in.Option_Constraints
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -583,7 +585,7 @@
         
         export type I = i_in.Guaranteed_Value_Selection
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -599,7 +601,7 @@
         
         export type I = i_in.Possible_Value_Selection
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             

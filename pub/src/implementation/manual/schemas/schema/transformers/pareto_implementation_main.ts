@@ -81,9 +81,10 @@ export const Schema_Tree = (
                                             'depth': 6,
                                         }
                                     ),
-                                    // "text": t_serialize.Schema(schema, {
-                                    //     'path': $p.path,
-                                    // }),
+                                    "fountain pen": t_serialize.Schema(schema, {
+                                        'path': $p.path,
+                                        'depth': 6,
+                                    }),
                                     "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
                                         'depth': 6,
                                         'path': $p.path,

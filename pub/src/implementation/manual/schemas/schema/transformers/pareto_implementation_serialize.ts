@@ -15,6 +15,7 @@ import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary
 export const Schema = (
     $: d_in.Schema,
     $p: {
+        'depth': number,
         'path': _pi.List<string>,
     }
 ): d_out.Package_Set.D => {
@@ -22,7 +23,7 @@ export const Schema = (
         [],
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
-                5,
+                $p.depth,
                 "interface",
                 _p.list.nested_literal_old([
                     _p.list.literal([
@@ -48,10 +49,11 @@ export const Schema = (
                             "manual",
                             "schemas",
                             "sealed target",
-                            "serializers",
+                            "transformers",
+                            "fountain pen",
                         ],
                     ),
-                    "marshall": sh_i.import_.sibling("marshall", _p.list.nested_literal_old([
+                    "marshall": sh_i.import_.sibling("astn sealed target", _p.list.nested_literal_old([
                     ])),
                 }),
             }),

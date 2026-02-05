@@ -3,11 +3,13 @@
     
     import * as i_in from "./data"
     
+    import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+    
     export namespace Range_ {
         
         export type I = i_in.Range
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -23,7 +25,7 @@
         
         export type I = i_in.Location
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -39,7 +41,7 @@
         
         export type I = i_in.Relative_Location
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             

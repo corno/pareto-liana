@@ -3,11 +3,13 @@
     
     import * as i_in from "./data"
     
+    import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+    
     export namespace Document_ {
         
         export type I = i_in.Document
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -23,7 +25,7 @@
         
         export type I = i_in.Content
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -39,7 +41,7 @@
         
         export type I = i_in.Value
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -55,7 +57,7 @@
         
         export type I = i_in.Structural_Token
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -71,7 +73,7 @@
         
         export type I = i_in.Text
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -87,7 +89,7 @@
         
         export type I = i_in.ID_Value_Pairs
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             
@@ -103,7 +105,7 @@
         
         export type I = i_in.Items
         
-        export type O = string
+        export type O = i_out.Paragraph
         
         export namespace P {
             

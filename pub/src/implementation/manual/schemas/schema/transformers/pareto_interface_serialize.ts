@@ -25,13 +25,28 @@ export const Schema = (
                     ]
                     : [],
             ),
+            "out": sh.import_.external(
+                "pareto-fountain-pen",
+                [
+                    "dist",
+                    "interface",
+                    "generated",
+                    "liana",
+                    "schemas",
+                    "block",
+                    "data",
+                ],
+            ),
         },
         $.modules.__d_map(($, id) => sh.type.transformer(
             sh.t.component_imported(
                 "in",
                 id,
             ),
-            sh.t.text(),
+            sh.t.component_imported(
+                "out",
+                "Paragraph",
+            ),
             null,
         )),
     )
