@@ -26,59 +26,61 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-    ['change context'],
-    _p.dictionary.literal({
-        "signatures": sh_i.import_.ancestor(
-            $p.depth,
-            "interface",
-            _p.list.nested_literal_old([
-                _p.list.literal([
-                    "generated",
-                    "liana",
-                    "schemas"
-                ]),
-                $p.path,
-                _p.list.literal(["boilerplate for migrate"])
-            ])
-        ),
-        "out": sh_i.import_.ancestor(
-            $p.depth,
-            "interface",
-            _p.list.nested_literal_old([
-                _p.list.literal([
-                    "generated",
-                    "liana",
-                    "schemas"
-                ]),
-                $p.path,
-                constrained
-                    ? _p.list.literal([
-                        "data",
-                        "unresolved",
-                    ])
-                    : _p.list.literal([
-                        "data",
-                    ])
-            ])
-        ),
-    }),
-    $.imports.__d_map(($, id) => sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "boilerplate for migrate"])),
-    $.modules.__d_map(($, id) => sh.algorithm(
-        "signatures",
-        id,
-        false,
-        false,
-        false,
-        Value(
-            $['root value'],
-            {
-                'type name': id,
-                'subselection': _p.list.literal([]),
-                'constrained': constrained,
-            }
-        ),
-    )),
-)
+        ['change context'],
+        _p.dictionary.literal({
+            "signatures": sh_i.import_.ancestor(
+                $p.depth,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    _p.list.literal(["boilerplate for migrate"])
+                ])
+            ),
+            "out": sh_i.import_.ancestor(
+                $p.depth,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    constrained
+                        ? _p.list.literal([
+                            "data",
+                            "unresolved",
+                        ])
+                        : _p.list.literal([
+                            "data",
+                        ])
+                ])
+            ),
+        }),
+        $.imports.__d_map(($, id) => constrained
+            ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
+            : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "boilerplate for migrate"])),
+        $.modules.__d_map(($, id) => sh.algorithm(
+            "signatures",
+            id,
+            false,
+            false,
+            false,
+            Value(
+                $['root value'],
+                {
+                    'type name': id,
+                    'subselection': _p.list.literal([]),
+                    'constrained': constrained,
+                }
+            ),
+        )),
+    )
 
 }
 export const Value = (
@@ -261,7 +263,7 @@ export const Value = (
             }))
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.e.decide.state(
-                sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                    sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                     $.options.__d_map(($, id) => sh.e.state.literal(id, Value(
                         $.value,
                         {
