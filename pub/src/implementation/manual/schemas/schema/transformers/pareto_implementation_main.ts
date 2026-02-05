@@ -53,10 +53,11 @@ export const Schema_Tree = (
                                         })
                                     }),
                                     "refiners": sh.m.set({
-                                        // "unresolved": t_resolve.Module_Resolvers($.resolvers, {
-                                        //     'path': $p.path,
-                                        //     'imports': imports
-                                        // })
+                                        "unresolved": t_resolve.Module_Resolvers($.resolvers, {
+                                            'path': $p.path,
+                                            'imports': imports,
+                                            'depth': 7,
+                                        })
                                     }),
                                 }),
                                 "unresolved": sh.m.set({

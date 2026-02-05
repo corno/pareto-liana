@@ -71,14 +71,15 @@ export const Module_Resolvers = (
     $: d_in.Module_Resolvers,
     $p: {
         'path': _pi.List<string>,
-        'imports': d_in.Imports
+        'imports': d_in.Imports,
+        'depth': number,
     }
 ): d_out.Package_Set.D => {
     return sh.m.package_(
         ['change context', 'variables', 'implement me', 'lookups'],
         _p.dictionary.literal({
             "out": sh_i.import_.ancestor(
-                5,
+                $p.depth,
                 "interface",
                 _p.list.nested_literal_old([
                     _p.list.literal([
@@ -91,7 +92,7 @@ export const Module_Resolvers = (
                 ])
             ),
             "signatures": sh_i.import_.ancestor(
-                5,
+                $p.depth,
                 "interface",
                 _p.list.nested_literal_old([
                     _p.list.literal([
@@ -106,7 +107,11 @@ export const Module_Resolvers = (
         }),
         op_flatten_dictionary(
             _p.dictionary.literal({
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["resolve"]))
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l id'], [
+                    "resolved",
+                    "refiners",
+                    "unresolved"
+                ]))
             }),
             {
                 'separator': "",

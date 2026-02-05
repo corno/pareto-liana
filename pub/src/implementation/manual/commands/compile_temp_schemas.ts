@@ -7,7 +7,7 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_resolve from "astn-core/dist/interface/to_be_generated/resolve"
+import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 export type Error = _pi.Dictionary<Package_Error>
@@ -36,8 +36,7 @@ import * as t_liana_to_pareto_implementation from "../schemas/module/transformer
 import * as t_liana_to_pareto_interface from "../schemas/module/transformers/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
-import * as t_fp_to_lines from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/lines"
-
+import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/schemas/resolve/transformers/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
@@ -56,54 +55,7 @@ export const Error = ($: Error): d_fp.Paragraph => {
                     case 'could not write implementation': return _p.ss($, ($) => sh.ph.literal("could not write implementation"))
                     case 'could not copy generic implementation': return _p.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
                     case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                    case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
-                        sh.ph.literal($.location['document resource identifier']),
-                        sh.ph.literal(":"),
-                        sh.ph.decimal($.location.line),
-                        sh.ph.literal(":"),
-                        sh.ph.decimal($.location.column),
-                        sh.ph.literal(": "),
-                        _p.decide.state($.type, ($) => {
-                            switch ($[0]) {
-                                case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'state': return _p.ss($, ($) => sh.ph.composed([
-                                            sh.ph.literal("expected '"),
-                                            sh.ph.literal($.expected),
-                                            sh.ph.literal("' but found '"),
-                                            sh.ph.literal($.found),
-                                            sh.ph.literal("'"),
-                                        ]))
-                                        case 'missingoptional value': return _p.ss($, ($) => sh.ph.literal("expected value/parameter to be set"))
-                                        case 'same node': return _p.ss($, ($) => sh.ph.literal("${$}, not the same node"))
-                                        default: return _p.au($[0])
-                                    }
-                                }))
-                                case 'lookup': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'cycle detected': return _p.ss($, ($) => sh.ph.literal("cycle detected"))
-                                        case 'no such entry': return _p.ss($, ($) => sh.ph.composed([
-                                            sh.ph.literal("no such entry: '"),
-                                            sh.ph.literal($),
-                                            sh.ph.literal("'")
-                                        ]))
-                                        case 'no context lookup': return _p.ss($, ($) => sh.ph.literal("there is is no context where this entry can be looked up"))
-                                        default: return _p.au($[0])
-                                    }
-                                }))
-                                case 'missing required entries': return _p.ss($, ($) => sh.ph.composed([
-                                    sh.ph.literal("missing required entries:"),
-                                    sh.ph.indent(
-                                        sh.pg.sentences($.__to_list(($, id) => sh.ph.composed([
-                                            sh.ph.literal(`- `),
-                                            sh.ph.literal(id)
-                                        ])))
-                                    )
-                                ]))
-                                default: return _p.au($[0])
-                            }
-                        })
-                    ]))
+                    case 'could not deserialize module': return _p.ss($, ($) => t_resolve_to_fountain_pen.Error($))
                     default: return _p.au($[0])
                 }
             })

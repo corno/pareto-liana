@@ -1,7 +1,7 @@
 import * as _p from 'pareto-core/dist/expression'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _p_ls from 'pareto-core/dist/select_lookup'
-import _p_block_deprecated from 'pareto-core/dist/_p_block_deprecated'
+import _p_variables from 'pareto-core/dist/_p_variables'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
@@ -30,7 +30,7 @@ const temp_assert = <Type, Error>(
     return callback()
 }
 
-export const Imports: signatures.Imports = ($, abort, $l, $p) => _p_block_deprecated(() => _p_change_context($, ($) => _p.dictionary.resolve(
+export const Imports: signatures.Imports = ($, abort, $l, $p) => _p_variables(() => _p_change_context($, ($) => _p.dictionary.resolve(
     $['l dictionary'],
     ($, id) => _p_change_context($, ($) => _p_change_context($, ($): d_out.Imports.D => {
         const p_schema_set_child: d_out.Imports.D.schema_set_child = _p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
@@ -52,7 +52,7 @@ export const Imports: signatures.Imports = ($, abort, $l, $p) => _p_block_deprec
     })),
 )))
 
-export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) => _p_block_deprecated(() => _p_block_deprecated(() => {
+export const Lookup_Selection: signatures.Lookup_Selection = ($, abort, $l, $p) => _p_variables(() => _p_variables(() => {
     const loc = $.type['l location']
     const p_type: d_out.Lookup_Selection.type_ = _p_change_context($['type'], ($) => _p_change_context($['l state'], ($): d_out.Lookup_Selection.type_ => {
         switch ($[0]) {
@@ -324,9 +324,9 @@ export const Signatures: signatures.Signatures = ($, abort, $l, $p) => {
     )
 }
 
-export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_block_deprecated(() => _p_change_context($['l state'], ($): d_out.Schemas.D => {
+export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_variables(() => _p_change_context($['l state'], ($): d_out.Schemas.D => {
     switch ($[0]) {
-        case 'schema': return _p.ss($, ($) => ['schema', _p_block_deprecated(() => {
+        case 'schema': return _p.ss($, ($) => ['schema', _p_variables(() => {
             const p_imports = Imports(
                 $.imports,
                 abort,
@@ -463,7 +463,7 @@ export const Schema_Tree: signatures.Schema_Tree = ($, abort, $l, $p) => _p_bloc
     }
 }))
 
-export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p_block_deprecated(() => _p.dictionary.resolve(
+export const Schemas: signatures.Schemas = ($, abort, $l, $p) => _p_variables(() => _p.dictionary.resolve(
     $['l dictionary'],
     ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => Schema_Tree(
         $['l entry'],
@@ -998,7 +998,7 @@ export const Option_Constraint_Resolvers: signatures.Option_Constraint_Resolvers
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_change_context($['l entry']['l state'], ($) => {
             switch ($[0]) {
-                case 'state': return _p.ss($, ($) => ['state', _p_block_deprecated(() => {
+                case 'state': return _p.ss($, ($) => ['state', _p_variables(() => {
                     const loc = $.selection.start['l location']
                     const p_selection: d_out.Option_Constraint_Resolvers.D.state.selection = _p_change_context($['selection'], ($) => Guaranteed_Value_Selection(
                         $,
@@ -1093,7 +1093,7 @@ export const Constraint: signatures.Constraint = ($, abort, $l, $p) => {
 export const Value_Constraint_Resolvers: signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => {
     return _p_change_context($, ($) => _p.dictionary.resolve(
         $['l dictionary'],
-        ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_block_deprecated(() => {
+        ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_variables(() => {
             const p_start: d_out.Value_Constraint_Resolver.start = _p_change_context($['l entry'].start['l state'], ($) => {
                 switch ($[0]) {
                     case 'property': return _p.ss($, ($) => ['property', null])
@@ -1879,7 +1879,7 @@ export const Value_Resolver: signatures.Value_Resolver = ($, abort, $l, $p) => {
     return p_type
 }
 
-export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p_block_deprecated(() => {
+export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p_variables(() => {
 
     const p_path: d_out.Relative_Value_Selection.path = _p.group.map_list_with_state(
         $.path['l list'],
@@ -1977,7 +1977,7 @@ export const Relative_Value_Selection: signatures.Relative_Value_Selection = ($,
     }
 })
 
-export const Possible_Value_Selection: signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p_block_deprecated(() => _p_change_context($['l state'], ($) => {
+export const Possible_Value_Selection: signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p_variables(() => _p_change_context($['l state'], ($) => {
     switch ($[0]) {
         case 'not set': return _p.ss($, ($) => ['not set', null])
         case 'set': return _p.ss($, ($) => ['set', Guaranteed_Value_Selection($, abort, $l, $p)])
@@ -1988,7 +1988,7 @@ export const Possible_Value_Selection: signatures.Optional_Value_Initialization 
     }
 }))
 
-export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort, $l, $p) => _p_block_deprecated(() => {
+export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort, $l, $p) => _p_variables(() => {
     return _p_change_context($['l state'], ($) => {
         switch ($[0]) {
             case 'parameter': return _p.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
@@ -2059,7 +2059,7 @@ export const Possibly_Optional: signatures.Possible_Value_Selection = ($, abort,
     })
 })
 
-export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection = ($, abort, $l, $p) => _p_block_deprecated(() => _p_block_deprecated(() => {
+export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection = ($, abort, $l, $p) => _p_variables(() => _p_variables(() => {
     const start_location = $.start['l location']
     const p_start: d_out.Guaranteed_Value_Selection.start = _p_change_context($.start['l state'], ($): d_out.Guaranteed_Value_Selection.start => {
         switch ($[0]) {
@@ -2226,7 +2226,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
         abort,
         null,
         {
-            'value': _p_block_deprecated(() => {
+            'value': _p_variables(() => {
                 const pvs = ($: d_out.Possible_Value_Selection) => _p_change_context($, ($): d_out.Module => {
                     return _p_change_context($, ($) => {
                         switch ($[0]) {
@@ -2307,7 +2307,7 @@ export const Guaranteed_Value_Selection: signatures.Guaranteed_Value_Selection =
     })
 }))
 
-export const Type_Specification: signatures.Module_Specification = ($, abort, $l, $p) => _p_block_deprecated(() => ({
+export const Type_Specification: signatures.Module_Specification = ($, abort, $l, $p) => _p_variables(() => ({
     'schema': Schema_Tree(
         $.schema,
         abort,

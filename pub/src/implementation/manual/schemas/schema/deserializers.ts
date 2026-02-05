@@ -6,7 +6,7 @@ import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 
 //data types
 import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_deserialize_schema from "../../../../interface/to_be_generated/deserialize_schema"
+import * as d_deserialize_schema from "liana-core/dist/interface/to_be_generated/deserialize"
 import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //dependencies
@@ -62,7 +62,7 @@ export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_sche
         //     x.content,
         //     ($) => abort(['unmarshall error', $]),
         // ),
-        ($) => abort(['resolve errorx', $]),
+        ($) => abort(['resolve error', $]),
         null,
         null,
     )

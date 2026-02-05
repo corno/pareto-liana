@@ -5,7 +5,7 @@ import * as _p_temp from 'pareto-core/dist/select_lookup'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as gen_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
-import * as gen_resolve from "astn-core/dist/interface/to_be_generated/resolve"
+import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 
 //types
 
@@ -101,7 +101,7 @@ export namespace abort {
         location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
-        'type': ['constraint', ['missingoptional value', null]],
+        'type': ['constraint', ['optional value is not set', null]],
         'location': location,
     })
 
@@ -110,7 +110,7 @@ export namespace abort {
         location: gen_loc.Relative_Location,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
-        'type': ['constraint', ['missingoptional value', null]],
+        'type': ['constraint', ['optional value is not set', null]],
         'location': location,
     })
 }

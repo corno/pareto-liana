@@ -15,7 +15,7 @@ export const Signatures = (
     return sh.m.package_functions(
         {
             "generic": sh.import_.external(
-                "astn-core",
+                "liana-core",
                 [
                     "dist",
                     "interface",
