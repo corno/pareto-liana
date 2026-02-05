@@ -6,7 +6,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 
 import * as sh from "pareto/dist/shorthands/implementation"
 
-import * as t_migration_boilerplate from "./pareto_implementation_migrate_boilerplate"
+import * as t_migration_boilerplate from "./pareto_implementation_boilerplate_for_migrate"
 
 import * as t_resolve from "./pareto_implementation_resolve"
 
@@ -28,7 +28,7 @@ export const Schema_Tree = (
             case 'schema': return _p.ss($, ($) => {
                 const imports = $.imports
                 const schema = $
-                
+
                 return _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
                     switch ($[0]) {
                         case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
@@ -41,7 +41,10 @@ export const Schema_Tree = (
                                     //         // 'depth': 3
                                     //     }
                                     // ),
-                                    // //boilerplate for migrate
+                                    "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                        'depth': 7,
+                                        'path': $p.path,
+                                    }),
                                     // "unresolved": t_migration_boilerplate.Schema(schema, {
                                     //     'path': $p.path,
                                     // }),

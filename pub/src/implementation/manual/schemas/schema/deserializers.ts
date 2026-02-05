@@ -7,7 +7,6 @@ import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 //data types
 import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_deserialize_schema from "../../../../interface/to_be_generated/deserialize_schema"
-import * as d_resolve from "../../../../interface/generated/liana/generic/resolve"
 import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //dependencies
@@ -15,7 +14,7 @@ import * as r_pareto_schema from "../../../temp/resolvers/schema"
 
 // import * as r_parse_tree_to_schema from "../../../generated/liana/schemas/schema/unmarshall"
 
-import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/schemas/parse_tree/refiners/text"
+import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/schemas/parse_tree/refiners/list_of_characters"
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 

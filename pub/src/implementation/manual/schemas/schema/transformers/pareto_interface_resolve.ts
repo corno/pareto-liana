@@ -14,10 +14,14 @@ export const Signatures = (
 ): d_out.Package_Set.D => {
     return sh.m.package_functions(
         {
-            "generic": sh.import_.ancestor(
-                2,
-                "generic",
-                ["resolve"]
+            "generic": sh.import_.external(
+                "astn-core",
+                [
+                    "dist",
+                    "interface",
+                    "to be generated",
+                    "resolve",
+                ],
             ),
             "resolved": sh.import_.sibling("data", ["resolved"]),
             "unresolved": sh.import_.sibling("data", ["unresolved"]),

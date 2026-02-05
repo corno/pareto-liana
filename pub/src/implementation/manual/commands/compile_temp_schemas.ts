@@ -7,7 +7,7 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_resolve from "../../../interface/generated/liana/generic/resolve"
+import * as d_resolve from "astn-core/dist/interface/to_be_generated/resolve"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
 
 export type Error = _pi.Dictionary<Package_Error>

@@ -12,8 +12,8 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 
 import * as d_liana_deserialize from "../../../../../interface/to_be_generated/deserialize_schema"
-import * as d_unmarshall from "../../../../../interface/generated/liana/generic/unmarshall"
-import * as d_resolve from "../../../../../interface/generated/liana/generic/resolve"
+import * as d_unmarshall from "astn-core/dist/interface/to_be_generated/unmarshall"
+import * as d_resolve from "astn-core/dist/interface/to_be_generated/resolve"
 
 //dependencies
 import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/schemas/deserialize_parse_tree/transformers/fountain_pen"

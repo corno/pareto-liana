@@ -5,7 +5,7 @@ import * as _p_temp from 'pareto-core/dist/select_lookup'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as gen_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
-import * as gen_resolve from "../../interface/generated/liana/generic/resolve"
+import * as gen_resolve from "astn-core/dist/interface/to_be_generated/resolve"
 
 //types
 
@@ -39,7 +39,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
         $cyclic: _pi.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
-    const xx  = _p.decide.dictionary.has_entries(
+    const xx = _p.decide.dictionary.has_entries(
         _p.dictionary.filter(
             benchmark,
             (_, id) => $.__get_possible_entry(

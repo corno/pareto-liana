@@ -24,7 +24,7 @@ import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn"
 import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
 import { $ as m_pareto_targets } from "./pareto-targets/module.astn"
-import { $ as m_pareto_test } from "./pareto-test/module.astn"
+// import { $ as m_pareto_test } from "./pareto-test/module.astn"
 import { $ as m_pareto_vscode_backend } from "./pareto-vscode-backend/module.astn"
 
 
@@ -86,10 +86,10 @@ export const $ = _p.dictionary.literal<Module>({
         'target path': `../pareto-targets`,
         'module': m_pareto_targets,
     },
-    "pareto-test": {
-        'target path': `../pareto-test`,
-        'module': m_pareto_test,
-    },
+    // "pareto-test": {
+    //     'target path': `../pareto-test`,
+    //     'module': m_pareto_test,
+    // },
     "pareto-vscode-backend": {
         'target path': `../pareto-vscode-backend`,
         'module': m_pareto_vscode_backend,
