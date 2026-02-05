@@ -33,17 +33,18 @@ export const Schema: _pi.Transformer_With_Parameters<
     d_in.Schema,
     d_out.Package_Set.D,
     {
+        'depth': number,
         'path': _pi.List<string>,
     }
 > = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-        ['change context'],
+        ['change context', 'list from text'],
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
                     "signatures": sh_i.import_.ancestor(
-                        5,
+                        $p.depth,
                         "interface",
                         _p.list.nested_literal_old([
                             _p.list.literal([
@@ -56,7 +57,7 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]),
                     ),
                     "out": sh_i.import_.ancestor(
-                        5,
+                        $p.depth,
                         "interface",
                         _p.list.nested_literal_old([
                             _p.list.literal([
@@ -71,7 +72,6 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]),
                     ),
                 }),
-                "external ": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"])),
             }),
             {
                 'separator': "",
@@ -130,7 +130,10 @@ export const Schema: _pi.Transformer_With_Parameters<
                         ]
                     ),
                 }),
-                "external ": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["unmarshall"]))
+                "external ": $.imports.__d_map(($, id) => constrained
+                    ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "refiners", "astn parse tree"])
+                    : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["refiners", "astn parse tree"])
+                ),
             }),
             {
                 'separator': "",
@@ -167,13 +170,20 @@ export const Value = (
                 sh.s.call(
                     sh.call.external("deserialize boolean", "deserialize"),
                     sh.e.select(
-                        sh.s.call(
-                            sh.call.external("unmarshalled from parse tree", "Text"),
+                        sh.s.list_from_text(
+                            sh.e.select(
+                                sh.s.call(
+                                    sh.call.external("unmarshalled from parse tree", "Text"),
+                                    sh.e.select(sh.s.context([])),
+                                    sh.e.state.literal("expected a text", sh.e.nothing()),
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.not_set(),
+                                    [],
+                                ),
+                            ),
                             sh.e.select(sh.s.context([])),
-                            sh.e.state.literal("expected a text", sh.e.nothing()),
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
+                            []
+
                         )
                     ),
                     sh.e.state.literal("not a valid boolean", sh.e.nothing()),
@@ -361,13 +371,20 @@ export const Value = (
                 sh.s.call(
                     sh.call.external("deserialize number", "deserialize"),
                     sh.e.select(
-                        sh.s.call(
-                            sh.call.external("unmarshalled from parse tree", "Text"),
+                        sh.s.list_from_text(
+                            sh.e.select(
+                                sh.s.call(
+                                    sh.call.external("unmarshalled from parse tree", "Text"),
+                                    sh.e.select(sh.s.context([])),
+                                    sh.e.state.literal("expected a text", sh.e.nothing()),
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.not_set(),
+                                    [],
+                                ),
+                            ),
                             sh.e.select(sh.s.context([])),
-                            sh.e.state.literal("expected a text", sh.e.nothing()),
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
+                            []
+
                         )
                     ),
                     sh.e.state.literal("not a valid number", sh.e.nothing()),

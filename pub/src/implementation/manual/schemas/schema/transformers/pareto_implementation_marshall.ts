@@ -118,14 +118,15 @@ export const Value = (
                 "delimiter": sh.e.state.literal("none", sh.e.nothing()),
                 "value": sh.e.select(
                     sh.s.text_from_list(
-                        sh.e.select(sh.s.call(
-                            sh.call.external("serialize boolean", "serialize"),
-                            sh.e.select(sh.s.context([])),
-                            null,
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
-                        ),
+                        sh.e.select(
+                            sh.s.call(
+                                sh.call.external("serialize boolean", "serialize"),
+                                sh.e.select(sh.s.context([])),
+                                null,
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [],
+                            ),
                         ),
                         sh.e.select(sh.s.context([])),
                         []

@@ -91,9 +91,10 @@ export const Schema_Tree = (
                                     }),
                                 }),
                                 "refiners": sh.m.set({
-                                    // "astn parse tree": t_unmarshall.Schema(schema, {
-                                    //     'path': $p.path,
-                                    // }),
+                                    "astn parse tree": t_unmarshall.Schema(schema, {
+                                        'depth': 6,
+                                        'path': $p.path,
+                                    }),
                                     // "text": t_deserialize.Schema(schema, {
                                     //     'path': $p.path,
                                     // }),
