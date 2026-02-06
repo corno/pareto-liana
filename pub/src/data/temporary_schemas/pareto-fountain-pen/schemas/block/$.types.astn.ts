@@ -26,20 +26,22 @@ export const $: g_.Modules = modules(
 
         "Paragraph": module_(t.state({
             "composed": toption(t.list(t.component("Paragraph"))),
-            "sentences": toption(t.list(t.component("Phrase"))),
+            "sentences": toption(t.list(t.component("Sentence"))),
             "optional": toption(t.optional(t.component("Paragraph"))),
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Paragraph"))),
-                "if empty": prop(t.component("Paragraph")),
+                "items": prop(t.list(t.component("Sentence"))),
+                "if empty": prop(t.component("Sentence")),
                 "if not empty": prop(t.group({
                     "indent": prop(t.boolean()),
-                    "before": prop(t.component("Paragraph")),
-                    "separator": prop(t.component("Paragraph")),
-                    "after": prop(t.component("Paragraph")),
+                    "before": prop(t.component("Phrase")),
+                    "separator": prop(t.component("Phrase")),
+                    "after": prop(t.component("Phrase")),
                 })),
             }))
         })),
+
+        "Sentence": module_(t.component("Phrase")),
 
         "Phrase": module_(t.state({
             "single line": toption(t.component("Single Line")),
