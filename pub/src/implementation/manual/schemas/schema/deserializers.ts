@@ -6,11 +6,11 @@ import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 
 //data types
 import * as d_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_deserialize_schema from "liana-core/dist/interface/to_be_generated/deserialize"
+import * as d_deserialize_schema from "liana-core/dist/interface/to_be_generated/deserialize_resolved"
 import * as d_text from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
 
 //dependencies
-import * as r_pareto_schema from "../../../temp/resolvers/schema"
+import * as r_pareto_schema from "../../../temp/resolvers/schema/unresolved_manual"
 
 // import * as r_parse_tree_to_schema from "../../../generated/liana/schemas/schema/unmarshall"
 
@@ -49,7 +49,7 @@ export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_sche
 
     const x = r_parse_tree_from_text.Document(
         $,
-        ($) => abort(['parse error', $]),
+        ($) => abort(['deserialize', ['parse error', $]]),
         {
             'tab size': 4,
             'document resource identifier': $p.uri

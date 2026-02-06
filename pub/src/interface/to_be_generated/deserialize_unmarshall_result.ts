@@ -1,5 +1,5 @@
 import * as d_parse_result from "astn-core/dist/interface/generated/liana/schemas/deserialize_parse_tree/data"
-import * as d_deserialize_schema from "liana-core/dist/interface/to_be_generated/deserialize"
+import * as d_deserialize_schema from "liana-core/dist/interface/to_be_generated/deserialize_resolved"
 
 export type Error =
     | ['schema error', {

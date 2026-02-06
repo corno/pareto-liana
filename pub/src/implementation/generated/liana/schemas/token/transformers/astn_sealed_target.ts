@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../interface/generated/liana/schemas/token/marshall"
     
@@ -17,13 +17,13 @@
     
     export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'leading trivia': _p_change_context(
+            "leading trivia": _p_change_context(
                 $['leading trivia'],
                 ($) => Trivia(
                     $,
                 ),
             ),
-            'tokens': _p_change_context(
+            "tokens": _p_change_context(
                 $['tokens'],
                 ($) => ['list', _p.list.map(
                     $,
@@ -32,7 +32,7 @@
                     ),
                 )],
             ),
-            'end': _p_change_context(
+            "end": _p_change_context(
                 $['end'],
                 ($) => v_external_location.Location(
                     $,
@@ -43,25 +43,25 @@
     
     export const Annotated_Token: t_signatures.Annotated_Token = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'start': _p_change_context(
+            "start": _p_change_context(
                 $['start'],
                 ($) => v_external_location.Location(
                     $,
                 ),
             ),
-            'type': _p_change_context(
+            "type": _p_change_context(
                 $['type'],
                 ($) => Token_Type(
                     $,
                 ),
             ),
-            'end': _p_change_context(
+            "end": _p_change_context(
                 $['end'],
                 ($) => v_external_location.Location(
                     $,
                 ),
             ),
-            'trailing trivia': _p_change_context(
+            "trailing trivia": _p_change_context(
                 $['trailing trivia'],
                 ($) => Trivia(
                     $,
@@ -201,13 +201,13 @@
                             'option': 'text',
                             'value': ['group', ['verbose', _p.dictionary.literal(
                                 {
-                                    'value': _p_change_context(
+                                    "value": _p_change_context(
                                         $['value'],
                                         ($) => Delimited_Text(
                                             $,
                                         ),
                                     ),
-                                    'type': _p_change_context(
+                                    "type": _p_change_context(
                                         $['type'],
                                         ($) => Text_Type(
                                             $,
@@ -232,13 +232,13 @@
     
     export const Whitespace: t_signatures.Whitespace = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'range': _p_change_context(
+            "range": _p_change_context(
                 $['range'],
                 ($) => v_external_location.Range(
                     $,
                 ),
             ),
-            'value': _p_change_context(
+            "value": _p_change_context(
                 $['value'],
                 ($) => ['text', {
                     'delimiter': ['quote', null],
@@ -250,19 +250,19 @@
     
     export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'leading whitespace': _p_change_context(
+            "leading whitespace": _p_change_context(
                 $['leading whitespace'],
                 ($) => Whitespace(
                     $,
                 ),
             ),
-            'comments': _p_change_context(
+            "comments": _p_change_context(
                 $['comments'],
                 ($) => ['list', _p.list.map(
                     $,
                     ($) => ['group', ['verbose', _p.dictionary.literal(
                         {
-                            'type': _p_change_context(
+                            "type": _p_change_context(
                                 $['type'],
                                 ($) => ['state', _p.decide.state(
                                     $,
@@ -292,20 +292,20 @@
                                     },
                                 )],
                             ),
-                            'content': _p_change_context(
+                            "content": _p_change_context(
                                 $['content'],
                                 ($) => ['text', {
                                     'delimiter': ['quote', null],
                                     'value': $,
                                 }],
                             ),
-                            'range': _p_change_context(
+                            "range": _p_change_context(
                                 $['range'],
                                 ($) => v_external_location.Range(
                                     $,
                                 ),
                             ),
-                            'trailing whitespace': _p_change_context(
+                            "trailing whitespace": _p_change_context(
                                 $['trailing whitespace'],
                                 ($) => Whitespace(
                                     $,

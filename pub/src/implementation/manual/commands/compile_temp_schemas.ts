@@ -29,7 +29,7 @@ export type Package_Error =
 import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
-import * as r_liana_module from "../../temp/resolvers/module"
+import * as r_liana_module from "../../temp/resolvers/module/unresolved"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/implementation/transformers/serialized_typescript"
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/interface/transformers/serialized_typescript"
 import * as t_liana_to_pareto_implementation from "../schemas/module/transformers/pareto_implementation"

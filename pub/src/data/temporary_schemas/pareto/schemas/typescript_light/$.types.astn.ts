@@ -35,7 +35,7 @@ export const $: g_.Modules = modules(
                             "name": prop(t.component("Identifier")),
                             "as": prop(t.optional(t.component("Identifier"))),
                         }))),
-                        "from": prop(t.optional(t.text_local(text('single line')))),
+                        "from": prop(t.optional(t.component("String Literal"))),
                     })),
                 })),
             })),
@@ -51,7 +51,7 @@ export const $: g_.Modules = modules(
                         }))),
                     })),
                 })),
-                "from": prop(t.text_local(text('single line'))),
+                "from": prop(t.component("String Literal")),
             })),
             "module declaration": toption(t.group({ //namespace
                 "export": prop(t.boolean()),
@@ -101,7 +101,11 @@ export const $: g_.Modules = modules(
                 "elements": prop(t.list(t.component("Type"))),
             })),
             "type literal": toption(t.group({
-                "properties": prop(t.dictionary(t.group({
+                "properties": prop(t.list(t.group({
+                    "key": prop(t.state({
+                        "identifier": toption(t.component("Identifier")),
+                        "string literal": toption(t.component("String Literal")),
+                    })),
                     "readonly": prop(t.boolean()),
                     "type": prop(t.component("Type")),
                 }))),
@@ -167,7 +171,13 @@ export const $: g_.Modules = modules(
             "null": toption(t.nothing()),
             "number literal": toption(t.number_local(n.approximation(10))),
             "object literal": toption(t.group({
-                "properties": prop(t.dictionary(t.component("Expression"))),
+                "properties": prop(t.list(t.group({
+                    "key": prop(t.state({
+                        "identifier": toption(t.component("Identifier")),
+                        "string literal": toption(t.component("String Literal")),
+                    })),
+                    "value": prop(t.component("Expression")),
+                }))),
             })),
             "parenthesized": toption(t.component("Expression")),
             "property access": toption(t.group({

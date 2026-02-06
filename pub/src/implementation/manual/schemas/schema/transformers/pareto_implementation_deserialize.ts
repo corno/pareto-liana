@@ -72,7 +72,7 @@ export const Schema = (
                     sh.s.call(
                         sh.call.external("deserialize", "Document"),
                         sh.e.select(sh.s.context([])),
-                        sh.e.state.literal("tbd", sh.e.nothing()),
+                        sh.e.state.literal("parse error", sh.e.select(sh.s.context([]))),
                         sh.lookups.not_set(),
                         sh.arguments_.initialize({
                             "document resource identifier": sh.e.text.copy(sh.s.parameter("document resource identifier", [])),
@@ -81,7 +81,7 @@ export const Schema = (
                         ["content"]
                     )
                 ),
-                sh.e.state.literal("tbd", sh.e.nothing()),
+                sh.e.state.literal("unmarshall error", sh.e.select(sh.s.context([]))),
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
                 []

@@ -12,6 +12,7 @@ import * as t_resolve from "./pareto_implementation_resolve"
 
 import * as t_serialize from "./pareto_implementation_serialize"
 import * as t_deserialize from "./pareto_implementation_deserialize"
+import * as t_deserialize_resolved from "./pareto_implementation_deserialize_resolved"
 
 import * as t_marshall from "./pareto_implementation_marshall"
 import * as t_unmarshall from "./pareto_implementation_unmarshall"
@@ -57,7 +58,11 @@ export const Schema_Tree = (
                                             'path': $p.path,
                                             'imports': imports,
                                             'depth': 7,
-                                        })
+                                        }),
+                                        // "list of characters": t_deserialize_resolved.Schema(schema, {
+                                        //     'depth': 7,
+                                        //     'path': $p.path,
+                                        // }),
                                     }),
                                 }),
                                 "unresolved": sh.m.set({

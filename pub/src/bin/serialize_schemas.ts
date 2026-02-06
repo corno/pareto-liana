@@ -10,7 +10,8 @@ _pn.run_main_command(
     ($r) => {
         return procedure(
             {
-                'write file': $r.commands['write file']
+                'write file': $r.commands['write file'],
+                'log error': $r.commands['log error']
             },
             null,
 

@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../interface/generated/liana/schemas/parse_tree/marshall"
     
@@ -19,19 +19,19 @@
     
     export const Document: t_signatures.Document = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'header': _p_change_context(
+            "header": _p_change_context(
                 $['header'],
                 ($) => ['optional', _p.decide.optional(
                     $,
                     ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                         {
-                            '!': _p_change_context(
+                            "!": _p_change_context(
                                 $['!'],
                                 ($) => Structural_Token(
                                     $,
                                 ),
                             ),
-                            'value': _p_change_context(
+                            "value": _p_change_context(
                                 $['value'],
                                 ($) => Value(
                                     $,
@@ -42,7 +42,7 @@
                     () => ['not set', null],
                 )],
             ),
-            'content': _p_change_context(
+            "content": _p_change_context(
                 $['content'],
                 ($) => Content(
                     $,
@@ -57,7 +57,7 @@
     
     export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'type': _p_change_context(
+            "type": _p_change_context(
                 $['type'],
                 ($) => ['state', _p.decide.state(
                     $,
@@ -79,19 +79,19 @@
                                                                 'option': 'dictionary',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                     {
-                                                                        '{': _p_change_context(
+                                                                        "{": _p_change_context(
                                                                             $['{'],
                                                                             ($) => Structural_Token(
                                                                                 $,
                                                                             ),
                                                                         ),
-                                                                        'entries': _p_change_context(
+                                                                        "entries": _p_change_context(
                                                                             $['entries'],
                                                                             ($) => ID_Value_Pairs(
                                                                                 $,
                                                                             ),
                                                                         ),
-                                                                        '}': _p_change_context(
+                                                                        "}": _p_change_context(
                                                                             $['}'],
                                                                             ($) => Structural_Token(
                                                                                 $,
@@ -117,19 +117,19 @@
                                                                                         'option': 'concise',
                                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                             {
-                                                                                                '<': _p_change_context(
+                                                                                                "<": _p_change_context(
                                                                                                     $['<'],
                                                                                                     ($) => Structural_Token(
                                                                                                         $,
                                                                                                     ),
                                                                                                 ),
-                                                                                                'items': _p_change_context(
+                                                                                                "items": _p_change_context(
                                                                                                     $['items'],
                                                                                                     ($) => Items(
                                                                                                         $,
                                                                                                     ),
                                                                                                 ),
-                                                                                                '>': _p_change_context(
+                                                                                                ">": _p_change_context(
                                                                                                     $['>'],
                                                                                                     ($) => Structural_Token(
                                                                                                         $,
@@ -146,19 +146,19 @@
                                                                                         'option': 'verbose',
                                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                             {
-                                                                                                '(': _p_change_context(
+                                                                                                "(": _p_change_context(
                                                                                                     $['('],
                                                                                                     ($) => Structural_Token(
                                                                                                         $,
                                                                                                     ),
                                                                                                 ),
-                                                                                                'entries': _p_change_context(
+                                                                                                "entries": _p_change_context(
                                                                                                     $['entries'],
                                                                                                     ($) => ID_Value_Pairs(
                                                                                                         $,
                                                                                                     ),
                                                                                                 ),
-                                                                                                ')': _p_change_context(
+                                                                                                ")": _p_change_context(
                                                                                                     $[')'],
                                                                                                     ($) => Structural_Token(
                                                                                                         $,
@@ -184,19 +184,19 @@
                                                                 'option': 'list',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                     {
-                                                                        '[': _p_change_context(
+                                                                        "[": _p_change_context(
                                                                             $['['],
                                                                             ($) => Structural_Token(
                                                                                 $,
                                                                             ),
                                                                         ),
-                                                                        'items': _p_change_context(
+                                                                        "items": _p_change_context(
                                                                             $['items'],
                                                                             ($) => Items(
                                                                                 $,
                                                                             ),
                                                                         ),
-                                                                        ']': _p_change_context(
+                                                                        "]": _p_change_context(
                                                                             $[']'],
                                                                             ($) => Structural_Token(
                                                                                 $,
@@ -213,7 +213,7 @@
                                                                 'option': 'nothing',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                     {
-                                                                        '~': _p_change_context(
+                                                                        "~": _p_change_context(
                                                                             $['~'],
                                                                             ($) => Structural_Token(
                                                                                 $,
@@ -239,13 +239,13 @@
                                                                                         'option': 'set',
                                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                             {
-                                                                                                '*': _p_change_context(
+                                                                                                "*": _p_change_context(
                                                                                                     $['*'],
                                                                                                     ($) => Structural_Token(
                                                                                                         $,
                                                                                                     ),
                                                                                                 ),
-                                                                                                'value': _p_change_context(
+                                                                                                "value": _p_change_context(
                                                                                                     $['value'],
                                                                                                     ($) => Value(
                                                                                                         $,
@@ -271,13 +271,13 @@
                                                                 'option': 'state',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                     {
-                                                                        '|': _p_change_context(
+                                                                        "|": _p_change_context(
                                                                             $['|'],
                                                                             ($) => Structural_Token(
                                                                                 $,
                                                                             ),
                                                                         ),
-                                                                        'status': _p_change_context(
+                                                                        "status": _p_change_context(
                                                                             $['status'],
                                                                             ($) => ['state', _p.decide.state(
                                                                                 $,
@@ -290,7 +290,7 @@
                                                                                                     'option': 'missing data',
                                                                                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                                         {
-                                                                                                            '#': _p_change_context(
+                                                                                                            "#": _p_change_context(
                                                                                                                 $['#'],
                                                                                                                 ($) => Structural_Token(
                                                                                                                     $,
@@ -307,13 +307,13 @@
                                                                                                     'option': 'set',
                                                                                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                                         {
-                                                                                                            'option': _p_change_context(
+                                                                                                            "option": _p_change_context(
                                                                                                                 $['option'],
                                                                                                                 ($) => Text(
                                                                                                                     $,
                                                                                                                 ),
                                                                                                             ),
-                                                                                                            'value': _p_change_context(
+                                                                                                            "value": _p_change_context(
                                                                                                                 $['value'],
                                                                                                                 ($) => Value(
                                                                                                                     $,
@@ -361,13 +361,13 @@
                                         'option': 'include',
                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                             {
-                                                '@': _p_change_context(
+                                                "@": _p_change_context(
                                                     $['@'],
                                                     ($) => Structural_Token(
                                                         $,
                                                     ),
                                                 ),
-                                                'path': _p_change_context(
+                                                "path": _p_change_context(
                                                     $['path'],
                                                     ($) => Text(
                                                         $,
@@ -384,7 +384,7 @@
                                         'option': 'missing data',
                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                             {
-                                                '#': _p_change_context(
+                                                "#": _p_change_context(
                                                     $['#'],
                                                     ($) => Structural_Token(
                                                         $,
@@ -407,13 +407,13 @@
     
     export const Structural_Token: t_signatures.Structural_Token = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'trailing trivia': _p_change_context(
+            "trailing trivia": _p_change_context(
                 $['trailing trivia'],
                 ($) => v_external_token.Trivia(
                     $,
                 ),
             ),
-            'range': _p_change_context(
+            "range": _p_change_context(
                 $['range'],
                 ($) => v_external_location.Range(
                     $,
@@ -424,26 +424,26 @@
     
     export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'trailing trivia': _p_change_context(
+            "trailing trivia": _p_change_context(
                 $['trailing trivia'],
                 ($) => v_external_token.Trivia(
                     $,
                 ),
             ),
-            'range': _p_change_context(
+            "range": _p_change_context(
                 $['range'],
                 ($) => v_external_location.Range(
                     $,
                 ),
             ),
-            'value': _p_change_context(
+            "value": _p_change_context(
                 $['value'],
                 ($) => ['text', {
                     'delimiter': ['quote', null],
                     'value': $,
                 }],
             ),
-            'type': _p_change_context(
+            "type": _p_change_context(
                 $['type'],
                 ($) => v_external_token.Text_Type(
                     $,
@@ -456,25 +456,25 @@
         $,
         ($) => ['group', ['verbose', _p.dictionary.literal(
             {
-                'id': _p_change_context(
+                "id": _p_change_context(
                     $['id'],
                     ($) => Text(
                         $,
                     ),
                 ),
-                'value': _p_change_context(
+                "value": _p_change_context(
                     $['value'],
                     ($) => ['optional', _p.decide.optional(
                         $,
                         ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
                             {
-                                ':': _p_change_context(
+                                ":": _p_change_context(
                                     $[':'],
                                     ($) => Structural_Token(
                                         $,
                                     ),
                                 ),
-                                'value': _p_change_context(
+                                "value": _p_change_context(
                                     $['value'],
                                     ($) => Value(
                                         $,
@@ -493,7 +493,7 @@
         $,
         ($) => ['group', ['verbose', _p.dictionary.literal(
             {
-                'value': _p_change_context(
+                "value": _p_change_context(
                     $['value'],
                     ($) => Value(
                         $,

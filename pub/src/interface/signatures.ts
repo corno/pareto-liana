@@ -45,6 +45,7 @@ export namespace commands {
         resources_pareto.commands.main,
         {
             'write file': resources_pareto.commands.write_file
+            'log error': resources_pareto.commands.log_error
         },
         null
     >

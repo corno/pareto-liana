@@ -15,6 +15,7 @@ import * as t_unmarshall from "./pareto_interface_unmarshall"
 
 import * as t_serialize from "./pareto_interface_serialize"
 import * as t_deserialize from "./pareto_interface_deserialize"
+import * as t_deserialize_resolved from "./pareto_interface_deserialize_resolved"
 
 
 export const Schema = (
@@ -113,6 +114,17 @@ export const Schema = (
                     }
                 )
             ),
+
+            //this needs some work; merging the parameters for deserialization with the parameters for resolving.
+            // "deserialize resolved": _p.optional.from_boolean(
+            //     constrained,
+            //     t_deserialize_resolved.Schema(
+            //         schema,
+            //         {
+            //             'constrained': constrained
+            //         }
+            //     )
+            // ),
 
 
         }),

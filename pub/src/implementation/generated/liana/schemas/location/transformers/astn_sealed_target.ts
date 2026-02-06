@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../interface/generated/liana/schemas/location/marshall"
     
@@ -15,13 +15,13 @@
     
     export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'start': _p_change_context(
+            "start": _p_change_context(
                 $['start'],
                 ($) => Location(
                     $,
                 ),
             ),
-            'end': _p_change_context(
+            "end": _p_change_context(
                 $['end'],
                 ($) => Location(
                     $,
@@ -32,13 +32,13 @@
     
     export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'relative': _p_change_context(
+            "relative": _p_change_context(
                 $['relative'],
                 ($) => Relative_Location(
                     $,
                 ),
             ),
-            'absolute': _p_change_context(
+            "absolute": _p_change_context(
                 $['absolute'],
                 ($) => ['text', {
                     'delimiter': ['none', null],
@@ -55,14 +55,14 @@
     
     export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'document resource identifier': _p_change_context(
+            "document resource identifier": _p_change_context(
                 $['document resource identifier'],
                 ($) => ['text', {
                     'delimiter': ['quote', null],
                     'value': $,
                 }],
             ),
-            'line': _p_change_context(
+            "line": _p_change_context(
                 $['line'],
                 ($) => ['text', {
                     'delimiter': ['none', null],
@@ -74,7 +74,7 @@
                     ),
                 }],
             ),
-            'column': _p_change_context(
+            "column": _p_change_context(
                 $['column'],
                 ($) => ['text', {
                     'delimiter': ['none', null],

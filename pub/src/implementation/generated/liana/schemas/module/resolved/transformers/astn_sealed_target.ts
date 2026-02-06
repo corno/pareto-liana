@@ -1,9 +1,9 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/expression'
     
-    import _p_change_context from "pareto-core/dist/_p_change_context"
+    import _p_change_context from 'pareto-core/dist/_p_change_context'
     
-    import _p_text_from_list from "pareto-core/dist/_p_text_from_list"
+    import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
     
     import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/module/marshall"
     
@@ -17,7 +17,7 @@
     
     export const Module: t_signatures.Module = ($) => ['group', ['verbose', _p.dictionary.literal(
         {
-            'omit (de)serializer': _p_change_context(
+            "omit (de)serializer": _p_change_context(
                 $['omit (de)serializer'],
                 ($) => ['text', {
                     'delimiter': ['none', null],
@@ -29,7 +29,7 @@
                     ),
                 }],
             ),
-            'schema tree': _p_change_context(
+            "schema tree": _p_change_context(
                 $['schema tree'],
                 ($) => v_external_schema.Schema_Tree(
                     $,

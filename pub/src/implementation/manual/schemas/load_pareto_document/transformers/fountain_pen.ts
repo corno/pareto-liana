@@ -14,7 +14,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 //dependencies
 import * as t_deserialize_parse_tree_to_fountain_pen from "astn-core/dist/implementation/manual/schemas/deserialize_parse_tree/transformers/fountain_pen"
-import * as t_deserialize_to_fountain_pen from "liana-core/dist/implementation/manual/schemas/deserialize/transformers/fountain_pen"
+import * as t_deserialize_resolved_to_fountain_pen from "liana-core/dist/implementation/manual/schemas/deserialize_resolved/transformers/fountain_pen"
 
 
 
@@ -28,7 +28,7 @@ export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
                 case 'schema error': return _p.ss($, ($) => {
                     return sh.ph.composed([
                         sh.ph.literal("error in schema @ ${$['file location']}: "),
-                        t_deserialize_to_fountain_pen.Liana_Error($.error)
+                        t_deserialize_resolved_to_fountain_pen.Error($.error)
                     ])
                 })
                 case 'unmarshall error': return _p.ss($, ($) => sh.ph.literal("error during marshalling (TBD)"))
