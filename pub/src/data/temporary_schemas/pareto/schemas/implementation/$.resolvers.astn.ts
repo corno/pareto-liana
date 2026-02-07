@@ -127,71 +127,93 @@ export const $: g_.Module_Resolvers = resolvers(
                     })),
                 }),
             })),
-            "assign": option(r.state({
+            "construct": option(r.state({
                 "boolean": option(r.state({
                     "literal": option(r.state({
                         "false": option(r.nothing()),
                         "true": option(r.nothing()),
                     })),
-                    "not": option(r.component("Value Selection", {}, {})),
-                    "copy": option(r.component("Value Selection", {}, {})),
-                    "dictionary is empty": option(r.component("Value Selection", {}, {})),
-                    "list is empty": option(r.component("Value Selection", {}, {})),
+                    "source": option(r.group({
+                        "selection": r.component("Value Selection", {}, {}),
+                        "type": r.state({
+                            "boolean": option(r.state({
+                                "not": option(r.nothing()),
+                                "copy": option(r.nothing()),
+                            })),
+                            "dictionary": option(r.state({
+                                "is empty": option(r.component("Value Selection", {}, {})),
+                            })),
+                            "list": option(r.state({
+                                "is empty": option(r.component("Value Selection", {}, {})),
+                            })),
+                        }),
+                    })),
                 })),
                 "dictionary": option(r.state({
-                    "filter": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {})
-                    })),
-                    "from list": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "get id": r.component("Expression", {}, {}),
-                        "get entry": r.component("Expression", {}, {}),
-                        "abort": r.component("Expression", {}, {}),
-                    })),
                     "literal": option(r.dictionary(r.component("Expression", {}, {}))),
-                    "map": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {})
-                    })),
-                    "resolve": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {}),
-                        "temp resulting entry node": r.component("Temp Value Type Specification", {}, {}),
+                    "source": option(r.group({
+                        "selection": r.component("Value Selection", {}, {}),
+                        "type": r.state({
+                            "dictionary": option(r.state({
+                                "filter": option(r.group({
+                                    "assign entry": r.component("Expression", {}, {})
+                                })),
+                                "map": option(r.group({
+                                    "assign entry": r.component("Expression", {}, {})
+                                })),
+                                "resolve": option(r.group({
+                                    "assign entry": r.component("Expression", {}, {}),
+                                    "temp resulting entry node": r.component("Temp Value Type Specification", {}, {}),
+                                })),
+                            })),
+                            "list": option(r.state({
+                                "convert": option(r.group({
+                                    "assign id": r.component("Expression", {}, {}),
+                                    "assign entry": r.component("Expression", {}, {}),
+                                    "abort": r.component("Expression", {}, {}),
+                                })),
+                            })),
+                        }),
                     })),
                 })),
                 "group": option(r.state({
-                    "literal": option(r.dictionary(r.component("Expression", {}, {}))),
-                    "resolve": option(r.dictionary(r.component("Expression", {}, {}))),
+                    "literal": option(r.group({
+                        "properties": r.dictionary(r.component("Expression", {}, {})),
+                        "have dependencies": r.boolean(),
+                    })),
                 })),
                 "list": option(r.state({
-                    "filter": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "entry handler": r.component("Expression", {}, {})
-                    })),
-                    "from dictionary": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "get item": r.component("Expression", {}, {}),
-                    })),
                     "literal": option(r.list(r.component("Expression", {}, {}))),
-                    "map": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "item handler": r.component("Expression", {}, {})
-                    })),
-                    "map with state": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "initial state": r.component("Expression", {}, {}),
-                        "item handler": r.component("Expression", {}, {}),
-                        "update state": r.component("Expression", {}, {}),
-                        "wrap up": r.component("Expression", {}, {}),
-                    })),
-                    "reduce": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "initial state": r.component("Expression", {}, {}),
-                        "item handler": r.component("Expression", {}, {}),
-                    })),
-                    "reverse": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
+                    "source": option(r.group({
+                        "selection": r.component("Value Selection", {}, {}),
+                        "type": r.state({
+                            "dictionary": option(r.state({
+                                "convert": option(r.group({
+                                    "assign entry": r.component("Expression", {}, {}),
+                                })),
+                            })),
+                            "group": option(r.state({
+                            })),
+                            "list": option(r.state({
+                                "filter": option(r.group({
+                                    "assign item": r.component("Expression", {}, {})
+                                })),
+                                "map": option(r.group({
+                                    "assign item": r.component("Expression", {}, {})
+                                })),
+                                "map with state": option(r.group({
+                                    "initialize state": r.component("Expression", {}, {}),
+                                    "assign item": r.component("Expression", {}, {}),
+                                    "update state": r.component("Expression", {}, {}),
+                                    "wrap up": r.component("Expression", {}, {}),
+                                })),
+                                "reduce": option(r.group({
+                                    "initialize state": r.component("Expression", {}, {}),
+                                    "assign item": r.component("Expression", {}, {}),
+                                })),
+                                "reverse": option(r.nothing()),
+                            })),
+                        }),
                     })),
                 })),
                 "nothing": option(r.nothing()),
@@ -203,8 +225,8 @@ export const $: g_.Module_Resolvers = resolvers(
                     "integer": option(r.state({
                         "copy": option(r.component("Value Selection", {}, {})),
                         "divide": option(r.group({
-                            "divident": r.component("Value Selection", {}, {}),
-                            "divisor": r.component("Value Selection", {}, {}),
+                            "assign dividend": r.component("Value Selection", {}, {}),
+                            "assign divisor": r.component("Value Selection", {}, {}),
                             "abort": r.component("Expression", {}, {})
                         })),
                         "literal": option(r.number()),
@@ -223,33 +245,47 @@ export const $: g_.Module_Resolvers = resolvers(
                     })),
                 })),
                 "optional": option(r.state({
-                    "from boolean": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "get set": r.component("Expression", {}, {}),
-                    })),
                     "literal": option(r.state({
                         "not set": option(r.nothing()),
                         "set": option(r.component("Expression", {}, {})),
                     })),
-                    "map": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
-                        "set handler": r.component("Expression", {}, {})
+                    "source": option(r.group({
+                        "selection": r.component("Value Selection", {}, {}),
+                        "type": r.state({
+                            "boolean": option(r.state({
+                                "convert": option(r.group({
+                                    "assign set": r.component("Expression", {}, {}),
+                                })),
+                            })),
+                            "optional": option(r.state({
+                                "map": option(r.group({
+                                    "assign set": r.component("Expression", {}, {})
+                                })),
+                            })),
+                        }),
                     })),
                 })),
                 "state": option(r.state({
                     "literal": option(r.group({
                         "option": r.text(),
-                        "value": r.component("Expression", {}, {}),
+                        "assign option": r.component("Expression", {}, {}),
                     })),
                 })),
                 "text": option(r.state({
-                    "copy": option(r.component("Value Selection", {}, {})),
                     "literal": option(r.group({
                         "type": r.state({
                             "identifier": option(r.nothing()),
                             "freeform": option(r.nothing()),
                         }),
                         "value": r.text(),
+                    })),
+                    "source": option(r.group({
+                        "selection": r.component("Value Selection", {}, {}),
+                        "type": r.state({
+                            "text": option(r.state({
+                                "copy": option(r.nothing()),
+                            })),
+                        }),
                     })),
                     "source document": option(r.nothing()),
                 })),
@@ -267,12 +303,12 @@ export const $: g_.Module_Resolvers = resolvers(
                 })),
                 "variables": option(r.group({
                     "variables": r.dictionary(r.component("Expression", {}, {})),
-                    "callback": r.component("Expression", {}, {}),
+                    "assign": r.component("Expression", {}, {}),
                 })),
                 "implement me": option(r.text()),
                 "iterate": option(r.group({
                     "list": r.component("Value Selection", {}, {}),
-                    "handler": r.component("Expression", {}, {}),
+                    "assign": r.component("Expression", {}, {}),
                 })),
                 "unreachable": option(r.group({
                     "explanation": r.text(),
@@ -311,7 +347,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     })),
                     "list from text": option(r.group({
                         "source": r.component("Expression", {}, {}),
-                        "character handler": r.component("Expression", {}, {}),
+                        "assign item": r.component("Expression", {}, {}),
                     })),
                     "lookup entry": option(r.group({
                         "lookup": r.component("Lookup Selection", {}, {}),
@@ -337,7 +373,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "state": option(r.nothing()),
                     "text from list": option(r.group({
                         "source": r.component("Expression", {}, {}),
-                        "item handler": r.component("Expression", {}, {}),
+                        "assign character": r.component("Expression", {}, {}),
                     })),
                     "variable": option(r.text()),
                 }),

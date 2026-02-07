@@ -93,6 +93,7 @@ export const $: g_.Modules = modules(
                 "return": prop(t.component("Type")),
             })),
             "literal type": toption(t.component("String Literal")),
+            "never": toption(t.nothing()),
             "null": toption(t.nothing()),
             "number": toption(t.nothing()),
             "string": toption(t.nothing()),
