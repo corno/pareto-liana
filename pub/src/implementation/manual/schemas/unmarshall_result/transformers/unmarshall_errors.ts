@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "../../../../../interface/to_be_generated/temp_unmashall_result"
@@ -26,56 +26,54 @@ export const Group_Content = (
     }
 ): d_out.Errors => {
     return _p.list.nested_literal_old([
-        _p.list.flatten(
-            _p.list.from_dictionary(
-                $.properties,
-                ($, id) => _p.decide.state($, ($): d_out.Errors => {
-                    switch ($[0]) {
-                        case 'multiple': return _p.ss($, ($) => _p.list.flatten(
-                            $,
-                            ($) => _p.list.nested_literal_old([
-                                _p.list.literal<d_out.Errors.L>([
-                                    {
-                                        'range': convert_range($.id.range),
-                                        'type': ['error', ['duplicate property', {
-                                            name: id
-                                        }]]
-                                    }
-                                ]),
-                                Optional_Node($.node, null)
-                            ])
-                        ))
-                        case 'missing': return _p.ss($, ($) => _p.list.literal([
-                            {
-                                'range': convert_range($p['group range']),
-                                'type': ['error', ['missing property', {
-                                    name: id
-                                }]]
-                            }
-                        ]))
-                        case 'unique': return _p.ss($, ($) => Optional_Node($.node, null))
-                        default: return _p.au($[0])
-                    }
-                })
-            ),
-            ($) => $
-        ),
-        _p.list.flatten(
-            _p.list.from_dictionary(
-                $['superfluous entries'],
-                ($, id): d_out.Errors => _p.list.flatten(
-                    $,
-                    ($) => _p.list.literal([
+        _p.list.from.dictionary(
+            $.properties,
+        ).flatten(
+            ($, id) => _p.decide.state($, ($): d_out.Errors => {
+                switch ($[0]) {
+                    case 'multiple': return _p.ss($, ($) => _p.list.from.list(
+                        $,
+                    ).flatten(
+                        ($) => _p.list.nested_literal_old([
+                            _p.list.literal<d_out.Errors.L>([
+                                {
+                                    'range': convert_range($.id.range),
+                                    'type': ['error', ['duplicate property', {
+                                        name: id
+                                    }]]
+                                }
+                            ]),
+                            Optional_Node($.node, null)
+                        ])
+                    ))
+                    case 'missing': return _p.ss($, ($) => _p.list.literal([
                         {
-                            'range': convert_range($),
-                            'type': ['error', ['superfluous property', {
+                            'range': convert_range($p['group range']),
+                            'type': ['error', ['missing property', {
                                 name: id
                             }]]
                         }
-                    ])
-                )),
-            ($) => $
-        )
+                    ]))
+                    case 'unique': return _p.ss($, ($) => Optional_Node($.node, null))
+                    default: return _p.au($[0])
+                }
+            })
+        ),
+        _p.list.from.dictionary(
+            $['superfluous entries'],
+        ).flatten(
+            ($, id): d_out.Errors => _p.list.from.list(
+                $,
+            ).flatten(
+                ($) => _p.list.literal([
+                    {
+                        'range': convert_range($),
+                        'type': ['error', ['superfluous property', {
+                            name: id
+                        }]]
+                    }
+                ])
+            )),
     ])
 }
 
@@ -113,31 +111,30 @@ export const Node = (
             case 'dictionary': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => {
-                        return _p.list.flatten(
-                            _p.list.from_dictionary(
-                                $.entries,
-                                ($, id) => _p.decide.state($, ($): d_out.Errors => {
-                                    switch ($[0]) {
-                                        case 'unique': return _p.ss($, ($) => Optional_Node($, $p))
-                                        case 'multiple': return _p.ss($, ($) => _p.list.flatten(
-                                            $,
-                                            ($) => _p.list.nested_literal_old<d_out.Errors.L>([
-                                                _p.list.literal([
-                                                    {
-                                                        'range': convert_range($.id.range),
-                                                        'type': ['error', ['duplicate property', {
-                                                            name: id
-                                                        }]]
-                                                    }
-                                                ]),
-                                                Optional_Node($.node, $p)
-                                            ])
-                                        ))
-                                        default: return _p.au($[0])
-                                    }
-                                })
-                            ),
-                            ($) => $
+                        return _p.list.from.dictionary(
+                            $.entries,
+                        ).flatten(
+                            ($, id) => _p.decide.state($, ($): d_out.Errors => {
+                                switch ($[0]) {
+                                    case 'unique': return _p.ss($, ($) => Optional_Node($, $p))
+                                    case 'multiple': return _p.ss($, ($) => _p.list.from.list(
+                                        $,
+                                    ).flatten(
+                                        ($) => _p.list.nested_literal_old<d_out.Errors.L>([
+                                            _p.list.literal([
+                                                {
+                                                    'range': convert_range($.id.range),
+                                                    'type': ['error', ['duplicate property', {
+                                                        name: id
+                                                    }]]
+                                                }
+                                            ]),
+                                            Optional_Node($.node, $p)
+                                        ])
+                                    ))
+                                    default: return _p.au($[0])
+                                }
+                            })
                         )
                     })
                     case 'invalid': return _p.ss($, ($) => _p.list.literal([
@@ -191,7 +188,11 @@ export const Node = (
             }))
             case 'list': return _p.ss($, ($) => _p.decide.state($['found value type'], ($) => {
                 switch ($[0]) {
-                    case 'valid': return _p.ss($, ($): d_out.Errors => _p.list.flatten($.elements, ($) => Node($, $p)))
+                    case 'valid': return _p.ss($, ($): d_out.Errors => _p.list.from.list(
+                        $.elements
+                    ).flatten(
+                        ($) => Node($, $p)
+                    ))
                     case 'invalid': return _p.ss($, ($) => _p.list.literal([
                         {
                             'range': convert_range($),

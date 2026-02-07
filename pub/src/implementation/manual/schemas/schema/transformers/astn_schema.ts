@@ -1,5 +1,5 @@
 import * as _pdev from 'pareto-core-dev'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
@@ -36,7 +36,7 @@ export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
         {
             'separator': "",
         },
-        () => _p_unreachable_code_path(),
+        () => _p_unreachable_code_path("the root dictionary keys are fixed; 't' and 'n'"),
     )),
 })
 

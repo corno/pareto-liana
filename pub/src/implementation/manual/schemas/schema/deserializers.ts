@@ -1,7 +1,7 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
-import * as _p_temp from 'pareto-core/dist/expression'
+import * as _p_temp from 'pareto-core/dist/assign'
 import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 
 //data types
@@ -27,8 +27,9 @@ type Element_And_Rest<T> = {
 
 export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<Element_And_Rest<T>> => {
     const arr = $
-    return _p.optional.map( 
+    return _p.optional.from.optional(
         $.__deprecated_get_possible_item_at(0),
+    ).map(
         ($) => ({
             'rest': _p_list_build_deprecated(($i) => {
                 let is_first = true
@@ -57,7 +58,7 @@ export const $x: _pi.Refiner_With_Parameter<d_schema.Module, d_deserialize_schem
     )
 
     const resolved_schema_schema = r_pareto_schema.Type_Specification(
-        _p_unreachable_code_path(),
+        _p_unreachable_code_path("this should not be used, this is just a placeholder until the real implementation is done"),
         // r_parse_tree_to_schema.Module_Specification(
         //     x.content,
         //     ($) => abort(['unmarshall error', $]),
@@ -89,7 +90,7 @@ export const $x: _pi.Refiner_With_Parameter<d_schema.Module, d_deserialize_schem
             () => _p_temp.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'schema': return _p_temp.ss($, ($) => $)
-                    case 'set': return _p_temp.ss($, ($) => _pdev.implement_me(`(FIXME: make this a reference) the selected tree is a set, not a schema`))
+                    case 'set': return _p_temp.ss($, ($) => _pdev.implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
                     default: return _p_temp.au($[0])
                 }
             })

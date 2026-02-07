@@ -1,5 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
@@ -103,7 +103,7 @@ export const Value = (
                                 default: return _p.au($[0])
                             }
                         }),
-                        sh.a.select(sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
+                        sh.a.select(sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -177,7 +177,7 @@ export const Value = (
                     ? sh.a.group.literal({
                         "l location": location,
                         "l list": sh.a.list.map(
-                            sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                            sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                             sh.a.group.literal({
                                 "l item": _p_change_context($, ($) => {
                                     const tn = Value(
@@ -261,7 +261,7 @@ export const Value = (
             }))
             case 'state': return _p.ss($, ($) => {
                 const tn = sh.a.decide.state(
-                    sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                    sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                     $.options.__d_map(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {

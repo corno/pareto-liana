@@ -1,5 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
@@ -87,7 +87,7 @@ export const Schema = (
             {
                 'separator': " ",
             },
-            () => _p_unreachable_code_path(),
+            () => _p_unreachable_code_path("the root keys are fixed; 'serialize' and 'external'"),
         ),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
@@ -142,7 +142,7 @@ export const Value = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.a.select(sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
+                sh.a.select(sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
@@ -206,7 +206,7 @@ export const Value = (
             return sh.a.state.literal(
                 "list",
                 sh.a.list.map(
-                    sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                    sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                     $.results.__decide(
                         ($) => sh.a.change_context(
                             sh.sv.context(["l item"]),
@@ -280,7 +280,7 @@ export const Value = (
         case 'state': return _p.ss($, ($) => sh.a.state.literal(
             "state",
             sh.a.decide.state(
-                sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                 $.options.__d_map(($, id) => sh.a.group.literal({
                     "option": sh.a.text.literal(id, 'identifier'),
                     "value": Value(

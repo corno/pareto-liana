@@ -70,26 +70,6 @@ export const $: g_.Module_Resolvers = resolvers(
                         "if false": r.component("Assign", {}, {}),
                         "if true": r.component("Assign", {}, {}),
                     })),
-                    "dictionary": option(r.state({
-                        "has entries": option(r.group({
-                            "if false": r.component("Assign", {}, {}),
-                            "if true": r.component("Assign", {}, {}),
-                        })),
-                    })),
-                    "list": option(r.state({
-                        "has first item": option(r.group({
-                            "if false": r.component("Assign", {}, {}),
-                            "if true": r.component("Assign", {}, {}),
-                        })),
-                        "has last item": option(r.group({
-                            "if false": r.component("Assign", {}, {}),
-                            "if true": r.component("Assign", {}, {}),
-                        })),
-                        "has items": option(r.group({
-                            "if false": r.component("Assign", {}, {}),
-                            "if true": r.component("Assign", {}, {}),
-                        })),
-                    })),
                     "optional": option(r.group({
                         "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
                         "if not set": r.component("Assign", {}, {}),

@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
@@ -9,8 +9,8 @@ import * as d_out from "../../../../../interface/to_be_generated/temp_unmashall_
 
 import * as t_ast_to_range from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
 
-export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.natural.amount_of_list_items($) !== 1
-    ? _p.optional.not_set()
+export const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.number.natural.from.list($).amount_of_items() !== 1
+    ? _p.optional.literal.not_set()
     // there is an element, so this statement will always return a 'set'
     : $.__deprecated_get_possible_item_at(0)
 
@@ -21,14 +21,16 @@ type ID_Value_Pair<T> = {
 
 const op_group = <T>(
     $: _pi.List<ID_Value_Pair<T>>,
-): _pi.Dictionary<_pi.List<T>> => _p.dictionary.group_list($, ($) => $.id).__d_map(($) => $.__l_map(($) => $.value))
+): _pi.Dictionary<_pi.List<T>> => _p.dictionary.from.list($).group(($) => $.id).__d_map(($) => $.__l_map(($) => $.value))
 
 export const Optional_Node = (
     $: _pi.Optional_Value<d_in.Value>,
     $p: {
         'definition': d_definition.Value,
     }
-): d_out.Optional_Node => _p.optional.map($,
+): d_out.Optional_Node => _p.optional.from.optional(
+    $,
+).map(
     ($) => Node($, $p),
 )
 
@@ -99,8 +101,9 @@ export const Node_Type = (
                                         }
                                     })).__d_map(($) => op_expect_exactly_one_element($).__decide(
                                         ($): d_out.Entry => ['unique', Optional_Node(
-                                            _p.optional.map(
+                                            _p.optional.from.optional(
                                                 $.value,
+                                            ).map(
                                                 ($) => $.value,
                                             ),
                                             {
@@ -109,8 +112,9 @@ export const Node_Type = (
                                         )],
                                         (): d_out.Entry => ['multiple', $.__l_map(($): d_out.Entry_Data => ({
                                             'node': Optional_Node(
-                                                _p.optional.map(
+                                                _p.optional.from.optional(
                                                     $.value,
+                                                ).map(
                                                     ($) => $.value,
                                                 ),
                                                 {
@@ -215,8 +219,8 @@ export const Node_Type = (
                                 //                     }
                                 //                 ), ($) => {
                                 //                     return $.supporting.__decide( //drop all the ones for which there is a definition
-                                //                         ($) => _p.optional.not_set(),
-                                //                         () => _p.optional.set($.context)
+                                //                         ($) => _p.optional.literal.not_set(),
+                                //                         () => _p.optional.literal.set($.context)
                                 //                     )
                                 //                 }
                                 //             ).__d_map(
@@ -382,8 +386,9 @@ export const Node_Type = (
                                                     const value = $.value
                                                     return ['set', {
                                                         'value': $,
-                                                        'found state definition': _p.optional.map(
+                                                        'found state definition': _p.optional.from.optional(
                                                             def.options.__get_possible_entry_deprecated($.option.value),
+                                                        ).map(
                                                             ($) => ({
                                                                 'definition': $,
                                                                 'node': Node(

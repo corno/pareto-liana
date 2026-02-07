@@ -1,5 +1,5 @@
 import * as _pdev from 'pareto-core-dev'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
@@ -12,7 +12,7 @@ import * as sh from "pareto/dist/shorthands/interface"
 import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
 const location = sh.t.component_imported(
-    ` location`,
+    " location",
     "Relative Location",
 )
 
@@ -32,10 +32,11 @@ export const Schema = (
     return sh.m.package_data(
         op_flatten_dictionary(
             _p.dictionary.literal({
-                " location": _p.dictionary.filter(
+                " location": _p.dictionary.from.dictionary(
                     _p.dictionary.literal({
-                        "": _p.optional.from_boolean(
+                        "": _p.optional.from.boolean(
                             add_location,
+                        ).convert(
                             sh.import_.external(
                                 "astn-core",
                                 [
@@ -50,6 +51,7 @@ export const Schema = (
                             )
                         )
                     }),
+                ).filter(
                     ($) => $
                 ),
                 " imports ": _p_change_context($, ($) => {
@@ -88,7 +90,7 @@ export const Schema = (
             {
                 'separator': "",
             },
-            () => _p_unreachable_code_path(),
+            () => _p_unreachable_code_path("the root keys are fixed; ' location' and ' imports'"),
         ),
         $.modules.__d_map(($) => sh.type.data(Value(
             $['root value'],
@@ -200,8 +202,9 @@ export const Value = (
                                 'base type': sh.t.list(_p.decide.optional(
                                     list.results,
                                     ($) => sh.t.group({
-                                        "l results": sh.t.group(_p.dictionary.map(
+                                        "l results": sh.t.group(_p.dictionary.from.dictionary(
                                             $,
+                                        ).map(
                                             ($) => Value_Reference($)
                                         )),
                                         "l item": Value(
@@ -250,40 +253,42 @@ export const Value = (
                                         "l location": location,
                                         "l reference": sh.t.text(),
                                     }))
-                                    case 'resolved': return _p.ss($, ($) => sh.t.group(_p.dictionary.filter(
-                                        _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
-                                            "l entry": _p.optional.set(_p_change_context($, ($) => {
-                                                return sh.t.reference(
-                                                    Module_Reference(referent['module']),
-                                                    _p.list.nested_literal_old([
-                                                        Value_Path(referent.path),
-                                                        [
-                                                            sh.sub.dictionary(),
-                                                        ]
-                                                    ]),
-                                                    _p.decide.state(selected.dependency, ($) => {
-                                                        switch ($[0]) {
+                                    case 'resolved': return _p.ss($, ($) => sh.t.group(
+                                        _p.dictionary.from.dictionary(
+                                            _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
+                                                "l entry": _p.optional.literal.set(_p_change_context($, ($) => {
+                                                    return sh.t.reference(
+                                                        Module_Reference(referent['module']),
+                                                        _p.list.nested_literal_old([
+                                                            Value_Path(referent.path),
+                                                            [
+                                                                sh.sub.dictionary(),
+                                                            ]
+                                                        ]),
+                                                        _p.decide.state(selected.dependency, ($) => {
+                                                            switch ($[0]) {
 
-                                                            case 'acyclic': return _p.ss($, ($) => 'acyclic')
-                                                            case 'cyclic': return _p.ss($, ($) => 'cyclic')
-                                                            case 'stack': return _p.ss($, ($) => 'acyclic')
-                                                            default: return _p.au($[0])
-                                                        }
-                                                    })
-                                                )
-                                            })),
-                                            "l id": _p.optional.set(sh.t.text()),
-                                            "l up steps": _p.decide.state(selected.dependency, ($) => {
-                                                switch ($[0]) {
-                                                    case 'acyclic': return _p.ss($, ($) => _p.optional.not_set())
-                                                    case 'cyclic': return _p.ss($, ($) => _p.optional.not_set())
-                                                    case 'stack': return _p.ss($, ($) => _p.optional.set(sh.t.natural()))
-                                                    default: return _p.au($[0])
-                                                }
-                                            })
-                                        }),
-                                        ($) => $,
-                                    )))
+                                                                case 'acyclic': return _p.ss($, ($) => 'acyclic')
+                                                                case 'cyclic': return _p.ss($, ($) => 'cyclic')
+                                                                case 'stack': return _p.ss($, ($) => 'acyclic')
+                                                                default: return _p.au($[0])
+                                                            }
+                                                        })
+                                                    )
+                                                })),
+                                                "l id": _p.optional.literal.set(sh.t.text()),
+                                                "l up steps": _p.decide.state(selected.dependency, ($) => {
+                                                    switch ($[0]) {
+                                                        case 'acyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                        case 'cyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                        case 'stack': return _p.ss($, ($) => _p.optional.literal.set(sh.t.natural()))
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })
+                                            }),
+                                        ).filter(
+                                            ($) => $,
+                                        )))
                                     case 'unresolved': return _p.ss($, ($) => sh.t.group({
                                         "l location": location,
                                         "l reference": sh.t.text(),
@@ -335,10 +340,13 @@ const Value_Results = (
     return _p.decide.optional(
         $,
         ($) => sh.t.group({
-            "l results": sh.t.group(_p.dictionary.map(
-                $,
-                ($) => Value_Reference($)
-            )),
+            "l results": sh.t.group(
+                _p.dictionary.from.dictionary(
+                    $,
+                ).map(
+                    ($) => Value_Reference($)
+                )
+            ),
             "l value": $p['base type'],
         }),
         () => $p['base type']

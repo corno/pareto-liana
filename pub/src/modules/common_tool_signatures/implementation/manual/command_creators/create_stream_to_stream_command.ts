@@ -46,9 +46,9 @@ export const $$ = (func: _pi.Refiner<string, d_fp.Phrase, string>): signatures.c
                             'message': sh.pg.sentences([
                                 _p.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'could not read instream': return _p.ss($, ($) => sh.ph.literal(`could not read instream`))
+                                        case 'could not read instream': return _p.ss($, ($) => sh.ph.literal("could not read instream"))
                                         case 'deserialization failed': return _p.ss($, ($) => $)
-                                        case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal(`could not write to stdout`))
+                                        case 'could not write to stdout': return _p.ss($, ($) => sh.ph.literal("could not write to stdout"))
                                         default: return _p.au($[0])
                                     }
                                 })

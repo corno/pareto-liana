@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _p_sl from 'pareto-core/dist/select_lookup'
 import _p_variables from 'pareto-core/dist/_p_variables'
@@ -30,7 +30,46 @@ const temp_assert = <Type, Error>(
     return callback()
 }
 
-export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p_variables(() => _p_change_context($, ($) => _p.dictionary.resolve(
+const temp_optional_map = <In, Out>(
+    $: _pi.Optional_Value<In>,
+    callback: ($: In) => Out,
+): _pi.Optional_Value<Out> => _p.optional.from.optional($).map(callback)
+
+const temp_resolve = <T, Resolved>(
+    $: _pi.Dictionary<T>,
+    handle_entry: (
+        $: T,
+        id: string,
+        acyclic_lookup: _pi.lookup.Acyclic<Resolved>,
+        cyclic_lookup: _pi.lookup.Cyclic<Resolved>,
+    ) => Resolved,
+): _pi.Dictionary<Resolved> => {
+    return _p.dictionary.from.dictionary($).resolve(handle_entry)
+}
+
+const temp_map_list_with_state = <T, Target_Item, State, Result_Type extends { [id: string]: any }>(
+    $: _pi.List<T>,
+    initial_state: State,
+    handle_item: (
+        value: T,
+        state: State
+    ) => Target_Item,
+    update_state: (
+        value: Target_Item,
+        state: State
+    ) => State,
+    wrapup: (
+        final_list: _pi.List<Target_Item>,
+        final_state: State
+    ) => Result_Type,
+): Result_Type => _p.group.from.list($).map_with_state(
+    initial_state,
+    handle_item,
+    update_state,
+    wrapup
+)
+
+export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p_variables(() => _p_change_context($, ($) => temp_resolve(
     $['l dictionary'],
     ($, id) => _p_change_context($, ($) => _p_change_context($, ($): t_out.Imports.D => {
         const p_schema_set_child: t_out.Imports.D.schema_set_child = _p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
@@ -159,7 +198,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => {
 
 export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort, $l, $p) => {
 
-    const p_parameters_values: t_out.Signature_Parameters.modules = _p.dictionary.resolve(
+    const p_parameters_values: t_out.Signature_Parameters.modules = temp_resolve(
         $.modules['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
 
@@ -170,7 +209,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                     'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': _p.optional.not_set(),
+                    'imports': _p.optional.literal.not_set(),
                 },
 
             )
@@ -183,7 +222,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
         },
     )
     const lookups_loc = $.lookups['l location']
-    const p_parameters_lookups: t_out.Signature_Parameters.lookups = _p.dictionary.resolve(
+    const p_parameters_lookups: t_out.Signature_Parameters.lookups = temp_resolve(
         $.lookups['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
             const p_referent = Module_Reference(
@@ -193,7 +232,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                     'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': _p.optional.not_set(),
+                    'imports': _p.optional.literal.not_set(),
                 },
 
             )
@@ -233,7 +272,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
     }
 }
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
-    const p_number_types: t_out.Globals.number_types = _p.dictionary.resolve(
+    const p_number_types: t_out.Globals.number_types = temp_resolve(
         $['number types']['l dictionary'],
         ($, id, $acyclic, $cyclic) => Number_Type(
             $['l entry'],
@@ -242,7 +281,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
             null,
         ),
     )
-    const p_text_types: t_out.Globals.text_types = _p.dictionary.resolve(
+    const p_text_types: t_out.Globals.text_types = temp_resolve(
         $['text types']['l dictionary'],
         ($, id, $acyclic, $cyclic) => Text_Type(
             $['l entry'],
@@ -343,7 +382,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                 null,
                 null,
             ))
-            const p_types: t_out.Modules = _p.dictionary.resolve(
+            const p_types: t_out.Modules = temp_resolve(
                 $.modules['l dictionary'],
                 ($, id, $acyclic, $cyclic) => {
                     const p_type = Value(
@@ -354,8 +393,8 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                             'possibly circular dependent sibling modules': $cyclic,
                         },
                         {
-                            'imports': _p.optional.set(p_imports),
-                            'globals': _p.optional.set(p_globals),
+                            'imports': _p.optional.literal.set(p_imports),
+                            'globals': _p.optional.literal.set(p_globals),
                         },
 
                     )
@@ -416,17 +455,17 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
 
                                     },
                                     {
-                                        'list cursor': _p.optional.not_set(),
-                                        'linked entry': _p.optional.not_set(),
-                                        'current dictionary': _p.optional.not_set(),
-                                        'current ordered dictionary': _p.optional.not_set(),
-                                        'option constraints': _p.optional.not_set(),
+                                        'list cursor': _p.optional.literal.not_set(),
+                                        'linked entry': _p.optional.literal.not_set(),
+                                        'current dictionary': _p.optional.literal.not_set(),
+                                        'current ordered dictionary': _p.optional.literal.not_set(),
+                                        'option constraints': _p.optional.literal.not_set(),
 
                                         'definition': p_linked_entry['l entry']['root value'],
                                         'signature': p_signature['l entry'],
 
                                         'modules': p_types,
-                                        'imports': _p.optional.set(p_imports),
+                                        'imports': _p.optional.literal.set(p_imports),
                                         'signatures': p_signatures.signatures
                                     },
                                 )
@@ -463,7 +502,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
     }
 }))
 
-export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p_variables(() => _p.dictionary.resolve(
+export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p_variables(() => temp_resolve(
     $['l dictionary'],
     ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => Schema_Tree(
         $['l entry'],
@@ -488,9 +527,9 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
 }
 
 export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => {
-    return _p.optional.map(
+    return temp_optional_map(
         $,
-        ($) => _p.dictionary.resolve(
+        ($) => temp_resolve(
             $['l dictionary'],
             ($) => Value_Reference(
                 $['l entry'],
@@ -507,9 +546,9 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l
 }
 
 export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => {
-    return _p.optional.map(
+    return temp_optional_map(
         $,
-        ($) => _p.dictionary.resolve(
+        ($) => temp_resolve(
             $['l dictionary'],
             ($) => Value_Reference(
                 $['l entry'],
@@ -629,7 +668,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     'value': p_type,
                 }]
             })
-            case 'group': return _p.ss($, ($) => ['group', _p.dictionary.resolve(
+            case 'group': return _p.ss($, ($) => ['group', temp_resolve(
                 $['l dictionary'],
                 ($, id, $acyclic, $cyclic) => ({
                     'description': $['l entry'].description,
@@ -748,7 +787,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 // }
             })
             case 'state': return _p.ss($, ($) => ['state', {
-                'options': _p.dictionary.resolve(
+                'options': temp_resolve(
                     $.options['l dictionary'],
                     ($, id, $acyclic, $cyclic) => ({
                         'constraints': Option_Constraints(
@@ -863,7 +902,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
 
 
 export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
-    const p_tail_x: t_out.Value_Path.tail = _p.group.map_list_with_state(
+    const p_tail_x: t_out.Value_Path.tail = temp_map_list_with_state(
         $.tail['l list'],
         $p.module['root value'],
         ($, current): t_out.Value_Path.tail.l_value.L => {
@@ -994,7 +1033,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
 }
 
 export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($, abort, $l, $p) => {
-    return _p_change_context($, ($) => _p.dictionary.resolve(
+    return _p_change_context($, ($) => temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_change_context($['l entry']['l state'], ($) => {
             switch ($[0]) {
@@ -1091,7 +1130,7 @@ export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => {
 }
 
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => {
-    return _p_change_context($, ($) => _p.dictionary.resolve(
+    return _p_change_context($, ($) => temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_variables(() => {
             const p_start: t_out.Value_Constraint_Resolver.start = _p_change_context($['l entry'].start['l state'], ($) => {
@@ -1217,7 +1256,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                     ($) => {
                         const x: t_out.Value_Resolver.component.arguments_.O = {
                             'lookups': $.lookups.__decide(
-                                ($) => _p.optional.set(_i_generic.resolve_dense_dictionary(
+                                ($) => _p.optional.literal.set(_i_generic.resolve_dense_dictionary(
                                     $['l dictionary'],
                                     $['l location'],
                                     abort,
@@ -1281,14 +1320,14 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                             _i_generic.abort.same_node_constraint("lookups", loc, abort)
                                         }
                                     }
-                                    return _p.optional.not_set()
+                                    return _p.optional.literal.not_set()
                                 }
                             ),
                             'modules': $.modules.__decide(
                                 ($) => {
                                     const values_location = $['l location']
 
-                                    return _p.optional.set(_i_generic.resolve_dense_dictionary(
+                                    return _p.optional.literal.set(_i_generic.resolve_dense_dictionary(
                                         $['l dictionary'],
                                         $['l location'],
                                         abort,
@@ -1432,11 +1471,11 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                                             )
                                         }
                                     }
-                                    return _p.optional.not_set()
+                                    return _p.optional.literal.not_set()
                                 }
                             ),
                         }
-                        return _p.optional.set(x)
+                        return _p.optional.literal.set(x)
                     },
                     () => {
                         {
@@ -1457,7 +1496,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                             }
                         }
 
-                        return _p.optional.not_set()
+                        return _p.optional.literal.not_set()
                     }
                 )
                 const p_constraints = Value_Constraint_Resolvers(
@@ -1487,7 +1526,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                     ? _i_generic.abort.state_constraint_found_expected("dictionary", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_benchmark = _p.optional.map(
+                const p_benchmark = temp_optional_map(
                     $.benchmark,
                     ($): t_out.Value_Resolver.dictionary.benchmark.O => {
                         const p_selection = Guaranteed_Value_Selection(
@@ -1524,12 +1563,12 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                         $l,
                         {
                             'linked entry': p_benchmark.__decide( //optional value result ('benchmark')
-                                ($) => _p.optional.set($),
+                                ($) => _p.optional.literal.set($),
                                 () => $p['linked entry']
                             ),
                             'definition': p_definition.value,
-                            'current dictionary': _p.optional.set(p_definition),
-                            'current ordered dictionary': _p.optional.set(p_definition),//FIXME: is it ordered
+                            'current dictionary': _p.optional.literal.set(p_definition),
+                            'current ordered dictionary': _p.optional.literal.set(p_definition),//FIXME: is it ordered
 
                             'modules': $p.modules,
                             'imports': $p.imports,
@@ -1597,7 +1636,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                 const p_definition = $p.definition[0] !== 'list'
                     ? _i_generic.abort.state_constraint_found_expected("list", $p.definition, loc, abort)
                     : $p.definition[1]
-                const p_result = _p.optional.map(
+                const p_result = temp_optional_map(
                     $.result,
                     ($) => Module_Reference(
                         $,
@@ -1617,7 +1656,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                     {
                         'definition': p_definition.value,
                         'list cursor': p_result.__decide( // optional value result ('result')
-                            ($) => _p.optional.set($),
+                            ($) => _p.optional.literal.set($),
                             () => $p['list cursor']
                         ), //setting the cursor
 
@@ -1669,7 +1708,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                     },
                     {
                         'definition': x,
-                        'option constraints': _p.optional.set(p_constraints),
+                        'option constraints': _p.optional.literal.set(p_constraints),
 
                         'modules': $p.modules,
                         'imports': $p.imports,
@@ -1771,7 +1810,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
                             },
                             {
                                 'definition': x2['l entry'].value,
-                                'option constraints': _p.optional.set(p_constraints),
+                                'option constraints': _p.optional.literal.set(p_constraints),
 
                                 'modules': $p.modules,
                                 'imports': $p.imports,
@@ -1881,7 +1920,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) =>
 
 export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p_variables(() => {
 
-    const p_path: t_out.Relative_Value_Selection.path = _p.group.map_list_with_state(
+    const p_path: t_out.Relative_Value_Selection.path = temp_map_list_with_state(
         $.path['l list'],
         $p.value,
         ($, current): t_out.Relative_Value_Selection.path.l_value.L => {

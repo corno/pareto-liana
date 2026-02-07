@@ -1,5 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
@@ -40,44 +40,36 @@ export const Schema: _pi.Transformer_With_Parameter<
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context', 'list from text'],
-        op_flatten_dictionary(
-            _p.dictionary.literal({
-                "": _p.dictionary.literal({
-                    "signatures": sh_i.import_.ancestor(
-                        $p.depth,
-                        "interface",
-                        _p.list.nested_literal_old([
-                            _p.list.literal([
-                                "generated",
-                                "liana",
-                                "schemas"
-                            ]),
-                            $p.path,
-                            _p.list.literal(["unmarshall"]),
-                        ]),
-                    ),
-                    "out": sh_i.import_.ancestor(
-                        $p.depth,
-                        "interface",
-                        _p.list.nested_literal_old([
-                            _p.list.literal([
-                                "generated",
-                                "liana",
-                                "schemas"
-                            ]),
-                            $p.path,
-                            $.complexity[0] === 'constrained'
-                                ? _p.list.literal(["data", "unresolved"])
-                                : _p.list.literal(["data"]),
-                        ]),
-                    ),
-                }),
-            }),
-            {
-                'separator': "",
-            },
-            () => _p_unreachable_code_path(),
-        ),
+        _p.dictionary.literal({
+            "signatures": sh_i.import_.ancestor(
+                $p.depth,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    _p.list.literal(["unmarshall"]),
+                ]),
+            ),
+            "out": sh_i.import_.ancestor(
+                $p.depth,
+                "interface",
+                _p.list.nested_literal_old([
+                    _p.list.literal([
+                        "generated",
+                        "liana",
+                        "schemas"
+                    ]),
+                    $p.path,
+                    $.complexity[0] === 'constrained'
+                        ? _p.list.literal(["data", "unresolved"])
+                        : _p.list.literal(["data"]),
+                ]),
+            ),
+        }),
         op_flatten_dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
@@ -138,7 +130,7 @@ export const Schema: _pi.Transformer_With_Parameter<
             {
                 'separator': "",
             },
-            () => _p_unreachable_code_path(),
+            () => _p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '"),
         ),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",

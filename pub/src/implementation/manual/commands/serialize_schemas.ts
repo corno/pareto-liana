@@ -1,6 +1,7 @@
 //core
 import * as _p from 'pareto-core/dist/command'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as _pdev from 'pareto-core-dev'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -15,7 +16,7 @@ import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/temp_string"
 import * as r_module_resolved_from_unresolved from "../../temp/resolvers/module/unresolved"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
-import * as t_module_to_fp from "../../generated/liana/schemas/module/resolved/transformers/fountain_pen"
+// import * as t_module_to_fp from "../../generated/liana/schemas/module/resolved/transformers/fountain_pen"
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/list_of_characters"
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/schemas/write_file/transformers/fountain_pen"
 import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/schemas/resolve/transformers/fountain_pen"
@@ -46,17 +47,18 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                             ($v) => [
                                 $cr['write file'].execute(
                                     {
-                                        'path': t_path_to_path.create_node_path(r_path_from_temp_string.Context_Path($['target path']), { 'node': `module.astn` }),
+                                        'path': t_path_to_path.create_node_path(r_path_from_temp_string.Context_Path($['target path']), { 'node': "module.astn" }),
                                         // 'data': _p_list_from_text(
                                         //     "IMPLEMENT SERIALIZATION HERE",
                                         //     ($) => $,
                                         // )
                                         'data': t_fp_to_loc.Paragraph(
-                                            t_module_to_fp.Module(
-                                                $v,
-                                            ),
+                                            // t_module_to_fp.Module(
+                                            //     $v,
+                                            // ),
+                                            _pdev.implement_me("need generated transformer for this"),
                                             {
-                                                'indentation': `    `,
+                                                'indentation': "    ",
                                                 'newline': '\n'
                                             }
                                         ),

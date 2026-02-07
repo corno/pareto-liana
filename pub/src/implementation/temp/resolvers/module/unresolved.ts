@@ -1,5 +1,5 @@
     
-    import * as _p from "pareto-core/dist/expression"
+    import * as _p from 'pareto-core/dist/assign'
     
     import _p_change_context from "pareto-core/dist/_p_change_context"
     
@@ -15,7 +15,7 @@
     
     import * as v_external_schema from "../schema/unresolved_manual"
     
-    export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.resolve(
+    export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.literal.resolve(
         () => {
             
             const prop_omit_$po_de$pc_serializer = _p_change_context(

@@ -35,83 +35,83 @@ export type Module = {
 
 export const $ = _p.dictionary.literal<Module>({
     "astn": {
-        'target path': `../astn`,
+        'target path': "../astn",
         'module': m_astn,
     },
     "astn-core": {
-        'target path': `../astn-core`,
+        'target path': "../astn-core",
         'module': m_astn_core,
     },
     "pareto": {
-        'target path': `../pareto`,
+        'target path': "../pareto",
         'module': m_pareto,
     },
     "pareto-boekhouding": {
-        'target path': `../pareto-boekhouding`,
+        'target path': "../pareto-boekhouding",
         'module': m_pareto_boekhouding,
     },
     "pareto-development-tools": {
-        'target path': `../pareto-development-tools`,
+        'target path': "../pareto-development-tools",
         'module': m_pareto_development_tools,
     },
     "pareto-fountain-pen": {
-        'target path': `../pareto-fountain-pen`,
+        'target path': "../pareto-fountain-pen",
         'module': m_pareto_fountain_pen,
     },
     "pareto-graphviz": {
-        'target path': `../pareto-graphviz`,
+        'target path': "../pareto-graphviz",
         'module': m_pareto_graphviz,
     },
     "pareto-json": {
-        'target path': `../pareto-json`,
+        'target path': "../pareto-json",
         'module': m_pareto_json,
     },
     "pareto-liana": {
-        'target path': `../pareto-liana`,
+        'target path': "../pareto-liana",
         'module': m_pareto_liana,
     },
     "pareto-lionweb": {
-        'target path': `../pareto-lionweb`,
+        'target path': "../pareto-lionweb",
         'module': m_pareto_lionweb,
     },
     "pareto-resources": {
-        'target path': `../pareto-resources`,
+        'target path': "../pareto-resources",
         'module': m_pareto_resources,
     },
     "pareto-static-html": {
-        'target path': `../pareto-static-html`,
+        'target path': "../pareto-static-html",
         'module': m_pareto_static_html,
     },
     "pareto-targets": {
-        'target path': `../pareto-targets`,
+        'target path': "../pareto-targets",
         'module': m_pareto_targets,
     },
     // "pareto-test": {
-    //     'target path': `../pareto-test`,
+    //     'target path': "../pareto-test",
     //     'module': m_pareto_test,
     // },
     "pareto-vscode-backend": {
-        'target path': `../pareto-vscode-backend`,
+        'target path': "../pareto-vscode-backend",
         'module': m_pareto_vscode_backend,
     },
     // "accounting_ruwe_data": {
-    //     'target path': `../../../pareto-rosetta/accounting_ruwe_data`,
+    //     'target path': "../../../pareto-rosetta/accounting_ruwe_data",
     //     'module': m_accounting_ruwe_data,
     // },
     // "antlr": {
-    //     'target path': `../../../pareto-rosetta/antlr`,
+    //     'target path': "../../../pareto-rosetta/antlr",
     //     'module': m_antlr,
     // },
     // "astn-to-xml": {
-    //     'target path': `../astn-to-xml`,
+    //     'target path': "../astn-to-xml",
     //     'module': m_astn_to_xml,
     // },
     // "json-to-astn": {
-    //     'target path': `../../../pareto-rosetta/json-to-astn`,
+    //     'target path': "../../../pareto-rosetta/json-to-astn",
     //     'module': m_json_to_astn,
     // },
     // "git": {
-    //     'target path': `../git`,
+    //     'target path': "../git",
     //     'module': m_git,
     // },
 })

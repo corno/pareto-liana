@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import * as _pi from 'pareto-core/dist/interface'
 
@@ -64,7 +64,6 @@ export const Error_Type_Error = (
                 sh.ph.nothing(),
 
             )
-                //  ${s_list_of_separated_texts($.expected.__l_map(($) => `'${$[0]}'`), { 'separator': ` or ` })}.`)
         ]))
         case 'missing property': return _p.ss($, ($) => sh.ph.literal("Missing property '${$.name}'"))
         case 'superfluous property': return _p.ss($, ($) => sh.ph.literal("Superfluous property '${$.name}'"))
@@ -78,8 +77,9 @@ export const Error_Type_Error = (
                 case 'unknown state': return _p.ss($, ($) => sh.ph.composed([
                     sh.ph.literal("Unknown state: ${$.found}, expected one of "),
                     sh.ph.composed(
-                        _p.list.from_dictionary(
+                        _p.list.from.dictionary(
                             $.expected,
+                        ).convert(
                             ($, id) => sh.ph.literal("'${id}'")
                         )
                     )

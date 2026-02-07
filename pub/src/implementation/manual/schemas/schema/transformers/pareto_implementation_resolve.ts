@@ -1,5 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
@@ -60,11 +60,16 @@ const op_pad_dictionary_identifiers = <T>(
         'prefix': string,
         'suffix': string
     }
-): _pi.Dictionary<T> => _p.dictionary.from_list(
-    _p.list.from_dictionary($, ($, id) => ({ 'id': id, value: $ })),
+): _pi.Dictionary<T> => _p.dictionary.from.list(
+    _p.list.from.dictionary(
+        $,
+    ).convert(
+        ($, id) => ({ 'id': id, value: $ })
+    ),
+).convert(
     ($) => $p.prefix + $.id + $p.suffix,
     ($) => $.value,
-    () => _p_unreachable_code_path() // no possibility of duplicate id's
+    () => _p_unreachable_code_path("the padding is fixed") // no possibility of duplicate id's
 )
 
 export const Module_Resolvers = (
@@ -116,7 +121,7 @@ export const Module_Resolvers = (
             {
                 'separator': "",
             },
-            () => _p_unreachable_code_path(),
+            () => _p_unreachable_code_path("there is only one root key, 'external '"),
         ),
         $.__d_map(($, id) => sh.algorithm(
             "signatures",
@@ -177,8 +182,9 @@ export const Guaranteed_Value_Selection = (
     },
 ): d_out.Select_Value => {
     const tail = (): _pi.List<d_out.Select_Value.regular.tail.L> => _p.list.nested_literal_old([
-        _p.list.flatten(
+        _p.list.from.list(
             $.tail.path['l value'],
+        ).flatten(
             ($) => _p.decide.state($['l item'], ($): _pi.List<d_out.Select_Value.regular.tail.L> => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => _p.list.literal([]))
@@ -262,8 +268,9 @@ export const Option_Constraint_Resolvers = (
 ): d_out.Assign => _p.decide.dictionary.has_entries(
     $,
     ($) => sh.a.variables(
-        _p.dictionary.map(
+        _p.dictionary.from.dictionary(
             temp_prepend($, "constraint "),
+        ).map(
             ($, id) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'state': return _p.ss($, ($) => sh.a.decide.state_single(
@@ -353,7 +360,7 @@ export const Value_Resolver = (
                                     default: return _p.au($[0])
                                 }
                             }),
-                            sh.a.select(sh.sv.context(_p.boolean.optional_is_set($.definition.results) ? [] : [])),
+                            sh.a.select(sh.sv.context(_p.boolean.from.optional($.definition.results).is_set() ? [] : [])),
                             sh.a.select(sh.sv.context([])),
                             $.arguments.__decide(
                                 ($) => $.lookups.__decide(
@@ -708,8 +715,9 @@ export const Value_Results = (
     return _p.decide.optional(
         $,
         ($) => sh.a.group.literal({
-            "l results": sh.a.group.literal(_p.dictionary.map(
+            "l results": sh.a.group.literal(_p.dictionary.from.dictionary(
                 $,
+            ).map(
                 (): d_out.Assign => sh.a.implement_me("IM: result")
             )),
             "l value": $p['base type'],

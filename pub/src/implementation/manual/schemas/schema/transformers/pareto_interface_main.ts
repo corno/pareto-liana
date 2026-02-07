@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -32,9 +32,9 @@ export const Schema = (
             default: return _p.au($[0])
         }
     })
-    return m.set(_p.dictionary.filter(
+    return m.set(_p.dictionary.from.dictionary(
         _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
-            "data": _p.optional.set(constrained
+            "data": _p.optional.literal.set(constrained
                 ? m.set(_p.dictionary.literal({
                     "resolved": t_types.Schema(
                         schema,
@@ -65,21 +65,22 @@ export const Schema = (
 
             "resolve": _p.decide.state($.complexity, ($) => {
                 switch ($[0]) {
-                    case 'constrained': return _p.ss($, ($) => _p.optional.set(t_resolve.Signatures(
+                    case 'constrained': return _p.ss($, ($) => _p.optional.literal.set(t_resolve.Signatures(
                         $.signatures.signatures
                     )))
-                    case 'unconstrained': return _p.ss($, ($) => _p.optional.not_set())
+                    case 'unconstrained': return _p.ss($, ($) => _p.optional.literal.not_set())
                     default: return _p.au($[0])
                 }
             }),
-            "boilerplate for migrate": _p.optional.set(t_migrate_boilerplate.Schema(
+            "boilerplate for migrate": _p.optional.literal.set(t_migrate_boilerplate.Schema(
                 schema,
                 {
                     'constrained': constrained
                 }
             )),
-            "unmarshall": _p.optional.from_boolean(
+            "unmarshall": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
+            ).convert(
                 t_unmarshall.Schema(
                     schema,
                     {
@@ -87,8 +88,9 @@ export const Schema = (
                     }
                 )
             ),
-            "marshall": _p.optional.from_boolean(
+            "marshall": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
+            ).convert(
                 t_marshall.Schema(
                     schema,
                     {
@@ -96,8 +98,9 @@ export const Schema = (
                     }
                 )
             ),
-            "serialize": _p.optional.from_boolean(
+            "serialize": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
+            ).convert(
                 t_serialize.Schema(
                     schema,
                     {
@@ -105,8 +108,9 @@ export const Schema = (
                     }
                 ),
             ),
-            "deserialize": _p.optional.from_boolean(
+            "deserialize": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
+            ).convert(
                 t_deserialize.Schema(
                     schema,
                     {
@@ -128,6 +132,7 @@ export const Schema = (
 
 
         }),
+    ).filter(
         ($) => $
     ))
 }

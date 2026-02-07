@@ -1,5 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pdev from 'pareto-core-dev'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
@@ -37,31 +37,22 @@ export const Schema = (
                 ])
             ),
         }),
-        op_flatten_dictionary(
-            _p.dictionary.literal({
-                "": _p.dictionary.literal({
-                    "deserialize": sh_i.import_.external(
-                        "astn-core",
-                        [
-                            "dist",
-                            "implementation",
-                            "manual",
-                            "schemas",
-                            "parse tree",
-                            "refiners",
-                            "list of characters",
-                        ],
-                    ),
-                    "unmarshall": sh_i.import_.sibling("astn parse tree", _p.list.nested_literal_old([
-                    ])),
-                }),
-                // "r ": $.imports.__d_map(($, id) => sh_i.import_.ancestor(1, $['schema set child']['l id'], ["deserialize"]))
-            }),
-            {
-                'separator': "",
-            },
-            () => _p_unreachable_code_path(),
-        ),
+        _p.dictionary.literal({
+            "deserialize": sh_i.import_.external(
+                "astn-core",
+                [
+                    "dist",
+                    "implementation",
+                    "manual",
+                    "schemas",
+                    "parse tree",
+                    "refiners",
+                    "list of characters",
+                ],
+            ),
+            "unmarshall": sh_i.import_.sibling("astn parse tree", _p.list.nested_literal_old([
+            ])),
+        }),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,

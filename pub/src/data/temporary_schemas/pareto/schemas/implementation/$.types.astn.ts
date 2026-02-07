@@ -80,26 +80,6 @@ export const $: g_.Modules = modules(
                         "if false": prop(t.component("Assign")),
                         "if true": prop(t.component("Assign")),
                     })),
-                    "dictionary": toption(t.state({
-                        "has entries": toption(t.group({
-                            "if true": prop(t.component("Assign")),
-                            "if false": prop(t.component("Assign")),
-                        }))
-                    })),
-                    "list": toption(t.state({
-                        "has first item": toption(t.group({
-                            "if true": prop(t.component("Assign")),
-                            "if false": prop(t.component("Assign")),
-                        })),
-                        "has last item": toption(t.group({
-                            "if true": prop(t.component("Assign")),
-                            "if false": prop(t.component("Assign")),
-                        })),
-                        "has items": toption(t.group({
-                            "if true": prop(t.component("Assign")),
-                            "if false": prop(t.component("Assign")),
-                        }))
-                    })),
                     "optional": toption(t.group({
                         "temp resulting node": prop(t.optional(t.component("Temp Value Type Specification"))),
                         "if not set": prop(t.component("Assign")),

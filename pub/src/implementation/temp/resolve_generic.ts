@@ -1,4 +1,4 @@
-import * as _p from 'pareto-core/dist/expression'
+import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 import * as _p_temp from 'pareto-core/dist/select_lookup'
@@ -40,13 +40,14 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
     const xx = _p.decide.dictionary.has_entries(
-        _p.dictionary.filter(
+        _p.dictionary.from.dictionary(
             benchmark,
+        ).filter(
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(
-                () => _p.optional.not_set<null>(),
-                () => _p.optional.set(null),
+                () => _p.optional.literal.not_set<null>(),
+                () => _p.optional.literal.set(null),
             )
         ),
         ($) => abort({
@@ -55,8 +56,9 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
         }),
         () => null
     )
-    return _p.dictionary.resolve(
+    return _p.dictionary.from.dictionary(
         $,
+    ).resolve(
         handle_entry
     )
 }
@@ -152,7 +154,7 @@ export const get_entry_cyclic = <T>(
         'l entry': lookup.get_entry(
             reference['l reference'],
             {
-                accessing_cyclic_before_resolved: () => _p_unreachable_code_path(),
+                accessing_cyclic_before_resolved: () => _p_unreachable_code_path("this should not happen, this means there is a bug in the implementation of the cyclic lookup, it should not allow access to cyclic entries before they are resolved"),
                 no_such_entry: () => abort({
                     'type': ['lookup', ['no such entry', reference['l reference']]],
                     'location': reference['l location'],
