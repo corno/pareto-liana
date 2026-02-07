@@ -31,12 +31,12 @@ export const $: g_.Modules = modules(
             "nothing": toption(t.nothing()),
             "rich list": toption(t.group({
                 "items": prop(t.list(t.component("Sentence"))),
-                "if empty": prop(t.component("Sentence")),
+                "if empty": prop(t.optional(t.component("Sentence"))),
                 "if not empty": prop(t.group({
+                    "before": prop(t.optional(t.component("Sentence"))),
                     "indent": prop(t.boolean()),
-                    "before": prop(t.component("Phrase")),
-                    "separator": prop(t.component("Phrase")),
-                    "after": prop(t.component("Phrase")),
+                    "separator": prop(t.optional(t.component("Phrase"))),
+                    "after": prop(t.optional(t.component("Sentence"))),
                 })),
             }))
         })),
@@ -44,7 +44,10 @@ export const $: g_.Modules = modules(
         "Sentence": module_(t.list(t.component("Phrase"))),
 
         "Phrase": module_(t.state({
-            "single line": toption(t.component("Single Line")),
+            "value": toption(t.state({
+                "text": toption(t.text_global("Output")),
+                "list of characters": toption(t.component("List of Characters")),
+            })),
             "indent": toption(t.component("Paragraph")),
             "composed": toption(t.list(t.component("Phrase"))),
             "optional": toption(t.optional(t.component("Phrase"))),
@@ -59,20 +62,6 @@ export const $: g_.Modules = modules(
                 })),
             })),
         })),
-
-        "Single Line": module_(t.list(t.state({
-            "snippet": toption(t.text_global("Output")),
-            "serialize": toption(t.component("List of Characters")),
-            "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Single Line"))),
-                "if empty": prop(t.component("Single Line")),
-                "if not empty": prop(t.group({
-                    "before": prop(t.component("Single Line")),
-                    "separator": prop(t.component("Single Line")),
-                    "after": prop(t.component("Single Line")),
-                })),
-            })),
-        }))),
 
         "List of Characters": module_(t.list(t.number_local(n.natural(null)))),
     }
