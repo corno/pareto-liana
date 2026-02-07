@@ -40,7 +40,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "import": r.text(),
                     "type": r.text(),
                 }),
-                "expression": r.component("Expression", {}, {}),
+                "expression": r.component("Assign", {}, {}),
                 "temp has abort": r.boolean(),
                 "temp has lookups": r.boolean(),
                 "temp has parameters": r.boolean(),
@@ -61,69 +61,62 @@ export const $: g_.Module_Resolvers = resolvers(
             })),
         })),
 
-        "Expression": resolver(r.state({
+        "Assign": resolver(r.state({
             "decide": option(r.group({
+                "source": r.component("Select Value", {}, {}),
                 "type": r.state({
                     "boolean": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "if false": r.component("Expression", {}, {}),
-                        "if true": r.component("Expression", {}, {}),
+                        "if false": r.component("Assign", {}, {}),
+                        "if true": r.component("Assign", {}, {}),
                     })),
                     "dictionary": option(r.state({
                         "has entries": option(r.group({
-                            "dictionary": r.component("Value Selection", {}, {}),
-                            "if false": r.component("Expression", {}, {}),
-                            "if true": r.component("Expression", {}, {}),
+                            "if false": r.component("Assign", {}, {}),
+                            "if true": r.component("Assign", {}, {}),
                         })),
                     })),
                     "list": option(r.state({
                         "has first item": option(r.group({
-                            "list": r.component("Value Selection", {}, {}),
-                            "if false": r.component("Expression", {}, {}),
-                            "if true": r.component("Expression", {}, {}),
+                            "if false": r.component("Assign", {}, {}),
+                            "if true": r.component("Assign", {}, {}),
                         })),
                         "has last item": option(r.group({
-                            "list": r.component("Value Selection", {}, {}),
-                            "if false": r.component("Expression", {}, {}),
-                            "if true": r.component("Expression", {}, {}),
+                            "if false": r.component("Assign", {}, {}),
+                            "if true": r.component("Assign", {}, {}),
                         })),
                         "has items": option(r.group({
-                            "list": r.component("Value Selection", {}, {}),
-                            "if false": r.component("Expression", {}, {}),
-                            "if true": r.component("Expression", {}, {}),
+                            "if false": r.component("Assign", {}, {}),
+                            "if true": r.component("Assign", {}, {}),
                         })),
                     })),
                     "optional": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "if not set": r.component("Expression", {}, {}),
-                        "if set": r.component("Expression", {}, {}),
+                        "if not set": r.component("Assign", {}, {}),
+                        "if set": r.component("Assign", {}, {}),
                     })),
                     "state": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
                         "type": r.state({
                             "partial": option(r.group({
-                                "options": r.dictionary(r.component("Expression", {}, {})),
-                                "default": r.component("Expression", {}, {}),
+                                "options": r.dictionary(r.component("Assign", {}, {})),
+                                "default": r.component("Assign", {}, {}),
                             })),
                             "full": option(r.group({
-                                "options": r.dictionary(r.component("Expression", {}, {})),
+                                "options": r.dictionary(r.component("Assign", {}, {})),
                             })),
                             "single": option(r.group({
                                 "option": r.text(),
-                                "if true": r.component("Expression", {}, {}),
-                                "if false": r.component("Expression", {}, {}),
+                                "if true": r.component("Assign", {}, {}),
+                                "if false": r.component("Assign", {}, {}),
                             })),
 
                         }),
                     })),
                     "text": option(r.group({
-                        "source": r.component("Value Selection", {}, {}),
                         "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "cases": r.dictionary(r.component("Expression", {}, {})),
-                        "default": r.component("Expression", {}, {}),
+                        "cases": r.dictionary(r.component("Assign", {}, {})),
+                        "default": r.component("Assign", {}, {}),
                     })),
                 }),
             })),
@@ -133,44 +126,44 @@ export const $: g_.Module_Resolvers = resolvers(
                         "false": option(r.nothing()),
                         "true": option(r.nothing()),
                     })),
-                    "source": option(r.group({
-                        "selection": r.component("Value Selection", {}, {}),
+                    "from": option(r.group({
+                        "selection": r.component("Select Value", {}, {}),
                         "type": r.state({
                             "boolean": option(r.state({
                                 "not": option(r.nothing()),
                                 "copy": option(r.nothing()),
                             })),
                             "dictionary": option(r.state({
-                                "is empty": option(r.component("Value Selection", {}, {})),
+                                "is empty": option(r.nothing()),
                             })),
                             "list": option(r.state({
-                                "is empty": option(r.component("Value Selection", {}, {})),
+                                "is empty": option(r.nothing()),
                             })),
                         }),
                     })),
                 })),
                 "dictionary": option(r.state({
-                    "literal": option(r.dictionary(r.component("Expression", {}, {}))),
-                    "source": option(r.group({
-                        "selection": r.component("Value Selection", {}, {}),
+                    "literal": option(r.dictionary(r.component("Assign", {}, {}))),
+                    "from": option(r.group({
+                        "selection": r.component("Select Value", {}, {}),
                         "type": r.state({
                             "dictionary": option(r.state({
                                 "filter": option(r.group({
-                                    "assign entry": r.component("Expression", {}, {})
+                                    "assign entry": r.component("Assign", {}, {})
                                 })),
                                 "map": option(r.group({
-                                    "assign entry": r.component("Expression", {}, {})
+                                    "assign entry": r.component("Assign", {}, {})
                                 })),
                                 "resolve": option(r.group({
-                                    "assign entry": r.component("Expression", {}, {}),
+                                    "assign entry": r.component("Assign", {}, {}),
                                     "temp resulting entry node": r.component("Temp Value Type Specification", {}, {}),
                                 })),
                             })),
                             "list": option(r.state({
                                 "convert": option(r.group({
-                                    "assign id": r.component("Expression", {}, {}),
-                                    "assign entry": r.component("Expression", {}, {}),
-                                    "abort": r.component("Expression", {}, {}),
+                                    "assign id": r.component("Assign", {}, {}),
+                                    "assign entry": r.component("Assign", {}, {}),
+                                    "abort": r.component("Assign", {}, {}),
                                 })),
                             })),
                         }),
@@ -178,38 +171,36 @@ export const $: g_.Module_Resolvers = resolvers(
                 })),
                 "group": option(r.state({
                     "literal": option(r.group({
-                        "properties": r.dictionary(r.component("Expression", {}, {})),
+                        "properties": r.dictionary(r.component("Assign", {}, {})),
                         "have dependencies": r.boolean(),
                     })),
                 })),
                 "list": option(r.state({
-                    "literal": option(r.list(r.component("Expression", {}, {}))),
-                    "source": option(r.group({
-                        "selection": r.component("Value Selection", {}, {}),
+                    "literal": option(r.list(r.component("Assign", {}, {}))),
+                    "from": option(r.group({
+                        "selection": r.component("Select Value", {}, {}),
                         "type": r.state({
                             "dictionary": option(r.state({
                                 "convert": option(r.group({
-                                    "assign entry": r.component("Expression", {}, {}),
+                                    "assign entry": r.component("Assign", {}, {}),
                                 })),
-                            })),
-                            "group": option(r.state({
                             })),
                             "list": option(r.state({
                                 "filter": option(r.group({
-                                    "assign item": r.component("Expression", {}, {})
+                                    "assign item": r.component("Assign", {}, {})
                                 })),
                                 "map": option(r.group({
-                                    "assign item": r.component("Expression", {}, {})
+                                    "assign item": r.component("Assign", {}, {})
                                 })),
                                 "map with state": option(r.group({
-                                    "initialize state": r.component("Expression", {}, {}),
-                                    "assign item": r.component("Expression", {}, {}),
-                                    "update state": r.component("Expression", {}, {}),
-                                    "wrap up": r.component("Expression", {}, {}),
+                                    "initialize state": r.component("Assign", {}, {}),
+                                    "assign item": r.component("Assign", {}, {}),
+                                    "update state": r.component("Assign", {}, {}),
+                                    "wrap up": r.component("Assign", {}, {}),
                                 })),
                                 "reduce": option(r.group({
-                                    "initialize state": r.component("Expression", {}, {}),
-                                    "assign item": r.component("Expression", {}, {}),
+                                    "initialize state": r.component("Assign", {}, {}),
+                                    "assign item": r.component("Assign", {}, {}),
                                 })),
                                 "reverse": option(r.nothing()),
                             })),
@@ -219,26 +210,26 @@ export const $: g_.Module_Resolvers = resolvers(
                 "nothing": option(r.nothing()),
                 "number": option(r.state({
                     "approximation": option(r.state({
-                        "copy": option(r.component("Value Selection", {}, {})),
+                        "copy": option(r.component("Select Value", {}, {})),
                         "literal": option(r.number()),
                     })),
                     "integer": option(r.state({
-                        "copy": option(r.component("Value Selection", {}, {})),
+                        "copy": option(r.component("Select Value", {}, {})),
                         "divide": option(r.group({
-                            "assign dividend": r.component("Value Selection", {}, {}),
-                            "assign divisor": r.component("Value Selection", {}, {}),
-                            "abort": r.component("Expression", {}, {})
+                            "assign dividend": r.component("Select Value", {}, {}),
+                            "assign divisor": r.component("Select Value", {}, {}),
+                            "abort": r.component("Assign", {}, {})
                         })),
                         "literal": option(r.number()),
                     })),
                     "natural": option(r.state({
-                        "copy": option(r.component("Value Selection", {}, {})),
+                        "copy": option(r.component("Select Value", {}, {})),
                         "literal": option(r.number()),
                         "number of dictionary entries": option(r.group({
-                            "dictionary": r.component("Value Selection", {}, {})
+                            "dictionary": r.component("Select Value", {}, {})
                         })),
                         "number of list items": option(r.group({
-                            "list": r.component("Value Selection", {}, {})
+                            "list": r.component("Select Value", {}, {})
                         })),
                         "source column": option(r.nothing()),
                         "source line": option(r.nothing()),
@@ -247,19 +238,19 @@ export const $: g_.Module_Resolvers = resolvers(
                 "optional": option(r.state({
                     "literal": option(r.state({
                         "not set": option(r.nothing()),
-                        "set": option(r.component("Expression", {}, {})),
+                        "set": option(r.component("Assign", {}, {})),
                     })),
-                    "source": option(r.group({
-                        "selection": r.component("Value Selection", {}, {}),
+                    "from": option(r.group({
+                        "selection": r.component("Select Value", {}, {}),
                         "type": r.state({
                             "boolean": option(r.state({
                                 "convert": option(r.group({
-                                    "assign set": r.component("Expression", {}, {}),
+                                    "assign set": r.component("Assign", {}, {}),
                                 })),
                             })),
                             "optional": option(r.state({
                                 "map": option(r.group({
-                                    "assign set": r.component("Expression", {}, {})
+                                    "assign set": r.component("Assign", {}, {})
                                 })),
                             })),
                         }),
@@ -268,7 +259,7 @@ export const $: g_.Module_Resolvers = resolvers(
                 "state": option(r.state({
                     "literal": option(r.group({
                         "option": r.text(),
-                        "assign option": r.component("Expression", {}, {}),
+                        "assign option": r.component("Assign", {}, {}),
                     })),
                 })),
                 "text": option(r.state({
@@ -279,8 +270,8 @@ export const $: g_.Module_Resolvers = resolvers(
                         }),
                         "value": r.text(),
                     })),
-                    "source": option(r.group({
-                        "selection": r.component("Value Selection", {}, {}),
+                    "from": option(r.group({
+                        "selection": r.component("Select Value", {}, {}),
                         "type": r.state({
                             "text": option(r.state({
                                 "copy": option(r.nothing()),
@@ -290,25 +281,25 @@ export const $: g_.Module_Resolvers = resolvers(
                     "source document": option(r.nothing()),
                 })),
             })),
-            "select": option(r.component("Value Selection", {}, {})),
+            "select": option(r.component("Select Value", {}, {})),
             "special": option(r.state({
-                "abort": option(r.component("Expression", {}, {})),
+                "abort": option(r.component("Assign", {}, {})),
                 "assert": option(r.group({
-                    "tester": r.component("Expression", {}, {}),
-                    "normal flow": r.component("Expression", {}, {}),
+                    "tester": r.component("Assign", {}, {}),
+                    "normal flow": r.component("Assign", {}, {}),
                 })),
                 "change context": option(r.group({
-                    "new context": r.component("Value Selection", {}, {}),
-                    "expression": r.component("Expression", {}, {}),
+                    "new context": r.component("Select Value", {}, {}),
+                    "expression": r.component("Assign", {}, {}),
                 })),
                 "variables": option(r.group({
-                    "variables": r.dictionary(r.component("Expression", {}, {})),
-                    "assign": r.component("Expression", {}, {}),
+                    "variables": r.dictionary(r.component("Assign", {}, {})),
+                    "assign": r.component("Assign", {}, {}),
                 })),
                 "implement me": option(r.text()),
                 "iterate": option(r.group({
-                    "list": r.component("Value Selection", {}, {}),
-                    "assign": r.component("Expression", {}, {}),
+                    "list": r.component("Select Value", {}, {}),
+                    "assign": r.component("Assign", {}, {}),
                 })),
                 "unreachable": option(r.group({
                     "explanation": r.text(),
@@ -316,7 +307,7 @@ export const $: g_.Module_Resolvers = resolvers(
             })),
         })),
 
-        "Value Selection": resolver(r.state({
+        "Select Value": resolver(r.state({
             "implement me": option(r.text()),
             "regular": option(r.group({
                 "start": r.state({
@@ -328,43 +319,43 @@ export const $: g_.Module_Resolvers = resolvers(
                                 "variable": r.text(),
                             })),
                         }),
-                        "context": r.component("Expression", {}, {}),
-                        "abort": r.optional(r.component("Expression", {}, {})),
+                        "context": r.component("Assign", {}, {}),
+                        "abort": r.optional(r.component("Assign", {}, {})),
                         "lookups": r.optional(r.state({
-                            "initialize": option(r.dictionary(r.component("Lookup Selection", {}, {}))),
+                            "initialize": option(r.dictionary(r.component("Select Lookup", {}, {}))),
                             "pass through": option(r.nothing()),
                         })),
                         "arguments": r.optional(r.state({
-                            "initialize": option(r.dictionary(r.component("Expression", {}, {}))),
+                            "initialize": option(r.dictionary(r.component("Assign", {}, {}))),
                             "pass through": option(r.nothing()),
                         })),
                     })),
                     "context": option(r.nothing()),
                     "dictionary entry": option(r.group({
-                        "dictionary": r.component("Value Selection", {}, {}),
-                        "id": r.component("Expression", {}, {}),
-                        "abort handler": r.component("Expression", {}, {}),
+                        "dictionary": r.component("Select Value", {}, {}),
+                        "id": r.component("Assign", {}, {}),
+                        "abort handler": r.component("Assign", {}, {}),
                     })),
                     "list from text": option(r.group({
-                        "source": r.component("Expression", {}, {}),
-                        "assign item": r.component("Expression", {}, {}),
+                        "source": r.component("Select Value", {}, {}),
+                        "assign item": r.component("Assign", {}, {}),
                     })),
                     "lookup entry": option(r.group({
-                        "lookup": r.component("Lookup Selection", {}, {}),
-                        "id": r.component("Expression", {}, {}),
+                        "lookup": r.component("Select Lookup", {}, {}),
+                        "id": r.component("Assign", {}, {}),
                         "abort handlers": r.group({
-                            "no such entry": r.component("Expression", {}, {}),
-                            "no context lookup": r.component("Expression", {}, {}),
-                            "cycle detected": r.component("Expression", {}, {}),
+                            "no such entry": r.component("Assign", {}, {}),
+                            "no context lookup": r.component("Assign", {}, {}),
+                            "cycle detected": r.component("Assign", {}, {}),
                         }),
                     })),
                     "lookup entry depth": option(r.group({
-                        "lookup": r.component("Lookup Selection", {}, {}),
-                        "id": r.component("Expression", {}, {}),
+                        "lookup": r.component("Select Lookup", {}, {}),
+                        "id": r.component("Assign", {}, {}),
                         "abort handlers": r.group({
-                            "no such entry": r.component("Expression", {}, {}),
-                            "no context lookup": r.component("Expression", {}, {}),
-                            "cycle detected": r.component("Expression", {}, {}),
+                            "no such entry": r.component("Assign", {}, {}),
+                            "no context lookup": r.component("Assign", {}, {}),
+                            "cycle detected": r.component("Assign", {}, {}),
                         }),
                     })),
                     "parameter": option(r.text()),
@@ -372,8 +363,8 @@ export const $: g_.Module_Resolvers = resolvers(
                     "sibling": option(r.text()),
                     "state": option(r.nothing()),
                     "text from list": option(r.group({
-                        "source": r.component("Expression", {}, {}),
-                        "assign character": r.component("Expression", {}, {}),
+                        "source": r.component("Select Value", {}, {}),
+                        "assign character": r.component("Assign", {}, {}),
                     })),
                     "variable": option(r.text()),
                 }),
@@ -381,13 +372,13 @@ export const $: g_.Module_Resolvers = resolvers(
             }))
         })),
 
-        "Lookup Selection": resolver(r.state({
+        "Select Lookup": resolver(r.state({
             "implement me": option(r.text()),
             "from parameter": option(r.text()),
             "acyclic": option(r.state({
                 "not set": option(r.nothing()),
                 "siblings": option(r.nothing()),
-                "resolved dictionary": option(r.component("Value Selection", {}, {})),
+                "resolved dictionary": option(r.component("Select Value", {}, {})),
             })),
             "cyclic": option(r.state({
                 "not set": option(r.nothing()),
@@ -396,8 +387,8 @@ export const $: g_.Module_Resolvers = resolvers(
             "stack": option(r.state({
                 "empty": option(r.nothing()),
                 "push": option(r.group({
-                    "stack": r.component("Lookup Selection", {}, {}),
-                    "acyclic": r.component("Lookup Selection", {}, {}),
+                    "stack": r.component("Select Lookup", {}, {}),
+                    "acyclic": r.component("Select Lookup", {}, {}),
                 })),
             })),
         })),

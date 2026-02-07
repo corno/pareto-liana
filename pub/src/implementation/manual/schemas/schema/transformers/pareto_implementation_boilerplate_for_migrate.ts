@@ -11,10 +11,10 @@ import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-const location = sh.e.group.literal({
-    "document resource identifier": sh.e.text.literal("implement me", 'freeform'),
-    "line": sh.e.number.integer_literal(42),
-    "column": sh.e.number.integer_literal(42),
+const location = sh.a.group.literal({
+    "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
+    "line": sh.a.number.integer_literal(42),
+    "column": sh.a.number.integer_literal(42),
 })
 
 export const Schema = (
@@ -88,13 +88,13 @@ export const Value = (
         'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
         'constrained': boolean
     },
-): d_out.Expression => {
+): d_out.Assign => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
+            case 'boolean': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
             case 'component': return _p.ss($, ($) => {
-                return sh.e.select(
-                    sh.s.call(
+                return sh.a.select(
+                    sh.sv.call(
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => sh.call.external($.import['l id'], $.module['l id']))
@@ -103,7 +103,7 @@ export const Value = (
                                 default: return _p.au($[0])
                             }
                         }),
-                        sh.e.select(sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
+                        sh.a.select(sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -114,11 +114,11 @@ export const Value = (
             case 'dictionary': return _p.ss($, ($) => {
 
                 return $p.constrained
-                    ? sh.e.group.literal({
+                    ? sh.a.group.literal({
                         "l location": location,
-                        "l dictionary": sh.e.dictionary.map(
-                            sh.s.context([]),
-                            sh.e.group.literal({
+                        "l dictionary": sh.a.dictionary.map(
+                            sh.sv.context([]),
+                            sh.a.group.literal({
                                 "l entry": Value(
                                     $.value,
                                     {
@@ -138,8 +138,8 @@ export const Value = (
                             })
                         )
                     })
-                    : sh.e.dictionary.map(
-                        sh.s.context([]),
+                    : sh.a.dictionary.map(
+                        sh.sv.context([]),
                         Value(
                             $.value,
                             {
@@ -155,8 +155,8 @@ export const Value = (
                         )
                     )
             })
-            case 'group': return _p.ss($, ($) => sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
-                sh.s.context([id]),
+            case 'group': return _p.ss($, ($) => sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
+                sh.sv.context([id]),
                 Value(
                     $.value,
                     {
@@ -174,11 +174,11 @@ export const Value = (
             case 'list': return _p.ss($, ($) => {
 
                 return $p.constrained
-                    ? sh.e.group.literal({
+                    ? sh.a.group.literal({
                         "l location": location,
-                        "l list": sh.e.list.map(
-                            sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
-                            sh.e.group.literal({
+                        "l list": sh.a.list.map(
+                            sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                            sh.a.group.literal({
                                 "l item": _p_change_context($, ($) => {
                                     const tn = Value(
                                         $.value,
@@ -196,8 +196,8 @@ export const Value = (
                                         }
                                     )
                                     return $.results.__decide(
-                                        ($) => sh.e.change_context(
-                                            sh.s.context(["l item"]),
+                                        ($) => sh.a.change_context(
+                                            sh.sv.context(["l item"]),
                                             tn
                                         ),
                                         () => tn
@@ -207,8 +207,8 @@ export const Value = (
                             })
                         )
                     })
-                    : sh.e.list.map(
-                        sh.s.context([]),
+                    : sh.a.list.map(
+                        sh.sv.context([]),
                         Value(
                             $.value,
                             {
@@ -225,10 +225,10 @@ export const Value = (
                     )
 
             })
-            case 'nothing': return _p.ss($, ($) => sh.e.nothing())
-            case 'number': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
-            case 'optional': return _p.ss($, ($) => sh.e.optional.map(
-                sh.s.context([]),
+            case 'nothing': return _p.ss($, ($) => sh.a.nothing())
+            case 'number': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
+            case 'optional': return _p.ss($, ($) => sh.a.optional.map(
+                sh.sv.context([]),
                 Value(
                     $,
                     {
@@ -245,12 +245,12 @@ export const Value = (
             ))
             case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.e.nothing())
+                    case 'derived': return _p.ss($, ($) => sh.a.nothing())
                     case 'selected': return _p.ss($, ($) => {
-                        const tn = sh.e.select(sh.s.context(["l id"]))
+                        const tn = sh.a.select(sh.sv.context(["l id"]))
 
                         return $p.constrained
-                            ? sh.e.group.literal({
+                            ? sh.a.group.literal({
                                 "l location": location,
                                 "l reference": tn
                             })
@@ -260,9 +260,9 @@ export const Value = (
                 }
             }))
             case 'state': return _p.ss($, ($) => {
-                const tn = sh.e.decide.state(
-                    sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
-                    $.options.__d_map(($, id) => sh.e.state.literal(id, Value(
+                const tn = sh.a.decide.state(
+                    sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                    $.options.__d_map(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {
                             'type name': $p['type name'],
@@ -295,13 +295,13 @@ export const Value = (
                     ),
                 )
                 return $p.constrained
-                    ? sh.e.group.literal({
+                    ? sh.a.group.literal({
                         "l location": location,
                         "l state": tn
                     })
                     : tn
             })
-            case 'text': return _p.ss($, ($) => sh.e.select(sh.s.context([])))
+            case 'text': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
             default: return _p.au($[0])
         }
     })

@@ -15,10 +15,10 @@ import * as sh_i from "pareto/dist/shorthands/interface"
 //dependencies
 import { $$ as op_flatten_dictionary } from "../../../../temp_flatten_dictionary"
 
-const location = sh.e.select(
-    sh.s.call(
+const location = sh.a.select(
+    sh.sv.call(
         sh.call.external("parse tree to location", "Value"),
-        sh.e.select(sh.s.context([])),
+        sh.a.select(sh.sv.context([])),
         null,
         sh.lookups.not_set(),
         sh.arguments_.not_set(),
@@ -163,38 +163,36 @@ export const Value = (
         'temp subselection': _pi.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
         'constrained': boolean
     },
-): d_out.Expression => {
+): d_out.Assign => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.e.select(
-                sh.s.call(
+            case 'boolean': return _p.ss($, ($) => sh.a.select(
+                sh.sv.call(
                     sh.call.external("deserialize boolean", "deserialize"),
-                    sh.e.select(
-                        sh.s.list_from_text(
-                            sh.e.select(
-                                sh.s.call(
-                                    sh.call.external("unmarshalled from parse tree", "Text"),
-                                    sh.e.select(sh.s.context([])),
-                                    sh.e.state.literal("expected a text", sh.e.nothing()),
-                                    sh.lookups.not_set(),
-                                    sh.arguments_.not_set(),
-                                    [],
-                                ),
+                    sh.a.select(
+                        sh.sv.list_from_text(
+                            sh.sv.call(
+                                sh.call.external("unmarshalled from parse tree", "Text"),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.state.literal("expected a text", sh.a.nothing()),
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [],
                             ),
-                            sh.e.select(sh.s.context([])),
+                            sh.a.select(sh.sv.context([])),
                             []
 
                         )
                     ),
-                    sh.e.state.literal("not a valid boolean", sh.e.nothing()),
+                    sh.a.state.literal("not a valid boolean", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 )
             ))
             case 'component': return _p.ss($, ($) => {
-                return sh.e.select(
-                    sh.s.call(
+                return sh.a.select(
+                    sh.sv.call(
                         _p.decide.state($.type, ($) => {
                             switch ($[0]) {
                                 case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
@@ -203,8 +201,8 @@ export const Value = (
                                 default: return _p.au($[0])
                             }
                         }),
-                        sh.e.select(sh.s.context([])),
-                        sh.e.select(sh.s.context([])),
+                        sh.a.select(sh.sv.context([])),
+                        sh.a.select(sh.sv.context([])),
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
                         [],
@@ -213,18 +211,18 @@ export const Value = (
             })
             case 'dictionary': return _p.ss($, ($) => {
                 return $p.constrained
-                    ? sh.e.group.literal({
+                    ? sh.a.group.literal({
                         "l location": location,
-                        "l dictionary": sh.e.dictionary.map(
-                            sh.s.call(
+                        "l dictionary": sh.a.dictionary.map(
+                            sh.sv.call(
                                 sh.call.external("unmarshalled from parse tree", "Dictionary"),
-                                sh.e.select(sh.s.context([])),
-                                sh.e.state.literal("expected a dictionary", sh.e.nothing()),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.state.literal("expected a dictionary", sh.a.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
                                 [],
                             ),
-                            sh.e.group.literal({
+                            sh.a.group.literal({
                                 "l location": location,
                                 "l entry": Value(
                                     $.value,
@@ -245,11 +243,11 @@ export const Value = (
                             }),
                         )
                     })
-                    : sh.e.dictionary.map(
-                        sh.s.call(
+                    : sh.a.dictionary.map(
+                        sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Dictionary"),
-                            sh.e.select(sh.s.context([])),
-                            sh.e.state.literal("expected a dictionary", sh.e.nothing()),
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.state.literal("expected a dictionary", sh.a.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
                             [],
@@ -269,20 +267,20 @@ export const Value = (
                         ),
                     )
             })
-            case 'group': return _p.ss($, ($) => sh.e.change_context(
-                sh.s.call(
+            case 'group': return _p.ss($, ($) => sh.a.change_context(
+                sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Group"),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.state.literal("expected a group", sh.e.nothing()),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.state.literal("expected a group", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 ),
-                sh.e.group.literal($.__d_map(($, id) => sh.e.change_context(
-                    sh.s.dictionary_entry(
-                        sh.s.context([]),
-                        sh.e.text.literal(id, 'identifier'),
-                        sh.e.state.literal("no such entry", sh.e.text.literal(id, 'freeform')),
+                sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
+                    sh.sv.dictionary_entry(
+                        sh.sv.context([]),
+                        sh.a.text.literal(id, 'identifier'),
+                        sh.a.state.literal("no such entry", sh.a.text.literal(id, 'freeform')),
                         []
                     ),
                     Value(
@@ -302,18 +300,18 @@ export const Value = (
             ))
             case 'list': return _p.ss($, ($) => {
                 return $p.constrained
-                    ? sh.e.group.literal({
+                    ? sh.a.group.literal({
                         "l location": location,
-                        "l list": sh.e.list.map(
-                            sh.s.call(
+                        "l list": sh.a.list.map(
+                            sh.sv.call(
                                 sh.call.external("unmarshalled from parse tree", "List"),
-                                sh.e.select(sh.s.context([])),
-                                sh.e.state.literal("expected a list", sh.e.nothing()),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.state.literal("expected a list", sh.a.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
                                 [],
                             ),
-                            sh.e.group.literal({
+                            sh.a.group.literal({
                                 "l location": location,
                                 "l item": Value(
                                     $.value,
@@ -333,11 +331,11 @@ export const Value = (
                             })
                         )
                     })
-                    : sh.e.list.map(
-                        sh.s.call(
+                    : sh.a.list.map(
+                        sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "List"),
-                            sh.e.select(sh.s.context([])),
-                            sh.e.state.literal("expected a list", sh.e.nothing()),
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.state.literal("expected a list", sh.a.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
                             [],
@@ -357,47 +355,45 @@ export const Value = (
                         ),
                     )
             })
-            case 'nothing': return _p.ss($, ($) => sh.e.select(
-                sh.s.call(
+            case 'nothing': return _p.ss($, ($) => sh.a.select(
+                sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Nothing"),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.state.literal("expected a nothing", sh.e.nothing()),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.state.literal("expected a nothing", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 )
             ))
-            case 'number': return _p.ss($, ($) => sh.e.select(
-                sh.s.call(
+            case 'number': return _p.ss($, ($) => sh.a.select(
+                sh.sv.call(
                     sh.call.external("deserialize number", "deserialize"),
-                    sh.e.select(
-                        sh.s.list_from_text(
-                            sh.e.select(
-                                sh.s.call(
-                                    sh.call.external("unmarshalled from parse tree", "Text"),
-                                    sh.e.select(sh.s.context([])),
-                                    sh.e.state.literal("expected a text", sh.e.nothing()),
-                                    sh.lookups.not_set(),
-                                    sh.arguments_.not_set(),
-                                    [],
-                                ),
+                    sh.a.select(
+                        sh.sv.list_from_text(
+                            sh.sv.call(
+                                sh.call.external("unmarshalled from parse tree", "Text"),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.state.literal("expected a text", sh.a.nothing()),
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [],
                             ),
-                            sh.e.select(sh.s.context([])),
+                            sh.a.select(sh.sv.context([])),
                             []
 
                         )
                     ),
-                    sh.e.state.literal("not a valid number", sh.e.nothing()),
+                    sh.a.state.literal("not a valid number", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 )
             ))
-            case 'optional': return _p.ss($, ($) => sh.e.optional.map(
-                sh.s.call(
+            case 'optional': return _p.ss($, ($) => sh.a.optional.map(
+                sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Optional"),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.state.literal("expected an optional", sh.e.nothing()),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.state.literal("expected an optional", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
@@ -418,23 +414,23 @@ export const Value = (
             ))
             case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.e.select(
-                        sh.s.call(
+                    case 'derived': return _p.ss($, ($) => sh.a.select(
+                        sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Nothing"),
-                            sh.e.select(sh.s.context([])),
-                            sh.e.state.literal("expected a nothing", sh.e.nothing()),
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.state.literal("expected a nothing", sh.a.nothing()),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
                             [],
                         )
                     ))
-                    case 'selected': return _p.ss($, ($) => sh.e.group.literal({
+                    case 'selected': return _p.ss($, ($) => sh.a.group.literal({
                         "l location": location,
-                        "l reference": sh.e.select(
-                            sh.s.call(
+                        "l reference": sh.a.select(
+                            sh.sv.call(
                                 sh.call.external("unmarshalled from parse tree", "Text"),
-                                sh.e.select(sh.s.context([])),
-                                sh.e.state.literal("expected a text", sh.e.nothing()),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.state.literal("expected a text", sh.a.nothing()),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
                                 [],
@@ -444,24 +440,24 @@ export const Value = (
                     default: return _p.au($[0])
                 }
             }))
-            case 'state': return _p.ss($, ($) => sh.e.change_context(
-                sh.s.call(
+            case 'state': return _p.ss($, ($) => sh.a.change_context(
+                sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "State"),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.state.literal("expected a state", sh.e.nothing()),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.state.literal("expected a state", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],
                 ),
-                sh.e.decide.text(
-                    sh.s.context(["option", "value"]),
+                sh.a.decide.text(
+                    sh.sv.context(["option", "value"]),
                     $.options.__d_map(
-                        ($, id) => sh.e.change_context(
-                            sh.s.context(["value"]),
+                        ($, id) => sh.a.change_context(
+                            sh.sv.context(["value"]),
                             $p.constrained
-                                ? sh.e.group.literal({
+                                ? sh.a.group.literal({
                                     "l location": location,
-                                    "l state": sh.e.state.literal(
+                                    "l state": sh.a.state.literal(
                                         id,
                                         Value(
                                             $.value,
@@ -479,7 +475,7 @@ export const Value = (
                                         )
                                     )
                                 })
-                                : sh.e.state.literal(
+                                : sh.a.state.literal(
                                     id,
                                     Value(
                                         $.value,
@@ -497,18 +493,18 @@ export const Value = (
                                 )
                         ),
                     ),
-                    sh.e.abort(sh.e.state.literal("unknown option", sh.e.select(sh.s.context(["option", "value"])))),
+                    sh.a.abort(sh.a.state.literal("unknown option", sh.a.select(sh.sv.context(["option", "value"])))),
                     sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
                         ]
                     ])))
             ))
-            case 'text': return _p.ss($, ($) => sh.e.select(
-                sh.s.call(
+            case 'text': return _p.ss($, ($) => sh.a.select(
+                sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Text"),
-                    sh.e.select(sh.s.context([])),
-                    sh.e.state.literal("expected a text", sh.e.nothing()),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.state.literal("expected a text", sh.a.nothing()),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
                     [],

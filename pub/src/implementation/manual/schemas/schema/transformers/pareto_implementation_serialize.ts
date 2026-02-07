@@ -66,13 +66,13 @@ export const Schema = (
             "signatures",
             id,
             [],
-            sh.e.select(
-                sh.s.call(
+            sh.a.select(
+                sh.sv.call(
                     sh.call.external("serialize", "Document"),
-                    sh.e.select(
-                        sh.s.call(
+                    sh.a.select(
+                        sh.sv.call(
                             sh.call.external("marshall", id),
-                            sh.e.select(sh.s.context([])),
+                            sh.a.select(sh.sv.context([])),
                             null,
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),

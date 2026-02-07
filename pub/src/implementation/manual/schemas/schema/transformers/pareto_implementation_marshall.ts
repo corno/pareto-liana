@@ -110,32 +110,30 @@ export const Value = (
         'type': string
         'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
     },
-): d_out.Expression => _p.decide.state($, ($) => {
+): d_out.Assign => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'boolean': return _p.ss($, ($) => sh.e.state.literal(
+        case 'boolean': return _p.ss($, ($) => sh.a.state.literal(
             "text",
-            sh.e.group.literal({
-                "delimiter": sh.e.state.literal("none", sh.e.nothing()),
-                "value": sh.e.select(
-                    sh.s.text_from_list(
-                        sh.e.select(
-                            sh.s.call(
-                                sh.call.external("serialize boolean", "serialize"),
-                                sh.e.select(sh.s.context([])),
-                                null,
-                                sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
-                                [],
-                            ),
+            sh.a.group.literal({
+                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                "value": sh.a.select(
+                    sh.sv.text_from_list(
+                        sh.sv.call(
+                            sh.call.external("serialize boolean", "serialize"),
+                            sh.a.select(sh.sv.context([])),
+                            null,
+                            sh.lookups.not_set(),
+                            sh.arguments_.not_set(),
+                            [],
                         ),
-                        sh.e.select(sh.s.context([])),
+                        sh.a.select(sh.sv.context([])),
                         []
                     )
                 ),
             })
         ))
-        case 'component': return _p.ss($, ($) => sh.e.select(
-            sh.s.call(
+        case 'component': return _p.ss($, ($) => sh.a.select(
+            sh.sv.call(
                 _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
@@ -144,17 +142,17 @@ export const Value = (
                         default: return _p.au($[0])
                     }
                 }),
-                sh.e.select(sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
+                sh.a.select(sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
                 [],
             )
         ))
-        case 'dictionary': return _p.ss($, ($) => sh.e.state.literal(
+        case 'dictionary': return _p.ss($, ($) => sh.a.state.literal(
             "dictionary",
-            sh.e.dictionary.map(
-                sh.s.context([]),
+            sh.a.dictionary.map(
+                sh.sv.context([]),
                 Value(
                     $.value,
                     {
@@ -169,12 +167,12 @@ export const Value = (
                 )
             )
         ))
-        case 'group': return _p.ss($, ($) => sh.e.state.literal(
+        case 'group': return _p.ss($, ($) => sh.a.state.literal(
             "group",
-            sh.e.state.literal(
+            sh.a.state.literal(
                 "verbose",
-                sh.e.dictionary.literal($.__d_map(($, id) => sh.e.change_context(
-                    sh.s.context([id]),
+                sh.a.dictionary.literal($.__d_map(($, id) => sh.a.change_context(
+                    sh.sv.context([id]),
                     Value(
                         $.value,
                         {
@@ -205,13 +203,13 @@ export const Value = (
                 }
             )
 
-            return sh.e.state.literal(
+            return sh.a.state.literal(
                 "list",
-                sh.e.list.map(
-                    sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                sh.a.list.map(
+                    sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
                     $.results.__decide(
-                        ($) => sh.e.change_context(
-                            sh.s.context(["l item"]),
+                        ($) => sh.a.change_context(
+                            sh.sv.context(["l item"]),
                             x,
                         ),
                         () => x
@@ -219,33 +217,32 @@ export const Value = (
                 )
             )
         })
-        case 'nothing': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
-        case 'number': return _p.ss($, ($) => sh.e.state.literal(
+        case 'nothing': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
+        case 'number': return _p.ss($, ($) => sh.a.state.literal(
             "text",
-            sh.e.group.literal({
-                "delimiter": sh.e.state.literal("none", sh.e.nothing()),
-                "value": sh.e.select(
-                    sh.s.text_from_list(
-                        sh.e.select(sh.s.call(
+            sh.a.group.literal({
+                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                "value": sh.a.select(
+                    sh.sv.text_from_list(
+                        sh.sv.call(
                             sh.call.external("serialize number", "serialize"),
-                            sh.e.select(sh.s.context([])),
+                            sh.a.select(sh.sv.context([])),
                             null,
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
                             [],
                         ),
-                        ),
-                        sh.e.select(sh.s.context([])),
+                        sh.a.select(sh.sv.context([])),
                         []
                     )
                 ),
             })
         ))
-        case 'optional': return _p.ss($, ($) => sh.e.state.literal(
+        case 'optional': return _p.ss($, ($) => sh.a.state.literal(
             "optional",
-            sh.e.decide.optional(
-                sh.s.context([]),
-                sh.e.state.literal(
+            sh.a.decide.optional(
+                sh.sv.context([]),
+                sh.a.state.literal(
                     "set",
                     Value(
                         $,
@@ -260,9 +257,9 @@ export const Value = (
                         }
                     ),
                 ),
-                sh.e.state.literal(
+                sh.a.state.literal(
                     "not set",
-                    sh.e.nothing()
+                    sh.a.nothing()
                 ),
                 sh.type_node_reference(
                     "out",
@@ -272,20 +269,20 @@ export const Value = (
             )))
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
-                case 'derived': return _p.ss($, ($) => sh.e.state.literal("nothing", sh.e.nothing()))
-                case 'selected': return _p.ss($, ($) => sh.e.state.literal("text", sh.e.group.literal({
-                    "delimiter": sh.e.state.literal("backtick", sh.e.nothing()),
-                    "value": sh.e.text.copy(sh.s.context(["l id"])),
+                case 'derived': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
+                case 'selected': return _p.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
+                    "delimiter": sh.a.state.literal("backtick", sh.a.nothing()),
+                    "value": sh.a.text.copy(sh.sv.context(["l id"])),
                 })))
                 default: return _p.au($[0])
             }
         }))
-        case 'state': return _p.ss($, ($) => sh.e.state.literal(
+        case 'state': return _p.ss($, ($) => sh.a.state.literal(
             "state",
-            sh.e.decide.state(
-                sh.s.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
-                $.options.__d_map(($, id) => sh.e.group.literal({
-                    "option": sh.e.text.literal(id, 'identifier'),
+            sh.a.decide.state(
+                sh.sv.context(_p.boolean.optional_is_set($.results) ? ["l value"] : []),
+                $.options.__d_map(($, id) => sh.a.group.literal({
+                    "option": sh.a.text.literal(id, 'identifier'),
                     "value": Value(
                         $.value,
                         {
@@ -306,11 +303,11 @@ export const Value = (
                 ),
             )
         ))
-        case 'text': return _p.ss($, ($) => sh.e.state.literal(
+        case 'text': return _p.ss($, ($) => sh.a.state.literal(
             "text",
-            sh.e.group.literal({
-                "delimiter": sh.e.state.literal("quote", sh.e.nothing()),
-                "value": sh.e.text.copy(sh.s.context([])),
+            sh.a.group.literal({
+                "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
+                "value": sh.a.text.copy(sh.sv.context([])),
             })
         ))
         default: return _p.au($[0])
