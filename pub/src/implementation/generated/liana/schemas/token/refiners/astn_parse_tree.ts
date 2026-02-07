@@ -1,606 +1,606 @@
-    
-    import * as _p from 'pareto-core/dist/expression'
-    
-    import _p_change_context from 'pareto-core/dist/_p_change_context'
-    
-    import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-    
-    import * as t_signatures from "../../../../../../interface/generated/liana/schemas/token/unmarshall"
-    
-    import * as t_out from "../../../../../../interface/generated/liana/schemas/token/data"
-    
-    import * as v_deserialize_number from "liana-core/dist/implementation/manual/primitives/integer/deserializers/decimal"
-    
-    import * as v_deserialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/deserializers/true_false"
-    
-    import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/manual/schemas/unmarshalled/refiners/parse_tree"
-    
-    import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
-    
-    import * as v_external_location from "../../location/refiners/astn_parse_tree"
-    
-    export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null],
-            ),
-        ),
-        ($) => ({
-            'leading trivia': _p_change_context(
-                $.__get_entry(
-                    'leading trivia',
-                    ($) => abort(
-                        ['no such entry', "leading trivia"],
-                    ),
-                ),
-                ($) => Trivia(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-            'tokens': _p_change_context(
-                $.__get_entry(
-                    'tokens',
-                    ($) => abort(
-                        ['no such entry', "tokens"],
-                    ),
-                ),
-                ($) => _p.list.map(
-                    v_unmarshalled_from_parse_tree.List(
-                        $,
-                        ($) => abort(
-                            ['expected a list', null],
-                        ),
-                    ),
-                    ($) => Annotated_Token(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
-            ),
-            'end': _p_change_context(
-                $.__get_entry(
-                    'end',
-                    ($) => abort(
-                        ['no such entry', "end"],
-                    ),
-                ),
-                ($) => v_external_location.Location(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-        }),
-    )
-    
-    export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null],
-            ),
-        ),
-        ($) => ({
-            'start': _p_change_context(
-                $.__get_entry(
-                    'start',
-                    ($) => abort(
-                        ['no such entry', "start"],
-                    ),
-                ),
-                ($) => v_external_location.Location(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-            'type': _p_change_context(
-                $.__get_entry(
-                    'type',
-                    ($) => abort(
-                        ['no such entry', "type"],
-                    ),
-                ),
-                ($) => Token_Type(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-            'end': _p_change_context(
-                $.__get_entry(
-                    'end',
-                    ($) => abort(
-                        ['no such entry', "end"],
-                    ),
-                ),
-                ($) => v_external_location.Location(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-            'trailing trivia': _p_change_context(
-                $.__get_entry(
-                    'trailing trivia',
-                    ($) => abort(
-                        ['no such entry', "trailing trivia"],
-                    ),
-                ),
-                ($) => Trivia(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
-                ),
-            ),
-        }),
-    )
-    
-    export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.State(
-            $,
-            ($) => abort(
-                ['expected a state', null],
-            ),
-        ),
-        ($) => _p.decide.text(
-            $['option']['value'],
-            ($t): t_out.Token_Type => {
-                switch ($t) {
-                    case '!':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['!', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '@':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['@', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case ':':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => [':', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '#':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['#', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '{':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['{', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '}':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['}', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '[':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['[', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case ']':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => [']', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '(':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['(', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case ')':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => [')', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '<':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['<', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '>':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['>', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '~':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['~', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '*':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['*', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case '|':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['|', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case 'text':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['text', _p_change_context(
-                                v_unmarshalled_from_parse_tree.Group(
-                                    $,
-                                    ($) => abort(
-                                        ['expected a group', null],
-                                    ),
-                                ),
-                                ($) => ({
-                                    'value': _p_change_context(
-                                        $.__get_entry(
-                                            'value',
-                                            ($) => abort(
-                                                ['no such entry', "value"],
-                                            ),
-                                        ),
-                                        ($) => Delimited_Text(
-                                            $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                        ),
-                                    ),
-                                    'type': _p_change_context(
-                                        $.__get_entry(
-                                            'type',
-                                            ($) => abort(
-                                                ['no such entry', "type"],
-                                            ),
-                                        ),
-                                        ($) => Text_Type(
-                                            $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                        ),
-                                    ),
-                                }),
-                            )],
-                        )
-                    default:
-                        return abort(
-                            ['unknown option', $['option']['value']],
-                        )
-                }
-            },
-        ),
-    )
-    
-    export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmarshalled_from_parse_tree.Text(
+
+import * as _p from 'pareto-core/dist/expression'
+
+import _p_change_context from 'pareto-core/dist/_p_change_context'
+
+import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/token/unmarshall"
+
+import * as t_out from "../../../../../../interface/generated/liana/schemas/token/data"
+
+import * as v_deserialize_number from "liana-core/dist/implementation/manual/primitives/integer/deserializers/decimal"
+
+import * as v_deserialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/deserializers/true_false"
+
+import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/manual/schemas/unmarshalled/refiners/parse_tree"
+
+import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/schemas/parse_tree/transformers/location"
+
+import * as v_external_location from "../../location/refiners/astn_parse_tree"
+
+export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Group(
         $,
         ($) => abort(
-            ['expected a text', null],
+            ['expected a group', null],
         ),
-    )
-    
-    export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null],
+    ),
+    ($) => ({
+        'leading trivia': _p_change_context(
+            $.__get_entry(
+                'leading trivia',
+                ($) => abort(
+                    ['no such entry', "leading trivia"],
+                ),
+            ),
+            ($) => Trivia(
+                $,
+                ($) => abort(
+                    $,
+                ),
             ),
         ),
-        ($) => ({
-            'range': _p_change_context(
-                $.__get_entry(
-                    'range',
+        'tokens': _p_change_context(
+            $.__get_entry(
+                'tokens',
+                ($) => abort(
+                    ['no such entry', "tokens"],
+                ),
+            ),
+            ($) => _p.list.map(
+                v_unmarshalled_from_parse_tree.List(
+                    $,
                     ($) => abort(
-                        ['no such entry', "range"],
+                        ['expected a list', null],
                     ),
                 ),
-                ($) => v_external_location.Range(
+                ($) => Annotated_Token(
                     $,
                     ($) => abort(
                         $,
                     ),
                 ),
             ),
-            'value': _p_change_context(
-                $.__get_entry(
-                    'value',
-                    ($) => abort(
-                        ['no such entry', "value"],
-                    ),
-                ),
-                ($) => v_unmarshalled_from_parse_tree.Text(
-                    $,
-                    ($) => abort(
-                        ['expected a text', null],
-                    ),
+        ),
+        'end': _p_change_context(
+            $.__get_entry(
+                'end',
+                ($) => abort(
+                    ['no such entry', "end"],
                 ),
             ),
-        }),
-    )
-    
-    export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.Group(
-            $,
-            ($) => abort(
-                ['expected a group', null],
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $,
+                ),
             ),
         ),
-        ($) => ({
-            'leading whitespace': _p_change_context(
-                $.__get_entry(
-                    'leading whitespace',
-                    ($) => abort(
-                        ['no such entry', "leading whitespace"],
-                    ),
-                ),
-                ($) => Whitespace(
-                    $,
-                    ($) => abort(
-                        $,
-                    ),
+    }),
+)
+
+export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null],
+        ),
+    ),
+    ($) => ({
+        'start': _p_change_context(
+            $.__get_entry(
+                'start',
+                ($) => abort(
+                    ['no such entry', "start"],
                 ),
             ),
-            'comments': _p_change_context(
-                $.__get_entry(
-                    'comments',
-                    ($) => abort(
-                        ['no such entry', "comments"],
-                    ),
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $,
                 ),
-                ($) => _p.list.map(
-                    v_unmarshalled_from_parse_tree.List(
-                        $,
-                        ($) => abort(
-                            ['expected a list', null],
-                        ),
-                    ),
-                    ($) => _p_change_context(
-                        v_unmarshalled_from_parse_tree.Group(
+            ),
+        ),
+        'type': _p_change_context(
+            $.__get_entry(
+                'type',
+                ($) => abort(
+                    ['no such entry', "type"],
+                ),
+            ),
+            ($) => Token_Type(
+                $,
+                ($) => abort(
+                    $,
+                ),
+            ),
+        ),
+        'end': _p_change_context(
+            $.__get_entry(
+                'end',
+                ($) => abort(
+                    ['no such entry', "end"],
+                ),
+            ),
+            ($) => v_external_location.Location(
+                $,
+                ($) => abort(
+                    $,
+                ),
+            ),
+        ),
+        'trailing trivia': _p_change_context(
+            $.__get_entry(
+                'trailing trivia',
+                ($) => abort(
+                    ['no such entry', "trailing trivia"],
+                ),
+            ),
+            ($) => Trivia(
+                $,
+                ($) => abort(
+                    $,
+                ),
+            ),
+        ),
+    }),
+)
+
+export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            ['expected a state', null],
+        ),
+    ),
+    ($) => _p.decide.text(
+        $['option']['value'],
+        ($t): t_out.Token_Type => {
+            switch ($t) {
+                case '!':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['!', v_unmarshalled_from_parse_tree.Nothing(
                             $,
                             ($) => abort(
-                                ['expected a group', null],
+                                ['expected a nothing', null],
                             ),
-                        ),
-                        ($) => ({
-                            'type': _p_change_context(
-                                $.__get_entry(
-                                    'type',
-                                    ($) => abort(
-                                        ['no such entry', "type"],
-                                    ),
+                        )],
+                    )
+                case '@':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['@', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case ':':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => [':', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '#':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['#', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '{':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['{', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '}':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['}', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '[':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['[', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case ']':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => [']', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '(':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['(', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case ')':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => [')', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '<':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['<', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '>':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['>', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '~':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['~', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '*':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['*', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case '|':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['|', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case 'text':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['text', _p_change_context(
+                            v_unmarshalled_from_parse_tree.Group(
+                                $,
+                                ($) => abort(
+                                    ['expected a group', null],
                                 ),
-                                ($) => _p_change_context(
-                                    v_unmarshalled_from_parse_tree.State(
-                                        $,
+                            ),
+                            ($) => ({
+                                'value': _p_change_context(
+                                    $.__get_entry(
+                                        'value',
                                         ($) => abort(
-                                            ['expected a state', null],
+                                            ['no such entry', "value"],
                                         ),
                                     ),
-                                    ($) => _p.decide.text(
-                                        $['option']['value'],
-                                        ($t): t_out.Trivia.comments.L.type_ => {
-                                            switch ($t) {
-                                                case 'line':
-                                                    return _p_change_context(
-                                                        $['value'],
-                                                        ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
-                                                            $,
-                                                            ($) => abort(
-                                                                ['expected a nothing', null],
-                                                            ),
-                                                        )],
-                                                    )
-                                                case 'block':
-                                                    return _p_change_context(
-                                                        $['value'],
-                                                        ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
-                                                            $,
-                                                            ($) => abort(
-                                                                ['expected a nothing', null],
-                                                            ),
-                                                        )],
-                                                    )
-                                                default:
-                                                    return abort(
-                                                        ['unknown option', $['option']['value']],
-                                                    )
-                                            }
-                                        },
-                                    ),
-                                ),
-                            ),
-                            'content': _p_change_context(
-                                $.__get_entry(
-                                    'content',
-                                    ($) => abort(
-                                        ['no such entry', "content"],
-                                    ),
-                                ),
-                                ($) => v_unmarshalled_from_parse_tree.Text(
-                                    $,
-                                    ($) => abort(
-                                        ['expected a text', null],
-                                    ),
-                                ),
-                            ),
-                            'range': _p_change_context(
-                                $.__get_entry(
-                                    'range',
-                                    ($) => abort(
-                                        ['no such entry', "range"],
-                                    ),
-                                ),
-                                ($) => v_external_location.Range(
-                                    $,
-                                    ($) => abort(
+                                    ($) => Delimited_Text(
                                         $,
+                                        ($) => abort(
+                                            $,
+                                        ),
                                     ),
                                 ),
-                            ),
-                            'trailing whitespace': _p_change_context(
-                                $.__get_entry(
-                                    'trailing whitespace',
-                                    ($) => abort(
-                                        ['no such entry', "trailing whitespace"],
+                                'type': _p_change_context(
+                                    $.__get_entry(
+                                        'type',
+                                        ($) => abort(
+                                            ['no such entry', "type"],
+                                        ),
                                     ),
-                                ),
-                                ($) => Whitespace(
-                                    $,
-                                    ($) => abort(
+                                    ($) => Text_Type(
                                         $,
+                                        ($) => abort(
+                                            $,
+                                        ),
                                     ),
                                 ),
-                            ),
-                        }),
-                    ),
+                            }),
+                        )],
+                    )
+                default:
+                    return abort(
+                        ['unknown option', $['option']['value']],
+                    )
+            }
+        },
+    ),
+)
+
+export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmarshalled_from_parse_tree.Text(
+    $,
+    ($) => abort(
+        ['expected a text', null],
+    ),
+)
+
+export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null],
+        ),
+    ),
+    ($) => ({
+        'range': _p_change_context(
+            $.__get_entry(
+                'range',
+                ($) => abort(
+                    ['no such entry', "range"],
                 ),
             ),
-        }),
-    )
-    
-    export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context(
-        v_unmarshalled_from_parse_tree.State(
-            $,
-            ($) => abort(
-                ['expected a state', null],
+            ($) => v_external_location.Range(
+                $,
+                ($) => abort(
+                    $,
+                ),
             ),
         ),
-        ($) => _p.decide.text(
-            $['option']['value'],
-            ($t): t_out.Text_Type => {
-                switch ($t) {
-                    case 'quoted':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['quoted', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case 'apostrophed':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['apostrophed', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case 'undelimited':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['undelimited', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    case 'backticked':
-                        return _p_change_context(
-                            $['value'],
-                            ($) => ['backticked', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    ['expected a nothing', null],
-                                ),
-                            )],
-                        )
-                    default:
-                        return abort(
-                            ['unknown option', $['option']['value']],
-                        )
-                }
-            },
+        'value': _p_change_context(
+            $.__get_entry(
+                'value',
+                ($) => abort(
+                    ['no such entry', "value"],
+                ),
+            ),
+            ($) => v_unmarshalled_from_parse_tree.Text(
+                $,
+                ($) => abort(
+                    ['expected a text', null],
+                ),
+            ),
         ),
-    )
+    }),
+)
+
+export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null],
+        ),
+    ),
+    ($) => ({
+        'leading whitespace': _p_change_context(
+            $.__get_entry(
+                'leading whitespace',
+                ($) => abort(
+                    ['no such entry', "leading whitespace"],
+                ),
+            ),
+            ($) => Whitespace(
+                $,
+                ($) => abort(
+                    $,
+                ),
+            ),
+        ),
+        'comments': _p_change_context(
+            $.__get_entry(
+                'comments',
+                ($) => abort(
+                    ['no such entry', "comments"],
+                ),
+            ),
+            ($) => _p.list.map(
+                v_unmarshalled_from_parse_tree.List(
+                    $,
+                    ($) => abort(
+                        ['expected a list', null],
+                    ),
+                ),
+                ($) => _p_change_context(
+                    v_unmarshalled_from_parse_tree.Group(
+                        $,
+                        ($) => abort(
+                            ['expected a group', null],
+                        ),
+                    ),
+                    ($) => ({
+                        'type': _p_change_context(
+                            $.__get_entry(
+                                'type',
+                                ($) => abort(
+                                    ['no such entry', "type"],
+                                ),
+                            ),
+                            ($) => _p_change_context(
+                                v_unmarshalled_from_parse_tree.State(
+                                    $,
+                                    ($) => abort(
+                                        ['expected a state', null],
+                                    ),
+                                ),
+                                ($) => _p.decide.text(
+                                    $['option']['value'],
+                                    ($t): t_out.Trivia.comments.L.type_ => {
+                                        switch ($t) {
+                                            case 'line':
+                                                return _p_change_context(
+                                                    $['value'],
+                                                    ($) => ['line', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null],
+                                                        ),
+                                                    )],
+                                                )
+                                            case 'block':
+                                                return _p_change_context(
+                                                    $['value'],
+                                                    ($) => ['block', v_unmarshalled_from_parse_tree.Nothing(
+                                                        $,
+                                                        ($) => abort(
+                                                            ['expected a nothing', null],
+                                                        ),
+                                                    )],
+                                                )
+                                            default:
+                                                return abort(
+                                                    ['unknown option', $['option']['value']],
+                                                )
+                                        }
+                                    },
+                                ),
+                            ),
+                        ),
+                        'content': _p_change_context(
+                            $.__get_entry(
+                                'content',
+                                ($) => abort(
+                                    ['no such entry', "content"],
+                                ),
+                            ),
+                            ($) => v_unmarshalled_from_parse_tree.Text(
+                                $,
+                                ($) => abort(
+                                    ['expected a text', null],
+                                ),
+                            ),
+                        ),
+                        'range': _p_change_context(
+                            $.__get_entry(
+                                'range',
+                                ($) => abort(
+                                    ['no such entry', "range"],
+                                ),
+                            ),
+                            ($) => v_external_location.Range(
+                                $,
+                                ($) => abort(
+                                    $,
+                                ),
+                            ),
+                        ),
+                        'trailing whitespace': _p_change_context(
+                            $.__get_entry(
+                                'trailing whitespace',
+                                ($) => abort(
+                                    ['no such entry', "trailing whitespace"],
+                                ),
+                            ),
+                            ($) => Whitespace(
+                                $,
+                                ($) => abort(
+                                    $,
+                                ),
+                            ),
+                        ),
+                    }),
+                ),
+            ),
+        ),
+    }),
+)
+
+export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            ['expected a state', null],
+        ),
+    ),
+    ($) => _p.decide.text(
+        $['option']['value'],
+        ($t): t_out.Text_Type => {
+            switch ($t) {
+                case 'quoted':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['quoted', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case 'apostrophed':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['apostrophed', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case 'undelimited':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['undelimited', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                case 'backticked':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['backticked', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                ['expected a nothing', null],
+                            ),
+                        )],
+                    )
+                default:
+                    return abort(
+                        ['unknown option', $['option']['value']],
+                    )
+            }
+        },
+    ),
+)

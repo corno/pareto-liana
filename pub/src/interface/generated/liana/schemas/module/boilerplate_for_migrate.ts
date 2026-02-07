@@ -1,26 +1,26 @@
+
+import * as _pi from 'pareto-core/dist/interface'
+
+import * as i_out from "./data/unresolved"
+
+import * as i_in from "./data/resolved"
+
+export namespace Module_ {
     
-    import * as _pi from 'pareto-core/dist/interface'
+    export type I = i_in.Module
     
-    import * as i_out from "./data/unresolved"
+    export type O = i_out.Module
     
-    import * as i_in from "./data/resolved"
-    
-    export namespace Module_ {
-        
-        export type I = i_in.Module
-        
-        export type O = i_out.Module
-        
-        export namespace P {
-            
-        }
+    export namespace P {
         
     }
     
-    export type Module_ = (
-        context: Module_.I,
-    ) => Module_.O
-    
-    export { 
-        Module_ as Module, 
-    }
+}
+
+export type Module_ = (
+    context: Module_.I,
+) => Module_.O
+
+export { 
+    Module_ as Module, 
+}
