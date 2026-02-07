@@ -51,7 +51,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'imports': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'imports',
                 ($) => abort(
                     ['no such entry', "imports"],
@@ -65,7 +65,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
             ),
         ),
         'globals': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'globals',
                 ($) => abort(
                     ['no such entry', "globals"],
@@ -79,7 +79,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
             ),
         ),
         'modules': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'modules',
                 ($) => abort(
                     ['no such entry', "modules"],
@@ -93,7 +93,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
             ),
         ),
         'complexity': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'complexity',
                 ($) => abort(
                     ['no such entry', "complexity"],
@@ -176,7 +176,7 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
                 ),
                 ($) => ({
                     'schema set child': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'schema set child',
                             ($) => abort(
                                 ['no such entry', "schema set child"],
@@ -195,7 +195,7 @@ export const Imports: t_signatures.Imports = ($, abort) => ({
                         }),
                     ),
                     'schema': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'schema',
                             ($) => abort(
                                 ['no such entry', "schema"],
@@ -248,7 +248,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'complexity': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'complexity',
                 ($) => abort(
                     ['no such entry', "complexity"],
@@ -305,7 +305,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
             ),
         ),
         'text types': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'text types',
                 ($) => abort(
                     ['no such entry', "text types"],
@@ -337,7 +337,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
             }),
         ),
         'number types': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'number types',
                 ($) => abort(
                     ['no such entry', "number types"],
@@ -380,7 +380,7 @@ export const Dictionary: t_signatures.Dictionary = ($, abort) => _p_change_conte
     ),
     ($) => ({
         'value': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'value',
                 ($) => abort(
                     ['no such entry', "value"],
@@ -438,7 +438,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'type': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'type',
                                             ($) => abort(
                                                 ['no such entry', "type"],
@@ -471,7 +471,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                         ),
                                                                         ($) => ({
                                                                             'import': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'import',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "import"],
@@ -490,7 +490,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                 }),
                                                                             ),
                                                                             'module': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'module',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "module"],
@@ -562,7 +562,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                     ),
                                     'results': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'results',
                                             ($) => abort(
                                                 ['no such entry', "results"],
@@ -625,7 +625,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'value': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'value',
                                             ($) => abort(
                                                 ['no such entry', "value"],
@@ -639,7 +639,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                     ),
                                     'results': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'results',
                                             ($) => abort(
                                                 ['no such entry', "results"],
@@ -765,7 +765,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'referent': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'referent',
                                             ($) => abort(
                                                 ['no such entry', "referent"],
@@ -779,7 +779,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         ),
                                     ),
                                     'type': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'type',
                                             ($) => abort(
                                                 ['no such entry', "type"],
@@ -827,7 +827,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                         ),
                                                                         ($) => ({
                                                                             'dictionary': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'dictionary',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "dictionary"],
@@ -841,7 +841,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                 ),
                                                                             ),
                                                                             'dependency': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'dependency',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "dependency"],
@@ -945,7 +945,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => ({
                                     'options': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'options',
                                             ($) => abort(
                                                 ['no such entry', "options"],
@@ -975,7 +975,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                         ),
                                                         ($) => ({
                                                             'constraints': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'constraints',
                                                                     ($) => abort(
                                                                         ['no such entry', "constraints"],
@@ -989,7 +989,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                 ),
                                                             ),
                                                             'description': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'description',
                                                                     ($) => abort(
                                                                         ['no such entry', "description"],
@@ -1011,7 +1011,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                 ),
                                                             ),
                                                             'value': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'value',
                                                                     ($) => abort(
                                                                         ['no such entry', "value"],
@@ -1031,7 +1031,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         }),
                                     ),
                                     'results': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'results',
                                             ($) => abort(
                                                 ['no such entry', "results"],
@@ -1154,7 +1154,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
     ),
     ($) => ({
         'modules': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'modules',
                 ($) => abort(
                     ['no such entry', "modules"],
@@ -1184,7 +1184,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                             ),
                             ($) => ({
                                 'module': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'module',
                                         ($) => abort(
                                             ['no such entry', "module"],
@@ -1198,7 +1198,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                 ),
                                 'presence': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'presence',
                                         ($) => abort(
                                             ['no such entry', "presence"],
@@ -1218,7 +1218,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
             }),
         ),
         'lookups': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'lookups',
                 ($) => abort(
                     ['no such entry', "lookups"],
@@ -1248,7 +1248,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                             ),
                             ($) => ({
                                 'referent': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'referent',
                                         ($) => abort(
                                             ['no such entry', "referent"],
@@ -1262,7 +1262,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                 ),
                                 'dictionary': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'dictionary',
                                         ($) => abort(
                                             ['no such entry', "dictionary"],
@@ -1276,7 +1276,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                 ),
                                 'type': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'type',
                                         ($) => abort(
                                             ['no such entry', "type"],
@@ -1348,7 +1348,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort
                                     ),
                                 ),
                                 'presence': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'presence',
                                         ($) => abort(
                                             ['no such entry', "presence"],
@@ -1412,7 +1412,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'definition': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'definition',
                                             ($) => abort(
                                                 ['no such entry', "definition"],
@@ -1426,7 +1426,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'location': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'location',
                                             ($) => abort(
                                                 ['no such entry', "location"],
@@ -1459,7 +1459,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                         ),
                                                                         ($) => ({
                                                                             'import': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'import',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "import"],
@@ -1478,7 +1478,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                 }),
                                                                             ),
                                                                             'signature': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'signature',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "signature"],
@@ -1530,7 +1530,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'signature': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'signature',
                                             ($) => abort(
                                                 ['no such entry', "signature"],
@@ -1544,7 +1544,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'arguments': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'arguments',
                                             ($) => abort(
                                                 ['no such entry', "arguments"],
@@ -1566,7 +1566,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                 ),
                                                 ($) => ({
                                                     'modules': _p_change_context(
-                                                        $.__get_entry(
+                                                        $.__get_entry_deprecated(
                                                             'modules',
                                                             ($) => abort(
                                                                 ['no such entry', "modules"],
@@ -1669,7 +1669,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                         ),
                                                     ),
                                                     'lookups': _p_change_context(
-                                                        $.__get_entry(
+                                                        $.__get_entry_deprecated(
                                                             'lookups',
                                                             ($) => abort(
                                                                 ['no such entry', "lookups"],
@@ -1757,7 +1757,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                                                                     ),
                                                                                                                                     ($) => ({
                                                                                                                                         'stack': _p_change_context(
-                                                                                                                                            $.__get_entry(
+                                                                                                                                            $.__get_entry_deprecated(
                                                                                                                                                 'stack',
                                                                                                                                                 ($) => abort(
                                                                                                                                                     ['no such entry', "stack"],
@@ -1771,7 +1771,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                                                                             ),
                                                                                                                                         ),
                                                                                                                                         'item': _p_change_context(
-                                                                                                                                            $.__get_entry(
+                                                                                                                                            $.__get_entry_deprecated(
                                                                                                                                                 'item',
                                                                                                                                                 ($) => abort(
                                                                                                                                                     ['no such entry', "item"],
@@ -1917,7 +1917,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'constraints': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'constraints',
                                             ($) => abort(
                                                 ['no such entry', "constraints"],
@@ -1950,7 +1950,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'definition': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'definition',
                                             ($) => abort(
                                                 ['no such entry', "definition"],
@@ -1964,7 +1964,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'resolver': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'resolver',
                                             ($) => abort(
                                                 ['no such entry', "resolver"],
@@ -1978,7 +1978,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'benchmark': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'benchmark',
                                             ($) => abort(
                                                 ['no such entry', "benchmark"],
@@ -2034,7 +2034,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'definition': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'definition',
                                             ($) => abort(
                                                 ['no such entry', "definition"],
@@ -2048,7 +2048,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'resolver': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'resolver',
                                             ($) => abort(
                                                 ['no such entry', "resolver"],
@@ -2062,7 +2062,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'result': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'result',
                                             ($) => abort(
                                                 ['no such entry', "result"],
@@ -2133,7 +2133,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'constraints': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'constraints',
                                             ($) => abort(
                                                 ['no such entry', "constraints"],
@@ -2147,7 +2147,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'resolver': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'resolver',
                                             ($) => abort(
                                                 ['no such entry', "resolver"],
@@ -2180,7 +2180,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'definition': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'definition',
                                             ($) => abort(
                                                 ['no such entry', "definition"],
@@ -2194,7 +2194,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'type': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'type',
                                             ($) => abort(
                                                 ['no such entry', "type"],
@@ -2227,7 +2227,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                         ),
                                                                         ($) => ({
                                                                             'value': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'value',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "value"],
@@ -2260,7 +2260,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                         ),
                                                                         ($) => ({
                                                                             'definition': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'definition',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "definition"],
@@ -2274,7 +2274,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                 ),
                                                                             ),
                                                                             'lookup': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'lookup',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "lookup"],
@@ -2288,7 +2288,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                 ),
                                                                             ),
                                                                             'constraints': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'constraints',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "constraints"],
@@ -2334,7 +2334,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                 ),
                                 ($) => ({
                                     'definition': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'definition',
                                             ($) => abort(
                                                 ['no such entry', "definition"],
@@ -2348,7 +2348,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                         ),
                                     ),
                                     'states': _p_change_context(
-                                        $.__get_entry(
+                                        $.__get_entry_deprecated(
                                             'states',
                                             ($) => abort(
                                                 ['no such entry', "states"],
@@ -2378,7 +2378,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                         ),
                                                         ($) => ({
                                                             'constraints': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'constraints',
                                                                     ($) => abort(
                                                                         ['no such entry', "constraints"],
@@ -2392,7 +2392,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                 ),
                                                             ),
                                                             'resolver': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'resolver',
                                                                     ($) => abort(
                                                                         ['no such entry', "resolver"],
@@ -2448,7 +2448,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
     ),
     ($) => ({
         'schema': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'schema',
                 ($) => abort(
                     ['no such entry', "schema"],
@@ -2462,7 +2462,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
             ),
         ),
         'schema path': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'schema path',
                 ($) => abort(
                     ['no such entry', "schema path"],
@@ -2494,7 +2494,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
             }),
         ),
         'module': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'module',
                 ($) => abort(
                     ['no such entry', "module"],
@@ -2569,7 +2569,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_change
     ),
     ($) => ({
         'signatures': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'signatures',
                 ($) => abort(
                     ['no such entry', "signatures"],
@@ -2584,7 +2584,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_change
                 ),
                 ($) => ({
                     'signatures': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'signatures',
                             ($) => abort(
                                 ['no such entry', "signatures"],
@@ -2601,7 +2601,7 @@ export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_change
             ),
         ),
         'resolvers': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resolvers',
                 ($) => abort(
                     ['no such entry', "resolvers"],
@@ -2626,7 +2626,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
     ),
     ($) => ({
         'type': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'type',
                 ($) => abort(
                     ['no such entry', "type"],
@@ -2694,7 +2694,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
     ),
     ($) => ({
         'precision': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'precision',
                 ($) => abort(
                     ['no such entry', "precision"],
@@ -2727,7 +2727,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                             ),
                                             ($) => ({
                                                 'significant digits': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'significant digits',
                                                         ($) => abort(
                                                             ['no such entry', "significant digits"],
@@ -2768,7 +2768,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                             ),
                                             ($) => ({
                                                 'decimal separator offset': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'decimal separator offset',
                                                         ($) => abort(
                                                             ['no such entry', "decimal separator offset"],
@@ -2798,7 +2798,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                     ),
                                                 ),
                                                 'type': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'type',
                                                         ($) => abort(
                                                             ['no such entry', "type"],
@@ -2894,7 +2894,7 @@ export const Module: t_signatures.Module = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'root value': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'root value',
                 ($) => abort(
                     ['no such entry', "root value"],
@@ -2984,7 +2984,7 @@ export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort) => ({
                 ),
                 ($) => ({
                     'signature': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'signature',
                             ($) => abort(
                                 ['no such entry', "signature"],
@@ -2998,7 +2998,7 @@ export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort) => ({
                         ),
                     ),
                     'root value resolver': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'root value resolver',
                             ($) => abort(
                                 ['no such entry', "root value resolver"],
@@ -3026,7 +3026,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort) => _p_change_context
     ),
     ($) => ({
         'selection': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'selection',
                 ($) => abort(
                     ['no such entry', "selection"],
@@ -3040,7 +3040,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort) => _p_change_context
             ),
         ),
         'resulting dictionary': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting dictionary',
                 ($) => abort(
                     ['no such entry', "resulting dictionary"],
@@ -3054,7 +3054,7 @@ export const Benchmark: t_signatures.Benchmark = ($, abort) => _p_change_context
             ),
         ),
         'dense': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'dense',
                 ($) => abort(
                     ['no such entry', "dense"],
@@ -3102,7 +3102,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
                 ),
                 ($) => ({
                     'description': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'description',
                             ($) => abort(
                                 ['no such entry', "description"],
@@ -3124,7 +3124,7 @@ export const Group: t_signatures.Group = ($, abort) => ({
                         ),
                     ),
                     'value': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'value',
                             ($) => abort(
                                 ['no such entry', "value"],
@@ -3152,7 +3152,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort) => _p_ch
     ),
     ($) => ({
         'module': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'module',
                 ($) => abort(
                     ['no such entry', "module"],
@@ -3166,7 +3166,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort) => _p_ch
             ),
         ),
         'path': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'path',
                 ($) => abort(
                     ['no such entry', "path"],
@@ -3191,7 +3191,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort) => _p_change_conte
     ),
     ($) => ({
         'tail': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'tail',
                 ($) => abort(
                     ['no such entry', "tail"],
@@ -3321,7 +3321,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort) => _p_change_conte
             }),
         ),
         'resulting node': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting node',
                 ($) => abort(
                     ['no such entry', "resulting node"],
@@ -3346,7 +3346,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
     ),
     ($) => ({
         'location': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'location',
                 ($) => abort(
                     ['no such entry', "location"],
@@ -3399,7 +3399,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
                                             ),
                                             ($) => ({
                                                 'import': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'import',
                                                         ($) => abort(
                                                             ['no such entry', "import"],
@@ -3418,7 +3418,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
                                                     }),
                                                 ),
                                                 'module': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'module',
                                                         ($) => abort(
                                                             ['no such entry', "module"],
@@ -3450,7 +3450,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => _p_
             ),
         ),
         'resulting module': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting module',
                 ($) => abort(
                     ['no such entry', "resulting module"],
@@ -3475,7 +3475,7 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_change_context
     ),
     ($) => ({
         'module': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'module',
                 ($) => abort(
                     ['no such entry', "module"],
@@ -3489,7 +3489,7 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_change_context
             ),
         ),
         'parameters': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'parameters',
                 ($) => abort(
                     ['no such entry', "parameters"],
@@ -3551,7 +3551,7 @@ export const Signature: t_signatures.Signature = ($, abort) => _p_change_context
             ),
         ),
         'resolved parameters': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resolved parameters',
                 ($) => abort(
                     ['no such entry', "resolved parameters"],
@@ -3576,7 +3576,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
     ),
     ($) => ({
         'path': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'path',
                 ($) => abort(
                     ['no such entry', "path"],
@@ -3659,7 +3659,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
                                                         ),
                                                         ($) => ({
                                                             'definition': _p_change_context(
-                                                                $.__get_entry(
+                                                                $.__get_entry_deprecated(
                                                                     'definition',
                                                                     ($) => abort(
                                                                         ['no such entry', "definition"],
@@ -3689,7 +3689,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
             }),
         ),
         'resulting node': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting node',
                 ($) => abort(
                     ['no such entry', "resulting node"],
@@ -3714,7 +3714,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
     ),
     ($) => ({
         'type': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'type',
                 ($) => abort(
                     ['no such entry', "type"],
@@ -3780,7 +3780,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                                                         ),
                                                                         ($) => ({
                                                                             'selection': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'selection',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "selection"],
@@ -3794,7 +3794,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
                                                                                 ),
                                                                             ),
                                                                             'selected dictionary': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'selected dictionary',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "selected dictionary"],
@@ -3894,7 +3894,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort) => _p_
             ),
         ),
         'resulting dictionary': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting dictionary',
                 ($) => abort(
                     ['no such entry', "resulting dictionary"],
@@ -3919,7 +3919,7 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_change_conte
     ),
     ($) => ({
         'selection': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'selection',
                 ($) => abort(
                     ['no such entry', "selection"],
@@ -3933,7 +3933,7 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_change_conte
             ),
         ),
         'type': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'type',
                 ($) => abort(
                     ['no such entry', "type"],
@@ -3966,7 +3966,7 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_change_conte
                                             ),
                                             ($) => ({
                                                 'selected state': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'selected state',
                                                         ($) => abort(
                                                             ['no such entry', "selected state"],
@@ -3980,7 +3980,7 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_change_conte
                                                     ),
                                                 ),
                                                 'option': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'option',
                                                         ($) => abort(
                                                             ['no such entry', "option"],
@@ -4018,7 +4018,7 @@ export const Constraint: t_signatures.Constraint = ($, abort) => _p_change_conte
                                             ),
                                             ($) => ({
                                                 'selected optional value': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'selected optional value',
                                                         ($) => abort(
                                                             ['no such entry', "selected optional value"],
@@ -4089,7 +4089,7 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
                                             ),
                                             ($) => ({
                                                 'selection': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'selection',
                                                         ($) => abort(
                                                             ['no such entry', "selection"],
@@ -4103,7 +4103,7 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
                                                     ),
                                                 ),
                                                 'selected state': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'selected state',
                                                         ($) => abort(
                                                             ['no such entry', "selected state"],
@@ -4117,7 +4117,7 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
                                                     ),
                                                 ),
                                                 'option': _p_change_context(
-                                                    $.__get_entry(
+                                                    $.__get_entry_deprecated(
                                                         'option',
                                                         ($) => abort(
                                                             ['no such entry', "option"],
@@ -4212,7 +4212,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
     ),
     ($) => ({
         'start': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'start',
                 ($) => abort(
                     ['no such entry', "start"],
@@ -4269,7 +4269,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
             ),
         ),
         'constraint': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'constraint',
                 ($) => abort(
                     ['no such entry', "constraint"],
@@ -4374,7 +4374,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
                 ),
                 ($) => ({
                     'definition': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'definition',
                             ($) => abort(
                                 ['no such entry', "definition"],
@@ -4388,7 +4388,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
                         ),
                     ),
                     'resolver': _p_change_context(
-                        $.__get_entry(
+                        $.__get_entry_deprecated(
                             'resolver',
                             ($) => abort(
                                 ['no such entry', "resolver"],
@@ -4489,7 +4489,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
     ),
     ($) => ({
         'start': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'start',
                 ($) => abort(
                     ['no such entry', "start"],
@@ -4630,7 +4630,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         ),
                                                                         ($) => ({
                                                                             'property': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'property',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "property"],
@@ -4649,7 +4649,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 }),
                                                                             ),
                                                                             'constraint': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'constraint',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "constraint"],
@@ -4687,7 +4687,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         ),
                                                                         ($) => ({
                                                                             'property': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'property',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "property"],
@@ -4706,7 +4706,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 }),
                                                                             ),
                                                                             'constraint': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'constraint',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "constraint"],
@@ -4792,7 +4792,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         ),
                                                                         ($) => ({
                                                                             'property': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'property',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "property"],
@@ -4811,7 +4811,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 }),
                                                                             ),
                                                                             'list result': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'list result',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "list result"],
@@ -4844,7 +4844,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         ),
                                                                         ($) => ({
                                                                             'property': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'property',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "property"],
@@ -4863,7 +4863,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 }),
                                                                             ),
                                                                             'state': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'state',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "state"],
@@ -4877,7 +4877,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 ),
                                                                             ),
                                                                             'result': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'result',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "result"],
@@ -4910,7 +4910,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                         ),
                                                                         ($) => ({
                                                                             'property': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'property',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "property"],
@@ -4929,7 +4929,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 }),
                                                                             ),
                                                                             'optional value': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'optional value',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "optional value"],
@@ -4943,7 +4943,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
                                                                                 ),
                                                                             ),
                                                                             'result': _p_change_context(
-                                                                                $.__get_entry(
+                                                                                $.__get_entry_deprecated(
                                                                                     'result',
                                                                                     ($) => abort(
                                                                                         ['no such entry', "result"],
@@ -4980,7 +4980,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
             ),
         ),
         'tail': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'tail',
                 ($) => abort(
                     ['no such entry', "tail"],
@@ -4994,7 +4994,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
             ),
         ),
         'resulting node': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'resulting node',
                 ($) => abort(
                     ['no such entry', "resulting node"],
@@ -5075,7 +5075,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             ),
                                                             ($) => ({
                                                                 'property': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'property',
                                                                         ($) => abort(
                                                                             ['no such entry', "property"],
@@ -5094,7 +5094,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                     }),
                                                                 ),
                                                                 'state': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'state',
                                                                         ($) => abort(
                                                                             ['no such entry', "state"],
@@ -5108,7 +5108,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                     ),
                                                                 ),
                                                                 'result': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'result',
                                                                         ($) => abort(
                                                                             ['no such entry', "result"],
@@ -5141,7 +5141,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                             ),
                                                             ($) => ({
                                                                 'property': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'property',
                                                                         ($) => abort(
                                                                             ['no such entry', "property"],
@@ -5160,7 +5160,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                     }),
                                                                 ),
                                                                 'optional value': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'optional value',
                                                                         ($) => abort(
                                                                             ['no such entry', "optional value"],
@@ -5174,7 +5174,7 @@ export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = (
                                                                     ),
                                                                 ),
                                                                 'result': _p_change_context(
-                                                                    $.__get_entry(
+                                                                    $.__get_entry_deprecated(
                                                                         'result',
                                                                         ($) => abort(
                                                                             ['no such entry', "result"],

@@ -28,7 +28,7 @@ export const Module: t_signatures.Module = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'omit (de)serializer': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'omit (de)serializer',
                 ($) => abort(
                     ['no such entry', "omit (de)serializer"],
@@ -50,7 +50,7 @@ export const Module: t_signatures.Module = ($, abort) => _p_change_context(
             ),
         ),
         'schema tree': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'schema tree',
                 ($) => abort(
                     ['no such entry', "schema tree"],

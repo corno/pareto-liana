@@ -29,7 +29,7 @@ const location = sh.a.select(
     )
 )
 
-export const Schema: _pi.Transformer_With_Parameters<
+export const Schema: _pi.Transformer_With_Parameter<
     d_in.Schema,
     d_out.Package_Set.D,
     {

@@ -37,7 +37,7 @@ import { $x as load_schema } from "../schema/deserializers"
 
 //implementation
 
-export const $$x: _pi.Refiner_With_Parameters<d_unmarshall_result_types.Node, d_deserialize_unmarshall_result.Error, d_text.List_of_Characters, Parameters> = ($, abort, $p) => {
+export const $$x: _pi.Refiner_With_Parameter<d_unmarshall_result_types.Node, d_deserialize_unmarshall_result.Error, d_text.List_of_Characters, Parameters> = ($, abort, $p) => {
     const x = load_schema(
         _p_list_from_text(
             $p['schema content'],

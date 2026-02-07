@@ -45,7 +45,7 @@ export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<El
 }
 
 
-export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_schema.Error, d_text.List_of_Characters, { 'uri': string }> = ($, abort, $p) => {
+export const $x: _pi.Refiner_With_Parameter<d_schema.Module, d_deserialize_schema.Error, d_text.List_of_Characters, { 'uri': string }> = ($, abort, $p) => {
 
     const x = r_parse_tree_from_text.Document(
         $,
@@ -78,7 +78,7 @@ export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_sche
                     switch ($[0]) {
 
                         case 'schema': return _p_temp.ss($, ($) => _pdev.implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
-                        case 'set': return _p_temp.ss($, ($) => $.__get_possible_entry(split.element).__decide(
+                        case 'set': return _p_temp.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
                             ($) => temp_find_schema($, split.rest),
                             () => _pdev.implement_me(`(FIXME: make this a reference) schema not found: ${split.element}`)
                         ))
@@ -97,7 +97,7 @@ export const $x: _pi.Refiner_With_Parameters<d_schema.Module, d_deserialize_sche
     }
     const schema = temp_find_schema(resolved_schema_schema.schema, resolved_schema_schema['schema path'])
 
-    const type = schema.modules.__get_possible_entry(resolved_schema_schema.module).__decide(
+    const type = schema.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
         ($) => $,
         () => {
             schema.modules.__d_map(($, id) => {

@@ -26,7 +26,7 @@ export const Range: t_signatures.Range = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'start': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'start',
                 ($) => abort(
                     ['no such entry', "start"],
@@ -40,7 +40,7 @@ export const Range: t_signatures.Range = ($, abort) => _p_change_context(
             ),
         ),
         'end': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'end',
                 ($) => abort(
                     ['no such entry', "end"],
@@ -65,7 +65,7 @@ export const Location: t_signatures.Location = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'relative': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'relative',
                 ($) => abort(
                     ['no such entry', "relative"],
@@ -79,7 +79,7 @@ export const Location: t_signatures.Location = ($, abort) => _p_change_context(
             ),
         ),
         'absolute': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'absolute',
                 ($) => abort(
                     ['no such entry', "absolute"],
@@ -112,7 +112,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
     ),
     ($) => ({
         'document resource identifier': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'document resource identifier',
                 ($) => abort(
                     ['no such entry', "document resource identifier"],
@@ -126,7 +126,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
             ),
         ),
         'line': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'line',
                 ($) => abort(
                     ['no such entry', "line"],
@@ -148,7 +148,7 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
             ),
         ),
         'column': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'column',
                 ($) => abort(
                     ['no such entry', "column"],

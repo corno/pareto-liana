@@ -200,7 +200,7 @@ export const Node_Type = (
                                 //         'supporting': _pi.Optional_Value<Supporting>
                                 //     }> => $.__d_map(($, id) => ({
                                 //         'context': $,
-                                //         'supporting': $p['supporting dictionary'].__get_possible_entry(
+                                //         'supporting': $p['supporting dictionary'].__get_possible_entry_deprecated(
                                 //             key,
                                 //         ),
                                 //     }))
@@ -383,7 +383,7 @@ export const Node_Type = (
                                                     return ['set', {
                                                         'value': $,
                                                         'found state definition': _p.optional.map(
-                                                            def.options.__get_possible_entry($.option.value),
+                                                            def.options.__get_possible_entry_deprecated($.option.value),
                                                             ($) => ({
                                                                 'definition': $,
                                                                 'node': Node(

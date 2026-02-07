@@ -28,7 +28,7 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
     ),
     ($) => ({
         'leading trivia': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'leading trivia',
                 ($) => abort(
                     ['no such entry', "leading trivia"],
@@ -42,7 +42,7 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
             ),
         ),
         'tokens': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'tokens',
                 ($) => abort(
                     ['no such entry', "tokens"],
@@ -64,7 +64,7 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort) => _p_
             ),
         ),
         'end': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'end',
                 ($) => abort(
                     ['no such entry', "end"],
@@ -89,7 +89,7 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
     ),
     ($) => ({
         'start': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'start',
                 ($) => abort(
                     ['no such entry', "start"],
@@ -103,7 +103,7 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
             ),
         ),
         'type': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'type',
                 ($) => abort(
                     ['no such entry', "type"],
@@ -117,7 +117,7 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
             ),
         ),
         'end': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'end',
                 ($) => abort(
                     ['no such entry', "end"],
@@ -131,7 +131,7 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
             ),
         ),
         'trailing trivia': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'trailing trivia',
                 ($) => abort(
                     ['no such entry', "trailing trivia"],
@@ -320,7 +320,7 @@ export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_change_conte
                             ),
                             ($) => ({
                                 'value': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'value',
                                         ($) => abort(
                                             ['no such entry', "value"],
@@ -334,7 +334,7 @@ export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_change_conte
                                     ),
                                 ),
                                 'type': _p_change_context(
-                                    $.__get_entry(
+                                    $.__get_entry_deprecated(
                                         'type',
                                         ($) => abort(
                                             ['no such entry', "type"],
@@ -375,7 +375,7 @@ export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_change_conte
     ),
     ($) => ({
         'range': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'range',
                 ($) => abort(
                     ['no such entry', "range"],
@@ -389,7 +389,7 @@ export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_change_conte
             ),
         ),
         'value': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'value',
                 ($) => abort(
                     ['no such entry', "value"],
@@ -414,7 +414,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
     ),
     ($) => ({
         'leading whitespace': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'leading whitespace',
                 ($) => abort(
                     ['no such entry', "leading whitespace"],
@@ -428,7 +428,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
             ),
         ),
         'comments': _p_change_context(
-            $.__get_entry(
+            $.__get_entry_deprecated(
                 'comments',
                 ($) => abort(
                     ['no such entry', "comments"],
@@ -450,7 +450,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                     ),
                     ($) => ({
                         'type': _p_change_context(
-                            $.__get_entry(
+                            $.__get_entry_deprecated(
                                 'type',
                                 ($) => abort(
                                     ['no such entry', "type"],
@@ -497,7 +497,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                             ),
                         ),
                         'content': _p_change_context(
-                            $.__get_entry(
+                            $.__get_entry_deprecated(
                                 'content',
                                 ($) => abort(
                                     ['no such entry', "content"],
@@ -511,7 +511,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                             ),
                         ),
                         'range': _p_change_context(
-                            $.__get_entry(
+                            $.__get_entry_deprecated(
                                 'range',
                                 ($) => abort(
                                     ['no such entry', "range"],
@@ -525,7 +525,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                             ),
                         ),
                         'trailing whitespace': _p_change_context(
-                            $.__get_entry(
+                            $.__get_entry_deprecated(
                                 'trailing whitespace',
                                 ($) => abort(
                                     ['no such entry', "trailing whitespace"],

@@ -21,7 +21,7 @@ import * as t_transform_file_to_fp from "../schemas/transform_file/transformers/
 import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 export type Creator = (
-    deserializer: _pi.Refiner_With_Parameters<
+    deserializer: _pi.Refiner_With_Parameter<
         d_loc.List_of_Characters,
         d_fp.Phrase,
         d_loc.List_of_Characters,
