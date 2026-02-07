@@ -42,7 +42,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/block"
 
 export const Error = ($: Error): d_fp.Paragraph => {
     return sh.pg.sentences($.__to_list(
-        ($, id) => sh.ph.composed([
+        ($, id) => sh.sentence([
             sh.ph.literal("error in package '"),
             sh.ph.literal(id),
             sh.ph.literal("': "),
@@ -68,7 +68,9 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
         $cr.log.execute(
             {
                 'message': sh.pg.sentences([
-                    sh.ph.literal("generating..."),
+                    sh.sentence([
+                        sh.ph.literal("generating..."),
+                    ])
                 ])
             },
             ($): d_main.Error => ({
@@ -202,7 +204,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             $cr.log.execute(
                                 {
                                     'message': sh.pg.sentences([
-                                        sh.ph.composed([
+                                        sh.sentence([
 
                                             sh.ph.literal("generated package: "),
                                             sh.ph.literal(id),

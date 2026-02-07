@@ -78,7 +78,9 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
             $cr['log error'].execute(
                 {
                     'message': sh.pg.sentences([
-                        t_transform_file_to_fp.My_Error($)
+                        sh.sentence([
+                            t_transform_file_to_fp.My_Error($)
+                        ])
                     ]),
                 },
                 ($) => ({

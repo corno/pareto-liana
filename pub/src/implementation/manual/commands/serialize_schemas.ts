@@ -73,18 +73,19 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                         $cr['log error'].execute(
                             {
                                 'message': sh.pg.sentences([
-                                    sh.ph.composed([
+                                    sh.sentence([
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
+                                        _p.decide.state($, ($) => {
+                                            switch ($[0]) {
+                                                case 'resolve error': return _p.ss($, ($) => t_resolve_to_fp.Error($))
+                                                case 'error writing file': return _p.ss($, ($) => t_write_file_to_fp.Error($))
+                                                default: return _p.au($[0])
+                                            }
+                                        })
                                     ]),
-                                    _p.decide.state($, ($) => {
-                                        switch ($[0]) {
-                                            case 'resolve error': return _p.ss($, ($) => t_resolve_to_fp.Error($))
-                                            case 'error writing file': return _p.ss($, ($) => t_write_file_to_fp.Error($))
-                                            default: return _p.au($[0])
-                                        }
-                                    })
+
                                 ])
                             },
                             ($) => ({

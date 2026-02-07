@@ -60,7 +60,10 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
             $cr['log error'].execute(
                 {
                     'message': sh.pg.sentences([
-                        t_transform_file_to_fp.My_Error($)
+                        sh.sentence([
+
+                            t_transform_file_to_fp.My_Error($)
+                        ])
                     ]),
                 },
                 ($) => ({

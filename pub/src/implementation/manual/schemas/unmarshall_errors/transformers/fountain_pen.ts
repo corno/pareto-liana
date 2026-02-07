@@ -17,7 +17,7 @@ export const Errors = (
     }
 ): d_out.Paragraph => {
     return sh.pg.sentences($.__l_map(($) => {
-        return sh.ph.composed([
+        return sh.sentence([
             sh.ph.literal($p['document path']),
             sh.ph.literal(":"),
             sh.ph.decimal($.range.start.relative.line + $p['line offset']),

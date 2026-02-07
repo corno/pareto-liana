@@ -41,7 +41,7 @@ export const $: g_.Modules = modules(
             }))
         })),
 
-        "Sentence": module_(t.component("Phrase")),
+        "Sentence": module_(t.list(t.component("Phrase"))),
 
         "Phrase": module_(t.state({
             "single line": toption(t.component("Single Line")),
