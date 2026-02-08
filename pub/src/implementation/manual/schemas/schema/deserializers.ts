@@ -46,14 +46,14 @@ export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<El
 }
 
 
-export const $x: _pi.Refiner_With_Parameter<d_schema.Module, d_deserialize_schema.Error, d_text.List_of_Characters, { 'uri': string }> = ($, abort, $p) => {
+export const $x: _pi.Refiner_With_Parameter<d_schema.Module, d_deserialize_schema.Error, d_text.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
 
     const x = r_parse_tree_from_text.Document(
         $,
         ($) => abort(['deserialize', ['parse error', $]]),
         {
             'tab size': 4,
-            'document resource identifier': $p.uri
+            'document resource identifier': $p['document resource identifier']
         },
     )
 

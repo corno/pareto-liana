@@ -48,7 +48,7 @@ export const $$x: _pi.Refiner_With_Parameter<d_unmarshall_result_types.Node, d_d
             'file location': $p['schema path'],
         }]),
         {
-            'uri': $p['schema path'],
+            'document resource identifier': $p['schema path'],
         }
     )
 

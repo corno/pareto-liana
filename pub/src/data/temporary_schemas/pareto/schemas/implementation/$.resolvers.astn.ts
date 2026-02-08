@@ -314,7 +314,7 @@ export const $: g_.Module_Resolvers = resolvers(
                     "dictionary entry": option(r.group({
                         "dictionary": r.component("Select Value", {}, {}),
                         "id": r.component("Assign", {}, {}),
-                        "abort handler": r.component("Assign", {}, {}),
+                        "no such entry handler": r.component("Assign", {}, {}),
                     })),
                     "list from text": option(r.group({
                         "source": r.component("Select Value", {}, {}),

@@ -26,7 +26,7 @@ export type Creator = (
         d_fp.Phrase,
         d_loc.List_of_Characters,
         {
-            'uri': string
+            'document resource identifier': string
         }
     >,
 ) => signatures.commands.transform_file
@@ -54,7 +54,7 @@ export const $$: Creator = (deserializer) => _p.command_procedure(($p, $cr, $qr)
                                 $,
                                 ($) => abort(['processing', $]),
                                 {
-                                    'uri': _p_text_from_list(
+                                    'document resource identifier': _p_text_from_list(
                                         t_path_to_text.Node_Path($r.in),
                                         ($) => $,
                                     ),
