@@ -323,7 +323,7 @@ export const $: g_.Modules = modules(
                     "dictionary entry": toption(t.group({
                         "dictionary": prop(t.component("Select Value")),
                         "id": prop(t.component("Assign")),
-                        "abort handler": prop(t.component("Assign")),
+                        "no such entry handler": prop(t.component("Assign")),
                     })),
                     "list from text": toption(t.group({
                         "source": prop(t.component("Select Value")),

@@ -63,7 +63,6 @@ export const Node_Type = (
                                     }
                                 })
                             }])
-                            // case 'not set': return pa.ss($, () => ['invalid', data.location])
                             default: return ['invalid', $p.range]
                         }
                     })
@@ -407,59 +406,6 @@ export const Node_Type = (
                                     }]
                                 }]
                             })
-                            // case 'ordered collection': return _p.ss($, ($) => {
-                            //     const elements = _p.decide.state($, ($): d_in.Elements => {
-                            //         switch ($[0]) {
-                            //             case 'list': return _p.ss($, ($) => $.elements)
-                            //             case 'concise group': return _p.ss($, ($) => $.elements)
-                            //             default: return _p.au($[0])
-                            //         }
-                            //     })
-                            //     const range = _p.decide.state($, ($): _in_token.Range => {
-                            //         switch ($[0]) {
-                            //             case 'list': return _p.ss($, ($) => $['['].range)
-                            //             case 'concise group': return _p.ss($, ($) => $['<'].range)
-                            //             default: return _p.au($[0])
-                            //         }
-                            //     })
-                            //     if (elements.__get_length() > 2) {
-                            //         return ['more than 2 elements', range]
-                            //     }
-                            //     const first = elements.__deprecated_get_possible_item_at(0)
-                            //     return first.__decide<d_out.State_Status>(
-                            //         ($) => {
-                            //             if ($.value.type[0] !== 'string') {
-                            //                 return ['state is not a string', t_ast_to_range.Value(data)]
-                            //             }
-                            //             const state_name = $.value.type[1].value
-                            //             const state_name_range = $.value.type[1].range
-                            //             return elements.__deprecated_get_possible_item_at(1).__decide<d_out.State_Status>(
-                            //                 ($) => {
-                            //                     const value = $.value
-                            //                     return def.get_entry(state_name).__decide<d_out.State_Status>(
-                            //                         ($) => ['valid', {
-                            //                             'node': Node(
-                            //                                 value,
-                            //                                 {
-                            //                                     'definition': $,
-                            //                                 },
-                            //                             )
-                            //                         }],
-                            //                         () => ['invalid', ['unknown state', {
-                            //                             'range': state_name_range,
-                            //                             'found': state_name,
-                            //                             'expected': def.__d_map(($) => null)
-                            //                         }]]
-                            //                     )
-                            //                 },
-                            //                 () => ['invalid', ['missing value', t_ast_to_range.Value(data)]]
-                            //             )
-                            //         },
-                            //         () => ['invalid', ['missing state name', range]]
-                            //     )
-
-                            // })
-                            // case 'not set': return pa.ss($, () => ['invalid', data.location])
                             default: return ['invalid', $p.range]
                         }
                     })
@@ -473,13 +419,11 @@ export const Node_Type = (
                             case 'text': return _p.ss($, ($) => ['valid', {
                                 'value': $,
                             }])
-                            // case 'not set': return pa.ss($, () => ['invalid', data.location])
                             default: return ['invalid', $p.range]
                         }
                     })
                 }]
             })
-            // case 'type parameter': return _p.ss($, ($) => _pdev.implement_me("xx"))
             default: return _p.au($[0])
         }
     })
