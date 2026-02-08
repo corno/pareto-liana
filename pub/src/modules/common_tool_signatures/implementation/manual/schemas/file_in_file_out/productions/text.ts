@@ -15,7 +15,9 @@ export const Path: Signature = (iterator, abort) => r_node_path_to_text.Node_Pat
     _list_from_text(
         iterator.consume(
             ($) => $,
-            () => abort(['missing', null])
+            {
+                no_more_tokens: () => abort(['missing', null])
+            }
         ),
         ($) => $
     ),

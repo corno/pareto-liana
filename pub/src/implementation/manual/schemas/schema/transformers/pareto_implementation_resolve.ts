@@ -69,7 +69,9 @@ const op_pad_dictionary_identifiers = <T>(
 ).convert(
     ($) => $p.prefix + $.id + $p.suffix,
     ($) => $.value,
-    () => _p_unreachable_code_path("the padding is fixed") // no possibility of duplicate id's
+    {
+        duplicate_id: () => _p_unreachable_code_path("the padding is fixed") // no possibility of duplicate id's
+    }
 )
 
 export const Module_Resolvers = (

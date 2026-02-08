@@ -20,5 +20,7 @@ export const $$ = <T>(
 ).convert(
     ($) => $.id,
     ($) => $.value,
-    () => abort(['duplicate id', null]),
+    {
+        duplicate_id: () => abort(['duplicate id', null]),
+    }
 )
