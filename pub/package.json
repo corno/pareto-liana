@@ -14,7 +14,7 @@
     "pareto-core-dev": "^0.12.7",
     "pareto-core-shorthands": "^0.2.19",
     "pareto-fountain-pen": "^0.4.38",
-    "pareto-host-nodejs": "^0.2.23",
-    "pareto-resources": "^0.2.42"
+    "pareto-host-nodejs": "^0.2.24",
+    "pareto-resources": "^0.2.43"
   }
 }
