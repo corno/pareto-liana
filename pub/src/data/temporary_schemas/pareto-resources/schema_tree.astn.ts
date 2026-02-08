@@ -10,7 +10,7 @@ import { $ as m_execute_any_smelly_command_executable } from "./schemas/execute_
 import { $ as m_execute_command_executable } from "./schemas/execute_command_executable/$.module.astn"
 import { $ as m_execute_query_executable } from "./schemas/execute_query_executable/$.module.astn"
 import { $ as m_execute_query_executable_and_catch } from "./schemas/execute_query_executable_and_catch/$.module.astn"
-import { $ as m_fountain_pen_multiline } from "../pareto-fountain-pen/schemas/block/$.module.astn"
+import { $ as m_fountain_pen } from "../pareto-fountain-pen/schemas/block/$.module.astn"
 import { $ as m_execute_smelly_command_executable } from "./schemas/execute_smelly_command_executable/$.module.astn"
 import { $ as m_get_instream_data } from "./schemas/get_instream_data/$.module.astn"
 import { $ as m_log } from "./schemas/log/$.module.astn"
@@ -36,7 +36,7 @@ export const $: g_.Schema_Tree = st.set({
     "execute query executable and catch": m_execute_query_executable_and_catch,
     "execute query executable": m_execute_query_executable,
     "execute smelly command executable": m_execute_smelly_command_executable,
-    "fountain pen multiline": m_fountain_pen_multiline,
+    "fountain pen": m_fountain_pen,
     "get instream data": m_get_instream_data,
     "log error": m_log_error,
     "log": m_log,

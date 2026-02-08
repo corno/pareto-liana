@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.group({
-            "message": prop(t.component_external("fountain pen multiline", "Paragraph")),
+            "message": prop(t.component_external("fountain pen", "Paragraph")),
         })),
 
         "Error": module_(t.nothing()) //I'm not aware of any errors that could occur at this time
