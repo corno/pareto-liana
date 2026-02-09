@@ -14,14 +14,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Lines": module_(t.text_global("Output")),
+        
+        "List of Characters": module_(t.list(t.number_local(n.natural(null)))),
 
-        "Directory": module_(t.dictionary(
-            t.state({
-                "file": toption(t.component("Lines")),
-                "directory": toption(t.component("Directory")),
-            })
-        )),
     }
 )
 

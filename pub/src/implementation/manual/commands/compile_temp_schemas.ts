@@ -8,7 +8,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
-import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 export type Error = _pi.Dictionary<Package_Error>
 
@@ -38,7 +38,7 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/sch
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/schemas/resolve/transformers/fountain_pen"
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const Error = ($: Error): d_fp.Paragraph => {
     return sh.pg.sentences($.__to_list(

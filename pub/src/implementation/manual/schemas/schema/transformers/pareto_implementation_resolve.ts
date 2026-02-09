@@ -340,7 +340,7 @@ export const Value_Resolver = (
     $: d_in.Value_Resolver,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
     },
 ): d_out.Assign => _p.decide.state($, ($) => {
     switch ($[0]) {

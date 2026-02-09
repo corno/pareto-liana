@@ -3,15 +3,15 @@ import * as _pi from 'pareto-core/dist/interface'
 import { st } from "../../../shorthands/schema"
 import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-import { $ as x_block } from "./schemas/block/$.module.astn"
+import { $ as x_prose } from "./schemas/prose/$.module.astn"
 import { $ as x_lines } from "./schemas/lines/$.module.astn"
-import { $ as x_text } from "./schemas/text_deprecated/$.module.astn"
+import { $ as x_list_of_characters } from "./schemas/list_of_characters/$.module.astn"
 import { $ as x_semi_lines } from "./schemas/semi_lines/$.module.astn"
 
 
 export const $: g_.Schema_Tree = st.set({
-    "block": x_block,
+    "prose": x_prose,
     "lines": x_lines,
     "semi lines": x_semi_lines,
-    "text deprecated": x_text,
+    "list of characters": x_list_of_characters,
 })

@@ -17,7 +17,7 @@ import * as t_load_pareto_file_to_fp from "../schemas/load_pareto_file/transform
 // import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/text"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
 export const $$: signatures.commands.transform_file = _p.command_procedure(($p, $cr, $qr) => [

@@ -14,16 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-
-        "Directory": module_(t.dictionary(
-            t.component("Node")
-        )),
-
-        "Node": module_(t.state({
-            "file": toption(t.component("Paragraph")),
-            "directory": toption(t.component("Directory")),
-        })),
-
+        
         "Paragraph": module_(t.state({
             "composed": toption(t.list(t.component("Paragraph"))),
             "sentences": toption(t.list(t.component("Sentence"))),
@@ -46,7 +37,7 @@ export const $: g_.Modules = modules(
         "Phrase": module_(t.state({
             "value": toption(t.state({
                 "text": toption(t.text_global("Output")),
-                "list of characters": toption(t.component("List of Characters")),
+                "list of characters": toption(t.component_external("list of characters", "List of Characters")),
             })),
             "indent": toption(t.component("Paragraph")),
             "composed": toption(t.list(t.component("Phrase"))),
@@ -63,7 +54,6 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "List of Characters": module_(t.list(t.number_local(n.natural(null)))),
     }
 )
 

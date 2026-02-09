@@ -2,13 +2,13 @@ import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../../interface/to_be_generated/load_pareto_document"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 export namespace signatures {
     export type Error = _pi.Transformer<d_in.Error, d_out.Phrase>
 }
 
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
 

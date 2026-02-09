@@ -6,10 +6,10 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/block/data"
+import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/block"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 type My_Error =
     | ['could not read instream', null]
