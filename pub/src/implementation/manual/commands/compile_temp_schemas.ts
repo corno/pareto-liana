@@ -34,8 +34,8 @@ import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/i
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
 import * as t_liana_to_pareto_implementation from "../transformers/module/pareto_implementation"
 import * as t_liana_to_pareto_interface from "../transformers/module/pareto_interface"
-import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
-import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
+import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
+import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
