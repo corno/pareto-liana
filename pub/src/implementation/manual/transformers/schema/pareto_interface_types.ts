@@ -9,8 +9,6 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/
 
 import * as sh from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
-
 const location = sh.t.component_imported(
     " location",
     "Relative Location",
@@ -30,7 +28,7 @@ export const Schema = (
     const add_location = $p.type[0] === 'unresolved'
 
     return sh.m.package_data(
-        op_flatten_dictionary(
+        _p.dictionary.from.dictionary(
             _p.dictionary.literal({
                 " location": _p.dictionary.from.dictionary(
                     _p.dictionary.literal({
@@ -87,10 +85,12 @@ export const Schema = (
                     ))
                 }),
             }),
+        ).flatten(
+            ($) => $,
             {
-                'separator': "",
-            },
-            () => _p_unreachable_code_path("the root keys are fixed; ' location' and ' imports'"),
+                duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; ' location' and ' imports'"),
+            }
+            
         ),
         $.modules.__d_map(($) => sh.type.data(Value(
             $['root value'],

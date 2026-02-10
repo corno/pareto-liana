@@ -19,7 +19,6 @@ const temp_prepend = <T>(
     })
     return _p.dictionary.literal(result)
 }
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
 
 const no_such_entry_error = sh.a.group.literal({
     "type": sh.a.state.literal(
@@ -112,7 +111,7 @@ export const Module_Resolvers = (
                 ])
             ),
         }),
-        op_flatten_dictionary(
+        _p.dictionary.from.dictionary(
             _p.dictionary.literal({
                 "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l id'], [
                     "resolved",
@@ -120,10 +119,12 @@ export const Module_Resolvers = (
                     "unresolved"
                 ]))
             }),
+        ).flatten(
+            ($) => $,
             {
-                'separator': "",
-            },
-            () => _p_unreachable_code_path("there is only one root key, 'external '"),
+                duplicate_id: () => _p_unreachable_code_path("there is only one root key, 'external '"),
+            }
+
         ),
         $.__d_map(($, id) => sh.algorithm(
             "signatures",

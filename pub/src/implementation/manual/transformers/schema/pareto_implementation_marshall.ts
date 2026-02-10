@@ -9,9 +9,6 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
-
-
 export const Schema = (
     $: d_in.Schema,
     $p: {
@@ -51,9 +48,9 @@ export const Schema = (
             ),
 
         }),
-        op_flatten_dictionary(
+        _p.dictionary.from.dictionary(
             _p.dictionary.literal({
-                "serialize": _p.dictionary.literal({
+                "serialize ": _p.dictionary.literal({
                     "number": sh_i.import_.external(
                         "liana-core",
                         _p.list.literal([
@@ -79,15 +76,17 @@ export const Schema = (
                         ]),
                     ),
                 }),
-                "external": $.imports.__d_map(($, id) => constrained
+                "external ": $.imports.__d_map(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "transformers", "astn sealed target"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "astn sealed target"])
                 ),
             }),
+        ).flatten(
+            ($) => $,
             {
-                'separator': " ",
-            },
-            () => _p_unreachable_code_path("the root keys are fixed; 'serialize' and 'external'"),
+                duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; 'serialize' and 'external'"),
+            }
+
         ),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",

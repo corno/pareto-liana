@@ -9,8 +9,6 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
-
 export const Schema = (
     $: d_in.Schema,
     $p: {

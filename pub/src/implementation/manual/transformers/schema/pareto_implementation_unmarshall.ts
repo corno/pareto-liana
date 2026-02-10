@@ -13,7 +13,6 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 //dependencies
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
 
 const location = sh.a.select(
     sh.sv.call(
@@ -70,7 +69,7 @@ export const Schema: _pi.Transformer_With_Parameter<
                 ]),
             ),
         }),
-        op_flatten_dictionary(
+        _p.dictionary.from.dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
                     "deserialize number": sh_i.import_.external(
@@ -125,10 +124,11 @@ export const Schema: _pi.Transformer_With_Parameter<
                     : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["refiners", "astn parse tree"])
                 ),
             }),
+        ).flatten(
+            ($) => $,
             {
-                'separator': "",
-            },
-            () => _p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '"),
+                duplicate_id: () => _p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
+            }
         ),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",

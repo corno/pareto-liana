@@ -5,8 +5,6 @@ import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
-import { $$ as op_flatten_dictionary } from "../../../temp_flatten_dictionary"
-
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
@@ -22,22 +20,26 @@ export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
     $
 ) => ({
     //FIXME!! merge the number types with the text types in here
-    'text types': sh.dictionary(op_flatten_dictionary(
-        _p.dictionary.literal({
-            "t": $['text types'].__d_map(($) => {
-                return Text_Type($)
+    "text types": sh.dictionary(
+        _p.dictionary.from.dictionary(
+            _p.dictionary.literal({
+                "t": $['text types'].__d_map(($) => {
+                    return Text_Type($)
+                }),
+                "n": $['number types'].__d_map(($): d_out.Text_Type => {
+                    return {
+                        'type': sh.state(['single line', null])
+                    }
+                })
             }),
-            "n": $['number types'].__d_map(($) => {
-                return {
-                    'type': sh.state(['single line', null])
-                }
-            })
-        }),
-        {
-            'separator': "",
-        },
-        () => _p_unreachable_code_path("the root dictionary keys are fixed; 't' and 'n'"),
-    )),
+        ).flatten(
+            ($) => $,
+            {
+                duplicate_id: () => _p_unreachable_code_path("the root dictionary keys are fixed; 't' and 'n'"),
+            }
+
+        )
+    ),
 })
 
 export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
