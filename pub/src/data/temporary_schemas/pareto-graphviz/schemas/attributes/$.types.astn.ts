@@ -14,18 +14,6 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Graph": module_(t.group({
-            "attributes": prop(t.component("Attributes")),
-            "nodes": prop(t.dictionary(t.group({
-                "attributes": prop(t.component("Attributes"))
-            }))),
-            "edges": prop(t.list(t.group({
-                "from": prop(t.text_local(text('single line'))),
-                "to": prop(t.text_local(text('single line'))),
-                "attributes": prop(t.component("Attributes"))
-            }))),
-        })),
-
         "Attributes": module_(t.list(t.state({
             "freeform": toption(t.group({
                 "key": prop(t.text_local(text('single line'))),
