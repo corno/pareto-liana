@@ -22,33 +22,27 @@ export const $: g_.Modules = modules(
                 "digraph": toption(t.nothing()),
             })),
             "name": prop(t.optional(t.component("ID"))),
-            "statements": prop(t.component("Statement List")),
+            "statements": prop(t.component("Statements")),
         })),
 
-        "Statement List": module_(t.list(t.state({
+        "Statements": module_(t.list(t.state({
             "node": toption(t.group({
                 "node": prop(t.component("Node ID")),
-                "attributes": prop(t.component_external("attributes", "Attributes")),
+                "attributes": prop(t.component("Attributes")),
             })),
             "edge": toption(t.group({
-                "left": prop(t.state({
-                    "node": toption(t.component("Node ID")),
-                    "subgraph": toption(t.component("Subgraph")),
-                })),
+                "left": prop(t.component("End Point")),
                 //the operator (-- or ->) can be derived from the graph type
-                "right": prop(t.list(t.state({
-                    "node": toption(t.component("Node ID")),
-                    "subgraph": toption(t.component("Subgraph")),
-                }))),
-                "attributes": prop(t.component_external("attributes", "Attributes")),
+                "right": prop(t.list(t.component("End Point"))),
+                "attributes": prop(t.component("Attributes")),
             })),
-            "attribute list": toption(t.group({
+            "attributes": toption(t.group({
                 "type": prop(t.state({
                     "graph": toption(t.nothing()),
                     "node": toption(t.nothing()),
                     "edge": toption(t.nothing()),
                 })),
-                "attributes": prop(t.component_external("attributes", "Attributes")),
+                "attributes": prop(t.component("Attributes")),
             })),
             "attribute assignment": toption(t.group({
                 "name": prop(t.component("ID")),
@@ -57,7 +51,12 @@ export const $: g_.Modules = modules(
             "subgraph": toption(t.component("Subgraph")),
         }))),
 
-        "Attribute List": module_(t.list(t.group({
+        "End Point": module_(t.state({
+            "node": toption(t.component("Node ID")),
+            "subgraph": toption(t.component("Subgraph")),
+        })),
+
+        "Attributes": module_(t.list(t.group({
             "name": prop(t.component("ID")),
             "value": prop(t.component("ID")),
         }))),
@@ -79,7 +78,7 @@ export const $: g_.Modules = modules(
 
         "Subgraph": module_(t.group({
             "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?
-            "statements": prop(t.component("Statement List")),
+            "statements": prop(t.component("Statements")),
         })),
     }
 )
