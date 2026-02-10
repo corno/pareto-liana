@@ -2,7 +2,7 @@ import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unre
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../interface/generated/liana/schemas/module/data/unresolved"
+import * as g_ from "../../interface/generated/liana/schemas/schema/data/unresolved"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
 // import { $ as m_antlr } from "./antlr/module.astn"
@@ -23,76 +23,76 @@ import { $ as m_pareto_liana } from "./pareto-liana/module.astn"
 import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn"
 import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
-import { $ as m_pareto_targets } from "./pareto-targets/module.astn"
+import { $ as m_liana_targets } from "./liana-targets/module.astn"
 // import { $ as m_pareto_test } from "./pareto-test/module.astn"
-import { $ as m_pareto_vscode_backend } from "./pareto-vscode-backend/module.astn"
+import { $ as m_liana_vscode_backend } from "./liana-vscode-backend/module.astn"
 
 
-export type Module = {
+export type Package = {
     'target path': string,
-    'module': g_.Module
+    'package': g_.Package
 }
 
-export const $ = _p.dictionary.literal<Module>({
+export const $ = _p.dictionary.literal<Package>({
     "astn": {
         'target path': "../astn",
-        'module': m_astn,
+        'package': m_astn,
     },
     "astn-core": {
         'target path': "../astn-core",
-        'module': m_astn_core,
+        'package': m_astn_core,
     },
     "pareto": {
         'target path': "../pareto",
-        'module': m_pareto,
+        'package': m_pareto,
     },
     "pareto-boekhouding": {
         'target path': "../pareto-boekhouding",
-        'module': m_pareto_boekhouding,
+        'package': m_pareto_boekhouding,
     },
     "pareto-development-tools": {
         'target path': "../pareto-development-tools",
-        'module': m_pareto_development_tools,
+        'package': m_pareto_development_tools,
     },
     "pareto-fountain-pen": {
         'target path': "../pareto-fountain-pen",
-        'module': m_pareto_fountain_pen,
+        'package': m_pareto_fountain_pen,
     },
     "pareto-graphviz": {
         'target path': "../pareto-graphviz",
-        'module': m_pareto_graphviz,
+        'package': m_pareto_graphviz,
     },
     "pareto-json": {
         'target path': "../pareto-json",
-        'module': m_pareto_json,
+        'package': m_pareto_json,
     },
     "pareto-liana": {
         'target path': "../pareto-liana",
-        'module': m_pareto_liana,
+        'package': m_pareto_liana,
     },
     "pareto-lionweb": {
         'target path': "../pareto-lionweb",
-        'module': m_pareto_lionweb,
+        'package': m_pareto_lionweb,
     },
     "pareto-resources": {
         'target path': "../pareto-resources",
-        'module': m_pareto_resources,
+        'package': m_pareto_resources,
     },
     "pareto-static-html": {
         'target path': "../pareto-static-html",
-        'module': m_pareto_static_html,
+        'package': m_pareto_static_html,
     },
-    "pareto-targets": {
-        'target path': "../pareto-targets",
-        'module': m_pareto_targets,
+    "liana-targets": {
+        'target path': "../liana-targets",
+        'package': m_liana_targets,
     },
     // "pareto-test": {
     //     'target path': "../pareto-test",
     //     'module': m_pareto_test,
     // },
-    "pareto-vscode-backend": {
-        'target path': "../pareto-vscode-backend",
-        'module': m_pareto_vscode_backend,
+    "liana-vscode-backend": {
+        'target path': "../liana-vscode-backend",
+        'package': m_liana_vscode_backend,
     },
     // "accounting_ruwe_data": {
     //     'target path': "../../../pareto-rosetta/accounting_ruwe_data",

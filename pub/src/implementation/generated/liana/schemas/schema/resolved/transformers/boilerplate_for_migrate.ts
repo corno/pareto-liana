@@ -7,6 +7,19 @@ import * as t_signatures from "../../../../../../../interface/generated/liana/sc
 
 import * as t_out from "../../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
+export const Package: t_signatures.Package = ($) => ({
+    'omit (de)serializer': _p_change_context(
+        $['omit (de)serializer'],
+        ($) => $,
+    ),
+    'schema tree': _p_change_context(
+        $['schema tree'],
+        ($) => Schema_Tree(
+            $,
+        ),
+    ),
+})
+
 export const Schemas: t_signatures.Schemas = ($) => ({
     'l location': {
         'document resource identifier': "implement me",

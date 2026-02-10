@@ -13,6 +13,29 @@ import * as v_serialize_number from "liana-core/dist/implementation/manual/primi
 
 import * as v_serialize_boolean from "liana-core/dist/implementation/manual/primitives/boolean/serializers/true_false"
 
+export const Package: t_signatures.Package = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        "omit (de)serializer": _p_change_context(
+            $['omit (de)serializer'],
+            ($) => ['text', {
+                'delimiter': ['none', null],
+                'value': _p_text_from_list(
+                    v_serialize_boolean.serialize(
+                        $,
+                    ),
+                    ($) => $,
+                ),
+            }],
+        ),
+        "schema tree": _p_change_context(
+            $['schema tree'],
+            ($) => Schema_Tree(
+                $,
+            ),
+        ),
+    },
+)]]
+
 export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(

@@ -3,7 +3,16 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
-import * as d_schema from "../interface/generated/liana/schemas/schema/data/unresolved"
+import * as d_target from "../interface/generated/liana/schemas/schema/data/unresolved"
+
+export const package_ = (
+    schema_tree: d_target.Schema_Tree,
+    omit_de_serializer?: boolean,
+): d_target.Package => ({
+    'omit (de)serializer': omit_de_serializer === undefined ? false : omit_de_serializer,
+    'schema tree': schema_tree,
+})
+
 
 /**
  * schema tree
@@ -11,30 +20,30 @@ import * as d_schema from "../interface/generated/liana/schemas/schema/data/unre
 export namespace st {
 
     export const set = (
-        schemas: _p.Raw_Or_Normal_Dictionary<d_schema.Schema_Tree>,
-    ): d_schema.Schema_Tree => {
+        schemas: _p.Raw_Or_Normal_Dictionary<d_target.Schema_Tree>,
+    ): d_target.Schema_Tree => {
         return sh.state(['set', sh.dictionary(schemas)])
     }
 
     export const schema = (
-        schema: d_schema.Schema,
-    ): d_schema.Schema_Tree => {
+        schema: d_target.Schema,
+    ): d_target.Schema_Tree => {
         return sh.state(['schema', schema])
     }
 
 }
 
 export const modules = (
-    modules: _p.Raw_Or_Normal_Dictionary<d_schema.Modules.l_dictionary.D.l_entry>,
-): d_schema.Modules => {
+    modules: _p.Raw_Or_Normal_Dictionary<d_target.Modules.l_dictionary.D.l_entry>,
+): d_target.Modules => {
     return sh.dictionary(modules)
 }
 
 export const globals = (
     complexity: 'unconstrained' | 'constrained',
-    text_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.text_types.l_dictionary.D.l_entry>,
-    number_types: _p.Raw_Or_Normal_Dictionary<d_schema.Globals.number_types.l_dictionary.D.l_entry>,
-): d_schema.Globals => {
+    text_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.text_types.l_dictionary.D.l_entry>,
+    number_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.number_types.l_dictionary.D.l_entry>,
+): d_target.Globals => {
     return {
         'complexity': complexity === 'unconstrained'
             ? sh.state(['unconstrained', null])
@@ -44,33 +53,33 @@ export const globals = (
     }
 }
 
-export const module_ = (type: d_schema.Value): d_schema.Modules.l_dictionary.D.l_entry => ({
+export const module_ = (type: d_target.Value): d_target.Modules.l_dictionary.D.l_entry => ({
     'root value': type,
 })
 
-export const text = (type: 'single line' | 'multi line'): d_schema.Text_Type => ({
+export const text = (type: 'single line' | 'multi line'): d_target.Text_Type => ({
     'type': type === 'single line' ? sh.state(['single line', null]) : sh.state(['multi line', null]),
 })
 
 export const prop = (
-    node: d_schema.Value,
-): d_schema.Group.l_dictionary.D.l_entry => ({
+    node: d_target.Value,
+): d_target.Group.l_dictionary.D.l_entry => ({
     'description': sh.optionalx.not_set(),
     'value': node,
 })
 
 export const toption = (
-    node: d_schema.Value,
-): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    node: d_target.Value,
+): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'constraints': _p.optionalx.not_set(),
     'description': sh.optionalx.not_set(),
     'value': node,
 })
 
 export const toption_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraints.O.l_dictionary.D.l_entry>,
-    node: d_schema.Value,
-): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraints.O.l_dictionary.D.l_entry>,
+    node: d_target.Value,
+): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'constraints': _p.optionalx.set(sh.dictionary(constraints)),
     'description': sh.optionalx.not_set(),
     'value': node,
@@ -78,8 +87,8 @@ export const toption_constrained = (
 
 export const toption_with_description = (
     description: string,
-    node: d_schema.Value,
-): d_schema.Value.l_state.state.options.l_dictionary.D.l_entry => ({
+    node: d_target.Value,
+): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'constraints': _p.optionalx.not_set(),
     'description': _p.optionalx.set(description),
     'value': node,
@@ -87,8 +96,8 @@ export const toption_with_description = (
 
 export const prop_with_description = (
     description: string,
-    node: d_schema.Value,
-): d_schema.Group.l_dictionary.D.l_entry => ({
+    node: d_target.Value,
+): d_target.Group.l_dictionary.D.l_entry => ({
     'description': _p.optionalx.set(description),
     'value': node,
 })
@@ -98,28 +107,28 @@ export const prop_with_description = (
  */
 export namespace n {
 
-    export const integer = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+    export const integer = (decimal_separator_offset: null | number): d_target.Number_Type => ({
+        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
             'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
             'type': sh.state(['integer', null]),
         }])
     })
 
-    export const approximation = (significant_digits: number): d_schema.Number_Type => ({
-        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['approximation', {
+    export const approximation = (significant_digits: number): d_target.Number_Type => ({
+        'precision': sh.state<d_target.Number_Type.precision.l_state>(['approximation', {
             'significant digits': significant_digits,
         }])
     })
 
-    export const natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+    export const natural = (decimal_separator_offset: null | number): d_target.Number_Type => ({
+        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
             'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
             'type': sh.state(['natural', null]),
         }])
     })
 
-    export const positive_natural = (decimal_separator_offset: null | number): d_schema.Number_Type => ({
-        'precision': sh.state<d_schema.Number_Type.precision.l_state>(['exact', {
+    export const positive_natural = (decimal_separator_offset: null | number): d_target.Number_Type => ({
+        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
             'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
             'type': sh.state(['positive natural', null]),
         }])
@@ -129,16 +138,16 @@ export namespace n {
 
 export const module_reference = (
     type: string,
-): d_schema.Module_Reference => ({
+): d_target.Module_Reference => ({
     'location': sh.state(['internal', sh.reference(type)]),
     'resulting module': null,
 })
 
 export const value_reference = (
     type: string,
-    tail: d_schema.Value_Path.tail.l_list.L.l_item[],
+    tail: d_target.Value_Path.tail.l_list.L.l_item[],
 
-): d_schema.Value_Reference => {
+): d_target.Value_Reference => {
     return {
         'module': {
             'location': sh.state(['internal', sh.reference(type)]),
@@ -158,11 +167,11 @@ export const value_reference = (
  */
 export namespace t {
 
-    export const boolean = (): d_schema.Value => {
+    export const boolean = (): d_target.Value => {
         return sh.state(['boolean', null])
     }
 
-    export const component_acyclic = (type: string): d_schema.Value => {
+    export const component_acyclic = (type: string): d_target.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal acyclic', sh.reference(type)]),
             'results': sh.optionalx.not_set(),
@@ -171,22 +180,22 @@ export namespace t {
 
     export const component_with_results = (
         type: string,
-        results: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
-    ): d_schema.Value => {
+        results: sh.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+    ): d_target.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal', sh.reference(type)]),
             'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 
-    export const component = (type: string): d_schema.Value => {
+    export const component = (type: string): d_target.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal', sh.reference(type)]),
             'results': sh.optionalx.not_set(),
         }])
     }
 
-    export const component_external = (imp: string, type: string): d_schema.Value => {
+    export const component_external = (imp: string, type: string): d_target.Value => {
         return sh.state(['component', {
             'type': sh.state(['external', {
                 'import': sh.reference(imp),
@@ -196,18 +205,18 @@ export namespace t {
         }])
     }
 
-    export const dictionary = (type: d_schema.Value): d_schema.Value => {
+    export const dictionary = (type: d_target.Value): d_target.Value => {
         return sh.state(['dictionary', {
             'value': type,
             'benchmark': sh.optionalx.not_set(),
         }])
     }
 
-    export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_schema.Group.l_dictionary.D.l_entry>): d_schema.Value => {
+    export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_target.Group.l_dictionary.D.l_entry>): d_target.Value => {
         return sh.state(['group', sh.dictionary(properties)])
     }
 
-    export const list = (type: d_schema.Value): d_schema.Value => {
+    export const list = (type: d_target.Value): d_target.Value => {
         return sh.state(['list', {
             'value': type,
             'results': sh.optionalx.not_set(),
@@ -215,36 +224,36 @@ export namespace t {
     }
 
     export const list_with_results = (
-        type: d_schema.Value,
-        results: sh.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
-    ): d_schema.Value => {
+        type: d_target.Value,
+        results: sh.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+    ): d_target.Value => {
         return sh.state(['list', {
             'value': type,
             'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 
-    export const nothing = (): d_schema.Value => {
+    export const nothing = (): d_target.Value => {
         return sh.state(['nothing', null])
     }
 
-    export const number_global = (name: string): d_schema.Value => {
+    export const number_global = (name: string): d_target.Value => {
         return sh.state(['number', sh.state(['global', sh.reference(name)])])
     }
 
-    export const number_local = (bt: d_schema.Number_Type): d_schema.Value => {
+    export const number_local = (bt: d_target.Number_Type): d_target.Value => {
         return sh.state(['number', sh.state(['local', bt])])
     }
 
-    export const optional = (type: d_schema.Value): d_schema.Value => {
+    export const optional = (type: d_target.Value): d_target.Value => {
         return sh.state(['optional', type])
     }
 
     export const reference_derived = (
         type: string,
-        tail: d_schema.Value_Path.tail.l_list.L.l_item[],
-    ): d_schema.Value => {
-        const x: d_schema.Value_Reference = {
+        tail: d_target.Value_Path.tail.l_list.L.l_item[],
+    ): d_target.Value => {
+        const x: d_target.Value_Reference = {
             'module': {
                 'location': sh.state(['internal', sh.reference(type)]),
                 'resulting module': null,
@@ -263,10 +272,10 @@ export namespace t {
     export const reference_derived_external = (
         imp: string,
         type: string,
-        tail: d_schema.Value_Path.tail.l_list.L.l_item[],
+        tail: d_target.Value_Path.tail.l_list.L.l_item[],
 
-    ): d_schema.Value => {
-        const x: d_schema.Value_Reference = {
+    ): d_target.Value => {
+        const x: d_target.Value_Reference = {
             'module': {
                 'location': sh.state(['external', {
                     'import': sh.reference(imp),
@@ -288,11 +297,11 @@ export namespace t {
 
     export const reference = (
         type: string,
-        tail: d_schema.Value_Path.tail.l_list.L.l_item[],
+        tail: d_target.Value_Path.tail.l_list.L.l_item[],
         dependency?: "cyclic" | "acyclic",
-    ): d_schema.Value => {
+    ): d_target.Value => {
 
-        const p_type: d_schema.Value.l_state.reference.type_ = sh.state(['selected', {
+        const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
             'referent': {
                 'module': {
                     'location': sh.state(['internal', sh.reference(type)]),
@@ -322,10 +331,10 @@ export namespace t {
 
     export const reference_stack = (
         type: string,
-        tail: d_schema.Value_Path.tail.l_list.L.l_item[],
-    ): d_schema.Value => {
+        tail: d_target.Value_Path.tail.l_list.L.l_item[],
+    ): d_target.Value => {
 
-        const p_type: d_schema.Value.l_state.reference.type_ = sh.state(['selected', {
+        const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
             'dependency': sh.state(['stack', null])
         }])
@@ -349,10 +358,10 @@ export namespace t {
         schema: string,
 
         type: string,
-        tail: d_schema.Value_Path.tail.l_list.L.l_item[],
-    ): d_schema.Value => {
+        tail: d_target.Value_Path.tail.l_list.L.l_item[],
+    ): d_target.Value => {
 
-        const p_type: d_schema.Value.l_state.reference.type_ = sh.state(['selected', {
+        const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
             'dependency': sh.state(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
         }])
@@ -376,28 +385,28 @@ export namespace t {
     }
 
     export const state = (
-        options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>
-    ): d_schema.Value => {
+        options: _p.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>
+    ): d_target.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
             'results': sh.optionalx.not_set(),
         }])
     }
     export const state_with_result = (
-        options: _p.Raw_Or_Normal_Dictionary<d_schema.Value.l_state.state.options.l_dictionary.D.l_entry>,
-        results: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Results.O.l_dictionary.D.l_entry>,
-    ): d_schema.Value => {
+        options: _p.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>,
+        results: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+    ): d_target.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
             'results': sh.optionalx.set(sh.dictionary(results)),
         }])
     }
 
-    export const text_global = (name: string): d_schema.Value => {
+    export const text_global = (name: string): d_target.Value => {
         return sh.state(['text', sh.state(['global', sh.reference(name)])])
     }
 
-    export const text_local = (bt: d_schema.Text_Type): d_schema.Value => {
+    export const text_local = (bt: d_target.Text_Type): d_target.Value => {
         return sh.state(['text', sh.state(['local', bt])])
     }
 
@@ -411,16 +420,16 @@ export namespace t {
  */
 export namespace vp {
 
-    export const d = (): d_schema.Value_Path.tail.l_list.L.l_item => {
+    export const d = (): d_target.Value_Path.tail.l_list.L.l_item => {
         return sh.state(['dictionary', null])
     }
-    export const g = (grp: string): d_schema.Value_Path.tail.l_list.L.l_item => {
+    export const g = (grp: string): d_target.Value_Path.tail.l_list.L.l_item => {
         return sh.state(['group', sh.reference(grp)])
     }
-    export const s = (state: string): d_schema.Value_Path.tail.l_list.L.l_item => {
+    export const s = (state: string): d_target.Value_Path.tail.l_list.L.l_item => {
         return sh.state(['state', sh.reference(state)])
     }
-    export const o = (): d_schema.Value_Path.tail.l_list.L.l_item => {
+    export const o = (): d_target.Value_Path.tail.l_list.L.l_item => {
         return sh.state(['optional', null])
     }
 }
@@ -428,9 +437,9 @@ export namespace vp {
 
 
 export const sig_params = (
-    modules: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry>,
-    lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-): d_schema.Signature_Parameters => {
+    modules: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.modules.l_dictionary.D.l_entry>,
+    lookups: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+): d_target.Signature_Parameters => {
     return {
         'modules': sh.dictionary(modules),
         'lookups': sh.dictionary(lookups),
@@ -443,9 +452,9 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        modules: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry>,
-        lookups: _p.Raw_Or_Normal_Dictionary<d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-    ): d_schema.Signatures.l_dictionary.D.l_entry => {
+        modules: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.modules.l_dictionary.D.l_entry>,
+        lookups: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    ): d_target.Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['local', {
@@ -458,7 +467,7 @@ export namespace sig {
 
     export const same_as = (
         name: string
-    ): d_schema.Signatures.l_dictionary.D.l_entry => {
+    ): d_target.Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['same as', sh.reference(name)]),
@@ -470,7 +479,7 @@ export namespace sig {
 export const value_parameter = (
     name: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry => {
+): d_target.Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
         'module': {
             'location': sh.state(['internal', sh.reference(name)]),
@@ -486,7 +495,7 @@ export const value_parameter_external = (
     imp: string,
     type: string,
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.modules.l_dictionary.D.l_entry => {
+): d_target.Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
         'module': {
             'location': sh.state(['external', {
@@ -505,7 +514,7 @@ export const lookup_parameter = (
     name: string,
     type?: 'acyclic' | 'cyclic' | 'stack',
     presence?: 'optional' | 'required',
-): d_schema.Signature_Parameters.lookups.l_dictionary.D.l_entry => {
+): d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry => {
     return {
         'referent': {
             'location': sh.state(['internal', sh.reference(name)]),
@@ -528,7 +537,7 @@ export const lookup_parameter = (
  */
 export namespace ls {
 
-    export const parameter = (parameter: string): d_schema.Lookup_Selection => {
+    export const parameter = (parameter: string): d_target.Lookup_Selection => {
         return {
             'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null
@@ -537,7 +546,7 @@ export namespace ls {
 
     export namespace acyclic {
 
-        export const siblings = (): d_schema.Lookup_Selection => {
+        export const siblings = (): d_target.Lookup_Selection => {
             return {
                 'type': sh.state(['acyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null
@@ -545,8 +554,8 @@ export namespace ls {
         }
 
         export const resolved_dictionary = (
-            value_selection: d_schema.Guaranteed_Value_Selection
-        ): d_schema.Lookup_Selection => {
+            value_selection: d_target.Guaranteed_Value_Selection
+        ): d_target.Lookup_Selection => {
             return {
                 'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
                     'selection': value_selection,
@@ -559,7 +568,7 @@ export namespace ls {
 
     export namespace cyclic {
 
-        export const siblings = (): d_schema.Lookup_Selection => {
+        export const siblings = (): d_target.Lookup_Selection => {
             return {
                 'type': sh.state(['cyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null
@@ -577,21 +586,21 @@ export namespace al {
     export namespace acyclic {
 
         export const not_set = (
-        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['acyclic', sh.state(['not set', null])])
         }
 
         /**
          * this one is only usable in the context of an ordered dictionary
          */
-        export const siblings = (): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        export const siblings = (): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['acyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null,
             }])
         }
 
-        export const dictionary = (value_selection: d_schema.Guaranteed_Value_Selection): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        export const dictionary = (value_selection: d_target.Guaranteed_Value_Selection): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
                     'selection': value_selection,
@@ -612,7 +621,7 @@ export namespace al {
          */
         export const siblings = (
 
-        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['cyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null,
@@ -621,7 +630,7 @@ export namespace al {
 
 
         export const not_set = (
-        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['cyclic', sh.state(['not set', null])])
         }
     }
@@ -630,15 +639,15 @@ export namespace al {
 
         export const empty = (
 
-        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['stack', sh.state(['empty', null])])
         }
 
 
         export const push = (
-            stack: d_schema.Lookup_Selection,
-            item: d_schema.Lookup_Selection,
-        ): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            stack: d_target.Lookup_Selection,
+            item: d_target.Lookup_Selection,
+        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['stack', sh.state(['push', {
                 'stack': stack,
                 'item': item,
@@ -651,7 +660,7 @@ export namespace al {
     /**
      * selects a lookup parameter of this resolver and passes it to the next resolver
      */
-    export const parameter = (parameter: string): d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+    export const parameter = (parameter: string): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
         return sh.state(['selection', {
             'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null,
@@ -668,18 +677,18 @@ export namespace al {
 export namespace rvs {
 
     export const component = (
-    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['component', null])
     }
 
     export const group = (
         property: string,
-    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['group', sh.reference(property)])
     }
 
     export const reference = (
-    ): d_schema.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['reference', {
             'definition': null,
         }])
@@ -694,19 +703,19 @@ export namespace ovi {
 
     export const not_set = (
 
-    ): d_schema.Optional_Value_Initialization => {
+    ): d_target.Optional_Value_Initialization => {
         return sh.state(['not set', null])
     }
 
     export const set = (
-        value: d_schema.Guaranteed_Value_Selection,
-    ): d_schema.Optional_Value_Initialization => {
+        value: d_target.Guaranteed_Value_Selection,
+    ): d_target.Optional_Value_Initialization => {
         return sh.state(['set', value])
     }
 
     export const selection = (
-        selection: d_schema.Possible_Value_Selection,
-    ): d_schema.Optional_Value_Initialization => {
+        selection: d_target.Possible_Value_Selection,
+    ): d_target.Optional_Value_Initialization => {
         return sh.state(['selection', selection])
     }
 
@@ -718,9 +727,9 @@ export namespace ovi {
 export namespace pvs {
     export const state = (
         state: string,
-        result: d_schema.Module_Reference,
-    ): d_schema.Possible_Value_Selection => {
-        return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['state', {
+        result: d_target.Module_Reference,
+    ): d_target.Possible_Value_Selection => {
+        return sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['state', {
             'property': sh.reference(state),
             'state': null,
             'result': result,
@@ -729,9 +738,9 @@ export namespace pvs {
 
     export const optional_value = (
         optional_value: string,
-        result: d_schema.Module_Reference,
-    ): d_schema.Possible_Value_Selection => {
-        return sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+        result: d_target.Module_Reference,
+    ): d_target.Possible_Value_Selection => {
+        return sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
             'property': sh.reference(optional_value),
             'optional value': null,
             'result': result,
@@ -740,7 +749,7 @@ export namespace pvs {
 
     export const parameter = (
         parameter: string,
-    ): d_schema.Possible_Value_Selection => {
+    ): d_target.Possible_Value_Selection => {
         return sh.state(['parameter', sh.reference(parameter)])
     }
 
@@ -754,10 +763,10 @@ export namespace gvs {
     export const component = (
         component: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state(['constraint', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['component', {
+            'start': sh.state(['constraint', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['component', {
                 'property': sh.reference(component),
                 'constraint': sh.reference(constraint),
             }])]),
@@ -772,10 +781,10 @@ export namespace gvs {
     export const reference = (
         reference: string,
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state(['constraint', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['reference', {
+            'start': sh.state(['constraint', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['reference', {
                 'property': sh.reference(reference),
                 'constraint': sh.reference(constraint),
             }])]),
@@ -789,10 +798,10 @@ export namespace gvs {
 
     export const list = (
         list: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_schema.Guaranteed_Value_Selection.start.l_state>(['result', sh.state<d_schema.Guaranteed_Value_Selection.start.l_state.result.l_state>(['list', {
+            'start': sh.state<d_target.Guaranteed_Value_Selection.start.l_state>(['result', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.result.l_state>(['list', {
                 'property': sh.reference(list),
                 'list result': null,
             }])]),
@@ -806,11 +815,11 @@ export namespace gvs {
 
     export const state = (
         state: string,
-        result: d_schema.Module_Reference,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        result: d_target.Module_Reference,
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['state', {
+            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['state', {
                 'property': sh.reference(state),
                 'state': null,
                 'result': result,
@@ -825,11 +834,11 @@ export namespace gvs {
 
     export const optional_value = (
         optional_value: string,
-        result: d_schema.Module_Reference,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        result: d_target.Module_Reference,
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['result', sh.state<d_schema.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
                 'property': sh.reference(optional_value),
                 'optional value': null,
                 'result': result,
@@ -844,10 +853,10 @@ export namespace gvs {
 
     export const parameter = (
         parameter: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_schema.Possible_Value_Selection.l_state>(['parameter', sh.reference(parameter)]),
+            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['parameter', sh.reference(parameter)]),
             'tail': {
                 'path': sh.list(tail),
                 'resulting node': null,
@@ -857,8 +866,8 @@ export namespace gvs {
     }
 
     export const list_cursor = (
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['list cursor', null]),
             'tail': {
@@ -870,8 +879,8 @@ export namespace gvs {
     }
 
     export const linked_entry = (
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['linked entry', null]),
             'tail': {
@@ -884,8 +893,8 @@ export namespace gvs {
 
     export const sibling = (
         sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['sibling', sh.reference(sibling)]),
             'tail': {
@@ -898,8 +907,8 @@ export namespace gvs {
 
     export const parent_sibling = (
         parent_sibling: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['parent sibling', sh.reference(parent_sibling)]),
             'tail': {
@@ -912,8 +921,8 @@ export namespace gvs {
 
     export const option_constraint = (
         constraint: string,
-        tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_schema.Guaranteed_Value_Selection => {
+        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['option constraint', sh.reference(constraint)]),
             'tail': {
@@ -933,27 +942,27 @@ export namespace av {
 
     export const parameter = (
         parameter: string,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['parameter', sh.reference(parameter)])
     }
 
     export const required = (
-        value: d_schema.Guaranteed_Value_Selection,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+        value: d_target.Guaranteed_Value_Selection,
+    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['required', value])
     }
 
     export const optional = (
-        value: d_schema.Optional_Value_Initialization,
-    ): d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+        value: d_target.Optional_Value_Initialization,
+    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['optional', value])
     }
 
 }
 
 export const option = (
-    resolver: d_schema.Value_Resolver,
-): d_schema.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
+    resolver: d_target.Value_Resolver,
+): d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary({}),
         'resolver': resolver,
@@ -961,9 +970,9 @@ export const option = (
 }
 
 export const option_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    resolver: d_schema.Value_Resolver,
-): d_schema.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
+    constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    resolver: d_target.Value_Resolver,
+): d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary(constraints),
         'resolver': resolver,
@@ -976,9 +985,9 @@ export const option_constrained = (
 export namespace oc {
 
     export const state = (
-        value_selection: d_schema.Guaranteed_Value_Selection,
+        value_selection: d_target.Guaranteed_Value_Selection,
         state: string,
-    ): d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return sh.state(['state', {
             'selection': value_selection,
             'selected state': null,
@@ -987,8 +996,8 @@ export namespace oc {
     }
 
     export const assert_set = (
-        possibly_optional: d_schema.Possible_Value_Selection,
-    ): d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
+        possibly_optional: d_target.Possible_Value_Selection,
+    ): d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return sh.state(['assert is set', possibly_optional])
     }
 
@@ -1000,9 +1009,9 @@ export namespace oc {
 export namespace pc {
 
     export const property = (
-        value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
+        value_selection_tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
         state: string,
-    ): d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['property', null]),
             'constraint': {
@@ -1020,9 +1029,9 @@ export namespace pc {
 
     export const constraint = (
         constraint: string,
-        value_selection_tail: d_schema.Relative_Value_Selection.path.l_list.L.l_item[],
+        value_selection_tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
         state?: string,
-    ): d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['sibling', sh.reference(constraint)]),
             'constraint': {
@@ -1049,22 +1058,22 @@ export namespace pc {
  */
 export namespace r {
 
-    export const text = (): d_schema.Value_Resolver => {
+    export const text = (): d_target.Value_Resolver => {
         return sh.state(['text', null])
     }
 
-    export const boolean = (): d_schema.Value_Resolver => {
+    export const boolean = (): d_target.Value_Resolver => {
         return sh.state(['boolean', null])
     }
 
-    export const number = (): d_schema.Value_Resolver => {
+    export const number = (): d_target.Value_Resolver => {
         return sh.state(['number', null])
     }
     export const component = (
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-    ): d_schema.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+    ): d_target.Value_Resolver => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
@@ -1073,15 +1082,15 @@ export namespace r {
                 'modules': modules === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(modules)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
-            'constraints': sh.dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
+            'constraints': sh.dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
         }])
     }
     export const component_constrained = (
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_schema.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    ): d_target.Value_Resolver => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
@@ -1096,10 +1105,10 @@ export namespace r {
     export const component_external = (
         imp: string,
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_schema.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    ): d_target.Value_Resolver => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['external', {
@@ -1115,7 +1124,7 @@ export namespace r {
         }])
     }
 
-    export const dictionary = (resolver: d_schema.Value_Resolver): d_schema.Value_Resolver => {
+    export const dictionary = (resolver: d_target.Value_Resolver): d_target.Value_Resolver => {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
@@ -1125,9 +1134,9 @@ export namespace r {
 
     export const dictionary_linked = (
         dense: 'dense' | 'sparse',
-        selection: d_schema.Guaranteed_Value_Selection,
-        resolver: d_schema.Value_Resolver,
-    ): d_schema.Value_Resolver => {
+        selection: d_target.Guaranteed_Value_Selection,
+        resolver: d_target.Value_Resolver,
+    ): d_target.Value_Resolver => {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
@@ -1140,8 +1149,8 @@ export namespace r {
     }
 
     export const group = (
-        properties: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
-    ): d_schema.Value_Resolver => {
+        properties: _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
+    ): d_target.Value_Resolver => {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {
             'l location': temp_dict['l location'],
@@ -1158,19 +1167,19 @@ export namespace r {
     }
 
     export const list = (
-        type_resolver: d_schema.Value_Resolver
-    ): d_schema.Value_Resolver => {
+        type_resolver: d_target.Value_Resolver
+    ): d_target.Value_Resolver => {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': _p.optionalx.not_set<d_schema.Value_Resolver.l_state.list.result.O>(),
+            'result': _p.optionalx.not_set<d_target.Value_Resolver.l_state.list.result.O>(),
         }])
     }
     export const list_with_result = (
-        type_resolver: d_schema.Value_Resolver,
-        result: d_schema.Module_Reference,
+        type_resolver: d_target.Value_Resolver,
+        result: d_target.Module_Reference,
 
-    ): d_schema.Value_Resolver => {
+    ): d_target.Value_Resolver => {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
@@ -1178,23 +1187,23 @@ export namespace r {
         }])
     }
 
-    export const nothing = (): d_schema.Value_Resolver => {
+    export const nothing = (): d_target.Value_Resolver => {
         return sh.state(['nothing', null])
     }
 
     export const optional = (
-        type_resolver: d_schema.Value_Resolver
-    ): d_schema.Value_Resolver => {
+        type_resolver: d_target.Value_Resolver
+    ): d_target.Value_Resolver => {
         return sh.state(['optional', {
-            'constraints': sh.dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
+            'constraints': sh.dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
             'resolver': type_resolver,
         }])
     }
 
     export const optional_constrained = (
-        constraints: _p.Raw_Or_Normal_Dictionary<d_schema.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
-        type_resolver: d_schema.Value_Resolver
-    ): d_schema.Value_Resolver => {
+        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
+        type_resolver: d_target.Value_Resolver
+    ): d_target.Value_Resolver => {
         return sh.state(['optional', {
             'constraints': sh.dictionary(constraints),
             'resolver': type_resolver,
@@ -1202,8 +1211,8 @@ export namespace r {
     }
 
     export const reference_derived = (
-        value_selection: d_schema.Guaranteed_Value_Selection
-    ): d_schema.Value_Resolver => {
+        value_selection: d_target.Guaranteed_Value_Selection
+    ): d_target.Value_Resolver => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['derived', {
@@ -1213,9 +1222,9 @@ export namespace r {
     }
 
     export const reference = (
-        lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_schema.Value_Resolver => {
+        lookup_selection: d_target.Lookup_Selection,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    ): d_target.Value_Resolver => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['selected', {
@@ -1227,9 +1236,9 @@ export namespace r {
     }
 
     export const reference_stack = (
-        lookup_selection: d_schema.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_schema.Value_Resolver => {
+        lookup_selection: d_target.Lookup_Selection,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
+    ): d_target.Value_Resolver => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['selected', {
@@ -1241,8 +1250,8 @@ export namespace r {
     }
 
     export const state = (
-        states: _p.Raw_Or_Normal_Dictionary<d_schema.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry>
-    ): d_schema.Value_Resolver => {
+        states: _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry>
+    ): d_target.Value_Resolver => {
         return sh.state(['state', {
             'definition': null,
             'states': sh.dictionary(states),
@@ -1251,8 +1260,8 @@ export namespace r {
 }
 
 export const resolver = (
-    value_resolver: d_schema.Value_Resolver
-): d_schema.Module_Resolvers.l_dictionary.D.l_entry => {
+    value_resolver: d_target.Value_Resolver
+): d_target.Module_Resolvers.l_dictionary.D.l_entry => {
     return {
         'signature': null,
         'root value resolver': value_resolver,
@@ -1260,8 +1269,8 @@ export const resolver = (
 }
 
 export const signatures = (
-    signatures: _p.Raw_Or_Normal_Dictionary<d_schema.Signatures.l_dictionary.D.l_entry>,
-): d_schema.Resolve_Logic.signatures => {
+    signatures: _p.Raw_Or_Normal_Dictionary<d_target.Signatures.l_dictionary.D.l_entry>,
+): d_target.Resolve_Logic.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
     }
@@ -1269,13 +1278,13 @@ export const signatures = (
 
 
 export const resolvers = (
-    resolvers: _p.Raw_Or_Normal_Dictionary<d_schema.Module_Resolvers.l_dictionary.D.l_entry>,
-): d_schema.Module_Resolvers => {
+    resolvers: _p.Raw_Or_Normal_Dictionary<d_target.Module_Resolvers.l_dictionary.D.l_entry>,
+): d_target.Module_Resolvers => {
     return sh.dictionary(resolvers)
 }
 export const import_ = (
     name: string,
-): d_schema.Imports.l_dictionary.D.l_entry => {
+): d_target.Imports.l_dictionary.D.l_entry => {
     return {
         'schema set child': sh.reference(name),
         'schema': null,
@@ -1283,9 +1292,9 @@ export const import_ = (
 }
 
 export const constrained = (
-    signatures: d_schema.Resolve_Logic.signatures,
-    resolvers: d_schema.Module_Resolvers,
-): d_schema.Schema.complexity.l_state.constrained => {
+    signatures: d_target.Resolve_Logic.signatures,
+    resolvers: d_target.Module_Resolvers,
+): d_target.Schema.complexity.l_state.constrained => {
     return {
         'signatures': signatures,
         'resolvers': resolvers,
@@ -1293,15 +1302,15 @@ export const constrained = (
 }
 
 export const unconstrained = (
-): d_schema.Schema.complexity.l_state.unconstrained => {
+): d_target.Schema.complexity.l_state.unconstrained => {
     return null
 }
 export const schema_ = (
-    imports: _p.Raw_Or_Normal_Dictionary<d_schema.Imports.l_dictionary.D.l_entry>,
-    globals: d_schema.Globals,
-    modules: d_schema.Modules,
-    resolve: null | d_schema.Schema.complexity.l_state.constrained,
-): d_schema.Schemas.l_dictionary.D.l_entry => {
+    imports: _p.Raw_Or_Normal_Dictionary<d_target.Imports.l_dictionary.D.l_entry>,
+    globals: d_target.Globals,
+    modules: d_target.Modules,
+    resolve: null | d_target.Schema.complexity.l_state.constrained,
+): d_target.Schemas.l_dictionary.D.l_entry => {
     return sh.state(['schema', {
         'imports': sh.dictionary(imports),
         'globals': globals,

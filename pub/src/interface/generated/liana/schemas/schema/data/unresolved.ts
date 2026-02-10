@@ -3,6 +3,19 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as i__location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 
+export namespace Package_ {
+    
+    export type omit_$po_de$pc_serializer = boolean
+    
+    export type schema_tree = Schema_Tree_
+    
+}
+
+export type Package_ = {
+    readonly 'omit (de)serializer': Package_.omit_$po_de$pc_serializer
+    readonly 'schema tree': Package_.schema_tree
+}
+
 export namespace Schemas_ {
     
     export type l_location = i__location.Relative_Location
@@ -2751,6 +2764,7 @@ export type Possible_Value_Selection_ = {
 }
 
 export { 
+    Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
     Imports_ as Imports, 

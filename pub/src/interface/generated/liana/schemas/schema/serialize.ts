@@ -5,6 +5,22 @@ import * as i_in from "./data/resolved"
 
 import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
+export namespace Package_ {
+    
+    export type I = i_in.Package
+    
+    export type O = i_out.Paragraph
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Package_ = (
+    context: Package_.I,
+) => Package_.O
+
 export namespace Schemas_ {
     
     export type I = i_in.Schemas
@@ -614,6 +630,7 @@ export type Possible_Value_Selection_ = (
 ) => Possible_Value_Selection_.O
 
 export { 
+    Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
     Imports_ as Imports, 

@@ -103,9 +103,8 @@ export const Schema: _pi.Transformer_With_Parameter<
                             "dist",
                             "implementation",
                             "manual",
-                            "schemas",
-                            "unmarshalled",
                             "refiners",
+                            "unmarshalled",
                             "parse tree"
                         ]
                     ),
@@ -115,9 +114,8 @@ export const Schema: _pi.Transformer_With_Parameter<
                             "dist",
                             "implementation",
                             "manual",
-                            "schemas",
-                            "parse tree",
                             "transformers",
+                            "parse tree",
                             "location"
                         ]
                     ),

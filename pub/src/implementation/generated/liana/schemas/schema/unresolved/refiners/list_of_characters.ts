@@ -7,6 +7,22 @@ import * as v_deserialize from "astn-core/dist/implementation/manual/refiners/pa
 
 import * as v_unmarshall from "./astn_parse_tree"
 
+export const Package: t_signatures.Package = ($, abort, $p) => v_unmarshall.Package(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
 export const Schemas: t_signatures.Schemas = ($, abort, $p) => v_unmarshall.Schemas(
     v_deserialize.Document(
         $,

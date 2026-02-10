@@ -9,6 +9,14 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Module_Resolvers = resolvers(
     {
+        "Package": resolver(r.group({
+            "omit (de)serializer": r.boolean(),
+            "schema tree": r.component("Schema Tree", {}, {
+                "sibling schemas": al.stack.empty(),
+            }),
+
+        })),
+
         "Module": resolver(r.group({
             "root value": r.component("Value", {
                 "globals": av.parameter("globals"),

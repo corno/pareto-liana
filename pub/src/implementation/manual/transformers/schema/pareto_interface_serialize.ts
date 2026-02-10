@@ -33,7 +33,7 @@ export const Schema = (
                     "generated",
                     "liana",
                     "schemas",
-                    "block",
+                    "prose",
                     "data",
                 ],
             ),

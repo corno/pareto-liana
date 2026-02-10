@@ -18,6 +18,10 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
+        "Package": module_(t.group({
+            "omit (de)serializer": prop(t.boolean()),
+            "schema tree": prop(t.component("Schema Tree")),
+        })),
 
         "Value": module_(t.state({
             "boolean": toption(t.nothing()),

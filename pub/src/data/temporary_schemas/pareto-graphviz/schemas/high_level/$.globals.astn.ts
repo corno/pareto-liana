@@ -11,10 +11,9 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
-        "String": text("single line"),
-        "Id": text("single line"),},
-    {
+        "Text Value": text('single line'),
     },
+    {},
 )
 
 

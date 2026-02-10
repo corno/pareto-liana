@@ -7,6 +7,27 @@ import * as i_resolved from "./data/resolved"
 
 import * as i_unresolved from "./data/unresolved"
 
+export namespace Package_ {
+    
+    export type I = i_unresolved.Package
+    
+    export type O = i_resolved.Package
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Package_ = (
+    context: Package_.I,
+    abort: _pi.Abort<Package_.E>,
+    lookups: null,
+    parameters: null,
+) => Package_.O
+
 export namespace Presence_ {
     
     export type I = i_unresolved.Presence
@@ -1820,6 +1841,7 @@ export type Modules_ = (
 ) => Modules_.O
 
 export { 
+    Package_ as Package, 
     Presence_ as Presence, 
     Number_Type_ as Number_Type, 
     Text_Type_ as Text_Type, 

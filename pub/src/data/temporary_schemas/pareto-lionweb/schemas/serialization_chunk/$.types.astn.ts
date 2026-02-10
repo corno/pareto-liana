@@ -13,6 +13,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
+
+        "Serialization Chunks": module_(t.dictionary(t.component("Serialization Chunk"))),
+        
         "Serialization Chunk": module_(t.group({
             "serializationFormatVersion": prop(t.text_local(text('single line'))),
             "languages": prop(t.list(t.group({

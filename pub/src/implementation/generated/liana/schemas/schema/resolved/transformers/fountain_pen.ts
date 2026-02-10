@@ -7,6 +7,12 @@ import * as v_serialize from "astn-core/dist/implementation/manual/transformers/
 
 import * as v_marshall from "./astn_sealed_target"
 
+export const Package: t_signatures.Package = ($) => v_serialize.Document(
+    v_marshall.Package(
+        $,
+    ),
+)
+
 export const Schemas: t_signatures.Schemas = ($) => v_serialize.Document(
     v_marshall.Schemas(
         $,

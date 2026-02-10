@@ -13,6 +13,34 @@
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/resolve"
 
+// export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.group.literal.resolve(
+//     () => {
+        
+//         const prop_omit_$po_de$pc_serializer = _p_change_context(
+//             $['omit (de)serializer'],
+//             ($) => $,
+//         )
+        
+//         const prop_schema_tree = _p_change_context(
+//             $['schema tree'],
+//             ($) => Schema_Tree(
+//                 $,
+//                 ($) => abort(
+//                     $,
+//                 ),
+//                 {
+//                     'sibling schemas': _p_sl.stack.empty(),
+//                 },
+//                 null,
+//             ),
+//         )
+//         return {
+//             'omit (de)serializer': prop_omit_$po_de$pc_serializer,
+//             'schema tree': prop_schema_tree,
+//         }
+//     },
+// )
+
 // export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         

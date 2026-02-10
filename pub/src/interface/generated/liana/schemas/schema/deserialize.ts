@@ -7,6 +7,33 @@ import * as i_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_o
 
 import * as i_out from "./data/unresolved"
 
+export namespace Package_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Package
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Package_ = (
+    context: Package_.I,
+    abort: _pi.Abort<Package_.E>,
+    parameters: {
+        readonly 'document resource identifier': Package_.P.document_resource_identifier
+        readonly 'tab size': Package_.P.tab_size
+    },
+) => Package_.O
+
 export namespace Schemas_ {
     
     export type I = i_in.List_of_Characters
@@ -1034,6 +1061,7 @@ export type Possible_Value_Selection_ = (
 ) => Possible_Value_Selection_.O
 
 export { 
+    Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
     Imports_ as Imports, 

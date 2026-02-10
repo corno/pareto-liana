@@ -26,14 +26,14 @@ export type Package_Error =
 
 
 //data
-import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/all"
+import { Package, $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
-import * as r_liana_module from "../../temp/resolvers/module/unresolved"
+import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
-import * as t_liana_to_pareto_implementation from "../transformers/module/pareto_implementation"
-import * as t_liana_to_pareto_interface from "../transformers/module/pareto_interface"
+import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation"
+import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
@@ -80,7 +80,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
         _p.handle_error(
             [
 
-                _p.dictionaryx.parallel<Module, Error, Package_Error>(
+                _p.dictionaryx.parallel<Package, Error, Package_Error>(
                     poormans_modules,
                     ($, id) => {
 
@@ -128,8 +128,8 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             ),
 
                             _p.refine_without_error_transformation(
-                                (abort) => r_liana_module.Module(
-                                    $.module,
+                                (abort) => r_schema.Package(
+                                    $.package,
                                     ($) => abort(['could not deserialize module', $]),
                                     null,
                                     null,
@@ -140,12 +140,14 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'generic': {
                                                 'escape spaces in path': true,
-                                                'indentation': "    ",
-                                                'newline': "\n",
+                                                'prose serialize': {
+                                                    'indentation': "    ",
+                                                    'newline': "\n",
+                                                },
                                             },
                                             'path': interface_module_path,
                                             'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
-                                                t_liana_to_pareto_interface.Module(
+                                                t_liana_to_pareto_interface.Package(
                                                     $,
                                                 )
                                             ),
@@ -158,15 +160,17 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         {
                                             'path': implementation_module_path,
                                             'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
-                                                t_liana_to_pareto_implementation.Module(
+                                                t_liana_to_pareto_implementation.Package(
                                                     $,
                                                 )
                                             ),
                                             'remove before creating': true,
                                             'generic': {
                                                 'escape spaces in path': true,
-                                                'indentation': "    ",
-                                                'newline': "\n",
+                                                'prose serialize': {
+                                                    'indentation': "    ",
+                                                    'newline': "\n",
+                                                },
 
                                             },
                                         },

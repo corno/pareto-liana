@@ -17,6 +17,57 @@ import * as v_unmarshalled_from_parse_tree from "astn-core/dist/implementation/m
 
 import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
 
+export const Package: t_signatures.Package = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Group(
+        $,
+        ($) => abort(
+            ['expected a group', null],
+        ),
+    ),
+    ($) => ({
+        'omit (de)serializer': _p_change_context(
+            $.__get_entry_deprecated(
+                'omit (de)serializer',
+                {
+                    no_such_entry: ($) => abort(
+                        ['no such entry', "omit (de)serializer"],
+                    ),
+                },
+            ),
+            ($) => v_deserialize_boolean.deserialize(
+                _p_list_from_text(
+                    v_unmarshalled_from_parse_tree.Text(
+                        $,
+                        ($) => abort(
+                            ['expected a text', null],
+                        ),
+                    ),
+                    ($) => $,
+                ),
+                ($) => abort(
+                    ['not a valid boolean', null],
+                ),
+            ),
+        ),
+        'schema tree': _p_change_context(
+            $.__get_entry_deprecated(
+                'schema tree',
+                {
+                    no_such_entry: ($) => abort(
+                        ['no such entry', "schema tree"],
+                    ),
+                },
+            ),
+            ($) => Schema_Tree(
+                $,
+                ($) => abort(
+                    $,
+                ),
+            ),
+        ),
+    }),
+)
+
 export const Schemas: t_signatures.Schemas = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,

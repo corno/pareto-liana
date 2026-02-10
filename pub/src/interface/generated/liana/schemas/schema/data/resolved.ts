@@ -1,6 +1,19 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
+export namespace Package_ {
+    
+    export type omit_$po_de$pc_serializer = boolean
+    
+    export type schema_tree = Schema_Tree_
+    
+}
+
+export type Package_ = {
+    readonly 'omit (de)serializer': Package_.omit_$po_de$pc_serializer
+    readonly 'schema tree': Package_.schema_tree
+}
+
 export namespace Schemas_ {
     
     export type D = Schema_Tree_
@@ -1964,6 +1977,7 @@ export type Possible_Value_Selection_ =
     | readonly ['result', Possible_Value_Selection_.result]
 
 export { 
+    Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
     Imports_ as Imports, 
