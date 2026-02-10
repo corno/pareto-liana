@@ -10,7 +10,7 @@ import * as d from "../../../interface/to_be_generated/load_pareto_document"
 
 //depencencies
 
-import { $$x as ds_unmarshall_result } from "../schemas/unmarshall_result/deserializers"
+import { $$x as ds_unmarshall_result } from "../refiners/unmarshall_result/list_of_characters"
 import { create_node_path } from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/schemas/path/transformers/text"
 

@@ -17,9 +17,9 @@ import * as r_path_from_temp_string from "pareto-resources/dist/implementation/m
 import * as r_module_resolved_from_unresolved from "../../temp/resolvers/module/unresolved"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 // import * as t_module_to_fp from "../../generated/liana/schemas/module/resolved/transformers/fountain_pen"
-import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/schemas/prose/transformers/list_of_characters"
+import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/schemas/write_file/transformers/fountain_pen"
-import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/schemas/resolve/transformers/fountain_pen"
+import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"

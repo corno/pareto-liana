@@ -32,11 +32,11 @@ import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/a
 import * as r_liana_module from "../../temp/resolvers/module/unresolved"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/implementation/transformers/serialized_typescript"
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/interface/transformers/serialized_typescript"
-import * as t_liana_to_pareto_implementation from "../schemas/module/transformers/pareto_implementation"
-import * as t_liana_to_pareto_interface from "../schemas/module/transformers/pareto_interface"
+import * as t_liana_to_pareto_implementation from "../transformers/module/pareto_implementation"
+import * as t_liana_to_pareto_interface from "../transformers/module/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/schemas/context_path/refiners/text"
-import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/schemas/resolve/transformers/fountain_pen"
+import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
