@@ -30,8 +30,8 @@ import { Module, $ as poormans_modules } from "../../../data/temporary_schemas/a
 
 //dependencies
 import * as r_liana_module from "../../temp/resolvers/module/unresolved"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/implementation/transformers/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/schemas/interface/transformers/serialized_typescript"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
 import * as t_liana_to_pareto_implementation from "../transformers/module/pareto_implementation"
 import * as t_liana_to_pareto_interface from "../transformers/module/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/schemas/path/transformers/path"
@@ -138,15 +138,17 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                     //write new interface files
                                     $cr['write to directory'].execute(
                                         {
-                                            'escape spaces in path': true,
+                                            'generic': {
+                                                'escape spaces in path': true,
+                                                'indentation': "    ",
+                                                'newline': "\n",
+                                            },
                                             'path': interface_module_path,
                                             'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
                                                 t_liana_to_pareto_interface.Module(
                                                     $,
                                                 )
                                             ),
-                                            'indentation': "    ",
-                                            'newline': "\n",
                                             'remove before creating': true,
                                         },
                                         ($) => ['could not write interface', null]
@@ -154,16 +156,19 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                     //write new implementation files
                                     $cr['write to directory'].execute(
                                         {
-                                            'escape spaces in path': true,
                                             'path': implementation_module_path,
                                             'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
                                                 t_liana_to_pareto_implementation.Module(
                                                     $,
                                                 )
                                             ),
-                                            'indentation': "    ",
-                                            'newline': "\n",
                                             'remove before creating': true,
+                                            'generic': {
+                                                'escape spaces in path': true,
+                                                'indentation': "    ",
+                                                'newline': "\n",
+
+                                            },
                                         },
                                         ($) => ['could not write implementation', null]
                                     ),

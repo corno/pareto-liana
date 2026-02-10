@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as resources from "./resources"
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
-import * as resources_fountain_pen from "pareto-fountain-pen-file-system/dist/interface/resources"
+import * as resources_fountain_pen from "pareto-fountain-pen-file-structure/dist/interface/resources"
 
 export namespace queries {
 

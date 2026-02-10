@@ -5,8 +5,8 @@ import * as _pn from 'pareto-host-nodejs'
 import * as d_resources from "../implementation/manual/commands/compile_temp_schemas"
 
 import { $$ as p_compile_temp_schemas } from "../implementation/manual/commands/compile_temp_schemas"
-import { $$ as p_write_to_directory } from "pareto-fountain-pen-file-system/dist/implementation/manual/commands/write_to_directory"
-import { $$ as p_write_to_file } from "pareto-fountain-pen-file-system/dist/implementation/manual/commands/write_to_file"
+import { $$ as p_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
+import { $$ as p_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
 
 import { $$ as procedure } from "../implementation/manual/commands/compile_temp_schemas"
 
