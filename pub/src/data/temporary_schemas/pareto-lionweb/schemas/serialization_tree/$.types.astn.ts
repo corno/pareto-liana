@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Serialization Chunk": module_(t.group({
+        "Serialization Tree": module_(t.group({
             "serializationFormatVersion": prop(t.text_local(text('single line'))),
             "languages": prop(t.list(t.group({
                 "key": prop(t.text_local(text('single line'))),
@@ -24,6 +24,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Node": module_(t.group({
+            "range": prop(t.component_external("location", "Range")),
             "classifier": prop(t.text_local(text('single line'))),
             "properties": prop(t.dictionary(t.text_local(text('single line')))),
             "containments": prop(t.dictionary(t.dictionary(t.component("Node")))),

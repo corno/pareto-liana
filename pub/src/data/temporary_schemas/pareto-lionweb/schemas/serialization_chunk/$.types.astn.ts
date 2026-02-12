@@ -24,6 +24,7 @@ export const $: g_.Modules = modules(
             }))),
             "nodes": prop(t.list(t.group({
                 "id": prop(t.text_local(text('single line'))),
+                "range": prop(t.component_external("location", "Range")),
                 "parent": prop(t.optional(t.text_local(text('single line')))),
                 "classifier": prop(t.component("Meta Pointer")),
                 "properties": prop(t.list(t.group({

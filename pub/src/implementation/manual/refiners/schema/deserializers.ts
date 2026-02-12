@@ -7,7 +7,7 @@ import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 //data types
 import * as d_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_function from "liana-core/dist/interface/to_be_generated/deserialize_resolved"
-import * as d_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 //dependencies
 import * as r_pareto_schema from "../../../temp/resolvers/schema/unresolved_manual"

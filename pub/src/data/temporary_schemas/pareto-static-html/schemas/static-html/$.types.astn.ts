@@ -67,7 +67,7 @@ export const $: g_.Modules = modules(
             })),
             "svg": toption(t.group({
                 "classes": prop(t.component("Classes")),
-                "content": prop(t.text_local(text('multi line'))),
+                "content": prop(t.component_external("xml", "Mixed Content")),
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
                 "height": prop(t.optional(t.number_local(n.natural(null)))),
             })),
@@ -76,7 +76,9 @@ export const $: g_.Modules = modules(
 
         "Classes": module_(t.list(t.text_local(text('single line')))),
 
-        "Phrasing Content": module_(t.list(t.state({
+        "Phrasing Content": module_(t.list(t.component("Phrasing Element"))),
+
+        "Phrasing Element": module_(t.state({
             "span": toption(t.component("Phrasing Content")),
             "classified span": toption(t.group({
                 "classes": prop(t.component("Classes")),
@@ -93,6 +95,6 @@ export const $: g_.Modules = modules(
             "p": toption(t.group({
                 "text": prop(t.text_local(text('single line'))),
             })),
-        }))),
+        }))
     }
 )

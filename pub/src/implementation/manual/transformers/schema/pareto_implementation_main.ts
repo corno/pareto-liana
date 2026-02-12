@@ -67,14 +67,14 @@ export const Schema_Tree = (
                                 }),
                                 "unresolved": sh.m.set({
                                     "refiners": sh.m.set({
-                                        "astn parse tree": t_unmarshall.Schema(schema, {
-                                            'depth': 7,
-                                            'path': $p.path,
-                                        }),
-                                        "list of characters": t_deserialize.Schema(schema, {
-                                            'depth': 7,
-                                            'path': $p.path,
-                                        }),
+                                        // "astn parse tree": t_unmarshall.Schema(schema, {
+                                        //     'depth': 7,
+                                        //     'path': $p.path,
+                                        // }),
+                                        // "list of characters": t_deserialize.Schema(schema, {
+                                        //     'depth': 7,
+                                        //     'path': $p.path,
+                                        // }),
                                     }),
                                 }),
                             }))
@@ -97,14 +97,14 @@ export const Schema_Tree = (
                                     }),
                                 }),
                                 "refiners": sh.m.set({
-                                    "astn parse tree": t_unmarshall.Schema(schema, {
-                                        'depth': 6,
-                                        'path': $p.path,
-                                    }),
-                                    "list of characters": t_deserialize.Schema(schema, {
-                                        'depth': 6,
-                                        'path': $p.path,
-                                    }),
+                                    // "astn parse tree": t_unmarshall.Schema(schema, {
+                                    //     'depth': 6,
+                                    //     'path': $p.path,
+                                    // }),
+                                    // "list of characters": t_deserialize.Schema(schema, {
+                                    //     'depth': 6,
+                                    //     'path': $p.path,
+                                    // }),
                                 }),
                             }))
                             default: return _p.au($[0])

@@ -16,7 +16,7 @@ export const Schema = (
 ): d_out.Package_Set.D => sh.m.package_functions(
     {
         "generic": sh.import_.external(
-            "liana-core",
+            "astn-core",
             [
                 "dist",
                 "interface",
@@ -29,8 +29,11 @@ export const Schema = (
             [
                 "dist",
                 "interface",
-                "to be generated",
+                "generated",
+                "liana",
+                "schemas",
                 "list of characters",
+                "data",
             ],
         ),
         "out": sh.import_.sibling(

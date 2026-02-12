@@ -72,7 +72,7 @@ export const $: g_.Modules = modules(
         "ID": module_(t.state({
             "id": toption(t.text_global("id")),
             "string": toption(t.text_global("Text Value")),
-            "html": toption(t.text_global("Text Value")),
+            "html": toption(t.component_external("html", "Phrasing Element")),
             "number": toption(t.number_local(n.integer(null))),
         })),
 

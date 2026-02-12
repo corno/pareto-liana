@@ -18,20 +18,20 @@ export const $: g_.Modules = modules(
 
         "Path": module_(t.group({
             "up steps": prop(t.list(t.group({}))),
-            "context": prop(t.group({
-                "sibling": prop(t.group({})),
-                "state constraint": prop(t.group({
+            "context": prop(t.state({
+                "sibling": toption(t.group({})),
+                "state constraint": toption(t.group({
                     "name": prop(t.component("Identifier")),
                 })),
             })),
-            "selection steps": prop(t.list(t.group({
-                "group": prop(t.group({
+            "selection steps": prop(t.list(t.state({
+                "group": toption(t.group({
                     "name": prop(t.component("Identifier")),
                 })),
-                "state constraint": prop(t.group({
+                "state constraint": toption(t.group({
                     "name": prop(t.component("Identifier")),
                 })),
-                "reference": prop(t.group({
+                "reference": toption(t.group({
                     "name": prop(t.component("Identifier")),
                 })),
             })))

@@ -23,7 +23,7 @@ export type Parameters = {
 
 import * as d_out from "../../../../interface/to_be_generated/temp_unmashall_result"
 import * as d_function from "../../../../interface/to_be_generated/deserialize_unmarshall_result"
-import * as d_in from "pareto-fountain-pen/dist/interface/to_be_generated/list_of_characters"
+import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 import * as api from "../../../../interface/to_be_generated/load_pareto_document"
 

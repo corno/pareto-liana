@@ -17,7 +17,7 @@ export const Schema = (
     return sh.m.package_functions(
         {
             "generic": sh.import_.external(
-                "liana-core",
+                "astn-core",
                 [
                     "dist",
                     "interface",
