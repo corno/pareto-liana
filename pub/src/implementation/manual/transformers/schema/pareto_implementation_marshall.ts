@@ -50,29 +50,16 @@ export const Schema = (
         }),
         _p.dictionary.from.dictionary(
             _p.dictionary.literal({
-                "serialize ": _p.dictionary.literal({
-                    "number": sh_i.import_.external(
+                "": _p.dictionary.literal({
+                    "primitives to text": sh_i.import_.external(
                         "liana-core",
                         _p.list.literal([
                             "dist",
                             "implementation",
                             "manual",
+                            "transformers",
                             "primitives",
-                            "integer",
-                            "serializers",
-                            "decimal",
-                        ]),
-                    ),
-                    "boolean": sh_i.import_.external(
-                        "liana-core",
-                        _p.list.literal([
-                            "dist",
-                            "implementation",
-                            "manual",
-                            "primitives",
-                            "boolean",
-                            "serializers",
-                            "true false",
+                            "text",
                         ]),
                     ),
                 }),
@@ -116,17 +103,13 @@ export const Value = (
             sh.a.group.literal({
                 "delimiter": sh.a.state.literal("none", sh.a.nothing()),
                 "value": sh.a.select(
-                    sh.sv.text_from_list(
-                        sh.sv.call(
-                            sh.call.external("serialize boolean", "serialize"),
-                            sh.a.select(sh.sv.context([])),
-                            null,
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
-                        ),
+                    sh.sv.call(
+                        sh.call.external("primitives to text", "true false"),
                         sh.a.select(sh.sv.context([])),
-                        []
+                        null,
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
+                        [],
                     )
                 ),
             })
@@ -222,18 +205,17 @@ export const Value = (
             sh.a.group.literal({
                 "delimiter": sh.a.state.literal("none", sh.a.nothing()),
                 "value": sh.a.select(
-                    sh.sv.text_from_list(
-                        sh.sv.call(
-                            sh.call.external("serialize number", "serialize"),
-                            sh.a.select(sh.sv.context([])),
-                            null,
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
-                        ),
-                        sh.a.select(sh.sv.context([])),
-                        []
-                    )
+                    _p.decide.state($, ($) => {
+                        switch ($[0]) {
+                            case 'global': return _p.ss($, ($) => Number_Type(
+                                $['l entry'],
+                            ))
+                            case 'local': return _p.ss($, ($) => Number_Type(
+                                $
+                            ))
+                            default: return _p.au($[0])
+                        }
+                    })
                 ),
             })
         ))
@@ -312,3 +294,59 @@ export const Value = (
         default: return _p.au($[0])
     }
 })
+
+export const Number_Type = (
+    $: d_in.Number_Type,
+): d_out.Select_Value => _p.decide.state($.precision, ($) => {
+    switch ($[0]) {
+        case 'approximation': return _p.ss($, ($) => sh.sv.call(
+            sh.call.external("primitives to text", "scientific notation"),
+            sh.a.select(sh.sv.context([])),
+            null,
+            sh.lookups.not_set(),
+            sh.arguments_.initialize({
+                "digits": sh.a.number.natural_literal(
+                   $['significant digits']
+                )
+            }),
+            [],
+        ))
+        case 'exact': return _p.ss($, ($) => sh.sv.call(
+            sh.call.external("primitives to text", _p.decide.state($.type, ($) => {
+                switch ($[0]) {
+                    case 'integer': return _p.ss($, ($) => "decimal")
+                    case 'natural': return _p.ss($, ($) => "decimal")
+                    case 'positive natural': return _p.ss($, ($) => "decimal")
+                    default: return _p.au($[0])
+                }
+            })),
+            sh.a.select(sh.sv.context([])),
+            null,
+            sh.lookups.not_set(),
+            sh.arguments_.not_set(),
+            [],
+        ))
+        default: return _p.au($[0])
+    }
+})
+
+// sh.a.state.literal(
+//             "text",
+//             sh.a.group.literal({
+//                 "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+//                 "value": sh.a.select(
+//                     sh.sv.text_from_list(
+//                         sh.sv.call(
+//                             sh.call.external("primitives to text", "Number"),
+//                             sh.a.select(sh.sv.context([])),
+//                             null,
+//                             sh.lookups.not_set(),
+//                             sh.arguments_.not_set(),
+//                             [],
+//                         ),
+//                         sh.a.select(sh.sv.context([])),
+//                         []
+//                     )
+//                 ),
+//             })
+//         )

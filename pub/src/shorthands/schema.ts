@@ -7,9 +7,9 @@ import * as d_target from "../interface/generated/liana/schemas/schema/data/unre
 
 export const package_ = (
     schema_tree: d_target.Schema_Tree,
-    omit_de_serializer?: boolean,
+    omit_de_serializer: boolean,
 ): d_target.Package => ({
-    'omit (de)serializer': omit_de_serializer === undefined ? false : omit_de_serializer,
+    'omit (de)serializer': omit_de_serializer,
     'schema tree': schema_tree,
 })
 
