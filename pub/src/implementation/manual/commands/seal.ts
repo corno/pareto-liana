@@ -71,8 +71,8 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
                 })
             )
         ],
-        {
+        () => ({
             'exit code': 1
-        },
+        }),
     ),
 ])

@@ -93,7 +93,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                             })
                         )
                     ],
-                    ({
+                    () => ({
                         'exit code': 2,
                     })
                 )

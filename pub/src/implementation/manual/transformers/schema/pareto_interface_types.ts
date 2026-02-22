@@ -35,7 +35,7 @@ export const Schema = (
                         "": _p.optional.from.boolean(
                             add_location,
                         ).convert(
-                            sh.import_.external(
+                            () => sh.import_.external(
                                 "astn-core",
                                 [
                                     "dist",

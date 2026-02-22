@@ -18,8 +18,11 @@ export const $: g_.Modules = modules(
             "data": prop(t.component_external("list of characters", "List of Characters")),
         })),
 
-        "Error": module_(t.state({
-            "permission denied": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "permission denied": toption(t.nothing()),
+            }))
         })),
     }
 )

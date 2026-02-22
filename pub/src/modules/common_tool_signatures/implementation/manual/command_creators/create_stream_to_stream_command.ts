@@ -62,7 +62,7 @@ export const $$ = (func: _pi.Refiner<string, d_fp.Phrase, string>): signatures.c
                         }),
                     )
                 ],
-                ({
+                () => ({
                     'exit code': 1,
                 })
             ),

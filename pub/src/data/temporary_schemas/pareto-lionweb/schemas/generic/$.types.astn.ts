@@ -1,0 +1,29 @@
+import * as _pi from 'pareto-core/dist/interface'
+
+import {
+    modules,
+    t,
+    module_,
+    n,
+    prop,
+    toption,
+    text,
+} from "../../../../../shorthands/schema"
+import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
+
+export const $: g_.Modules = modules(
+    {
+        "ID": module_(t.group({
+            "key": prop(t.text_local(text('single line'))),
+            "id": prop(t.text_local(text('single line'))),
+            "source": prop(t.optional(t.component_external("location", "Range"))),
+        })),
+        "Raw Reference": module_(t.group({
+            "resolveInfo": prop(t.text_local(text('single line'))),
+            "reference": prop(t.optional(t.text_local(text('single line')))),
+        })),
+        "Singular Reference": module_(t.component("Raw Reference")),
+        "References": module_(t.list(t.component("Raw Reference"))),
+        "Optional Reference": module_(t.optional(t.component("Raw Reference"))),
+    }
+)

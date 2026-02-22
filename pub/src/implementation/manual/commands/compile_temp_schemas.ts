@@ -237,7 +237,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                     })
                 ),
             ],
-            ({
+            () => ({
                 'exit code': 1
             })
         )

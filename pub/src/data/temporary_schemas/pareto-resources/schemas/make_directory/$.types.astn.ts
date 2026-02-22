@@ -15,9 +15,12 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.component_external("path", "Node Path")),
 
-        "Error": module_(t.state({
-            "directory already exists": toption(t.nothing()),
-            "permission denied": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "directory already exists": toption(t.nothing()),
+                "permission denied": toption(t.nothing()),
+            }))
         })),
 
     }

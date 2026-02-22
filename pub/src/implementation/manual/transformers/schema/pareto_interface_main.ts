@@ -81,7 +81,7 @@ export const Schema = (
             "unmarshall": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
             ).convert(
-                t_unmarshall.Schema(
+                () => t_unmarshall.Schema(
                     schema,
                     {
                         'constrained': constrained
@@ -91,7 +91,7 @@ export const Schema = (
             "marshall": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
             ).convert(
-                t_marshall.Schema(
+                () => t_marshall.Schema(
                     schema,
                     {
                         'constrained': constrained
@@ -101,7 +101,7 @@ export const Schema = (
             "serialize": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
             ).convert(
-                t_serialize.Schema(
+                () => t_serialize.Schema(
                     schema,
                     {
                         'constrained': constrained
@@ -111,7 +111,7 @@ export const Schema = (
             "deserialize": _p.optional.from.boolean(
                 !$p['omit (de)serializer'],
             ).convert(
-                t_deserialize.Schema(
+                () => t_deserialize.Schema(
                     schema,
                     {
                         'constrained': constrained

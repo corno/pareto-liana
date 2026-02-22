@@ -15,8 +15,11 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.component_external("path", "Node Path")),
 
-        "Error": module_(t.state({
-            "node does not exist": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "node does not exist": toption(t.nothing()),
+            }))
         })),
 
         "Result": module_(t.component("Node Type")),

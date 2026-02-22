@@ -23,12 +23,15 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Error": module_(t.state({
-            "source does not exist": toption(t.nothing()),
-            "node is not a file": toption(t.nothing()),
-            "permission denied": toption(t.nothing()),
-            "file too large": toption(t.nothing()),
-            "device not ready": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "source does not exist": toption(t.nothing()),
+                "node is not a file": toption(t.nothing()),
+                "permission denied": toption(t.nothing()),
+                "file too large": toption(t.nothing()),
+                "device not ready": toption(t.nothing()),
+            }))
         })),
     }
 )

@@ -18,9 +18,12 @@ export const $: g_.Modules = modules(
             "error if not exists": prop(t.boolean()),
         })),
 
-        "Error": module_(t.state({
-            "node does not exist": toption(t.nothing()),
-            "permission denied": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "node does not exist": toption(t.nothing()),
+                "permission denied": toption(t.nothing()),
+            }))
         })),
     }
 )

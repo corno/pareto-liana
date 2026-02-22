@@ -15,14 +15,15 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.component_external("path", "Node Path")),
 
-        "Error": module_(t.state({
-            "file does not exist": toption(t.group({
-                "path": prop(t.component_external("path", "Node Path")),
-            })),
-            "node is not a file": toption(t.nothing()),
-            "permission denied": toption(t.nothing()),
-            "file too large": toption(t.nothing()),
-            "device not ready": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "file does not exist": toption(t.nothing()),
+                "node is not a file": toption(t.nothing()),
+                "permission denied": toption(t.nothing()),
+                "file too large": toption(t.nothing()),
+                "device not ready": toption(t.nothing()),
+            }))
         })),
 
         "Result": module_(t.component_external("list of characters", "List of Characters")),

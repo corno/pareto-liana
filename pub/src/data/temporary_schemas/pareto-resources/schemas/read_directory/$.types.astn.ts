@@ -17,9 +17,12 @@ export const $: g_.Modules = modules(
             "path": prop(t.component_external("path", "Node Path")),
         })),
 
-        "Error": module_(t.state({
-            "directory does not exist": toption(t.nothing()),
-            "node is not a directory": toption(t.nothing()),
+        "Error": module_(t.group({
+            "path": prop(t.component_external("path", "Node Path")),
+            "type": prop(t.state({
+                "directory does not exist": toption(t.nothing()),
+                "node is not a directory": toption(t.nothing()),
+            }))
         })),
 
         "Result": module_(t.dictionary(t.group({
