@@ -259,7 +259,7 @@ export const $: g_.Module_Resolvers = resolvers(
                         }),
                     })),
                     "source document": option(r.nothing()),
-                    "key": option(r.nothing()),
+                    "id": option(r.nothing()),
                 })),
             })),
             "select": option(r.component("Select Value", {}, {})),
