@@ -9,7 +9,7 @@ import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 //types
 
 export type Unresolved_Reference = {
-    'l location': gen_loc.Relative_Location
+    'l location': gen_loc.Range
     'l reference': string
 }
 
@@ -28,7 +28,7 @@ export type Resolved_Stack_Reference<T> = {
 
 export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     $: _pi.Dictionary<Unresolved>,
-    location: gen_loc.Relative_Location,
+    location: gen_loc.Range,
     abort: _pi.Abort<gen_resolve.Error>,
     benchmark: _pi.Dictionary<Benchmark>,
     handle_entry: (
@@ -66,7 +66,7 @@ export namespace abort {
     export const state_constraint_found_expected = <T extends readonly [string, any]>(
         found: string,
         expected: T,
-        location: gen_loc.Relative_Location,
+        location: gen_loc.Range,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
@@ -78,7 +78,7 @@ export namespace abort {
     export const state_constraint_expected_found = <T extends readonly [string, any]>(
         expected: string,
         found: T,
-        location: gen_loc.Relative_Location,
+        location: gen_loc.Range,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
@@ -90,7 +90,7 @@ export namespace abort {
 
     export const same_node_constraint = (
         property: string,
-        location: gen_loc.Relative_Location,
+        location: gen_loc.Range,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['same node', property]],
@@ -99,7 +99,7 @@ export namespace abort {
 
     export const is_set_assertion = (
         parameter: string,
-        location: gen_loc.Relative_Location,
+        location: gen_loc.Range,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],
@@ -108,7 +108,7 @@ export namespace abort {
 
     export const parameter_is_set_assertion = (
         parameter: string,
-        location: gen_loc.Relative_Location,
+        location: gen_loc.Range,
         abort: _pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],

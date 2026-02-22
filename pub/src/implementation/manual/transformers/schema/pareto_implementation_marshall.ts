@@ -133,7 +133,7 @@ export const Value = (
         ))
         case 'dictionary': return _p.ss($, ($) => sh.a.state.literal(
             "dictionary",
-            sh.a.dictionary.map(
+            sh.a.dictionary.from.dictionary.map(
                 sh.sv.context([]),
                 Value(
                     $.value,
@@ -187,7 +187,7 @@ export const Value = (
 
             return sh.a.state.literal(
                 "list",
-                sh.a.list.map(
+                sh.a.list.from.list.map(
                     sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                     $.results.__decide(
                         ($) => sh.a.change_context(

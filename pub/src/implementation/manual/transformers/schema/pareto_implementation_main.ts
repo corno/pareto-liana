@@ -97,10 +97,10 @@ export const Schema_Tree = (
                                     }),
                                 }),
                                 "refiners": sh.m.set({
-                                    // "astn parse tree": t_unmarshall.Schema(schema, {
-                                    //     'depth': 6,
-                                    //     'path': $p.path,
-                                    // }),
+                                    "astn parse tree": t_unmarshall.Schema(schema, {
+                                        'depth': 6,
+                                        'path': $p.path,
+                                    }),
                                     // "list of characters": t_deserialize.Schema(schema, {
                                     //     'depth': 6,
                                     //     'path': $p.path,

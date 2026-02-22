@@ -21,8 +21,6 @@ const location = sh.a.select(
         sh.lookups.not_set(),
         sh.arguments_.not_set(),
         [
-            "start",
-            "relative"
         ],
     )
 )
@@ -37,7 +35,7 @@ export const Schema: _pi.Transformer_With_Parameter<
 > = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-        ['change context', 'list from text'],
+        ['change context', 'list from text', 'variables'],
         _p.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -71,39 +69,16 @@ export const Schema: _pi.Transformer_With_Parameter<
         _p.dictionary.from.dictionary(
             _p.dictionary.literal({
                 "": _p.dictionary.literal({
-                    "deserialize number": sh_i.import_.external(
-                        "liana-core",
-                        _p.list.literal([
-                            "dist",
-                            "implementation",
-                            "manual",
-                            "primitives",
-                            "integer",
-                            "deserializers",
-                            "decimal",
-                        ]),
-                    ),
-                    "deserialize boolean": sh_i.import_.external(
-                        "liana-core",
-                        _p.list.literal([
-                            "dist",
-                            "implementation",
-                            "manual",
-                            "primitives",
-                            "boolean",
-                            "deserializers",
-                            "true false",
-                        ]),
-                    ),
+
                     "unmarshalled from parse tree": sh_i.import_.external(
-                        "astn-core",
+                        "liana-core",
                         [
                             "dist",
                             "implementation",
                             "manual",
                             "refiners",
                             "unmarshalled",
-                            "parse tree"
+                            "astn parse tree"
                         ]
                     ),
                     "parse tree to location": sh_i.import_.external(
@@ -157,27 +132,17 @@ export const Value = (
         switch ($[0]) {
             case 'boolean': return _p.ss($, ($) => sh.a.select(
                 sh.sv.call(
-                    sh.call.external("deserialize boolean", "deserialize"),
-                    sh.a.select(
-                        sh.sv.list_from_text(
-                            sh.sv.call(
-                                sh.call.external("unmarshalled from parse tree", "Text"),
-                                sh.a.select(sh.sv.context([])),
-                                sh.a.state.literal("expected a text", sh.a.nothing()),
-                                sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
-                                [],
-                            ),
-                            sh.a.select(sh.sv.context([])),
-                            []
+                    sh.call.external("unmarshalled from parse tree", "Boolean"),
+                    sh.a.select(sh.sv.context([])),
 
-                        )
-                    ),
-                    sh.a.state.literal("not a valid boolean", sh.a.nothing()),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
-                    sh.arguments_.not_set(),
-                    [],
-                )
+                    sh.arguments_.initialize({
+                        "type": sh.a.state.literal("true/false", sh.a.nothing())
+                    }),
+                    [
+                    ],
+                ),
             ))
             case 'component': return _p.ss($, ($) => {
                 return sh.a.select(
@@ -199,47 +164,114 @@ export const Value = (
                 )
             })
             case 'dictionary': return _p.ss($, ($) => {
-                return $p.constrained
-                    ? sh.a.group.literal({
-                        "l location": location,
-                        "l dictionary": sh.a.dictionary.map(
-                            sh.sv.call(
-                                sh.call.external("unmarshalled from parse tree", "Dictionary"),
-                                sh.a.select(sh.sv.context([])),
-                                sh.a.state.literal("expected a dictionary", sh.a.nothing()),
-                                sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
-                                [],
+                return sh.a.change_context(
+                    sh.sv.call(
+                        sh.call.external("unmarshalled from parse tree", "Dictionary"),
+                        sh.a.select(sh.sv.context([])),
+                        sh.a.select(sh.sv.context([])),
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
+                        [
+                        ],
+                    ),
+                    sh.a.variables(
+                        {
+                            "dictionary range": sh.a.select(
+                                sh.sv.call(
+                                    sh.call.external("parse tree to location", "Value"),
+                                    sh.a.select(sh.sv.context(["value"])),
+                                    null,
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.not_set(),
+                                    [
+
+                                    ],
+                                )
                             ),
-                            sh.a.group.literal({
+                        },
+                        $p.constrained
+                            ? sh.a.group.literal({
                                 "l location": location,
-                                "l entry": Value(
+                                "l dictionary": sh.a.dictionary.from.dictionary.map(
+                                    sh.sv.context(["entries"]),
+                                    sh.a.group.literal({
+                                        "l location": location,
+                                        "l entry": Value(
+                                            $.value,
+                                            {
+                                                'temp type': $p['temp type'],
+                                                'temp subselection': _p.list.nested_literal_old([
+                                                    $p['temp subselection'],
+                                                    [
+                                                        sh_i.sub.group("l dictionary"),
+                                                        sh_i.sub.dictionary(),
+                                                        sh_i.sub.group("l entry"),
+
+                                                    ]
+                                                ]),
+                                                'constrained': $p.constrained
+                                            }
+                                        )
+                                    }),
+                                )
+                            })
+                            : sh.a.dictionary.from.dictionary.map(
+                                sh.sv.context(["entries"]),
+                                Value(
                                     $.value,
                                     {
                                         'temp type': $p['temp type'],
                                         'temp subselection': _p.list.nested_literal_old([
                                             $p['temp subselection'],
                                             [
-                                                sh_i.sub.group("l dictionary"),
                                                 sh_i.sub.dictionary(),
-                                                sh_i.sub.group("l entry"),
-
                                             ]
                                         ]),
                                         'constrained': $p.constrained
                                     }
-                                )
-                            }),
-                        )
-                    })
-                    : sh.a.dictionary.map(
+                                ),
+                            )
+                    )
+                )
+            })
+            case 'group': return _p.ss($, ($) => sh.a.change_context(
+                sh.sv.call(
+                    sh.call.external("unmarshalled from parse tree", "Verbose Group"),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.select(sh.sv.context([])),
+                    sh.lookups.not_set(),
+                    sh.arguments_.initialize({
+                        "expected properties": sh.a.dictionary.literal($.__d_map(($) => sh.a.nothing()))
+                    }),
+                    [
+                    ],
+                ),
+                sh.a.variables(
+                    {
+                        "verbose group range": sh.a.select(
+                            sh.sv.call(
+                                sh.call.external("parse tree to location", "Value"),
+                                sh.a.select(sh.sv.context(["value"])),
+                                null,
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [
+
+                                ],
+                            )
+                        ),
+                    },
+                    sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
                         sh.sv.call(
-                            sh.call.external("unmarshalled from parse tree", "Dictionary"),
+                            sh.call.external("unmarshalled from parse tree", "Property"),
                             sh.a.select(sh.sv.context([])),
-                            sh.a.state.literal("expected a dictionary", sh.a.nothing()),
+                            sh.a.select(sh.sv.context([])),
                             sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
+                            sh.arguments_.initialize({
+                                "id": sh.a.text.literal(id, 'identifier'),
+                            }),
+                            [
+                            ],
                         ),
                         Value(
                             $.value,
@@ -248,99 +280,79 @@ export const Value = (
                                 'temp subselection': _p.list.nested_literal_old([
                                     $p['temp subselection'],
                                     [
-                                        sh_i.sub.dictionary(),
+                                        sh_i.sub.group(id),
                                     ]
                                 ]),
                                 'constrained': $p.constrained
                             }
-                        ),
-                    )
-            })
-            case 'group': return _p.ss($, ($) => sh.a.change_context(
-                sh.sv.call(
-                    sh.call.external("unmarshalled from parse tree", "Group"),
-                    sh.a.select(sh.sv.context([])),
-                    sh.a.state.literal("expected a group", sh.a.nothing()),
-                    sh.lookups.not_set(),
-                    sh.arguments_.not_set(),
-                    [],
+                        )
+                    )))
                 ),
-                sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
-                    sh.sv.dictionary_entry(
-                        sh.sv.context([]),
-                        sh.a.text.literal(id, 'identifier'),
-                        sh.a.state.literal("no such entry", sh.a.text.literal(id, 'freeform')),
-                        []
-                    ),
-                    Value(
-                        $.value,
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': _p.list.nested_literal_old([
-                                $p['temp subselection'],
-                                [
-                                    sh_i.sub.group(id),
-                                ]
-                            ]),
-                            'constrained': $p.constrained
-                        }
-                    )
-                ))),
             ))
             case 'list': return _p.ss($, ($) => {
                 return $p.constrained
                     ? sh.a.group.literal({
                         "l location": location,
-                        "l list": sh.a.list.map(
+                        "l list": sh.a.list.from.list.map(
                             sh.sv.call(
                                 sh.call.external("unmarshalled from parse tree", "List"),
                                 sh.a.select(sh.sv.context([])),
-                                sh.a.state.literal("expected a list", sh.a.nothing()),
+                                sh.a.select(sh.sv.context([])),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
-                                [],
+                                [
+                                    "items"
+                                ],
                             ),
-                            sh.a.group.literal({
-                                "l location": location,
-                                "l item": Value(
-                                    $.value,
-                                    {
-                                        'temp type': $p['temp type'],
-                                        'temp subselection': _p.list.nested_literal_old([
-                                            $p['temp subselection'],
-                                            [
-                                                sh_i.sub.group("l list"),
-                                                sh_i.sub.list(),
-                                                sh_i.sub.group("l item"),
-                                            ]
-                                        ]),
-                                        'constrained': $p.constrained
-                                    }
-                                )
-                            })
+                            sh.a.change_context(
+                                sh.sv.context(["value"]),
+                                sh.a.group.literal({
+                                    "l location": location,
+                                    "l item": Value(
+                                        $.value,
+                                        {
+                                            'temp type': $p['temp type'],
+                                            'temp subselection': _p.list.nested_literal_old([
+                                                $p['temp subselection'],
+                                                [
+                                                    sh_i.sub.group("l list"),
+                                                    sh_i.sub.list(),
+                                                    sh_i.sub.group("l item"),
+                                                ]
+                                            ]),
+                                            'constrained': $p.constrained
+                                        }
+                                    )
+                                })
+                            )
                         )
                     })
-                    : sh.a.list.map(
+                    : sh.a.list.from.list.map(
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "List"),
                             sh.a.select(sh.sv.context([])),
-                            sh.a.state.literal("expected a list", sh.a.nothing()),
+                            sh.a.select(sh.sv.context([])),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
-                            [],
+                            [
+                                "items"
+                            ],
                         ),
-                        Value(
-                            $.value,
-                            {
-                                'temp type': $p['temp type'],
-                                'temp subselection': _p.list.nested_literal_old([
-                                    $p['temp subselection'],
-                                    [
-                                        sh_i.sub.list(),
-                                    ]
-                                ]),
-                                'constrained': $p.constrained
-                            }
+                        sh.a.change_context(
+                            sh.sv.context(["value"]),
+                            Value(
+                                $.value,
+                                {
+                                    'temp type': $p['temp type'],
+                                    'temp subselection': _p.list.nested_literal_old([
+                                        $p['temp subselection'],
+                                        [
+                                            sh_i.sub.list(),
+                                        ]
+                                    ]),
+                                    'constrained': $p.constrained
+                                }
+                            )
                         ),
                     )
             })
@@ -348,44 +360,36 @@ export const Value = (
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Nothing"),
                     sh.a.select(sh.sv.context([])),
-                    sh.a.state.literal("expected a nothing", sh.a.nothing()),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    [],
+                    [
+                    ],
                 )
             ))
             case 'number': return _p.ss($, ($) => sh.a.select(
                 sh.sv.call(
-                    sh.call.external("deserialize number", "deserialize"),
-                    sh.a.select(
-                        sh.sv.list_from_text(
-                            sh.sv.call(
-                                sh.call.external("unmarshalled from parse tree", "Text"),
-                                sh.a.select(sh.sv.context([])),
-                                sh.a.state.literal("expected a text", sh.a.nothing()),
-                                sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
-                                [],
-                            ),
-                            sh.a.select(sh.sv.context([])),
-                            []
-
-                        )
-                    ),
-                    sh.a.state.literal("not a valid number", sh.a.nothing()),
+                    sh.call.external("unmarshalled from parse tree", "Number"),
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
-                    sh.arguments_.not_set(),
-                    [],
-                )
+                    sh.arguments_.initialize({
+                        "type": sh.a.state.literal("decimal", sh.a.nothing())
+                    }),
+                    [
+                    ],
+                ),
             ))
             case 'optional': return _p.ss($, ($) => sh.a.optional.map(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Optional"),
                     sh.a.select(sh.sv.context([])),
-                    sh.a.state.literal("expected an optional", sh.a.nothing()),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    [],
+                    [
+                        "optional",
+                    ],
                 ),
                 Value(
                     $,
@@ -407,10 +411,11 @@ export const Value = (
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Nothing"),
                             sh.a.select(sh.sv.context([])),
-                            sh.a.state.literal("expected a nothing", sh.a.nothing()),
+                            sh.a.select(sh.sv.context([])),
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
-                            [],
+                            [
+                            ],
                         )
                     ))
                     case 'selected': return _p.ss($, ($) => sh.a.group.literal({
@@ -419,10 +424,11 @@ export const Value = (
                             sh.sv.call(
                                 sh.call.external("unmarshalled from parse tree", "Text"),
                                 sh.a.select(sh.sv.context([])),
-                                sh.a.state.literal("expected a text", sh.a.nothing()),
+                                sh.a.select(sh.sv.context([])),
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
-                                [],
+                                [
+                                ],
                             )
                         ),
                     }))
@@ -433,10 +439,11 @@ export const Value = (
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "State"),
                     sh.a.select(sh.sv.context([])),
-                    sh.a.state.literal("expected a state", sh.a.nothing()),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    [],
+                    [
+                    ],
                 ),
                 sh.a.decide.text(
                     sh.sv.context(["option", "value"]),
@@ -482,7 +489,20 @@ export const Value = (
                                 )
                         ),
                     ),
-                    sh.a.abort(sh.a.state.literal("unknown option", sh.a.select(sh.sv.context(["option", "value"])))),
+                    sh.a.abort(sh.a.state.literal("liana", sh.a.group.literal({
+                        "type": sh.a.state.literal("state", sh.a.state.literal("unknown option", sh.a.select(sh.sv.context(["option", "value"])))),
+                        "range": sh.a.select(
+                            sh.sv.call(
+                                sh.call.external("parse tree to location", "Value"),
+                                sh.a.select(sh.sv.context(["value"])),
+                                null,
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [
+                                ],
+                            )
+                        ),
+                    }))),
                     sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
                         $p['temp subselection'],
                         [
@@ -493,10 +513,11 @@ export const Value = (
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Text"),
                     sh.a.select(sh.sv.context([])),
-                    sh.a.state.literal("expected a text", sh.a.nothing()),
+                    sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    [],
+                    [
+                    ],
                 )
             ))
             default: return _p.au($[0])

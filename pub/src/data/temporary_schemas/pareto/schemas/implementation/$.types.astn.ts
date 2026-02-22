@@ -268,6 +268,7 @@ export const $: g_.Modules = modules(
                         })),
                     })),
                     "source document": toption(t.nothing()),
+                    "key": toption(t.nothing()),
                 })),
             })),
             "select": toption(t.component("Select Value")),

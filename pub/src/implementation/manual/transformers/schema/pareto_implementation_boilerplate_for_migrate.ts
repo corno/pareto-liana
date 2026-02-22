@@ -11,9 +11,22 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 const location = sh.a.group.literal({
-    "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
-    "line": sh.a.number.integer_literal(42),
-    "column": sh.a.number.integer_literal(42),
+    "start": sh.a.group.literal({
+        "absolute": sh.a.number.integer_literal(42),
+        "relative": sh.a.group.literal({
+            "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
+            "line": sh.a.number.integer_literal(42),
+            "column": sh.a.number.integer_literal(42),
+        })
+    }),
+    "end": sh.a.group.literal({
+        "absolute": sh.a.number.integer_literal(42),
+        "relative": sh.a.group.literal({
+            "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
+            "line": sh.a.number.integer_literal(42),
+            "column": sh.a.number.integer_literal(42),
+        })
+    })
 })
 
 export const Schema = (
@@ -115,7 +128,7 @@ export const Value = (
                 return $p.constrained
                     ? sh.a.group.literal({
                         "l location": location,
-                        "l dictionary": sh.a.dictionary.map(
+                        "l dictionary": sh.a.dictionary.from.dictionary.map(
                             sh.sv.context([]),
                             sh.a.group.literal({
                                 "l entry": Value(
@@ -137,7 +150,7 @@ export const Value = (
                             })
                         )
                     })
-                    : sh.a.dictionary.map(
+                    : sh.a.dictionary.from.dictionary.map(
                         sh.sv.context([]),
                         Value(
                             $.value,
@@ -175,7 +188,7 @@ export const Value = (
                 return $p.constrained
                     ? sh.a.group.literal({
                         "l location": location,
-                        "l list": sh.a.list.map(
+                        "l list": sh.a.list.from.list.map(
                             sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                             sh.a.group.literal({
                                 "l item": _p_change_context($, ($) => {
@@ -206,7 +219,7 @@ export const Value = (
                             })
                         )
                     })
-                    : sh.a.list.map(
+                    : sh.a.list.from.list.map(
                         sh.sv.context([]),
                         Value(
                             $.value,

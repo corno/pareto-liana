@@ -432,7 +432,7 @@ export const Value_Resolver = (
         case 'dictionary': return _p.ss($, ($) => {
             const resolver = $.resolver
             return $.benchmark.__decide(
-                ($) => sh.a.dictionary.resolve( //FIXME: validate denseness
+                ($) => sh.a.dictionary.from.dictionary.resolve( //FIXME: validate denseness
                     sh.sv.context(["l dictionary"]),
                     sh.a.change_context(
                         sh.sv.context(["l entry"]),
@@ -463,7 +463,7 @@ export const Value_Resolver = (
                     ]))
 
                 ),
-                () => sh.a.dictionary.resolve(
+                () => sh.a.dictionary.from.dictionary.resolve(
                     sh.sv.context(["l dictionary"]),
                     sh.a.change_context(
                         sh.sv.context(["l entry"]),
@@ -491,7 +491,7 @@ export const Value_Resolver = (
                 )
             )
         })
-        case 'group': return _p.ss($, ($) => sh.a.group.resolve(
+        case 'group': return _p.ss($, ($) => sh.a.group.literal_resolve(
             $.__d_map(
                 ($, id) => sh.a.change_context(
                     sh.sv.context([id]),
@@ -515,7 +515,7 @@ export const Value_Resolver = (
             const results = $.definition.results
             return $.result.__decide(
                 ($) => sh.a.group.literal({
-                    "l value": sh.a.list.map_with_state(
+                    "l value": sh.a.list.from.list.map_with_state(
                         sh.sv.context(["l list"]),
                         sh.a.implement_me("IM: initial state"),
                         sh.a.group.literal({
@@ -545,7 +545,7 @@ export const Value_Resolver = (
                         "result": sh.a.implement_me("IM: result aggregation") //this one is hardcode for now
                     })
                 }),
-                () => sh.a.list.map(
+                () => sh.a.list.from.list.map(
                     sh.sv.context(["l list"]),
                     sh.a.change_context(
                         sh.sv.context(["l item"]),

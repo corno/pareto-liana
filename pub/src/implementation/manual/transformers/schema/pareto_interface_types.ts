@@ -10,7 +10,7 @@ import * as sh from "pareto/dist/shorthands/interface"
 
 const location = sh.t.component_imported(
     " location",
-    "Relative Location",
+    "Range",
 )
 
 export const Schema = (
