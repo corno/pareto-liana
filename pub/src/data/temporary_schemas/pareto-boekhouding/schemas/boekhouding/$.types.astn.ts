@@ -60,7 +60,8 @@ export const $: g_.Modules = modules(
                 "BTW-heffing": prop(t.state({
                     "Ja": toption(t.group({
                         "BTW-promillage": prop(t.number_global("Promillage")),
-                    }))
+                    })),
+                    "Nee": toption(t.nothing()),
                 }))
             }))),
             "Grootboekrekeningen": prop(t.group({

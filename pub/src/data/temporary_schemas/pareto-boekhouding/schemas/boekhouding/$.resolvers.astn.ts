@@ -55,7 +55,8 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "BTW-heffing": r.state({
                     "Ja": option(r.group({
                         "BTW-promillage": r.number(),
-                    }))
+                    })),
+                    "Nee": option(r.nothing()),
                 })
             })),
             "Grootboekrekeningen": r.group({

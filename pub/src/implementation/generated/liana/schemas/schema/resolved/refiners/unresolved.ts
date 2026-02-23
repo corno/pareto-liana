@@ -2189,12 +2189,6 @@
 //                                                                     ($) => _p.group.literal.resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_l_results = {
-//                                                                                 'state': _pdev.implement_me(
-//                                                                                     "IM: constraint result",
-//                                                                                 ),
-//                                                                             }
-                                                                            
 //                                                                             const prop_l_value = {
 //                                                                                 'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                     $['l reference'],
@@ -2221,9 +2215,42 @@
 //                                                                                 ),
 //                                                                                 'l id': $['l reference'],
 //                                                                             }
+                                                                            
+//                                                                             const prop_l_results = _p_variables(
+//                                                                                 () => {
+                                                                                    
+//                                                                                     const var_location = $['l location']
+//                                                                                     return {
+//                                                                                         'state': _p.decide.state(
+//                                                                                             _pdev.implement_me(
+//                                                                                                 "IM: rvs",
+//                                                                                             ),
+//                                                                                             ($) => {
+//                                                                                                 switch ($[0]) {
+//                                                                                                     case 'state':
+//                                                                                                         return _p.ss(
+//                                                                                                             $,
+//                                                                                                             ($) => $,
+//                                                                                                         )
+//                                                                                                     default:
+//                                                                                                         return abort(
+//                                                                                                             {
+//                                                                                                                 'type': ['constraint', ['state', {
+//                                                                                                                     'expected': "state",
+//                                                                                                                     'found': $[0],
+//                                                                                                                 }]],
+//                                                                                                                 'location': var_location,
+//                                                                                                             },
+//                                                                                                         )
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         ),
+//                                                                                     }
+//                                                                                 },
+//                                                                             )
 //                                                                             return {
-//                                                                                 'l results': prop_l_results,
 //                                                                                 'l value': prop_l_value,
+//                                                                                 'l results': prop_l_results,
 //                                                                             }
 //                                                                         },
 //                                                                     ),
@@ -2270,12 +2297,6 @@
 //                                                                     ($) => _p.group.literal.resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_l_results = {
-//                                                                                 'optional': _pdev.implement_me(
-//                                                                                     "IM: constraint result",
-//                                                                                 ),
-//                                                                             }
-                                                                            
 //                                                                             const prop_l_value = {
 //                                                                                 'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                     $['l reference'],
@@ -2302,9 +2323,42 @@
 //                                                                                 ),
 //                                                                                 'l id': $['l reference'],
 //                                                                             }
+                                                                            
+//                                                                             const prop_l_results = _p_variables(
+//                                                                                 () => {
+                                                                                    
+//                                                                                     const var_location = $['l location']
+//                                                                                     return {
+//                                                                                         'optional': _p.decide.state(
+//                                                                                             _pdev.implement_me(
+//                                                                                                 "IM: rvs",
+//                                                                                             ),
+//                                                                                             ($) => {
+//                                                                                                 switch ($[0]) {
+//                                                                                                     case 'optional':
+//                                                                                                         return _p.ss(
+//                                                                                                             $,
+//                                                                                                             ($) => $,
+//                                                                                                         )
+//                                                                                                     default:
+//                                                                                                         return abort(
+//                                                                                                             {
+//                                                                                                                 'type': ['constraint', ['state', {
+//                                                                                                                     'expected': "optional",
+//                                                                                                                     'found': $[0],
+//                                                                                                                 }]],
+//                                                                                                                 'location': var_location,
+//                                                                                                             },
+//                                                                                                         )
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         ),
+//                                                                                     }
+//                                                                                 },
+//                                                                             )
 //                                                                             return {
-//                                                                                 'l results': prop_l_results,
 //                                                                                 'l value': prop_l_value,
+//                                                                                 'l results': prop_l_results,
 //                                                                             }
 //                                                                         },
 //                                                                     ),
@@ -2512,12 +2566,6 @@
 //                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                     () => {
                                                                                         
-//                                                                                         const prop_l_results = {
-//                                                                                             'component': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                         }
-                                                                                        
 //                                                                                         const prop_l_value = {
 //                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                                 $['l reference'],
@@ -2544,9 +2592,42 @@
 //                                                                                             ),
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_results = _p_variables(
+//                                                                                             () => {
+                                                                                                
+//                                                                                                 const var_location = $['l location']
+//                                                                                                 return {
+//                                                                                                     'component': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'component':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "component",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         )
 //                                                                                         return {
-//                                                                                             'l results': prop_l_results,
 //                                                                                             'l value': prop_l_value,
+//                                                                                             'l results': prop_l_results,
 //                                                                                         }
 //                                                                                     },
 //                                                                                 ),
@@ -2601,15 +2682,6 @@
 //                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                     () => {
                                                                                         
-//                                                                                         const prop_l_results = {
-//                                                                                             'reference': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                             'selected': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                         }
-                                                                                        
 //                                                                                         const prop_l_value = {
 //                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                                 $['l reference'],
@@ -2636,9 +2708,66 @@
 //                                                                                             ),
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_results = _p_variables(
+//                                                                                             () => {
+                                                                                                
+//                                                                                                 const var_location = $['l location']
+//                                                                                                 return {
+//                                                                                                     'reference': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'reference':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "reference",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     'selected': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'selected':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "selected",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         )
 //                                                                                         return {
-//                                                                                             'l results': prop_l_results,
 //                                                                                             'l value': prop_l_value,
+//                                                                                             'l results': prop_l_results,
 //                                                                                         }
 //                                                                                     },
 //                                                                                 ),
@@ -2746,15 +2875,6 @@
 //                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                     () => {
                                                                                         
-//                                                                                         const prop_l_results = {
-//                                                                                             'list': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                             'result': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                         }
-                                                                                        
 //                                                                                         const prop_l_value = {
 //                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                                 $['l reference'],
@@ -2781,9 +2901,45 @@
 //                                                                                             ),
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_results = _p_variables(
+//                                                                                             () => {
+                                                                                                
+//                                                                                                 const var_location = $['l location']
+//                                                                                                 return {
+//                                                                                                     'list': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'list':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "list",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     'result': _pdev.implement_me(
+//                                                                                                         "IM: constraint2",
+//                                                                                                     ),
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         )
 //                                                                                         return {
-//                                                                                             'l results': prop_l_results,
 //                                                                                             'l value': prop_l_value,
+//                                                                                             'l results': prop_l_results,
 //                                                                                         }
 //                                                                                     },
 //                                                                                 ),
@@ -2811,12 +2967,6 @@
 //                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                     () => {
                                                                                         
-//                                                                                         const prop_l_results = {
-//                                                                                             'state': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                         }
-                                                                                        
 //                                                                                         const prop_l_value = {
 //                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                                 $['l reference'],
@@ -2843,9 +2993,42 @@
 //                                                                                             ),
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_results = _p_variables(
+//                                                                                             () => {
+                                                                                                
+//                                                                                                 const var_location = $['l location']
+//                                                                                                 return {
+//                                                                                                     'state': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'state':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "state",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         )
 //                                                                                         return {
-//                                                                                             'l results': prop_l_results,
 //                                                                                             'l value': prop_l_value,
+//                                                                                             'l results': prop_l_results,
 //                                                                                         }
 //                                                                                     },
 //                                                                                 ),
@@ -2892,12 +3075,6 @@
 //                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                     () => {
                                                                                         
-//                                                                                         const prop_l_results = {
-//                                                                                             'optional': _pdev.implement_me(
-//                                                                                                 "IM: constraint result",
-//                                                                                             ),
-//                                                                                         }
-                                                                                        
 //                                                                                         const prop_l_value = {
 //                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
 //                                                                                                 $['l reference'],
@@ -2924,9 +3101,42 @@
 //                                                                                             ),
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_results = _p_variables(
+//                                                                                             () => {
+                                                                                                
+//                                                                                                 const var_location = $['l location']
+//                                                                                                 return {
+//                                                                                                     'optional': _p.decide.state(
+//                                                                                                         _pdev.implement_me(
+//                                                                                                             "IM: rvs",
+//                                                                                                         ),
+//                                                                                                         ($) => {
+//                                                                                                             switch ($[0]) {
+//                                                                                                                 case 'optional':
+//                                                                                                                     return _p.ss(
+//                                                                                                                         $,
+//                                                                                                                         ($) => $,
+//                                                                                                                     )
+//                                                                                                                 default:
+//                                                                                                                     return abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                 'expected': "optional",
+//                                                                                                                                 'found': $[0],
+//                                                                                                                             }]],
+//                                                                                                                             'location': var_location,
+//                                                                                                                         },
+//                                                                                                                     )
+//                                                                                                             }
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                 }
+//                                                                                             },
+//                                                                                         )
 //                                                                                         return {
-//                                                                                             'l results': prop_l_results,
 //                                                                                             'l value': prop_l_value,
+//                                                                                             'l results': prop_l_results,
 //                                                                                         }
 //                                                                                     },
 //                                                                                 ),
@@ -3859,12 +4069,6 @@
 //                                                                                                 ($) => _p.group.literal.resolve(
 //                                                                                                     () => {
                                                                                                         
-//                                                                                                         const prop_l_results = {
-//                                                                                                             'constrained': _pdev.implement_me(
-//                                                                                                                 "IM: constraint result",
-//                                                                                                             ),
-//                                                                                                         }
-                                                                                                        
 //                                                                                                         const prop_l_value = {
 //                                                                                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
 //                                                                                                                 var_constraint_schema_import,
@@ -3893,9 +4097,42 @@
 //                                                                                                             ),
 //                                                                                                             'l id': $['l reference'],
 //                                                                                                         }
+                                                                                                        
+//                                                                                                         const prop_l_results = _p_variables(
+//                                                                                                             () => {
+                                                                                                                
+//                                                                                                                 const var_location = $['l location']
+//                                                                                                                 return {
+//                                                                                                                     'constrained': _p.decide.state(
+//                                                                                                                         _pdev.implement_me(
+//                                                                                                                             "IM: rvs",
+//                                                                                                                         ),
+//                                                                                                                         ($) => {
+//                                                                                                                             switch ($[0]) {
+//                                                                                                                                 case 'constrained':
+//                                                                                                                                     return _p.ss(
+//                                                                                                                                         $,
+//                                                                                                                                         ($) => $,
+//                                                                                                                                     )
+//                                                                                                                                 default:
+//                                                                                                                                     return abort(
+//                                                                                                                                         {
+//                                                                                                                                             'type': ['constraint', ['state', {
+//                                                                                                                                                 'expected': "constrained",
+//                                                                                                                                                 'found': $[0],
+//                                                                                                                                             }]],
+//                                                                                                                                             'location': var_location,
+//                                                                                                                                         },
+//                                                                                                                                     )
+//                                                                                                                             }
+//                                                                                                                         },
+//                                                                                                                     ),
+//                                                                                                                 }
+//                                                                                                             },
+//                                                                                                         )
 //                                                                                                         return {
-//                                                                                                             'l results': prop_l_results,
 //                                                                                                             'l value': prop_l_value,
+//                                                                                                             'l results': prop_l_results,
 //                                                                                                         }
 //                                                                                                     },
 //                                                                                                 ),
@@ -5294,12 +5531,6 @@
 //                     ($) => _p.group.literal.resolve(
 //                         () => {
                             
-//                             const prop_l_results = {
-//                                 'schema': _pdev.implement_me(
-//                                     "IM: constraint result",
-//                                 ),
-//                             }
-                            
 //                             const prop_l_value = {
 //                                 'l entry': $l['sibling schemas'].get_entry(
 //                                     $['l reference'],
@@ -5349,9 +5580,42 @@
 //                                     },
 //                                 ),
 //                             }
+                            
+//                             const prop_l_results = _p_variables(
+//                                 () => {
+                                    
+//                                     const var_location = $['l location']
+//                                     return {
+//                                         'schema': _p.decide.state(
+//                                             _pdev.implement_me(
+//                                                 "IM: rvs",
+//                                             ),
+//                                             ($) => {
+//                                                 switch ($[0]) {
+//                                                     case 'schema':
+//                                                         return _p.ss(
+//                                                             $,
+//                                                             ($) => $,
+//                                                         )
+//                                                     default:
+//                                                         return abort(
+//                                                             {
+//                                                                 'type': ['constraint', ['state', {
+//                                                                     'expected': "schema",
+//                                                                     'found': $[0],
+//                                                                 }]],
+//                                                                 'location': var_location,
+//                                                             },
+//                                                         )
+//                                                 }
+//                                             },
+//                                         ),
+//                                     }
+//                                 },
+//                             )
 //                             return {
-//                                 'l results': prop_l_results,
 //                                 'l value': prop_l_value,
+//                                 'l results': prop_l_results,
 //                             }
 //                         },
 //                     ),
@@ -5383,12 +5647,6 @@
 //                     ($) => _p.group.literal.resolve(
 //                         () => {
                             
-//                             const prop_l_results = {
-//                                 'resolver': _pdev.implement_me(
-//                                     "IM: constraint result",
-//                                 ),
-//                             }
-                            
 //                             const prop_l_value = {
 //                                 'l entry': $l['sibling schemas'].get_entry(
 //                                     $['l reference'],
@@ -5438,9 +5696,42 @@
 //                                     },
 //                                 ),
 //                             }
+                            
+//                             const prop_l_results = _p_variables(
+//                                 () => {
+                                    
+//                                     const var_location = $['l location']
+//                                     return {
+//                                         'resolver': _p.decide.state(
+//                                             _pdev.implement_me(
+//                                                 "IM: rvs",
+//                                             ),
+//                                             ($) => {
+//                                                 switch ($[0]) {
+//                                                     case 'schema':
+//                                                         return _p.ss(
+//                                                             $,
+//                                                             ($) => $,
+//                                                         )
+//                                                     default:
+//                                                         return abort(
+//                                                             {
+//                                                                 'type': ['constraint', ['state', {
+//                                                                     'expected': "schema",
+//                                                                     'found': $[0],
+//                                                                 }]],
+//                                                                 'location': var_location,
+//                                                             },
+//                                                         )
+//                                                 }
+//                                             },
+//                                         ),
+//                                     }
+//                                 },
+//                             )
 //                             return {
-//                                 'l results': prop_l_results,
 //                                 'l value': prop_l_value,
+//                                 'l results': prop_l_results,
 //                             }
 //                         },
 //                     ),
