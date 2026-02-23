@@ -1,11 +1,11 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
+    resolver_modules, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Module_Resolvers = resolvers(
+export const $: g_.Resolver_Modules = resolver_modules(
     {
         "Fiscaal": resolver(r.group({
             "Balans Hoofdcategorieen": r.dictionary(r.group({

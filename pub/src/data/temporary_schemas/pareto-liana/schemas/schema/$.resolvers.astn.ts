@@ -1,13 +1,13 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs, module_reference,
+    resolver_modules, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs, module_reference,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 
-export const $: g_.Module_Resolvers = resolvers(
+export const $: g_.Resolver_Modules = resolver_modules(
     {
         "Package": resolver(r.group({
             "omit (de)serializer": r.boolean(),
@@ -262,7 +262,7 @@ export const $: g_.Module_Resolvers = resolvers(
             })),
         })),
 
-        "Relative Value Selection": resolver(r.group({
+        "Resolver Relative Value Selection": resolver(r.group({
             "path": r.list_with_result(
                 r.state({
                     "component": option_constrained(
@@ -292,7 +292,7 @@ export const $: g_.Module_Resolvers = resolvers(
             "required": option(r.nothing()),
         })),
 
-        "Signature Parameters": resolver(r.group({
+        "Resolver Signature Parameters": resolver(r.group({
             "modules": r.dictionary(r.group({
                 "module": r.component("Module Reference", {
                     "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
@@ -319,11 +319,11 @@ export const $: g_.Module_Resolvers = resolvers(
             }))
         })),
 
-        "Signature": resolver(r.group({
+        "Resolver Signature": resolver(r.group({
             "module": r.reference_derived(gvs.parameter("module", [])),
             "parameters": r.state(
                 {
-                    "local": option(r.component("Signature Parameters", {
+                    "local": option(r.component("Resolver Signature Parameters", {
                         "modules": av.parameter("modules"),
                         "imports": av.parameter("imports"),
                     }, {})),
@@ -331,13 +331,13 @@ export const $: g_.Module_Resolvers = resolvers(
                 }
             ),
             "resolved parameters": r.reference_derived(gvs.state("parameters",
-                module_reference("Signature Parameters"), [])),
+                module_reference("Resolver Signature Parameters"), [])),
         })),
 
-        "Signatures": resolver(r.dictionary_linked(
+        "Resolver Signatures": resolver(r.dictionary_linked(
             'dense',
             gvs.parameter("modules", []),
-            r.component("Signature", {
+            r.component("Resolver Signature", {
                 "modules": av.parameter("modules"),
                 "module": av.required(gvs.linked_entry([rvs.component()])),
                 "imports": av.parameter("imports"),
@@ -346,13 +346,13 @@ export const $: g_.Module_Resolvers = resolvers(
             })
         )),
 
-        "Optional Value Initialization": resolver(r.state({
+        "Resolver Optional Value Initialization": resolver(r.state({
             "not set": option(r.nothing()),
-            "set": option(r.component("Guaranteed Value Selection", null, null)),
-            "selection": option(r.component("Possible Value Selection", null, null)),
+            "set": option(r.component("Resolver Guaranteed Value Selection", null, null)),
+            "selection": option(r.component("Resolver Possible Value Selection", null, null)),
         })),
 
-        "Possible Value Selection": resolver(r.state({
+        "Resolver Possible Value Selection": resolver(r.state({
             "parameter": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signature", [rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")])))),
             "result": option(r.state({
                 "state": option(r.group({
@@ -381,7 +381,7 @@ export const $: g_.Module_Resolvers = resolvers(
             }))
         })),
 
-        "Guaranteed Value Selection": resolver(r.group({
+        "Resolver Guaranteed Value Selection": resolver(r.group({
             "start": r.state(
                 {
                     //stack
@@ -448,14 +448,14 @@ export const $: g_.Module_Resolvers = resolvers(
 
                 },
             ),
-            "tail": r.component("Relative Value Selection", {
+            "tail": r.component("Resolver Relative Value Selection", {
                 "value": av.required(gvs.state("start",
                     module_reference("Value"), [])),
             }, {}),
             "resulting node": r.reference_derived(gvs.sibling("tail", [rvs.component(), rvs.group("resulting node"), rvs.reference()])),
         })),
 
-        "Lookup Selection": resolver(r.group({
+        "Resolver Lookup Selection": resolver(r.group({
             "type": r.state(
                 {
                     "acyclic": option(r.state({
@@ -466,7 +466,7 @@ export const $: g_.Module_Resolvers = resolvers(
                             r.reference_derived(gvs.option_constraint("cd", []))
                         ),
                         "resolved dictionary": option(r.group({
-                            "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
+                            "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
                                 "dictionary": vcr.value(
                                     [
                                         rvs.group("resulting node"),
@@ -503,12 +503,12 @@ export const $: g_.Module_Resolvers = resolvers(
                 module_reference("Dictionary"), [])),
         })),
 
-        "Module Resolvers": resolver(r.dictionary_linked(
+        "Resolver Modules": resolver(r.dictionary_linked(
             'dense',
             gvs.parameter("signatures", []),
             r.group({
                 "signature": r.reference_derived(gvs.linked_entry([])),
-                "root value resolver": r.component("Value Resolver",
+                "root value resolver": r.component("Resolver Value",
                     {
 
                         "option constraints": av.optional(ovi.not_set()),
@@ -533,8 +533,8 @@ export const $: g_.Module_Resolvers = resolvers(
             })
         )),
 
-        "Constraint": resolver(r.group({
-            "selection": r.component("Relative Value Selection", null, null),
+        "Resolver Constraint": resolver(r.group({
+            "selection": r.component("Resolver Relative Value Selection", null, null),
             "type": r.state({
                 "state": option_constrained(
                     {
@@ -554,15 +554,15 @@ export const $: g_.Module_Resolvers = resolvers(
             }),
         })),
 
-        "Option Constraint Resolvers": resolver(r.dictionary(r.state({
+        "Resolver Option Constraints": resolver(r.dictionary(r.state({
             "state": option(r.group({
-                "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
+                "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
                     "state": vcr.value([rvs.group("resulting node"), rvs.reference()], "state")
                 }),
                 "selected state": r.reference_derived(gvs.component("selection", "state", [])),
                 "option": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("selected state", [rvs.reference(), rvs.group("options")]))),
             })),
-            "assert is set": option(r.component("Possible Value Selection", null, null)),
+            "assert is set": option(r.component("Resolver Possible Value Selection", null, null)),
         }))),
 
         "Value Constraint Resolver": resolver(r.group({
@@ -574,19 +574,19 @@ export const $: g_.Module_Resolvers = resolvers(
                     })),
                 }
             ),
-            "constraint": r.component("Constraint", {
+            "constraint": r.component("Resolver Constraint", {
                 "value": av.required(gvs.state("start",
                     module_reference("Value"), [])),
             }, {}),
         })),
 
 
-        "Optional Value Constraint Resolvers": resolver(r.optional(r.component("Value Constraint Resolvers", {
+        "Optional Value Constraint Resolvers": resolver(r.optional(r.component("Resolver Value Constraints", {
             "value": av.parameter("value"),
         }, {
         }))),
 
-        "Value Constraint Resolvers": resolver(r.dictionary(r.component("Value Constraint Resolver", {}, {
+        "Resolver Value Constraints": resolver(r.dictionary(r.component("Value Constraint Resolver", {}, {
             "property constraints": al.acyclic.siblings(),
         }))),
 
@@ -597,7 +597,7 @@ export const $: g_.Module_Resolvers = resolvers(
             gvs.parameter("definition", []),
             r.group({
                 "definition": r.reference_derived(gvs.linked_entry([])),
-                "resolver": r.component("Value Resolver",
+                "resolver": r.component("Resolver Value",
                     {
                         "definition": av.required(gvs.linked_entry([rvs.group("value"), rvs.component()])),
 
@@ -626,15 +626,15 @@ export const $: g_.Module_Resolvers = resolvers(
             "modules": al.parameter("modules"),
         })),
 
-        "Benchmark": resolver(r.group({
-            "selection": r.component_constrained("Guaranteed Value Selection", null, null, {
+        "Resolver Benchmark": resolver(r.group({
+            "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
                 "dictionary": vcr.value([rvs.group("resulting node"), rvs.reference()], "dictionary"),
             }),
             "resulting dictionary": r.reference_derived(gvs.component("selection", "dictionary", [])),
             "dense": r.boolean(),
         })),
 
-        "Value Resolver": resolver(r.state({
+        "Resolver Value": resolver(r.state({
             "boolean": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "boolean")
@@ -664,14 +664,14 @@ export const $: g_.Module_Resolvers = resolvers(
                         },
                     ),
                     "signature": r.reference_derived(gvs.state("location",
-                        module_reference("Signature"), [])),
+                        module_reference("Resolver Signature"), [])),
                     "arguments": r.optional(r.group({
                         "modules": r.optional(r.dictionary_linked(
                             'dense',
                             gvs.parent_sibling("signature", [rvs.reference(), rvs.component(), rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")]),
                             r.state({
-                                "optional": option(r.component("Optional Value Initialization", null, null)),
-                                "required": option(r.component("Guaranteed Value Selection", null, null)),
+                                "optional": option(r.component("Resolver Optional Value Initialization", null, null)),
+                                "required": option(r.component("Resolver Guaranteed Value Selection", null, null)),
                                 "parameter": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signature", [rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")])))),
                             }))
                         ),
@@ -682,8 +682,8 @@ export const $: g_.Module_Resolvers = resolvers(
                                 "stack": option(r.state({
                                     "empty": option(r.nothing()),
                                     "push": option(r.group({
-                                        "stack": r.component("Lookup Selection", null, null),
-                                        "item": r.component("Lookup Selection", null, null),
+                                        "stack": r.component("Resolver Lookup Selection", null, null),
+                                        "item": r.component("Resolver Lookup Selection", null, null),
                                     })),
                                 })),
                                 "acyclic": option(r.state({
@@ -694,11 +694,11 @@ export const $: g_.Module_Resolvers = resolvers(
                                     "not set": option(r.nothing()),
 
                                 })),
-                                "selection": option(r.component("Lookup Selection", null, null)),
+                                "selection": option(r.component("Resolver Lookup Selection", null, null)),
                             }))
                         ),
                     })),
-                    "constraints": r.component("Value Constraint Resolvers", {
+                    "constraints": r.component("Resolver Value Constraints", {
                         "value": av.required(gvs.sibling("signature", [rvs.reference(), rvs.component(), rvs.group("module"), rvs.reference(), rvs.group("root value"), rvs.component(),])),
                     }, {})
                 })),
@@ -709,12 +709,12 @@ export const $: g_.Module_Resolvers = resolvers(
                 r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "benchmark": r.optional(
-                        r.component("Benchmark", null, null)
+                        r.component("Resolver Benchmark", null, null)
                     ),
-                    "resolver": r.component("Value Resolver",
+                    "resolver": r.component("Resolver Value",
                         {
                             "linked entry": av.optional(ovi.selection(pvs.optional_value("benchmark",
-                                module_reference("Benchmark"),))),
+                                module_reference("Resolver Benchmark"),))),
                             "definition": av.required(gvs.sibling("definition", [rvs.reference(), rvs.group("value")])),
                             "current dictionary": av.optional(ovi.set(gvs.sibling("definition", []))),
                             "current ordered dictionary": av.optional(ovi.set(gvs.sibling("definition", []))), //FIXME: validate that the dictionary is ordered
@@ -769,7 +769,7 @@ export const $: g_.Module_Resolvers = resolvers(
                             "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
                         }),
                     ),
-                    "resolver": r.component("Value Resolver",
+                    "resolver": r.component("Resolver Value",
                         {
                             "list cursor": av.optional(ovi.set(gvs.optional_value("result",
                                 module_reference("Value Resolver List Result"), [rvs.component()]))),
@@ -800,8 +800,8 @@ export const $: g_.Module_Resolvers = resolvers(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "optional")
                 }, r.group({
-                    "constraints": r.component("Option Constraint Resolvers", null, null),
-                    "resolver": r.component("Value Resolver",
+                    "constraints": r.component("Resolver Option Constraints", null, null),
+                    "resolver": r.component("Resolver Value",
                         {
                             "definition": av.required(gvs.option_constraint("definition", [rvs.component()])),
 
@@ -829,15 +829,15 @@ export const $: g_.Module_Resolvers = resolvers(
                             {
                                 "definition": oc.state(gvs.sibling("definition", [rvs.reference(), rvs.group("type")]), "derived")
                             }, r.group({
-                                "value": r.component("Guaranteed Value Selection", null, null),
+                                "value": r.component("Resolver Guaranteed Value Selection", null, null),
                             })),
                         "selected": option_constrained(
                             {
                                 "definition": oc.state(gvs.sibling("definition", [rvs.reference(), rvs.group("type")]), "selected")
                             }, r.group({
                                 "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                                "lookup": r.component("Lookup Selection", null, null),
-                                "constraints": r.component("Value Constraint Resolvers", {
+                                "lookup": r.component("Resolver Lookup Selection", null, null),
+                                "constraints": r.component("Resolver Value Constraints", {
                                     "value": av.required(gvs.sibling("lookup", [rvs.component(), rvs.group("resulting dictionary"), rvs.reference(), rvs.group("value")])),
                                 }, {})
                             })),
@@ -852,8 +852,8 @@ export const $: g_.Module_Resolvers = resolvers(
                         'dense',
                         gvs.option_constraint("definition", [rvs.group("options")]),
                         r.group({
-                            "constraints": r.component("Option Constraint Resolvers", null, null),
-                            "resolver": r.component("Value Resolver",
+                            "constraints": r.component("Resolver Option Constraints", null, null),
+                            "resolver": r.component("Resolver Value",
                                 {
                                     "definition": av.required(gvs.linked_entry([rvs.group("value")])),
 
@@ -882,13 +882,13 @@ export const $: g_.Module_Resolvers = resolvers(
 
         "Resolver": resolver(r.group({
             "signatures": r.group({
-                "signatures": r.component("Signatures", {
+                "signatures": r.component("Resolver Signatures", {
                     "modules": av.parameter("modules"),
                     "imports": av.parameter("schema imports"),
                 }, {
                 }),
             }),
-            "resolvers": r.component("Module Resolvers", {
+            "modules": r.component("Resolver Modules", {
                 "signatures": av.required(gvs.sibling("signatures", [rvs.group("signatures")])),
                 "modules": av.parameter("modules"),
                 "schema imports": av.parameter("schema imports"),

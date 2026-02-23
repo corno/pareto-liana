@@ -77,7 +77,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Value Resolver": module_(t.state({
+        "Resolver Value": module_(t.state({
             "boolean": sh.toption_constrained(
                 {
                     "definition": value_reference("Value", [vp.s("boolean")])
@@ -95,23 +95,23 @@ export const $: g_.Modules = modules(
                         "external": toption(t.group({
                             "schema import": prop(t.reference("Schema Imports", [])),
                             "resolver import": prop(t.reference("Resolver Imports", [])),
-                            "signature": prop(t.reference("Signatures", [])),
+                            "signature": prop(t.reference("Resolver Signatures", [])),
                         })),
-                        "internal": toption(t.reference("Signatures", [])),
+                        "internal": toption(t.reference("Resolver Signatures", [])),
                     })),
-                    "signature": prop(t.reference_derived("Signatures", [vp.d()])),
+                    "signature": prop(t.reference_derived("Resolver Signatures", [vp.d()])),
                     "arguments": prop(t.optional(t.group({
                         "modules": prop(t.optional(t.dictionary(t.state({
-                            "optional": toption(t.component("Optional Value Initialization")),
-                            "required": toption(t.component("Guaranteed Value Selection")),
-                            "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])),
+                            "optional": toption(t.component("Resolver Optional Value Initialization")),
+                            "required": toption(t.component("Resolver Guaranteed Value Selection")),
+                            "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])),
                         })))),
                         "lookups": prop(t.optional(t.dictionary(t.state({
                             "stack": toption(t.state({
                                 "empty": toption(t.nothing()),
                                 "push": toption(t.group({
-                                    "stack": prop(t.component("Lookup Selection")),
-                                    "item": prop(t.component("Lookup Selection")),
+                                    "stack": prop(t.component("Resolver Lookup Selection")),
+                                    "item": prop(t.component("Resolver Lookup Selection")),
                                 })),
                             })),
                             "acyclic": toption(t.state({
@@ -120,10 +120,10 @@ export const $: g_.Modules = modules(
                             "cyclic": toption(t.state({
                                 "not set": toption(t.nothing()),
                             })),
-                            "selection": toption(t.component("Lookup Selection")),
+                            "selection": toption(t.component("Resolver Lookup Selection")),
                         })))),
                     }))),
-                    "constraints": prop(t.component("Value Constraint Resolvers")),
+                    "constraints": prop(t.component("Resolver Value Constraints")),
                 })
             ),
             "dictionary": sh.toption_constrained(
@@ -132,8 +132,8 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "definition": prop(t.reference_derived("Dictionary", [])),
-                    "resolver": prop(t.component("Value Resolver")),
-                    "benchmark": prop(t.optional(t.component("Benchmark"))),
+                    "resolver": prop(t.component("Resolver Value")),
+                    "benchmark": prop(t.optional(t.component("Resolver Benchmark"))),
                 })
             ),
             "group": sh.toption_constrained(
@@ -148,7 +148,7 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "definition": prop(t.reference_derived("Value", [vp.s("list")])),
-                    "resolver": prop(t.component("Value Resolver")),
+                    "resolver": prop(t.component("Resolver Value")),
                     "result": prop(t.optional(t.component("Value Resolver List Result"))),
                 })
             ),
@@ -169,8 +169,8 @@ export const $: g_.Modules = modules(
                     "definition": value_reference("Value", [vp.s("optional")])
                 },
                 t.group({
-                    "constraints": prop(t.component("Option Constraint Resolvers")),
-                    "resolver": prop(t.component("Value Resolver")),
+                    "constraints": prop(t.component("Resolver Option Constraints")),
+                    "resolver": prop(t.component("Resolver Value")),
                 })
             ),
             "reference": sh.toption_constrained(
@@ -181,12 +181,12 @@ export const $: g_.Modules = modules(
                     "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
                     "type": prop(t.state({
                         "derived": toption(t.group({
-                            "value": prop(t.component("Guaranteed Value Selection")),
+                            "value": prop(t.component("Resolver Guaranteed Value Selection")),
                         })),
                         "selected": toption(t.group({
                             "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
-                            "lookup": prop(t.component("Lookup Selection")),
-                            "constraints": prop(t.component("Value Constraint Resolvers")),
+                            "lookup": prop(t.component("Resolver Lookup Selection")),
+                            "constraints": prop(t.component("Resolver Value Constraints")),
                         })),
                     })),
                 })
@@ -198,8 +198,8 @@ export const $: g_.Modules = modules(
                 t.group({
                     "definition": prop(t.reference_derived("Value", [vp.s("state")])),
                     "states": prop(t.dictionary(t.group({
-                        "constraints": prop(t.component("Option Constraint Resolvers")),
-                        "resolver": prop(t.component("Value Resolver")),
+                        "constraints": prop(t.component("Resolver Option Constraints")),
+                        "resolver": prop(t.component("Resolver Value")),
                     }))
                     ),
                 })),
@@ -258,9 +258,9 @@ export const $: g_.Modules = modules(
 
         "Resolver": module_(t.group({ //FIXME: inline
             "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
-                "signatures": prop(t.component("Signatures"))
+                "signatures": prop(t.component("Resolver Signatures"))
             })),
-            "resolvers": prop(t.component("Module Resolvers")),
+            "modules": prop(t.component("Resolver Modules")),
         })),
 
         "Text Type": module_(t.group({
@@ -326,15 +326,15 @@ export const $: g_.Modules = modules(
             "value": prop(t.component("Value")),
         })),
 
-        "Signatures": module_(t.dictionary(t.component("Signature"))),
+        "Resolver Signatures": module_(t.dictionary(t.component("Resolver Signature"))),
 
-        "Module Resolvers": module_(t.dictionary(t.group({
-            "signature": prop(t.reference_derived("Signatures", [vp.d()])),
-            "root value resolver": prop(t.component("Value Resolver")),
+        "Resolver Modules": module_(t.dictionary(t.group({
+            "signature": prop(t.reference_derived("Resolver Signatures", [vp.d()])),
+            "root value resolver": prop(t.component("Resolver Value")),
         }))),
 
-        "Benchmark": module_(t.group({
-            "selection": prop(t.component_with_results("Guaranteed Value Selection", {
+        "Resolver Benchmark": module_(t.group({
+            "selection": prop(t.component_with_results("Resolver Guaranteed Value Selection", {
                 "dictionary": sh.value_reference("Value", [vp.s("dictionary")])
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
@@ -388,7 +388,7 @@ export const $: g_.Modules = modules(
             "resulting module": prop(t.reference_derived("Module", [])),
         })),
 
-        "Signature Parameters": module_(t.group({ //FIME: inline
+        "Resolver Signature Parameters": module_(t.group({ //FIME: inline
             "modules": prop(t.dictionary(t.group({
                 "module": prop(t.component("Module Reference")),
                 "presence": prop(t.component("Presence")),
@@ -405,16 +405,16 @@ export const $: g_.Modules = modules(
             })))
         })),
 
-        "Signature": module_(t.group({
+        "Resolver Signature": module_(t.group({
             "module": prop(t.reference_derived("Module", [])),
             "parameters": prop(t.state({
-                "local": toption(t.component("Signature Parameters")),
-                "same as": toption(t.reference("Signatures", [])),
+                "local": toption(t.component("Resolver Signature Parameters")),
+                "same as": toption(t.reference("Resolver Signatures", [])),
             })),
-            "resolved parameters": prop(t.reference_derived("Signature Parameters", [])),
+            "resolved parameters": prop(t.reference_derived("Resolver Signature Parameters", [])),
         })),
 
-        "Relative Value Selection": module_(t.group({
+        "Resolver Relative Value Selection": module_(t.group({
             "path": prop(t.list_with_results(
                 t.state({
                     "component": toption(t.nothing()),
@@ -430,26 +430,26 @@ export const $: g_.Modules = modules(
             "resulting node": prop(t.reference_derived("Value", [])),
         })),
 
-        "Lookup Selection": module_(t.group({
+        "Resolver Lookup Selection": module_(t.group({
             "type": prop(t.state({
                 "acyclic": toption(t.state({
                     "siblings": toption(t.reference_derived("Dictionary", [])),
                     "resolved dictionary": toption(t.group({
-                        "selection": prop(t.component("Guaranteed Value Selection")),
+                        "selection": prop(t.component("Resolver Guaranteed Value Selection")),
                         "selected dictionary": prop(t.reference_derived("Dictionary", [])),
                     })),
                 })),
                 "cyclic": toption(t.state({
                     "siblings": toption(t.reference_derived("Dictionary", [])),
                 })),
-                "parameter": toption(t.reference("Signature Parameters", [vp.g("lookups")])),
+                "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("lookups")])),
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
         })),
 
         //FIXME: inline
-        "Constraint": module_(t.group({ //should be "Constraint Resolver"
-            "selection": prop(t.component("Relative Value Selection")),
+        "Resolver Constraint": module_(t.group({ //should be "Constraint Resolver"
+            "selection": prop(t.component("Resolver Relative Value Selection")),
             //maybe this is reusable
             "type": prop(t.state({
                 "state": toption(t.group({
@@ -462,37 +462,37 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Option Constraint Resolvers": module_(t.dictionary(t.state({
+        "Resolver Option Constraints": module_(t.dictionary(t.state({
             "state": toption(t.group({
-                "selection": prop(t.component("Guaranteed Value Selection")),
+                "selection": prop(t.component("Resolver Guaranteed Value Selection")),
                 "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
                 "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
             })),
-            "assert is set": toption(t.component("Possible Value Selection")),
+            "assert is set": toption(t.component("Resolver Possible Value Selection")),
         }))),
 
-        "Optional Value Constraint Resolvers": module_(t.optional(t.component("Value Constraint Resolvers"))),
-        "Value Constraint Resolvers": module_(t.dictionary(t.component("Value Constraint Resolver"))),
+        "Optional Value Constraint Resolvers": module_(t.optional(t.component("Resolver Value Constraints"))),
+        "Resolver Value Constraints": module_(t.dictionary(t.component("Value Constraint Resolver"))),
 
-        "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [])), //FIXME : inline
+        "Reference To Value Constraint Resolver": module_(t.reference("Resolver Value Constraints", [])), //FIXME : inline
 
         "Value Constraint Resolver": module_(t.group({
             "start": prop(t.state({
                 "value": toption(t.nothing()),
                 "sibling": toption(t.component("Reference To Value Constraint Resolver")),
             })),
-            "constraint": prop(t.component("Constraint")),
+            "constraint": prop(t.component("Resolver Constraint")),
         })),
 
-        "Optional Value Initialization": module_(t.state({
+        "Resolver Optional Value Initialization": module_(t.state({
             "not set": toption(t.nothing()),
-            "set": toption(t.component("Guaranteed Value Selection")),
-            "selection": toption(t.component("Possible Value Selection")),
+            "set": toption(t.component("Resolver Guaranteed Value Selection")),
+            "selection": toption(t.component("Resolver Possible Value Selection")),
         })),
 
         "Value Resolver Group": module_(t.dictionary(t.group({
             "definition": prop(t.reference_derived("Group", [vp.d()])),
-            "resolver": prop(t.component("Value Resolver")),
+            "resolver": prop(t.component("Resolver Value")),
         }))),
 
         "Value Resolver List Result": module_(t.component("Module Reference")),
@@ -501,12 +501,12 @@ export const $: g_.Modules = modules(
 
         "Option Constraints": module_(t.optional(t.dictionary(t.component("Value Reference")))),
 
-        "Guaranteed Value Selection": module_(t.group({
+        "Resolver Guaranteed Value Selection": module_(t.group({
             "start": prop(t.state({
                 //stack
                 "sibling": toption(t.reference("Value Resolver Group", [])),
                 "parent sibling": toption(t.reference("Value Resolver Group", [])),
-                "option constraint": toption(t.reference("Option Constraint Resolvers", [])),
+                "option constraint": toption(t.reference("Resolver Option Constraints", [])),
                 "list cursor": toption(t.nothing()),
                 "linked entry": toption(t.nothing()),
 
@@ -514,47 +514,47 @@ export const $: g_.Modules = modules(
                 "constraint": toption(t.state({
                     "component": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "constraint": prop(t.reference("Value Constraint Resolvers", [])),
+                        "constraint": prop(t.reference("Resolver Value Constraints", [])),
                     })),
                     "reference": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "constraint": prop(t.reference("Value Constraint Resolvers", [])),
+                        "constraint": prop(t.reference("Resolver Value Constraints", [])),
                     })),
 
                 })),
-                "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'required'
+                "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'required'
                 "result": toption(t.state({
                     "list": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "list result": prop(t.reference_derived("Value Resolver", [vp.s("list"), vp.g("result"), vp.o()])),
+                        "list result": prop(t.reference_derived("Resolver Value", [vp.s("list"), vp.g("result"), vp.o()])),
                     })),
                     "state": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "state": prop(t.reference_derived("Value Resolver", [vp.s("state")])),
+                        "state": prop(t.reference_derived("Resolver Value", [vp.s("state")])),
                         "result": prop(t.component("Module Reference")),
                     })),
                     "optional value": toption(t.group({
                         "property": prop(t.reference("Value Resolver Group", [])),
-                        "optional value": prop(t.reference_derived("Value Resolver", [vp.s("optional")])),
+                        "optional value": prop(t.reference_derived("Resolver Value", [vp.s("optional")])),
                         "result": prop(t.component("Module Reference")),
                     })),
                 }))
             })),
-            "tail": prop(t.component("Relative Value Selection")),
+            "tail": prop(t.component("Resolver Relative Value Selection")),
             "resulting node": prop(t.reference_derived("Value", [])),
         })),
 
-        "Possible Value Selection": module_(t.state({
-            "parameter": toption(t.reference("Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'optional'
+        "Resolver Possible Value Selection": module_(t.state({
+            "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'optional'
             "result": toption(t.state({
                 "state": toption(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
-                    "state": prop(t.reference_derived("Value Resolver", [vp.s("state")])),
+                    "state": prop(t.reference_derived("Resolver Value", [vp.s("state")])),
                     "result": prop(t.component("Module Reference")),
                 })),
                 "optional value": toption(t.group({
                     "property": prop(t.reference("Value Resolver Group", [])),
-                    "optional value": prop(t.reference_derived("Value Resolver", [vp.s("optional")])),
+                    "optional value": prop(t.reference_derived("Resolver Value", [vp.s("optional")])),
                     "result": prop(t.component("Module Reference")),
                 })),
             }))

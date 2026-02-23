@@ -622,7 +622,7 @@ export namespace Resolver_ {
     
     export namespace signatures {
         
-        export type signatures = Signatures_
+        export type signatures = Resolver_Signatures_
         
     }
     
@@ -630,13 +630,13 @@ export namespace Resolver_ {
         readonly 'signatures': signatures.signatures
     }
     
-    export type resolvers = Module_Resolvers_
+    export type modules = Resolver_Modules_
     
 }
 
 export type Resolver_ = {
     readonly 'signatures': Resolver_.signatures
-    readonly 'resolvers': Resolver_.resolvers
+    readonly 'modules': Resolver_.modules
 }
 
 export namespace Resolver_Imports_ {
@@ -691,7 +691,7 @@ export type Resolver_Imports_ = {
     readonly 'l dictionary': Resolver_Imports_.l_dictionary
 }
 
-export namespace Signatures_ {
+export namespace Resolver_Signatures_ {
     
     export type l_location = i__location.Range
     
@@ -701,7 +701,7 @@ export namespace Signatures_ {
             
             export type l_location = i__location.Range
             
-            export type l_entry = Signature_
+            export type l_entry = Resolver_Signature_
             
         }
         
@@ -716,12 +716,12 @@ export namespace Signatures_ {
     
 }
 
-export type Signatures_ = {
-    readonly 'l location': Signatures_.l_location
-    readonly 'l dictionary': Signatures_.l_dictionary
+export type Resolver_Signatures_ = {
+    readonly 'l location': Resolver_Signatures_.l_location
+    readonly 'l dictionary': Resolver_Signatures_.l_dictionary
 }
 
-export namespace Signature_Parameters_ {
+export namespace Resolver_Signature_Parameters_ {
     
     export namespace modules {
         
@@ -837,12 +837,12 @@ export namespace Signature_Parameters_ {
     
 }
 
-export type Signature_Parameters_ = {
-    readonly 'modules': Signature_Parameters_.modules
-    readonly 'lookups': Signature_Parameters_.lookups
+export type Resolver_Signature_Parameters_ = {
+    readonly 'modules': Resolver_Signature_Parameters_.modules
+    readonly 'lookups': Resolver_Signature_Parameters_.lookups
 }
 
-export namespace Value_Resolver_ {
+export namespace Resolver_Value_ {
     
     export type l_location = i__location.Range
     
@@ -959,9 +959,9 @@ export namespace Value_Resolver_ {
                                         
                                         export namespace l_state {
                                             
-                                            export type optional = Optional_Value_Initialization_
+                                            export type optional = Resolver_Optional_Value_Initialization_
                                             
-                                            export type required = Guaranteed_Value_Selection_
+                                            export type required = Resolver_Guaranteed_Value_Selection_
                                             
                                             export namespace parameter {
                                                 
@@ -1040,9 +1040,9 @@ export namespace Value_Resolver_ {
                                                     
                                                     export namespace push {
                                                         
-                                                        export type stack = Lookup_Selection_
+                                                        export type stack = Resolver_Lookup_Selection_
                                                         
-                                                        export type item = Lookup_Selection_
+                                                        export type item = Resolver_Lookup_Selection_
                                                         
                                                     }
                                                     
@@ -1104,7 +1104,7 @@ export namespace Value_Resolver_ {
                                                 readonly 'l state': cyclic.l_state
                                             }
                                             
-                                            export type selection = Lookup_Selection_
+                                            export type selection = Resolver_Lookup_Selection_
                                             
                                         }
                                         
@@ -1154,7 +1154,7 @@ export namespace Value_Resolver_ {
             
             export type arguments_ = _pi.Optional_Value<arguments_.O>
             
-            export type constraints = Value_Constraint_Resolvers_
+            export type constraints = Resolver_Value_Constraints_
             
         }
         
@@ -1170,11 +1170,11 @@ export namespace Value_Resolver_ {
             
             export type definition = null
             
-            export type resolver = Value_Resolver_
+            export type resolver = Resolver_Value_
             
             export namespace benchmark {
                 
-                export type O = Benchmark_
+                export type O = Resolver_Benchmark_
                 
             }
             
@@ -1194,7 +1194,7 @@ export namespace Value_Resolver_ {
             
             export type definition = null
             
-            export type resolver = Value_Resolver_
+            export type resolver = Resolver_Value_
             
             export namespace result {
                 
@@ -1218,9 +1218,9 @@ export namespace Value_Resolver_ {
         
         export namespace optional {
             
-            export type constraints = Option_Constraint_Resolvers_
+            export type constraints = Resolver_Option_Constraints_
             
-            export type resolver = Value_Resolver_
+            export type resolver = Resolver_Value_
             
         }
         
@@ -1241,7 +1241,7 @@ export namespace Value_Resolver_ {
                     
                     export namespace derived {
                         
-                        export type value = Guaranteed_Value_Selection_
+                        export type value = Resolver_Guaranteed_Value_Selection_
                         
                     }
                     
@@ -1253,9 +1253,9 @@ export namespace Value_Resolver_ {
                         
                         export type definition = null
                         
-                        export type lookup = Lookup_Selection_
+                        export type lookup = Resolver_Lookup_Selection_
                         
-                        export type constraints = Value_Constraint_Resolvers_
+                        export type constraints = Resolver_Value_Constraints_
                         
                     }
                     
@@ -1301,9 +1301,9 @@ export namespace Value_Resolver_ {
                         
                         export namespace l_entry {
                             
-                            export type constraints = Option_Constraint_Resolvers_
+                            export type constraints = Resolver_Option_Constraints_
                             
-                            export type resolver = Value_Resolver_
+                            export type resolver = Resolver_Value_
                             
                         }
                         
@@ -1356,9 +1356,9 @@ export namespace Value_Resolver_ {
     
 }
 
-export type Value_Resolver_ = {
-    readonly 'l location': Value_Resolver_.l_location
-    readonly 'l state': Value_Resolver_.l_state
+export type Resolver_Value_ = {
+    readonly 'l location': Resolver_Value_.l_location
+    readonly 'l state': Resolver_Value_.l_state
 }
 
 export namespace Module_Specification_ {
@@ -1572,7 +1572,7 @@ export type Presence_ = {
     readonly 'l state': Presence_.l_state
 }
 
-export namespace Module_Resolvers_ {
+export namespace Resolver_Modules_ {
     
     export type l_location = i__location.Range
     
@@ -1586,7 +1586,7 @@ export namespace Module_Resolvers_ {
                 
                 export type signature = null
                 
-                export type root_value_resolver = Value_Resolver_
+                export type root_value_resolver = Resolver_Value_
                 
             }
             
@@ -1608,14 +1608,14 @@ export namespace Module_Resolvers_ {
     
 }
 
-export type Module_Resolvers_ = {
-    readonly 'l location': Module_Resolvers_.l_location
-    readonly 'l dictionary': Module_Resolvers_.l_dictionary
+export type Resolver_Modules_ = {
+    readonly 'l location': Resolver_Modules_.l_location
+    readonly 'l dictionary': Resolver_Modules_.l_dictionary
 }
 
-export namespace Benchmark_ {
+export namespace Resolver_Benchmark_ {
     
-    export type selection = Guaranteed_Value_Selection_
+    export type selection = Resolver_Guaranteed_Value_Selection_
     
     export type resulting_dictionary = null
     
@@ -1623,10 +1623,10 @@ export namespace Benchmark_ {
     
 }
 
-export type Benchmark_ = {
-    readonly 'selection': Benchmark_.selection
-    readonly 'resulting dictionary': Benchmark_.resulting_dictionary
-    readonly 'dense': Benchmark_.dense
+export type Resolver_Benchmark_ = {
+    readonly 'selection': Resolver_Benchmark_.selection
+    readonly 'resulting dictionary': Resolver_Benchmark_.resulting_dictionary
+    readonly 'dense': Resolver_Benchmark_.dense
 }
 
 export namespace Group_ {
@@ -1860,7 +1860,7 @@ export type Module_Reference_ = {
     readonly 'resulting module': Module_Reference_.resulting_module
 }
 
-export namespace Signature_ {
+export namespace Resolver_Signature_ {
     
     export type module_ = null
     
@@ -1870,7 +1870,7 @@ export namespace Signature_ {
         
         export namespace l_state {
             
-            export type local = Signature_Parameters_
+            export type local = Resolver_Signature_Parameters_
             
             export namespace same_as {
                 
@@ -1902,13 +1902,13 @@ export namespace Signature_ {
     
 }
 
-export type Signature_ = {
-    readonly 'module': Signature_.module_
-    readonly 'parameters': Signature_.parameters
-    readonly 'resolved parameters': Signature_.resolved_parameters
+export type Resolver_Signature_ = {
+    readonly 'module': Resolver_Signature_.module_
+    readonly 'parameters': Resolver_Signature_.parameters
+    readonly 'resolved parameters': Resolver_Signature_.resolved_parameters
 }
 
-export namespace Relative_Value_Selection_ {
+export namespace Resolver_Relative_Value_Selection_ {
     
     export namespace path {
         
@@ -1987,12 +1987,12 @@ export namespace Relative_Value_Selection_ {
     
 }
 
-export type Relative_Value_Selection_ = {
-    readonly 'path': Relative_Value_Selection_.path
-    readonly 'resulting node': Relative_Value_Selection_.resulting_node
+export type Resolver_Relative_Value_Selection_ = {
+    readonly 'path': Resolver_Relative_Value_Selection_.path
+    readonly 'resulting node': Resolver_Relative_Value_Selection_.resulting_node
 }
 
-export namespace Lookup_Selection_ {
+export namespace Resolver_Lookup_Selection_ {
     
     export namespace type_ {
         
@@ -2010,7 +2010,7 @@ export namespace Lookup_Selection_ {
                     
                     export namespace resolved_dictionary {
                         
-                        export type selection = Guaranteed_Value_Selection_
+                        export type selection = Resolver_Guaranteed_Value_Selection_
                         
                         export type selected_dictionary = null
                         
@@ -2085,14 +2085,14 @@ export namespace Lookup_Selection_ {
     
 }
 
-export type Lookup_Selection_ = {
-    readonly 'type': Lookup_Selection_.type_
-    readonly 'resulting dictionary': Lookup_Selection_.resulting_dictionary
+export type Resolver_Lookup_Selection_ = {
+    readonly 'type': Resolver_Lookup_Selection_.type_
+    readonly 'resulting dictionary': Resolver_Lookup_Selection_.resulting_dictionary
 }
 
-export namespace Constraint_ {
+export namespace Resolver_Contraint_ {
     
-    export type selection = Relative_Value_Selection_
+    export type selection = Resolver_Relative_Value_Selection_
     
     export namespace type_ {
         
@@ -2149,12 +2149,12 @@ export namespace Constraint_ {
     
 }
 
-export type Constraint_ = {
-    readonly 'selection': Constraint_.selection
-    readonly 'type': Constraint_.type_
+export type Resolver_Contraint_ = {
+    readonly 'selection': Resolver_Contraint_.selection
+    readonly 'type': Resolver_Contraint_.type_
 }
 
-export namespace Option_Constraint_Resolvers_ {
+export namespace Resolver_Option_Constraints_ {
     
     export type l_location = i__location.Range
     
@@ -2172,7 +2172,7 @@ export namespace Option_Constraint_Resolvers_ {
                     
                     export namespace state {
                         
-                        export type selection = Guaranteed_Value_Selection_
+                        export type selection = Resolver_Guaranteed_Value_Selection_
                         
                         export type selected_state = null
                         
@@ -2197,7 +2197,7 @@ export namespace Option_Constraint_Resolvers_ {
                         readonly 'option': state.option
                     }
                     
-                    export type assert_is_set = Possible_Value_Selection_
+                    export type assert_is_set = Resolver_Possible_Value_Selection_
                     
                 }
                 
@@ -2225,20 +2225,20 @@ export namespace Option_Constraint_Resolvers_ {
     
 }
 
-export type Option_Constraint_Resolvers_ = {
-    readonly 'l location': Option_Constraint_Resolvers_.l_location
-    readonly 'l dictionary': Option_Constraint_Resolvers_.l_dictionary
+export type Resolver_Option_Constraints_ = {
+    readonly 'l location': Resolver_Option_Constraints_.l_location
+    readonly 'l dictionary': Resolver_Option_Constraints_.l_dictionary
 }
 
 export namespace Optional_Value_Constraint_Resolvers_ {
     
-    export type O = Value_Constraint_Resolvers_
+    export type O = Resolver_Value_Constraints_
     
 }
 
 export type Optional_Value_Constraint_Resolvers_ = _pi.Optional_Value<Optional_Value_Constraint_Resolvers_.O>
 
-export namespace Value_Constraint_Resolvers_ {
+export namespace Resolver_Value_Constraints_ {
     
     export type l_location = i__location.Range
     
@@ -2263,9 +2263,9 @@ export namespace Value_Constraint_Resolvers_ {
     
 }
 
-export type Value_Constraint_Resolvers_ = {
-    readonly 'l location': Value_Constraint_Resolvers_.l_location
-    readonly 'l dictionary': Value_Constraint_Resolvers_.l_dictionary
+export type Resolver_Value_Constraints_ = {
+    readonly 'l location': Resolver_Value_Constraints_.l_location
+    readonly 'l dictionary': Resolver_Value_Constraints_.l_dictionary
 }
 
 export namespace Reference_To_Value_Constraint_Resolver_ {
@@ -2306,7 +2306,7 @@ export namespace Value_Constraint_Resolver_ {
         readonly 'l state': start.l_state
     }
     
-    export type constraint = Constraint_
+    export type constraint = Resolver_Contraint_
     
 }
 
@@ -2315,7 +2315,7 @@ export type Value_Constraint_Resolver_ = {
     readonly 'constraint': Value_Constraint_Resolver_.constraint
 }
 
-export namespace Optional_Value_Initialization_ {
+export namespace Resolver_Optional_Value_Initialization_ {
     
     export type l_location = i__location.Range
     
@@ -2323,9 +2323,9 @@ export namespace Optional_Value_Initialization_ {
         
         export type not_set = null
         
-        export type set_ = Guaranteed_Value_Selection_
+        export type set_ = Resolver_Guaranteed_Value_Selection_
         
-        export type selection = Possible_Value_Selection_
+        export type selection = Resolver_Possible_Value_Selection_
         
     }
     
@@ -2336,9 +2336,9 @@ export namespace Optional_Value_Initialization_ {
     
 }
 
-export type Optional_Value_Initialization_ = {
-    readonly 'l location': Optional_Value_Initialization_.l_location
-    readonly 'l state': Optional_Value_Initialization_.l_state
+export type Resolver_Optional_Value_Initialization_ = {
+    readonly 'l location': Resolver_Optional_Value_Initialization_.l_location
+    readonly 'l state': Resolver_Optional_Value_Initialization_.l_state
 }
 
 export namespace Value_Resolver_Group_ {
@@ -2355,7 +2355,7 @@ export namespace Value_Resolver_Group_ {
                 
                 export type definition = null
                 
-                export type resolver = Value_Resolver_
+                export type resolver = Resolver_Value_
                 
             }
             
@@ -2456,7 +2456,7 @@ export namespace Option_Constraints_ {
 
 export type Option_Constraints_ = _pi.Optional_Value<Option_Constraints_.O>
 
-export namespace Guaranteed_Value_Selection_ {
+export namespace Resolver_Guaranteed_Value_Selection_ {
     
     export namespace start {
         
@@ -2726,19 +2726,19 @@ export namespace Guaranteed_Value_Selection_ {
         readonly 'l state': start.l_state
     }
     
-    export type tail = Relative_Value_Selection_
+    export type tail = Resolver_Relative_Value_Selection_
     
     export type resulting_node = null
     
 }
 
-export type Guaranteed_Value_Selection_ = {
-    readonly 'start': Guaranteed_Value_Selection_.start
-    readonly 'tail': Guaranteed_Value_Selection_.tail
-    readonly 'resulting node': Guaranteed_Value_Selection_.resulting_node
+export type Resolver_Guaranteed_Value_Selection_ = {
+    readonly 'start': Resolver_Guaranteed_Value_Selection_.start
+    readonly 'tail': Resolver_Guaranteed_Value_Selection_.tail
+    readonly 'resulting node': Resolver_Guaranteed_Value_Selection_.resulting_node
 }
 
-export namespace Possible_Value_Selection_ {
+export namespace Resolver_Possible_Value_Selection_ {
     
     export type l_location = i__location.Range
     
@@ -2838,9 +2838,9 @@ export namespace Possible_Value_Selection_ {
     
 }
 
-export type Possible_Value_Selection_ = {
-    readonly 'l location': Possible_Value_Selection_.l_location
-    readonly 'l state': Possible_Value_Selection_.l_state
+export type Resolver_Possible_Value_Selection_ = {
+    readonly 'l location': Resolver_Possible_Value_Selection_.l_location
+    readonly 'l state': Resolver_Possible_Value_Selection_.l_state
 }
 
 export { 
@@ -2854,35 +2854,35 @@ export {
     Value_ as Value, 
     Resolver_ as Resolver, 
     Resolver_Imports_ as Resolver_Imports, 
-    Signatures_ as Signatures, 
-    Signature_Parameters_ as Signature_Parameters, 
-    Value_Resolver_ as Value_Resolver, 
+    Resolver_Signatures_ as Resolver_Signatures, 
+    Resolver_Signature_Parameters_ as Resolver_Signature_Parameters, 
+    Resolver_Value_ as Resolver_Value, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Module_ as Module, 
     Presence_ as Presence, 
-    Module_Resolvers_ as Module_Resolvers, 
-    Benchmark_ as Benchmark, 
+    Resolver_Modules_ as Resolver_Modules, 
+    Resolver_Benchmark_ as Resolver_Benchmark, 
     Group_ as Group, 
     Value_Reference_ as Value_Reference, 
     Value_Path_ as Value_Path, 
     Module_Reference_ as Module_Reference, 
-    Signature_ as Signature, 
-    Relative_Value_Selection_ as Relative_Value_Selection, 
-    Lookup_Selection_ as Lookup_Selection, 
-    Constraint_ as Constraint, 
-    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Resolver_Signature_ as Resolver_Signature, 
+    Resolver_Relative_Value_Selection_ as Resolver_Relative_Value_Selection, 
+    Resolver_Lookup_Selection_ as Resolver_Lookup_Selection, 
+    Resolver_Contraint_ as Resolver_Contraint, 
+    Resolver_Option_Constraints_ as Resolver_Option_Constraints, 
     Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
-    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Resolver_Value_Constraints_ as Resolver_Value_Constraints, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
-    Optional_Value_Initialization_ as Optional_Value_Initialization, 
+    Resolver_Optional_Value_Initialization_ as Resolver_Optional_Value_Initialization, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
     Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
-    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
-    Possible_Value_Selection_ as Possible_Value_Selection, 
+    Resolver_Guaranteed_Value_Selection_ as Resolver_Guaranteed_Value_Selection, 
+    Resolver_Possible_Value_Selection_ as Resolver_Possible_Value_Selection, 
 }

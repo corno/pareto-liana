@@ -79,19 +79,19 @@ export const $: g_.Resolver.signatures = signatures(
         ),
 
 
-        "Value Resolver": sig.local(
+        "Resolver Value": sig.local(
             {
                 "definition": value_parameter("Value"),
                 "list cursor": value_parameter("Value Resolver List Result", 'optional'),
-                "linked entry": value_parameter("Benchmark", 'optional'),
+                "linked entry": value_parameter("Resolver Benchmark", 'optional'),
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
-                "signature": value_parameter("Signature"),
+                "signature": value_parameter("Resolver Signature"),
                 "schema imports": value_parameter("Schema Imports", 'optional'),
                 "resolver imports": value_parameter("Resolver Imports", 'optional'),
-                "signatures": value_parameter("Signatures"),
+                "signatures": value_parameter("Resolver Signatures"),
                 "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
+                "option constraints": value_parameter("Resolver Option Constraints", 'optional'),
             },
             {
                 // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),
@@ -100,27 +100,27 @@ export const $: g_.Resolver.signatures = signatures(
             }
         ),
 
-        "Possible Value Selection": sig.same_as("Value Resolver"),
-        "Guaranteed Value Selection": sig.same_as("Value Resolver"),
-        "Benchmark": sig.same_as("Value Resolver"),
-        "Optional Value Initialization": sig.same_as("Value Resolver"),
-        "Lookup Selection": sig.same_as("Value Resolver"),
-        "Option Constraint Resolvers": sig.same_as("Value Resolver"),
+        "Resolver Possible Value Selection": sig.same_as("Resolver Value"),
+        "Resolver Guaranteed Value Selection": sig.same_as("Resolver Value"),
+        "Resolver Benchmark": sig.same_as("Resolver Value"),
+        "Resolver Optional Value Initialization": sig.same_as("Resolver Value"),
+        "Resolver Lookup Selection": sig.same_as("Resolver Value"),
+        "Resolver Option Constraints": sig.same_as("Resolver Value"),
 
         "Value Resolver List Result": sig.same_as("Module Reference"),
         "Value Resolver Group": sig.local(
             {
                 "definition": value_parameter("Group"),
                 "list cursor": value_parameter("Value Resolver List Result", 'optional'),
-                "linked entry": value_parameter("Benchmark", 'optional'),
+                "linked entry": value_parameter("Resolver Benchmark", 'optional'),
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
-                "signature": value_parameter("Signature"),
+                "signature": value_parameter("Resolver Signature"),
                 "schema imports": value_parameter("Schema Imports", 'optional'),
                 "resolver imports": value_parameter("Resolver Imports", 'optional'),
-                "signatures": value_parameter("Signatures"),
+                "signatures": value_parameter("Resolver Signatures"),
                 "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
+                "option constraints": value_parameter("Resolver Option Constraints", 'optional'),
             },
             {
                 // "sibling property resolver stack": lookup_parameter("Value Resolver Group", 'stack'),
@@ -129,19 +129,19 @@ export const $: g_.Resolver.signatures = signatures(
             }
         ),
 
-        "Relative Value Selection": sig.local(
+        "Resolver Relative Value Selection": sig.local(
             {
                 "value": value_parameter("Value"),
             },
             {},
         ),
-        "Constraint": sig.same_as("Relative Value Selection"),
-        "Optional Value Constraint Resolvers": sig.same_as("Relative Value Selection"),
-        "Value Constraint Resolvers": sig.same_as("Relative Value Selection"),
+        "Resolver Constraint": sig.same_as("Resolver Relative Value Selection"),
+        "Optional Value Constraint Resolvers": sig.same_as("Resolver Relative Value Selection"),
+        "Resolver Value Constraints": sig.same_as("Resolver Relative Value Selection"),
         "Value Constraint Resolver": sig.local(
             {},
             {
-                "property constraints": lookup_parameter("Value Constraint Resolvers"),
+                "property constraints": lookup_parameter("Resolver Value Constraints"),
             }
         ),
 
@@ -153,7 +153,7 @@ export const $: g_.Resolver.signatures = signatures(
             },
             {},
         ),
-        "Signature Parameters": sig.local(
+        "Resolver Signature Parameters": sig.local(
             {
                 "modules": value_parameter("Modules"),
                 "imports": value_parameter("Schema Imports"),
@@ -161,18 +161,18 @@ export const $: g_.Resolver.signatures = signatures(
             {},
         ),
 
-        "Signature": sig.local(
+        "Resolver Signature": sig.local(
             {
                 "modules": value_parameter("Modules"),
                 "module": value_parameter("Module"),
                 "imports": value_parameter("Schema Imports"),
             },
             {
-                "sibling signatures": lookup_parameter("Signatures"),
+                "sibling signatures": lookup_parameter("Resolver Signatures"),
             },
         ),
 
-        "Signatures": sig.local(
+        "Resolver Signatures": sig.local(
             {
                 "modules": value_parameter("Modules"),
                 "imports": value_parameter("Schema Imports"),
@@ -180,9 +180,9 @@ export const $: g_.Resolver.signatures = signatures(
             {},
         ),
 
-        "Module Resolvers": sig.local(
+        "Resolver Modules": sig.local(
             {
-                "signatures": value_parameter("Signatures"),
+                "signatures": value_parameter("Resolver Signatures"),
                 "modules": value_parameter("Modules"),
                 "schema imports": value_parameter("Schema Imports"),
                 "resolver imports": value_parameter("Resolver Imports"),
@@ -216,7 +216,7 @@ export const $: g_.Resolver.signatures = signatures(
         "Reference To Value Constraint Resolver": sig.local(
             {},
             {
-                "property constraints": lookup_parameter("Value Constraint Resolvers"),
+                "property constraints": lookup_parameter("Resolver Value Constraints"),
             }
         ),
 

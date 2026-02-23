@@ -54,7 +54,7 @@ export const Schema_Tree = (
                                         })
                                     }),
                                     "refiners": sh.m.set({
-                                        "unresolved": t_resolve.Module_Resolvers($.resolvers, {
+                                        "unresolved": t_resolve.Resolver_Modules($.modules, {
                                             'path': $p.path,
                                             'imports': imports,
                                             'depth': 7,

@@ -9,7 +9,7 @@ import * as sh from "pareto/dist/shorthands/interface"
 
 
 export const Signatures = (
-    $: d_in.Signatures,
+    $: d_in.Resolver_Signatures,
 ): d_out.Package_Set.D => {
     return sh.m.package_functions(
         {

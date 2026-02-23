@@ -72,8 +72,8 @@ const op_pad_dictionary_identifiers = <T>(
     }
 )
 
-export const Module_Resolvers = (
-    $: d_in.Module_Resolvers,
+export const Resolver_Modules = (
+    $: d_in.Resolver_Modules,
     $p: {
         'path': _pi.List<string>,
         'imports': d_in.Resolver_Imports,
@@ -129,7 +129,7 @@ export const Module_Resolvers = (
             "signatures",
             id,
             ['abort', 'lookups', 'parameters'],
-            Value_Resolver(
+            Resolver_Value(
                 $['root value resolver'],
                 {
                     'temp type': id,
@@ -143,7 +143,7 @@ export const Module_Resolvers = (
 
 
 export const Possible_Value_Selection = (
-    $: d_in.Possible_Value_Selection,
+    $: d_in.Resolver_Possible_Value_Selection,
     $p: {
         'tail': _pi.List<d_out.Select_Value.regular.tail.L>
     },
@@ -167,18 +167,18 @@ export const Possible_Value_Selection = (
 
 
 export const Optional_Argument_Initialization = (
-    $: d_in.Optional_Value_Initialization,
+    $: d_in.Resolver_Optional_Value_Initialization,
 ): d_out.Assign => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'not set': return _p.ss($, ($) => sh.a.optional.not_set())
         case 'selection': return _p.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': _p.list.literal([]) })))
-        case 'set': return _p.ss($, ($) => sh.a.optional.set(sh.a.select(Guaranteed_Value_Selection($, { 'tail': _p.list.literal([]) }))))
+        case 'set': return _p.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection($, { 'tail': _p.list.literal([]) }))))
         default: return _p.au($[0])
     }
 })
 
-export const Guaranteed_Value_Selection = (
-    $: d_in.Guaranteed_Value_Selection,
+export const Resolver_Guaranteed_Value_Selection = (
+    $: d_in.Resolver_Guaranteed_Value_Selection,
     $p: {
         'tail': _pi.List<d_out.Select_Value.regular.tail.L>
     },
@@ -232,14 +232,14 @@ export const Guaranteed_Value_Selection = (
     })
 }
 
-export const Lookup_Selection = (
-    $: d_in.Lookup_Selection,
+export const Resolver_Lookup_Selection = (
+    $: d_in.Resolver_Lookup_Selection,
 ): d_out.Select_Lookup => _p.decide.state($.type, ($) => {
     switch ($[0]) {
         case 'acyclic': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
                 case 'resolved dictionary': return _p.ss($, ($) => sh.sl.acyclic.resolved_dictionary(
-                    Guaranteed_Value_Selection(
+                    Resolver_Guaranteed_Value_Selection(
                         $.selection,
                         {
                             'tail': _p.list.literal([]),
@@ -262,8 +262,8 @@ export const Lookup_Selection = (
     }
 })
 
-export const Option_Constraint_Resolvers = (
-    $: d_in.Option_Constraint_Resolvers,
+export const Option_Constraints = (
+    $: d_in.Resolver_Option_Constraints,
     $p: {
         sub: d_out.Assign
     },
@@ -336,8 +336,8 @@ export const Option_Constraint_Resolvers = (
 //  )
 
 
-export const Value_Resolver = (
-    $: d_in.Value_Resolver,
+export const Resolver_Value = (
+    $: d_in.Resolver_Value,
     $p: {
         'temp type': string
         'temp subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
@@ -385,13 +385,13 @@ export const Value_Resolver = (
                                                     switch ($[0]) {
                                                         case 'empty': return _p.ss($, ($) => sh.sl.stack.empty())
                                                         case 'push': return _p.ss($, ($) => sh.sl.stack.push(
-                                                            Lookup_Selection($['stack']),
-                                                            Lookup_Selection($['item']),
+                                                            Resolver_Lookup_Selection($['stack']),
+                                                            Resolver_Lookup_Selection($['item']),
                                                         ))
                                                         default: return _p.au($[0])
                                                     }
                                                 }))
-                                                case 'selection': return _p.ss($, ($) => Lookup_Selection($))
+                                                case 'selection': return _p.ss($, ($) => Resolver_Lookup_Selection($))
                                                 default: return _p.au($[0])
                                             }
                                         }),
@@ -407,7 +407,7 @@ export const Value_Resolver = (
                                             switch ($[0]) {
                                                 case 'optional': return _p.ss($, ($) => Optional_Argument_Initialization($))
                                                 case 'required': return _p.ss($, ($) => sh.a.select(
-                                                    Guaranteed_Value_Selection(
+                                                    Resolver_Guaranteed_Value_Selection(
                                                         $,
                                                         {
                                                             'tail': _p.list.literal([]),
@@ -440,7 +440,7 @@ export const Value_Resolver = (
                             {
                                 "referenced entry": sh.a.implement_me("IM: referenced entry"),
                             },
-                            Value_Resolver(
+                            Resolver_Value(
                                 resolver,
                                 {
                                     'temp type': $p['temp type'],
@@ -467,7 +467,7 @@ export const Value_Resolver = (
                     sh.sv.context(["l dictionary"]),
                     sh.a.change_context(
                         sh.sv.context(["l entry"]),
-                        Value_Resolver(
+                        Resolver_Value(
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
@@ -495,7 +495,7 @@ export const Value_Resolver = (
             $.__d_map(
                 ($, id) => sh.a.change_context(
                     sh.sv.context([id]),
-                    Value_Resolver(
+                    Resolver_Value(
                         $.resolver,
                         {
                             'temp type': $p['temp type'],
@@ -511,7 +511,7 @@ export const Value_Resolver = (
             )
         ))
         case 'list': return _p.ss($, ($) => {
-            const resolver: d_in.Value_Resolver = $.resolver
+            const resolver: d_in.Resolver_Value = $.resolver
             const results = $.definition.results
             return $.result.__decide(
                 ($) => sh.a.group.literal({
@@ -521,7 +521,7 @@ export const Value_Resolver = (
                         sh.a.group.literal({
                             "l item": sh.a.change_context(
                                 sh.sv.context(["l item"]),
-                                Value_Resolver(
+                                Resolver_Value(
                                     resolver,
                                     {
                                         'temp type': $p['temp type'],
@@ -549,7 +549,7 @@ export const Value_Resolver = (
                     sh.sv.context(["l list"]),
                     sh.a.change_context(
                         sh.sv.context(["l item"]),
-                        Value_Resolver(
+                        Resolver_Value(
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
@@ -569,7 +569,7 @@ export const Value_Resolver = (
         case 'number': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
         case 'optional': return _p.ss($, ($) => sh.a.optional.map(
             sh.sv.context([]),
-            Value_Resolver( //FIX option constraints and value results
+            Resolver_Value( //FIX option constraints and value results
                 $.resolver,
                 {
                     'temp type': $p['temp type'],
@@ -585,7 +585,7 @@ export const Value_Resolver = (
         case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => sh.a.select(
-                    Guaranteed_Value_Selection(
+                    Resolver_Guaranteed_Value_Selection(
                         $.value,
                         {
                             'tail': _p.list.literal([])
@@ -594,7 +594,7 @@ export const Value_Resolver = (
                 ))
                 case 'selected': return _p.ss($, ($) => {
                     const x = $.lookup
-                    const x_out = Lookup_Selection(x)
+                    const x_out = Resolver_Lookup_Selection(x)
                     //$.constraints asdfsfd
                     // Value_Constraint_Resolvers($.constraints)
                     return _p.decide.state($.definition.dependency, ($) => {
@@ -669,10 +669,10 @@ export const Value_Resolver = (
                     {
                         'base type': sh.a.decide.state(
                             sh.sv.context(["l state"]),
-                            $.states.__d_map(($, id) => sh.a.state.literal(id, Option_Constraint_Resolvers(
+                            $.states.__d_map(($, id) => sh.a.state.literal(id, Option_Constraints(
                                 $.constraints,
                                 {
-                                    'sub': Value_Resolver(
+                                    'sub': Resolver_Value(
                                         $['resolver'],
                                         {
                                             'temp type': $p['temp type'],
@@ -716,8 +716,8 @@ export const Value_Resolver = (
     }
 })
 
-export const Value_Constraint_Resolvers = (
-    $: d_in.Value_Constraint_Resolvers,
+export const Value_Constraints = (
+    $: d_in.Resolver_Value_Constraints,
 ): d_out.Assign => {
     return _p_unreachable_code_path("IMPLEMENT ME")
 }

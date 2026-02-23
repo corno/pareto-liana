@@ -210,3 +210,59 @@ export const get_entry_stack = <T>(
         )
     }
 }
+
+export const temp_assert = <Type, Error>(
+    condition: () => _pi.Optional_Value<Error>,
+    callback: () => Type,
+    abort: _pi.Abort<Error>,
+): Type => {
+    const c = condition()
+    c.__extract_data(
+        ($) => {
+            abort($)
+        },
+        () => {
+
+        }
+    )
+    return callback()
+}
+
+export const temp_optional_map = <In, Out>(
+    $: _pi.Optional_Value<In>,
+    callback: ($: In) => Out,
+): _pi.Optional_Value<Out> => _p.optional.from.optional($).map(callback)
+
+export const temp_resolve = <T, Resolved>(
+    $: _pi.Dictionary<T>,
+    handle_entry: (
+        $: T,
+        id: string,
+        acyclic_lookup: _pi.lookup.Acyclic<Resolved>,
+        cyclic_lookup: _pi.lookup.Cyclic<Resolved>,
+    ) => Resolved,
+): _pi.Dictionary<Resolved> => {
+    return _p.dictionary.from.dictionary($).resolve(handle_entry)
+}
+
+export const temp_map_list_with_state = <T, Target_Item, State, Result_Type extends { [id: string]: any }>(
+    $: _pi.List<T>,
+    initial_state: State,
+    handle_item: (
+        value: T,
+        state: State
+    ) => Target_Item,
+    update_state: (
+        value: Target_Item,
+        state: State
+    ) => State,
+    wrapup: (
+        final_list: _pi.List<Target_Item>,
+        final_state: State
+    ) => Result_Type,
+): Result_Type => _p.group.from.list($).map_with_state(
+    initial_state,
+    handle_item,
+    update_state,
+    wrapup
+)

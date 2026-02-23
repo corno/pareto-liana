@@ -442,9 +442,9 @@ export namespace vp {
 
 
 export const sig_params = (
-    modules: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.modules.l_dictionary.D.l_entry>,
-    lookups: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-): d_target.Signature_Parameters => {
+    modules: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+    lookups: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+): d_target.Resolver_Signature_Parameters => {
     return {
         'modules': sh.dictionary(modules),
         'lookups': sh.dictionary(lookups),
@@ -457,9 +457,9 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        modules: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.modules.l_dictionary.D.l_entry>,
-        lookups: _p.Raw_Or_Normal_Dictionary<d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-    ): d_target.Signatures.l_dictionary.D.l_entry => {
+        modules: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+        lookups: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['local', {
@@ -472,7 +472,7 @@ export namespace sig {
 
     export const same_as = (
         name: string
-    ): d_target.Signatures.l_dictionary.D.l_entry => {
+    ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['same as', sh.reference(name)]),
@@ -484,7 +484,7 @@ export namespace sig {
 export const value_parameter = (
     name: string,
     presence?: 'optional' | 'required',
-): d_target.Signature_Parameters.modules.l_dictionary.D.l_entry => {
+): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
         'module': {
             'location': sh.state(['internal', sh.reference(name)]),
@@ -500,7 +500,7 @@ export const value_parameter_external = (
     imp: string,
     type: string,
     presence?: 'optional' | 'required',
-): d_target.Signature_Parameters.modules.l_dictionary.D.l_entry => {
+): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
     return {
         'module': {
             'location': sh.state(['external', {
@@ -519,7 +519,7 @@ export const lookup_parameter = (
     name: string,
     type?: 'acyclic' | 'cyclic' | 'stack',
     presence?: 'optional' | 'required',
-): d_target.Signature_Parameters.lookups.l_dictionary.D.l_entry => {
+): d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry => {
     return {
         'referent': {
             'location': sh.state(['internal', sh.reference(name)]),
@@ -542,7 +542,7 @@ export const lookup_parameter = (
  */
 export namespace ls {
 
-    export const parameter = (parameter: string): d_target.Lookup_Selection => {
+    export const parameter = (parameter: string): d_target.Resolver_Lookup_Selection => {
         return {
             'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null
@@ -551,7 +551,7 @@ export namespace ls {
 
     export namespace acyclic {
 
-        export const siblings = (): d_target.Lookup_Selection => {
+        export const siblings = (): d_target.Resolver_Lookup_Selection => {
             return {
                 'type': sh.state(['acyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null
@@ -559,8 +559,8 @@ export namespace ls {
         }
 
         export const resolved_dictionary = (
-            value_selection: d_target.Guaranteed_Value_Selection
-        ): d_target.Lookup_Selection => {
+            value_selection: d_target.Resolver_Guaranteed_Value_Selection
+        ): d_target.Resolver_Lookup_Selection => {
             return {
                 'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
                     'selection': value_selection,
@@ -573,7 +573,7 @@ export namespace ls {
 
     export namespace cyclic {
 
-        export const siblings = (): d_target.Lookup_Selection => {
+        export const siblings = (): d_target.Resolver_Lookup_Selection => {
             return {
                 'type': sh.state(['cyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null
@@ -591,21 +591,21 @@ export namespace al {
     export namespace acyclic {
 
         export const not_set = (
-        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['acyclic', sh.state(['not set', null])])
         }
 
         /**
          * this one is only usable in the context of an ordered dictionary
          */
-        export const siblings = (): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        export const siblings = (): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['acyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null,
             }])
         }
 
-        export const dictionary = (value_selection: d_target.Guaranteed_Value_Selection): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        export const dictionary = (value_selection: d_target.Resolver_Guaranteed_Value_Selection): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['acyclic', sh.state(['resolved dictionary', {
                     'selection': value_selection,
@@ -626,7 +626,7 @@ export namespace al {
          */
         export const siblings = (
 
-        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['selection', {
                 'type': sh.state(['cyclic', sh.state(['siblings', null])]),
                 'resulting dictionary': null,
@@ -635,7 +635,7 @@ export namespace al {
 
 
         export const not_set = (
-        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['cyclic', sh.state(['not set', null])])
         }
     }
@@ -644,15 +644,15 @@ export namespace al {
 
         export const empty = (
 
-        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+        ): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['stack', sh.state(['empty', null])])
         }
 
 
         export const push = (
-            stack: d_target.Lookup_Selection,
-            item: d_target.Lookup_Selection,
-        ): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+            stack: d_target.Resolver_Lookup_Selection,
+            item: d_target.Resolver_Lookup_Selection,
+        ): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
             return sh.state(['stack', sh.state(['push', {
                 'stack': stack,
                 'item': item,
@@ -665,7 +665,7 @@ export namespace al {
     /**
      * selects a lookup parameter of this resolver and passes it to the next resolver
      */
-    export const parameter = (parameter: string): d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+    export const parameter = (parameter: string): d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
         return sh.state(['selection', {
             'type': sh.state(['parameter', sh.reference(parameter)]),
             'resulting dictionary': null,
@@ -682,18 +682,18 @@ export namespace al {
 export namespace rvs {
 
     export const component = (
-    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['component', null])
     }
 
     export const group = (
         property: string,
-    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['group', sh.reference(property)])
     }
 
     export const reference = (
-    ): d_target.Relative_Value_Selection.path.l_list.L.l_item => {
+    ): d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item => {
         return sh.state(['reference', {
             'definition': null,
         }])
@@ -708,19 +708,19 @@ export namespace ovi {
 
     export const not_set = (
 
-    ): d_target.Optional_Value_Initialization => {
+    ): d_target.Resolver_Optional_Value_Initialization => {
         return sh.state(['not set', null])
     }
 
     export const set = (
-        value: d_target.Guaranteed_Value_Selection,
-    ): d_target.Optional_Value_Initialization => {
+        value: d_target.Resolver_Guaranteed_Value_Selection,
+    ): d_target.Resolver_Optional_Value_Initialization => {
         return sh.state(['set', value])
     }
 
     export const selection = (
-        selection: d_target.Possible_Value_Selection,
-    ): d_target.Optional_Value_Initialization => {
+        selection: d_target.Resolver_Possible_Value_Selection,
+    ): d_target.Resolver_Optional_Value_Initialization => {
         return sh.state(['selection', selection])
     }
 
@@ -733,8 +733,8 @@ export namespace pvs {
     export const state = (
         state: string,
         result: d_target.Module_Reference,
-    ): d_target.Possible_Value_Selection => {
-        return sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['state', {
+    ): d_target.Resolver_Possible_Value_Selection => {
+        return sh.state<d_target.Resolver_Possible_Value_Selection.l_state>(['result', sh.state<d_target.Resolver_Possible_Value_Selection.l_state.result.l_state>(['state', {
             'property': sh.reference(state),
             'state': null,
             'result': result,
@@ -744,8 +744,8 @@ export namespace pvs {
     export const optional_value = (
         optional_value: string,
         result: d_target.Module_Reference,
-    ): d_target.Possible_Value_Selection => {
-        return sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+    ): d_target.Resolver_Possible_Value_Selection => {
+        return sh.state<d_target.Resolver_Possible_Value_Selection.l_state>(['result', sh.state<d_target.Resolver_Possible_Value_Selection.l_state.result.l_state>(['optional value', {
             'property': sh.reference(optional_value),
             'optional value': null,
             'result': result,
@@ -754,7 +754,7 @@ export namespace pvs {
 
     export const parameter = (
         parameter: string,
-    ): d_target.Possible_Value_Selection => {
+    ): d_target.Resolver_Possible_Value_Selection => {
         return sh.state(['parameter', sh.reference(parameter)])
     }
 
@@ -768,10 +768,10 @@ export namespace gvs {
     export const component = (
         component: string,
         constraint: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state(['constraint', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['component', {
+            'start': sh.state(['constraint', sh.state<d_target.Resolver_Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['component', {
                 'property': sh.reference(component),
                 'constraint': sh.reference(constraint),
             }])]),
@@ -786,10 +786,10 @@ export namespace gvs {
     export const reference = (
         reference: string,
         constraint: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state(['constraint', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['reference', {
+            'start': sh.state(['constraint', sh.state<d_target.Resolver_Guaranteed_Value_Selection.start.l_state.constraint.l_state>(['reference', {
                 'property': sh.reference(reference),
                 'constraint': sh.reference(constraint),
             }])]),
@@ -803,10 +803,10 @@ export namespace gvs {
 
     export const list = (
         list: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_target.Guaranteed_Value_Selection.start.l_state>(['result', sh.state<d_target.Guaranteed_Value_Selection.start.l_state.result.l_state>(['list', {
+            'start': sh.state<d_target.Resolver_Guaranteed_Value_Selection.start.l_state>(['result', sh.state<d_target.Resolver_Guaranteed_Value_Selection.start.l_state.result.l_state>(['list', {
                 'property': sh.reference(list),
                 'list result': null,
             }])]),
@@ -821,10 +821,10 @@ export namespace gvs {
     export const state = (
         state: string,
         result: d_target.Module_Reference,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['state', {
+            'start': sh.state<d_target.Resolver_Possible_Value_Selection.l_state>(['result', sh.state<d_target.Resolver_Possible_Value_Selection.l_state.result.l_state>(['state', {
                 'property': sh.reference(state),
                 'state': null,
                 'result': result,
@@ -840,10 +840,10 @@ export namespace gvs {
     export const optional_value = (
         optional_value: string,
         result: d_target.Module_Reference,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['result', sh.state<d_target.Possible_Value_Selection.l_state.result.l_state>(['optional value', {
+            'start': sh.state<d_target.Resolver_Possible_Value_Selection.l_state>(['result', sh.state<d_target.Resolver_Possible_Value_Selection.l_state.result.l_state>(['optional value', {
                 'property': sh.reference(optional_value),
                 'optional value': null,
                 'result': result,
@@ -858,10 +858,10 @@ export namespace gvs {
 
     export const parameter = (
         parameter: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
-            'start': sh.state<d_target.Possible_Value_Selection.l_state>(['parameter', sh.reference(parameter)]),
+            'start': sh.state<d_target.Resolver_Possible_Value_Selection.l_state>(['parameter', sh.reference(parameter)]),
             'tail': {
                 'path': sh.list(tail),
                 'resulting node': null,
@@ -871,8 +871,8 @@ export namespace gvs {
     }
 
     export const list_cursor = (
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['list cursor', null]),
             'tail': {
@@ -884,8 +884,8 @@ export namespace gvs {
     }
 
     export const linked_entry = (
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['linked entry', null]),
             'tail': {
@@ -898,8 +898,8 @@ export namespace gvs {
 
     export const sibling = (
         sibling: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['sibling', sh.reference(sibling)]),
             'tail': {
@@ -912,8 +912,8 @@ export namespace gvs {
 
     export const parent_sibling = (
         parent_sibling: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['parent sibling', sh.reference(parent_sibling)]),
             'tail': {
@@ -926,8 +926,8 @@ export namespace gvs {
 
     export const option_constraint = (
         constraint: string,
-        tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-    ): d_target.Guaranteed_Value_Selection => {
+        tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
+    ): d_target.Resolver_Guaranteed_Value_Selection => {
         return {
             'start': sh.state(['option constraint', sh.reference(constraint)]),
             'tail': {
@@ -947,27 +947,27 @@ export namespace av {
 
     export const parameter = (
         parameter: string,
-    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+    ): d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['parameter', sh.reference(parameter)])
     }
 
     export const required = (
-        value: d_target.Guaranteed_Value_Selection,
-    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+        value: d_target.Resolver_Guaranteed_Value_Selection,
+    ): d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['required', value])
     }
 
     export const optional = (
-        value: d_target.Optional_Value_Initialization,
-    ): d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+        value: d_target.Resolver_Optional_Value_Initialization,
+    ): d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
         return sh.state(['optional', value])
     }
 
 }
 
 export const option = (
-    resolver: d_target.Value_Resolver,
-): d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
+    resolver: d_target.Resolver_Value,
+): d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary({}),
         'resolver': resolver,
@@ -975,9 +975,9 @@ export const option = (
 }
 
 export const option_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    resolver: d_target.Value_Resolver,
-): d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry => {
+    constraints: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
+    resolver: d_target.Resolver_Value,
+): d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary(constraints),
         'resolver': resolver,
@@ -990,9 +990,9 @@ export const option_constrained = (
 export namespace oc {
 
     export const state = (
-        value_selection: d_target.Guaranteed_Value_Selection,
+        value_selection: d_target.Resolver_Guaranteed_Value_Selection,
         state: string,
-    ): d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry => {
         return sh.state(['state', {
             'selection': value_selection,
             'selected state': null,
@@ -1001,8 +1001,8 @@ export namespace oc {
     }
 
     export const assert_set = (
-        possibly_optional: d_target.Possible_Value_Selection,
-    ): d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry => {
+        possibly_optional: d_target.Resolver_Possible_Value_Selection,
+    ): d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry => {
         return sh.state(['assert is set', possibly_optional])
     }
 
@@ -1017,9 +1017,9 @@ export namespace vcr {
      * starting from the value
      */
     export const value = (
-        value_selection_tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+        value_selection_tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
         state?: string,
-    ): d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['value', null]),
             'constraint': {
@@ -1041,9 +1041,9 @@ export namespace vcr {
 
     export const constraint = (
         constraint: string,
-        value_selection_tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
+        value_selection_tail: d_target.Resolver_Relative_Value_Selection.path.l_list.L.l_item[],
         state?: string,
-    ): d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
+    ): d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry => {
         return {
             'start': sh.state(['sibling', sh.reference(constraint)]),
             'constraint': {
@@ -1070,22 +1070,22 @@ export namespace vcr {
  */
 export namespace r {
 
-    export const text = (): d_target.Value_Resolver => {
+    export const text = (): d_target.Resolver_Value => {
         return sh.state(['text', null])
     }
 
-    export const boolean = (): d_target.Value_Resolver => {
+    export const boolean = (): d_target.Resolver_Value => {
         return sh.state(['boolean', null])
     }
 
-    export const number = (): d_target.Value_Resolver => {
+    export const number = (): d_target.Resolver_Value => {
         return sh.state(['number', null])
     }
     export const component = (
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-    ): d_target.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
@@ -1094,15 +1094,15 @@ export namespace r {
                 'modules': modules === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(modules)),
                 'lookups': lookups === null ? sh.optionalx.not_set() : _p.optionalx.set(sh.dictionary(lookups)),
             }),
-            'constraints': sh.dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
+            'constraints': sh.dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>({}),
         }])
     }
     export const component_constrained = (
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_target.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
@@ -1117,10 +1117,10 @@ export namespace r {
     export const component_external = (
         imp: string,
         type: string,
-        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_target.Value_Resolver => {
+        modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['external', {
@@ -1137,7 +1137,7 @@ export namespace r {
         }])
     }
 
-    export const dictionary = (resolver: d_target.Value_Resolver): d_target.Value_Resolver => {
+    export const dictionary = (resolver: d_target.Resolver_Value): d_target.Resolver_Value => {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
@@ -1147,9 +1147,9 @@ export namespace r {
 
     export const dictionary_linked = (
         dense: 'dense' | 'sparse',
-        selection: d_target.Guaranteed_Value_Selection,
-        resolver: d_target.Value_Resolver,
-    ): d_target.Value_Resolver => {
+        selection: d_target.Resolver_Guaranteed_Value_Selection,
+        resolver: d_target.Resolver_Value,
+    ): d_target.Resolver_Value => {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
@@ -1163,7 +1163,7 @@ export namespace r {
 
     export const group = (
         properties: _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
-    ): d_target.Value_Resolver => {
+    ): d_target.Resolver_Value => {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {
             'l location': temp_dict['l location'],
@@ -1180,19 +1180,19 @@ export namespace r {
     }
 
     export const list = (
-        type_resolver: d_target.Value_Resolver
-    ): d_target.Value_Resolver => {
+        type_resolver: d_target.Resolver_Value
+    ): d_target.Resolver_Value => {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': _p.optionalx.not_set<d_target.Value_Resolver.l_state.list.result.O>(),
+            'result': _p.optionalx.not_set<d_target.Resolver_Value.l_state.list.result.O>(),
         }])
     }
     export const list_with_result = (
-        type_resolver: d_target.Value_Resolver,
+        type_resolver: d_target.Resolver_Value,
         result: d_target.Module_Reference,
 
-    ): d_target.Value_Resolver => {
+    ): d_target.Resolver_Value => {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
@@ -1200,23 +1200,23 @@ export namespace r {
         }])
     }
 
-    export const nothing = (): d_target.Value_Resolver => {
+    export const nothing = (): d_target.Resolver_Value => {
         return sh.state(['nothing', null])
     }
 
     export const optional = (
-        type_resolver: d_target.Value_Resolver
-    ): d_target.Value_Resolver => {
+        type_resolver: d_target.Resolver_Value
+    ): d_target.Resolver_Value => {
         return sh.state(['optional', {
-            'constraints': sh.dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>({}),
+            'constraints': sh.dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>({}),
             'resolver': type_resolver,
         }])
     }
 
     export const optional_constrained = (
-        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraint_Resolvers.l_dictionary.D.l_entry>,
-        type_resolver: d_target.Value_Resolver
-    ): d_target.Value_Resolver => {
+        constraints: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
+        type_resolver: d_target.Resolver_Value
+    ): d_target.Resolver_Value => {
         return sh.state(['optional', {
             'constraints': sh.dictionary(constraints),
             'resolver': type_resolver,
@@ -1224,8 +1224,8 @@ export namespace r {
     }
 
     export const reference_derived = (
-        value_selection: d_target.Guaranteed_Value_Selection
-    ): d_target.Value_Resolver => {
+        value_selection: d_target.Resolver_Guaranteed_Value_Selection
+    ): d_target.Resolver_Value => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['derived', {
@@ -1235,9 +1235,9 @@ export namespace r {
     }
 
     export const reference = (
-        lookup_selection: d_target.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_target.Value_Resolver => {
+        lookup_selection: d_target.Resolver_Lookup_Selection,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Value => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['selected', {
@@ -1249,9 +1249,9 @@ export namespace r {
     }
 
     export const reference_stack = (
-        lookup_selection: d_target.Lookup_Selection,
-        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry>,
-    ): d_target.Value_Resolver => {
+        lookup_selection: d_target.Resolver_Lookup_Selection,
+        constraints?: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+    ): d_target.Resolver_Value => {
         return sh.state(['reference', {
             'definition': null,
             'type': sh.state(['selected', {
@@ -1263,8 +1263,8 @@ export namespace r {
     }
 
     export const state = (
-        states: _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver.l_state.state.states.l_dictionary.D.l_entry>
-    ): d_target.Value_Resolver => {
+        states: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry>
+    ): d_target.Resolver_Value => {
         return sh.state(['state', {
             'definition': null,
             'states': sh.dictionary(states),
@@ -1273,8 +1273,8 @@ export namespace r {
 }
 
 export const resolver = (
-    value_resolver: d_target.Value_Resolver
-): d_target.Module_Resolvers.l_dictionary.D.l_entry => {
+    value_resolver: d_target.Resolver_Value
+): d_target.Resolver_Modules.l_dictionary.D.l_entry => {
     return {
         'signature': null,
         'root value resolver': value_resolver,
@@ -1282,7 +1282,7 @@ export const resolver = (
 }
 
 export const signatures = (
-    signatures: _p.Raw_Or_Normal_Dictionary<d_target.Signatures.l_dictionary.D.l_entry>,
+    signatures: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
 ): d_target.Resolver.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
@@ -1290,9 +1290,9 @@ export const signatures = (
 }
 
 
-export const resolvers = (
-    resolvers: _p.Raw_Or_Normal_Dictionary<d_target.Module_Resolvers.l_dictionary.D.l_entry>,
-): d_target.Module_Resolvers => {
+export const resolver_modules = (
+    resolvers: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,
+): d_target.Resolver_Modules => {
     return sh.dictionary(resolvers)
 }
 export const schema_import_ = (
@@ -1314,11 +1314,11 @@ export const resolver_import_ = (
 
 export const constrained = (
     signatures: d_target.Resolver.signatures,
-    resolvers: d_target.Module_Resolvers,
+    resolvers: d_target.Resolver_Modules,
 ): d_target.Schema.complexity.l_state.constrained => {
     return {
         'signatures': signatures,
-        'resolvers': resolvers,
+        'modules': resolvers,
     }
 }
 

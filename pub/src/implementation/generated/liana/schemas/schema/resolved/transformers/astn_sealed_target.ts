@@ -588,16 +588,16 @@ export const Resolver: t_signatures.Resolver = ($) => ['group', ['verbose', _p.d
                 {
                     "signatures": _p_change_context(
                         $['signatures'],
-                        ($) => Signatures(
+                        ($) => Resolver_Signatures(
                             $,
                         ),
                     ),
                 },
             )]],
         ),
-        "resolvers": _p_change_context(
-            $['resolvers'],
-            ($) => Module_Resolvers(
+        "modules": _p_change_context(
+            $['modules'],
+            ($) => Resolver_Modules(
                 $,
             ),
         ),
@@ -624,15 +624,15 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ['dictiona
     )]],
 )]
 
-export const Signatures: t_signatures.Signatures = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
-    ($, id) => Signature(
+    ($, id) => Resolver_Signature(
         $,
     ),
 )]
 
-export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "modules": _p_change_context(
             $['modules'],
@@ -725,7 +725,7 @@ export const Signature_Parameters: t_signatures.Signature_Parameters = ($) => ['
     },
 )]]
 
-export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.decide.state(
+export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
@@ -831,7 +831,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                                 $,
                                                                                 ($) => ({
                                                                                     'option': 'optional',
-                                                                                    'value': Optional_Value_Initialization(
+                                                                                    'value': Resolver_Optional_Value_Initialization(
                                                                                         $,
                                                                                     ),
                                                                                 }),
@@ -841,7 +841,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                                 $,
                                                                                 ($) => ({
                                                                                     'option': 'required',
-                                                                                    'value': Guaranteed_Value_Selection(
+                                                                                    'value': Resolver_Guaranteed_Value_Selection(
                                                                                         $,
                                                                                     ),
                                                                                 }),
@@ -905,13 +905,13 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                                                                 {
                                                                                                                     "stack": _p_change_context(
                                                                                                                         $['stack'],
-                                                                                                                        ($) => Lookup_Selection(
+                                                                                                                        ($) => Resolver_Lookup_Selection(
                                                                                                                             $,
                                                                                                                         ),
                                                                                                                     ),
                                                                                                                     "item": _p_change_context(
                                                                                                                         $['item'],
-                                                                                                                        ($) => Lookup_Selection(
+                                                                                                                        ($) => Resolver_Lookup_Selection(
                                                                                                                             $,
                                                                                                                         ),
                                                                                                                     ),
@@ -985,7 +985,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                                 $,
                                                                                 ($) => ({
                                                                                     'option': 'selection',
-                                                                                    'value': Lookup_Selection(
+                                                                                    'value': Resolver_Lookup_Selection(
                                                                                         $,
                                                                                     ),
                                                                                 }),
@@ -1008,7 +1008,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                 ),
                                 "constraints": _p_change_context(
                                     $['constraints'],
-                                    ($) => Value_Constraint_Resolvers(
+                                    ($) => Resolver_Value_Constraints(
                                         $,
                                     ),
                                 ),
@@ -1029,7 +1029,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                 ),
                                 "resolver": _p_change_context(
                                     $['resolver'],
-                                    ($) => Value_Resolver(
+                                    ($) => Resolver_Value(
                                         $,
                                     ),
                                 ),
@@ -1037,7 +1037,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                     $['benchmark'],
                                     ($) => ['optional', _p.decide.optional(
                                         $,
-                                        ($): t_out.Value.optional => ['set', Benchmark(
+                                        ($): t_out.Value.optional => ['set', Resolver_Benchmark(
                                             $,
                                         )],
                                         () => ['not set', null],
@@ -1070,7 +1070,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                 ),
                                 "resolver": _p_change_context(
                                     $['resolver'],
-                                    ($) => Value_Resolver(
+                                    ($) => Resolver_Value(
                                         $,
                                     ),
                                 ),
@@ -1113,13 +1113,13 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                             {
                                 "constraints": _p_change_context(
                                     $['constraints'],
-                                    ($) => Option_Constraint_Resolvers(
+                                    ($) => Resolver_Option_Constraints(
                                         $,
                                     ),
                                 ),
                                 "resolver": _p_change_context(
                                     $['resolver'],
-                                    ($) => Value_Resolver(
+                                    ($) => Resolver_Value(
                                         $,
                                     ),
                                 ),
@@ -1153,7 +1153,7 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                 {
                                                                     "value": _p_change_context(
                                                                         $['value'],
-                                                                        ($) => Guaranteed_Value_Selection(
+                                                                        ($) => Resolver_Guaranteed_Value_Selection(
                                                                             $,
                                                                         ),
                                                                     ),
@@ -1174,13 +1174,13 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                                     ),
                                                                     "lookup": _p_change_context(
                                                                         $['lookup'],
-                                                                        ($) => Lookup_Selection(
+                                                                        ($) => Resolver_Lookup_Selection(
                                                                             $,
                                                                         ),
                                                                     ),
                                                                     "constraints": _p_change_context(
                                                                         $['constraints'],
-                                                                        ($) => Value_Constraint_Resolvers(
+                                                                        ($) => Resolver_Value_Constraints(
                                                                             $,
                                                                         ),
                                                                     ),
@@ -1220,13 +1220,13 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                             {
                                                 "constraints": _p_change_context(
                                                     $['constraints'],
-                                                    ($) => Option_Constraint_Resolvers(
+                                                    ($) => Resolver_Option_Constraints(
                                                         $,
                                                     ),
                                                 ),
                                                 "resolver": _p_change_context(
                                                     $['resolver'],
-                                                    ($) => Value_Resolver(
+                                                    ($) => Resolver_Value(
                                                         $,
                                                     ),
                                                 ),
@@ -1490,7 +1490,7 @@ export const Presence: t_signatures.Presence = ($) => ['state', _p.decide.state(
     },
 )]
 
-export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
@@ -1501,7 +1501,7 @@ export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => ['dictiona
             ),
             "root value resolver": _p_change_context(
                 $['root value resolver'],
-                ($) => Value_Resolver(
+                ($) => Resolver_Value(
                     $,
                 ),
             ),
@@ -1509,11 +1509,11 @@ export const Module_Resolvers: t_signatures.Module_Resolvers = ($) => ['dictiona
     )]],
 )]
 
-export const Benchmark: t_signatures.Benchmark = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "selection": _p_change_context(
             $['selection'],
-            ($) => Guaranteed_Value_Selection(
+            ($) => Resolver_Guaranteed_Value_Selection(
                 $['l value'],
             ),
         ),
@@ -1711,7 +1711,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
     },
 )]]
 
-export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "module": _p_change_context(
             $['module'],
@@ -1728,7 +1728,7 @@ export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p
                                 $,
                                 ($) => ({
                                     'option': 'local',
-                                    'value': Signature_Parameters(
+                                    'value': Resolver_Signature_Parameters(
                                         $,
                                     ),
                                 }),
@@ -1759,7 +1759,7 @@ export const Signature: t_signatures.Signature = ($) => ['group', ['verbose', _p
     },
 )]]
 
-export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "path": _p_change_context(
             $['path'],
@@ -1823,7 +1823,7 @@ export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = (
     },
 )]]
 
-export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "type": _p_change_context(
             $['type'],
@@ -1857,7 +1857,7 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
                                                                 {
                                                                     "selection": _p_change_context(
                                                                         $['selection'],
-                                                                        ($) => Guaranteed_Value_Selection(
+                                                                        ($) => Resolver_Guaranteed_Value_Selection(
                                                                             $,
                                                                         ),
                                                                     ),
@@ -1930,11 +1930,11 @@ export const Lookup_Selection: t_signatures.Lookup_Selection = ($) => ['group', 
     },
 )]]
 
-export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "selection": _p_change_context(
             $['selection'],
-            ($) => Relative_Value_Selection(
+            ($) => Resolver_Relative_Value_Selection(
                 $,
             ),
         ),
@@ -1992,7 +1992,7 @@ export const Constraint: t_signatures.Constraint = ($) => ['group', ['verbose', 
     },
 )]]
 
-export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
     ($, id) => ['state', _p.decide.state(
@@ -2008,7 +2008,7 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
                                 {
                                     "selection": _p_change_context(
                                         $['selection'],
-                                        ($) => Guaranteed_Value_Selection(
+                                        ($) => Resolver_Guaranteed_Value_Selection(
                                             $,
                                         ),
                                     ),
@@ -2032,7 +2032,7 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
                         $,
                         ($) => ({
                             'option': 'assert is set',
-                            'value': Possible_Value_Selection(
+                            'value': Resolver_Possible_Value_Selection(
                                 $,
                             ),
                         }),
@@ -2048,13 +2048,13 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
 
 export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => ['optional', _p.decide.optional(
     $,
-    ($): t_out.Value.optional => ['set', Value_Constraint_Resolvers(
+    ($): t_out.Value.optional => ['set', Resolver_Value_Constraints(
         $,
     )],
     () => ['not set', null],
 )]
 
-export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
     ($, id) => Value_Constraint_Resolver(
@@ -2103,14 +2103,14 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
         ),
         "constraint": _p_change_context(
             $['constraint'],
-            ($) => Constraint(
+            ($) => Resolver_Contraint(
                 $,
             ),
         ),
     },
 )]]
 
-export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($) => ['state', _p.decide.state(
+export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
@@ -2127,7 +2127,7 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
                     $,
                     ($) => ({
                         'option': 'set',
-                        'value': Guaranteed_Value_Selection(
+                        'value': Resolver_Guaranteed_Value_Selection(
                             $,
                         ),
                     }),
@@ -2137,7 +2137,7 @@ export const Optional_Value_Initialization: t_signatures.Optional_Value_Initiali
                     $,
                     ($) => ({
                         'option': 'selection',
-                        'value': Possible_Value_Selection(
+                        'value': Resolver_Possible_Value_Selection(
                             $,
                         ),
                     }),
@@ -2161,7 +2161,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ['
             ),
             "resolver": _p_change_context(
                 $['resolver'],
-                ($) => Value_Resolver(
+                ($) => Resolver_Value(
                     $,
                 ),
             ),
@@ -2197,7 +2197,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['opti
     () => ['not set', null],
 )]
 
-export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "start": _p_change_context(
             $['start'],
@@ -2439,7 +2439,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
         ),
         "tail": _p_change_context(
             $['tail'],
-            ($) => Relative_Value_Selection(
+            ($) => Resolver_Relative_Value_Selection(
                 $,
             ),
         ),
@@ -2450,7 +2450,7 @@ export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection
     },
 )]]
 
-export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = ($) => ['state', _p.decide.state(
+export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {

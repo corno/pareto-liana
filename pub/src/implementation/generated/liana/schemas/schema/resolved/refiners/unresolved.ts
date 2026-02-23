@@ -1589,7 +1589,7 @@
 //     },
 // )
 
-// export const Relative_Value_Selection: t_signatures.Relative_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_path = _p_change_context(
@@ -1609,7 +1609,7 @@
 //                                     const var_location = $['l location']
 //                                     return _p.decide.state(
 //                                         $['l state'],
-//                                         ($): t_out.Relative_Value_Selection.path.l_value.L.l_item => {
+//                                         ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L.l_item => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
 //                                                     return _p.ss(
@@ -1806,7 +1806,7 @@
 //     },
 // )
 
-// export const Signature_Parameters: t_signatures.Signature_Parameters = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_modules = _p_change_context(
@@ -1814,7 +1814,7 @@
 //             ($) => _p.dictionary.from.dictionary(
 //                 $['l dictionary'],
 //             ).resolve(
-//                 ($, id, $a, $c): t_out.Signature_Parameters.modules.D => _p_change_context(
+//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.modules.D => _p_change_context(
 //                     $['l entry'],
 //                     ($) => _p.group.literal.resolve(
 //                         () => {
@@ -1865,7 +1865,7 @@
 //             ($) => _p.dictionary.from.dictionary(
 //                 $['l dictionary'],
 //             ).resolve(
-//                 ($, id, $a, $c): t_out.Signature_Parameters.lookups.D => _p_change_context(
+//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.lookups.D => _p_change_context(
 //                     $['l entry'],
 //                     ($) => _p.group.literal.resolve(
 //                         () => {
@@ -1905,7 +1905,7 @@
 //                                         const var_location = $['l location']
 //                                         return _p.decide.state(
 //                                             $['l state'],
-//                                             ($): t_out.Signature_Parameters.lookups.D.type_ => {
+//                                             ($): t_out.Resolver_Signature_Parameters.lookups.D.type_ => {
 //                                                 switch ($[0]) {
 //                                                     case 'cyclic':
 //                                                         return _p.ss(
@@ -1962,7 +1962,7 @@
 //     },
 // )
 
-// export const Signature: t_signatures.Signature = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_module = _p_change_context(
@@ -1978,12 +1978,12 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Signature.parameters => {
+//                         ($): t_out.Resolver_Signature.parameters => {
 //                             switch ($[0]) {
 //                                 case 'local':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['local', Signature_Parameters(
+//                                         ($) => ['local', Resolver_Signature_Parameters(
 //                                             $,
 //                                             ($) => abort(
 //                                                 $,
@@ -2050,10 +2050,10 @@
 //     },
 // )
 
-// export const Signatures: t_signatures.Signatures = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Signatures.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Resolver_Signatures.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p_variables(
 //             () => {
@@ -2061,7 +2061,7 @@
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
-//                 return Signature(
+//                 return Resolver_Signature(
 //                     $,
 //                     ($) => abort(
 //                         $,
@@ -2080,13 +2080,13 @@
 //     ),
 // )
 
-// export const Optional_Value_Initialization: t_signatures.Optional_Value_Initialization = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($, abort, $l, $p) => _p_variables(
 //     () => {
         
 //         const var_location = $['l location']
 //         return _p.decide.state(
 //             $['l state'],
-//             ($): t_out.Optional_Value_Initialization => {
+//             ($): t_out.Resolver_Optional_Value_Initialization => {
 //                 switch ($[0]) {
 //                     case 'not set':
 //                         return _p.ss(
@@ -2096,7 +2096,7 @@
 //                     case 'set':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['set', Guaranteed_Value_Selection(
+//                             ($) => ['set', Resolver_Guaranteed_Value_Selection(
 //                                 $,
 //                                 ($) => abort(
 //                                     $,
@@ -2108,7 +2108,7 @@
 //                     case 'selection':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['selection', Possible_Value_Selection(
+//                             ($) => ['selection', Resolver_Possible_Value_Selection(
 //                                 $,
 //                                 ($) => abort(
 //                                     $,
@@ -2127,13 +2127,13 @@
 //     },
 // )
 
-// export const Possible_Value_Selection: t_signatures.Possible_Value_Selection = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($, abort, $l, $p) => _p_variables(
 //     () => {
         
 //         const var_location = $['l location']
 //         return _p.decide.state(
 //             $['l state'],
-//             ($): t_out.Possible_Value_Selection => {
+//             ($): t_out.Resolver_Possible_Value_Selection => {
 //                 switch ($[0]) {
 //                     case 'parameter':
 //                         return _p.ss(
@@ -2176,7 +2176,7 @@
 //                                     const var_location = $['l location']
 //                                     return _p.decide.state(
 //                                         $['l state'],
-//                                         ($): t_out.Possible_Value_Selection.result => {
+//                                         ($): t_out.Resolver_Possible_Value_Selection.result => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
 //                                                     return _p.ss(
@@ -2334,7 +2334,7 @@
 //     },
 // )
 
-// export const Guaranteed_Value_Selection: t_signatures.Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_start = _p_change_context(
@@ -2345,7 +2345,7 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Guaranteed_Value_Selection.start => {
+//                         ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
 //                             switch ($[0]) {
 //                                 case 'list cursor':
 //                                     return _p.ss(
@@ -2473,7 +2473,7 @@
 //                                                 const var_location = $['l location']
 //                                                 return _p.decide.state(
 //                                                     $['l state'],
-//                                                     ($): t_out.Guaranteed_Value_Selection.start.constraint => {
+//                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
 //                                                         switch ($[0]) {
 //                                                             case 'component':
 //                                                                 return _p.ss(
@@ -2678,7 +2678,7 @@
 //                                                 const var_location = $['l location']
 //                                                 return _p.decide.state(
 //                                                     $['l state'],
-//                                                     ($): t_out.Guaranteed_Value_Selection.start.result => {
+//                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
 //                                                         switch ($[0]) {
 //                                                             case 'list':
 //                                                                 return _p.ss(
@@ -2888,7 +2888,7 @@
         
 //         const prop_tail = _p_change_context(
 //             $['tail'],
-//             ($) => Relative_Value_Selection(
+//             ($) => Resolver_Relative_Value_Selection(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -2914,7 +2914,7 @@
 //     },
 // )
 
-// export const Lookup_Selection: t_signatures.Lookup_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_type = _p_change_context(
@@ -2925,7 +2925,7 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Lookup_Selection.type_ => {
+//                         ($): t_out.Resolver_Lookup_Selection.type_ => {
 //                             switch ($[0]) {
 //                                 case 'acyclic':
 //                                     return _p.ss(
@@ -2936,7 +2936,7 @@
 //                                                 const var_location = $['l location']
 //                                                 return _p.decide.state(
 //                                                     $['l state'],
-//                                                     ($): t_out.Lookup_Selection.type_.acyclic => {
+//                                                     ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
 //                                                                 return _p.ss(
@@ -2966,7 +2966,7 @@
                                                                             
 //                                                                             const prop_selection = _p_change_context(
 //                                                                                 $['selection'],
-//                                                                                 ($) => Guaranteed_Value_Selection(
+//                                                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                                                     $,
 //                                                                                     ($) => abort(
 //                                                                                         $,
@@ -3008,7 +3008,7 @@
 //                                                 const var_location = $['l location']
 //                                                 return _p.decide.state(
 //                                                     $['l state'],
-//                                                     ($): t_out.Lookup_Selection.type_.cyclic => {
+//                                                     ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
 //                                                                 return _p.ss(
@@ -3096,10 +3096,10 @@
 //     },
 // )
 
-// export const Module_Resolvers: t_signatures.Module_Resolvers = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Module_Resolvers.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Resolver_Modules.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p_variables(
 //             () => {
@@ -3117,7 +3117,7 @@
                         
 //                         const prop_root_value_resolver = _p_change_context(
 //                             $['root value resolver'],
-//                             ($) => Value_Resolver(
+//                             ($) => Resolver_Value(
 //                                 $,
 //                                 ($) => abort(
 //                                     $,
@@ -3156,12 +3156,12 @@
 //     ),
 // )
 
-// export const Constraint: t_signatures.Constraint = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_selection = _p_change_context(
 //             $['selection'],
-//             ($) => Relative_Value_Selection(
+//             ($) => Resolver_Relative_Value_Selection(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -3179,7 +3179,7 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Constraint.type_ => {
+//                         ($): t_out.Resolver_Contraint.type_ => {
 //                             switch ($[0]) {
 //                                 case 'state':
 //                                     return _p.ss(
@@ -3311,10 +3311,10 @@
 //     },
 // )
 
-// export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolvers = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Option_Constraint_Resolvers.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Resolver_Option_Constraints.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p_variables(
 //             () => {
@@ -3322,7 +3322,7 @@
 //                 const var_location = $['l location']
 //                 return _p.decide.state(
 //                     $['l state'],
-//                     ($): t_out.Option_Constraint_Resolvers.D => {
+//                     ($): t_out.Resolver_Option_Constraints.D => {
 //                         switch ($[0]) {
 //                             case 'state':
 //                                 return _p.ss(
@@ -3332,7 +3332,7 @@
                                             
 //                                             const prop_selection = _p_change_context(
 //                                                 $['selection'],
-//                                                 ($) => Guaranteed_Value_Selection(
+//                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -3391,7 +3391,7 @@
 //                             case 'assert is set':
 //                                 return _p.ss(
 //                                     $,
-//                                     ($) => ['assert is set', Possible_Value_Selection(
+//                                     ($) => ['assert is set', Resolver_Possible_Value_Selection(
 //                                         $,
 //                                         ($) => abort(
 //                                             $,
@@ -3457,7 +3457,7 @@
         
 //         const prop_constraint = _p_change_context(
 //             $['constraint'],
-//             ($) => Constraint(
+//             ($) => Resolver_Contraint(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -3480,7 +3480,7 @@
 // export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.optional.from.optional(
 //     $,
 // ).map(
-//     ($) => Value_Constraint_Resolvers(
+//     ($) => Resolver_Value_Constraints(
 //         $,
 //         ($) => abort(
 //             $,
@@ -3492,10 +3492,10 @@
 //     ),
 // )
 
-// export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Value_Constraint_Resolvers.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Resolver_Value_Constraints.D => _p_change_context(
 //         $['l entry'],
 //         ($) => Value_Constraint_Resolver(
 //             $,
@@ -3558,7 +3558,7 @@
                         
 //                         const prop_resolver = _p_change_context(
 //                             $['resolver'],
-//                             ($) => Value_Resolver(
+//                             ($) => Resolver_Value(
 //                                 $,
 //                                 ($) => abort(
 //                                     $,
@@ -3606,7 +3606,7 @@
 //     },
 // )
 
-// export const Benchmark: t_signatures.Benchmark = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_selection = _p_change_context(
@@ -3617,7 +3617,7 @@
 //                         "IM: result",
 //                     ),
 //                 },
-//                 'l value': Guaranteed_Value_Selection(
+//                 'l value': Resolver_Guaranteed_Value_Selection(
 //                     $,
 //                     ($) => abort(
 //                         $,
@@ -3647,13 +3647,13 @@
 //     },
 // )
 
-// export const Value_Resolver: t_signatures.Value_Resolver = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => _p_variables(
 //     () => {
         
 //         const var_location = $['l location']
 //         return _p.decide.state(
 //             $['l state'],
-//             ($): t_out.Value_Resolver => {
+//             ($): t_out.Resolver_Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
 //                         return _p.ss(
@@ -3725,7 +3725,7 @@
 //                                                         const var_location = $['l location']
 //                                                         return _p.decide.state(
 //                                                             $['l state'],
-//                                                             ($): t_out.Value_Resolver.component.location => {
+//                                                             ($): t_out.Resolver_Value.component.location => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'external':
 //                                                                         return _p.ss(
@@ -3930,7 +3930,7 @@
 //                                                                     ($) => _p.dictionary.from.dictionary(
 //                                                                         $['l dictionary'],
 //                                                                     ).resolve(
-//                                                                         ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.modules.O.D => _p_change_context(
+//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.modules.O.D => _p_change_context(
 //                                                                             $['l entry'],
 //                                                                             ($) => _p_variables(
 //                                                                                 () => {
@@ -3944,12 +3944,12 @@
 //                                                                                             const var_location = $['l location']
 //                                                                                             return _p.decide.state(
 //                                                                                                 $['l state'],
-//                                                                                                 ($): t_out.Value_Resolver.component.arguments_.O.modules.O.D => {
+//                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.modules.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'optional':
 //                                                                                                             return _p.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['optional', Optional_Value_Initialization(
+//                                                                                                                 ($) => ['optional', Resolver_Optional_Value_Initialization(
 //                                                                                                                     $,
 //                                                                                                                     ($) => abort(
 //                                                                                                                         $,
@@ -3961,7 +3961,7 @@
 //                                                                                                         case 'required':
 //                                                                                                             return _p.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['required', Guaranteed_Value_Selection(
+//                                                                                                                 ($) => ['required', Resolver_Guaranteed_Value_Selection(
 //                                                                                                                     $,
 //                                                                                                                     ($) => abort(
 //                                                                                                                         $,
@@ -4026,7 +4026,7 @@
 //                                                                     ($) => _p.dictionary.from.dictionary(
 //                                                                         $['l dictionary'],
 //                                                                     ).resolve(
-//                                                                         ($, id, $a, $c): t_out.Value_Resolver.component.arguments_.O.lookups.O.D => _p_change_context(
+//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => _p_change_context(
 //                                                                             $['l entry'],
 //                                                                             ($) => _p_variables(
 //                                                                                 () => {
@@ -4040,7 +4040,7 @@
 //                                                                                             const var_location = $['l location']
 //                                                                                             return _p.decide.state(
 //                                                                                                 $['l state'],
-//                                                                                                 ($): t_out.Value_Resolver.component.arguments_.O.lookups.O.D => {
+//                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'stack':
 //                                                                                                             return _p.ss(
@@ -4051,7 +4051,7 @@
 //                                                                                                                         const var_location = $['l location']
 //                                                                                                                         return _p.decide.state(
 //                                                                                                                             $['l state'],
-//                                                                                                                             ($): t_out.Value_Resolver.component.arguments_.O.lookups.O.D.stack => {
+//                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'empty':
 //                                                                                                                                         return _p.ss(
@@ -4066,7 +4066,7 @@
                                                                                                                                                     
 //                                                                                                                                                     const prop_stack = _p_change_context(
 //                                                                                                                                                         $['stack'],
-//                                                                                                                                                         ($) => Lookup_Selection(
+//                                                                                                                                                         ($) => Resolver_Lookup_Selection(
 //                                                                                                                                                             $,
 //                                                                                                                                                             ($) => abort(
 //                                                                                                                                                                 $,
@@ -4078,7 +4078,7 @@
                                                                                                                                                     
 //                                                                                                                                                     const prop_item = _p_change_context(
 //                                                                                                                                                         $['item'],
-//                                                                                                                                                         ($) => Lookup_Selection(
+//                                                                                                                                                         ($) => Resolver_Lookup_Selection(
 //                                                                                                                                                             $,
 //                                                                                                                                                             ($) => abort(
 //                                                                                                                                                                 $,
@@ -4113,7 +4113,7 @@
 //                                                                                                                         const var_location = $['l location']
 //                                                                                                                         return _p.decide.state(
 //                                                                                                                             $['l state'],
-//                                                                                                                             ($): t_out.Value_Resolver.component.arguments_.O.lookups.O.D.acyclic => {
+//                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
 //                                                                                                                                         return _p.ss(
@@ -4139,7 +4139,7 @@
 //                                                                                                                         const var_location = $['l location']
 //                                                                                                                         return _p.decide.state(
 //                                                                                                                             $['l state'],
-//                                                                                                                             ($): t_out.Value_Resolver.component.arguments_.O.lookups.O.D.cyclic => {
+//                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
 //                                                                                                                                         return _p.ss(
@@ -4159,7 +4159,7 @@
 //                                                                                                         case 'selection':
 //                                                                                                             return _p.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['selection', Lookup_Selection(
+//                                                                                                                 ($) => ['selection', Resolver_Lookup_Selection(
 //                                                                                                                     $,
 //                                                                                                                     ($) => abort(
 //                                                                                                                         $,
@@ -4194,7 +4194,7 @@
                                             
 //                                             const prop_constraints = _p_change_context(
 //                                                 $['constraints'],
-//                                                 ($) => Value_Constraint_Resolvers(
+//                                                 ($) => Resolver_Value_Constraints(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -4255,7 +4255,7 @@
 //                                                 ($) => _p.optional.from.optional(
 //                                                     $,
 //                                                 ).map(
-//                                                     ($) => Benchmark(
+//                                                     ($) => Resolver_Benchmark(
 //                                                         $,
 //                                                         ($) => abort(
 //                                                             $,
@@ -4268,7 +4268,7 @@
                                             
 //                                             const prop_resolver = _p_change_context(
 //                                                 $['resolver'],
-//                                                 ($) => Value_Resolver(
+//                                                 ($) => Resolver_Value(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -4413,7 +4413,7 @@
                                             
 //                                             const prop_resolver = _p_change_context(
 //                                                 $['resolver'],
-//                                                 ($) => Value_Resolver(
+//                                                 ($) => Resolver_Value(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -4536,7 +4536,7 @@
                                             
 //                                             const prop_constraints = _p_change_context(
 //                                                 $['constraints'],
-//                                                 ($) => Option_Constraint_Resolvers(
+//                                                 ($) => Resolver_Option_Constraints(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -4548,7 +4548,7 @@
                                             
 //                                             const prop_resolver = _p_change_context(
 //                                                 $['resolver'],
-//                                                 ($) => Value_Resolver(
+//                                                 ($) => Resolver_Value(
 //                                                     $,
 //                                                     ($) => abort(
 //                                                         $,
@@ -4619,7 +4619,7 @@
 //                                                         const var_location = $['l location']
 //                                                         return _p.decide.state(
 //                                                             $['l state'],
-//                                                             ($): t_out.Value_Resolver.reference.type_ => {
+//                                                             ($): t_out.Resolver_Value.reference.type_ => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'derived':
 //                                                                         return _p.ss(
@@ -4651,7 +4651,7 @@
                                                                                             
 //                                                                                             const prop_value = _p_change_context(
 //                                                                                                 $['value'],
-//                                                                                                 ($) => Guaranteed_Value_Selection(
+//                                                                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                                                                     $,
 //                                                                                                     ($) => abort(
 //                                                                                                         $,
@@ -4703,7 +4703,7 @@
                                                                                             
 //                                                                                             const prop_lookup = _p_change_context(
 //                                                                                                 $['lookup'],
-//                                                                                                 ($) => Lookup_Selection(
+//                                                                                                 ($) => Resolver_Lookup_Selection(
 //                                                                                                     $,
 //                                                                                                     ($) => abort(
 //                                                                                                         $,
@@ -4715,7 +4715,7 @@
                                                                                             
 //                                                                                             const prop_constraints = _p_change_context(
 //                                                                                                 $['constraints'],
-//                                                                                                 ($) => Value_Constraint_Resolvers(
+//                                                                                                 ($) => Resolver_Value_Constraints(
 //                                                                                                     $,
 //                                                                                                     ($) => abort(
 //                                                                                                         $,
@@ -4793,7 +4793,7 @@
 //                                                 ($) => _p.dictionary.from.dictionary(
 //                                                     $['l dictionary'],
 //                                                 ).resolve(
-//                                                     ($, id, $a, $c): t_out.Value_Resolver.state.states.D => _p_change_context(
+//                                                     ($, id, $a, $c): t_out.Resolver_Value.state.states.D => _p_change_context(
 //                                                         $['l entry'],
 //                                                         ($) => _p_variables(
 //                                                             () => {
@@ -4806,7 +4806,7 @@
                                                                         
 //                                                                         const prop_constraints = _p_change_context(
 //                                                                             $['constraints'],
-//                                                                             ($) => Option_Constraint_Resolvers(
+//                                                                             ($) => Resolver_Option_Constraints(
 //                                                                                 $,
 //                                                                                 ($) => abort(
 //                                                                                     $,
@@ -4818,7 +4818,7 @@
                                                                         
 //                                                                         const prop_resolver = _p_change_context(
 //                                                                             $['resolver'],
-//                                                                             ($) => Value_Resolver(
+//                                                                             ($) => Resolver_Value(
 //                                                                                 $,
 //                                                                                 ($) => abort(
 //                                                                                     $,
@@ -4908,7 +4908,7 @@
                     
 //                     const prop_signatures = _p_change_context(
 //                         $['signatures'],
-//                         ($) => Signatures(
+//                         ($) => Resolver_Signatures(
 //                             $,
 //                             ($) => abort(
 //                                 $,
@@ -4927,9 +4927,9 @@
 //             ),
 //         )
         
-//         const prop_resolvers = _p_change_context(
-//             $['resolvers'],
-//             ($) => Module_Resolvers(
+//         const prop_modules = _p_change_context(
+//             $['modules'],
+//             ($) => Resolver_Modules(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -4945,7 +4945,7 @@
 //         )
 //         return {
 //             'signatures': prop_signatures,
-//             'resolvers': prop_resolvers,
+//             'modules': prop_modules,
 //         }
 //     },
 // )

@@ -513,123 +513,11 @@ export type Value_Path_ = (
     },
 ) => Value_Path_.O
 
-export namespace Value_Resolver_ {
+export namespace Resolver_Value_ {
     
-    export type I = i_unresolved.Value_Resolver
+    export type I = i_unresolved.Resolver_Value
     
-    export type O = i_resolved.Value_Resolver
-    
-    export type E = i_generic.Error
-    
-    export namespace L {
-        
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
-        
-    }
-    
-    export namespace L {
-        
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
-        
-    }
-    
-    export namespace P {
-        
-        export type definition = i_resolved.Value_
-        
-        export namespace list_cursor {
-            
-            export type O = i_resolved.Value_Resolver_List_Result_
-            
-        }
-        
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
-        
-        export namespace linked_entry {
-            
-            export type O = i_resolved.Benchmark_
-            
-        }
-        
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
-        
-        export namespace current_dictionary {
-            
-            export type O = i_resolved.Dictionary_
-            
-        }
-        
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
-        
-        export namespace current_ordered_dictionary {
-            
-            export type O = i_resolved.Dictionary_
-            
-        }
-        
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
-        
-        export type signature = i_resolved.Signature_
-        
-        export namespace schema_imports {
-            
-            export type O = i_resolved.Schema_Imports_
-            
-        }
-        
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
-        
-        export namespace resolver_imports {
-            
-            export type O = i_resolved.Resolver_Imports_
-            
-        }
-        
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
-        
-        export type signatures = i_resolved.Signatures_
-        
-        export type modules = i_resolved.Modules_
-        
-        export namespace option_constraints {
-            
-            export type O = i_resolved.Option_Constraint_Resolvers_
-            
-        }
-        
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
-        
-    }
-    
-}
-
-export type Value_Resolver_ = (
-    context: Value_Resolver_.I,
-    abort: _pi.Abort<Value_Resolver_.E>,
-    lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_.L.parent_sibling_property_resolvers>
-    },
-    parameters: {
-        readonly 'definition': Value_Resolver_.P.definition
-        readonly 'list cursor': Value_Resolver_.P.list_cursor
-        readonly 'linked entry': Value_Resolver_.P.linked_entry
-        readonly 'current dictionary': Value_Resolver_.P.current_dictionary
-        readonly 'current ordered dictionary': Value_Resolver_.P.current_ordered_dictionary
-        readonly 'signature': Value_Resolver_.P.signature
-        readonly 'schema imports': Value_Resolver_.P.schema_imports
-        readonly 'resolver imports': Value_Resolver_.P.resolver_imports
-        readonly 'signatures': Value_Resolver_.P.signatures
-        readonly 'modules': Value_Resolver_.P.modules
-        readonly 'option constraints': Value_Resolver_.P.option_constraints
-    },
-) => Value_Resolver_.O
-
-export namespace Possible_Value_Selection_ {
-    
-    export type I = i_unresolved.Possible_Value_Selection
-    
-    export type O = i_resolved.Possible_Value_Selection
+    export type O = i_resolved.Resolver_Value
     
     export type E = i_generic.Error
     
@@ -659,7 +547,7 @@ export namespace Possible_Value_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -681,7 +569,7 @@ export namespace Possible_Value_Selection_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -699,13 +587,13 @@ export namespace Possible_Value_Selection_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -715,33 +603,33 @@ export namespace Possible_Value_Selection_ {
     
 }
 
-export type Possible_Value_Selection_ = (
-    context: Possible_Value_Selection_.I,
-    abort: _pi.Abort<Possible_Value_Selection_.E>,
+export type Resolver_Value_ = (
+    context: Resolver_Value_.I,
+    abort: _pi.Abort<Resolver_Value_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Possible_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Possible_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Value_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Value_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Possible_Value_Selection_.P.definition
-        readonly 'list cursor': Possible_Value_Selection_.P.list_cursor
-        readonly 'linked entry': Possible_Value_Selection_.P.linked_entry
-        readonly 'current dictionary': Possible_Value_Selection_.P.current_dictionary
-        readonly 'current ordered dictionary': Possible_Value_Selection_.P.current_ordered_dictionary
-        readonly 'signature': Possible_Value_Selection_.P.signature
-        readonly 'schema imports': Possible_Value_Selection_.P.schema_imports
-        readonly 'resolver imports': Possible_Value_Selection_.P.resolver_imports
-        readonly 'signatures': Possible_Value_Selection_.P.signatures
-        readonly 'modules': Possible_Value_Selection_.P.modules
-        readonly 'option constraints': Possible_Value_Selection_.P.option_constraints
+        readonly 'definition': Resolver_Value_.P.definition
+        readonly 'list cursor': Resolver_Value_.P.list_cursor
+        readonly 'linked entry': Resolver_Value_.P.linked_entry
+        readonly 'current dictionary': Resolver_Value_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Value_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Value_.P.signature
+        readonly 'schema imports': Resolver_Value_.P.schema_imports
+        readonly 'resolver imports': Resolver_Value_.P.resolver_imports
+        readonly 'signatures': Resolver_Value_.P.signatures
+        readonly 'modules': Resolver_Value_.P.modules
+        readonly 'option constraints': Resolver_Value_.P.option_constraints
     },
-) => Possible_Value_Selection_.O
+) => Resolver_Value_.O
 
-export namespace Guaranteed_Value_Selection_ {
+export namespace Resolver_Possible_Value_Selection_ {
     
-    export type I = i_unresolved.Guaranteed_Value_Selection
+    export type I = i_unresolved.Resolver_Possible_Value_Selection
     
-    export type O = i_resolved.Guaranteed_Value_Selection
+    export type O = i_resolved.Resolver_Possible_Value_Selection
     
     export type E = i_generic.Error
     
@@ -771,7 +659,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -793,7 +681,7 @@ export namespace Guaranteed_Value_Selection_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -811,13 +699,13 @@ export namespace Guaranteed_Value_Selection_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -827,33 +715,33 @@ export namespace Guaranteed_Value_Selection_ {
     
 }
 
-export type Guaranteed_Value_Selection_ = (
-    context: Guaranteed_Value_Selection_.I,
-    abort: _pi.Abort<Guaranteed_Value_Selection_.E>,
+export type Resolver_Possible_Value_Selection_ = (
+    context: Resolver_Possible_Value_Selection_.I,
+    abort: _pi.Abort<Resolver_Possible_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Guaranteed_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Possible_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Possible_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Guaranteed_Value_Selection_.P.definition
-        readonly 'list cursor': Guaranteed_Value_Selection_.P.list_cursor
-        readonly 'linked entry': Guaranteed_Value_Selection_.P.linked_entry
-        readonly 'current dictionary': Guaranteed_Value_Selection_.P.current_dictionary
-        readonly 'current ordered dictionary': Guaranteed_Value_Selection_.P.current_ordered_dictionary
-        readonly 'signature': Guaranteed_Value_Selection_.P.signature
-        readonly 'schema imports': Guaranteed_Value_Selection_.P.schema_imports
-        readonly 'resolver imports': Guaranteed_Value_Selection_.P.resolver_imports
-        readonly 'signatures': Guaranteed_Value_Selection_.P.signatures
-        readonly 'modules': Guaranteed_Value_Selection_.P.modules
-        readonly 'option constraints': Guaranteed_Value_Selection_.P.option_constraints
+        readonly 'definition': Resolver_Possible_Value_Selection_.P.definition
+        readonly 'list cursor': Resolver_Possible_Value_Selection_.P.list_cursor
+        readonly 'linked entry': Resolver_Possible_Value_Selection_.P.linked_entry
+        readonly 'current dictionary': Resolver_Possible_Value_Selection_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Possible_Value_Selection_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Possible_Value_Selection_.P.signature
+        readonly 'schema imports': Resolver_Possible_Value_Selection_.P.schema_imports
+        readonly 'resolver imports': Resolver_Possible_Value_Selection_.P.resolver_imports
+        readonly 'signatures': Resolver_Possible_Value_Selection_.P.signatures
+        readonly 'modules': Resolver_Possible_Value_Selection_.P.modules
+        readonly 'option constraints': Resolver_Possible_Value_Selection_.P.option_constraints
     },
-) => Guaranteed_Value_Selection_.O
+) => Resolver_Possible_Value_Selection_.O
 
-export namespace Benchmark_ {
+export namespace Resolver_Guaranteed_Value_Selection_ {
     
-    export type I = i_unresolved.Benchmark
+    export type I = i_unresolved.Resolver_Guaranteed_Value_Selection
     
-    export type O = i_resolved.Benchmark
+    export type O = i_resolved.Resolver_Guaranteed_Value_Selection
     
     export type E = i_generic.Error
     
@@ -883,7 +771,7 @@ export namespace Benchmark_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -905,7 +793,7 @@ export namespace Benchmark_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -923,13 +811,13 @@ export namespace Benchmark_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -939,33 +827,33 @@ export namespace Benchmark_ {
     
 }
 
-export type Benchmark_ = (
-    context: Benchmark_.I,
-    abort: _pi.Abort<Benchmark_.E>,
+export type Resolver_Guaranteed_Value_Selection_ = (
+    context: Resolver_Guaranteed_Value_Selection_.I,
+    abort: _pi.Abort<Resolver_Guaranteed_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Benchmark_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Benchmark_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Benchmark_.P.definition
-        readonly 'list cursor': Benchmark_.P.list_cursor
-        readonly 'linked entry': Benchmark_.P.linked_entry
-        readonly 'current dictionary': Benchmark_.P.current_dictionary
-        readonly 'current ordered dictionary': Benchmark_.P.current_ordered_dictionary
-        readonly 'signature': Benchmark_.P.signature
-        readonly 'schema imports': Benchmark_.P.schema_imports
-        readonly 'resolver imports': Benchmark_.P.resolver_imports
-        readonly 'signatures': Benchmark_.P.signatures
-        readonly 'modules': Benchmark_.P.modules
-        readonly 'option constraints': Benchmark_.P.option_constraints
+        readonly 'definition': Resolver_Guaranteed_Value_Selection_.P.definition
+        readonly 'list cursor': Resolver_Guaranteed_Value_Selection_.P.list_cursor
+        readonly 'linked entry': Resolver_Guaranteed_Value_Selection_.P.linked_entry
+        readonly 'current dictionary': Resolver_Guaranteed_Value_Selection_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Guaranteed_Value_Selection_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Guaranteed_Value_Selection_.P.signature
+        readonly 'schema imports': Resolver_Guaranteed_Value_Selection_.P.schema_imports
+        readonly 'resolver imports': Resolver_Guaranteed_Value_Selection_.P.resolver_imports
+        readonly 'signatures': Resolver_Guaranteed_Value_Selection_.P.signatures
+        readonly 'modules': Resolver_Guaranteed_Value_Selection_.P.modules
+        readonly 'option constraints': Resolver_Guaranteed_Value_Selection_.P.option_constraints
     },
-) => Benchmark_.O
+) => Resolver_Guaranteed_Value_Selection_.O
 
-export namespace Optional_Value_Initialization_ {
+export namespace Resolver_Benchmark_ {
     
-    export type I = i_unresolved.Optional_Value_Initialization
+    export type I = i_unresolved.Resolver_Benchmark
     
-    export type O = i_resolved.Optional_Value_Initialization
+    export type O = i_resolved.Resolver_Benchmark
     
     export type E = i_generic.Error
     
@@ -995,7 +883,7 @@ export namespace Optional_Value_Initialization_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -1017,7 +905,7 @@ export namespace Optional_Value_Initialization_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -1035,13 +923,13 @@ export namespace Optional_Value_Initialization_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -1051,33 +939,33 @@ export namespace Optional_Value_Initialization_ {
     
 }
 
-export type Optional_Value_Initialization_ = (
-    context: Optional_Value_Initialization_.I,
-    abort: _pi.Abort<Optional_Value_Initialization_.E>,
+export type Resolver_Benchmark_ = (
+    context: Resolver_Benchmark_.I,
+    abort: _pi.Abort<Resolver_Benchmark_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Optional_Value_Initialization_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Benchmark_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Benchmark_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Optional_Value_Initialization_.P.definition
-        readonly 'list cursor': Optional_Value_Initialization_.P.list_cursor
-        readonly 'linked entry': Optional_Value_Initialization_.P.linked_entry
-        readonly 'current dictionary': Optional_Value_Initialization_.P.current_dictionary
-        readonly 'current ordered dictionary': Optional_Value_Initialization_.P.current_ordered_dictionary
-        readonly 'signature': Optional_Value_Initialization_.P.signature
-        readonly 'schema imports': Optional_Value_Initialization_.P.schema_imports
-        readonly 'resolver imports': Optional_Value_Initialization_.P.resolver_imports
-        readonly 'signatures': Optional_Value_Initialization_.P.signatures
-        readonly 'modules': Optional_Value_Initialization_.P.modules
-        readonly 'option constraints': Optional_Value_Initialization_.P.option_constraints
+        readonly 'definition': Resolver_Benchmark_.P.definition
+        readonly 'list cursor': Resolver_Benchmark_.P.list_cursor
+        readonly 'linked entry': Resolver_Benchmark_.P.linked_entry
+        readonly 'current dictionary': Resolver_Benchmark_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Benchmark_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Benchmark_.P.signature
+        readonly 'schema imports': Resolver_Benchmark_.P.schema_imports
+        readonly 'resolver imports': Resolver_Benchmark_.P.resolver_imports
+        readonly 'signatures': Resolver_Benchmark_.P.signatures
+        readonly 'modules': Resolver_Benchmark_.P.modules
+        readonly 'option constraints': Resolver_Benchmark_.P.option_constraints
     },
-) => Optional_Value_Initialization_.O
+) => Resolver_Benchmark_.O
 
-export namespace Lookup_Selection_ {
+export namespace Resolver_Optional_Value_Initialization_ {
     
-    export type I = i_unresolved.Lookup_Selection
+    export type I = i_unresolved.Resolver_Optional_Value_Initialization
     
-    export type O = i_resolved.Lookup_Selection
+    export type O = i_resolved.Resolver_Optional_Value_Initialization
     
     export type E = i_generic.Error
     
@@ -1107,7 +995,7 @@ export namespace Lookup_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -1129,7 +1017,7 @@ export namespace Lookup_Selection_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -1147,13 +1035,13 @@ export namespace Lookup_Selection_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -1163,33 +1051,33 @@ export namespace Lookup_Selection_ {
     
 }
 
-export type Lookup_Selection_ = (
-    context: Lookup_Selection_.I,
-    abort: _pi.Abort<Lookup_Selection_.E>,
+export type Resolver_Optional_Value_Initialization_ = (
+    context: Resolver_Optional_Value_Initialization_.I,
+    abort: _pi.Abort<Resolver_Optional_Value_Initialization_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Lookup_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Lookup_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Lookup_Selection_.P.definition
-        readonly 'list cursor': Lookup_Selection_.P.list_cursor
-        readonly 'linked entry': Lookup_Selection_.P.linked_entry
-        readonly 'current dictionary': Lookup_Selection_.P.current_dictionary
-        readonly 'current ordered dictionary': Lookup_Selection_.P.current_ordered_dictionary
-        readonly 'signature': Lookup_Selection_.P.signature
-        readonly 'schema imports': Lookup_Selection_.P.schema_imports
-        readonly 'resolver imports': Lookup_Selection_.P.resolver_imports
-        readonly 'signatures': Lookup_Selection_.P.signatures
-        readonly 'modules': Lookup_Selection_.P.modules
-        readonly 'option constraints': Lookup_Selection_.P.option_constraints
+        readonly 'definition': Resolver_Optional_Value_Initialization_.P.definition
+        readonly 'list cursor': Resolver_Optional_Value_Initialization_.P.list_cursor
+        readonly 'linked entry': Resolver_Optional_Value_Initialization_.P.linked_entry
+        readonly 'current dictionary': Resolver_Optional_Value_Initialization_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Optional_Value_Initialization_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Optional_Value_Initialization_.P.signature
+        readonly 'schema imports': Resolver_Optional_Value_Initialization_.P.schema_imports
+        readonly 'resolver imports': Resolver_Optional_Value_Initialization_.P.resolver_imports
+        readonly 'signatures': Resolver_Optional_Value_Initialization_.P.signatures
+        readonly 'modules': Resolver_Optional_Value_Initialization_.P.modules
+        readonly 'option constraints': Resolver_Optional_Value_Initialization_.P.option_constraints
     },
-) => Lookup_Selection_.O
+) => Resolver_Optional_Value_Initialization_.O
 
-export namespace Option_Constraint_Resolvers_ {
+export namespace Resolver_Lookup_Selection_ {
     
-    export type I = i_unresolved.Option_Constraint_Resolvers
+    export type I = i_unresolved.Resolver_Lookup_Selection
     
-    export type O = i_resolved.Option_Constraint_Resolvers
+    export type O = i_resolved.Resolver_Lookup_Selection
     
     export type E = i_generic.Error
     
@@ -1219,7 +1107,7 @@ export namespace Option_Constraint_Resolvers_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -1241,7 +1129,7 @@ export namespace Option_Constraint_Resolvers_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -1259,13 +1147,13 @@ export namespace Option_Constraint_Resolvers_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -1275,27 +1163,139 @@ export namespace Option_Constraint_Resolvers_ {
     
 }
 
-export type Option_Constraint_Resolvers_ = (
-    context: Option_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Option_Constraint_Resolvers_.E>,
+export type Resolver_Lookup_Selection_ = (
+    context: Resolver_Lookup_Selection_.I,
+    abort: _pi.Abort<Resolver_Lookup_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Option_Constraint_Resolvers_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Option_Constraint_Resolvers_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Lookup_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Lookup_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Option_Constraint_Resolvers_.P.definition
-        readonly 'list cursor': Option_Constraint_Resolvers_.P.list_cursor
-        readonly 'linked entry': Option_Constraint_Resolvers_.P.linked_entry
-        readonly 'current dictionary': Option_Constraint_Resolvers_.P.current_dictionary
-        readonly 'current ordered dictionary': Option_Constraint_Resolvers_.P.current_ordered_dictionary
-        readonly 'signature': Option_Constraint_Resolvers_.P.signature
-        readonly 'schema imports': Option_Constraint_Resolvers_.P.schema_imports
-        readonly 'resolver imports': Option_Constraint_Resolvers_.P.resolver_imports
-        readonly 'signatures': Option_Constraint_Resolvers_.P.signatures
-        readonly 'modules': Option_Constraint_Resolvers_.P.modules
-        readonly 'option constraints': Option_Constraint_Resolvers_.P.option_constraints
+        readonly 'definition': Resolver_Lookup_Selection_.P.definition
+        readonly 'list cursor': Resolver_Lookup_Selection_.P.list_cursor
+        readonly 'linked entry': Resolver_Lookup_Selection_.P.linked_entry
+        readonly 'current dictionary': Resolver_Lookup_Selection_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Lookup_Selection_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Lookup_Selection_.P.signature
+        readonly 'schema imports': Resolver_Lookup_Selection_.P.schema_imports
+        readonly 'resolver imports': Resolver_Lookup_Selection_.P.resolver_imports
+        readonly 'signatures': Resolver_Lookup_Selection_.P.signatures
+        readonly 'modules': Resolver_Lookup_Selection_.P.modules
+        readonly 'option constraints': Resolver_Lookup_Selection_.P.option_constraints
     },
-) => Option_Constraint_Resolvers_.O
+) => Resolver_Lookup_Selection_.O
+
+export namespace Resolver_Option_Constraints_ {
+    
+    export type I = i_unresolved.Resolver_Option_Constraints
+    
+    export type O = i_resolved.Resolver_Option_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        
+    }
+    
+    export namespace L {
+        
+        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        
+    }
+    
+    export namespace P {
+        
+        export type definition = i_resolved.Value_
+        
+        export namespace list_cursor {
+            
+            export type O = i_resolved.Value_Resolver_List_Result_
+            
+        }
+        
+        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        
+        export namespace linked_entry {
+            
+            export type O = i_resolved.Resolver_Benchmark_
+            
+        }
+        
+        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        
+        export namespace current_dictionary {
+            
+            export type O = i_resolved.Dictionary_
+            
+        }
+        
+        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        
+        export namespace current_ordered_dictionary {
+            
+            export type O = i_resolved.Dictionary_
+            
+        }
+        
+        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        
+        export type signature = i_resolved.Resolver_Signature_
+        
+        export namespace schema_imports {
+            
+            export type O = i_resolved.Schema_Imports_
+            
+        }
+        
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        
+        export type signatures = i_resolved.Resolver_Signatures_
+        
+        export type modules = i_resolved.Modules_
+        
+        export namespace option_constraints {
+            
+            export type O = i_resolved.Resolver_Option_Constraints_
+            
+        }
+        
+        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        
+    }
+    
+}
+
+export type Resolver_Option_Constraints_ = (
+    context: Resolver_Option_Constraints_.I,
+    abort: _pi.Abort<Resolver_Option_Constraints_.E>,
+    lookups: {
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Option_Constraints_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Option_Constraints_.L.parent_sibling_property_resolvers>
+    },
+    parameters: {
+        readonly 'definition': Resolver_Option_Constraints_.P.definition
+        readonly 'list cursor': Resolver_Option_Constraints_.P.list_cursor
+        readonly 'linked entry': Resolver_Option_Constraints_.P.linked_entry
+        readonly 'current dictionary': Resolver_Option_Constraints_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Option_Constraints_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Option_Constraints_.P.signature
+        readonly 'schema imports': Resolver_Option_Constraints_.P.schema_imports
+        readonly 'resolver imports': Resolver_Option_Constraints_.P.resolver_imports
+        readonly 'signatures': Resolver_Option_Constraints_.P.signatures
+        readonly 'modules': Resolver_Option_Constraints_.P.modules
+        readonly 'option constraints': Resolver_Option_Constraints_.P.option_constraints
+    },
+) => Resolver_Option_Constraints_.O
 
 export namespace Value_Resolver_List_Result_ {
     
@@ -1370,7 +1370,7 @@ export namespace Value_Resolver_Group_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Benchmark_
+            export type O = i_resolved.Resolver_Benchmark_
             
         }
         
@@ -1392,7 +1392,7 @@ export namespace Value_Resolver_Group_ {
         
         export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Signature_
+        export type signature = i_resolved.Resolver_Signature_
         
         export namespace schema_imports {
             
@@ -1410,13 +1410,13 @@ export namespace Value_Resolver_Group_ {
         
         export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Option_Constraint_Resolvers_
+            export type O = i_resolved.Resolver_Option_Constraints_
             
         }
         
@@ -1448,36 +1448,11 @@ export type Value_Resolver_Group_ = (
     },
 ) => Value_Resolver_Group_.O
 
-export namespace Relative_Value_Selection_ {
+export namespace Resolver_Relative_Value_Selection_ {
     
-    export type I = i_unresolved.Relative_Value_Selection
+    export type I = i_unresolved.Resolver_Relative_Value_Selection
     
-    export type O = i_resolved.Relative_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type value = i_resolved.Value_
-        
-    }
-    
-}
-
-export type Relative_Value_Selection_ = (
-    context: Relative_Value_Selection_.I,
-    abort: _pi.Abort<Relative_Value_Selection_.E>,
-    lookups: null,
-    parameters: {
-        readonly 'value': Relative_Value_Selection_.P.value
-    },
-) => Relative_Value_Selection_.O
-
-export namespace Constraint_ {
-    
-    export type I = i_unresolved.Constraint
-    
-    export type O = i_resolved.Constraint
+    export type O = i_resolved.Resolver_Relative_Value_Selection
     
     export type E = i_generic.Error
     
@@ -1489,14 +1464,39 @@ export namespace Constraint_ {
     
 }
 
-export type Constraint_ = (
-    context: Constraint_.I,
-    abort: _pi.Abort<Constraint_.E>,
+export type Resolver_Relative_Value_Selection_ = (
+    context: Resolver_Relative_Value_Selection_.I,
+    abort: _pi.Abort<Resolver_Relative_Value_Selection_.E>,
     lookups: null,
     parameters: {
-        readonly 'value': Constraint_.P.value
+        readonly 'value': Resolver_Relative_Value_Selection_.P.value
     },
-) => Constraint_.O
+) => Resolver_Relative_Value_Selection_.O
+
+export namespace Resolver_Contraint_ {
+    
+    export type I = i_unresolved.Resolver_Contraint
+    
+    export type O = i_resolved.Resolver_Contraint
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type value = i_resolved.Value_
+        
+    }
+    
+}
+
+export type Resolver_Contraint_ = (
+    context: Resolver_Contraint_.I,
+    abort: _pi.Abort<Resolver_Contraint_.E>,
+    lookups: null,
+    parameters: {
+        readonly 'value': Resolver_Contraint_.P.value
+    },
+) => Resolver_Contraint_.O
 
 export namespace Optional_Value_Constraint_Resolvers_ {
     
@@ -1523,11 +1523,11 @@ export type Optional_Value_Constraint_Resolvers_ = (
     },
 ) => Optional_Value_Constraint_Resolvers_.O
 
-export namespace Value_Constraint_Resolvers_ {
+export namespace Resolver_Value_Constraints_ {
     
-    export type I = i_unresolved.Value_Constraint_Resolvers
+    export type I = i_unresolved.Resolver_Value_Constraints
     
-    export type O = i_resolved.Value_Constraint_Resolvers
+    export type O = i_resolved.Resolver_Value_Constraints
     
     export type E = i_generic.Error
     
@@ -1539,14 +1539,14 @@ export namespace Value_Constraint_Resolvers_ {
     
 }
 
-export type Value_Constraint_Resolvers_ = (
-    context: Value_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Value_Constraint_Resolvers_.E>,
+export type Resolver_Value_Constraints_ = (
+    context: Resolver_Value_Constraints_.I,
+    abort: _pi.Abort<Resolver_Value_Constraints_.E>,
     lookups: null,
     parameters: {
-        readonly 'value': Value_Constraint_Resolvers_.P.value
+        readonly 'value': Resolver_Value_Constraints_.P.value
     },
-) => Value_Constraint_Resolvers_.O
+) => Resolver_Value_Constraints_.O
 
 export namespace Value_Constraint_Resolver_ {
     
@@ -1558,7 +1558,7 @@ export namespace Value_Constraint_Resolver_ {
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Value_Constraint_Resolvers_.D
+        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
         
     }
     
@@ -1608,11 +1608,11 @@ export type Resolver_ = (
     },
 ) => Resolver_.O
 
-export namespace Signature_Parameters_ {
+export namespace Resolver_Signature_Parameters_ {
     
-    export type I = i_unresolved.Signature_Parameters
+    export type I = i_unresolved.Resolver_Signature_Parameters
     
-    export type O = i_resolved.Signature_Parameters
+    export type O = i_resolved.Resolver_Signature_Parameters
     
     export type E = i_generic.Error
     
@@ -1626,27 +1626,27 @@ export namespace Signature_Parameters_ {
     
 }
 
-export type Signature_Parameters_ = (
-    context: Signature_Parameters_.I,
-    abort: _pi.Abort<Signature_Parameters_.E>,
+export type Resolver_Signature_Parameters_ = (
+    context: Resolver_Signature_Parameters_.I,
+    abort: _pi.Abort<Resolver_Signature_Parameters_.E>,
     lookups: null,
     parameters: {
-        readonly 'modules': Signature_Parameters_.P.modules
-        readonly 'imports': Signature_Parameters_.P.imports
+        readonly 'modules': Resolver_Signature_Parameters_.P.modules
+        readonly 'imports': Resolver_Signature_Parameters_.P.imports
     },
-) => Signature_Parameters_.O
+) => Resolver_Signature_Parameters_.O
 
-export namespace Signature_ {
+export namespace Resolver_Signature_ {
     
-    export type I = i_unresolved.Signature
+    export type I = i_unresolved.Resolver_Signature
     
-    export type O = i_resolved.Signature
+    export type O = i_resolved.Resolver_Signature
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_signatures = i_resolved.Signatures_.D
+        export type sibling_signatures = i_resolved.Resolver_Signatures_.D
         
     }
     
@@ -1662,24 +1662,24 @@ export namespace Signature_ {
     
 }
 
-export type Signature_ = (
-    context: Signature_.I,
-    abort: _pi.Abort<Signature_.E>,
+export type Resolver_Signature_ = (
+    context: Resolver_Signature_.I,
+    abort: _pi.Abort<Resolver_Signature_.E>,
     lookups: {
-        readonly 'sibling signatures': _pi.lookup.Acyclic<Signature_.L.sibling_signatures>
+        readonly 'sibling signatures': _pi.lookup.Acyclic<Resolver_Signature_.L.sibling_signatures>
     },
     parameters: {
-        readonly 'modules': Signature_.P.modules
-        readonly 'module': Signature_.P.module_
-        readonly 'imports': Signature_.P.imports
+        readonly 'modules': Resolver_Signature_.P.modules
+        readonly 'module': Resolver_Signature_.P.module_
+        readonly 'imports': Resolver_Signature_.P.imports
     },
-) => Signature_.O
+) => Resolver_Signature_.O
 
-export namespace Signatures_ {
+export namespace Resolver_Signatures_ {
     
-    export type I = i_unresolved.Signatures
+    export type I = i_unresolved.Resolver_Signatures
     
-    export type O = i_resolved.Signatures
+    export type O = i_resolved.Resolver_Signatures
     
     export type E = i_generic.Error
     
@@ -1693,27 +1693,27 @@ export namespace Signatures_ {
     
 }
 
-export type Signatures_ = (
-    context: Signatures_.I,
-    abort: _pi.Abort<Signatures_.E>,
+export type Resolver_Signatures_ = (
+    context: Resolver_Signatures_.I,
+    abort: _pi.Abort<Resolver_Signatures_.E>,
     lookups: null,
     parameters: {
-        readonly 'modules': Signatures_.P.modules
-        readonly 'imports': Signatures_.P.imports
+        readonly 'modules': Resolver_Signatures_.P.modules
+        readonly 'imports': Resolver_Signatures_.P.imports
     },
-) => Signatures_.O
+) => Resolver_Signatures_.O
 
-export namespace Module_Resolvers_ {
+export namespace Resolver_Modules_ {
     
-    export type I = i_unresolved.Module_Resolvers
+    export type I = i_unresolved.Resolver_Modules
     
-    export type O = i_resolved.Module_Resolvers
+    export type O = i_resolved.Resolver_Modules
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type signatures = i_resolved.Signatures_
+        export type signatures = i_resolved.Resolver_Signatures_
         
         export type modules = i_resolved.Modules_
         
@@ -1725,17 +1725,17 @@ export namespace Module_Resolvers_ {
     
 }
 
-export type Module_Resolvers_ = (
-    context: Module_Resolvers_.I,
-    abort: _pi.Abort<Module_Resolvers_.E>,
+export type Resolver_Modules_ = (
+    context: Resolver_Modules_.I,
+    abort: _pi.Abort<Resolver_Modules_.E>,
     lookups: null,
     parameters: {
-        readonly 'signatures': Module_Resolvers_.P.signatures
-        readonly 'modules': Module_Resolvers_.P.modules
-        readonly 'schema imports': Module_Resolvers_.P.schema_imports
-        readonly 'resolver imports': Module_Resolvers_.P.resolver_imports
+        readonly 'signatures': Resolver_Modules_.P.signatures
+        readonly 'modules': Resolver_Modules_.P.modules
+        readonly 'schema imports': Resolver_Modules_.P.schema_imports
+        readonly 'resolver imports': Resolver_Modules_.P.resolver_imports
     },
-) => Module_Resolvers_.O
+) => Resolver_Modules_.O
 
 export namespace Schemas_ {
     
@@ -1913,7 +1913,7 @@ export namespace Reference_To_Value_Constraint_Resolver_ {
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Value_Constraint_Resolvers_.D
+        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
         
     }
     
@@ -1987,25 +1987,25 @@ export {
     Option_Constraints_ as Option_Constraints, 
     Module_ as Module, 
     Value_Path_ as Value_Path, 
-    Value_Resolver_ as Value_Resolver, 
-    Possible_Value_Selection_ as Possible_Value_Selection, 
-    Guaranteed_Value_Selection_ as Guaranteed_Value_Selection, 
-    Benchmark_ as Benchmark, 
-    Optional_Value_Initialization_ as Optional_Value_Initialization, 
-    Lookup_Selection_ as Lookup_Selection, 
-    Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Resolver_Value_ as Resolver_Value, 
+    Resolver_Possible_Value_Selection_ as Resolver_Possible_Value_Selection, 
+    Resolver_Guaranteed_Value_Selection_ as Resolver_Guaranteed_Value_Selection, 
+    Resolver_Benchmark_ as Resolver_Benchmark, 
+    Resolver_Optional_Value_Initialization_ as Resolver_Optional_Value_Initialization, 
+    Resolver_Lookup_Selection_ as Resolver_Lookup_Selection, 
+    Resolver_Option_Constraints_ as Resolver_Option_Constraints, 
     Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
     Value_Resolver_Group_ as Value_Resolver_Group, 
-    Relative_Value_Selection_ as Relative_Value_Selection, 
-    Constraint_ as Constraint, 
+    Resolver_Relative_Value_Selection_ as Resolver_Relative_Value_Selection, 
+    Resolver_Contraint_ as Resolver_Contraint, 
     Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
-    Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
+    Resolver_Value_Constraints_ as Resolver_Value_Constraints, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Resolver_ as Resolver, 
-    Signature_Parameters_ as Signature_Parameters, 
-    Signature_ as Signature, 
-    Signatures_ as Signatures, 
-    Module_Resolvers_ as Module_Resolvers, 
+    Resolver_Signature_Parameters_ as Resolver_Signature_Parameters, 
+    Resolver_Signature_ as Resolver_Signature, 
+    Resolver_Signatures_ as Resolver_Signatures, 
+    Resolver_Modules_ as Resolver_Modules, 
     Schemas_ as Schemas, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
