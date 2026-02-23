@@ -1,16 +1,21 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_in from "../../../../interface/to_be_generated/load_pareto_file"
+//data types
+import * as d_in from "../../../../interface/to_be_generated/load_file"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 export namespace signatures {
     export type Error = _pi.Transformer<d_in.Error, d_out.Phrase>
 }
 
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+//dependencies
 import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
-import * as t_load_pareto_document from "../load_pareto_document/fountain_pen"
+import * as t_load_pareto_document from "../load_document/fountain_pen"
+
+//shorthands
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+
 
 export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
     switch ($[0]) {

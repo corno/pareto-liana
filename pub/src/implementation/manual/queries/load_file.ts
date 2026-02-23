@@ -4,17 +4,17 @@ import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 import * as signatures from "../../../interface/signatures"
 
 //data types
-import * as d from "../../../interface/to_be_generated/load_pareto_file"
+import * as d from "../../../interface/to_be_generated/load_file"
 
 //depencencies
-import { $$x as q_load_pareto_document } from "./load_pareto_document"
+import { $$x as q_load_document } from "./load_document"
 
-export const $$x: signatures.queries.load_pareto_file = _p.query_function(
+export const $$x: signatures.queries.load_file = _p.query_function(
     ($p, $qr) => $qr['read file'](
         $p['file path'],
         ($): d.Error => ['read file', $]
     ).query_without_error_transformation(
-        ($) => q_load_pareto_document(
+        ($) => q_load_document(
             {
                 'read file': $qr['read file'],
             },

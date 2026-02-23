@@ -6,11 +6,11 @@ import * as resources_fountain_pen from "pareto-fountain-pen-file-structure/dist
 
 export namespace queries {
 
-    export type load_pareto_document = _pi.Query_Function<resources.queries.load_pareto_document, {
+    export type load_document = _pi.Query_Function<resources.queries.load_document, {
         'read file': resources_pareto.queries.read_file
     }>
 
-    export type load_pareto_file = _pi.Query_Function<resources.queries.load_pareto_file, {
+    export type load_file = _pi.Query_Function<resources.queries.load_file, {
         'read file': resources_pareto.queries.read_file
     }>
 

@@ -29,10 +29,16 @@ export const $: g_.Modules = modules(
                 })),
                 "concrete": toption(t.group({
                     "type": prop(t.state({
-                        "dictionary": toption(t.dictionary(t.optional(t.component("Value")))),
+                        "dictionary": toption(t.list(t.group({
+                            "id": prop(t.text_local(text('single line'))),
+                            "value": prop(t.optional(t.component("Value")))
+                        }))),
                         "group": toption(t.state({
                             "concise": toption(t.list(t.component("Value"))),
-                            "verbose": toption(t.dictionary(t.optional(t.component("Value")))),
+                            "verbose": toption(t.list(t.group({
+                                "id": prop(t.text_local(text('single line'))),
+                                "value": prop(t.optional(t.component("Value")))
+                            }))),
                         })),
                         "list": toption(t.list(t.component("Value"))),
                         "nothing": toption(t.nothing()),

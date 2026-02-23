@@ -6,15 +6,15 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import * as signatures from "../../../interface/signatures"
 
 //data types
-import * as d from "../../../interface/to_be_generated/load_pareto_document"
+import * as d from "../../../interface/to_be_generated/load_document"
 
 //depencencies
 
-import { $$x as ds_unmarshall_result } from "../refiners/unmarshall_result/list_of_characters"
+import * as r_unmashall_result_from_list_of_characters from "../refiners/unmarshall_result/list_of_characters"
 import { create_node_path } from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
 
-export const $$x: signatures.queries.load_pareto_document = _p.query_function(
+export const $$x: signatures.queries.load_document = _p.query_function(
     ($p, $qr) => {
 
         const schema_path = create_node_path($p['file path'].context, { 'node': "astn-schema"})
@@ -30,7 +30,7 @@ export const $$x: signatures.queries.load_pareto_document = _p.query_function(
                 'file location': schema_path_text,
             }]
         ).refine_without_error_transformation(
-            ($, abort) => ds_unmarshall_result(
+            ($, abort) => r_unmashall_result_from_list_of_characters.Document(
                 _p_list_from_text(
                     $p.content,
                     ($) => $

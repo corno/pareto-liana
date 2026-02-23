@@ -1,7 +1,7 @@
 import * as _p from 'pareto-core/dist/assign'
 
 //data types
-import * as d_in from "../../../../interface/to_be_generated/temp_unmashall_result"
+import * as d_in from "../../../../interface/to_be_generated/unmashall_result"
 import * as d_in_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_out from "../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 
@@ -10,7 +10,7 @@ export const Optional_Node = (
     $p: null
 ): d_out.Errors => {
     return $.__decide(
-        ($) => Node($, $p),
+        ($) => Value($, $p),
         () => _p.list.literal([]), //FIXME! optional node not set is often an error
     )
 }
@@ -77,21 +77,21 @@ export const Group_Content = (
     ])
 }
 
-export const Node = (
-    $: d_in.Node,
+export const Value = (
+    $: d_in.Value,
     $p: null
 ): d_out.Errors => {
-    return _p.decide.state($.type, ($): d_out.Errors => {
+    return _p.decide.state($.unmarshalled, ($): d_out.Errors => {
         switch ($[0]) {
             case 'group': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => _p.decide.state($, ($) => {
                         switch ($[0]) {
                             case 'concise': return _p.ss($, ($) => Group_Content($.content, {
-                                'group range': $.value['<'].range
+                                'group range': $.instance['<'].range
                             }))
                             case 'verbose': return _p.ss($, ($) => Group_Content($.content, {
-                                'group range': $.value['('].range
+                                'group range': $.instance['('].range
                             }))
 
                             default: return _p.au($[0])
@@ -191,7 +191,7 @@ export const Node = (
                     case 'valid': return _p.ss($, ($): d_out.Errors => _p.list.from.list(
                         $.elements
                     ).flatten(
-                        ($) => Node($, $p)
+                        ($) => Value($, $p)
                     ))
                     case 'invalid': return _p.ss($, ($) => _p.list.literal([
                         {
@@ -233,13 +233,13 @@ export const Node = (
                 }
             }))
             case 'component': return _p.ss($, ($) => {
-                return Node($.node, $p)
+                return Value($.value, $p)
             })
             case 'optional': return _p.ss($, ($) => _p.decide.state($['found value type'], ($) => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($): d_out.Errors => _p.decide.state($, ($) => {
                         switch ($[0]) {
-                            case 'set': return _p.ss($, ($) => Node($['child node'], $p))
+                            case 'set': return _p.ss($, ($) => Value($['child node'], $p))
                             case 'not set': return _p.ss($, ($) => _p.list.literal([]))
                             default: return _p.au($[0])
                         }
@@ -272,9 +272,9 @@ export const Node = (
                                             ]))
                                             case 'set': return _p.ss($, ($) => {
                                                 {
-                                                    const xx = $.value
-                                                    return $['found state definition'].__decide(
-                                                        ($) => Node($.node, $p),
+                                                    const xx = $.instance
+                                                    return $['found option definition'].__decide(
+                                                        ($) => Value($.node, $p),
                                                         (): d_out.Errors => _p.list.literal([
                                                             {
                                                                 'range': convert_range(xx.option.range),

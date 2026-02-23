@@ -3,6 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import { st } from "../../../shorthands/schema"
 import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
 
+import { $ as x_number_types } from "./schemas/number_types/$.module.astn"
 import { $ as x_schema } from "./schemas/schema/$.module.astn"
 import { $ as x_unmarshall_errors } from "./schemas/unmarshall_errors/$.module.astn"
 import { $ as x_astn_schema } from "../astn/schemas/astn_schema/$.module.astn"
@@ -17,5 +18,6 @@ export const $: g_.Schema_Tree = st.set({
     "token": x_astn_token,
     "astn schema": x_astn_schema,
     "schema": x_schema,
+    "number types": x_number_types,
     "unmarshall errors": x_unmarshall_errors
 })

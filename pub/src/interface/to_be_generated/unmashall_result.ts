@@ -6,7 +6,7 @@ import * as d_astn_ast from "astn-core/dist/interface/generated/liana/schemas/pa
 import * as d_schema from "../generated/liana/schemas/schema/data/resolved"
 
 export type Document = {
-    'content': Node
+    'content': Value
 }
 
 export type Entry_Data = {
@@ -14,7 +14,7 @@ export type Entry_Data = {
     'node': Optional_Node
 }
 
-export type Optional_Node = _pi.Optional_Value<Node>
+export type Optional_Node = _pi.Optional_Value<Value>
 
 // export type Key_Value_Pair = {
 //     'node': Node
@@ -25,13 +25,13 @@ export type Property =
     | ['unique', Entry_Data]
     | ['multiple', _pi.List<Entry_Data>]
 
-export type Node = {
+export type Value = {
     'definition': d_schema.Value
-    'value': d_astn_ast.Value
-    'type': Node_Type //the type is determined by the definition
+    'instance': d_astn_ast.Value
+    'unmarshalled': Unmarshalled_Value_Type //the type is determined by the definition
 }
 
-export type Node_Type =
+export type Unmarshalled_Value_Type =
     | ['boolean', Boolean]
     | ['component', Component]
     | ['dictionary', Dictionary]
@@ -49,7 +49,8 @@ export type Boolean = {
     'definition': d_schema.Value.boolean_
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.text
+        'instance': d_astn_ast.Value.type_.concrete.text
+        // 'parsed': _pi.Optional_Value<boolean>
         'range': d_astn_location.Range
         'correct string type': boolean
     }]
@@ -58,14 +59,14 @@ export type Boolean = {
 
 export type Component = {
     'definition': d_schema.Value.component
-    'node': Node
+    'value': Value
 }
 
 export type Dictionary = {
     'definition': d_schema.Value.dictionary
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.dictionary
+        'instance': d_astn_ast.Value.type_.concrete.dictionary
         'entries': _pi.Dictionary<Entry>
     }]
     | ['invalid', d_astn_location.Range]
@@ -85,12 +86,12 @@ export type Group_Type =
     | ['concise', Group_Concise]
 
 export type Group_Concise = {
-    'value': d_astn_ast.Value.type_.concrete.group.concise
+    'instance': d_astn_ast.Value.type_.concrete.group.concise
     'content': Group_Content
 }
 
 export type Group_Verbose = {
-    'value': d_astn_ast.Value.type_.concrete.group.verbose
+    'instance': d_astn_ast.Value.type_.concrete.group.verbose
     'content': Group_Content
 }
 
@@ -104,8 +105,8 @@ export type List = {
     'definition': d_schema.Value.list
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.list
-        'elements': _pi.List<Node>
+        'instance': d_astn_ast.Value.type_.concrete.list
+        'elements': _pi.List<Value>
     }]
     | ['invalid', d_astn_location.Range]
 }
@@ -115,11 +116,11 @@ export type Optional = {
     'found value type':
     | ['valid',
         | ['set', {
-            'value': d_astn_ast.Value.type_.concrete.optional.set_
-            'child node': Node
+            'instance': d_astn_ast.Value.type_.concrete.optional.set_
+            'child node': Value
         }]
         | ['not set', {
-            'value': d_astn_ast.Value.type_.concrete.nothing
+            'instance': d_astn_ast.Value.type_.concrete.nothing
         }]
     ]
     | ['invalid', d_astn_location.Range]
@@ -129,37 +130,37 @@ export type Reference = {
     'definition': d_schema.Value.reference
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.text
+        'instance': d_astn_ast.Value.type_.concrete.text
     }] //FIXME
     | ['invalid', d_astn_location.Range]
 }
 
 export type State = {
     'definition': d_schema.Value.state
-    'found value type': State_found_value_type
+    'found value type': State__found_value_type
 }
 
 export type Option_Definition_Found = {
     'definition': d_schema.Value.state.options.D
-    'node': Node
+    'node': Value
 }
 
-export type State_found_value__typevalid_value__typeSG_state = {
-    'value substatus': State_found_value__typevalid_value__typeSG_state_value_substatus
+export type Option_found_value__typevalid_value__typeSG_state = {
+    'value substatus': Option_found_value__typevalid_value__typeSG_state_value_substatus
 }
 
-export type State_found_value__typevalid_value__typeSG_state_value_substatus =
+export type Option_found_value__typevalid_value__typeSG_state_value_substatus =
     | ['missing data', d_astn_ast.Structural_Token]
-    | ['set', State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set]
+    | ['set', Option_found_value__typevalid_value__typeSG_state_value_substatus_SG_set]
 
-export type State_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
-    'value': d_astn_ast.Value.type_.concrete.state.status.set_
-    'found state definition': _pi.Optional_Value<Option_Definition_Found>
+export type Option_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
+    'instance': d_astn_ast.Value.type_.concrete.state.status.set_
+    'found option definition': _pi.Optional_Value<Option_Definition_Found>
 }
 
-export type State_found_value__typevalid = {
+export type Option_found_value__typevalid = {
     'value type':
-    | ['state', State_found_value__typevalid_value__typeSG_state]
+    | ['state', Option_found_value__typevalid_value__typeSG_state]
     // | ['polyfill', { -> [ "state_name", ... ]
     //     'xx': {
     //         'node': Node,
@@ -168,8 +169,8 @@ export type State_found_value__typevalid = {
     // }]
 }
 
-export type State_found_value_type =
-    | ['valid', State_found_value__typevalid]
+export type State__found_value_type =
+    | ['valid', Option_found_value__typevalid]
     | ['invalid', d_astn_location.Range]
 
 // export type State_Error =
@@ -197,7 +198,7 @@ export type Text = {
     'definition': d_schema.Value.text
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.text
+        'instance': d_astn_ast.Value.type_.concrete.text
     }]
     | ['invalid', d_astn_location.Range]
 }
@@ -206,7 +207,7 @@ export type Number = {
     'definition': d_schema.Value.number_
     'found value type':
     | ['valid', {
-        'value': d_astn_ast.Value.type_.concrete.text
+        'instance': d_astn_ast.Value.type_.concrete.text
         'range': d_astn_location.Range
         'correct string type': boolean
     }]
