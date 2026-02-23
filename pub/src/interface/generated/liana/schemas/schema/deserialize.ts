@@ -763,11 +763,11 @@ export type Resolver_Lookup_Selection_ = (
     },
 ) => Resolver_Lookup_Selection_.O
 
-export namespace Resolver_Contraint_ {
+export namespace Resolver_Constraint_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Resolver_Contraint
+    export type O = i_out.Resolver_Constraint
     
     export type E = i_generic.Error
     
@@ -781,14 +781,14 @@ export namespace Resolver_Contraint_ {
     
 }
 
-export type Resolver_Contraint_ = (
-    context: Resolver_Contraint_.I,
-    abort: _pi.Abort<Resolver_Contraint_.E>,
+export type Resolver_Constraint_ = (
+    context: Resolver_Constraint_.I,
+    abort: _pi.Abort<Resolver_Constraint_.E>,
     parameters: {
-        readonly 'document resource identifier': Resolver_Contraint_.P.document_resource_identifier
-        readonly 'tab size': Resolver_Contraint_.P.tab_size
+        readonly 'document resource identifier': Resolver_Constraint_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Constraint_.P.tab_size
     },
-) => Resolver_Contraint_.O
+) => Resolver_Constraint_.O
 
 export namespace Resolver_Option_Constraints_ {
     
@@ -817,11 +817,11 @@ export type Resolver_Option_Constraints_ = (
     },
 ) => Resolver_Option_Constraints_.O
 
-export namespace Optional_Value_Constraint_Resolvers_ {
+export namespace Resolver_Optional_Value_Constraints_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Optional_Value_Constraint_Resolvers
+    export type O = i_out.Resolver_Optional_Value_Constraints
     
     export type E = i_generic.Error
     
@@ -835,14 +835,14 @@ export namespace Optional_Value_Constraint_Resolvers_ {
     
 }
 
-export type Optional_Value_Constraint_Resolvers_ = (
-    context: Optional_Value_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Optional_Value_Constraint_Resolvers_.E>,
+export type Resolver_Optional_Value_Constraints_ = (
+    context: Resolver_Optional_Value_Constraints_.I,
+    abort: _pi.Abort<Resolver_Optional_Value_Constraints_.E>,
     parameters: {
-        readonly 'document resource identifier': Optional_Value_Constraint_Resolvers_.P.document_resource_identifier
-        readonly 'tab size': Optional_Value_Constraint_Resolvers_.P.tab_size
+        readonly 'document resource identifier': Resolver_Optional_Value_Constraints_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Optional_Value_Constraints_.P.tab_size
     },
-) => Optional_Value_Constraint_Resolvers_.O
+) => Resolver_Optional_Value_Constraints_.O
 
 export namespace Resolver_Value_Constraints_ {
     
@@ -871,11 +871,11 @@ export type Resolver_Value_Constraints_ = (
     },
 ) => Resolver_Value_Constraints_.O
 
-export namespace Reference_To_Value_Constraint_Resolver_ {
+export namespace Resolver_Reference_To_Value_Constraint_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Reference_To_Value_Constraint_Resolver
+    export type O = i_out.Resolver_Reference_To_Value_Constraint
     
     export type E = i_generic.Error
     
@@ -889,20 +889,20 @@ export namespace Reference_To_Value_Constraint_Resolver_ {
     
 }
 
-export type Reference_To_Value_Constraint_Resolver_ = (
-    context: Reference_To_Value_Constraint_Resolver_.I,
-    abort: _pi.Abort<Reference_To_Value_Constraint_Resolver_.E>,
+export type Resolver_Reference_To_Value_Constraint_ = (
+    context: Resolver_Reference_To_Value_Constraint_.I,
+    abort: _pi.Abort<Resolver_Reference_To_Value_Constraint_.E>,
     parameters: {
-        readonly 'document resource identifier': Reference_To_Value_Constraint_Resolver_.P.document_resource_identifier
-        readonly 'tab size': Reference_To_Value_Constraint_Resolver_.P.tab_size
+        readonly 'document resource identifier': Resolver_Reference_To_Value_Constraint_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Reference_To_Value_Constraint_.P.tab_size
     },
-) => Reference_To_Value_Constraint_Resolver_.O
+) => Resolver_Reference_To_Value_Constraint_.O
 
-export namespace Value_Constraint_Resolver_ {
+export namespace Resolver_Value_Constraint_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Value_Constraint_Resolver
+    export type O = i_out.Resolver_Value_Constraint
     
     export type E = i_generic.Error
     
@@ -916,14 +916,14 @@ export namespace Value_Constraint_Resolver_ {
     
 }
 
-export type Value_Constraint_Resolver_ = (
-    context: Value_Constraint_Resolver_.I,
-    abort: _pi.Abort<Value_Constraint_Resolver_.E>,
+export type Resolver_Value_Constraint_ = (
+    context: Resolver_Value_Constraint_.I,
+    abort: _pi.Abort<Resolver_Value_Constraint_.E>,
     parameters: {
-        readonly 'document resource identifier': Value_Constraint_Resolver_.P.document_resource_identifier
-        readonly 'tab size': Value_Constraint_Resolver_.P.tab_size
+        readonly 'document resource identifier': Resolver_Value_Constraint_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Value_Constraint_.P.tab_size
     },
-) => Value_Constraint_Resolver_.O
+) => Resolver_Value_Constraint_.O
 
 export namespace Resolver_Optional_Value_Initialization_ {
     
@@ -952,11 +952,11 @@ export type Resolver_Optional_Value_Initialization_ = (
     },
 ) => Resolver_Optional_Value_Initialization_.O
 
-export namespace Value_Resolver_Group_ {
+export namespace Resolver_Value_Group_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Value_Resolver_Group
+    export type O = i_out.Resolver_Value_Group
     
     export type E = i_generic.Error
     
@@ -970,20 +970,20 @@ export namespace Value_Resolver_Group_ {
     
 }
 
-export type Value_Resolver_Group_ = (
-    context: Value_Resolver_Group_.I,
-    abort: _pi.Abort<Value_Resolver_Group_.E>,
+export type Resolver_Value_Group_ = (
+    context: Resolver_Value_Group_.I,
+    abort: _pi.Abort<Resolver_Value_Group_.E>,
     parameters: {
-        readonly 'document resource identifier': Value_Resolver_Group_.P.document_resource_identifier
-        readonly 'tab size': Value_Resolver_Group_.P.tab_size
+        readonly 'document resource identifier': Resolver_Value_Group_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Value_Group_.P.tab_size
     },
-) => Value_Resolver_Group_.O
+) => Resolver_Value_Group_.O
 
-export namespace Value_Resolver_List_Result_ {
+export namespace Resolver_Value_List_Result_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Value_Resolver_List_Result
+    export type O = i_out.Resolver_Value_List_Result
     
     export type E = i_generic.Error
     
@@ -997,14 +997,14 @@ export namespace Value_Resolver_List_Result_ {
     
 }
 
-export type Value_Resolver_List_Result_ = (
-    context: Value_Resolver_List_Result_.I,
-    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
+export type Resolver_Value_List_Result_ = (
+    context: Resolver_Value_List_Result_.I,
+    abort: _pi.Abort<Resolver_Value_List_Result_.E>,
     parameters: {
-        readonly 'document resource identifier': Value_Resolver_List_Result_.P.document_resource_identifier
-        readonly 'tab size': Value_Resolver_List_Result_.P.tab_size
+        readonly 'document resource identifier': Resolver_Value_List_Result_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Value_List_Result_.P.tab_size
     },
-) => Value_Resolver_List_Result_.O
+) => Resolver_Value_List_Result_.O
 
 export namespace Value_Results_ {
     
@@ -1143,15 +1143,15 @@ export {
     Resolver_Signature_ as Resolver_Signature, 
     Resolver_Relative_Value_Selection_ as Resolver_Relative_Value_Selection, 
     Resolver_Lookup_Selection_ as Resolver_Lookup_Selection, 
-    Resolver_Contraint_ as Resolver_Contraint, 
+    Resolver_Constraint_ as Resolver_Constraint, 
     Resolver_Option_Constraints_ as Resolver_Option_Constraints, 
-    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
+    Resolver_Optional_Value_Constraints_ as Resolver_Optional_Value_Constraints, 
     Resolver_Value_Constraints_ as Resolver_Value_Constraints, 
-    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
-    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
+    Resolver_Reference_To_Value_Constraint_ as Resolver_Reference_To_Value_Constraint, 
+    Resolver_Value_Constraint_ as Resolver_Value_Constraint, 
     Resolver_Optional_Value_Initialization_ as Resolver_Optional_Value_Initialization, 
-    Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Resolver_Value_Group_ as Resolver_Value_Group, 
+    Resolver_Value_List_Result_ as Resolver_Value_List_Result, 
     Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Resolver_Guaranteed_Value_Selection_ as Resolver_Guaranteed_Value_Selection, 

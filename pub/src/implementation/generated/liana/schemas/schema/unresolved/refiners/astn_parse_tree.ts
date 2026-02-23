@@ -2894,7 +2894,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                             'l location': v_parse_tree_to_location.Value(
                                 $,
                             ),
-                            'l state': ['group', Value_Resolver_Group(
+                            'l state': ['group', Resolver_Value_Group(
                                 $,
                                 ($) => abort(
                                     $,
@@ -2984,7 +2984,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                                                         ),
                                                     )['optional'],
                                                 ).map(
-                                                    ($) => Value_Resolver_List_Result(
+                                                    ($) => Resolver_Value_List_Result(
                                                         $,
                                                         ($) => abort(
                                                             $,
@@ -5365,7 +5365,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     ),
 )
 
-export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($, abort) => _p_change_context(
+export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5423,7 +5423,7 @@ export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($, abort) =>
                         ),
                         ($) => _p.decide.text(
                             $['option']['value'],
-                            ($t): t_out.Resolver_Contraint.type_ => {
+                            ($t): t_out.Resolver_Constraint.type_ => {
                                 switch ($t) {
                                     case 'state':
                                         return _p_change_context(
@@ -5723,7 +5723,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     }),
 )
 
-export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($, abort) => _p.optional.from.optional(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort) => _p.optional.from.optional(
     v_unmarshalled_from_parse_tree.Optional(
         $,
         ($) => abort(
@@ -5757,7 +5757,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
                 'l location': v_parse_tree_to_location.Value(
                     $,
                 ),
-                'l entry': Value_Constraint_Resolver(
+                'l entry': Resolver_Value_Constraint(
                     $,
                     ($) => abort(
                         $,
@@ -5768,7 +5768,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
     }),
 )
 
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort) => ({
+export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,
     ),
@@ -5780,7 +5780,7 @@ export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_V
     ),
 })
 
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort) => _p_change_context(
+export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5821,7 +5821,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                         ),
                         ($) => _p.decide.text(
                             $['option']['value'],
-                            ($t): t_out.Value_Constraint_Resolver.start => {
+                            ($t): t_out.Resolver_Value_Constraint.start => {
                                 switch ($t) {
                                     case 'value':
                                         return _p_change_context(
@@ -5845,7 +5845,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                                                 'l location': v_parse_tree_to_location.Value(
                                                     $,
                                                 ),
-                                                'l state': ['sibling', Reference_To_Value_Constraint_Resolver(
+                                                'l state': ['sibling', Resolver_Reference_To_Value_Constraint(
                                                     $,
                                                     ($) => abort(
                                                         $,
@@ -5877,7 +5877,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                             'id': 'constraint',
                         },
                     ),
-                    ($) => Resolver_Contraint(
+                    ($) => Resolver_Constraint(
                         $,
                         ($) => abort(
                             $,
@@ -5959,7 +5959,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     ),
 )
 
-export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort) => _p_change_context(
+export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -6042,7 +6042,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
     }),
 )
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort) => Module_Reference(
+export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($, abort) => Module_Reference(
     $,
     ($) => abort(
         $,

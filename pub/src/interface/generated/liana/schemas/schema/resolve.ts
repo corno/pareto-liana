@@ -513,6 +513,35 @@ export type Value_Path_ = (
     },
 ) => Value_Path_.O
 
+export namespace Schemas_ {
+    
+    export type I = i_unresolved.Schemas
+    
+    export type O = i_resolved.Schemas
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type sibling_schemas = i_resolved.Schemas_.D
+        
+    }
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Schemas_ = (
+    context: Schemas_.I,
+    abort: _pi.Abort<Schemas_.E>,
+    lookups: {
+        readonly 'sibling schemas': _pi.lookup.Stack<Schemas_.L.sibling_schemas>
+    },
+    parameters: null,
+) => Schemas_.O
+
 export namespace Resolver_Value_ {
     
     export type I = i_unresolved.Resolver_Value
@@ -523,13 +552,13 @@ export namespace Resolver_Value_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -539,7 +568,7 @@ export namespace Resolver_Value_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -635,13 +664,13 @@ export namespace Resolver_Possible_Value_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -651,7 +680,7 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -747,13 +776,13 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -763,7 +792,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -859,13 +888,13 @@ export namespace Resolver_Benchmark_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -875,7 +904,7 @@ export namespace Resolver_Benchmark_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -971,13 +1000,13 @@ export namespace Resolver_Optional_Value_Initialization_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -987,7 +1016,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -1083,13 +1112,13 @@ export namespace Resolver_Lookup_Selection_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -1099,7 +1128,7 @@ export namespace Resolver_Lookup_Selection_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -1195,13 +1224,13 @@ export namespace Resolver_Option_Constraints_ {
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -1211,7 +1240,7 @@ export namespace Resolver_Option_Constraints_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -1297,11 +1326,11 @@ export type Resolver_Option_Constraints_ = (
     },
 ) => Resolver_Option_Constraints_.O
 
-export namespace Value_Resolver_List_Result_ {
+export namespace Resolver_Value_List_Result_ {
     
-    export type I = i_unresolved.Value_Resolver_List_Result
+    export type I = i_unresolved.Resolver_Value_List_Result
     
-    export type O = i_resolved.Value_Resolver_List_Result
+    export type O = i_resolved.Resolver_Value_List_Result
     
     export type E = i_generic.Error
     
@@ -1325,34 +1354,34 @@ export namespace Value_Resolver_List_Result_ {
     
 }
 
-export type Value_Resolver_List_Result_ = (
-    context: Value_Resolver_List_Result_.I,
-    abort: _pi.Abort<Value_Resolver_List_Result_.E>,
+export type Resolver_Value_List_Result_ = (
+    context: Resolver_Value_List_Result_.I,
+    abort: _pi.Abort<Resolver_Value_List_Result_.E>,
     lookups: {
-        readonly 'modules': _pi.lookup.Acyclic<Value_Resolver_List_Result_.L.modules>
+        readonly 'modules': _pi.lookup.Acyclic<Resolver_Value_List_Result_.L.modules>
     },
     parameters: {
-        readonly 'imports': Value_Resolver_List_Result_.P.imports
+        readonly 'imports': Resolver_Value_List_Result_.P.imports
     },
-) => Value_Resolver_List_Result_.O
+) => Resolver_Value_List_Result_.O
 
-export namespace Value_Resolver_Group_ {
+export namespace Resolver_Value_Group_ {
     
-    export type I = i_unresolved.Value_Resolver_Group
+    export type I = i_unresolved.Resolver_Value_Group
     
-    export type O = i_resolved.Value_Resolver_Group
+    export type O = i_resolved.Resolver_Value_Group
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Value_Resolver_Group_.D
+        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
         
     }
     
@@ -1362,7 +1391,7 @@ export namespace Value_Resolver_Group_ {
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Value_Resolver_List_Result_
+            export type O = i_resolved.Resolver_Value_List_Result_
             
         }
         
@@ -1426,27 +1455,27 @@ export namespace Value_Resolver_Group_ {
     
 }
 
-export type Value_Resolver_Group_ = (
-    context: Value_Resolver_Group_.I,
-    abort: _pi.Abort<Value_Resolver_Group_.E>,
+export type Resolver_Value_Group_ = (
+    context: Resolver_Value_Group_.I,
+    abort: _pi.Abort<Resolver_Value_Group_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_Group_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Value_Resolver_Group_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': _pi.lookup.Acyclic<Resolver_Value_Group_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': _pi.lookup.Acyclic<Resolver_Value_Group_.L.parent_sibling_property_resolvers>
     },
     parameters: {
-        readonly 'definition': Value_Resolver_Group_.P.definition
-        readonly 'list cursor': Value_Resolver_Group_.P.list_cursor
-        readonly 'linked entry': Value_Resolver_Group_.P.linked_entry
-        readonly 'current dictionary': Value_Resolver_Group_.P.current_dictionary
-        readonly 'current ordered dictionary': Value_Resolver_Group_.P.current_ordered_dictionary
-        readonly 'signature': Value_Resolver_Group_.P.signature
-        readonly 'schema imports': Value_Resolver_Group_.P.schema_imports
-        readonly 'resolver imports': Value_Resolver_Group_.P.resolver_imports
-        readonly 'signatures': Value_Resolver_Group_.P.signatures
-        readonly 'modules': Value_Resolver_Group_.P.modules
-        readonly 'option constraints': Value_Resolver_Group_.P.option_constraints
+        readonly 'definition': Resolver_Value_Group_.P.definition
+        readonly 'list cursor': Resolver_Value_Group_.P.list_cursor
+        readonly 'linked entry': Resolver_Value_Group_.P.linked_entry
+        readonly 'current dictionary': Resolver_Value_Group_.P.current_dictionary
+        readonly 'current ordered dictionary': Resolver_Value_Group_.P.current_ordered_dictionary
+        readonly 'signature': Resolver_Value_Group_.P.signature
+        readonly 'schema imports': Resolver_Value_Group_.P.schema_imports
+        readonly 'resolver imports': Resolver_Value_Group_.P.resolver_imports
+        readonly 'signatures': Resolver_Value_Group_.P.signatures
+        readonly 'modules': Resolver_Value_Group_.P.modules
+        readonly 'option constraints': Resolver_Value_Group_.P.option_constraints
     },
-) => Value_Resolver_Group_.O
+) => Resolver_Value_Group_.O
 
 export namespace Resolver_Relative_Value_Selection_ {
     
@@ -1473,36 +1502,11 @@ export type Resolver_Relative_Value_Selection_ = (
     },
 ) => Resolver_Relative_Value_Selection_.O
 
-export namespace Resolver_Contraint_ {
+export namespace Resolver_Constraint_ {
     
-    export type I = i_unresolved.Resolver_Contraint
+    export type I = i_unresolved.Resolver_Constraint
     
-    export type O = i_resolved.Resolver_Contraint
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type value = i_resolved.Value_
-        
-    }
-    
-}
-
-export type Resolver_Contraint_ = (
-    context: Resolver_Contraint_.I,
-    abort: _pi.Abort<Resolver_Contraint_.E>,
-    lookups: null,
-    parameters: {
-        readonly 'value': Resolver_Contraint_.P.value
-    },
-) => Resolver_Contraint_.O
-
-export namespace Optional_Value_Constraint_Resolvers_ {
-    
-    export type I = i_unresolved.Optional_Value_Constraint_Resolvers
-    
-    export type O = i_resolved.Optional_Value_Constraint_Resolvers
+    export type O = i_resolved.Resolver_Constraint
     
     export type E = i_generic.Error
     
@@ -1514,14 +1518,39 @@ export namespace Optional_Value_Constraint_Resolvers_ {
     
 }
 
-export type Optional_Value_Constraint_Resolvers_ = (
-    context: Optional_Value_Constraint_Resolvers_.I,
-    abort: _pi.Abort<Optional_Value_Constraint_Resolvers_.E>,
+export type Resolver_Constraint_ = (
+    context: Resolver_Constraint_.I,
+    abort: _pi.Abort<Resolver_Constraint_.E>,
     lookups: null,
     parameters: {
-        readonly 'value': Optional_Value_Constraint_Resolvers_.P.value
+        readonly 'value': Resolver_Constraint_.P.value
     },
-) => Optional_Value_Constraint_Resolvers_.O
+) => Resolver_Constraint_.O
+
+export namespace Resolver_Optional_Value_Constraints_ {
+    
+    export type I = i_unresolved.Resolver_Optional_Value_Constraints
+    
+    export type O = i_resolved.Resolver_Optional_Value_Constraints
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type value = i_resolved.Value_
+        
+    }
+    
+}
+
+export type Resolver_Optional_Value_Constraints_ = (
+    context: Resolver_Optional_Value_Constraints_.I,
+    abort: _pi.Abort<Resolver_Optional_Value_Constraints_.E>,
+    lookups: null,
+    parameters: {
+        readonly 'value': Resolver_Optional_Value_Constraints_.P.value
+    },
+) => Resolver_Optional_Value_Constraints_.O
 
 export namespace Resolver_Value_Constraints_ {
     
@@ -1548,11 +1577,11 @@ export type Resolver_Value_Constraints_ = (
     },
 ) => Resolver_Value_Constraints_.O
 
-export namespace Value_Constraint_Resolver_ {
+export namespace Resolver_Value_Constraint_ {
     
-    export type I = i_unresolved.Value_Constraint_Resolver
+    export type I = i_unresolved.Resolver_Value_Constraint
     
-    export type O = i_resolved.Value_Constraint_Resolver
+    export type O = i_resolved.Resolver_Value_Constraint
     
     export type E = i_generic.Error
     
@@ -1568,14 +1597,14 @@ export namespace Value_Constraint_Resolver_ {
     
 }
 
-export type Value_Constraint_Resolver_ = (
-    context: Value_Constraint_Resolver_.I,
-    abort: _pi.Abort<Value_Constraint_Resolver_.E>,
+export type Resolver_Value_Constraint_ = (
+    context: Resolver_Value_Constraint_.I,
+    abort: _pi.Abort<Resolver_Value_Constraint_.E>,
     lookups: {
-        readonly 'property constraints': _pi.lookup.Acyclic<Value_Constraint_Resolver_.L.property_constraints>
+        readonly 'property constraints': _pi.lookup.Acyclic<Resolver_Value_Constraint_.L.property_constraints>
     },
     parameters: null,
-) => Value_Constraint_Resolver_.O
+) => Resolver_Value_Constraint_.O
 
 export namespace Resolver_ {
     
@@ -1737,11 +1766,40 @@ export type Resolver_Modules_ = (
     },
 ) => Resolver_Modules_.O
 
-export namespace Schemas_ {
+export namespace Resolver_Reference_To_Value_Constraint_ {
     
-    export type I = i_unresolved.Schemas
+    export type I = i_unresolved.Resolver_Reference_To_Value_Constraint
     
-    export type O = i_resolved.Schemas
+    export type O = i_resolved.Resolver_Reference_To_Value_Constraint
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
+        
+    }
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Resolver_Reference_To_Value_Constraint_ = (
+    context: Resolver_Reference_To_Value_Constraint_.I,
+    abort: _pi.Abort<Resolver_Reference_To_Value_Constraint_.E>,
+    lookups: {
+        readonly 'property constraints': _pi.lookup.Acyclic<Resolver_Reference_To_Value_Constraint_.L.property_constraints>
+    },
+    parameters: null,
+) => Resolver_Reference_To_Value_Constraint_.O
+
+export namespace Resolver_Imports_ {
+    
+    export type I = i_unresolved.Resolver_Imports
+    
+    export type O = i_resolved.Resolver_Imports
     
     export type E = i_generic.Error
     
@@ -1757,14 +1815,14 @@ export namespace Schemas_ {
     
 }
 
-export type Schemas_ = (
-    context: Schemas_.I,
-    abort: _pi.Abort<Schemas_.E>,
+export type Resolver_Imports_ = (
+    context: Resolver_Imports_.I,
+    abort: _pi.Abort<Resolver_Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.lookup.Stack<Schemas_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Resolver_Imports_.L.sibling_schemas>
     },
     parameters: null,
-) => Schemas_.O
+) => Resolver_Imports_.O
 
 export namespace Module_Specification_ {
     
@@ -1874,64 +1932,6 @@ export type Schema_Imports_ = (
     parameters: null,
 ) => Schema_Imports_.O
 
-export namespace Resolver_Imports_ {
-    
-    export type I = i_unresolved.Resolver_Imports
-    
-    export type O = i_resolved.Resolver_Imports
-    
-    export type E = i_generic.Error
-    
-    export namespace L {
-        
-        export type sibling_schemas = i_resolved.Schemas_.D
-        
-    }
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Resolver_Imports_ = (
-    context: Resolver_Imports_.I,
-    abort: _pi.Abort<Resolver_Imports_.E>,
-    lookups: {
-        readonly 'sibling schemas': _pi.lookup.Stack<Resolver_Imports_.L.sibling_schemas>
-    },
-    parameters: null,
-) => Resolver_Imports_.O
-
-export namespace Reference_To_Value_Constraint_Resolver_ {
-    
-    export type I = i_unresolved.Reference_To_Value_Constraint_Resolver
-    
-    export type O = i_resolved.Reference_To_Value_Constraint_Resolver
-    
-    export type E = i_generic.Error
-    
-    export namespace L {
-        
-        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
-        
-    }
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Reference_To_Value_Constraint_Resolver_ = (
-    context: Reference_To_Value_Constraint_Resolver_.I,
-    abort: _pi.Abort<Reference_To_Value_Constraint_Resolver_.E>,
-    lookups: {
-        readonly 'property constraints': _pi.lookup.Acyclic<Reference_To_Value_Constraint_Resolver_.L.property_constraints>
-    },
-    parameters: null,
-) => Reference_To_Value_Constraint_Resolver_.O
-
 export namespace Modules_ {
     
     export type I = i_unresolved.Modules
@@ -1987,6 +1987,7 @@ export {
     Option_Constraints_ as Option_Constraints, 
     Module_ as Module, 
     Value_Path_ as Value_Path, 
+    Schemas_ as Schemas, 
     Resolver_Value_ as Resolver_Value, 
     Resolver_Possible_Value_Selection_ as Resolver_Possible_Value_Selection, 
     Resolver_Guaranteed_Value_Selection_ as Resolver_Guaranteed_Value_Selection, 
@@ -1994,24 +1995,23 @@ export {
     Resolver_Optional_Value_Initialization_ as Resolver_Optional_Value_Initialization, 
     Resolver_Lookup_Selection_ as Resolver_Lookup_Selection, 
     Resolver_Option_Constraints_ as Resolver_Option_Constraints, 
-    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
-    Value_Resolver_Group_ as Value_Resolver_Group, 
+    Resolver_Value_List_Result_ as Resolver_Value_List_Result, 
+    Resolver_Value_Group_ as Resolver_Value_Group, 
     Resolver_Relative_Value_Selection_ as Resolver_Relative_Value_Selection, 
-    Resolver_Contraint_ as Resolver_Contraint, 
-    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
+    Resolver_Constraint_ as Resolver_Constraint, 
+    Resolver_Optional_Value_Constraints_ as Resolver_Optional_Value_Constraints, 
     Resolver_Value_Constraints_ as Resolver_Value_Constraints, 
-    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
+    Resolver_Value_Constraint_ as Resolver_Value_Constraint, 
     Resolver_ as Resolver, 
     Resolver_Signature_Parameters_ as Resolver_Signature_Parameters, 
     Resolver_Signature_ as Resolver_Signature, 
     Resolver_Signatures_ as Resolver_Signatures, 
     Resolver_Modules_ as Resolver_Modules, 
-    Schemas_ as Schemas, 
+    Resolver_Reference_To_Value_Constraint_ as Resolver_Reference_To_Value_Constraint, 
+    Resolver_Imports_ as Resolver_Imports, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Schema_ as Schema, 
     Schema_Imports_ as Schema_Imports, 
-    Resolver_Imports_ as Resolver_Imports, 
-    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Modules_ as Modules, 
 }

@@ -440,7 +440,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     $['l location'],
                     abort,
                     x,
-                    ($, id, $acyclic, $cyclic): t_out.Value_Resolver_Group.D => {
+                    ($, id, $acyclic, $cyclic): t_out.Resolver_Value_Group.D => {
 
                         const p_definition = _i_generic.get_entry_acyclic(
                             _p_sl.acyclic.from_resolved_dictionary(x),
@@ -873,7 +873,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
     return _p_change_context($, ($) => _i_generic.temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_variables(() => {
-            const p_start: t_out.Value_Constraint_Resolver.start = _p_change_context($['l entry'].start['l state'], ($) => {
+            const p_start: t_out.Resolver_Value_Constraint.start = _p_change_context($['l entry'].start['l state'], ($) => {
                 switch ($[0]) {
                     case 'value': return _p.ss($, ($) => ['value', null])
                     case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry_acyclic(
@@ -884,7 +884,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
                     default: return _p.au($[0])
                 }
             })
-            const p_constraint: t_out.Value_Constraint_Resolver.constraint = Constraint(
+            const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
                 $['l entry'].constraint,
                 abort,
                 null,
@@ -1205,8 +1205,8 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
     ))
 }
 
-export const Constraint: t_signatures.Resolver_Contraint = ($, abort, $l, $p) => {
-    const p_selection: t_out.Resolver_Contraint.selection = _p_change_context($['selection'], ($) => Relative_Value_Selection(
+export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => {
+    const p_selection: t_out.Resolver_Constraint.selection = _p_change_context($['selection'], ($) => Relative_Value_Selection(
         $,
         abort,
         null,
@@ -1215,7 +1215,7 @@ export const Constraint: t_signatures.Resolver_Contraint = ($, abort, $l, $p) =>
         }
     ))
     const loc = $.type['l location']
-    const p_type: t_out.Resolver_Contraint.type_ = _p_change_context($.type, ($) => _p_change_context($['l state'], ($) => {
+    const p_type: t_out.Resolver_Constraint.type_ = _p_change_context($.type, ($) => _p_change_context($['l state'], ($) => {
         switch ($[0]) {
             case 'state': return _p.ss($, ($) => {
                 const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
@@ -1226,7 +1226,7 @@ export const Constraint: t_signatures.Resolver_Contraint = ($, abort, $l, $p) =>
                         abort,
                     )
                     : p_selection['resulting node'][1]
-                const p_option: t_out.Resolver_Contraint.type_.state.option = _p_change_context($['option'], ($) => _i_generic.get_entry_acyclic(
+                const p_option: t_out.Resolver_Constraint.type_.state.option = _p_change_context($['option'], ($) => _i_generic.get_entry_acyclic(
                     _p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
                     $,
                     abort,

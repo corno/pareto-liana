@@ -638,7 +638,7 @@ export namespace r {
     }
 
     export const group = (
-        properties: _p.Raw_Or_Normal_Dictionary<d_target.Value_Resolver_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
+        properties: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
     ): d_target.Resolver_Value => {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {

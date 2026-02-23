@@ -632,62 +632,75 @@
                 
 //                 const prop_schema_set_child = _p_change_context(
 //                     $['schema set child'],
-//                     ($) => ({
-//                         'l entry': $l['sibling schemas'].get_entry(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
+//                     ($) => _p.group.literal.resolve(
+//                         () => {
+                            
+//                             const prop_l_results = {
+//                                 'schema': _pdev.implement_me(
+//                                     "IM: constraint result",
+//                                 ),
+//                             }
+                            
+//                             const prop_l_value = {
+//                                 'l entry': $l['sibling schemas'].get_entry(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 no_context_lookup: () => abort(
+//                                 'l id': $['l reference'],
+//                                 'l up steps': $l['sibling schemas'].get_entry_depth(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                         'l id': $['l reference'],
-//                         'l up steps': $l['sibling schemas'].get_entry_depth(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 no_context_lookup: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                     }),
+//                             }
+//                             return {
+//                                 'l results': prop_l_results,
+//                                 'l value': prop_l_value,
+//                             }
+//                         },
+//                     ),
 //                 )
                 
 //                 const prop_schema = _p_change_context(
 //                     $['schema'],
-//                     ($) => _pdev.implement_me(
-//                         "IM: REFERENCE",
-//                     ),
+//                     ($) => prop_schema_set_child['l results']['schema'],
 //                 )
 //                 return {
 //                     'schema set child': prop_schema_set_child,

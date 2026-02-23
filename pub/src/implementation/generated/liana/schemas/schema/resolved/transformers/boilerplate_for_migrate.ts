@@ -1874,7 +1874,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                 case 'group':
                     return _p.ss(
                         $,
-                        ($) => ['group', Value_Resolver_Group(
+                        ($) => ['group', Resolver_Value_Group(
                             $,
                         )],
                     )
@@ -1897,7 +1897,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                 ($) => _p.optional.from.optional(
                                     $,
                                 ).map(
-                                    ($) => Value_Resolver_List_Result(
+                                    ($) => Resolver_Value_List_Result(
                                         $,
                                     ),
                                 ),
@@ -3200,7 +3200,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     ),
 })
 
-export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($) => ({
+export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
     'selection': _p_change_context(
         $['selection'],
         ($) => Resolver_Relative_Value_Selection(
@@ -3230,7 +3230,7 @@ export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($) => ({
             },
             'l state': _p.decide.state(
                 $,
-                ($): t_out.Resolver_Contraint.type_.l_state => {
+                ($): t_out.Resolver_Constraint.type_.l_state => {
                     switch ($[0]) {
                         case 'state':
                             return _p.ss(
@@ -3410,7 +3410,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     ),
 })
 
-export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => _p.optional.from.optional(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => _p.optional.from.optional(
     $,
 ).map(
     ($) => Resolver_Value_Constraints(
@@ -3441,7 +3441,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
         $,
     ).map(
         ($, id) => ({
-            'l entry': Value_Constraint_Resolver(
+            'l entry': Resolver_Value_Constraint(
                 $,
             ),
             'l location': {
@@ -3466,7 +3466,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
     ),
 })
 
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ({
+export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($) => ({
     'l location': {
         'start': {
             'absolute': 42,
@@ -3488,7 +3488,7 @@ export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_V
     'l reference': $['l id'],
 })
 
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ({
+export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($) => ({
     'start': _p_change_context(
         $['start'],
         ($) => ({
@@ -3512,7 +3512,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
             },
             'l state': _p.decide.state(
                 $,
-                ($): t_out.Value_Constraint_Resolver.start.l_state => {
+                ($): t_out.Resolver_Value_Constraint.start.l_state => {
                     switch ($[0]) {
                         case 'value':
                             return _p.ss(
@@ -3522,7 +3522,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                         case 'sibling':
                             return _p.ss(
                                 $,
-                                ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
+                                ($) => ['sibling', Resolver_Reference_To_Value_Constraint(
                                     $,
                                 )],
                             )
@@ -3537,7 +3537,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
     ),
     'constraint': _p_change_context(
         $['constraint'],
-        ($) => Resolver_Contraint(
+        ($) => Resolver_Constraint(
             $,
         ),
     ),
@@ -3594,7 +3594,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     ),
 })
 
-export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ({
+export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
     'l location': {
         'start': {
             'absolute': 42,
@@ -3651,7 +3651,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ({
     ),
 })
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Module_Reference(
+export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($) => Module_Reference(
     $,
 )
 

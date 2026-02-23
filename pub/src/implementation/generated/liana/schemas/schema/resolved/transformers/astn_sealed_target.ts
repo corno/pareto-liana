@@ -1052,7 +1052,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                     $,
                     ($) => ({
                         'option': 'group',
-                        'value': Value_Resolver_Group(
+                        'value': Resolver_Value_Group(
                             $,
                         ),
                     }),
@@ -1078,7 +1078,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                                     $['result'],
                                     ($) => ['optional', _p.decide.optional(
                                         $,
-                                        ($): t_out.Value.optional => ['set', Value_Resolver_List_Result(
+                                        ($): t_out.Value.optional => ['set', Resolver_Value_List_Result(
                                             $,
                                         )],
                                         () => ['not set', null],
@@ -1930,7 +1930,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     },
 )]]
 
-export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "selection": _p_change_context(
             $['selection'],
@@ -2046,7 +2046,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     )],
 )]
 
-export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => ['optional', _p.decide.optional(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => ['optional', _p.decide.optional(
     $,
     ($): t_out.Value.optional => ['set', Resolver_Value_Constraints(
         $,
@@ -2057,17 +2057,17 @@ export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Co
 export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
-    ($, id) => Value_Constraint_Resolver(
+    ($, id) => Resolver_Value_Constraint(
         $,
     ),
 )]
 
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => ['text', {
+export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($) => ['text', {
     'delimiter': ['backtick', null],
     'value': $['l id'],
 }]
 
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "start": _p_change_context(
             $['start'],
@@ -2088,7 +2088,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                                 $,
                                 ($) => ({
                                     'option': 'sibling',
-                                    'value': Reference_To_Value_Constraint_Resolver(
+                                    'value': Resolver_Reference_To_Value_Constraint(
                                         $,
                                     ),
                                 }),
@@ -2103,7 +2103,7 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
         ),
         "constraint": _p_change_context(
             $['constraint'],
-            ($) => Resolver_Contraint(
+            ($) => Resolver_Constraint(
                 $,
             ),
         ),
@@ -2150,7 +2150,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     },
 )]
 
-export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
@@ -2169,7 +2169,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => ['
     )]],
 )]
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => Module_Reference(
+export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($) => Module_Reference(
     $,
 )
 

@@ -568,11 +568,11 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "assert is set": option(r.component("Resolver Possible Value Selection", null, null)),
         }))),
 
-        "Value Constraint Resolver": resolver(r.group({
+        "Resolver Value Constraint": resolver(r.group({
             "start": r.state(
                 {
                     "value": option(r.nothing()),
-                    "sibling": option(r.component("Reference To Value Constraint Resolver", {}, {
+                    "sibling": option(r.component("Resolver Reference To Value Constraint", {}, {
                         "property constraints": al.parameter("property constraints"),
                     })),
                 }
@@ -584,18 +584,18 @@ export const $: g_.Resolver_Modules = resolver_modules(
         })),
 
 
-        "Optional Value Constraint Resolvers": resolver(r.optional(r.component("Resolver Value Constraints", {
+        "Resolver Optional Value Constraints": resolver(r.optional(r.component("Resolver Value Constraints", {
             "value": av.parameter("value"),
         }, {
         }))),
 
-        "Resolver Value Constraints": resolver(r.dictionary(r.component("Value Constraint Resolver", {}, {
+        "Resolver Value Constraints": resolver(r.dictionary(r.component("Resolver Value Constraint", {}, {
             "property constraints": al.acyclic.siblings(),
         }))),
 
-        "Reference To Value Constraint Resolver": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
+        "Resolver Reference To Value Constraint": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
 
-        "Value Resolver Group": resolver(r.dictionary_linked(
+        "Resolver Value Group": resolver(r.dictionary_linked(
             'dense',
             gvs.parameter("definition", []),
             r.group({
@@ -623,7 +623,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
             })
         )),
 
-        "Value Resolver List Result": resolver(r.component("Module Reference", {
+        "Resolver Value List Result": resolver(r.component("Module Reference", {
             "imports": av.parameter("imports"),
         }, {
             "modules": al.parameter("modules"),
@@ -738,7 +738,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "group")
                 },
-                r.component("Value Resolver Group",
+                r.component("Resolver Value Group",
                     {
                         "definition": av.required(gvs.option_constraint("definition", [])),
 
@@ -766,7 +766,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 }, r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "result": r.optional(
-                        r.component("Value Resolver List Result", {
+                        r.component("Resolver Value List Result", {
                             "imports": av.parameter("schema imports"),
                         }, {
                             "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
@@ -775,7 +775,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     "resolver": r.component("Resolver Value",
                         {
                             "list cursor": av.optional(ovi.set(gvs.optional_value("result",
-                                module_reference("Value Resolver List Result"), [rvs.component()]))),
+                                module_reference("Resolver Value List Result"), [rvs.component()]))),
                             "definition": av.required(gvs.option_constraint("definition", [rvs.group("value")])),
 
                             "modules": av.parameter("modules"),

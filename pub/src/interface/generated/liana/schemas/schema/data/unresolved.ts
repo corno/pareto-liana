@@ -1188,7 +1188,7 @@ export namespace Resolver_Value_ {
             readonly 'benchmark': dictionary.benchmark
         }
         
-        export type group = Value_Resolver_Group_
+        export type group = Resolver_Value_Group_
         
         export namespace list {
             
@@ -1198,7 +1198,7 @@ export namespace Resolver_Value_ {
             
             export namespace result {
                 
-                export type O = Value_Resolver_List_Result_
+                export type O = Resolver_Value_List_Result_
                 
             }
             
@@ -2090,7 +2090,7 @@ export type Resolver_Lookup_Selection_ = {
     readonly 'resulting dictionary': Resolver_Lookup_Selection_.resulting_dictionary
 }
 
-export namespace Resolver_Contraint_ {
+export namespace Resolver_Constraint_ {
     
     export type selection = Resolver_Relative_Value_Selection_
     
@@ -2149,9 +2149,9 @@ export namespace Resolver_Contraint_ {
     
 }
 
-export type Resolver_Contraint_ = {
-    readonly 'selection': Resolver_Contraint_.selection
-    readonly 'type': Resolver_Contraint_.type_
+export type Resolver_Constraint_ = {
+    readonly 'selection': Resolver_Constraint_.selection
+    readonly 'type': Resolver_Constraint_.type_
 }
 
 export namespace Resolver_Option_Constraints_ {
@@ -2230,13 +2230,13 @@ export type Resolver_Option_Constraints_ = {
     readonly 'l dictionary': Resolver_Option_Constraints_.l_dictionary
 }
 
-export namespace Optional_Value_Constraint_Resolvers_ {
+export namespace Resolver_Optional_Value_Constraints_ {
     
     export type O = Resolver_Value_Constraints_
     
 }
 
-export type Optional_Value_Constraint_Resolvers_ = _pi.Optional_Value<Optional_Value_Constraint_Resolvers_.O>
+export type Resolver_Optional_Value_Constraints_ = _pi.Optional_Value<Resolver_Optional_Value_Constraints_.O>
 
 export namespace Resolver_Value_Constraints_ {
     
@@ -2248,7 +2248,7 @@ export namespace Resolver_Value_Constraints_ {
             
             export type l_location = i__location.Range
             
-            export type l_entry = Value_Constraint_Resolver_
+            export type l_entry = Resolver_Value_Constraint_
             
         }
         
@@ -2268,7 +2268,7 @@ export type Resolver_Value_Constraints_ = {
     readonly 'l dictionary': Resolver_Value_Constraints_.l_dictionary
 }
 
-export namespace Reference_To_Value_Constraint_Resolver_ {
+export namespace Resolver_Reference_To_Value_Constraint_ {
     
     export type l_location = i__location.Range
     
@@ -2276,12 +2276,12 @@ export namespace Reference_To_Value_Constraint_Resolver_ {
     
 }
 
-export type Reference_To_Value_Constraint_Resolver_ = {
-    readonly 'l location': Reference_To_Value_Constraint_Resolver_.l_location
-    readonly 'l reference': Reference_To_Value_Constraint_Resolver_.l_reference
+export type Resolver_Reference_To_Value_Constraint_ = {
+    readonly 'l location': Resolver_Reference_To_Value_Constraint_.l_location
+    readonly 'l reference': Resolver_Reference_To_Value_Constraint_.l_reference
 }
 
-export namespace Value_Constraint_Resolver_ {
+export namespace Resolver_Value_Constraint_ {
     
     export namespace start {
         
@@ -2291,7 +2291,7 @@ export namespace Value_Constraint_Resolver_ {
             
             export type value = null
             
-            export type sibling = Reference_To_Value_Constraint_Resolver_
+            export type sibling = Resolver_Reference_To_Value_Constraint_
             
         }
         
@@ -2306,13 +2306,13 @@ export namespace Value_Constraint_Resolver_ {
         readonly 'l state': start.l_state
     }
     
-    export type constraint = Resolver_Contraint_
+    export type constraint = Resolver_Constraint_
     
 }
 
-export type Value_Constraint_Resolver_ = {
-    readonly 'start': Value_Constraint_Resolver_.start
-    readonly 'constraint': Value_Constraint_Resolver_.constraint
+export type Resolver_Value_Constraint_ = {
+    readonly 'start': Resolver_Value_Constraint_.start
+    readonly 'constraint': Resolver_Value_Constraint_.constraint
 }
 
 export namespace Resolver_Optional_Value_Initialization_ {
@@ -2341,7 +2341,7 @@ export type Resolver_Optional_Value_Initialization_ = {
     readonly 'l state': Resolver_Optional_Value_Initialization_.l_state
 }
 
-export namespace Value_Resolver_Group_ {
+export namespace Resolver_Value_Group_ {
     
     export type l_location = i__location.Range
     
@@ -2377,12 +2377,12 @@ export namespace Value_Resolver_Group_ {
     
 }
 
-export type Value_Resolver_Group_ = {
-    readonly 'l location': Value_Resolver_Group_.l_location
-    readonly 'l dictionary': Value_Resolver_Group_.l_dictionary
+export type Resolver_Value_Group_ = {
+    readonly 'l location': Resolver_Value_Group_.l_location
+    readonly 'l dictionary': Resolver_Value_Group_.l_dictionary
 }
 
-export type Value_Resolver_List_Result_ = Module_Reference_
+export type Resolver_Value_List_Result_ = Module_Reference_
 
 export namespace Value_Results_ {
     
@@ -2872,15 +2872,15 @@ export {
     Resolver_Signature_ as Resolver_Signature, 
     Resolver_Relative_Value_Selection_ as Resolver_Relative_Value_Selection, 
     Resolver_Lookup_Selection_ as Resolver_Lookup_Selection, 
-    Resolver_Contraint_ as Resolver_Contraint, 
+    Resolver_Constraint_ as Resolver_Constraint, 
     Resolver_Option_Constraints_ as Resolver_Option_Constraints, 
-    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
+    Resolver_Optional_Value_Constraints_ as Resolver_Optional_Value_Constraints, 
     Resolver_Value_Constraints_ as Resolver_Value_Constraints, 
-    Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
-    Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
+    Resolver_Reference_To_Value_Constraint_ as Resolver_Reference_To_Value_Constraint, 
+    Resolver_Value_Constraint_ as Resolver_Value_Constraint, 
     Resolver_Optional_Value_Initialization_ as Resolver_Optional_Value_Initialization, 
-    Value_Resolver_Group_ as Value_Resolver_Group, 
-    Value_Resolver_List_Result_ as Value_Resolver_List_Result, 
+    Resolver_Value_Group_ as Resolver_Value_Group, 
+    Resolver_Value_List_Result_ as Resolver_Value_List_Result, 
     Value_Results_ as Value_Results, 
     Option_Constraints_ as Option_Constraints, 
     Resolver_Guaranteed_Value_Selection_ as Resolver_Guaranteed_Value_Selection, 

@@ -523,7 +523,7 @@
 //                                     return {
 //                                         'l results': {
 //                                             'value': _pdev.implement_me(
-//                                                 "IM: result",
+//                                                 "IM: value reference",
 //                                             ),
 //                                         },
 //                                         'l value': _p.decide.state(
@@ -2186,39 +2186,52 @@
                                                                 
 //                                                                 const prop_property = _p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => ({
-//                                                                         'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                             $['l reference'],
-//                                                                             {
-//                                                                                 no_such_entry: () => abort(
+//                                                                     ($) => _p.group.literal.resolve(
+//                                                                         () => {
+                                                                            
+//                                                                             const prop_l_results = {
+//                                                                                 'state': _pdev.implement_me(
+//                                                                                     "IM: constraint result",
+//                                                                                 ),
+//                                                                             }
+                                                                            
+//                                                                             const prop_l_value = {
+//                                                                                 'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                     $['l reference'],
 //                                                                                     {
-//                                                                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                         'location': $['l location'],
+//                                                                                         no_such_entry: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
+//                                                                                         no_context_lookup: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
+//                                                                                         cycle_detected: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
 //                                                                                     },
 //                                                                                 ),
-//                                                                                 no_context_lookup: () => abort(
-//                                                                                     {
-//                                                                                         'type': ['lookup', ['no context lookup', null]],
-//                                                                                         'location': $['l location'],
-//                                                                                     },
-//                                                                                 ),
-//                                                                                 cycle_detected: () => abort(
-//                                                                                     {
-//                                                                                         'type': ['lookup', ['cycle detected', null]],
-//                                                                                         'location': $['l location'],
-//                                                                                     },
-//                                                                                 ),
-//                                                                             },
-//                                                                         ),
-//                                                                         'l id': $['l reference'],
-//                                                                     }),
+//                                                                                 'l id': $['l reference'],
+//                                                                             }
+//                                                                             return {
+//                                                                                 'l results': prop_l_results,
+//                                                                                 'l value': prop_l_value,
+//                                                                             }
+//                                                                         },
+//                                                                     ),
 //                                                                 )
                                                                 
 //                                                                 const prop_state = _p_change_context(
 //                                                                     $['state'],
-//                                                                     ($) => _pdev.implement_me(
-//                                                                         "IM: REFERENCE",
-//                                                                     ),
+//                                                                     ($) => prop_property['l results']['state'],
 //                                                                 )
                                                                 
 //                                                                 const prop_result = _p_change_context(
@@ -2254,39 +2267,52 @@
                                                                 
 //                                                                 const prop_property = _p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => ({
-//                                                                         'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                             $['l reference'],
-//                                                                             {
-//                                                                                 no_such_entry: () => abort(
+//                                                                     ($) => _p.group.literal.resolve(
+//                                                                         () => {
+                                                                            
+//                                                                             const prop_l_results = {
+//                                                                                 'optional': _pdev.implement_me(
+//                                                                                     "IM: constraint result",
+//                                                                                 ),
+//                                                                             }
+                                                                            
+//                                                                             const prop_l_value = {
+//                                                                                 'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                     $['l reference'],
 //                                                                                     {
-//                                                                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                         'location': $['l location'],
+//                                                                                         no_such_entry: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
+//                                                                                         no_context_lookup: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
+//                                                                                         cycle_detected: () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                                                                 'location': $['l location'],
+//                                                                                             },
+//                                                                                         ),
 //                                                                                     },
 //                                                                                 ),
-//                                                                                 no_context_lookup: () => abort(
-//                                                                                     {
-//                                                                                         'type': ['lookup', ['no context lookup', null]],
-//                                                                                         'location': $['l location'],
-//                                                                                     },
-//                                                                                 ),
-//                                                                                 cycle_detected: () => abort(
-//                                                                                     {
-//                                                                                         'type': ['lookup', ['cycle detected', null]],
-//                                                                                         'location': $['l location'],
-//                                                                                     },
-//                                                                                 ),
-//                                                                             },
-//                                                                         ),
-//                                                                         'l id': $['l reference'],
-//                                                                     }),
+//                                                                                 'l id': $['l reference'],
+//                                                                             }
+//                                                                             return {
+//                                                                                 'l results': prop_l_results,
+//                                                                                 'l value': prop_l_value,
+//                                                                             }
+//                                                                         },
+//                                                                     ),
 //                                                                 )
                                                                 
 //                                                                 const prop_optional_value = _p_change_context(
 //                                                                     $['optional value'],
-//                                                                     ($) => _pdev.implement_me(
-//                                                                         "IM: REFERENCE",
-//                                                                     ),
+//                                                                     ($) => prop_property['l results']['optional'],
 //                                                                 )
                                                                 
 //                                                                 const prop_result = _p_change_context(
@@ -2483,41 +2509,54 @@
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => ({
-//                                                                                     'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                                         $['l reference'],
-//                                                                                         {
-//                                                                                             no_such_entry: () => abort(
+//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                     () => {
+                                                                                        
+//                                                                                         const prop_l_results = {
+//                                                                                             'component': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_value = {
+//                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                                 $['l reference'],
 //                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                     'location': $['l location'],
+//                                                                                                     no_such_entry: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     no_context_lookup: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     cycle_detected: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
 //                                                                                                 },
 //                                                                                             ),
-//                                                                                             no_context_lookup: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                             cycle_detected: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                         },
-//                                                                                     ),
-//                                                                                     'l id': $['l reference'],
-//                                                                                 }),
+//                                                                                             'l id': $['l reference'],
+//                                                                                         }
+//                                                                                         return {
+//                                                                                             'l results': prop_l_results,
+//                                                                                             'l value': prop_l_value,
+//                                                                                         }
+//                                                                                     },
+//                                                                                 ),
 //                                                                             )
                                                                             
 //                                                                             const prop_constraint = _p_change_context(
 //                                                                                 $['constraint'],
 //                                                                                 ($) => ({
 //                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
-//                                                                                         _pdev.implement_me(
-//                                                                                             "IM: REFERENCE",
-//                                                                                         ),
+//                                                                                         prop_property['l results']['component'],
 //                                                                                     ).get_entry(
 //                                                                                         $['l reference'],
 //                                                                                         {
@@ -2559,41 +2598,57 @@
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => ({
-//                                                                                     'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                                         $['l reference'],
-//                                                                                         {
-//                                                                                             no_such_entry: () => abort(
+//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                     () => {
+                                                                                        
+//                                                                                         const prop_l_results = {
+//                                                                                             'reference': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                             'selected': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_value = {
+//                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                                 $['l reference'],
 //                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                     'location': $['l location'],
+//                                                                                                     no_such_entry: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     no_context_lookup: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     cycle_detected: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
 //                                                                                                 },
 //                                                                                             ),
-//                                                                                             no_context_lookup: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                             cycle_detected: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                         },
-//                                                                                     ),
-//                                                                                     'l id': $['l reference'],
-//                                                                                 }),
+//                                                                                             'l id': $['l reference'],
+//                                                                                         }
+//                                                                                         return {
+//                                                                                             'l results': prop_l_results,
+//                                                                                             'l value': prop_l_value,
+//                                                                                         }
+//                                                                                     },
+//                                                                                 ),
 //                                                                             )
                                                                             
 //                                                                             const prop_constraint = _p_change_context(
 //                                                                                 $['constraint'],
 //                                                                                 ($) => ({
 //                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
-//                                                                                         _pdev.implement_me(
-//                                                                                             "IM: REFERENCE",
-//                                                                                         ),
+//                                                                                         prop_property['l results']['selected'],
 //                                                                                     ).get_entry(
 //                                                                                         $['l reference'],
 //                                                                                         {
@@ -2688,39 +2743,55 @@
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => ({
-//                                                                                     'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                                         $['l reference'],
-//                                                                                         {
-//                                                                                             no_such_entry: () => abort(
+//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                     () => {
+                                                                                        
+//                                                                                         const prop_l_results = {
+//                                                                                             'list': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                             'result': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_value = {
+//                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                                 $['l reference'],
 //                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                     'location': $['l location'],
+//                                                                                                     no_such_entry: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     no_context_lookup: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     cycle_detected: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
 //                                                                                                 },
 //                                                                                             ),
-//                                                                                             no_context_lookup: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                             cycle_detected: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                         },
-//                                                                                     ),
-//                                                                                     'l id': $['l reference'],
-//                                                                                 }),
+//                                                                                             'l id': $['l reference'],
+//                                                                                         }
+//                                                                                         return {
+//                                                                                             'l results': prop_l_results,
+//                                                                                             'l value': prop_l_value,
+//                                                                                         }
+//                                                                                     },
+//                                                                                 ),
 //                                                                             )
                                                                             
 //                                                                             const prop_list_result = _p_change_context(
 //                                                                                 $['list result'],
-//                                                                                 ($) => _pdev.implement_me(
-//                                                                                     "IM: REFERENCE",
-//                                                                                 ),
+//                                                                                 ($) => prop_property['l results']['result'],
 //                                                                             )
 //                                                                             return {
 //                                                                                 'property': prop_property,
@@ -2737,39 +2808,52 @@
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => ({
-//                                                                                     'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                                         $['l reference'],
-//                                                                                         {
-//                                                                                             no_such_entry: () => abort(
+//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                     () => {
+                                                                                        
+//                                                                                         const prop_l_results = {
+//                                                                                             'state': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_value = {
+//                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                                 $['l reference'],
 //                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                     'location': $['l location'],
+//                                                                                                     no_such_entry: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     no_context_lookup: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     cycle_detected: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
 //                                                                                                 },
 //                                                                                             ),
-//                                                                                             no_context_lookup: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                             cycle_detected: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                         },
-//                                                                                     ),
-//                                                                                     'l id': $['l reference'],
-//                                                                                 }),
+//                                                                                             'l id': $['l reference'],
+//                                                                                         }
+//                                                                                         return {
+//                                                                                             'l results': prop_l_results,
+//                                                                                             'l value': prop_l_value,
+//                                                                                         }
+//                                                                                     },
+//                                                                                 ),
 //                                                                             )
                                                                             
 //                                                                             const prop_state = _p_change_context(
 //                                                                                 $['state'],
-//                                                                                 ($) => _pdev.implement_me(
-//                                                                                     "IM: REFERENCE",
-//                                                                                 ),
+//                                                                                 ($) => prop_property['l results']['state'],
 //                                                                             )
                                                                             
 //                                                                             const prop_result = _p_change_context(
@@ -2805,39 +2889,52 @@
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => ({
-//                                                                                     'l entry': $l['sibling property resolvers'].get_entry(
-//                                                                                         $['l reference'],
-//                                                                                         {
-//                                                                                             no_such_entry: () => abort(
+//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                     () => {
+                                                                                        
+//                                                                                         const prop_l_results = {
+//                                                                                             'optional': _pdev.implement_me(
+//                                                                                                 "IM: constraint result",
+//                                                                                             ),
+//                                                                                         }
+                                                                                        
+//                                                                                         const prop_l_value = {
+//                                                                                             'l entry': $l['sibling property resolvers'].get_entry(
+//                                                                                                 $['l reference'],
 //                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                     'location': $['l location'],
+//                                                                                                     no_such_entry: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     no_context_lookup: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     cycle_detected: () => abort(
+//                                                                                                         {
+//                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                             'location': $['l location'],
+//                                                                                                         },
+//                                                                                                     ),
 //                                                                                                 },
 //                                                                                             ),
-//                                                                                             no_context_lookup: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                             cycle_detected: () => abort(
-//                                                                                                 {
-//                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                     'location': $['l location'],
-//                                                                                                 },
-//                                                                                             ),
-//                                                                                         },
-//                                                                                     ),
-//                                                                                     'l id': $['l reference'],
-//                                                                                 }),
+//                                                                                             'l id': $['l reference'],
+//                                                                                         }
+//                                                                                         return {
+//                                                                                             'l results': prop_l_results,
+//                                                                                             'l value': prop_l_value,
+//                                                                                         }
+//                                                                                     },
+//                                                                                 ),
 //                                                                             )
                                                                             
 //                                                                             const prop_optional_value = _p_change_context(
 //                                                                                 $['optional value'],
-//                                                                                 ($) => _pdev.implement_me(
-//                                                                                     "IM: REFERENCE",
-//                                                                                 ),
+//                                                                                 ($) => prop_property['l results']['optional'],
 //                                                                             )
                                                                             
 //                                                                             const prop_result = _p_change_context(
@@ -3156,7 +3253,7 @@
 //     ),
 // )
 
-// export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_selection = _p_change_context(
@@ -3179,7 +3276,7 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Resolver_Contraint.type_ => {
+//                         ($): t_out.Resolver_Constraint.type_ => {
 //                             switch ($[0]) {
 //                                 case 'state':
 //                                     return _p.ss(
@@ -3412,7 +3509,7 @@
 //     ),
 // )
 
-// export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_start = _p_change_context(
@@ -3423,7 +3520,7 @@
 //                     const var_location = $['l location']
 //                     return _p.decide.state(
 //                         $['l state'],
-//                         ($): t_out.Value_Constraint_Resolver.start => {
+//                         ($): t_out.Resolver_Value_Constraint.start => {
 //                             switch ($[0]) {
 //                                 case 'value':
 //                                     return _p.ss(
@@ -3433,7 +3530,7 @@
 //                                 case 'sibling':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['sibling', Reference_To_Value_Constraint_Resolver(
+//                                         ($) => ['sibling', Resolver_Reference_To_Value_Constraint(
 //                                             $,
 //                                             ($) => abort(
 //                                                 $,
@@ -3457,7 +3554,7 @@
         
 //         const prop_constraint = _p_change_context(
 //             $['constraint'],
-//             ($) => Resolver_Contraint(
+//             ($) => Resolver_Constraint(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -3477,7 +3574,7 @@
 //     },
 // )
 
-// export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.optional.from.optional(
+// export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $l, $p) => _p.optional.from.optional(
 //     $,
 // ).map(
 //     ($) => Resolver_Value_Constraints(
@@ -3497,7 +3594,7 @@
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Value_Constraints.D => _p_change_context(
 //         $['l entry'],
-//         ($) => Value_Constraint_Resolver(
+//         ($) => Resolver_Value_Constraint(
 //             $,
 //             ($) => abort(
 //                 $,
@@ -3510,7 +3607,7 @@
 //     ),
 // )
 
-// export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort, $l, $p) => ({
+// export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($, abort, $l, $p) => ({
 //     'l entry': $l['property constraints'].get_entry(
 //         $['l reference'],
 //         {
@@ -3537,10 +3634,10 @@
 //     'l id': $['l reference'],
 // })
 
-// export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Value_Resolver_Group.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Resolver_Value_Group.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p_variables(
 //             () => {
@@ -3593,7 +3690,7 @@
 //     ),
 // )
 
-// export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $l, $p) => Module_Reference(
+// export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($, abort, $l, $p) => Module_Reference(
 //     $,
 //     ($) => abort(
 //         $,
@@ -3614,7 +3711,7 @@
 //             ($) => ({
 //                 'l results': {
 //                     'dictionary': _pdev.implement_me(
-//                         "IM: result",
+//                         "IM: value reference",
 //                     ),
 //                 },
 //                 'l value': Resolver_Guaranteed_Value_Selection(
@@ -3759,34 +3856,49 @@
                                                                                             
 //                                                                                             const prop_schema_import = _p_change_context(
 //                                                                                                 $['schema import'],
-//                                                                                                 ($) => ({
-//                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
-//                                                                                                         var_constraint_schema_import,
-//                                                                                                     ).get_entry(
-//                                                                                                         $['l reference'],
-//                                                                                                         {
-//                                                                                                             no_such_entry: () => abort(
+//                                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                                     () => {
+                                                                                                        
+//                                                                                                         const prop_l_results = {
+//                                                                                                             'constrained': _pdev.implement_me(
+//                                                                                                                 "IM: constraint result",
+//                                                                                                             ),
+//                                                                                                         }
+                                                                                                        
+//                                                                                                         const prop_l_value = {
+//                                                                                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
+//                                                                                                                 var_constraint_schema_import,
+//                                                                                                             ).get_entry(
+//                                                                                                                 $['l reference'],
 //                                                                                                                 {
-//                                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
-//                                                                                                                     'location': $['l location'],
+//                                                                                                                     no_such_entry: () => abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                                             'location': $['l location'],
+//                                                                                                                         },
+//                                                                                                                     ),
+//                                                                                                                     no_context_lookup: () => abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['lookup', ['no context lookup', null]],
+//                                                                                                                             'location': $['l location'],
+//                                                                                                                         },
+//                                                                                                                     ),
+//                                                                                                                     cycle_detected: () => abort(
+//                                                                                                                         {
+//                                                                                                                             'type': ['lookup', ['cycle detected', null]],
+//                                                                                                                             'location': $['l location'],
+//                                                                                                                         },
+//                                                                                                                     ),
 //                                                                                                                 },
 //                                                                                                             ),
-//                                                                                                             no_context_lookup: () => abort(
-//                                                                                                                 {
-//                                                                                                                     'type': ['lookup', ['no context lookup', null]],
-//                                                                                                                     'location': $['l location'],
-//                                                                                                                 },
-//                                                                                                             ),
-//                                                                                                             cycle_detected: () => abort(
-//                                                                                                                 {
-//                                                                                                                     'type': ['lookup', ['cycle detected', null]],
-//                                                                                                                     'location': $['l location'],
-//                                                                                                                 },
-//                                                                                                             ),
-//                                                                                                         },
-//                                                                                                     ),
-//                                                                                                     'l id': $['l reference'],
-//                                                                                                 }),
+//                                                                                                             'l id': $['l reference'],
+//                                                                                                         }
+//                                                                                                         return {
+//                                                                                                             'l results': prop_l_results,
+//                                                                                                             'l value': prop_l_value,
+//                                                                                                         }
+//                                                                                                     },
+//                                                                                                 ),
 //                                                                                             )
                                                                                             
 //                                                                                             const prop_resolver_import = _p_change_context(
@@ -3825,9 +3937,7 @@
 //                                                                                                 $['signature'],
 //                                                                                                 ($) => ({
 //                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
-//                                                                                                         _pdev.implement_me(
-//                                                                                                             "IM: REFERENCE",
-//                                                                                                         ),
+//                                                                                                         prop_schema_import['l results']['constrained'],
 //                                                                                                     ).get_entry(
 //                                                                                                         $['l reference'],
 //                                                                                                         {
@@ -4330,7 +4440,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return Value_Resolver_Group(
+//                                     return Resolver_Value_Group(
 //                                         $,
 //                                         ($) => abort(
 //                                             $,
@@ -4394,7 +4504,7 @@
 //                                                 ($) => _p.optional.from.optional(
 //                                                     $,
 //                                                 ).map(
-//                                                     ($) => Value_Resolver_List_Result(
+//                                                     ($) => Resolver_Value_List_Result(
 //                                                         $,
 //                                                         ($) => abort(
 //                                                             $,
@@ -5181,62 +5291,75 @@
                 
 //                 const prop_schema_set_child = _p_change_context(
 //                     $['schema set child'],
-//                     ($) => ({
-//                         'l entry': $l['sibling schemas'].get_entry(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
+//                     ($) => _p.group.literal.resolve(
+//                         () => {
+                            
+//                             const prop_l_results = {
+//                                 'schema': _pdev.implement_me(
+//                                     "IM: constraint result",
+//                                 ),
+//                             }
+                            
+//                             const prop_l_value = {
+//                                 'l entry': $l['sibling schemas'].get_entry(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 no_context_lookup: () => abort(
+//                                 'l id': $['l reference'],
+//                                 'l up steps': $l['sibling schemas'].get_entry_depth(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                         'l id': $['l reference'],
-//                         'l up steps': $l['sibling schemas'].get_entry_depth(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 no_context_lookup: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                     }),
+//                             }
+//                             return {
+//                                 'l results': prop_l_results,
+//                                 'l value': prop_l_value,
+//                             }
+//                         },
+//                     ),
 //                 )
                 
 //                 const prop_schema = _p_change_context(
 //                     $['schema'],
-//                     ($) => _pdev.implement_me(
-//                         "IM: REFERENCE",
-//                     ),
+//                     ($) => prop_schema_set_child['l results']['schema'],
 //                 )
 //                 return {
 //                     'schema set child': prop_schema_set_child,
@@ -5257,62 +5380,75 @@
                 
 //                 const prop_schema_set_child = _p_change_context(
 //                     $['schema set child'],
-//                     ($) => ({
-//                         'l entry': $l['sibling schemas'].get_entry(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
+//                     ($) => _p.group.literal.resolve(
+//                         () => {
+                            
+//                             const prop_l_results = {
+//                                 'resolver': _pdev.implement_me(
+//                                     "IM: constraint result",
+//                                 ),
+//                             }
+                            
+//                             const prop_l_value = {
+//                                 'l entry': $l['sibling schemas'].get_entry(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 no_context_lookup: () => abort(
+//                                 'l id': $['l reference'],
+//                                 'l up steps': $l['sibling schemas'].get_entry_depth(
+//                                     $['l reference'],
 //                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
+//                                         no_such_entry: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         no_context_lookup: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['no context lookup', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
+//                                         cycle_detected: () => abort(
+//                                             {
+//                                                 'type': ['lookup', ['cycle detected', null]],
+//                                                 'location': $['l location'],
+//                                             },
+//                                         ),
 //                                     },
 //                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                         'l id': $['l reference'],
-//                         'l up steps': $l['sibling schemas'].get_entry_depth(
-//                             $['l reference'],
-//                             {
-//                                 no_such_entry: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no such entry', $['l reference']]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 no_context_lookup: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['no context lookup', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                                 cycle_detected: () => abort(
-//                                     {
-//                                         'type': ['lookup', ['cycle detected', null]],
-//                                         'location': $['l location'],
-//                                     },
-//                                 ),
-//                             },
-//                         ),
-//                     }),
+//                             }
+//                             return {
+//                                 'l results': prop_l_results,
+//                                 'l value': prop_l_value,
+//                             }
+//                         },
+//                     ),
 //                 )
                 
 //                 const prop_resolver = _p_change_context(
 //                     $['resolver'],
-//                     ($) => _pdev.implement_me(
-//                         "IM: REFERENCE",
-//                     ),
+//                     ($) => prop_schema_set_child['l results']['resolver'],
 //                 )
 //                 return {
 //                     'schema set child': prop_schema_set_child,

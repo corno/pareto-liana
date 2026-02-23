@@ -175,8 +175,8 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     ),
 )
 
-export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($) => v_serialize.Document(
-    v_marshall.Resolver_Contraint(
+export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => v_serialize.Document(
+    v_marshall.Resolver_Constraint(
         $,
     ),
 )
@@ -187,8 +187,8 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     ),
 )
 
-export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => v_serialize.Document(
-    v_marshall.Optional_Value_Constraint_Resolvers(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => v_serialize.Document(
+    v_marshall.Resolver_Optional_Value_Constraints(
         $,
     ),
 )
@@ -199,14 +199,14 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
     ),
 )
 
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($) => v_serialize.Document(
-    v_marshall.Reference_To_Value_Constraint_Resolver(
+export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($) => v_serialize.Document(
+    v_marshall.Resolver_Reference_To_Value_Constraint(
         $,
     ),
 )
 
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($) => v_serialize.Document(
-    v_marshall.Value_Constraint_Resolver(
+export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($) => v_serialize.Document(
+    v_marshall.Resolver_Value_Constraint(
         $,
     ),
 )
@@ -217,14 +217,14 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     ),
 )
 
-export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($) => v_serialize.Document(
-    v_marshall.Value_Resolver_Group(
+export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => v_serialize.Document(
+    v_marshall.Resolver_Value_Group(
         $,
     ),
 )
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($) => v_serialize.Document(
-    v_marshall.Value_Resolver_List_Result(
+export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($) => v_serialize.Document(
+    v_marshall.Resolver_Value_List_Result(
         $,
     ),
 )

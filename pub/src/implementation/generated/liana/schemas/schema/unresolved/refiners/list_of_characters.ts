@@ -455,7 +455,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     ),
 )
 
-export const Resolver_Contraint: t_signatures.Resolver_Contraint = ($, abort, $p) => v_unmarshall.Resolver_Contraint(
+export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $p) => v_unmarshall.Resolver_Constraint(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -487,7 +487,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     ),
 )
 
-export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($, abort, $p) => v_unmarshall.Optional_Value_Constraint_Resolvers(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $p) => v_unmarshall.Resolver_Optional_Value_Constraints(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -519,7 +519,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
     ),
 )
 
-export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_Value_Constraint_Resolver = ($, abort, $p) => v_unmarshall.Reference_To_Value_Constraint_Resolver(
+export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($, abort, $p) => v_unmarshall.Resolver_Reference_To_Value_Constraint(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -535,7 +535,7 @@ export const Reference_To_Value_Constraint_Resolver: t_signatures.Reference_To_V
     ),
 )
 
-export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver = ($, abort, $p) => v_unmarshall.Value_Constraint_Resolver(
+export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $p) => v_unmarshall.Resolver_Value_Constraint(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -567,7 +567,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     ),
 )
 
-export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort, $p) => v_unmarshall.Value_Resolver_Group(
+export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $p) => v_unmarshall.Resolver_Value_Group(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -583,7 +583,7 @@ export const Value_Resolver_Group: t_signatures.Value_Resolver_Group = ($, abort
     ),
 )
 
-export const Value_Resolver_List_Result: t_signatures.Value_Resolver_List_Result = ($, abort, $p) => v_unmarshall.Value_Resolver_List_Result(
+export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result = ($, abort, $p) => v_unmarshall.Resolver_Value_List_Result(
     v_deserialize.Document(
         $,
         ($) => abort(

@@ -438,6 +438,7 @@ export const Resolver_Value = (
                         sh.sv.context(["l entry"]),
                         sh.a.variables(
                             {
+                                "location": sh.a.select(sh.sv.context(["l location"])),
                                 "referenced entry": sh.a.implement_me("IM: referenced entry"),
                             },
                             Resolver_Value(
@@ -595,65 +596,59 @@ export const Resolver_Value = (
                 case 'selected': return _p.ss($, ($) => {
                     const x = $.lookup
                     const x_out = Resolver_Lookup_Selection(x)
-                    //$.constraints asdfsfd
-                    // Value_Constraint_Resolvers($.constraints)
-                    return _p.decide.state($.definition.dependency, ($) => {
-                        switch ($[0]) {
-                            case 'stack': return _p.ss($, ($) => sh.a.group.literal({
-                                "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
-                                    x_out,
-                                    sh.a.select(sh.sv.context(["l reference"])),
-                                    no_such_entry_error,
-                                    no_context_lookup_error,
-                                    cycle_detected_error,
+                    return Value_Constraints(
+                        $.constraints,
+                        {
+                            'sub': _p.decide.state($.definition.dependency, ($) => {
+                                switch ($[0]) {
+                                    case 'stack': return _p.ss($, ($) => sh.a.group.literal({
+                                        "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
+                                            x_out,
+                                            sh.a.select(sh.sv.context(["l reference"])),
+                                            no_such_entry_error,
+                                            no_context_lookup_error,
+                                            cycle_detected_error,
 
-                                )),
-                                "l id": sh.a.select(sh.sv.context(["l reference"])),
-                                // "l up steps": sh.a.implement_me("IM: FIXME UPSTEPS"),
-                                "l up steps": sh.a.select(sh.sv.lookup_depth(
-                                    x_out,
-                                    sh.a.select(sh.sv.context(["l reference"])),
-                                    no_such_entry_error,
-                                    no_context_lookup_error,
-                                    cycle_detected_error,
+                                        )),
+                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                        // "l up steps": sh.a.implement_me("IM: FIXME UPSTEPS"),
+                                        "l up steps": sh.a.select(sh.sv.lookup_depth(
+                                            x_out,
+                                            sh.a.select(sh.sv.context(["l reference"])),
+                                            no_such_entry_error,
+                                            no_context_lookup_error,
+                                            cycle_detected_error,
 
-                                )),
-                            }))
-                            case 'acyclic': return _p.ss($, ($) => sh.a.group.literal({
-                                // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
-                                "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
-                                    x_out,
-                                    sh.a.select(sh.sv.context(["l reference"])),
-                                    no_such_entry_error,
-                                    no_context_lookup_error,
-                                    cycle_detected_error,
+                                        )),
+                                    }))
+                                    case 'acyclic': return _p.ss($, ($) => sh.a.group.literal({
+                                        // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
+                                        "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
+                                            x_out,
+                                            sh.a.select(sh.sv.context(["l reference"])),
+                                            no_such_entry_error,
+                                            no_context_lookup_error,
+                                            cycle_detected_error,
 
-                                )),
-                                "l id": sh.a.select(sh.sv.context(["l reference"])),
-                            }))
-                            case 'cyclic': return _p.ss($, ($) => sh.a.group.literal({
-                                "l entry": sh.a.select(sh.sv.lookup_entry_cyclic(
-                                    x_out,
-                                    sh.a.select(sh.sv.context(["l reference"])),
-                                    no_such_entry_error,
-                                    no_context_lookup_error,
-                                    sh.a.unreachable("the generated resolver should take care of accessing before resolved"),
+                                        )),
+                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                    }))
+                                    case 'cyclic': return _p.ss($, ($) => sh.a.group.literal({
+                                        "l entry": sh.a.select(sh.sv.lookup_entry_cyclic(
+                                            x_out,
+                                            sh.a.select(sh.sv.context(["l reference"])),
+                                            no_such_entry_error,
+                                            no_context_lookup_error,
+                                            sh.a.unreachable("the generated resolver should take care of accessing before resolved"),
 
-                                )),
-
-                                // "l entry": sh.a.select(sh.sv.lookup_entry(
-                                //     x_out,
-                                //     sh.a.select(sh.sv.context(["l reference"])),
-                                //     no_such_entry_error,
-                                //     no_context_lookup_error,
-                                //     sh.a.unreachable(), //this can only happen if there is a bug in this generator
-
-                                // )),
-                                "l id": sh.a.select(sh.sv.context(["l reference"])),
-                            }))
-                            default: return _p.au($[0])
+                                        )),
+                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                    }))
+                                    default: return _p.au($[0])
+                                }
+                            })
                         }
-                    })
+                    )
                 })
                 default: return _p.au($[0])
             }
@@ -716,10 +711,92 @@ export const Resolver_Value = (
     }
 })
 
+export const Value_Constraint = (
+    $: d_in.Resolver_Value_Constraint,
+): d_out.Assign => {
+    return Constraint(
+        $.constraint,
+        {
+            'sub': _p.decide.state($.start, ($) => {
+                switch ($[0]) {
+                    case 'value': return _p.ss($, ($) => sh.sv.implement_me("IM: constraint result1"))
+                    case 'sibling': return _p.ss($, ($) => sh.sv.implement_me("IM: constraint result2"))
+                    default: return _p.au($[0])
+                }
+            })
+        }
+    )
+}
+
+export const Constraint = (
+    $: d_in.Resolver_Constraint,
+    $p: {
+        sub: d_out.Select_Value
+    }
+): d_out.Assign => {
+    const rvs = Relative_Value_Selection($.selection, { sub: $p.sub })
+    return _p.decide.state($.type, ($) => {
+        switch ($[0]) {
+            case 'state': return _p.ss($, ($) => sh.a.decide.state_single(
+                rvs,
+                $.option['l id'],
+                sh.a.select(sh.sv.context([])),
+                sh.a.abort(sh.a.group.literal({
+                    "type": sh.a.state.literal(
+                        "constraint",
+                        sh.a.state.literal(
+                            "state",
+                            sh.a.group.literal({
+                                "expected": sh.a.text.literal($.option['l id'], 'freeform'),
+                                "found": sh.a.text.option_name(),
+                            })
+                        )
+                    ),
+                    "location": sh.a.select(sh.sv.variable("location", []))
+                })), null,
+            ))
+            case 'optional value': return _p.ss($, ($) => sh.a.implement_me("IM: constraint2"))
+            default: return _p.au($[0])
+        }
+    })
+}
+
+export const Relative_Value_Selection = (
+    $: d_in.Resolver_Relative_Value_Selection,
+    $p: {
+        sub: d_out.Select_Value
+    }
+): d_out.Select_Value => {
+    $.path['l value'].__l_map(($) => null)
+    return sh.sv.implement_me("IM: rvs")
+}
+
 export const Value_Constraints = (
     $: d_in.Resolver_Value_Constraints,
+    $p: {
+        sub: d_out.Assign
+    }
 ): d_out.Assign => {
-    return _p_unreachable_code_path("IMPLEMENT ME")
+    return _p.decide.dictionary.has_entries(
+        $,
+        () => sh.a.group.literal_resolve({
+            "l value": $p.sub,
+            "l results": sh.a.variables(
+                {
+                    "location": sh.a.select(sh.sv.context(["l location"])),
+                },
+                sh.a.group.literal($.__d_map(($, id) => Value_Constraint($)))
+            ),
+        }),
+        () => $p.sub
+    )
+}
+
+export const Value_Reference = (
+    $: d_in.Value_Reference,
+
+): d_out.Assign => {
+    return sh.a.implement_me("IM: value reference")
 }
 
 export const Value_Results = (
@@ -731,11 +808,13 @@ export const Value_Results = (
     return _p.decide.optional(
         $,
         ($) => sh.a.group.literal({
-            "l results": sh.a.group.literal(_p.dictionary.from.dictionary(
-                $,
-            ).map(
-                (): d_out.Assign => sh.a.implement_me("IM: result")
-            )),
+            "l results": sh.a.group.literal(
+                _p.dictionary.from.dictionary(
+                    $,
+                ).map(
+                    ($) => Value_Reference($)
+                )
+            ),
             "l value": $p['base type'],
         }),
         () => $p['base type']
