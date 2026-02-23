@@ -55,7 +55,7 @@ export const Schema: t_signatures.Schema = ($, abort, $p) => v_unmarshall.Schema
     ),
 )
 
-export const Imports: t_signatures.Imports = ($, abort, $p) => v_unmarshall.Imports(
+export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $p) => v_unmarshall.Schema_Imports(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -120,6 +120,38 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $p) => v_unmarshal
 )
 
 export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const Resolver: t_signatures.Resolver = ($, abort, $p) => v_unmarshall.Resolver(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $p) => v_unmarshall.Resolver_Imports(
     v_deserialize.Document(
         $,
         ($) => abort(
@@ -200,22 +232,6 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
 )
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $p) => v_unmarshall.Schema_Tree(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['parse error', $],
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        },
-    )['content'],
-    ($) => abort(
-        ['unmarshall error', $],
-    ),
-)
-
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $p) => v_unmarshall.Resolve_Logic(
     v_deserialize.Document(
         $,
         ($) => abort(

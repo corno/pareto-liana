@@ -53,9 +53,9 @@ export type Schema_ = (
     context: Schema_.I,
 ) => Schema_.O
 
-export namespace Imports_ {
+export namespace Schema_Imports_ {
     
-    export type I = i_in.Imports
+    export type I = i_in.Schema_Imports
     
     export type O = i_out.Value
     
@@ -65,9 +65,9 @@ export namespace Imports_ {
     
 }
 
-export type Imports_ = (
-    context: Imports_.I,
-) => Imports_.O
+export type Schema_Imports_ = (
+    context: Schema_Imports_.I,
+) => Schema_Imports_.O
 
 export namespace Modules_ {
     
@@ -132,6 +132,38 @@ export namespace Value_ {
 export type Value_ = (
     context: Value_.I,
 ) => Value_.O
+
+export namespace Resolver_ {
+    
+    export type I = i_in.Resolver
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Resolver_ = (
+    context: Resolver_.I,
+) => Resolver_.O
+
+export namespace Resolver_Imports_ {
+    
+    export type I = i_in.Resolver_Imports
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Resolver_Imports_ = (
+    context: Resolver_Imports_.I,
+) => Resolver_Imports_.O
 
 export namespace Signatures_ {
     
@@ -212,22 +244,6 @@ export namespace Schema_Tree_ {
 export type Schema_Tree_ = (
     context: Schema_Tree_.I,
 ) => Schema_Tree_.O
-
-export namespace Resolve_Logic_ {
-    
-    export type I = i_in.Resolve_Logic
-    
-    export type O = i_out.Value
-    
-    export namespace P {
-        
-    }
-    
-}
-
-export type Resolve_Logic_ = (
-    context: Resolve_Logic_.I,
-) => Resolve_Logic_.O
 
 export namespace Text_Type_ {
     
@@ -649,17 +665,18 @@ export {
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
-    Imports_ as Imports, 
+    Schema_Imports_ as Schema_Imports, 
     Modules_ as Modules, 
     Globals_ as Globals, 
     Dictionary_ as Dictionary, 
     Value_ as Value, 
+    Resolver_ as Resolver, 
+    Resolver_Imports_ as Resolver_Imports, 
     Signatures_ as Signatures, 
     Signature_Parameters_ as Signature_Parameters, 
     Value_Resolver_ as Value_Resolver, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
-    Resolve_Logic_ as Resolve_Logic, 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Module_ as Module, 

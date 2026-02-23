@@ -144,7 +144,7 @@ export namespace Group_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -199,7 +199,7 @@ export namespace Dictionary_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -254,7 +254,7 @@ export namespace Value_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -295,7 +295,7 @@ export namespace Module_Reference_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -334,7 +334,7 @@ export namespace Value_Reference_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -373,7 +373,7 @@ export namespace Value_Results_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -412,7 +412,7 @@ export namespace Option_Constraints_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -465,7 +465,7 @@ export namespace Module_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -571,13 +571,21 @@ export namespace Value_Resolver_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -609,7 +617,8 @@ export type Value_Resolver_ = (
         readonly 'current dictionary': Value_Resolver_.P.current_dictionary
         readonly 'current ordered dictionary': Value_Resolver_.P.current_ordered_dictionary
         readonly 'signature': Value_Resolver_.P.signature
-        readonly 'imports': Value_Resolver_.P.imports
+        readonly 'schema imports': Value_Resolver_.P.schema_imports
+        readonly 'resolver imports': Value_Resolver_.P.resolver_imports
         readonly 'signatures': Value_Resolver_.P.signatures
         readonly 'modules': Value_Resolver_.P.modules
         readonly 'option constraints': Value_Resolver_.P.option_constraints
@@ -674,13 +683,21 @@ export namespace Possible_Value_Selection_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -712,7 +729,8 @@ export type Possible_Value_Selection_ = (
         readonly 'current dictionary': Possible_Value_Selection_.P.current_dictionary
         readonly 'current ordered dictionary': Possible_Value_Selection_.P.current_ordered_dictionary
         readonly 'signature': Possible_Value_Selection_.P.signature
-        readonly 'imports': Possible_Value_Selection_.P.imports
+        readonly 'schema imports': Possible_Value_Selection_.P.schema_imports
+        readonly 'resolver imports': Possible_Value_Selection_.P.resolver_imports
         readonly 'signatures': Possible_Value_Selection_.P.signatures
         readonly 'modules': Possible_Value_Selection_.P.modules
         readonly 'option constraints': Possible_Value_Selection_.P.option_constraints
@@ -777,13 +795,21 @@ export namespace Guaranteed_Value_Selection_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -815,7 +841,8 @@ export type Guaranteed_Value_Selection_ = (
         readonly 'current dictionary': Guaranteed_Value_Selection_.P.current_dictionary
         readonly 'current ordered dictionary': Guaranteed_Value_Selection_.P.current_ordered_dictionary
         readonly 'signature': Guaranteed_Value_Selection_.P.signature
-        readonly 'imports': Guaranteed_Value_Selection_.P.imports
+        readonly 'schema imports': Guaranteed_Value_Selection_.P.schema_imports
+        readonly 'resolver imports': Guaranteed_Value_Selection_.P.resolver_imports
         readonly 'signatures': Guaranteed_Value_Selection_.P.signatures
         readonly 'modules': Guaranteed_Value_Selection_.P.modules
         readonly 'option constraints': Guaranteed_Value_Selection_.P.option_constraints
@@ -880,13 +907,21 @@ export namespace Benchmark_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -918,7 +953,8 @@ export type Benchmark_ = (
         readonly 'current dictionary': Benchmark_.P.current_dictionary
         readonly 'current ordered dictionary': Benchmark_.P.current_ordered_dictionary
         readonly 'signature': Benchmark_.P.signature
-        readonly 'imports': Benchmark_.P.imports
+        readonly 'schema imports': Benchmark_.P.schema_imports
+        readonly 'resolver imports': Benchmark_.P.resolver_imports
         readonly 'signatures': Benchmark_.P.signatures
         readonly 'modules': Benchmark_.P.modules
         readonly 'option constraints': Benchmark_.P.option_constraints
@@ -983,13 +1019,21 @@ export namespace Optional_Value_Initialization_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -1021,7 +1065,8 @@ export type Optional_Value_Initialization_ = (
         readonly 'current dictionary': Optional_Value_Initialization_.P.current_dictionary
         readonly 'current ordered dictionary': Optional_Value_Initialization_.P.current_ordered_dictionary
         readonly 'signature': Optional_Value_Initialization_.P.signature
-        readonly 'imports': Optional_Value_Initialization_.P.imports
+        readonly 'schema imports': Optional_Value_Initialization_.P.schema_imports
+        readonly 'resolver imports': Optional_Value_Initialization_.P.resolver_imports
         readonly 'signatures': Optional_Value_Initialization_.P.signatures
         readonly 'modules': Optional_Value_Initialization_.P.modules
         readonly 'option constraints': Optional_Value_Initialization_.P.option_constraints
@@ -1086,13 +1131,21 @@ export namespace Lookup_Selection_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -1124,7 +1177,8 @@ export type Lookup_Selection_ = (
         readonly 'current dictionary': Lookup_Selection_.P.current_dictionary
         readonly 'current ordered dictionary': Lookup_Selection_.P.current_ordered_dictionary
         readonly 'signature': Lookup_Selection_.P.signature
-        readonly 'imports': Lookup_Selection_.P.imports
+        readonly 'schema imports': Lookup_Selection_.P.schema_imports
+        readonly 'resolver imports': Lookup_Selection_.P.resolver_imports
         readonly 'signatures': Lookup_Selection_.P.signatures
         readonly 'modules': Lookup_Selection_.P.modules
         readonly 'option constraints': Lookup_Selection_.P.option_constraints
@@ -1189,13 +1243,21 @@ export namespace Option_Constraint_Resolvers_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -1227,7 +1289,8 @@ export type Option_Constraint_Resolvers_ = (
         readonly 'current dictionary': Option_Constraint_Resolvers_.P.current_dictionary
         readonly 'current ordered dictionary': Option_Constraint_Resolvers_.P.current_ordered_dictionary
         readonly 'signature': Option_Constraint_Resolvers_.P.signature
-        readonly 'imports': Option_Constraint_Resolvers_.P.imports
+        readonly 'schema imports': Option_Constraint_Resolvers_.P.schema_imports
+        readonly 'resolver imports': Option_Constraint_Resolvers_.P.resolver_imports
         readonly 'signatures': Option_Constraint_Resolvers_.P.signatures
         readonly 'modules': Option_Constraint_Resolvers_.P.modules
         readonly 'option constraints': Option_Constraint_Resolvers_.P.option_constraints
@@ -1252,7 +1315,7 @@ export namespace Value_Resolver_List_Result_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -1331,13 +1394,21 @@ export namespace Value_Resolver_Group_ {
         
         export type signature = i_resolved.Signature_
         
-        export namespace imports {
+        export namespace schema_imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        
+        export namespace resolver_imports {
+            
+            export type O = i_resolved.Resolver_Imports_
+            
+        }
+        
+        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Signatures_
         
@@ -1369,7 +1440,8 @@ export type Value_Resolver_Group_ = (
         readonly 'current dictionary': Value_Resolver_Group_.P.current_dictionary
         readonly 'current ordered dictionary': Value_Resolver_Group_.P.current_ordered_dictionary
         readonly 'signature': Value_Resolver_Group_.P.signature
-        readonly 'imports': Value_Resolver_Group_.P.imports
+        readonly 'schema imports': Value_Resolver_Group_.P.schema_imports
+        readonly 'resolver imports': Value_Resolver_Group_.P.resolver_imports
         readonly 'signatures': Value_Resolver_Group_.P.signatures
         readonly 'modules': Value_Resolver_Group_.P.modules
         readonly 'option constraints': Value_Resolver_Group_.P.option_constraints
@@ -1505,11 +1577,11 @@ export type Value_Constraint_Resolver_ = (
     parameters: null,
 ) => Value_Constraint_Resolver_.O
 
-export namespace Resolve_Logic_ {
+export namespace Resolver_ {
     
-    export type I = i_unresolved.Resolve_Logic
+    export type I = i_unresolved.Resolver
     
-    export type O = i_resolved.Resolve_Logic
+    export type O = i_resolved.Resolver
     
     export type E = i_generic.Error
     
@@ -1517,21 +1589,24 @@ export namespace Resolve_Logic_ {
         
         export type modules = i_resolved.Modules_
         
-        export type imports = i_resolved.Imports_
+        export type resolver_imports = i_resolved.Resolver_Imports_
+        
+        export type schema_imports = i_resolved.Schema_Imports_
         
     }
     
 }
 
-export type Resolve_Logic_ = (
-    context: Resolve_Logic_.I,
-    abort: _pi.Abort<Resolve_Logic_.E>,
+export type Resolver_ = (
+    context: Resolver_.I,
+    abort: _pi.Abort<Resolver_.E>,
     lookups: null,
     parameters: {
-        readonly 'modules': Resolve_Logic_.P.modules
-        readonly 'imports': Resolve_Logic_.P.imports
+        readonly 'modules': Resolver_.P.modules
+        readonly 'resolver imports': Resolver_.P.resolver_imports
+        readonly 'schema imports': Resolver_.P.schema_imports
     },
-) => Resolve_Logic_.O
+) => Resolver_.O
 
 export namespace Signature_Parameters_ {
     
@@ -1545,7 +1620,7 @@ export namespace Signature_Parameters_ {
         
         export type modules = i_resolved.Modules_
         
-        export type imports = i_resolved.Imports_
+        export type imports = i_resolved.Schema_Imports_
         
     }
     
@@ -1581,7 +1656,7 @@ export namespace Signature_ {
         
         export type module_ = i_resolved.Module_
         
-        export type imports = i_resolved.Imports_
+        export type imports = i_resolved.Schema_Imports_
         
     }
     
@@ -1612,7 +1687,7 @@ export namespace Signatures_ {
         
         export type modules = i_resolved.Modules_
         
-        export type imports = i_resolved.Imports_
+        export type imports = i_resolved.Schema_Imports_
         
     }
     
@@ -1642,7 +1717,9 @@ export namespace Module_Resolvers_ {
         
         export type modules = i_resolved.Modules_
         
-        export type imports = i_resolved.Imports_
+        export type schema_imports = i_resolved.Schema_Imports_
+        
+        export type resolver_imports = i_resolved.Resolver_Imports_
         
     }
     
@@ -1655,7 +1732,8 @@ export type Module_Resolvers_ = (
     parameters: {
         readonly 'signatures': Module_Resolvers_.P.signatures
         readonly 'modules': Module_Resolvers_.P.modules
-        readonly 'imports': Module_Resolvers_.P.imports
+        readonly 'schema imports': Module_Resolvers_.P.schema_imports
+        readonly 'resolver imports': Module_Resolvers_.P.resolver_imports
     },
 ) => Module_Resolvers_.O
 
@@ -1767,11 +1845,11 @@ export type Schema_ = (
     parameters: null,
 ) => Schema_.O
 
-export namespace Imports_ {
+export namespace Schema_Imports_ {
     
-    export type I = i_unresolved.Imports
+    export type I = i_unresolved.Schema_Imports
     
-    export type O = i_resolved.Imports
+    export type O = i_resolved.Schema_Imports
     
     export type E = i_generic.Error
     
@@ -1787,14 +1865,43 @@ export namespace Imports_ {
     
 }
 
-export type Imports_ = (
-    context: Imports_.I,
-    abort: _pi.Abort<Imports_.E>,
+export type Schema_Imports_ = (
+    context: Schema_Imports_.I,
+    abort: _pi.Abort<Schema_Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.lookup.Stack<Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': _pi.lookup.Stack<Schema_Imports_.L.sibling_schemas>
     },
     parameters: null,
-) => Imports_.O
+) => Schema_Imports_.O
+
+export namespace Resolver_Imports_ {
+    
+    export type I = i_unresolved.Resolver_Imports
+    
+    export type O = i_resolved.Resolver_Imports
+    
+    export type E = i_generic.Error
+    
+    export namespace L {
+        
+        export type sibling_schemas = i_resolved.Schemas_.D
+        
+    }
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Resolver_Imports_ = (
+    context: Resolver_Imports_.I,
+    abort: _pi.Abort<Resolver_Imports_.E>,
+    lookups: {
+        readonly 'sibling schemas': _pi.lookup.Stack<Resolver_Imports_.L.sibling_schemas>
+    },
+    parameters: null,
+) => Resolver_Imports_.O
 
 export namespace Reference_To_Value_Constraint_Resolver_ {
     
@@ -1845,7 +1952,7 @@ export namespace Modules_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Imports_
+            export type O = i_resolved.Schema_Imports_
             
         }
         
@@ -1894,7 +2001,7 @@ export {
     Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
-    Resolve_Logic_ as Resolve_Logic, 
+    Resolver_ as Resolver, 
     Signature_Parameters_ as Signature_Parameters, 
     Signature_ as Signature, 
     Signatures_ as Signatures, 
@@ -1903,7 +2010,8 @@ export {
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Schema_ as Schema, 
-    Imports_ as Imports, 
+    Schema_Imports_ as Schema_Imports, 
+    Resolver_Imports_ as Resolver_Imports, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Modules_ as Modules, 
 }

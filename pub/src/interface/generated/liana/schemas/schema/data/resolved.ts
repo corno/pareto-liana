@@ -24,7 +24,9 @@ export type Schemas_ = _pi.Dictionary<Schemas_.D>
 
 export namespace Schema_ {
     
-    export type imports = Imports_
+    export type schema_imports = Schema_Imports_
+    
+    export type resolver_imports = Resolver_Imports_
     
     export type globals = Globals_
     
@@ -32,7 +34,7 @@ export namespace Schema_ {
     
     export namespace complexity {
         
-        export type constrained = Resolve_Logic_
+        export type constrained = Resolver_
         
         export type unconstrained = null
         
@@ -45,13 +47,14 @@ export namespace Schema_ {
 }
 
 export type Schema_ = {
-    readonly 'imports': Schema_.imports
+    readonly 'schema imports': Schema_.schema_imports
+    readonly 'resolver imports': Schema_.resolver_imports
     readonly 'globals': Schema_.globals
     readonly 'modules': Schema_.modules
     readonly 'complexity': Schema_.complexity
 }
 
-export namespace Imports_ {
+export namespace Schema_Imports_ {
     
     export namespace D {
         
@@ -101,7 +104,7 @@ export namespace Imports_ {
     
 }
 
-export type Imports_ = _pi.Dictionary<Imports_.D>
+export type Schema_Imports_ = _pi.Dictionary<Schema_Imports_.D>
 
 export namespace Modules_ {
     
@@ -171,7 +174,7 @@ export namespace Value_ {
                 
                 export namespace import_ {
                     
-                    export type l_entry = Imports_.D
+                    export type l_entry = Schema_Imports_.D
                     
                     export type l_id = string
                     
@@ -415,6 +418,79 @@ export type Value_ =
     | readonly ['state', Value_.state]
     | readonly ['text', Value_.text]
 
+export namespace Resolver_ {
+    
+    export namespace signatures {
+        
+        export type signatures = Signatures_
+        
+    }
+    
+    export type signatures = {
+        readonly 'signatures': signatures.signatures
+    }
+    
+    export type resolvers = Module_Resolvers_
+    
+}
+
+export type Resolver_ = {
+    readonly 'signatures': Resolver_.signatures
+    readonly 'resolvers': Resolver_.resolvers
+}
+
+export namespace Resolver_Imports_ {
+    
+    export namespace D {
+        
+        export namespace schema_set_child {
+            
+            export namespace l_results {
+                
+                export type resolver = Resolver_
+                
+            }
+            
+            export type l_results = {
+                readonly 'resolver': l_results.resolver
+            }
+            
+            export namespace l_value {
+                
+                export type l_entry = Schemas_.D
+                
+                export type l_id = string
+                
+                export type l_up_steps = number
+                
+            }
+            
+            export type l_value = {
+                readonly 'l entry': l_value.l_entry
+                readonly 'l id': l_value.l_id
+                readonly 'l up steps': l_value.l_up_steps
+            }
+            
+        }
+        
+        export type schema_set_child = {
+            readonly 'l results': schema_set_child.l_results
+            readonly 'l value': schema_set_child.l_value
+        }
+        
+        export type resolver = Resolver_
+        
+    }
+    
+    export type D = {
+        readonly 'schema set child': D.schema_set_child
+        readonly 'resolver': D.resolver
+    }
+    
+}
+
+export type Resolver_Imports_ = _pi.Dictionary<Resolver_Imports_.D>
+
 export namespace Signatures_ {
     
     export type D = Signature_
@@ -501,17 +577,30 @@ export namespace Value_Resolver_ {
             
             export namespace external {
                 
-                export namespace import_ {
+                export namespace schema_import {
                     
-                    export type l_entry = Imports_.D
+                    export type l_entry = Schema_Imports_.D
                     
                     export type l_id = string
                     
                 }
                 
-                export type import_ = {
-                    readonly 'l entry': import_.l_entry
-                    readonly 'l id': import_.l_id
+                export type schema_import = {
+                    readonly 'l entry': schema_import.l_entry
+                    readonly 'l id': schema_import.l_id
+                }
+                
+                export namespace resolver_import {
+                    
+                    export type l_entry = Resolver_Imports_.D
+                    
+                    export type l_id = string
+                    
+                }
+                
+                export type resolver_import = {
+                    readonly 'l entry': resolver_import.l_entry
+                    readonly 'l id': resolver_import.l_id
                 }
                 
                 export namespace signature {
@@ -530,7 +619,8 @@ export namespace Value_Resolver_ {
             }
             
             export type external = {
-                readonly 'import': external.import_
+                readonly 'schema import': external.schema_import
+                readonly 'resolver import': external.resolver_import
                 readonly 'signature': external.signature
             }
             
@@ -874,27 +964,6 @@ export type Schema_Tree_ =
     | readonly ['schema', Schema_Tree_.schema]
     | readonly ['set', Schema_Tree_.set_]
 
-export namespace Resolve_Logic_ {
-    
-    export namespace signatures {
-        
-        export type signatures = Signatures_
-        
-    }
-    
-    export type signatures = {
-        readonly 'signatures': signatures.signatures
-    }
-    
-    export type resolvers = Module_Resolvers_
-    
-}
-
-export type Resolve_Logic_ = {
-    readonly 'signatures': Resolve_Logic_.signatures
-    readonly 'resolvers': Resolve_Logic_.resolvers
-}
-
 export namespace Text_Type_ {
     
     export namespace type_ {
@@ -1225,7 +1294,7 @@ export namespace Module_Reference_ {
             
             export namespace import_ {
                 
-                export type l_entry = Imports_.D
+                export type l_entry = Schema_Imports_.D
                 
                 export type l_id = string
                 
@@ -2010,17 +2079,18 @@ export {
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
-    Imports_ as Imports, 
+    Schema_Imports_ as Schema_Imports, 
     Modules_ as Modules, 
     Globals_ as Globals, 
     Dictionary_ as Dictionary, 
     Value_ as Value, 
+    Resolver_ as Resolver, 
+    Resolver_Imports_ as Resolver_Imports, 
     Signatures_ as Signatures, 
     Signature_Parameters_ as Signature_Parameters, 
     Value_Resolver_ as Value_Resolver, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
-    Resolve_Logic_ as Resolve_Logic, 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Module_ as Module, 

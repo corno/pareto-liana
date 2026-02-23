@@ -1124,7 +1124,8 @@ export namespace r {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['external', {
-                'import': sh.reference(imp),
+                'resolver import': sh.reference(imp),
+                'schema import': sh.reference(imp),
                 'signature': sh.reference(type),
             }]),
             'signature': null,
@@ -1282,7 +1283,7 @@ export const resolver = (
 
 export const signatures = (
     signatures: _p.Raw_Or_Normal_Dictionary<d_target.Signatures.l_dictionary.D.l_entry>,
-): d_target.Resolve_Logic.signatures => {
+): d_target.Resolver.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
     }
@@ -1294,17 +1295,25 @@ export const resolvers = (
 ): d_target.Module_Resolvers => {
     return sh.dictionary(resolvers)
 }
-export const import_ = (
+export const schema_import_ = (
     name: string,
-): d_target.Imports.l_dictionary.D.l_entry => {
+): d_target.Schema_Imports.l_dictionary.D.l_entry => {
     return {
         'schema set child': sh.reference(name),
         'schema': null,
     }
 }
+export const resolver_import_ = (
+    name: string,
+): d_target.Resolver_Imports.l_dictionary.D.l_entry => {
+    return {
+        'schema set child': sh.reference(name),
+        'resolver': null,
+    }
+}
 
 export const constrained = (
-    signatures: d_target.Resolve_Logic.signatures,
+    signatures: d_target.Resolver.signatures,
     resolvers: d_target.Module_Resolvers,
 ): d_target.Schema.complexity.l_state.constrained => {
     return {
@@ -1318,13 +1327,15 @@ export const unconstrained = (
     return null
 }
 export const schema_ = (
-    imports: _p.Raw_Or_Normal_Dictionary<d_target.Imports.l_dictionary.D.l_entry>,
+    schema_imports: _p.Raw_Or_Normal_Dictionary<d_target.Schema_Imports.l_dictionary.D.l_entry>,
+    resolver_imports: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Imports.l_dictionary.D.l_entry>,
     globals: d_target.Globals,
     modules: d_target.Modules,
     resolve: null | d_target.Schema.complexity.l_state.constrained,
 ): d_target.Schemas.l_dictionary.D.l_entry => {
     return sh.state(['schema', {
-        'imports': sh.dictionary(imports),
+        'schema imports': sh.dictionary(schema_imports),
+        'resolver imports': sh.dictionary(resolver_imports),
         'globals': globals,
         'modules': modules,
         'complexity': resolve === null

@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-import { schema_, import_, constrained } from "../../../../../shorthands/schema"
+import { schema_, constrained, schema_import_, resolver_import_ } from "../../../../../shorthands/schema"
 
 
 import { $ as schema } from "./$.types.astn"
@@ -12,7 +12,10 @@ import { $ as resolver } from "./$.resolvers.astn"
 
 export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
-        "interface": import_("interface"),
+        "interface": schema_import_("interface"),
+    },
+    {
+        "interface": resolver_import_("interface"),
     },
     globals,
     schema,

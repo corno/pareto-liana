@@ -27,7 +27,7 @@ export const Schema_Tree = (
     return _p.decide.state($, ($) => {
         switch ($[0]) {
             case 'schema': return _p.ss($, ($) => {
-                const imports = $.imports
+                const imports = $['resolver imports']
                 const schema = $
 
                 return $p['omit (de)serializer']

@@ -74,7 +74,7 @@ export const Schema = (
                 ])
             ),
         }),
-        $.imports.__d_map(($, id) => constrained
+        $['schema imports'].__d_map(($, id) => constrained
             ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
             : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "boilerplate for migrate"])),
         $.modules.__d_map(($, id) => sh.algorithm(
@@ -259,7 +259,10 @@ export const Value = (
                 switch ($[0]) {
                     case 'derived': return _p.ss($, ($) => sh.a.nothing())
                     case 'selected': return _p.ss($, ($) => {
-                        const tn = sh.a.select(sh.sv.context(["l id"]))
+                        const tn = sh.a.text.copy(sh.sv.context($.results.__decide(
+                            ($) => ["l value", "l id"],
+                            () => ["l id"]
+                        )))
 
                         return $p.constrained
                             ? sh.a.group.literal({

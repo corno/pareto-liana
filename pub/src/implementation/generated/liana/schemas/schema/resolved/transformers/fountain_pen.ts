@@ -25,8 +25,8 @@ export const Schema: t_signatures.Schema = ($) => v_serialize.Document(
     ),
 )
 
-export const Imports: t_signatures.Imports = ($) => v_serialize.Document(
-    v_marshall.Imports(
+export const Schema_Imports: t_signatures.Schema_Imports = ($) => v_serialize.Document(
+    v_marshall.Schema_Imports(
         $,
     ),
 )
@@ -51,6 +51,18 @@ export const Dictionary: t_signatures.Dictionary = ($) => v_serialize.Document(
 
 export const Value: t_signatures.Value = ($) => v_serialize.Document(
     v_marshall.Value(
+        $,
+    ),
+)
+
+export const Resolver: t_signatures.Resolver = ($) => v_serialize.Document(
+    v_marshall.Resolver(
+        $,
+    ),
+)
+
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => v_serialize.Document(
+    v_marshall.Resolver_Imports(
         $,
     ),
 )
@@ -81,12 +93,6 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => v_
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => v_serialize.Document(
     v_marshall.Schema_Tree(
-        $,
-    ),
-)
-
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => v_serialize.Document(
-    v_marshall.Resolve_Logic(
         $,
     ),
 )

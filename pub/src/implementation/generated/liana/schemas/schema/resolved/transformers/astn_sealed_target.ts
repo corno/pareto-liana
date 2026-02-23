@@ -41,9 +41,15 @@ export const Schemas: t_signatures.Schemas = ($) => ['dictionary', _p.dictionary
 
 export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        "imports": _p_change_context(
-            $['imports'],
-            ($) => Imports(
+        "schema imports": _p_change_context(
+            $['schema imports'],
+            ($) => Schema_Imports(
+                $,
+            ),
+        ),
+        "resolver imports": _p_change_context(
+            $['resolver imports'],
+            ($) => Resolver_Imports(
                 $,
             ),
         ),
@@ -70,7 +76,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
                                 $,
                                 ($) => ({
                                     'option': 'constrained',
-                                    'value': Resolve_Logic(
+                                    'value': Resolver(
                                         $,
                                     ),
                                 }),
@@ -94,7 +100,7 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', _p.dicti
     },
 )]]
 
-export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary.from.dictionary(
+export const Schema_Imports: t_signatures.Schema_Imports = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
     ($, id) => ['group', ['verbose', _p.dictionary.literal(
@@ -574,6 +580,50 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     },
 )]
 
+export const Resolver: t_signatures.Resolver = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        "signatures": _p_change_context(
+            $['signatures'],
+            ($) => ['group', ['verbose', _p.dictionary.literal(
+                {
+                    "signatures": _p_change_context(
+                        $['signatures'],
+                        ($) => Signatures(
+                            $,
+                        ),
+                    ),
+                },
+            )]],
+        ),
+        "resolvers": _p_change_context(
+            $['resolvers'],
+            ($) => Module_Resolvers(
+                $,
+            ),
+        ),
+    },
+)]]
+
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ['dictionary', _p.dictionary.from.dictionary(
+    $,
+).map(
+    ($, id) => ['group', ['verbose', _p.dictionary.literal(
+        {
+            "schema set child": _p_change_context(
+                $['schema set child'],
+                ($) => ['text', {
+                    'delimiter': ['backtick', null],
+                    'value': $['l value']['l id'],
+                }],
+            ),
+            "resolver": _p_change_context(
+                $['resolver'],
+                ($) => ['nothing', null],
+            ),
+        },
+    )]],
+)]
+
 export const Signatures: t_signatures.Signatures = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
@@ -711,8 +761,15 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ['state', _p.d
                                                             'option': 'external',
                                                             'value': ['group', ['verbose', _p.dictionary.literal(
                                                                 {
-                                                                    "import": _p_change_context(
-                                                                        $['import'],
+                                                                    "schema import": _p_change_context(
+                                                                        $['schema import'],
+                                                                        ($) => ['text', {
+                                                                            'delimiter': ['backtick', null],
+                                                                            'value': $['l id'],
+                                                                        }],
+                                                                    ),
+                                                                    "resolver import": _p_change_context(
+                                                                        $['resolver import'],
                                                                         ($) => ['text', {
                                                                             'delimiter': ['backtick', null],
                                                                             'value': $['l id'],
@@ -1257,30 +1314,6 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', _p.decide.
         }
     },
 )]
-
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        "signatures": _p_change_context(
-            $['signatures'],
-            ($) => ['group', ['verbose', _p.dictionary.literal(
-                {
-                    "signatures": _p_change_context(
-                        $['signatures'],
-                        ($) => Signatures(
-                            $,
-                        ),
-                    ),
-                },
-            )]],
-        ),
-        "resolvers": _p_change_context(
-            $['resolvers'],
-            ($) => Module_Resolvers(
-                $,
-            ),
-        ),
-    },
-)]]
 
 export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
     {

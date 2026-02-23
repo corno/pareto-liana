@@ -28,7 +28,7 @@ export const $: g_.Modules = modules(
             "component": toption(t.group({
                 "type": prop(t.state({
                     "external": toption(t.group({
-                        "import": prop(t.reference("Imports", [])),
+                        "import": prop(t.reference("Schema Imports", [])),
                         "module": prop(t.reference("Modules", [])),
                     })),
                     "internal": toption(t.reference("Modules", [], 'cyclic')),
@@ -93,7 +93,8 @@ export const $: g_.Modules = modules(
 
                     "location": prop(t.state({
                         "external": toption(t.group({
-                            "import": prop(t.reference("Imports", [])),
+                            "schema import": prop(t.reference("Schema Imports", [])),
+                            "resolver import": prop(t.reference("Resolver Imports", [])),
                             "signature": prop(t.reference("Signatures", [])),
                         })),
                         "internal": toption(t.reference("Signatures", [])),
@@ -220,20 +221,28 @@ export const $: g_.Modules = modules(
         "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
 
         "Schema": module_(t.group({
-            "imports": prop(t.component("Imports")),
+            "schema imports": prop(t.component("Schema Imports")),
+            "resolver imports": prop(t.component("Resolver Imports")),
             "globals": prop(t.component("Globals")),
             "modules": prop(t.component("Modules")),
             "complexity": prop(t.state({
-                "constrained": toption(t.component("Resolve Logic")),
+                "constrained": toption(t.component("Resolver")),
                 "unconstrained": toption(t.nothing()),
             })),
         })),
 
-        "Imports": module_(t.dictionary(t.group({
+        "Schema Imports": module_(t.dictionary(t.group({
             "schema set child": prop(t.reference_stack("Schemas", [], {
                 "schema": sh.value_reference("Schema", []),
             })),
             "schema": prop(t.reference_derived("Schema", [])),
+        }))),
+
+        "Resolver Imports": module_(t.dictionary(t.group({
+            "schema set child": prop(t.reference_stack("Schemas", [], {
+                "resolver": sh.value_reference("Resolver", []),
+            })),
+            "resolver": prop(t.reference_derived("Resolver", [])),
         }))),
 
         "Globals": module_(t.group({
@@ -247,7 +256,7 @@ export const $: g_.Modules = modules(
 
         "Modules": module_(t.dictionary(t.component("Module"))),
 
-        "Resolve Logic": module_(t.group({ //FIXME: inline
+        "Resolver": module_(t.group({ //FIXME: inline
             "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
                 "signatures": prop(t.component("Signatures"))
             })),
@@ -372,7 +381,7 @@ export const $: g_.Modules = modules(
             "location": prop(t.state({
                 "internal": toption(t.reference("Modules", [])),
                 "external": toption(t.group({
-                    "import": prop(t.reference("Imports", [])),
+                    "import": prop(t.reference("Schema Imports", [])),
                     "module": prop(t.reference("Modules", [])),
                 })),
             })),
@@ -465,7 +474,7 @@ export const $: g_.Modules = modules(
         "Optional Value Constraint Resolvers": module_(t.optional(t.component("Value Constraint Resolvers"))),
         "Value Constraint Resolvers": module_(t.dictionary(t.component("Value Constraint Resolver"))),
 
-        "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [ ])), //FIXME : inline
+        "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [])), //FIXME : inline
 
         "Value Constraint Resolver": module_(t.group({
             "start": prop(t.state({

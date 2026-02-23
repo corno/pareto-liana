@@ -63,7 +63,7 @@ export const Schema = (
                         ]),
                     ),
                 }),
-                "external ": $.imports.__d_map(($, id) => constrained
+                "external ": $['schema imports'].__d_map(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
                 ),
@@ -253,7 +253,10 @@ export const Value = (
                 case 'derived': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
                 case 'selected': return _p.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
                     "delimiter": sh.a.state.literal("backtick", sh.a.nothing()),
-                    "value": sh.a.text.copy(sh.sv.context(["l id"])),
+                    "value": sh.a.text.copy(sh.sv.context($.results.__decide(
+                        ($) => ["l value", "l id"],
+                        () => ["l id"]
+                    ))),
                 })))
                 default: return _p.au($[0])
             }

@@ -117,7 +117,8 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
         {
             'expected properties': _p.dictionary.literal(
                 {
-                    "imports": null,
+                    "schema imports": null,
+                    "resolver imports": null,
                     "globals": null,
                     "modules": null,
                     "complexity": null,
@@ -132,17 +133,34 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
                 $['value'],
             )
             return {
-                'imports': _p_change_context(
+                'schema imports': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
                         ($) => abort(
                             $,
                         ),
                         {
-                            'id': 'imports',
+                            'id': 'schema imports',
                         },
                     ),
-                    ($) => Imports(
+                    ($) => Schema_Imports(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+                'resolver imports': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'resolver imports',
+                        },
+                    ),
+                    ($) => Resolver_Imports(
                         $,
                         ($) => abort(
                             $,
@@ -211,7 +229,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
                                                 'l location': v_parse_tree_to_location.Value(
                                                     $,
                                                 ),
-                                                'l state': ['constrained', Resolve_Logic(
+                                                'l state': ['constrained', Resolver(
                                                     $,
                                                     ($) => abort(
                                                         $,
@@ -253,7 +271,7 @@ export const Schema: t_signatures.Schema = ($, abort) => _p_change_context(
     ),
 )
 
-export const Imports: t_signatures.Imports = ($, abort) => _p_change_context(
+export const Schema_Imports: t_signatures.Schema_Imports = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -1519,6 +1537,191 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
     ),
 )
 
+export const Resolver: t_signatures.Resolver = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Verbose_Group(
+        $,
+        ($) => abort(
+            $,
+        ),
+        {
+            'expected properties': _p.dictionary.literal(
+                {
+                    "signatures": null,
+                    "resolvers": null,
+                },
+            ),
+        },
+    ),
+    ($) => _p_variables(
+        () => {
+            
+            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                $['value'],
+            )
+            return {
+                'signatures': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'signatures',
+                        },
+                    ),
+                    ($) => _p_change_context(
+                        v_unmarshalled_from_parse_tree.Verbose_Group(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                            {
+                                'expected properties': _p.dictionary.literal(
+                                    {
+                                        "signatures": null,
+                                    },
+                                ),
+                            },
+                        ),
+                        ($) => _p_variables(
+                            () => {
+                                
+                                const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                    $['value'],
+                                )
+                                return {
+                                    'signatures': _p_change_context(
+                                        v_unmarshalled_from_parse_tree.Property(
+                                            $,
+                                            ($) => abort(
+                                                $,
+                                            ),
+                                            {
+                                                'id': 'signatures',
+                                            },
+                                        ),
+                                        ($) => Signatures(
+                                            $,
+                                            ($) => abort(
+                                                $,
+                                            ),
+                                        ),
+                                    ),
+                                }
+                            },
+                        ),
+                    ),
+                ),
+                'resolvers': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'resolvers',
+                        },
+                    ),
+                    ($) => Module_Resolvers(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+            }
+        },
+    ),
+)
+
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Dictionary(
+        $,
+        ($) => abort(
+            $,
+        ),
+    ),
+    ($) => ({
+        'l location': v_parse_tree_to_location.Value(
+            $['value'],
+        ),
+        'l dictionary': _p.dictionary.from.dictionary(
+            $['entries'],
+        ).map(
+            ($, id) => ({
+                'l location': v_parse_tree_to_location.Value(
+                    $,
+                ),
+                'l entry': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Verbose_Group(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'expected properties': _p.dictionary.literal(
+                                {
+                                    "schema set child": null,
+                                    "resolver": null,
+                                },
+                            ),
+                        },
+                    ),
+                    ($) => _p_variables(
+                        () => {
+                            
+                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                $['value'],
+                            )
+                            return {
+                                'schema set child': _p_change_context(
+                                    v_unmarshalled_from_parse_tree.Property(
+                                        $,
+                                        ($) => abort(
+                                            $,
+                                        ),
+                                        {
+                                            'id': 'schema set child',
+                                        },
+                                    ),
+                                    ($) => ({
+                                        'l location': v_parse_tree_to_location.Value(
+                                            $,
+                                        ),
+                                        'l reference': v_unmarshalled_from_parse_tree.Text(
+                                            $,
+                                            ($) => abort(
+                                                $,
+                                            ),
+                                        ),
+                                    }),
+                                ),
+                                'resolver': _p_change_context(
+                                    v_unmarshalled_from_parse_tree.Property(
+                                        $,
+                                        ($) => abort(
+                                            $,
+                                        ),
+                                        {
+                                            'id': 'resolver',
+                                        },
+                                    ),
+                                    ($) => v_unmarshalled_from_parse_tree.Nothing(
+                                        $,
+                                        ($) => abort(
+                                            $,
+                                        ),
+                                    ),
+                                ),
+                            }
+                        },
+                    ),
+                ),
+            }),
+        ),
+    }),
+)
+
 export const Signatures: t_signatures.Signatures = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
@@ -1972,7 +2175,8 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                     {
                                                                                         'expected properties': _p.dictionary.literal(
                                                                                             {
-                                                                                                "import": null,
+                                                                                                "schema import": null,
+                                                                                                "resolver import": null,
                                                                                                 "signature": null,
                                                                                             },
                                                                                         ),
@@ -1985,14 +2189,36 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($, abort) => _p_chan
                                                                                             $['value'],
                                                                                         )
                                                                                         return {
-                                                                                            'import': _p_change_context(
+                                                                                            'schema import': _p_change_context(
                                                                                                 v_unmarshalled_from_parse_tree.Property(
                                                                                                     $,
                                                                                                     ($) => abort(
                                                                                                         $,
                                                                                                     ),
                                                                                                     {
-                                                                                                        'id': 'import',
+                                                                                                        'id': 'schema import',
+                                                                                                    },
+                                                                                                ),
+                                                                                                ($) => ({
+                                                                                                    'l location': v_parse_tree_to_location.Value(
+                                                                                                        $,
+                                                                                                    ),
+                                                                                                    'l reference': v_unmarshalled_from_parse_tree.Text(
+                                                                                                        $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
+                                                                                                    ),
+                                                                                                }),
+                                                                                            ),
+                                                                                            'resolver import': _p_change_context(
+                                                                                                v_unmarshalled_from_parse_tree.Property(
+                                                                                                    $,
+                                                                                                    ($) => abort(
+                                                                                                        $,
+                                                                                                    ),
+                                                                                                    {
+                                                                                                        'id': 'resolver import',
                                                                                                     },
                                                                                                 ),
                                                                                                 ($) => ({
@@ -3421,103 +3647,6 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => _p_change_con
                             ),
                         }],
                     )
-            }
-        },
-    ),
-)
-
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.Verbose_Group(
-        $,
-        ($) => abort(
-            $,
-        ),
-        {
-            'expected properties': _p.dictionary.literal(
-                {
-                    "signatures": null,
-                    "resolvers": null,
-                },
-            ),
-        },
-    ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return {
-                'signatures': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'signatures',
-                        },
-                    ),
-                    ($) => _p_change_context(
-                        v_unmarshalled_from_parse_tree.Verbose_Group(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                            {
-                                'expected properties': _p.dictionary.literal(
-                                    {
-                                        "signatures": null,
-                                    },
-                                ),
-                            },
-                        ),
-                        ($) => _p_variables(
-                            () => {
-                                
-                                const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                    $['value'],
-                                )
-                                return {
-                                    'signatures': _p_change_context(
-                                        v_unmarshalled_from_parse_tree.Property(
-                                            $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                            {
-                                                'id': 'signatures',
-                                            },
-                                        ),
-                                        ($) => Signatures(
-                                            $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                        ),
-                                    ),
-                                }
-                            },
-                        ),
-                    ),
-                ),
-                'resolvers': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'resolvers',
-                        },
-                    ),
-                    ($) => Module_Resolvers(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
             }
         },
     ),

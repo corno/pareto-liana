@@ -93,7 +93,7 @@ export const Schema: _pi.Transformer_With_Parameter<
                         ]
                     ),
                 }),
-                "external ": $.imports.__d_map(($, id) => constrained
+                "external ": $['schema imports'].__d_map(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
                 ),

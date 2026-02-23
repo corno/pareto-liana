@@ -11,7 +11,7 @@ export const Schema: _pi.Transformer<d_in.Schema, d_out.Schema> = (
     $
 ) => ({
     'globals': Globals($.globals),
-    'imports': Imports($.imports),
+    'imports': Schema_Imports($['schema imports']),
     'types': sh.dictionary($.modules.__d_map(($) => Module($))),
 })
 
@@ -41,7 +41,7 @@ export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
     ),
 })
 
-export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
+export const Schema_Imports: _pi.Transformer<d_in.Schema_Imports, d_out.Imports> = (
     $
 ) => sh.dictionary($.__d_map(($) => ({
     'schema': null,

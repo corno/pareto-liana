@@ -76,7 +76,7 @@ export const Module_Resolvers = (
     $: d_in.Module_Resolvers,
     $p: {
         'path': _pi.List<string>,
-        'imports': d_in.Imports,
+        'imports': d_in.Resolver_Imports,
         'depth': number,
     }
 ): d_out.Package_Set.D => {
@@ -357,7 +357,7 @@ export const Value_Resolver = (
                         sh.sv.call(
                             _p.decide.state($.location, ($) => {
                                 switch ($[0]) {
-                                    case 'external': return _p.ss($, ($) => sh.call.external("external " + $.import['l id'], $.signature['l id']))
+                                    case 'external': return _p.ss($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
                                     case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
                                     default: return _p.au($[0])
                                 }

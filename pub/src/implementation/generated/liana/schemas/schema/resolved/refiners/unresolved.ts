@@ -2234,7 +2234,7 @@
 //                                                                             ),
 //                                                                         },
 //                                                                         {
-//                                                                             'imports': $p['imports'],
+//                                                                             'imports': $p['schema imports'],
 //                                                                         },
 //                                                                     ),
 //                                                                 )
@@ -2302,7 +2302,7 @@
 //                                                                             ),
 //                                                                         },
 //                                                                         {
-//                                                                             'imports': $p['imports'],
+//                                                                             'imports': $p['schema imports'],
 //                                                                         },
 //                                                                     ),
 //                                                                 )
@@ -2785,7 +2785,7 @@
 //                                                                                         ),
 //                                                                                     },
 //                                                                                     {
-//                                                                                         'imports': $p['imports'],
+//                                                                                         'imports': $p['schema imports'],
 //                                                                                     },
 //                                                                                 ),
 //                                                                             )
@@ -2853,7 +2853,7 @@
 //                                                                                         ),
 //                                                                                     },
 //                                                                                     {
-//                                                                                         'imports': $p['imports'],
+//                                                                                         'imports': $p['schema imports'],
 //                                                                                     },
 //                                                                                 ),
 //                                                                             )
@@ -3135,8 +3135,11 @@
 //                                     'signature': prop_signature,
 //                                     'definition': var_referenced_entry['module']['root value'],
 //                                     'signatures': $p['signatures'],
-//                                     'imports': _p.optional.literal.set(
-//                                         $p['imports'],
+//                                     'schema imports': _p.optional.literal.set(
+//                                         $p['schema imports'],
+//                                     ),
+//                                     'resolver imports': _p.optional.literal.set(
+//                                         $p['resolver imports'],
 //                                     ),
 //                                     'modules': $p['modules'],
 //                                 },
@@ -3567,7 +3570,8 @@
 //                                 {
 //                                     'definition': var_referenced_entry['value'],
 //                                     'modules': $p['modules'],
-//                                     'imports': $p['imports'],
+//                                     'schema imports': $p['schema imports'],
+//                                     'resolver imports': $p['resolver imports'],
 //                                     'signature': $p['signature'],
 //                                     'signatures': $p['signatures'],
 //                                     'list cursor': $p['list cursor'],
@@ -3729,8 +3733,19 @@
 //                                                                             ($) => ['external', _p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_import = _p.decide.optional(
-//                                                                                         $p['imports'],
+//                                                                                     const var_constraint_schema_import = _p.decide.optional(
+//                                                                                         $p['schema imports'],
+//                                                                                         ($) => $,
+//                                                                                         () => abort(
+//                                                                                             {
+//                                                                                                 'type': ['constraint', ['optional value is not set', null]],
+//                                                                                                 'location': var_location,
+//                                                                                             },
+//                                                                                         ),
+//                                                                                     )
+                                                                                    
+//                                                                                     const var_constraint_resolver_import = _p.decide.optional(
+//                                                                                         $p['resolver imports'],
 //                                                                                         ($) => $,
 //                                                                                         () => abort(
 //                                                                                             {
@@ -3742,11 +3757,43 @@
 //                                                                                     return _p.group.literal.resolve(
 //                                                                                         () => {
                                                                                             
-//                                                                                             const prop_import = _p_change_context(
-//                                                                                                 $['import'],
+//                                                                                             const prop_schema_import = _p_change_context(
+//                                                                                                 $['schema import'],
 //                                                                                                 ($) => ({
 //                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
-//                                                                                                         var_constraint_import,
+//                                                                                                         var_constraint_schema_import,
+//                                                                                                     ).get_entry(
+//                                                                                                         $['l reference'],
+//                                                                                                         {
+//                                                                                                             no_such_entry: () => abort(
+//                                                                                                                 {
+//                                                                                                                     'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                                                     'location': $['l location'],
+//                                                                                                                 },
+//                                                                                                             ),
+//                                                                                                             no_context_lookup: () => abort(
+//                                                                                                                 {
+//                                                                                                                     'type': ['lookup', ['no context lookup', null]],
+//                                                                                                                     'location': $['l location'],
+//                                                                                                                 },
+//                                                                                                             ),
+//                                                                                                             cycle_detected: () => abort(
+//                                                                                                                 {
+//                                                                                                                     'type': ['lookup', ['cycle detected', null]],
+//                                                                                                                     'location': $['l location'],
+//                                                                                                                 },
+//                                                                                                             ),
+//                                                                                                         },
+//                                                                                                     ),
+//                                                                                                     'l id': $['l reference'],
+//                                                                                                 }),
+//                                                                                             )
+                                                                                            
+//                                                                                             const prop_resolver_import = _p_change_context(
+//                                                                                                 $['resolver import'],
+//                                                                                                 ($) => ({
+//                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
+//                                                                                                         var_constraint_resolver_import,
 //                                                                                                     ).get_entry(
 //                                                                                                         $['l reference'],
 //                                                                                                         {
@@ -3808,7 +3855,8 @@
 //                                                                                                 }),
 //                                                                                             )
 //                                                                                             return {
-//                                                                                                 'import': prop_import,
+//                                                                                                 'schema import': prop_schema_import,
+//                                                                                                 'resolver import': prop_resolver_import,
 //                                                                                                 'signature': prop_signature,
 //                                                                                             }
 //                                                                                         },
@@ -4238,7 +4286,8 @@
 //                                                             prop_definition,
 //                                                         ),
 //                                                         'modules': $p['modules'],
-//                                                         'imports': $p['imports'],
+//                                                         'schema imports': $p['schema imports'],
+//                                                         'resolver imports': $p['resolver imports'],
 //                                                         'signature': $p['signature'],
 //                                                         'signatures': $p['signatures'],
 //                                                         'list cursor': $p['list cursor'],
@@ -4293,7 +4342,8 @@
 //                                         {
 //                                             'definition': var_constraint_definition,
 //                                             'modules': $p['modules'],
-//                                             'imports': $p['imports'],
+//                                             'schema imports': $p['schema imports'],
+//                                             'resolver imports': $p['resolver imports'],
 //                                             'signature': $p['signature'],
 //                                             'signatures': $p['signatures'],
 //                                             'list cursor': $p['list cursor'],
@@ -4355,7 +4405,7 @@
 //                                                             ),
 //                                                         },
 //                                                         {
-//                                                             'imports': $p['imports'],
+//                                                             'imports': $p['schema imports'],
 //                                                         },
 //                                                     ),
 //                                                 ),
@@ -4377,7 +4427,8 @@
 //                                                         ),
 //                                                         'definition': var_constraint_definition['value'],
 //                                                         'modules': $p['modules'],
-//                                                         'imports': $p['imports'],
+//                                                         'schema imports': $p['schema imports'],
+//                                                         'resolver imports': $p['resolver imports'],
 //                                                         'signature': $p['signature'],
 //                                                         'signatures': $p['signatures'],
 //                                                         'linked entry': $p['linked entry'],
@@ -4506,7 +4557,8 @@
 //                                                     {
 //                                                         'definition': var_constraint_definition,
 //                                                         'modules': $p['modules'],
-//                                                         'imports': $p['imports'],
+//                                                         'schema imports': $p['schema imports'],
+//                                                         'resolver imports': $p['resolver imports'],
 //                                                         'signature': $p['signature'],
 //                                                         'signatures': $p['signatures'],
 //                                                         'list cursor': $p['list cursor'],
@@ -4775,7 +4827,8 @@
 //                                                                                 {
 //                                                                                     'definition': var_referenced_entry['value'],
 //                                                                                     'modules': $p['modules'],
-//                                                                                     'imports': $p['imports'],
+//                                                                                     'schema imports': $p['schema imports'],
+//                                                                                     'resolver imports': $p['resolver imports'],
 //                                                                                     'signature': $p['signature'],
 //                                                                                     'signatures': $p['signatures'],
 //                                                                                     'list cursor': $p['list cursor'],
@@ -4845,7 +4898,7 @@
 //     },
 // )
 
-// export const Resolve_Logic: t_signatures.Resolve_Logic = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver: t_signatures.Resolver = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
 //         const prop_signatures = _p_change_context(
@@ -4863,7 +4916,7 @@
 //                             null,
 //                             {
 //                                 'modules': $p['modules'],
-//                                 'imports': $p['imports'],
+//                                 'imports': $p['schema imports'],
 //                             },
 //                         ),
 //                     )
@@ -4885,7 +4938,8 @@
 //                 {
 //                     'signatures': prop_signatures['signatures'],
 //                     'modules': $p['modules'],
-//                     'imports': $p['imports'],
+//                     'schema imports': $p['schema imports'],
+//                     'resolver imports': $p['resolver imports'],
 //                 },
 //             ),
 //         )
@@ -5007,9 +5061,23 @@
 // export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
         
-//         const prop_imports = _p_change_context(
-//             $['imports'],
-//             ($) => Imports(
+//         const prop_schema_imports = _p_change_context(
+//             $['schema imports'],
+//             ($) => Schema_Imports(
+//                 $,
+//                 ($) => abort(
+//                     $,
+//                 ),
+//                 {
+//                     'sibling schemas': $l['sibling schemas'],
+//                 },
+//                 null,
+//             ),
+//         )
+        
+//         const prop_resolver_imports = _p_change_context(
+//             $['resolver imports'],
+//             ($) => Resolver_Imports(
 //                 $,
 //                 ($) => abort(
 //                     $,
@@ -5046,7 +5114,7 @@
 //                         prop_globals,
 //                     ),
 //                     'imports': _p.optional.literal.set(
-//                         prop_imports,
+//                         prop_schema_imports,
 //                     ),
 //                 },
 //             ),
@@ -5065,14 +5133,15 @@
 //                                 case 'constrained':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['constrained', Resolve_Logic(
+//                                         ($) => ['constrained', Resolver(
 //                                             $,
 //                                             ($) => abort(
 //                                                 $,
 //                                             ),
 //                                             null,
 //                                             {
-//                                                 'imports': prop_imports,
+//                                                 'schema imports': prop_schema_imports,
+//                                                 'resolver imports': prop_resolver_imports,
 //                                                 'modules': prop_modules,
 //                                             },
 //                                         )],
@@ -5093,7 +5162,8 @@
 //             ),
 //         )
 //         return {
-//             'imports': prop_imports,
+//             'schema imports': prop_schema_imports,
+//             'resolver imports': prop_resolver_imports,
 //             'globals': prop_globals,
 //             'modules': prop_modules,
 //             'complexity': prop_complexity,
@@ -5101,10 +5171,10 @@
 //     },
 // )
 
-// export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
 //     $['l dictionary'],
 // ).resolve(
-//     ($, id, $a, $c): t_out.Imports.D => _p_change_context(
+//     ($, id, $a, $c): t_out.Schema_Imports.D => _p_change_context(
 //         $['l entry'],
 //         ($) => _p.group.literal.resolve(
 //             () => {
@@ -5171,6 +5241,82 @@
 //                 return {
 //                     'schema set child': prop_schema_set_child,
 //                     'schema': prop_schema,
+//                 }
+//             },
+//         ),
+//     ),
+// )
+
+// export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+//     $['l dictionary'],
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Imports.D => _p_change_context(
+//         $['l entry'],
+//         ($) => _p.group.literal.resolve(
+//             () => {
+                
+//                 const prop_schema_set_child = _p_change_context(
+//                     $['schema set child'],
+//                     ($) => ({
+//                         'l entry': $l['sibling schemas'].get_entry(
+//                             $['l reference'],
+//                             {
+//                                 no_such_entry: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['no such entry', $['l reference']]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                                 no_context_lookup: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['no context lookup', null]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                                 cycle_detected: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['cycle detected', null]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                             },
+//                         ),
+//                         'l id': $['l reference'],
+//                         'l up steps': $l['sibling schemas'].get_entry_depth(
+//                             $['l reference'],
+//                             {
+//                                 no_such_entry: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['no such entry', $['l reference']]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                                 no_context_lookup: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['no context lookup', null]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                                 cycle_detected: () => abort(
+//                                     {
+//                                         'type': ['lookup', ['cycle detected', null]],
+//                                         'location': $['l location'],
+//                                     },
+//                                 ),
+//                             },
+//                         ),
+//                     }),
+//                 )
+                
+//                 const prop_resolver = _p_change_context(
+//                     $['resolver'],
+//                     ($) => _pdev.implement_me(
+//                         "IM: REFERENCE",
+//                     ),
+//                 )
+//                 return {
+//                     'schema set child': prop_schema_set_child,
+//                     'resolver': prop_resolver,
 //                 }
 //             },
 //         ),

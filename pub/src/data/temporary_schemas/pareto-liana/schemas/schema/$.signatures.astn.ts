@@ -5,7 +5,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolve_Logic.signatures = signatures(
+export const $: g_.Resolver.signatures = signatures(
     {
         "Package": sig.local({}, {}),
         "Presence": sig.local({}, {}),
@@ -16,7 +16,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Group": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {
                 "noncircular sibling modules": lookup_parameter("Modules"),
@@ -27,7 +27,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Dictionary": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {
                 "noncircular sibling modules": lookup_parameter("Modules"),
@@ -38,7 +38,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Value": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {
                 "noncircular sibling modules": lookup_parameter("Modules"),
@@ -53,7 +53,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Module": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {
                 "noncircular sibling modules": lookup_parameter("Modules"),
@@ -63,7 +63,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
 
         "Module Reference": sig.local(
             {
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {
                 "modules": lookup_parameter("Modules"),
@@ -87,7 +87,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
                 "signature": value_parameter("Signature"),
-                "imports": value_parameter("Imports", 'optional'),
+                "schema imports": value_parameter("Schema Imports", 'optional'),
+                "resolver imports": value_parameter("Resolver Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
                 "modules": value_parameter("Modules"),
                 "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
@@ -115,7 +116,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
                 "current dictionary": value_parameter("Dictionary", 'optional'),
                 "current ordered dictionary": value_parameter("Dictionary", 'optional'),
                 "signature": value_parameter("Signature"),
-                "imports": value_parameter("Imports", 'optional'),
+                "schema imports": value_parameter("Schema Imports", 'optional'),
+                "resolver imports": value_parameter("Resolver Imports", 'optional'),
                 "signatures": value_parameter("Signatures"),
                 "modules": value_parameter("Modules"),
                 "option constraints": value_parameter("Option Constraint Resolvers", 'optional'),
@@ -143,20 +145,27 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
 
-        "Resolve Logic": sig.local(
+        "Resolver": sig.local(
             {
                 "modules": value_parameter("Modules"),
-                "imports": value_parameter("Imports"),
+                "resolver imports": value_parameter("Resolver Imports"),
+                "schema imports": value_parameter("Schema Imports"),
             },
             {},
         ),
-        "Signature Parameters": sig.same_as("Resolve Logic"),
+        "Signature Parameters": sig.local(
+            {
+                "modules": value_parameter("Modules"),
+                "imports": value_parameter("Schema Imports"),
+            },
+            {},
+        ),
 
         "Signature": sig.local(
             {
                 "modules": value_parameter("Modules"),
                 "module": value_parameter("Module"),
-                "imports": value_parameter("Imports"),
+                "imports": value_parameter("Schema Imports"),
             },
             {
                 "sibling signatures": lookup_parameter("Signatures"),
@@ -166,7 +175,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Signatures": sig.local(
             {
                 "modules": value_parameter("Modules"),
-                "imports": value_parameter("Imports"),
+                "imports": value_parameter("Schema Imports"),
             },
             {},
         ),
@@ -175,7 +184,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             {
                 "signatures": value_parameter("Signatures"),
                 "modules": value_parameter("Modules"),
-                "imports": value_parameter("Imports"),
+                "schema imports": value_parameter("Schema Imports"),
+                "resolver imports": value_parameter("Resolver Imports"),
             },
             {},
         ),
@@ -200,7 +210,8 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             }
         ),
         "Schema": sig.same_as("Schemas"),
-        "Imports": sig.same_as("Schemas"),
+        "Schema Imports": sig.same_as("Schemas"),
+        "Resolver Imports": sig.same_as("Schemas"),
 
         "Reference To Value Constraint Resolver": sig.local(
             {},
@@ -212,7 +223,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
         "Modules": sig.local(
             {
                 "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "imports": value_parameter("Schema Imports", 'optional'),
             },
             {},
         ),

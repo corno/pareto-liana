@@ -69,9 +69,15 @@ export const Schemas: t_signatures.Schemas = ($) => ({
 })
 
 export const Schema: t_signatures.Schema = ($) => ({
-    'imports': _p_change_context(
-        $['imports'],
-        ($) => Imports(
+    'schema imports': _p_change_context(
+        $['schema imports'],
+        ($) => Schema_Imports(
+            $,
+        ),
+    ),
+    'resolver imports': _p_change_context(
+        $['resolver imports'],
+        ($) => Resolver_Imports(
             $,
         ),
     ),
@@ -115,7 +121,7 @@ export const Schema: t_signatures.Schema = ($) => ({
                         case 'constrained':
                             return _p.ss(
                                 $,
-                                ($) => ['constrained', Resolve_Logic(
+                                ($) => ['constrained', Resolver(
                                     $,
                                 )],
                             )
@@ -135,7 +141,7 @@ export const Schema: t_signatures.Schema = ($) => ({
     ),
 })
 
-export const Imports: t_signatures.Imports = ($) => ({
+export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
     'l location': {
         'start': {
             'absolute': 42,
@@ -976,6 +982,101 @@ export const Value: t_signatures.Value = ($) => ({
     ),
 })
 
+export const Resolver: t_signatures.Resolver = ($) => ({
+    'signatures': _p_change_context(
+        $['signatures'],
+        ($) => ({
+            'signatures': _p_change_context(
+                $['signatures'],
+                ($) => Signatures(
+                    $,
+                ),
+            ),
+        }),
+    ),
+    'resolvers': _p_change_context(
+        $['resolvers'],
+        ($) => Module_Resolvers(
+            $,
+        ),
+    ),
+})
+
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
+    'l location': {
+        'start': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+        'end': {
+            'absolute': 42,
+            'relative': {
+                'document resource identifier': "implement me",
+                'line': 42,
+                'column': 42,
+            },
+        },
+    },
+    'l dictionary': _p.dictionary.from.dictionary(
+        $,
+    ).map(
+        ($, id) => ({
+            'l entry': {
+                'schema set child': _p_change_context(
+                    $['schema set child'],
+                    ($) => ({
+                        'l location': {
+                            'start': {
+                                'absolute': 42,
+                                'relative': {
+                                    'document resource identifier': "implement me",
+                                    'line': 42,
+                                    'column': 42,
+                                },
+                            },
+                            'end': {
+                                'absolute': 42,
+                                'relative': {
+                                    'document resource identifier': "implement me",
+                                    'line': 42,
+                                    'column': 42,
+                                },
+                            },
+                        },
+                        'l reference': $['l value']['l id'],
+                    }),
+                ),
+                'resolver': _p_change_context(
+                    $['resolver'],
+                    ($) => null,
+                ),
+            },
+            'l location': {
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'document resource identifier': "implement me",
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+            },
+        }),
+    ),
+})
+
 export const Signatures: t_signatures.Signatures = ($) => ({
     'l location': {
         'start': {
@@ -1267,8 +1368,32 @@ export const Value_Resolver: t_signatures.Value_Resolver = ($) => ({
                                                     return _p.ss(
                                                         $,
                                                         ($) => ['external', {
-                                                            'import': _p_change_context(
-                                                                $['import'],
+                                                            'schema import': _p_change_context(
+                                                                $['schema import'],
+                                                                ($) => ({
+                                                                    'l location': {
+                                                                        'start': {
+                                                                            'absolute': 42,
+                                                                            'relative': {
+                                                                                'document resource identifier': "implement me",
+                                                                                'line': 42,
+                                                                                'column': 42,
+                                                                            },
+                                                                        },
+                                                                        'end': {
+                                                                            'absolute': 42,
+                                                                            'relative': {
+                                                                                'document resource identifier': "implement me",
+                                                                                'line': 42,
+                                                                                'column': 42,
+                                                                            },
+                                                                        },
+                                                                    },
+                                                                    'l reference': $['l id'],
+                                                                }),
+                                                            ),
+                                                            'resolver import': _p_change_context(
+                                                                $['resolver import'],
                                                                 ($) => ({
                                                                     'l location': {
                                                                         'start': {
@@ -2074,26 +2199,6 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
                     )
             }
         },
-    ),
-})
-
-export const Resolve_Logic: t_signatures.Resolve_Logic = ($) => ({
-    'signatures': _p_change_context(
-        $['signatures'],
-        ($) => ({
-            'signatures': _p_change_context(
-                $['signatures'],
-                ($) => Signatures(
-                    $,
-                ),
-            ),
-        }),
-    ),
-    'resolvers': _p_change_context(
-        $['resolvers'],
-        ($) => Module_Resolvers(
-            $,
-        ),
     ),
 })
 

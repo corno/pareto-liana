@@ -39,7 +39,7 @@ export const Schema = (
                     "resolved": t_types.Schema(
                         schema,
                         {
-                            'imports': schema.imports,
+                            'imports': schema['schema imports'],
                             'depth': 1,
                             'type': ['resolved', null],
                         }
@@ -47,7 +47,7 @@ export const Schema = (
                     "unresolved": t_types.Schema(
                         schema,
                         {
-                            'imports': schema.imports,
+                            'imports': schema['schema imports'],
                             'depth': 1,
                             'type': ['unresolved', null],
                         }
@@ -56,7 +56,7 @@ export const Schema = (
                 : t_types.Schema(
                     schema,
                     {
-                        'imports': schema.imports,
+                        'imports': schema['schema imports'],
                         'depth': 0,
                         'type': ['unconstrained', null],
                     }

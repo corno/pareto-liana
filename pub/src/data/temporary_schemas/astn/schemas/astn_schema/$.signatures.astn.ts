@@ -5,7 +5,7 @@ import {
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolve_Logic.signatures = signatures(
+export const $: g_.Resolver.signatures = signatures(
     {
         "Text Type": sig.local({}, {}),
         "Globals": sig.local({}, {}),

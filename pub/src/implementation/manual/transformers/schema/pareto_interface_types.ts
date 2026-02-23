@@ -16,7 +16,7 @@ const location = sh.t.component_imported(
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'imports': d_in.Imports,
+        'imports': d_in.Schema_Imports,
         'depth': number,
         'type':
         | ['unconstrained', null]

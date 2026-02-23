@@ -88,11 +88,11 @@ export type Schema_ = (
     },
 ) => Schema_.O
 
-export namespace Imports_ {
+export namespace Schema_Imports_ {
     
     export type I = i_in.List_of_Characters
     
-    export type O = i_out.Imports
+    export type O = i_out.Schema_Imports
     
     export type E = i_generic.Error
     
@@ -106,14 +106,14 @@ export namespace Imports_ {
     
 }
 
-export type Imports_ = (
-    context: Imports_.I,
-    abort: _pi.Abort<Imports_.E>,
+export type Schema_Imports_ = (
+    context: Schema_Imports_.I,
+    abort: _pi.Abort<Schema_Imports_.E>,
     parameters: {
-        readonly 'document resource identifier': Imports_.P.document_resource_identifier
-        readonly 'tab size': Imports_.P.tab_size
+        readonly 'document resource identifier': Schema_Imports_.P.document_resource_identifier
+        readonly 'tab size': Schema_Imports_.P.tab_size
     },
-) => Imports_.O
+) => Schema_Imports_.O
 
 export namespace Modules_ {
     
@@ -222,6 +222,60 @@ export type Value_ = (
         readonly 'tab size': Value_.P.tab_size
     },
 ) => Value_.O
+
+export namespace Resolver_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Resolver
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Resolver_ = (
+    context: Resolver_.I,
+    abort: _pi.Abort<Resolver_.E>,
+    parameters: {
+        readonly 'document resource identifier': Resolver_.P.document_resource_identifier
+        readonly 'tab size': Resolver_.P.tab_size
+    },
+) => Resolver_.O
+
+export namespace Resolver_Imports_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Resolver_Imports
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Resolver_Imports_ = (
+    context: Resolver_Imports_.I,
+    abort: _pi.Abort<Resolver_Imports_.E>,
+    parameters: {
+        readonly 'document resource identifier': Resolver_Imports_.P.document_resource_identifier
+        readonly 'tab size': Resolver_Imports_.P.tab_size
+    },
+) => Resolver_Imports_.O
 
 export namespace Signatures_ {
     
@@ -357,33 +411,6 @@ export type Schema_Tree_ = (
         readonly 'tab size': Schema_Tree_.P.tab_size
     },
 ) => Schema_Tree_.O
-
-export namespace Resolve_Logic_ {
-    
-    export type I = i_in.List_of_Characters
-    
-    export type O = i_out.Resolve_Logic
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
-        export type document_resource_identifier = string
-        
-        export type tab_size = number
-        
-    }
-    
-}
-
-export type Resolve_Logic_ = (
-    context: Resolve_Logic_.I,
-    abort: _pi.Abort<Resolve_Logic_.E>,
-    parameters: {
-        readonly 'document resource identifier': Resolve_Logic_.P.document_resource_identifier
-        readonly 'tab size': Resolve_Logic_.P.tab_size
-    },
-) => Resolve_Logic_.O
 
 export namespace Text_Type_ {
     
@@ -1091,17 +1118,18 @@ export {
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 
-    Imports_ as Imports, 
+    Schema_Imports_ as Schema_Imports, 
     Modules_ as Modules, 
     Globals_ as Globals, 
     Dictionary_ as Dictionary, 
     Value_ as Value, 
+    Resolver_ as Resolver, 
+    Resolver_Imports_ as Resolver_Imports, 
     Signatures_ as Signatures, 
     Signature_Parameters_ as Signature_Parameters, 
     Value_Resolver_ as Value_Resolver, 
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
-    Resolve_Logic_ as Resolve_Logic, 
     Text_Type_ as Text_Type, 
     Number_Type_ as Number_Type, 
     Module_ as Module, 

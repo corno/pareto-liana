@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import { signatures, sig, value_parameter, lookup_parameter, sig_params } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Resolve_Logic.signatures = signatures(
+export const $: g_.Resolver.signatures = signatures(
     {
         "Fiscaal": sig.local({}, {}),
         "Grootboekrekeningen": sig.local({}, {}),
