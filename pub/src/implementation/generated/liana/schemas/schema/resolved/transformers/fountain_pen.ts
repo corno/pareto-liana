@@ -181,6 +181,12 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
     ),
 )
 
+export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => v_serialize.Document(
+    v_marshall.Optional_Value_Constraint_Resolvers(
+        $,
+    ),
+)
+
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => v_serialize.Document(
     v_marshall.Value_Constraint_Resolvers(
         $,

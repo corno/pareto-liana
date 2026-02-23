@@ -153,7 +153,7 @@ export const get_entry_cyclic = <T>(
         'l entry': lookup.get_entry(
             reference['l reference'],
             {
-                accessing_cyclic_before_resolved: () => _p_unreachable_code_path("this should not happen, this means there is a bug in the implementation of the cyclic lookup, it should not allow access to cyclic entries before they are resolved"),
+                accessing_cyclic_sibling_before_it_is_resolved: () => _p_unreachable_code_path("this should not happen, this means there is a bug in the implementation of the cyclic lookup, it should not allow access to cyclic entries before they are resolved"),
                 no_such_entry: () => abort({
                     'type': ['lookup', ['no such entry', reference['l reference']]],
                     'location': reference['l location'],

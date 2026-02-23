@@ -103,7 +103,7 @@ export const Imports: t_signatures.Imports = ($) => ['dictionary', _p.dictionary
                 $['schema set child'],
                 ($) => ['text', {
                     'delimiter': ['backtick', null],
-                    'value': $['l id'],
+                    'value': $['l value']['l id'],
                 }],
             ),
             "schema": _p_change_context(
@@ -453,6 +453,12 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                                                 }
                                                                             },
                                                                         )],
+                                                                    ),
+                                                                    "results": _p_change_context(
+                                                                        $['results'],
+                                                                        ($) => Value_Results(
+                                                                            $,
+                                                                        ),
                                                                     ),
                                                                 },
                                                             )]],
@@ -2007,6 +2013,14 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
     )],
 )]
 
+export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => ['optional', _p.decide.optional(
+    $,
+    ($): t_out.Value.optional => ['set', Value_Constraint_Resolvers(
+        $,
+    )],
+    () => ['not set', null],
+)]
+
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ['dictionary', _p.dictionary.from.dictionary(
     $,
 ).map(
@@ -2028,11 +2042,11 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                 $,
                 ($): t_out.Value.state => {
                     switch ($[0]) {
-                        case 'property':
+                        case 'value':
                             return _p.ss(
                                 $,
                                 ($) => ({
-                                    'option': 'property',
+                                    'option': 'value',
                                     'value': ['nothing', null],
                                 }),
                             )

@@ -469,6 +469,22 @@ export type Option_Constraint_Resolvers_ = (
     context: Option_Constraint_Resolvers_.I,
 ) => Option_Constraint_Resolvers_.O
 
+export namespace Optional_Value_Constraint_Resolvers_ {
+    
+    export type I = i_in.Optional_Value_Constraint_Resolvers
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Optional_Value_Constraint_Resolvers_ = (
+    context: Optional_Value_Constraint_Resolvers_.I,
+) => Optional_Value_Constraint_Resolvers_.O
+
 export namespace Value_Constraint_Resolvers_ {
     
     export type I = i_in.Value_Constraint_Resolvers
@@ -659,6 +675,7 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 

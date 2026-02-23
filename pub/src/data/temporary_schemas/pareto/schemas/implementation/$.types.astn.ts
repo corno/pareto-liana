@@ -333,11 +333,29 @@ export const $: g_.Modules = modules(
                     "lookup entry": toption(t.group({
                         "lookup": prop(t.component("Select Lookup")),
                         "id": prop(t.component("Assign")),
-                        "abort handlers": prop(t.group({
-                            "no such entry": prop(t.component("Assign")),
-                            "no context lookup": prop(t.component("Assign")),
-                            "cycle detected": prop(t.component("Assign")),
-                        })),
+                        "type": prop(t.state({
+                            "acyclic": toption(t.group({
+                                "abort handlers": prop(t.group({
+                                    "no such entry": prop(t.component("Assign")),
+                                    "no context lookup": prop(t.component("Assign")),
+                                    "cycle detected": prop(t.component("Assign")),
+                                })),
+                            })),
+                            "cyclic": toption(t.group({
+                                "abort handlers": prop(t.group({
+                                    "no such entry": prop(t.component("Assign")),
+                                    "no context lookup": prop(t.component("Assign")),
+                                    "accessing cyclic sibling before it is resolved": prop(t.component("Assign")),
+                                })),
+                            })),
+                            "stack": toption(t.group({
+                                "abort handlers": prop(t.group({
+                                    "no such entry": prop(t.component("Assign")),
+                                    "no context lookup": prop(t.component("Assign")),
+                                    "cycle detected": prop(t.component("Assign")),
+                                })),
+                            })),
+                        }))
                     })),
                     "lookup entry depth": toption(t.group({
                         "lookup": prop(t.component("Select Lookup")),

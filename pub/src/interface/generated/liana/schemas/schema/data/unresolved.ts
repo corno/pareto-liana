@@ -468,11 +468,14 @@ export namespace Value_ {
                             readonly 'l state': dependency.l_state
                         }
                         
+                        export type results = Value_Results_
+                        
                     }
                     
                     export type selected = {
                         readonly 'dictionary': selected.dictionary
                         readonly 'dependency': selected.dependency
+                        readonly 'results': selected.results
                     }
                     
                 }
@@ -2158,6 +2161,14 @@ export type Option_Constraint_Resolvers_ = {
     readonly 'l dictionary': Option_Constraint_Resolvers_.l_dictionary
 }
 
+export namespace Optional_Value_Constraint_Resolvers_ {
+    
+    export type O = Value_Constraint_Resolvers_
+    
+}
+
+export type Optional_Value_Constraint_Resolvers_ = _pi.Optional_Value<Optional_Value_Constraint_Resolvers_.O>
+
 export namespace Value_Constraint_Resolvers_ {
     
     export type l_location = i__location.Range
@@ -2209,14 +2220,14 @@ export namespace Value_Constraint_Resolver_ {
         
         export namespace l_state {
             
-            export type property = null
+            export type value = null
             
             export type sibling = Reference_To_Value_Constraint_Resolver_
             
         }
         
         export type l_state = 
-            | readonly ['property', l_state.property]
+            | readonly ['value', l_state.value]
             | readonly ['sibling', l_state.sibling]
         
     }
@@ -2793,6 +2804,7 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 

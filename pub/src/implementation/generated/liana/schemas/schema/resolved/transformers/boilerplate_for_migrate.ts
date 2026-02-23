@@ -180,7 +180,7 @@ export const Imports: t_signatures.Imports = ($) => ({
                                 },
                             },
                         },
-                        'l reference': $['l id'],
+                        'l reference': $['l value']['l id'],
                     }),
                 ),
                 'schema': _p_change_context(
@@ -799,6 +799,12 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         },
                                                                     ),
                                                                 }),
+                                                            ),
+                                                            'results': _p_change_context(
+                                                                $['results'],
+                                                                ($) => Value_Results(
+                                                                    $,
+                                                                ),
                                                             ),
                                                         }],
                                                     )
@@ -3299,6 +3305,14 @@ export const Option_Constraint_Resolvers: t_signatures.Option_Constraint_Resolve
     ),
 })
 
+export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($) => _p.optional.from.optional(
+    $,
+).map(
+    ($) => Value_Constraint_Resolvers(
+        $,
+    ),
+)
+
 export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($) => ({
     'l location': {
         'start': {
@@ -3395,10 +3409,10 @@ export const Value_Constraint_Resolver: t_signatures.Value_Constraint_Resolver =
                 $,
                 ($): t_out.Value_Constraint_Resolver.start.l_state => {
                     switch ($[0]) {
-                        case 'property':
+                        case 'value':
                             return _p.ss(
                                 $,
-                                ($) => ['property', null],
+                                ($) => ['value', null],
                             )
                         case 'sibling':
                             return _p.ss(

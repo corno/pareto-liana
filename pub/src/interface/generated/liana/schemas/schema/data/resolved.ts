@@ -57,18 +57,37 @@ export namespace Imports_ {
         
         export namespace schema_set_child {
             
-            export type l_entry = Schemas_.D
+            export namespace l_results {
+                
+                export type schema = Schema_
+                
+            }
             
-            export type l_id = string
+            export type l_results = {
+                readonly 'schema': l_results.schema
+            }
             
-            export type l_up_steps = number
+            export namespace l_value {
+                
+                export type l_entry = Schemas_.D
+                
+                export type l_id = string
+                
+                export type l_up_steps = number
+                
+            }
+            
+            export type l_value = {
+                readonly 'l entry': l_value.l_entry
+                readonly 'l id': l_value.l_id
+                readonly 'l up steps': l_value.l_up_steps
+            }
             
         }
         
         export type schema_set_child = {
-            readonly 'l entry': schema_set_child.l_entry
-            readonly 'l id': schema_set_child.l_id
-            readonly 'l up steps': schema_set_child.l_up_steps
+            readonly 'l results': schema_set_child.l_results
+            readonly 'l value': schema_set_child.l_value
         }
         
         export type schema = Schema_
@@ -296,11 +315,14 @@ export namespace Value_ {
                     | readonly ['cyclic', dependency.cyclic]
                     | readonly ['stack', dependency.stack]
                 
+                export type results = Value_Results_
+                
             }
             
             export type selected = {
                 readonly 'dictionary': selected.dictionary
                 readonly 'dependency': selected.dependency
+                readonly 'results': selected.results
             }
             
         }
@@ -1536,6 +1558,14 @@ export namespace Option_Constraint_Resolvers_ {
 
 export type Option_Constraint_Resolvers_ = _pi.Dictionary<Option_Constraint_Resolvers_.D>
 
+export namespace Optional_Value_Constraint_Resolvers_ {
+    
+    export type O = Value_Constraint_Resolvers_
+    
+}
+
+export type Optional_Value_Constraint_Resolvers_ = _pi.Optional_Value<Optional_Value_Constraint_Resolvers_.O>
+
 export namespace Value_Constraint_Resolvers_ {
     
     export type D = Value_Constraint_Resolver_
@@ -1561,14 +1591,14 @@ export namespace Value_Constraint_Resolver_ {
     
     export namespace start {
         
-        export type property = null
+        export type value = null
         
         export type sibling = Reference_To_Value_Constraint_Resolver_
         
     }
     
     export type start = 
-        | readonly ['property', start.property]
+        | readonly ['value', start.value]
         | readonly ['sibling', start.sibling]
     
     export type constraint = Constraint_
@@ -2006,6 +2036,7 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 

@@ -54,8 +54,8 @@ export const Schema = (
                 " imports ": _p_change_context($, ($) => {
                     // const types = $p['what to generate']
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
-                        $p.depth + 1 + $['schema set child']['l up steps'],
-                        $['schema set child']['l id'],
+                        $p.depth + 1 + $['schema set child']['l value']['l up steps'],
+                        $['schema set child']['l value']['l id'],
                         _p.decide.state($.schema.complexity, ($) => {
                             switch ($[0]) {
                                 case 'unconstrained': return _p.ss($, ($) => [
@@ -89,7 +89,7 @@ export const Schema = (
             {
                 duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; ' location' and ' imports'"),
             }
-            
+
         ),
         $.modules.__d_map(($) => sh.type.data(Value(
             $['root value'],
@@ -252,42 +252,51 @@ export const Value = (
                                         "l location": location,
                                         "l reference": sh.t.text(),
                                     }))
-                                    case 'resolved': return _p.ss($, ($) => sh.t.group(
-                                        _p.dictionary.from.dictionary(
-                                            _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
-                                                "l entry": _p.optional.literal.set(_p_change_context($, ($) => {
-                                                    return sh.t.reference(
-                                                        Module_Reference(referent['module']),
-                                                        _p.list.nested_literal_old([
-                                                            Value_Path(referent.path),
-                                                            [
-                                                                sh.sub.dictionary(),
-                                                            ]
-                                                        ]),
-                                                        _p.decide.state(selected.dependency, ($) => {
-                                                            switch ($[0]) {
+                                    case 'resolved': return _p.ss($, ($) => {
+                                        const ii = sh.t.group(
+                                            _p.dictionary.from.dictionary(
+                                                _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
+                                                    "l entry": _p.optional.literal.set(_p_change_context($, ($) => {
+                                                        return sh.t.reference(
+                                                            Module_Reference(referent['module']),
+                                                            _p.list.nested_literal_old([
+                                                                Value_Path(referent.path),
+                                                                [
+                                                                    sh.sub.dictionary(),
+                                                                ]
+                                                            ]),
+                                                            _p.decide.state(selected.dependency, ($) => {
+                                                                switch ($[0]) {
 
-                                                                case 'acyclic': return _p.ss($, ($) => 'acyclic')
-                                                                case 'cyclic': return _p.ss($, ($) => 'cyclic')
-                                                                case 'stack': return _p.ss($, ($) => 'acyclic')
-                                                                default: return _p.au($[0])
-                                                            }
-                                                        })
-                                                    )
-                                                })),
-                                                "l id": _p.optional.literal.set(sh.t.text()),
-                                                "l up steps": _p.decide.state(selected.dependency, ($) => {
-                                                    switch ($[0]) {
-                                                        case 'acyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
-                                                        case 'cyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
-                                                        case 'stack': return _p.ss($, ($) => _p.optional.literal.set(sh.t.natural()))
-                                                        default: return _p.au($[0])
-                                                    }
-                                                })
-                                            }),
-                                        ).filter(
-                                            ($) => $,
-                                        )))
+                                                                    case 'acyclic': return _p.ss($, ($) => 'acyclic')
+                                                                    case 'cyclic': return _p.ss($, ($) => 'cyclic')
+                                                                    case 'stack': return _p.ss($, ($) => 'acyclic')
+                                                                    default: return _p.au($[0])
+                                                                }
+                                                            })
+                                                        )
+                                                    })),
+                                                    "l id": _p.optional.literal.set(sh.t.text()),
+                                                    "l up steps": _p.decide.state(selected.dependency, ($) => {
+                                                        switch ($[0]) {
+                                                            case 'acyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                            case 'cyclic': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                            case 'stack': return _p.ss($, ($) => _p.optional.literal.set(sh.t.natural()))
+                                                            default: return _p.au($[0])
+                                                        }
+                                                    })
+                                                }),
+                                            ).filter(
+                                                ($) => $,
+                                            )
+                                        )
+                                        return Value_Results(
+                                            selected.results,
+                                            {
+                                                'base type': ii,
+                                            }
+                                        )
+                                    })
                                     case 'unresolved': return _p.ss($, ($) => sh.t.group({
                                         "l location": location,
                                         "l reference": sh.t.text(),

@@ -64,8 +64,8 @@ export const Schema = (
                     ),
                 }),
                 "external ": $.imports.__d_map(($, id) => constrained
-                    ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "transformers", "astn sealed target"])
-                    : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "astn sealed target"])
+                    ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
+                    : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
                 ),
             }),
         ).flatten(

@@ -3,9 +3,9 @@
 
 // import _p_change_context from 'pareto-core/dist/_p_change_context'
 
-// import * as _pdev from 'pareto-core-dev'
-
 // import * as _p_sl from 'pareto-core/dist/select_lookup'
+
+// import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 // import _p_variables from 'pareto-core/dist/_p_variables'
 
@@ -1035,8 +1035,27 @@
 //                                                                 return _p.ss(
 //                                                                     $,
 //                                                                     ($) => ['internal', {
-//                                                                         'l entry': _pdev.implement_me(
-//                                                                             "IM: FIXME CYCLIC ENTRY",
+//                                                                         'l entry': $l['possibly circular dependent sibling modules'].get_entry(
+//                                                                             $['l reference'],
+//                                                                             {
+//                                                                                 no_such_entry: () => abort(
+//                                                                                     {
+//                                                                                         'type': ['lookup', ['no such entry', $['l reference']]],
+//                                                                                         'location': $['l location'],
+//                                                                                     },
+//                                                                                 ),
+//                                                                                 no_context_lookup: () => abort(
+//                                                                                     {
+//                                                                                         'type': ['lookup', ['no context lookup', null]],
+//                                                                                         'location': $['l location'],
+//                                                                                     },
+//                                                                                 ),
+//                                                                                 accessing_cyclic_sibling_before_it_is_resolved: () => abort(
+//                                                                                     _p_unreachable_code_path(
+//                                                                                         "the generated resolver should take care of accessing before resolved",
+//                                                                                     ),
+//                                                                                 ),
+//                                                                             },
 //                                                                         ),
 //                                                                         'l id': $['l reference'],
 //                                                                     }],
@@ -1352,9 +1371,26 @@
 //                                                                                             },
 //                                                                                         ),
 //                                                                                     )
+                                                                                    
+//                                                                                     const prop_results = _p_change_context(
+//                                                                                         $['results'],
+//                                                                                         ($) => Value_Results(
+//                                                                                             $,
+//                                                                                             ($) => abort(
+//                                                                                                 $,
+//                                                                                             ),
+//                                                                                             {
+//                                                                                                 'modules': $l['noncircular sibling modules'],
+//                                                                                             },
+//                                                                                             {
+//                                                                                                 'imports': $p['imports'],
+//                                                                                             },
+//                                                                                         ),
+//                                                                                     )
 //                                                                                     return {
 //                                                                                         'dictionary': prop_dictionary,
 //                                                                                         'dependency': prop_dependency,
+//                                                                                         'results': prop_results,
 //                                                                                     }
 //                                                                                 },
 //                                                                             )
@@ -3386,10 +3422,10 @@
 //                         $['l state'],
 //                         ($): t_out.Value_Constraint_Resolver.start => {
 //                             switch ($[0]) {
-//                                 case 'property':
+//                                 case 'value':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['property', null],
+//                                         ($) => ['value', null],
 //                                     )
 //                                 case 'sibling':
 //                                     return _p.ss(
@@ -3436,6 +3472,21 @@
 //             'constraint': prop_constraint,
 //         }
 //     },
+// )
+
+// export const Optional_Value_Constraint_Resolvers: t_signatures.Optional_Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.optional.from.optional(
+//     $,
+// ).map(
+//     ($) => Value_Constraint_Resolvers(
+//         $,
+//         ($) => abort(
+//             $,
+//         ),
+//         null,
+//         {
+//             'value': $p['value'],
+//         },
+//     ),
 // )
 
 // export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers = ($, abort, $l, $p) => _p.dictionary.from.dictionary(

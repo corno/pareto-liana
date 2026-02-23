@@ -324,11 +324,29 @@ export const $: g_.Module_Resolvers = resolvers(
                     "lookup entry": option(r.group({
                         "lookup": r.component("Select Lookup", {}, {}),
                         "id": r.component("Assign", {}, {}),
-                        "abort handlers": r.group({
-                            "no such entry": r.component("Assign", {}, {}),
-                            "no context lookup": r.component("Assign", {}, {}),
-                            "cycle detected": r.component("Assign", {}, {}),
-                        }),
+                        "type": r.state({
+                            "acyclic": option(r.group({
+                                "abort handlers": r.group({
+                                    "no such entry": r.component("Assign", {}, {}),
+                                    "no context lookup": r.component("Assign", {}, {}),
+                                    "cycle detected": r.component("Assign", {}, {}),
+                                }),
+                            })),
+                            "cyclic": option(r.group({
+                                "abort handlers": r.group({
+                                    "no such entry": r.component("Assign", {}, {}),
+                                    "no context lookup": r.component("Assign", {}, {}),
+                                    "accessing cyclic sibling before it is resolved": r.component("Assign", {}, {}),
+                                }),
+                            })),
+                            "stack": option(r.group({
+                                "abort handlers": r.group({
+                                    "no such entry": r.component("Assign", {}, {}),
+                                    "no context lookup": r.component("Assign", {}, {}),
+                                    "cycle detected": r.component("Assign", {}, {}),
+                                }),
+                            })),
+                        })
                     })),
                     "lookup entry depth": option(r.group({
                         "lookup": r.component("Select Lookup", {}, {}),

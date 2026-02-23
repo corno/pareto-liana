@@ -45,7 +45,7 @@ export const Imports: _pi.Transformer<d_in.Imports, d_out.Imports> = (
     $
 ) => sh.dictionary($.__d_map(($) => ({
     'schema': null,
-    'schema set child': sh.reference($['schema set child']['l id'])
+    'schema set child': sh.reference($['schema set child']['l value']['l id'])
 })))
 
 export const Module: _pi.Transformer<d_in.Module, d_out.Modules.l_dictionary.D.l_entry> = (

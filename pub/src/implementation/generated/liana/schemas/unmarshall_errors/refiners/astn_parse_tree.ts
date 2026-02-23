@@ -506,23 +506,15 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                                                     $,
                                                                                                                                 ),
                                                                                                                             ),
-                                                                                                                            ($) => _p_variables(
-                                                                                                                                () => {
-                                                                                                                                    
-                                                                                                                                    const var_dictionary_range = v_parse_tree_to_location.Value(
-                                                                                                                                        $['value'],
-                                                                                                                                    )
-                                                                                                                                    return _p.dictionary.from.dictionary(
-                                                                                                                                        $['entries'],
-                                                                                                                                    ).map(
-                                                                                                                                        ($, id) => v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                                                            $,
-                                                                                                                                            ($) => abort(
-                                                                                                                                                $,
-                                                                                                                                            ),
-                                                                                                                                        ),
-                                                                                                                                    )
-                                                                                                                                },
+                                                                                                                            ($) => _p.dictionary.from.dictionary(
+                                                                                                                                $['entries'],
+                                                                                                                            ).map(
+                                                                                                                                ($, id) => v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                                                    $,
+                                                                                                                                    ($) => abort(
+                                                                                                                                        $,
+                                                                                                                                    ),
+                                                                                                                                ),
                                                                                                                             ),
                                                                                                                         ),
                                                                                                                     ),

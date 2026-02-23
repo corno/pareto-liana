@@ -3,9 +3,9 @@ import * as _p from 'pareto-core/dist/assign'
 
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
-import * as _pdev from 'pareto-core-dev'
-
 import * as _p_sl from 'pareto-core/dist/select_lookup'
+
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import _p_variables from 'pareto-core/dist/_p_variables'
 
@@ -256,8 +256,27 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                     return _p.ss(
                                                         $,
                                                         ($) => ['internal', {
-                                                            'l entry': _pdev.implement_me(
-                                                                "IM: FIXME CYCLIC ENTRY",
+                                                            'l entry': $l['possibly circular dependent sibling modules'].get_entry(
+                                                                $['l reference'],
+                                                                {
+                                                                    no_such_entry: () => abort(
+                                                                        {
+                                                                            'type': ['lookup', ['no such entry', $['l reference']]],
+                                                                            'location': $['l location'],
+                                                                        },
+                                                                    ),
+                                                                    no_context_lookup: () => abort(
+                                                                        {
+                                                                            'type': ['lookup', ['no context lookup', null]],
+                                                                            'location': $['l location'],
+                                                                        },
+                                                                    ),
+                                                                    accessing_cyclic_sibling_before_it_is_resolved: () => abort(
+                                                                        _p_unreachable_code_path(
+                                                                            "the generated resolver should take care of accessing before resolved",
+                                                                        ),
+                                                                    ),
+                                                                },
                                                             ),
                                                             'l id': $['l reference'],
                                                         }],
@@ -666,9 +685,7 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
                 
                 const prop_schema = _p_change_context(
                     $['schema'],
-                    ($) => _pdev.implement_me(
-                        "IM: REFERENCE",
-                    ),
+                    ($) => _p_unreachable_code_path("SDFSFSD")
                 )
                 return {
                     'schema set child': prop_schema_set_child,

@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
 import {
-    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, pc, pvs, module_reference,
+    resolvers, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs, module_reference,
 } from "../../../../../shorthands/schema"
 
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
@@ -113,7 +113,7 @@ export const $: g_.Module_Resolvers = resolvers(
 
         "Imports": resolver(r.dictionary(r.group({
             "schema set child": r.reference_stack(ls.parameter("sibling schemas"), {
-                "schema": pc.property([rvs.component()], "schema"),
+                "schema": vcr.value([rvs.component()], "schema"),
             }),
             "schema": r.reference_derived(gvs.reference("schema set child", "schema", [])),
         }))),

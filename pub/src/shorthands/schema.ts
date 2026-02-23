@@ -299,6 +299,7 @@ export namespace t {
         type: string,
         tail: d_target.Value_Path.tail.l_list.L.l_item[],
         dependency?: "cyclic" | "acyclic",
+        results?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_target.Value => {
 
         const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
@@ -311,7 +312,8 @@ export namespace t {
                 'resulting node': null
             },
             'dictionary': null,
-            'dependency': dependency === "cyclic" ? sh.state(['cyclic', null]) : sh.state(['acyclic', null])
+            'dependency': dependency === "cyclic" ? sh.state(['cyclic', null]) : sh.state(['acyclic', null]),
+            'results': results ? sh.optionalx.set(sh.dictionary(results)) : sh.optionalx.not_set(),
         }])
         return sh.state(['reference', {
             'referent': {
@@ -332,11 +334,13 @@ export namespace t {
     export const reference_stack = (
         type: string,
         tail: d_target.Value_Path.tail.l_list.L.l_item[],
+        results?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_target.Value => {
 
         const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
-            'dependency': sh.state(['stack', null])
+            'dependency': sh.state(['stack', null]),
+            'results': results ? sh.optionalx.set(sh.dictionary(results)) : sh.optionalx.not_set(),
         }])
         return sh.state(['reference', {
             'referent': {
@@ -363,7 +367,8 @@ export namespace t {
 
         const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
             'dictionary': null,
-            'dependency': sh.state(['acyclic', null]) // <-- external references cannot be cyclic, but this should not have to be specified here
+            'dependency': sh.state(['acyclic', null]), // <-- external references cannot be cyclic, but this should not have to be specified here
+            'results': sh.optionalx.not_set(),
         }])
         return sh.state(['reference', {
             'referent': {
@@ -1004,25 +1009,32 @@ export namespace oc {
 }
 
 /**
- * property constraint
+ * value constraint resolvers
  */
-export namespace pc {
+export namespace vcr {
 
-    export const property = (
+    /**
+     * starting from the value
+     */
+    export const value = (
         value_selection_tail: d_target.Relative_Value_Selection.path.l_list.L.l_item[],
-        state: string,
+        state?: string,
     ): d_target.Value_Constraint_Resolvers.l_dictionary.D.l_entry => {
         return {
-            'start': sh.state(['property', null]),
+            'start': sh.state(['value', null]),
             'constraint': {
                 'selection': {
                     'path': sh.list(value_selection_tail),
                     'resulting node': null,
                 },
-                'type': sh.state(['state', {
-                    'selected state': null,
-                    'option': sh.reference(state),
-                }])
+                'type': state === undefined
+                    ? sh.state(['optional value', {
+                        'selected optional value': null,
+                    }])
+                    : sh.state(['state', {
+                        'selected state': null,
+                        'option': sh.reference(state),
+                    }])
             },
         }
     }

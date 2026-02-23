@@ -94,8 +94,8 @@ export const Schema: _pi.Transformer_With_Parameter<
                     ),
                 }),
                 "external ": $.imports.__d_map(($, id) => constrained
-                    ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["unresolved", "refiners", "astn parse tree"])
-                    : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["refiners", "astn parse tree"])
+                    ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
+                    : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
                 ),
             }),
         ).flatten(
@@ -174,9 +174,9 @@ export const Value = (
                         [
                         ],
                     ),
-                    sh.a.variables(
-                        {
-                            "dictionary range": sh.a.select(
+                    $p.constrained
+                        ? sh.a.group.literal({
+                            "l location": sh.a.select(
                                 sh.sv.call(
                                     sh.call.external("parse tree to location", "Value"),
                                     sh.a.select(sh.sv.context(["value"])),
@@ -188,50 +188,45 @@ export const Value = (
                                     ],
                                 )
                             ),
-                        },
-                        $p.constrained
-                            ? sh.a.group.literal({
-                                "l location": location,
-                                "l dictionary": sh.a.dictionary.from.dictionary.map(
-                                    sh.sv.context(["entries"]),
-                                    sh.a.group.literal({
-                                        "l location": location,
-                                        "l entry": Value(
-                                            $.value,
-                                            {
-                                                'temp type': $p['temp type'],
-                                                'temp subselection': _p.list.nested_literal_old([
-                                                    $p['temp subselection'],
-                                                    [
-                                                        sh_i.sub.group("l dictionary"),
-                                                        sh_i.sub.dictionary(),
-                                                        sh_i.sub.group("l entry"),
-
-                                                    ]
-                                                ]),
-                                                'constrained': $p.constrained
-                                            }
-                                        )
-                                    }),
-                                )
-                            })
-                            : sh.a.dictionary.from.dictionary.map(
+                            "l dictionary": sh.a.dictionary.from.dictionary.map(
                                 sh.sv.context(["entries"]),
-                                Value(
-                                    $.value,
-                                    {
-                                        'temp type': $p['temp type'],
-                                        'temp subselection': _p.list.nested_literal_old([
-                                            $p['temp subselection'],
-                                            [
-                                                sh_i.sub.dictionary(),
-                                            ]
-                                        ]),
-                                        'constrained': $p.constrained
-                                    }
-                                ),
+                                sh.a.group.literal({
+                                    "l location": location,
+                                    "l entry": Value(
+                                        $.value,
+                                        {
+                                            'temp type': $p['temp type'],
+                                            'temp subselection': _p.list.nested_literal_old([
+                                                $p['temp subselection'],
+                                                [
+                                                    sh_i.sub.group("l dictionary"),
+                                                    sh_i.sub.dictionary(),
+                                                    sh_i.sub.group("l entry"),
+
+                                                ]
+                                            ]),
+                                            'constrained': $p.constrained
+                                        }
+                                    )
+                                }),
                             )
-                    )
+                        })
+                        : sh.a.dictionary.from.dictionary.map(
+                            sh.sv.context(["entries"]),
+                            Value(
+                                $.value,
+                                {
+                                    'temp type': $p['temp type'],
+                                    'temp subselection': _p.list.nested_literal_old([
+                                        $p['temp subselection'],
+                                        [
+                                            sh_i.sub.dictionary(),
+                                        ]
+                                    ]),
+                                    'constrained': $p.constrained
+                                }
+                            ),
+                        )
                 )
             })
             case 'group': return _p.ss($, ($) => sh.a.change_context(

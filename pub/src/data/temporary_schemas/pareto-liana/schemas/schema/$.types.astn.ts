@@ -59,6 +59,7 @@ export const $: g_.Modules = modules(
                             "cyclic": toption(t.nothing()),
                             "stack": toption(t.nothing()),
                         })),
+                        "results": prop(t.component("Value Results")),
                     })),
                 })),
             })),
@@ -229,7 +230,9 @@ export const $: g_.Modules = modules(
         })),
 
         "Imports": module_(t.dictionary(t.group({
-            "schema set child": prop(t.reference_stack("Schemas", [])),
+            "schema set child": prop(t.reference_stack("Schemas", [], {
+                "schema": sh.value_reference("Schema", []),
+            })),
             "schema": prop(t.reference_derived("Schema", [])),
         }))),
 
@@ -459,13 +462,14 @@ export const $: g_.Modules = modules(
             "assert is set": toption(t.component("Possible Value Selection")),
         }))),
 
+        "Optional Value Constraint Resolvers": module_(t.optional(t.component("Value Constraint Resolvers"))),
         "Value Constraint Resolvers": module_(t.dictionary(t.component("Value Constraint Resolver"))),
 
-        "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [])), //FIXME : inline
+        "Reference To Value Constraint Resolver": module_(t.reference("Value Constraint Resolvers", [ ])), //FIXME : inline
 
         "Value Constraint Resolver": module_(t.group({
             "start": prop(t.state({
-                "property": toption(t.nothing()),
+                "value": toption(t.nothing()),
                 "sibling": toption(t.component("Reference To Value Constraint Resolver")),
             })),
             "constraint": prop(t.component("Constraint")),

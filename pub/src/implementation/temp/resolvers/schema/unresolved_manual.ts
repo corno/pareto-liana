@@ -103,18 +103,31 @@ export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.group.lite
 export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p_variables(() => _p_change_context($, ($) => temp_resolve(
     $['l dictionary'],
     ($, id) => _p_change_context($, ($) => _p_change_context($, ($): t_out.Imports.D => {
-        const p_schema_set_child: t_out.Imports.D.schema_set_child = _p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
+        const foo = _p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
             $l['sibling schemas'],
             $,
             abort,
         ))
-        const loc = $['l entry']['schema set child']['l location']
-        const p_schema: t_out.Imports.D.schema = _p_change_context($['l entry']['schema'], ($) => _p_change_context(p_schema_set_child['l entry'], ($) => { // reference constraint ('schema set child')
-            switch ($[0]) {
-                case 'schema': return _p.ss($, ($) => $)
-                default: return _i_generic.abort.state_constraint_found_expected("set", $, loc, abort)
+        const p_schema_set_child: t_out.Imports.D.schema_set_child = {
+            'l value': foo,
+            'l results': {
+                'schema': _p.decide.state(foo['l entry'], ($) => {
+                    switch ($[0]) {
+                        case 'schema': return _p.ss($, ($) => $)
+                        case 'set': return _p.ss($, ($) => abort({
+                            'type': ['constraint', ['state', {
+                                'expected': 'schema',
+                                'found': 'set',
+                            }]],
+                            'location': loc
+                        }))
+                        default: return _p.au($[0])
+                    }
+                })
             }
-        }))
+        }
+        const loc = $['l entry']['schema set child']['l location']
+        const p_schema: t_out.Imports.D.schema = _p_change_context($['l entry']['schema'], ($) => p_schema_set_child['l results'].schema)
         return {
             'schema set child': p_schema_set_child,
             'schema': p_schema,
@@ -784,7 +797,17 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                         case 'stack': return _p.ss($, ($) => ['stack', $])
                                         default: return _p.au($[0])
                                     }
-                                })
+                                }),
+                                'results': Value_Results(
+                                    $.results,
+                                    abort,
+                                    {
+                                        'modules': $l['noncircular sibling modules'],
+                                    },
+                                    {
+                                        'imports': $p.imports,
+                                    },
+                                )
                             }]
                         })
                         case 'derived': return _p.ss($, ($) => ['derived', null])
@@ -1166,7 +1189,7 @@ export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers
         ($, id, $acyclic, $cyclic) => _p_change_context($, ($) => _p_variables(() => {
             const p_start: t_out.Value_Constraint_Resolver.start = _p_change_context($['l entry'].start['l state'], ($) => {
                 switch ($[0]) {
-                    case 'property': return _p.ss($, ($) => ['property', null])
+                    case 'value': return _p.ss($, ($) => ['value', null])
                     case 'sibling': return _p.ss($, ($) => ['sibling', _i_generic.get_entry_acyclic(
                         $acyclic,
                         $,
@@ -1183,7 +1206,7 @@ export const Value_Constraint_Resolvers: t_signatures.Value_Constraint_Resolvers
 
                     'value': _p_change_context(p_start, ($) => {
                         switch ($[0]) {
-                            case 'property': return _p.ss($, ($) => $p.value)
+                            case 'value': return _p.ss($, ($) => $p.value)
                             case 'sibling': return _p.ss($, ($) => _p_change_context($['l entry'].constraint.type, ($) => {
                                 switch ($[0]) {
                                     case 'state': return _p.ss($, ($) => $.option['l entry'].value)

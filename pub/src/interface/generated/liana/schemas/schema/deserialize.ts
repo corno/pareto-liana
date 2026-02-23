@@ -1,7 +1,7 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as i_generic from "astn-core/dist/interface/to_be_generated/deserialize"
+import * as i_generic from "liana-core/dist/interface/to_be_generated/deserialize"
 
 import * as i_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
@@ -790,6 +790,33 @@ export type Option_Constraint_Resolvers_ = (
     },
 ) => Option_Constraint_Resolvers_.O
 
+export namespace Optional_Value_Constraint_Resolvers_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Optional_Value_Constraint_Resolvers
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Optional_Value_Constraint_Resolvers_ = (
+    context: Optional_Value_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Optional_Value_Constraint_Resolvers_.E>,
+    parameters: {
+        readonly 'document resource identifier': Optional_Value_Constraint_Resolvers_.P.document_resource_identifier
+        readonly 'tab size': Optional_Value_Constraint_Resolvers_.P.tab_size
+    },
+) => Optional_Value_Constraint_Resolvers_.O
+
 export namespace Value_Constraint_Resolvers_ {
     
     export type I = i_in.List_of_Characters
@@ -1090,6 +1117,7 @@ export {
     Lookup_Selection_ as Lookup_Selection, 
     Constraint_ as Constraint, 
     Option_Constraint_Resolvers_ as Option_Constraint_Resolvers, 
+    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Reference_To_Value_Constraint_Resolver_ as Reference_To_Value_Constraint_Resolver, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 

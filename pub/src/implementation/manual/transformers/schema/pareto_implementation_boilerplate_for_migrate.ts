@@ -75,8 +75,8 @@ export const Schema = (
             ),
         }),
         $.imports.__d_map(($, id) => constrained
-            ? sh_i.import_.ancestor(3, $['schema set child']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
-            : sh_i.import_.ancestor(2, $['schema set child']['l id'], ["transformers", "boilerplate for migrate"])),
+            ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
+            : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "boilerplate for migrate"])),
         $.modules.__d_map(($, id) => sh.algorithm(
             "signatures",
             id,

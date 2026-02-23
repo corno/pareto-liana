@@ -81,7 +81,7 @@ export const Module_Resolvers = (
     }
 ): d_out.Package_Set.D => {
     return sh.m.package_(
-        ['change context', 'variables', 'implement me', 'lookups'],
+        ['change context', 'variables', 'lookups', 'unreachable code path'],
         _p.dictionary.literal({
             "out": sh_i.import_.ancestor(
                 $p.depth,
@@ -112,7 +112,7 @@ export const Module_Resolvers = (
         }),
         _p.dictionary.from.dictionary(
             _p.dictionary.literal({
-                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l id'], [
+                "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
                     "resolved",
                     "refiners",
                     "unresolved"
@@ -595,11 +595,12 @@ export const Value_Resolver = (
                 case 'selected': return _p.ss($, ($) => {
                     const x = $.lookup
                     const x_out = Lookup_Selection(x)
+                    //$.constraints asdfsfd
+                    // Value_Constraint_Resolvers($.constraints)
                     return _p.decide.state($.definition.dependency, ($) => {
                         switch ($[0]) {
                             case 'stack': return _p.ss($, ($) => sh.a.group.literal({
-                                // "l entry": sh.a.implement_me("IM: FIXME ENTRY FROM STACK"),
-                                "l entry": sh.a.select(sh.sv.lookup_entry(
+                                "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
                                     x_out,
                                     sh.a.select(sh.sv.context(["l reference"])),
                                     no_such_entry_error,
@@ -620,7 +621,7 @@ export const Value_Resolver = (
                             }))
                             case 'acyclic': return _p.ss($, ($) => sh.a.group.literal({
                                 // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
-                                "l entry": sh.a.select(sh.sv.lookup_entry(
+                                "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
                                     x_out,
                                     sh.a.select(sh.sv.context(["l reference"])),
                                     no_such_entry_error,
@@ -631,7 +632,14 @@ export const Value_Resolver = (
                                 "l id": sh.a.select(sh.sv.context(["l reference"])),
                             }))
                             case 'cyclic': return _p.ss($, ($) => sh.a.group.literal({
-                                "l entry": sh.a.implement_me("IM: FIXME CYCLIC ENTRY"),
+                                "l entry": sh.a.select(sh.sv.lookup_entry_cyclic(
+                                    x_out,
+                                    sh.a.select(sh.sv.context(["l reference"])),
+                                    no_such_entry_error,
+                                    no_context_lookup_error,
+                                    sh.a.unreachable("the generated resolver should take care of accessing before resolved"),
+
+                                )),
 
                                 // "l entry": sh.a.select(sh.sv.lookup_entry(
                                 //     x_out,
@@ -707,6 +715,12 @@ export const Value_Resolver = (
         default: return _p.au($[0])
     }
 })
+
+export const Value_Constraint_Resolvers = (
+    $: d_in.Value_Constraint_Resolvers,
+): d_out.Assign => {
+    return _p_unreachable_code_path("IMPLEMENT ME")
+}
 
 export const Value_Results = (
     $: d_in.Value_Results,

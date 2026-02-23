@@ -1426,6 +1426,31 @@ export type Constraint_ = (
     },
 ) => Constraint_.O
 
+export namespace Optional_Value_Constraint_Resolvers_ {
+    
+    export type I = i_unresolved.Optional_Value_Constraint_Resolvers
+    
+    export type O = i_resolved.Optional_Value_Constraint_Resolvers
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type value = i_resolved.Value_
+        
+    }
+    
+}
+
+export type Optional_Value_Constraint_Resolvers_ = (
+    context: Optional_Value_Constraint_Resolvers_.I,
+    abort: _pi.Abort<Optional_Value_Constraint_Resolvers_.E>,
+    lookups: null,
+    parameters: {
+        readonly 'value': Optional_Value_Constraint_Resolvers_.P.value
+    },
+) => Optional_Value_Constraint_Resolvers_.O
+
 export namespace Value_Constraint_Resolvers_ {
     
     export type I = i_unresolved.Value_Constraint_Resolvers
@@ -1866,6 +1891,7 @@ export {
     Value_Resolver_Group_ as Value_Resolver_Group, 
     Relative_Value_Selection_ as Relative_Value_Selection, 
     Constraint_ as Constraint, 
+    Optional_Value_Constraint_Resolvers_ as Optional_Value_Constraint_Resolvers, 
     Value_Constraint_Resolvers_ as Value_Constraint_Resolvers, 
     Value_Constraint_Resolver_ as Value_Constraint_Resolver, 
     Resolve_Logic_ as Resolve_Logic, 

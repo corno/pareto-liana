@@ -134,6 +134,7 @@ export const $: g_.Resolve_Logic.signatures = signatures(
             {},
         ),
         "Constraint": sig.same_as("Relative Value Selection"),
+        "Optional Value Constraint Resolvers": sig.same_as("Relative Value Selection"),
         "Value Constraint Resolvers": sig.same_as("Relative Value Selection"),
         "Value Constraint Resolver": sig.local(
             {},
