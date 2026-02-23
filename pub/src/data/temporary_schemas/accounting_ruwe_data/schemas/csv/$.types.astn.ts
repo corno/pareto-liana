@@ -5,7 +5,6 @@ import {
     n,
     text,
     t,
-    vp,
     module_,
     prop,
     toption,

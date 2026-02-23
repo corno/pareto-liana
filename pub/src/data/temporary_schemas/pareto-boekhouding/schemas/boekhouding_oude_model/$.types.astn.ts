@@ -6,7 +6,6 @@ import {
 
     text,
     t,
-    vp,
     module_,
     prop,
     toption,

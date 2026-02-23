@@ -3,10 +3,10 @@ import * as _pi from 'pareto-core/dist/interface'
 import {
     modules,
     t,
-    vp,
     module_,
     prop,
     toption,
+    vp,
 } from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 

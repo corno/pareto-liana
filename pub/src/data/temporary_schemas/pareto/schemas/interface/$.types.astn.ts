@@ -5,7 +5,6 @@ import {
     modules,
     n,
     t,
-    vp,
     module_,
     prop,
     toption as toption,

@@ -209,7 +209,7 @@ export const Resolver_Guaranteed_Value_Selection = (
             case 'constraint': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'component': return _p.ss($, ($) => sh.sv.implement_me("IM: COMPONENT")) //simple
-                    case 'reference': return _p.ss($, ($) => sh.sv.implement_me("IM: REFERENCE")) //simple
+                    case 'reference': return _p.ss($, ($) => sh.sv.sibling($.property['l id'], ["l results", $.constraint['l id']])) //simple
                     default: return _p.au($[0])
                 }
             }))

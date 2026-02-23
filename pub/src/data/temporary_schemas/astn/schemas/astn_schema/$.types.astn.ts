@@ -4,12 +4,14 @@ import {
     modules,
     n,
     t,
-    vp,
     module_,
     text,
     prop,
     toption,
+    vp,
 } from "../../../../../shorthands/schema"
+import * as sh from "../../../../../shorthands/schema"
+
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $: g_.Modules = modules(
@@ -29,7 +31,9 @@ export const $: g_.Modules = modules(
         })),
 
         "Imports": module_(t.dictionary(t.group({
-            "schema set child": prop(t.reference_stack("Schemas", [])),
+            "schema set child": prop(t.reference_stack("Schemas", [], {
+                "schema": sh.value_reference("Schema", []),
+            })),
             "schema": prop(t.reference_derived("Schema", [])),
         }))),
 

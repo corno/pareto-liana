@@ -4,14 +4,14 @@ import {
     modules,
     n,
     t,
-    vp,
     module_,
     text,
     prop,
     toption,
     prop_with_description,
     toption_with_description,
-    value_reference
+    value_reference,
+    vp,
 } from "../../../../../shorthands/schema"
 import * as sh from "../../../../../shorthands/schema"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"

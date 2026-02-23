@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import {
     resolver_modules, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
-} from "../../../../../shorthands/schema"
+} from "../../../../../shorthands/resolver"
 import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $: g_.Resolver_Modules = resolver_modules(
