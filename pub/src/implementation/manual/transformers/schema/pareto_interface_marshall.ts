@@ -10,7 +10,7 @@ import * as sh from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'constrained': boolean
+        'constrained': _pi.Optional_Value<string>
     }
 ): d_out.Package_Set.D => sh.m.package_functions(
     {
@@ -27,11 +27,13 @@ export const Schema = (
             ],
         ),
         "in": sh.import_.ancestor(
-                $p.constrained ? 3: 2,
+            _p.boolean.from.optional($p.constrained).is_set() ? 3 : 2,
             "data",
-            $p.constrained
-                ? ["resolved"]
-                : [],
+            _p.decide.optional(
+                $p.constrained,
+                ($) => [$],
+                () => []
+            )
         ),
     },
     $.modules.__d_map(($, id) => sh.type.transformer(

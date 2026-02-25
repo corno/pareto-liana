@@ -26,7 +26,7 @@ export const Schema = (
     }
 ): d_out.Package_Set.D => {
     const schema = $
-    const constrained: boolean = _p.decide.state($.complexity, ($) => {
+    const constrainedx: boolean = _p.decide.state($.complexity, ($) => {
         switch ($[0]) {
             case 'constrained': return _p.ss($, ($) => true)
             case 'unconstrained': return _p.ss($, ($) => false)
@@ -35,7 +35,7 @@ export const Schema = (
     })
     return sh.m.set({
 
-        "data": constrained
+        "data": constrainedx
             ? m.set(_p.dictionary.literal({
                 "resolved": t_types.Schema(
                     schema,
@@ -72,14 +72,14 @@ export const Schema = (
                                 "astn sealed target": t_marshall.Schema(
                                     schema,
                                     {
-                                        'constrained': constrained,
+                                        'constrained': _p.optional.literal.set("resolved"),
                                     }
                                 ),
                                 "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
-                                    'constrained': constrained,
+                                    'constrained': true,
                                 }),
                                 "fountain pen": t_serialize.Schema(schema, {
-                                    'constrained': constrained,
+                                    'constrained': true,
                                 })
                             }),
                             "refiners": sh.m.set({
@@ -94,12 +94,20 @@ export const Schema = (
                         "unresolved": sh.m.set({
                             "refiners": sh.m.set({
                                 "astn parse tree": t_unmarshall.Schema(schema, {
-                                    'constrained': constrained,
+                                    'constrained': true,
                                 }),
                                 "list of characters": t_deserialize.Schema(schema, {
-                                    'constrained': constrained,
+                                    'constrained': true,
                                 }),
                             }),
+                            // "transformers": sh.m.set({
+                            //     "astn sealed target": t_marshall.Schema(
+                            //         schema,
+                            //         {
+                            //             'constrained': _p.optional.literal.set("unresolved"),
+                            //         }
+                            //     ),
+                            // }),
                         }),
                     }))
                     case 'unconstrained': return _p.ss($, ($) => sh.m.set({
@@ -107,22 +115,22 @@ export const Schema = (
                             "astn sealed target": t_marshall.Schema(
                                 schema,
                                 {
-                                    'constrained': constrained,
+                                    'constrained': _p.optional.literal.not_set(),
                                 }
                             ),
                             "fountain pen": t_serialize.Schema(schema, {
-                                'constrained': constrained,
+                                'constrained': false,
                             }),
                             "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
-                                'constrained': constrained,
+                                'constrained': false,
                             }),
                         }),
                         "refiners": sh.m.set({
                             "astn parse tree": t_unmarshall.Schema(schema, {
-                                'constrained': constrained,
+                                'constrained': false,
                             }),
                             "list of characters": t_deserialize.Schema(schema, {
-                                'constrained': constrained,
+                                'constrained': false,
                             }),
                         }),
                     }))

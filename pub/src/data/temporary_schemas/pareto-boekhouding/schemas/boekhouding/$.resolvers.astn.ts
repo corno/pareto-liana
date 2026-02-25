@@ -336,7 +336,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
         })),
 
         "Balans Resultaat Mutatie": resolver(r.group({
-            "Jaar": r.optional(r.reference(ls.parameter("Jaren"))),
+            "Jaar": r.optional(r.reference(ls.parameter("Jaren"))), //FIXME het jaar is optioneel, bepaal de juiste handelstransacties en jaarbeheer
             "type": r.state({
                 "Inkoop": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Handelstransacties", [rvs.group("Inkopen")])))),
                 "Verkoop": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Handelstransacties", [rvs.group("Verkopen")])))),

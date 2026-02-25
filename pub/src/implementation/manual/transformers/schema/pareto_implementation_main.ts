@@ -66,6 +66,15 @@ export const Schema_Tree = (
                                     }),
                                 }),
                                 "unresolved": sh.m.set({
+                                    // "transformers": sh.m.set({
+                                    //     "astn sealed target": t_marshall.Schema(
+                                    //         schema,
+                                    //         {
+                                    //             'path': $p.path,
+                                    //             'depth': 7,
+                                    //         }
+                                    //     ),
+                                    // }),
                                     "refiners": sh.m.set({
                                         "astn parse tree": t_unmarshall.Schema(schema, {
                                             'depth': 7,

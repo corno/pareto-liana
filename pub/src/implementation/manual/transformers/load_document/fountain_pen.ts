@@ -21,7 +21,10 @@ import * as t_deserialize_resolved_to_fountain_pen from "liana-core/dist/impleme
 
 export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'no schema file': return _p.ss($, ($) => sh.ph.literal("no schema file @ ${$['file location']}"))
+        case 'no schema file': return _p.ss($, ($) => sh.ph.composed([
+            sh.ph.literal("no schema file @ "),
+            sh.ph.literal($['file location'])
+        ]))
         case 'deserialize': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
 
