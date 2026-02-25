@@ -5,11 +5,13 @@ import _p_change_context from 'pareto-core/dist/_p_change_context'
 
 import _p_text_from_list from 'pareto-core/dist/_p_text_from_list'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/unmarshall_errors/marshall"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/unmarshall_errors/signatures/transformers/astn_sealed_target"
 
 import * as t_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 
 import * as v_primitives_to_text from "liana-core/dist/implementation/manual/transformers/primitives/text"
+
+import * as v_external_location from "../../location/transformers/astn_sealed_target"
 
 export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
     $,
@@ -18,7 +20,7 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
         {
             "range": _p_change_context(
                 $['range'],
-                ($) => Range(
+                ($) => v_external_location.Range(
                     $,
                 ),
             ),
@@ -175,10 +177,14 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                     {
                                                                         "name": _p_change_context(
                                                                             $['name'],
-                                                                            ($) => ['text', {
-                                                                                'delimiter': ['quote', null],
-                                                                                'value': $,
-                                                                            }],
+                                                                            ($) => ['optional', _p.decide.optional(
+                                                                                $,
+                                                                                ($): t_out.Value.optional => ['set', ['text', {
+                                                                                    'delimiter': ['quote', null],
+                                                                                    'value': $,
+                                                                                }]],
+                                                                                () => ['not set', null],
+                                                                            )],
                                                                         ),
                                                                     },
                                                                 )]],
@@ -201,19 +207,19 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                                         'value': ['nothing', null],
                                                                                     }),
                                                                                 )
-                                                                            case 'missing state name':
+                                                                            case 'missing option name':
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ({
-                                                                                        'option': 'missing state name',
+                                                                                        'option': 'missing option name',
                                                                                         'value': ['nothing', null],
                                                                                     }),
                                                                                 )
-                                                                            case 'state is not a string':
+                                                                            case 'option name is not a text':
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ({
-                                                                                        'option': 'state is not a string',
+                                                                                        'option': 'option name is not a text',
                                                                                         'value': ['nothing', null],
                                                                                     }),
                                                                                 )
@@ -225,11 +231,11 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                                         'value': ['nothing', null],
                                                                                     }),
                                                                                 )
-                                                                            case 'unknown state':
+                                                                            case 'unknown option':
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ({
-                                                                                        'option': 'unknown state',
+                                                                                        'option': 'unknown option',
                                                                                         'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                             {
                                                                                                 "found": _p_change_context(
@@ -338,63 +344,3 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
         },
     )]],
 )]
-
-export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        "relative": _p_change_context(
-            $['relative'],
-            ($) => Relative_Location(
-                $,
-            ),
-        ),
-        "absolute": _p_change_context(
-            $['absolute'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_primitives_to_text.decimal(
-                    $,
-                ),
-            }],
-        ),
-    },
-)]]
-
-export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        "line": _p_change_context(
-            $['line'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_primitives_to_text.decimal(
-                    $,
-                ),
-            }],
-        ),
-        "column": _p_change_context(
-            $['column'],
-            ($) => ['text', {
-                'delimiter': ['none', null],
-                'value': v_primitives_to_text.decimal(
-                    $,
-                ),
-            }],
-        ),
-    },
-)]]
-
-export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        "start": _p_change_context(
-            $['start'],
-            ($) => Location(
-                $,
-            ),
-        ),
-        "end": _p_change_context(
-            $['end'],
-            ($) => Location(
-                $,
-            ),
-        ),
-    },
-)]]

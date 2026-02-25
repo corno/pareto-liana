@@ -15,6 +15,8 @@ export const Schema = (
         'path': _pi.List<string>,
     }
 ): d_out.Package_Set.D => {
+    const constrained = $.complexity[0] === 'constrained'
+
     return sh.m.package_(
         [],
         _p.dictionary.literal({
@@ -29,7 +31,17 @@ export const Schema = (
                     ]),
                     $p.path,
                     _p.list.literal([
-                        "serialize"
+                        "signatures"
+                    ]),
+                    constrained
+                        ? _p.list.literal([
+                            "resolved"
+                        ])
+                        : _p.list.literal([
+                        ]),
+                    _p.list.literal([
+                        "transformers",
+                        "fountain pen",
                     ])
                 ])
             ),

@@ -11,7 +11,7 @@
 
 // import * as t_out from "../../../../../../../interface/generated/liana/schemas/schema/data/resolved"
 
-// import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/resolve"
+// import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 // export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.group.literal.resolve(
 //     () => {
@@ -2058,6 +2058,8 @@
 //         ($) => _p_variables(
 //             () => {
                 
+//                 const var_location = $['l location']
+                
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
@@ -3411,6 +3413,8 @@
 //         ($) => _p_variables(
 //             () => {
                 
+//                 const var_location = $['l location']
+                
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
@@ -3852,6 +3856,8 @@
 //         ($) => _p_variables(
 //             () => {
                 
+//                 const var_location = $['l location']
+                
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
@@ -4282,6 +4288,8 @@
 //                                                                             ($) => _p_variables(
 //                                                                                 () => {
                                                                                     
+//                                                                                     const var_location = $['l location']
+                                                                                    
 //                                                                                     const var_referenced_entry = _pdev.implement_me(
 //                                                                                         "IM: referenced entry",
 //                                                                                     )
@@ -4377,6 +4385,8 @@
 //                                                                             $['l entry'],
 //                                                                             ($) => _p_variables(
 //                                                                                 () => {
+                                                                                    
+//                                                                                     const var_location = $['l location']
                                                                                     
 //                                                                                     const var_referenced_entry = _pdev.implement_me(
 //                                                                                         "IM: referenced entry",
@@ -5144,6 +5154,8 @@
 //                                                         $['l entry'],
 //                                                         ($) => _p_variables(
 //                                                             () => {
+                                                                
+//                                                                 const var_location = $['l location']
                                                                 
 //                                                                 const var_referenced_entry = _pdev.implement_me(
 //                                                                     "IM: referenced entry",

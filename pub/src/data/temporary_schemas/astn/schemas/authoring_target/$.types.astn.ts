@@ -29,18 +29,12 @@ export const $: g_.Modules = modules(
                 })),
                 "concrete": toption(t.group({
                     "type": prop(t.state({
-                        "dictionary": toption(t.list(t.group({
-                            "id": prop(t.text_local(text('single line'))),
-                            "value": prop(t.optional(t.component("Value")))
-                        }))),
+                        "dictionary": toption(t.component("ID Value Pairs")),
                         "group": toption(t.state({
-                            "concise": toption(t.list(t.component("Value"))),
-                            "verbose": toption(t.list(t.group({
-                                "id": prop(t.text_local(text('single line'))),
-                                "value": prop(t.optional(t.component("Value")))
-                            }))),
+                            "concise": toption(t.component("Items")),
+                            "verbose": toption(t.component("ID Value Pairs")),
                         })),
-                        "list": toption(t.list(t.component("Value"))),
+                        "list": toption(t.component("Items")),
                         "nothing": toption(t.nothing()),
                         "optional": toption(t.state({
                             "not set": toption(t.nothing()),
@@ -65,6 +59,13 @@ export const $: g_.Modules = modules(
                 })),
             }))
         })),
+
+        "ID Value Pairs": module_(t.list(t.group({
+            "id": prop(t.text_local(text('single line'))),
+            "value": prop(t.optional(t.component("Value"))),
+        }))),
+
+        "Items": module_(t.list(t.component("Value"))),
     }
 )
 

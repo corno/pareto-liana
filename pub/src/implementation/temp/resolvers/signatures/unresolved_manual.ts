@@ -5,7 +5,7 @@ import _p_variables from 'pareto-core/dist/_p_variables'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
-import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/resolve"
+import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 

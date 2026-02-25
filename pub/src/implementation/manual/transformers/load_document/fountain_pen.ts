@@ -27,7 +27,8 @@ export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
 
                 case 'schema error': return _p.ss($, ($) => {
                     return sh.ph.composed([
-                        sh.ph.literal("error in schema @ ${$['file location']}: "),
+                        sh.ph.literal("error in schema"),
+                        sh.ph.literal(": "),
                         t_deserialize_resolved_to_fountain_pen.Error($.error)
                     ])
                 })

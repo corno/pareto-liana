@@ -35,7 +35,8 @@ export const Schema = (
                 "data",
             ],
         ),
-        "out": sh.import_.sibling(
+        "out": sh.import_.ancestor(
+            $p.constrained ? 3 : 2,
             "data",
             $p.constrained
                 ? [

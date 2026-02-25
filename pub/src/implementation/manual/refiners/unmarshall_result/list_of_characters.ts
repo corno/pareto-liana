@@ -53,10 +53,11 @@ export const Value: Value = ($, abort, $p) => {
         },
     )
 
-    const x3 = tu_dynamic_unmarshall.Node(
+    const x3 = tu_dynamic_unmarshall.Value(
         x2.content,
         {
-            'definition': x['root value'],
+            'definition': x.root['root value'],
+            'definition path': x['root name']
         }
     )
     return x3

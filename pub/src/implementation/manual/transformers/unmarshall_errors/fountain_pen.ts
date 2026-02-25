@@ -68,13 +68,13 @@ export const Error_Type_Error = (
         case 'superfluous property': return _p.ss($, ($) => sh.ph.literal("Superfluous property '${$.name}'"))
         case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
-                case 'missing state name': return _p.ss($, ($) => sh.ph.literal("Missing state name"))
+                case 'missing option name': return _p.ss($, ($) => sh.ph.literal("Missing option name"))
                 case 'missing data marker': return _p.ss($, ($) => sh.ph.literal("Missing data marker"))
                 case 'missing value': return _p.ss($, ($) => sh.ph.literal("Missing value"))
                 case 'more than 2 items': return _p.ss($, ($) => sh.ph.literal("More than 2 items"))
-                case 'state is not a string': return _p.ss($, ($) => sh.ph.literal("State is not a string"))
-                case 'unknown state': return _p.ss($, ($) => sh.ph.composed([
-                    sh.ph.literal("Unknown state: ${$.found}, expected one of "),
+                case 'option name is not a text': return _p.ss($, ($) => sh.ph.literal("Option name is not a text"))
+                case 'unknown option': return _p.ss($, ($) => sh.ph.composed([
+                    sh.ph.literal("Unknown option: ${$.found}, expected one of "),
                     sh.ph.composed(
                         _p.list.from.dictionary(
                             $.expected,

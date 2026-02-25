@@ -6,7 +6,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 
 import * as sh from "pareto/dist/shorthands/implementation"
 
-import * as t_migration_boilerplate from "./pareto_implementation_boilerplate_for_migrate"
+import * as t_boilerplate_for_migrate from "./pareto_implementation_boilerplate_for_migrate"
 
 import * as t_resolve from "./pareto_implementation_resolve"
 
@@ -44,7 +44,7 @@ export const Schema_Tree = (
                                                 'depth': 7,
                                             }
                                         ),
-                                        "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                        "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
                                             'depth': 7,
                                             'path': $p.path,
                                         }),
@@ -91,7 +91,7 @@ export const Schema_Tree = (
                                         'path': $p.path,
                                         'depth': 6,
                                     }),
-                                    "boilerplate for migrate": t_migration_boilerplate.Schema(schema, {
+                                    "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
                                         'depth': 6,
                                         'path': $p.path,
                                     }),

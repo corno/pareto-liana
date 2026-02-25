@@ -1,11 +1,13 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
+import * as i__imports_location from "../location/data"
+
 export namespace Errors_ {
     
     export namespace L {
         
-        export type range = Range_
+        export type range = i__imports_location.Range
         
         export namespace type_ {
             
@@ -77,7 +79,13 @@ export namespace Errors_ {
                 
                 export namespace superfluous_property {
                     
-                    export type name = string
+                    export namespace name {
+                        
+                        export type O = string
+                        
+                    }
+                    
+                    export type name = _pi.Optional_Value<name.O>
                     
                 }
                 
@@ -89,13 +97,13 @@ export namespace Errors_ {
                     
                     export type more_than_2_items = null
                     
-                    export type missing_state_name = null
+                    export type missing_option_name = null
                     
-                    export type state_is_not_a_string = null
+                    export type option_name_is_not_a_text = null
                     
                     export type missing_value = null
                     
-                    export namespace unknown_state {
+                    export namespace unknown_option {
                         
                         export type found = string
                         
@@ -109,9 +117,9 @@ export namespace Errors_ {
                         
                     }
                     
-                    export type unknown_state = {
-                        readonly 'found': unknown_state.found
-                        readonly 'expected': unknown_state.expected
+                    export type unknown_option = {
+                        readonly 'found': unknown_option.found
+                        readonly 'expected': unknown_option.expected
                     }
                     
                     export type missing_data_marker = null
@@ -120,10 +128,10 @@ export namespace Errors_ {
                 
                 export type state = 
                     | readonly ['more than 2 items', state.more_than_2_items]
-                    | readonly ['missing state name', state.missing_state_name]
-                    | readonly ['state is not a string', state.state_is_not_a_string]
+                    | readonly ['missing option name', state.missing_option_name]
+                    | readonly ['option name is not a text', state.option_name_is_not_a_text]
                     | readonly ['missing value', state.missing_value]
-                    | readonly ['unknown state', state.unknown_state]
+                    | readonly ['unknown option', state.unknown_option]
                     | readonly ['missing data marker', state.missing_data_marker]
                 
             }
@@ -170,48 +178,6 @@ export namespace Errors_ {
 
 export type Errors_ = _pi.List<Errors_.L>
 
-export namespace Location_ {
-    
-    export type relative = Relative_Location_
-    
-    export type absolute = number
-    
-}
-
-export type Location_ = {
-    readonly 'relative': Location_.relative
-    readonly 'absolute': Location_.absolute
-}
-
-export namespace Relative_Location_ {
-    
-    export type line = number
-    
-    export type column = number
-    
-}
-
-export type Relative_Location_ = {
-    readonly 'line': Relative_Location_.line
-    readonly 'column': Relative_Location_.column
-}
-
-export namespace Range_ {
-    
-    export type start = Location_
-    
-    export type end = Location_
-    
-}
-
-export type Range_ = {
-    readonly 'start': Range_.start
-    readonly 'end': Range_.end
-}
-
 export { 
     Errors_ as Errors, 
-    Location_ as Location, 
-    Relative_Location_ as Relative_Location, 
-    Range_ as Range, 
 }

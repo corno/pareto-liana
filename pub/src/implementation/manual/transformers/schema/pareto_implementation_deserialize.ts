@@ -15,6 +15,8 @@ export const Schema = (
         'depth': number,
     }
 ): d_out.Package_Set.D => {
+    const constrained = $.complexity[0] === 'constrained'
+
     return sh.m.package_(
         [],
         _p.dictionary.literal({
@@ -29,7 +31,17 @@ export const Schema = (
                     ]),
                     $p.path,
                     _p.list.literal([
-                        "deserialize",
+                        "signatures"
+                    ]),
+                    constrained
+                        ? _p.list.literal([
+                            "unresolved"
+                        ])
+                        : _p.list.literal([
+                        ]),
+                    _p.list.literal([
+                        "refiners",
+                        "list of characters",
                     ])
                 ])
             ),

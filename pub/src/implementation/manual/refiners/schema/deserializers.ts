@@ -13,6 +13,7 @@ import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schema
 import * as r_pareto_schema from "../../../temp/resolvers/schema/unresolved_manual"
 
 // import * as r_parse_tree_to_schema from "../../../generated/liana/schemas/schema/unmarshall"
+import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 
 import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
@@ -46,23 +47,18 @@ export const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<El
 }
 
 
-export const $x: _pi.Refiner_With_Parameter<d_out.Module, d_function.Error, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
+export const $x: _pi.Refiner_With_Parameter<{ 'root': d_out.Module, 'root name': string}, d_function.Error, d_in.List_of_Characters, { 'document resource identifier': string }> = ($, abort, $p) => {
 
-    const x = r_parse_tree_from_text.Document(
-        $,
-        ($) => abort(['deserialize', ['parse error', $]]),
-        {
-            'tab size': 4,
-            'document resource identifier': $p['document resource identifier']
-        },
-    )
 
     const resolved_schema_schema = r_pareto_schema.Type_Specification(
-        _p_unreachable_code_path("this should not be used, this is just a placeholder until the real implementation is done"),
-        // r_parse_tree_to_schema.Module_Specification(
-        //     x.content,
-        //     ($) => abort(['unmarshall error', $]),
-        // ),
+        r_schema_unresolved_from_loc.Module_Specification(
+            $,
+            ($) => abort(['deserialize', $]),
+            {
+                'document resource identifier': $p['document resource identifier'],
+                'tab size': 4,
+            }
+        ),
         ($) => abort(['resolve error', $]),
         null,
         null,
@@ -108,5 +104,8 @@ export const $x: _pi.Refiner_With_Parameter<d_out.Module, d_function.Error, d_in
         }
     )
 
-    return type
+    return {
+        'root': type,
+        'root name': resolved_schema_schema.module,
+    }
 }

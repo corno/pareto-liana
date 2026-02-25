@@ -208,6 +208,9 @@ export const $: g_.Modules = modules(
             "Inkopen": prop(t.dictionary(t.group({
                 "Afhandeling": prop(t.state({
                     "Mutaties": toption(t.nothing()),
+                    "Nog te betalen": toption(t.group({
+                        "Betalingstermijn": prop(t.number_global("Dagen")),
+                    })),
                     "Rekening courant": toption(t.group({
                         "Rekening courant": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
                     })),

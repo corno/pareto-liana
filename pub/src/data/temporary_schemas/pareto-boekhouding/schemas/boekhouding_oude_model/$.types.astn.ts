@@ -192,6 +192,9 @@ export const $: g_.Modules = modules(
                 }))),
                 "Inkopen": prop(t.dictionary(t.group({
                     "Afhandeling": prop(t.state({
+                        "Nog te betalen": toption(t.group({
+                            "Betalingstermijn": prop(t.number_global("Dagen")),
+                        })),
                         "Mutaties": toption(t.group({})),
                         "Rekening courant": toption(t.group({
                             "Rekening courant": prop(t.text_global("Pseudo Reference")),
@@ -380,6 +383,9 @@ export const $: g_.Modules = modules(
         //     "Extensie": prop(t.text_local(text('single line'))),
         // }))  
 
-        "Bestandsnaam": module_(t.text_local(text('single line'))),
+        "Bestandsnaam": module_(t.group({
+            "stem": prop(t.text_local(text('single line'))),
+            "extension": prop(t.text_local(text('single line'))),
+        })),
     }
 )

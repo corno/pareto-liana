@@ -14,7 +14,8 @@ export const Schema = (
     }
 ): d_out.Package_Set.D => sh.m.package_functions(
     {
-        "out": sh.import_.sibling(
+        "out": sh.import_.ancestor(
+            $p.constrained ? 3 : 2,
             "data",
             $p.constrained
                 ? [
@@ -22,7 +23,8 @@ export const Schema = (
                 ]
                 : [],
         ),
-        "in": sh.import_.sibling(
+        "in": sh.import_.ancestor(
+            $p.constrained ? 3 : 2,
             "data",
             $p.constrained
                 ? [

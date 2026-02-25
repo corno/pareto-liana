@@ -16,7 +16,7 @@ import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/context_path/temp_string"
 import * as r_schema_resolved_from_unresolved from "../../temp/resolvers/schema/unresolved_manual"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
-// import * as t_module_to_fp from "../../generated/liana/schemas/module/resolved/transformers/fountain_pen"
+import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
 import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
@@ -53,10 +53,9 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                         //     ($) => $,
                                         // )
                                         'data': t_fp_to_loc.Paragraph(
-                                            // t_module_to_fp.Module(
-                                            //     $v,
-                                            // ),
-                                            _pdev.implement_me("need generated transformer for this"),
+                                            t_schema_to_fp.Package(
+                                                $v,
+                                            ),
                                             {
                                                 'indentation': "    ",
                                                 'newline': '\n'

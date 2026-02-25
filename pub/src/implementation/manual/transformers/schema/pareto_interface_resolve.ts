@@ -22,8 +22,16 @@ export const Signatures = (
                     "resolve",
                 ],
             ),
-            "resolved": sh.import_.sibling("data", ["resolved"]),
-            "unresolved": sh.import_.sibling("data", ["unresolved"]),
+            "resolved": sh.import_.ancestor(
+                3,
+                "data",
+                ["resolved"]
+            ),
+            "unresolved": sh.import_.ancestor(
+                3,
+                "data",
+                ["unresolved"]
+            ),
         },
         $.__d_map(
             ($, id) => sh.type.refiner(

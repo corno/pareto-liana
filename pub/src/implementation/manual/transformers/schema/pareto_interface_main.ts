@@ -5,8 +5,9 @@ import * as d_in from "../../../../interface/generated/liana/schemas/schema/data
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import { m } from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface"
 
-import * as t_migrate_boilerplate from "./pareto_interface_boilerplate_for_migrate"
+import * as t_boilerplate_for_migrate from "./pareto_interface_boilerplate_for_migrate"
 import * as t_resolve from "./pareto_interface_resolve"
 import * as t_types from "./pareto_interface_types"
 
@@ -32,109 +33,206 @@ export const Schema = (
             default: return _p.au($[0])
         }
     })
-    return m.set(_p.dictionary.from.dictionary(
-        _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
-            "data": _p.optional.literal.set(constrained
-                ? m.set(_p.dictionary.literal({
-                    "resolved": t_types.Schema(
-                        schema,
-                        {
-                            'imports': schema['schema imports'],
-                            'depth': 1,
-                            'type': ['resolved', null],
-                        }
-                    ),
-                    "unresolved": t_types.Schema(
-                        schema,
-                        {
-                            'imports': schema['schema imports'],
-                            'depth': 1,
-                            'type': ['unresolved', null],
-                        }
-                    ),
-                }))
-                : t_types.Schema(
+    return sh.m.set({
+
+        "data": constrained
+            ? m.set(_p.dictionary.literal({
+                "resolved": t_types.Schema(
                     schema,
                     {
                         'imports': schema['schema imports'],
-                        'depth': 0,
-                        'type': ['unconstrained', null],
+                        'depth': 1,
+                        'type': ['resolved', null],
                     }
                 ),
-            ),
-
-            "resolve": _p.decide.state($.complexity, ($) => {
-                switch ($[0]) {
-                    case 'constrained': return _p.ss($, ($) => _p.optional.literal.set(t_resolve.Signatures(
-                        $.signatures.signatures
-                    )))
-                    case 'unconstrained': return _p.ss($, ($) => _p.optional.literal.not_set())
-                    default: return _p.au($[0])
-                }
-            }),
-            "boilerplate for migrate": _p.optional.literal.set(t_migrate_boilerplate.Schema(
+                "unresolved": t_types.Schema(
+                    schema,
+                    {
+                        'imports': schema['schema imports'],
+                        'depth': 1,
+                        'type': ['unresolved', null],
+                    }
+                ),
+            }))
+            : t_types.Schema(
                 schema,
                 {
-                    'constrained': constrained
+                    'imports': schema['schema imports'],
+                    'depth': 0,
+                    'type': ['unconstrained', null],
                 }
-            )),
-            "unmarshall": _p.optional.from.boolean(
-                !$p['omit (de)serializer'],
-            ).convert(
-                () => t_unmarshall.Schema(
-                    schema,
-                    {
-                        'constrained': constrained
-                    }
-                )
             ),
-            "marshall": _p.optional.from.boolean(
-                !$p['omit (de)serializer'],
-            ).convert(
-                () => t_marshall.Schema(
-                    schema,
-                    {
-                        'constrained': constrained
-                    }
-                )
-            ),
-            "serialize": _p.optional.from.boolean(
-                !$p['omit (de)serializer'],
-            ).convert(
-                () => t_serialize.Schema(
-                    schema,
-                    {
-                        'constrained': constrained
-                    }
-                ),
-            ),
-            "deserialize": _p.optional.from.boolean(
-                !$p['omit (de)serializer'],
-            ).convert(
-                () => t_deserialize.Schema(
-                    schema,
-                    {
-                        'constrained': constrained
-                    }
-                )
-            ),
+        "signatures": $p['omit (de)serializer']
+            ? sh.m.set({})
+            : _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                switch ($[0]) {
+                    case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                        "resolved": sh.m.set({
+                            "transformers": sh.m.set({
+                                "astn sealed target": t_marshall.Schema(
+                                    schema,
+                                    {
+                                        'constrained': constrained,
+                                    }
+                                ),
+                                "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
+                                    'constrained': constrained,
+                                }),
+                                "fountain pen": t_serialize.Schema(schema, {
+                                    'constrained': constrained,
+                                })
+                            }),
+                            "refiners": sh.m.set({
+                                "unresolved": t_resolve.Signatures($.signatures.signatures
+                                ),
+                                // "list of characters": t_deserialize_resolved.Schema(schema, {
+                                //     'depth': 7,
+                                //     'path': $p.path,
+                                // }),
+                            }),
+                        }),
+                        "unresolved": sh.m.set({
+                            "refiners": sh.m.set({
+                                "astn parse tree": t_unmarshall.Schema(schema, {
+                                    'constrained': constrained,
+                                }),
+                                "list of characters": t_deserialize.Schema(schema, {
+                                    'constrained': constrained,
+                                }),
+                            }),
+                        }),
+                    }))
+                    case 'unconstrained': return _p.ss($, ($) => sh.m.set({
+                        "transformers": sh.m.set({
+                            "astn sealed target": t_marshall.Schema(
+                                schema,
+                                {
+                                    'constrained': constrained,
+                                }
+                            ),
+                            "fountain pen": t_serialize.Schema(schema, {
+                                'constrained': constrained,
+                            }),
+                            "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
+                                'constrained': constrained,
+                            }),
+                        }),
+                        "refiners": sh.m.set({
+                            "astn parse tree": t_unmarshall.Schema(schema, {
+                                'constrained': constrained,
+                            }),
+                            "list of characters": t_deserialize.Schema(schema, {
+                                'constrained': constrained,
+                            }),
+                        }),
+                    }))
+                    default: return _p.au($[0])
+                }
+            })
+    })
+    // return m.set(_p.dictionary.from.dictionary(
+    //     _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
+    //         "data": _p.optional.literal.set(constrained
+    //             ? m.set(_p.dictionary.literal({
+    //                 "resolved": t_types.Schema(
+    //                     schema,
+    //                     {
+    //                         'imports': schema['schema imports'],
+    //                         'depth': 1,
+    //                         'type': ['resolved', null],
+    //                     }
+    //                 ),
+    //                 "unresolved": t_types.Schema(
+    //                     schema,
+    //                     {
+    //                         'imports': schema['schema imports'],
+    //                         'depth': 1,
+    //                         'type': ['unresolved', null],
+    //                     }
+    //                 ),
+    //             }))
+    //             : t_types.Schema(
+    //                 schema,
+    //                 {
+    //                     'imports': schema['schema imports'],
+    //                     'depth': 0,
+    //                     'type': ['unconstrained', null],
+    //                 }
+    //             ),
+    //         ),
 
-            //this needs some work; merging the parameters for deserialization with the parameters for resolving.
-            // "deserialize resolved": _p.optional.from_boolean(
-            //     constrained,
-            //     t_deserialize_resolved.Schema(
-            //         schema,
-            //         {
-            //             'constrained': constrained
-            //         }
-            //     )
-            // ),
+    //         "resolve": _p.decide.state($.complexity, ($) => {
+    //             switch ($[0]) {
+    //                 case 'constrained': return _p.ss($, ($) => _p.optional.literal.set(t_resolve.Signatures(
+    //                     $.signatures.signatures
+    //                 )))
+    //                 case 'unconstrained': return _p.ss($, ($) => _p.optional.literal.not_set())
+    //                 default: return _p.au($[0])
+    //             }
+    //         }),
+    //         "boilerplate for migrate": _p.optional.literal.set(t_migrate_boilerplate.Schema(
+    //             schema,
+    //             {
+    //                 'constrained': constrained
+    //             }
+    //         )),
+    //         "unmarshall": _p.optional.from.boolean(
+    //             !$p['omit (de)serializer'],
+    //         ).convert(
+    //             () => t_unmarshall.Schema(
+    //                 schema,
+    //                 {
+    //                     'constrained': constrained
+    //                 }
+    //             )
+    //         ),
+    //         "marshall": _p.optional.from.boolean(
+    //             !$p['omit (de)serializer'],
+    //         ).convert(
+    //             () => t_marshall.Schema(
+    //                 schema,
+    //                 {
+    //                     'constrained': constrained
+    //                 }
+    //             )
+    //         ),
+    //         "serialize": _p.optional.from.boolean(
+    //             !$p['omit (de)serializer'],
+    //         ).convert(
+    //             () => t_serialize.Schema(
+    //                 schema,
+    //                 {
+    //                     'constrained': constrained
+    //                 }
+    //             ),
+    //         ),
+    //         "deserialize": _p.optional.from.boolean(
+    //             !$p['omit (de)serializer'],
+    //         ).convert(
+    //             () => t_deserialize.Schema(
+    //                 schema,
+    //                 {
+    //                     'constrained': constrained
+    //                 }
+    //             )
+    //         ),
+
+    //         //this needs some work; merging the parameters for deserialization with the parameters for resolving.
+    //         // "deserialize resolved": _p.optional.from_boolean(
+    //         //     constrained,
+    //         //     t_deserialize_resolved.Schema(
+    //         //         schema,
+    //         //         {
+    //         //             'constrained': constrained
+    //         //         }
+    //         //     )
+    //         // ),
 
 
-        }),
-    ).filter(
-        ($) => $
-    ))
+    //     }),
+    // ).filter(
+    //     ($) => $
+    // ))
 }
 
 export const Schema_Tree = (

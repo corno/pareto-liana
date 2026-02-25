@@ -7,13 +7,15 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 import _p_variables from 'pareto-core/dist/_p_variables'
 
-import * as t_signatures from "../../../../../../interface/generated/liana/schemas/unmarshall_errors/unmarshall"
+import * as t_signatures from "../../../../../../interface/generated/liana/schemas/unmarshall_errors/signatures/refiners/astn_parse_tree"
 
 import * as t_out from "../../../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 
 import * as v_unmarshalled_from_parse_tree from "liana-core/dist/implementation/manual/refiners/unmarshalled/astn_parse_tree"
 
 import * as v_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
+
+import * as v_external_location from "../../location/refiners/astn_parse_tree"
 
 export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
     v_unmarshalled_from_parse_tree.List(
@@ -57,7 +59,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                     'id': 'range',
                                 },
                             ),
-                            ($) => Range(
+                            ($) => v_external_location.Range(
                                 $,
                                 ($) => abort(
                                     $,
@@ -381,10 +383,19 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                         'id': 'name',
                                                                                                     },
                                                                                                 ),
-                                                                                                ($) => v_unmarshalled_from_parse_tree.Text(
-                                                                                                    $,
-                                                                                                    ($) => abort(
+                                                                                                ($) => _p.optional.from.optional(
+                                                                                                    v_unmarshalled_from_parse_tree.Optional(
                                                                                                         $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
+                                                                                                    )['optional'],
+                                                                                                ).map(
+                                                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                                                        $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
                                                                                                     ),
                                                                                                 ),
                                                                                             ),
@@ -417,20 +428,20 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                         ),
                                                                                                     )],
                                                                                                 )
-                                                                                            case 'missing state name':
+                                                                                            case 'missing option name':
                                                                                                 return _p_change_context(
                                                                                                     $['value'],
-                                                                                                    ($) => ['missing state name', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                    ($) => ['missing option name', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $,
                                                                                                         ),
                                                                                                     )],
                                                                                                 )
-                                                                                            case 'state is not a string':
+                                                                                            case 'option name is not a text':
                                                                                                 return _p_change_context(
                                                                                                     $['value'],
-                                                                                                    ($) => ['state is not a string', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                    ($) => ['option name is not a text', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $,
@@ -447,10 +458,10 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                         ),
                                                                                                     )],
                                                                                                 )
-                                                                                            case 'unknown state':
+                                                                                            case 'unknown option':
                                                                                                 return _p_change_context(
                                                                                                     $['value'],
-                                                                                                    ($) => ['unknown state', _p_change_context(
+                                                                                                    ($) => ['unknown option', _p_change_context(
                                                                                                         v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                             $,
                                                                                                             ($) => abort(
@@ -647,197 +658,5 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                 },
             ),
         ),
-    ),
-)
-
-export const Location: t_signatures.Location = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.Verbose_Group(
-        $,
-        ($) => abort(
-            $,
-        ),
-        {
-            'expected properties': _p.dictionary.literal(
-                {
-                    "relative": null,
-                    "absolute": null,
-                },
-            ),
-        },
-    ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return {
-                'relative': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'relative',
-                        },
-                    ),
-                    ($) => Relative_Location(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
-                'absolute': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'absolute',
-                        },
-                    ),
-                    ($) => v_unmarshalled_from_parse_tree.Number(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'type': ['decimal', null],
-                        },
-                    ),
-                ),
-            }
-        },
-    ),
-)
-
-export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.Verbose_Group(
-        $,
-        ($) => abort(
-            $,
-        ),
-        {
-            'expected properties': _p.dictionary.literal(
-                {
-                    "line": null,
-                    "column": null,
-                },
-            ),
-        },
-    ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return {
-                'line': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'line',
-                        },
-                    ),
-                    ($) => v_unmarshalled_from_parse_tree.Number(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'type': ['decimal', null],
-                        },
-                    ),
-                ),
-                'column': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'column',
-                        },
-                    ),
-                    ($) => v_unmarshalled_from_parse_tree.Number(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'type': ['decimal', null],
-                        },
-                    ),
-                ),
-            }
-        },
-    ),
-)
-
-export const Range: t_signatures.Range = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.Verbose_Group(
-        $,
-        ($) => abort(
-            $,
-        ),
-        {
-            'expected properties': _p.dictionary.literal(
-                {
-                    "start": null,
-                    "end": null,
-                },
-            ),
-        },
-    ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return {
-                'start': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'start',
-                        },
-                    ),
-                    ($) => Location(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
-                'end': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'end',
-                        },
-                    ),
-                    ($) => Location(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
-            }
-        },
     ),
 )

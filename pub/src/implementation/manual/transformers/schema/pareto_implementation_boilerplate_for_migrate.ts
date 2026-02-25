@@ -50,7 +50,19 @@ export const Schema = (
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal(["boilerplate for migrate"])
+                    _p.list.literal([
+                        "signatures"
+                    ]),
+                    constrained
+                        ? _p.list.literal([
+                            "resolved"
+                        ])
+                        : _p.list.literal([
+                        ]),
+                    _p.list.literal([
+                        "transformers",
+                        "boilerplate for migrate"
+                    ])
                 ])
             ),
             "out": sh_i.import_.ancestor(

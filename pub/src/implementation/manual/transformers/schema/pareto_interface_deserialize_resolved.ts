@@ -32,7 +32,8 @@ export const Schema = (
                 "list of characters",
             ],
         ),
-        "out": sh.import_.sibling(
+        "out": sh.import_.ancestor(
+            $p.constrained ? 3 : 2,
             "data",
             $p.constrained
                 ? [

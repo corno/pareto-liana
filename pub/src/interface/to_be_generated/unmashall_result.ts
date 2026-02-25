@@ -1,6 +1,5 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_astn_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_astn_ast from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
 import * as d_schema from "../generated/liana/schemas/schema/data/resolved"
@@ -11,21 +10,18 @@ export type Document = {
 
 export type Entry_Data = {
     'id': d_astn_ast.Text
-    'node': Optional_Node
+    'value': Optional_Value
 }
 
-export type Optional_Node = _pi.Optional_Value<Value>
+export type Optional_Value = _pi.Optional_Value<Value>
 
 // export type Key_Value_Pair = {
 //     'node': Node
 // }
 
-export type Property =
-    | ['missing', d_astn_location.Range]
-    | ['unique', Entry_Data]
-    | ['multiple', _pi.List<Entry_Data>]
 
 export type Value = {
+    'definition path': string
     'definition': d_schema.Value
     'instance': d_astn_ast.Value
     'unmarshalled': Unmarshalled_Value_Type //the type is determined by the definition
@@ -51,10 +47,10 @@ export type Boolean = {
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.text
         // 'parsed': _pi.Optional_Value<boolean>
-        'range': d_astn_location.Range
+        // 'range': d_astn_location.Range
         'correct string type': boolean
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Component = {
@@ -69,7 +65,7 @@ export type Dictionary = {
         'instance': d_astn_ast.Value.type_.concrete.dictionary
         'entries': _pi.Dictionary<Entry>
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Group = {
@@ -78,27 +74,32 @@ export type Group = {
 }
 
 export type Group_Found_Value_Type =
-    | ['valid', Group_Type]
-    | ['invalid', d_astn_location.Range]
+    | ['valid', {
+        'instance':
+        | ['group', d_astn_ast.Value.type_.concrete.group]
+        | ['dictionary', d_astn_ast.Value.type_.concrete.dictionary]
+        | ['list', d_astn_ast.Value.type_.concrete.list]
+        'type': Group_Type
+    }]
+    | ['invalid', d_astn_ast.Value]
 
 export type Group_Type =
     | ['verbose', Group_Verbose]
     | ['concise', Group_Concise]
 
 export type Group_Concise = {
-    'instance': d_astn_ast.Value.type_.concrete.group.concise
-    'content': Group_Content
+    'properties': _pi.Dictionary<_pi.Optional_Value<Value>>
+    'superfluous properties': _pi.List<d_astn_ast.Items.L>
+}
+
+export type Possibly_Not_Set_Property = {
+    'id value pair': d_astn_ast.ID_Value_Pairs.L
+    'value': _pi.Optional_Value<Value>
 }
 
 export type Group_Verbose = {
-    'instance': d_astn_ast.Value.type_.concrete.group.verbose
-    'content': Group_Content
-}
-
-export type Group_Content = {
-    'properties': _pi.Dictionary<Property>
-    'superfluous entries': _pi.Dictionary<_pi.List<d_astn_location.Range>>
-
+    'properties': _pi.Dictionary<_pi.List<Possibly_Not_Set_Property>> //the list is used to support multiple entries with the same id (some possibly even without a value), which is an error
+    'superfluous properties': _pi.Dictionary<_pi.List<d_astn_ast.ID_Value_Pairs.L>>
 }
 
 export type List = {
@@ -106,9 +107,9 @@ export type List = {
     'found value type':
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.list
-        'elements': _pi.List<Value>
+        'items': _pi.List<Value>
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Optional = {
@@ -117,13 +118,13 @@ export type Optional = {
     | ['valid',
         | ['set', {
             'instance': d_astn_ast.Value.type_.concrete.optional.set_
-            'child node': Value
+            'child value': Value
         }]
         | ['not set', {
             'instance': d_astn_ast.Value.type_.concrete.nothing
         }]
     ]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Reference = {
@@ -132,7 +133,7 @@ export type Reference = {
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.text
     }] //FIXME
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type State = {
@@ -140,50 +141,36 @@ export type State = {
     'found value type': State__found_value_type
 }
 
-export type Option_Definition_Found = {
-    'definition': d_schema.Value.state.options.D
-    'node': Value
-}
-
-export type Option_found_value__typevalid_value__typeSG_state = {
-    'value substatus': Option_found_value__typevalid_value__typeSG_state_value_substatus
-}
-
-export type Option_found_value__typevalid_value__typeSG_state_value_substatus =
+export type State_Option_Processing =
+    | ['success', {
+        'option name': string
+        'definition': d_schema.Value.state.options.D
+        'value': Value
+    }]
     | ['missing data', d_astn_ast.Structural_Token]
-    | ['set', Option_found_value__typevalid_value__typeSG_state_value_substatus_SG_set]
+    | ['unknown option', {
+        'token': d_astn_ast.Text
+    }]
+    | ['list format',
+        | ['missing option item', null]
+        | ['option item is not a text', {
+            'value': d_astn_ast.Value
+        }]
+        | ['missing value item', null]
+        | ['too many items', null]
+    ]
 
-export type Option_found_value__typevalid_value__typeSG_state_value_substatus_SG_set = {
-    'instance': d_astn_ast.Value.type_.concrete.state.status.set_
-    'found option definition': _pi.Optional_Value<Option_Definition_Found>
-}
+export type State_found_value__type__valid = {
+    'instance':
+    | ['state', d_astn_ast.Value.type_.concrete.state]
+    | ['list', d_astn_ast.Value.type_.concrete.list]
+    'option processing': State_Option_Processing
 
-export type Option_found_value__typevalid = {
-    'value type':
-    | ['state', Option_found_value__typevalid_value__typeSG_state]
-    // | ['polyfill', { -> [ "state_name", ... ]
-    //     'xx': {
-    //         'node': Node,
-
-    //     }
-    // }]
 }
 
 export type State__found_value_type =
-    | ['valid', Option_found_value__typevalid]
-    | ['invalid', d_astn_location.Range]
-
-// export type State_Error =
-//     | ['more than 2 elements', d_astn_location.Range]
-//     | ['missing state name', d_astn_location.Range]
-//     | ['state is not a string', d_astn_location.Range]
-//     | ['missing value', d_astn_location.Range]
-//     | ['unknown state', {
-//         'range': d_astn_location.Range
-//         'found': string
-//         'expected': pt.Dictionary<null>
-//     }]
-
+    | ['valid', State_found_value__type__valid]
+    | ['invalid', d_astn_ast.Value]
 
 export type Nothing = {
     'definition': d_schema.Value.nothing
@@ -191,7 +178,7 @@ export type Nothing = {
     | ['valid', {
         'value': d_astn_ast.Value.type_.concrete.nothing
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Text = {
@@ -200,7 +187,7 @@ export type Text = {
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.text
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Number = {
@@ -208,12 +195,16 @@ export type Number = {
     'found value type':
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.text
-        'range': d_astn_location.Range
         'correct string type': boolean
     }]
-    | ['invalid', d_astn_location.Range]
+    | ['invalid', d_astn_ast.Value]
 }
 
 export type Entry =
-    | ['unique', Optional_Node]
-    | ['multiple', _pi.List<Entry_Data>]
+    | ['unique', {
+        'id value pair': d_astn_ast.ID_Value_Pairs.L
+        'optional value': Optional_Value
+    }]
+    | ['multiple', {
+        'occurences': _pi.List<Entry_Data>
+    }]

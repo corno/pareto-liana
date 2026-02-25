@@ -223,6 +223,9 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "Inkopen": r.dictionary(r.group({
                 "Afhandeling": r.state({
                     "Mutaties": option(r.nothing()),
+                    "Nog te betalen": option(r.group({
+                        "Betalingstermijn": r.number(),
+                    })),
                     "Rekening courant": option(r.group({
                         "Rekening courant": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
                     })),

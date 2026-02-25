@@ -47,7 +47,16 @@ export const Schema: _pi.Transformer_With_Parameter<
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal(["unmarshall"]),
+                    _p.list.literal([
+                        "signatures",
+                    ]),
+                    $.complexity[0] === 'constrained'
+                        ? _p.list.literal(["unresolved"])
+                        : _p.list.literal([]),
+                    _p.list.literal([
+                        "refiners",
+                        "astn parse tree"
+                    ]),
                 ]),
             ),
             "out": sh_i.import_.ancestor(

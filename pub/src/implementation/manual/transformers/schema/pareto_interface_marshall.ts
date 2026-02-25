@@ -26,7 +26,8 @@ export const Schema = (
                 "data",
             ],
         ),
-        "in": sh.import_.sibling(
+        "in": sh.import_.ancestor(
+                $p.constrained ? 3: 2,
             "data",
             $p.constrained
                 ? ["resolved"]

@@ -106,7 +106,16 @@ export const Resolver_Modules = (
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal(["resolve"])
+                    _p.list.literal([
+                        "signatures"
+                    ]),
+                    _p.list.literal([
+                        "resolved"
+                    ]),
+                    _p.list.literal([
+                        "refiners",
+                        "unresolved",
+                    ])
                 ])
             ),
         }),

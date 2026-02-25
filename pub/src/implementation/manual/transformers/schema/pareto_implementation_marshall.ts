@@ -31,7 +31,19 @@ export const Schema = (
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal(["marshall"])
+                    _p.list.literal([
+                        "signatures"
+                    ]),
+                    constrained
+                        ? _p.list.literal([
+                            "resolved"
+                        ])
+                        : _p.list.literal([
+                        ]),
+                    _p.list.literal([
+                        "transformers",
+                        "astn sealed target"
+                    ])
                 ])
             ),
             "out": sh_i.import_.external(
@@ -309,7 +321,7 @@ export const Number_Type = (
             sh.lookups.not_set(),
             sh.arguments_.initialize({
                 "digits": sh.a.number.natural_literal(
-                   $['significant digits']
+                    $['significant digits']
                 )
             }),
             [],

@@ -15,7 +15,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Errors": module_(t.list(t.group({
-            "range": prop(t.component("Range")),
+            "range": prop(t.component_external("location", "Range")),
             "type": prop(t.state({
                 "error": toption(t.state({
                     "invalid value type": toption(t.group({
@@ -37,14 +37,14 @@ export const $: g_.Modules = modules(
                         "name": prop(t.text_local(text('single line'))),
                     })),
                     "superfluous property": toption(t.group({
-                        "name": prop(t.text_local(text('single line'))),
+                        "name": prop(t.optional(t.text_local(text('single line')))),
                     })),
                     "state": toption(t.state({
                         "more than 2 items": toption(t.nothing()),
-                        "missing state name": toption(t.nothing()),
-                        "state is not a string": toption(t.nothing()),
+                        "missing option name": toption(t.nothing()),
+                        "option name is not a text": toption(t.nothing()),
                         "missing value": toption(t.nothing()),
-                        "unknown state": toption(t.group({
+                        "unknown option": toption(t.group({
                             "found": prop(t.text_local(text('single line'))),
                             "expected": prop(t.dictionary(t.nothing())),
                         })),
@@ -59,26 +59,6 @@ export const $: g_.Modules = modules(
                 })),
             })),
         }))),
-        
-        "Location": module_(t.group({
-            "relative": prop(t.component("Relative Location")),
-            "absolute": prop(t.number_local(n.natural(null))),
-        })),
-
-        "Relative Location": module_(t.group({
-            "line": prop(t.number_local(n.natural(null))),
-            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
-        })),
-
-        // "Document Range": type(t.group({
-        //     "document": t.text_local(text('single line')),
-        //     "range": t.component("Range"),
-        // })),
-
-        "Range": module_(t.group({
-            "start": prop(t.component("Location")),
-            "end": prop(t.component("Location")),
-        })),
 
     }
 )

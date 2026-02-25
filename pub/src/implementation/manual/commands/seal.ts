@@ -13,7 +13,10 @@ import { $$x as q_load_file } from "../queries/load_file"
 import * as r_file_in_file_out_from_main from "../../../modules/common_tool_signatures/implementation/manual/schemas/file_in_file_out/refiners/main"
 import * as t_transform_file_to_fp from "../../../modules/common_tool_signatures/implementation/manual/schemas/transform_file/transformers/fountain_pen"
 import * as t_load_file_to_fp from "../transformers/load_file/fountain_pen"
-// import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/schemas/block/transformers/text"
+import * as r_astn_sealed_target_from_unmarshall_result from "../refiners/astn_sealed_target/unmarshall_result"
+import * as t_astn_sealed_target_to_fp from "astn-core/dist/implementation/manual/transformers/sealed_target/fountain_pen"
+import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
+import * as t_auth_targ_from_unmarshall_result_to_fountain_pen from "../transformers/auth_target_from_unmarshall_result/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -36,13 +39,21 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
                             },
                             ($): d_transform_file.Error => ['processing', t_load_file_to_fp.Error($)]
                         ),
-                        ($) => $,
+                        ($, abort) => r_astn_sealed_target_from_unmarshall_result.Document($, ($) => abort(['processing', t_auth_targ_from_unmarshall_result_to_fountain_pen.Error($, ) ])),
                         ($) => [
 
                             $cr['write file'].execute(
                                 {
                                     'data': _p_list_from_text(
-                                        "FIXME: SERALIZED DATA",
+                                        t_fp_to_text.Paragraph(
+                                            t_astn_sealed_target_to_fp.Document(
+                                                $
+                                            ),
+                                            {
+                                                'indentation': "    ",
+                                                'newline': "\n"
+                                            }
+                                        ),
                                         ($) => $,
                                     ),
                                     'path': $r.out,

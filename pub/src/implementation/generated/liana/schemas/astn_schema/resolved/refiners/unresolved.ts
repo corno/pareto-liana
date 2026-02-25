@@ -11,7 +11,7 @@ import _p_variables from 'pareto-core/dist/_p_variables'
 
 import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
-import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/resolve"
+import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
 
 export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
     $['l dictionary'],
@@ -628,7 +628,7 @@ export const Imports: t_signatures.Imports = ($, abort, $l, $p) => _p.dictionary
     ($, id, $a, $c): t_out.Imports.D => _p_change_context(
         $['l entry'],
         ($) => _p.group.literal.resolve(
-            () => {
+            (): t_out.Imports.D => {
 
                 const prop_schema_set_child = _p_change_context(
                     $['schema set child'],
