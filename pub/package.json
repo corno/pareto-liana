@@ -10,8 +10,8 @@
     "dist"
   ],
   "dependencies": {
-    "astn-core": "^0.5.58",
-    "liana-core": "^0.0.35",
+    "astn-core": "^0.5.61",
+    "liana-core": "^0.0.38",
     "pareto": "file:../../pareto/pub",
     "pareto-core-dev": "^0.12.8",
     "pareto-core-shorthands": "^0.2.23",

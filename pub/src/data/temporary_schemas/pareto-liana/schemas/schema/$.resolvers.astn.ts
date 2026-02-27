@@ -851,7 +851,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     "definition": oc.state(gvs.parameter("definition", []), "state")
                 }, r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "states": r.dictionary_linked(
+                    "options": r.dictionary_linked(
                         'dense',
                         gvs.option_constraint("definition", [rvs.group("options")]),
                         r.group({

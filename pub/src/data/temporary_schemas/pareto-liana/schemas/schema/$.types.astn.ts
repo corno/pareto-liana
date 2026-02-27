@@ -197,7 +197,7 @@ export const $: g_.Modules = modules(
                 },
                 t.group({
                     "definition": prop(t.reference_derived("Value", [vp.s("state")])),
-                    "states": prop(t.dictionary(t.group({
+                    "options": prop(t.dictionary(t.group({
                         "constraints": prop(t.component("Resolver Option Constraints")),
                         "resolver": prop(t.component("Resolver Value")),
                     }))

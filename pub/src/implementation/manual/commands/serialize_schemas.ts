@@ -78,7 +78,12 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                         sh.ph.literal("': "),
                                         _p.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'resolve error': return _p.ss($, ($) => t_resolve_to_fp.Error($))
+                                                case 'resolve error': return _p.ss($, ($) => t_resolve_to_fp.Error(
+                                                    $,
+                                                    {
+                                                        'character location reporting': ['one based', null]
+                                                    }
+                                                ))
                                                 case 'error writing file': return _p.ss($, ($) => t_write_file_to_fp.Error($))
                                                 default: return _p.au($[0])
                                             }

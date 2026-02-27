@@ -2,33 +2,17 @@ import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
-import * as d_definition from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_in_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
+import * as d_in_definition from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "../../../../interface/to_be_generated/unmashall_result"
 
-import * as t_ast_to_range from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
-
-const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.number.natural.from.list($).amount_of_items() !== 1
-    ? _p.optional.literal.not_set()
-    // there is an element, so this statement will always return a 'set'
-    : $.__deprecated_get_possible_item_at(0)
-
-type ID_Value_Pair<T> = {
-    'id': string,
-    'value': T,
-}
-
-const op_group = <T>(
-    $: _pi.List<ID_Value_Pair<T>>,
-): _pi.Dictionary<_pi.List<T>> => _p.dictionary.from.list($).group(($) => $.id).__d_map(($) => $.__l_map(($) => $.value))
 
 
 export const Value = (
     $: d_in.Value,
     $p: {
-        'definition': d_definition.Value,
+        'definition': d_in_definition.Value,
         'definition path': string
     }
 ): d_out.Value => {
@@ -103,6 +87,21 @@ export const Value = (
                             switch ($[0]) {
                                 case 'dictionary': return _p.ss($, ($) => {
                                     const range = $['{'].range
+
+                                    const op_expect_exactly_one_element = <T>($: _pi.List<T>): _pi.Optional_Value<T> => _p.number.natural.from.list($).amount_of_items() !== 1
+                                        ? _p.optional.literal.not_set()
+                                        // there is an element, so this statement will always return a 'set'
+                                        : $.__deprecated_get_possible_item_at(0)
+
+
+                                    type ID_Value_Pair<T> = {
+                                        'id': string,
+                                        'value': T,
+                                    }
+                                    const op_group = <T>(
+                                        $: _pi.List<ID_Value_Pair<T>>,
+                                    ): _pi.Dictionary<_pi.List<T>> => _p.dictionary.from.list($).group(($) => $.id).__d_map(($) => $.__l_map(($) => $.value))
+
                                     return ['valid', {
                                         'instance': $,
                                         'entries': op_group($.entries.__l_map(($) => {

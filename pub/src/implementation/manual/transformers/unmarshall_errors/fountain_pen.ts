@@ -1,27 +1,25 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
 
+//dependencies
+import * as t_loc_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+
+//shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
-export const Errors = (
-    $: d_in.Errors,
-    $p: {
-        'line offset': number
-        'column offset': number
-        'document path': string
-    }
-): d_out.Paragraph => {
+export const Errors: _pi.Transformer_With_Parameter<d_in.Errors, d_out.Paragraph, d_function_loc.Parameters> = (
+    $,
+    $p
+) => {
     return sh.pg.sentences($.__l_map(($) => {
         return sh.sentence([
-            sh.ph.literal($p['document path']),
-            sh.ph.literal(":"),
-            sh.ph.decimal($.range.start.relative.line + $p['line offset']),
-            sh.ph.literal(":"),
-            sh.ph.decimal($.range.start.relative.column + $p['column offset']),
+            t_loc_to_fountain_pen.Range($.range, $p),
             sh.ph.literal(": "),
             _p.decide.state($.type, ($) => {
                 switch ($[0]) {

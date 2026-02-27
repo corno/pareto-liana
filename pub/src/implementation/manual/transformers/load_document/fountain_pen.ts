@@ -3,9 +3,10 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../interface/to_be_generated/load_document"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
 
 export namespace signatures {
-    export type Error = _pi.Transformer<d_in.Error, d_out.Phrase>
+    export type Error = _pi.Transformer_With_Parameter<d_in.Error, d_out.Phrase, d_function_loc.Parameters>
 }
 
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -19,7 +20,7 @@ import * as t_deserialize_resolved_to_fountain_pen from "liana-core/dist/impleme
 
 
 
-export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
+export const Error: signatures.Error = ($, $p) => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'no schema file': return _p.ss($, ($) => sh.ph.composed([
             sh.ph.literal("no schema file @ "),
@@ -32,11 +33,11 @@ export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
                     return sh.ph.composed([
                         sh.ph.literal("error in schema"),
                         sh.ph.literal(": "),
-                        t_deserialize_resolved_to_fountain_pen.Error($.error)
+                        t_deserialize_resolved_to_fountain_pen.Error($.error, $p)
                     ])
                 })
                 case 'unmarshall error': return _p.ss($, ($) => sh.ph.literal("error during marshalling (TBD)"))
-                case 'parse error': return _p.ss($, ($) => t_deserialize_parse_tree_to_fountain_pen.Error($, { 'position info': ['zero based', null] }))
+                case 'parse error': return _p.ss($, ($) => t_deserialize_parse_tree_to_fountain_pen.Error($, $p))
                 default: return _p.au($[0])
             }
         }))

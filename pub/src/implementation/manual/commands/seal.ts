@@ -37,9 +37,19 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
                             {
                                 'file path': $r.in,
                             },
-                            ($): d_transform_file.Error => ['processing', t_load_file_to_fp.Error($)]
+                            ($): d_transform_file.Error => ['processing', t_load_file_to_fp.Error(
+                                $,
+                                {
+                                    'character location reporting': ['one based', null]
+                                }
+                            )]
                         ),
-                        ($, abort) => r_astn_sealed_target_from_unmarshall_result.Document($, ($) => abort(['processing', t_auth_targ_from_unmarshall_result_to_fountain_pen.Error($, ) ])),
+                        ($, abort) => r_astn_sealed_target_from_unmarshall_result.Document($, ($) => abort(['processing', t_auth_targ_from_unmarshall_result_to_fountain_pen.Error(
+                            $,
+                            {
+                                'character location reporting': ['one based', null]
+                            }
+                         ) ])),
                         ($) => [
 
                             $cr['write file'].execute(
