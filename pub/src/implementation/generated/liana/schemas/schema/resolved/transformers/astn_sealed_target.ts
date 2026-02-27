@@ -1211,8 +1211,8 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                                     $['definition'],
                                     ($) => ['nothing', null],
                                 ),
-                                "states": _p_change_context(
-                                    $['states'],
+                                "options": _p_change_context(
+                                    $['options'],
                                     ($) => ['dictionary', _p.dictionary.from.dictionary(
                                         $,
                                     ).map(

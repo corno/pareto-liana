@@ -443,7 +443,7 @@ export namespace av {
 
 export const option = (
     resolver: d_target.Resolver_Value,
-): d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry => {
+): d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary({}),
         'resolver': resolver,
@@ -453,7 +453,7 @@ export const option = (
 export const option_constrained = (
     constraints: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
     resolver: d_target.Resolver_Value,
-): d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry => {
+): d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry => {
     return {
         'constraints': sh.dictionary(constraints),
         'resolver': resolver,
@@ -739,11 +739,11 @@ export namespace r {
     }
 
     export const state = (
-        states: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.state.states.l_dictionary.D.l_entry>
+        states: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry>
     ): d_target.Resolver_Value => {
         return sh.state(['state', {
             'definition': null,
-            'states': sh.dictionary(states),
+            'options': sh.dictionary(states),
         }])
     }
 }

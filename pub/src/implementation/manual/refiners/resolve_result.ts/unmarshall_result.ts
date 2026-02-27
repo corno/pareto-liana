@@ -252,7 +252,7 @@ export const Value = (
                                                 case 'success': return _p.ss($, ($) => _p.optional.literal.set(Value(
                                                     $.value,
                                                     {
-                                                        'definition': def.states.__get_entry_deprecated(
+                                                        'definition': def.options.__get_entry_deprecated(
                                                             $['option name'],
                                                             {
                                                                 'no_such_entry': _p_unreachable_code_path("the definition is resolved")

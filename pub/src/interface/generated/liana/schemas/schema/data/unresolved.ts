@@ -1289,7 +1289,7 @@ export namespace Resolver_Value_ {
             
             export type definition = null
             
-            export namespace states {
+            export namespace options {
                 
                 export type l_location = i__location.Range
                 
@@ -1325,16 +1325,16 @@ export namespace Resolver_Value_ {
                 
             }
             
-            export type states = {
-                readonly 'l location': states.l_location
-                readonly 'l dictionary': states.l_dictionary
+            export type options = {
+                readonly 'l location': options.l_location
+                readonly 'l dictionary': options.l_dictionary
             }
             
         }
         
         export type state = {
             readonly 'definition': state.definition
-            readonly 'states': state.states
+            readonly 'options': state.options
         }
         
         export type text = null

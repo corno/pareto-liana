@@ -887,7 +887,7 @@ export namespace Resolver_Value_ {
         
         export type definition = Value_.state
         
-        export namespace states {
+        export namespace options {
             
             export namespace D {
                 
@@ -904,13 +904,13 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type states = _pi.Dictionary<states.D>
+        export type options = _pi.Dictionary<options.D>
         
     }
     
     export type state = {
         readonly 'definition': state.definition
-        readonly 'states': state.states
+        readonly 'options': state.options
     }
     
     export type text = null

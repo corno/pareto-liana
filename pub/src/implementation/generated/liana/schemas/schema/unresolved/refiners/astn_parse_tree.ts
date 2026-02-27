@@ -3339,7 +3339,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                                         'expected properties': _p.dictionary.literal(
                                             {
                                                 "definition": null,
-                                                "states": null,
+                                                "options": null,
                                             },
                                         ),
                                     },
@@ -3368,14 +3368,14 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                                                     ),
                                                 ),
                                             ),
-                                            'states': _p_change_context(
+                                            'options': _p_change_context(
                                                 v_unmarshalled_from_parse_tree.Property(
                                                     $,
                                                     ($) => abort(
                                                         $,
                                                     ),
                                                     {
-                                                        'id': 'states',
+                                                        'id': 'options',
                                                     },
                                                 ),
                                                 ($) => _p_change_context(

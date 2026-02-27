@@ -2018,8 +2018,8 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                 $['definition'],
                                 ($) => null,
                             ),
-                            'states': _p_change_context(
-                                $['states'],
+                            'options': _p_change_context(
+                                $['options'],
                                 ($) => ({
                                     'l location': {
                                         'start': {

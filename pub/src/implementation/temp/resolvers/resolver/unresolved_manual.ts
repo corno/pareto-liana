@@ -545,7 +545,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint_found_expected("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_constraints: t_out.Resolver_Value.state.states.D.constraints = Option_Constraints(
+                const p_constraints: t_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
                     $.constraints,
                     abort,
                     $l,
@@ -633,9 +633,9 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ? _i_generic.abort.state_constraint_found_expected("state", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_states: t_out.Resolver_Value.state.states = _i_generic.resolve_dense_dictionary(
-                    $.states['l dictionary'],
-                    $.states['l location'],
+                const p_states: t_out.Resolver_Value.state.options = _i_generic.resolve_dense_dictionary(
+                    $.options['l dictionary'],
+                    $.options['l location'],
                     abort,
                     p_definition.options,
                     ($, id, $acyclic, $cyclic) => {
@@ -648,7 +648,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_constraints: t_out.Resolver_Value.state.states.D.constraints = Option_Constraints(
+                        const p_constraints: t_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
                             $['l entry'].constraints,
                             abort,
                             $l,
@@ -750,7 +750,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 // }))
                 return ['state', {
                     'definition': p_definition,
-                    'states': p_states,
+                    'options': p_states,
                 }]
             })
             case 'text': return _p.ss($, ($) => {
