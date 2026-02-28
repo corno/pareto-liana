@@ -22,6 +22,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Position": module_(t.group({
+            "document resource identifier": prop(t.text_local(text('single line'))),
             "line": prop(t.number_local(n.natural(null))),
             "character": prop(t.number_local(n.natural(null))),
         })),
