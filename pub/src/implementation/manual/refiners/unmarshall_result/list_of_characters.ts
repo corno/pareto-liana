@@ -21,7 +21,7 @@ export type Document = _pi.Refiner_With_Parameter<d_out.Document, d_function.Err
 //depencencies
 import * as tu_dynamic_unmarshall from "./astn_parse_tree"
 import * as r_parse_tree_from_text from "astn-core/dist/implementation/manual/refiners/parse_tree/list_of_characters"
-import { $x as load_schema } from "../schema/deserializers"
+import * as r_temp_module_specifier_from_loc from "../temp_module_specifier/list_of_characters"
 
 export const Document: Document = ($, abort, $p) => {
     return {
@@ -30,7 +30,7 @@ export const Document: Document = ($, abort, $p) => {
 }
 
 export const Value: Value = ($, abort, $p) => {
-    const x = load_schema(
+    const x = r_temp_module_specifier_from_loc.Module_Specifier(
         _p_list_from_text(
             $p['schema content'],
             ($) => $
@@ -44,20 +44,18 @@ export const Value: Value = ($, abort, $p) => {
         }
     )
 
-    const x2 = r_parse_tree_from_text.Document(
-        $,
-        ($) => abort(['parse error', $]),
-        {
-            'tab size': 4,
-            'document resource identifier': $p['instance path']
-        },
-    )
-
     const x3 = tu_dynamic_unmarshall.Value(
-        x2.content,
+        r_parse_tree_from_text.Document(
+            $,
+            ($) => abort(['parse error', $]),
+            {
+                'tab size': 4,
+                'document resource identifier': $p['instance path']
+            },
+        ).content,
         {
-            'definition': x.root['root value'],
-            'definition path': x['root name']
+            'definition': x.root.entry['root value'],
+            'definition path': x.root.id
         }
     )
     return x3

@@ -295,7 +295,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p_variables(
 
 
 
-export const Type_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p_variables(() => ({
+export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p_variables(() => ({
     'schema': Schema_Tree(
         $.schema,
         abort,
