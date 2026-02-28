@@ -147,30 +147,20 @@ export const Value = (
             case 'dictionary': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => {
-                        return _p.list.from.dictionary(
+                        return _p.list.from.list(
                             $.entries,
                         ).flatten(
-                            ($, id) => _p.decide.state($, ($): d_out.Errors => {
-                                switch ($[0]) {
-                                    case 'unique': return _p.ss($, ($) => Optional_Value($['optional value']))
-                                    case 'multiple': return _p.ss($, ($) => _p.list.from.list(
-                                        $.occurences,
-                                    ).flatten(
-                                        ($) => _p.list.nested_literal_old<d_out.Errors.L>([
-                                            _p.list.literal([
-                                                {
-                                                    'range': $.id.range,
-                                                    'type': ['error', ['duplicate property', {
-                                                        name: id
-                                                    }]]
-                                                }
-                                            ]),
-                                            Optional_Value($.value)
-                                        ])
-                                    ))
-                                    default: return _p.au($[0])
-                                }
-                            })
+                            ($) => _p.list.nested_literal_old<d_out.Errors.L>([
+                                _p.list.literal([
+                                    {
+                                        'range': $['id value pair'].id.range,
+                                        'type': ['error', ['duplicate property', {
+                                            name: $['id value pair'].id.value
+                                        }]]
+                                    }
+                                ]),
+                                Optional_Value($.value)
+                            ])
                         )
                     })
                     case 'invalid': return _p.ss($, ($) => _p.list.literal([

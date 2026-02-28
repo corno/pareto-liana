@@ -66,25 +66,35 @@ export const Value: Value = ($, abort) => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => {
                         const dictionary_range = $.instance['{'].range
-                        return $.entries.__d_map(($) => _p.decide.state($, ($) => {
-                            switch ($[0]) {
-                                case 'unique': return _p.ss($, ($) => $['optional value'].__decide(
-                                    ($) => Value($, abort),
-                                    () => abort({
-                                        'definition path': definition_path,
-                                        'type': ['dictionary', ['foo', null]],
-                                        'range': $['id value pair'].id.range
-                                    })
-                                ))
-                                case 'multiple': return _p.ss($, ($) => abort({
+
+                        const grouped = _p.dictionary.from.list(
+                            $.entries
+                        ).group(
+                            ($) => $['id value pair'].id.value
+                        )
+                        return grouped.__d_map(($, id) => _p.decide.list($).has_single_item(
+                            ($) => {
+                                const id = $['id value pair'].id
+                                return $.value.__decide(
+                                ($) => Value($, abort),
+                                () => abort({
                                     'definition path': definition_path,
                                     'type': ['dictionary', ['foo', null]],
-                                    'range': dictionary_range
-                                }))
-                                default: return _p.au($[0])
-
-                            }
-                        }))
+                                    'range': id.range
+                                }),
+                            )
+                            },
+                            () => abort({
+                                'definition path': definition_path,
+                                'type': ['dictionary', ['foo', null]],
+                                'range': dictionary_range
+                            }),
+                            () => abort({
+                                'definition path': definition_path,
+                                'type': ['dictionary', ['foo', null]],
+                                'range': dictionary_range
+                            })
+                        ))
                     })
                     case 'invalid': return _p.ss($, ($) => abort({
                         'definition path': definition_path,

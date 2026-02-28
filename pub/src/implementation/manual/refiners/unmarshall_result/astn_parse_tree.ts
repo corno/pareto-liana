@@ -116,44 +116,24 @@ export const Value: Value = ($, $p) => {
 
                                     return ['valid', {
                                         'instance': $,
-                                        'entries': op_group($.entries.__l_map(($) => {
+                                        'entries': $.entries.__l_map(($): d_out.Entry_Data => {
+                                            const id = $.id.value
                                             return {
-                                                'id': $.id.value,
-                                                'value': $
-                                            }
-                                        })).__d_map(($, id) => op_expect_exactly_one_element($).__decide(
-                                            ($): d_out.Entry => ['unique', {
-                                                'id value pair': $,
-                                                'optional value': _p.optional.from.optional(
+                                            // 'id value pair': $,
+                                            'value': _p.optional.from.optional(
+                                                $.value,
+                                            ).map(
+                                                ($) => Value(
                                                     $.value,
-                                                ).map(
-                                                    ($) => Value(
-                                                        $.value,
-                                                        {
-                                                            'definition': prop_def,
-                                                            'definition path': `${$p['definition path']}.${id}`,
-                                                        }
-                                                    ),
-                                                )
-                                            }],
-                                            (): d_out.Entry => ['multiple', {
-                                                'occurences': $.__l_map(($): d_out.Entry_Data => ({
-                                                    // 'id value pair': $,
-                                                    'value': _p.optional.from.optional(
-                                                        $.value,
-                                                    ).map(
-                                                        ($) => Value(
-                                                            $.value,
-                                                            {
-                                                                'definition': prop_def,
-                                                                'definition path': `${$p['definition path']}.${id}`,
-                                                            }
-                                                        ),
-                                                    ),
-                                                    'id': $.id
-                                                }))
-                                            }]
-                                        ))
+                                                    {
+                                                        'definition': prop_def,
+                                                        'definition path': `${$p['definition path']}.${id}`,
+                                                    }
+                                                ),
+                                            ),
+                                            'id value pair': $
+                                        }
+                                        })
                                     }]
                                 })
                                 default: return ['invalid', value]

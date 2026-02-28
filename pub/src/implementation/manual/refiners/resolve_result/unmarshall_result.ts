@@ -61,29 +61,38 @@ export const Value = (
                 })
                 case 'dictionary': return _p.ss($, ($) => {
                     const def = $
-                    return ['dictionary', _p.decide.state(unmarshall_result.unmarshalled, ($) => {
+                    return ['dictionary', _p.decide.state(unmarshall_result.unmarshalled, ($): d_out.Dictionary => {
                         switch ($[0]) {
-                            case 'dictionary': return _p.ss($, ($) => ({
+                            case 'dictionary': return _p.ss($, ($): d_out.Dictionary => ({
                                 'unmarshalled': $,
                                 'entries': _p.decide.state($['found value type'], ($) => {
                                     switch ($[0]) {
-                                        case 'valid': return _p.ss($, ($) => _p.optional.literal.set($.entries.__d_map(($): d_out.Optional_Entry => _p.decide.state($, ($) => {
-                                            switch ($[0]) {
-                                                case 'unique': return _p.ss($, ($): d_out.Optional_Entry => $['optional value'].__decide(
-                                                    ($) => _p.optional.literal.set(Value(
-                                                        $,
-                                                        {
-                                                            'definition': def.resolver,
-                                                            'resolver': $p.resolver,
-                                                            'module parameters': $p['module parameters'],
-                                                        }
-                                                    )),
-                                                    () => _p.optional.literal.not_set(),
-                                                ))
-                                                case 'multiple': return _p.ss($, ($): d_out.Optional_Entry => _p.optional.literal.not_set())
-                                                default: return _p.au($[0])
-                                            }
-                                        }))))
+                                        case 'valid': return _p.ss($, ($) => _p.optional.literal.set(_p.dictionary.from.dictionary(
+                                            _p.dictionary.from.list(
+                                                $.entries
+                                            ).group(
+                                                ($) => $['id value pair'].id.value
+                                            )
+                                        ).map(($, id):d_out.Optional_Entry => _p.decide.list($).has_single_item(
+                                            ($) => $.value.__decide(
+                                                ($) => _p.optional.literal.set(Value(
+                                                    $,
+                                                    {
+                                                        'definition': def.resolver,
+                                                        'resolver': $p.resolver,
+                                                        'module parameters': $p['module parameters'],
+                                                    }
+                                                )),
+                                                () => _p.optional.literal.not_set(),
+                                            ),
+                                            () => _p.optional.literal.not_set(),
+                                            () => _p.optional.literal.not_set(),
+                                        ))))
+
+                                        // $['optional value'].__decide(
+
+                                        //             () => _p.optional.literal.not_set(),
+                                        //         )
                                         case 'invalid': return _p.ss($, ($) => _p.optional.literal.not_set())
                                         default: return _p.au($[0])
                                     }

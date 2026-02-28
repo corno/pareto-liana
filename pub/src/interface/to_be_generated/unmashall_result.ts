@@ -8,11 +8,6 @@ export type Document = {
     'content': Value
 }
 
-export type Entry_Data = {
-    'id': d_astn_ast.Text
-    'value': Optional_Value
-}
-
 export type Optional_Value = _pi.Optional_Value<Value>
 
 // export type Key_Value_Pair = {
@@ -61,7 +56,7 @@ export type Dictionary = {
     'found value type':
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.dictionary
-        'entries': _pi.Dictionary<Entry>
+        'entries': _pi.List<Entry_Data>
     }]
     | ['invalid', d_astn_ast.Value]
 }
@@ -198,11 +193,7 @@ export type Number = {
     | ['invalid', d_astn_ast.Value]
 }
 
-export type Entry =
-    | ['unique', {
-        'id value pair': d_astn_ast.ID_Value_Pairs.L
-        'optional value': Optional_Value
-    }]
-    | ['multiple', {
-        'occurences': _pi.List<Entry_Data>
-    }]
+export type Entry_Data = {
+    'id value pair': d_astn_ast.ID_Value_Pairs.L
+    'value': Optional_Value
+}
