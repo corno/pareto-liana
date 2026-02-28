@@ -73,8 +73,7 @@ export const Value = (
                                             $.properties,
                                         ).flatten(
                                             ($, id): d_out.Errors => {
-                                                return _p.decide.list.has_single_item(
-                                                    $,
+                                                return _p.decide.list($).has_single_item(
                                                     ($) => $.value.__decide(
                                                         ($) => Value($),
                                                         () => _p.list.literal([{

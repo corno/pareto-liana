@@ -113,8 +113,7 @@ export const Value: Value = ($, abort) => {
                         })
                         return _p.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'verbose': return _p.ss($, ($): d_out.Value.group.verbose => $.properties.__d_map(($, id) => _p.decide.list.has_single_item(
-                                    $,
+                                case 'verbose': return _p.ss($, ($): d_out.Value.group.verbose => $.properties.__d_map(($, id) => _p.decide.list($).has_single_item(
                                     ($) => $.value.__decide(
                                         ($) => Value($, abort),
                                         () => abort({

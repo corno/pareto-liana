@@ -421,8 +421,7 @@ export const Value: Value = ($, $p) => {
                                 case 'list': return _p.ss($, ($) => {
                                     return ['valid', {
                                         'instance': ['list', $],
-                                        'option processing': _p.decide.list.has_first_item(
-                                            $.items,
+                                        'option processing': _p.decide.list($.items).has_first_item(
                                             ($, rest): d_out.State_Option_Processing => {
                                                 const option_value = $.value
                                                 return _p.decide.state($.value.type, ($): d_out.State_Option_Processing => {
@@ -432,12 +431,10 @@ export const Value: Value = ($, $p) => {
                                                                 case 'text': return _p.ss($, ($) => {
                                                                     const option_token = $
                                                                     const option_name = $.value
-                                                                    return _p.decide.list.has_first_item(
-                                                                        rest,
+                                                                    return _p.decide.list(rest).has_first_item(
                                                                         ($, rest): d_out.State_Option_Processing => {
                                                                             const raw_value = $
-                                                                            return _p.decide.list.has_items(
-                                                                                rest,
+                                                                            return _p.decide.list(rest).has_items(
                                                                                 ($) => ['list format', ['too many items', null]],
                                                                                 (): d_out.State_Option_Processing => _p.decide.optional(
                                                                                     def.options.__get_possible_entry_deprecated(option_name),

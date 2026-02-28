@@ -38,7 +38,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
         $cyclic: _pi.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
-    const xx = _p.decide.dictionary.has_entries(
+    const xx = _p.decide.dictionary(
         _p.dictionary.from.dictionary(
             benchmark,
         ).filter(
@@ -48,7 +48,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
                 () => _p.optional.literal.not_set<null>(),
                 () => _p.optional.literal.set(null),
             )
-        ),
+        )
+    ).has_entries(
         ($) => abort({
             'type': ['missing required entries', $],
             'location': location,

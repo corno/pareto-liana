@@ -276,8 +276,7 @@ export const Option_Constraints = (
     $p: {
         sub: d_out.Assign
     },
-): d_out.Assign => _p.decide.dictionary.has_entries(
-    $,
+): d_out.Assign => _p.decide.dictionary($).has_entries(
     ($) => sh.a.variables(
         _p.dictionary.from.dictionary(
             temp_prepend($, "constraint "),
@@ -786,8 +785,7 @@ export const Value_Constraints = (
         sub: d_out.Assign
     }
 ): d_out.Assign => {
-    return _p.decide.dictionary.has_entries(
-        $,
+    return _p.decide.dictionary($).has_entries(
         () => sh.a.group.literal_resolve({
             "l value": $p.sub,
             "l results": sh.a.variables(
