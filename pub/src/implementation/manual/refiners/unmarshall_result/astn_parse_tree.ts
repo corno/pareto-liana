@@ -3,19 +3,31 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 
 import * as d_in from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_in_definition from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "../../../../interface/to_be_generated/unmashall_result"
+import * as d_function from "../../../../interface/to_be_generated/unmarshall_result_from_astn_parse_tree"
 
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
+export type Document = _pi.Refiner_Without_Error_With_Parameter<
+    d_out.Document,
+    d_in.Document,
+    d_function.Parameters
+>
 
-export const Value = (
-    $: d_in.Value,
-    $p: {
-        'definition': d_in_definition.Value,
-        'definition path': string
-    }
-): d_out.Value => {
+export type Value = _pi.Refiner_Without_Error_With_Parameter<
+    d_out.Value,
+    d_in.Value,
+    d_function.Parameters
+>
+
+export const Document: Document = ($, $p) => ({
+    'content': Value(
+        $.content,
+        $p
+    )
+})
+
+export const Value: Value = ($, $p) => {
     const value = $
     const concrete_value = _p.decide.state($.type, ($): d_in.Value.type_.concrete => {
         switch ($[0]) {

@@ -5,10 +5,9 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as d_in from "../../../../interface/to_be_generated/unmashall_result"
 import * as d_out from "astn-core/dist/interface/generated/liana/schemas/sealed_target/data"
 import * as d_in_astn_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
-import * as d_function from "../../../../interface/to_be_generated/authoring_target_from_unmarshall_result"
+import * as d_function from "../../../../interface/to_be_generated/sealed_target_from_unmarshall_result"
 
 //dependencies
-// import * as t_primitives_to_text from "liana-core/dist/implementation/manual/transformers/primitives/text"
 import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
 
 //signatures
@@ -29,7 +28,6 @@ export const Found = ($: d_in_astn_parse_tree.Value): d_function.Found => {
                     case 'text': return _p.ss($, ($) => ['text', {
                         'value': $.value
                     }])
-
                     default: return _p.au($[0])
                 }
             }))

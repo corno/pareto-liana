@@ -2,7 +2,7 @@ import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
 
 //data types
-import * as d_in from "../../../../interface/to_be_generated/authoring_target_from_unmarshall_result"
+import * as d_in from "../../../../interface/to_be_generated/sealed_target_from_unmarshall_result"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
 
