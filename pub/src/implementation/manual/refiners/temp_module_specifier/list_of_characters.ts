@@ -3,8 +3,6 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as _pdev from 'pareto-core-dev'
 import * as _p_temp from 'pareto-core/dist/assign'
 import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
-import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
-
 
 //data types
 import * as d_out from "../../../../interface/to_be_generated/temp_module_specifier"

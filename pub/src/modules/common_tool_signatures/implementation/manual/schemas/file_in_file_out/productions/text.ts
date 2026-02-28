@@ -12,14 +12,11 @@ export type Signature = _pi.Production<d_file_in_file_out.Path, d_file_in_file_o
 import * as r_node_path_to_text from "pareto-resources/dist/implementation/manual/refiners/node_path/text"
 
 export const Path: Signature = (iterator, abort) => r_node_path_to_text.Node_Path(
-    _list_from_text(
-        iterator.consume(
-            ($) => $,
-            {
-                no_more_tokens: () => abort(['missing', null])
-            }
-        ),
-        ($) => $
+    iterator.consume(
+        ($) => $,
+        {
+            no_more_tokens: () => abort(['missing', null])
+        }
     ),
     ($) => abort(['not valid', null]),
     {

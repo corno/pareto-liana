@@ -53,7 +53,7 @@ export const $: g_.Modules = modules(
                         }))),
                     })),
                     "state group": toption(t.group({
-                        "options": prop(t.dictionary(t.group({
+                        "states": prop(t.dictionary(t.group({
                             "constraints": prop(t.dictionary(t.group({
                                 "path": prop(t.component("Path"))
                             }))),

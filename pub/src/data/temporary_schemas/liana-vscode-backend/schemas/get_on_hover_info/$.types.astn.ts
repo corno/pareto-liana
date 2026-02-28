@@ -16,7 +16,7 @@ export const $: g_.Modules = modules(
 
         "Result": module_(t.group({
             "contents": prop(t.group({
-                "hover texts": prop(t.optional(t.list(t.text_local(text('single line'))))),
+                "hover texts": prop(t.component_external("hover info", "Hover Texts")),
             })),
         })),
 

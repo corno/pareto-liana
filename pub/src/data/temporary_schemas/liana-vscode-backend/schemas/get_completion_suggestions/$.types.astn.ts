@@ -15,11 +15,7 @@ export const $: g_.Modules = modules(
     {
 
         "Result": module_(t.group({
-            "completion items": prop(t.list(t.group({
-                "label": prop(t.text_local(text('single line'))),
-                "insert text": prop(t.text_local(text('single line'))),
-                "documentation": prop(t.text_local(text('multi line'))),
-            }))),
+            "completion suggestions": prop(t.component_external("completion suggestions", "Completion Suggestions")),
         })),
 
         "Parameters": module_(t.group({
