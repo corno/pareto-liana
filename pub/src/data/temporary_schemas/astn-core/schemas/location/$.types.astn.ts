@@ -15,14 +15,8 @@ export const $: g_.Modules = modules(
     {
 
         "Range": module_(t.group({
-            "document resource identifier": prop(t.text_local(text('single line'))),
-            "start": prop(t.component("Range Edge")),
-            "end": prop(t.component("Range Edge")),
-        })),
-
-        "Range Edge": module_(t.group({
-            "line": prop(t.number_local(n.natural(null))),
-            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+            "start": prop(t.component("Location")),
+            "end": prop(t.component("Location")),
         })),
 
         "Location": module_(t.group({
