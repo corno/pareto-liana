@@ -14,6 +14,7 @@ import { $ as globals } from "./$.globals.astn"
 export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
         "location": schema_import_("location"),
+        "path": schema_import_("path"),
     }, {},
     globals,
     schema,

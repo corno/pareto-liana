@@ -15,6 +15,7 @@ export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
     {
         "completion suggestions": schema_import_("completion suggestions"),
         "location": schema_import_("location"),
+        "path": schema_import_("path"),
     }, {},
     globals,
     schema,

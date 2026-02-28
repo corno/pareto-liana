@@ -10,6 +10,7 @@ import { $ as x_get_completion_suggestions } from "./schemas/get_completion_sugg
 import { $ as x_get_on_hover_info } from "./schemas/get_on_hover_info/$.module.astn"
 import { $ as x_hover_info } from "./schemas/hover_info/$.module.astn"
 import { $ as x_location } from "./schemas/location/$.module.astn"
+import { $ as x_path } from "../pareto-resources/schemas/path/$.module.astn"
 import { $ as x_seal } from "./schemas/seal/$.module.astn"
 import { $ as x_sort_alphabetically } from "./schemas/sort_alphabetically/$.module.astn"
 import { $ as x_validate_document } from "./schemas/validate_document/$.module.astn"
@@ -22,6 +23,7 @@ export const $: g_.Schema_Tree = st.set({
     "get on hover info": x_get_on_hover_info,
     "hover info": x_hover_info,
     "location": x_location,
+    "path": x_path,
     "seal": x_seal,
     "sort alphabetically": x_sort_alphabetically,
     "validate document": x_validate_document,

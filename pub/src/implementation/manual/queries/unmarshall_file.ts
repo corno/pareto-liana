@@ -7,7 +7,7 @@ import * as signatures from "../../../interface/signatures"
 import * as d from "../../../interface/to_be_generated/load_file"
 
 //depencencies
-import { $$x as q_load_document } from "./load_document"
+import { $$x as q_load_document } from "./unmarshall_document"
 
 export const $$x: signatures.queries.load_file = _p.query_function(
     ($p, $qr) => $qr['read file'](

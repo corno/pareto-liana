@@ -26,7 +26,7 @@ export const $: g_.Modules = modules(
                 "message": prop(t.text_local(text('single line'))),
                 "related information": prop(t.optional(t.list(t.group({
                     "location": prop(t.group({
-                        "file path": prop(t.text_local(text('single line'))),
+                        "file path": prop(t.component_external("path", "Node Path")),
                         "range": prop(t.component_external("location", "Range")),
                     })),
                     "message": prop(t.text_local(text('single line'))),
@@ -36,7 +36,7 @@ export const $: g_.Modules = modules(
 
         "Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
-            "file path": prop(t.text_local(text('single line'))),
+            "file path": prop(t.component_external("path", "Node Path")),
             "tab size": prop(t.number_local(n.natural(null))),
         })),
     }
