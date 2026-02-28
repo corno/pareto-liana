@@ -36,6 +36,7 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
                         })(
                             {
                                 'file path': $r.in,
+                                'tab size': 4,
                             },
                             ($): d_transform_file.Error => ['processing', t_load_file_to_fp.Error(
                                 $,

@@ -22,6 +22,14 @@ export const $: g_.Modules = modules(
 
         "Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
+            "source": prop(t.group({
+                "file path": prop(t.component_external("path", "Node Path")),
+                "tab size": prop(t.text_local(text('single line'))),
+            })),
+            "target": prop(t.group({
+                "indentation": prop(t.text_local(text('single line'))),
+                "newline": prop(t.text_local(text('single line'))),
+            })),
         })),
 
     }

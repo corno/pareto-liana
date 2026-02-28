@@ -6,7 +6,7 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import * as signatures from "../../../interface/signatures"
 
 //data types
-import * as d from "../../../interface/to_be_generated/load_document"
+import * as d from "../../../interface/to_be_generated/get_unmarshalled_document"
 
 //depencencies
 
@@ -46,6 +46,7 @@ export const $$x: signatures.queries.get_unmarshalled_document = _p.query_functi
                         ($) => $
                     ),
                     'schema path': schema_path_text,
+                    'tab size': $p['tab size'],
                 },
             ),
 

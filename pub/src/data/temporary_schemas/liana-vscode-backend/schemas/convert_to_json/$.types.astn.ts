@@ -16,7 +16,6 @@ export const $: g_.Modules = modules(
 
         "Parameters": module_(t.group({
             "source": prop(t.group({
-                "content": prop(t.text_local(text('multi line'))),
                 "document resource identifier": prop(t.text_local(text('single line'))),
                 "tab size": prop(t.number_local(n.natural(null))),
             })),

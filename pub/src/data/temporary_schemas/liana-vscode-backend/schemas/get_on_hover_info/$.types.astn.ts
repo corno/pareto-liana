@@ -22,7 +22,10 @@ export const $: g_.Modules = modules(
 
         "Parameters": module_(t.group({
             "content": prop(t.text_local(text('multi line'))),
-            "file path": prop(t.component_external("path", "Node Path")),
+            "source": prop(t.group({
+                "file path": prop(t.component_external("path", "Node Path")),
+                "tab size": prop(t.text_local(text('single line'))),
+            })),
             "position": prop(t.component_external("location", "Position")),
         })),
 

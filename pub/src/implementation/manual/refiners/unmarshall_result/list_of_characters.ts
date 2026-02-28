@@ -13,6 +13,7 @@ type Parameters = {
     'instance path': string
     'schema content': string
     'schema path': string
+    'tab size': number
 }
 
 export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.List_of_Characters, Parameters>
@@ -49,7 +50,7 @@ export const Value: Value = ($, abort, $p) => {
             $,
             ($) => abort(['parse error', $]),
             {
-                'tab size': 4,
+                'tab size': $p['tab size'],
                 'document resource identifier': $p['instance path']
             },
         ).content,

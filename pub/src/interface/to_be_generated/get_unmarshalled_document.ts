@@ -15,4 +15,5 @@ export type Error =
 export type Parameters = {
     'content': string,
     'file path': d_path.Node_Path,
+    'tab size': number,
 }
