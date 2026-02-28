@@ -8,7 +8,7 @@ import * as d_in_astn_parse_tree from "astn-core/dist/interface/generated/liana/
 import * as d_function from "../../../../interface/to_be_generated/sealed_target_from_unmarshall_result"
 
 //dependencies
-import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
+import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
 
 //signatures
 export type Document = _pi.Refiner<d_out.Document, d_function.Error, d_in.Document>

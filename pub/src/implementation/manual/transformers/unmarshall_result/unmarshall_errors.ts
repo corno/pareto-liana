@@ -6,7 +6,7 @@ import * as d_out from "../../../../interface/generated/liana/schemas/unmarshall
 import * as d_in_astn_parse_tree from "astn-core/dist/interface/generated/liana/schemas/parse_tree/data"
 
 //dependencies
-import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/location"
+import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
 
 export const Optional_Value = (
     $: d_in.Optional_Value,

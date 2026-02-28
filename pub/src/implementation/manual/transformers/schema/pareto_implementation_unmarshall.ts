@@ -98,7 +98,7 @@ export const Schema: _pi.Transformer_With_Parameter<
                             "manual",
                             "transformers",
                             "parse tree",
-                            "location"
+                            "start token range"
                         ]
                     ),
                 }),

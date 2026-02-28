@@ -46,8 +46,6 @@ export type Boolean = {
     'found value type':
     | ['valid', {
         'instance': d_astn_ast.Value.type_.concrete.text
-        // 'parsed': _pi.Optional_Value<boolean>
-        // 'range': d_astn_location.Range
         'correct string type': boolean
     }]
     | ['invalid', d_astn_ast.Value]
