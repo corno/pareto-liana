@@ -23,10 +23,7 @@ export const Document: Document = ($, abort, $p) => {
 
 export const Value: Value = ($, abort, $p) => {
     const x = r_temp_module_specifier_from_loc.Module_Specifier(
-        _p_list_from_text(
-            $p['schema']['content'],
-            ($) => $
-        ),
+        $p['schema']['content'],
         ($) => abort(['schema error', {
             'error': $,
             'file location': $p['schema']['path'],

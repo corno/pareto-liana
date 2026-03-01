@@ -20,10 +20,7 @@ export const $$x: signatures.queries.get_unmarshalled_file = _p.query_function(
             },
         )(
             {
-                'content': _p_text_from_list(
-                    $,
-                    ($) => $
-                ),
+                'content': $,
                 'file path': $p['file path'],
                 'tab size': $p['tab size'],
             },
