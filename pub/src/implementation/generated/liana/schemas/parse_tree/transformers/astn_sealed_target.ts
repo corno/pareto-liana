@@ -281,11 +281,11 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                                                             $,
                                                                             ($): t_out.Value.state => {
                                                                                 switch ($[0]) {
-                                                                                    case 'missing data':
+                                                                                    case 'missing':
                                                                                         return _p.ss(
                                                                                             $,
                                                                                             ($) => ({
-                                                                                                'option': 'missing data',
+                                                                                                'option': 'missing',
                                                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                                                     {
                                                                                                         "#": _p_change_context(
@@ -357,29 +357,16 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                                 $,
                                 ($) => ({
                                     'option': 'include',
-                                    'value': ['group', ['verbose', _p.dictionary.literal(
-                                        {
-                                            "@": _p_change_context(
-                                                $['@'],
-                                                ($) => Structural_Token(
-                                                    $,
-                                                ),
-                                            ),
-                                            "path": _p_change_context(
-                                                $['path'],
-                                                ($) => Text(
-                                                    $,
-                                                ),
-                                            ),
-                                        },
-                                    )]],
+                                    'value': Include(
+                                        $,
+                                    ),
                                 }),
                             )
-                        case 'missing data':
+                        case 'missing':
                             return _p.ss(
                                 $,
                                 ($) => ({
-                                    'option': 'missing data',
+                                    'option': 'missing',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                         {
                                             "#": _p_change_context(
@@ -399,6 +386,23 @@ export const Value: t_signatures.Value = ($) => ['group', ['verbose', _p.diction
                     }
                 },
             )],
+        ),
+    },
+)]]
+
+export const Include: t_signatures.Include = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        "@": _p_change_context(
+            $['@'],
+            ($) => Structural_Token(
+                $,
+            ),
+        ),
+        "path": _p_change_context(
+            $['path'],
+            ($) => Text(
+                $,
+            ),
         ),
     },
 )]]
@@ -453,40 +457,44 @@ export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionar
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => ['list', _p.list.from.list(
     $,
 ).map(
-    ($) => ['group', ['verbose', _p.dictionary.literal(
-        {
-            "id": _p_change_context(
-                $['id'],
-                ($) => Text(
-                    $,
-                ),
-            ),
-            "value": _p_change_context(
-                $['value'],
-                ($) => ['optional', _p.decide.optional(
-                    $,
-                    ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
-                        {
-                            ":": _p_change_context(
-                                $[':'],
-                                ($) => Structural_Token(
-                                    $,
-                                ),
-                            ),
-                            "value": _p_change_context(
-                                $['value'],
-                                ($) => Value(
-                                    $,
-                                ),
-                            ),
-                        },
-                    )]]],
-                    () => ['not set', null],
-                )],
-            ),
-        },
-    )]],
+    ($) => ID_Value_Pair(
+        $,
+    ),
 )]
+
+export const ID_Value_Pair: t_signatures.ID_Value_Pair = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        "id": _p_change_context(
+            $['id'],
+            ($) => Text(
+                $,
+            ),
+        ),
+        "value": _p_change_context(
+            $['value'],
+            ($) => ['optional', _p.decide.optional(
+                $,
+                ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
+                    {
+                        ":": _p_change_context(
+                            $[':'],
+                            ($) => Structural_Token(
+                                $,
+                            ),
+                        ),
+                        "value": _p_change_context(
+                            $['value'],
+                            ($) => Value(
+                                $,
+                            ),
+                        ),
+                    },
+                )]]],
+                () => ['not set', null],
+            )],
+        ),
+    },
+)]]
 
 export const Items: t_signatures.Items = ($) => ['list', _p.list.from.list(
     $,

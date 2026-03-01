@@ -763,10 +763,10 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                 $['option']['value'],
                                                                                                 ($t): t_out.Value.type_.concrete.state.status => {
                                                                                                     switch ($t) {
-                                                                                                        case 'missing data':
+                                                                                                        case 'missing':
                                                                                                             return _p_change_context(
                                                                                                                 $['value'],
-                                                                                                                ($) => ['missing data', _p_change_context(
+                                                                                                                ($) => ['missing', _p_change_context(
                                                                                                                     v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                                         $,
                                                                                                                         ($) => abort(
@@ -919,71 +919,17 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                     case 'include':
                                         return _p_change_context(
                                             $['value'],
-                                            ($) => ['include', _p_change_context(
-                                                v_unmarshalled_from_parse_tree.Verbose_Group(
+                                            ($) => ['include', Include(
+                                                $,
+                                                ($) => abort(
                                                     $,
-                                                    ($) => abort(
-                                                        $,
-                                                    ),
-                                                    {
-                                                        'expected properties': _p.dictionary.literal(
-                                                            {
-                                                                "@": null,
-                                                                "path": null,
-                                                            },
-                                                        ),
-                                                    },
-                                                ),
-                                                ($) => _p_variables(
-                                                    () => {
-                                                        
-                                                        const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                                            $['value'],
-                                                        )
-                                                        return {
-                                                            '@': _p_change_context(
-                                                                v_unmarshalled_from_parse_tree.Property(
-                                                                    $,
-                                                                    ($) => abort(
-                                                                        $,
-                                                                    ),
-                                                                    {
-                                                                        'id': '@',
-                                                                    },
-                                                                ),
-                                                                ($) => Structural_Token(
-                                                                    $,
-                                                                    ($) => abort(
-                                                                        $,
-                                                                    ),
-                                                                ),
-                                                            ),
-                                                            'path': _p_change_context(
-                                                                v_unmarshalled_from_parse_tree.Property(
-                                                                    $,
-                                                                    ($) => abort(
-                                                                        $,
-                                                                    ),
-                                                                    {
-                                                                        'id': 'path',
-                                                                    },
-                                                                ),
-                                                                ($) => Text(
-                                                                    $,
-                                                                    ($) => abort(
-                                                                        $,
-                                                                    ),
-                                                                ),
-                                                            ),
-                                                        }
-                                                    },
                                                 ),
                                             )],
                                         )
-                                    case 'missing data':
+                                    case 'missing':
                                         return _p_change_context(
                                             $['value'],
-                                            ($) => ['missing data', _p_change_context(
+                                            ($) => ['missing', _p_change_context(
                                                 v_unmarshalled_from_parse_tree.Verbose_Group(
                                                     $,
                                                     ($) => abort(
@@ -1037,6 +983,67 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                         )
                                 }
                             },
+                        ),
+                    ),
+                ),
+            }
+        },
+    ),
+)
+
+export const Include: t_signatures.Include = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Verbose_Group(
+        $,
+        ($) => abort(
+            $,
+        ),
+        {
+            'expected properties': _p.dictionary.literal(
+                {
+                    "@": null,
+                    "path": null,
+                },
+            ),
+        },
+    ),
+    ($) => _p_variables(
+        () => {
+            
+            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                $['value'],
+            )
+            return {
+                '@': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': '@',
+                        },
+                    ),
+                    ($) => Structural_Token(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+                'path': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'path',
+                        },
+                    ),
+                    ($) => Text(
+                        $,
+                        ($) => abort(
+                            $,
                         ),
                     ),
                 ),
@@ -1213,129 +1220,136 @@ export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort) => _p.list
 ).map(
     ($) => _p_change_context(
         $['value'],
-        ($) => _p_change_context(
-            v_unmarshalled_from_parse_tree.Verbose_Group(
+        ($) => ID_Value_Pair(
+            $,
+            ($) => abort(
                 $,
-                ($) => abort(
-                    $,
-                ),
-                {
-                    'expected properties': _p.dictionary.literal(
-                        {
-                            "id": null,
-                            "value": null,
-                        },
-                    ),
-                },
-            ),
-            ($) => _p_variables(
-                () => {
-                    
-                    const var_verbose_group_range = v_parse_tree_to_location.Value(
-                        $['value'],
-                    )
-                    return {
-                        'id': _p_change_context(
-                            v_unmarshalled_from_parse_tree.Property(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                                {
-                                    'id': 'id',
-                                },
-                            ),
-                            ($) => Text(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            ),
-                        ),
-                        'value': _p_change_context(
-                            v_unmarshalled_from_parse_tree.Property(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                                {
-                                    'id': 'value',
-                                },
-                            ),
-                            ($) => _p.optional.from.optional(
-                                v_unmarshalled_from_parse_tree.Optional(
-                                    $,
-                                    ($) => abort(
-                                        $,
-                                    ),
-                                )['optional'],
-                            ).map(
-                                ($) => _p_change_context(
-                                    v_unmarshalled_from_parse_tree.Verbose_Group(
-                                        $,
-                                        ($) => abort(
-                                            $,
-                                        ),
-                                        {
-                                            'expected properties': _p.dictionary.literal(
-                                                {
-                                                    ":": null,
-                                                    "value": null,
-                                                },
-                                            ),
-                                        },
-                                    ),
-                                    ($) => _p_variables(
-                                        () => {
-                                            
-                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                                $['value'],
-                                            )
-                                            return {
-                                                ':': _p_change_context(
-                                                    v_unmarshalled_from_parse_tree.Property(
-                                                        $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                        {
-                                                            'id': ':',
-                                                        },
-                                                    ),
-                                                    ($) => Structural_Token(
-                                                        $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                    ),
-                                                ),
-                                                'value': _p_change_context(
-                                                    v_unmarshalled_from_parse_tree.Property(
-                                                        $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                        {
-                                                            'id': 'value',
-                                                        },
-                                                    ),
-                                                    ($) => Value(
-                                                        $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                    ),
-                                                ),
-                                            }
-                                        },
-                                    ),
-                                ),
-                            ),
-                        ),
-                    }
-                },
             ),
         ),
+    ),
+)
+
+export const ID_Value_Pair: t_signatures.ID_Value_Pair = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Verbose_Group(
+        $,
+        ($) => abort(
+            $,
+        ),
+        {
+            'expected properties': _p.dictionary.literal(
+                {
+                    "id": null,
+                    "value": null,
+                },
+            ),
+        },
+    ),
+    ($) => _p_variables(
+        () => {
+            
+            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                $['value'],
+            )
+            return {
+                'id': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'id',
+                        },
+                    ),
+                    ($) => Text(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+                'value': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'value',
+                        },
+                    ),
+                    ($) => _p.optional.from.optional(
+                        v_unmarshalled_from_parse_tree.Optional(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                        )['optional'],
+                    ).map(
+                        ($) => _p_change_context(
+                            v_unmarshalled_from_parse_tree.Verbose_Group(
+                                $,
+                                ($) => abort(
+                                    $,
+                                ),
+                                {
+                                    'expected properties': _p.dictionary.literal(
+                                        {
+                                            ":": null,
+                                            "value": null,
+                                        },
+                                    ),
+                                },
+                            ),
+                            ($) => _p_variables(
+                                () => {
+                                    
+                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                        $['value'],
+                                    )
+                                    return {
+                                        ':': _p_change_context(
+                                            v_unmarshalled_from_parse_tree.Property(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                                {
+                                                    'id': ':',
+                                                },
+                                            ),
+                                            ($) => Structural_Token(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            ),
+                                        ),
+                                        'value': _p_change_context(
+                                            v_unmarshalled_from_parse_tree.Property(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                                {
+                                                    'id': 'value',
+                                                },
+                                            ),
+                                            ($) => Value(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            ),
+                                        ),
+                                    }
+                                },
+                            ),
+                        ),
+                    ),
+                ),
+            }
+        },
     ),
 )
 

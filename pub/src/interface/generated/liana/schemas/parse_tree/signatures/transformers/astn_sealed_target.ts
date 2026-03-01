@@ -53,6 +53,22 @@ export type Value_ = (
     context: Value_.I,
 ) => Value_.O
 
+export namespace Include_ {
+    
+    export type I = i_in.Include
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Include_ = (
+    context: Include_.I,
+) => Include_.O
+
 export namespace Structural_Token_ {
     
     export type I = i_in.Structural_Token
@@ -101,6 +117,22 @@ export type ID_Value_Pairs_ = (
     context: ID_Value_Pairs_.I,
 ) => ID_Value_Pairs_.O
 
+export namespace ID_Value_Pair_ {
+    
+    export type I = i_in.ID_Value_Pair
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type ID_Value_Pair_ = (
+    context: ID_Value_Pair_.I,
+) => ID_Value_Pair_.O
+
 export namespace Items_ {
     
     export type I = i_in.Items
@@ -121,8 +153,10 @@ export {
     Document_ as Document, 
     Content_ as Content, 
     Value_ as Value, 
+    Include_ as Include, 
     Structural_Token_ as Structural_Token, 
     Text_ as Text, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
+    ID_Value_Pair_ as ID_Value_Pair, 
     Items_ as Items, 
 }

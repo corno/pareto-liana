@@ -55,6 +55,22 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
     ),
 )
 
+export const Include: t_signatures.Include = ($, abort, $p) => v_unmarshall.Include(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
 export const Structural_Token: t_signatures.Structural_Token = ($, abort, $p) => v_unmarshall.Structural_Token(
     v_deserialize.Document(
         $,
@@ -88,6 +104,22 @@ export const Text: t_signatures.Text = ($, abort, $p) => v_unmarshall.Text(
 )
 
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($, abort, $p) => v_unmarshall.ID_Value_Pairs(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const ID_Value_Pair: t_signatures.ID_Value_Pair = ($, abort, $p) => v_unmarshall.ID_Value_Pair(
     v_deserialize.Document(
         $,
         ($) => abort(

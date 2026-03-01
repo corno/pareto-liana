@@ -88,6 +88,33 @@ export type Value_ = (
     },
 ) => Value_.O
 
+export namespace Include_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.Include
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type Include_ = (
+    context: Include_.I,
+    abort: _pi.Abort<Include_.E>,
+    parameters: {
+        readonly 'document resource identifier': Include_.P.document_resource_identifier
+        readonly 'tab size': Include_.P.tab_size
+    },
+) => Include_.O
+
 export namespace Structural_Token_ {
     
     export type I = i_in.List_of_Characters
@@ -169,6 +196,33 @@ export type ID_Value_Pairs_ = (
     },
 ) => ID_Value_Pairs_.O
 
+export namespace ID_Value_Pair_ {
+    
+    export type I = i_in.List_of_Characters
+    
+    export type O = i_out.ID_Value_Pair
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+        export type document_resource_identifier = string
+        
+        export type tab_size = number
+        
+    }
+    
+}
+
+export type ID_Value_Pair_ = (
+    context: ID_Value_Pair_.I,
+    abort: _pi.Abort<ID_Value_Pair_.E>,
+    parameters: {
+        readonly 'document resource identifier': ID_Value_Pair_.P.document_resource_identifier
+        readonly 'tab size': ID_Value_Pair_.P.tab_size
+    },
+) => ID_Value_Pair_.O
+
 export namespace Items_ {
     
     export type I = i_in.List_of_Characters
@@ -200,8 +254,10 @@ export {
     Document_ as Document, 
     Content_ as Content, 
     Value_ as Value, 
+    Include_ as Include, 
     Structural_Token_ as Structural_Token, 
     Text_ as Text, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
+    ID_Value_Pair_ as ID_Value_Pair, 
     Items_ as Items, 
 }

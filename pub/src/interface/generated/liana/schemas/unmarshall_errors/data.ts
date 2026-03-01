@@ -67,6 +67,16 @@ export namespace Errors_ {
                     readonly 'name': duplicate_property.name
                 }
                 
+                export namespace duplicate_entry {
+                    
+                    export type name = string
+                    
+                }
+                
+                export type duplicate_entry = {
+                    readonly 'name': duplicate_entry.name
+                }
+                
                 export namespace missing_property {
                     
                     export type name = string
@@ -75,6 +85,16 @@ export namespace Errors_ {
                 
                 export type missing_property = {
                     readonly 'name': missing_property.name
+                }
+                
+                export namespace missing_property_value {
+                    
+                    export type name = string
+                    
+                }
+                
+                export type missing_property_value = {
+                    readonly 'name': missing_property_value.name
                 }
                 
                 export namespace superfluous_property {
@@ -139,7 +159,9 @@ export namespace Errors_ {
             export type error = 
                 | readonly ['invalid value type', error.invalid_value_type]
                 | readonly ['duplicate property', error.duplicate_property]
+                | readonly ['duplicate entry', error.duplicate_entry]
                 | readonly ['missing property', error.missing_property]
+                | readonly ['missing property value', error.missing_property_value]
                 | readonly ['superfluous property', error.superfluous_property]
                 | readonly ['state', error.state]
             

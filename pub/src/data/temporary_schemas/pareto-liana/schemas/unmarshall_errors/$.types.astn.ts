@@ -33,6 +33,9 @@ export const $: g_.Modules = modules(
                     "duplicate property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
+                    "duplicate entry": toption(t.group({
+                        "name": prop(t.text_local(text('single line'))),
+                    })),
                     "missing property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),

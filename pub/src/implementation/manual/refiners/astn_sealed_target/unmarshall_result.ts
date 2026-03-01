@@ -33,7 +33,7 @@ export const Found = ($: d_in_astn_parse_tree.Value): d_function.Found => {
                 }
             }))
             case 'include': return _p.ss($, ($) => ['include', null])
-            case 'missing data': return _p.ss($, ($) => ['missing data', null])
+            case 'missing': return _p.ss($, ($) => ['missing data', null])
             default: return _p.au($[0])
         }
     })

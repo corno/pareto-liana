@@ -150,11 +150,47 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                 )]],
                                                             }),
                                                         )
+                                                    case 'duplicate entry':
+                                                        return _p.ss(
+                                                            $,
+                                                            ($) => ({
+                                                                'option': 'duplicate entry',
+                                                                'value': ['group', ['verbose', _p.dictionary.literal(
+                                                                    {
+                                                                        "name": _p_change_context(
+                                                                            $['name'],
+                                                                            ($) => ['text', {
+                                                                                'delimiter': ['quote', null],
+                                                                                'value': $,
+                                                                            }],
+                                                                        ),
+                                                                    },
+                                                                )]],
+                                                            }),
+                                                        )
                                                     case 'missing property':
                                                         return _p.ss(
                                                             $,
                                                             ($) => ({
                                                                 'option': 'missing property',
+                                                                'value': ['group', ['verbose', _p.dictionary.literal(
+                                                                    {
+                                                                        "name": _p_change_context(
+                                                                            $['name'],
+                                                                            ($) => ['text', {
+                                                                                'delimiter': ['quote', null],
+                                                                                'value': $,
+                                                                            }],
+                                                                        ),
+                                                                    },
+                                                                )]],
+                                                            }),
+                                                        )
+                                                    case 'missing property value':
+                                                        return _p.ss(
+                                                            $,
+                                                            ($) => ({
+                                                                'option': 'missing property value',
                                                                 'value': ['group', ['verbose', _p.dictionary.literal(
                                                                     {
                                                                         "name": _p_change_context(

@@ -56,6 +56,11 @@ export const Error_Type_Error = (
     $: d_in.Errors.L.type_.error,
 ): d_out.Phrase => _p.decide.state($, ($) => {
     switch ($[0]) {
+        case 'duplicate entry': return _p.ss($, ($) => sh.ph.composed([
+            sh.ph.literal("duplicate entry \""),
+            sh.ph.literal($.name),
+            sh.ph.literal("\"")
+        ]))
         case 'duplicate property': return _p.ss($, ($) => sh.ph.composed([
             sh.ph.literal("duplicate property \""),
             sh.ph.literal($.name),
@@ -78,6 +83,11 @@ export const Error_Type_Error = (
         ]))
         case 'missing property': return _p.ss($, ($) => sh.ph.composed([
             sh.ph.literal("missing property '"),
+            sh.ph.literal($.name),
+            sh.ph.literal("'")
+        ]))
+        case 'missing property value': return _p.ss($, ($) => sh.ph.composed([
+            sh.ph.literal("missing property value'"),
             sh.ph.literal($.name),
             sh.ph.literal("'")
         ]))

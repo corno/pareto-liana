@@ -33,7 +33,7 @@ export const Value: Value = ($, $p) => {
         switch ($[0]) {
             case 'concrete': return _p.ss($, ($) => $)
             case 'include': return _p.ss($, ($) => _pdev.implement_me("include node deserialization")) //TODO
-            case 'missing data': return _p.ss($, ($) => _pdev.implement_me("missing data node deserialization")) //TODO
+            case 'missing': return _p.ss($, ($) => _pdev.implement_me("missing data node deserialization")) //TODO
             default: return _p.au($[0])
         }
     })
@@ -459,7 +459,7 @@ export const Value: Value = ($, $p) => {
                                         'instance': ['state', $],
                                         'option': _p.decide.state($.status, ($): d_out.State_Option => {
                                             switch ($[0]) {
-                                                case 'missing data': return _p.ss($, ($) => ['missing data', $['#']])
+                                                case 'missing': return _p.ss($, ($) => ['missing data', $['#']])
                                                 case 'set': return _p.ss($, ($): d_out.State_Option => {
                                                     const value = $.value
                                                     const option_name = $.option.value

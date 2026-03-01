@@ -231,10 +231,10 @@ export const Value: t_signatures.Value = ($) => ({
                                                             $,
                                                             ($): t_out.Value.type_.concrete.state.status => {
                                                                 switch ($[0]) {
-                                                                    case 'missing data':
+                                                                    case 'missing':
                                                                         return _p.ss(
                                                                             $,
-                                                                            ($) => ['missing data', {
+                                                                            ($) => ['missing', {
                                                                                 '#': _p_change_context(
                                                                                     $['#'],
                                                                                     ($) => Structural_Token(
@@ -289,25 +289,14 @@ export const Value: t_signatures.Value = ($) => ({
                     case 'include':
                         return _p.ss(
                             $,
-                            ($) => ['include', {
-                                '@': _p_change_context(
-                                    $['@'],
-                                    ($) => Structural_Token(
-                                        $,
-                                    ),
-                                ),
-                                'path': _p_change_context(
-                                    $['path'],
-                                    ($) => Text(
-                                        $,
-                                    ),
-                                ),
-                            }],
+                            ($) => ['include', Include(
+                                $,
+                            )],
                         )
-                    case 'missing data':
+                    case 'missing':
                         return _p.ss(
                             $,
-                            ($) => ['missing data', {
+                            ($) => ['missing', {
                                 '#': _p_change_context(
                                     $['#'],
                                     ($) => Structural_Token(
@@ -322,6 +311,21 @@ export const Value: t_signatures.Value = ($) => ({
                         )
                 }
             },
+        ),
+    ),
+})
+
+export const Include: t_signatures.Include = ($) => ({
+    '@': _p_change_context(
+        $['@'],
+        ($) => Structural_Token(
+            $,
+        ),
+    ),
+    'path': _p_change_context(
+        $['path'],
+        ($) => Text(
+            $,
         ),
     ),
 })
@@ -369,36 +373,40 @@ export const Text: t_signatures.Text = ($) => ({
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => _p.list.from.list(
     $,
 ).map(
-    ($) => ({
-        'id': _p_change_context(
-            $['id'],
-            ($) => Text(
-                $,
-            ),
-        ),
-        'value': _p_change_context(
-            $['value'],
-            ($) => _p.optional.from.optional(
-                $,
-            ).map(
-                ($) => ({
-                    ':': _p_change_context(
-                        $[':'],
-                        ($) => Structural_Token(
-                            $,
-                        ),
-                    ),
-                    'value': _p_change_context(
-                        $['value'],
-                        ($) => Value(
-                            $,
-                        ),
-                    ),
-                }),
-            ),
-        ),
-    }),
+    ($) => ID_Value_Pair(
+        $,
+    ),
 )
+
+export const ID_Value_Pair: t_signatures.ID_Value_Pair = ($) => ({
+    'id': _p_change_context(
+        $['id'],
+        ($) => Text(
+            $,
+        ),
+    ),
+    'value': _p_change_context(
+        $['value'],
+        ($) => _p.optional.from.optional(
+            $,
+        ).map(
+            ($) => ({
+                ':': _p_change_context(
+                    $[':'],
+                    ($) => Structural_Token(
+                        $,
+                    ),
+                ),
+                'value': _p_change_context(
+                    $['value'],
+                    ($) => Value(
+                        $,
+                    ),
+                ),
+            }),
+        ),
+    ),
+})
 
 export const Items: t_signatures.Items = ($) => _p.list.from.list(
     $,

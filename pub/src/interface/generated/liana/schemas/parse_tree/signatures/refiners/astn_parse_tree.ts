@@ -64,6 +64,25 @@ export type Value_ = (
     abort: _pi.Abort<Value_.E>,
 ) => Value_.O
 
+export namespace Include_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.Include
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Include_ = (
+    context: Include_.I,
+    abort: _pi.Abort<Include_.E>,
+) => Include_.O
+
 export namespace Structural_Token_ {
     
     export type I = i_in.Value
@@ -121,6 +140,25 @@ export type ID_Value_Pairs_ = (
     abort: _pi.Abort<ID_Value_Pairs_.E>,
 ) => ID_Value_Pairs_.O
 
+export namespace ID_Value_Pair_ {
+    
+    export type I = i_in.Value
+    
+    export type O = i_out.ID_Value_Pair
+    
+    export type E = i_generic.Error
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type ID_Value_Pair_ = (
+    context: ID_Value_Pair_.I,
+    abort: _pi.Abort<ID_Value_Pair_.E>,
+) => ID_Value_Pair_.O
+
 export namespace Items_ {
     
     export type I = i_in.Value
@@ -144,8 +182,10 @@ export {
     Document_ as Document, 
     Content_ as Content, 
     Value_ as Value, 
+    Include_ as Include, 
     Structural_Token_ as Structural_Token, 
     Text_ as Text, 
     ID_Value_Pairs_ as ID_Value_Pairs, 
+    ID_Value_Pair_ as ID_Value_Pair, 
     Items_ as Items, 
 }

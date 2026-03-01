@@ -106,10 +106,30 @@ export const Errors: t_signatures.Errors = ($) => _p.list.from.list(
                                                         ),
                                                     }],
                                                 )
+                                            case 'duplicate entry':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['duplicate entry', {
+                                                        'name': _p_change_context(
+                                                            $['name'],
+                                                            ($) => $,
+                                                        ),
+                                                    }],
+                                                )
                                             case 'missing property':
                                                 return _p.ss(
                                                     $,
                                                     ($) => ['missing property', {
+                                                        'name': _p_change_context(
+                                                            $['name'],
+                                                            ($) => $,
+                                                        ),
+                                                    }],
+                                                )
+                                            case 'missing property value':
+                                                return _p.ss(
+                                                    $,
+                                                    ($) => ['missing property value', {
                                                         'name': _p_change_context(
                                                             $['name'],
                                                             ($) => $,

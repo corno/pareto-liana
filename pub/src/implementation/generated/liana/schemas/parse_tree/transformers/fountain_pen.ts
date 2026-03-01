@@ -25,6 +25,12 @@ export const Value: t_signatures.Value = ($) => v_serialize.Document(
     ),
 )
 
+export const Include: t_signatures.Include = ($) => v_serialize.Document(
+    v_marshall.Include(
+        $,
+    ),
+)
+
 export const Structural_Token: t_signatures.Structural_Token = ($) => v_serialize.Document(
     v_marshall.Structural_Token(
         $,
@@ -39,6 +45,12 @@ export const Text: t_signatures.Text = ($) => v_serialize.Document(
 
 export const ID_Value_Pairs: t_signatures.ID_Value_Pairs = ($) => v_serialize.Document(
     v_marshall.ID_Value_Pairs(
+        $,
+    ),
+)
+
+export const ID_Value_Pair: t_signatures.ID_Value_Pair = ($) => v_serialize.Document(
+    v_marshall.ID_Value_Pair(
         $,
     ),
 )
