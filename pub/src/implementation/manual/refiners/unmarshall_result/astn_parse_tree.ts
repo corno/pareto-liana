@@ -168,103 +168,82 @@ export const Value: Value = ($, $p) => {
                                 )
 
                                 return {
-                                    'properties': _p.dictionary.from.list(
-                                        prop_defs_as_list_joined_with_possible_instance
-                                    ).convert(
-                                        ($) => $.id,
-                                        ($) => ({
-                                            'definition': $.definition,
-                                            'possible instance': $['possible instance']
-                                        }),
-                                        {
-                                            'duplicate_id': () => _p_unreachable_code_path("the id's come from the properties in the definition")
-                                        }
-                                    ).__d_map(($, id) => {
-                                        const def = $.definition
-                                        return _p.optional.from.optional($['possible instance']).map(
-                                            ($) => Value(
-                                                $.value,
-                                                {
-                                                    'definition': def.value,
-                                                    'definition path': `${$p['definition path']}.${id}`,
-                                                }
-                                            )
-                                        )
-                                    }),
-                                    'superfluous properties': _p.list.from.list(
-                                        _p.list.from.list(
-                                            $
-                                        ).join(
-                                            property_definitions_as_list,
-                                            ($, $o) => {
-                                                const instance = $
-                                                return _p.decide.boolean<_pi.Optional_Value<d_in.Items.L>>(
-                                                    _p.boolean.from.optional($o).is_set(),
-                                                    () => _p.optional.literal.not_set(),
-                                                    () => _p.optional.literal.set(instance)
+                                    // 'properties': _p.dictionary.from.list(
+                                    //     prop_defs_as_list_joined_with_possible_instance
+                                    // ).convert(
+                                    //     ($) => $.id,
+                                    //     ($) => ({
+                                    //         'definition': $.definition,
+                                    //         'possible instance': $['possible instance']
+                                    //     }),
+                                    //     {
+                                    //         'duplicate_id': () => _p_unreachable_code_path("the id's come from the properties in the definition")
+                                    //     }
+                                    // ).__d_map(($, id) => {
+                                    //     const def = $.definition
+                                    //     return _p.optional.from.optional($['possible instance']).map(
+                                    //         ($) => Value(
+                                    //             $.value,
+                                    //             {
+                                    //                 'definition': def.value,
+                                    //                 'definition path': `${$p['definition path']}.${id}`,
+                                    //             }
+                                    //         )
+                                    //     )
+                                    // }),
+                                    'properties': _p.list.from.list(
+                                        $
+                                    ).join(
+                                        property_definitions_as_list,
+                                        ($, $o): d_out.Concise_Property => {
+                                            const instance = $
+                                            return {
+                                                'item': $,
+                                                'definition found': $o.__decide(
+                                                    ($): d_out.Concise_Property_Definition_Found => ['yes', {
+                                                        'definition': $.definition,
+                                                        'id': $.id,
+                                                        'value': Value(
+                                                            instance.value,
+                                                            {
+                                                                'definition': $.definition.value,
+                                                                'definition path': `${$p['definition path']}.${$.id}`,
+                                                            }
+                                                        )
+                                                    }],
+                                                    (): d_out.Concise_Property_Definition_Found => ['no', null]
                                                 )
                                             }
-                                        )
-                                    ).filter(
-                                        ($) => $
+                                        }
                                     )
                                 }
                             }
                             const verbose_content = ($: d_in.ID_Value_Pairs): d_out.Group_Verbose => {
-                                const grouped = _p.dictionary.from.list(
-                                    $
-                                ).group(
-                                    ($) => $.id.value,
-                                )
-                                const defs_joined_with_possible_instances = _p.dictionary.from.dictionary(
-                                    group_def,
-                                ).join(
-                                    grouped,
-                                    ($, $o) => ({
-                                        'definition': $,
-                                        'possible instances': $o
-                                    })
-                                )
-
-                                const instance_groups_joined_with_defs = _p.dictionary.from.dictionary(
-                                    grouped
-                                ).join(
-                                    group_def,
-                                    ($, $o) => ({
-                                        'possible definition': $o,
-                                        'instances': $
-                                    })
-                                )
                                 return {
-                                    'properties': defs_joined_with_possible_instances.__d_map(($, id) => {
-                                        const def = $.definition
-                                        return $['possible instances'].__decide(
-                                            ($) => _p.list.from.list(
-                                                $
-                                            ).map(
-                                                ($): d_out.Possibly_Not_Set_Property => ({
-                                                    'id value pair': $,
-                                                    'value': _p.optional.from.optional($.value).map(
-                                                        ($) => Value(
-                                                            $.value,
-                                                            {
-                                                                'definition': def.value,
-                                                                'definition path': `${$p['definition path']}.${id}`,
-                                                            }
-                                                        ),
-                                                    )
-                                                })
-                                            ),
-                                            () => _p.list.literal([]),
-                                        )
-                                    }),
-                                    'superfluous properties': _p.dictionary.from.dictionary(
-                                        instance_groups_joined_with_defs
-                                    ).filter(
-                                        ($) => _p.boolean.from.optional($['possible definition']).is_set()
-                                            ? _p.optional.literal.not_set()
-                                            : _p.optional.literal.set($.instances)
-                                    )
+                                    'properties': $.__l_map(($) => {
+                                        const id_value_pair = $
+                                        return {
+                                            'id value pair': $,
+                                            'definition found': group_def.__get_possible_entry_deprecated($.id.value).__decide(
+                                                ($): d_out.Verbose_Property_Definition_Found => {
+                                                    const prop_def = $
+                                                    return ['yes', {
+                                                        'definition': $,
+                                                        'value': _p.optional.from.optional(id_value_pair.value).map(
+                                                            ($) => Value(
+                                                                $.value,
+                                                                {
+                                                                    'definition': prop_def.value,
+                                                                    'definition path': `${$p['definition path']}.${id_value_pair.id.value}`,
+                                                                }
+                                                            )
+                                                        )
+                                                    }]
+                                                },
+                                                () => ['no', null]
+                                            )
+                                        }
+                                    })
                                 }
                             }
                             return _p.decide.state($, ($): d_out.Group_Found_Value_Type => {

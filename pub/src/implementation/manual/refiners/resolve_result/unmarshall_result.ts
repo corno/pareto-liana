@@ -111,25 +111,26 @@ export const Value = (
                                 'properties': _p.decide.state($['found value type'], ($) => {
                                     switch ($[0]) {
                                         case 'valid': return _p.ss($, ($) => {
-                                            const unmarshalled_properties: _pi.Dictionary<_pi.Optional_Value<d_in.Value>> = _p.decide.state($.type, ($) => {
-                                                switch ($[0]) {
-                                                    case 'verbose': return _p.ss($, ($) => $.properties.__d_map(($) => $.__get_number_of_items() === 0
-                                                        ? _p.optional.literal.not_set()
-                                                        : $.__deprecated_get_possible_item_at(0).__decide(
-                                                            ($) => $.value.__decide(
-                                                                ($) => _p.optional.literal.set($),
-                                                                () => _p.optional.literal.not_set(),
-                                                            ),
-                                                            () => _p.optional.literal.not_set(),
-                                                        )
-                                                    ))
-                                                    case 'concise': return _p.ss($, ($) => $.properties.__d_map(($) => $.__decide(
-                                                        ($) => _p.optional.literal.set($),
-                                                        () => _p.optional.literal.not_set(),
-                                                    )))
-                                                    default: return _p.au($[0])
-                                                }
-                                            })
+                                            const unmarshalled_properties: _pi.Dictionary<_pi.Optional_Value<d_in.Value>> = _pdev.implement_me("!!!!!!!")
+                                            // const unmarshalled_properties: _pi.Dictionary<_pi.Optional_Value<d_in.Value>> = _p.decide.state($.type, ($) => {
+                                            //     switch ($[0]) {
+                                            //         case 'verbose': return _p.ss($, ($) => $.properties.__d_map(($) => $.__get_number_of_items() === 0
+                                            //             ? _p.optional.literal.not_set()
+                                            //             : $.__deprecated_get_possible_item_at(0).__decide(
+                                            //                 ($) => $.value.__decide(
+                                            //                     ($) => _p.optional.literal.set($),
+                                            //                     () => _p.optional.literal.not_set(),
+                                            //                 ),
+                                            //                 () => _p.optional.literal.not_set(),
+                                            //             )
+                                            //         ))
+                                            //         case 'concise': return _p.ss($, ($) => $.properties.__d_map(($) => $.__decide(
+                                            //             ($) => _p.optional.literal.set($),
+                                            //             () => _p.optional.literal.not_set(),
+                                            //         )))
+                                            //         default: return _p.au($[0])
+                                            //     }
+                                            // })
                                             return _p.dictionary.from.dictionary(
                                                 def
                                             ).join(

@@ -9,6 +9,7 @@ import * as d_function from "../../../../interface/to_be_generated/sealed_target
 
 //dependencies
 import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 //signatures
 export type Document = _pi.Refiner<d_out.Document, d_function.Error, d_in.Document>
@@ -104,75 +105,126 @@ export const Value: Value = ($, abort) => {
                     default: return _p.au($[0])
                 }
             })])
-            case 'group': return _p.ss($, ($) => ['group', ['verbose', _p.decide.state($['found value type'], ($): d_out.Value.group.verbose => {
-                switch ($[0]) {
-                    case 'valid': return _p.ss($, ($) => {
-                        const group_start_token = _p.decide.state($.instance, ($): d_in_astn_parse_tree.Structural_Token => {
-                            switch ($[0]) {
-                                case 'dictionary': return _p.ss($, ($) => $['{'])
-                                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'verbose': return _p.ss($, ($) => $['('])
-                                        case 'concise': return _p.ss($, ($) => $['<'])
-                                        default: return _p.au($[0])
-                                    }
-                                }))
-                                case 'list': return _p.ss($, ($) => $['['])
-                                default: return _p.au($[0])
-                            }
-                        })
-                        return _p.decide.state($.type, ($) => {
-                            switch ($[0]) {
-                                case 'verbose': return _p.ss($, ($): d_out.Value.group.verbose => $.properties.__d_map(($, id) => _p.decide.list($).has_single_item(
-                                    ($) => $.value.__decide(
-                                        ($) => Value($, abort),
-                                        () => abort({
-                                            'definition path': definition_path,
-                                            'type': ['group', ['missing property', {
-                                                'name': id
-                                            }]],
-                                            'range': group_start_token.range
-                                        })
-                                    ),
-                                    () => abort({
-                                        'definition path': definition_path,
-                                        'type': ['group', ['superfluous property', {
-                                            'name': id
-                                        }]],
-                                        'range': group_start_token.range
-                                    }),
-                                    () => abort({
-                                        'definition path': definition_path,
-                                        'type': ['group', ['missing property', {
-                                            'name': id
-                                        }]],
-                                        'range': group_start_token.range
-                                    })
-                                )))
-                                case 'concise': return _p.ss($, ($): d_out.Value.group.verbose => {
-                                    return $.properties.__d_map(($, id) => $.__decide(
-                                        ($) => Value($, abort),
-                                        () => abort({
-                                            'definition path': definition_path,
-                                            'type': ['group', ['missing property', {
-                                                'name': id
-                                            }]],
-                                            'range': group_start_token.range
-                                        })
+            case 'group': return _p.ss($, ($) => {
+                const def = $
+                return ['group', ['verbose', _p.decide.state($['found value type'], ($): d_out.Value.group.verbose => {
+                    switch ($[0]) {
+                        case 'valid': return _p.ss($, ($) => {
+                            const group_start_token = _p.decide.state($.instance, ($): d_in_astn_parse_tree.Structural_Token => {
+                                switch ($[0]) {
+                                    case 'dictionary': return _p.ss($, ($) => $['{'])
+                                    case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                        switch ($[0]) {
+                                            case 'verbose': return _p.ss($, ($) => $['('])
+                                            case 'concise': return _p.ss($, ($) => $['<'])
+                                            default: return _p.au($[0])
+                                        }
+                                    }))
+                                    case 'list': return _p.ss($, ($) => $['['])
+                                    default: return _p.au($[0])
+                                }
+                            })
+                            return _p.decide.state($.type, ($) => {
+                                switch ($[0]) {
+                                    case 'verbose': return _p.ss($, ($): d_out.Value.group.verbose => _p.dictionary.from.dictionary(
+                                        def.definition
+                                    ).join(
+                                        _p.dictionary.from.list(
+                                            $.properties
+                                        ).group(
+                                            ($) => $['id value pair'].id.value
+                                        ),
+                                        ($, $o, id): d_out.Value.group.verbose.D => $o.__decide(
+                                            ($) => _p.decide.list(
+                                                $
+                                            ).has_single_item(
+                                                ($) => {
+                                                    const id_value_pair = $['id value pair']
+                                                    return _p.decide.state($['definition found'], ($) => {
+                                                        switch ($[0]) {
+                                                            case 'yes': return _p.ss($, ($) => $.value.__decide(
+                                                                ($) => Value($, abort),
+                                                                () => abort({
+                                                                    'definition path': definition_path,
+                                                                    'type': ['group', ['missing property value', {
+                                                                        'name': id
+                                                                    }]],
+                                                                    'range': id_value_pair.id.range
+                                                                }),
+                                                            ))
+                                                            case 'no': return _p.ss($, ($) => _p_unreachable_code_path("the definition should be there, as we start this logic by iterating over the properties in the definition"))
+                                                            default: return _p.au($[0])
+                                                        }
+                                                    })
+                                                },
+                                                ($) => abort({
+                                                    'definition path': definition_path,
+                                                    'type': ['group', ['multiple instances for property', {
+                                                        'name': id
+                                                    }]],
+                                                    'range': group_start_token.range
+                                                }),
+                                                () => _p_unreachable_code_path("the list is the result of a group operation, it could never have been created if there was not at least one item")
+                                            ),
+                                            () => abort({
+                                                'definition path': definition_path,
+                                                'type': ['group', ['missing property', {
+                                                    'name': id
+                                                }]],
+                                                'range': group_start_token.range
+                                            })
+                                        )
                                     ))
-                                })
-                                default: return _p.au($[0])
-                            }
+                                    case 'concise': return _p.ss($, ($): d_out.Value.group.verbose => {
+                                        return _p.dictionary.from.dictionary(
+                                            def.definition
+                                        ).join(
+                                            _p.dictionary.from.list(
+                                                _p.list.from.list(
+                                                    $.properties
+                                                ).filter(
+                                                    ($) => _p.decide.state($['definition found'], ($): _pi.Optional_Value<d_in.Concise_Property_Definition_Found__yes> => {
+                                                        switch ($[0]) {
+                                                            case 'yes': return _p.ss($, ($) => _p.optional.literal.set($))
+                                                            case 'no': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                            default: return _p.au($[0])
+                                                        }
+                                                    })
+                                                )
+                                            ).group(
+                                                ($) => $.id
+                                            ),
+                                            ($, $o, id) => $o.__decide(
+                                                ($) => _p.decide.list(
+                                                    $
+                                                ).has_single_item(
+                                                    ($) => Value($.value, abort),
+                                                    () => _p_unreachable_code_path("this is the concise notation, there cannot be multiple instances of the same property"),
+                                                    () => _p_unreachable_code_path("the list is the result of a group operation, it could never have been created if there was not at least one item")
+                                                ),
+                                                () => abort({
+                                                    'definition path': definition_path,
+                                                    'type': ['group', ['missing property', {
+                                                        'name': id
+                                                    }]],
+                                                    'range': group_start_token.range
+                                                })
+                                            )
+                                        )
+                                    })
+                                    default: return _p.au($[0])
+                                }
+                            })
                         })
-                    })
-                    case 'invalid': return _p.ss($, ($) => abort({
-                        'definition path': definition_path,
-                        'type': ['group', ['wrong type', null]],
-                        'range': t_astn_parse_tree_to_location.Value($)
-                    }))
-                    default: return _p.au($[0])
-                }
-            })]])
+                        case 'invalid': return _p.ss($, ($) => abort({
+                            'definition path': definition_path,
+                            'type': ['group', ['wrong type', null]],
+                            'range': t_astn_parse_tree_to_location.Value($)
+                        }))
+                        default: return _p.au($[0])
+                    }
+                })]]
+            })
             case 'list': return _p.ss($, ($) => ['list', _p.decide.state($['found value type'], ($): d_out.Value.list => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => $.items.__l_map(($) => Value($, abort)))

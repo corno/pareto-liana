@@ -44,7 +44,13 @@ export type Group =
 | ['missing property', {
     'name': string
 }]
-| ['superfluous property', {
+| ['missing property value', {
+    'name': string
+}]
+| ['unknown property', {
+    'name': string
+}]
+| ['multiple instances for property', {
     'name': string
 }]
 

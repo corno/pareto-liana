@@ -69,8 +69,18 @@ export const Error: _pi.Transformer_With_Parameter<d_in.Error, d_out.Phrase, d_f
                             sh.ph.literal($.name),
                             sh.ph.literal("'")
                         ]))
-                        case 'superfluous property': return _p.ss($, ($) => sh.ph.composed([
-                            sh.ph.literal("superfluous property: '"),
+                        case 'missing property value': return _p.ss($, ($) => sh.ph.composed([
+                            sh.ph.literal("missing property value: '"),
+                            sh.ph.literal($.name),
+                            sh.ph.literal("'")
+                        ]))
+                        case 'unknown property': return _p.ss($, ($) => sh.ph.composed([
+                            sh.ph.literal("unknown property: '"),
+                            sh.ph.literal($.name),
+                            sh.ph.literal("'")
+                        ]))
+                        case 'multiple instances for property': return _p.ss($, ($) => sh.ph.composed([
+                            sh.ph.literal("multiple instances for property: '"),
                             sh.ph.literal($.name),
                             sh.ph.literal("'")
                         ]))

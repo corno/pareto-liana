@@ -81,18 +81,38 @@ export type Group_Type =
     | ['concise', Group_Concise]
 
 export type Group_Concise = {
-    'properties': _pi.Dictionary<_pi.Optional_Value<Value>>
-    'superfluous properties': _pi.List<d_astn_parse_tree.Items.L>
+    'properties': _pi.List<Concise_Property>
 }
 
-export type Possibly_Not_Set_Property = {
-    'id value pair': d_astn_parse_tree.ID_Value_Pairs.L
-    'value': _pi.Optional_Value<Value>
+export type Concise_Property = {
+    'item': d_astn_parse_tree.Items.L
+    'definition found': Concise_Property_Definition_Found
 }
+
+export type Concise_Property_Definition_Found =
+    | ['yes', Concise_Property_Definition_Found__yes]
+    | ['no', null]
+
+export type Concise_Property_Definition_Found__yes = {
+    'definition': d_schema.Group.D
+    'id': string,
+    'value': Value
+}
+
+export type Verbose_Property = {
+    'id value pair': d_astn_parse_tree.ID_Value_Pairs.L
+    'definition found': Verbose_Property_Definition_Found
+}
+
+export type Verbose_Property_Definition_Found =
+    | ['yes', {
+        'definition': d_schema.Group.D
+        'value': _pi.Optional_Value<Value>
+    }]
+    | ['no', null]
 
 export type Group_Verbose = {
-    'properties': _pi.Dictionary<_pi.List<Possibly_Not_Set_Property>> //the list is used to support multiple entries with the same id (some possibly even without a value), which is an error
-    'superfluous properties': _pi.Dictionary<_pi.List<d_astn_parse_tree.ID_Value_Pairs.L>>
+    'properties': _pi.List<Verbose_Property>
 }
 
 export type List = {

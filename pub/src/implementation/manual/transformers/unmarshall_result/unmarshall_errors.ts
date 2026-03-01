@@ -7,6 +7,7 @@ import * as d_in_astn_parse_tree from "astn-core/dist/interface/generated/liana/
 
 //dependencies
 import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 export const Optional_Value = (
     $: d_in.Optional_Value,
@@ -23,127 +24,159 @@ export const Value = (
 ): d_out.Errors => {
     return _p.decide.state($.unmarshalled, ($): d_out.Errors => {
         switch ($[0]) {
-            case 'group': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
-                switch ($[0]) {
-                    case 'valid': return _p.ss($, ($) => {
-                        const group_start_token = _p.decide.state($.instance, ($): d_in_astn_parse_tree.Structural_Token => {
-                            switch ($[0]) {
-                                case 'dictionary': return _p.ss($, ($) => $['{'])
-                                case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                    switch ($[0]) {
-                                        case 'verbose': return _p.ss($, ($) => $['('])
-                                        case 'concise': return _p.ss($, ($) => $['<'])
-                                        default: return _p.au($[0])
-                                    }
-                                }))
-                                case 'list': return _p.ss($, ($) => $['['])
-                                default: return _p.au($[0])
-                            }
-                        })
-                        return _p.decide.state($.type, ($) => {
-                            switch ($[0]) {
-                                case 'concise': return _p.ss($, ($) => _p.list.nested_literal_old([
-                                    _p.list.from.list(
-                                        $.properties.__to_list<d_out.Errors>(
-                                            ($, id) => $.__decide(
-                                                ($) => Value($),
-                                                (): d_out.Errors => _p.list.literal([
-                                                    {
-                                                        'range': group_start_token.range,
-                                                        'type': ['error', ['missing property', {
-                                                            name: id
-                                                        }]]
-                                                    }
-                                                ])
-                                            )
-                                        )
-                                    ).flatten(
-                                        ($) => $
-                                    ),
-                                    $['superfluous properties'].__l_map(($): d_out.Errors.L => ({
-                                        'range': t_astn_parse_tree_to_location.Value($.value),
-                                        'type': ['error', ['superfluous property', {
-                                            'name': _p.optional.literal.not_set()
-                                        }]]
+            case 'group': return _p.ss($, ($) => {
+                const group_def = $.definition
+                return _p.decide.state($['found value type'], ($): d_out.Errors => {
+                    switch ($[0]) {
+                        case 'valid': return _p.ss($, ($) => {
+                            const group_start_token = _p.decide.state($.instance, ($): d_in_astn_parse_tree.Structural_Token => {
+                                switch ($[0]) {
+                                    case 'dictionary': return _p.ss($, ($) => $['{'])
+                                    case 'group': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                        switch ($[0]) {
+                                            case 'verbose': return _p.ss($, ($) => $['('])
+                                            case 'concise': return _p.ss($, ($) => $['<'])
+                                            default: return _p.au($[0])
+                                        }
                                     }))
-                                ]))
-                                case 'verbose': return _p.ss($, ($) => _p.list.nested_literal_old([
-                                    _p.list.nested_literal_old([
-                                        _p.list.from.dictionary(
-                                            $.properties,
+                                    case 'list': return _p.ss($, ($) => $['['])
+                                    default: return _p.au($[0])
+                                }
+                            })
+                            return _p.decide.state($.type, ($) => {
+                                switch ($[0]) {
+                                    case 'concise': return _p.ss($, ($) => _p.list.nested_literal_old([
+                                        _p.list.from.list(
+                                            _p.list.from.list(
+                                                _p.list.from.dictionary(group_def).convert(($, id) => ({ 'id': id, 'definition': $ }))
+                                            ).join(
+                                                $.properties,
+                                                ($, $o) => ({
+                                                    'implementation': $o,
+                                                    'id': $.id,
+                                                })
+                                            ),
                                         ).flatten(
-                                            ($, id): d_out.Errors => {
-                                                return _p.decide.list($).has_single_item(
-                                                    ($) => $.value.__decide(
-                                                        ($) => Value($),
-                                                        () => _p.list.literal([{
-                                                            'range': $['id value pair'].id.range,
-                                                            'type': ['error', ['missing property', {
-                                                                name: id
-                                                            }]]
-                                                        }])
-                                                    ),
-                                                    () => _p.list.from.list(
-                                                        $,
-                                                    ).flatten<d_out.Errors.L>(
-                                                        ($) => _p.list.nested_literal_old<d_out.Errors.L>([
-                                                            _p.list.literal<d_out.Errors.L>([
-                                                                {
-                                                                    'range': $['id value pair'].id.range,
-                                                                    'type': ['error', ['duplicate property', {
-                                                                        name: id
-                                                                    }]]
-                                                                }
-                                                            ]),
-                                                            $.value.__decide(
-                                                                ($) => Value($),
-                                                                () => _p.list.literal([{
-                                                                    'range': $['id value pair'].id.range,
-                                                                    'type': ['error', ['missing property', {
-                                                                        name: id
-                                                                    }]]
-                                                                }])
-                                                            ),
-                                                        ])
-                                                    ),
-                                                    () => _p.list.literal<d_out.Errors.L>([
+                                            ($): d_out.Errors => {
+                                                return $.implementation.__decide(
+                                                    ($) => _p.list.literal([]),
+                                                    () => _p.list.literal([
                                                         {
                                                             'range': group_start_token.range,
-                                                            'type': ['error', ['duplicate property', {
-                                                                name: id
+                                                            'type': ['error', ['missing property', {
+                                                                name: $.id
                                                             }]]
                                                         }
-                                                    ]),
+                                                    ])
                                                 )
                                             }
                                         ),
-                                    ]),
-                                    _p.list.from.dictionary(
-                                        $['superfluous properties'],
-                                    ).flatten<d_out.Errors.L>(
-                                        ($) => $.__l_map(($): d_out.Errors.L => ({
-                                            'range': $.id.range,
-                                            'type': ['error', ['superfluous property', {
-                                                'name': _p.optional.literal.set($.id.value)
-                                            }]]
-                                        }))
-                                    )
-                                ]))
-                                default: return _p.au($[0])
-                            }
+                                        _p.list.from.list(
+                                            $.properties
+                                        ).flatten(
+                                            ($) => {
+                                                const item = $.item
+                                                return _p.decide.state($['definition found'], ($) => {
+                                                    switch ($[0]) {
+                                                        case 'no': return _p.ss($, ($) => _p.list.literal([
+                                                            {
+                                                                'range': t_astn_parse_tree_to_location.Value(item.value),
+                                                                'type': ['error', ['superfluous property', {
+                                                                    'name': _p.optional.literal.not_set()
+                                                                }]]
+                                                            }
+                                                        ]))
+                                                        case 'yes': return _p.ss($, ($) => Value($.value, ))
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })
+                                            }
+                                        ),
+                                    ]))
+                                    case 'verbose': return _p.ss($, ($) => _p.list.nested_literal_old([
+                                        _p.list.from.dictionary(
+                                            _p.dictionary.from.dictionary(
+                                                group_def
+                                            ).join(
+                                                _p.dictionary.from.list(
+                                                    $.properties,
+                                                ).group(
+                                                    ($) => $['id value pair'].id.value
+                                                ),
+                                                ($, $o, id) => $o
+                                            ),
+                                        ).flatten(
+                                            ($, id): d_out.Errors => {
+                                                return $.__decide(
+                                                    ($) => _p.decide.list($).has_single_item(
+                                                        ($) => _p.list.literal([]),
+                                                        ($) => $.__l_map(($): d_out.Errors.L => ({
+                                                            'range': $['id value pair'].id.range,
+                                                            'type': ['error', ['duplicate property', {
+                                                                name: id
+                                                            }]]
+                                                        })),
+                                                        () => _p_unreachable_code_path("the list is the result of a group operation, it could never have been created if there was not at least one item")
+                                                    ),
+                                                    () => _p.list.literal([
+                                                        {
+                                                            'range': group_start_token.range,
+                                                            'type': ['error', ['missing property', {
+                                                                name: id
+                                                            }]]
+                                                        }
+                                                    ])
+                                                )
+                                            }
+                                        ),
+                                        _p.list.from.list(
+                                            $.properties,
+                                        ).flatten<d_out.Errors.L>(
+                                            ($) => {
+                                                const id_value_pair = $['id value pair']
+                                                return _p.decide.state($['definition found'], ($) => {
+                                                    switch ($[0]) {
+                                                        case 'yes': return _p.ss($, ($) => $.value.__decide(
+                                                            ($) => Value($),
+                                                            (): d_out.Errors => _p.list.literal([
+                                                                {
+                                                                    'range': id_value_pair.id.range,
+                                                                    'type': ['error', ['missing property', { //'missing property value'
+                                                                        'name': id_value_pair.id.value
+                                                                    }]]
+                                                                }
+                                                            ])
+                                                        ))
+                                                        case 'no': return _p.ss($, ($) => _p.list.literal([
+                                                            {
+                                                                'range': id_value_pair.id.range,
+                                                                'type': ['error', ['superfluous property', {
+                                                                    'name': _p.optional.literal.set(id_value_pair.id.value)
+                                                                }]]
+                                                            }
+                                                        ]))
+                                                        default: return _p.au($[0])
+                                                    }
+                                                })
+                                            }
+                                        )
+                                    ]))
+                                    default: return _p.au($[0])
+                                }
+                            })
                         })
-                    })
-                    case 'invalid': return _p.ss($, ($) => _p.list.literal([
-                        {
-                            'range': t_astn_parse_tree_to_location.Value($),
-                            'type': ['error', ['invalid value type', {
-                                'expected': _p.list.literal([['verbose group', null]]),
-                            }]]
-                        }
-                    ]))
-                    default: return _p.au($[0])
-                }
-            }))
+                        case 'invalid': return _p.ss($, ($) => _p.list.literal([
+                            {
+                                'range': t_astn_parse_tree_to_location.Value($),
+                                'type': ['error', ['invalid value type', {
+                                    'expected': _p.list.literal([['verbose group', null]]),
+                                }]]
+                            }
+                        ]))
+                        default: return _p.au($[0])
+                    }
+                })
+            })
             case 'dictionary': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => {

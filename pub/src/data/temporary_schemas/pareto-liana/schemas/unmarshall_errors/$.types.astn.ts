@@ -36,6 +36,9 @@ export const $: g_.Modules = modules(
                     "missing property": toption(t.group({
                         "name": prop(t.text_local(text('single line'))),
                     })),
+                    "missing property value": toption(t.group({
+                        "name": prop(t.text_local(text('single line'))),
+                    })),
                     "superfluous property": toption(t.group({
                         "name": prop(t.optional(t.text_local(text('single line')))),
                     })),
