@@ -1,6 +1,6 @@
 {
   "name": "pareto-liana",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "A library for the Liana schema modeling language",
@@ -17,7 +17,7 @@
     "pareto-core-shorthands": "^0.2.26",
     "pareto-fountain-pen": "^0.4.49",
     "pareto-fountain-pen-file-structure": "^0.0.6",
-    "pareto-host-nodejs": "^0.2.34",
+    "pareto-host-nodejs": "^0.2.35",
     "pareto-resources": "^0.2.56"
   }
 }

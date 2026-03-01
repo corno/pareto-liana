@@ -57,12 +57,12 @@ export const Error_Type_Error = (
 ): d_out.Phrase => _p.decide.state($, ($) => {
     switch ($[0]) {
         case 'duplicate property': return _p.ss($, ($) => sh.ph.composed([
-            sh.ph.literal("Duplicate property \""),
+            sh.ph.literal("duplicate property \""),
             sh.ph.literal($.name),
             sh.ph.literal("\"")
         ]))
         case 'invalid value type': return _p.ss($, ($) => sh.ph.composed([
-            sh.ph.literal("Invalid value type, expected "),
+            sh.ph.literal("invalid value type, expected "),
             sh.ph.rich(
                 $.expected.__l_map(($) => sh.ph.composed([
                     sh.ph.literal("'"),
@@ -76,22 +76,42 @@ export const Error_Type_Error = (
 
             )
         ]))
-        case 'missing property': return _p.ss($, ($) => sh.ph.literal("Missing property '${$.name}'"))
-        case 'superfluous property': return _p.ss($, ($) => sh.ph.literal("Superfluous property '${$.name}'"))
+        case 'missing property': return _p.ss($, ($) => sh.ph.composed([
+            sh.ph.literal("missing property '"),
+            sh.ph.literal($.name),
+            sh.ph.literal("'")
+        ]))
+        case 'superfluous property': return _p.ss($, ($) => sh.ph.composed([
+            sh.ph.literal("superfluous property"),
+            $.name.__decide(
+                ($) => sh.ph.composed([
+                    sh.ph.literal(" '"),
+                    sh.ph.literal($),
+                    sh.ph.literal("'")
+                ]),
+                () => sh.ph.nothing()
+            )
+        ]))
         case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
-                case 'missing option name': return _p.ss($, ($) => sh.ph.literal("Missing option name"))
-                case 'missing data marker': return _p.ss($, ($) => sh.ph.literal("Missing data marker"))
-                case 'missing value': return _p.ss($, ($) => sh.ph.literal("Missing value"))
-                case 'more than 2 items': return _p.ss($, ($) => sh.ph.literal("More than 2 items"))
-                case 'option name is not a text': return _p.ss($, ($) => sh.ph.literal("Option name is not a text"))
+                case 'missing option name': return _p.ss($, ($) => sh.ph.literal("missing option name"))
+                case 'missing data marker': return _p.ss($, ($) => sh.ph.literal("missing data marker"))
+                case 'missing value': return _p.ss($, ($) => sh.ph.literal("missing value"))
+                case 'more than 2 items': return _p.ss($, ($) => sh.ph.literal("more than 2 items"))
+                case 'option name is not a text': return _p.ss($, ($) => sh.ph.literal("option name is not a text"))
                 case 'unknown option': return _p.ss($, ($) => sh.ph.composed([
-                    sh.ph.literal("Unknown option: ${$.found}, expected one of "),
+                    sh.ph.literal("unknown option: '"),
+                    sh.ph.literal($.found),
+                    sh.ph.literal("', expected one of "),
                     sh.ph.composed(
                         _p.list.from.dictionary(
                             $.expected,
                         ).convert(
-                            ($, id) => sh.ph.literal("'${id}'")
+                            ($, id) => sh.ph.composed([
+                                sh.ph.literal("'"),
+                                sh.ph.literal(id),
+                                sh.ph.literal("'")
+                            ])
                         )
                     )
                 ]))

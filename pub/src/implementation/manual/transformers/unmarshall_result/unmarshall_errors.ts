@@ -184,25 +184,44 @@ export const Value: Value = ($) => {
             case 'dictionary': return _p.ss($, ($) => _p.decide.state($['found value type'], ($): d_out.Errors => {
                 switch ($[0]) {
                     case 'valid': return _p.ss($, ($) => {
-                        return _p.list.from.list(
-                            $.entries,
-                        ).flatten(
-                            ($) => _p.list.nested_literal_old<d_out.Errors.L>([
-                                _p.list.literal([
-                                    {
-                                        'range': $['id value pair'].id.range,
-                                        'type': ['error', ['duplicate property', {
-                                            name: $['id value pair'].id.value
-                                        }]]
-                                    }
-                                ]),
-                                $.value.__decide(
+                        return _p.list.nested_literal_old([
+                            _p.list.from.dictionary(
+                                _p.dictionary.from.list(
+                                    $.entries
+                                ).group(
+                                    ($) => $['id value pair'].id.value
+                                )
+                            ).flatten(
+                                ($, id): d_out.Errors => {
+                                    return _p.decide.list($).has_single_item(
+                                        ($) => _p.list.literal([]),
+                                        ($) => $.__l_map(($): d_out.Errors.L => ({
+                                            'range': $['id value pair'].id.range,
+                                            'type': ['error', ['duplicate property', {
+                                                name: id
+                                            }]]
+                                        })),
+                                        () => _p_unreachable_code_path("the list is the result of a group operation, it could never have been created if there was not at least one item")
+                                    )
+                                }
+                            ),
+                            _p.list.from.list(
+                                $.entries,
+                            ).flatten(
+                                ($) => $.value.__decide(
                                     ($) => Value($),
 
-                                    () => _p.list.literal([]), //FIXME! optional node not set is often an error
+                                    () => _p.list.literal<d_out.Errors.L>([
+                                        {
+                                            'range': $['id value pair'].id.range,
+                                            'type': ['error', ['missing property', { //missing property value
+                                                name: $['id value pair'].id.value
+                                            }]]
+                                        }
+                                    ]), //FIXME! optional node not set is often an error
                                 )
-                            ])
-                        )
+                            )
+                        ])
                     })
                     case 'invalid': return _p.ss($, ($) => _p.list.literal([
                         {
