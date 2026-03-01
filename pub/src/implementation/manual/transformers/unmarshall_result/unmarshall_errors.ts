@@ -197,7 +197,7 @@ export const Value: Value = ($) => {
                                         ($) => _p.list.literal([]),
                                         ($) => $.__l_map(($): d_out.Errors.L => ({
                                             'range': $['id value pair'].id.range,
-                                            'type': ['error', ['duplicate property', {
+                                            'type': ['error', ['duplicate entry', {
                                                 name: id
                                             }]]
                                         })),
@@ -214,7 +214,7 @@ export const Value: Value = ($) => {
                                     () => _p.list.literal<d_out.Errors.L>([
                                         {
                                             'range': $['id value pair'].id.range,
-                                            'type': ['error', ['missing property', { //missing property value
+                                            'type': ['error', ['missing property value', { //missing property value
                                                 name: $['id value pair'].id.value
                                             }]]
                                         }
