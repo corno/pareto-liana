@@ -20,6 +20,8 @@ import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/t
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
 import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
+import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
+import * as t_loc_to_fp from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -78,12 +80,18 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                         sh.ph.literal("': "),
                                         _p.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'resolve error': return _p.ss($, ($) => t_resolve_to_fp.Error(
-                                                    $,
-                                                    {
-                                                        'character location reporting': ['one based', null]
-                                                    }
-                                                ))
+                                                case 'resolve error': return _p.ss($, ($) => sh.ph.composed([
+                                                    t_loc_to_fp.Range(
+                                                        t_resolve_to_location.Error($),
+                                                        {
+                                                            'character location reporting': ['one based', null]
+                                                        }
+                                                    ),
+                                                    sh.ph.literal(": "),
+                                                    t_resolve_to_fp.Error(
+                                                        $,
+                                                    )
+                                                ]))
                                                 case 'error writing file': return _p.ss($, ($) => t_write_file_to_fp.Error($))
                                                 default: return _p.au($[0])
                                             }

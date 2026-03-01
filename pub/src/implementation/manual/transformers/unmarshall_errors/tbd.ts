@@ -5,6 +5,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as d_in from "../../../../interface/generated/liana/schemas/unmarshall_errors/data"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
+import * as d_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
 
 //dependencies
 import * as t_loc_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
@@ -13,15 +14,18 @@ import * as t_loc_to_fountain_pen from "astn-core/dist/implementation/manual/tra
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
-export const Errors: _pi.Transformer_With_Parameter<d_in.Errors, d_out.Paragraph, d_function_loc.Parameters> = (
+export type Temp_Errors = _pi.List<{
+    'range': d_loc.Range,
+    'message': d_out.Phrase
+}>
+
+export const Errors: _pi.Transformer<d_in.Errors, Temp_Errors> = (
     $,
-    $p
 ) => {
-    return sh.pg.sentences($.__l_map(($) => {
-        return sh.sentence([
-            t_loc_to_fountain_pen.Range($.range, $p),
-            sh.ph.literal(": "),
-            _p.decide.state($.type, ($) => {
+    return $.__l_map(($) => {
+        return ({
+            'range': $.range,
+            'message': _p.decide.state($.type, ($) => {
                 switch ($[0]) {
                     case 'error': return _p.ss($, ($) => sh.ph.composed([
                         sh.ph.literal("Error: "),
@@ -34,8 +38,8 @@ export const Errors: _pi.Transformer_With_Parameter<d_in.Errors, d_out.Paragraph
                     default: return _p.au($[0])
                 }
             })
-        ])
-    }))
+        })
+    })
 }
 
 export const Error_Type_Error = (

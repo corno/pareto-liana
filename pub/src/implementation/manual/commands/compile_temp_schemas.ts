@@ -38,10 +38,12 @@ import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_inte
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
+import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
+import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, d_function_loc.Parameters> = ($, $p) => {
+export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, d_function_loc.Old_Parameters> = ($, $p) => {
     return sh.pg.sentences($.__to_list(
         ($, id) => sh.sentence([
             sh.ph.literal("error in package '"),
@@ -56,7 +58,18 @@ export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, d_func
                     case 'could not write implementation': return _p.ss($, ($) => sh.ph.literal("could not write implementation"))
                     case 'could not copy generic implementation': return _p.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
                     case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                    case 'could not deserialize module': return _p.ss($, ($) => t_resolve_to_fountain_pen.Error($, $p))
+                    case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
+                            t_location_to_fountain_pen.Range(
+                                t_resolve_to_location.Error($),
+                                {
+                                    'character location reporting': ['one based', null],
+                                }
+                            ),
+                            sh.ph.literal(": "),
+                            t_resolve_to_fountain_pen.Error(
+                                $,
+                            )
+                        ]))
                     default: return _p.au($[0])
                 }
             })

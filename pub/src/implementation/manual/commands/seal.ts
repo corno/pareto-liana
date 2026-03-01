@@ -16,7 +16,7 @@ import * as t_load_file_to_fp from "../transformers/load_file/fountain_pen"
 import * as r_astn_sealed_target_from_unmarshall_result from "../refiners/astn_sealed_target/unmarshall_result"
 import * as t_astn_sealed_target_to_fp from "astn-core/dist/implementation/manual/transformers/sealed_target/fountain_pen"
 import * as t_fp_to_text from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/text"
-import * as t_auth_targ_from_unmarshall_result_to_fountain_pen from "../transformers/auth_target_from_unmarshall_result/fountain_pen"
+import * as t_auth_targ_from_unmarshall_result_to_fountain_pen from "../transformers/sealed_target_from_unmarshall_result/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -38,19 +38,23 @@ export const $$: signatures.commands.transform_file = _p.command_procedure(($p, 
                                 'file path': $r.in,
                                 'tab size': 4,
                             },
-                            ($): d_transform_file.Error => ['processing', t_load_file_to_fp.Error(
-                                $,
-                                {
-                                    'character location reporting': ['one based', null]
-                                }
-                            )]
+                            ($): d_transform_file.Error => ['processing', sh.ph.composed([
+                                sh.ph.literal("FIX location"),
+                                t_load_file_to_fp.Error(
+                                    $,
+                                )
+                            ])]
                         ),
-                        ($, abort) => r_astn_sealed_target_from_unmarshall_result.Document($, ($) => abort(['processing', t_auth_targ_from_unmarshall_result_to_fountain_pen.Error(
-                            $,
-                            {
-                                'character location reporting': ['one based', null]
-                            }
-                         ) ])),
+                        ($, abort) => r_astn_sealed_target_from_unmarshall_result.Document($, ($) => abort(['processing', sh.ph.composed([
+                            sh.ph.literal("FIX location"),
+                            t_auth_targ_from_unmarshall_result_to_fountain_pen.Error(
+                                $,
+                                // {
+                                //     'character location reporting': ['one based', null]
+                                // }
+                            )
+                        ])
+                        ])),
                         ($) => [
 
                             $cr['write file'].execute(

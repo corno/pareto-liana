@@ -7,7 +7,7 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schem
 import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
 
 export namespace signatures {
-    export type Error = _pi.Transformer_With_Parameter<d_in.Error, d_out.Phrase, d_function_loc.Parameters>
+    export type Error = _pi.Transformer<d_in.Error, d_out.Phrase>
 }
 
 //dependencies
@@ -18,9 +18,9 @@ import * as t_load_pareto_document from "../get_unmarshalled_document/fountain_p
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
-export const Error: signatures.Error = ($, $p) => _p.decide.state($, ($) => {
+export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'document': return _p.ss($, ($) => t_load_pareto_document.Error($, $p))
+        case 'document': return _p.ss($, ($) => t_load_pareto_document.Error($))
         case 'read file': return _p.ss($, ($) => t_read_file_to_fountain_pen.Error($))
         default: return _p.au($[0])
     }
