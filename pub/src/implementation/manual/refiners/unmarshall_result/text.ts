@@ -8,15 +8,9 @@ import * as d_function from "../../../../interface/to_be_generated/deserialize_u
 import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/text/data"
 
 
-type Parameters = {
-    'instance path': string
-    'schema content': string
-    'schema path': string
-    'tab size': number
-}
 
-export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.Text, Parameters>
-export type Document = _pi.Refiner_With_Parameter<d_out.Document, d_function.Error, d_in.Text, Parameters>
+export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.Text, d_function. Parameters>
+export type Document = _pi.Refiner_With_Parameter<d_out.Document, d_function.Error, d_in.Text, d_function.Parameters>
 
 //depencencies
 import * as t_from_loc from "./list_of_characters"

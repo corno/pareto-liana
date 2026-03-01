@@ -10,14 +10,14 @@ import * as d from "../../../interface/to_be_generated/get_unmarshalled_document
 
 //depencencies
 
-import * as r_unmashall_result_from_list_of_characters from "../refiners/unmarshall_result/list_of_characters"
+import * as r_unmashall_result_from_text from "../refiners/unmarshall_result/text"
 import { create_node_path } from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
 
 export const $$x: signatures.queries.get_unmarshalled_document = _p.query_function(
     ($p, $qr) => {
 
-        const schema_path = create_node_path($p['file path'].context, { 'node': "astn-schema"})
+        const schema_path = create_node_path($p['file path'].context, { 'node': "astn-schema" })
 
         const schema_path_text = _p_text_from_list(
             t_path_to_text.Node_Path(schema_path),
@@ -30,22 +30,21 @@ export const $$x: signatures.queries.get_unmarshalled_document = _p.query_functi
                 'file location': schema_path_text,
             }]
         ).refine_without_error_transformation(
-            ($, abort) => r_unmashall_result_from_list_of_characters.Document(
-                _p_list_from_text(
-                    $p.content,
-                    ($) => $
-                ),
+            ($, abort) => r_unmashall_result_from_text.Document(
+                $p.content,
                 ($) => abort(['deserialize', $]),
                 {
                     'instance path': _p_text_from_list(
                         t_path_to_text.Node_Path($p['file path']),
                         ($) => $,
                     ),
-                    'schema content': _p_text_from_list(
-                        $,
-                        ($) => $
-                    ),
-                    'schema path': schema_path_text,
+                    'schema': {
+                        'content': _p_text_from_list(
+                            $,
+                            ($) => $
+                        ),
+                        'path': schema_path_text,
+                    },
                     'tab size': $p['tab size'],
                 },
             ),

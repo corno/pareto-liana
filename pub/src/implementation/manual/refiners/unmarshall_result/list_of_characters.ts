@@ -7,15 +7,8 @@ import * as d_out from "../../../../interface/to_be_generated/unmashall_result"
 import * as d_function from "../../../../interface/to_be_generated/deserialize_unmarshall_result"
 import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
-type Parameters = {
-    'instance path': string
-    'schema content': string
-    'schema path': string
-    'tab size': number
-}
-
-export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.List_of_Characters, Parameters>
-export type Document = _pi.Refiner_With_Parameter<d_out.Document, d_function.Error, d_in.List_of_Characters, Parameters>
+export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.List_of_Characters, d_function.Parameters>
+export type Document = _pi.Refiner_With_Parameter<d_out.Document, d_function.Error, d_in.List_of_Characters, d_function.Parameters>
 
 //depencencies
 import * as tu_dynamic_unmarshall from "./astn_parse_tree"
@@ -31,15 +24,15 @@ export const Document: Document = ($, abort, $p) => {
 export const Value: Value = ($, abort, $p) => {
     const x = r_temp_module_specifier_from_loc.Module_Specifier(
         _p_list_from_text(
-            $p['schema content'],
+            $p['schema']['content'],
             ($) => $
         ),
         ($) => abort(['schema error', {
             'error': $,
-            'file location': $p['schema path'],
+            'file location': $p['schema']['path'],
         }]),
         {
-            'document resource identifier': $p['schema path'],
+            'document resource identifier': $p['schema']['path'],
         }
     )
 
