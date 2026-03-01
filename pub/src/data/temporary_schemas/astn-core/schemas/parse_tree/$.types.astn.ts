@@ -73,14 +73,16 @@ export const $: g_.Modules = modules(
                     })),
                     "text": toption(t.component("Text")),
                 })),
-                "include": toption(t.group({
-                    "@": prop(t.component("Structural Token")),
-                    "path": prop(t.component("Text")),
-                })),
+                "include": toption(t.component("Include")),
                 "missing data": toption(t.group({
                     "#": prop(t.component("Structural Token")),
                 })),
             })),
+        })),
+
+        "Include": module_(t.group({
+            "@": prop(t.component("Structural Token")),
+            "path": prop(t.component("Text")),
         })),
 
         "Structural Token": module_(t.group({
@@ -95,13 +97,15 @@ export const $: g_.Modules = modules(
             "type": prop(t.component_external("token", "Text Type")),
         })),
 
-        "ID Value Pairs": module_(t.list(t.group({
+        "ID Value Pairs": module_(t.list(t.component("ID Value Pair"))),
+
+        "ID Value Pair": module_(t.group({
             "id": prop(t.component("Text")),
             "value": prop(t.optional(t.group({
                 ":": prop(t.component("Structural Token")),
                 "value": prop(t.component("Value")),
             }))),
-        }))),
+        })),
 
         "Items": module_(t.list(t.group({
             "value": prop(t.component("Value")),

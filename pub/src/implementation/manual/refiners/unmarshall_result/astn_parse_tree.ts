@@ -415,7 +415,7 @@ export const Value: Value = ($, $p) => {
                                                                         ($, rest): d_out.State_Option_Processing => {
                                                                             const raw_value = $
                                                                             return _p.decide.list(rest).has_items(
-                                                                                ($) => ['list format', ['too many items', null]],
+                                                                                ($) => ['error', ['list format', ['too many items', null]]],
                                                                                 (): d_out.State_Option_Processing => _p.decide.optional(
                                                                                     def.options.__get_possible_entry_deprecated(option_name),
                                                                                     ($): d_out.State_Option_Processing => {
@@ -432,28 +432,28 @@ export const Value: Value = ($, $p) => {
                                                                                             )
                                                                                         }]
                                                                                     },
-                                                                                    (): d_out.State_Option_Processing => ['unknown option', {
+                                                                                    (): d_out.State_Option_Processing => ['error', ['unknown option', {
                                                                                         'token': option_token
-                                                                                    }]
+                                                                                    }]]
                                                                                 )
                                                                             )
                                                                         },
-                                                                        (): d_out.State_Option_Processing => ['list format', ['missing value item', null]]
+                                                                        (): d_out.State_Option_Processing => ['error', ['list format', ['missing value item', null]]]
                                                                     )
                                                                 })
-                                                                default: return ['list format', ['option item is not a text', {
+                                                                default: return ['error', ['list format', ['option item is not a text', {
                                                                     'value': option_value
-                                                                }]]
+                                                                }]]]
                                                             }
                                                         }))
-                                                        default: return ['list format', ['option item is not a text', {
+                                                        default: return ['error', ['list format', ['option item is not a text', {
                                                             'value': option_value
-                                                        }]]
+                                                        }]]]
                                                     }
                                                 })
 
                                             },
-                                            (): d_out.State_Option_Processing => ['list format', ['missing option item', null]]
+                                            (): d_out.State_Option_Processing => ['error', ['list format', ['missing option item', null]]]
                                         ),
                                     }]
                                 })
@@ -479,9 +479,9 @@ export const Value: Value = ($, $p) => {
                                                                 }
                                                             )
                                                         }],
-                                                        () => ['unknown option', {
+                                                        () => ['error', ['unknown option', {
                                                             'token': $.option
-                                                        }]
+                                                        }]]
                                                     )
                                                 })
                                                 default: return _p.au($[0])

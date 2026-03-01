@@ -73,7 +73,7 @@ export const Value = (
                                             ).group(
                                                 ($) => $['id value pair'].id.value
                                             )
-                                        ).map(($, id):d_out.Optional_Entry => _p.decide.list($).has_single_item(
+                                        ).map(($, id): d_out.Optional_Entry => _p.decide.list($).has_single_item(
                                             ($) => $.value.__decide(
                                                 ($) => _p.optional.literal.set(Value(
                                                     $,
@@ -271,8 +271,14 @@ export const Value = (
                                                         'module parameters': $p['module parameters'],
                                                     }
                                                 )))
-                                                case 'unknown option': return _p.ss($, ($) => _p.optional.literal.not_set())
-                                                case 'list format': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                case 'error': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                                                    switch ($[0]) {
+                                                        case 'unknown option': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                        case 'list format': return _p.ss($, ($) => _p.optional.literal.not_set())
+
+                                                        default: return _p.au($[0])
+                                                    }
+                                                }))
                                                 case 'missing data': return _p.ss($, ($) => _p.optional.literal.not_set())
                                                 default: return _p.au($[0])
                                             }
