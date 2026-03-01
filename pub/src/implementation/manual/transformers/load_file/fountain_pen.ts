@@ -12,7 +12,7 @@ export namespace signatures {
 
 //dependencies
 import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
-import * as t_load_pareto_document from "../load_document/fountain_pen"
+import * as t_load_pareto_document from "../unmarshall_result_from_loc/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"

@@ -2,7 +2,7 @@ import * as _pi from 'pareto-core/dist/interface'
 
 import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas/path/data"
 import * as d_unmarshall_result from "./unmashall_result"
-import * as d_deserialize_unmarshall_result from "./deserialize_unmarshall_result"
+import * as d_deserialize_unmarshall_result from "./unmarshall_result_from_loc"
 import * as d_loc from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 export type Result = d_unmarshall_result.Document

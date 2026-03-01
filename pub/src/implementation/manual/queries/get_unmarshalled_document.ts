@@ -17,7 +17,7 @@ import * as t_path_to_text from "pareto-resources/dist/implementation/manual/tra
 export const $$x: signatures.queries.get_unmarshalled_document = _p.query_function(
     ($p, $qr) => {
 
-        const schema_path = create_node_path($p['file path'].context, { 'node': "astn-schema" })
+        const schema_path = create_node_path($p['file path'].context, { 'node': "liana.schema" })
 
         const schema_path_text = _p_text_from_list(
             t_path_to_text.Node_Path(schema_path),

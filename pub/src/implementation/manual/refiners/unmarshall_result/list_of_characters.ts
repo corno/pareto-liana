@@ -4,7 +4,7 @@ import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 
 //data types
 import * as d_out from "../../../../interface/to_be_generated/unmashall_result"
-import * as d_function from "../../../../interface/to_be_generated/deserialize_unmarshall_result"
+import * as d_function from "../../../../interface/to_be_generated/unmarshall_result_from_loc"
 import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 export type Value = _pi.Refiner_With_Parameter<d_out.Value, d_function.Error, d_in.List_of_Characters, d_function.Parameters>
@@ -24,7 +24,7 @@ export const Document: Document = ($, abort, $p) => {
 export const Value: Value = ($, abort, $p) => {
     const x = r_temp_module_specifier_from_loc.Module_Specifier(
         $p['schema']['content'],
-        ($) => abort(['schema error', {
+        ($) => abort(['schema', {
             'error': $,
             'file location': $p['schema']['path'],
         }]),
@@ -36,7 +36,7 @@ export const Value: Value = ($, abort, $p) => {
     const x3 = tu_dynamic_unmarshall.Value(
         r_parse_tree_from_text.Document(
             $,
-            ($) => abort(['parse error', $]),
+            ($) => abort(['parse', $]),
             {
                 'tab size': $p['tab size'],
                 'document resource identifier': $p['instance path']

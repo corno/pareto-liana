@@ -12,9 +12,9 @@ export type Parameters = {
 }
 
 export type Error =
-    | ['schema error', {
+    | ['schema', {
         'error': d_deserialize_schema.Error,
         'file location': string
     }]
-    | ['parse error', d_parse_result.Error]
-    | ['unmarshall error', null]
+    | ['parse', d_parse_result.Error]
+    // | ['unmarshall', null]
