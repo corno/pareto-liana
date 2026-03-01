@@ -16,5 +16,5 @@ export type Error =
         'error': d_deserialize_schema.Error,
         'file location': string
     }]
-    | ['parse', d_parse_result.Error]
+    | ['deserialize', d_parse_result.Error]
     // | ['unmarshall', null]

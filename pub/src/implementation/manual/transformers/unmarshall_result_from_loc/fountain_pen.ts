@@ -23,7 +23,7 @@ export const Error: signatures.Error = ($) => _p.decide.state($, ($) => {
                 t_deserialize_resolved_to_fountain_pen.Error($.error)
             ])
         })
-        case 'parse': return _p.ss($, ($) => t_deserialize_parse_tree_to_fountain_pen.Error($))
+        case 'deserialize': return _p.ss($, ($) => t_deserialize_parse_tree_to_fountain_pen.Error($))
         default: return _p.au($[0])
     }
 })

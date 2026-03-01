@@ -14,33 +14,43 @@ import * as t_loc_to_fountain_pen from "astn-core/dist/implementation/manual/tra
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
-export type Temp_Errors = _pi.List<{
-    'range': d_loc.Range,
-    'message': d_out.Phrase
-}>
+// export type Temp_Errors = _pi.List<{
+//     'range': d_loc.Range,
+//     'message': d_out.Phrase
+//     'severity': 
+//     | ['error', null]
+//     | ['warning', null]
+// }>
 
-export const Errors: _pi.Transformer<d_in.Errors, Temp_Errors> = (
-    $,
-) => {
-    return $.__l_map(($) => {
-        return ({
-            'range': $.range,
-            'message': _p.decide.state($.type, ($) => {
-                switch ($[0]) {
-                    case 'error': return _p.ss($, ($) => sh.ph.composed([
-                        sh.ph.literal("Error: "),
-                        Error_Type_Error($)
-                    ]))
-                    case 'warning': return _p.ss($, ($) => sh.ph.composed([
-                        sh.ph.literal("Warning: "),
-                        Error_Type_Warning($)
-                    ]))
-                    default: return _p.au($[0])
-                }
-            })
-        })
-    })
-}
+// export const Errors: _pi.Transformer<d_in.Errors, Temp_Errors> = (
+//     $,
+// ) => {
+//     return $.__l_map(($) => {
+//         return ({
+//             'range': $.range,
+//             'message': _p.decide.state($.type, ($) => {
+//                 switch ($[0]) {
+//                     case 'error': return _p.ss($, ($) => sh.ph.composed([
+//                         sh.ph.literal("Error: "),
+//                         Error_Type_Error($)
+//                     ]))
+//                     case 'warning': return _p.ss($, ($) => sh.ph.composed([
+//                         sh.ph.literal("Warning: "),
+//                         Error_Type_Warning($)
+//                     ]))
+//                     default: return _p.au($[0])
+//                 }
+//             }),
+//             'severity': _p.decide.state($.type, ($) => {
+//                 switch ($[0]) {
+//                     case 'error': return _p.ss($, ($) => ['error', null])
+//                     case 'warning': return _p.ss($, ($) => ['warning', null])
+//                     default: return _p.au($[0])
+//                 }
+//             })
+//         })
+//     })
+// }
 
 export const Error_Type_Error = (
     $: d_in.Errors.L.type_.error,

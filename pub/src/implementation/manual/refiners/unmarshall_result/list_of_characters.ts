@@ -36,7 +36,7 @@ export const Value: Value = ($, abort, $p) => {
     const x3 = tu_dynamic_unmarshall.Value(
         r_parse_tree_from_text.Document(
             $,
-            ($) => abort(['parse', $]),
+            ($) => abort(['deserialize', $]),
             {
                 'tab size': $p['tab size'],
                 'document resource identifier': $p['instance path']
