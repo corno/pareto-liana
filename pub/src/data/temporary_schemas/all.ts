@@ -25,7 +25,7 @@ import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
 import { $ as m_liana_targets } from "./liana-targets/module.astn"
 // import { $ as m_pareto_test } from "./pareto-test/module.astn"
-import { $ as m_liana_vscode_backend } from "./liana-vscode-backend/module.astn"
+import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
 
 
 export type Package = {
@@ -90,9 +90,9 @@ export const $ = _p.dictionary.literal<Package>({
     //     'target path': "../pareto-test",
     //     'module': m_pareto_test,
     // },
-    "liana-vscode-backend": {
-        'target path': "../liana-vscode-backend",
-        'package': m_liana_vscode_backend,
+    "liana-authoring": {
+        'target path': "../liana-authoring",
+        'package': m_liana_authoring,
     },
     // "accounting_ruwe_data": {
     //     'target path': "../../../pareto-rosetta/accounting_ruwe_data",

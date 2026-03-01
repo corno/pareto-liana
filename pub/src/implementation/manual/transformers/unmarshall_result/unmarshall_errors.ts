@@ -1,4 +1,6 @@
 import * as _p from 'pareto-core/dist/assign'
+import * as _pi from 'pareto-core/dist/interface'
+import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 //data types
 import * as d_in from "../../../../interface/to_be_generated/unmashall_result"
@@ -7,21 +9,23 @@ import * as d_in_astn_parse_tree from "astn-core/dist/interface/generated/liana/
 
 //dependencies
 import * as t_astn_parse_tree_to_location from "astn-core/dist/implementation/manual/transformers/parse_tree/start_token_range"
-import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
-export const Optional_Value = (
-    $: d_in.Optional_Value,
-): d_out.Errors => {
-    return $.__decide(
-        ($) => Value($),
+export type Document = _pi.Transformer<
+    d_in.Document,
+    d_out.Errors
+>
 
-        () => _p.list.literal([]), //FIXME! optional node not set is often an error
-    )
+export type Value = _pi.Transformer<
+    d_in.Value,
+    d_out.Errors
+>
+
+
+export const Document: Document = ($) => {
+    return Value($.content)
 }
 
-export const Value = (
-    $: d_in.Value,
-): d_out.Errors => {
+export const Value: Value = ($) => {
     return _p.decide.state($.unmarshalled, ($): d_out.Errors => {
         switch ($[0]) {
             case 'group': return _p.ss($, ($) => {
@@ -86,7 +90,7 @@ export const Value = (
                                                                 }]]
                                                             }
                                                         ]))
-                                                        case 'yes': return _p.ss($, ($) => Value($.value, ))
+                                                        case 'yes': return _p.ss($, ($) => Value($.value,))
                                                         default: return _p.au($[0])
                                                     }
                                                 })
@@ -192,7 +196,11 @@ export const Value = (
                                         }]]
                                     }
                                 ]),
-                                Optional_Value($.value)
+                                $.value.__decide(
+                                    ($) => Value($),
+
+                                    () => _p.list.literal([]), //FIXME! optional node not set is often an error
+                                )
                             ])
                         )
                     })
