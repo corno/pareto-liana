@@ -256,34 +256,36 @@ export const Value = (
                                 'unmarshalled': $,
                                 'option': _p.decide.state($['found value type'], ($) => {
                                     switch ($[0]) {
-                                        case 'valid': return _p.ss($, ($) => _p.decide.state($['option processing'], ($) => {
+                                        case 'valid': return _p.ss($, ($) => _p.decide.state($['option'], ($) => {
                                             switch ($[0]) {
-                                                case 'success': return _p.ss($, ($) => _p.optional.literal.set(Value(
-                                                    $.value,
-                                                    {
-                                                        'definition': def.options.__get_entry_deprecated(
-                                                            $['option name'],
-                                                            {
-                                                                'no_such_entry': _p_unreachable_code_path("the definition is resolved")
-                                                            }
-                                                        ).resolver,
-                                                        'resolver': $p.resolver,
-                                                        'module parameters': $p['module parameters'],
-                                                    }
-                                                )))
-                                                case 'error': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                                    switch ($[0]) {
-                                                        case 'unknown option': return _p.ss($, ($) => _p.optional.literal.not_set())
-                                                        case 'list format': return _p.ss($, ($) => _p.optional.literal.not_set())
-
-                                                        default: return _p.au($[0])
-                                                    }
-                                                }))
+                                                case 'set': return _p.ss($, ($) => {
+                                                    const option_token = $['option token']
+                                                    return _p.decide.state($.option, ($) => {
+                                                        switch ($[0]) {
+                                                            case 'known': return _p.ss($, ($) => _p.optional.literal.set(Value(
+                                                                $.value,
+                                                                {
+                                                                    'definition': def.options.__get_entry_deprecated(
+                                                                        option_token.value,
+                                                                        {
+                                                                            'no_such_entry': _p_unreachable_code_path("the definition is resolved")
+                                                                        }
+                                                                    ).resolver,
+                                                                    'resolver': $p.resolver,
+                                                                    'module parameters': $p['module parameters'],
+                                                                }
+                                                            )))
+                                                            case 'unknown': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                                            default: return _p.au($[0])
+                                                        }
+                                                    })
+                                                })
                                                 case 'missing data': return _p.ss($, ($) => _p.optional.literal.not_set())
                                                 default: return _p.au($[0])
                                             }
                                         }))
                                         case 'invalid': return _p.ss($, ($) => _p.optional.literal.not_set())
+                                        case 'list format error': return _p.ss($, ($) => _p.optional.literal.not_set())
                                         default: return _p.au($[0])
                                     }
                                 })

@@ -41,7 +41,7 @@ export const $: g_.Modules = modules(
                             "set": toption(t.component("Value")),
                         })),
                         "state": toption(t.state({
-                            "missing data": toption(t.nothing()),
+                            "missing": toption(t.nothing()),
                             "set": toption(t.group({
                                 "option": prop(t.text_global("Text Value")),
                                 "value": prop(t.component("Value"))

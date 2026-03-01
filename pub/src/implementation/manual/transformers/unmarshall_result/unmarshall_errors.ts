@@ -286,66 +286,33 @@ export const Value = (
                 return _p.decide.state($['found value type'], ($): d_out.Errors => {
                     switch ($[0]) {
                         case 'valid': return _p.ss($, ($): d_out.Errors => {
-                            const start_token = _p.decide.state($.instance, ($): d_in_astn_parse_tree.Structural_Token => {
+                            return _p.decide.state($['option'], ($): d_out.Errors => {
                                 switch ($[0]) {
-                                    case 'list': return _p.ss($, ($) => $['['])
-                                    case 'state': return _p.ss($, ($) => $['|'])
-                                    default: return _p.au($[0])
-                                }
-                            })
-                            return _p.decide.state($['option processing'], ($): d_out.Errors => {
-                                switch ($[0]) {
-                                    case 'error': return _p.ss($, ($) => _p.decide.state($, ($) => {
-                                        switch ($[0]) {
-                                            case 'list format': return _p.ss($, ($) => _p.decide.state($, ($): d_out.Errors => {
-                                                switch ($[0]) {
-                                                    case 'missing option item': return _p.ss($, ($): d_out.Errors => _p.list.literal([
-                                                        {
-                                                            'range': start_token.range,
-                                                            'type': ['error', ['state', ['missing option name', null]]] //FIXME wrong error
-                                                        }
-                                                    ]))
-                                                    case 'option item is not a text': return _p.ss($, ($) => _p.list.literal([
-                                                        {
-                                                            'range': start_token.range,
-                                                            'type': ['error', ['state', ['option name is not a text', null]]] //FIXME wrong error
-                                                        }
-                                                    ]))
-                                                    case 'missing value item': return _p.ss($, ($) => _p.list.literal([
-                                                        {
-                                                            'range': start_token.range,
-                                                            'type': ['error', ['state', ['missing value', null]]] //FIXME wrong error
-                                                        }
-                                                    ]))
-                                                    case 'too many items': return _p.ss($, ($) => _p.list.literal([
-                                                        {
-                                                            'range': start_token.range,
-                                                            'type': ['error', ['state', ['more than 2 items', null]]] //FIXME wrong error
-                                                        }
-                                                    ]))
-                                                    default: return _p.au($[0])
-                                                }
-                                            }))
-                                            case 'unknown option': return _p.ss($, ($) => _p.list.literal([
-                                                {
-                                                    'range': start_token.range,
-                                                    'type': ['error', ['state', ['unknown option', {
-                                                        'found': $.token.value,
-                                                        'expected': sg_def.options.__d_map(($) => null)
-                                                    }]]]
-                                                }
-                                            ]))
-
-                                            default: return _p.au($[0])
-                                        }
-                                    }))
                                     case 'missing data': return _p.ss($, ($) => _p.list.literal([
                                         {
                                             'range': $.range,
                                             'type': ['error', ['state', ['option name is not a text', null]]] //FIXME wrong error
                                         }
                                     ]))
-                                    case 'success': return _p.ss($, ($) => Value($.value))
+                                    case 'set': return _p.ss($, ($) => {
+                                        const option_token = $['option token']
+                                        return _p.decide.state($.option, ($) => {
+                                            switch ($[0]) {
+                                                case 'known': return _p.ss($, ($) => Value($.value))
+                                                case 'unknown': return _p.ss($, ($) => _p.list.literal([
+                                                    {
+                                                        'range': option_token.range,
+                                                        'type': ['error', ['state', ['unknown option', {
+                                                            'found': option_token.value,
+                                                            'expected': sg_def.options.__d_map(($) => null)
+                                                        }]]]
+                                                    }
+                                                ]))
+
+                                                default: return _p.au($[0])
+                                            }
+                                        })
+                                    })
                                     default: return _p.au($[0])
                                 }
                             })
@@ -358,6 +325,38 @@ export const Value = (
                                 }]]
                             }
                         ]))
+                        case 'list format error': return _p.ss($, ($) => {
+                            const start_token = $.list['[']
+                            return _p.decide.state($.type, ($): d_out.Errors => {
+                                switch ($[0]) {
+                                    case 'missing option item': return _p.ss($, ($): d_out.Errors => _p.list.literal([
+                                        {
+                                            'range': start_token.range,
+                                            'type': ['error', ['state', ['missing option name', null]]] //FIXME wrong error
+                                        }
+                                    ]))
+                                    case 'option item is not a text': return _p.ss($, ($) => _p.list.literal([
+                                        {
+                                            'range': start_token.range,
+                                            'type': ['error', ['state', ['option name is not a text', null]]] //FIXME wrong error
+                                        }
+                                    ]))
+                                    case 'missing value item': return _p.ss($, ($) => _p.list.literal([
+                                        {
+                                            'range': start_token.range,
+                                            'type': ['error', ['state', ['missing value', null]]] //FIXME wrong error
+                                        }
+                                    ]))
+                                    case 'too many items': return _p.ss($, ($) => _p.list.literal([
+                                        {
+                                            'range': start_token.range,
+                                            'type': ['error', ['state', ['more than 2 items', null]]] //FIXME wrong error
+                                        }
+                                    ]))
+                                    default: return _p.au($[0])
+                                }
+                            })
+                        })
                         // case 'more than 2 elements': return _p.ss($, ($) => _p.list.literal([{
                         //     'range': $,
                         //     'type': ['error', ['state', ['more than 2 elements', null]]]

@@ -62,7 +62,7 @@ export const $: g_.Modules = modules(
                     "state": toption(t.group({
                         "|": prop(t.component("Structural Token")),
                         "status": prop(t.state({
-                            "missing data": toption(t.group({
+                            "missing": toption(t.group({
                                 "#": prop(t.component("Structural Token")),
                             })),
                             "set": toption(t.group({
@@ -74,7 +74,7 @@ export const $: g_.Modules = modules(
                     "text": toption(t.component("Text")),
                 })),
                 "include": toption(t.component("Include")),
-                "missing data": toption(t.group({
+                "missing": toption(t.group({
                     "#": prop(t.component("Structural Token")),
                 })),
             })),

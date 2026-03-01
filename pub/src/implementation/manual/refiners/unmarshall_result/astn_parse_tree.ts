@@ -119,20 +119,20 @@ export const Value: Value = ($, $p) => {
                                         'entries': $.entries.__l_map(($): d_out.Entry_Data => {
                                             const id = $.id.value
                                             return {
-                                            // 'id value pair': $,
-                                            'value': _p.optional.from.optional(
-                                                $.value,
-                                            ).map(
-                                                ($) => Value(
+                                                // 'id value pair': $,
+                                                'value': _p.optional.from.optional(
                                                     $.value,
-                                                    {
-                                                        'definition': prop_def,
-                                                        'definition path': `${$p['definition path']}.${id}`,
-                                                    }
+                                                ).map(
+                                                    ($) => Value(
+                                                        $.value,
+                                                        {
+                                                            'definition': prop_def,
+                                                            'definition path': `${$p['definition path']}.${id}`,
+                                                        }
+                                                    ),
                                                 ),
-                                            ),
-                                            'id value pair': $
-                                        }
+                                                'id value pair': $
+                                            }
                                         })
                                     }]
                                 })
@@ -399,90 +399,108 @@ export const Value: Value = ($, $p) => {
                         'found value type': _p.decide.state(concrete_value, ($): d_out.State__found_value_type => {
                             switch ($[0]) {
                                 case 'list': return _p.ss($, ($) => {
-                                    return ['valid', {
-                                        'instance': ['list', $],
-                                        'option processing': _p.decide.list($.items).has_first_item(
-                                            ($, rest): d_out.State_Option_Processing => {
-                                                const option_value = $.value
-                                                return _p.decide.state($.value.type, ($): d_out.State_Option_Processing => {
-                                                    switch ($[0]) {
-                                                        case 'concrete': return _p.ss($, ($): d_out.State_Option_Processing => _p.decide.state($, ($) => {
-                                                            switch ($[0]) {
-                                                                case 'text': return _p.ss($, ($) => {
-                                                                    const option_token = $
-                                                                    const option_name = $.value
-                                                                    return _p.decide.list(rest).has_first_item(
-                                                                        ($, rest): d_out.State_Option_Processing => {
-                                                                            const raw_value = $
-                                                                            return _p.decide.list(rest).has_items(
-                                                                                ($) => ['error', ['list format', ['too many items', null]]],
-                                                                                (): d_out.State_Option_Processing => _p.decide.optional(
-                                                                                    def.options.__get_possible_entry_deprecated(option_name),
-                                                                                    ($): d_out.State_Option_Processing => {
-                                                                                        const option_def = $
-                                                                                        return ['success', {
-                                                                                            'option name': option_name,
-                                                                                            'definition': option_def,
-                                                                                            'value': Value(
-                                                                                                raw_value.value,
-                                                                                                {
-                                                                                                    'definition': option_def.value,
-                                                                                                    'definition path': `${$p['definition path']}.${option_name}`,
-                                                                                                }
-                                                                                            )
-                                                                                        }]
-                                                                                    },
-                                                                                    (): d_out.State_Option_Processing => ['error', ['unknown option', {
-                                                                                        'token': option_token
-                                                                                    }]]
-                                                                                )
-                                                                            )
-                                                                        },
-                                                                        (): d_out.State_Option_Processing => ['error', ['list format', ['missing value item', null]]]
-                                                                    )
-                                                                })
-                                                                default: return ['error', ['list format', ['option item is not a text', {
+                                    const list = $
+                                    return _p.decide.list($.items).has_first_item(
+                                        ($, rest): d_out.State__found_value_type => {
+                                            const option_value = $.value
+                                            return _p.decide.state($.value.type, ($): d_out.State__found_value_type => {
+                                                switch ($[0]) {
+                                                    case 'concrete': return _p.ss($, ($): d_out.State__found_value_type => _p.decide.state($, ($) => {
+                                                        switch ($[0]) {
+                                                            case 'text': return _p.ss($, ($) => {
+                                                                const option_token = $
+                                                                const option_name = $.value
+                                                                return _p.decide.list(rest).has_first_item(
+                                                                    ($, rest): d_out.State__found_value_type => {
+                                                                        const raw_value = $
+                                                                        return _p.decide.list(rest).has_items(
+                                                                            ($) => ['list format error', {
+                                                                                'list': list,
+                                                                                'type': ['too many items', null]
+                                                                            }],
+                                                                            (): d_out.State__found_value_type => ['valid', {
+                                                                                'definition': def,
+                                                                                'instance': ['list', list],
+                                                                                'option': ['set', {
+                                                                                    'option token': option_token,
+                                                                                    'option': _p.decide.optional(
+                                                                                        def.options.__get_possible_entry_deprecated(option_name),
+                                                                                        ($): d_out.Option_Status => {
+                                                                                            const option_def = $
+                                                                                            return ['known', {
+                                                                                                'definition': option_def,
+                                                                                                'value': Value(
+                                                                                                    raw_value.value,
+                                                                                                    {
+                                                                                                        'definition': option_def.value,
+                                                                                                        'definition path': `${$p['definition path']}.${option_name}`,
+                                                                                                    }
+                                                                                                )
+                                                                                            }]
+                                                                                        },
+                                                                                        (): d_out.Option_Status => ['unknown', null]
+                                                                                    )
+                                                                                }]
+                                                                            }]
+                                                                        )
+                                                                    },
+                                                                    (): d_out.State__found_value_type => ['list format error', {
+                                                                        'list': list,
+                                                                        'type': ['missing value item', null]
+                                                                    }]
+                                                                )
+                                                            })
+                                                            default: return ['list format error', {
+                                                                'list': list,
+                                                                'type': ['option item is not a text', {
                                                                     'value': option_value
-                                                                }]]]
-                                                            }
-                                                        }))
-                                                        default: return ['error', ['list format', ['option item is not a text', {
+                                                                }]
+                                                            }]
+                                                        }
+                                                    }))
+                                                    default: return ['list format error', {
+                                                        'list': list,
+                                                        'type': ['option item is not a text', {
                                                             'value': option_value
-                                                        }]]]
-                                                    }
-                                                })
+                                                        }]
+                                                    }]
+                                                }
+                                            })
 
-                                            },
-                                            (): d_out.State_Option_Processing => ['error', ['list format', ['missing option item', null]]]
-                                        ),
-                                    }]
+                                        },
+                                        (): d_out.State__found_value_type => ['list format error', {
+                                            'list': $,
+                                            'type': ['missing option item', null]
+                                        }]
+                                    )
                                 })
                                 case 'state': return _p.ss($, ($): d_out.State__found_value_type => {
                                     return ['valid', {
+                                        'definition': def,
                                         'instance': ['state', $],
-                                        'option processing': _p.decide.state($.status, ($): d_out.State_Option_Processing => {
+                                        'option': _p.decide.state($.status, ($): d_out.State_Option => {
                                             switch ($[0]) {
                                                 case 'missing data': return _p.ss($, ($) => ['missing data', $['#']])
-                                                case 'set': return _p.ss($, ($): d_out.State_Option_Processing => {
+                                                case 'set': return _p.ss($, ($): d_out.State_Option => {
                                                     const value = $.value
                                                     const option_name = $.option.value
-                                                    return _p.decide.optional(
-                                                        def.options.__get_possible_entry_deprecated(option_name),
-                                                        ($): d_out.State_Option_Processing => ['success', {
-                                                            'option name': option_name,
-                                                            'definition': $,
-                                                            'value': Value(
-                                                                value,
-                                                                {
-                                                                    'definition': $.value,
-                                                                    'definition path': `${$p['definition path']}.${option_name}`,
-                                                                }
-                                                            )
-                                                        }],
-                                                        () => ['error', ['unknown option', {
-                                                            'token': $.option
-                                                        }]]
-                                                    )
+                                                    return ['set', {
+                                                        'option token': $.option,
+                                                        'option': _p.decide.optional(
+                                                            def.options.__get_possible_entry_deprecated(option_name),
+                                                            ($): d_out.Option_Status => ['known', {
+                                                                'definition': $,
+                                                                'value': Value(
+                                                                    value,
+                                                                    {
+                                                                        'definition': $.value,
+                                                                        'definition path': `${$p['definition path']}.${option_name}`,
+                                                                    }
+                                                                )
+                                                            }],
+                                                            () => ['unknown', null]
+                                                        )
+                                                    }]
                                                 })
                                                 default: return _p.au($[0])
                                             }

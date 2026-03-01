@@ -134,38 +134,43 @@ export type State = {
     'found value type': State__found_value_type
 }
 
-export type State_Option_Processing =
-    | ['success', {
-        'option name': string
+export type Option_Status =
+    | ['known', {
         'definition': d_schema.Value.state.options.D
         'value': Value
     }]
-    | ['missing data', d_astn_parse_tree.Structural_Token]
-    | ['error',
-        | ['unknown option', {
-            'token': d_astn_parse_tree.Text
-        }]
-        | ['list format',
-            | ['missing option item', null]
-            | ['option item is not a text', {
-                'value': d_astn_parse_tree.Value
-            }]
-            | ['missing value item', null]
-            | ['too many items', null]
-        ]
-    ]
+    | ['unknown', null]
 
-export type State_found_value__type__valid = {
+export type State_Option =
+    | ['set', {
+        'option token': d_astn_parse_tree.Text
+        'option': Option_Status
+    }]
+    | ['missing data', d_astn_parse_tree.Structural_Token]
+
+export type Valid_State = {
+    'definition': d_schema.Value.state
     'instance':
     | ['state', d_astn_parse_tree.Value.type_.concrete.state]
     | ['list', d_astn_parse_tree.Value.type_.concrete.list]
-    'option processing': State_Option_Processing
+    'option': State_Option
 
 }
 
 export type State__found_value_type =
-    | ['valid', State_found_value__type__valid]
+    | ['valid', Valid_State]
     | ['invalid', d_astn_parse_tree.Value]
+    | ['list format error', {
+        'list': d_astn_parse_tree.Value.type_.concrete.list
+        'type':
+        | ['missing option item', null]
+        | ['option item is not a text', {
+            'value': d_astn_parse_tree.Value
+        }]
+        | ['missing value item', null]
+        | ['too many items', null]
+    }
+    ]
 
 export type Nothing = {
     'definition': d_schema.Value.nothing
