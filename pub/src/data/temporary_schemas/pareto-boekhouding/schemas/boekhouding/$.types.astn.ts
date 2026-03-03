@@ -12,6 +12,14 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
+
+        "Root": module_(t.group({
+            "Fiscaal": prop(t.component("Fiscaal")),
+            "Categorieen": prop(t.component("Grootboek Categorieen")),
+            "Beheer": prop(t.component("Beheer")),
+            "Jaren": prop(t.component("Jaren")),
+        })),
+        
         "Fiscaal": module_(t.group({
             "Balans Hoofdcategorieen": prop(t.dictionary(t.group({
                 "Zijde": prop(t.state({
@@ -379,13 +387,6 @@ export const $: g_.Modules = modules(
             "Nee": toption(t.group({
                 "Vorig boekjaar": prop(t.reference("Jaren", [])),
             })),
-        })),
-
-        "Root": module_(t.group({
-            "Fiscaal": prop(t.component("Fiscaal")),
-            "Categorieen": prop(t.component("Grootboek Categorieen")),
-            "Beheer": prop(t.component("Beheer")),
-            "Jaren": prop(t.component("Jaren")),
         })),
     }
 )

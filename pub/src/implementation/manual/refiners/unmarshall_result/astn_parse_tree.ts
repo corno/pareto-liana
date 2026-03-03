@@ -156,41 +156,8 @@ export const Value: Value = ($, $p) => {
                                         'definition': $
                                     })
                                 )
-                                const prop_defs_as_list_joined_with_possible_instance = _p.list.from.list(
-                                    property_definitions_as_list
-                                ).join(
-                                    $,
-                                    ($, $o) => ({
-                                        'id': $.id,
-                                        'definition': $.definition,
-                                        'possible instance': $o
-                                    })
-                                )
 
                                 return {
-                                    // 'properties': _p.dictionary.from.list(
-                                    //     prop_defs_as_list_joined_with_possible_instance
-                                    // ).convert(
-                                    //     ($) => $.id,
-                                    //     ($) => ({
-                                    //         'definition': $.definition,
-                                    //         'possible instance': $['possible instance']
-                                    //     }),
-                                    //     {
-                                    //         'duplicate_id': () => _p_unreachable_code_path("the id's come from the properties in the definition")
-                                    //     }
-                                    // ).__d_map(($, id) => {
-                                    //     const def = $.definition
-                                    //     return _p.optional.from.optional($['possible instance']).map(
-                                    //         ($) => Value(
-                                    //             $.value,
-                                    //             {
-                                    //                 'definition': def.value,
-                                    //                 'definition path': `${$p['definition path']}.${id}`,
-                                    //             }
-                                    //         )
-                                    //     )
-                                    // }),
                                     'properties': _p.list.from.list(
                                         $
                                     ).join(
