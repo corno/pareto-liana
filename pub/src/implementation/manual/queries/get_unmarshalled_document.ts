@@ -19,10 +19,7 @@ export const $$x: signatures.queries.get_unmarshalled_document = _p.query_functi
 
         const schema_path = create_node_path($p['file path'].context, { 'node': "liana.schema" })
 
-        const schema_path_text = _p_text_from_list(
-            t_path_to_text.Node_Path(schema_path),
-            ($) => $
-        )
+        const schema_path_text = t_path_to_text.Node_Path(schema_path)
 
         return $qr['read file'](
             schema_path,
@@ -34,10 +31,7 @@ export const $$x: signatures.queries.get_unmarshalled_document = _p.query_functi
                 $p.content,
                 ($) => abort(['deserialize', $]),
                 {
-                    'instance path': _p_text_from_list(
-                        t_path_to_text.Node_Path($p['file path']),
-                        ($) => $,
-                    ),
+                    'instance path': t_path_to_text.Node_Path($p['file path']),
                     'schema': {
                         'content': $,
                         'path': schema_path_text,

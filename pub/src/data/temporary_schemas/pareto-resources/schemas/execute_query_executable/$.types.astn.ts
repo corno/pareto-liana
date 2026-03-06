@@ -15,6 +15,7 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.group({
             "args": prop(t.list(t.text_local(text('single line')))),
+            "working directory": prop(t.optional(t.component_external("path", "Context Path"))),
         })),
 
         "Error": module_(t.state({
