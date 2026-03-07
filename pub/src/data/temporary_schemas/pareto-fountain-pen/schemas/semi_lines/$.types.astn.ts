@@ -17,13 +17,6 @@ export const $: g_.Modules = modules(
             "text": prop(t.text_global("Output")),
             "indentation": prop(t.number_local(n.natural(null)))
         }))),
-
-        "Directory": module_(t.dictionary(
-            t.state({
-                "file": toption(t.component("Lines")),
-                "directory": toption(t.component("Directory")),
-            })
-        )),
     }
 )
 

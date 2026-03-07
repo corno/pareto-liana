@@ -53,6 +53,12 @@ export const $: g_.Modules = modules(
 
         "Node": module_(t.state({
             "element": toption(t.component("Element")),
+            "comment": toption(t.text_local(text('single line'))),
+            "cdata": toption(t.text_local(text('single line'))),
+            "processing instruction": toption(t.group({
+                "target": prop(t.text_local(text('single line'))),
+                "data": prop(t.text_local(text('single line'))),
+            })),
         }))
 
     }

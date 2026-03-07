@@ -13,6 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
+
         "Document": module_(t.group({
             "css": prop(t.text_local(text('multi line'))),
             "root": prop(t.component("Flow Content")),
