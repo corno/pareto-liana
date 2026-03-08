@@ -16,10 +16,10 @@ export const $: g_.Modules = modules(
 
         "Document": module_(t.group({
             "css": prop(t.text_local(text('multi line'))),
-            "root": prop(t.component("Flow Content")),
+            "root": prop(t.component("Flow Element")),
         })),
 
-        "Flow Content": module_(t.list(t.state({
+        "Flow Element": module_(t.state({
             "div": toption(t.component("Flow Content")),
             "dimensioned div": toption(t.group({
                 "width": prop(t.optional(t.number_local(n.natural(null)))),
@@ -73,12 +73,15 @@ export const $: g_.Modules = modules(
                 "height": prop(t.optional(t.number_local(n.natural(null)))),
             })),
 
-        }))),
+        })),
+
+        "Flow Content": module_(t.list(t.component("Flow Element"))),
 
         "Classes": module_(t.list(t.text_local(text('single line')))),
 
         "Phrasing Content": module_(t.list(t.component("Phrasing Element"))),
 
+        //this one should be publicly available, so it is not inlined, even though it is only used once
         "Phrasing Element": module_(t.state({
             "span": toption(t.component("Phrasing Content")),
             "classified span": toption(t.group({
