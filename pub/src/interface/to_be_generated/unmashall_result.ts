@@ -23,6 +23,7 @@ export type Value = {
 }
 
 export type Unmarshalled_Value_Type =
+    | ['missing', null]
     | ['boolean', Boolean]
     | ['component', Component]
     | ['dictionary', Dictionary]

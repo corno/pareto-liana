@@ -26,8 +26,19 @@ export const Document: Document = ($) => {
 }
 
 export const Value: Value = ($) => {
+    const instance = $.instance
     return _p.decide.state($.unmarshalled, ($): d_out.Errors => {
         switch ($[0]) {
+            case 'missing': return _p.ss($, ($): d_out.Errors => _p.list.literal([
+
+                {
+                    'range': t_astn_parse_tree_to_location.Value(instance),
+                    'type': ['error', ['missing property', {
+                        name: "MISSING VALUE, FIX ERROR"
+                    }]],
+                    // 'type': ['error', ['missing value', null]]
+                }
+            ]))
             case 'group': return _p.ss($, ($) => {
                 const group_def = $.definition
                 return _p.decide.state($['found value type'], ($): d_out.Errors => {

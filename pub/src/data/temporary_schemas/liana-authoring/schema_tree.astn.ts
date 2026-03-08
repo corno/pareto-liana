@@ -14,6 +14,7 @@ import { $ as x_location } from "./schemas/location/$.module.astn"
 import { $ as x_path } from "../pareto-resources/schemas/path/$.module.astn"
 import { $ as x_seal } from "./schemas/seal/$.module.astn"
 import { $ as x_sort_alphabetically } from "./schemas/sort_alphabetically/$.module.astn"
+import { $ as x_text_edits } from "./schemas/text_edits/$.module.astn"
 
 export const $: g_.Schema_Tree = st.set({
     "completion suggestions": x_completion_suggestions,
@@ -27,4 +28,5 @@ export const $: g_.Schema_Tree = st.set({
     "path": x_path,
     "seal": x_seal,
     "sort alphabetically": x_sort_alphabetically,
+    "text edits": x_text_edits,
 })

@@ -14,19 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Result": module_(t.list(t.state({
-            "replace": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-                "text": prop(t.text_local(text('multi line'))),
-            })),
-            "delete": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "insert": toption(t.group({
-                "location": prop(t.component_external("location", "Position")),
-                "text": prop(t.text_local(text('multi line'))),
-            })),
-        }))),
+        "Result": module_(t.component_external("text edits", "Text Edits")),
 
         "Error": module_(t.group({
             "message": prop(t.text_local(text('single line'))),

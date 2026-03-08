@@ -46,8 +46,14 @@ export const Document: Document = ($, abort) => {
 
 export const Value: Value = ($, abort) => {
     const definition_path = $['definition path']
+    const instance = $.instance
     return _p.decide.state($.unmarshalled, ($): d_out.Value => {
         switch ($[0]) {
+            case 'missing': return _p.ss($, ($) => abort({
+                'definition path': definition_path,
+                'type': ['dictionary', ['foo', null]],
+                'range': t_astn_parse_tree_to_location.Value(instance)
+            }))
             case 'boolean': return _p.ss($, ($): d_out.Value => ['text', {
                 'value': _p.decide.state($['found value type'], ($) => {
                     switch ($[0]) {
