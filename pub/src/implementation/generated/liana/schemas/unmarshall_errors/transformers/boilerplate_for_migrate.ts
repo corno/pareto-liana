@@ -195,10 +195,10 @@ export const Errors: t_signatures.Errors = ($) => _p.list.from.list(
                                                                             ),
                                                                         }],
                                                                     )
-                                                                case 'missing data marker':
+                                                                case 'missing option':
                                                                     return _p.ss(
                                                                         $,
-                                                                        ($) => ['missing data marker', null],
+                                                                        ($) => ['missing option', null],
                                                                     )
                                                                 default:
                                                                     return _p.au(

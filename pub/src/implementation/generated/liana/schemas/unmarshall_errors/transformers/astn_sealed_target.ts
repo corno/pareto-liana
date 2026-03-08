@@ -293,11 +293,11 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                                         )]],
                                                                                     }),
                                                                                 )
-                                                                            case 'missing data marker':
+                                                                            case 'missing option':
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ({
-                                                                                        'option': 'missing data marker',
+                                                                                        'option': 'missing option',
                                                                                         'value': ['nothing', null],
                                                                                     }),
                                                                                 )

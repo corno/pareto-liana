@@ -105,7 +105,7 @@ export const Error_Type_Error = (
         case 'state': return _p.ss($, ($) => _p.decide.state($, ($) => {
             switch ($[0]) {
                 case 'missing option name': return _p.ss($, ($) => sh.ph.literal("missing option name"))
-                case 'missing data marker': return _p.ss($, ($) => sh.ph.literal("missing data marker"))
+                case 'missing option': return _p.ss($, ($) => sh.ph.literal("missing option"))
                 case 'missing value': return _p.ss($, ($) => sh.ph.literal("missing value"))
                 case 'more than 2 items': return _p.ss($, ($) => sh.ph.literal("more than 2 items"))
                 case 'option name is not a text': return _p.ss($, ($) => sh.ph.literal("option name is not a text"))

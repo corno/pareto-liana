@@ -626,10 +626,10 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                         ),
                                                                                                     )],
                                                                                                 )
-                                                                                            case 'missing data marker':
+                                                                                            case 'missing option':
                                                                                                 return _p_change_context(
                                                                                                     $['value'],
-                                                                                                    ($) => ['missing data marker', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                    ($) => ['missing option', v_unmarshalled_from_parse_tree.Nothing(
                                                                                                         $,
                                                                                                         ($) => abort(
                                                                                                             $,

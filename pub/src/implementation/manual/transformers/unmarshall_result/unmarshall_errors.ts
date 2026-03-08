@@ -351,7 +351,7 @@ export const Value: Value = ($) => {
                                     case 'missing data': return _p.ss($, ($) => _p.list.literal([
                                         {
                                             'range': $.range,
-                                            'type': ['error', ['state', ['option name is not a text', null]]] //FIXME wrong error
+                                            'type': ['error', ['state', ['missing option', null]]]
                                         }
                                     ]))
                                     case 'set': return _p.ss($, ($) => {

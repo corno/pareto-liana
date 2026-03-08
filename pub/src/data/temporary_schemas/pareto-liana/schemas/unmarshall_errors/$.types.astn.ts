@@ -54,7 +54,7 @@ export const $: g_.Modules = modules(
                             "found": prop(t.text_local(text('single line'))),
                             "expected": prop(t.dictionary(t.nothing())),
                         })),
-                        "missing data marker": toption(t.nothing()),
+                        "missing option": toption(t.nothing()),
                     })),
                 })),
                 "warning": toption(t.state({

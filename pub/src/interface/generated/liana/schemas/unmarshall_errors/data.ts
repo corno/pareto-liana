@@ -142,7 +142,7 @@ export namespace Errors_ {
                         readonly 'expected': unknown_option.expected
                     }
                     
-                    export type missing_data_marker = null
+                    export type missing_option = null
                     
                 }
                 
@@ -152,7 +152,7 @@ export namespace Errors_ {
                     | readonly ['option name is not a text', state.option_name_is_not_a_text]
                     | readonly ['missing value', state.missing_value]
                     | readonly ['unknown option', state.unknown_option]
-                    | readonly ['missing data marker', state.missing_data_marker]
+                    | readonly ['missing option', state.missing_option]
                 
             }
             
