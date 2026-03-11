@@ -258,11 +258,17 @@ export const Value: Value = ($, $p) => {
                             case 'nothing': return _p.ss($, ($): d_out.Unmarshalled_Value_Type => {
                                 return ['nothing', {
                                     'definition': $,
-                                    'found value type': _p.decide.state(concrete_value, ($) => {
+                                    'found value type': _p.decide.state(concrete_value, ($): d_out.Nothing['found value type'] => {
                                         switch ($[0]) {
                                             case 'nothing': return _p.ss($, ($) => ['valid', {
-                                                'value': $,
+                                                'value': ['nothing', $],
                                             }])
+                                            case 'text': return _p.ss($, ($) => $.value === "null" ?
+                                                ['valid', {
+                                                    'value': ['null literal', $],
+                                                }] :
+                                                ['invalid', value]
+                                            )
                                             default: return ['invalid', value]
                                         }
                                     })
@@ -298,8 +304,14 @@ export const Value: Value = ($, $p) => {
                                     'found value type': _p.decide.state(concrete_value, ($) => {
                                         switch ($[0]) {
                                             case 'nothing': return _p.ss($, ($) => ['valid', ['not set', {
-                                                'instance': $,
+                                                'instance': ['nothing', $],
                                             }]])
+                                            case 'text': return _p.ss($, ($) => $.value === "null" ?
+                                                ['valid', ['not set', {
+                                                    'instance': ['null literal', $],
+                                                }]] :
+                                                ['invalid', value]
+                                            )
                                             case 'optional': return _p.ss($, ($) => _p.decide.state($, ($) => {
                                                 switch ($[0]) {
                                                     case 'set': return _p.ss($, ($) => ['valid', ['set', {

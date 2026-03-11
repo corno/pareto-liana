@@ -135,7 +135,9 @@ export type Optional = {
             'child value': Value
         }]
         | ['not set', {
-            'instance': d_astn_parse_tree.Value.type_.concrete.nothing
+            'instance':
+            | ['nothing', d_astn_parse_tree.Value.type_.concrete.nothing]
+            | ['null literal', d_astn_parse_tree.Value.type_.concrete.text]
         }]
     ]
     | ['invalid', d_astn_parse_tree.Value]
@@ -197,7 +199,9 @@ export type Nothing = {
     'definition': d_schema.Value.nothing
     'found value type':
     | ['valid', {
-        'value': d_astn_parse_tree.Value.type_.concrete.nothing
+        'value':
+        | ['nothing', d_astn_parse_tree.Value.type_.concrete.nothing]
+        | ['null literal', d_astn_parse_tree.Value.type_.concrete.text]
     }]
     | ['invalid', d_astn_parse_tree.Value]
 }

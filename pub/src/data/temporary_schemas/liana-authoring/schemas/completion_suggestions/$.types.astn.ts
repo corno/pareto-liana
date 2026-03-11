@@ -18,7 +18,20 @@ export const $: g_.Modules = modules(
             "label": prop(t.text_local(text('single line'))),
             "insert text": prop(t.text_local(text('single line'))),
             "documentation": prop(t.text_local(text('multi line'))),
-            "additional text edits": prop(t.component_external("text edits", "Text Edits"))
+            "additional text edits": prop(t.component_external("text edits", "Text Edits")),
+            "type": prop(t.state({
+                "boolean": toption(t.nothing()),
+                "component": toption(t.nothing()),
+                "dictionary": toption(t.nothing()),
+                "group": toption(t.nothing()),
+                "list": toption(t.nothing()),
+                "nothing": toption(t.nothing()),
+                "number": toption(t.nothing()),
+                "optional": toption(t.nothing()),
+                "reference": toption(t.nothing()),
+                "state": toption(t.nothing()),
+                "text": toption(t.nothing()),
+            }))
         }))),
 
     }
