@@ -36,7 +36,14 @@ export const Possible_Range: t_signatures.Possible_Range = ($) => _p.decide.stat
             case 'end of document':
                 return _p.ss(
                     $,
-                    ($) => ['end of document', null],
+                    ($) => ['end of document', {
+                        'end': _p_change_context(
+                            $['end'],
+                            ($) => Location(
+                                $,
+                            ),
+                        ),
+                    }],
                 )
             default:
                 return _p.au(

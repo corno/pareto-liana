@@ -100,10 +100,46 @@ export const Possible_Range: t_signatures.Possible_Range = ($, abort) => _p_chan
                 case 'end of document':
                     return _p_change_context(
                         $['value'],
-                        ($) => ['end of document', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
+                        ($) => ['end of document', _p_change_context(
+                            v_unmarshalled_from_parse_tree.Verbose_Group(
                                 $,
+                                ($) => abort(
+                                    $,
+                                ),
+                                {
+                                    'expected properties': _p.dictionary.literal(
+                                        {
+                                            "end": null,
+                                        },
+                                    ),
+                                },
+                            ),
+                            ($) => _p_variables(
+                                () => {
+                                    
+                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                        $['value'],
+                                    )
+                                    return {
+                                        'end': _p_change_context(
+                                            v_unmarshalled_from_parse_tree.Property(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                                {
+                                                    'id': 'end',
+                                                },
+                                            ),
+                                            ($) => Location(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            ),
+                                        ),
+                                    }
+                                },
                             ),
                         )],
                     )

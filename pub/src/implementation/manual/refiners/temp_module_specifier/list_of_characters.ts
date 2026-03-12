@@ -79,7 +79,7 @@ export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
                         case 'schema': return _p_temp.ss($, ($) => _pdev.implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
                         case 'set': return _p_temp.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
                             ($) => temp_find_schema($, split.rest),
-                            () => _pdev.implement_me(`(FIXME: make this a reference) schema not found: ${split.element}`)
+                            () => _pdev.implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                         ))
                         default: return _p_temp.au($[0])
                     }

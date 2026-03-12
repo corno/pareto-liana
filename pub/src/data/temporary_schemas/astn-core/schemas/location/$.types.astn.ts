@@ -21,7 +21,9 @@ export const $: g_.Modules = modules(
 
         "Possible Range": module_(t.state({
             "range": toption(t.component("Range")),
-            "end of document": toption(t.nothing()),
+            "end of document": toption(t.group({
+                "end": prop(t.component("Location"))
+            })),
         })),
 
         "Location": module_(t.group({

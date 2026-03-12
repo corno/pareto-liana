@@ -47,7 +47,16 @@ export const Possible_Range: t_signatures.Possible_Range = ($) => ['state', _p.d
                     $,
                     ($) => ({
                         'option': 'end of document',
-                        'value': ['nothing', null],
+                        'value': ['group', ['verbose', _p.dictionary.literal(
+                            {
+                                "end": _p_change_context(
+                                    $['end'],
+                                    ($) => Location(
+                                        $,
+                                    ),
+                                ),
+                            },
+                        )]],
                     }),
                 )
             default:
