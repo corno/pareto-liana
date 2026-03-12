@@ -21,6 +21,22 @@ export type Range_ = (
     context: Range_.I,
 ) => Range_.O
 
+export namespace Possible_Range_ {
+    
+    export type I = i_in.Possible_Range
+    
+    export type O = i_out.Value
+    
+    export namespace P {
+        
+    }
+    
+}
+
+export type Possible_Range_ = (
+    context: Possible_Range_.I,
+) => Possible_Range_.O
+
 export namespace Location_ {
     
     export type I = i_in.Location
@@ -55,6 +71,7 @@ export type Relative_Location_ = (
 
 export { 
     Range_ as Range, 
+    Possible_Range_ as Possible_Range, 
     Location_ as Location, 
     Relative_Location_ as Relative_Location, 
 }

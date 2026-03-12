@@ -23,6 +23,22 @@ export const Range: t_signatures.Range = ($, abort, $p) => v_unmarshall.Range(
     ),
 )
 
+export const Possible_Range: t_signatures.Possible_Range = ($, abort, $p) => v_unmarshall.Possible_Range(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
 export const Location: t_signatures.Location = ($, abort, $p) => v_unmarshall.Location(
     v_deserialize.Document(
         $,

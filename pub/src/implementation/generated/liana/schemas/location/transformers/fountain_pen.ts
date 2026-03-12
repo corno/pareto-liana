@@ -13,6 +13,12 @@ export const Range: t_signatures.Range = ($) => v_serialize.Document(
     ),
 )
 
+export const Possible_Range: t_signatures.Possible_Range = ($) => v_serialize.Document(
+    v_marshall.Possible_Range(
+        $,
+    ),
+)
+
 export const Location: t_signatures.Location = ($) => v_serialize.Document(
     v_marshall.Location(
         $,

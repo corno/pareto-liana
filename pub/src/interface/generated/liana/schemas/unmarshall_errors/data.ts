@@ -87,6 +87,8 @@ export namespace Errors_ {
                     readonly 'name': missing_property.name
                 }
                 
+                export type missing_value = null
+                
                 export namespace missing_property_value {
                     
                     export type name = string
@@ -161,6 +163,7 @@ export namespace Errors_ {
                 | readonly ['duplicate property', error.duplicate_property]
                 | readonly ['duplicate entry', error.duplicate_entry]
                 | readonly ['missing property', error.missing_property]
+                | readonly ['missing value', error.missing_value]
                 | readonly ['missing property value', error.missing_property_value]
                 | readonly ['superfluous property', error.superfluous_property]
                 | readonly ['state', error.state]

@@ -189,7 +189,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                             ),
                         ),
                         ($) => _p.decide.text(
-                            $['option']['value'],
+                            $['option']['token']['value'],
                             ($t): t_out.Value.type_ => {
                                 switch ($t) {
                                     case 'concrete':
@@ -203,7 +203,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                     ),
                                                 ),
                                                 ($) => _p.decide.text(
-                                                    $['option']['value'],
+                                                    $['option']['token']['value'],
                                                     ($t): t_out.Value.type_.concrete => {
                                                         switch ($t) {
                                                             case 'dictionary':
@@ -299,7 +299,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                             ),
                                                                         ),
                                                                         ($) => _p.decide.text(
-                                                                            $['option']['value'],
+                                                                            $['option']['token']['value'],
                                                                             ($t): t_out.Value.type_.concrete.group => {
                                                                                 switch ($t) {
                                                                                     case 'concise':
@@ -469,7 +469,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                     default:
                                                                                         return abort(
                                                                                             ['liana', {
-                                                                                                'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                                 'range': v_parse_tree_to_location.Value(
                                                                                                     $['value'],
                                                                                                 ),
@@ -619,7 +619,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                             ),
                                                                         ),
                                                                         ($) => _p.decide.text(
-                                                                            $['option']['value'],
+                                                                            $['option']['token']['value'],
                                                                             ($t): t_out.Value.type_.concrete.optional => {
                                                                                 switch ($t) {
                                                                                     case 'set':
@@ -689,7 +689,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                     default:
                                                                                         return abort(
                                                                                             ['liana', {
-                                                                                                'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                                 'range': v_parse_tree_to_location.Value(
                                                                                                     $['value'],
                                                                                                 ),
@@ -760,7 +760,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                 ),
                                                                                             ),
                                                                                             ($) => _p.decide.text(
-                                                                                                $['option']['value'],
+                                                                                                $['option']['token']['value'],
                                                                                                 ($t): t_out.Value.type_.concrete.state.status => {
                                                                                                     switch ($t) {
                                                                                                         case 'missing':
@@ -876,7 +876,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                                                         default:
                                                                                                             return abort(
                                                                                                                 ['liana', {
-                                                                                                                    'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                                                    'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                                                     'range': v_parse_tree_to_location.Value(
                                                                                                                         $['value'],
                                                                                                                     ),
@@ -905,7 +905,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                             default:
                                                                 return abort(
                                                                     ['liana', {
-                                                                        'type': ['state', ['unknown option', $['option']['value']]],
+                                                                        'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                         'range': v_parse_tree_to_location.Value(
                                                                             $['value'],
                                                                         ),
@@ -975,7 +975,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                     default:
                                         return abort(
                                             ['liana', {
-                                                'type': ['state', ['unknown option', $['option']['value']]],
+                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                 'range': v_parse_tree_to_location.Value(
                                                     $['value'],
                                                 ),
@@ -1124,8 +1124,7 @@ export const Text: t_signatures.Text = ($, abort) => _p_change_context(
                 {
                     "trailing trivia": null,
                     "range": null,
-                    "value": null,
-                    "type": null,
+                    "token": null,
                 },
             ),
         },
@@ -1171,34 +1170,17 @@ export const Text: t_signatures.Text = ($, abort) => _p_change_context(
                         ),
                     ),
                 ),
-                'value': _p_change_context(
+                'token': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
                         ($) => abort(
                             $,
                         ),
                         {
-                            'id': 'value',
+                            'id': 'token',
                         },
                     ),
-                    ($) => v_unmarshalled_from_parse_tree.Text(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
-                'type': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'type',
-                        },
-                    ),
-                    ($) => v_external_token.Text_Type(
+                    ($) => v_external_token.Text(
                         $,
                         ($) => abort(
                             $,

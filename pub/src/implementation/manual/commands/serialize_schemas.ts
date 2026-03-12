@@ -84,6 +84,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                                     t_loc_to_fp.Range(
                                                         t_resolve_to_location.Error($),
                                                         {
+                                                            'document resource identifier': _pdev.implement_me("SDFSDFFD"),
                                                             'character location reporting': ['one based', null]
                                                         }
                                                     ),

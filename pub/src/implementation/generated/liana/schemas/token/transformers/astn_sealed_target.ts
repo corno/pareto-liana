@@ -50,9 +50,147 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => ['group', ['
         ),
         "type": _p_change_context(
             $['type'],
-            ($) => Token_Type(
+            ($) => ['state', _p.decide.state(
                 $,
-            ),
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case '!':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '!',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '@':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '@',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case ':':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': ':',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '#':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '#',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '{':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '{',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '}':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '}',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '[':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '[',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case ']':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': ']',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '(':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '(',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case ')':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': ')',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '<':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '<',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '>':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '>',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '~':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '~',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '*':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '*',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case '|':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': '|',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case 'text':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'text',
+                                    'value': Text(
+                                        $,
+                                    ),
+                                }),
+                            )
+                        default:
+                            return _p.au(
+                                $[0],
+                            )
+                    }
+                },
+            )],
         ),
         "end": _p_change_context(
             $['end'],
@@ -69,183 +207,27 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => ['group', ['
     },
 )]]
 
-export const Token_Type: t_signatures.Token_Type = ($) => ['state', _p.decide.state(
+export const Whitespace: t_signatures.Whitespace = ($) => ['optional', _p.decide.optional(
     $,
-    ($): t_out.Value.state => {
-        switch ($[0]) {
-            case '!':
-                return _p.ss(
+    ($): t_out.Value.optional => ['set', ['group', ['verbose', _p.dictionary.literal(
+        {
+            "range": _p_change_context(
+                $['range'],
+                ($) => v_external_location.Range(
                     $,
-                    ($) => ({
-                        'option': '!',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '@':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '@',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case ':':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': ':',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '#':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '#',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '{':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '{',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '}':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '}',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '[':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '[',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case ']':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': ']',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '(':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '(',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case ')':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': ')',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '<':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '<',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '>':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '>',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '~':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '~',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '*':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '*',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case '|':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': '|',
-                        'value': ['nothing', null],
-                    }),
-                )
-            case 'text':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'text',
-                        'value': ['group', ['verbose', _p.dictionary.literal(
-                            {
-                                "value": _p_change_context(
-                                    $['value'],
-                                    ($) => Delimited_Text(
-                                        $,
-                                    ),
-                                ),
-                                "type": _p_change_context(
-                                    $['type'],
-                                    ($) => Text_Type(
-                                        $,
-                                    ),
-                                ),
-                            },
-                        )]],
-                    }),
-                )
-            default:
-                return _p.au(
-                    $[0],
-                )
-        }
-    },
-)]
-
-export const Delimited_Text: t_signatures.Delimited_Text = ($) => ['text', {
-    'delimiter': ['quote', null],
-    'value': $,
-}]
-
-export const Whitespace: t_signatures.Whitespace = ($) => ['group', ['verbose', _p.dictionary.literal(
-    {
-        "range": _p_change_context(
-            $['range'],
-            ($) => v_external_location.Range(
-                $,
+                ),
             ),
-        ),
-        "value": _p_change_context(
-            $['value'],
-            ($) => ['text', {
-                'delimiter': ['quote', null],
-                'value': $,
-            }],
-        ),
-    },
-)]]
+            "value": _p_change_context(
+                $['value'],
+                ($) => ['text', {
+                    'delimiter': ['quote', null],
+                    'value': $,
+                }],
+            ),
+        },
+    )]]],
+    () => ['not set', null],
+)]
 
 export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
@@ -314,6 +296,24 @@ export const Trivia: t_signatures.Trivia = ($) => ['group', ['verbose', _p.dicti
                     },
                 )]],
             )],
+        ),
+    },
+)]]
+
+export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionary.literal(
+    {
+        "value": _p_change_context(
+            $['value'],
+            ($) => ['text', {
+                'delimiter': ['quote', null],
+                'value': $,
+            }],
+        ),
+        "type": _p_change_context(
+            $['type'],
+            ($) => Text_Type(
+                $,
+            ),
         ),
     },
 )]]

@@ -19,18 +19,6 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => v_serialize.
     ),
 )
 
-export const Token_Type: t_signatures.Token_Type = ($) => v_serialize.Document(
-    v_marshall.Token_Type(
-        $,
-    ),
-)
-
-export const Delimited_Text: t_signatures.Delimited_Text = ($) => v_serialize.Document(
-    v_marshall.Delimited_Text(
-        $,
-    ),
-)
-
 export const Whitespace: t_signatures.Whitespace = ($) => v_serialize.Document(
     v_marshall.Whitespace(
         $,
@@ -39,6 +27,12 @@ export const Whitespace: t_signatures.Whitespace = ($) => v_serialize.Document(
 
 export const Trivia: t_signatures.Trivia = ($) => v_serialize.Document(
     v_marshall.Trivia(
+        $,
+    ),
+)
+
+export const Text: t_signatures.Text = ($) => v_serialize.Document(
+    v_marshall.Text(
         $,
     ),
 )

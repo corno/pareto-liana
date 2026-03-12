@@ -93,8 +93,7 @@ export const $: g_.Modules = modules(
         "Text": module_(t.group({
             "trailing trivia": prop(t.component_external("token", "Trivia")),
             "range": prop(t.component_external("location", "Range")),
-            "value": prop(t.text_local(text('single line'))),
-            "type": prop(t.component_external("token", "Text Type")),
+            "token": prop(t.component_external("token", "Text")),
         })),
 
         "ID Value Pairs": module_(t.list(t.component("ID Value Pair"))),

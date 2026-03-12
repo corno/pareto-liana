@@ -28,6 +28,36 @@ export const Range: t_signatures.Range = ($) => ['group', ['verbose', _p.diction
     },
 )]]
 
+export const Possible_Range: t_signatures.Possible_Range = ($) => ['state', _p.decide.state(
+    $,
+    ($): t_out.Value.state => {
+        switch ($[0]) {
+            case 'range':
+                return _p.ss(
+                    $,
+                    ($) => ({
+                        'option': 'range',
+                        'value': Range(
+                            $,
+                        ),
+                    }),
+                )
+            case 'end of document':
+                return _p.ss(
+                    $,
+                    ($) => ({
+                        'option': 'end of document',
+                        'value': ['nothing', null],
+                    }),
+                )
+            default:
+                return _p.au(
+                    $[0],
+                )
+        }
+    },
+)]
+
 export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
         "relative": _p_change_context(
@@ -50,13 +80,6 @@ export const Location: t_signatures.Location = ($) => ['group', ['verbose', _p.d
 
 export const Relative_Location: t_signatures.Relative_Location = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        "document resource identifier": _p_change_context(
-            $['document resource identifier'],
-            ($) => ['text', {
-                'delimiter': ['quote', null],
-                'value': $,
-            }],
-        ),
         "line": _p_change_context(
             $['line'],
             ($) => ['text', {

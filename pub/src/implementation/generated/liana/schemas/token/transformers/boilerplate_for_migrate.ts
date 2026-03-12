@@ -43,8 +43,98 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => ({
     ),
     'type': _p_change_context(
         $['type'],
-        ($) => Token_Type(
+        ($) => _p.decide.state(
             $,
+            ($): t_out.Annotated_Token.type_ => {
+                switch ($[0]) {
+                    case '!':
+                        return _p.ss(
+                            $,
+                            ($) => ['!', null],
+                        )
+                    case '@':
+                        return _p.ss(
+                            $,
+                            ($) => ['@', null],
+                        )
+                    case ':':
+                        return _p.ss(
+                            $,
+                            ($) => [':', null],
+                        )
+                    case '#':
+                        return _p.ss(
+                            $,
+                            ($) => ['#', null],
+                        )
+                    case '{':
+                        return _p.ss(
+                            $,
+                            ($) => ['{', null],
+                        )
+                    case '}':
+                        return _p.ss(
+                            $,
+                            ($) => ['}', null],
+                        )
+                    case '[':
+                        return _p.ss(
+                            $,
+                            ($) => ['[', null],
+                        )
+                    case ']':
+                        return _p.ss(
+                            $,
+                            ($) => [']', null],
+                        )
+                    case '(':
+                        return _p.ss(
+                            $,
+                            ($) => ['(', null],
+                        )
+                    case ')':
+                        return _p.ss(
+                            $,
+                            ($) => [')', null],
+                        )
+                    case '<':
+                        return _p.ss(
+                            $,
+                            ($) => ['<', null],
+                        )
+                    case '>':
+                        return _p.ss(
+                            $,
+                            ($) => ['>', null],
+                        )
+                    case '~':
+                        return _p.ss(
+                            $,
+                            ($) => ['~', null],
+                        )
+                    case '*':
+                        return _p.ss(
+                            $,
+                            ($) => ['*', null],
+                        )
+                    case '|':
+                        return _p.ss(
+                            $,
+                            ($) => ['|', null],
+                        )
+                    case 'text':
+                        return _p.ss(
+                            $,
+                            ($) => ['text', Text(
+                                $,
+                            )],
+                        )
+                    default:
+                        return _p.au(
+                            $[0],
+                        )
+                }
+            },
         ),
     ),
     'end': _p_change_context(
@@ -61,125 +151,22 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($) => ({
     ),
 })
 
-export const Token_Type: t_signatures.Token_Type = ($) => _p.decide.state(
+export const Whitespace: t_signatures.Whitespace = ($) => _p.optional.from.optional(
     $,
-    ($): t_out.Token_Type => {
-        switch ($[0]) {
-            case '!':
-                return _p.ss(
-                    $,
-                    ($) => ['!', null],
-                )
-            case '@':
-                return _p.ss(
-                    $,
-                    ($) => ['@', null],
-                )
-            case ':':
-                return _p.ss(
-                    $,
-                    ($) => [':', null],
-                )
-            case '#':
-                return _p.ss(
-                    $,
-                    ($) => ['#', null],
-                )
-            case '{':
-                return _p.ss(
-                    $,
-                    ($) => ['{', null],
-                )
-            case '}':
-                return _p.ss(
-                    $,
-                    ($) => ['}', null],
-                )
-            case '[':
-                return _p.ss(
-                    $,
-                    ($) => ['[', null],
-                )
-            case ']':
-                return _p.ss(
-                    $,
-                    ($) => [']', null],
-                )
-            case '(':
-                return _p.ss(
-                    $,
-                    ($) => ['(', null],
-                )
-            case ')':
-                return _p.ss(
-                    $,
-                    ($) => [')', null],
-                )
-            case '<':
-                return _p.ss(
-                    $,
-                    ($) => ['<', null],
-                )
-            case '>':
-                return _p.ss(
-                    $,
-                    ($) => ['>', null],
-                )
-            case '~':
-                return _p.ss(
-                    $,
-                    ($) => ['~', null],
-                )
-            case '*':
-                return _p.ss(
-                    $,
-                    ($) => ['*', null],
-                )
-            case '|':
-                return _p.ss(
-                    $,
-                    ($) => ['|', null],
-                )
-            case 'text':
-                return _p.ss(
-                    $,
-                    ($) => ['text', {
-                        'value': _p_change_context(
-                            $['value'],
-                            ($) => Delimited_Text(
-                                $,
-                            ),
-                        ),
-                        'type': _p_change_context(
-                            $['type'],
-                            ($) => Text_Type(
-                                $,
-                            ),
-                        ),
-                    }],
-                )
-            default:
-                return _p.au(
-                    $[0],
-                )
-        }
-    },
-)
-
-export const Delimited_Text: t_signatures.Delimited_Text = ($) => $
-
-export const Whitespace: t_signatures.Whitespace = ($) => ({
-    'range': _p_change_context(
-        $['range'],
-        ($) => v_location.Range(
-            $,
+).map(
+    ($) => ({
+        'range': _p_change_context(
+            $['range'],
+            ($) => v_location.Range(
+                $,
+            ),
         ),
-    ),
-    'value': _p_change_context(
-        $['value'],
-        ($) => $,
-    ),
-})
+        'value': _p_change_context(
+            $['value'],
+            ($) => $,
+        ),
+    }),
+)
 
 export const Trivia: t_signatures.Trivia = ($) => ({
     'leading whitespace': _p_change_context(
@@ -235,6 +222,19 @@ export const Trivia: t_signatures.Trivia = ($) => ({
                     ),
                 ),
             }),
+        ),
+    ),
+})
+
+export const Text: t_signatures.Text = ($) => ({
+    'value': _p_change_context(
+        $['value'],
+        ($) => $,
+    ),
+    'type': _p_change_context(
+        $['type'],
+        ($) => Text_Type(
+            $,
         ),
     ),
 })

@@ -22,6 +22,30 @@ export const Range: t_signatures.Range = ($) => ({
     ),
 })
 
+export const Possible_Range: t_signatures.Possible_Range = ($) => _p.decide.state(
+    $,
+    ($): t_out.Possible_Range => {
+        switch ($[0]) {
+            case 'range':
+                return _p.ss(
+                    $,
+                    ($) => ['range', Range(
+                        $,
+                    )],
+                )
+            case 'end of document':
+                return _p.ss(
+                    $,
+                    ($) => ['end of document', null],
+                )
+            default:
+                return _p.au(
+                    $[0],
+                )
+        }
+    },
+)
+
 export const Location: t_signatures.Location = ($) => ({
     'relative': _p_change_context(
         $['relative'],
@@ -36,10 +60,6 @@ export const Location: t_signatures.Location = ($) => ({
 })
 
 export const Relative_Location: t_signatures.Relative_Location = ($) => ({
-    'document resource identifier': _p_change_context(
-        $['document resource identifier'],
-        ($) => $,
-    ),
     'line': _p_change_context(
         $['line'],
         ($) => $,

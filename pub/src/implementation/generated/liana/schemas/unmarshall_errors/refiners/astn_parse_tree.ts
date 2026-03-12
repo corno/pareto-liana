@@ -84,7 +84,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                     ),
                                 ),
                                 ($) => _p.decide.text(
-                                    $['option']['value'],
+                                    $['option']['token']['value'],
                                     ($t): t_out.Errors.L.type_ => {
                                         switch ($t) {
                                             case 'error':
@@ -98,7 +98,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                             ),
                                                         ),
                                                         ($) => _p.decide.text(
-                                                            $['option']['value'],
+                                                            $['option']['token']['value'],
                                                             ($t): t_out.Errors.L.type_.error => {
                                                                 switch ($t) {
                                                                     case 'invalid value type':
@@ -153,7 +153,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                                 ),
                                                                                                             ),
                                                                                                             ($) => _p.decide.text(
-                                                                                                                $['option']['value'],
+                                                                                                                $['option']['token']['value'],
                                                                                                                 ($t): t_out.Errors.L.type_.error.invalid_value_type.expected.L => {
                                                                                                                     switch ($t) {
                                                                                                                         case 'text':
@@ -239,7 +239,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                                                         default:
                                                                                                                             return abort(
                                                                                                                                 ['liana', {
-                                                                                                                                    'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                                                                    'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                                                                     'range': v_parse_tree_to_location.Value(
                                                                                                                                         $['value'],
                                                                                                                                     ),
@@ -395,6 +395,16 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                 ),
                                                                             )],
                                                                         )
+                                                                    case 'missing value':
+                                                                        return _p_change_context(
+                                                                            $['value'],
+                                                                            ($) => ['missing value', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                $,
+                                                                                ($) => abort(
+                                                                                    $,
+                                                                                ),
+                                                                            )],
+                                                                        )
                                                                     case 'missing property value':
                                                                         return _p_change_context(
                                                                             $['value'],
@@ -507,7 +517,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                     ),
                                                                                 ),
                                                                                 ($) => _p.decide.text(
-                                                                                    $['option']['value'],
+                                                                                    $['option']['token']['value'],
                                                                                     ($t): t_out.Errors.L.type_.error.state => {
                                                                                         switch ($t) {
                                                                                             case 'more than 2 items':
@@ -639,7 +649,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                                             default:
                                                                                                 return abort(
                                                                                                     ['liana', {
-                                                                                                        'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                                        'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                                         'range': v_parse_tree_to_location.Value(
                                                                                                             $['value'],
                                                                                                         ),
@@ -653,7 +663,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                     default:
                                                                         return abort(
                                                                             ['liana', {
-                                                                                'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                 'range': v_parse_tree_to_location.Value(
                                                                                     $['value'],
                                                                                 ),
@@ -675,7 +685,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                             ),
                                                         ),
                                                         ($) => _p.decide.text(
-                                                            $['option']['value'],
+                                                            $['option']['token']['value'],
                                                             ($t): t_out.Errors.L.type_.warning => {
                                                                 switch ($t) {
                                                                     case 'expected apostrophed string':
@@ -721,7 +731,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                                                     default:
                                                                         return abort(
                                                                             ['liana', {
-                                                                                'type': ['state', ['unknown option', $['option']['value']]],
+                                                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                                 'range': v_parse_tree_to_location.Value(
                                                                                     $['value'],
                                                                                 ),
@@ -735,7 +745,7 @@ export const Errors: t_signatures.Errors = ($, abort) => _p.list.from.list(
                                             default:
                                                 return abort(
                                                     ['liana', {
-                                                        'type': ['state', ['unknown option', $['option']['value']]],
+                                                        'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                         'range': v_parse_tree_to_location.Value(
                                                             $['value'],
                                                         ),

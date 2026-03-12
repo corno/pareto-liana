@@ -21,51 +21,46 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Lexer Error": module_(t.state({
-            "dangling slash": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-                "at end of input": prop(t.boolean()),
-            })),
-            "invalid unicode escape sequence": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "missing character after escape": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            // "unexpected character": tstate(t.group({
-            //     "character": prop(t.number_local(n.natural(null))),
-            //     "location": prop(t.component_external("token", "Location")),
-            // })),
-            "unexpected control character": toption(t.group({
-                "character": prop(t.number_local(n.natural(null))),
-                "location": prop(t.component_external("location", "Location")),
-            })),
-            "unexpected control character in text": toption(t.group({
-                "character": prop(t.number_local(n.natural(null))),
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "unexpected end of line in delimited text": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "unknown escape character": toption(t.group({
-                "character": prop(t.number_local(n.natural(null))),
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "unterminated block comment": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "unterminated text": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
-            "unterminated unicode escape sequence": toption(t.group({
-                "range": prop(t.component_external("location", "Range")),
-            })),
+        "Lexer Error": module_(t.group({
+            "range": prop(t.component_external("location", "Range")),
+            "type": prop(t.state({
+                "dangling slash": toption(t.group({
+                    "at end of input": prop(t.boolean()),
+                })),
+                "invalid unicode escape sequence": toption(t.nothing()),
+                "missing character after escape": toption(t.nothing()),
+                // "unexpected character": tstate(t.group({
+                //     "character": prop(t.number_local(n.natural(null))),
+                //     "location": prop(t.component_external("token", "Location")),
+                // })),
+                "unexpected control character": toption(t.group({
+                    "character": prop(t.number_local(n.natural(null))),
+                })),
+                "unexpected control character in text": toption(t.group({
+                    "character": prop(t.number_local(n.natural(null))),
+                })),
+                "unexpected end of line in delimited text": toption(t.nothing()),
+                "unknown escape character": toption(t.group({
+                    "character": prop(t.number_local(n.natural(null))),
+                })),
+                "unterminated block comment": toption(t.nothing()),
+                "unterminated text": toption(t.nothing()),
+                "unterminated unicode escape sequence": toption(t.nothing()),
+                "unexpected": toption(t.group({
+                    "expected": prop(t.list(t.state({
+                        "end of block comment": toption(t.nothing()),
+                        "end of delimited text": toption(t.nothing()),
+                    })))
+                }))
+            }))
         })),
 
         "Parser Error": module_(t.group({
             "expected": prop(t.list(t.component("Expected"))),
             "cause": prop(t.state({
-                "missing token": toption(t.nothing()),
+                "missing token": toption(t.group({
+                    "end": prop(t.component_external("location", "Location")),
+                })),
                 "unexpected token": toption(t.group({
                     "found": prop(t.component_external("token", "Annotated Token")),
                 })),

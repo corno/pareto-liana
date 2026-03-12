@@ -76,6 +76,51 @@ export const Range: t_signatures.Range = ($, abort) => _p_change_context(
     ),
 )
 
+export const Possible_Range: t_signatures.Possible_Range = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.State(
+        $,
+        ($) => abort(
+            $,
+        ),
+    ),
+    ($) => _p.decide.text(
+        $['option']['token']['value'],
+        ($t): t_out.Possible_Range => {
+            switch ($t) {
+                case 'range':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['range', Range(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                        )],
+                    )
+                case 'end of document':
+                    return _p_change_context(
+                        $['value'],
+                        ($) => ['end of document', v_unmarshalled_from_parse_tree.Nothing(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                        )],
+                    )
+                default:
+                    return abort(
+                        ['liana', {
+                            'type': ['state', ['unknown option', $['option']['token']['value']]],
+                            'range': v_parse_tree_to_location.Value(
+                                $['value'],
+                            ),
+                        }],
+                    )
+            }
+        },
+    ),
+)
+
 export const Location: t_signatures.Location = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
@@ -149,7 +194,6 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
         {
             'expected properties': _p.dictionary.literal(
                 {
-                    "document resource identifier": null,
                     "line": null,
                     "column": null,
                 },
@@ -163,23 +207,6 @@ export const Relative_Location: t_signatures.Relative_Location = ($, abort) => _
                 $['value'],
             )
             return {
-                'document resource identifier': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'document resource identifier',
-                        },
-                    ),
-                    ($) => v_unmarshalled_from_parse_tree.Text(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
-                ),
                 'line': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,

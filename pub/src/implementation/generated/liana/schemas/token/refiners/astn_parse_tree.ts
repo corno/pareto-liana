@@ -159,10 +159,188 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
                             'id': 'type',
                         },
                     ),
-                    ($) => Token_Type(
-                        $,
-                        ($) => abort(
+                    ($) => _p_change_context(
+                        v_unmarshalled_from_parse_tree.State(
                             $,
+                            ($) => abort(
+                                $,
+                            ),
+                        ),
+                        ($) => _p.decide.text(
+                            $['option']['token']['value'],
+                            ($t): t_out.Annotated_Token.type_ => {
+                                switch ($t) {
+                                    case '!':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['!', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '@':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['@', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case ':':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => [':', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '#':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['#', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '{':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['{', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '}':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['}', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '[':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['[', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case ']':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => [']', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '(':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['(', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case ')':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => [')', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '<':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['<', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '>':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['>', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '~':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['~', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '*':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['*', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case '|':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['|', v_unmarshalled_from_parse_tree.Nothing(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    case 'text':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ['text', Text(
+                                                $,
+                                                ($) => abort(
+                                                    $,
+                                                ),
+                                            )],
+                                        )
+                                    default:
+                                        return abort(
+                                            ['liana', {
+                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                'range': v_parse_tree_to_location.Value(
+                                                    $['value'],
+                                                ),
+                                            }],
+                                        )
+                                }
+                            },
                         ),
                     ),
                 ),
@@ -205,310 +383,73 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort) => _p_ch
     ),
 )
 
-export const Token_Type: t_signatures.Token_Type = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.State(
+export const Whitespace: t_signatures.Whitespace = ($, abort) => _p.optional.from.optional(
+    v_unmarshalled_from_parse_tree.Optional(
         $,
         ($) => abort(
             $,
         ),
-    ),
-    ($) => _p.decide.text(
-        $['option']['value'],
-        ($t): t_out.Token_Type => {
-            switch ($t) {
-                case '!':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['!', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '@':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['@', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case ':':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => [':', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '#':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['#', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '{':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['{', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '}':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['}', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '[':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['[', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case ']':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => [']', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '(':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['(', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case ')':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => [')', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '<':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['<', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '>':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['>', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '~':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['~', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '*':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['*', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case '|':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['|', v_unmarshalled_from_parse_tree.Nothing(
-                            $,
-                            ($) => abort(
-                                $,
-                            ),
-                        )],
-                    )
-                case 'text':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ['text', _p_change_context(
-                            v_unmarshalled_from_parse_tree.Verbose_Group(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                                {
-                                    'expected properties': _p.dictionary.literal(
-                                        {
-                                            "value": null,
-                                            "type": null,
-                                        },
-                                    ),
-                                },
-                            ),
-                            ($) => _p_variables(
-                                () => {
-                                    
-                                    const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                        $['value'],
-                                    )
-                                    return {
-                                        'value': _p_change_context(
-                                            v_unmarshalled_from_parse_tree.Property(
-                                                $,
-                                                ($) => abort(
-                                                    $,
-                                                ),
-                                                {
-                                                    'id': 'value',
-                                                },
-                                            ),
-                                            ($) => Delimited_Text(
-                                                $,
-                                                ($) => abort(
-                                                    $,
-                                                ),
-                                            ),
-                                        ),
-                                        'type': _p_change_context(
-                                            v_unmarshalled_from_parse_tree.Property(
-                                                $,
-                                                ($) => abort(
-                                                    $,
-                                                ),
-                                                {
-                                                    'id': 'type',
-                                                },
-                                            ),
-                                            ($) => Text_Type(
-                                                $,
-                                                ($) => abort(
-                                                    $,
-                                                ),
-                                            ),
-                                        ),
-                                    }
-                                },
-                            ),
-                        )],
-                    )
-                default:
-                    return abort(
-                        ['liana', {
-                            'type': ['state', ['unknown option', $['option']['value']]],
-                            'range': v_parse_tree_to_location.Value(
-                                $['value'],
-                            ),
-                        }],
-                    )
-            }
-        },
-    ),
-)
-
-export const Delimited_Text: t_signatures.Delimited_Text = ($, abort) => v_unmarshalled_from_parse_tree.Text(
-    $,
-    ($) => abort(
-        $,
-    ),
-)
-
-export const Whitespace: t_signatures.Whitespace = ($, abort) => _p_change_context(
-    v_unmarshalled_from_parse_tree.Verbose_Group(
-        $,
-        ($) => abort(
+    )['optional'],
+).map(
+    ($) => _p_change_context(
+        v_unmarshalled_from_parse_tree.Verbose_Group(
             $,
-        ),
-        {
-            'expected properties': _p.dictionary.literal(
-                {
-                    "range": null,
-                    "value": null,
-                },
+            ($) => abort(
+                $,
             ),
-        },
-    ),
-    ($) => _p_variables(
-        () => {
-            
-            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                $['value'],
-            )
-            return {
-                'range': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                        {
-                            'id': 'range',
-                        },
-                    ),
-                    ($) => v_external_location.Range(
-                        $,
-                        ($) => abort(
-                            $,
-                        ),
-                    ),
+            {
+                'expected properties': _p.dictionary.literal(
+                    {
+                        "range": null,
+                        "value": null,
+                    },
                 ),
-                'value': _p_change_context(
-                    v_unmarshalled_from_parse_tree.Property(
-                        $,
-                        ($) => abort(
+            },
+        ),
+        ($) => _p_variables(
+            () => {
+                
+                const var_verbose_group_range = v_parse_tree_to_location.Value(
+                    $['value'],
+                )
+                return {
+                    'range': _p_change_context(
+                        v_unmarshalled_from_parse_tree.Property(
                             $,
+                            ($) => abort(
+                                $,
+                            ),
+                            {
+                                'id': 'range',
+                            },
                         ),
-                        {
-                            'id': 'value',
-                        },
-                    ),
-                    ($) => v_unmarshalled_from_parse_tree.Text(
-                        $,
-                        ($) => abort(
+                        ($) => v_external_location.Range(
                             $,
+                            ($) => abort(
+                                $,
+                            ),
                         ),
                     ),
-                ),
-            }
-        },
+                    'value': _p_change_context(
+                        v_unmarshalled_from_parse_tree.Property(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                            {
+                                'id': 'value',
+                            },
+                        ),
+                        ($) => v_unmarshalled_from_parse_tree.Text(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                        ),
+                    ),
+                }
+            },
+        ),
     ),
 )
 
@@ -613,7 +554,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                                                         ),
                                                     ),
                                                     ($) => _p.decide.text(
-                                                        $['option']['value'],
+                                                        $['option']['token']['value'],
                                                         ($t): t_out.Trivia.comments.L.type_ => {
                                                             switch ($t) {
                                                                 case 'line':
@@ -639,7 +580,7 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
                                                                 default:
                                                                     return abort(
                                                                         ['liana', {
-                                                                            'type': ['state', ['unknown option', $['option']['value']]],
+                                                                            'type': ['state', ['unknown option', $['option']['token']['value']]],
                                                                             'range': v_parse_tree_to_location.Value(
                                                                                 $['value'],
                                                                             ),
@@ -713,6 +654,67 @@ export const Trivia: t_signatures.Trivia = ($, abort) => _p_change_context(
     ),
 )
 
+export const Text: t_signatures.Text = ($, abort) => _p_change_context(
+    v_unmarshalled_from_parse_tree.Verbose_Group(
+        $,
+        ($) => abort(
+            $,
+        ),
+        {
+            'expected properties': _p.dictionary.literal(
+                {
+                    "value": null,
+                    "type": null,
+                },
+            ),
+        },
+    ),
+    ($) => _p_variables(
+        () => {
+            
+            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                $['value'],
+            )
+            return {
+                'value': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'value',
+                        },
+                    ),
+                    ($) => v_unmarshalled_from_parse_tree.Text(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+                'type': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'type',
+                        },
+                    ),
+                    ($) => Text_Type(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                    ),
+                ),
+            }
+        },
+    ),
+)
+
 export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
@@ -721,7 +723,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
         ),
     ),
     ($) => _p.decide.text(
-        $['option']['value'],
+        $['option']['token']['value'],
         ($t): t_out.Text_Type => {
             switch ($t) {
                 case 'quoted':
@@ -767,7 +769,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
                 default:
                     return abort(
                         ['liana', {
-                            'type': ['state', ['unknown option', $['option']['value']]],
+                            'type': ['state', ['unknown option', $['option']['token']['value']]],
                             'range': v_parse_tree_to_location.Value(
                                 $['value'],
                             ),

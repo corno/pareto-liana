@@ -450,7 +450,7 @@ export const Value = (
                     ],
                 ),
                 sh.a.decide.text(
-                    sh.sv.context(["option", "value"]),
+                    sh.sv.context(["option", "token", "value"]),
                     $.options.__d_map(
                         ($, id) => sh.a.change_context(
                             sh.sv.context(["value"]),
@@ -494,7 +494,7 @@ export const Value = (
                         ),
                     ),
                     sh.a.abort(sh.a.state.literal("liana", sh.a.group.literal({
-                        "type": sh.a.state.literal("state", sh.a.state.literal("unknown option", sh.a.select(sh.sv.context(["option", "value"])))),
+                        "type": sh.a.state.literal("state", sh.a.state.literal("unknown option", sh.a.select(sh.sv.context(["option", "token", "value"])))),
                         "range": sh.a.select(
                             sh.sv.call(
                                 sh.call.external("parse tree to location", "Value"),

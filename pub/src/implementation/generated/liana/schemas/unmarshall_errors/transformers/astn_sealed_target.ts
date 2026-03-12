@@ -186,6 +186,14 @@ export const Errors: t_signatures.Errors = ($) => ['list', _p.list.from.list(
                                                                 )]],
                                                             }),
                                                         )
+                                                    case 'missing value':
+                                                        return _p.ss(
+                                                            $,
+                                                            ($) => ({
+                                                                'option': 'missing value',
+                                                                'value': ['nothing', null],
+                                                            }),
+                                                        )
                                                     case 'missing property value':
                                                         return _p.ss(
                                                             $,

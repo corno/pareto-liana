@@ -2,6 +2,7 @@ import * as _p from 'pareto-core/dist/command'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pt from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as _pdev from 'pareto-core-dev'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -9,7 +10,6 @@ import * as signatures from "../../../interface/signatures"
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
-import * as d_function_loc from "astn-core/dist/interface/to_be_generated/location_to_fountain_pen"
 
 export type Error = _pi.Dictionary<Package_Error>
 
@@ -43,7 +43,7 @@ import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, d_function_loc.Old_Parameters> = ($, $p) => {
+export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, { 'character location reporting': ['zero based', null] | ['one based', null] }> = ($, $p) => {
     return sh.pg.sentences($.__to_list(
         ($, id) => sh.sentence([
             sh.ph.literal("error in package '"),
@@ -59,17 +59,18 @@ export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, d_func
                     case 'could not copy generic implementation': return _p.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
                     case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
                     case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
-                            t_location_to_fountain_pen.Range(
-                                t_resolve_to_location.Error($),
-                                {
-                                    'character location reporting': ['one based', null],
-                                }
-                            ),
-                            sh.ph.literal(": "),
-                            t_resolve_to_fountain_pen.Error(
-                                $,
-                            )
-                        ]))
+                        t_location_to_fountain_pen.Range(
+                            t_resolve_to_location.Error($),
+                            {
+                                'document resource identifier': _pdev.implement_me("SDFSDFFD"),
+                                'character location reporting': ['one based', null],
+                            }
+                        ),
+                        sh.ph.literal(": "),
+                        t_resolve_to_fountain_pen.Error(
+                            $,
+                        )
+                    ]))
                     default: return _p.au($[0])
                 }
             })

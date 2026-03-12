@@ -39,38 +39,6 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort, $p) => v
     ),
 )
 
-export const Token_Type: t_signatures.Token_Type = ($, abort, $p) => v_unmarshall.Token_Type(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['parse error', $],
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        },
-    )['content'],
-    ($) => abort(
-        ['unmarshall error', $],
-    ),
-)
-
-export const Delimited_Text: t_signatures.Delimited_Text = ($, abort, $p) => v_unmarshall.Delimited_Text(
-    v_deserialize.Document(
-        $,
-        ($) => abort(
-            ['parse error', $],
-        ),
-        {
-            'document resource identifier': $p['document resource identifier'],
-            'tab size': $p['tab size'],
-        },
-    )['content'],
-    ($) => abort(
-        ['unmarshall error', $],
-    ),
-)
-
 export const Whitespace: t_signatures.Whitespace = ($, abort, $p) => v_unmarshall.Whitespace(
     v_deserialize.Document(
         $,
@@ -88,6 +56,22 @@ export const Whitespace: t_signatures.Whitespace = ($, abort, $p) => v_unmarshal
 )
 
 export const Trivia: t_signatures.Trivia = ($, abort, $p) => v_unmarshall.Trivia(
+    v_deserialize.Document(
+        $,
+        ($) => abort(
+            ['parse error', $],
+        ),
+        {
+            'document resource identifier': $p['document resource identifier'],
+            'tab size': $p['tab size'],
+        },
+    )['content'],
+    ($) => abort(
+        ['unmarshall error', $],
+    ),
+)
+
+export const Text: t_signatures.Text = ($, abort, $p) => v_unmarshall.Text(
     v_deserialize.Document(
         $,
         ($) => abort(

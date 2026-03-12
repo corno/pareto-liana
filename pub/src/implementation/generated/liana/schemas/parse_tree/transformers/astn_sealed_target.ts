@@ -438,16 +438,9 @@ export const Text: t_signatures.Text = ($) => ['group', ['verbose', _p.dictionar
                 $,
             ),
         ),
-        "value": _p_change_context(
-            $['value'],
-            ($) => ['text', {
-                'delimiter': ['quote', null],
-                'value': $,
-            }],
-        ),
-        "type": _p_change_context(
-            $['type'],
-            ($) => v_external_token.Text_Type(
+        "token": _p_change_context(
+            $['token'],
+            ($) => v_external_token.Text(
                 $,
             ),
         ),

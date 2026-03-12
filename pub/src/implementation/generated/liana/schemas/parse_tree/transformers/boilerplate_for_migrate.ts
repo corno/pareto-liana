@@ -358,13 +358,9 @@ export const Text: t_signatures.Text = ($) => ({
             $,
         ),
     ),
-    'value': _p_change_context(
-        $['value'],
-        ($) => $,
-    ),
-    'type': _p_change_context(
-        $['type'],
-        ($) => v_token.Text_Type(
+    'token': _p_change_context(
+        $['token'],
+        ($) => v_token.Text(
             $,
         ),
     ),
