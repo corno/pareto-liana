@@ -13,7 +13,7 @@
     "astn-core": "^0.5.81",
     "liana-core": "^0.1.7",
     "pareto": "^0.80.27",
-    "pareto-core-dev": "^0.12.11",
+    "pareto-core-dev": "^0.12.13",
     "pareto-core-shorthands": "^0.2.27",
     "pareto-fountain-pen": "^0.4.51",
     "pareto-fountain-pen-file-structure": "^0.1.3",

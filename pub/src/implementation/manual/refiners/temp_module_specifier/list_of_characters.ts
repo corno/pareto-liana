@@ -1,6 +1,7 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _pdev from 'pareto-core-dev'
+import _p_implement_me from 'pareto-core-dev/dist/implement_me'
+import _p_log_debug_message from 'pareto-core-dev/dist/log_debug_message'
 import * as _p_temp from 'pareto-core/dist/assign'
 import _p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
 
@@ -76,10 +77,10 @@ export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
                 return _p_temp.decide.state(st, ($) => {
                     switch ($[0]) {
 
-                        case 'schema': return _p_temp.ss($, ($) => _pdev.implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
+                        case 'schema': return _p_temp.ss($, ($) => _p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
                         case 'set': return _p_temp.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
                             ($) => temp_find_schema($, split.rest),
-                            () => _pdev.implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
+                            () => _p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                         ))
                         default: return _p_temp.au($[0])
                     }
@@ -88,7 +89,7 @@ export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
             () => _p_temp.decide.state($, ($) => {
                 switch ($[0]) {
                     case 'schema': return _p_temp.ss($, ($) => $)
-                    case 'set': return _p_temp.ss($, ($) => _pdev.implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
+                    case 'set': return _p_temp.ss($, ($) => _p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
                     default: return _p_temp.au($[0])
                 }
             })
@@ -100,9 +101,9 @@ export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
         ($) => $,
         () => {
             schema.modules.__d_map(($, id) => {
-                _pdev.log_debug_message(`available type: ${id}`, () => { })
+                _p_log_debug_message(`available type: ${id}`, () => { })
             })
-            _pdev.implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
+            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
         }
     )
 

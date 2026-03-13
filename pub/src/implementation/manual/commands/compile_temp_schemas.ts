@@ -2,7 +2,7 @@ import * as _p from 'pareto-core/dist/command'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pt from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import * as _pdev from 'pareto-core-dev'
+import _p_implement_me from 'pareto-core-dev/dist/implement_me'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -62,7 +62,7 @@ export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, { 'cha
                         t_location_to_fountain_pen.Range(
                             t_resolve_to_location.Error($),
                             {
-                                'document resource identifier': _pdev.implement_me("SDFSDFFD"),
+                                'document resource identifier': _p_implement_me("SDFSDFFD"),
                                 'character location reporting': ['one based', null],
                             }
                         ),
