@@ -57,7 +57,6 @@ export const Schema = (
         sh.t.component_imported("generic", "Error"),
         null,
         {
-            "document resource identifier": sh.t.text(),
             "tab size": sh.t.natural(),
         },
     )),

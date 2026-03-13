@@ -14,7 +14,6 @@ export const Errors: t_signatures.Errors = ($, abort, $p) => v_unmarshall.Errors
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],

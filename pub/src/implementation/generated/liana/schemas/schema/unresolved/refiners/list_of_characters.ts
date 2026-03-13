@@ -14,7 +14,6 @@ export const Package: t_signatures.Package = ($, abort, $p) => v_unmarshall.Pack
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -30,7 +29,6 @@ export const Schemas: t_signatures.Schemas = ($, abort, $p) => v_unmarshall.Sche
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -46,7 +44,6 @@ export const Schema: t_signatures.Schema = ($, abort, $p) => v_unmarshall.Schema
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -62,7 +59,6 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $p) => v_u
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -78,7 +74,6 @@ export const Modules: t_signatures.Modules = ($, abort, $p) => v_unmarshall.Modu
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -94,7 +89,6 @@ export const Globals: t_signatures.Globals = ($, abort, $p) => v_unmarshall.Glob
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -110,7 +104,6 @@ export const Dictionary: t_signatures.Dictionary = ($, abort, $p) => v_unmarshal
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -126,7 +119,6 @@ export const Value: t_signatures.Value = ($, abort, $p) => v_unmarshall.Value(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -142,7 +134,6 @@ export const Resolver: t_signatures.Resolver = ($, abort, $p) => v_unmarshall.Re
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -158,7 +149,6 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $p) =>
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -174,7 +164,6 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, 
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -190,7 +179,6 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -206,7 +194,6 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort, $p) => v_u
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -222,7 +209,6 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -238,7 +224,6 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $p) => v_unmarsh
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -254,7 +239,6 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $p) => v_unmarshall.
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -270,7 +254,6 @@ export const Number_Type: t_signatures.Number_Type = ($, abort, $p) => v_unmarsh
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -286,7 +269,6 @@ export const Module: t_signatures.Module = ($, abort, $p) => v_unmarshall.Module
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -302,7 +284,6 @@ export const Presence: t_signatures.Presence = ($, abort, $p) => v_unmarshall.Pr
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -318,7 +299,6 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $p) =>
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -334,7 +314,6 @@ export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $p
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -350,7 +329,6 @@ export const Group: t_signatures.Group = ($, abort, $p) => v_unmarshall.Group(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -366,7 +344,6 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $p) => v
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -382,7 +359,6 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $p) => v_unmarshal
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -398,7 +374,6 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $p) =>
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -414,7 +389,6 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $p
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -430,7 +404,6 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -446,7 +419,6 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -462,7 +434,6 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, 
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -478,7 +449,6 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -494,7 +464,6 @@ export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -510,7 +479,6 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -526,7 +494,6 @@ export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Refer
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -542,7 +509,6 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -558,7 +524,6 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -574,7 +539,6 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -590,7 +554,6 @@ export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -606,7 +569,6 @@ export const Value_Results: t_signatures.Value_Results = ($, abort, $p) => v_unm
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -622,7 +584,6 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $p
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -638,7 +599,6 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -654,7 +614,6 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],

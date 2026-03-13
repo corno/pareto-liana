@@ -17,7 +17,6 @@ export const Package = ($: d_in.Package): d_out.Package_Set => {
         //     //     {},
         //     //     {
         //     //         "Location": sh.type.data(sh.t.group({
-        //     //             "document resource identifier": sh.t.text(),
         //     //             "line": sh.t.natural(),
         //     //             "column": sh.t.natural(),
         //     //         })),
@@ -77,7 +76,6 @@ export const Package = ($: d_in.Package): d_out.Package_Set => {
         //             })),
 
         //             // "Parameters": sh.type.data(sh.t.group({
-        //             //     "document resource identifier": sh.t.text(),
         //             //     "indentation": sh.t.natural(),
         //             // })),
         //         }

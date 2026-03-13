@@ -14,7 +14,6 @@ export const Tokenizer_Result: t_signatures.Tokenizer_Result = ($, abort, $p) =>
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -30,7 +29,6 @@ export const Annotated_Token: t_signatures.Annotated_Token = ($, abort, $p) => v
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -46,7 +44,6 @@ export const Whitespace: t_signatures.Whitespace = ($, abort, $p) => v_unmarshal
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -62,7 +59,6 @@ export const Trivia: t_signatures.Trivia = ($, abort, $p) => v_unmarshall.Trivia
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -78,7 +74,6 @@ export const Text: t_signatures.Text = ($, abort, $p) => v_unmarshall.Text(
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],
@@ -94,7 +89,6 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $p) => v_unmarshall.
             ['parse error', $],
         ),
         {
-            'document resource identifier': $p['document resource identifier'],
             'tab size': $p['tab size'],
         },
     )['content'],

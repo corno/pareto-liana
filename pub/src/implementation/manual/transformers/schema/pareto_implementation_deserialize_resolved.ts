@@ -58,7 +58,6 @@ export const Schema = (
                         sh.a.state.literal("tbd", sh.a.nothing()),
                         sh.lookups.not_set(),
                         sh.arguments_.initialize({
-                            "document resource identifier": sh.a.text.copy(sh.sv.parameter("document resource identifier", [])),
                             "tab size": sh.a.number.integer_copy(sh.sv.parameter("tab size", []))
                         }),
                         []

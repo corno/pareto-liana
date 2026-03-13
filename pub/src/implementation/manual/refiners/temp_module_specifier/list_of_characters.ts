@@ -16,16 +16,13 @@ import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schema
 import * as r_schema_resolved_from_unresolved from "../../../temp/resolvers/schema/unresolved_manual"
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 
-export type Module_Specifier = _pi.Refiner_With_Parameter<
+export type Module_Specifier = _pi.Refiner<
     d_out.Temp_Module_Specifier,
     d_function.Error,
-    d_in.List_of_Characters,
-    {
-        'document resource identifier': string
-    }
+    d_in.List_of_Characters
 >
 
-export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
+export const Module_Specifier: Module_Specifier = ($, abort) => {
 
 
     const resolved_schema_schema = r_schema_resolved_from_unresolved.Module_Specification(
@@ -33,7 +30,6 @@ export const Module_Specifier: Module_Specifier = ($, abort, $p) => {
             $,
             ($) => abort(['deserialize', $]),
             {
-                'document resource identifier': $p['document resource identifier'],
                 'tab size': 4,
             }
         ),

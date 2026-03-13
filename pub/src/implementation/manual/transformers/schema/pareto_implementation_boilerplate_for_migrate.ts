@@ -14,7 +14,6 @@ const location = sh.a.group.literal({
     "start": sh.a.group.literal({
         "absolute": sh.a.number.integer_literal(42),
         "relative": sh.a.group.literal({
-            "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
             "line": sh.a.number.integer_literal(42),
             "column": sh.a.number.integer_literal(42),
         })
@@ -22,7 +21,6 @@ const location = sh.a.group.literal({
     "end": sh.a.group.literal({
         "absolute": sh.a.number.integer_literal(42),
         "relative": sh.a.group.literal({
-            "document resource identifier": sh.a.text.literal("implement me", 'freeform'),
             "line": sh.a.number.integer_literal(42),
             "column": sh.a.number.integer_literal(42),
         })

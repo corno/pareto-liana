@@ -23,9 +23,6 @@ export type Package_Error =
     | ['could not copy core interface', null]
     | ['could not deserialize module', d_resolve.Error]
 
-
-
-
 //data
 import { Package, $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
