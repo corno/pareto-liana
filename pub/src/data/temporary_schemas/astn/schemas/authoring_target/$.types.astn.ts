@@ -52,7 +52,7 @@ export const $: g_.Modules = modules(
                             "delimiter": prop(t.state({
                                 "none": toption(t.nothing()),
                                 "quote": toption(t.nothing()),
-                                "backtick": toption(t.nothing()),
+                                "apostrophe": toption(t.nothing()),
                             })),
                         })),
                     })),

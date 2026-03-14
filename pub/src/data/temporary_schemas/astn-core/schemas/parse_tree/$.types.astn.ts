@@ -100,9 +100,9 @@ export const $: g_.Modules = modules(
 
         "ID Value Pair": module_(t.group({
             "id": prop(t.component("Text")),
-            "value": prop(t.optional(t.group({
+            "assignment": prop(t.optional(t.group({
                 ":": prop(t.component("Structural Token")),
-                "value": prop(t.component("Value")),
+                "value": prop(t.optional(t.component("Value"))),
             }))),
         })),
 

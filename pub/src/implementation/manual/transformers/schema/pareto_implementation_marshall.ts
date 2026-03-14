@@ -264,7 +264,7 @@ export const Value = (
             switch ($[0]) {
                 case 'derived': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
                 case 'selected': return _p.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
-                    "delimiter": sh.a.state.literal("backtick", sh.a.nothing()),
+                    "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
                     "value": sh.a.text.copy(sh.sv.context($.results.__decide(
                         ($) => ["l value", "l id"],
                         () => ["l id"]

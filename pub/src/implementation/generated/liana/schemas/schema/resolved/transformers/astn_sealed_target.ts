@@ -108,7 +108,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ['dictionary',
             "schema set child": _p_change_context(
                 $['schema set child'],
                 ($) => ['text', {
-                    'delimiter': ['backtick', null],
+                    'delimiter': ['apostrophe', null],
                     'value': $['l value']['l id'],
                 }],
             ),
@@ -229,14 +229,14 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                                     "import": _p_change_context(
                                                                         $['import'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
                                                                     "module": _p_change_context(
                                                                         $['module'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -250,7 +250,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                         ($) => ({
                                                             'option': 'internal',
                                                             'value': ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         }),
@@ -261,7 +261,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                         ($) => ({
                                                             'option': 'internal acyclic',
                                                             'value': ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         }),
@@ -350,7 +350,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             ($) => ({
                                                 'option': 'global',
                                                 'value': ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -548,7 +548,7 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                             ($) => ({
                                                 'option': 'global',
                                                 'value': ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             }),
@@ -612,7 +612,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ['dictiona
             "schema set child": _p_change_context(
                 $['schema set child'],
                 ($) => ['text', {
-                    'delimiter': ['backtick', null],
+                    'delimiter': ['apostrophe', null],
                     'value': $['l value']['l id'],
                 }],
             ),
@@ -764,21 +764,21 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                                                                     "schema import": _p_change_context(
                                                                         $['schema import'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
                                                                     "resolver import": _p_change_context(
                                                                         $['resolver import'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
                                                                     "signature": _p_change_context(
                                                                         $['signature'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -792,7 +792,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                                                         ($) => ({
                                                             'option': 'internal',
                                                             'value': ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         }),
@@ -852,7 +852,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                                                                                 ($) => ({
                                                                                     'option': 'parameter',
                                                                                     'value': ['text', {
-                                                                                        'delimiter': ['backtick', null],
+                                                                                        'delimiter': ['apostrophe', null],
                                                                                         'value': $['l id'],
                                                                                     }],
                                                                                 }),
@@ -1603,7 +1603,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', 
                                         ($) => ({
                                             'option': 'group',
                                             'value': ['text', {
-                                                'delimiter': ['backtick', null],
+                                                'delimiter': ['apostrophe', null],
                                                 'value': $['l id'],
                                             }],
                                         }),
@@ -1630,7 +1630,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', 
                                         ($) => ({
                                             'option': 'state',
                                             'value': ['text', {
-                                                'delimiter': ['backtick', null],
+                                                'delimiter': ['apostrophe', null],
                                                 'value': $['l id'],
                                             }],
                                         }),
@@ -1666,7 +1666,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
                                 ($) => ({
                                     'option': 'internal',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -1681,14 +1681,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
                                             "import": _p_change_context(
                                                 $['import'],
                                                 ($) => ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             ),
                                             "module": _p_change_context(
                                                 $['module'],
                                                 ($) => ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             ),
@@ -1739,7 +1739,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ['grou
                                 ($) => ({
                                     'option': 'same as',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -1786,7 +1786,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                         ($) => ({
                                             'option': 'group',
                                             'value': ['text', {
-                                                'delimiter': ['backtick', null],
+                                                'delimiter': ['apostrophe', null],
                                                 'value': $['l id'],
                                             }],
                                         }),
@@ -1910,7 +1910,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                 ($) => ({
                                     'option': 'parameter',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -1958,7 +1958,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ['gr
                                             "option": _p_change_context(
                                                 $['option'],
                                                 ($) => ['text', {
-                                                    'delimiter': ['backtick', null],
+                                                    'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
                                             ),
@@ -2019,7 +2019,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                                     "option": _p_change_context(
                                         $['option'],
                                         ($) => ['text', {
-                                            'delimiter': ['backtick', null],
+                                            'delimiter': ['apostrophe', null],
                                             'value': $['l id'],
                                         }],
                                     ),
@@ -2063,7 +2063,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
 )]
 
 export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($) => ['text', {
-    'delimiter': ['backtick', null],
+    'delimiter': ['apostrophe', null],
     'value': $['l id'],
 }]
 
@@ -2211,7 +2211,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                 ($) => ({
                                     'option': 'sibling',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -2222,7 +2222,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                 ($) => ({
                                     'option': 'parent sibling',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -2233,7 +2233,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                 ($) => ({
                                     'option': 'option constraint',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -2273,14 +2273,14 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                     "property": _p_change_context(
                                                                         $['property'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
                                                                     "constraint": _p_change_context(
                                                                         $['constraint'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -2298,14 +2298,14 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                     "property": _p_change_context(
                                                                         $['property'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
                                                                     "constraint": _p_change_context(
                                                                         $['constraint'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -2328,7 +2328,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                 ($) => ({
                                     'option': 'parameter',
                                     'value': ['text', {
-                                        'delimiter': ['backtick', null],
+                                        'delimiter': ['apostrophe', null],
                                         'value': $['l id'],
                                     }],
                                 }),
@@ -2352,7 +2352,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                     "property": _p_change_context(
                                                                         $['property'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -2374,7 +2374,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                     "property": _p_change_context(
                                                                         $['property'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -2402,7 +2402,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                     "property": _p_change_context(
                                                                         $['property'],
                                                                         ($) => ['text', {
-                                                                            'delimiter': ['backtick', null],
+                                                                            'delimiter': ['apostrophe', null],
                                                                             'value': $['l id'],
                                                                         }],
                                                                     ),
@@ -2460,7 +2460,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                     ($) => ({
                         'option': 'parameter',
                         'value': ['text', {
-                            'delimiter': ['backtick', null],
+                            'delimiter': ['apostrophe', null],
                             'value': $['l id'],
                         }],
                     }),
@@ -2484,7 +2484,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                         "property": _p_change_context(
                                                             $['property'],
                                                             ($) => ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
@@ -2512,7 +2512,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                         "property": _p_change_context(
                                                             $['property'],
                                                             ($) => ['text', {
-                                                                'delimiter': ['backtick', null],
+                                                                'delimiter': ['apostrophe', null],
                                                                 'value': $['l id'],
                                                             }],
                                                         ),
