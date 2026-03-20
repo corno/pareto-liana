@@ -20,12 +20,12 @@ export const $: g_.Modules = modules(
                 "information": toption(t.nothing()),
                 "hint": toption(t.nothing()),
             })),
-            "range": prop(t.component_external("location", "Range")),
+            "range": prop(t.component_external("location", "Range FE")),
             "message": prop(t.text_local(text('single line'))),
             "related information": prop(t.optional(t.list(t.group({
                 "location": prop(t.group({
                     "file path": prop(t.component_external("path", "Node Path")),
-                    "range": prop(t.component_external("location", "Range")),
+                    "range": prop(t.component_external("location", "Range FE")),
                 })),
                 "message": prop(t.text_local(text('single line'))),
             })))),

@@ -19,7 +19,7 @@ export const $: g_.Modules = modules(
             "character": prop(t.number_local(n.natural(null))),
         })),
 
-        "Range": module_(t.group({
+        "Range FE": module_(t.group({
             "start": prop(t.component("Position")),
             "end": prop(t.component("Position")),
         })),

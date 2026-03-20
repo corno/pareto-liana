@@ -40,7 +40,9 @@ import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, { 'character location reporting': ['zero based', null] | ['one based', null] }> = ($, $p) => {
+export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, {
+    'character location reporting': ['zero based', null] | ['one based', null]
+}> = ($, $p) => {
     return sh.pg.sentences($.__to_list(
         ($, id) => sh.sentence([
             sh.ph.literal("error in package '"),
@@ -59,7 +61,7 @@ export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, { 'cha
                         t_location_to_fountain_pen.Range(
                             t_resolve_to_location.Error($),
                             {
-                                'document resource identifier': _p_implement_me("SDFSDFFD"),
+                                'document resource identifier': "unknown DRI",
                                 'character location reporting': ['one based', null],
                             }
                         ),

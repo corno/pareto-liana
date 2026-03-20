@@ -10,6 +10,7 @@ import { $ as x_format } from "./schemas/format/$.module.astn"
 import { $ as x_get_completion_suggestions } from "./schemas/get_completion_suggestions/$.module.astn"
 import { $ as x_get_on_hover_info } from "./schemas/get_on_hover_info/$.module.astn"
 import { $ as x_hover_info } from "./schemas/hover_info/$.module.astn"
+import { $ as x_astn_location } from "../astn-core/schemas/location/$.module.astn"
 import { $ as x_location } from "./schemas/location/$.module.astn"
 import { $ as x_path } from "../pareto-resources/schemas/path/$.module.astn"
 import { $ as x_seal } from "./schemas/seal/$.module.astn"
@@ -25,6 +26,7 @@ export const $: g_.Schema_Tree = st.set({
     "get completion suggestions": x_get_completion_suggestions,
     "get on hover info": x_get_on_hover_info,
     "hover info": x_hover_info,
+    "astn location": x_astn_location,
     "location": x_location,
     "path": x_path,
     "seal": x_seal,
