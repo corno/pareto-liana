@@ -25,6 +25,7 @@ export const $: g_.Modules = modules(
                             "concise group": toption(t.nothing()),
                             "dictionary": toption(t.nothing()),
                             "not set": toption(t.nothing()),
+                            "nothing": toption(t.nothing()),
                             "set": toption(t.nothing()),
                             "list": toption(t.nothing()),
                             "state": toption(t.nothing()),

@@ -10,7 +10,7 @@
     "dist"
   ],
   "dependencies": {
-    "astn-core": "^0.5.85",
+    "astn-core": "^0.5.86",
     "liana-core": "^0.1.9",
     "pareto": "^0.80.29",
     "pareto-core-dev": "^0.12.13",

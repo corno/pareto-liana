@@ -12,7 +12,7 @@ import { $ as x_schema } from "./schemas/schema/$.module.astn"
 
 export const $: g_.Schema_Tree = st.set({
     "astn schema": x_astn_schema,
-    "load dcocument": x_load_document,
+    "load document": x_load_document,
     "location": x_astn_location,
     "number types": x_number_types,
     "schema": x_schema,
