@@ -15,6 +15,7 @@ import { $ as x_path } from "../pareto-resources/schemas/path/$.module.astn"
 import { $ as x_seal } from "./schemas/seal/$.module.astn"
 import { $ as x_sort_alphabetically } from "./schemas/sort_alphabetically/$.module.astn"
 import { $ as x_text_edits } from "./schemas/text_edits/$.module.astn"
+import { $ as x_unmarshall_errors } from "./schemas/unmarshall_errors/$.module.astn"
 
 export const $: g_.Schema_Tree = st.set({
     "completion suggestions": x_completion_suggestions,
@@ -29,4 +30,5 @@ export const $: g_.Schema_Tree = st.set({
     "seal": x_seal,
     "sort alphabetically": x_sort_alphabetically,
     "text edits": x_text_edits,
+    "unmarshall errors": x_unmarshall_errors
 })

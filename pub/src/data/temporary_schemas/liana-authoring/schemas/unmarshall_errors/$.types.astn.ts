@@ -63,6 +63,7 @@ export const $: g_.Modules = modules(
                     "expected quoted string": toption(t.nothing()),
                     "expected backticked string": toption(t.nothing()),
                     "expected undelimited string": toption(t.nothing()),
+                    "expected a group": toption(t.nothing()),
                 })),
             })),
         }))),

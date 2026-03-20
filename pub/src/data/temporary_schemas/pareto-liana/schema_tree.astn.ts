@@ -8,7 +8,6 @@ import { $ as x_astn_schema } from "../astn/schemas/astn_schema/$.module.astn"
 import { $ as x_load_document } from "./schemas/load_document/$.module.astn"
 import { $ as x_number_types } from "./schemas/number_types/$.module.astn"
 import { $ as x_schema } from "./schemas/schema/$.module.astn"
-import { $ as x_unmarshall_errors } from "./schemas/unmarshall_errors/$.module.astn"
 
 
 export const $: g_.Schema_Tree = st.set({
@@ -17,5 +16,4 @@ export const $: g_.Schema_Tree = st.set({
     "location": x_astn_location,
     "number types": x_number_types,
     "schema": x_schema,
-    "unmarshall errors": x_unmarshall_errors
 })
