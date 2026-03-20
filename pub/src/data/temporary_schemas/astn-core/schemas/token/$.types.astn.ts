@@ -41,7 +41,8 @@ export const $: g_.Modules = modules(
                 "<": toption(t.nothing()), //concise group open
                 ">": toption(t.nothing()), //concise group close
 
-                "~": toption(t.nothing()), //nothing / not set
+                "~": toption(t.nothing()), //nothing
+                "_": toption(t.nothing()), //not set
                 "*": toption(t.nothing()), //set
 
                 "|": toption(t.nothing()), //state

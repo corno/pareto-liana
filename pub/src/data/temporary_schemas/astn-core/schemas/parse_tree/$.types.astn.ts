@@ -57,7 +57,9 @@ export const $: g_.Modules = modules(
                             "*": prop(t.component("Structural Token")),
                             "value": prop(t.component("Value")),
                         })),
-                        //not set is the same as 'nothing'
+                        "not set": toption(t.group({
+                            "_": prop(t.component("Structural Token")),
+                        })),
                     })),
                     "state": toption(t.group({
                         "|": prop(t.component("Structural Token")),
