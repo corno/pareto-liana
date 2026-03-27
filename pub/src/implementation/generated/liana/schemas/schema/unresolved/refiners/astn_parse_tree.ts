@@ -460,7 +460,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
                 {
                     "complexity": null,
                     "text types": null,
-                    "number types": null,
+                    "simple types": null,
                 },
             ),
             'subdocument context': _p.optional.literal.not_set(),
@@ -600,14 +600,14 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
                         }),
                     ),
                 ),
-                'number types': _p_change_context(
+                'simple types': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
                         ($) => abort(
                             $,
                         ),
                         {
-                            'id': 'number types',
+                            'id': 'simple types',
                             'subdocument context': _p.optional.literal.not_set(),
                         },
                     ),

@@ -40,7 +40,7 @@ export const Schema = (
                                     "dist",
                                     "interface",
                                     "to be generated",
-                                    "location",
+                                    "document and location",
                                 ]
                             )
                         )

@@ -337,8 +337,8 @@ export const Globals: t_signatures.Globals = ($) => ({
             ),
         }),
     ),
-    'number types': _p_change_context(
-        $['number types'],
+    'simple types': _p_change_context(
+        $['simple types'],
         ($) => ({
             'l location': ['in main document', {
                 'start': {

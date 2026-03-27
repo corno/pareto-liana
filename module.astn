@@ -7,7 +7,7 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {}
             )
             `modules`: {
                 'Schema Tree': (
@@ -1051,7 +1051,14 @@
             `globals`: (
                 `complexity`: | `unconstrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {
+                    'Natural': (
+                        `precision`: | `exact` (
+                            `decimal separator offset`: _
+                            `type`: | `natural` ~
+                        )
+                    )
+                }
             )
             `modules`: {
                 'Range': (
@@ -1111,12 +1118,7 @@
                         )
                         'absolute': (
                             `description`: _
-                            `value`: | `number` | `local` (
-                                `precision`: | `exact` (
-                                    `decimal separator offset`: _
-                                    `type`: | `natural` ~
-                                )
-                            )
+                            `value`: | `number` | `global` 'Natural'
                         )
                     }
                 )
@@ -1124,21 +1126,11 @@
                     `root value`: | `group` {
                         'line': (
                             `description`: _
-                            `value`: | `number` | `local` (
-                                `precision`: | `exact` (
-                                    `decimal separator offset`: _
-                                    `type`: | `natural` ~
-                                )
-                            )
+                            `value`: | `number` | `global` 'Natural'
                         )
                         'column': (
                             `description`: _
-                            `value`: | `number` | `local` (
-                                `precision`: | `exact` (
-                                    `decimal separator offset`: _
-                                    `type`: | `natural` ~
-                                )
-                            )
+                            `value`: | `number` | `global` 'Natural'
                         )
                     }
                 )
@@ -1156,26 +1148,10 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {}
             )
             `modules`: {}
             `complexity`: | `unconstrained` ~
-        )
-        'number types': | `schema` (
-            `schema imports`: {}
-            `resolver imports`: {}
-            `globals`: (
-                `complexity`: | `constrained` ~
-                `text types`: {}
-                `number types`: {}
-            )
-            `modules`: {}
-            `complexity`: | `constrained` (
-                `signatures`: (
-                    `signatures`: {}
-                )
-                `modules`: {}
-            )
         )
         'schema': | `schema` (
             `schema imports`: {}
@@ -1183,7 +1159,14 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `number types`: {}
+                `simple types`: {
+                    'Natural': (
+                        `precision`: | `exact` (
+                            `decimal separator offset`: _
+                            `type`: | `natural` ~
+                        )
+                    )
+                }
             )
             `modules`: {
                 'Package': (
@@ -1352,7 +1335,7 @@
                                 )
                             )
                         )
-                        'number types': (
+                        'simple types': (
                             `description`: _
                             `value`: | `dictionary` (
                                 `value`: | `component` (
@@ -1547,7 +1530,7 @@
                                                         `resulting module`: ~
                                                     )
                                                     `path`: (
-                                                        `tail`: [ | `group` 'number types' ]
+                                                        `tail`: [ | `group` 'simple types' ]
                                                         `resulting node`: ~
                                                     )
                                                 )
@@ -2621,12 +2604,7 @@
                                         `value`: | `group` {
                                             'significant digits': (
                                                 `description`: _
-                                                `value`: | `number` | `local` (
-                                                    `precision`: | `exact` (
-                                                        `decimal separator offset`: _
-                                                        `type`: | `natural` ~
-                                                    )
-                                                )
+                                                `value`: | `number` | `global` 'Natural'
                                             )
                                         }
                                     )
@@ -2636,12 +2614,7 @@
                                         `value`: | `group` {
                                             'decimal separator offset': (
                                                 `description`: _
-                                                `value`: | `optional` | `number` | `local` (
-                                                    `precision`: | `exact` (
-                                                        `decimal separator offset`: _
-                                                        `type`: | `natural` ~
-                                                    )
-                                                )
+                                                `value`: | `optional` | `number` | `global` 'Natural'
                                             )
                                             'type': (
                                                 `description`: _
@@ -5053,7 +5026,7 @@
                                     `benchmark`: _
                                 )
                             )
-                            'number types': (
+                            'simple types': (
                                 `definition`: ~
                                 `resolver`: | `dictionary` (
                                     `definition`: ~
@@ -5812,7 +5785,7 @@
                                                                 `selection`: (
                                                                     `start`: | `option constraint` 'globals'
                                                                     `tail`: (
-                                                                        `path`: [ | `group` 'number types' ]
+                                                                        `path`: [ | `group` 'simple types' ]
                                                                         `resulting node`: ~
                                                                     )
                                                                     `resulting node`: ~

@@ -42,14 +42,14 @@ export const modules = (
 export const globals = (
     complexity: 'unconstrained' | 'constrained',
     text_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.text_types.l_dictionary.D.l_entry>,
-    number_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.number_types.l_dictionary.D.l_entry>,
+    simple_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.simple_types.l_dictionary.D.l_entry>,
 ): d_target.Globals => {
     return {
         'complexity': complexity === 'unconstrained'
             ? sh.state(['unconstrained', null])
             : sh.state(['constrained', null]),
         'text types': sh.dictionary(text_types),
-        'number types': sh.dictionary(number_types),
+        'simple types': sh.dictionary(simple_types),
     }
 }
 

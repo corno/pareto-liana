@@ -25,7 +25,7 @@ export const Globals: _pi.Transformer<d_in.Globals, d_out.Globals> = (
                 "t": $['text types'].__d_map(($) => {
                     return Text_Type($)
                 }),
-                "n": $['number types'].__d_map(($): d_out.Text_Type => {
+                "n": $['simple types'].__d_map(($): d_out.Text_Type => {
                     return {
                         'type': sh.state(['single line', null])
                     }

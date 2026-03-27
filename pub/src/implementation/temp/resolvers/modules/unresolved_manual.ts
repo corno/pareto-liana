@@ -24,7 +24,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     case 'global': return _p.ss($, ($): t_out.Value.number_ => ['global', _i_generic.get_entry_acyclic(
                         _p_sl.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
-                                ($) => $['number types'],
+                                ($) => $['simple types'],
                                 () => _i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
                             ),
                         ),
@@ -567,8 +567,8 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
     }
 }
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
-    const p_number_types: t_out.Globals.number_types = _i_generic.temp_resolve(
-        $['number types']['l dictionary'],
+    const p_simple_types: t_out.Globals.simple_types = _i_generic.temp_resolve(
+        $['simple types']['l dictionary'],
         ($, id, $acyclic, $cyclic) => Number_Type(
             $['l entry'],
             abort,
@@ -586,7 +586,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
         ),
     )
     return {
-        'number types': p_number_types,
+        'simple types': p_simple_types,
         'text types': p_text_types,
         'complexity': $['complexity']['l state'],
     }

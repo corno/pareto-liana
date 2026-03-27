@@ -136,20 +136,20 @@ export namespace Globals_ {
     
     export type text_types = _pi.Dictionary<text_types.D>
     
-    export namespace number_types {
+    export namespace simple_types {
         
         export type D = Number_Type_
         
     }
     
-    export type number_types = _pi.Dictionary<number_types.D>
+    export type simple_types = _pi.Dictionary<simple_types.D>
     
 }
 
 export type Globals_ = {
     readonly 'complexity': Globals_.complexity
     readonly 'text types': Globals_.text_types
-    readonly 'number types': Globals_.number_types
+    readonly 'simple types': Globals_.simple_types
 }
 
 export namespace Dictionary_ {
@@ -270,7 +270,7 @@ export namespace Value_ {
         
         export namespace global {
             
-            export type l_entry = Globals_.number_types.D
+            export type l_entry = Globals_.simple_types.D
             
             export type l_id = string
             

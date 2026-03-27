@@ -170,8 +170,8 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
                 ),
             )],
         ),
-        "number types": _p_change_context(
-            $['number types'],
+        "simple types": _p_change_context(
+            $['simple types'],
             ($) => ['dictionary', _p.dictionary.from.dictionary(
                 $,
             ).map(

@@ -44,7 +44,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "constrained": option(r.nothing()),
             }),
             "text types": r.dictionary(r.component("Text Type", {}, {})),
-            "number types": r.dictionary(r.component("Number Type", {}, {})),
+            "simple types": r.dictionary(r.component("Number Type", {}, {})),
         })),
 
         "Number Type": resolver(r.group({
@@ -204,7 +204,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "global": option_constrained(
                     {
                         "globals": oc.assert_set(pvs.parameter("globals"))
-                    }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("number types")])))),
+                    }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("simple types")])))),
                 "local": option(r.component("Number Type", {}, {})),
             })),
             "optional": option(r.component("Value", null, null)),

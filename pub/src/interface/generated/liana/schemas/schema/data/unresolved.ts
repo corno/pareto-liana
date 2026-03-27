@@ -1,7 +1,7 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as i_location from "liana-core/dist/interface/to_be_generated/location"
+import * as i_location from "liana-core/dist/interface/to_be_generated/document_and_location"
 
 export namespace Package_ {
     
@@ -226,7 +226,7 @@ export namespace Globals_ {
         readonly 'l dictionary': text_types.l_dictionary
     }
     
-    export namespace number_types {
+    export namespace simple_types {
         
         export type l_location = i_location.Range
         
@@ -251,9 +251,9 @@ export namespace Globals_ {
         
     }
     
-    export type number_types = {
-        readonly 'l location': number_types.l_location
-        readonly 'l dictionary': number_types.l_dictionary
+    export type simple_types = {
+        readonly 'l location': simple_types.l_location
+        readonly 'l dictionary': simple_types.l_dictionary
     }
     
 }
@@ -261,7 +261,7 @@ export namespace Globals_ {
 export type Globals_ = {
     readonly 'complexity': Globals_.complexity
     readonly 'text types': Globals_.text_types
-    readonly 'number types': Globals_.number_types
+    readonly 'simple types': Globals_.simple_types
 }
 
 export namespace Dictionary_ {

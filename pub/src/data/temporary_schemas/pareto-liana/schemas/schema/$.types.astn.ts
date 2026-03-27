@@ -44,7 +44,7 @@ export const $: g_.Modules = modules(
             })),
             "nothing": toption(t.nothing()),
             "number": toption(t.state({
-                "global": toption(t.reference("Globals", [vp.g("number types")])),
+                "global": toption(t.reference("Globals", [vp.g("simple types")])),
                 "local": toption(t.component("Number Type")),
             })),
             "optional": toption(t.component("Value")),
@@ -251,7 +251,7 @@ export const $: g_.Modules = modules(
                 "unconstrained": toption(t.nothing()),
             })),
             "text types": prop(t.dictionary(t.component("Text Type"))),
-            "number types": prop(t.dictionary(t.component("Number Type"))),
+            "simple types": prop(t.dictionary(t.component("Number Type"))),
         })),
 
         "Modules": module_(t.dictionary(t.component("Module"))),
