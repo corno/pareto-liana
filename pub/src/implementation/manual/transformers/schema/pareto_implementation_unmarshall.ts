@@ -20,7 +20,7 @@ const location = sh.a.select(
         null,
         sh.lookups.not_set(),
         sh.arguments_.initialize({
-            "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+            "subdocument context": sh.a.optional.not_set(),
         }),
         [
         ],
@@ -150,7 +150,7 @@ export const Value = (
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
                         "type": sh.a.state.literal("true/false", sh.a.nothing()),
-                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                        "subdocument context": sh.a.optional.not_set(),
                     }),
                     [
                     ],
@@ -183,7 +183,7 @@ export const Value = (
                         sh.a.select(sh.sv.context([])),
                         sh.lookups.not_set(),
                         sh.arguments_.initialize({
-                            "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                            "subdocument context": sh.a.optional.not_set(),
                         }),
                         [
                         ],
@@ -197,7 +197,7 @@ export const Value = (
                                     null,
                                     sh.lookups.not_set(),
                                     sh.arguments_.initialize({
-                                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                        "subdocument context": sh.a.optional.not_set(),
                                     }),
                                     [
 
@@ -253,7 +253,7 @@ export const Value = (
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
                         "expected properties": sh.a.dictionary.literal($.__d_map(($) => sh.a.nothing())),
-                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                        "subdocument context": sh.a.optional.not_set(),
                     }),
                     [
                     ],
@@ -267,7 +267,7 @@ export const Value = (
                                 null,
                                 sh.lookups.not_set(),
                                 sh.arguments_.initialize({
-                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                    "subdocument context": sh.a.optional.not_set(),
                                 }),
                                 [
 
@@ -283,7 +283,7 @@ export const Value = (
                             sh.lookups.not_set(),
                             sh.arguments_.initialize({
                                 "id": sh.a.text.literal(id, 'identifier'),
-                                "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                "subdocument context": sh.a.optional.not_set(),
                             }),
                             [
                             ],
@@ -315,7 +315,7 @@ export const Value = (
                                 sh.a.select(sh.sv.context([])),
                                 sh.lookups.not_set(),
                                 sh.arguments_.initialize({
-                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                    "subdocument context": sh.a.optional.not_set(),
                                 }),
                                 [
                                     "items"
@@ -351,7 +351,7 @@ export const Value = (
                             sh.a.select(sh.sv.context([])),
                             sh.lookups.not_set(),
                             sh.arguments_.initialize({
-                                "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                "subdocument context": sh.a.optional.not_set(),
                             }),
                             [
                                 "items"
@@ -394,7 +394,7 @@ export const Value = (
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
                         "type": sh.a.state.literal("decimal", sh.a.nothing()),
-                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                        "subdocument context": sh.a.optional.not_set(),
                     }),
                     [
                     ],
@@ -518,7 +518,7 @@ export const Value = (
                                 null,
                                 sh.lookups.not_set(),
                                 sh.arguments_.initialize({
-                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                    "subdocument context": sh.a.optional.not_set(),
                                 }),
                                 [
                                 ],

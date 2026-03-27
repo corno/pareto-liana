@@ -21,7 +21,7 @@ import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/tra
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
 import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
-import * as t_loc_to_fp from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_loc_to_fp from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -82,7 +82,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                             switch ($[0]) {
                                                 case 'resolve error': return _p.ss($, ($) => sh.ph.composed([
                                                     t_loc_to_fp.Range(
-                                                        t_resolve_to_location.Error($),
+                                                        $.location,
                                                         {
                                                             'document resource identifier': "unknown DRI",
                                                             'character location reporting': ['one based', null]

@@ -10,8 +10,7 @@ import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-const location = sh.a.group.literal({
-    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+const location = sh.a.state.literal("in main document", sh.a.group.literal({
     "start": sh.a.group.literal({
         "absolute": sh.a.number.integer_literal(42),
         "relative": sh.a.group.literal({
@@ -26,7 +25,7 @@ const location = sh.a.group.literal({
             "column": sh.a.number.integer_literal(42),
         })
     })
-})
+}))
 
 export const Schema = (
     $: d_in.Schema,

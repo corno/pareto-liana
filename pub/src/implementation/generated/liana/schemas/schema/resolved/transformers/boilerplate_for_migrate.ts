@@ -21,8 +21,7 @@ export const Package: t_signatures.Package = ($) => ({
 })
 
 export const Schemas: t_signatures.Schemas = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -37,7 +36,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -45,8 +44,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
             'l entry': Schema_Tree(
                 $,
             ),
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -61,7 +59,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -94,8 +92,7 @@ export const Schema: t_signatures.Schema = ($) => ({
     'complexity': _p_change_context(
         $['complexity'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -110,7 +107,7 @@ export const Schema: t_signatures.Schema = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Schema.complexity.l_state => {
@@ -139,8 +136,7 @@ export const Schema: t_signatures.Schema = ($) => ({
 })
 
 export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -155,7 +151,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -164,8 +160,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
                 'schema set child': _p_change_context(
                     $['schema set child'],
                     ($) => ({
-                        'l location': {
-                            'document resource identifier': "dummy dri",
+                        'l location': ['in main document', {
                             'start': {
                                 'absolute': 42,
                                 'relative': {
@@ -180,7 +175,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
                                     'column': 42,
                                 },
                             },
-                        },
+                        }],
                         'l reference': $['l value']['l id'],
                     }),
                 ),
@@ -189,8 +184,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
                     ($) => null,
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -205,14 +199,13 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
 
 export const Modules: t_signatures.Modules = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -227,7 +220,7 @@ export const Modules: t_signatures.Modules = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -235,8 +228,7 @@ export const Modules: t_signatures.Modules = ($) => ({
             'l entry': Module(
                 $,
             ),
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -251,7 +243,7 @@ export const Modules: t_signatures.Modules = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -260,8 +252,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     'complexity': _p_change_context(
         $['complexity'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -276,7 +267,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Globals.complexity.l_state => {
@@ -303,8 +294,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     'text types': _p_change_context(
         $['text types'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -319,7 +309,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l dictionary': _p.dictionary.from.dictionary(
                 $,
             ).map(
@@ -327,8 +317,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     'l entry': Text_Type(
                         $,
                     ),
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -343,7 +332,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -351,8 +340,7 @@ export const Globals: t_signatures.Globals = ($) => ({
     'number types': _p_change_context(
         $['number types'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -367,7 +355,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l dictionary': _p.dictionary.from.dictionary(
                 $,
             ).map(
@@ -375,8 +363,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     'l entry': Number_Type(
                         $,
                     ),
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -391,7 +378,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -408,8 +395,7 @@ export const Dictionary: t_signatures.Dictionary = ($) => ({
 })
 
 export const Value: t_signatures.Value = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -424,7 +410,7 @@ export const Value: t_signatures.Value = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Value.l_state => {
@@ -441,8 +427,7 @@ export const Value: t_signatures.Value = ($) => ({
                             'type': _p_change_context(
                                 $['type'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -457,7 +442,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Value.l_state.component.type_.l_state => {
@@ -469,8 +454,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             'import': _p_change_context(
                                                                 $['import'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -485,15 +469,14 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
                                                             'module': _p_change_context(
                                                                 $['module'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -508,7 +491,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -518,8 +501,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     return _p.ss(
                                                         $,
                                                         ($) => ['internal', {
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -534,7 +516,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
@@ -542,8 +524,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     return _p.ss(
                                                         $,
                                                         ($) => ['internal acyclic', {
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -558,7 +539,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
@@ -620,8 +601,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['number', {
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -636,7 +616,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l state': _p.decide.state(
                                 $,
                                 ($): t_out.Value.l_state.number_.l_state => {
@@ -645,8 +625,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             return _p.ss(
                                                 $,
                                                 ($) => ['global', {
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -661,7 +640,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -701,8 +680,7 @@ export const Value: t_signatures.Value = ($) => ({
                             'type': _p_change_context(
                                 $['type'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -717,7 +695,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Value.l_state.reference.type_.l_state => {
@@ -738,8 +716,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             'dependency': _p_change_context(
                                                                 $['dependency'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -754,7 +731,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l state': _p.decide.state(
                                                                         $,
                                                                         ($): t_out.Value.l_state.reference.type_.l_state.selected.dependency.l_state => {
@@ -809,8 +786,7 @@ export const Value: t_signatures.Value = ($) => ({
                             'options': _p_change_context(
                                 $['options'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -825,7 +801,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l dictionary': _p.dictionary.from.dictionary(
                                         $,
                                     ).map(
@@ -852,8 +828,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     ),
                                                 ),
                                             },
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -868,7 +843,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                         }),
                                     ),
                                 }),
@@ -885,8 +860,7 @@ export const Value: t_signatures.Value = ($) => ({
                     return _p.ss(
                         $,
                         ($) => ['text', {
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -901,7 +875,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l state': _p.decide.state(
                                 $,
                                 ($): t_out.Value.l_state.text.l_state => {
@@ -910,8 +884,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             return _p.ss(
                                                 $,
                                                 ($) => ['global', {
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -926,7 +899,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -976,8 +949,7 @@ export const Resolver: t_signatures.Resolver = ($) => ({
 })
 
 export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -992,7 +964,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -1001,8 +973,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
                 'schema set child': _p_change_context(
                     $['schema set child'],
                     ($) => ({
-                        'l location': {
-                            'document resource identifier': "dummy dri",
+                        'l location': ['in main document', {
                             'start': {
                                 'absolute': 42,
                                 'relative': {
@@ -1017,7 +988,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
                                     'column': 42,
                                 },
                             },
-                        },
+                        }],
                         'l reference': $['l value']['l id'],
                     }),
                 ),
@@ -1026,8 +997,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
                     ($) => null,
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -1042,14 +1012,13 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
 
 export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -1064,7 +1033,7 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -1072,8 +1041,7 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ({
             'l entry': Resolver_Signature(
                 $,
             ),
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -1088,7 +1056,7 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -1097,8 +1065,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
     'modules': _p_change_context(
         $['modules'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -1113,7 +1080,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l dictionary': _p.dictionary.from.dictionary(
                 $,
             ).map(
@@ -1132,8 +1099,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                             ),
                         ),
                     },
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -1148,7 +1114,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -1156,8 +1122,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
     'lookups': _p_change_context(
         $['lookups'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -1172,7 +1137,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l dictionary': _p.dictionary.from.dictionary(
                 $,
             ).map(
@@ -1191,8 +1156,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                         'type': _p_change_context(
                             $['type'],
                             ($) => ({
-                                'l location': {
-                                    'document resource identifier': "dummy dri",
+                                'l location': ['in main document', {
                                     'start': {
                                         'absolute': 42,
                                         'relative': {
@@ -1207,7 +1171,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                             'column': 42,
                                         },
                                     },
-                                },
+                                }],
                                 'l state': _p.decide.state(
                                     $,
                                     ($): t_out.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry.type_.l_state => {
@@ -1243,8 +1207,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                             ),
                         ),
                     },
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -1259,7 +1222,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -1267,8 +1230,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
 })
 
 export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -1283,7 +1245,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Resolver_Value.l_state => {
@@ -1304,8 +1266,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             'location': _p_change_context(
                                 $['location'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -1320,7 +1281,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Value.l_state.component.location.l_state => {
@@ -1332,8 +1293,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             'schema import': _p_change_context(
                                                                 $['schema import'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -1348,15 +1308,14 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
                                                             'resolver import': _p_change_context(
                                                                 $['resolver import'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -1371,15 +1330,14 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
                                                             'signature': _p_change_context(
                                                                 $['signature'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -1394,7 +1352,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -1404,8 +1362,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                     return _p.ss(
                                                         $,
                                                         ($) => ['internal', {
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -1420,7 +1377,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
@@ -1449,8 +1406,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                 $,
                                             ).map(
                                                 ($) => ({
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -1465,14 +1421,13 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l dictionary': _p.dictionary.from.dictionary(
                                                         $,
                                                     ).map(
                                                         ($, id) => ({
                                                             'l entry': {
-                                                                'l location': {
-                                                                    'document resource identifier': "dummy dri",
+                                                                'l location': ['in main document', {
                                                                     'start': {
                                                                         'absolute': 42,
                                                                         'relative': {
@@ -1487,7 +1442,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                             'column': 42,
                                                                         },
                                                                     },
-                                                                },
+                                                                }],
                                                                 'l state': _p.decide.state(
                                                                     $,
                                                                     ($): t_out.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry.l_state => {
@@ -1510,8 +1465,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ['parameter', {
-                                                                                        'l location': {
-                                                                                            'document resource identifier': "dummy dri",
+                                                                                        'l location': ['in main document', {
                                                                                             'start': {
                                                                                                 'absolute': 42,
                                                                                                 'relative': {
@@ -1526,7 +1480,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                     'column': 42,
                                                                                                 },
                                                                                             },
-                                                                                        },
+                                                                                        }],
                                                                                         'l reference': $['l id'],
                                                                                     }],
                                                                                 )
@@ -1538,8 +1492,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                     },
                                                                 ),
                                                             },
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -1554,7 +1507,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                         }),
                                                     ),
                                                 }),
@@ -1566,8 +1519,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                 $,
                                             ).map(
                                                 ($) => ({
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -1582,14 +1534,13 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l dictionary': _p.dictionary.from.dictionary(
                                                         $,
                                                     ).map(
                                                         ($, id) => ({
                                                             'l entry': {
-                                                                'l location': {
-                                                                    'document resource identifier': "dummy dri",
+                                                                'l location': ['in main document', {
                                                                     'start': {
                                                                         'absolute': 42,
                                                                         'relative': {
@@ -1604,7 +1555,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                             'column': 42,
                                                                         },
                                                                     },
-                                                                },
+                                                                }],
                                                                 'l state': _p.decide.state(
                                                                     $,
                                                                     ($): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
@@ -1613,8 +1564,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ['stack', {
-                                                                                        'l location': {
-                                                                                            'document resource identifier': "dummy dri",
+                                                                                        'l location': ['in main document', {
                                                                                             'start': {
                                                                                                 'absolute': 42,
                                                                                                 'relative': {
@@ -1629,7 +1579,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                     'column': 42,
                                                                                                 },
                                                                                             },
-                                                                                        },
+                                                                                        }],
                                                                                         'l state': _p.decide.state(
                                                                                             $,
                                                                                             ($): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack.l_state => {
@@ -1670,8 +1620,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ['acyclic', {
-                                                                                        'l location': {
-                                                                                            'document resource identifier': "dummy dri",
+                                                                                        'l location': ['in main document', {
                                                                                             'start': {
                                                                                                 'absolute': 42,
                                                                                                 'relative': {
@@ -1686,7 +1635,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                     'column': 42,
                                                                                                 },
                                                                                             },
-                                                                                        },
+                                                                                        }],
                                                                                         'l state': _p.decide.state(
                                                                                             $,
                                                                                             ($): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic.l_state => {
@@ -1709,8 +1658,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                 return _p.ss(
                                                                                     $,
                                                                                     ($) => ['cyclic', {
-                                                                                        'l location': {
-                                                                                            'document resource identifier': "dummy dri",
+                                                                                        'l location': ['in main document', {
                                                                                             'start': {
                                                                                                 'absolute': 42,
                                                                                                 'relative': {
@@ -1725,7 +1673,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                     'column': 42,
                                                                                                 },
                                                                                             },
-                                                                                        },
+                                                                                        }],
                                                                                         'l state': _p.decide.state(
                                                                                             $,
                                                                                             ($): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic.l_state => {
@@ -1759,8 +1707,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                     },
                                                                 ),
                                                             },
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -1775,7 +1722,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                         }),
                                                     ),
                                                 }),
@@ -1890,8 +1837,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             'type': _p_change_context(
                                 $['type'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -1906,7 +1852,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Value.l_state.reference.type_.l_state => {
@@ -1967,8 +1913,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             'options': _p_change_context(
                                 $['options'],
                                 ($) => ({
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -1983,7 +1928,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l dictionary': _p.dictionary.from.dictionary(
                                         $,
                                     ).map(
@@ -2002,8 +1947,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                     ),
                                                 ),
                                             },
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -2018,7 +1962,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                         }),
                                     ),
                                 }),
@@ -2049,8 +1993,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
     'schema path': _p_change_context(
         $['schema path'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2065,14 +2008,13 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l list': _p.list.from.list(
                 $,
             ).map(
                 ($) => ({
                     'l item': $,
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -2087,7 +2029,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -2099,8 +2041,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
 })
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -2115,7 +2056,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Schema_Tree.l_state => {
@@ -2147,8 +2088,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
     'type': _p_change_context(
         $['type'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2163,7 +2103,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Text_Type.type_.l_state => {
@@ -2193,8 +2133,7 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
     'precision': _p_change_context(
         $['precision'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2209,7 +2148,7 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Number_Type.precision.l_state => {
@@ -2239,8 +2178,7 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                                     'type': _p_change_context(
                                         $['type'],
                                         ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -2255,7 +2193,7 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                             'l state': _p.decide.state(
                                                 $,
                                                 ($): t_out.Number_Type.precision.l_state.exact.type_.l_state => {
@@ -2307,8 +2245,7 @@ export const Module: t_signatures.Module = ($) => ({
 })
 
 export const Presence: t_signatures.Presence = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -2323,7 +2260,7 @@ export const Presence: t_signatures.Presence = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Presence.l_state => {
@@ -2348,8 +2285,7 @@ export const Presence: t_signatures.Presence = ($) => ({
 })
 
 export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -2364,7 +2300,7 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -2381,8 +2317,7 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ({
                     ),
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2397,7 +2332,7 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -2420,8 +2355,7 @@ export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($) => ({
 })
 
 export const Group: t_signatures.Group = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -2436,7 +2370,7 @@ export const Group: t_signatures.Group = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -2457,8 +2391,7 @@ export const Group: t_signatures.Group = ($) => ({
                     ),
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2473,7 +2406,7 @@ export const Group: t_signatures.Group = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -2497,8 +2430,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
     'tail': _p_change_context(
         $['tail'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2513,7 +2445,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l list': _p.list.from.list(
                 $['l value'],
             ).map(
@@ -2521,8 +2453,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                     'l item': _p_change_context(
                         $['l item'],
                         ($) => ({
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -2537,7 +2468,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l state': _p.decide.state(
                                 $['l value'],
                                 ($): t_out.Value_Path.tail.l_list.L.l_item.l_state => {
@@ -2551,8 +2482,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                             return _p.ss(
                                                 $,
                                                 ($) => ['group', {
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -2567,7 +2497,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -2585,8 +2515,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                             return _p.ss(
                                                 $,
                                                 ($) => ['state', {
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -2601,7 +2530,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -2614,8 +2543,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                             ),
                         }),
                     ),
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -2630,7 +2558,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -2645,8 +2573,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
     'location': _p_change_context(
         $['location'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2661,7 +2588,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Module_Reference.location.l_state => {
@@ -2670,8 +2597,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                             return _p.ss(
                                 $,
                                 ($) => ['internal', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -2686,7 +2612,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -2697,8 +2623,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                     'import': _p_change_context(
                                         $['import'],
                                         ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -2713,15 +2638,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                             'l reference': $['l id'],
                                         }),
                                     ),
                                     'module': _p_change_context(
                                         $['module'],
                                         ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -2736,7 +2660,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                             'l reference': $['l id'],
                                         }),
                                     ),
@@ -2765,8 +2689,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
     'parameters': _p_change_context(
         $['parameters'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2781,7 +2704,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Resolver_Signature.parameters.l_state => {
@@ -2797,8 +2720,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                             return _p.ss(
                                 $,
                                 ($) => ['same as', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -2813,7 +2735,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -2836,8 +2758,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
     'path': _p_change_context(
         $['path'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2852,7 +2773,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l list': _p.list.from.list(
                 $['l value'],
             ).map(
@@ -2860,8 +2781,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                     'l item': _p_change_context(
                         $['l item'],
                         ($) => ({
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -2876,7 +2796,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l state': _p.decide.state(
                                 $,
                                 ($): t_out.Resolver_Relative_Value_Selection.path.l_list.L.l_item.l_state => {
@@ -2890,8 +2810,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                             return _p.ss(
                                                 $,
                                                 ($) => ['group', {
-                                                    'l location': {
-                                                        'document resource identifier': "dummy dri",
+                                                    'l location': ['in main document', {
                                                         'start': {
                                                             'absolute': 42,
                                                             'relative': {
@@ -2906,7 +2825,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                                                 'column': 42,
                                                             },
                                                         },
-                                                    },
+                                                    }],
                                                     'l reference': $['l id'],
                                                 }],
                                             )
@@ -2929,8 +2848,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                             ),
                         }),
                     ),
-                    'l location': {
-                        'document resource identifier': "dummy dri",
+                    'l location': ['in main document', {
                         'start': {
                             'absolute': 42,
                             'relative': {
@@ -2945,7 +2863,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                 'column': 42,
                             },
                         },
-                    },
+                    }],
                 }),
             ),
         }),
@@ -2960,8 +2878,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     'type': _p_change_context(
         $['type'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -2976,7 +2893,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Resolver_Lookup_Selection.type_.l_state => {
@@ -2985,8 +2902,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                             return _p.ss(
                                 $,
                                 ($) => ['acyclic', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3001,7 +2917,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Lookup_Selection.type_.l_state.acyclic.l_state => {
@@ -3040,8 +2956,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                             return _p.ss(
                                 $,
                                 ($) => ['cyclic', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3056,7 +2971,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Lookup_Selection.type_.l_state.cyclic.l_state => {
@@ -3079,8 +2994,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                             return _p.ss(
                                 $,
                                 ($) => ['parameter', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3095,7 +3009,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -3124,8 +3038,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
     'type': _p_change_context(
         $['type'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3140,7 +3053,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Resolver_Constraint.type_.l_state => {
@@ -3156,8 +3069,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                                     'option': _p_change_context(
                                         $['option'],
                                         ($) => ({
-                                            'l location': {
-                                                'document resource identifier': "dummy dri",
+                                            'l location': ['in main document', {
                                                 'start': {
                                                     'absolute': 42,
                                                     'relative': {
@@ -3172,7 +3084,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                                                         'column': 42,
                                                     },
                                                 },
-                                            },
+                                            }],
                                             'l reference': $['l id'],
                                         }),
                                     ),
@@ -3200,8 +3112,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
 })
 
 export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -3216,14 +3127,13 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
         ($, id) => ({
             'l entry': {
-                'l location': {
-                    'document resource identifier': "dummy dri",
+                'l location': ['in main document', {
                     'start': {
                         'absolute': 42,
                         'relative': {
@@ -3238,7 +3148,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                             'column': 42,
                         },
                     },
-                },
+                }],
                 'l state': _p.decide.state(
                     $,
                     ($): t_out.Resolver_Option_Constraints.l_dictionary.D.l_entry.l_state => {
@@ -3260,8 +3170,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                                         'option': _p_change_context(
                                             $['option'],
                                             ($) => ({
-                                                'l location': {
-                                                    'document resource identifier': "dummy dri",
+                                                'l location': ['in main document', {
                                                     'start': {
                                                         'absolute': 42,
                                                         'relative': {
@@ -3276,7 +3185,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                                                             'column': 42,
                                                         },
                                                     },
-                                                },
+                                                }],
                                                 'l reference': $['l id'],
                                             }),
                                         ),
@@ -3297,8 +3206,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                     },
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3313,7 +3221,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -3327,8 +3235,7 @@ export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional
 )
 
 export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -3343,7 +3250,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -3351,8 +3258,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
             'l entry': Resolver_Value_Constraint(
                 $,
             ),
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3367,14 +3273,13 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
 
 export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Reference_To_Value_Constraint = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -3389,7 +3294,7 @@ export const Resolver_Reference_To_Value_Constraint: t_signatures.Resolver_Refer
                 'column': 42,
             },
         },
-    },
+    }],
     'l reference': $['l id'],
 })
 
@@ -3397,8 +3302,7 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
     'start': _p_change_context(
         $['start'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3413,7 +3317,7 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Resolver_Value_Constraint.start.l_state => {
@@ -3448,8 +3352,7 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
 })
 
 export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -3464,7 +3367,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Resolver_Optional_Value_Initialization.l_state => {
@@ -3498,8 +3401,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
 })
 
 export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -3514,7 +3416,7 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
                 'column': 42,
             },
         },
-    },
+    }],
     'l dictionary': _p.dictionary.from.dictionary(
         $,
     ).map(
@@ -3531,8 +3433,7 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
                     ),
                 ),
             },
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3547,7 +3448,7 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
                         'column': 42,
                     },
                 },
-            },
+            }],
         }),
     ),
 })
@@ -3560,8 +3461,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => _p.optional.from
     $,
 ).map(
     ($) => ({
-        'l location': {
-            'document resource identifier': "dummy dri",
+        'l location': ['in main document', {
             'start': {
                 'absolute': 42,
                 'relative': {
@@ -3576,7 +3476,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => _p.optional.from
                     'column': 42,
                 },
             },
-        },
+        }],
         'l dictionary': _p.dictionary.from.dictionary(
             $,
         ).map(
@@ -3584,8 +3484,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => _p.optional.from
                 'l entry': Value_Reference(
                     $,
                 ),
-                'l location': {
-                    'document resource identifier': "dummy dri",
+                'l location': ['in main document', {
                     'start': {
                         'absolute': 42,
                         'relative': {
@@ -3600,7 +3499,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => _p.optional.from
                             'column': 42,
                         },
                     },
-                },
+                }],
             }),
         ),
     }),
@@ -3610,8 +3509,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.opt
     $,
 ).map(
     ($) => ({
-        'l location': {
-            'document resource identifier': "dummy dri",
+        'l location': ['in main document', {
             'start': {
                 'absolute': 42,
                 'relative': {
@@ -3626,7 +3524,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.opt
                     'column': 42,
                 },
             },
-        },
+        }],
         'l dictionary': _p.dictionary.from.dictionary(
             $,
         ).map(
@@ -3634,8 +3532,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.opt
                 'l entry': Value_Reference(
                     $,
                 ),
-                'l location': {
-                    'document resource identifier': "dummy dri",
+                'l location': ['in main document', {
                     'start': {
                         'absolute': 42,
                         'relative': {
@@ -3650,7 +3547,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => _p.opt
                             'column': 42,
                         },
                     },
-                },
+                }],
             }),
         ),
     }),
@@ -3660,8 +3557,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
     'start': _p_change_context(
         $['start'],
         ($) => ({
-            'l location': {
-                'document resource identifier': "dummy dri",
+            'l location': ['in main document', {
                 'start': {
                     'absolute': 42,
                     'relative': {
@@ -3676,7 +3572,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                         'column': 42,
                     },
                 },
-            },
+            }],
             'l state': _p.decide.state(
                 $,
                 ($): t_out.Resolver_Guaranteed_Value_Selection.start.l_state => {
@@ -3685,8 +3581,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['sibling', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3701,7 +3596,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -3709,8 +3604,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['parent sibling', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3725,7 +3619,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -3733,8 +3627,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['option constraint', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3749,7 +3642,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -3767,8 +3660,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['constraint', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3783,7 +3675,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Guaranteed_Value_Selection.start.l_state.constraint.l_state => {
@@ -3795,8 +3687,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             'property': _p_change_context(
                                                                 $['property'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -3811,15 +3702,14 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
                                                             'constraint': _p_change_context(
                                                                 $['constraint'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -3834,7 +3724,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -3847,8 +3737,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             'property': _p_change_context(
                                                                 $['property'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -3863,15 +3752,14 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
                                                             'constraint': _p_change_context(
                                                                 $['constraint'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -3886,7 +3774,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -3905,8 +3793,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['parameter', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3921,7 +3808,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l reference': $['l id'],
                                 }],
                             )
@@ -3929,8 +3816,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                             return _p.ss(
                                 $,
                                 ($) => ['result', {
-                                    'l location': {
-                                        'document resource identifier': "dummy dri",
+                                    'l location': ['in main document', {
                                         'start': {
                                             'absolute': 42,
                                             'relative': {
@@ -3945,7 +3831,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                 'column': 42,
                                             },
                                         },
-                                    },
+                                    }],
                                     'l state': _p.decide.state(
                                         $,
                                         ($): t_out.Resolver_Guaranteed_Value_Selection.start.l_state.result.l_state => {
@@ -3957,8 +3843,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             'property': _p_change_context(
                                                                 $['property'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -3973,7 +3858,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -3990,8 +3875,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             'property': _p_change_context(
                                                                 $['property'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -4006,7 +3890,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -4029,8 +3913,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             'property': _p_change_context(
                                                                 $['property'],
                                                                 ($) => ({
-                                                                    'l location': {
-                                                                        'document resource identifier': "dummy dri",
+                                                                    'l location': ['in main document', {
                                                                         'start': {
                                                                             'absolute': 42,
                                                                             'relative': {
@@ -4045,7 +3928,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                                                 'column': 42,
                                                                             },
                                                                         },
-                                                                    },
+                                                                    }],
                                                                     'l reference': $['l id'],
                                                                 }),
                                                             ),
@@ -4092,8 +3975,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
 })
 
 export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($) => ({
-    'l location': {
-        'document resource identifier': "dummy dri",
+    'l location': ['in main document', {
         'start': {
             'absolute': 42,
             'relative': {
@@ -4108,7 +3990,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                 'column': 42,
             },
         },
-    },
+    }],
     'l state': _p.decide.state(
         $,
         ($): t_out.Resolver_Possible_Value_Selection.l_state => {
@@ -4117,8 +3999,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                     return _p.ss(
                         $,
                         ($) => ['parameter', {
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -4133,7 +4014,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l reference': $['l id'],
                         }],
                     )
@@ -4141,8 +4022,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                     return _p.ss(
                         $,
                         ($) => ['result', {
-                            'l location': {
-                                'document resource identifier': "dummy dri",
+                            'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
                                     'relative': {
@@ -4157,7 +4037,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                         'column': 42,
                                     },
                                 },
-                            },
+                            }],
                             'l state': _p.decide.state(
                                 $,
                                 ($): t_out.Resolver_Possible_Value_Selection.l_state.result.l_state => {
@@ -4169,8 +4049,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                     'property': _p_change_context(
                                                         $['property'],
                                                         ($) => ({
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -4185,7 +4064,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                             'l reference': $['l id'],
                                                         }),
                                                     ),
@@ -4208,8 +4087,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                     'property': _p_change_context(
                                                         $['property'],
                                                         ($) => ({
-                                                            'l location': {
-                                                                'document resource identifier': "dummy dri",
+                                                            'l location': ['in main document', {
                                                                 'start': {
                                                                     'absolute': 42,
                                                                     'relative': {
@@ -4224,7 +4102,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                                         'column': 42,
                                                                     },
                                                                 },
-                                                            },
+                                                            }],
                                                             'l reference': $['l id'],
                                                         }),
                                                     ),

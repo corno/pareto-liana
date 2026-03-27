@@ -3,7 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as _p_temp from 'pareto-core/dist/select_lookup'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
-import * as gen_loc from "astn-core/dist/interface/generated/liana/schemas/location/data"
+import * as gen_loc from "liana-core/dist/interface/to_be_generated/location"
 import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 
 //types

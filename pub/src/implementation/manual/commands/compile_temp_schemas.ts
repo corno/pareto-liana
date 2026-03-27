@@ -36,7 +36,7 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
-import * as t_location_to_fountain_pen from "astn-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
@@ -59,7 +59,7 @@ export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, {
                     case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
                     case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
                         t_location_to_fountain_pen.Range(
-                            t_resolve_to_location.Error($),
+                            $.location,
                             {
                                 'document resource identifier': "unknown DRI",
                                 'character location reporting': ['one based', null],
