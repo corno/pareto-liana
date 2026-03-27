@@ -25,8 +25,8 @@ export const $: g_.Modules = modules(
                 "dictionary": toption(t.dictionary(t.component("Value"))),
             })),
             "number": toption(t.state({
-                "integer": toption(t.number_local(n.integer(null))),
-                "float": toption(t.number_local(n.approximation(16))),
+                "integer": toption(t.simple("Integer")),
+                "float": toption(t.simple("Approximation")),
             })),
             "string": toption(t.text_global("Text Value")),
             "boolean": toption(t.boolean()),

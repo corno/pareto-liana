@@ -14,7 +14,9 @@ export const $: g_.Globals = globals(
         "Pseudo Reference": text("single line"),
         "TBD": text("single line"),
     },
-    {},
+    {
+        "Natural": n.natural(null),
+    },
 )
 
 

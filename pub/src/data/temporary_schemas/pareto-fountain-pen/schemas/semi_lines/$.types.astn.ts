@@ -15,7 +15,7 @@ export const $: g_.Modules = modules(
     {
         "Lines": module_(t.list(t.group({
             "text": prop(t.text_global("Output")),
-            "indentation": prop(t.number_local(n.natural(null)))
+            "indentation": prop(t.simple("Natural"))
         }))),
     }
 )

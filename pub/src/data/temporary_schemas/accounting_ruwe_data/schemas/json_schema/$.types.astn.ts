@@ -20,23 +20,23 @@ export const $: g_.Modules = modules(
 
         "Type": module_(t.state({
             "array": toption(t.group({
-                "minItems": prop(t.optional(t.number_global("amount"))),
-                "maxItems": prop(t.optional(t.number_global("amount"))),
+                "minItems": prop(t.optional(t.simple("amount"))),
+                "maxItems": prop(t.optional(t.simple("amount"))),
                 "uniqueItems": prop(t.optional(t.boolean())),
                 "oneOf": prop(t.optional(t.list(t.component("Type")))),
-                "maxContains": prop(t.optional(t.number_global("amount"))),
-                "minContains": prop(t.optional(t.number_global("amount"))),
+                "maxContains": prop(t.optional(t.simple("amount"))),
+                "minContains": prop(t.optional(t.simple("amount"))),
             })),
             "number": toption(t.group({
-                "multipleOf": prop(t.optional(t.number_global("amount"))),
-                "minimum": prop(t.optional(t.number_global("amount"))),
-                "maximum": prop(t.optional(t.number_global("amount"))),
-                "exclusiveMinimum": prop(t.optional(t.number_global("amount"))),
-                "exclusiveMaximum": prop(t.optional(t.number_global("amount"))),
+                "multipleOf": prop(t.optional(t.simple("amount"))),
+                "minimum": prop(t.optional(t.simple("amount"))),
+                "maximum": prop(t.optional(t.simple("amount"))),
+                "exclusiveMinimum": prop(t.optional(t.simple("amount"))),
+                "exclusiveMaximum": prop(t.optional(t.simple("amount"))),
             })),
             "object": toption(t.group({
-                "minProperties": prop(t.optional(t.number_global("amount"))),
-                "maxProperties": prop(t.optional(t.number_global("amount"))),
+                "minProperties": prop(t.optional(t.simple("amount"))),
+                "maxProperties": prop(t.optional(t.simple("amount"))),
                 "required": prop(t.optional(t.list(t.text_global("identifier")))),
                 "dependentRequired": prop(t.optional(t.list(t.text_global("identifier")))),
                 
@@ -53,8 +53,8 @@ export const $: g_.Modules = modules(
                 // "maxContains": t.optional(t.number_global("amount")),
             })),
             "string": toption(t.group({
-                "minLength": prop(t.optional(t.number_global("amount"))),
-                "maxLength": prop(t.optional(t.number_global("amount"))),
+                "minLength": prop(t.optional(t.simple("amount"))),
+                "maxLength": prop(t.optional(t.simple("amount"))),
                 "pattern": prop(t.optional(t.text_global("regex"))),
             })),
         }))

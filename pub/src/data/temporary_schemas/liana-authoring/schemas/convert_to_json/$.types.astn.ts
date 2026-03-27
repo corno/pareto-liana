@@ -17,7 +17,7 @@ export const $: g_.Modules = modules(
         "Parameters": module_(t.group({
             "source": prop(t.group({
                 "document resource identifier": prop(t.text_local(text('single line'))),
-                "tab size": prop(t.number_local(n.natural(null))),
+                "tab size": prop(t.simple("Natural")),
             })),
             "target": prop(t.group({
                 "indentation": prop(t.text_local(text('single line'))),

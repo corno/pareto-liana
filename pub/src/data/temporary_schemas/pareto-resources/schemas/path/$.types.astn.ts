@@ -43,7 +43,7 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Up Steps": module_(t.number_local(n.natural(null))),
+        "Up Steps": module_(t.simple("Natural")),
 
         "Non Normalized Path": module_(t.group({
             "leading slash": prop(t.boolean()),

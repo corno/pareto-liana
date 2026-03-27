@@ -23,7 +23,7 @@ export const $: g_.Modules = modules(
                 "message": prop(t.component_external("terminal output", "Message")),
             })),
             "non zero exit code": toption(t.group({
-                "exit code": prop(t.optional(t.number_local(n.integer(null)))),
+                "exit code": prop(t.optional(t.simple("Integer"))),
                 "stderr": prop(t.component_external("terminal output", "Message")),
             })),
         })),

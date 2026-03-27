@@ -46,7 +46,7 @@ export const $: g_.Modules = modules(
             "type": prop(t.state({
                 "external": toption(t.text_global("TBD")),
                 "ancestor": toption(t.group({
-                    "number of steps": prop(t.number_local(n.natural(null))),
+                    "number of steps": prop(t.simple("Natural")),
                     "dependency": prop(t.text_global("TBD")),
                 })),
                 "sibling": toption(t.text_global("TBD")),

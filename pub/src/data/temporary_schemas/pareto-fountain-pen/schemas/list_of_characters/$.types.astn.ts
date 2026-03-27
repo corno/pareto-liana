@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         
-        "List of Characters": module_(t.list(t.number_local(n.natural(null)))),
+        "List of Characters": module_(t.list(t.simple("Natural"))),
 
     }
 )

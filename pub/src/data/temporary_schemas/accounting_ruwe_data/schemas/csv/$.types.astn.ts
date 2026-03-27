@@ -15,9 +15,9 @@ export const $: g_.Modules = modules(
     {
 
         "Annotation": module_(t.group({
-            "position": prop(t.number_local(n.natural(null))),
-            "line": prop(t.number_local(n.natural(null))),
-            "column": prop(t.number_local(n.natural(null))),
+            "position": prop(t.simple("Natural")),
+            "line": prop(t.simple("Natural")),
+            "column": prop(t.simple("Natural")),
         })),
 
         "Data Set": module_(t.group({

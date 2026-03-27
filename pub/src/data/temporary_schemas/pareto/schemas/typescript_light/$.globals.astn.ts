@@ -14,7 +14,9 @@ export const $: g_.Globals = globals(
         "Identifier": text('single line'),
         "Output": text("single line"),
     },
-    {},
+    {
+        "Approximation": n.approximation(10),
+    },
 )
 
 

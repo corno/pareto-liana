@@ -14,6 +14,7 @@ export const $: g_.Globals = globals(
     {
     },
     {
+        "Natural": n.natural(null),
     },
 )
 

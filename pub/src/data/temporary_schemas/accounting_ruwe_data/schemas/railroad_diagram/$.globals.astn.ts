@@ -13,7 +13,9 @@ export const $: g_.Globals = globals(
     {
         "url": text('single line'),
     },
-    {},
+    {
+        "Natural": n.natural(null),
+    },
 )
 
 

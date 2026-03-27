@@ -47,7 +47,7 @@ export const $: g_.Modules = modules(
                 "BTW-categorieen": prop(t.dictionary(t.group({
                     "BTW-heffing": prop(t.state({
                         "Ja": toption(t.group({
-                            "BTW-promillage": prop(t.number_global("Promillage")),
+                            "BTW-promillage": prop(t.simple("Promillage")),
                         })),
                         "Nee": toption(t.group({}))
                     }))
@@ -56,10 +56,10 @@ export const $: g_.Modules = modules(
                     "Volledige naam": prop(t.text_global("Benaming")),
                     "Wachtwoord": prop(t.text_global("Wachtwoord")),
                 }))),
-                "Huidige datum": prop(t.number_global("Datum")),
+                "Huidige datum": prop(t.simple("Datum")),
                 "Resultaat": prop(t.group({
                     "Correctietypes vennootschapsbelasting": prop(t.dictionary(t.group({
-                        "Te corrigeren promillage": prop(t.number_global("Promillage")),
+                        "Te corrigeren promillage": prop(t.simple("Promillage")),
                     }))),
                     "Grootboekrekeningen": prop(t.dictionary(t.group({
                         "Hoofdcategorie": prop(t.text_global("Pseudo Reference")),
@@ -109,11 +109,11 @@ export const $: g_.Modules = modules(
                     }))
                 }))),
                 "Bankrekeningen": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.number_global("Bedrag")),
+                    "Beginsaldo": prop(t.simple("Bedrag")),
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                     "Mutaties": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.number_global("Bedrag")),
-                        "Datum": prop(t.number_global("Datum")),
+                        "Bedrag": prop(t.simple("Bedrag")),
+                        "Datum": prop(t.simple("Datum")),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                         "Status": prop(t.state({
                             "Nog te verwerken": toption(t.group({})),
@@ -149,8 +149,8 @@ export const $: g_.Modules = modules(
                         })),
                     })),
                 }))),
-                "Beginsaldo nog aan te geven BTW": prop(t.number_global("Bedrag")),
-                "Beginsaldo winstreserve": prop(t.number_global("Bedrag")),
+                "Beginsaldo nog aan te geven BTW": prop(t.simple("Bedrag")),
+                "Beginsaldo winstreserve": prop(t.simple("Bedrag")),
                 "BTW periode saldo": prop(t.group({
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                 })),
@@ -162,9 +162,9 @@ export const $: g_.Modules = modules(
                     "Omschrijving": prop(t.text_global("Omschrijving")),
                     "Status": prop(t.state({
                         "Aangegeven": toption(t.group({
-                            "Afronding": prop(t.number_global("Bedrag")),
-                            "Bedrag": prop(t.number_global("Bedrag")),
-                            "Datum": prop(t.number_global("Datum")),
+                            "Afronding": prop(t.simple("Bedrag")),
+                            "Bedrag": prop(t.simple("Bedrag")),
+                            "Datum": prop(t.simple("Datum")),
                         })),
                         "Openstaand": toption(t.group({})),
                     })),
@@ -180,7 +180,7 @@ export const $: g_.Modules = modules(
                 "Grootboekrekening voor resultaat dit jaar": prop(t.text_global("Pseudo Reference")),
                 "Grootboekrekening voor winstreserve": prop(t.text_global("Pseudo Reference")),
                 "Informele rekeningen": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.number_global("Bedrag")),
+                    "Beginsaldo": prop(t.simple("Bedrag")),
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                     "Nieuw": prop(t.state({
                         "Ja": toption(t.group({})),
@@ -193,7 +193,7 @@ export const $: g_.Modules = modules(
                 "Inkopen": prop(t.dictionary(t.group({
                     "Afhandeling": prop(t.state({
                         "Nog te betalen": toption(t.group({
-                            "Betalingstermijn": prop(t.number_global("Dagen")),
+                            "Betalingstermijn": prop(t.simple("Dagen")),
                         })),
                         "Mutaties": toption(t.group({})),
                         "Rekening courant": toption(t.group({
@@ -219,12 +219,12 @@ export const $: g_.Modules = modules(
                         "Ontbreekt": toption(t.group({})),
                         "Nog toevoegen": toption(t.group({})),
                     })),
-                    "Datum": prop(t.number_global("Datum")),
+                    "Datum": prop(t.simple("Datum")),
                     "Regels": prop(t.dictionary(t.group({
                         "Bedrag": prop(t.state({
                             "Bekend": toption(t.group({
-                                "BTW-bedrag": prop(t.number_global("Bedrag")),
-                                "Bedrag inclusief geheven BTW": prop(t.number_global("Bedrag")),
+                                "BTW-bedrag": prop(t.simple("Bedrag")),
+                                "Bedrag inclusief geheven BTW": prop(t.simple("Bedrag")),
                             }))
                         })),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
@@ -256,11 +256,11 @@ export const $: g_.Modules = modules(
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                 })),
                 "Overige balans items": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.number_global("Bedrag")),
+                    "Beginsaldo": prop(t.simple("Bedrag")),
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                     "Memoriaal boekingen": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.number_global("Bedrag")),
-                        "Datum": prop(t.number_global("Datum")),
+                        "Bedrag": prop(t.simple("Bedrag")),
+                        "Datum": prop(t.simple("Datum")),
                         "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                     }))),
@@ -274,7 +274,7 @@ export const $: g_.Modules = modules(
                 }))),
                 "Resultaat grootboekrekeningen": prop(t.dictionary(t.group({}))),
                 "Salarisrondes": prop(t.dictionary(t.group({}))),
-                "Startdatum boekjaar": prop(t.number_global("Datum")),
+                "Startdatum boekjaar": prop(t.simple("Datum")),
                 "Verkoop saldo": prop(t.group({
                     "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
                 })),
@@ -285,7 +285,7 @@ export const $: g_.Modules = modules(
                             "Rekening courant": prop(t.text_global("Pseudo Reference"))
                         })),
                     })),
-                    "Betalingstermijn": prop(t.number_global("Dagen")),
+                    "Betalingstermijn": prop(t.simple("Dagen")),
                     "BTW-periode": prop(t.text_global("Pseudo Reference")),
                     "Brondocument": prop(t.state({
                         "Toegevoegd": toption(t.group({
@@ -301,7 +301,7 @@ export const $: g_.Modules = modules(
                             "Overeenkomst": prop(t.text_global("Pseudo Reference")),
                         })),
                     })),
-                    "Datum": prop(t.number_global("Datum")),
+                    "Datum": prop(t.simple("Datum")),
                     "Debiteur": prop(t.text_global("Pseudo Reference")),
                     "Regels": prop(t.dictionary(t.group({
                         "BTW-regime": prop(t.state({
@@ -311,7 +311,7 @@ export const $: g_.Modules = modules(
                             })),
                             "Binnenland: heffing verlegd": toption(t.group({})),
                         })),
-                        "Bedrag exclusief BTW": prop(t.number_global("Bedrag")),
+                        "Bedrag exclusief BTW": prop(t.simple("Bedrag")),
                         "Contracttype": prop(t.state({
                             "Project": toption(t.group({
                                 "Opbrengst": prop(t.text_global("Pseudo Reference")),
@@ -334,7 +334,7 @@ export const $: g_.Modules = modules(
                 }))),
                 "Verrekenposten": prop(t.dictionary(t.group({
                     "Mutaties": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.number_global("Bedrag")),
+                        "Bedrag": prop(t.simple("Bedrag")),
                         "Afhandeling": prop(t.state({
                             "Inkoop": toption(t.group({
                                 "Jaar": prop(t.text_global("Pseudo Reference")),
@@ -358,7 +358,7 @@ export const $: g_.Modules = modules(
             "Klanten": prop(t.dictionary(t.group({
                 "Licentieovereenkomsten": prop(t.dictionary(t.group({
                     "Periodes": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.number_global("Bedrag")),
+                        "Bedrag": prop(t.simple("Bedrag")),
                     }))),
                 }))),
                 "Projecten": prop(t.dictionary(t.group({
@@ -366,8 +366,8 @@ export const $: g_.Modules = modules(
                         "Opbrengsten": prop(t.dictionary(t.group({
                             "Type": prop(t.state({
                                 "Project": toption(t.group({
-                                    "Bedrag": prop(t.number_global("Bedrag")),
-                                    "Betaaldatum": prop(t.number_global("Datum")),
+                                    "Bedrag": prop(t.simple("Bedrag")),
+                                    "Betaaldatum": prop(t.simple("Datum")),
                                 })),
                             })),
                         }))),

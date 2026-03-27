@@ -12,7 +12,9 @@ export const $: g_.Globals = globals(
          'unconstrained',
     {
     },
-    {},
+    {
+        "Natural": n.natural(null),
+    },
 )
 
 

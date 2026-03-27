@@ -38,7 +38,7 @@ export const $: g_.Modules = modules(
                 "type": prop(t.state({
                     "ancestor": toption(t.group({
                         "dependency": prop(t.text_global("TBD")),
-                        "number of steps": prop(t.number_local(n.natural(null))),
+                        "number of steps": prop(t.simple("Natural")),
                     })),
                     "external": toption(t.text_global("TBD")),
                     "sibling": toption(t.text_global("TBD")),
@@ -198,7 +198,7 @@ export const $: g_.Modules = modules(
                 "nothing": toption(t.nothing()),
                 "number": toption(t.state({
                     "approximation": toption(t.state({
-                        "literal": toption(t.number_local(n.approximation(10))),
+                        "literal": toption(t.simple("Approximation")),
                         "copy": toption(t.component("Select Value")),
                     })),
                     "integer": toption(t.state({
@@ -208,10 +208,10 @@ export const $: g_.Modules = modules(
                             "assign divisor": prop(t.component("Select Value")),
                             "abort": prop(t.component("Assign")),
                         })),
-                        "literal": toption(t.number_local(n.integer(null))),
+                        "literal": toption(t.simple("Integer")),
                     })),
                     "natural": toption(t.state({
-                        "literal": toption(t.number_local(n.natural(null))),
+                        "literal": toption(t.simple("Natural")),
                         "copy": toption(t.component("Select Value")),
                         "number of dictionary entries": toption(t.group({
                             "dictionary": prop(t.component("Select Value"))

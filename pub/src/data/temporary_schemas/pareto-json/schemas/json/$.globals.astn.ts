@@ -10,11 +10,12 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Globals = globals(
 
-         'unconstrained',
+    'unconstrained',
     {
         "Text Value": text("single line"),
     },
     {
-        "Position": n.natural(null),
+        "Integer": n.integer(null),
+        "Approximation": n.approximation(16),
     },
 )

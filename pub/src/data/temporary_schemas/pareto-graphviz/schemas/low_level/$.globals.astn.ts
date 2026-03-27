@@ -15,7 +15,9 @@ export const $: g_.Globals = globals(
         "Text Value": text('single line'),
         "": text('single line'),
     },
-    {},
+    {
+        "Integer": n.integer(null)
+    },
 )
 
 

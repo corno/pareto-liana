@@ -30,18 +30,18 @@ export const $: g_.Modules = modules(
                 "invalid unicode escape sequence": toption(t.nothing()),
                 "missing character after escape": toption(t.nothing()),
                 // "unexpected character": tstate(t.group({
-                //     "character": prop(t.number_local(n.natural(null))),
+                //     "character": prop(t.number_global("Natural")),
                 //     "location": prop(t.component_external("token", "Location")),
                 // })),
                 "unexpected control character": toption(t.group({
-                    "character": prop(t.number_local(n.natural(null))),
+                    "character": prop(t.simple("Natural")),
                 })),
                 "unexpected control character in text": toption(t.group({
-                    "character": prop(t.number_local(n.natural(null))),
+                    "character": prop(t.simple("Natural")),
                 })),
                 "unexpected end of line in delimited text": toption(t.nothing()),
                 "unknown escape character": toption(t.group({
-                    "character": prop(t.number_local(n.natural(null))),
+                    "character": prop(t.simple("Natural")),
                 })),
                 "unterminated block comment": toption(t.nothing()),
                 "unterminated text": toption(t.nothing()),
@@ -82,7 +82,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Parameters": module_(t.group({
-            "tab size": prop(t.number_local(n.natural(null))),
+            "tab size": prop(t.simple("Natural")),
         })),
 
     }

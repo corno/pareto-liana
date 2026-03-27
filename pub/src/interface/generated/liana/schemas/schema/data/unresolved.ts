@@ -1,7 +1,7 @@
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as i__location from "astn-core/dist/interface/generated/liana/schemas/location/data"
+import * as i_location from "liana-core/dist/interface/to_be_generated/location"
 
 export namespace Package_ {
     
@@ -18,13 +18,13 @@ export type Package_ = {
 
 export namespace Schemas_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export type l_entry = Schema_Tree_
             
@@ -58,7 +58,7 @@ export namespace Schema_ {
     
     export namespace complexity {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -91,19 +91,19 @@ export type Schema_ = {
 
 export namespace Schema_Imports_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
                 export namespace schema_set_child {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -143,13 +143,13 @@ export type Schema_Imports_ = {
 
 export namespace Modules_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export type l_entry = Module_
             
@@ -175,7 +175,7 @@ export namespace Globals_ {
     
     export namespace complexity {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -198,13 +198,13 @@ export namespace Globals_ {
     
     export namespace text_types {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_entry = Text_Type_
                 
@@ -228,13 +228,13 @@ export namespace Globals_ {
     
     export namespace number_types {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_entry = Number_Type_
                 
@@ -276,7 +276,7 @@ export type Dictionary_ = {
 
 export namespace Value_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
@@ -286,7 +286,7 @@ export namespace Value_ {
             
             export namespace type_ {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -294,7 +294,7 @@ export namespace Value_ {
                         
                         export namespace import_ {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -307,7 +307,7 @@ export namespace Value_ {
                         
                         export namespace module_ {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -327,7 +327,7 @@ export namespace Value_ {
                     
                     export namespace internal {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export type l_reference = string
                         
@@ -340,7 +340,7 @@ export namespace Value_ {
                     
                     export namespace internal_acyclic {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export type l_reference = string
                         
@@ -395,13 +395,13 @@ export namespace Value_ {
         
         export namespace number_ {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_state {
                 
                 export namespace global {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -435,7 +435,7 @@ export namespace Value_ {
             
             export namespace type_ {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -447,7 +447,7 @@ export namespace Value_ {
                         
                         export namespace dependency {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export namespace l_state {
                                 
@@ -505,13 +505,13 @@ export namespace Value_ {
             
             export namespace options {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_dictionary {
                     
                     export namespace D {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export namespace l_entry {
                             
@@ -564,13 +564,13 @@ export namespace Value_ {
         
         export namespace text {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_state {
                 
                 export namespace global {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -641,19 +641,19 @@ export type Resolver_ = {
 
 export namespace Resolver_Imports_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
                 export namespace schema_set_child {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -693,13 +693,13 @@ export type Resolver_Imports_ = {
 
 export namespace Resolver_Signatures_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export type l_entry = Resolver_Signature_
             
@@ -725,13 +725,13 @@ export namespace Resolver_Signature_Parameters_ {
     
     export namespace modules {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_entry {
                     
@@ -766,13 +766,13 @@ export namespace Resolver_Signature_Parameters_ {
     
     export namespace lookups {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_entry {
                     
@@ -782,7 +782,7 @@ export namespace Resolver_Signature_Parameters_ {
                     
                     export namespace type_ {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export namespace l_state {
                             
@@ -844,7 +844,7 @@ export type Resolver_Signature_Parameters_ = {
 
 export namespace Resolver_Value_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
@@ -856,7 +856,7 @@ export namespace Resolver_Value_ {
             
             export namespace location {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -864,7 +864,7 @@ export namespace Resolver_Value_ {
                         
                         export namespace schema_import {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -877,7 +877,7 @@ export namespace Resolver_Value_ {
                         
                         export namespace resolver_import {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -890,7 +890,7 @@ export namespace Resolver_Value_ {
                         
                         export namespace signature {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -911,7 +911,7 @@ export namespace Resolver_Value_ {
                     
                     export namespace internal {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export type l_reference = string
                         
@@ -945,17 +945,17 @@ export namespace Resolver_Value_ {
                         
                         export namespace O {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export namespace l_dictionary {
                                 
                                 export namespace D {
                                     
-                                    export type l_location = i__location.Range
+                                    export type l_location = i_location.Range
                                     
                                     export namespace l_entry {
                                         
-                                        export type l_location = i__location.Range
+                                        export type l_location = i_location.Range
                                         
                                         export namespace l_state {
                                             
@@ -965,7 +965,7 @@ export namespace Resolver_Value_ {
                                             
                                             export namespace parameter {
                                                 
-                                                export type l_location = i__location.Range
+                                                export type l_location = i_location.Range
                                                 
                                                 export type l_reference = string
                                                 
@@ -1016,23 +1016,23 @@ export namespace Resolver_Value_ {
                         
                         export namespace O {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export namespace l_dictionary {
                                 
                                 export namespace D {
                                     
-                                    export type l_location = i__location.Range
+                                    export type l_location = i_location.Range
                                     
                                     export namespace l_entry {
                                         
-                                        export type l_location = i__location.Range
+                                        export type l_location = i_location.Range
                                         
                                         export namespace l_state {
                                             
                                             export namespace stack {
                                                 
-                                                export type l_location = i__location.Range
+                                                export type l_location = i_location.Range
                                                 
                                                 export namespace l_state {
                                                     
@@ -1066,7 +1066,7 @@ export namespace Resolver_Value_ {
                                             
                                             export namespace acyclic {
                                                 
-                                                export type l_location = i__location.Range
+                                                export type l_location = i_location.Range
                                                 
                                                 export namespace l_state {
                                                     
@@ -1086,7 +1086,7 @@ export namespace Resolver_Value_ {
                                             
                                             export namespace cyclic {
                                                 
-                                                export type l_location = i__location.Range
+                                                export type l_location = i_location.Range
                                                 
                                                 export namespace l_state {
                                                     
@@ -1235,7 +1235,7 @@ export namespace Resolver_Value_ {
             
             export namespace type_ {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -1291,13 +1291,13 @@ export namespace Resolver_Value_ {
             
             export namespace options {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_dictionary {
                     
                     export namespace D {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export namespace l_entry {
                             
@@ -1367,13 +1367,13 @@ export namespace Module_Specification_ {
     
     export namespace schema_path {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_list {
             
             export namespace L {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_item = string
                 
@@ -1407,7 +1407,7 @@ export type Module_Specification_ = {
 
 export namespace Schema_Tree_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
@@ -1432,7 +1432,7 @@ export namespace Text_Type_ {
     
     export namespace type_ {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -1463,7 +1463,7 @@ export namespace Number_Type_ {
     
     export namespace precision {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -1489,7 +1489,7 @@ export namespace Number_Type_ {
                 
                 export namespace type_ {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export namespace l_state {
                         
@@ -1551,7 +1551,7 @@ export type Module_ = {
 
 export namespace Presence_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
@@ -1574,13 +1574,13 @@ export type Presence_ = {
 
 export namespace Resolver_Modules_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
@@ -1631,13 +1631,13 @@ export type Resolver_Benchmark_ = {
 
 export namespace Group_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
@@ -1693,17 +1693,17 @@ export namespace Value_Path_ {
     
     export namespace tail {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_list {
             
             export namespace L {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_item {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export namespace l_state {
                         
@@ -1711,7 +1711,7 @@ export namespace Value_Path_ {
                         
                         export namespace group {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -1728,7 +1728,7 @@ export namespace Value_Path_ {
                         
                         export namespace state {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -1786,13 +1786,13 @@ export namespace Module_Reference_ {
     
     export namespace location {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
             export namespace internal {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -1807,7 +1807,7 @@ export namespace Module_Reference_ {
                 
                 export namespace import_ {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -1820,7 +1820,7 @@ export namespace Module_Reference_ {
                 
                 export namespace module_ {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -1866,7 +1866,7 @@ export namespace Resolver_Signature_ {
     
     export namespace parameters {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -1874,7 +1874,7 @@ export namespace Resolver_Signature_ {
             
             export namespace same_as {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -1912,17 +1912,17 @@ export namespace Resolver_Relative_Value_Selection_ {
     
     export namespace path {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_list {
             
             export namespace L {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_item {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export namespace l_state {
                         
@@ -1930,7 +1930,7 @@ export namespace Resolver_Relative_Value_Selection_ {
                         
                         export namespace group {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -1996,13 +1996,13 @@ export namespace Resolver_Lookup_Selection_ {
     
     export namespace type_ {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
             export namespace acyclic {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -2036,7 +2036,7 @@ export namespace Resolver_Lookup_Selection_ {
             
             export namespace cyclic {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -2056,7 +2056,7 @@ export namespace Resolver_Lookup_Selection_ {
             
             export namespace parameter {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -2096,7 +2096,7 @@ export namespace Resolver_Constraint_ {
     
     export namespace type_ {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -2106,7 +2106,7 @@ export namespace Resolver_Constraint_ {
                 
                 export namespace option {
                     
-                    export type l_location = i__location.Range
+                    export type l_location = i_location.Range
                     
                     export type l_reference = string
                     
@@ -2156,17 +2156,17 @@ export type Resolver_Constraint_ = {
 
 export namespace Resolver_Option_Constraints_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -2178,7 +2178,7 @@ export namespace Resolver_Option_Constraints_ {
                         
                         export namespace option {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2240,13 +2240,13 @@ export type Resolver_Optional_Value_Constraints_ = _pi.Optional_Value<Resolver_O
 
 export namespace Resolver_Value_Constraints_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export type l_entry = Resolver_Value_Constraint_
             
@@ -2270,7 +2270,7 @@ export type Resolver_Value_Constraints_ = {
 
 export namespace Resolver_Reference_To_Value_Constraint_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export type l_reference = string
     
@@ -2285,7 +2285,7 @@ export namespace Resolver_Value_Constraint_ {
     
     export namespace start {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
@@ -2317,7 +2317,7 @@ export type Resolver_Value_Constraint_ = {
 
 export namespace Resolver_Optional_Value_Initialization_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
@@ -2343,13 +2343,13 @@ export type Resolver_Optional_Value_Initialization_ = {
 
 export namespace Resolver_Value_Group_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_dictionary {
         
         export namespace D {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_entry {
                 
@@ -2388,13 +2388,13 @@ export namespace Value_Results_ {
     
     export namespace O {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_entry = Value_Reference_
                 
@@ -2424,13 +2424,13 @@ export namespace Option_Constraints_ {
     
     export namespace O {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_dictionary {
             
             export namespace D {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_entry = Value_Reference_
                 
@@ -2460,13 +2460,13 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
     
     export namespace start {
         
-        export type l_location = i__location.Range
+        export type l_location = i_location.Range
         
         export namespace l_state {
             
             export namespace sibling {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -2479,7 +2479,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
             export namespace parent_sibling {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -2492,7 +2492,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
             export namespace option_constraint {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -2509,7 +2509,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
             export namespace constraint {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -2517,7 +2517,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2530,7 +2530,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace constraint {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2552,7 +2552,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2565,7 +2565,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace constraint {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2598,7 +2598,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
             export namespace parameter {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export type l_reference = string
                 
@@ -2611,7 +2611,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
             export namespace result {
                 
-                export type l_location = i__location.Range
+                export type l_location = i_location.Range
                 
                 export namespace l_state {
                     
@@ -2619,7 +2619,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2643,7 +2643,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2670,7 +2670,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
                         
                         export namespace property {
                             
-                            export type l_location = i__location.Range
+                            export type l_location = i_location.Range
                             
                             export type l_reference = string
                             
@@ -2740,13 +2740,13 @@ export type Resolver_Guaranteed_Value_Selection_ = {
 
 export namespace Resolver_Possible_Value_Selection_ {
     
-    export type l_location = i__location.Range
+    export type l_location = i_location.Range
     
     export namespace l_state {
         
         export namespace parameter {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export type l_reference = string
             
@@ -2759,7 +2759,7 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace result {
             
-            export type l_location = i__location.Range
+            export type l_location = i_location.Range
             
             export namespace l_state {
                 
@@ -2767,7 +2767,7 @@ export namespace Resolver_Possible_Value_Selection_ {
                     
                     export namespace property {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export type l_reference = string
                         
@@ -2794,7 +2794,7 @@ export namespace Resolver_Possible_Value_Selection_ {
                     
                     export namespace property {
                         
-                        export type l_location = i__location.Range
+                        export type l_location = i_location.Range
                         
                         export type l_reference = string
                         

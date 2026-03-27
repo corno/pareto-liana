@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Regular Expression": module_(t.group({
-            "characters": prop(t.dictionary(t.number_local(n.positive_natural(null)))),
+            "characters": prop(t.dictionary(t.simple("Character"))),
             "sequence": prop(t.component("Sequence")),
         })),
 
@@ -23,10 +23,10 @@ export const $: g_.Modules = modules(
                 "character class": toption(t.group({
                     "negated": prop(t.boolean()),
                     "ranges": prop(t.list(t.state({
-                        "literal": toption(t.number_global("Character")), //should be a reference to a character in the dictionary
+                        "literal": toption(t.simple("Character")), //should be a reference to a character in the dictionary
                         "range": toption(t.group({
-                            "from": prop(t.number_global("Character")),
-                            "to": prop(t.number_global("Character")),
+                            "from": prop(t.simple("Character")),
+                            "to": prop(t.simple("Character")),
                         })),
                     }))),
                 })),

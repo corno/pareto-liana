@@ -15,7 +15,11 @@ export const $: g_.Globals = globals(
         "Identifier": text('single line'),
         "Text Value": text('multi line'),
     },
-    {},
+    {
+        "Natural": n.natural(null),
+        "Integer": n.integer(null),
+        "Approximation": n.approximation(10),
+    },
 )
 
 

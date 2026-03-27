@@ -35,8 +35,8 @@ export const $: g_.Modules = modules(
         "ID Value Pairs To Be Sorted": module_(t.dictionary(t.text_local(text('single line')))),
 
         "Relative Location": module_(t.group({
-            "line": prop(t.number_local(n.natural(null))),
-            "column": prop(t.number_local(n.natural(null))), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+            "line": prop(t.simple("Natural")),
+            "column": prop(t.simple("Natural")), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
     },
 )

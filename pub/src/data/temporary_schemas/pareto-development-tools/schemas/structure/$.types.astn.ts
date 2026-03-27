@@ -26,7 +26,7 @@ export const $: g_.Modules = modules(
                 })),
             }))),
             "wildcards": toption(t.group({
-                "required directories": prop(t.number_local(n.natural(null))),
+                "required directories": prop(t.simple("Natural")),
                 "additional directories allowed": prop(t.boolean()),
                 "extensions": prop(t.list(t.text_local(text('single line')))),
                 "warn": prop(t.boolean()),

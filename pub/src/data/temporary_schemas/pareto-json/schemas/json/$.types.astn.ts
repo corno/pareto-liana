@@ -26,8 +26,8 @@ export const $: g_.Modules = modules(
             })),
             "number": toption(t.state({
                 //depending on the source, one needs to be chosen.
-                "integer": toption(t.number_local(n.integer(null))),
-                "float": toption(t.number_local(n.approximation(16))),
+                "integer": toption(t.simple("Integer")),
+                "float": toption(t.simple("Approximation")),
             })),
             "string": toption(t.text_global("Text Value")),
             "boolean": toption(t.boolean()),

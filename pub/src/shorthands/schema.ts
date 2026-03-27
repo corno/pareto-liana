@@ -237,12 +237,8 @@ export namespace t {
         return sh.state(['nothing', null])
     }
 
-    export const number_global = (name: string): d_target.Value => {
+    export const simple = (name: string): d_target.Value => {
         return sh.state(['number', sh.state(['global', sh.reference(name)])])
-    }
-
-    export const number_local = (bt: d_target.Number_Type): d_target.Value => {
-        return sh.state(['number', sh.state(['local', bt])])
     }
 
     export const optional = (type: d_target.Value): d_target.Value => {

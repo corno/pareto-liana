@@ -9,7 +9,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/
 import * as sh from "pareto/dist/shorthands/interface"
 
 const location = sh.t.component_imported(
-    " location",
+    "location",
     "Range",
 )
 
@@ -29,21 +29,18 @@ export const Schema = (
     return sh.m.package_data(
         _p.dictionary.from.dictionary(
             _p.dictionary.literal({
-                " location": _p.dictionary.from.dictionary(
+                "location": _p.dictionary.from.dictionary(
                     _p.dictionary.literal({
                         "": _p.optional.from.boolean(
                             add_location,
                         ).convert(
                             () => sh.import_.external(
-                                "astn-core",
+                                "liana-core",
                                 [
                                     "dist",
                                     "interface",
-                                    "generated",
-                                    "liana",
-                                    "schemas",
+                                    "to be generated",
                                     "location",
-                                    "data",
                                 ]
                             )
                         )
@@ -51,7 +48,7 @@ export const Schema = (
                 ).filter(
                     ($) => $
                 ),
-                " imports ": _p_change_context($, ($) => {
+                "imports ": _p_change_context($, ($) => {
                     // const types = $p['what to generate']
                     return $p.imports.__d_map(($) => sh.import_.ancestor(
                         $p.depth + 1 + $['schema set child']['l value']['l up steps'],
@@ -87,7 +84,7 @@ export const Schema = (
         ).flatten(
             ($) => $,
             {
-                duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; ' location' and ' imports'"),
+                duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; 'location' and 'imports'"),
             }
 
         ),
@@ -106,7 +103,7 @@ export const Module_Reference = (
     switch ($[0]) {
         case 'internal': return _p.ss($, ($) => sh.mr.local($['l id']))
         case 'external': return _p.ss($, ($) => sh.mr.imported(
-            ` imports ${$.import['l id']}`,
+            "imports " + $.import['l id'],
             $.module['l id'],
         ))
         default: return _p.au($[0])
@@ -131,7 +128,7 @@ export const Value = (
                 const x: d_out.Value = _p.decide.state($.type, ($) => {
                     switch ($[0]) {
                         case 'external': return _p.ss($, ($) => sh.t.component_imported(
-                            ` imports ${$.import['l id']}`,
+                            "imports " + $.import['l id'],
                             $.module['l id'],
                         ))
                         case 'internal': return _p.ss($, ($) => sh.t.component_sibling(

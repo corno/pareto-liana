@@ -284,7 +284,7 @@ export const $: g_.Modules = modules(
                     /**
                      * the total number of digits in the number
                      */
-                    "significant digits": prop(t.number_local(n.natural(null))),
+                    "significant digits": prop(t.simple("Natural")),
                 })),
                 /**
                  * fixed is similar to integers/signed integers
@@ -296,7 +296,7 @@ export const $: g_.Modules = modules(
                      * but in this context, there can be decimals. However, because the number of decimals (the 'scale') is fixed,
                      * it is trivial to convert these to a whole number; just multiply by 10^offset.
                      */
-                    "decimal separator offset": prop(t.optional(t.number_local(n.natural(null)))),
+                    "decimal separator offset": prop(t.optional(t.simple("Natural"))),
 
                     /**
                      * can the number be negative? > 'integer'

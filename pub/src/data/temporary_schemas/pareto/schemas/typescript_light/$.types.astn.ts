@@ -169,7 +169,7 @@ export const $: g_.Modules = modules(
             "identifier": toption(t.component("Identifier")),
             "false": toption(t.nothing()),
             "null": toption(t.nothing()),
-            "number literal": toption(t.number_local(n.approximation(10))),
+            "number literal": toption(t.simple("Approximation")),
             "object literal": toption(t.group({
                 "properties": prop(t.list(t.group({
                     "key": prop(t.state({

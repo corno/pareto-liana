@@ -11,6 +11,7 @@ import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
 const location = sh.a.group.literal({
+    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
     "start": sh.a.group.literal({
         "absolute": sh.a.number.integer_literal(42),
         "relative": sh.a.group.literal({

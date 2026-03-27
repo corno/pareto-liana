@@ -13,6 +13,7 @@ export const $: g_.Globals = globals(
     {
     },
     {
+        "Integer": n.integer(null)
     },
 )
 

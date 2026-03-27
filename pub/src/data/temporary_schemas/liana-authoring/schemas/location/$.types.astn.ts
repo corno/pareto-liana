@@ -15,8 +15,8 @@ export const $: g_.Modules = modules(
     {
 
         "Position": module_(t.group({
-            "line": prop(t.number_local(n.natural(null))),
-            "character": prop(t.number_local(n.natural(null))),
+            "line": prop(t.simple("Natural")),
+            "character": prop(t.simple("Natural")),
         })),
 
         "Range FE": module_(t.group({

@@ -19,7 +19,9 @@ const location = sh.a.select(
         sh.a.select(sh.sv.context([])),
         null,
         sh.lookups.not_set(),
-        sh.arguments_.not_set(),
+        sh.arguments_.initialize({
+            "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+        }),
         [
         ],
     )
@@ -91,7 +93,7 @@ export const Schema: _pi.Transformer_With_Parameter<
                         ]
                     ),
                     "parse tree to location": sh_i.import_.external(
-                        "astn-core",
+                        "liana-core",
                         [
                             "dist",
                             "implementation",
@@ -147,7 +149,8 @@ export const Value = (
                     sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
-                        "type": sh.a.state.literal("true/false", sh.a.nothing())
+                        "type": sh.a.state.literal("true/false", sh.a.nothing()),
+                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
                     }),
                     [
                     ],
@@ -179,7 +182,9 @@ export const Value = (
                         sh.a.select(sh.sv.context([])),
                         sh.a.select(sh.sv.context([])),
                         sh.lookups.not_set(),
-                        sh.arguments_.not_set(),
+                        sh.arguments_.initialize({
+                            "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                        }),
                         [
                         ],
                     ),
@@ -191,7 +196,9 @@ export const Value = (
                                     sh.a.select(sh.sv.context(["value"])),
                                     null,
                                     sh.lookups.not_set(),
-                                    sh.arguments_.not_set(),
+                                    sh.arguments_.initialize({
+                                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                    }),
                                     [
 
                                     ],
@@ -245,7 +252,8 @@ export const Value = (
                     sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
-                        "expected properties": sh.a.dictionary.literal($.__d_map(($) => sh.a.nothing()))
+                        "expected properties": sh.a.dictionary.literal($.__d_map(($) => sh.a.nothing())),
+                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
                     }),
                     [
                     ],
@@ -258,7 +266,9 @@ export const Value = (
                                 sh.a.select(sh.sv.context(["value"])),
                                 null,
                                 sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
+                                sh.arguments_.initialize({
+                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                }),
                                 [
 
                                 ],
@@ -273,6 +283,7 @@ export const Value = (
                             sh.lookups.not_set(),
                             sh.arguments_.initialize({
                                 "id": sh.a.text.literal(id, 'identifier'),
+                                "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
                             }),
                             [
                             ],
@@ -303,7 +314,9 @@ export const Value = (
                                 sh.a.select(sh.sv.context([])),
                                 sh.a.select(sh.sv.context([])),
                                 sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
+                                sh.arguments_.initialize({
+                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                }),
                                 [
                                     "items"
                                 ],
@@ -337,7 +350,9 @@ export const Value = (
                             sh.a.select(sh.sv.context([])),
                             sh.a.select(sh.sv.context([])),
                             sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
+                            sh.arguments_.initialize({
+                                "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                            }),
                             [
                                 "items"
                             ],
@@ -378,7 +393,8 @@ export const Value = (
                     sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
-                        "type": sh.a.state.literal("decimal", sh.a.nothing())
+                        "type": sh.a.state.literal("decimal", sh.a.nothing()),
+                        "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
                     }),
                     [
                     ],
@@ -501,7 +517,9 @@ export const Value = (
                                 sh.a.select(sh.sv.context(["value"])),
                                 null,
                                 sh.lookups.not_set(),
-                                sh.arguments_.not_set(),
+                                sh.arguments_.initialize({
+                                    "document resource identifier": sh.a.text.literal("dummy dri", 'freeform'),
+                                }),
                                 [
                                 ],
                             )

@@ -48,7 +48,7 @@ export const $: g_.Modules = modules(
         "Primary": module_(t.state({
             // "reference": t.reference("Productions", []), FIXME: make schema constrained first
             "literal": toption(t.text_local(text('single line'))),
-            "character code": toption(t.number_local(n.natural(null))),
+            "character code": toption(t.simple("Natural")),
             // "character class": t.group({
             //     "negated": t.boolean(),
             //     "type" : t.state({
