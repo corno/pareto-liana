@@ -22,15 +22,15 @@ export const $: g_.Modules = modules(
 
         "Package": module_(t.group({
             "specials": prop(t.group({
-                "abort": prop(t.boolean()),
-                "change context": toption(t.boolean()),
-                "implement me": prop(t.boolean()),
-                "iterate": prop(t.boolean()),
-                "lookups": prop(t.boolean()),
-                "list from text": prop(t.boolean()),
-                "text from list": prop(t.boolean()),
-                "unreachable code path": prop(t.boolean()),
-                "variables": prop(t.boolean()),
+                "abort": prop(t.simple_boolean()),
+                "change context": toption(t.simple_boolean()),
+                "implement me": prop(t.simple_boolean()),
+                "iterate": prop(t.simple_boolean()),
+                "lookups": prop(t.simple_boolean()),
+                "list from text": prop(t.simple_boolean()),
+                "text from list": prop(t.simple_boolean()),
+                "unreachable code path": prop(t.simple_boolean()),
+                "variables": prop(t.simple_boolean()),
             })),
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
@@ -50,9 +50,9 @@ export const $: g_.Modules = modules(
                     "type": prop(t.text_global("TBD")),
                 })),
                 "expression": prop(t.component("Assign")),
-                "temp has abort": prop(t.boolean()),
-                "temp has lookups": prop(t.boolean()),
-                "temp has parameters": prop(t.boolean()),
+                "temp has abort": prop(t.simple_boolean()),
+                "temp has lookups": prop(t.simple_boolean()),
+                "temp has parameters": prop(t.simple_boolean()),
             }))),
         })),
 
@@ -160,7 +160,7 @@ export const $: g_.Modules = modules(
                 "group": toption(t.state({
                     "literal": toption(t.group({
                         "properties": prop(t.dictionary(t.component("Assign"))),
-                        "have dependencies": prop(t.boolean()),
+                        "have dependencies": prop(t.simple_boolean()),
                     })),
                 })),
                 "list": toption(t.state({
@@ -256,7 +256,7 @@ export const $: g_.Modules = modules(
                             "identifier": toption(t.nothing()),
                             "freeform": toption(t.nothing()),
                         })),
-                        "value": prop(t.text_local(text('single line'))),
+                        "value": prop(t.text_global("text")),
                     })),
                     "from": toption(t.group({
                         "selection": prop(t.component("Select Value")),
@@ -286,19 +286,19 @@ export const $: g_.Modules = modules(
                     "variables": prop(t.dictionary(t.component("Assign"))),
                     "assign": prop(t.component("Assign")),
                 })),
-                "implement me": toption(t.text_local(text('single line'))),
+                "implement me": toption(t.text_global("text")),
                 "iterate": toption(t.group({
                     "list": prop(t.component("Select Value")),
                     "assign": prop(t.component("Assign")),
                 })),
                 "unreachable": toption(t.group({
-                    "explanation": prop(t.text_local(text('single line'))),
+                    "explanation": prop(t.text_global("text")),
                 })),
             })),
         })),
 
         "Select Value": module_(t.state({
-            "implement me": toption(t.text_local(text('single line'))),
+            "implement me": toption(t.text_global("text")),
             "regular": toption(t.group({
                 "start": prop(t.state({
                     "call": toption(t.group({
@@ -381,7 +381,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Select Lookup": module_(t.state({
-            "implement me": toption(t.text_local(text('single line'))),
+            "implement me": toption(t.text_global("text")),
             "from parameter": toption(t.text_global("TBD")),
             "stack": toption(t.state({
                 "empty": toption(t.nothing()),

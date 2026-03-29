@@ -16,7 +16,7 @@ export const $: g_.Modules = modules(
         "M3": module_(t.group({
             "id": prop(t.component_external("generic", "ID")),
             "properties": prop(t.group({
-                "version": prop(t.text_local(text('single line'))),
+                "version": prop(t.text_global("text")),
             })),
             "references": prop(t.group({
                 "dependencies": prop(t.component_external("generic", "References")),
@@ -29,8 +29,8 @@ export const $: g_.Modules = modules(
                             "classifier": prop(t.state({
                                 "Concept": toption(t.group({
                                     "properties": prop(t.group({
-                                        "abstract": prop(t.text_local(text('single line'))),
-                                        "partition": prop(t.text_local(text('single line'))),
+                                        "abstract": prop(t.text_global("text")),
+                                        "partition": prop(t.text_global("text")),
                                     })),
                                     "references": prop(t.group({
                                         "extends": prop(t.component_external("generic", "Optional Reference")),
@@ -60,7 +60,7 @@ export const $: g_.Modules = modules(
                                                 "Reference": toption(t.nothing()),
                                             })),
                                             "properties": prop(t.group({
-                                                "multiple": prop(t.text_local(text('single line'))),
+                                                "multiple": prop(t.text_global("text")),
                                             })),
                                             "references": prop(t.group({
                                                 "type": prop(t.component_external("generic", "Singular Reference")),
@@ -68,7 +68,7 @@ export const $: g_.Modules = modules(
                                         })),
                                     })),
                                     "properties": prop(t.group({
-                                        "optional": prop(t.text_local(text('single line'))),
+                                        "optional": prop(t.text_global("text")),
                                     })),
                                 }))),
                             })),

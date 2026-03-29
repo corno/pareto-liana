@@ -25,7 +25,7 @@ export const $: g_.Modules = modules(
             "range": prop(t.component_external("location", "Range")),
             "type": prop(t.state({
                 "dangling slash": toption(t.group({
-                    "at end of input": prop(t.boolean()),
+                    "at end of input": prop(t.simple_boolean()),
                 })),
                 "invalid unicode escape sequence": toption(t.nothing()),
                 "missing character after escape": toption(t.nothing()),

@@ -110,22 +110,6 @@ export const Value = (
     },
 ): d_out.Assign => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'boolean': return _p.ss($, ($) => sh.a.state.literal(
-            "text",
-            sh.a.group.literal({
-                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-                "value": sh.a.select(
-                    sh.sv.call(
-                        sh.call.external("primitives to text", "true false"),
-                        sh.a.select(sh.sv.context([])),
-                        null,
-                        sh.lookups.not_set(),
-                        sh.arguments_.not_set(),
-                        [],
-                    )
-                ),
-            })
-        ))
         case 'component': return _p.ss($, ($) => sh.a.select(
             sh.sv.call(
                 _p.decide.state($.type, ($) => {
@@ -212,25 +196,102 @@ export const Value = (
             )
         })
         case 'nothing': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
-        case 'number': return _p.ss($, ($) => sh.a.state.literal(
-            "text",
-            sh.a.group.literal({
-                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-                "value": sh.a.select(
-                    _p.decide.state($, ($) => {
+        case 'simple': return _p.ss($, ($) => _p.decide.state($, ($) => {
+            switch ($[0]) {
+                case 'global': return _p.ss($, ($) => {
+                    const x = $['l entry']
+
+
+                    return _p.decide.state($['l entry'].type, ($) => {
                         switch ($[0]) {
-                            case 'global': return _p.ss($, ($) => Number_Type(
-                                $['l entry'],
+                            case 'boolean': return _p.ss($, ($) => sh.a.state.literal(
+                                "text",
+                                sh.a.group.literal({
+                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                    "value": sh.a.select(
+                                        sh.sv.call(
+                                            sh.call.external("primitives to text", "true false"),
+                                            sh.a.select(sh.sv.context([])),
+                                            null,
+                                            sh.lookups.not_set(),
+                                            sh.arguments_.not_set(),
+                                            [],
+                                        )
+                                    ),
+                                })
                             ))
-                            case 'local': return _p.ss($, ($) => Number_Type(
-                                $
+                            case 'date': return _p.ss($, ($) => sh.a.state.literal(
+                                "text",
+                                sh.a.group.literal({
+                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                    "value": sh.a.select(
+                                        sh.sv.call(
+                                            sh.call.external("primitives to text", "iso date udhr"),
+                                            sh.a.select(sh.sv.context([])),
+                                            null,
+                                            sh.lookups.not_set(),
+                                            sh.arguments_.not_set(),
+                                            [],
+                                        )
+                                    ),
+                                })
                             ))
+                            case 'number': return _p.ss($, ($) => sh.a.state.literal(
+                                "text",
+                                sh.a.group.literal({
+                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                    "value": sh.a.select(
+                                        _p.decide.state($.precision, ($) => {
+                                            switch ($[0]) {
+                                                case 'approximation': return _p.ss($, ($) => sh.sv.call(
+                                                    sh.call.external("primitives to text", "scientific notation"),
+                                                    sh.a.select(sh.sv.context([])),
+                                                    null,
+                                                    sh.lookups.not_set(),
+                                                    sh.arguments_.initialize({
+                                                        "digits": sh.a.number.natural_literal(
+                                                            $['significant digits']
+                                                        )
+                                                    }),
+                                                    [],
+                                                ))
+                                                case 'exact': return _p.ss($, ($) => $['number of fractional digits'].__decide(
+                                                    ($) => sh.sv.call(
+                                                        sh.call.external("primitives to text", "fractional decimal"),
+                                                        sh.a.select(sh.sv.context([])),
+                                                        null,
+                                                        sh.lookups.not_set(),
+                                                        sh.arguments_.initialize({
+                                                            "number of fractional digits": sh.a.number.natural_literal(
+                                                                $
+                                                            )
+                                                        }),
+                                                        [],
+                                                    ),
+                                                    () => sh.sv.call(
+                                                        sh.call.external("primitives to text", "decimal"),
+                                                        sh.a.select(sh.sv.context([])),
+                                                        null,
+                                                        sh.lookups.not_set(),
+                                                        sh.arguments_.not_set(),
+                                                        [],
+                                                    )
+                                                ))
+                                                default: return _p.au($[0])
+                                            }
+                                        })
+                                    ),
+                                })
+                            ))
+
                             default: return _p.au($[0])
                         }
                     })
-                ),
-            })
-        ))
+                })
+                default: return _p.au($[0])
+            }
+        }))
+
         case 'optional': return _p.ss($, ($) => sh.a.state.literal(
             "optional",
             sh.a.decide.optional(
@@ -305,41 +366,6 @@ export const Value = (
                 "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
                 "value": sh.a.text.copy(sh.sv.context([])),
             })
-        ))
-        default: return _p.au($[0])
-    }
-})
-
-export const Number_Type = (
-    $: d_in.Number_Type,
-): d_out.Select_Value => _p.decide.state($.precision, ($) => {
-    switch ($[0]) {
-        case 'approximation': return _p.ss($, ($) => sh.sv.call(
-            sh.call.external("primitives to text", "scientific notation"),
-            sh.a.select(sh.sv.context([])),
-            null,
-            sh.lookups.not_set(),
-            sh.arguments_.initialize({
-                "digits": sh.a.number.natural_literal(
-                    $['significant digits']
-                )
-            }),
-            [],
-        ))
-        case 'exact': return _p.ss($, ($) => sh.sv.call(
-            sh.call.external("primitives to text", _p.decide.state($.type, ($) => {
-                switch ($[0]) {
-                    case 'integer': return _p.ss($, ($) => "decimal")
-                    case 'natural': return _p.ss($, ($) => "decimal")
-                    case 'positive natural': return _p.ss($, ($) => "decimal")
-                    default: return _p.au($[0])
-                }
-            })),
-            sh.a.select(sh.sv.context([])),
-            null,
-            sh.lookups.not_set(),
-            sh.arguments_.not_set(),
-            [],
         ))
         default: return _p.au($[0])
     }

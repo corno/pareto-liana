@@ -360,7 +360,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                 $,
             ).map(
                 ($, id) => ({
-                    'l entry': Number_Type(
+                    'l entry': Simple_Type(
                         $,
                     ),
                     'l location': ['in main document', {
@@ -415,11 +415,6 @@ export const Value: t_signatures.Value = ($) => ({
         $,
         ($): t_out.Value.l_state => {
             switch ($[0]) {
-                case 'boolean':
-                    return _p.ss(
-                        $,
-                        ($) => ['boolean', null],
-                    )
                 case 'component':
                     return _p.ss(
                         $,
@@ -597,10 +592,10 @@ export const Value: t_signatures.Value = ($) => ({
                         $,
                         ($) => ['nothing', null],
                     )
-                case 'number':
+                case 'simple':
                     return _p.ss(
                         $,
-                        ($) => ['number', {
+                        ($) => ['simple', {
                             'l location': ['in main document', {
                                 'start': {
                                     'absolute': 42,
@@ -619,7 +614,7 @@ export const Value: t_signatures.Value = ($) => ({
                             }],
                             'l state': _p.decide.state(
                                 $,
-                                ($): t_out.Value.l_state.number_.l_state => {
+                                ($): t_out.Value.l_state.simple.l_state => {
                                     switch ($[0]) {
                                         case 'global':
                                             return _p.ss(
@@ -643,13 +638,6 @@ export const Value: t_signatures.Value = ($) => ({
                                                     }],
                                                     'l reference': $['l id'],
                                                 }],
-                                            )
-                                        case 'local':
-                                            return _p.ss(
-                                                $,
-                                                ($) => ['local', Number_Type(
-                                                    $,
-                                                )],
                                             )
                                         default:
                                             return _p.au(
@@ -1250,11 +1238,6 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
         $,
         ($): t_out.Resolver_Value.l_state => {
             switch ($[0]) {
-                case 'boolean':
-                    return _p.ss(
-                        $,
-                        ($) => ['boolean', null],
-                    )
                 case 'component':
                     return _p.ss(
                         $,
@@ -1803,10 +1786,10 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                         $,
                         ($) => ['nothing', null],
                     )
-                case 'number':
+                case 'simple':
                     return _p.ss(
                         $,
-                        ($) => ['number', null],
+                        ($) => ['simple', null],
                     )
                 case 'optional':
                     return _p.ss(
@@ -2129,9 +2112,9 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
     ),
 })
 
-export const Number_Type: t_signatures.Number_Type = ($) => ({
-    'precision': _p_change_context(
-        $['precision'],
+export const Simple_Type: t_signatures.Simple_Type = ($) => ({
+    'type': _p_change_context(
+        $['type'],
         ($) => ({
             'l location': ['in main document', {
                 'start': {
@@ -2151,32 +2134,24 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
             }],
             'l state': _p.decide.state(
                 $,
-                ($): t_out.Number_Type.precision.l_state => {
+                ($): t_out.Simple_Type.type_.l_state => {
                     switch ($[0]) {
-                        case 'approximation':
+                        case 'boolean':
                             return _p.ss(
                                 $,
-                                ($) => ['approximation', {
-                                    'significant digits': _p_change_context(
-                                        $['significant digits'],
-                                        ($) => $,
-                                    ),
-                                }],
+                                ($) => ['boolean', null],
                             )
-                        case 'exact':
+                        case 'date':
                             return _p.ss(
                                 $,
-                                ($) => ['exact', {
-                                    'decimal separator offset': _p_change_context(
-                                        $['decimal separator offset'],
-                                        ($) => _p.optional.from.optional(
-                                            $,
-                                        ).map(
-                                            ($) => $,
-                                        ),
-                                    ),
-                                    'type': _p_change_context(
-                                        $['type'],
+                                ($) => ['date', null],
+                            )
+                        case 'number':
+                            return _p.ss(
+                                $,
+                                ($) => ['number', {
+                                    'precision': _p_change_context(
+                                        $['precision'],
                                         ($) => ({
                                             'l location': ['in main document', {
                                                 'start': {
@@ -2196,22 +2171,78 @@ export const Number_Type: t_signatures.Number_Type = ($) => ({
                                             }],
                                             'l state': _p.decide.state(
                                                 $,
-                                                ($): t_out.Number_Type.precision.l_state.exact.type_.l_state => {
+                                                ($): t_out.Simple_Type.type_.l_state.number_.precision.l_state => {
                                                     switch ($[0]) {
-                                                        case 'integer':
+                                                        case 'approximation':
                                                             return _p.ss(
                                                                 $,
-                                                                ($) => ['integer', null],
+                                                                ($) => ['approximation', {
+                                                                    'significant digits': _p_change_context(
+                                                                        $['significant digits'],
+                                                                        ($) => $,
+                                                                    ),
+                                                                }],
                                                             )
-                                                        case 'natural':
+                                                        case 'exact':
                                                             return _p.ss(
                                                                 $,
-                                                                ($) => ['natural', null],
-                                                            )
-                                                        case 'positive natural':
-                                                            return _p.ss(
-                                                                $,
-                                                                ($) => ['positive natural', null],
+                                                                ($) => ['exact', {
+                                                                    'number of fractional digits': _p_change_context(
+                                                                        $['number of fractional digits'],
+                                                                        ($) => _p.optional.from.optional(
+                                                                            $,
+                                                                        ).map(
+                                                                            ($) => $,
+                                                                        ),
+                                                                    ),
+                                                                    'type': _p_change_context(
+                                                                        $['type'],
+                                                                        ($) => ({
+                                                                            'l location': ['in main document', {
+                                                                                'start': {
+                                                                                    'absolute': 42,
+                                                                                    'relative': {
+                                                                                        'line': 42,
+                                                                                        'column': 42,
+                                                                                    },
+                                                                                },
+                                                                                'end': {
+                                                                                    'absolute': 42,
+                                                                                    'relative': {
+                                                                                        'line': 42,
+                                                                                        'column': 42,
+                                                                                    },
+                                                                                },
+                                                                            }],
+                                                                            'l state': _p.decide.state(
+                                                                                $,
+                                                                                ($): t_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_.l_state => {
+                                                                                    switch ($[0]) {
+                                                                                        case 'integer':
+                                                                                            return _p.ss(
+                                                                                                $,
+                                                                                                ($) => ['integer', null],
+                                                                                            )
+                                                                                        case 'natural':
+                                                                                            return _p.ss(
+                                                                                                $,
+                                                                                                ($) => ['natural', null],
+                                                                                            )
+                                                                                        case 'positive natural':
+                                                                                            return _p.ss(
+                                                                                                $,
+                                                                                                ($) => ['positive natural', null],
+                                                                                            )
+                                                                                        default:
+                                                                                            return _p.au(
+                                                                                                $[0],
+                                                                                            )
+                                                                                    }
+                                                                                },
+                                                                            ),
+                                                                        }),
+                                                                    ),
+                                                                }],
                                                             )
                                                         default:
                                                             return _p.au(

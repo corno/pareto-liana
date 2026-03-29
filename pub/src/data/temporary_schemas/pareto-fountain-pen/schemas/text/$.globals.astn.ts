@@ -9,7 +9,9 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Globals = globals(
     'unconstrained',
-    {},
+    {
+        "text": text('single line'),
+    },
     {},
 )
 

@@ -638,7 +638,7 @@ export const Globals: t_signatures.Globals = ($, abort) => _p_change_context(
                                             'subdocument context': _p.optional.literal.not_set(),
                                         },
                                     ),
-                                    'l entry': Number_Type(
+                                    'l entry': Simple_Type(
                                         $,
                                         ($) => abort(
                                             $,
@@ -713,24 +713,6 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
         $['option']['token']['value'],
         ($t): t_out.Value => {
             switch ($t) {
-                case 'boolean':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ({
-                            'l location': v_parse_tree_to_location.Value(
-                                $,
-                                {
-                                    'subdocument context': _p.optional.literal.not_set(),
-                                },
-                            ),
-                            'l state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            )],
-                        }),
-                    )
                 case 'component':
                     return _p_change_context(
                         $['value'],
@@ -1108,7 +1090,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                             )],
                         }),
                     )
-                case 'number':
+                case 'simple':
                     return _p_change_context(
                         $['value'],
                         ($) => ({
@@ -1118,7 +1100,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                     'subdocument context': _p.optional.literal.not_set(),
                                 },
                             ),
-                            'l state': ['number', _p_change_context(
+                            'l state': ['simple', _p_change_context(
                                 v_unmarshalled_from_parse_tree.State(
                                     $,
                                     ($) => abort(
@@ -1127,7 +1109,7 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                 ),
                                 ($) => _p.decide.text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Value.l_state.number_ => {
+                                    ($t): t_out.Value.l_state.simple => {
                                         switch ($t) {
                                             case 'global':
                                                 return _p_change_context(
@@ -1153,24 +1135,6 @@ export const Value: t_signatures.Value = ($, abort) => _p_change_context(
                                                                 ),
                                                             ),
                                                         }],
-                                                    }),
-                                                )
-                                            case 'local':
-                                                return _p_change_context(
-                                                    $['value'],
-                                                    ($) => ({
-                                                        'l location': v_parse_tree_to_location.Value(
-                                                            $,
-                                                            {
-                                                                'subdocument context': _p.optional.literal.not_set(),
-                                                            },
-                                                        ),
-                                                        'l state': ['local', Number_Type(
-                                                            $,
-                                                            ($) => abort(
-                                                                $,
-                                                            ),
-                                                        )],
                                                     }),
                                                 )
                                             default:
@@ -2420,24 +2384,6 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
         $['option']['token']['value'],
         ($t): t_out.Resolver_Value => {
             switch ($t) {
-                case 'boolean':
-                    return _p_change_context(
-                        $['value'],
-                        ($) => ({
-                            'l location': v_parse_tree_to_location.Value(
-                                $,
-                                {
-                                    'subdocument context': _p.optional.literal.not_set(),
-                                },
-                            ),
-                            'l state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
-                                $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            )],
-                        }),
-                    )
                 case 'component':
                     return _p_change_context(
                         $['value'],
@@ -3509,7 +3455,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                             )],
                         }),
                     )
-                case 'number':
+                case 'simple':
                     return _p_change_context(
                         $['value'],
                         ($) => ({
@@ -3519,7 +3465,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => _p_chan
                                     'subdocument context': _p.optional.literal.not_set(),
                                 },
                             ),
-                            'l state': ['number', v_unmarshalled_from_parse_tree.Nothing(
+                            'l state': ['simple', v_unmarshalled_from_parse_tree.Nothing(
                                 $,
                                 ($) => abort(
                                     $,
@@ -4350,7 +4296,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
     ),
 )
 
-export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_context(
+export const Simple_Type: t_signatures.Simple_Type = ($, abort) => _p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -4359,7 +4305,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
         {
             'expected properties': _p.dictionary.literal(
                 {
-                    "precision": null,
+                    "type": null,
                 },
             ),
             'subdocument context': _p.optional.literal.not_set(),
@@ -4375,14 +4321,14 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                 },
             )
             return {
-                'precision': _p_change_context(
+                'type': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
                         ($) => abort(
                             $,
                         ),
                         {
-                            'id': 'precision',
+                            'id': 'type',
                             'subdocument context': _p.optional.literal.not_set(),
                         },
                     ),
@@ -4395,9 +4341,9 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                         ),
                         ($) => _p.decide.text(
                             $['option']['token']['value'],
-                            ($t): t_out.Number_Type.precision => {
+                            ($t): t_out.Simple_Type.type_ => {
                                 switch ($t) {
-                                    case 'approximation':
+                                    case 'boolean':
                                         return _p_change_context(
                                             $['value'],
                                             ($) => ({
@@ -4407,60 +4353,15 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                         'subdocument context': _p.optional.literal.not_set(),
                                                     },
                                                 ),
-                                                'l state': ['approximation', _p_change_context(
-                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                'l state': ['boolean', v_unmarshalled_from_parse_tree.Nothing(
+                                                    $,
+                                                    ($) => abort(
                                                         $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                        {
-                                                            'expected properties': _p.dictionary.literal(
-                                                                {
-                                                                    "significant digits": null,
-                                                                },
-                                                            ),
-                                                            'subdocument context': _p.optional.literal.not_set(),
-                                                        },
-                                                    ),
-                                                    ($) => _p_variables(
-                                                        () => {
-                                                            
-                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
-                                                                $['value'],
-                                                                {
-                                                                    'subdocument context': _p.optional.literal.not_set(),
-                                                                },
-                                                            )
-                                                            return {
-                                                                'significant digits': _p_change_context(
-                                                                    v_unmarshalled_from_parse_tree.Property(
-                                                                        $,
-                                                                        ($) => abort(
-                                                                            $,
-                                                                        ),
-                                                                        {
-                                                                            'id': 'significant digits',
-                                                                            'subdocument context': _p.optional.literal.not_set(),
-                                                                        },
-                                                                    ),
-                                                                    ($) => v_unmarshalled_from_parse_tree.Number(
-                                                                        $,
-                                                                        ($) => abort(
-                                                                            $,
-                                                                        ),
-                                                                        {
-                                                                            'type': ['decimal', null],
-                                                                            'subdocument context': _p.optional.literal.not_set(),
-                                                                        },
-                                                                    ),
-                                                                ),
-                                                            }
-                                                        },
                                                     ),
                                                 )],
                                             }),
                                         )
-                                    case 'exact':
+                                    case 'date':
                                         return _p_change_context(
                                             $['value'],
                                             ($) => ({
@@ -4470,7 +4371,25 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                         'subdocument context': _p.optional.literal.not_set(),
                                                     },
                                                 ),
-                                                'l state': ['exact', _p_change_context(
+                                                'l state': ['date', v_unmarshalled_from_parse_tree.Nothing(
+                                                    $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                )],
+                                            }),
+                                        )
+                                    case 'number':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ({
+                                                'l location': v_parse_tree_to_location.Value(
+                                                    $,
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                'l state': ['number', _p_change_context(
                                                     v_unmarshalled_from_parse_tree.Verbose_Group(
                                                         $,
                                                         ($) => abort(
@@ -4479,8 +4398,7 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                         {
                                                             'expected properties': _p.dictionary.literal(
                                                                 {
-                                                                    "decimal separator offset": null,
-                                                                    "type": null,
+                                                                    "precision": null,
                                                                 },
                                                             ),
                                                             'subdocument context': _p.optional.literal.not_set(),
@@ -4496,45 +4414,14 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                                 },
                                                             )
                                                             return {
-                                                                'decimal separator offset': _p_change_context(
+                                                                'precision': _p_change_context(
                                                                     v_unmarshalled_from_parse_tree.Property(
                                                                         $,
                                                                         ($) => abort(
                                                                             $,
                                                                         ),
                                                                         {
-                                                                            'id': 'decimal separator offset',
-                                                                            'subdocument context': _p.optional.literal.not_set(),
-                                                                        },
-                                                                    ),
-                                                                    ($) => _p.optional.from.optional(
-                                                                        v_unmarshalled_from_parse_tree.Optional(
-                                                                            $,
-                                                                            ($) => abort(
-                                                                                $,
-                                                                            ),
-                                                                        )['optional'],
-                                                                    ).map(
-                                                                        ($) => v_unmarshalled_from_parse_tree.Number(
-                                                                            $,
-                                                                            ($) => abort(
-                                                                                $,
-                                                                            ),
-                                                                            {
-                                                                                'type': ['decimal', null],
-                                                                                'subdocument context': _p.optional.literal.not_set(),
-                                                                            },
-                                                                        ),
-                                                                    ),
-                                                                ),
-                                                                'type': _p_change_context(
-                                                                    v_unmarshalled_from_parse_tree.Property(
-                                                                        $,
-                                                                        ($) => abort(
-                                                                            $,
-                                                                        ),
-                                                                        {
-                                                                            'id': 'type',
+                                                                            'id': 'precision',
                                                                             'subdocument context': _p.optional.literal.not_set(),
                                                                         },
                                                                     ),
@@ -4547,9 +4434,9 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                                         ),
                                                                         ($) => _p.decide.text(
                                                                             $['option']['token']['value'],
-                                                                            ($t): t_out.Number_Type.precision.l_state.exact.type_ => {
+                                                                            ($t): t_out.Simple_Type.type_.l_state.number_.precision => {
                                                                                 switch ($t) {
-                                                                                    case 'integer':
+                                                                                    case 'approximation':
                                                                                         return _p_change_context(
                                                                                             $['value'],
                                                                                             ($) => ({
@@ -4559,15 +4446,60 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                                                                         'subdocument context': _p.optional.literal.not_set(),
                                                                                                     },
                                                                                                 ),
-                                                                                                'l state': ['integer', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                    $,
-                                                                                                    ($) => abort(
+                                                                                                'l state': ['approximation', _p_change_context(
+                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                         $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
+                                                                                                        {
+                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                {
+                                                                                                                    "significant digits": null,
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
+                                                                                                    ),
+                                                                                                    ($) => _p_variables(
+                                                                                                        () => {
+                                                                                                            
+                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                $['value'],
+                                                                                                                {
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            )
+                                                                                                            return {
+                                                                                                                'significant digits': _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'id': 'significant digits',
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => v_unmarshalled_from_parse_tree.Number(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'type': ['decimal', null],
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                            }
+                                                                                                        },
                                                                                                     ),
                                                                                                 )],
                                                                                             }),
                                                                                         )
-                                                                                    case 'natural':
+                                                                                    case 'exact':
                                                                                         return _p_change_context(
                                                                                             $['value'],
                                                                                             ($) => ({
@@ -4577,28 +4509,158 @@ export const Number_Type: t_signatures.Number_Type = ($, abort) => _p_change_con
                                                                                                         'subdocument context': _p.optional.literal.not_set(),
                                                                                                     },
                                                                                                 ),
-                                                                                                'l state': ['natural', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                    $,
-                                                                                                    ($) => abort(
+                                                                                                'l state': ['exact', _p_change_context(
+                                                                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
                                                                                                         $,
+                                                                                                        ($) => abort(
+                                                                                                            $,
+                                                                                                        ),
+                                                                                                        {
+                                                                                                            'expected properties': _p.dictionary.literal(
+                                                                                                                {
+                                                                                                                    "number of fractional digits": null,
+                                                                                                                    "type": null,
+                                                                                                                },
+                                                                                                            ),
+                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                        },
                                                                                                     ),
-                                                                                                )],
-                                                                                            }),
-                                                                                        )
-                                                                                    case 'positive natural':
-                                                                                        return _p_change_context(
-                                                                                            $['value'],
-                                                                                            ($) => ({
-                                                                                                'l location': v_parse_tree_to_location.Value(
-                                                                                                    $,
-                                                                                                    {
-                                                                                                        'subdocument context': _p.optional.literal.not_set(),
-                                                                                                    },
-                                                                                                ),
-                                                                                                'l state': ['positive natural', v_unmarshalled_from_parse_tree.Nothing(
-                                                                                                    $,
-                                                                                                    ($) => abort(
-                                                                                                        $,
+                                                                                                    ($) => _p_variables(
+                                                                                                        () => {
+                                                                                                            
+                                                                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                                                                $['value'],
+                                                                                                                {
+                                                                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                },
+                                                                                                            )
+                                                                                                            return {
+                                                                                                                'number of fractional digits': _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'id': 'number of fractional digits',
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => _p.optional.from.optional(
+                                                                                                                        v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                            $,
+                                                                                                                            ($) => abort(
+                                                                                                                                $,
+                                                                                                                            ),
+                                                                                                                        )['optional'],
+                                                                                                                    ).map(
+                                                                                                                        ($) => v_unmarshalled_from_parse_tree.Number(
+                                                                                                                            $,
+                                                                                                                            ($) => abort(
+                                                                                                                                $,
+                                                                                                                            ),
+                                                                                                                            {
+                                                                                                                                'type': ['decimal', null],
+                                                                                                                                'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                            },
+                                                                                                                        ),
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                                'type': _p_change_context(
+                                                                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
+                                                                                                                            $,
+                                                                                                                        ),
+                                                                                                                        {
+                                                                                                                            'id': 'type',
+                                                                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                        },
+                                                                                                                    ),
+                                                                                                                    ($) => _p_change_context(
+                                                                                                                        v_unmarshalled_from_parse_tree.State(
+                                                                                                                            $,
+                                                                                                                            ($) => abort(
+                                                                                                                                $,
+                                                                                                                            ),
+                                                                                                                        ),
+                                                                                                                        ($) => _p.decide.text(
+                                                                                                                            $['option']['token']['value'],
+                                                                                                                            ($t): t_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_ => {
+                                                                                                                                switch ($t) {
+                                                                                                                                    case 'integer':
+                                                                                                                                        return _p_change_context(
+                                                                                                                                            $['value'],
+                                                                                                                                            ($) => ({
+                                                                                                                                                'l location': v_parse_tree_to_location.Value(
+                                                                                                                                                    $,
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                                'l state': ['integer', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                                                                    $,
+                                                                                                                                                    ($) => abort(
+                                                                                                                                                        $,
+                                                                                                                                                    ),
+                                                                                                                                                )],
+                                                                                                                                            }),
+                                                                                                                                        )
+                                                                                                                                    case 'natural':
+                                                                                                                                        return _p_change_context(
+                                                                                                                                            $['value'],
+                                                                                                                                            ($) => ({
+                                                                                                                                                'l location': v_parse_tree_to_location.Value(
+                                                                                                                                                    $,
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                                'l state': ['natural', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                                                                    $,
+                                                                                                                                                    ($) => abort(
+                                                                                                                                                        $,
+                                                                                                                                                    ),
+                                                                                                                                                )],
+                                                                                                                                            }),
+                                                                                                                                        )
+                                                                                                                                    case 'positive natural':
+                                                                                                                                        return _p_change_context(
+                                                                                                                                            $['value'],
+                                                                                                                                            ($) => ({
+                                                                                                                                                'l location': v_parse_tree_to_location.Value(
+                                                                                                                                                    $,
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                                'l state': ['positive natural', v_unmarshalled_from_parse_tree.Nothing(
+                                                                                                                                                    $,
+                                                                                                                                                    ($) => abort(
+                                                                                                                                                        $,
+                                                                                                                                                    ),
+                                                                                                                                                )],
+                                                                                                                                            }),
+                                                                                                                                        )
+                                                                                                                                    default:
+                                                                                                                                        return abort(
+                                                                                                                                            ['liana', {
+                                                                                                                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                                                                                                                'range': v_parse_tree_to_location.Value(
+                                                                                                                                                    $['value'],
+                                                                                                                                                    {
+                                                                                                                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                                                                                                                    },
+                                                                                                                                                ),
+                                                                                                                                            }],
+                                                                                                                                        )
+                                                                                                                                }
+                                                                                                                            },
+                                                                                                                        ),
+                                                                                                                    ),
+                                                                                                                ),
+                                                                                                            }
+                                                                                                        },
                                                                                                     ),
                                                                                                 )],
                                                                                             }),

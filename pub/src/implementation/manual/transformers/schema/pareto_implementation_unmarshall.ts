@@ -141,21 +141,6 @@ export const Value = (
 ): d_out.Assign => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.a.select(
-                sh.sv.call(
-                    sh.call.external("unmarshalled from parse tree", "Boolean"),
-                    sh.a.select(sh.sv.context([])),
-
-                    sh.a.select(sh.sv.context([])),
-                    sh.lookups.not_set(),
-                    sh.arguments_.initialize({
-                        "type": sh.a.state.literal("true/false", sh.a.nothing()),
-                        "subdocument context": sh.a.optional.not_set(),
-                    }),
-                    [
-                    ],
-                ),
-            ))
             case 'component': return _p.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
@@ -386,20 +371,74 @@ export const Value = (
                     ],
                 )
             ))
-            case 'number': return _p.ss($, ($) => sh.a.select(
-                sh.sv.call(
-                    sh.call.external("unmarshalled from parse tree", "Number"),
-                    sh.a.select(sh.sv.context([])),
-                    sh.a.select(sh.sv.context([])),
-                    sh.lookups.not_set(),
-                    sh.arguments_.initialize({
-                        "type": sh.a.state.literal("decimal", sh.a.nothing()),
-                        "subdocument context": sh.a.optional.not_set(),
-                    }),
-                    [
-                    ],
-                ),
-            ))
+            case 'simple': return _p.ss($, ($) => _p.decide.state($, ($) => {
+                switch ($[0]) {
+                    case 'global': return _p.ss($, ($) => _p.decide.state($['l entry'].type, ($) => {
+                        switch ($[0]) {
+                            case 'boolean': return _p.ss($, ($) => sh.a.select(
+                                sh.sv.call(
+                                    sh.call.external("unmarshalled from parse tree", "Boolean"),
+                                    sh.a.select(sh.sv.context([])),
+
+                                    sh.a.select(sh.sv.context([])),
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.initialize({
+                                        "type": sh.a.state.literal("true/false", sh.a.nothing()),
+                                        "subdocument context": sh.a.optional.not_set(),
+                                    }),
+                                    [
+                                    ],
+                                ),
+                            ))
+                            case 'date': return _p.ss($, ($) => sh.a.select(
+                                sh.sv.call(
+                                    sh.call.external("unmarshalled from parse tree", "Number"),
+                                    sh.a.select(sh.sv.context([])),
+
+                                    sh.a.select(sh.sv.context([])),
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.initialize({
+                                        "type": sh.a.state.literal("iso date udhr", sh.a.nothing()),
+                                        "subdocument context": sh.a.optional.not_set(),
+                                    }),
+                                    [
+                                    ],
+                                ),
+                            ))
+                            case 'number': return _p.ss($, ($) => sh.a.select(
+                                sh.sv.call(
+                                    sh.call.external("unmarshalled from parse tree", "Number"),
+                                    sh.a.select(sh.sv.context([])),
+                                    sh.a.select(sh.sv.context([])),
+                                    sh.lookups.not_set(),
+                                    sh.arguments_.initialize({
+                                        "type": _p.decide.state($.precision, ($) => {
+                                            switch ($[0]) {
+                                                case 'approximation': return _p.ss($, ($) => sh.a.state.literal("scientific notation", sh.a.group.literal({
+                                                    "precision": sh.a.number.natural_literal($['significant digits']),
+                                                })))
+                                                case 'exact': return _p.ss($, ($) => $['number of fractional digits'].__decide(
+                                                    ($) => sh.a.state.literal("fractional decimal", sh.a.group.literal({
+                                                        "digits": sh.a.number.natural_literal($),
+                                                    })),
+                                                    () => sh.a.state.literal("decimal", sh.a.nothing())
+                                                ))
+                                                default: return _p.au($[0])
+                                            }
+                                        }),
+                                        "subdocument context": sh.a.optional.not_set(),
+                                    }),
+                                    [
+                                    ],
+                                ),
+                            ))
+
+                            default: return _p.au($[0])
+                        }
+                    }))
+                    default: return _p.au($[0])
+                }
+            }))
             case 'optional': return _p.ss($, ($) => sh.a.optional.map(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Optional"),

@@ -261,11 +261,11 @@ export type Text_Type_ = (
     context: Text_Type_.I,
 ) => Text_Type_.O
 
-export namespace Number_Type_ {
+export namespace Simple_Type_ {
     
-    export type I = i_in.Number_Type
+    export type I = i_in.Simple_Type
     
-    export type O = i_out.Number_Type
+    export type O = i_out.Simple_Type
     
     export namespace P {
         
@@ -273,9 +273,9 @@ export namespace Number_Type_ {
     
 }
 
-export type Number_Type_ = (
-    context: Number_Type_.I,
-) => Number_Type_.O
+export type Simple_Type_ = (
+    context: Simple_Type_.I,
+) => Simple_Type_.O
 
 export namespace Module_ {
     
@@ -678,7 +678,7 @@ export {
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Text_Type_ as Text_Type, 
-    Number_Type_ as Number_Type, 
+    Simple_Type_ as Simple_Type, 
     Module_ as Module, 
     Presence_ as Presence, 
     Resolver_Modules_ as Resolver_Modules, 

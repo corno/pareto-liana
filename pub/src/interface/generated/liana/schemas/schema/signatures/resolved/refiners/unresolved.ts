@@ -49,11 +49,11 @@ export type Presence_ = (
     parameters: null,
 ) => Presence_.O
 
-export namespace Number_Type_ {
+export namespace Simple_Type_ {
     
-    export type I = i_unresolved.Number_Type
+    export type I = i_unresolved.Simple_Type
     
-    export type O = i_resolved.Number_Type
+    export type O = i_resolved.Simple_Type
     
     export type E = i_generic.Error
     
@@ -63,12 +63,12 @@ export namespace Number_Type_ {
     
 }
 
-export type Number_Type_ = (
-    context: Number_Type_.I,
-    abort: _pi.Abort<Number_Type_.E>,
+export type Simple_Type_ = (
+    context: Simple_Type_.I,
+    abort: _pi.Abort<Simple_Type_.E>,
     lookups: null,
     parameters: null,
-) => Number_Type_.O
+) => Simple_Type_.O
 
 export namespace Text_Type_ {
     
@@ -1975,7 +1975,7 @@ export type Modules_ = (
 export { 
     Package_ as Package, 
     Presence_ as Presence, 
-    Number_Type_ as Number_Type, 
+    Simple_Type_ as Simple_Type, 
     Text_Type_ as Text_Type, 
     Globals_ as Globals, 
     Group_ as Group, 

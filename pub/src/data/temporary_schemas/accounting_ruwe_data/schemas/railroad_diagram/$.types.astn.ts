@@ -17,7 +17,7 @@ export const $: g_.Modules = modules(
 
         "Grammar": module_(t.group({
             "productions": prop(t.component("Productions")),
-            //"main rule": t.text_local(text('single line'))
+            //"main rule": t.text_global("text")
         })),
         "Production": module_(t.state({
             "choice": toption(t.component("Choice")),
@@ -47,7 +47,7 @@ export const $: g_.Modules = modules(
         })),
         "Primary": module_(t.state({
             // "reference": t.reference("Productions", []), FIXME: make schema constrained first
-            "literal": toption(t.text_local(text('single line'))),
+            "literal": toption(t.text_global("text")),
             "character code": toption(t.simple("Natural")),
             // "character class": t.group({
             //     "negated": t.boolean(),

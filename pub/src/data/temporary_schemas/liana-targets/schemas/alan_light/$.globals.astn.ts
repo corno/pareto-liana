@@ -11,7 +11,7 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
-        "Pseudo Reference": text("single line"),
+        "Pseudo Reference": text('single line'),
     },
     {},
 )

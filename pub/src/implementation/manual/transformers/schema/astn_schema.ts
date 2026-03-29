@@ -58,21 +58,14 @@ export const Value: _pi.Transformer<d_in.Value, d_out.Value> = (
     $
 ) => sh.state(_p.decide.state($, ($): d_out.Value.l_state => {
     switch ($[0]) {
-        case 'number': return _p.ss($, ($): d_out.Value.l_state => ['text', sh.state(
+        case 'simple': return _p.ss($, ($): d_out.Value.l_state => ['text', sh.state(
             _p.decide.state($, ($): d_out.Value.l_state.text.l_state => {
                 switch ($[0]) {
                     case 'global': return _p.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
-                    case 'local': return _p.ss($, ($) => ['local', {
-                        'type': sh.state(['single line', null])
-                    }])
+
                     default: return _p.au($[0])
                 }
             })
-        )])
-        case 'boolean': return _p.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(
-            ['local', {
-                'type': sh.state(['single line', null])
-            }]
         )])
         case 'list': return _p.ss($, ($) => ['list', {
             'value': Value($.value)

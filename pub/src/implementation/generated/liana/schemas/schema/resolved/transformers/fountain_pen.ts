@@ -103,8 +103,8 @@ export const Text_Type: t_signatures.Text_Type = ($) => v_serialize.Document(
     ),
 )
 
-export const Number_Type: t_signatures.Number_Type = ($) => v_serialize.Document(
-    v_marshall.Number_Type(
+export const Simple_Type: t_signatures.Simple_Type = ($) => v_serialize.Document(
+    v_marshall.Simple_Type(
         $,
     ),
 )

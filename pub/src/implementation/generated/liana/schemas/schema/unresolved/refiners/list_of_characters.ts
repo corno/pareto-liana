@@ -247,7 +247,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $p) => v_unmarshall.
     ),
 )
 
-export const Number_Type: t_signatures.Number_Type = ($, abort, $p) => v_unmarshall.Number_Type(
+export const Simple_Type: t_signatures.Simple_Type = ($, abort, $p) => v_unmarshall.Simple_Type(
     v_deserialize.Document(
         $,
         ($) => abort(

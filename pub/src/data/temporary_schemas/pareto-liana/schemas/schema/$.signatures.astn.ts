@@ -9,7 +9,7 @@ export const $: g_.Resolver.signatures = signatures(
     {
         "Package": sig.local({}, {}),
         "Presence": sig.local({}, {}),
-        "Number Type": sig.local({}, {}),
+        "Simple Type": sig.local({}, {}),
         "Text Type": sig.local({}, {}),
         "Globals": sig.local({}, {}),
 

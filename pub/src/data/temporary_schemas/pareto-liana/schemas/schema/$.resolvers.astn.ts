@@ -13,7 +13,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Resolver_Modules = resolver_modules(
     {
         "Package": resolver(r.group({
-            "omit (de)serializer": r.boolean(),
+            "omit (de)serializer": r.simple_boolean(),
             "schema tree": r.component("Schema Tree", {}, {
                 "sibling schemas": al.stack.empty(),
             }),
@@ -44,23 +44,29 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "constrained": option(r.nothing()),
             }),
             "text types": r.dictionary(r.component("Text Type", {}, {})),
-            "simple types": r.dictionary(r.component("Number Type", {}, {})),
+            "simple types": r.dictionary(r.component("Simple Type", {}, {})),
         })),
 
-        "Number Type": resolver(r.group({
-            "precision": r.state({
-                "approximation": option(r.group({
-                    "significant digits": r.number(),
+        "Simple Type": resolver(r.group({
+            "type": r.state({
+                "boolean": option(r.nothing()),
+                "date": option(r.nothing()),
+                "number": option(r.group({
+                    "precision": r.state({
+                        "approximation": option(r.group({
+                            "significant digits": r.simple_number(),
+                        })),
+                        "exact": option(r.group({
+                            "number of fractional digits": r.optional(r.simple_number()),
+                            "type": r.state({
+                                "integer": option(r.nothing()),
+                                "natural": option(r.nothing()),
+                                "positive natural": option(r.nothing()),
+                            }),
+                        })),
+                    })
                 })),
-                "exact": option(r.group({
-                    "decimal separator offset": r.optional(r.number()),
-                    "type": r.state({
-                        "integer": option(r.nothing()),
-                        "natural": option(r.nothing()),
-                        "positive natural": option(r.nothing()),
-                    }),
-                })),
-            })
+            }),
         })),
 
         "Text Type": resolver(r.group({
@@ -152,7 +158,6 @@ export const $: g_.Resolver_Modules = resolver_modules(
         })),
 
         "Value": resolver(r.state({
-            "boolean": option(r.nothing()),
             "component": option(r.group({
                 "type": r.state({
                     "external": option_constrained(
@@ -200,12 +205,11 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 }),
             })),
             "nothing": option(r.nothing()),
-            "number": option(r.state({
+            "simple": option(r.state({
                 "global": option_constrained(
                     {
                         "globals": oc.assert_set(pvs.parameter("globals"))
                     }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("simple types")])))),
-                "local": option(r.component("Number Type", {}, {})),
             })),
             "optional": option(r.component("Value", null, null)),
             "reference": option(r.group({
@@ -634,14 +638,10 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "dictionary": vcr.value([rvs.group("resulting node"), rvs.reference()], "dictionary"),
             }),
             "resulting dictionary": r.reference_derived(gvs.component("selection", "dictionary", [])),
-            "dense": r.boolean(),
+            "dense": r.simple_boolean(),
         })),
 
         "Resolver Value": resolver(r.state({
-            "boolean": option_constrained(
-                {
-                    "definition": oc.state(gvs.parameter("definition", []), "boolean")
-                }, r.nothing()),
             "component": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "component")
@@ -795,9 +795,9 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "nothing")
                 }, r.nothing()),
-            "number": option_constrained(
+            "simple": option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "number")
+                    "definition": oc.state(gvs.parameter("definition", []), "simple")
                 }, r.nothing()),
             "optional": option_constrained(
                 {

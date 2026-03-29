@@ -14,8 +14,8 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.group({
-            "program": prop(t.text_local(text('single line'))),
-            "args": prop(t.list(t.text_local(text('single line')))),
+            "program": prop(t.text_global("text")),
+            "args": prop(t.list(t.text_global("text"))),
             "working directory": prop(t.optional(t.component_external("path", "Context Path"))),
         })),
 

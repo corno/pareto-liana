@@ -12,7 +12,9 @@ export const $: g_.Globals = globals(
          'constrained',
     {
     },
-    {},
+    {
+        "boolean": n.boolean(null),
+    },
 )
 
 

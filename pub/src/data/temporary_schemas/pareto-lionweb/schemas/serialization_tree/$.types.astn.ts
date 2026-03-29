@@ -14,27 +14,27 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Serialization Tree": module_(t.group({
-            "serializationFormatVersion": prop(t.text_local(text('single line'))),
+            "serializationFormatVersion": prop(t.text_global("text")),
             "languages": prop(t.list(t.group({
-                "key": prop(t.text_local(text('single line'))),
-                "version": prop(t.text_local(text('single line'))),
+                "key": prop(t.text_global("text")),
+                "version": prop(t.text_global("text")),
             }))),
-            "root node id": prop(t.text_local(text('single line'))),
+            "root node id": prop(t.text_global("text")),
             "node tree": prop(t.component("Node")),
         })),
 
         "Node": module_(t.group({
             "range": prop(t.component_external("location", "Range")),
-            "classifier": prop(t.text_local(text('single line'))),
-            "properties": prop(t.dictionary(t.text_local(text('single line')))),
+            "classifier": prop(t.text_global("text")),
+            "properties": prop(t.dictionary(t.text_global("text"))),
             "containments": prop(t.dictionary(t.dictionary(t.component("Node")))),
             "references": prop(t.dictionary(t.component("Targets"))),
-            "annotations": prop(t.list(t.text_local(text('single line')))),
+            "annotations": prop(t.list(t.text_global("text"))),
         })),
 
         "Targets": module_(t.list(t.group({
-            "resolveInfo": prop(t.text_local(text('single line'))),
-            "reference": prop(t.optional(t.text_local(text('single line')))),
+            "resolveInfo": prop(t.text_global("text")),
+            "reference": prop(t.optional(t.text_global("text"))),
         }))),
     }
 )

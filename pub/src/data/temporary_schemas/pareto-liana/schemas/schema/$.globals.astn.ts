@@ -11,9 +11,12 @@ export const $: g_.Globals = globals(
 
          'constrained',
     {
+        "multi line text": text('multi line'),
+        "text": text('single line'),
     },
     {
         "Natural": n.natural(null),
+        "boolean": n.boolean(null),
     },
 )
 

@@ -12,6 +12,8 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
+        "multi line text": text('multi line'),
+        "text": text('single line'),
     },
     {
     },

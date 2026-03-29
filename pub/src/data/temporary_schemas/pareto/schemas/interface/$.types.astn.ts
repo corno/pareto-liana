@@ -80,7 +80,7 @@ export const $: g_.Modules = modules(
                     "optional": toption(t.nothing()),
                     "state": toption(t.text_global("TBD")),
                 }))),
-                "cyclic": prop(t.boolean()),
+                "cyclic": prop(t.simple_boolean()),
             })),
             "state": toption(t.dictionary(t.component("Value"))),
             "text": toption(t.nothing()),

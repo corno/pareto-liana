@@ -15,7 +15,7 @@ export const $: g_.Modules = modules(
     {
 
         "Document": module_(t.group({
-            "css": prop(t.text_local(text('multi line'))),
+            "css": prop(t.text_global("multi line text")),
             "root": prop(t.component("Flow Element")),
         })),
 
@@ -56,13 +56,13 @@ export const $: g_.Modules = modules(
             "span": toption(t.component("Phrasing Content")),
             "label": toption(t.group({
                 "classes": prop(t.component("Classes")),
-                "text": prop(t.text_local(text('single line'))),
+                "text": prop(t.text_global("text")),
                 "content": prop(t.component("Flow Content")),
             })),
             "img": toption(t.group({
                 "classes": prop(t.component("Classes")),
-                "src": prop(t.text_local(text('single line'))),
-                "alt": prop(t.text_local(text('single line'))),
+                "src": prop(t.text_global("text")),
+                "alt": prop(t.text_global("text")),
                 "width": prop(t.optional(t.simple("Natural"))),
                 "height": prop(t.optional(t.simple("Natural"))),
             })),
@@ -77,7 +77,7 @@ export const $: g_.Modules = modules(
 
         "Flow Content": module_(t.list(t.component("Flow Element"))),
 
-        "Classes": module_(t.list(t.text_local(text('single line')))),
+        "Classes": module_(t.list(t.text_global("text"))),
 
         "Phrasing Content": module_(t.list(t.component("Phrasing Element"))),
 
@@ -89,15 +89,15 @@ export const $: g_.Modules = modules(
                 "content": prop(t.component("Phrasing Content")),
             })),
             "titled span": toption(t.group({
-                "title": prop(t.text_local(text('single line'))),
+                "title": prop(t.text_global("text")),
                 "content": prop(t.component("Phrasing Content")),
             })),
             "a": toption(t.group({
-                "text": prop(t.text_local(text('single line'))),
-                "href": prop(t.text_local(text('single line'))),
+                "text": prop(t.text_global("text")),
+                "href": prop(t.text_global("text")),
             })),
             "p": toption(t.group({
-                "text": prop(t.text_local(text('single line'))),
+                "text": prop(t.text_global("text")),
             })),
         }))
     }

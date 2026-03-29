@@ -352,7 +352,6 @@ export const Resolver_Value = (
     },
 ): d_out.Assign => _p.decide.state($, ($) => {
     switch ($[0]) {
-        case 'boolean': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
 
         case 'component': return _p.ss($, ($) => {
 
@@ -575,7 +574,7 @@ export const Resolver_Value = (
             )
         })
         case 'nothing': return _p.ss($, ($) => sh.a.nothing())
-        case 'number': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
+        case 'simple': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
         case 'optional': return _p.ss($, ($) => sh.a.optional.map(
             sh.sv.context([]),
             Resolver_Value( //FIX option constraints and value results

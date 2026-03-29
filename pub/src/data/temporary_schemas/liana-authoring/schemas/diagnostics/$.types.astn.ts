@@ -21,13 +21,13 @@ export const $: g_.Modules = modules(
                 "hint": toption(t.nothing()),
             })),
             "range": prop(t.component_external("location", "Range FE")),
-            "message": prop(t.text_local(text('single line'))),
+            "message": prop(t.text_global("text")),
             "related information": prop(t.optional(t.list(t.group({
                 "location": prop(t.group({
                     "file path": prop(t.component_external("path", "Node Path")),
                     "range": prop(t.component_external("location", "Range FE")),
                 })),
-                "message": prop(t.text_local(text('single line'))),
+                "message": prop(t.text_global("text")),
             })))),
         }))),
 
@@ -38,7 +38,7 @@ export const $: g_.Modules = modules(
         })),
 
         "Parameters": module_(t.group({
-            "content": prop(t.text_local(text('multi line'))),
+            "content": prop(t.text_global("multi line text")),
             "file path": prop(t.component_external("path", "Node Path")),
             "tab size": prop(t.simple("Natural")),
         })),

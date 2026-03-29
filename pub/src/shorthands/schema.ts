@@ -107,31 +107,51 @@ export const prop_with_description = (
  */
 export namespace n {
 
-    export const integer = (decimal_separator_offset: null | number): d_target.Number_Type => ({
-        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
-            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
-            'type': sh.state(['integer', null]),
-        }])
+    export const date = (): d_target.Simple_Type => ({
+        'type': sh.state(['date', null]),
     })
 
-    export const approximation = (significant_digits: number): d_target.Number_Type => ({
-        'precision': sh.state<d_target.Number_Type.precision.l_state>(['approximation', {
-            'significant digits': significant_digits,
-        }])
+    export const integer = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
+        'type': sh.state(['number', {
+            'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
+                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'type': sh.state(['integer', null]),
+            }])
+
+        }]),
     })
 
-    export const natural = (decimal_separator_offset: null | number): d_target.Number_Type => ({
-        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
-            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
-            'type': sh.state(['natural', null]),
-        }])
+    export const approximation = (significant_digits: number): d_target.Simple_Type => ({
+        'type': sh.state(['number', {
+            'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['approximation', {
+                'significant digits': significant_digits,
+            }])
+
+        }]),
     })
 
-    export const positive_natural = (decimal_separator_offset: null | number): d_target.Number_Type => ({
-        'precision': sh.state<d_target.Number_Type.precision.l_state>(['exact', {
-            'decimal separator offset': _p.optionalx.literal<number>(decimal_separator_offset),
-            'type': sh.state(['positive natural', null]),
-        }])
+    export const natural = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
+        'type': sh.state(['number', {
+            'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
+                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'type': sh.state(['natural', null]),
+            }])
+
+        }]),
+    })
+
+    export const boolean = (decimal_separator_offset: null | number): d_target.Simple_Type => ({
+        'type': sh.state(['boolean', null]),
+    })
+
+    export const positive_natural = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
+        'type': sh.state(['number', {
+            'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
+                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'type': sh.state(['positive natural', null]),
+            }])
+
+        }]),
     })
 
 }
@@ -167,8 +187,8 @@ export const value_reference = (
  */
 export namespace t {
 
-    export const boolean = (): d_target.Value => {
-        return sh.state(['boolean', null])
+    export const simple_boolean = (): d_target.Value => {
+        return sh.state(['simple', sh.state(['global', sh.reference("boolean")])])
     }
 
     export const component_acyclic = (type: string): d_target.Value => {
@@ -238,7 +258,7 @@ export namespace t {
     }
 
     export const simple = (name: string): d_target.Value => {
-        return sh.state(['number', sh.state(['global', sh.reference(name)])])
+        return sh.state(['simple', sh.state(['global', sh.reference(name)])])
     }
 
     export const optional = (type: d_target.Value): d_target.Value => {
@@ -405,10 +425,6 @@ export namespace t {
 
     export const text_global = (name: string): d_target.Value => {
         return sh.state(['text', sh.state(['global', sh.reference(name)])])
-    }
-
-    export const text_local = (bt: d_target.Text_Type): d_target.Value => {
-        return sh.state(['text', sh.state(['local', bt])])
     }
 
     // export const type_parameter = (name: string): unresolved.Value => {

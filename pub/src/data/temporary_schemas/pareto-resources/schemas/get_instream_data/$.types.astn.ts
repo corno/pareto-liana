@@ -15,7 +15,7 @@ export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.nothing()),
         
-        "Result": module_(t.text_local(text('multi line'))),
+        "Result": module_(t.text_global("multi line text")),
     }
 )
 

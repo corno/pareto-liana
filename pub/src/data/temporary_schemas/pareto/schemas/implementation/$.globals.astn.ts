@@ -14,11 +14,13 @@ export const $: g_.Globals = globals(
         "TBD": text('single line'),
         "Identifier": text('single line'),
         "Text Value": text('multi line'),
+        "text": text('single line'),
     },
     {
         "Natural": n.natural(null),
         "Integer": n.integer(null),
         "Approximation": n.approximation(10),
+        "boolean": n.boolean(null),
     },
 )
 

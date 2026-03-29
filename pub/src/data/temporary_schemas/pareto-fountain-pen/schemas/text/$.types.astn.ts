@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         
-        "Text": module_(t.text_local(text('single line'))),
+        "Text": module_(t.text_global("text")),
 
     }
 )

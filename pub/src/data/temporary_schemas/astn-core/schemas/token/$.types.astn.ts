@@ -54,7 +54,7 @@ export const $: g_.Modules = modules(
 
         "Whitespace": module_(t.optional(t.group({
             "range": prop(t.component_external("location", "Range")),
-            "value": prop(t.text_local(text('single line'))),
+            "value": prop(t.text_global("text")),
         }))),
 
         "Trivia": module_(t.group({
@@ -64,14 +64,14 @@ export const $: g_.Modules = modules(
                     "line": toption(t.nothing()),
                     "block": toption(t.nothing()),
                 })),
-                "content": prop(t.text_local(text('single line'))),
+                "content": prop(t.text_global("text")),
                 "range": prop(t.component_external("location", "Range")),
                 "trailing whitespace": prop(t.component("Whitespace")),
             }))),
         })),
 
         "Text": module_(t.group({
-            "value": prop(t.text_local(text('single line'))),
+            "value": prop(t.text_global("text")),
             "type": prop(t.component("Text Type")),
         })),
 

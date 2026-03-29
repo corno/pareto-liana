@@ -47,12 +47,12 @@ export const $: g_.Modules = modules(
                                 "predicate": toption(t.group({
                                     "rule index": prop(t.simple("Integer")),
                                     "pred index": prop(t.simple("Integer")),
-                                    "is ctx dependent": prop(t.boolean()),
+                                    "is ctx dependent": prop(t.simple_boolean()),
                                 })),
                                 "action": toption(t.group({
                                     "rule index": prop(t.simple("Integer")),
                                     "action index": prop(t.simple("Integer")),
-                                    "is ctx dependent": prop(t.boolean()),
+                                    "is ctx dependent": prop(t.simple_boolean()),
                                 })),
                                 "epsilon": toption(t.nothing()),
                                 "wildcard": toption(t.nothing()),
@@ -61,7 +61,7 @@ export const $: g_.Modules = modules(
                         }))),
                         "state type": prop(t.state({
                             "rule start": toption(t.group({
-                                "is left recursive rule": prop(t.boolean()),
+                                "is left recursive rule": prop(t.simple_boolean()),
                                 "stop state number": prop(t.optional(t.simple("State Number"))),
                             })),
                             "rule stop": toption(t.nothing()),
@@ -99,7 +99,7 @@ export const $: g_.Modules = modules(
                 "decision index": prop(t.simple("Integer")),
                 "state number": prop(t.simple("State Number")),
                 "decision": prop(t.simple("Integer")),
-                "non greedy": prop(t.boolean()),
+                "non greedy": prop(t.simple_boolean()),
             }))),
             "rule to start state": prop(t.optional(t.list(t.group({
                 "rule index": prop(t.simple("Integer")),
@@ -122,7 +122,7 @@ export const $: g_.Modules = modules(
             "lexer actions": prop(t.optional(t.list(t.group({
                 "action index": prop(t.simple("Integer")),
                 "action type": prop(t.text_global("Text Value")),
-                "is position dependent": prop(t.boolean()),
+                "is position dependent": prop(t.simple_boolean()),
                 "channel": prop(t.optional(t.simple("Integer"))),
                 "mode": prop(t.optional(t.simple("Integer"))),
                 "type": prop(t.optional(t.simple("Integer"))),
@@ -131,7 +131,7 @@ export const $: g_.Modules = modules(
 
         "Decision Info": module_(t.group({
             "decision": prop(t.simple("Integer")),
-            "non greedy": prop(t.boolean()),
+            "non greedy": prop(t.simple_boolean()),
         })),
     }
 )

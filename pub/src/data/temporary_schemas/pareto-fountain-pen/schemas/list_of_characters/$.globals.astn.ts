@@ -11,7 +11,7 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
-        "Output": text("single line"),
+        "Output": text('single line'),
     },
     {
         "Natural": n.natural(null),

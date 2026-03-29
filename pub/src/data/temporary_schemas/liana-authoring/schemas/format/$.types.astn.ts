@@ -17,16 +17,16 @@ export const $: g_.Modules = modules(
         "Result": module_(t.component_external("text edits", "Text Edits")),
 
         "Error": module_(t.group({
-            "message": prop(t.text_local(text('single line'))),
+            "message": prop(t.text_global("text")),
         })),
 
         "Parameters": module_(t.group({
             "options": prop(t.group({
-                "insert spaces": prop(t.boolean()),
-                "preserve delimiters": prop(t.boolean()),
-                "preserve final newline state": prop(t.boolean()),
-                "preserve commas": prop(t.boolean()),
-                "indent string": prop(t.text_local(text('single line'))),
+                "insert spaces": prop(t.simple_boolean()),
+                "preserve delimiters": prop(t.simple_boolean()),
+                "preserve final newline state": prop(t.simple_boolean()),
+                "preserve commas": prop(t.simple_boolean()),
+                "indent string": prop(t.text_global("text")),
             })),
         })),
 

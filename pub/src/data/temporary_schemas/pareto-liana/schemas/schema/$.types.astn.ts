@@ -19,12 +19,11 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Package": module_(t.group({
-            "omit (de)serializer": prop(t.boolean()),
+            "omit (de)serializer": prop(t.simple_boolean()),
             "schema tree": prop(t.component("Schema Tree")),
         })),
 
         "Value": module_(t.state({
-            "boolean": toption(t.nothing()),
             "component": toption(t.group({
                 "type": prop(t.state({
                     "external": toption(t.group({
@@ -43,9 +42,8 @@ export const $: g_.Modules = modules(
                 "results": prop(t.component("Value Results")),
             })),
             "nothing": toption(t.nothing()),
-            "number": toption(t.state({
+            "simple": toption(t.state({
                 "global": toption(t.reference("Globals", [vp.g("simple types")])),
-                "local": toption(t.component("Number Type")),
             })),
             "optional": toption(t.component("Value")),
             "reference": toption(t.group({
@@ -66,7 +64,7 @@ export const $: g_.Modules = modules(
             "state": toption(t.group({
                 "options": prop(t.dictionary(t.group({
                     "constraints": prop(t.component("Option Constraints")),
-                    "description": prop(t.optional(t.text_local(text('multi line')))),
+                    "description": prop(t.optional(t.text_global("multi line text"))),
                     "value": prop(t.component("Value")),
                 }))),
                 "results": prop(t.component("Value Results")),
@@ -78,12 +76,6 @@ export const $: g_.Modules = modules(
         })),
 
         "Resolver Value": module_(t.state({
-            "boolean": sh.toption_constrained(
-                {
-                    "definition": value_reference("Value", [vp.s("boolean")])
-                },
-                t.nothing()
-            ),
             "component": sh.toption_constrained(
                 {
                     "definition": value_reference("Value", [vp.s("component")])
@@ -158,9 +150,9 @@ export const $: g_.Modules = modules(
                 },
                 t.nothing()
             ),
-            "number": sh.toption_constrained(
+            "simple": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("number")])
+                    "definition": value_reference("Value", [vp.s("simple")])
                 },
                 t.nothing()
             ),
@@ -209,8 +201,8 @@ export const $: g_.Modules = modules(
 
         "Module Specification": module_(t.group({
             "schema": prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
-            "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_local(text('single line')))),
-            "module": prop_with_description("the module that is the root of the document", t.text_local(text('single line'))),
+            "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_global("text"))),
+            "module": prop_with_description("the module that is the root of the document", t.text_global("text")),
         })),
 
         "Schema Tree": module_(t.state({
@@ -251,7 +243,7 @@ export const $: g_.Modules = modules(
                 "unconstrained": toption(t.nothing()),
             })),
             "text types": prop(t.dictionary(t.component("Text Type"))),
-            "simple types": prop(t.dictionary(t.component("Number Type"))),
+            "simple types": prop(t.dictionary(t.component("Simple Type"))),
         })),
 
         "Modules": module_(t.dictionary(t.component("Module"))),
@@ -270,46 +262,53 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Number Type": module_(t.group({
-            /**
-             * is the number an approximation or the exact value?
-             * 'variable' is similar to floating point (in programming languages) or scientific notation
-             * 'fixed' is similar to integers/positive integers
-             */
-            "precision": prop(t.state({
-                /**
-                 * variable is similar to scientific notation or floating point (in programming languages)
-                 */
-                "approximation": toption(t.group({
+        "Simple Type": module_(t.group({
+            "type": prop(t.state({
+                "boolean": toption(t.nothing()),
+                "date": toption(t.nothing()),
+                "number": toption(t.group({
                     /**
-                     * the total number of digits in the number
+                     * is the number an approximation or the exact value?
+                     * 'variable' is similar to floating point (in programming languages) or scientific notation
+                     * 'fixed' is similar to integers/positive integers
                      */
-                    "significant digits": prop(t.simple("Natural")),
-                })),
-                /**
-                 * fixed is similar to integers/signed integers
-                 */
-                "exact": toption(t.group({
-                    /**
-                     * the number of digits after the decimal point
-                     * in the strict mathematical sense, a natural or an integer is a whole number,
-                     * but in this context, there can be decimals. However, because the number of decimals (the 'scale') is fixed,
-                     * it is trivial to convert these to a whole number; just multiply by 10^offset.
-                     */
-                    "decimal separator offset": prop(t.optional(t.simple("Natural"))),
+                    "precision": prop(t.state({
+                        /**
+                         * variable is similar to scientific notation or floating point (in programming languages)
+                         */
+                        "approximation": toption(t.group({
+                            /**
+                             * the total number of digits in the number
+                             */
+                            "significant digits": prop(t.simple("Natural")),
+                        })),
+                        /**
+                         * fixed is similar to integers/signed integers
+                         */
+                        "exact": toption(t.group({
+                            /**
+                             * the number of digits after the decimal point
+                             * in the strict mathematical sense, a natural or an integer is a whole number,
+                             * but in this context, there can be decimals. However, because the number of decimals (the 'scale') is fixed,
+                             * it is trivial to convert these to a whole number; just multiply by 10^offset.
+                             */
+                            "number of fractional digits": prop(t.optional(t.simple("Natural"))),
 
-                    /**
-                     * can the number be negative? > 'integer'
-                     * can the number be zero? > 'natural'
-                     * else > 'positive natural'
-                     */
-                    "type": prop(t.state({
-                        "integer": toption(t.nothing()),
-                        "natural": toption(t.nothing()),
-                        "positive natural": toption(t.nothing()),
-                    })),
+                            /**
+                             * can the number be negative? > 'integer'
+                             * can the number be zero? > 'natural'
+                             * else > 'positive natural'
+                             */
+                            "type": prop(t.state({
+                                "integer": toption(t.nothing()),
+                                "natural": toption(t.nothing()),
+                                "positive natural": toption(t.nothing()),
+                            })),
+                        })),
+                    }))
+
                 })),
-            }))
+            })),
         })),
 
         "Module": module_(t.group({
@@ -338,14 +337,14 @@ export const $: g_.Modules = modules(
                 "dictionary": sh.value_reference("Value", [vp.s("dictionary")])
             })),
             "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
-            "dense": prop(t.boolean()),
+            "dense": prop(t.simple_boolean()),
         })),
 
         /**
          * the properties in a group are ordered. This way there is a canonical concise representation
          */
         "Group": module_(t.dictionary(t.group({
-            "description": prop(t.optional(t.text_local(text('multi line')))),
+            "description": prop(t.optional(t.text_global("multi line text"))),
             "value": prop(t.component("Value"))
         }))),
 

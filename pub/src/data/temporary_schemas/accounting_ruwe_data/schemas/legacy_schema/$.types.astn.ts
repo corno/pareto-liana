@@ -21,7 +21,7 @@ export const $: g_.Modules = modules(
                 "static": toption(t.group({
                     "properties": prop(t.dictionary(t.group({
                         "definition": prop(t.component("Definition")),
-                        "optional": prop(t.boolean()),
+                        "optional": prop(t.simple_boolean()),
                     }))),
                 })),
                 "dynamic": toption(t.component("Definition")),
@@ -41,9 +41,9 @@ export const $: g_.Modules = modules(
                 "object": prop(t.optional(t.component("Object Definition"))),
                 "string": prop(t.optional(t.component("String Definition"))),
 
-                "else": prop(t.optional(t.text_local(text("single line")))),//reference to a definition
+                "else": prop(t.optional(t.text_global("text"))),//reference to a definition
             })),
-            "definition reference": toption(t.text_local(text("single line"))),
+            "definition reference": toption(t.text_global("text")),
 
             "array": toption(t.component("Array Definition")),
             "boolean": toption(t.component("Boolean Definition")),
@@ -54,11 +54,11 @@ export const $: g_.Modules = modules(
         })),
         "Schema": module_(t.group({
             "definitions": prop(t.dictionary(t.component("Definition"))),
-            "root": prop(t.text_local(text("single line"))),
+            "root": prop(t.text_global("text")),
         })),
 
         "Errors": module_(t.list(t.group({
-            "path": prop(t.text_local(text("single line"))),
+            "path": prop(t.text_global("text")),
             "type": prop(t.state({
                 "not the right type": toption(t.group({
                     "expected": prop(t.component("Value Type")),
@@ -67,9 +67,9 @@ export const $: g_.Modules = modules(
                 "type not allowed": toption(t.group({
                     "type": prop(t.component("Value Type")),
                 })),
-                "missing property": toption(t.text_local(text("single line"))),
+                "missing property": toption(t.text_global("text")),
                 "superfluous property": toption(t.group({
-                    "name": prop(t.text_local(text("single line"))),
+                    "name": prop(t.text_global("text")),
                     "type": prop(t.component("Value Type")),
                 })),
             })),

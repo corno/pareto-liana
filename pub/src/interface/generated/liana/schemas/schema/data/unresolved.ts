@@ -236,7 +236,7 @@ export namespace Globals_ {
                 
                 export type l_location = i_location.Range
                 
-                export type l_entry = Number_Type_
+                export type l_entry = Simple_Type_
                 
             }
             
@@ -279,8 +279,6 @@ export namespace Value_ {
     export type l_location = i_location.Range
     
     export namespace l_state {
-        
-        export type boolean_ = null
         
         export namespace component {
             
@@ -393,7 +391,7 @@ export namespace Value_ {
         
         export type nothing = null
         
-        export namespace number_ {
+        export namespace simple {
             
             export type l_location = i_location.Range
             
@@ -412,19 +410,16 @@ export namespace Value_ {
                     readonly 'l reference': global.l_reference
                 }
                 
-                export type local = Number_Type_
-                
             }
             
             export type l_state = 
                 | readonly ['global', l_state.global]
-                | readonly ['local', l_state.local]
             
         }
         
-        export type number_ = {
-            readonly 'l location': number_.l_location
-            readonly 'l state': number_.l_state
+        export type simple = {
+            readonly 'l location': simple.l_location
+            readonly 'l state': simple.l_state
         }
         
         export type optional = Value_
@@ -599,13 +594,12 @@ export namespace Value_ {
     }
     
     export type l_state = 
-        | readonly ['boolean', l_state.boolean_]
         | readonly ['component', l_state.component]
         | readonly ['dictionary', l_state.dictionary]
         | readonly ['group', l_state.group]
         | readonly ['list', l_state.list]
         | readonly ['nothing', l_state.nothing]
-        | readonly ['number', l_state.number_]
+        | readonly ['simple', l_state.simple]
         | readonly ['optional', l_state.optional]
         | readonly ['reference', l_state.reference]
         | readonly ['state', l_state.state]
@@ -847,8 +841,6 @@ export namespace Resolver_Value_ {
     export type l_location = i_location.Range
     
     export namespace l_state {
-        
-        export type boolean_ = null
         
         export namespace component {
             
@@ -1214,7 +1206,7 @@ export namespace Resolver_Value_ {
         
         export type nothing = null
         
-        export type number_ = null
+        export type simple = null
         
         export namespace optional {
             
@@ -1342,13 +1334,12 @@ export namespace Resolver_Value_ {
     }
     
     export type l_state = 
-        | readonly ['boolean', l_state.boolean_]
         | readonly ['component', l_state.component]
         | readonly ['dictionary', l_state.dictionary]
         | readonly ['group', l_state.group]
         | readonly ['list', l_state.list]
         | readonly ['nothing', l_state.nothing]
-        | readonly ['number', l_state.number_]
+        | readonly ['simple', l_state.simple]
         | readonly ['optional', l_state.optional]
         | readonly ['reference', l_state.reference]
         | readonly ['state', l_state.state]
@@ -1459,84 +1450,116 @@ export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
 }
 
-export namespace Number_Type_ {
+export namespace Simple_Type_ {
     
-    export namespace precision {
+    export namespace type_ {
         
         export type l_location = i_location.Range
         
         export namespace l_state {
             
-            export namespace approximation {
-                
-                export type significant_digits = number
-                
-            }
+            export type boolean_ = null
             
-            export type approximation = {
-                readonly 'significant digits': approximation.significant_digits
-            }
+            export type date = null
             
-            export namespace exact {
+            export namespace number_ {
                 
-                export namespace decimal_separator_offset {
-                    
-                    export type O = number
-                    
-                }
-                
-                export type decimal_separator_offset = _pi.Optional_Value<decimal_separator_offset.O>
-                
-                export namespace type_ {
+                export namespace precision {
                     
                     export type l_location = i_location.Range
                     
                     export namespace l_state {
                         
-                        export type integer = null
+                        export namespace approximation {
+                            
+                            export type significant_digits = number
+                            
+                        }
                         
-                        export type natural = null
+                        export type approximation = {
+                            readonly 'significant digits': approximation.significant_digits
+                        }
                         
-                        export type positive_natural = null
+                        export namespace exact {
+                            
+                            export namespace number_of_fractional_digits {
+                                
+                                export type O = number
+                                
+                            }
+                            
+                            export type number_of_fractional_digits = _pi.Optional_Value<number_of_fractional_digits.O>
+                            
+                            export namespace type_ {
+                                
+                                export type l_location = i_location.Range
+                                
+                                export namespace l_state {
+                                    
+                                    export type integer = null
+                                    
+                                    export type natural = null
+                                    
+                                    export type positive_natural = null
+                                    
+                                }
+                                
+                                export type l_state = 
+                                    | readonly ['integer', l_state.integer]
+                                    | readonly ['natural', l_state.natural]
+                                    | readonly ['positive natural', l_state.positive_natural]
+                                
+                            }
+                            
+                            export type type_ = {
+                                readonly 'l location': type_.l_location
+                                readonly 'l state': type_.l_state
+                            }
+                            
+                        }
+                        
+                        export type exact = {
+                            readonly 'number of fractional digits': exact.number_of_fractional_digits
+                            readonly 'type': exact.type_
+                        }
                         
                     }
                     
                     export type l_state = 
-                        | readonly ['integer', l_state.integer]
-                        | readonly ['natural', l_state.natural]
-                        | readonly ['positive natural', l_state.positive_natural]
+                        | readonly ['approximation', l_state.approximation]
+                        | readonly ['exact', l_state.exact]
                     
                 }
                 
-                export type type_ = {
-                    readonly 'l location': type_.l_location
-                    readonly 'l state': type_.l_state
+                export type precision = {
+                    readonly 'l location': precision.l_location
+                    readonly 'l state': precision.l_state
                 }
                 
             }
             
-            export type exact = {
-                readonly 'decimal separator offset': exact.decimal_separator_offset
-                readonly 'type': exact.type_
+            export type number_ = {
+                readonly 'precision': number_.precision
             }
             
         }
         
         export type l_state = 
-            | readonly ['approximation', l_state.approximation]
-            | readonly ['exact', l_state.exact]
+            | readonly ['boolean', l_state.boolean_]
+            | readonly ['date', l_state.date]
+            | readonly ['number', l_state.number_]
         
     }
     
-    export type precision = {
-        readonly 'l location': precision.l_location
-        readonly 'l state': precision.l_state
+    export type type_ = {
+        readonly 'l location': type_.l_location
+        readonly 'l state': type_.l_state
     }
     
 }
 
-export type Number_Type_ = {
-    readonly 'precision': Number_Type_.precision
+export type Simple_Type_ = {
+    readonly 'type': Simple_Type_.type_
 }
 
 export namespace Module_ {
@@ -2860,7 +2883,7 @@ export {
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Text_Type_ as Text_Type, 
-    Number_Type_ as Number_Type, 
+    Simple_Type_ as Simple_Type, 
     Module_ as Module, 
     Presence_ as Presence, 
     Resolver_Modules_ as Resolver_Modules, 

@@ -550,12 +550,12 @@ export namespace r {
         return sh.state(['text', null])
     }
 
-    export const boolean = (): d_target.Resolver_Value => {
-        return sh.state(['boolean', null])
+    export const simple_boolean = (): d_target.Resolver_Value => {
+        return sh.state(['simple', null])
     }
 
-    export const number = (): d_target.Resolver_Value => {
-        return sh.state(['number', null])
+    export const simple_number = (): d_target.Resolver_Value => {
+        return sh.state(['simple', null])
     }
     export const component = (
         type: string,

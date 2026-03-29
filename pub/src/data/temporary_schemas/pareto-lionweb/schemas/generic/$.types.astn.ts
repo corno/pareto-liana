@@ -14,13 +14,13 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "ID": module_(t.group({
-            "key": prop(t.text_local(text('single line'))),
-            "id": prop(t.text_local(text('single line'))),
+            "key": prop(t.text_global("text")),
+            "id": prop(t.text_global("text")),
             "source": prop(t.optional(t.component_external("location", "Range"))),
         })),
         "Raw Reference": module_(t.group({
-            "resolveInfo": prop(t.text_local(text('single line'))),
-            "reference": prop(t.optional(t.text_local(text('single line')))),
+            "resolveInfo": prop(t.text_global("text")),
+            "reference": prop(t.optional(t.text_global("text"))),
         })),
         "Singular Reference": module_(t.component("Raw Reference")),
         "References": module_(t.list(t.component("Raw Reference"))),

@@ -52,7 +52,7 @@ export const $: g_.Modules = modules(
                     "group": toption(t.group({
                         "node": prop(t.component("Node")),
                     })),
-                    "natural": toption(t.text_local(text('single line'))), //why is this not a number?
+                    "natural": toption(t.text_global("text")), //why is this not a number?
                     "text": toption(t.nothing()),
                     "reference": toption(t.nothing()),
                     "state group": toption(t.group({

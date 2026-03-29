@@ -15,9 +15,9 @@ export const $: g_.Modules = modules(
     {
 
         "Completion Suggestions": module_(t.list(t.group({
-            "label": prop(t.text_local(text('single line'))),
-            "insert text": prop(t.text_local(text('single line'))),
-            "documentation": prop(t.text_local(text('multi line'))),
+            "label": prop(t.text_global("text")),
+            "insert text": prop(t.text_global("text")),
+            "documentation": prop(t.text_global("multi line text")),
             "additional text edits": prop(t.component_external("text edits", "Text Edits")),
             "type": prop(t.state({
                 "boolean": toption(t.nothing()),

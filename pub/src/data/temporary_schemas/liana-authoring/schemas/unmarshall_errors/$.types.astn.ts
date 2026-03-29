@@ -32,20 +32,20 @@ export const $: g_.Modules = modules(
                         }))),
                     })),
                     "duplicate property": toption(t.group({
-                        "name": prop(t.text_local(text('single line'))),
+                        "name": prop(t.text_global("text")),
                     })),
                     "duplicate entry": toption(t.group({
-                        "name": prop(t.text_local(text('single line'))),
+                        "name": prop(t.text_global("text")),
                     })),
                     "missing property": toption(t.group({
-                        "name": prop(t.text_local(text('single line'))),
+                        "name": prop(t.text_global("text")),
                     })),
                     "missing value": toption(t.nothing()),
                     "missing property value": toption(t.group({
-                        "name": prop(t.text_local(text('single line'))),
+                        "name": prop(t.text_global("text")),
                     })),
                     "superfluous property": toption(t.group({
-                        "name": prop(t.optional(t.text_local(text('single line')))),
+                        "name": prop(t.optional(t.text_global("text"))),
                     })),
                     "state": toption(t.state({
                         "more than 2 items": toption(t.nothing()),
@@ -53,7 +53,7 @@ export const $: g_.Modules = modules(
                         "option name is not a text": toption(t.nothing()),
                         "missing value": toption(t.nothing()),
                         "unknown option": toption(t.group({
-                            "found": prop(t.text_local(text('single line'))),
+                            "found": prop(t.text_global("text")),
                             "expected": prop(t.dictionary(t.nothing())),
                         })),
                         "missing option": toption(t.nothing()),

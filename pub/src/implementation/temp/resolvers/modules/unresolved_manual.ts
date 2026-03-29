@@ -18,10 +18,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
     const loc = $['l location']
     return _p_change_context($['l state'], ($): t_out.Value => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($): t_out.Value => ['boolean', null])
-            case 'number': return _p.ss($, ($): t_out.Value => ['number', _p_change_context($['l state'], ($): t_out.Value.number_ => {
+            case 'simple': return _p.ss($, ($): t_out.Value => ['simple', _p_change_context($['l state'], ($): t_out.Value.simple => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($): t_out.Value.number_ => ['global', _i_generic.get_entry_acyclic(
+                    case 'global': return _p.ss($, ($): t_out.Value.simple => ['global', _i_generic.get_entry_acyclic(
                         _p_sl.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
                                 ($) => $['simple types'],
@@ -30,12 +29,6 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                         ),
                         $,
                         abort,
-                    )])
-                    case 'local': return _p.ss($, ($) => ['local', Number_Type(
-                        $,
-                        abort,
-                        null,
-                        null,
                     )])
                     default: return _p.au($[0])
                 }
@@ -314,27 +307,37 @@ export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => {
     )
 }
 
-export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => {
+export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
     return {
-        'precision': _p_change_context($.precision['l state'], ($): t_out.Number_Type.precision => {
+        'type': _p_change_context($.type['l state'], ($): t_out.Simple_Type.type_ => {
             switch ($[0]) {
-                case 'exact': return _p.ss($, ($) => {
-                    return ['exact', {
-                        'type': _p_change_context($.type['l state'], ($) => {
-                            switch ($[0]) {
-                                case 'integer': return _p.ss($, ($) => ['integer', null])
-                                case 'natural': return _p.ss($, ($) => ['natural', null])
-                                case 'positive natural': return _p.ss($, ($) => ['positive natural', null])
-                                default: return _p.au($[0])
-                            }
-                        }),
-                        'decimal separator offset': _p_change_context($['decimal separator offset'], ($) => {
-                            return $
-                        })
-                    }]
-                })
-                case 'approximation': return _p.ss($, ($) => ['approximation', {
-                    'significant digits': $['significant digits']
+                case 'boolean': return _p.ss($, ($) => ['boolean', null])
+                case 'date': return _p.ss($, ($) => ['date', null])
+                case 'number': return _p.ss($, ($) => ['number', {
+
+                    'precision': _p_change_context($.precision['l state'], ($): t_out.Simple_Type.type_.number_.precision => {
+                        switch ($[0]) {
+                            case 'exact': return _p.ss($, ($) => {
+                                return ['exact', {
+                                    'type': _p_change_context($.type['l state'], ($) => {
+                                        switch ($[0]) {
+                                            case 'integer': return _p.ss($, ($) => ['integer', null])
+                                            case 'natural': return _p.ss($, ($) => ['natural', null])
+                                            case 'positive natural': return _p.ss($, ($) => ['positive natural', null])
+                                            default: return _p.au($[0])
+                                        }
+                                    }),
+                                    'number of fractional digits': _p_change_context($['number of fractional digits'], ($) => {
+                                        return $
+                                    })
+                                }]
+                            })
+                            case 'approximation': return _p.ss($, ($) => ['approximation', {
+                                'significant digits': $['significant digits']
+                            }])
+                            default: return _p.au($[0])
+                        }
+                    }),
                 }])
                 default: return _p.au($[0])
             }
@@ -569,7 +572,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
     const p_simple_types: t_out.Globals.simple_types = _i_generic.temp_resolve(
         $['simple types']['l dictionary'],
-        ($, id, $acyclic, $cyclic) => Number_Type(
+        ($, id, $acyclic, $cyclic) => Simple_Type(
             $['l entry'],
             abort,
             null,

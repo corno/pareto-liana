@@ -37,7 +37,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "type": r.state({
                 "external": option(r.text()),
                 "ancestor": option(r.group({
-                    "number of steps": r.number(),
+                    "number of steps": r.simple_number(),
                     "dependency": r.text(),
                 })),
                 "sibling": option(r.text()),
@@ -73,7 +73,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     "optional": option(r.nothing()),
                     "state": option(r.text()),
                 })),
-                "cyclic": r.boolean(),
+                "cyclic": r.simple_boolean(),
             })),
             "state": option(r.dictionary(r.component("Value", {}, {}))),
             "text": option(r.nothing()),

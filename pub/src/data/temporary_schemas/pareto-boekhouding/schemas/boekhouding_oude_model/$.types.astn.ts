@@ -379,13 +379,13 @@ export const $: g_.Modules = modules(
         })),
         
         // "Bestandsnaam": type(t.group({
-        //     "Naam": prop(t.text_local(text('single line'))),
-        //     "Extensie": prop(t.text_local(text('single line'))),
+        //     "Naam": prop(t.text_global("text")),
+        //     "Extensie": prop(t.text_global("text")),
         // }))  
 
         "Bestandsnaam": module_(t.group({
-            "stem": prop(t.text_local(text('single line'))),
-            "extension": prop(t.text_local(text('single line'))),
+            "stem": prop(t.text_global("text")),
+            "extension": prop(t.text_global("text")),
         })),
     }
 )

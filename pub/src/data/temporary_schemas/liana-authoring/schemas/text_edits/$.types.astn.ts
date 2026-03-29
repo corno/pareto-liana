@@ -17,14 +17,14 @@ export const $: g_.Modules = modules(
         "Text Edits": module_(t.list(t.state({
             "replace": toption(t.group({
                 "range": prop(t.component_external("location", "Range FE")),
-                "text": prop(t.text_local(text('multi line'))),
+                "text": prop(t.text_global("multi line text")),
             })),
             "delete": toption(t.group({
                 "range": prop(t.component_external("location", "Range FE")),
             })),
             "insert": toption(t.group({
                 "location": prop(t.component_external("location", "Position")),
-                "text": prop(t.text_local(text('multi line'))),
+                "text": prop(t.text_global("multi line text")),
             })),
         }))),
 

@@ -20,12 +20,12 @@ export const $: g_.Modules = modules(
 
         "Value": module_(t.group({
             "metadata": prop(t.group({
-                "comments": prop(t.list(t.text_local(text('single line')))),
+                "comments": prop(t.list(t.text_global("text"))),
             })),
             "data": prop(t.state({
                 "missing": toption(t.nothing()),
                 "include": toption(t.group({
-                    "path": prop(t.text_local(text('single line'))),
+                    "path": prop(t.text_global("text")),
                 })),
                 "concrete": toption(t.group({
                     "type": prop(t.state({
@@ -61,7 +61,7 @@ export const $: g_.Modules = modules(
         })),
 
         "ID Value Pairs": module_(t.list(t.group({
-            "id": prop(t.text_local(text('single line'))),
+            "id": prop(t.text_global("text")),
             "value": prop(t.optional(t.component("Value"))),
         }))),
 

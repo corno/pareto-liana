@@ -24,10 +24,10 @@ export const $: g_.Modules = modules(
             "lines": prop(t.list(t.group({
                 "fields": prop(t.list(t.group({
                     "annotation": prop(t.component("Annotation")),
-                    "value": prop(t.text_local(text("single line"))),
+                    "value": prop(t.text_global("text")),
                 })))
             }))),
-            "ends with unterminated string": prop(t.boolean()),
+            "ends with unterminated string": prop(t.simple_boolean()),
         })),
     }
 )

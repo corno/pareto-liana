@@ -1339,7 +1339,7 @@
                             `description`: _
                             `value`: | `dictionary` (
                                 `value`: | `component` (
-                                    `type`: | `internal` 'Number Type'
+                                    `type`: | `internal` 'Simple Type'
                                     `results`: _
                                 )
                             )
@@ -1360,11 +1360,6 @@
                 'Value': (
                     `root value`: | `state` (
                         `options`: {
-                            'boolean': (
-                                `constraints`: _
-                                `description`: _
-                                `value`: | `nothing` ~
-                            )
                             'component': (
                                 `constraints`: _
                                 `description`: _
@@ -1515,7 +1510,7 @@
                                 `description`: _
                                 `value`: | `nothing` ~
                             )
-                            'number': (
+                            'simple': (
                                 `constraints`: _
                                 `description`: _
                                 `value`: | `state` (
@@ -1539,14 +1534,6 @@
                                                     `dependency`: | `acyclic` ~
                                                     `results`: _
                                                 )
-                                            )
-                                        )
-                                        'local': (
-                                            `constraints`: _
-                                            `description`: _
-                                            `value`: | `component` (
-                                                `type`: | `internal` 'Number Type'
-                                                `results`: _
                                             )
                                         )
                                     }
@@ -1893,22 +1880,6 @@
                 'Resolver Value': (
                     `root value`: | `state` (
                         `options`: {
-                            'boolean': (
-                                `constraints`: * {
-                                    'definition': (
-                                        `module`: (
-                                            `location`: | `internal` 'Value'
-                                            `resulting module`: ~
-                                        )
-                                        `path`: (
-                                            `tail`: [ | `state` 'boolean' ]
-                                            `resulting node`: ~
-                                        )
-                                    )
-                                }
-                                `description`: _
-                                `value`: | `nothing` ~
-                            )
                             'component': (
                                 `constraints`: * {
                                     'definition': (
@@ -2321,7 +2292,7 @@
                                 `description`: _
                                 `value`: | `nothing` ~
                             )
-                            'number': (
+                            'simple': (
                                 `constraints`: * {
                                     'definition': (
                                         `module`: (
@@ -2329,7 +2300,7 @@
                                             `resulting module`: ~
                                         )
                                         `path`: (
-                                            `tail`: [ | `state` 'number' ]
+                                            `tail`: [ | `state` 'simple' ]
                                             `resulting node`: ~
                                         )
                                     )
@@ -2592,8 +2563,26 @@
                         )
                     }
                 )
-                'Number Type': (
+                'Simple Type': (
                     `root value`: | `group` {
+                        'type': (
+                            `description`: _
+                            `value`: | `state` (
+                                `options`: {
+                                    'number': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `nothing` ~
+                                    )
+                                    'boolean': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `nothing` ~
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
                         'precision': (
                             `description`: _
                             `value`: | `state` (
@@ -4108,7 +4097,7 @@
                             )
                             `resolved parameters`: ~
                         )
-                        'Number Type': (
+                        'Simple Type': (
                             `module`: ~
                             `parameters`: | `local` (
                                 `modules`: {}
@@ -5032,7 +5021,7 @@
                                     `definition`: ~
                                     `resolver`: | `component` (
                                         `definition`: ~
-                                        `location`: | `internal` 'Number Type'
+                                        `location`: | `internal` 'Simple Type'
                                         `signature`: ~
                                         `arguments`: * (
                                             `modules`: * {}
@@ -5045,9 +5034,25 @@
                             )
                         }
                     )
-                    'Number Type': (
+                    'Simple Type': (
                         `signature`: ~
                         `root value resolver`: | `group` {
+                            'type': (
+                                `definition`: ~
+                                `resolver`: | `state` (
+                                    `definition`: ~
+                                    `options`: {
+                                        'number': (
+                                            `constraints`: {}
+                                            `resolver`: | `nothing` ~
+                                        )
+                                        'boolean': (
+                                            `constraints`: {}
+                                            `resolver`: | `nothing` ~
+                                        )
+                                    }
+                                )
+                            )
                             'precision': (
                                 `definition`: ~
                                 `resolver`: | `state` (
@@ -5551,10 +5556,6 @@
                         `root value resolver`: | `state` (
                             `definition`: ~
                             `options`: {
-                                'boolean': (
-                                    `constraints`: {}
-                                    `resolver`: | `nothing` ~
-                                )
                                 'component': (
                                     `constraints`: {}
                                     `resolver`: | `group` {
@@ -5767,7 +5768,7 @@
                                     `constraints`: {}
                                     `resolver`: | `nothing` ~
                                 )
-                                'number': (
+                                'simple': (
                                     `constraints`: {}
                                     `resolver`: | `state` (
                                         `definition`: ~
@@ -5796,19 +5797,6 @@
                                                         )
                                                         `constraints`: {}
                                                     )
-                                                )
-                                            )
-                                            'local': (
-                                                `constraints`: {}
-                                                `resolver`: | `component` (
-                                                    `definition`: ~
-                                                    `location`: | `internal` 'Number Type'
-                                                    `signature`: ~
-                                                    `arguments`: * (
-                                                        `modules`: * {}
-                                                        `lookups`: * {}
-                                                    )
-                                                    `constraints`: {}
                                                 )
                                             )
                                         }
@@ -8048,23 +8036,6 @@
                         `root value resolver`: | `state` (
                             `definition`: ~
                             `options`: {
-                                'boolean': (
-                                    `constraints`: {
-                                        'definition': | `state` (
-                                            `selection`: (
-                                                `start`: | `parameter` 'definition'
-                                                `tail`: (
-                                                    `path`: [ ]
-                                                    `resulting node`: ~
-                                                )
-                                                `resulting node`: ~
-                                            )
-                                            `selected state`: ~
-                                            `option`: 'boolean'
-                                        )
-                                    }
-                                    `resolver`: | `nothing` ~
-                                )
                                 'component': (
                                     `constraints`: {
                                         'definition': | `state` (
@@ -8768,7 +8739,7 @@
                                     }
                                     `resolver`: | `nothing` ~
                                 )
-                                'number': (
+                                'simple': (
                                     `constraints`: {
                                         'definition': | `state` (
                                             `selection`: (
@@ -8780,7 +8751,7 @@
                                                 `resulting node`: ~
                                             )
                                             `selected state`: ~
-                                            `option`: 'number'
+                                            `option`: 'simple'
                                         )
                                     }
                                     `resolver`: | `nothing` ~

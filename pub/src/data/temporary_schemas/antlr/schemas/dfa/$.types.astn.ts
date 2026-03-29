@@ -15,12 +15,12 @@ export const $: g_.Modules = modules(
         "DFA": module_(t.group({
             "decision": prop(t.simple("Integer")),
             "atn start state": prop(t.simple("State Number")),
-            "is precedence dfa": prop(t.boolean()),
+            "is precedence dfa": prop(t.simple_boolean()),
             "states": prop(t.list(t.group({
                 "state number": prop(t.simple("Integer")),
-                "is accept state": prop(t.boolean()),
+                "is accept state": prop(t.simple_boolean()),
                 "prediction": prop(t.optional(t.simple("Integer"))),
-                "requires full context": prop(t.boolean()),
+                "requires full context": prop(t.simple_boolean()),
                 "edges": prop(t.list(t.group({
                     "symbol": prop(t.simple("Integer")),
                     "target state": prop(t.simple("Integer")),

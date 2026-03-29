@@ -16,12 +16,13 @@ export const $: g_.Globals = globals(
         "Wachtwoord": text('single line'),
         "Benaming": text('single line'),
         "Omschrijving": text('multi line'),
+        "text": text('single line'),
     },
     {
-        "Bedrag": n.integer(2),
-        "Dagen": n.positive_natural(0),
-        "Datum": n.integer(0),
-        "Promillage": n.natural(0),
+        "Bedrag": n.integer(null),
+        "Dagen": n.positive_natural(null),
+        "Datum": n.integer(null),
+        "Promillage": n.natural(null),
 
     },
 )

@@ -56,7 +56,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                         "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
                     }
                 ),
-                "ordered": r.boolean(),
+                "ordered": r.simple_boolean(),
             })),
             "group": option(r.dictionary(r.component("Value",
                 {

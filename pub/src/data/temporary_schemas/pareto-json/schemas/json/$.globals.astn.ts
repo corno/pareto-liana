@@ -12,10 +12,11 @@ export const $: g_.Globals = globals(
 
     'unconstrained',
     {
-        "Text Value": text("single line"),
+        "Text Value": text('single line'),
     },
     {
         "Integer": n.integer(null),
         "Approximation": n.approximation(16),
+        "boolean": n.boolean(null),
     },
 )

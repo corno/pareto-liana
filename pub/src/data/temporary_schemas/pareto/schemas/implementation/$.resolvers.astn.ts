@@ -13,15 +13,15 @@ export const $: g_.Resolver_Modules = resolver_modules(
 
         "Package": resolver(r.group({
             "specials": r.group({
-                "abort": r.boolean(),
-                "change context": r.boolean(),
-                "implement me": r.boolean(),
-                "iterate": r.boolean(),
-                "lookups": r.boolean(),
-                "list from text": r.boolean(),
-                "text from list": r.boolean(),
-                "unreachable code path": r.boolean(),
-                "variables": r.boolean(),
+                "abort": r.simple_boolean(),
+                "change context": r.simple_boolean(),
+                "implement me": r.simple_boolean(),
+                "iterate": r.simple_boolean(),
+                "lookups": r.simple_boolean(),
+                "list from text": r.simple_boolean(),
+                "text from list": r.simple_boolean(),
+                "unreachable code path": r.simple_boolean(),
+                "variables": r.simple_boolean(),
             }),
             "type imports": r.component_external("interface", "Imports", {}, {}),
             "variable imports": r.dictionary(r.group({
@@ -29,7 +29,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "type": r.state({
                     "ancestor": option(r.group({
                         "dependency": r.text(),
-                        "number of steps": r.number(),
+                        "number of steps": r.simple_number(),
                     })),
                     "external": option(r.text()),
                     "sibling": option(r.text()),
@@ -41,9 +41,9 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     "type": r.text(),
                 }),
                 "expression": r.component("Assign", {}, {}),
-                "temp has abort": r.boolean(),
-                "temp has lookups": r.boolean(),
-                "temp has parameters": r.boolean(),
+                "temp has abort": r.simple_boolean(),
+                "temp has lookups": r.simple_boolean(),
+                "temp has parameters": r.simple_boolean(),
             })),
         })),
 
@@ -152,7 +152,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "group": option(r.state({
                     "literal": option(r.group({
                         "properties": r.dictionary(r.component("Assign", {}, {})),
-                        "have dependencies": r.boolean(),
+                        "have dependencies": r.simple_boolean(),
                     })),
                 })),
                 "list": option(r.state({
@@ -191,7 +191,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
                 "number": option(r.state({
                     "approximation": option(r.state({
                         "copy": option(r.component("Select Value", {}, {})),
-                        "literal": option(r.number()),
+                        "literal": option(r.simple_number()),
                     })),
                     "integer": option(r.state({
                         "copy": option(r.component("Select Value", {}, {})),
@@ -200,11 +200,11 @@ export const $: g_.Resolver_Modules = resolver_modules(
                             "assign divisor": r.component("Select Value", {}, {}),
                             "abort": r.component("Assign", {}, {})
                         })),
-                        "literal": option(r.number()),
+                        "literal": option(r.simple_number()),
                     })),
                     "natural": option(r.state({
                         "copy": option(r.component("Select Value", {}, {})),
-                        "literal": option(r.number()),
+                        "literal": option(r.simple_number()),
                         "number of dictionary entries": option(r.group({
                             "dictionary": r.component("Select Value", {}, {})
                         })),

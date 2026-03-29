@@ -123,7 +123,6 @@ export const Value = (
     const add_location = $p.type[0] === 'unresolved'
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.t.boolean())
             case 'component': return _p.ss($, ($) => {
                 const x: d_out.Value = _p.decide.state($.type, ($) => {
                     switch ($[0]) {
@@ -221,10 +220,9 @@ export const Value = (
             }
             )
             case 'nothing': return _p.ss($, ($) => sh.t.nothing())
-            case 'number': return _p.ss($, ($) => _p.decide.state($, ($) => {
+            case 'simple': return _p.ss($, ($) => _p.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($) => Number_Type($['l entry']))
-                    case 'local': return _p.ss($, ($) => Number_Type($))
+                    case 'global': return _p.ss($, ($) => Simple_Type($['l entry']))
                     default: return _p.au($[0])
                 }
             }))
@@ -383,19 +381,28 @@ const Value_Path = (
     }))
 }
 
-export const Number_Type = (
-    $: d_in.Number_Type
-): d_out.Value => _p.decide.state($.precision, ($) => {
-    switch ($[0]) {
-        case 'approximation': return _p.ss($, ($) => sh.t.number_approximation())
-        case 'exact': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
-            switch ($[0]) {
-                case 'integer': return _p.ss($, ($) => sh.t.integer())
-                case 'natural': return _p.ss($, ($) => sh.t.natural())
-                case 'positive natural': return _p.ss($, ($) => sh.t.natural())
-                default: return _p.au($[0])
-            }
-        }))
-        default: return _p.au($[0])
-    }
-})
+export const Simple_Type = (
+    $: d_in.Simple_Type,
+): d_out.Value => {
+    return _p.decide.state($.type, ($) => {
+        switch ($[0]) {
+            case 'boolean': return _p.ss($, ($) => sh.t.boolean())
+            case 'date': return _p.ss($, ($) => sh.t.integer())
+            case 'number': return _p.ss($, ($) => _p.decide.state($.precision, ($) => {
+                switch ($[0]) {
+                    case 'approximation': return _p.ss($, ($) => sh.t.number_approximation())
+                    case 'exact': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
+                        switch ($[0]) {
+                            case 'integer': return _p.ss($, ($) => sh.t.integer())
+                            case 'natural': return _p.ss($, ($) => sh.t.natural())
+                            case 'positive natural': return _p.ss($, ($) => sh.t.natural())
+                            default: return _p.au($[0])
+                        }
+                    }))
+                    default: return _p.au($[0])
+                }
+            }))
+            default: return _p.au($[0])
+        }
+    })
+}

@@ -113,7 +113,6 @@ export const Value = (
 ): d_out.Assign => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
             case 'component': return _p.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
@@ -248,7 +247,7 @@ export const Value = (
 
             })
             case 'nothing': return _p.ss($, ($) => sh.a.nothing())
-            case 'number': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
+            case 'simple': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
             case 'optional': return _p.ss($, ($) => sh.a.optional.map(
                 sh.sv.context([]),
                 Value(

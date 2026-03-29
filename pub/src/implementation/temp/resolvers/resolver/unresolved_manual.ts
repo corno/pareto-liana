@@ -16,17 +16,6 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
     const loc = $['l location']
     const p_type = _p_change_context($['l state'], ($): t_out.Resolver_Value => {
         switch ($[0]) {
-            case 'boolean': return _p.ss($, ($) => {
-                const x = $p.definition[0] !== 'boolean'
-                    ? _i_generic.abort.state_constraint_found_expected(
-                        "boolean",
-                        $p.definition,
-                        loc,
-                        abort,
-                    )
-                    : $p.definition[1]
-                return ['boolean', null]
-            })
             case 'component': return _p.ss($, ($): t_out.Resolver_Value => {
                 const x = $p.definition[0] !== 'component'
                     ? _i_generic.abort.state_constraint_found_expected(
@@ -534,11 +523,11 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     : $p.definition[1]
                 return ['nothing', null]
             })
-            case 'number': return _p.ss($, ($) => {
-                const x = $p.definition[0] !== 'number'
-                    ? _i_generic.abort.state_constraint_found_expected("number", $p.definition, loc, abort)
+            case 'simple': return _p.ss($, ($) => {
+                const x = $p.definition[0] !== 'simple'
+                    ? _i_generic.abort.state_constraint_found_expected("simple", $p.definition, loc, abort)
                     : $p.definition[1]
-                return ['number', null]
+                return ['simple', null]
             })
             case 'optional': return _p.ss($, ($) => {
                 const x = $p.definition[0] !== 'optional'

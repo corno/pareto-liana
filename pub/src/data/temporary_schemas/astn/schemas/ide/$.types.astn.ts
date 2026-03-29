@@ -16,11 +16,11 @@ export const $: g_.Modules = modules(
         "Text Edits": module_(t.list(t.state({
             "insert": toption(t.group({
                 "location": prop(t.component("Relative Location")),
-                "text": prop(t.text_local(text('single line'))),
+                "text": prop(t.text_global("text")),
             })),
             "replace": toption(t.group({
                 "range": prop(t.component("Relative Range")),
-                "text": prop(t.text_local(text('single line'))),
+                "text": prop(t.text_global("text")),
             })),
             "delete": toption(t.group({
                 "range": prop(t.component("Relative Range")),
@@ -32,7 +32,7 @@ export const $: g_.Modules = modules(
             "end": prop(t.component("Relative Location")),
         })),
 
-        "ID Value Pairs To Be Sorted": module_(t.dictionary(t.text_local(text('single line')))),
+        "ID Value Pairs To Be Sorted": module_(t.dictionary(t.text_global("text"))),
 
         "Relative Location": module_(t.group({
             "line": prop(t.simple("Natural")),

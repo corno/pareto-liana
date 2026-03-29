@@ -11,10 +11,10 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
-        "url": text("single line"),
-        "text value": text("single line"),
-        "regex": text("single line"),
-        "identifier": text("single line"),
+        "url": text('single line'),
+        "text value": text('single line'),
+        "regex": text('single line'),
+        "identifier": text('single line'),
     },
     {
         "amount": n.natural(null),

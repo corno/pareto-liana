@@ -12,6 +12,7 @@ export const $: g_.Globals = globals(
 
     'unconstrained',
     {
+        "text": text('single line'),
     },
     {
         "Integer": n.integer(null)

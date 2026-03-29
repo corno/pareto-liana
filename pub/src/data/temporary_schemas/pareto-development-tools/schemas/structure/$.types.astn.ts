@@ -21,20 +21,20 @@ export const $: g_.Modules = modules(
                 "file": toption(t.state({
                     "manual": toption(t.nothing()),
                     "generated": toption(t.group({
-                        "commit to git": prop(t.boolean())
+                        "commit to git": prop(t.simple_boolean())
                     })),
                 })),
             }))),
             "wildcards": toption(t.group({
                 "required directories": prop(t.simple("Natural")),
-                "additional directories allowed": prop(t.boolean()),
-                "extensions": prop(t.list(t.text_local(text('single line')))),
-                "warn": prop(t.boolean()),
+                "additional directories allowed": prop(t.simple_boolean()),
+                "extensions": prop(t.list(t.text_global("text"))),
+                "warn": prop(t.simple_boolean()),
             })),
             "freeform": toption(t.nothing()),
             "ignore": toption(t.nothing()),
             "generated": toption(t.group({
-                "commit to git": prop(t.boolean())
+                "commit to git": prop(t.simple_boolean())
             })),
         })),
     }

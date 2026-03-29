@@ -175,7 +175,7 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', _p.dic
             ($) => ['dictionary', _p.dictionary.from.dictionary(
                 $,
             ).map(
-                ($, id) => Number_Type(
+                ($, id) => Simple_Type(
                     $,
                 ),
             )],
@@ -198,14 +198,6 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
-            case 'boolean':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'boolean',
-                        'value': ['nothing', null],
-                    }),
-                )
             case 'component':
                 return _p.ss(
                     $,
@@ -335,11 +327,11 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                         'value': ['nothing', null],
                     }),
                 )
-            case 'number':
+            case 'simple':
                 return _p.ss(
                     $,
                     ($) => ({
-                        'option': 'number',
+                        'option': 'simple',
                         'value': ['state', _p.decide.state(
                             $,
                             ($): t_out.Value.state => {
@@ -353,16 +345,6 @@ export const Value: t_signatures.Value = ($) => ['state', _p.decide.state(
                                                     'delimiter': ['apostrophe', null],
                                                     'value': $['l id'],
                                                 }],
-                                            }),
-                                        )
-                                    case 'local':
-                                        return _p.ss(
-                                            $,
-                                            ($) => ({
-                                                'option': 'local',
-                                                'value': Number_Type(
-                                                    $,
-                                                ),
                                             }),
                                         )
                                     default:
@@ -729,14 +711,6 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
     $,
     ($): t_out.Value.state => {
         switch ($[0]) {
-            case 'boolean':
-                return _p.ss(
-                    $,
-                    ($) => ({
-                        'option': 'boolean',
-                        'value': ['nothing', null],
-                    }),
-                )
             case 'component':
                 return _p.ss(
                     $,
@@ -1096,11 +1070,11 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', _p.d
                         'value': ['nothing', null],
                     }),
                 )
-            case 'number':
+            case 'simple':
                 return _p.ss(
                     $,
                     ($) => ({
-                        'option': 'number',
+                        'option': 'simple',
                         'value': ['nothing', null],
                     }),
                 )
@@ -1350,82 +1324,123 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p
     },
 )]]
 
-export const Number_Type: t_signatures.Number_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
+export const Simple_Type: t_signatures.Simple_Type = ($) => ['group', ['verbose', _p.dictionary.literal(
     {
-        "precision": _p_change_context(
-            $['precision'],
+        "type": _p_change_context(
+            $['type'],
             ($) => ['state', _p.decide.state(
                 $,
                 ($): t_out.Value.state => {
                     switch ($[0]) {
-                        case 'approximation':
+                        case 'boolean':
                             return _p.ss(
                                 $,
                                 ($) => ({
-                                    'option': 'approximation',
-                                    'value': ['group', ['verbose', _p.dictionary.literal(
-                                        {
-                                            "significant digits": _p_change_context(
-                                                $['significant digits'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['none', null],
-                                                    'value': v_primitives_to_text.decimal(
-                                                        $,
-                                                    ),
-                                                }],
-                                            ),
-                                        },
-                                    )]],
+                                    'option': 'boolean',
+                                    'value': ['nothing', null],
                                 }),
                             )
-                        case 'exact':
+                        case 'date':
                             return _p.ss(
                                 $,
                                 ($) => ({
-                                    'option': 'exact',
+                                    'option': 'date',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case 'number':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'number',
                                     'value': ['group', ['verbose', _p.dictionary.literal(
                                         {
-                                            "decimal separator offset": _p_change_context(
-                                                $['decimal separator offset'],
-                                                ($) => ['optional', _p.decide.optional(
-                                                    $,
-                                                    ($): t_out.Value.optional => ['set', ['text', {
-                                                        'delimiter': ['none', null],
-                                                        'value': v_primitives_to_text.decimal(
-                                                            $,
-                                                        ),
-                                                    }]],
-                                                    () => ['not set', null],
-                                                )],
-                                            ),
-                                            "type": _p_change_context(
-                                                $['type'],
+                                            "precision": _p_change_context(
+                                                $['precision'],
                                                 ($) => ['state', _p.decide.state(
                                                     $,
                                                     ($): t_out.Value.state => {
                                                         switch ($[0]) {
-                                                            case 'integer':
+                                                            case 'approximation':
                                                                 return _p.ss(
                                                                     $,
                                                                     ($) => ({
-                                                                        'option': 'integer',
-                                                                        'value': ['nothing', null],
+                                                                        'option': 'approximation',
+                                                                        'value': ['group', ['verbose', _p.dictionary.literal(
+                                                                            {
+                                                                                "significant digits": _p_change_context(
+                                                                                    $['significant digits'],
+                                                                                    ($) => ['text', {
+                                                                                        'delimiter': ['none', null],
+                                                                                        'value': v_primitives_to_text.decimal(
+                                                                                            $,
+                                                                                        ),
+                                                                                    }],
+                                                                                ),
+                                                                            },
+                                                                        )]],
                                                                     }),
                                                                 )
-                                                            case 'natural':
+                                                            case 'exact':
                                                                 return _p.ss(
                                                                     $,
                                                                     ($) => ({
-                                                                        'option': 'natural',
-                                                                        'value': ['nothing', null],
-                                                                    }),
-                                                                )
-                                                            case 'positive natural':
-                                                                return _p.ss(
-                                                                    $,
-                                                                    ($) => ({
-                                                                        'option': 'positive natural',
-                                                                        'value': ['nothing', null],
+                                                                        'option': 'exact',
+                                                                        'value': ['group', ['verbose', _p.dictionary.literal(
+                                                                            {
+                                                                                "number of fractional digits": _p_change_context(
+                                                                                    $['number of fractional digits'],
+                                                                                    ($) => ['optional', _p.decide.optional(
+                                                                                        $,
+                                                                                        ($): t_out.Value.optional => ['set', ['text', {
+                                                                                            'delimiter': ['none', null],
+                                                                                            'value': v_primitives_to_text.decimal(
+                                                                                                $,
+                                                                                            ),
+                                                                                        }]],
+                                                                                        () => ['not set', null],
+                                                                                    )],
+                                                                                ),
+                                                                                "type": _p_change_context(
+                                                                                    $['type'],
+                                                                                    ($) => ['state', _p.decide.state(
+                                                                                        $,
+                                                                                        ($): t_out.Value.state => {
+                                                                                            switch ($[0]) {
+                                                                                                case 'integer':
+                                                                                                    return _p.ss(
+                                                                                                        $,
+                                                                                                        ($) => ({
+                                                                                                            'option': 'integer',
+                                                                                                            'value': ['nothing', null],
+                                                                                                        }),
+                                                                                                    )
+                                                                                                case 'natural':
+                                                                                                    return _p.ss(
+                                                                                                        $,
+                                                                                                        ($) => ({
+                                                                                                            'option': 'natural',
+                                                                                                            'value': ['nothing', null],
+                                                                                                        }),
+                                                                                                    )
+                                                                                                case 'positive natural':
+                                                                                                    return _p.ss(
+                                                                                                        $,
+                                                                                                        ($) => ({
+                                                                                                            'option': 'positive natural',
+                                                                                                            'value': ['nothing', null],
+                                                                                                        }),
+                                                                                                    )
+                                                                                                default:
+                                                                                                    return _p.au(
+                                                                                                        $[0],
+                                                                                                    )
+                                                                                            }
+                                                                                        },
+                                                                                    )],
+                                                                                ),
+                                                                            },
+                                                                        )]],
                                                                     }),
                                                                 )
                                                             default:

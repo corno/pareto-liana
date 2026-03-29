@@ -12,7 +12,9 @@ export const $: g_.Globals = globals(
 
          'unconstrained',
     {
-        "Text Value": text("single line"),
+        "Text Value": text('single line'),
+        "text": text('single line'),
+        "multi line text": text('multi line'),
     },
     {
         "Natural": n.natural(null),

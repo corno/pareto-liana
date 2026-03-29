@@ -53,7 +53,7 @@ export const $: g_.Modules = modules(
                 "from": prop(t.component("String Literal")),
             })),
             "module declaration": toption(t.group({ //namespace
-                "export": prop(t.boolean()),
+                "export": prop(t.simple_boolean()),
                 "name": prop(t.component("Identifier")),
                 "block": prop(t.component("Block")),
             })),
@@ -70,14 +70,14 @@ export const $: g_.Modules = modules(
                 }))),
             })),
             "type alias declaration": toption(t.group({
-                "export": prop(t.boolean()),
+                "export": prop(t.simple_boolean()),
                 "name": prop(t.component("Identifier")),
                 "parameters": prop(t.list(t.component("Identifier"))),
                 "type": prop(t.component("Type")),
             })),
             "variable": toption(t.group({
-                "export": prop(t.boolean()),
-                "const": prop(t.boolean()),
+                "export": prop(t.simple_boolean()),
+                "const": prop(t.simple_boolean()),
                 "name": prop(t.component("Identifier")),
                 "type": prop(t.optional(t.component("Type"))),
                 "expression": prop(t.optional(t.component("Expression"))),
@@ -97,7 +97,7 @@ export const $: g_.Modules = modules(
             "number": toption(t.nothing()),
             "string": toption(t.nothing()),
             "tuple": toption(t.group({
-                "readonly": prop(t.boolean()),
+                "readonly": prop(t.simple_boolean()),
                 "elements": prop(t.list(t.component("Type"))),
             })),
             "type literal": toption(t.group({
@@ -106,7 +106,7 @@ export const $: g_.Modules = modules(
                         "identifier": toption(t.component("Identifier")),
                         "string literal": toption(t.component("String Literal")),
                     })),
-                    "readonly": prop(t.boolean()),
+                    "readonly": prop(t.simple_boolean()),
                     "type": prop(t.component("Type")),
                 }))),
             })),
@@ -200,11 +200,11 @@ export const $: g_.Modules = modules(
                 "quote": toption(t.nothing()),
                 "apostrophe": toption(t.nothing()),
             })),
-            "value": prop(t.text_local(text('single line')))
+            "value": prop(t.text_global("text"))
         })),
 
         "Identifier": module_(t.group({
-            "value": prop(t.text_local(text('single line')))
+            "value": prop(t.text_global("text"))
         })),
 
     }

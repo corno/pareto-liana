@@ -311,11 +311,11 @@ export type Text_Type_ = (
     abort: _pi.Abort<Text_Type_.E>,
 ) => Text_Type_.O
 
-export namespace Number_Type_ {
+export namespace Simple_Type_ {
     
     export type I = i_in.Value
     
-    export type O = i_out.Number_Type
+    export type O = i_out.Simple_Type
     
     export type E = i_generic.Error
     
@@ -325,10 +325,10 @@ export namespace Number_Type_ {
     
 }
 
-export type Number_Type_ = (
-    context: Number_Type_.I,
-    abort: _pi.Abort<Number_Type_.E>,
-) => Number_Type_.O
+export type Simple_Type_ = (
+    context: Simple_Type_.I,
+    abort: _pi.Abort<Simple_Type_.E>,
+) => Simple_Type_.O
 
 export namespace Module_ {
     
@@ -803,7 +803,7 @@ export {
     Module_Specification_ as Module_Specification, 
     Schema_Tree_ as Schema_Tree, 
     Text_Type_ as Text_Type, 
-    Number_Type_ as Number_Type, 
+    Simple_Type_ as Simple_Type, 
     Module_ as Module, 
     Presence_ as Presence, 
     Resolver_Modules_ as Resolver_Modules, 

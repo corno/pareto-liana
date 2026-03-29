@@ -20,8 +20,8 @@ export const $: g_.Modules = modules(
                 "attributes": prop(t.component_external("attributes", "Attributes"))
             }))),
             "edges": prop(t.list(t.group({
-                "from": prop(t.text_local(text('single line'))),
-                "to": prop(t.text_local(text('single line'))),
+                "from": prop(t.text_global("text")),
+                "to": prop(t.text_global("text")),
                 "attributes": prop(t.component_external("attributes", "Attributes"))
             }))),
         })),

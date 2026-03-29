@@ -11,11 +11,12 @@ export const $: g_.Globals = globals(
 
     'constrained',
     {
-        "Pseudo Reference": text("single line"),
-        "TBD": text("single line"),
+        "Pseudo Reference": text('single line'),
+        "TBD": text('single line'),
     },
     {
         "Natural": n.natural(null),
+        "boolean": n.boolean(null),
     },
 )
 

@@ -30,7 +30,7 @@ export const $: g_.Modules = modules(
                 "float": toption(t.simple("Approximation")),
             })),
             "string": toption(t.text_global("Text Value")),
-            "boolean": toption(t.boolean()),
+            "boolean": toption(t.simple_boolean()),
             "null": toption(t.nothing()),
         })),
         
