@@ -7,7 +7,11 @@
             `globals`: (
                 `complexity`: | `constrained` ~
                 `text types`: {}
-                `simple types`: {}
+                `simple types`: {
+                    'boolean': (
+                        `type`: | `boolean` ~
+                    )
+                }
             )
             `modules`: {
                 'Schema Tree': (
@@ -258,7 +262,7 @@
                                     )
                                     'ordered': (
                                         `description`: _
-                                        `value`: | `boolean` ~
+                                        `value`: | `simple` | `global` 'boolean'
                                     )
                                 }
                             )
@@ -713,7 +717,7 @@
                                         )
                                         'ordered': (
                                             `definition`: ~
-                                            `resolver`: | `boolean` ~
+                                            `resolver`: | `simple` ~
                                         )
                                     }
                                 )
@@ -1053,9 +1057,11 @@
                 `text types`: {}
                 `simple types`: {
                     'Natural': (
-                        `precision`: | `exact` (
-                            `decimal separator offset`: _
-                            `type`: | `natural` ~
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
                         )
                     )
                 }
@@ -1118,7 +1124,7 @@
                         )
                         'absolute': (
                             `description`: _
-                            `value`: | `number` | `global` 'Natural'
+                            `value`: | `simple` | `global` 'Natural'
                         )
                     }
                 )
@@ -1126,31 +1132,15 @@
                     `root value`: | `group` {
                         'line': (
                             `description`: _
-                            `value`: | `number` | `global` 'Natural'
+                            `value`: | `simple` | `global` 'Natural'
                         )
                         'column': (
                             `description`: _
-                            `value`: | `number` | `global` 'Natural'
+                            `value`: | `simple` | `global` 'Natural'
                         )
                     }
                 )
             }
-            `complexity`: | `unconstrained` ~
-        )
-        'load document': | `schema` (
-            `schema imports`: {
-                'location': (
-                    `schema set child`: 'location'
-                    `schema`: ~
-                )
-            }
-            `resolver imports`: {}
-            `globals`: (
-                `complexity`: | `constrained` ~
-                `text types`: {}
-                `simple types`: {}
-            )
-            `modules`: {}
             `complexity`: | `unconstrained` ~
         )
         'schema': | `schema` (
@@ -1158,13 +1148,25 @@
             `resolver imports`: {}
             `globals`: (
                 `complexity`: | `constrained` ~
-                `text types`: {}
+                `text types`: {
+                    'multi line text': (
+                        `type`: | `multi line` ~
+                    )
+                    'text': (
+                        `type`: | `single line` ~
+                    )
+                }
                 `simple types`: {
                     'Natural': (
-                        `precision`: | `exact` (
-                            `decimal separator offset`: _
-                            `type`: | `natural` ~
+                        `type`: | `number` (
+                            `precision`: | `exact` (
+                                `number of fractional digits`: _
+                                `type`: | `natural` ~
+                            )
                         )
+                    )
+                    'boolean': (
+                        `type`: | `boolean` ~
                     )
                 }
             )
@@ -1173,7 +1175,7 @@
                     `root value`: | `group` {
                         'omit (de)serializer': (
                             `description`: _
-                            `value`: | `boolean` ~
+                            `value`: | `simple` | `global` 'boolean'
                         )
                         'schema tree': (
                             `description`: _
@@ -1643,9 +1645,7 @@
                                                 )
                                                 'description': (
                                                     `description`: _
-                                                    `value`: | `optional` | `text` | `local` (
-                                                        `type`: | `multi line` ~
-                                                    )
+                                                    `value`: | `optional` | `text` | `global` 'multi line text'
                                                 )
                                                 'value': (
                                                     `description`: _
@@ -2504,17 +2504,13 @@
                         'schema path': (
                             `description`: * "selects the schema in which the module is specified"
                             `value`: | `list` (
-                                `value`: | `text` | `local` (
-                                    `type`: | `single line` ~
-                                )
+                                `value`: | `text` | `global` 'text'
                                 `results`: _
                             )
                         )
                         'module': (
                             `description`: * "the module that is the root of the document"
-                            `value`: | `text` | `local` (
-                                `type`: | `single line` ~
-                            )
+                            `value`: | `text` | `global` 'text'
                         )
                     }
                 )
@@ -2569,60 +2565,66 @@
                             `description`: _
                             `value`: | `state` (
                                 `options`: {
-                                    'number': (
-                                        `constraints`: _
-                                        `description`: _
-                                        `value`: | `nothing` ~
-                                    )
                                     'boolean': (
                                         `constraints`: _
                                         `description`: _
                                         `value`: | `nothing` ~
                                     )
-                                }
-                                `results`: _
-                            )
-                        )
-                        'precision': (
-                            `description`: _
-                            `value`: | `state` (
-                                `options`: {
-                                    'approximation': (
+                                    'date': (
                                         `constraints`: _
                                         `description`: _
-                                        `value`: | `group` {
-                                            'significant digits': (
-                                                `description`: _
-                                                `value`: | `number` | `global` 'Natural'
-                                            )
-                                        }
+                                        `value`: | `nothing` ~
                                     )
-                                    'exact': (
+                                    'number': (
                                         `constraints`: _
                                         `description`: _
                                         `value`: | `group` {
-                                            'decimal separator offset': (
-                                                `description`: _
-                                                `value`: | `optional` | `number` | `global` 'Natural'
-                                            )
-                                            'type': (
+                                            'precision': (
                                                 `description`: _
                                                 `value`: | `state` (
                                                     `options`: {
-                                                        'integer': (
+                                                        'approximation': (
                                                             `constraints`: _
                                                             `description`: _
-                                                            `value`: | `nothing` ~
+                                                            `value`: | `group` {
+                                                                'significant digits': (
+                                                                    `description`: _
+                                                                    `value`: | `simple` | `global` 'Natural'
+                                                                )
+                                                            }
                                                         )
-                                                        'natural': (
+                                                        'exact': (
                                                             `constraints`: _
                                                             `description`: _
-                                                            `value`: | `nothing` ~
-                                                        )
-                                                        'positive natural': (
-                                                            `constraints`: _
-                                                            `description`: _
-                                                            `value`: | `nothing` ~
+                                                            `value`: | `group` {
+                                                                'number of fractional digits': (
+                                                                    `description`: _
+                                                                    `value`: | `optional` | `simple` | `global` 'Natural'
+                                                                )
+                                                                'type': (
+                                                                    `description`: _
+                                                                    `value`: | `state` (
+                                                                        `options`: {
+                                                                            'integer': (
+                                                                                `constraints`: _
+                                                                                `description`: _
+                                                                                `value`: | `nothing` ~
+                                                                            )
+                                                                            'natural': (
+                                                                                `constraints`: _
+                                                                                `description`: _
+                                                                                `value`: | `nothing` ~
+                                                                            )
+                                                                            'positive natural': (
+                                                                                `constraints`: _
+                                                                                `description`: _
+                                                                                `value`: | `nothing` ~
+                                                                            )
+                                                                        }
+                                                                        `results`: _
+                                                                    )
+                                                                )
+                                                            }
                                                         )
                                                     }
                                                     `results`: _
@@ -2731,7 +2733,7 @@
                         )
                         'dense': (
                             `description`: _
-                            `value`: | `boolean` ~
+                            `value`: | `simple` | `global` 'boolean'
                         )
                     }
                 )
@@ -2740,9 +2742,7 @@
                         `value`: | `group` {
                             'description': (
                                 `description`: _
-                                `value`: | `optional` | `text` | `local` (
-                                    `type`: | `multi line` ~
-                                )
+                                `value`: | `optional` | `text` | `global` 'multi line text'
                             )
                             'value': (
                                 `description`: _
@@ -4901,7 +4901,7 @@
                         `root value resolver`: | `group` {
                             'omit (de)serializer': (
                                 `definition`: ~
-                                `resolver`: | `boolean` ~
+                                `resolver`: | `simple` ~
                             )
                             'schema tree': (
                                 `definition`: ~
@@ -5042,57 +5042,62 @@
                                 `resolver`: | `state` (
                                     `definition`: ~
                                     `options`: {
-                                        'number': (
-                                            `constraints`: {}
-                                            `resolver`: | `nothing` ~
-                                        )
                                         'boolean': (
                                             `constraints`: {}
                                             `resolver`: | `nothing` ~
                                         )
-                                    }
-                                )
-                            )
-                            'precision': (
-                                `definition`: ~
-                                `resolver`: | `state` (
-                                    `definition`: ~
-                                    `options`: {
-                                        'approximation': (
+                                        'date': (
                                             `constraints`: {}
-                                            `resolver`: | `group` {
-                                                'significant digits': (
-                                                    `definition`: ~
-                                                    `resolver`: | `number` ~
-                                                )
-                                            }
+                                            `resolver`: | `nothing` ~
                                         )
-                                        'exact': (
+                                        'number': (
                                             `constraints`: {}
                                             `resolver`: | `group` {
-                                                'decimal separator offset': (
-                                                    `definition`: ~
-                                                    `resolver`: | `optional` (
-                                                        `constraints`: {}
-                                                        `resolver`: | `number` ~
-                                                    )
-                                                )
-                                                'type': (
+                                                'precision': (
                                                     `definition`: ~
                                                     `resolver`: | `state` (
                                                         `definition`: ~
                                                         `options`: {
-                                                            'integer': (
+                                                            'approximation': (
                                                                 `constraints`: {}
-                                                                `resolver`: | `nothing` ~
+                                                                `resolver`: | `group` {
+                                                                    'significant digits': (
+                                                                        `definition`: ~
+                                                                        `resolver`: | `simple` ~
+                                                                    )
+                                                                }
                                                             )
-                                                            'natural': (
+                                                            'exact': (
                                                                 `constraints`: {}
-                                                                `resolver`: | `nothing` ~
-                                                            )
-                                                            'positive natural': (
-                                                                `constraints`: {}
-                                                                `resolver`: | `nothing` ~
+                                                                `resolver`: | `group` {
+                                                                    'number of fractional digits': (
+                                                                        `definition`: ~
+                                                                        `resolver`: | `optional` (
+                                                                            `constraints`: {}
+                                                                            `resolver`: | `simple` ~
+                                                                        )
+                                                                    )
+                                                                    'type': (
+                                                                        `definition`: ~
+                                                                        `resolver`: | `state` (
+                                                                            `definition`: ~
+                                                                            `options`: {
+                                                                                'integer': (
+                                                                                    `constraints`: {}
+                                                                                    `resolver`: | `nothing` ~
+                                                                                )
+                                                                                'natural': (
+                                                                                    `constraints`: {}
+                                                                                    `resolver`: | `nothing` ~
+                                                                                )
+                                                                                'positive natural': (
+                                                                                    `constraints`: {}
+                                                                                    `resolver`: | `nothing` ~
+                                                                                )
+                                                                            }
+                                                                        )
+                                                                    )
+                                                                }
                                                             )
                                                         }
                                                     )
@@ -8027,7 +8032,7 @@
                             )
                             'dense': (
                                 `definition`: ~
-                                `resolver`: | `boolean` ~
+                                `resolver`: | `simple` ~
                             )
                         }
                     )

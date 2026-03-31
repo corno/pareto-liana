@@ -587,7 +587,6 @@ export const $: g_.Resolver_Modules = resolver_modules(
             }, {}),
         })),
 
-
         "Resolver Optional Value Constraints": resolver(r.optional(r.component("Resolver Value Constraints", {
             "value": av.parameter("value"),
         }, {
@@ -645,7 +644,8 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "component": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "component")
-                }, r.group({
+                },
+                r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "location": r.state(
                         {
@@ -704,7 +704,8 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     "constraints": r.component("Resolver Value Constraints", {
                         "value": av.required(gvs.sibling("signature", [rvs.reference(), rvs.component(), rvs.group("module"), rvs.reference(), rvs.group("root value"), rvs.component(),])),
                     }, {})
-                })),
+                })
+            ),
             "dictionary": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "dictionary"),
@@ -763,7 +764,8 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "list": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "list")
-                }, r.group({
+                },
+                r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "result": r.optional(
                         r.component("Resolver Value List Result", {
@@ -790,21 +792,28 @@ export const $: g_.Resolver_Modules = resolver_modules(
                         },
                         null,
                     ),
-                })),
+                })
+            ),
             "nothing": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "nothing")
-                }, r.nothing()),
+                },
+                r.nothing()
+            ),
             "simple": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "simple")
-                }, r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                })),
+                },
+                // r.group({
+                //     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                // })
+                r.nothing()
+            ),
             "optional": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "optional")
-                }, r.group({
+                },
+                r.group({
                     "constraints": r.component("Resolver Option Constraints", null, null),
                     "resolver": r.component("Resolver Value",
                         {
@@ -823,11 +832,13 @@ export const $: g_.Resolver_Modules = resolver_modules(
                         },
                         null,
                     ),
-                })),
+                })
+            ),
             "reference": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "reference")
-                }, r.group({
+                },
+                r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "type": r.state({
                         "derived": option_constrained(
@@ -847,11 +858,13 @@ export const $: g_.Resolver_Modules = resolver_modules(
                                 }, {})
                             })),
                     }),
-                }),),
+                })
+            ),
             "state": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "state")
-                }, r.group({
+                },
+                r.group({
                     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
                     "options": r.dictionary_linked(
                         'dense',
@@ -877,12 +890,13 @@ export const $: g_.Resolver_Modules = resolver_modules(
                             ),
                         })
                     ),
-                })),
+                })
+            ),
             "text": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "text")
-                }, r.nothing()),
-            // "type parameter": state_constrained({ "definition": oc.state(gvs.parameter("definition", []), "type parameter") }, r.nothing()),
+                }, r.nothing()
+            ),
         })),
 
         "Resolver": resolver(r.group({

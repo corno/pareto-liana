@@ -154,10 +154,11 @@ export const $: g_.Modules = modules(
                 {
                     "definition": value_reference("Value", [vp.s("simple")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("simple")])),
+                t.nothing(),
+                // t.group({
+                //     "definition": prop(t.reference_derived("Value", [vp.s("simple")])),
      
-                })
+                // })
             ),
             "optional": sh.toption_constrained(
                 {
