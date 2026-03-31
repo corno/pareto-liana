@@ -154,7 +154,10 @@ export const $: g_.Modules = modules(
                 {
                     "definition": value_reference("Value", [vp.s("simple")])
                 },
-                t.nothing()
+                t.group({
+                    "definition": prop(t.reference_derived("Value", [vp.s("simple")])),
+     
+                })
             ),
             "optional": sh.toption_constrained(
                 {
@@ -203,6 +206,7 @@ export const $: g_.Modules = modules(
             "schema": prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
             "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_global("text"))),
             "module": prop_with_description("the module that is the root of the document", t.text_global("text")),
+            //"file suffix": prop_with_description("the expected and suggested file suffix for a instance file, for example 'my_instance.my_suffix.lna'", t.text_global("text")),
         })),
 
         "Schema Tree": module_(t.state({

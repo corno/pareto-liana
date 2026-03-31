@@ -798,7 +798,9 @@ export const $: g_.Resolver_Modules = resolver_modules(
             "simple": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "simple")
-                }, r.nothing()),
+                }, r.group({
+                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                })),
             "optional": option_constrained(
                 {
                     "definition": oc.state(gvs.parameter("definition", []), "optional")
@@ -913,6 +915,7 @@ export const $: g_.Resolver_Modules = resolver_modules(
             }),
             "schema path": r.list(r.text()),
             "module": r.text(),
+            //"file suffix": r.text(),
         })),
 
 
