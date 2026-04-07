@@ -3,10 +3,25 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
 import * as resources_fountain_pen from "pareto-fountain-pen-file-structure/dist/interface/resources"
 
+import * as d_package from "./to_be_generated/generate_typescript"
+
 export namespace commands {
 
     export type compile_temp_schemas = _pi.Command_Procedure<
         resources_pareto.commands.main,
+        {
+            'copy': resources_pareto.commands.copy
+            'log': resources_pareto.commands.log
+            'log error': resources_pareto.commands.log_error
+            'make directory': resources_pareto.commands.make_directory
+            'remove': resources_pareto.commands.remove
+            'write to directory': resources_fountain_pen.commands.write_to_directory
+        },
+        null
+    >
+
+    export type generate_typescript = _pi.Command_Procedure<
+        _pi.Command<d_package.Error, d_package.Parameters>,
         {
             'copy': resources_pareto.commands.copy
             'log': resources_pareto.commands.log

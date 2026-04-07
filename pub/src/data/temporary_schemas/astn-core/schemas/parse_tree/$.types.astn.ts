@@ -35,12 +35,12 @@ export const $: g_.Modules = modules(
                     "group": toption(t.state({
                         "concise": toption(t.group({
                             "<": prop(t.component("Structural Token")),
-                            "items": prop(t.component("Items")),
+                            "properties": prop(t.component("Items")),
                             ">": prop(t.component("Structural Token")),
                         })),
                         "verbose": toption(t.group({
                             "(": prop(t.component("Structural Token")),
-                            "entries": prop(t.component("ID Value Pairs")),
+                            "properties": prop(t.component("ID Value Pairs")),
                             ")": prop(t.component("Structural Token")),
                         })),
                     })),

@@ -8,23 +8,13 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as d_generate_typescript from "../../../interface/to_be_generated/generate_typescript"
 
-export type Error = _pi.Dictionary<Package_Error>
-
-export type Package_Error =
-    | ['could not log', null]
-    | ['could not remove interface', null]
-    | ['could not remove implementation', null]
-    | ['could not write interface', null]
-    | ['could not write implementation', null]
-    | ['could not copy generic implementation', null]
-    | ['could not copy core interface', null]
-    | ['could not deserialize module', d_resolve.Error]
+export type Error = _pi.Dictionary<d_generate_typescript.Error>
 
 //data
-import { Package, $ as poormans_modules } from "../../../data/temporary_schemas/all"
+import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
 import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
@@ -34,48 +24,11 @@ import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
-import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
-import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_generate_typescript_to_fp from "../transformers/generate_typescript/fountain_pen"
+
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: _pi.Transformer_With_Parameter<Error, d_fp.Paragraph, {
-    'character location reporting': ['zero based', null] | ['one based', null]
-}> = ($, $p) => {
-    return sh.pg.sentences($.__to_list(
-        ($, id) => sh.sentence([
-            sh.ph.literal("error in package '"),
-            sh.ph.literal(id),
-            sh.ph.literal("': "),
-            _p.decide.state($, ($) => {
-                switch ($[0]) {
-                    case 'could not log': return _p.ss($, ($) => sh.ph.literal("could not log"))
-                    case 'could not remove interface': return _p.ss($, ($) => sh.ph.literal("could not remove interface"))
-                    case 'could not remove implementation': return _p.ss($, ($) => sh.ph.literal("could not remove implementation"))
-                    case 'could not write interface': return _p.ss($, ($) => sh.ph.literal("could not write interface"))
-                    case 'could not write implementation': return _p.ss($, ($) => sh.ph.literal("could not write implementation"))
-                    case 'could not copy generic implementation': return _p.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
-                    case 'could not copy core interface': return _p.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                    case 'could not deserialize module': return _p.ss($, ($) => sh.ph.composed([
-                        t_location_to_fountain_pen.Range(
-                            $.location,
-                            {
-                                'document resource identifier': "unknown DRI",
-                                'character location reporting': ['one based', null],
-                            }
-                        ),
-                        sh.ph.literal(": "),
-                        t_resolve_to_fountain_pen.Error(
-                            $,
-                        )
-                    ]))
-                    default: return _p.au($[0])
-                }
-            })
-        ])
-    ))
-}
 export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure(
     ($p, $cr, $qr) => [
 
@@ -93,29 +46,25 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
         ),
         _p.handle_error(
             [
-
-                _p.dictionaryx.parallel<Package, Error, Package_Error>(
+                _p.dictionaryx.parallel<d_generate_typescript.Parameters, Error, d_generate_typescript.Error>(
                     poormans_modules,
                     ($, id) => {
 
+                        const path = r_context_path_from_text.Context_Path(
+                            _p_list_from_text(
+                                `./out/source_code/${id}`,
+                                ($) => $
+                            )
+                        )
+
                         const interface_module_path = t_path_to_path.create_node_path(
-                            r_context_path_from_text.Context_Path(
-                                _p_list_from_text(
-                                    `./out/source_code/${id}`,
-                                    ($) => $
-                                )
-                            ),
+                            path,
                             {
                                 'node': "interface"
                             }
                         )
                         const implementation_module_path = t_path_to_path.create_node_path(
-                            r_context_path_from_text.Context_Path(
-                                _p_list_from_text(
-                                    `./out/source_code/${id}`,
-                                    ($) => $
-                                )
-                            ),
+                            path,
                             {
                                 'node': "implementation"
                             }
@@ -244,12 +193,15 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
             ($) => [
                 $cr.log.execute(
                     {
-                        'message': Error(
-                            $,
-                            {
-                                'character location reporting': ['one based', null]
-                            }
-                        )
+                        'message': sh.pg.sentences($.__to_list(
+                            ($, id) => sh.sentence([t_generate_typescript_to_fp.Error(
+                                $,
+                                {
+                                    'id': id,
+                                    'character location reporting': ['one based', null]
+                                }
+                            )])
+                        ))
                     },
                     ($) => ({
                         'exit code': 1

@@ -2,7 +2,7 @@ import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unre
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as d_package from "../../interface/to_be_generated/generate_typescript"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
 // import { $ as m_antlr } from "./antlr/module.astn"
@@ -28,12 +28,8 @@ import { $ as m_liana_targets } from "./liana-targets/module.astn"
 import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
 
 
-export type Package = {
-    'target path': string,
-    'package': g_.Package
-}
 
-export const $ = _p.dictionary.literal<Package>({
+export const $ = _p.dictionary.literal<d_package.Parameters>({
     "astn": {
         'target path': "../astn",
         'package': m_astn,
