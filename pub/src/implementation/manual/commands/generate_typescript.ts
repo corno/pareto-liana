@@ -139,24 +139,6 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         ($) => $,
                                         ($v2) => [
 
-                                            //remove old implementation files
-                                            $cr.remove.execute(
-                                                {
-                                                    'path': implementation_module_path,
-                                                    'error if not exists': false,
-                                                },
-                                                ($) => ['could not remove implementation', null]
-                                            ),
-
-                                            //remove old interface files
-                                            $cr.remove.execute(
-                                                {
-                                                    'path': interface_module_path,
-                                                    'error if not exists': false,
-                                                },
-                                                ($) => ['could not remove interface', null]
-                                            ),
-
                                             _p.refine_without_error_transformation(
                                                 (abort) => r_schema.Package(
                                                     r_unresolved_schema_from_loc.Package(
@@ -171,6 +153,25 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                                     null,
                                                 ),
                                                 ($) => [
+
+                                                    //remove old implementation files
+                                                    $cr.remove.execute(
+                                                        {
+                                                            'path': implementation_module_path,
+                                                            'error if not exists': false,
+                                                        },
+                                                        ($) => ['could not remove implementation', null]
+                                                    ),
+
+                                                    //remove old interface files
+                                                    $cr.remove.execute(
+                                                        {
+                                                            'path': interface_module_path,
+                                                            'error if not exists': false,
+                                                        },
+                                                        ($) => ['could not remove interface', null]
+                                                    ),
+                                                    
                                                     //write new interface files
                                                     $cr['write to directory'].execute(
                                                         {
@@ -323,7 +324,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         ($) => ['processing', null]
                                     )
                                 ],
-                                () =>  ['processing', null]
+                                () => ['processing', null]
                             ),
 
                         ]
