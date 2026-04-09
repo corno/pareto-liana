@@ -21,7 +21,7 @@ export namespace commands {
     >
 
     export type generate_typescript = _pi.Command_Procedure<
-        _pi.Command<d_package.Error, d_package.Parameters>,
+        resources_pareto.commands.main,
         {
             'copy': resources_pareto.commands.copy
             'log': resources_pareto.commands.log

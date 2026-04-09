@@ -10,7 +10,7 @@
     "dist"
   ],
   "dependencies": {
-    "astn-core": "^0.5.88",
+    "astn-core": "^0.5.89",
     "liana-core": "^0.1.18",
     "pareto": "^0.80.32",
     "pareto-core-dev": "^0.12.14",
@@ -18,6 +18,6 @@
     "pareto-fountain-pen": "^0.4.52",
     "pareto-fountain-pen-file-structure": "^0.1.3",
     "pareto-host-nodejs": "^0.2.39",
-    "pareto-resources": "^0.2.68"
+    "pareto-resources": "^0.2.69"
   }
 }

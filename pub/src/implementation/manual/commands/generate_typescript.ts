@@ -1,11 +1,11 @@
-// import * as _p from 'pareto-core/dist/command'
-// import * as _pi from 'pareto-core/dist/interface'
-// import * as _pt from 'pareto-core/dist/assign'
-// import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-// import _p_implement_me from 'pareto-core-dev/dist/implement_me'
-// import _p_variables from 'pareto-core/dist/_p_variables'
+import * as _p from 'pareto-core/dist/command'
+import * as _pi from 'pareto-core/dist/interface'
+import * as _pt from 'pareto-core/dist/assign'
+import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import _p_implement_me from 'pareto-core-dev/dist/implement_me'
+import _p_variables from 'pareto-core/dist/_p_variables'
 
-// import * as signatures from "../../../interface/signatures"
+import * as signatures from "../../../interface/signatures"
 
 // //data types
 // import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
@@ -40,45 +40,45 @@
 // import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 
-// export const $$: signatures.commands.generate_typescript = _p.command_procedure(
-//     ($p, $cr, $qr) => [
+export const $$: signatures.commands.generate_typescript = _p.command_procedure(
+    ($p, $cr, $qr) => [
 
 
-//         _p.
-//         $cr.log.execute(
-//             {
-//                 'message': sh.pg.sentences([
-//                     sh.sentence([
-//                         sh.ph.literal("generating..."),
-//                     ])
-//                 ])
-//             },
-//             ($): d_main.Error => ({
-//                 'exit code': 1
-//             })
-//         ),
-//         _p.handle_error(
-//             [
+        //         _p.
+        //         $cr.log.execute(
+        //             {
+        //                 'message': sh.pg.sentences([
+        //                     sh.sentence([
+        //                         sh.ph.literal("generating..."),
+        //                     ])
+        //                 ])
+        //             },
+        //             ($): d_main.Error => ({
+        //                 'exit code': 1
+        //             })
+        //         ),
+        //         _p.handle_error(
+        //             [
 
-//             ],
-//             ($) => [
-//                 $cr.log.execute(
-//                     {
-//                         'message': Error(
-//                             $,
-//                             {
-//                                 'character location reporting': ['one based', null]
-//                             }
-//                         )
-//                     },
-//                     ($) => ({
-//                         'exit code': 1
-//                     })
-//                 ),
-//             ],
-//             () => ({
-//                 'exit code': 1
-//             })
-//         )
-//     ]
-// )
+        //             ],
+        //             ($) => [
+        //                 $cr.log.execute(
+        //                     {
+        //                         'message': Error(
+        //                             $,
+        //                             {
+        //                                 'character location reporting': ['one based', null]
+        //                             }
+        //                         )
+        //                     },
+        //                     ($) => ({
+        //                         'exit code': 1
+        //                     })
+        //                 ),
+        //             ],
+        //             () => ({
+        //                 'exit code': 1
+        //             })
+        //         )
+    ]
+)
