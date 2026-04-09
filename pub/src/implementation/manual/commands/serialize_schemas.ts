@@ -20,7 +20,6 @@ import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/t
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
 import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
 import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_resolve_to_location from "liana-core/dist/implementation/manual/transformers/resolve/location"
 import * as t_loc_to_fp from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 
 //shorthands
@@ -49,7 +48,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                             ($v) => [
                                 $cr['write file'].execute(
                                     {
-                                        'path': t_path_to_path.create_node_path(r_path_from_temp_string.Context_Path($['target path']), { 'node': "module.astn" }),
+                                        'path': t_path_to_path.create_node_path(r_path_from_temp_string.Context_Path($['target path']), { 'node': "module.liana.lna" }),
                                         // 'data': _p_list_from_text(
                                         //     "IMPLEMENT SERIALIZATION HERE",
                                         //     ($) => $,

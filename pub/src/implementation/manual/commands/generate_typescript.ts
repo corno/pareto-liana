@@ -95,16 +95,27 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     ($v) => _p_variables(() => {
                         const path = $v.target
 
-                        const interface_module_path = t_path_to_path.create_node_path(
+                        const pub_path = t_path_to_path.extend_context_path_with_list(
                             path,
+                            { 'addition': _p.list.literal(["pub", "src"]) }
+                        )
+
+                        const interface_module_path = t_path_to_path.create_node_path(
+                            t_path_to_path.extend_context_path_with_list(
+                                pub_path,
+                                { 'addition': _p.list.literal(["interface", "generated"]) }
+                            ),
                             {
-                                'node': "interface"
+                                'node': "liana"
                             }
                         )
                         const implementation_module_path = t_path_to_path.create_node_path(
-                            path,
+                            t_path_to_path.extend_context_path_with_list(
+                                pub_path,
+                                { 'addition': _p.list.literal(["implementation", "generated"]) }
+                            ),
                             {
-                                'node': "implementation"
+                                'node': "liana"
                             }
                         )
 
