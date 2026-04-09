@@ -29,7 +29,9 @@ _pn.run_main_command(
                     null,
                 )
             },
-            null,
+            {
+                'read file': $r.queries['read file'],
+            },
 
         )
     },

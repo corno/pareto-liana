@@ -51,10 +51,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                     ($, id) => {
 
                         const path = r_context_path_from_text.Context_Path(
-                            _p_list_from_text(
-                                `./out/source_code/${id}`,
-                                ($) => $
-                            )
+                             `./out/source_code/${id}`
                         )
 
                         const interface_module_path = t_path_to_path.create_node_path(

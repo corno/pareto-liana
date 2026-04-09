@@ -30,7 +30,9 @@ export namespace commands {
             'remove': resources_pareto.commands.remove
             'write to directory': resources_fountain_pen.commands.write_to_directory
         },
-        null
+        {
+            'read file': resources_pareto.queries.read_file
+        }
     >
 
     export type serialize_schemas = _pi.Command_Procedure<
