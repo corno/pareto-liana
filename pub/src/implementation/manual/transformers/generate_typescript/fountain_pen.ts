@@ -12,6 +12,7 @@ import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manu
 import * as t_deserialize_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/deserialize/fountain_pen"
 import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
+import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
@@ -21,7 +22,10 @@ export const Error: _pi.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
 }> = ($, $p) => {
     return _p.decide.state($, ($) => {
         switch ($[0]) {
-            case 'could not read source': return _p.ss($, ($) => sh.ph.literal("could not read source"))
+            case 'could not read source': return _p.ss($, ($) => sh.ph.composed([
+                sh.ph.literal("could not read source"),
+                t_read_file_to_fountain_pen.Error($)
+            ]))
             case 'could not log': return _p.ss($, ($) => sh.ph.literal("could not log"))
             case 'could not remove interface': return _p.ss($, ($) => sh.ph.literal("could not remove interface"))
             case 'could not remove implementation': return _p.ss($, ($) => sh.ph.literal("could not remove implementation"))

@@ -1,6 +1,6 @@
 {
   "name": "pareto-liana",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "A library for the Liana schema modeling language",

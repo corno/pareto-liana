@@ -6,7 +6,6 @@ import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas
 
 
 export type Error =
-    | ['could not read source', null]
     | ['could not log', null]
     | ['could not read source', d_read_file.Error]
     | ['could not remove interface', null]
