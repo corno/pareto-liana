@@ -40,8 +40,6 @@ export namespace commands {
         resources.commands.generate_typescript,
         {
             'copy': resources_pareto.commands.copy
-            'log': resources_pareto.commands.log
-            'log error': resources_pareto.commands.log_error
             'make directory': resources_pareto.commands.make_directory
             'remove': resources_pareto.commands.remove
             'write to directory': resources_fountain_pen.commands.write_to_directory

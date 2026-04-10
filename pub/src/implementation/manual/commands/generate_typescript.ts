@@ -9,27 +9,17 @@ import _p_iterate from 'pareto-core/dist/_p_iterate'
 import * as signatures from "../../../interface/signatures"
 
 // //data types
-import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 import * as d_resource from "../../../interface/to_be_generated/generate_typescript"
 
 //dependencies
-import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
-import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
-
 import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
+import * as r_unresolved_schema_from_loc from "../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
-import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
-import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/node_path/text"
-import * as r_unresolved_schema_from_loc from "../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
-import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_deserialize_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/deserialize/fountain_pen"
-import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
+import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 
-import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
@@ -186,19 +176,6 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     // ),
 
 
-                    //log
-                    $cr.log.execute(
-                        {
-                            'message': sh.pg.sentences([
-                                sh.sentence([
-
-                                    sh.ph.literal("generated package: "),
-                                    sh.ph.literal(t_path_to_text.Node_Path($p.source)),
-                                ])
-                            ]),
-                        },
-                        ($) => ['could not log', null]
-                    ),
 
                 ]
 
