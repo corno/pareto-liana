@@ -9,7 +9,7 @@ import * as signatures from "../../../interface/signatures"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
-import * as d_generate_typescript from "../../../interface/to_be_generated/generate_typescript"
+import * as d_generate_typescript from "../../../interface/to_be_generated/compile_temp_schemas"
 
 export type Error = _pi.Dictionary<d_generate_typescript.Error>
 
@@ -24,7 +24,7 @@ import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
-import * as t_generate_typescript_to_fp from "../transformers/generate_typescript/fountain_pen"
+import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schemas/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"

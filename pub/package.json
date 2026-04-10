@@ -1,6 +1,6 @@
 {
   "name": "pareto-liana",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "author": "Corno",
   "license": "Apache-2.0",
   "description": "A library for the Liana schema modeling language",
@@ -19,5 +19,6 @@
     "pareto-fountain-pen-file-structure": "0.1.4",
     "pareto-host-nodejs": "0.2.40",
     "pareto-resources": "0.2.71"
-  }
+  },
+  "bundleDependencies": true
 }

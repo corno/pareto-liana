@@ -4,7 +4,7 @@ import * as _pn from 'pareto-host-nodejs'
 
 import { $$ as p_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
 import { $$ as p_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
-import { $$ as procedure } from "../implementation/manual/commands/generate_typescript"
+import { $$ as procedure } from "../implementation/manual/commands/generate_typescript_cli"
 
 _pn.run_main_command(
     ($r) => {

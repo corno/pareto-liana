@@ -2,7 +2,7 @@ import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unre
 
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as d_package from "../../interface/to_be_generated/generate_typescript"
+import * as d_package from "../../interface/to_be_generated/compile_temp_schemas"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
 // import { $ as m_antlr } from "./antlr/module.astn"
