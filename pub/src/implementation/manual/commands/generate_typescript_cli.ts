@@ -72,7 +72,11 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                                     $cr,
                                     $qr,
                                 ).execute(
-                                    $v,
+                                    {
+                                        'source': $v.source,
+                                        'target': $v.target,
+                                        'type': ['package', null]
+                                    },
                                     ($) => $,
                                 ),
                                 //log

@@ -10,6 +10,7 @@ import * as signatures from "../../../interface/signatures"
 
 // //data types
 import * as d_resource from "../../../interface/to_be_generated/generate_typescript"
+import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved"
 
 //dependencies
 import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
@@ -22,6 +23,7 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import _p_cc from 'pareto-core/dist/_p_change_context'
 
 
 export const $$: signatures.commands.generate_typescript = _p.command_procedure(
@@ -64,24 +66,53 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 return [
 
                     _p.refine_without_error_transformation(
-                        (abort) => r_schema.Module_Specification(
-                            r_unresolved_schema_from_loc.Module_Specification(
-                                $v2,
-                                ($) => abort(['could not deserialize', {
-                                    'location': $p.source,
-                                    'error': $,
-                                }]),
-                                {
-                                    'tab size': 4,
-                                }
-                            ),
-                            ($) => abort(['could not resolve module', {
-                                'location': $p.source,
-                                'error': $,
-                            }]),
-                            null,
-                            null,
-                        ),
+                        (abort): d_schema.Package => _p.decide.state($p.type, ($) => {
+                            switch ($[0]) {
+                                case 'module specification': return _p.ss($, ($) => _p_variables(() => {
+                                    const x = r_schema.Module_Specification(
+                                        r_unresolved_schema_from_loc.Module_Specification(
+                                            $v2,
+                                            ($) => abort(['could not deserialize', {
+                                                'location': $p.source,
+                                                'error': $,
+                                            }]),
+                                            {
+                                                'tab size': 4,
+                                            }
+                                        ),
+                                        ($) => abort(['could not resolve module', {
+                                            'location': $p.source,
+                                            'error': $,
+                                        }]),
+                                        null,
+                                        null,
+                                    )
+                                    return {
+                                        'omit (de)serializer': false,
+                                        'schema tree': x.schema
+                                    }
+                                }))
+                                case 'package': return _p.ss($, ($) => r_schema.Package(
+                                    r_unresolved_schema_from_loc.Package(
+                                        $v2,
+                                        ($) => abort(['could not deserialize', {
+                                            'location': $p.source,
+                                            'error': $,
+                                        }]),
+                                        {
+                                            'tab size': 4,
+                                        }
+                                    ),
+                                    ($) => abort(['could not resolve module', {
+                                        'location': $p.source,
+                                        'error': $,
+                                    }]),
+                                    null,
+                                    null,
+                                ))
+                                default: return _p.au($[0])
+                            }
+                        }),
                         ($) => [
 
                             //remove old implementation files
@@ -115,10 +146,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'path': interface_module_path,
                                     'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
                                         t_liana_to_pareto_interface.Package(
-                                            {
-                                                'omit (de)serializer': true,
-                                                'schema tree': $.schema
-                                            },
+                                            $,
                                         )
                                     ),
                                     'remove before creating': true,
@@ -131,10 +159,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'path': implementation_module_path,
                                     'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
                                         t_liana_to_pareto_implementation.Package(
-                                            {
-                                                'omit (de)serializer': true,
-                                                'schema tree': $.schema
-                                            },
+                                            $,
                                         )
                                     ),
                                     'remove before creating': true,

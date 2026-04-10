@@ -26,4 +26,7 @@ export type Error =
 export type Parameters = {
     'source': d_path.Node_Path,
     'target': d_path.Context_Path,
+    'type':
+    | ['module specification', null]
+    | ['package', null]
 }
