@@ -64,8 +64,8 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 return [
 
                     _p.refine_without_error_transformation(
-                        (abort) => r_schema.Package(
-                            r_unresolved_schema_from_loc.Package(
+                        (abort) => r_schema.Module_Specification(
+                            r_unresolved_schema_from_loc.Module_Specification(
                                 $v2,
                                 ($) => abort(['could not deserialize', {
                                     'location': $p.source,
@@ -115,7 +115,10 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'path': interface_module_path,
                                     'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
                                         t_liana_to_pareto_interface.Package(
-                                            $,
+                                            {
+                                                'omit (de)serializer': true,
+                                                'schema tree': $.schema
+                                            },
                                         )
                                     ),
                                     'remove before creating': true,
@@ -128,7 +131,10 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'path': implementation_module_path,
                                     'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
                                         t_liana_to_pareto_implementation.Package(
-                                            $,
+                                            {
+                                                'omit (de)serializer': true,
+                                                'schema tree': $.schema
+                                            },
                                         )
                                     ),
                                     'remove before creating': true,
