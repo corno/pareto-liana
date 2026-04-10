@@ -20,8 +20,8 @@ type My_Error_1 =
 
 //dependencies
 import * as c_generate_typescript from "./generate_typescript"
-import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/context_path/text"
-import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/node_path/text"
+import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path/text"
+import * as r_node_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path/text"
 import * as t_generate_typescript_to_fp from "../transformers/generate_typescript/fountain_pen"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
 

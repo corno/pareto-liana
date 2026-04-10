@@ -13,7 +13,7 @@ import * as d_write_file from "pareto-resources/dist/interface/generated/liana/s
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
-import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/context_path/temp_string"
+import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path/text"
 import * as r_schema_resolved_from_unresolved from "../../temp/resolvers/schema/unresolved_manual"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"
