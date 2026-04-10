@@ -10,15 +10,15 @@
     "dist"
   ],
   "dependencies": {
-    "astn-core": "0.5.90",
-    "liana-core": "0.1.20",
-    "pareto": "0.80.33",
-    "pareto-core-dev": "0.12.15",
-    "pareto-core-shorthands": "0.2.33",
-    "pareto-fountain-pen": "0.4.53",
-    "pareto-fountain-pen-file-structure": "0.1.4",
-    "pareto-host-nodejs": "0.2.40",
-    "pareto-resources": "0.2.71"
+    "astn-core": "^0.5.0",
+    "liana-core": "^0.1.0",
+    "pareto": "^0.80.0",
+    "pareto-core-dev": "^0.12.0",
+    "pareto-core-shorthands": "^0.2.0",
+    "pareto-fountain-pen": "^0.4.0",
+    "pareto-fountain-pen-file-structure": "^0.1.0",
+    "pareto-host-nodejs": "^0.2.0",
+    "pareto-resources": "^0.2.0"
   },
   "bundleDependencies": true
 }
