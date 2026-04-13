@@ -8,7 +8,6 @@ import * as signatures from "../../../interface/signatures"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_fp from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 import * as d_generate_typescript from "../../../interface/to_be_generated/compile_temp_schemas"
 
 export type Error = _pi.Dictionary<d_generate_typescript.Error>
@@ -17,6 +16,8 @@ export type Error = _pi.Dictionary<d_generate_typescript.Error>
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
+import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
+import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
 import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
@@ -51,7 +52,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                     ($, id) => {
 
                         const path = r_context_path_from_text.Context_Path(
-                             `./out/source_code/${id}`
+                            `./out/source_code/${id}`
                         )
 
                         const interface_module_path = t_path_to_path.create_node_path(
@@ -96,7 +97,19 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                 ),
                                 ($) => [
                                     //write new interface files
-                                    $cr['write to directory'].execute(
+                                    c_write_to_directory(
+                                        {
+                                            'remove': $cr.remove,
+                                            'write to_file': c_write_to_file(
+                                                {
+                                                    'make directory': $cr['make directory'],
+                                                    'write file': $cr['write file'],
+                                                },
+                                                null,
+                                            ),
+                                        },
+                                        null,
+                                    ).execute(
                                         {
                                             'generic': {
                                                 'escape spaces in path': true,
@@ -116,7 +129,19 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                         ($) => ['could not write interface', null]
                                     ),
                                     //write new implementation files
-                                    $cr['write to directory'].execute(
+                                    c_write_to_directory(
+                                        {
+                                            'remove': $cr.remove,
+                                            'write to_file': c_write_to_file(
+                                                {
+                                                    'make directory': $cr['make directory'],
+                                                    'write file': $cr['write file'],
+                                                },
+                                                null,
+                                            ),
+                                        },
+                                        null,
+                                    ).execute(
                                         {
                                             'path': implementation_module_path,
                                             'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(

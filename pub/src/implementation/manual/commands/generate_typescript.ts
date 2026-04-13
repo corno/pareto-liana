@@ -13,6 +13,8 @@ import * as d_resource from "../../../interface/to_be_generated/generate_typescr
 import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved"
 
 //dependencies
+import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
+import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
 import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
 import * as r_unresolved_schema_from_loc from "../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation"
@@ -134,7 +136,19 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                             ),
 
                             //write new interface files
-                            $cr['write to directory'].execute(
+                            c_write_to_directory(
+                                {
+                                    'remove': $cr.remove,
+                                    'write to_file': c_write_to_file(
+                                        {
+                                            'make directory': $cr['make directory'],
+                                            'write file': $cr['write file'],
+                                        },
+                                        null,
+                                    ),
+                                },
+                                null,
+                            ).execute(
                                 {
                                     'generic': {
                                         'escape spaces in path': true,
@@ -154,7 +168,19 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                 ($) => ['could not write interface', null]
                             ),
                             //write new implementation files
-                            $cr['write to directory'].execute(
+                            c_write_to_directory(
+                                {
+                                    'remove': $cr.remove,
+                                    'write to_file': c_write_to_file(
+                                        {
+                                            'make directory': $cr['make directory'],
+                                            'write file': $cr['write file'],
+                                        },
+                                        null,
+                                    ),
+                                },
+                                null,
+                            ).execute(
                                 {
                                     'path': implementation_module_path,
                                     'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(

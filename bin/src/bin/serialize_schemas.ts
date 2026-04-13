@@ -2,7 +2,7 @@
 
 import * as _pn from 'pareto-host-nodejs'
 
-import { $$ as procedure } from "../implementation/manual/commands/serialize_schemas"
+import { $$ as procedure } from "lib/dist/implementation/manual/commands/serialize_schemas"
 
 _pn.run_main_command(
     ($r) => {

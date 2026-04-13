@@ -16,7 +16,7 @@ export namespace commands {
             'log error': resources_pareto.commands.log_error
             'make directory': resources_pareto.commands.make_directory
             'remove': resources_pareto.commands.remove
-            'write to directory': resources_fountain_pen.commands.write_to_directory
+            'write file': resources_pareto.commands.write_file
         },
         null
     >
@@ -29,7 +29,7 @@ export namespace commands {
             'log error': resources_pareto.commands.log_error
             'make directory': resources_pareto.commands.make_directory
             'remove': resources_pareto.commands.remove
-            'write to directory': resources_fountain_pen.commands.write_to_directory
+            'write file': resources_pareto.commands.write_file
         },
         {
             'read file': resources_pareto.queries.read_file
@@ -42,7 +42,7 @@ export namespace commands {
             'copy': resources_pareto.commands.copy
             'make directory': resources_pareto.commands.make_directory
             'remove': resources_pareto.commands.remove
-            'write to directory': resources_fountain_pen.commands.write_to_directory
+            'write file': resources_pareto.commands.write_file
         },
         {
             'read file': resources_pareto.queries.read_file

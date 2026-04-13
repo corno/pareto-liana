@@ -1,0 +1,17 @@
+{
+  "name": "liana-tool",
+  "version": "0.0.1",
+  "author": "Corno",
+  "license": "Apache-2.0",
+  "description": "A tool for the Liana schema modeling language",
+  "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "lib": "file:../pub",
+    "pareto-host-nodejs": "^0.2.41"
+  },
+  "bundleDependencies": true
+}
