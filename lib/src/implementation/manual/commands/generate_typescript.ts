@@ -40,14 +40,14 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
             ($v2) => _p_variables(() => {
                 const path = $p.target
 
-                const pub_path = t_path_to_path.extend_context_path_with_list(
+                const lib_path = t_path_to_path.extend_context_path_with_list(
                     path,
-                    { 'addition': _p.list.literal(["pub", "src"]) }
+                    { 'addition': _p.list.literal(["lib", "src"]) }
                 )
 
                 const interface_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
-                        pub_path,
+                        lib_path,
                         { 'addition': _p.list.literal(["interface", "generated"]) }
                     ),
                     {
@@ -56,7 +56,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 )
                 const implementation_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
-                        pub_path,
+                        lib_path,
                         { 'addition': _p.list.literal(["implementation", "generated"]) }
                     ),
                     {
@@ -207,7 +207,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     // //copy generic implementation files
                     // $cr.copy.execute(
                     //     {
-                    //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./pub/src/implementation/generated/liana"), "generic"),
+                    //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                     //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
                     //         'options': {
                     //             'recursive': _p.optional.literal.set(true),
@@ -221,7 +221,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     //copy core interface files
                     // $cr.copy.execute(
                     //     {
-                    //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./pub/src/interface/generated/liana"), "core"),
+                    //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                     //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
                     //         'options': {
                     //             'recursive': _p.optional.literal.set(true),
