@@ -24,54 +24,54 @@ export const $: g_.Modules = modules(
         })),
 
         "Value": module_(t.state({
-            "component": toption(t.group({
+            "component": toption_with_description("Reference to another type defined in a module (reusable named type)", t.group({
                 "type": prop(t.state({
-                    "external": toption(t.group({
+                    "external": toption_with_description("Reference a type from an imported schema", t.group({
                         "import": prop(t.reference("Schema Imports", [])),
                         "module": prop(t.reference("Modules", [])),
                     })),
-                    "internal": toption(t.reference("Modules", [], 'cyclic')),
-                    "internal acyclic": toption(t.reference("Modules", [])), //I don't think this will ever be needed
+                    "internal": toption_with_description("Reference a type within the same schema (allows cycles)", t.reference("Modules", [], 'cyclic')),
+                    "internal acyclic": toption_with_description("Reference a type within the same schema (no cycles)", t.reference("Modules", [])), //I don't think this will ever be needed
                 })),
                 "results": prop(t.component("Value Results")),
             })),
-            "dictionary": toption(t.component("Dictionary")),
-            "group": toption(t.component("Group")),
-            "list": toption(t.group({
+            "dictionary": toption_with_description("Indexed collection of named values (like a map or hash table)", t.component("Dictionary")),
+            "group": toption_with_description("Ordered collection of properties, each with a specific name and type", t.component("Group")),
+            "list": toption_with_description("Ordered sequence of values of the same type", t.group({
                 "value": prop(t.component("Value")),
                 "results": prop(t.component("Value Results")),
             })),
-            "nothing": toption(t.nothing()),
-            "simple": toption(t.state({
+            "nothing": toption_with_description("Empty value (unit type, no data)", t.nothing()),
+            "simple": toption_with_description("Primitive value types: boolean, number, or date", t.state({
                 "global": toption(t.reference("Globals", [vp.g("simple types")])),
             })),
-            "optional": toption(t.component("Value")),
-            "reference": toption(t.group({
-                "referent": prop(t.component("Value Reference")),
+            "optional": toption_with_description("Value that may or may not be present", t.component("Value")),
+            "reference": toption_with_description("Pointer to another value in the data (like a foreign key)", t.group({
+                "referent": prop_with_description("What this reference points to", t.component("Value Reference")),
                 "type": prop(t.state({
-                    "derived": toption(t.nothing()),
-                    "selected": toption(t.group({
+                    "derived": toption_with_description("Reference type is automatically derived from the target", t.nothing()),
+                    "selected": toption_with_description("Explicitly select which dictionary entry to reference", t.group({
                         "dictionary": prop(t.reference_derived("Dictionary", [])),
-                        "dependency": prop(t.state({
-                            "acyclic": toption(t.nothing()),
-                            "cyclic": toption(t.nothing()),
-                            "stack": toption(t.nothing()),
+                        "dependency": prop_with_description("How this reference affects dependency order", t.state({
+                            "acyclic": toption_with_description("No circular dependencies (default for cross-module references)", t.nothing()),
+                            "cyclic": toption_with_description("Allows circular instance references (only within same dictionary)", t.nothing()),
+                            "stack": toption_with_description("Push onto dependency stack for multi-level lookups", t.nothing()),
                         })),
                         "results": prop(t.component("Value Results")),
                     })),
                 })),
             })),
-            "state": toption(t.group({
-                "options": prop(t.dictionary(t.group({
+            "state": toption_with_description("Tagged union: value is one of several named options (like a sum type or enum)", t.group({
+                "options": prop_with_description("The possible variants, each with its own name and associated data", t.dictionary(t.group({
                     "constraints": prop(t.component("Option Constraints")),
-                    "description": prop(t.optional(t.text_global("multi line text"))),
+                    "description": prop_with_description("Documentation shown in IDE for this option", t.optional(t.text_global("multi line text"))),
                     "value": prop(t.component("Value")),
                 }))),
                 "results": prop(t.component("Value Results")),
             })),
-            "text": toption(t.state({
-                "global": toption(t.reference("Globals", [vp.g("text types")])),
-                "local": toption(t.component("Text Type")),
+            "text": toption_with_description("String value (single-line or multi-line)", t.state({
+                "global": toption_with_description("Use a globally defined text type", t.reference("Globals", [vp.g("text types")])),
+                "local": toption_with_description("Define the text type inline", t.component("Text Type")),
             })),
         })),
 
@@ -222,9 +222,9 @@ export const $: g_.Modules = modules(
             "resolver imports": prop(t.component("Resolver Imports")),
             "globals": prop(t.component("Globals")),
             "modules": prop(t.component("Modules")),
-            "complexity": prop(t.state({
-                "constrained": toption(t.component("Resolver")),
-                "unconstrained": toption(t.nothing()),
+            "complexity": prop_with_description("Whether this schema includes resolver definitions", t.state({
+                "constrained": toption_with_description("Schema has resolvers for validation and transformation", t.component("Resolver")),
+                "unconstrained": toption_with_description("Schema only defines structure, no resolvers", t.nothing()),
             })),
         })),
 
@@ -262,8 +262,8 @@ export const $: g_.Modules = modules(
 
         "Text Type": module_(t.group({
             "type": prop(t.state({
-                "multi line": toption(t.nothing()),
-                "single line": toption(t.nothing()),
+                "multi line": toption_with_description("Text can contain line breaks (like a textarea)", t.nothing()),
+                "single line": toption_with_description("Text on a single line (like an input field)", t.nothing()),
             })),
         })),
 
@@ -322,12 +322,12 @@ export const $: g_.Modules = modules(
 
         //FIXME: inline
         "Presence": module_(t.state({
-            "optional": toption(t.nothing()),
-            "required": toption(t.nothing()),
+            "optional": toption_with_description("This parameter may be omitted", t.nothing()),
+            "required": toption_with_description("This parameter must be provided", t.nothing()),
         })),
 
         "Dictionary": module_(t.group({
-            "value": prop(t.component("Value")),
+            "value": prop_with_description("The type of each entry in this dictionary", t.component("Value")),
         })),
 
         "Resolver Signatures": module_(t.dictionary(t.component("Resolver Signature"))),
@@ -349,8 +349,8 @@ export const $: g_.Modules = modules(
          * the properties in a group are ordered. This way there is a canonical concise representation
          */
         "Group": module_(t.dictionary(t.group({
-            "description": prop(t.optional(t.text_global("multi line text"))),
-            "value": prop(t.component("Value"))
+            "description": prop_with_description("Documentation shown in IDE for this property", t.optional(t.text_global("multi line text"))),
+            "value": prop_with_description("The type of this property", t.component("Value"))
         }))),
 
         "Value Reference": module_(t.group({ //FIXME: inline
@@ -359,14 +359,14 @@ export const $: g_.Modules = modules(
         })),
 
         "Value Path": module_(t.group({
-            "tail": prop(t.list_with_results(
+            "tail": prop_with_description("Navigate through nested structures: groups, states, dictionaries, lists, optionals", t.list_with_results(
                 t.state_with_result(
                     {
-                        "dictionary": toption(t.nothing()),
-                        "group": toption(t.reference("Group", [])),
-                        "list": toption(t.nothing()),
-                        "optional": toption(t.nothing()),
-                        "state": toption(t.reference("Value", [vp.s("state"), vp.g("options")])),
+                        "dictionary": toption_with_description("Navigate into a dictionary's values", t.nothing()),
+                        "group": toption_with_description("Navigate to a specific property in a group", t.reference("Group", [])),
+                        "list": toption_with_description("Navigate into a list's elements", t.nothing()),
+                        "optional": toption_with_description("Navigate into an optional's value", t.nothing()),
+                        "state": toption_with_description("Navigate to a specific option in a state", t.reference("Value", [vp.s("state"), vp.g("options")])),
                     },
                     {
                         "value": value_reference("Value", [])
@@ -382,9 +382,9 @@ export const $: g_.Modules = modules(
         })),
 
         "Module Reference": module_(t.group({
-            "location": prop(t.state({
-                "internal": toption(t.reference("Modules", [])),
-                "external": toption(t.group({
+            "location": prop_with_description("Where the referenced module is defined", t.state({
+                "internal": toption_with_description("Module is in the same schema", t.reference("Modules", [])),
+                "external": toption_with_description("Module is in an imported schema", t.group({
                     "import": prop(t.reference("Schema Imports", [])),
                     "module": prop(t.reference("Modules", [])),
                 })),
