@@ -23,35 +23,16 @@ export const $: g_.Modules = modules(
 
         "Lexer Error": module_(t.group({
             "range": prop(t.component_external("location", "Range")),
-            "type": prop(t.state({
-                "dangling slash": toption(t.group({
-                    "at end of input": prop(t.simple_boolean()),
+            "expected": prop(t.state({
+                "no end of line in text": toption(t.nothing()),
+                "escape character": toption(t.group({
+                    "found": prop(t.optional(t.simple("Natural"))),
                 })),
-                "invalid unicode escape sequence": toption(t.nothing()),
-                "missing character after escape": toption(t.nothing()),
-                // "unexpected character": tstate(t.group({
-                //     "character": prop(t.number_global("Natural")),
-                //     "location": prop(t.component_external("token", "Location")),
-                // })),
-                "unexpected control character": toption(t.group({
-                    "character": prop(t.simple("Natural")),
+                "unicode character": toption(t.group({
+                    "found": prop(t.optional(t.simple("Natural"))),
                 })),
-                "unexpected control character in text": toption(t.group({
-                    "character": prop(t.simple("Natural")),
-                })),
-                "unexpected end of line in delimited text": toption(t.nothing()),
-                "unknown escape character": toption(t.group({
-                    "character": prop(t.simple("Natural")),
-                })),
-                "unterminated block comment": toption(t.nothing()),
-                "unterminated text": toption(t.nothing()),
-                "unterminated unicode escape sequence": toption(t.nothing()),
-                "unexpected": toption(t.group({
-                    "expected": prop(t.list(t.state({
-                        "end of block comment": toption(t.nothing()),
-                        "end of delimited text": toption(t.nothing()),
-                    })))
-                }))
+                "block comment termination": toption(t.nothing()),
+                "text termination": toption(t.nothing()),
             }))
         })),
 
