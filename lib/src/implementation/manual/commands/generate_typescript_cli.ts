@@ -99,7 +99,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                                     {
                                         'message': sh.pg.sentences([
                                             sh.sentence([
-                                                t_generate_typescript_to_fp.Error($, { 'character location reporting': ['one based', null] }),
+                                                t_generate_typescript_to_fp.Error($),
                                             ])
                                         ])
                                     },
