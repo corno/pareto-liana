@@ -13,7 +13,10 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 
 export const $: g_.Modules = modules(
     {
-        "Parameters": module_(t.component_external("path", "Node Path")),
+        "Parameters": module_(t.group({
+            "delete existing": prop(t.simple("boolean")),
+            "path": prop(t.component_external("path", "Node Path")),
+        })),
 
         "Error": module_(t.group({
             "path": prop(t.component_external("path", "Node Path")),

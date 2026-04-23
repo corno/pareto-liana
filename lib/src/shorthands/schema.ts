@@ -140,7 +140,7 @@ export namespace n {
         }]),
     })
 
-    export const boolean = (decimal_separator_offset: null | number): d_target.Simple_Type => ({
+    export const boolean = (): d_target.Simple_Type => ({
         'type': sh.state(['boolean', null]),
     })
 

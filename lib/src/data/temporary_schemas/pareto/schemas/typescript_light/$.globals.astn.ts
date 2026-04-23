@@ -17,7 +17,7 @@ export const $: g_.Globals = globals(
     },
     {
         "Approximation": n.approximation(10),
-        "boolean": n.boolean(null),
+        "boolean": n.boolean(),
     },
 )
 

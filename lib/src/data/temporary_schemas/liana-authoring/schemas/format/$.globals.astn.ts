@@ -17,7 +17,7 @@ export const $: g_.Globals = globals(
     },
     {
         "Position": n.natural(null),
-        "boolean": n.boolean(null),
+        "boolean": n.boolean(),
     },
 )
 

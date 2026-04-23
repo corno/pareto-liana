@@ -14,7 +14,7 @@ export const $: g_.Globals = globals(
         "Output": text('single line'),
     },
     {
-        "boolean": n.boolean(null),
+        "boolean": n.boolean(),
     },
 )
 
