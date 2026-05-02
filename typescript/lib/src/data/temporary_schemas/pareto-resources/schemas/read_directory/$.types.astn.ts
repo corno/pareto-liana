@@ -14,11 +14,11 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
         "Parameters": module_(t.group({
-            "path": prop(t.component_external("path", "Node Path")),
+            "path": prop(t.component_external("path", "Context Path")),
         })),
 
         "Error": module_(t.group({
-            "path": prop(t.component_external("path", "Node Path")),
+            "path": prop(t.component_external("path", "Context Path")),
             "type": prop(t.state({
                 "directory does not exist": toption(t.nothing()),
                 "node is not a directory": toption(t.nothing()),
@@ -33,7 +33,7 @@ export const $: g_.Modules = modules(
              * it is provided so that there is no need to store a variable
              */
             "context directory": prop(t.component_external("path", "Context Path")),
-            "path": prop(t.component_external("path", "Context Path")),
+            "path": prop(t.component_external("path", "Node Path")),
         }))),
 
         "Node Type": module_(t.state({

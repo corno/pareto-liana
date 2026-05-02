@@ -21,6 +21,7 @@ import { $ as m_read_directory } from "./schemas/read_directory/$.module.astn"
 import { $ as m_read_file } from "./schemas/read_file/$.module.astn"
 import { $ as m_remove } from "./schemas/remove/$.module.astn"
 import { $ as m_stat } from "./schemas/stat/$.module.astn"
+import { $ as m_stat_possible_node } from "./schemas/stat_possible_node/$.module.astn"
 import { $ as m_terminal_output} from "./schemas/terminal_output/$.module.astn"
 import { $ as m_list_of_characters } from "./schemas/list_of_characters/$.module.astn"
 import { $ as m_write_file } from "./schemas/write_file/$.module.astn"
@@ -46,6 +47,7 @@ export const $: g_.Schema_Tree = st.set({
     "read file": m_read_file,
     "remove": m_remove,
     "stat": m_stat,
+    "stat possible node": m_stat_possible_node,
     "terminal output": m_terminal_output,
     "list of characters": m_list_of_characters,
     "write file": m_write_file,
