@@ -49,7 +49,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                 $cr['write file'].execute(
                                     {
                                         'path': t_path_to_path.create_node_path(
-                                            t_path_to_path.extend_context_path(r_path_from_temp_string.Context_Path($['target path']), { 'addition': "liana" }),
+                                            t_path_to_path.extend_context_path_with_single_step(r_path_from_temp_string.Context_Path($['target path']), { 'addition': "liana" }),
                                             { 'node': "module.liana.lna" }
                                         ),
                                         // 'data': _p_list_from_text(
