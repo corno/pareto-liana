@@ -42,7 +42,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
 
                 const lib_path = t_path_to_path.extend_context_path_with_list(
                     path,
-                    { 'addition': _p.list.literal(["lib", "src"]) }
+                    { 'addition': _p.list.literal(["typescript", "lib", "src"]) }
                 )
 
                 const interface_module_path = t_path_to_path.create_node_path(

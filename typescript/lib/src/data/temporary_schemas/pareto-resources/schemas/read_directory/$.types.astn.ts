@@ -33,7 +33,7 @@ export const $: g_.Modules = modules(
              * it is provided so that there is no need to store a variable
              */
             "context directory": prop(t.component_external("path", "Context Path")),
-            "path": prop(t.component_external("path", "Node Path")),
+            "path": prop(t.component_external("path", "Context Path")),
         }))),
 
         "Node Type": module_(t.state({
