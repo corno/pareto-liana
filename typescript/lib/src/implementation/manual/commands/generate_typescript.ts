@@ -141,7 +141,6 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'remove': $cr.remove,
                                     'write to_file': c_write_to_file(
                                         {
-                                            'make directory': $cr['make directory'],
                                             'write file': $cr['write file'],
                                         },
                                         null,
@@ -173,7 +172,6 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     'remove': $cr.remove,
                                     'write to_file': c_write_to_file(
                                         {
-                                            'make directory': $cr['make directory'],
                                             'write file': $cr['write file'],
                                         },
                                         null,
