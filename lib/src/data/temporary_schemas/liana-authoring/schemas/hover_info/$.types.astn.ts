@@ -14,7 +14,7 @@ import * as g_ from "../../../../../interface/generated/liana/schemas/schema/dat
 export const $: g_.Modules = modules(
     {
 
-        "Hover Texts": module_(t.optional(t.list(t.text_global("text")))),
+        "Hover Texts": module_(t.list(t.text_global("text"))),
 
     }
 )
