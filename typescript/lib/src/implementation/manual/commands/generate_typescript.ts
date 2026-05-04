@@ -117,24 +117,6 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                         }),
                         ($) => [
 
-                            //remove old implementation files
-                            $cr.remove.execute(
-                                {
-                                    'path': implementation_module_path,
-                                    'error if not exists': false,
-                                },
-                                ($) => ['could not remove implementation', null]
-                            ),
-
-                            //remove old interface files
-                            $cr.remove.execute(
-                                {
-                                    'path': interface_module_path,
-                                    'error if not exists': false,
-                                },
-                                ($) => ['could not remove interface', null]
-                            ),
-
                             //write new interface files
                             c_write_to_directory(
                                 {

@@ -73,7 +73,12 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //remove old implementation files
                             $cr.remove.execute(
                                 {
-                                    'path': implementation_module_path,
+                                    'path': t_path_to_path.extend_context_path_with_single_step(
+                                        path,
+                                        {
+                                            'addition': "implementation"
+                                        }
+                                    ),
                                     'error if not exists': false,
                                 },
                                 ($) => ['could not remove implementation', null]
@@ -82,7 +87,12 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //remove old interface files
                             $cr.remove.execute(
                                 {
-                                    'path': interface_module_path,
+                                    'path': t_path_to_path.extend_context_path_with_single_step(
+                                        path,
+                                        {
+                                            'addition': "interface"
+                                        }
+                                    ),
                                     'error if not exists': false,
                                 },
                                 ($) => ['could not remove interface', null]
