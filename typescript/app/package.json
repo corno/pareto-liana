@@ -1,9 +1,9 @@
 {
-  "name": "liana-tool",
+  "name": "liana-app",
   "version": "0.0.1",
   "author": "Corno",
   "license": "Apache-2.0",
-  "description": "A tool for the Liana schema modeling language",
+  "description": "An app for the Liana schema modeling language",
   "main": "./dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -12,6 +12,9 @@
   "dependencies": {
     "lib": "file:../lib",
     "pareto-host-nodejs": "^0.2.0"
+  },
+  "bin": {
+    "compile_schemas": "./dist/bin/compile_temp_schemas.js"
   },
   "bundleDependencies": true
 }
