@@ -20,15 +20,13 @@ export const $: g_.Modules = modules(
                 "error": toption(t.state({
                     "invalid value type": toption(t.group({
                         "expected": prop(t.list(t.state({
-                            "text": toption(t.nothing()),
-                            "verbose group": toption(t.nothing()),
-                            "concise group": toption(t.nothing()),
                             "dictionary": toption(t.nothing()),
-                            "not set": toption(t.nothing()),
-                            "nothing": toption(t.nothing()),
-                            "set": toption(t.nothing()),
+                            "group": toption(t.nothing()),
                             "list": toption(t.nothing()),
+                            "nothing": toption(t.nothing()),
+                            "optional": toption(t.nothing()),
                             "state": toption(t.nothing()),
+                            "text": toption(t.nothing()),
                         }))),
                     })),
                     "duplicate property": toption(t.group({
