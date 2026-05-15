@@ -93,20 +93,40 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
     }
     const schema = temp_find_schema(resolved_schema_schema.schema, resolved_schema_schema['schema path'])
 
-    const type = schema.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
-        ($) => $,
-        () => {
-            schema.modules.__d_map(($, id) => {
-                _p_log_debug_message(`available type: ${id}`, () => { })
+    return _p.decide.state(schema.complexity, ($) => {
+        switch ($[0]) {
+            case 'constrained': return _p.ss($, ($) => {
+                return ['constrained', {
+                    'entry': $.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
+                        ($) => $,
+                        () => {
+                            schema.modules.__d_map(($, id) => {
+                                _p_log_debug_message(`available type: ${id}`, () => { })
+                            })
+                            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
+                        }
+                    ),
+                    'id': resolved_schema_schema.module,
+                }]
             })
-            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
-        }
-    )
+            case 'unconstrained': return _p.ss($, ($) => {
 
-    return {
-        'root': {
-            'entry': type,
-            'id': resolved_schema_schema.module,
+                return ['unconstrained', {
+                    'entry': schema.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
+                        ($) => $,
+                        () => {
+                            schema.modules.__d_map(($, id) => {
+                                _p_log_debug_message(`available type: ${id}`, () => { })
+                            })
+                            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
+                        }
+                    ),
+                    'id': resolved_schema_schema.module,
+                }]
+            })
+            default: return _p.au($[0])
         }
-    }
+    })
+
+
 }
