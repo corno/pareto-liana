@@ -125,31 +125,36 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     }
                 })
                 return ['constrained', {
-                    'entry': constrained_schema.modules.__get_possible_entry_deprecated($['module resolver']).__decide(
-                        ($) => $,
-                        () => {
-                            schema.modules.__d_map(($, id) => {
-                                _p_log_debug_message(`available type: ${id}`, () => { })
-                            })
-                            _p_implement_me(`(FIXME: make this a reference) root type ${$['module resolver']} not found`)
-                        }
-                    ),
-                    'id': $['module resolver'],
+                    'resolver': constrained_schema,
+                    'module resolver': {
+                        'entry': constrained_schema.modules.__get_possible_entry_deprecated($['module resolver']).__decide(
+                            ($) => $,
+                            () => {
+                                schema.modules.__d_map(($, id) => {
+                                    _p_log_debug_message(`available type: ${id}`, () => { })
+                                })
+                                _p_implement_me(`(FIXME: make this a reference) root type ${$['module resolver']} not found`)
+                            }
+                        ),
+                        'id': $['module resolver'],
+                    }
                 }]
             })
             case 'unconstrained': return _p.ss($, ($) => {
 
                 return ['unconstrained', {
-                    'entry': schema.modules.__get_possible_entry_deprecated($.module).__decide(
-                        ($) => $,
-                        () => {
-                            schema.modules.__d_map(($, id) => {
-                                _p_log_debug_message(`available type: ${id}`, () => { })
-                            })
-                            _p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
-                        }
-                    ),
-                    'id': $.module,
+                    'module': {
+                        'entry': schema.modules.__get_possible_entry_deprecated($.module).__decide(
+                            ($) => $,
+                            () => {
+                                schema.modules.__d_map(($, id) => {
+                                    _p_log_debug_message(`available type: ${id}`, () => { })
+                                })
+                                _p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
+                            }
+                        ),
+                        'id': $.module,
+                    }
                 }]
             })
             default: return _p.au($[0])
