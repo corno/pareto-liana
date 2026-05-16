@@ -5,12 +5,16 @@ import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_target from "../interface/generated/liana/schemas/schema/data/unresolved"
 
+import * as temp_schema from "./schema"
+
 export const resolver_modules = (
     resolvers: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,
 ): d_target.Resolver_Modules => {
     return sh.dictionary(resolvers)
 }
 
+
+export const module_reference = temp_schema.module_reference
 
 
 /**

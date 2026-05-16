@@ -1386,14 +1386,51 @@ export namespace Module_Specification_ {
         readonly 'l list': schema_path.l_list
     }
     
-    export type module_ = string
+    export namespace complexity {
+        
+        export type l_location = i_location.Range
+        
+        export namespace l_state {
+            
+            export namespace constrained {
+                
+                export type module_resolver = string
+                
+            }
+            
+            export type constrained = {
+                readonly 'module resolver': constrained.module_resolver
+            }
+            
+            export namespace unconstrained {
+                
+                export type module_ = string
+                
+            }
+            
+            export type unconstrained = {
+                readonly 'module': unconstrained.module_
+            }
+            
+        }
+        
+        export type l_state = 
+            | readonly ['constrained', l_state.constrained]
+            | readonly ['unconstrained', l_state.unconstrained]
+        
+    }
+    
+    export type complexity = {
+        readonly 'l location': complexity.l_location
+        readonly 'l state': complexity.l_state
+    }
     
 }
 
 export type Module_Specification_ = {
     readonly 'schema': Module_Specification_.schema
     readonly 'schema path': Module_Specification_.schema_path
-    readonly 'module': Module_Specification_.module_
+    readonly 'complexity': Module_Specification_.complexity
 }
 
 export namespace Schema_Tree_ {

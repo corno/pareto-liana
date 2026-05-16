@@ -2017,9 +2017,57 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
             ),
         }),
     ),
-    'module': _p_change_context(
-        $['module'],
-        ($) => $,
+    'complexity': _p_change_context(
+        $['complexity'],
+        ($) => ({
+            'l location': ['in main document', {
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+            }],
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Module_Specification.complexity.l_state => {
+                    switch ($[0]) {
+                        case 'constrained':
+                            return _p.ss(
+                                $,
+                                ($) => ['constrained', {
+                                    'module resolver': _p_change_context(
+                                        $['module resolver'],
+                                        ($) => $,
+                                    ),
+                                }],
+                            )
+                        case 'unconstrained':
+                            return _p.ss(
+                                $,
+                                ($) => ['unconstrained', {
+                                    'module': _p_change_context(
+                                        $['module'],
+                                        ($) => $,
+                                    ),
+                                }],
+                            )
+                        default:
+                            return _p.au(
+                                $[0],
+                            )
+                    }
+                },
+            ),
+        }),
     ),
 })
 

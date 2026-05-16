@@ -1,20 +1,16 @@
-import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
-
-import { schema_, constrained } from "../../../../../shorthands/schema"
-
+import * as sh from "../../../../../shorthands/schema"
 
 import { $ as schema } from "./$.types.astn"
 import { $ as globals } from "./$.globals.astn"
 import { $ as signatures } from "./$.signatures.astn"
 import { $ as resolver } from "./$.resolvers.astn"
 
-export const $: g_.Schemas.l_dictionary.D.l_entry = schema_(
+export const $ = sh.schema_(
     {}, {},
     globals,
     schema,
-    constrained(
+    sh.constrained(
         signatures,
         resolver,
     ),

@@ -1,22 +1,15 @@
-import * as _pi from 'pareto-core/dist/interface'
+import * as sh from "../../../../../shorthands/schema"
 
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
-
-export const $: g_.Globals = globals(
+export const $ = sh.globals(
 
          'constrained',
     {
-        "multi line text": text('multi line'),
-        "text": text('single line'),
+        "multi line text": sh.text('multi line'),
+        "text": sh.text('single line'),
     },
     {
-        "Natural": n.natural(null),
-        "boolean": n.boolean(),
+        "Natural": sh.n.natural(null),
+        "boolean": sh.n.boolean(),
     },
 )
 

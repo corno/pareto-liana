@@ -1,67 +1,57 @@
-import * as _pi from 'pareto-core/dist/interface'
+import * as sh from "../../../../../shorthands/resolver"
 
-import {
-    resolver_modules, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs,
-} from "../../../../../shorthands/resolver"
-import {
-    module_reference,
-} from "../../../../../shorthands/schema"
-
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
-
-
-export const $: g_.Resolver_Modules = resolver_modules(
+export const $ = sh.resolver_modules(
     {
-        "Package": resolver(r.group({
-            "omit (de)serializer": r.simple_boolean(),
-            "schema tree": r.component("Schema Tree", {}, {
-                "sibling schemas": al.stack.empty(),
+        "Package": sh.resolver(sh.r.group({
+            "omit (de)serializer": sh.r.simple_boolean(),
+            "schema tree": sh.r.component("Schema Tree", {}, {
+                "sibling schemas": sh.al.stack.empty(),
             }),
 
         })),
 
-        "Module": resolver(r.group({
-            "root value": r.component("Value", {
-                "globals": av.parameter("globals"),
-                "imports": av.parameter("imports"),
+        "Module": sh.resolver(sh.r.group({
+            "root value": sh.r.component("Value", {
+                "globals": sh.av.parameter("globals"),
+                "imports": sh.av.parameter("imports"),
             }, {
-                "noncircular sibling modules": al.parameter(("noncircular sibling modules")),
-                "possibly circular dependent sibling modules": al.parameter(("possibly circular dependent sibling modules")),
+                "noncircular sibling modules": sh.al.parameter(("noncircular sibling modules")),
+                "possibly circular dependent sibling modules": sh.al.parameter(("possibly circular dependent sibling modules")),
             })
         })),
 
-        "Modules": resolver(r.dictionary(r.component("Module", {
-            "globals": av.parameter("globals"),
-            "imports": av.parameter("imports"),
+        "Modules": sh.resolver(sh.r.dictionary(sh.r.component("Module", {
+            "globals": sh.av.parameter("globals"),
+            "imports": sh.av.parameter("imports"),
         }, {
-            "noncircular sibling modules": al.acyclic.siblings(),
-            "possibly circular dependent sibling modules": al.cyclic.siblings(),
+            "noncircular sibling modules": sh.al.acyclic.siblings(),
+            "possibly circular dependent sibling modules": sh.al.cyclic.siblings(),
         }))),
 
-        "Globals": resolver(r.group({
-            "complexity": r.state({
-                "unconstrained": option(r.nothing()),
-                "constrained": option(r.nothing()),
+        "Globals": sh.resolver(sh.r.group({
+            "complexity": sh.r.state({
+                "unconstrained": sh.option(sh.r.nothing()),
+                "constrained": sh.option(sh.r.nothing()),
             }),
-            "text types": r.dictionary(r.component("Text Type", {}, {})),
-            "simple types": r.dictionary(r.component("Simple Type", {}, {})),
+            "text types": sh.r.dictionary(sh.r.component("Text Type", {}, {})),
+            "simple types": sh.r.dictionary(sh.r.component("Simple Type", {}, {})),
         })),
 
-        "Simple Type": resolver(r.group({
-            "type": r.state({
-                "boolean": option(r.nothing()),
-                "date": option(r.nothing()),
-                "number": option(r.group({
-                    "precision": r.state({
-                        "approximation": option(r.group({
-                            "significant digits": r.simple_number(),
+        "Simple Type": sh.resolver(sh.r.group({
+            "type": sh.r.state({
+                "boolean": sh.option(sh.r.nothing()),
+                "date": sh.option(sh.r.nothing()),
+                "number": sh.option(sh.r.group({
+                    "precision": sh.r.state({
+                        "approximation": sh.option(sh.r.group({
+                            "significant digits": sh.r.simple_number(),
                         })),
-                        "exact": option(r.group({
-                            "number of fractional digits": r.optional(r.simple_number()),
-                            "type": r.state({
-                                "integer": option(r.nothing()),
-                                "natural": option(r.nothing()),
-                                "positive natural": option(r.nothing()),
+                        "exact": sh.option(sh.r.group({
+                            "number of fractional digits": sh.r.optional(sh.r.simple_number()),
+                            "type": sh.r.state({
+                                "integer": sh.option(sh.r.nothing()),
+                                "natural": sh.option(sh.r.nothing()),
+                                "positive natural": sh.option(sh.r.nothing()),
                             }),
                         })),
                     })
@@ -69,385 +59,385 @@ export const $: g_.Resolver_Modules = resolver_modules(
             }),
         })),
 
-        "Text Type": resolver(r.group({
-            "type": r.state({
-                "multi line": option(r.nothing()),
-                "single line": option(r.nothing()),
+        "Text Type": sh.resolver(sh.r.group({
+            "type": sh.r.state({
+                "multi line": sh.option(sh.r.nothing()),
+                "single line": sh.option(sh.r.nothing()),
             }),
         })),
 
-        "Module Reference": resolver(r.group({
-            "location": r.state(
+        "Module Reference": sh.resolver(sh.r.group({
+            "location": sh.r.state(
                 {
-                    "internal": option(r.reference(ls.parameter("modules"))),
-                    "external": option_constrained(
+                    "internal": sh.option(sh.r.reference(sh.ls.parameter("modules"))),
+                    "external": sh.option_constrained(
                         {
-                            "import": oc.assert_set(pvs.parameter("imports"))
-                        }, r.group({
-                            "import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("import", []))),
-                            "module": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("modules"), rvs.component()]))),
+                            "import": sh.oc.assert_set(sh.pvs.parameter("imports"))
+                        }, sh.r.group({
+                            "import": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("import", []))),
+                            "module": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("import", [sh.rvs.reference(), sh.rvs.group("schema"), sh.rvs.reference(), sh.rvs.group("modules"), sh.rvs.component()]))),
                         })),
                 }
             ),
-            "resulting module": r.reference_derived(gvs.state("location", module_reference("Module"), [])),
+            "resulting module": sh.r.reference_derived(sh.gvs.state("location", sh.module_reference("Module"), [])),
         })),
 
-        "Value Reference": resolver(r.group({
-            "module": r.component("Module Reference", null, null),
-            "path": r.component("Value Path", { "module": av.required(gvs.sibling("module", [rvs.component(), rvs.group("resulting module"), rvs.reference()])) }, {}),
+        "Value Reference": sh.resolver(sh.r.group({
+            "module": sh.r.component("Module Reference", null, null),
+            "path": sh.r.component("Value Path", { "module": sh.av.required(sh.gvs.sibling("module", [sh.rvs.component(), sh.rvs.group("resulting module"), sh.rvs.reference()])) }, {}),
         })),
 
-        "Value Path": resolver(r.group({
-            "tail": r.list_with_result(
-                r.state({
-                    "dictionary": option_constrained(
+        "Value Path": sh.resolver(sh.r.group({
+            "tail": sh.r.list_with_result(
+                sh.r.state({
+                    "dictionary": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "dictionary")
-                        }, r.nothing()),
-                    "group": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "dictionary")
+                        }, sh.r.nothing()),
+                    "group": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "group")
-                        }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("definition", [rvs.component()])))),
-                    "list": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "group")
+                        }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("definition", [sh.rvs.component()])))),
+                    "list": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "list")
-                        }, r.nothing()),
-                    "optional": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "list")
+                        }, sh.r.nothing()),
+                    "optional": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "optional")
-                        }, r.nothing()),
-                    "state": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "optional")
+                        }, sh.r.nothing()),
+                    "state": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "state")
-                        }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("definition", [rvs.group("options")])))),
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "state")
+                        }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("definition", [sh.rvs.group("options")])))),
                 }),
-                module_reference("Value"),
+                sh.module_reference("Value"),
             ),
-            "resulting node": r.reference_derived(gvs.list("tail", [])),
+            "resulting node": sh.r.reference_derived(sh.gvs.list("tail", [])),
         })),
 
-        "Value Results": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
+        "Value Results": sh.resolver(sh.r.optional(sh.r.dictionary(sh.r.component("Value Reference", null, null)))),
 
-        "Option Constraints": resolver(r.optional(r.dictionary(r.component("Value Reference", null, null)))),
+        "Option Constraints": sh.resolver(sh.r.optional(sh.r.dictionary(sh.r.component("Value Reference", null, null)))),
 
-        "Group": resolver(r.dictionary(r.group({
-            "description": r.optional(r.text()),
-            "value": r.component("Value",
+        "Group": sh.resolver(sh.r.dictionary(sh.r.group({
+            "description": sh.r.optional(sh.r.text()),
+            "value": sh.r.component("Value",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                    "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                 }
             ),
         }))),
 
-        "Dictionary": resolver(r.group({
-            "value": r.component("Value",
+        "Dictionary": sh.resolver(sh.r.group({
+            "value": sh.r.component("Value",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                    "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                 }
             ),
         })),
 
-        "Value": resolver(r.state({
-            "component": option(r.group({
-                "type": r.state({
-                    "external": option_constrained(
+        "Value": sh.resolver(sh.r.state({
+            "component": sh.option(sh.r.group({
+                "type": sh.r.state({
+                    "external": sh.option_constrained(
                         {
-                            "import": oc.assert_set(pvs.parameter("imports"))
-                        }, r.group({
-                            "import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("import", []))),
-                            "module": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("modules"), rvs.component()]))),
+                            "import": sh.oc.assert_set(sh.pvs.parameter("imports"))
+                        }, sh.r.group({
+                            "import": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("import", []))),
+                            "module": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("import", [sh.rvs.reference(), sh.rvs.group("schema"), sh.rvs.reference(), sh.rvs.group("modules"), sh.rvs.component()]))),
                         })),
-                    "internal acyclic": option(r.reference(ls.parameter("noncircular sibling modules"))),
-                    "internal": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
+                    "internal acyclic": sh.option(sh.r.reference(sh.ls.parameter("noncircular sibling modules"))),
+                    "internal": sh.option(sh.r.reference(sh.ls.parameter("possibly circular dependent sibling modules"))),
                 }),
-                "results": r.component("Value Results", {
-                    "imports": av.parameter("imports"),
+                "results": sh.r.component("Value Results", {
+                    "imports": sh.av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling modules"),
+                    "modules": sh.al.parameter("noncircular sibling modules"),
                 }),
             })),
-            "dictionary": option(r.component("Dictionary",
+            "dictionary": sh.option(sh.r.component("Dictionary",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                    "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
-            "group": option(r.component("Group",
+            "group": sh.option(sh.r.component("Group",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                    "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                 }
             )),
-            "list": option(r.group({
-                "value": r.component("Value", null, null),
-                "results": r.component("Value Results", {
-                    "imports": av.parameter("imports"),
+            "list": sh.option(sh.r.group({
+                "value": sh.r.component("Value", null, null),
+                "results": sh.r.component("Value Results", {
+                    "imports": sh.av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling modules"),
+                    "modules": sh.al.parameter("noncircular sibling modules"),
                 }),
             })),
-            "nothing": option(r.nothing()),
-            "simple": option(r.state({
-                "global": option_constrained(
+            "nothing": sh.option(sh.r.nothing()),
+            "simple": sh.option(sh.r.state({
+                "global": sh.option_constrained(
                     {
-                        "globals": oc.assert_set(pvs.parameter("globals"))
-                    }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("simple types")])))),
+                        "globals": sh.oc.assert_set(sh.pvs.parameter("globals"))
+                    }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("globals", [sh.rvs.group("simple types")])))),
             })),
-            "optional": option(r.component("Value", null, null)),
-            "reference": option(r.group({
-                "referent": r.component("Value Reference", {
-                    "imports": av.parameter("imports"),
+            "optional": sh.option(sh.r.component("Value", null, null)),
+            "reference": sh.option(sh.r.group({
+                "referent": sh.r.component("Value Reference", {
+                    "imports": sh.av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling modules"),
+                    "modules": sh.al.parameter("noncircular sibling modules"),
                 }),
-                "type": r.state({
-                    "derived": option(r.nothing()),
-                    "selected": option_constrained(
+                "type": sh.r.state({
+                    "derived": sh.option(sh.r.nothing()),
+                    "selected": sh.option_constrained(
                         {
-                            "dictionary": oc.state(
-                                gvs.sibling(
+                            "dictionary": sh.oc.state(
+                                sh.gvs.sibling(
                                     "referent",
-                                    [rvs.component(), rvs.group("module"), rvs.component(), rvs.group("resulting module"), rvs.reference(), rvs.group("root value"), rvs.component()]
+                                    [sh.rvs.component(), sh.rvs.group("module"), sh.rvs.component(), sh.rvs.group("resulting module"), sh.rvs.reference(), sh.rvs.group("root value"), sh.rvs.component()]
                                 ),
                                 "dictionary"
                             )
-                        }, r.group({
-                            "dictionary": r.reference_derived(gvs.option_constraint("dictionary", [])),
-                            "dependency": r.state({
-                                "acyclic": option(r.nothing()),
-                                "cyclic": option(r.nothing()),
-                                "stack": option(r.nothing()),
+                        }, sh.r.group({
+                            "dictionary": sh.r.reference_derived(sh.gvs.option_constraint("dictionary", [])),
+                            "dependency": sh.r.state({
+                                "acyclic": sh.option(sh.r.nothing()),
+                                "cyclic": sh.option(sh.r.nothing()),
+                                "stack": sh.option(sh.r.nothing()),
                             }),
-                            "results": r.component("Value Results", {
-                                "imports": av.parameter("imports"),
+                            "results": sh.r.component("Value Results", {
+                                "imports": sh.av.parameter("imports"),
                             }, {
-                                "modules": al.parameter("noncircular sibling modules"),
+                                "modules": sh.al.parameter("noncircular sibling modules"),
                             }),
                         })),
                 }),
             })),
-            "state": option(r.group({
-                "options": r.dictionary(r.group({
-                    "constraints": r.component("Option Constraints", {
-                        "imports": av.parameter("imports"),
+            "state": sh.option(sh.r.group({
+                "options": sh.r.dictionary(sh.r.group({
+                    "constraints": sh.r.component("Option Constraints", {
+                        "imports": sh.av.parameter("imports"),
                     }, {
-                        "modules": al.parameter("noncircular sibling modules"),
+                        "modules": sh.al.parameter("noncircular sibling modules"),
                     }),
-                    "value": r.component("Value", null, null),
-                    "description": r.optional(r.text()),
+                    "value": sh.r.component("Value", null, null),
+                    "description": sh.r.optional(sh.r.text()),
                 })),
-                "results": r.component("Value Results", {
-                    "imports": av.parameter("imports"),
+                "results": sh.r.component("Value Results", {
+                    "imports": sh.av.parameter("imports"),
                 }, {
-                    "modules": al.parameter("noncircular sibling modules"),
+                    "modules": sh.al.parameter("noncircular sibling modules"),
                 }),
             })),
-            "text": option(r.state({
-                "global": option_constrained(
+            "text": sh.option(sh.r.state({
+                "global": sh.option_constrained(
                     {
-                        "globals": oc.assert_set(pvs.parameter("globals"))
-                    }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
-                "local": option(r.component("Text Type", {}, {})),
+                        "globals": sh.oc.assert_set(sh.pvs.parameter("globals"))
+                    }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("globals", [sh.rvs.group("text types")])))),
+                "local": sh.option(sh.r.component("Text Type", {}, {})),
             })),
         })),
 
-        "Resolver Relative Value Selection": resolver(r.group({
-            "path": r.list_with_result(
-                r.state({
-                    "component": option_constrained(
+        "Resolver Relative Value Selection": sh.resolver(sh.r.group({
+            "path": sh.r.list_with_result(
+                sh.r.state({
+                    "component": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "component")
-                        }, r.nothing()),
-                    "group": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "component")
+                        }, sh.r.nothing()),
+                    "group": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "group")
-                        }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("definition", [rvs.component()])))),
-                    "reference": option_constrained(
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "group")
+                        }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("definition", [sh.rvs.component()])))),
+                    "reference": sh.option_constrained(
                         {
-                            "definition": oc.state(gvs.list_cursor([]), "reference")
+                            "definition": sh.oc.state(sh.gvs.list_cursor([]), "reference")
                         },
-                        r.group({
-                            "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                        sh.r.group({
+                            "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
                         })
                     ),
                 }),
-                module_reference("Value"),
+                sh.module_reference("Value"),
             ),
-            "resulting node": r.reference_derived(gvs.list("path", [])),
+            "resulting node": sh.r.reference_derived(sh.gvs.list("path", [])),
         })),
 
-        "Presence": resolver(r.state({
-            "optional": option(r.nothing()),
-            "required": option(r.nothing()),
+        "Presence": sh.resolver(sh.r.state({
+            "optional": sh.option(sh.r.nothing()),
+            "required": sh.option(sh.r.nothing()),
         })),
 
-        "Resolver Signature Parameters": resolver(r.group({
-            "modules": r.dictionary(r.group({
-                "module": r.component("Module Reference", {
-                    "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
+        "Resolver Signature Parameters": sh.resolver(sh.r.group({
+            "modules": sh.r.dictionary(sh.r.group({
+                "module": sh.r.component("Module Reference", {
+                    "imports": sh.av.optional(sh.ovi.set(sh.gvs.parameter("imports", []))),
                 }, {
-                    "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                    "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                 }),
-                "presence": r.component("Presence", {}, {}),
+                "presence": sh.r.component("Presence", {}, {}),
             })),
-            "lookups": r.dictionary(r.group({
-                "referent": r.component_constrained("Module Reference", {
-                    "imports": av.optional(ovi.set(gvs.parameter("imports", []))),
+            "lookups": sh.r.dictionary(sh.r.group({
+                "referent": sh.r.component_constrained("Module Reference", {
+                    "imports": sh.av.optional(sh.ovi.set(sh.gvs.parameter("imports", []))),
                 }, {
-                    "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                    "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                 }, {
-                    "dictionary": vcr.value([rvs.group("resulting module"), rvs.reference(), rvs.group("root value"), rvs.component()], "dictionary"),
+                    "dictionary": sh.vcr.value([sh.rvs.group("resulting module"), sh.rvs.reference(), sh.rvs.group("root value"), sh.rvs.component()], "dictionary"),
                 }),
-                "dictionary": r.reference_derived(gvs.component("referent", "dictionary", [])),
-                "type": r.state({
-                    "cyclic": option(r.nothing()),
-                    "acyclic": option(r.nothing()),
-                    "stack": option(r.nothing()),
+                "dictionary": sh.r.reference_derived(sh.gvs.component("referent", "dictionary", [])),
+                "type": sh.r.state({
+                    "cyclic": sh.option(sh.r.nothing()),
+                    "acyclic": sh.option(sh.r.nothing()),
+                    "stack": sh.option(sh.r.nothing()),
                 }),
-                "presence": r.component("Presence", {}, {}),
+                "presence": sh.r.component("Presence", {}, {}),
             }))
         })),
 
-        "Resolver Signature": resolver(r.group({
-            "module": r.reference_derived(gvs.parameter("module", [])),
-            "parameters": r.state(
+        "Resolver Signature": sh.resolver(sh.r.group({
+            "module": sh.r.reference_derived(sh.gvs.parameter("module", [])),
+            "parameters": sh.r.state(
                 {
-                    "local": option(r.component("Resolver Signature Parameters", {
-                        "modules": av.parameter("modules"),
-                        "imports": av.parameter("imports"),
+                    "local": sh.option(sh.r.component("Resolver Signature Parameters", {
+                        "modules": sh.av.parameter("modules"),
+                        "imports": sh.av.parameter("imports"),
                     }, {})),
-                    "same as": option(r.reference(ls.parameter("sibling signatures"))),
+                    "same as": sh.option(sh.r.reference(sh.ls.parameter("sibling signatures"))),
                 }
             ),
-            "resolved parameters": r.reference_derived(gvs.state("parameters",
-                module_reference("Resolver Signature Parameters"), [])),
+            "resolved parameters": sh.r.reference_derived(sh.gvs.state("parameters",
+                sh.module_reference("Resolver Signature Parameters"), [])),
         })),
 
-        "Resolver Signatures": resolver(r.dictionary_linked(
+        "Resolver Signatures": sh.resolver(sh.r.dictionary_linked(
             'dense',
-            gvs.parameter("modules", []),
-            r.component("Resolver Signature", {
-                "modules": av.parameter("modules"),
-                "module": av.required(gvs.linked_entry([rvs.component()])),
-                "imports": av.parameter("imports"),
+            sh.gvs.parameter("modules", []),
+            sh.r.component("Resolver Signature", {
+                "modules": sh.av.parameter("modules"),
+                "module": sh.av.required(sh.gvs.linked_entry([sh.rvs.component()])),
+                "imports": sh.av.parameter("imports"),
             }, {
-                "sibling signatures": al.acyclic.siblings(),
+                "sibling signatures": sh.al.acyclic.siblings(),
             })
         )),
 
-        "Resolver Optional Value Initialization": resolver(r.state({
-            "not set": option(r.nothing()),
-            "set": option(r.component("Resolver Guaranteed Value Selection", null, null)),
-            "selection": option(r.component("Resolver Possible Value Selection", null, null)),
+        "Resolver Optional Value Initialization": sh.resolver(sh.r.state({
+            "not set": sh.option(sh.r.nothing()),
+            "set": sh.option(sh.r.component("Resolver Guaranteed Value Selection", null, null)),
+            "selection": sh.option(sh.r.component("Resolver Possible Value Selection", null, null)),
         })),
 
-        "Resolver Possible Value Selection": resolver(r.state({
-            "parameter": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signature", [rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")])))),
-            "result": option(r.state({
-                "state": option(r.group({
-                    "property": r.reference(ls.parameter("sibling property resolvers"), {
-                        "state": vcr.value([rvs.group("resolver"), rvs.component()], "state"),
+        "Resolver Possible Value Selection": sh.resolver(sh.r.state({
+            "parameter": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("signature", [sh.rvs.group("resolved parameters"), sh.rvs.reference(), sh.rvs.group("modules")])))),
+            "result": sh.option(sh.r.state({
+                "state": sh.option(sh.r.group({
+                    "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                        "state": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "state"),
                     }),
-                    "state": r.reference_derived(gvs.reference("property", "state", [])),
-                    "result": r.component("Module Reference", {
-                        "imports": av.parameter("schema imports"),
+                    "state": sh.r.reference_derived(sh.gvs.reference("property", "state", [])),
+                    "result": sh.r.component("Module Reference", {
+                        "imports": sh.av.parameter("schema imports"),
                     }, {
-                        "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                        "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                     }),
                 })),
-                "optional value": option(r.group({
-                    "property": r.reference(ls.parameter("sibling property resolvers"), {
-                        "optional": vcr.value([rvs.group("resolver"), rvs.component()], "optional"),
+                "optional value": sh.option(sh.r.group({
+                    "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                        "optional": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "optional"),
                     }),
-                    "optional value": r.reference_derived(gvs.reference("property", "optional", [])),
-                    "result": r.component("Module Reference", {
-                        "imports": av.parameter("schema imports"),
+                    "optional value": sh.r.reference_derived(sh.gvs.reference("property", "optional", [])),
+                    "result": sh.r.component("Module Reference", {
+                        "imports": sh.av.parameter("schema imports"),
                     }, {
-                        "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                        "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                     }),
                 })),
 
             }))
         })),
 
-        "Resolver Guaranteed Value Selection": resolver(r.group({
-            "start": r.state(
+        "Resolver Guaranteed Value Selection": sh.resolver(sh.r.group({
+            "start": sh.r.state(
                 {
                     //stack
-                    "list cursor": option(r.nothing()),
-                    "linked entry": option(r.nothing()),
+                    "list cursor": sh.option(sh.r.nothing()),
+                    "linked entry": sh.option(sh.r.nothing()),
 
-                    "sibling": option(r.reference(ls.parameter("sibling property resolvers"))),
-                    "parent sibling": option(r.reference(ls.parameter("parent sibling property resolvers"))),
-                    "option constraint": option_constrained(
+                    "sibling": sh.option(sh.r.reference(sh.ls.parameter("sibling property resolvers"))),
+                    "parent sibling": sh.option(sh.r.reference(sh.ls.parameter("parent sibling property resolvers"))),
+                    "option constraint": sh.option_constrained(
                         {
-                            "oc": oc.assert_set(pvs.parameter("option constraints"))
-                        }, r.reference_stack(ls.acyclic.resolved_dictionary(gvs.option_constraint("oc", [])))),
+                            "oc": sh.oc.assert_set(sh.pvs.parameter("option constraints"))
+                        }, sh.r.reference_stack(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("oc", [])))),
 
                     //siblings
-                    "constraint": option(r.state({
-                        "component": option(r.group({
-                            "property": r.reference(ls.parameter("sibling property resolvers"), {
-                                "component": vcr.value([rvs.group("resolver"), rvs.component()], "component"),
+                    "constraint": sh.option(sh.r.state({
+                        "component": sh.option(sh.r.group({
+                            "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                                "component": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "component"),
                             }),
-                            "constraint": r.reference(ls.acyclic.resolved_dictionary(gvs.reference("property", "component", [rvs.group("constraints"), rvs.component()]))),
+                            "constraint": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.reference("property", "component", [sh.rvs.group("constraints"), sh.rvs.component()]))),
                         })),
-                        "reference": option(r.group({
-                            "property": r.reference(ls.parameter("sibling property resolvers"), {
-                                "reference": vcr.value([rvs.group("resolver"), rvs.component()], "reference"),
-                                "selected": vcr.constraint("reference", [rvs.group("type")], "selected"),
+                        "reference": sh.option(sh.r.group({
+                            "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                                "reference": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "reference"),
+                                "selected": sh.vcr.constraint("reference", [sh.rvs.group("type")], "selected"),
                             }),
-                            "constraint": r.reference(ls.acyclic.resolved_dictionary(gvs.reference("property", "selected", [rvs.group("constraints"), rvs.component()]))),
+                            "constraint": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.reference("property", "selected", [sh.rvs.group("constraints"), sh.rvs.component()]))),
                         })),
 
                     })),
-                    "parameter": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signature", [rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")])))),
-                    "result": option(r.state({
-                        "list": option(r.group({
-                            "property": r.reference(ls.parameter("sibling property resolvers"), {
-                                "list": vcr.value([rvs.group("resolver"), rvs.component()], "list"),
-                                "result": vcr.constraint("list", [rvs.group("result")]),
+                    "parameter": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("signature", [sh.rvs.group("resolved parameters"), sh.rvs.reference(), sh.rvs.group("modules")])))),
+                    "result": sh.option(sh.r.state({
+                        "list": sh.option(sh.r.group({
+                            "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                                "list": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "list"),
+                                "result": sh.vcr.constraint("list", [sh.rvs.group("result")]),
                             }),
-                            "list result": r.reference_derived(gvs.reference("property", "result", [])),
+                            "list result": sh.r.reference_derived(sh.gvs.reference("property", "result", [])),
                         })),
-                        "state": option(r.group({
-                            "property": r.reference(ls.parameter("sibling property resolvers"), {
-                                "state": vcr.value([rvs.group("resolver"), rvs.component()], "state"),
+                        "state": sh.option(sh.r.group({
+                            "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                                "state": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "state"),
                             }),
-                            "state": r.reference_derived(gvs.reference("property", "state", [])),
-                            "result": r.component("Module Reference", {
-                                "imports": av.parameter("schema imports"),
+                            "state": sh.r.reference_derived(sh.gvs.reference("property", "state", [])),
+                            "result": sh.r.component("Module Reference", {
+                                "imports": sh.av.parameter("schema imports"),
                             }, {
-                                "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                                "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                             }),
                         })),
-                        "optional value": option(r.group({
-                            "property": r.reference(ls.parameter("sibling property resolvers"), {
-                                "optional": vcr.value([rvs.group("resolver"), rvs.component()], "optional"),
+                        "optional value": sh.option(sh.r.group({
+                            "property": sh.r.reference(sh.ls.parameter("sibling property resolvers"), {
+                                "optional": sh.vcr.value([sh.rvs.group("resolver"), sh.rvs.component()], "optional"),
                             }),
-                            "optional value": r.reference_derived(gvs.reference("property", "optional", [])),
-                            "result": r.component("Module Reference", {
-                                "imports": av.parameter("schema imports"),
+                            "optional value": sh.r.reference_derived(sh.gvs.reference("property", "optional", [])),
+                            "result": sh.r.component("Module Reference", {
+                                "imports": sh.av.parameter("schema imports"),
                             }, {
-                                "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                                "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                             }),
                         })),
 
@@ -455,436 +445,436 @@ export const $: g_.Resolver_Modules = resolver_modules(
 
                 },
             ),
-            "tail": r.component("Resolver Relative Value Selection", {
-                "value": av.required(gvs.state("start",
-                    module_reference("Value"), [])),
+            "tail": sh.r.component("Resolver Relative Value Selection", {
+                "value": sh.av.required(sh.gvs.state("start",
+                    sh.module_reference("Value"), [])),
             }, {}),
-            "resulting node": r.reference_derived(gvs.sibling("tail", [rvs.component(), rvs.group("resulting node"), rvs.reference()])),
+            "resulting node": sh.r.reference_derived(sh.gvs.sibling("tail", [sh.rvs.component(), sh.rvs.group("resulting node"), sh.rvs.reference()])),
         })),
 
-        "Resolver Lookup Selection": resolver(r.group({
-            "type": r.state(
+        "Resolver Lookup Selection": sh.resolver(sh.r.group({
+            "type": sh.r.state(
                 {
-                    "acyclic": option(r.state({
-                        "siblings": option_constrained(
+                    "acyclic": sh.option(sh.r.state({
+                        "siblings": sh.option_constrained(
                             {
-                                "cd": oc.assert_set(pvs.parameter("current ordered dictionary"))
+                                "cd": sh.oc.assert_set(sh.pvs.parameter("current ordered dictionary"))
                             },
-                            r.reference_derived(gvs.option_constraint("cd", []))
+                            sh.r.reference_derived(sh.gvs.option_constraint("cd", []))
                         ),
-                        "resolved dictionary": option(r.group({
-                            "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
-                                "dictionary": vcr.value(
+                        "resolved dictionary": sh.option(sh.r.group({
+                            "selection": sh.r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
+                                "dictionary": sh.vcr.value(
                                     [
-                                        rvs.group("resulting node"),
-                                        rvs.reference()
+                                        sh.rvs.group("resulting node"),
+                                        sh.rvs.reference()
                                     ],
                                     "dictionary"
                                 ),
                             }),
-                            "selected dictionary": r.reference_derived(gvs.component(
+                            "selected dictionary": sh.r.reference_derived(sh.gvs.component(
                                 "selection", "dictionary", []
                             ))
                         })),
                     })),
-                    "cyclic": option(r.state({
-                        "siblings": option_constrained(
+                    "cyclic": sh.option(sh.r.state({
+                        "siblings": sh.option_constrained(
                             {
-                                "cd": oc.assert_set(pvs.parameter("current dictionary"))
+                                "cd": sh.oc.assert_set(sh.pvs.parameter("current dictionary"))
                             },
-                            r.reference_derived(gvs.option_constraint("cd", []))
+                            sh.r.reference_derived(sh.gvs.option_constraint("cd", []))
                         ),
                     })),
-                    "parameter": option(r.reference(ls.acyclic.resolved_dictionary(
-                        gvs.parameter("signature",
+                    "parameter": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(
+                        sh.gvs.parameter("signature",
                             [
-                                rvs.group("resolved parameters"),
-                                rvs.reference(),
-                                rvs.group("lookups")
+                                sh.rvs.group("resolved parameters"),
+                                sh.rvs.reference(),
+                                sh.rvs.group("lookups")
                             ]
                         )
                     ))),
                 },
             ),
-            "resulting dictionary": r.reference_derived(gvs.state("type",
-                module_reference("Dictionary"), [])),
+            "resulting dictionary": sh.r.reference_derived(sh.gvs.state("type",
+                sh.module_reference("Dictionary"), [])),
         })),
 
-        "Resolver Modules": resolver(r.dictionary_linked(
+        "Resolver Modules": sh.resolver(sh.r.dictionary_linked(
             'dense',
-            gvs.parameter("signatures", []),
-            r.group({
-                "signature": r.reference_derived(gvs.linked_entry([])),
-                "root value resolver": r.component("Resolver Value",
+            sh.gvs.parameter("signatures", []),
+            sh.r.group({
+                "signature": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                "root value resolver": sh.r.component("Resolver Value",
                     {
 
-                        "option constraints": av.optional(ovi.not_set()),
-                        "list cursor": av.optional(ovi.not_set()),
-                        "linked entry": av.optional(ovi.not_set()),
-                        "current ordered dictionary": av.optional(ovi.not_set()),
-                        "current dictionary": av.optional(ovi.not_set()),
+                        "option constraints": sh.av.optional(sh.ovi.not_set()),
+                        "list cursor": sh.av.optional(sh.ovi.not_set()),
+                        "linked entry": sh.av.optional(sh.ovi.not_set()),
+                        "current ordered dictionary": sh.av.optional(sh.ovi.not_set()),
+                        "current dictionary": sh.av.optional(sh.ovi.not_set()),
 
-                        "signature": av.required(gvs.sibling("signature", [rvs.reference()])),
-                        "definition": av.required(gvs.linked_entry([rvs.component(), rvs.group("module"), rvs.reference(), rvs.group("root value")])),
+                        "signature": sh.av.required(sh.gvs.sibling("signature", [sh.rvs.reference()])),
+                        "definition": sh.av.required(sh.gvs.linked_entry([sh.rvs.component(), sh.rvs.group("module"), sh.rvs.reference(), sh.rvs.group("root value")])),
 
-                        "signatures": av.parameter("signatures"),
-                        "schema imports": av.optional(ovi.set(gvs.parameter("schema imports", []))),
-                        "resolver imports": av.optional(ovi.set(gvs.parameter("resolver imports", []))),
-                        "modules": av.parameter("modules"),
+                        "signatures": sh.av.parameter("signatures"),
+                        "schema imports": sh.av.optional(sh.ovi.set(sh.gvs.parameter("schema imports", []))),
+                        "resolver imports": sh.av.optional(sh.ovi.set(sh.gvs.parameter("resolver imports", []))),
+                        "modules": sh.av.parameter("modules"),
                     },
                     {
-                        "sibling property resolvers": al.acyclic.not_set(),
-                        "parent sibling property resolvers": al.acyclic.not_set(),
+                        "sibling property resolvers": sh.al.acyclic.not_set(),
+                        "parent sibling property resolvers": sh.al.acyclic.not_set(),
                     },
                 ),
             })
         )),
 
-        "Resolver Constraint": resolver(r.group({
-            "selection": r.component("Resolver Relative Value Selection", null, null),
-            "type": r.state({
-                "state": option_constrained(
+        "Resolver Constraint": sh.resolver(sh.r.group({
+            "selection": sh.r.component("Resolver Relative Value Selection", null, null),
+            "type": sh.r.state({
+                "state": sh.option_constrained(
                     {
-                        "state": oc.state(gvs.sibling("selection", [rvs.component(), rvs.group("resulting node"), rvs.reference()]), "state")
+                        "state": sh.oc.state(sh.gvs.sibling("selection", [sh.rvs.component(), sh.rvs.group("resulting node"), sh.rvs.reference()]), "state")
                     },
-                    r.group({
-                        "selected state": r.reference_derived(gvs.option_constraint("state", [])),
-                        "option": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("selected state", [rvs.reference(), rvs.group("options")]))),
+                    sh.r.group({
+                        "selected state": sh.r.reference_derived(sh.gvs.option_constraint("state", [])),
+                        "option": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("selected state", [sh.rvs.reference(), sh.rvs.group("options")]))),
                     })
                 ),
-                "optional value": option_constrained(
+                "optional value": sh.option_constrained(
                     {
-                        "optional": oc.state(gvs.sibling("selection", [rvs.component(), rvs.group("resulting node"), rvs.reference()]), "state")
-                    }, r.group({
-                        "selected optional value": r.reference_derived(gvs.option_constraint("optional", [])),
+                        "optional": sh.oc.state(sh.gvs.sibling("selection", [sh.rvs.component(), sh.rvs.group("resulting node"), sh.rvs.reference()]), "state")
+                    }, sh.r.group({
+                        "selected optional value": sh.r.reference_derived(sh.gvs.option_constraint("optional", [])),
                     })),
             }),
         })),
 
-        "Resolver Option Constraints": resolver(r.dictionary(r.state({
-            "state": option(r.group({
-                "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
-                    "state": vcr.value([rvs.group("resulting node"), rvs.reference()], "state")
+        "Resolver Option Constraints": sh.resolver(sh.r.dictionary(sh.r.state({
+            "state": sh.option(sh.r.group({
+                "selection": sh.r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
+                    "state": sh.vcr.value([sh.rvs.group("resulting node"), sh.rvs.reference()], "state")
                 }),
-                "selected state": r.reference_derived(gvs.component("selection", "state", [])),
-                "option": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("selected state", [rvs.reference(), rvs.group("options")]))),
+                "selected state": sh.r.reference_derived(sh.gvs.component("selection", "state", [])),
+                "option": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("selected state", [sh.rvs.reference(), sh.rvs.group("options")]))),
             })),
-            "assert is set": option(r.component("Resolver Possible Value Selection", null, null)),
+            "assert is set": sh.option(sh.r.component("Resolver Possible Value Selection", null, null)),
         }))),
 
-        "Resolver Value Constraint": resolver(r.group({
-            "start": r.state(
+        "Resolver Value Constraint": sh.resolver(sh.r.group({
+            "start": sh.r.state(
                 {
-                    "value": option(r.nothing()),
-                    "sibling": option(r.component("Resolver Reference To Value Constraint", {}, {
-                        "property constraints": al.parameter("property constraints"),
+                    "value": sh.option(sh.r.nothing()),
+                    "sibling": sh.option(sh.r.component("Resolver Reference To Value Constraint", {}, {
+                        "property constraints": sh.al.parameter("property constraints"),
                     })),
                 }
             ),
-            "constraint": r.component("Resolver Constraint", {
-                "value": av.required(gvs.state("start",
-                    module_reference("Value"), [])),
+            "constraint": sh.r.component("Resolver Constraint", {
+                "value": sh.av.required(sh.gvs.state("start",
+                    sh.module_reference("Value"), [])),
             }, {}),
         })),
 
-        "Resolver Optional Value Constraints": resolver(r.optional(r.component("Resolver Value Constraints", {
-            "value": av.parameter("value"),
+        "Resolver Optional Value Constraints": sh.resolver(sh.r.optional(sh.r.component("Resolver Value Constraints", {
+            "value": sh.av.parameter("value"),
         }, {
         }))),
 
-        "Resolver Value Constraints": resolver(r.dictionary(r.component("Resolver Value Constraint", {}, {
-            "property constraints": al.acyclic.siblings(),
+        "Resolver Value Constraints": sh.resolver(sh.r.dictionary(sh.r.component("Resolver Value Constraint", {}, {
+            "property constraints": sh.al.acyclic.siblings(),
         }))),
 
-        "Resolver Reference To Value Constraint": resolver(r.reference(ls.parameter("property constraints"))), //FIXME: inline
+        "Resolver Reference To Value Constraint": sh.resolver(sh.r.reference(sh.ls.parameter("property constraints"))), //FIXME: inline
 
-        "Resolver Value Group": resolver(r.dictionary_linked(
+        "Resolver Value Group": sh.resolver(sh.r.dictionary_linked(
             'dense',
-            gvs.parameter("definition", []),
-            r.group({
-                "definition": r.reference_derived(gvs.linked_entry([])),
-                "resolver": r.component("Resolver Value",
+            sh.gvs.parameter("definition", []),
+            sh.r.group({
+                "definition": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                "resolver": sh.r.component("Resolver Value",
                     {
-                        "definition": av.required(gvs.linked_entry([rvs.group("value"), rvs.component()])),
+                        "definition": sh.av.required(sh.gvs.linked_entry([sh.rvs.group("value"), sh.rvs.component()])),
 
-                        "modules": av.parameter("modules"),
-                        "schema imports": av.parameter("schema imports"),
-                        "resolver imports": av.parameter("resolver imports"),
-                        "signature": av.parameter("signature"),
-                        "signatures": av.parameter("signatures"),
-                        "list cursor": av.parameter("list cursor"),
-                        "linked entry": av.parameter("linked entry"),
-                        "current dictionary": av.parameter("current dictionary"),
-                        "option constraints": av.parameter("option constraints"),
-                        "current ordered dictionary": av.parameter("current ordered dictionary"),
+                        "modules": sh.av.parameter("modules"),
+                        "schema imports": sh.av.parameter("schema imports"),
+                        "resolver imports": sh.av.parameter("resolver imports"),
+                        "signature": sh.av.parameter("signature"),
+                        "signatures": sh.av.parameter("signatures"),
+                        "list cursor": sh.av.parameter("list cursor"),
+                        "linked entry": sh.av.parameter("linked entry"),
+                        "current dictionary": sh.av.parameter("current dictionary"),
+                        "option constraints": sh.av.parameter("option constraints"),
+                        "current ordered dictionary": sh.av.parameter("current ordered dictionary"),
                     },
                     {
-                        "sibling property resolvers": al.acyclic.siblings(),
-                        "parent sibling property resolvers": al.parameter("sibling property resolvers"),
+                        "sibling property resolvers": sh.al.acyclic.siblings(),
+                        "parent sibling property resolvers": sh.al.parameter("sibling property resolvers"),
                     },
                 ),
             })
         )),
 
-        "Resolver Value List Result": resolver(r.component("Module Reference", {
-            "imports": av.parameter("imports"),
+        "Resolver Value List Result": sh.resolver(sh.r.component("Module Reference", {
+            "imports": sh.av.parameter("imports"),
         }, {
-            "modules": al.parameter("modules"),
+            "modules": sh.al.parameter("modules"),
         })),
 
-        "Resolver Benchmark": resolver(r.group({
-            "selection": r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
-                "dictionary": vcr.value([rvs.group("resulting node"), rvs.reference()], "dictionary"),
+        "Resolver Benchmark": sh.resolver(sh.r.group({
+            "selection": sh.r.component_constrained("Resolver Guaranteed Value Selection", null, null, {
+                "dictionary": sh.vcr.value([sh.rvs.group("resulting node"), sh.rvs.reference()], "dictionary"),
             }),
-            "resulting dictionary": r.reference_derived(gvs.component("selection", "dictionary", [])),
-            "dense": r.simple_boolean(),
+            "resulting dictionary": sh.r.reference_derived(sh.gvs.component("selection", "dictionary", [])),
+            "dense": sh.r.simple_boolean(),
         })),
 
-        "Resolver Value": resolver(r.state({
-            "component": option_constrained(
+        "Resolver Value": sh.resolver(sh.r.state({
+            "component": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "component")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "component")
                 },
-                r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "location": r.state(
+                sh.r.group({
+                    "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                    "location": sh.r.state(
                         {
-                            "external": option_constrained(
+                            "external": sh.option_constrained(
                                 {
-                                    "schema import": oc.assert_set(pvs.parameter("schema imports")),
-                                    "resolver import": oc.assert_set(pvs.parameter("resolver imports")),
+                                    "schema import": sh.oc.assert_set(sh.pvs.parameter("schema imports")),
+                                    "resolver import": sh.oc.assert_set(sh.pvs.parameter("resolver imports")),
                                 },
-                                r.group({
-                                    "schema import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("schema import", [])), {
-                                        "constrained": vcr.value([rvs.group("schema"), rvs.reference(), rvs.group("complexity")], "constrained"),
+                                sh.r.group({
+                                    "schema import": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("schema import", [])), {
+                                        "constrained": sh.vcr.value([sh.rvs.group("schema"), sh.rvs.reference(), sh.rvs.group("complexity")], "constrained"),
                                     }),
-                                    "resolver import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("resolver import", [])), {
+                                    "resolver import": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("resolver import", [])), {
                                     }),
-                                    "signature": r.reference(ls.acyclic.resolved_dictionary(gvs.reference("schema import", "constrained", [rvs.component(), rvs.group("signatures"), rvs.group("signatures"), rvs.component()]))),
+                                    "signature": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.reference("schema import", "constrained", [sh.rvs.component(), sh.rvs.group("signatures"), sh.rvs.group("signatures"), sh.rvs.component()]))),
                                 })
                             ),
-                            "internal": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signatures", [])))),
+                            "internal": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("signatures", [])))),
                         },
                     ),
-                    "signature": r.reference_derived(gvs.state("location",
-                        module_reference("Resolver Signature"), [])),
-                    "arguments": r.optional(r.group({
-                        "modules": r.optional(r.dictionary_linked(
+                    "signature": sh.r.reference_derived(sh.gvs.state("location",
+                        sh.module_reference("Resolver Signature"), [])),
+                    "arguments": sh.r.optional(sh.r.group({
+                        "modules": sh.r.optional(sh.r.dictionary_linked(
                             'dense',
-                            gvs.parent_sibling("signature", [rvs.reference(), rvs.component(), rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")]),
-                            r.state({
-                                "optional": option(r.component("Resolver Optional Value Initialization", null, null)),
-                                "required": option(r.component("Resolver Guaranteed Value Selection", null, null)),
-                                "parameter": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("signature", [rvs.group("resolved parameters"), rvs.reference(), rvs.group("modules")])))),
+                            sh.gvs.parent_sibling("signature", [sh.rvs.reference(), sh.rvs.component(), sh.rvs.group("resolved parameters"), sh.rvs.reference(), sh.rvs.group("modules")]),
+                            sh.r.state({
+                                "optional": sh.option(sh.r.component("Resolver Optional Value Initialization", null, null)),
+                                "required": sh.option(sh.r.component("Resolver Guaranteed Value Selection", null, null)),
+                                "parameter": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("signature", [sh.rvs.group("resolved parameters"), sh.rvs.reference(), sh.rvs.group("modules")])))),
                             }))
                         ),
-                        "lookups": r.optional(r.dictionary_linked(
+                        "lookups": sh.r.optional(sh.r.dictionary_linked(
                             'dense',
-                            gvs.parent_sibling("signature", [rvs.reference(), rvs.component(), rvs.group("resolved parameters"), rvs.reference(), rvs.group("lookups")]),
-                            r.state({
-                                "stack": option(r.state({
-                                    "empty": option(r.nothing()),
-                                    "push": option(r.group({
-                                        "stack": r.component("Resolver Lookup Selection", null, null),
-                                        "item": r.component("Resolver Lookup Selection", null, null),
+                            sh.gvs.parent_sibling("signature", [sh.rvs.reference(), sh.rvs.component(), sh.rvs.group("resolved parameters"), sh.rvs.reference(), sh.rvs.group("lookups")]),
+                            sh.r.state({
+                                "stack": sh.option(sh.r.state({
+                                    "empty": sh.option(sh.r.nothing()),
+                                    "push": sh.option(sh.r.group({
+                                        "stack": sh.r.component("Resolver Lookup Selection", null, null),
+                                        "item": sh.r.component("Resolver Lookup Selection", null, null),
                                     })),
                                 })),
-                                "acyclic": option(r.state({
-                                    "not set": option(r.nothing()),
+                                "acyclic": sh.option(sh.r.state({
+                                    "not set": sh.option(sh.r.nothing()),
 
                                 })),
-                                "cyclic": option(r.state({
-                                    "not set": option(r.nothing()),
+                                "cyclic": sh.option(sh.r.state({
+                                    "not set": sh.option(sh.r.nothing()),
 
                                 })),
-                                "selection": option(r.component("Resolver Lookup Selection", null, null)),
+                                "selection": sh.option(sh.r.component("Resolver Lookup Selection", null, null)),
                             }))
                         ),
                     })),
-                    "constraints": r.component("Resolver Value Constraints", {
-                        "value": av.required(gvs.sibling("signature", [rvs.reference(), rvs.component(), rvs.group("module"), rvs.reference(), rvs.group("root value"), rvs.component(),])),
+                    "constraints": sh.r.component("Resolver Value Constraints", {
+                        "value": sh.av.required(sh.gvs.sibling("signature", [sh.rvs.reference(), sh.rvs.component(), sh.rvs.group("module"), sh.rvs.reference(), sh.rvs.group("root value"), sh.rvs.component(),])),
                     }, {})
                 })
             ),
-            "dictionary": option_constrained(
+            "dictionary": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "dictionary"),
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "dictionary"),
                 },
-                r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "benchmark": r.optional(
-                        r.component("Resolver Benchmark", null, null)
+                sh.r.group({
+                    "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                    "benchmark": sh.r.optional(
+                        sh.r.component("Resolver Benchmark", null, null)
                     ),
-                    "resolver": r.component("Resolver Value",
+                    "resolver": sh.r.component("Resolver Value",
                         {
-                            "linked entry": av.optional(ovi.selection(pvs.optional_value("benchmark",
-                                module_reference("Resolver Benchmark"),))),
-                            "definition": av.required(gvs.sibling("definition", [rvs.reference(), rvs.group("value")])),
-                            "current dictionary": av.optional(ovi.set(gvs.sibling("definition", []))),
-                            "current ordered dictionary": av.optional(ovi.set(gvs.sibling("definition", []))), //FIXME: validate that the dictionary is ordered
+                            "linked entry": sh.av.optional(sh.ovi.selection(sh.pvs.optional_value("benchmark",
+                                sh.module_reference("Resolver Benchmark"),))),
+                            "definition": sh.av.required(sh.gvs.sibling("definition", [sh.rvs.reference(), sh.rvs.group("value")])),
+                            "current dictionary": sh.av.optional(sh.ovi.set(sh.gvs.sibling("definition", []))),
+                            "current ordered dictionary": sh.av.optional(sh.ovi.set(sh.gvs.sibling("definition", []))), //FIXME: validate that the dictionary is ordered
 
-                            "modules": av.parameter("modules"),
-                            "schema imports": av.parameter("schema imports"),
-                            "resolver imports": av.parameter("resolver imports"),
-                            "signature": av.parameter("signature"),
-                            "signatures": av.parameter("signatures"),
-                            "list cursor": av.parameter("list cursor"),
-                            "option constraints": av.parameter("option constraints"),
+                            "modules": sh.av.parameter("modules"),
+                            "schema imports": sh.av.parameter("schema imports"),
+                            "resolver imports": sh.av.parameter("resolver imports"),
+                            "signature": sh.av.parameter("signature"),
+                            "signatures": sh.av.parameter("signatures"),
+                            "list cursor": sh.av.parameter("list cursor"),
+                            "option constraints": sh.av.parameter("option constraints"),
                         },
                         null,
                     ),
                 })
             ),
-            "group": option_constrained(
+            "group": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "group")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "group")
                 },
-                r.component("Resolver Value Group",
+                sh.r.component("Resolver Value Group",
                     {
-                        "definition": av.required(gvs.option_constraint("definition", [])),
+                        "definition": sh.av.required(sh.gvs.option_constraint("definition", [])),
 
-                        "modules": av.parameter("modules"),
-                        "schema imports": av.parameter("schema imports"),
-                        "resolver imports": av.parameter("resolver imports"),
-                        "signature": av.parameter("signature"),
-                        "signatures": av.parameter("signatures"),
-                        "list cursor": av.parameter("list cursor"),
-                        "linked entry": av.parameter("linked entry"),
-                        "current dictionary": av.parameter("current dictionary"),
-                        "option constraints": av.parameter("option constraints"),
-                        "current ordered dictionary": av.parameter("current ordered dictionary"),
+                        "modules": sh.av.parameter("modules"),
+                        "schema imports": sh.av.parameter("schema imports"),
+                        "resolver imports": sh.av.parameter("resolver imports"),
+                        "signature": sh.av.parameter("signature"),
+                        "signatures": sh.av.parameter("signatures"),
+                        "list cursor": sh.av.parameter("list cursor"),
+                        "linked entry": sh.av.parameter("linked entry"),
+                        "current dictionary": sh.av.parameter("current dictionary"),
+                        "option constraints": sh.av.parameter("option constraints"),
+                        "current ordered dictionary": sh.av.parameter("current ordered dictionary"),
                     },
                     {
-                        "sibling property resolvers": al.parameter("sibling property resolvers"),
-                        "parent sibling property resolvers": al.parameter("sibling property resolvers"),
+                        "sibling property resolvers": sh.al.parameter("sibling property resolvers"),
+                        "parent sibling property resolvers": sh.al.parameter("sibling property resolvers"),
                     },
 
                 )
             ),
-            "list": option_constrained(
+            "list": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "list")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "list")
                 },
-                r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "result": r.optional(
-                        r.component("Resolver Value List Result", {
-                            "imports": av.parameter("schema imports"),
+                sh.r.group({
+                    "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                    "result": sh.r.optional(
+                        sh.r.component("Resolver Value List Result", {
+                            "imports": sh.av.parameter("schema imports"),
                         }, {
-                            "modules": al.acyclic.dictionary(gvs.parameter("modules", [])),
+                            "modules": sh.al.acyclic.dictionary(sh.gvs.parameter("modules", [])),
                         }),
                     ),
-                    "resolver": r.component("Resolver Value",
+                    "resolver": sh.r.component("Resolver Value",
                         {
-                            "list cursor": av.optional(ovi.set(gvs.optional_value("result",
-                                module_reference("Resolver Value List Result"), [rvs.component()]))),
-                            "definition": av.required(gvs.option_constraint("definition", [rvs.group("value")])),
+                            "list cursor": sh.av.optional(sh.ovi.set(sh.gvs.optional_value("result",
+                                sh.module_reference("Resolver Value List Result"), [sh.rvs.component()]))),
+                            "definition": sh.av.required(sh.gvs.option_constraint("definition", [sh.rvs.group("value")])),
 
-                            "modules": av.parameter("modules"),
-                            "schema imports": av.parameter("schema imports"),
-                            "resolver imports": av.parameter("resolver imports"),
-                            "signature": av.parameter("signature"),
-                            "signatures": av.parameter("signatures"),
-                            "linked entry": av.parameter("linked entry"),
-                            "current dictionary": av.parameter("current dictionary"),
-                            "option constraints": av.parameter("option constraints"),
-                            "current ordered dictionary": av.parameter("current ordered dictionary"),
+                            "modules": sh.av.parameter("modules"),
+                            "schema imports": sh.av.parameter("schema imports"),
+                            "resolver imports": sh.av.parameter("resolver imports"),
+                            "signature": sh.av.parameter("signature"),
+                            "signatures": sh.av.parameter("signatures"),
+                            "linked entry": sh.av.parameter("linked entry"),
+                            "current dictionary": sh.av.parameter("current dictionary"),
+                            "option constraints": sh.av.parameter("option constraints"),
+                            "current ordered dictionary": sh.av.parameter("current ordered dictionary"),
                         },
                         null,
                     ),
                 })
             ),
-            "nothing": option_constrained(
+            "nothing": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "nothing")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "nothing")
                 },
-                r.nothing()
+                sh.r.nothing()
             ),
-            "simple": option_constrained(
+            "simple": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "simple")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "simple")
                 },
-                // r.group({
-                //     "definition": r.reference_derived(gvs.option_constraint("definition", [])),
+                // sh.r.group({
+                //     "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
                 // })
-                r.nothing()
+                sh.r.nothing()
             ),
-            "optional": option_constrained(
+            "optional": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "optional")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "optional")
                 },
-                r.group({
-                    "constraints": r.component("Resolver Option Constraints", null, null),
-                    "resolver": r.component("Resolver Value",
+                sh.r.group({
+                    "constraints": sh.r.component("Resolver Option Constraints", null, null),
+                    "resolver": sh.r.component("Resolver Value",
                         {
-                            "definition": av.required(gvs.option_constraint("definition", [rvs.component()])),
+                            "definition": sh.av.required(sh.gvs.option_constraint("definition", [sh.rvs.component()])),
 
-                            "modules": av.parameter("modules"),
-                            "schema imports": av.parameter("schema imports"),
-                            "resolver imports": av.parameter("resolver imports"),
-                            "signature": av.parameter("signature"),
-                            "signatures": av.parameter("signatures"),
-                            "list cursor": av.parameter("list cursor"),
-                            "linked entry": av.parameter("linked entry"),
-                            "current dictionary": av.parameter("current dictionary"),
-                            "option constraints": av.parameter("option constraints"),
-                            "current ordered dictionary": av.parameter("current ordered dictionary"),
+                            "modules": sh.av.parameter("modules"),
+                            "schema imports": sh.av.parameter("schema imports"),
+                            "resolver imports": sh.av.parameter("resolver imports"),
+                            "signature": sh.av.parameter("signature"),
+                            "signatures": sh.av.parameter("signatures"),
+                            "list cursor": sh.av.parameter("list cursor"),
+                            "linked entry": sh.av.parameter("linked entry"),
+                            "current dictionary": sh.av.parameter("current dictionary"),
+                            "option constraints": sh.av.parameter("option constraints"),
+                            "current ordered dictionary": sh.av.parameter("current ordered dictionary"),
                         },
                         null,
                     ),
                 })
             ),
-            "reference": option_constrained(
+            "reference": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "reference")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "reference")
                 },
-                r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "type": r.state({
-                        "derived": option_constrained(
+                sh.r.group({
+                    "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                    "type": sh.r.state({
+                        "derived": sh.option_constrained(
                             {
-                                "definition": oc.state(gvs.sibling("definition", [rvs.reference(), rvs.group("type")]), "derived")
-                            }, r.group({
-                                "value": r.component("Resolver Guaranteed Value Selection", null, null),
+                                "definition": sh.oc.state(sh.gvs.sibling("definition", [sh.rvs.reference(), sh.rvs.group("type")]), "derived")
+                            }, sh.r.group({
+                                "value": sh.r.component("Resolver Guaranteed Value Selection", null, null),
                             })),
-                        "selected": option_constrained(
+                        "selected": sh.option_constrained(
                             {
-                                "definition": oc.state(gvs.sibling("definition", [rvs.reference(), rvs.group("type")]), "selected")
-                            }, r.group({
-                                "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                                "lookup": r.component("Resolver Lookup Selection", null, null),
-                                "constraints": r.component("Resolver Value Constraints", {
-                                    "value": av.required(gvs.sibling("lookup", [rvs.component(), rvs.group("resulting dictionary"), rvs.reference(), rvs.group("value")])),
+                                "definition": sh.oc.state(sh.gvs.sibling("definition", [sh.rvs.reference(), sh.rvs.group("type")]), "selected")
+                            }, sh.r.group({
+                                "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                                "lookup": sh.r.component("Resolver Lookup Selection", null, null),
+                                "constraints": sh.r.component("Resolver Value Constraints", {
+                                    "value": sh.av.required(sh.gvs.sibling("lookup", [sh.rvs.component(), sh.rvs.group("resulting dictionary"), sh.rvs.reference(), sh.rvs.group("value")])),
                                 }, {})
                             })),
                     }),
                 })
             ),
-            "state": option_constrained(
+            "state": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "state")
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "state")
                 },
-                r.group({
-                    "definition": r.reference_derived(gvs.option_constraint("definition", [])),
-                    "options": r.dictionary_linked(
+                sh.r.group({
+                    "definition": sh.r.reference_derived(sh.gvs.option_constraint("definition", [])),
+                    "options": sh.r.dictionary_linked(
                         'dense',
-                        gvs.option_constraint("definition", [rvs.group("options")]),
-                        r.group({
-                            "constraints": r.component("Resolver Option Constraints", null, null),
-                            "resolver": r.component("Resolver Value",
+                        sh.gvs.option_constraint("definition", [sh.rvs.group("options")]),
+                        sh.r.group({
+                            "constraints": sh.r.component("Resolver Option Constraints", null, null),
+                            "resolver": sh.r.component("Resolver Value",
                                 {
-                                    "definition": av.required(gvs.linked_entry([rvs.group("value")])),
+                                    "definition": sh.av.required(sh.gvs.linked_entry([sh.rvs.group("value")])),
 
-                                    "modules": av.parameter("modules"),
-                                    "schema imports": av.parameter("schema imports"),
-                                    "resolver imports": av.parameter("resolver imports"),
-                                    "signature": av.parameter("signature"),
-                                    "signatures": av.parameter("signatures"),
-                                    "list cursor": av.parameter("list cursor"),
-                                    "linked entry": av.parameter("linked entry"),
-                                    "current dictionary": av.parameter("current dictionary"),
-                                    "option constraints": av.parameter("option constraints"),
-                                    "current ordered dictionary": av.parameter("current ordered dictionary"),
+                                    "modules": sh.av.parameter("modules"),
+                                    "schema imports": sh.av.parameter("schema imports"),
+                                    "resolver imports": sh.av.parameter("resolver imports"),
+                                    "signature": sh.av.parameter("signature"),
+                                    "signatures": sh.av.parameter("signatures"),
+                                    "list cursor": sh.av.parameter("list cursor"),
+                                    "linked entry": sh.av.parameter("linked entry"),
+                                    "current dictionary": sh.av.parameter("current dictionary"),
+                                    "option constraints": sh.av.parameter("option constraints"),
+                                    "current ordered dictionary": sh.av.parameter("current ordered dictionary"),
                                 },
                                 null,
                             ),
@@ -892,92 +882,100 @@ export const $: g_.Resolver_Modules = resolver_modules(
                     ),
                 })
             ),
-            "text": option_constrained(
+            "text": sh.option_constrained(
                 {
-                    "definition": oc.state(gvs.parameter("definition", []), "text")
-                }, r.nothing()
+                    "definition": sh.oc.state(sh.gvs.parameter("definition", []), "text")
+                }, sh.r.nothing()
             ),
         })),
 
-        "Resolver": resolver(r.group({
-            "signatures": r.group({
-                "signatures": r.component("Resolver Signatures", {
-                    "modules": av.parameter("modules"),
-                    "imports": av.parameter("schema imports"),
+        "Resolver": sh.resolver(sh.r.group({
+            "signatures": sh.r.group({
+                "signatures": sh.r.component("Resolver Signatures", {
+                    "modules": sh.av.parameter("modules"),
+                    "imports": sh.av.parameter("schema imports"),
                 }, {
                 }),
             }),
-            "modules": r.component("Resolver Modules", {
-                "signatures": av.required(gvs.sibling("signatures", [rvs.group("signatures")])),
-                "modules": av.parameter("modules"),
-                "schema imports": av.parameter("schema imports"),
-                "resolver imports": av.parameter("resolver imports"),
+            "modules": sh.r.component("Resolver Modules", {
+                "signatures": sh.av.required(sh.gvs.sibling("signatures", [sh.rvs.group("signatures")])),
+                "modules": sh.av.parameter("modules"),
+                "schema imports": sh.av.parameter("schema imports"),
+                "resolver imports": sh.av.parameter("resolver imports"),
             }, {
             })
         })),
 
-        "Schemas": resolver(r.dictionary(r.component("Schema Tree", {}, {
-            "sibling schemas": al.stack.push(
-                ls.parameter("sibling schemas"),
-                ls.acyclic.siblings()
+        "Schemas": sh.resolver(sh.r.dictionary(sh.r.component("Schema Tree", {}, {
+            "sibling schemas": sh.al.stack.push(
+                sh.ls.parameter("sibling schemas"),
+                sh.ls.acyclic.siblings()
             ),
         }))),
 
-        "Module Specification": resolver(r.group({
-            "schema": r.component("Schema Tree", {}, {
-                "sibling schemas": al.stack.empty(),
+        "Module Specification": sh.resolver(sh.r.group({
+            "schema": sh.r.component("Schema Tree", {}, {
+                "sibling schemas": sh.al.stack.empty(),
             }),
-            "schema path": r.list(r.text()),
-            "module": r.text(),
-            //"file suffix": r.text(),
+            "schema path": sh.r.list(sh.r.text()),
+            "complexity": sh.r.state({
+                "constrained": sh.option(sh.r.group({
+                    "module resolver": sh.r.text(),
+                })),
+                "unconstrained": sh.option(sh.r.group({
+                    "module": sh.r.text(),
+
+                }))
+            }),
+            //"file suffix": sh.r.text(),
         })),
 
 
-        "Schema Tree": resolver(r.state({
-            "schema": option(r.component("Schema", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+        "Schema Tree": sh.resolver(sh.r.state({
+            "schema": sh.option(sh.r.component("Schema", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             })),
-            "set": option(r.component("Schemas", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+            "set": sh.option(sh.r.component("Schemas", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             }))
         })),
 
-        "Schema": resolver(r.group({
-            "schema imports": r.component("Schema Imports", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+        "Schema": sh.resolver(sh.r.group({
+            "schema imports": sh.r.component("Schema Imports", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             }),
-            "resolver imports": r.component("Resolver Imports", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+            "resolver imports": sh.r.component("Resolver Imports", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             }),
-            "globals": r.component("Globals", {
+            "globals": sh.r.component("Globals", {
             }, {}),
-            "modules": r.component("Modules", {
-                "globals": av.optional(ovi.set(gvs.sibling("globals", []))),
-                "imports": av.optional(ovi.set(gvs.sibling("schema imports", [rvs.component()]))),
+            "modules": sh.r.component("Modules", {
+                "globals": sh.av.optional(sh.ovi.set(sh.gvs.sibling("globals", []))),
+                "imports": sh.av.optional(sh.ovi.set(sh.gvs.sibling("schema imports", [sh.rvs.component()]))),
             }, {
             }),
-            "complexity": r.state({
-                "constrained": option(r.component("Resolver", {
-                    "schema imports": av.required(gvs.sibling("schema imports", [rvs.component()])),
-                    "resolver imports": av.required(gvs.sibling("resolver imports", [rvs.component()])),
-                    "modules": av.required(gvs.sibling("modules", [rvs.component()])),
+            "complexity": sh.r.state({
+                "constrained": sh.option(sh.r.component("Resolver", {
+                    "schema imports": sh.av.required(sh.gvs.sibling("schema imports", [sh.rvs.component()])),
+                    "resolver imports": sh.av.required(sh.gvs.sibling("resolver imports", [sh.rvs.component()])),
+                    "modules": sh.av.required(sh.gvs.sibling("modules", [sh.rvs.component()])),
                 }, {})),
-                "unconstrained": option(r.nothing()),
+                "unconstrained": sh.option(sh.r.nothing()),
             }),
         })),
 
-        "Schema Imports": resolver(r.dictionary(r.group({
-            "schema set child": r.reference_stack(ls.parameter("sibling schemas"), {
-                "schema": vcr.value([rvs.component()], "schema"),
+        "Schema Imports": sh.resolver(sh.r.dictionary(sh.r.group({
+            "schema set child": sh.r.reference_stack(sh.ls.parameter("sibling schemas"), {
+                "schema": sh.vcr.value([sh.rvs.component()], "schema"),
             }),
-            "schema": r.reference_derived(gvs.reference("schema set child", "schema", [])),
+            "schema": sh.r.reference_derived(sh.gvs.reference("schema set child", "schema", [])),
         }))),
 
-        "Resolver Imports": resolver(r.dictionary(r.group({
-            "schema set child": r.reference_stack(ls.parameter("sibling schemas"), {
-                "resolver": vcr.value([rvs.component()], "schema"),
+        "Resolver Imports": sh.resolver(sh.r.dictionary(sh.r.group({
+            "schema set child": sh.r.reference_stack(sh.ls.parameter("sibling schemas"), {
+                "resolver": sh.vcr.value([sh.rvs.component()], "schema"),
             }),
-            "resolver": r.reference_derived(gvs.reference("schema set child", "resolver", [])),
+            "resolver": sh.r.reference_derived(sh.gvs.reference("schema set child", "resolver", [])),
         }))),
     }
 )

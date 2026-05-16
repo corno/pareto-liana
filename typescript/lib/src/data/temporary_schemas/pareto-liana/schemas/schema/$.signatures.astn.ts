@@ -1,229 +1,225 @@
-import * as _pi from 'pareto-core/dist/interface'
 
-import {
-    signatures, sig, lookup_parameter, value_parameter,
-} from "../../../../../shorthands/signatures"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../../../shorthands/signatures"
 
-export const $: g_.Resolver.signatures = signatures(
+export const $ = sh.signatures(
     {
-        "Package": sig.local({}, {}),
-        "Presence": sig.local({}, {}),
-        "Simple Type": sig.local({}, {}),
-        "Text Type": sig.local({}, {}),
-        "Globals": sig.local({}, {}),
+        "Package": sh.sig.local({}, {}),
+        "Presence": sh.sig.local({}, {}),
+        "Simple Type": sh.sig.local({}, {}),
+        "Text Type": sh.sig.local({}, {}),
+        "Globals": sh.sig.local({}, {}),
 
-        "Group": sig.local(
+        "Group": sh.sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Schema Imports", 'optional'),
+                "globals": sh.value_parameter("Globals", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": sh.lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": sh.lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Dictionary": sig.local(
+        "Dictionary": sh.sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Schema Imports", 'optional'),
+                "globals": sh.value_parameter("Globals", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": sh.lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": sh.lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Value": sig.local(
+        "Value": sh.sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Schema Imports", 'optional'),
+                "globals": sh.value_parameter("Globals", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": sh.lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": sh.lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Value Results": sig.same_as("Value Reference"),
+        "Value Results": sh.sig.same_as("Value Reference"),
 
-        "Option Constraints": sig.same_as("Value Reference"),
+        "Option Constraints": sh.sig.same_as("Value Reference"),
 
-        "Module": sig.local(
+        "Module": sh.sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Schema Imports", 'optional'),
+                "globals": sh.value_parameter("Globals", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": sh.lookup_parameter("Modules"),
+                "possibly circular dependent sibling modules": sh.lookup_parameter("Modules", 'cyclic'),
             }
         ),
 
-        "Module Reference": sig.local(
+        "Module Reference": sh.sig.local(
             {
-                "imports": value_parameter("Schema Imports", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {
-                "modules": lookup_parameter("Modules"),
+                "modules": sh.lookup_parameter("Modules"),
             },
         ),
-        "Value Reference": sig.same_as("Module Reference"),
+        "Value Reference": sh.sig.same_as("Module Reference"),
 
-        "Value Path": sig.local(
+        "Value Path": sh.sig.local(
             {
-                "module": value_parameter("Module"),
+                "module": sh.value_parameter("Module"),
             },
             {},
         ),
-        "Schemas": sig.local(
+        "Schemas": sh.sig.local(
             {},
             {
-                "sibling schemas": lookup_parameter("Schemas", 'stack'),
+                "sibling schemas": sh.lookup_parameter("Schemas", 'stack'),
             }
         ),
 
 
-        "Resolver Value": sig.local(
+        "Resolver Value": sh.sig.local(
             {
-                "definition": value_parameter("Value"),
-                "list cursor": value_parameter("Resolver Value List Result", 'optional'),
-                "linked entry": value_parameter("Resolver Benchmark", 'optional'),
-                "current dictionary": value_parameter("Dictionary", 'optional'),
-                "current ordered dictionary": value_parameter("Dictionary", 'optional'),
-                "signature": value_parameter("Resolver Signature"),
-                "schema imports": value_parameter("Schema Imports", 'optional'),
-                "resolver imports": value_parameter("Resolver Imports", 'optional'),
-                "signatures": value_parameter("Resolver Signatures"),
-                "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Resolver Option Constraints", 'optional'),
+                "definition": sh.value_parameter("Value"),
+                "list cursor": sh.value_parameter("Resolver Value List Result", 'optional'),
+                "linked entry": sh.value_parameter("Resolver Benchmark", 'optional'),
+                "current dictionary": sh.value_parameter("Dictionary", 'optional'),
+                "current ordered dictionary": sh.value_parameter("Dictionary", 'optional'),
+                "signature": sh.value_parameter("Resolver Signature"),
+                "schema imports": sh.value_parameter("Schema Imports", 'optional'),
+                "resolver imports": sh.value_parameter("Resolver Imports", 'optional'),
+                "signatures": sh.value_parameter("Resolver Signatures"),
+                "modules": sh.value_parameter("Modules"),
+                "option constraints": sh.value_parameter("Resolver Option Constraints", 'optional'),
             },
             {
-                // "sibling property resolver stack": lookup_parameter("Resolver Value Group", 'stack'),
-                "sibling property resolvers": lookup_parameter("Resolver Value Group"),
-                "parent sibling property resolvers": lookup_parameter("Resolver Value Group"),
+                // "sibling property resolver stack": sh.lookup_parameter("Resolver Value Group", 'stack'),
+                "sibling property resolvers": sh.lookup_parameter("Resolver Value Group"),
+                "parent sibling property resolvers": sh.lookup_parameter("Resolver Value Group"),
             }
         ),
 
-        "Resolver Possible Value Selection": sig.same_as("Resolver Value"),
-        "Resolver Guaranteed Value Selection": sig.same_as("Resolver Value"),
-        "Resolver Benchmark": sig.same_as("Resolver Value"),
-        "Resolver Optional Value Initialization": sig.same_as("Resolver Value"),
-        "Resolver Lookup Selection": sig.same_as("Resolver Value"),
-        "Resolver Option Constraints": sig.same_as("Resolver Value"),
+        "Resolver Possible Value Selection": sh.sig.same_as("Resolver Value"),
+        "Resolver Guaranteed Value Selection": sh.sig.same_as("Resolver Value"),
+        "Resolver Benchmark": sh.sig.same_as("Resolver Value"),
+        "Resolver Optional Value Initialization": sh.sig.same_as("Resolver Value"),
+        "Resolver Lookup Selection": sh.sig.same_as("Resolver Value"),
+        "Resolver Option Constraints": sh.sig.same_as("Resolver Value"),
 
-        "Resolver Value List Result": sig.same_as("Module Reference"),
-        "Resolver Value Group": sig.local(
+        "Resolver Value List Result": sh.sig.same_as("Module Reference"),
+        "Resolver Value Group": sh.sig.local(
             {
-                "definition": value_parameter("Group"),
-                "list cursor": value_parameter("Resolver Value List Result", 'optional'),
-                "linked entry": value_parameter("Resolver Benchmark", 'optional'),
-                "current dictionary": value_parameter("Dictionary", 'optional'),
-                "current ordered dictionary": value_parameter("Dictionary", 'optional'),
-                "signature": value_parameter("Resolver Signature"),
-                "schema imports": value_parameter("Schema Imports", 'optional'),
-                "resolver imports": value_parameter("Resolver Imports", 'optional'),
-                "signatures": value_parameter("Resolver Signatures"),
-                "modules": value_parameter("Modules"),
-                "option constraints": value_parameter("Resolver Option Constraints", 'optional'),
+                "definition": sh.value_parameter("Group"),
+                "list cursor": sh.value_parameter("Resolver Value List Result", 'optional'),
+                "linked entry": sh.value_parameter("Resolver Benchmark", 'optional'),
+                "current dictionary": sh.value_parameter("Dictionary", 'optional'),
+                "current ordered dictionary": sh.value_parameter("Dictionary", 'optional'),
+                "signature": sh.value_parameter("Resolver Signature"),
+                "schema imports": sh.value_parameter("Schema Imports", 'optional'),
+                "resolver imports": sh.value_parameter("Resolver Imports", 'optional'),
+                "signatures": sh.value_parameter("Resolver Signatures"),
+                "modules": sh.value_parameter("Modules"),
+                "option constraints": sh.value_parameter("Resolver Option Constraints", 'optional'),
             },
             {
-                // "sibling property resolver stack": lookup_parameter("Resolver Value Group", 'stack'),
-                "sibling property resolvers": lookup_parameter("Resolver Value Group"),
-                "parent sibling property resolvers": lookup_parameter("Resolver Value Group"),
+                // "sibling property resolver stack": sh.lookup_parameter("Resolver Value Group", 'stack'),
+                "sibling property resolvers": sh.lookup_parameter("Resolver Value Group"),
+                "parent sibling property resolvers": sh.lookup_parameter("Resolver Value Group"),
             }
         ),
 
-        "Resolver Relative Value Selection": sig.local(
+        "Resolver Relative Value Selection": sh.sig.local(
             {
-                "value": value_parameter("Value"),
+                "value": sh.value_parameter("Value"),
             },
             {},
         ),
-        "Resolver Constraint": sig.same_as("Resolver Relative Value Selection"),
-        "Resolver Optional Value Constraints": sig.same_as("Resolver Relative Value Selection"),
-        "Resolver Value Constraints": sig.same_as("Resolver Relative Value Selection"),
-        "Resolver Value Constraint": sig.local(
+        "Resolver Constraint": sh.sig.same_as("Resolver Relative Value Selection"),
+        "Resolver Optional Value Constraints": sh.sig.same_as("Resolver Relative Value Selection"),
+        "Resolver Value Constraints": sh.sig.same_as("Resolver Relative Value Selection"),
+        "Resolver Value Constraint": sh.sig.local(
             {},
             {
-                "property constraints": lookup_parameter("Resolver Value Constraints"),
+                "property constraints": sh.lookup_parameter("Resolver Value Constraints"),
             }
         ),
 
-        "Resolver": sig.local(
+        "Resolver": sh.sig.local(
             {
-                "modules": value_parameter("Modules"),
-                "resolver imports": value_parameter("Resolver Imports"),
-                "schema imports": value_parameter("Schema Imports"),
+                "modules": sh.value_parameter("Modules"),
+                "resolver imports": sh.value_parameter("Resolver Imports"),
+                "schema imports": sh.value_parameter("Schema Imports"),
             },
             {},
         ),
-        "Resolver Signature Parameters": sig.local(
+        "Resolver Signature Parameters": sh.sig.local(
             {
-                "modules": value_parameter("Modules"),
-                "imports": value_parameter("Schema Imports"),
-            },
-            {},
-        ),
-
-        "Resolver Signature": sig.local(
-            {
-                "modules": value_parameter("Modules"),
-                "module": value_parameter("Module"),
-                "imports": value_parameter("Schema Imports"),
-            },
-            {
-                "sibling signatures": lookup_parameter("Resolver Signatures"),
-            },
-        ),
-
-        "Resolver Signatures": sig.local(
-            {
-                "modules": value_parameter("Modules"),
-                "imports": value_parameter("Schema Imports"),
+                "modules": sh.value_parameter("Modules"),
+                "imports": sh.value_parameter("Schema Imports"),
             },
             {},
         ),
 
-        "Resolver Modules": sig.local(
+        "Resolver Signature": sh.sig.local(
             {
-                "signatures": value_parameter("Resolver Signatures"),
-                "modules": value_parameter("Modules"),
-                "schema imports": value_parameter("Schema Imports"),
-                "resolver imports": value_parameter("Resolver Imports"),
+                "modules": sh.value_parameter("Modules"),
+                "module": sh.value_parameter("Module"),
+                "imports": sh.value_parameter("Schema Imports"),
+            },
+            {
+                "sibling signatures": sh.lookup_parameter("Resolver Signatures"),
+            },
+        ),
+
+        "Resolver Signatures": sh.sig.local(
+            {
+                "modules": sh.value_parameter("Modules"),
+                "imports": sh.value_parameter("Schema Imports"),
             },
             {},
         ),
 
-        "Resolver Reference To Value Constraint": sig.local(
-            {},
+        "Resolver Modules": sh.sig.local(
             {
-                "property constraints": lookup_parameter("Resolver Value Constraints"),
-            }
-        ),
-        "Resolver Imports": sig.same_as("Schemas"),
-
-        "Module Specification": sig.local(
+                "signatures": sh.value_parameter("Resolver Signatures"),
+                "modules": sh.value_parameter("Modules"),
+                "schema imports": sh.value_parameter("Schema Imports"),
+                "resolver imports": sh.value_parameter("Resolver Imports"),
+            },
             {},
-            {
-            }
         ),
 
-        "Schema Tree": sig.local(
+        "Resolver Reference To Value Constraint": sh.sig.local(
             {},
             {
-                "sibling schemas": lookup_parameter("Schemas", 'stack'),
+                "property constraints": sh.lookup_parameter("Resolver Value Constraints"),
             }
         ),
-        "Schema": sig.same_as("Schemas"),
-        "Schema Imports": sig.same_as("Schemas"),
+        "Resolver Imports": sh.sig.same_as("Schemas"),
 
-
-        "Modules": sig.local(
+        "Module Specification": sh.sig.local(
+            {},
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Schema Imports", 'optional'),
+            }
+        ),
+
+        "Schema Tree": sh.sig.local(
+            {},
+            {
+                "sibling schemas": sh.lookup_parameter("Schemas", 'stack'),
+            }
+        ),
+        "Schema": sh.sig.same_as("Schemas"),
+        "Schema Imports": sh.sig.same_as("Schemas"),
+
+
+        "Modules": sh.sig.local(
+            {
+                "globals": sh.value_parameter("Globals", 'optional'),
+                "imports": sh.value_parameter("Schema Imports", 'optional'),
             },
             {},
         ),

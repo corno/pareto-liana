@@ -4021,7 +4021,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
                 {
                     "schema": null,
                     "schema path": null,
-                    "module": null,
+                    "complexity": null,
                 },
             ),
             'subdocument context': _p.optional.literal.not_set(),
@@ -4104,21 +4104,160 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
                         ),
                     }),
                 ),
-                'module': _p_change_context(
+                'complexity': _p_change_context(
                     v_unmarshalled_from_parse_tree.Property(
                         $,
                         ($) => abort(
                             $,
                         ),
                         {
-                            'id': 'module',
+                            'id': 'complexity',
                             'subdocument context': _p.optional.literal.not_set(),
                         },
                     ),
-                    ($) => v_unmarshalled_from_parse_tree.Text(
-                        $,
-                        ($) => abort(
+                    ($) => _p_change_context(
+                        v_unmarshalled_from_parse_tree.State(
                             $,
+                            ($) => abort(
+                                $,
+                            ),
+                        ),
+                        ($) => _p.decide.text(
+                            $['option']['token']['value'],
+                            ($t): t_out.Module_Specification.complexity => {
+                                switch ($t) {
+                                    case 'constrained':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ({
+                                                'l location': v_parse_tree_to_location.Value(
+                                                    $,
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                'l state': ['constrained', _p_change_context(
+                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                        $,
+                                                        ($) => abort(
+                                                            $,
+                                                        ),
+                                                        {
+                                                            'expected properties': _p.dictionary.literal(
+                                                                {
+                                                                    "module resolver": null,
+                                                                },
+                                                            ),
+                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                        },
+                                                    ),
+                                                    ($) => _p_variables(
+                                                        () => {
+                                                            
+                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                $['value'],
+                                                                {
+                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                },
+                                                            )
+                                                            return {
+                                                                'module resolver': _p_change_context(
+                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                        {
+                                                                            'id': 'module resolver',
+                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                        },
+                                                                    ),
+                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            }
+                                                        },
+                                                    ),
+                                                )],
+                                            }),
+                                        )
+                                    case 'unconstrained':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ({
+                                                'l location': v_parse_tree_to_location.Value(
+                                                    $,
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                'l state': ['unconstrained', _p_change_context(
+                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                        $,
+                                                        ($) => abort(
+                                                            $,
+                                                        ),
+                                                        {
+                                                            'expected properties': _p.dictionary.literal(
+                                                                {
+                                                                    "module": null,
+                                                                },
+                                                            ),
+                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                        },
+                                                    ),
+                                                    ($) => _p_variables(
+                                                        () => {
+                                                            
+                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                $['value'],
+                                                                {
+                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                },
+                                                            )
+                                                            return {
+                                                                'module': _p_change_context(
+                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                        {
+                                                                            'id': 'module',
+                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                        },
+                                                                    ),
+                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            }
+                                                        },
+                                                    ),
+                                                )],
+                                            }),
+                                        )
+                                    default:
+                                        return abort(
+                                            ['liana', {
+                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                'range': v_parse_tree_to_location.Value(
+                                                    $['value'],
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                            }],
+                                        )
+                                }
+                            },
                         ),
                     ),
                 ),

@@ -1,313 +1,304 @@
-import * as _pi from 'pareto-core/dist/interface'
-
-import {
-    modules,
-    n,
-    t,
-    module_,
-    text,
-    prop,
-    toption,
-    prop_with_description,
-    toption_with_description,
-    value_reference,
-    vp,
-} from "../../../../../shorthands/schema"
 import * as sh from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Modules = modules(
+export const $ = sh.modules(
     {
-        "Package": module_(t.group({
-            "omit (de)serializer": prop(t.simple_boolean()),
-            "schema tree": prop(t.component("Schema Tree")),
+        "Package": sh.module_(sh.t.group({
+            "omit (de)serializer": sh.prop(sh.t.simple_boolean()),
+            "schema tree": sh.prop(sh.t.component("Schema Tree")),
         })),
 
-        "Value": module_(t.state({
-            "component": toption_with_description("Reference to another type defined in a module (reusable named type)", t.group({
-                "type": prop(t.state({
-                    "external": toption_with_description("Reference a type from an imported schema", t.group({
-                        "import": prop(t.reference("Schema Imports", [])),
-                        "module": prop(t.reference("Modules", [])),
+        "Value": sh.module_(sh.t.state({
+            "component": sh.toption_with_description("Reference to another type defined in a module (reusable named type)", sh.t.group({
+                "type": sh.prop(sh.t.state({
+                    "external": sh.toption_with_description("Reference a type from an imported schema", sh.t.group({
+                        "import": sh.prop(sh.t.reference("Schema Imports", [])),
+                        "module": sh.prop(sh.t.reference("Modules", [])),
                     })),
-                    "internal": toption_with_description("Reference a type within the same schema (allows cycles)", t.reference("Modules", [], 'cyclic')),
-                    "internal acyclic": toption_with_description("Reference a type within the same schema (no cycles)", t.reference("Modules", [])), //I don't think this will ever be needed
+                    "internal": sh.toption_with_description("Reference a type within the same schema (allows cycles)", sh.t.reference("Modules", [], 'cyclic')),
+                    "internal acyclic": sh.toption_with_description("Reference a type within the same schema (no cycles)", sh.t.reference("Modules", [])), //I don't think this will ever be needed
                 })),
-                "results": prop(t.component("Value Results")),
+                "results": sh.prop(sh.t.component("Value Results")),
             })),
-            "dictionary": toption_with_description("Indexed collection of named values (like a map or hash table)", t.component("Dictionary")),
-            "group": toption_with_description("Ordered collection of properties, each with a specific name and type", t.component("Group")),
-            "list": toption_with_description("Ordered sequence of values of the same type", t.group({
-                "value": prop(t.component("Value")),
-                "results": prop(t.component("Value Results")),
+            "dictionary": sh.toption_with_description("Indexed collection of named values (like a map or hash table)", sh.t.component("Dictionary")),
+            "group": sh.toption_with_description("Ordered collection of properties, each with a specific name and type", sh.t.component("Group")),
+            "list": sh.toption_with_description("Ordered sequence of values of the same type", sh.t.group({
+                "value": sh.prop(sh.t.component("Value")),
+                "results": sh.prop(sh.t.component("Value Results")),
             })),
-            "nothing": toption_with_description("Empty value (unit type, no data)", t.nothing()),
-            "simple": toption_with_description("Primitive value types: boolean, number, or date", t.state({
-                "global": toption(t.reference("Globals", [vp.g("simple types")])),
+            "nothing": sh.toption_with_description("Empty value (unit type, no data)", sh.t.nothing()),
+            "simple": sh.toption_with_description("Primitive value types: boolean, number, or date", sh.t.state({
+                "global": sh.toption(sh.t.reference("Globals", [sh.vp.g("simple types")])),
             })),
-            "optional": toption_with_description("Value that may or may not be present", t.component("Value")),
-            "reference": toption_with_description("Pointer to another value in the data (like a foreign key)", t.group({
-                "referent": prop_with_description("What this reference points to", t.component("Value Reference")),
-                "type": prop(t.state({
-                    "derived": toption_with_description("Reference type is automatically derived from the target", t.nothing()),
-                    "selected": toption_with_description("Explicitly select which dictionary entry to reference", t.group({
-                        "dictionary": prop(t.reference_derived("Dictionary", [])),
-                        "dependency": prop_with_description("How this reference affects dependency order", t.state({
-                            "acyclic": toption_with_description("No circular dependencies (default for cross-module references)", t.nothing()),
-                            "cyclic": toption_with_description("Allows circular instance references (only within same dictionary)", t.nothing()),
-                            "stack": toption_with_description("Push onto dependency stack for multi-level lookups", t.nothing()),
+            "optional": sh.toption_with_description("Value that may or may not be present", sh.t.component("Value")),
+            "reference": sh.toption_with_description("Pointer to another value in the data (like a foreign key)", sh.t.group({
+                "referent": sh.prop_with_description("What this reference points to", sh.t.component("Value Reference")),
+                "type": sh.prop(sh.t.state({
+                    "derived": sh.toption_with_description("Reference type is automatically derived from the target", sh.t.nothing()),
+                    "selected": sh.toption_with_description("Explicitly select which dictionary entry to reference", sh.t.group({
+                        "dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
+                        "dependency": sh.prop_with_description("How this reference affects dependency order", sh.t.state({
+                            "acyclic": sh.toption_with_description("No circular dependencies (default for cross-module references)", sh.t.nothing()),
+                            "cyclic": sh.toption_with_description("Allows circular instance references (only within same dictionary)", sh.t.nothing()),
+                            "stack": sh.toption_with_description("Push onto dependency stack for multi-level lookups", sh.t.nothing()),
                         })),
-                        "results": prop(t.component("Value Results")),
+                        "results": sh.prop(sh.t.component("Value Results")),
                     })),
                 })),
             })),
-            "state": toption_with_description("Tagged union: value is one of several named options (like a sum type or enum)", t.group({
-                "options": prop_with_description("The possible variants, each with its own name and associated data", t.dictionary(t.group({
-                    "constraints": prop(t.component("Option Constraints")),
-                    "description": prop_with_description("Documentation shown in IDE for this option", t.optional(t.text_global("multi line text"))),
-                    "value": prop(t.component("Value")),
+            "state": sh.toption_with_description("Tagged union: value is one of several named options (like a sum type or enum)", sh.t.group({
+                "options": sh.prop_with_description("The possible variants, each with its own name and associated data", sh.t.dictionary(sh.t.group({
+                    "constraints": sh.prop(sh.t.component("Option Constraints")),
+                    "description": sh.prop_with_description("Documentation shown in IDE for this option", sh.t.optional(sh.t.text_global("multi line text"))),
+                    "value": sh.prop(sh.t.component("Value")),
                 }))),
-                "results": prop(t.component("Value Results")),
+                "results": sh.prop(sh.t.component("Value Results")),
             })),
-            "text": toption_with_description("String value (single-line or multi-line)", t.state({
-                "global": toption_with_description("Use a globally defined text type", t.reference("Globals", [vp.g("text types")])),
-                "local": toption_with_description("Define the text type inline", t.component("Text Type")),
+            "text": sh.toption_with_description("String value (single-line or multi-line)", sh.t.state({
+                "global": sh.toption_with_description("Use a globally defined text type", sh.t.reference("Globals", [sh.vp.g("text types")])),
+                "local": sh.toption_with_description("Define the text type inline", sh.t.component("Text Type")),
             })),
         })),
 
-        "Resolver Value": module_(t.state({
+        "Resolver Value": sh.module_(sh.t.state({
             "component": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("component")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("component")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("component"),])),
+                sh.t.group({
+                    "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("component"),])),
 
-                    "location": prop(t.state({
-                        "external": toption(t.group({
-                            "schema import": prop(t.reference("Schema Imports", [])),
-                            "resolver import": prop(t.reference("Resolver Imports", [])),
-                            "signature": prop(t.reference("Resolver Signatures", [])),
+                    "location": sh.prop(sh.t.state({
+                        "external": sh.toption(sh.t.group({
+                            "schema import": sh.prop(sh.t.reference("Schema Imports", [])),
+                            "resolver import": sh.prop(sh.t.reference("Resolver Imports", [])),
+                            "signature": sh.prop(sh.t.reference("Resolver Signatures", [])),
                         })),
-                        "internal": toption(t.reference("Resolver Signatures", [])),
+                        "internal": sh.toption(sh.t.reference("Resolver Signatures", [])),
                     })),
-                    "signature": prop(t.reference_derived("Resolver Signatures", [vp.d()])),
-                    "arguments": prop(t.optional(t.group({
-                        "modules": prop(t.optional(t.dictionary(t.state({
-                            "optional": toption(t.component("Resolver Optional Value Initialization")),
-                            "required": toption(t.component("Resolver Guaranteed Value Selection")),
-                            "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])),
+                    "signature": sh.prop(sh.t.reference_derived("Resolver Signatures", [sh.vp.d()])),
+                    "arguments": sh.prop(sh.t.optional(sh.t.group({
+                        "modules": sh.prop(sh.t.optional(sh.t.dictionary(sh.t.state({
+                            "optional": sh.toption(sh.t.component("Resolver Optional Value Initialization")),
+                            "required": sh.toption(sh.t.component("Resolver Guaranteed Value Selection")),
+                            "parameter": sh.toption(sh.t.reference("Resolver Signature Parameters", [sh.vp.g("modules")])),
                         })))),
-                        "lookups": prop(t.optional(t.dictionary(t.state({
-                            "stack": toption(t.state({
-                                "empty": toption(t.nothing()),
-                                "push": toption(t.group({
-                                    "stack": prop(t.component("Resolver Lookup Selection")),
-                                    "item": prop(t.component("Resolver Lookup Selection")),
+                        "lookups": sh.prop(sh.t.optional(sh.t.dictionary(sh.t.state({
+                            "stack": sh.toption(sh.t.state({
+                                "empty": sh.toption(sh.t.nothing()),
+                                "push": sh.toption(sh.t.group({
+                                    "stack": sh.prop(sh.t.component("Resolver Lookup Selection")),
+                                    "item": sh.prop(sh.t.component("Resolver Lookup Selection")),
                                 })),
                             })),
-                            "acyclic": toption(t.state({
-                                "not set": toption(t.nothing()),
+                            "acyclic": sh.toption(sh.t.state({
+                                "not set": sh.toption(sh.t.nothing()),
                             })),
-                            "cyclic": toption(t.state({
-                                "not set": toption(t.nothing()),
+                            "cyclic": sh.toption(sh.t.state({
+                                "not set": sh.toption(sh.t.nothing()),
                             })),
-                            "selection": toption(t.component("Resolver Lookup Selection")),
+                            "selection": sh.toption(sh.t.component("Resolver Lookup Selection")),
                         })))),
                     }))),
-                    "constraints": prop(t.component("Resolver Value Constraints")),
+                    "constraints": sh.prop(sh.t.component("Resolver Value Constraints")),
                 })
             ),
             "dictionary": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("dictionary")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("dictionary")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Dictionary", [])),
-                    "resolver": prop(t.component("Resolver Value")),
-                    "benchmark": prop(t.optional(t.component("Resolver Benchmark"))),
+                sh.t.group({
+                    "definition": sh.prop(sh.t.reference_derived("Dictionary", [])),
+                    "resolver": sh.prop(sh.t.component("Resolver Value")),
+                    "benchmark": sh.prop(sh.t.optional(sh.t.component("Resolver Benchmark"))),
                 })
             ),
             "group": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("group")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("group")])
                 },
-                t.component("Resolver Value Group")
+                sh.t.component("Resolver Value Group")
             ),
             "list": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("list")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("list")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("list")])),
-                    "resolver": prop(t.component("Resolver Value")),
-                    "result": prop(t.optional(t.component("Resolver Value List Result"))),
+                sh.t.group({
+                    "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("list")])),
+                    "resolver": sh.prop(sh.t.component("Resolver Value")),
+                    "result": sh.prop(sh.t.optional(sh.t.component("Resolver Value List Result"))),
                 })
             ),
             "nothing": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("nothing")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("nothing")])
                 },
-                t.nothing()
+                sh.t.nothing()
             ),
             "simple": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("simple")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("simple")])
                 },
-                t.nothing(),
-                // t.group({
-                //     "definition": prop(t.reference_derived("Value", [vp.s("simple")])),
-     
+                sh.t.nothing(),
+                // sh.t.group({
+                //     "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("simple")])),
+
                 // })
             ),
             "optional": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("optional")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("optional")])
                 },
-                t.group({
-                    "constraints": prop(t.component("Resolver Option Constraints")),
-                    "resolver": prop(t.component("Resolver Value")),
+                sh.t.group({
+                    "constraints": sh.prop(sh.t.component("Resolver Option Constraints")),
+                    "resolver": sh.prop(sh.t.component("Resolver Value")),
                 })
             ),
             "reference": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("reference")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("reference")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
-                    "type": prop(t.state({
-                        "derived": toption(t.group({
-                            "value": prop(t.component("Resolver Guaranteed Value Selection")),
+                sh.t.group({
+                    "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("reference")])),
+                    "type": sh.prop(sh.t.state({
+                        "derived": sh.toption(sh.t.group({
+                            "value": sh.prop(sh.t.component("Resolver Guaranteed Value Selection")),
                         })),
-                        "selected": toption(t.group({
-                            "definition": prop(t.reference_derived("Value", [vp.s("reference"), vp.g("type"), vp.s("selected")])),
-                            "lookup": prop(t.component("Resolver Lookup Selection")),
-                            "constraints": prop(t.component("Resolver Value Constraints")),
+                        "selected": sh.toption(sh.t.group({
+                            "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("reference"), sh.vp.g("type"), sh.vp.s("selected")])),
+                            "lookup": sh.prop(sh.t.component("Resolver Lookup Selection")),
+                            "constraints": sh.prop(sh.t.component("Resolver Value Constraints")),
                         })),
                     })),
                 })
             ),
             "state": sh.toption_constrained(
                 {
-                    "definition": value_reference("Value", [vp.s("state")])
+                    "definition": sh.value_reference("Value", [sh.vp.s("state")])
                 },
-                t.group({
-                    "definition": prop(t.reference_derived("Value", [vp.s("state")])),
-                    "options": prop(t.dictionary(t.group({
-                        "constraints": prop(t.component("Resolver Option Constraints")),
-                        "resolver": prop(t.component("Resolver Value")),
+                sh.t.group({
+                    "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("state")])),
+                    "options": sh.prop(sh.t.dictionary(sh.t.group({
+                        "constraints": sh.prop(sh.t.component("Resolver Option Constraints")),
+                        "resolver": sh.prop(sh.t.component("Resolver Value")),
                     }))
                     ),
                 })),
-            "text": toption(t.nothing()),
-            // "type parameter": t.nothing(),
+            "text": sh.toption(sh.t.nothing()),
+            // "type parameter": sh.t.nothing(),
         })),
 
-        "Module Specification": module_(t.group({
-            "schema": prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", t.component("Schema Tree")),
-            "schema path": prop_with_description("selects the schema in which the module is specified", t.list(t.text_global("text"))),
-            "module": prop_with_description("the module that is the root of the document", t.text_global("text")),
-            //"file suffix": prop_with_description("the expected and suggested file suffix for a instance file, for example 'my_instance.my_suffix.lna'", t.text_global("text")),
+        "Module Specification": sh.module_(sh.t.group({
+            "schema": sh.prop_with_description("select 'schema' if you want to have 1 schema, if you have or need multple, select 'set'", sh.t.component("Schema Tree")),
+            "schema path": sh.prop_with_description("selects the schema in which the module is specified", sh.t.list(sh.t.text_global("text"))),
+            "complexity": sh.prop(sh.t.state({
+                "constrained": sh.toption(sh.t.group({
+                    "module resolver": sh.prop_with_description("the module resolver that is the root of the document (the resolver gives access to the module definition as well)", sh.t.text_global("text")),
+                })),
+                "unconstrained": sh.toption(sh.t.group({
+                    "module": sh.prop_with_description("the module that is the root of the document", sh.t.text_global("text")),
+                }))
+            })),
+            //"file suffix": sh.prop_with_description("the expected and suggested file suffix for a instance file, for example 'my_instance.my_suffix.lna'", sh.t.text_global("text")),
         })),
 
-        "Schema Tree": module_(t.state({
-            "schema": toption_with_description("a single schema", t.component("Schema")),
-            "set": toption_with_description("a hierarchy of schemas", t.component("Schemas")),
+        "Schema Tree": sh.module_(sh.t.state({
+            "schema": sh.toption_with_description("a single schema", sh.t.component("Schema")),
+            "set": sh.toption_with_description("a hierarchy of schemas", sh.t.component("Schemas")),
         })),
 
-        "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
+        "Schemas": sh.module_(sh.t.dictionary(sh.t.component("Schema Tree"))),
 
-        "Schema": module_(t.group({
-            "schema imports": prop(t.component("Schema Imports")),
-            "resolver imports": prop(t.component("Resolver Imports")),
-            "globals": prop(t.component("Globals")),
-            "modules": prop(t.component("Modules")),
-            "complexity": prop_with_description("Whether this schema includes resolver definitions", t.state({
-                "constrained": toption_with_description("Schema has resolvers for validation and transformation", t.component("Resolver")),
-                "unconstrained": toption_with_description("Schema only defines structure, no resolvers", t.nothing()),
+        "Schema": sh.module_(sh.t.group({
+            "schema imports": sh.prop(sh.t.component("Schema Imports")),
+            "resolver imports": sh.prop(sh.t.component("Resolver Imports")),
+            "globals": sh.prop(sh.t.component("Globals")),
+            "modules": sh.prop(sh.t.component("Modules")),
+            "complexity": sh.prop_with_description("Whether this schema includes resolver definitions", sh.t.state({
+                "constrained": sh.toption_with_description("Schema has resolvers for validation and transformation", sh.t.component("Resolver")),
+                "unconstrained": sh.toption_with_description("Schema only defines structure, no resolvers", sh.t.nothing()),
             })),
         })),
 
-        "Schema Imports": module_(t.dictionary(t.group({
-            "schema set child": prop(t.reference_stack("Schemas", [], {
+        "Schema Imports": sh.module_(sh.t.dictionary(sh.t.group({
+            "schema set child": sh.prop(sh.t.reference_stack("Schemas", [], {
                 "schema": sh.value_reference("Schema", []),
             })),
-            "schema": prop(t.reference_derived("Schema", [])),
+            "schema": sh.prop(sh.t.reference_derived("Schema", [])),
         }))),
 
-        "Resolver Imports": module_(t.dictionary(t.group({
-            "schema set child": prop(t.reference_stack("Schemas", [], {
+        "Resolver Imports": sh.module_(sh.t.dictionary(sh.t.group({
+            "schema set child": sh.prop(sh.t.reference_stack("Schemas", [], {
                 "resolver": sh.value_reference("Resolver", []),
             })),
-            "resolver": prop(t.reference_derived("Resolver", [])),
+            "resolver": sh.prop(sh.t.reference_derived("Resolver", [])),
         }))),
 
-        "Globals": module_(t.group({
-            "complexity": prop(t.state({
-                "constrained": toption(t.nothing()),
-                "unconstrained": toption(t.nothing()),
+        "Globals": sh.module_(sh.t.group({
+            "complexity": sh.prop(sh.t.state({
+                "constrained": sh.toption(sh.t.nothing()),
+                "unconstrained": sh.toption(sh.t.nothing()),
             })),
-            "text types": prop(t.dictionary(t.component("Text Type"))),
-            "simple types": prop(t.dictionary(t.component("Simple Type"))),
+            "text types": sh.prop(sh.t.dictionary(sh.t.component("Text Type"))),
+            "simple types": sh.prop(sh.t.dictionary(sh.t.component("Simple Type"))),
         })),
 
-        "Modules": module_(t.dictionary(t.component("Module"))),
+        "Modules": sh.module_(sh.t.dictionary(sh.t.component("Module"))),
 
-        "Resolver": module_(t.group({ //FIXME: inline
-            "signatures": prop(t.group({ //this is a group because this data is in the file $.signatures.astn.ts
-                "signatures": prop(t.component("Resolver Signatures"))
+        "Resolver": sh.module_(sh.t.group({ //FIXME: inline
+            "signatures": sh.prop(sh.t.group({ //this is a group because this data is in the file $.signatures.astn.ts
+                "signatures": sh.prop(sh.t.component("Resolver Signatures"))
             })),
-            "modules": prop(t.component("Resolver Modules")),
+            "modules": sh.prop(sh.t.component("Resolver Modules")),
         })),
 
-        "Text Type": module_(t.group({
-            "type": prop(t.state({
-                "multi line": toption_with_description("Text can contain line breaks (like a textarea)", t.nothing()),
-                "single line": toption_with_description("Text on a single line (like an input field)", t.nothing()),
+        "Text Type": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "multi line": sh.toption_with_description("Text can contain line breaks (like a textarea)", sh.t.nothing()),
+                "single line": sh.toption_with_description("Text on a single line (like an input field)", sh.t.nothing()),
             })),
         })),
 
-        "Simple Type": module_(t.group({
-            "type": prop(t.state({
-                "boolean": toption(t.nothing()),
-                "date": toption(t.nothing()),
-                "number": toption(t.group({
+        "Simple Type": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "boolean": sh.toption(sh.t.nothing()),
+                "date": sh.toption(sh.t.nothing()),
+                "number": sh.toption(sh.t.group({
                     /**
                      * is the number an approximation or the exact value?
                      * 'variable' is similar to floating point (in programming languages) or scientific notation
                      * 'fixed' is similar to integers/positive integers
                      */
-                    "precision": prop(t.state({
+                    "precision": sh.prop(sh.t.state({
                         /**
                          * variable is similar to scientific notation or floating point (in programming languages)
                          */
-                        "approximation": toption(t.group({
+                        "approximation": sh.toption(sh.t.group({
                             /**
                              * the total number of digits in the number
                              */
-                            "significant digits": prop(t.simple("Natural")),
+                            "significant digits": sh.prop(sh.t.simple("Natural")),
                         })),
                         /**
                          * fixed is similar to integers/signed integers
                          */
-                        "exact": toption(t.group({
+                        "exact": sh.toption(sh.t.group({
                             /**
                              * the number of digits after the decimal point
                              * in the strict mathematical sense, a natural or an integer is a whole number,
                              * but in this context, there can be decimals. However, because the number of decimals (the 'scale') is fixed,
                              * it is trivial to convert these to a whole number; just multiply by 10^offset.
                              */
-                            "number of fractional digits": prop(t.optional(t.simple("Natural"))),
+                            "number of fractional digits": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
 
                             /**
                              * can the number be negative? > 'integer'
                              * can the number be zero? > 'natural'
                              * else > 'positive natural'
                              */
-                            "type": prop(t.state({
-                                "integer": toption(t.nothing()),
-                                "natural": toption(t.nothing()),
-                                "positive natural": toption(t.nothing()),
+                            "type": sh.prop(sh.t.state({
+                                "integer": sh.toption(sh.t.nothing()),
+                                "natural": sh.toption(sh.t.nothing()),
+                                "positive natural": sh.toption(sh.t.nothing()),
                             })),
                         })),
                     }))
@@ -316,253 +307,252 @@ export const $: g_.Modules = modules(
             })),
         })),
 
-        "Module": module_(t.group({
-            "root value": prop(t.component("Value"))
+        "Module": sh.module_(sh.t.group({
+            "root value": sh.prop(sh.t.component("Value"))
         })),
 
         //FIXME: inline
-        "Presence": module_(t.state({
-            "optional": toption_with_description("This parameter may be omitted", t.nothing()),
-            "required": toption_with_description("This parameter must be provided", t.nothing()),
+        "Presence": sh.module_(sh.t.state({
+            "optional": sh.toption_with_description("This parameter may be omitted", sh.t.nothing()),
+            "required": sh.toption_with_description("This parameter must be provided", sh.t.nothing()),
         })),
 
-        "Dictionary": module_(t.group({
-            "value": prop_with_description("The type of each entry in this dictionary", t.component("Value")),
+        "Dictionary": sh.module_(sh.t.group({
+            "value": sh.prop_with_description("The type of each entry in this dictionary", sh.t.component("Value")),
         })),
 
-        "Resolver Signatures": module_(t.dictionary(t.component("Resolver Signature"))),
+        "Resolver Signatures": sh.module_(sh.t.dictionary(sh.t.component("Resolver Signature"))),
 
-        "Resolver Modules": module_(t.dictionary(t.group({
-            "signature": prop(t.reference_derived("Resolver Signatures", [vp.d()])),
-            "root value resolver": prop(t.component("Resolver Value")),
+        "Resolver Modules": sh.module_(sh.t.dictionary(sh.t.group({
+            "signature": sh.prop(sh.t.reference_derived("Resolver Signatures", [sh.vp.d()])),
+            "root value resolver": sh.prop(sh.t.component("Resolver Value")),
         }))),
 
-        "Resolver Benchmark": module_(t.group({
-            "selection": prop(t.component_with_results("Resolver Guaranteed Value Selection", {
-                "dictionary": sh.value_reference("Value", [vp.s("dictionary")])
+        "Resolver Benchmark": sh.module_(sh.t.group({
+            "selection": sh.prop(sh.t.component_with_results("Resolver Guaranteed Value Selection", {
+                "dictionary": sh.value_reference("Value", [sh.vp.s("dictionary")])
             })),
-            "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
-            "dense": prop(t.simple_boolean()),
+            "resulting dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
+            "dense": sh.prop(sh.t.simple_boolean()),
         })),
 
         /**
          * the properties in a group are ordered. This way there is a canonical concise representation
          */
-        "Group": module_(t.dictionary(t.group({
-            "description": prop_with_description("Documentation shown in IDE for this property", t.optional(t.text_global("multi line text"))),
-            "value": prop_with_description("The type of this property", t.component("Value"))
+        "Group": sh.module_(sh.t.dictionary(sh.t.group({
+            "description": sh.prop_with_description("Documentation shown in IDE for this property", sh.t.optional(sh.t.text_global("multi line text"))),
+            "value": sh.prop_with_description("The type of this property", sh.t.component("Value"))
         }))),
 
-        "Value Reference": module_(t.group({ //FIXME: inline
-            "module": prop(t.component("Module Reference")),
-            "path": prop(t.component("Value Path")),
+        "Value Reference": sh.module_(sh.t.group({ //FIXME: inline
+            "module": sh.prop(sh.t.component("Module Reference")),
+            "path": sh.prop(sh.t.component("Value Path")),
         })),
 
-        "Value Path": module_(t.group({
-            "tail": prop_with_description("Navigate through nested structures: groups, states, dictionaries, lists, optionals", t.list_with_results(
-                t.state_with_result(
+        "Value Path": sh.module_(sh.t.group({
+            "tail": sh.prop_with_description("Navigate through nested structures: groups, states, dictionaries, lists, optionals", sh.t.list_with_results(
+                sh.t.state_with_result(
                     {
-                        "dictionary": toption_with_description("Navigate into a dictionary's values", t.nothing()),
-                        "group": toption_with_description("Navigate to a specific property in a group", t.reference("Group", [])),
-                        "list": toption_with_description("Navigate into a list's elements", t.nothing()),
-                        "optional": toption_with_description("Navigate into an optional's value", t.nothing()),
-                        "state": toption_with_description("Navigate to a specific option in a state", t.reference("Value", [vp.s("state"), vp.g("options")])),
+                        "dictionary": sh.toption_with_description("Navigate into a dictionary's values", sh.t.nothing()),
+                        "group": sh.toption_with_description("Navigate to a specific property in a group", sh.t.reference("Group", [])),
+                        "list": sh.toption_with_description("Navigate into a list's elements", sh.t.nothing()),
+                        "optional": sh.toption_with_description("Navigate into an optional's value", sh.t.nothing()),
+                        "state": sh.toption_with_description("Navigate to a specific option in a state", sh.t.reference("Value", [sh.vp.s("state"), sh.vp.g("options")])),
                     },
                     {
-                        "value": value_reference("Value", [])
+                        "value": sh.value_reference("Value", [])
                     }
 
                 ),
                 {
-                    "result": value_reference("Value", [])
+                    "result": sh.value_reference("Value", [])
                 }
             )),
-            "resulting node": prop(t.reference_derived("Value", [])),
+            "resulting node": sh.prop(sh.t.reference_derived("Value", [])),
 
         })),
 
-        "Module Reference": module_(t.group({
-            "location": prop_with_description("Where the referenced module is defined", t.state({
-                "internal": toption_with_description("Module is in the same schema", t.reference("Modules", [])),
-                "external": toption_with_description("Module is in an imported schema", t.group({
-                    "import": prop(t.reference("Schema Imports", [])),
-                    "module": prop(t.reference("Modules", [])),
+        "Module Reference": sh.module_(sh.t.group({
+            "location": sh.prop_with_description("Where the referenced module is defined", sh.t.state({
+                "internal": sh.toption_with_description("Module is in the same schema", sh.t.reference("Modules", [])),
+                "external": sh.toption_with_description("Module is in an imported schema", sh.t.group({
+                    "import": sh.prop(sh.t.reference("Schema Imports", [])),
+                    "module": sh.prop(sh.t.reference("Modules", [])),
                 })),
             })),
-            "resulting module": prop(t.reference_derived("Module", [])),
+            "resulting module": sh.prop(sh.t.reference_derived("Module", [])),
         })),
 
-        "Resolver Signature Parameters": module_(t.group({ //FIME: inline
-            "modules": prop(t.dictionary(t.group({
-                "module": prop(t.component("Module Reference")),
-                "presence": prop(t.component("Presence")),
+        "Resolver Signature Parameters": sh.module_(sh.t.group({ //FIME: inline
+            "modules": sh.prop(sh.t.dictionary(sh.t.group({
+                "module": sh.prop(sh.t.component("Module Reference")),
+                "presence": sh.prop(sh.t.component("Presence")),
             }))),
-            "lookups": prop(t.dictionary(t.group({
-                "referent": prop(t.component("Module Reference")),
-                "dictionary": prop(t.reference_derived("Dictionary", [])),
-                "type": prop(t.state({
-                    "cyclic": toption(t.nothing()),
-                    "acyclic": toption(t.nothing()),
-                    "stack": toption(t.nothing()),
+            "lookups": sh.prop(sh.t.dictionary(sh.t.group({
+                "referent": sh.prop(sh.t.component("Module Reference")),
+                "dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
+                "type": sh.prop(sh.t.state({
+                    "cyclic": sh.toption(sh.t.nothing()),
+                    "acyclic": sh.toption(sh.t.nothing()),
+                    "stack": sh.toption(sh.t.nothing()),
                 })),
-                "presence": prop(t.component("Presence")),
+                "presence": sh.prop(sh.t.component("Presence")),
             })))
         })),
 
-        "Resolver Signature": module_(t.group({
-            "module": prop(t.reference_derived("Module", [])),
-            "parameters": prop(t.state({
-                "local": toption(t.component("Resolver Signature Parameters")),
-                "same as": toption(t.reference("Resolver Signatures", [])),
+        "Resolver Signature": sh.module_(sh.t.group({
+            "module": sh.prop(sh.t.reference_derived("Module", [])),
+            "parameters": sh.prop(sh.t.state({
+                "local": sh.toption(sh.t.component("Resolver Signature Parameters")),
+                "same as": sh.toption(sh.t.reference("Resolver Signatures", [])),
             })),
-            "resolved parameters": prop(t.reference_derived("Resolver Signature Parameters", [])),
+            "resolved parameters": sh.prop(sh.t.reference_derived("Resolver Signature Parameters", [])),
         })),
 
-        "Resolver Relative Value Selection": module_(t.group({
-            "path": prop(t.list_with_results(
-                t.state({
-                    "component": toption(t.nothing()),
-                    "group": toption(t.reference("Group", [])),
-                    "reference": toption(t.group({
-                        "definition": prop(t.reference_derived("Value", [vp.s("reference")])),
+        "Resolver Relative Value Selection": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.list_with_results(
+                sh.t.state({
+                    "component": sh.toption(sh.t.nothing()),
+                    "group": sh.toption(sh.t.reference("Group", [])),
+                    "reference": sh.toption(sh.t.group({
+                        "definition": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("reference")])),
                     })),
                 }),
                 {
-                    "result": value_reference("Value", [])
+                    "result": sh.value_reference("Value", [])
                 }
             )),
-            "resulting node": prop(t.reference_derived("Value", [])),
+            "resulting node": sh.prop(sh.t.reference_derived("Value", [])),
         })),
 
-        "Resolver Lookup Selection": module_(t.group({
-            "type": prop(t.state({
-                "acyclic": toption(t.state({
-                    "siblings": toption(t.reference_derived("Dictionary", [])),
-                    "resolved dictionary": toption(t.group({
-                        "selection": prop(t.component("Resolver Guaranteed Value Selection")),
-                        "selected dictionary": prop(t.reference_derived("Dictionary", [])),
+        "Resolver Lookup Selection": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "acyclic": sh.toption(sh.t.state({
+                    "siblings": sh.toption(sh.t.reference_derived("Dictionary", [])),
+                    "resolved dictionary": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Resolver Guaranteed Value Selection")),
+                        "selected dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
                     })),
                 })),
-                "cyclic": toption(t.state({
-                    "siblings": toption(t.reference_derived("Dictionary", [])),
+                "cyclic": sh.toption(sh.t.state({
+                    "siblings": sh.toption(sh.t.reference_derived("Dictionary", [])),
                 })),
-                "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("lookups")])),
+                "parameter": sh.toption(sh.t.reference("Resolver Signature Parameters", [sh.vp.g("lookups")])),
             })),
-            "resulting dictionary": prop(t.reference_derived("Dictionary", [])),
+            "resulting dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
         })),
 
         //FIXME: inline
-        "Resolver Constraint": module_(t.group({ //should be "Constraint Resolver"
-            "selection": prop(t.component("Resolver Relative Value Selection")),
+        "Resolver Constraint": sh.module_(sh.t.group({ //should be "Constraint Resolver"
+            "selection": sh.prop(sh.t.component("Resolver Relative Value Selection")),
             //maybe this is reusable
-            "type": prop(t.state({
-                "state": toption(t.group({
-                    "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
-                    "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
+            "type": sh.prop(sh.t.state({
+                "state": sh.toption(sh.t.group({
+                    "selected state": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("state")])),
+                    "option": sh.prop(sh.t.reference("Value", [sh.vp.s("state"), sh.vp.g("options")])),
                 })),
-                "optional value": toption(t.group({
-                    "selected optional value": prop(t.reference_derived("Value", [vp.s("optional")])),
+                "optional value": sh.toption(sh.t.group({
+                    "selected optional value": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("optional")])),
                 })),
             })),
         })),
 
-        "Resolver Option Constraints": module_(t.dictionary(t.state({
-            "state": toption(t.group({
-                "selection": prop(t.component("Resolver Guaranteed Value Selection")),
-                "selected state": prop(t.reference_derived("Value", [vp.s("state")])),
-                "option": prop(t.reference("Value", [vp.s("state"), vp.g("options")])),
+        "Resolver Option Constraints": sh.module_(sh.t.dictionary(sh.t.state({
+            "state": sh.toption(sh.t.group({
+                "selection": sh.prop(sh.t.component("Resolver Guaranteed Value Selection")),
+                "selected state": sh.prop(sh.t.reference_derived("Value", [sh.vp.s("state")])),
+                "option": sh.prop(sh.t.reference("Value", [sh.vp.s("state"), sh.vp.g("options")])),
             })),
-            "assert is set": toption(t.component("Resolver Possible Value Selection")),
+            "assert is set": sh.toption(sh.t.component("Resolver Possible Value Selection")),
         }))),
 
-        "Resolver Optional Value Constraints": module_(t.optional(t.component("Resolver Value Constraints"))),
-        "Resolver Value Constraints": module_(t.dictionary(t.component("Resolver Value Constraint"))),
+        "Resolver Optional Value Constraints": sh.module_(sh.t.optional(sh.t.component("Resolver Value Constraints"))),
+        "Resolver Value Constraints": sh.module_(sh.t.dictionary(sh.t.component("Resolver Value Constraint"))),
 
-        "Resolver Reference To Value Constraint": module_(t.reference("Resolver Value Constraints", [])), //FIXME : inline
+        "Resolver Reference To Value Constraint": sh.module_(sh.t.reference("Resolver Value Constraints", [])), //FIXME : inline
 
-        "Resolver Value Constraint": module_(t.group({
-            "start": prop(t.state({
-                "value": toption(t.nothing()),
-                "sibling": toption(t.component("Resolver Reference To Value Constraint")),
+        "Resolver Value Constraint": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.state({
+                "value": sh.toption(sh.t.nothing()),
+                "sibling": sh.toption(sh.t.component("Resolver Reference To Value Constraint")),
             })),
-            "constraint": prop(t.component("Resolver Constraint")),
+            "constraint": sh.prop(sh.t.component("Resolver Constraint")),
         })),
 
-        "Resolver Optional Value Initialization": module_(t.state({
-            "not set": toption(t.nothing()),
-            "set": toption(t.component("Resolver Guaranteed Value Selection")),
-            "selection": toption(t.component("Resolver Possible Value Selection")),
+        "Resolver Optional Value Initialization": sh.module_(sh.t.state({
+            "not set": sh.toption(sh.t.nothing()),
+            "set": sh.toption(sh.t.component("Resolver Guaranteed Value Selection")),
+            "selection": sh.toption(sh.t.component("Resolver Possible Value Selection")),
         })),
 
-        "Resolver Value Group": module_(t.dictionary(t.group({
-            "definition": prop(t.reference_derived("Group", [vp.d()])),
-            "resolver": prop(t.component("Resolver Value")),
+        "Resolver Value Group": sh.module_(sh.t.dictionary(sh.t.group({
+            "definition": sh.prop(sh.t.reference_derived("Group", [sh.vp.d()])),
+            "resolver": sh.prop(sh.t.component("Resolver Value")),
         }))),
 
-        "Resolver Value List Result": module_(t.component("Module Reference")),
+        "Resolver Value List Result": sh.module_(sh.t.component("Module Reference")),
 
-        "Value Results": module_(t.optional(t.dictionary(t.component("Value Reference")))),
+        "Value Results": sh.module_(sh.t.optional(sh.t.dictionary(sh.t.component("Value Reference")))),
 
-        "Option Constraints": module_(t.optional(t.dictionary(t.component("Value Reference")))),
+        "Option Constraints": sh.module_(sh.t.optional(sh.t.dictionary(sh.t.component("Value Reference")))),
 
-        "Resolver Guaranteed Value Selection": module_(t.group({
-            "start": prop(t.state({
+        "Resolver Guaranteed Value Selection": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.state({
                 //stack
-                "sibling": toption(t.reference("Resolver Value Group", [])),
-                "parent sibling": toption(t.reference("Resolver Value Group", [])),
-                "option constraint": toption(t.reference("Resolver Option Constraints", [])),
-                "list cursor": toption(t.nothing()),
-                "linked entry": toption(t.nothing()),
+                "sibling": sh.toption(sh.t.reference("Resolver Value Group", [])),
+                "parent sibling": sh.toption(sh.t.reference("Resolver Value Group", [])),
+                "option constraint": sh.toption(sh.t.reference("Resolver Option Constraints", [])),
+                "list cursor": sh.toption(sh.t.nothing()),
+                "linked entry": sh.toption(sh.t.nothing()),
 
                 //siblings
-                "constraint": toption(t.state({
-                    "component": toption(t.group({
-                        "property": prop(t.reference("Resolver Value Group", [])),
-                        "constraint": prop(t.reference("Resolver Value Constraints", [])),
+                "constraint": sh.toption(sh.t.state({
+                    "component": sh.toption(sh.t.group({
+                        "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                        "constraint": sh.prop(sh.t.reference("Resolver Value Constraints", [])),
                     })),
-                    "reference": toption(t.group({
-                        "property": prop(t.reference("Resolver Value Group", [])),
-                        "constraint": prop(t.reference("Resolver Value Constraints", [])),
+                    "reference": sh.toption(sh.t.group({
+                        "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                        "constraint": sh.prop(sh.t.reference("Resolver Value Constraints", [])),
                     })),
 
                 })),
-                "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'required'
-                "result": toption(t.state({
-                    "list": toption(t.group({
-                        "property": prop(t.reference("Resolver Value Group", [])),
-                        "list result": prop(t.reference_derived("Resolver Value", [vp.s("list"), vp.g("result"), vp.o()])),
+                "parameter": sh.toption(sh.t.reference("Resolver Signature Parameters", [sh.vp.g("modules")])), //FIXME: validate that presence is 'required'
+                "result": sh.toption(sh.t.state({
+                    "list": sh.toption(sh.t.group({
+                        "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                        "list result": sh.prop(sh.t.reference_derived("Resolver Value", [sh.vp.s("list"), sh.vp.g("result"), sh.vp.o()])),
                     })),
-                    "state": toption(t.group({
-                        "property": prop(t.reference("Resolver Value Group", [])),
-                        "state": prop(t.reference_derived("Resolver Value", [vp.s("state")])),
-                        "result": prop(t.component("Module Reference")),
+                    "state": sh.toption(sh.t.group({
+                        "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                        "state": sh.prop(sh.t.reference_derived("Resolver Value", [sh.vp.s("state")])),
+                        "result": sh.prop(sh.t.component("Module Reference")),
                     })),
-                    "optional value": toption(t.group({
-                        "property": prop(t.reference("Resolver Value Group", [])),
-                        "optional value": prop(t.reference_derived("Resolver Value", [vp.s("optional")])),
-                        "result": prop(t.component("Module Reference")),
+                    "optional value": sh.toption(sh.t.group({
+                        "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                        "optional value": sh.prop(sh.t.reference_derived("Resolver Value", [sh.vp.s("optional")])),
+                        "result": sh.prop(sh.t.component("Module Reference")),
                     })),
                 }))
             })),
-            "tail": prop(t.component("Resolver Relative Value Selection")),
-            "resulting node": prop(t.reference_derived("Value", [])),
+            "tail": sh.prop(sh.t.component("Resolver Relative Value Selection")),
+            "resulting node": sh.prop(sh.t.reference_derived("Value", [])),
         })),
 
-        "Resolver Possible Value Selection": module_(t.state({
-            "parameter": toption(t.reference("Resolver Signature Parameters", [vp.g("modules")])), //FIXME: validate that presence is 'optional'
-            "result": toption(t.state({
-                "state": toption(t.group({
-                    "property": prop(t.reference("Resolver Value Group", [])),
-                    "state": prop(t.reference_derived("Resolver Value", [vp.s("state")])),
-                    "result": prop(t.component("Module Reference")),
+        "Resolver Possible Value Selection": sh.module_(sh.t.state({
+            "parameter": sh.toption(sh.t.reference("Resolver Signature Parameters", [sh.vp.g("modules")])), //FIXME: validate that presence is 'optional'
+            "result": sh.toption(sh.t.state({
+                "state": sh.toption(sh.t.group({
+                    "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                    "state": sh.prop(sh.t.reference_derived("Resolver Value", [sh.vp.s("state")])),
+                    "result": sh.prop(sh.t.component("Module Reference")),
                 })),
-                "optional value": toption(t.group({
-                    "property": prop(t.reference("Resolver Value Group", [])),
-                    "optional value": prop(t.reference_derived("Resolver Value", [vp.s("optional")])),
-                    "result": prop(t.component("Module Reference")),
+                "optional value": sh.toption(sh.t.group({
+                    "property": sh.prop(sh.t.reference("Resolver Value Group", [])),
+                    "optional value": sh.prop(sh.t.reference_derived("Resolver Value", [sh.vp.s("optional")])),
+                    "result": sh.prop(sh.t.component("Module Reference")),
                 })),
             }))
         })),
-
     }
 )

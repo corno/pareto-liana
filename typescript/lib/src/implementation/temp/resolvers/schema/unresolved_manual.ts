@@ -305,5 +305,15 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         $p,
     ),
     'schema path': $['schema path']['l list'].__l_map(($) => $['l item']),
-    'module': $.module,
+    'complexity': _p.decide.state($.complexity['l state'], ($) => {
+        switch ($[0]) {
+            case 'constrained': return _p.ss($, ($) => ['constrained', {
+                'module resolver': $['module resolver']
+            }])
+            case 'unconstrained':return _p.ss($, ($) => ['unconstrained', {
+                'module': $.module
+            }])
+            default: return _p.au($[0])
+        }
+    })
 }))

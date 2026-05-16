@@ -25,7 +25,7 @@ export type Module_Specifier = _pi.Refiner<
 export const Module_Specifier: Module_Specifier = ($, abort) => {
 
 
-    const resolved_schema_schema = r_schema_resolved_from_unresolved.Module_Specification(
+    const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,
             ($) => abort(['deserialize', $]),
@@ -91,37 +91,65 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
             })
         )
     }
-    const schema = temp_find_schema(resolved_schema_schema.schema, resolved_schema_schema['schema path'])
+    const schema = temp_find_schema(almost_resolved_module_specification.schema, almost_resolved_module_specification['schema path'])
 
-    return _p.decide.state(schema.complexity, ($) => {
+    return _p.decide.state(almost_resolved_module_specification.complexity, ($): d_out.Temp_Module_Specifier => {
         switch ($[0]) {
-            case 'constrained': return _p.ss($, ($) => {
+            case 'constrained': return _p.ss($, ($): d_out.Temp_Module_Specifier => {
+                const constrained_schema = _p.decide.state(schema.complexity, ($): d_out_schema.Resolver => {
+                    switch ($[0]) {
+                        case 'constrained': return _p.ss($, ($) => $)
+                        case 'unconstrained': return _p.ss($, ($) => abort(['resolve error', {
+                            'location': ['in main document', {
+                                'start': {
+                                    'absolute': 0,
+                                    'relative': {
+                                        'column': 0,
+                                        'line': 0,
+                                    }
+                                },
+                                'end': {
+                                    'absolute': 0,
+                                    'relative': {
+                                        'column': 0,
+                                        'line': 0,
+                                    }
+                                },
+                            }],
+                            'type': ['constraint', ['state', {
+                                'expected': "constrained",
+                                'found': "unconstrained",
+                            }]]
+                        }]))
+                        default: return _p.au($[0])
+                    }
+                })
                 return ['constrained', {
-                    'entry': $.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
+                    'entry': constrained_schema.modules.__get_possible_entry_deprecated($['module resolver']).__decide(
                         ($) => $,
                         () => {
                             schema.modules.__d_map(($, id) => {
                                 _p_log_debug_message(`available type: ${id}`, () => { })
                             })
-                            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
+                            _p_implement_me(`(FIXME: make this a reference) root type ${$['module resolver']} not found`)
                         }
                     ),
-                    'id': resolved_schema_schema.module,
+                    'id': $['module resolver'],
                 }]
             })
             case 'unconstrained': return _p.ss($, ($) => {
 
                 return ['unconstrained', {
-                    'entry': schema.modules.__get_possible_entry_deprecated(resolved_schema_schema.module).__decide(
+                    'entry': schema.modules.__get_possible_entry_deprecated($.module).__decide(
                         ($) => $,
                         () => {
                             schema.modules.__d_map(($, id) => {
                                 _p_log_debug_message(`available type: ${id}`, () => { })
                             })
-                            _p_implement_me(`(FIXME: make this a reference) root type ${resolved_schema_schema.module} not found`)
+                            _p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
                         }
                     ),
-                    'id': resolved_schema_schema.module,
+                    'id': $.module,
                 }]
             })
             default: return _p.au($[0])

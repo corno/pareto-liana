@@ -1247,12 +1247,55 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ['
                 }],
             )],
         ),
-        "module": _p_change_context(
-            $['module'],
-            ($) => ['text', {
-                'delimiter': ['quote', null],
-                'value': $,
-            }],
+        "complexity": _p_change_context(
+            $['complexity'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'constrained':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'constrained',
+                                    'value': ['group', ['verbose', _p.dictionary.literal(
+                                        {
+                                            "module resolver": _p_change_context(
+                                                $['module resolver'],
+                                                ($) => ['text', {
+                                                    'delimiter': ['quote', null],
+                                                    'value': $,
+                                                }],
+                                            ),
+                                        },
+                                    )]],
+                                }),
+                            )
+                        case 'unconstrained':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'unconstrained',
+                                    'value': ['group', ['verbose', _p.dictionary.literal(
+                                        {
+                                            "module": _p_change_context(
+                                                $['module'],
+                                                ($) => ['text', {
+                                                    'delimiter': ['quote', null],
+                                                    'value': $,
+                                                }],
+                                            ),
+                                        },
+                                    )]],
+                                }),
+                            )
+                        default:
+                            return _p.au(
+                                $[0],
+                            )
+                    }
+                },
+            )],
         ),
     },
 )]]

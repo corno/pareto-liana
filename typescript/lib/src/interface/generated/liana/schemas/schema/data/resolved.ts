@@ -933,14 +933,40 @@ export namespace Module_Specification_ {
     
     export type schema_path = _pi.List<schema_path.L>
     
-    export type module_ = string
+    export namespace complexity {
+        
+        export namespace constrained {
+            
+            export type module_resolver = string
+            
+        }
+        
+        export type constrained = {
+            readonly 'module resolver': constrained.module_resolver
+        }
+        
+        export namespace unconstrained {
+            
+            export type module_ = string
+            
+        }
+        
+        export type unconstrained = {
+            readonly 'module': unconstrained.module_
+        }
+        
+    }
+    
+    export type complexity = 
+        | readonly ['constrained', complexity.constrained]
+        | readonly ['unconstrained', complexity.unconstrained]
     
 }
 
 export type Module_Specification_ = {
     readonly 'schema': Module_Specification_.schema
     readonly 'schema path': Module_Specification_.schema_path
-    readonly 'module': Module_Specification_.module_
+    readonly 'complexity': Module_Specification_.complexity
 }
 
 export namespace Schema_Tree_ {
