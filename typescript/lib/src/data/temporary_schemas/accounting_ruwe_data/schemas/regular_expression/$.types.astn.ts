@@ -8,9 +8,9 @@ import {
     prop,
     toption,
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Modules = modules(
+
+export const $ = modules(
     {
         "Regular Expression": module_(t.group({
             "characters": prop(t.dictionary(t.simple("Character"))),

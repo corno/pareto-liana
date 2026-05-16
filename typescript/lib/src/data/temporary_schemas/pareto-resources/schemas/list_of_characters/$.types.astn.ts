@@ -9,9 +9,9 @@ import {
     toption,
     text,
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Modules = modules(
+
+export const $ = modules(
     {
 
         "List of Characters": module_(t.list(t.simple("Natural")))

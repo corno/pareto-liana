@@ -1,8 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
-
+import * as sh from "../../../shorthands/schema"
 
 import { $ as x_alan_light_oldstyle } from "./schemas/alan_light_oldstyle/$.module.astn"
 import { $ as x_csv } from "./schemas/csv/$.module.astn"
@@ -15,7 +13,7 @@ import { $ as x_semantic_versioning } from "./schemas/semantic_versioning/$.modu
 import { $ as x_xml_parse_result } from "./schemas/xml/parse_result/$.module.astn"
 import { $ as x_xml_simple } from "./schemas/xml/simple/$.module.astn"
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "alan light oldstyle": x_alan_light_oldstyle,
     "csv": x_csv,
     "html": x_html,

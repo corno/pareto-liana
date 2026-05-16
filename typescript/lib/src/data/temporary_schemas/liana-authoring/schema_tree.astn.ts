@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as x_completion_suggestions } from "./schemas/completion_suggestions/$.module.astn"
 import { $ as x_convert_to_json } from "./schemas/convert_to_json/$.module.astn"
@@ -18,7 +18,7 @@ import { $ as x_sort_alphabetically } from "./schemas/sort_alphabetically/$.modu
 import { $ as x_text_edits } from "./schemas/text_edits/$.module.astn"
 import { $ as x_unmarshall_errors } from "./schemas/unmarshall_errors/$.module.astn"
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "completion suggestions": x_completion_suggestions,
     "convert to json": x_convert_to_json,
     "diagnostics": x_diagnostics,

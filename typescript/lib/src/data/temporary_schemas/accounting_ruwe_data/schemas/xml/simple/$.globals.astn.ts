@@ -7,7 +7,7 @@ import {
 } from "../../../../../../shorthands/schema"
 import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Globals = globals(
+export const $ = globals(
 
          'unconstrained',
     {

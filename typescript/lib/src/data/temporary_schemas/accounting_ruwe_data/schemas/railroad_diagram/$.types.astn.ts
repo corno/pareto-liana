@@ -1,6 +1,6 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
+
 
 import {
     n,
@@ -12,7 +12,7 @@ import {
     toption,
 } from "../../../../../shorthands/schema"
 
-export const $: g_.Modules = modules(
+export const $ = modules(
     {
 
         "Grammar": module_(t.group({

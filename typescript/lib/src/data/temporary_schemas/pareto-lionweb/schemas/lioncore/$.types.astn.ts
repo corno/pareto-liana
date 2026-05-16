@@ -9,9 +9,9 @@ import {
     toption,
     text,
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Modules = modules(
+
+export const $ = modules(
     {
         "M3": module_(t.group({
             "id": prop(t.component_external("generic", "ID")),

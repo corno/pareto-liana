@@ -1,10 +1,10 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as x_structure } from "./schemas/structure/$.module.astn"
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "structure": x_structure,
 })

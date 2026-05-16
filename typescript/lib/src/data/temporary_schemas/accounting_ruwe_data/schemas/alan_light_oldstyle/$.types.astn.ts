@@ -10,14 +10,14 @@ import {
     toption,
 
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
+
 
 /**
  * dit schema gebruik ik voor het parsen van de oude boekhoudingen.
  * Het enige verschil met de normale alan_light is het ontbreken van de key van de collection
  * In deze versie werd de data nog als objecten opgeslagen ipv arrays
  */
-export const $: g_.Modules = modules(
+export const $ = modules(
     {
         "Path": module_(t.group({
             "up steps": prop(t.list(t.group({}))),

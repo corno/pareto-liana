@@ -9,9 +9,9 @@ import {
     toption,
     text,
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
-export const $: g_.Modules = modules(
+
+export const $ = modules(
     {
         "Message": module_(t.group({
             "lines": prop(t.list(t.text_global("text"))),

@@ -1,12 +1,12 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as x_static_html } from "./schemas/static-html/$.module.astn"
 import { $ as x_xml } from "./schemas/xml/$.module.astn"
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "static-html": x_static_html,
     "xml": x_xml,
 })

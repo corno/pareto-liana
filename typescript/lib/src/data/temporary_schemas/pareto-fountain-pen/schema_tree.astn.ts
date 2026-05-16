@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as x_lines } from "./schemas/lines/$.module.astn"
 import { $ as x_list_of_characters } from "./schemas/list_of_characters/$.module.astn"
@@ -10,7 +10,7 @@ import { $ as x_semi_lines } from "./schemas/semi_lines/$.module.astn"
 import { $ as x_text } from "./schemas/text/$.module.astn"
 
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "lines": x_lines,
     "list of characters": x_list_of_characters,
     "prose": x_prose,

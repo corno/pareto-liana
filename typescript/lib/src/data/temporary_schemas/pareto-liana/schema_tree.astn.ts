@@ -1,14 +1,14 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as x_astn_location } from "../astn-core/schemas/location/$.module.astn"
 import { $ as x_astn_schema } from "../astn/schemas/astn_schema/$.module.astn"
 import { $ as x_schema } from "./schemas/schema/$.module.astn"
 
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "astn schema": x_astn_schema,
     "location": x_astn_location,
     "schema": x_schema,

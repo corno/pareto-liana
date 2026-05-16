@@ -9,10 +9,10 @@ import {
     prop,
     toption,
 } from "../../../../../shorthands/schema"
-import * as g_ from "../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 
-export const $: g_.Modules = modules(
+
+export const $ = modules(
     {
         "Document": module_(t.group({
             "header": prop(t.optional(t.group({

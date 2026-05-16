@@ -1,7 +1,7 @@
 import * as _pi from 'pareto-core/dist/interface'
 
-import { st } from "../../../shorthands/schema"
-import * as g_ from "../../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as sh from "../../../shorthands/schema"
+
 
 import { $ as m_chmod } from "./schemas/chmod/$.module.astn"
 import { $ as m_copy } from "./schemas/copy/$.module.astn"
@@ -29,7 +29,7 @@ import { $ as m_write_file } from "./schemas/write_file/$.module.astn"
 import { $ as m_write_to_stderr } from "./schemas/write_to_stderr/$.module.astn"
 import { $ as m_write_to_stdout } from "./schemas/write_to_stdout/$.module.astn"
 
-export const $: g_.Schema_Tree = st.set({
+export const $ = sh.st.set({
     "chmod": m_chmod,
     "copy": m_copy,
     "execute any command executable": m_execute_any_command_executable,
