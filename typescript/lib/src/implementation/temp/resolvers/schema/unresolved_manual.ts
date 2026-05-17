@@ -1,6 +1,6 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p_sl from 'pareto-core/dist/select_lookup'
+import * as _p_sl from 'pareto-core/dist/select_static_lookup'
 import _p_variables from 'pareto-core/dist/_p_variables'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
 

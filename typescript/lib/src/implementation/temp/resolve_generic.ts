@@ -1,6 +1,6 @@
 import * as _p from 'pareto-core/dist/assign'
 import * as _pi from 'pareto-core/dist/interface'
-import * as _p_temp from 'pareto-core/dist/select_lookup'
+import * as _p_temp from 'pareto-core/dist/select_static_lookup'
 import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as gen_loc from "liana-core/dist/interface/to_be_generated/document_and_location"
@@ -34,8 +34,8 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     handle_entry: (
         $: Unresolved,
         id: string,
-        $acyclic: _pi.lookup.Acyclic<Resolved>,
-        $cyclic: _pi.lookup.Cyclic<Resolved>,
+        $acyclic: _pi.static_lookup.Acyclic<Resolved>,
+        $cyclic: _pi.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
     const xx = _p.decide.dictionary(
@@ -58,7 +58,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     )
     return _p.dictionary.from.dictionary(
         $,
-    ).resolve(
+    ).resolve_static(
         handle_entry
     )
 }
@@ -118,7 +118,7 @@ export namespace abort {
 }
 
 export const get_entry_acyclic = <T>(
-    lookup: _pi.lookup.Acyclic<T>,
+    lookup: _pi.static_lookup.Acyclic<T>,
     ref: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
@@ -145,7 +145,7 @@ export const get_entry_acyclic = <T>(
 }
 
 export const get_entry_cyclic = <T>(
-    lookup: _pi.lookup.Cyclic<T>,
+    lookup: _pi.static_lookup.Cyclic<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<_pi.Circular_Dependency<T>> => {
@@ -169,7 +169,7 @@ export const get_entry_cyclic = <T>(
 }
 
 export const get_entry_stack = <T>(
-    stack: _pi.lookup.Stack<T>,
+    stack: _pi.static_lookup.Stack<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
@@ -239,11 +239,11 @@ export const temp_resolve = <T, Resolved>(
     handle_entry: (
         $: T,
         id: string,
-        acyclic_lookup: _pi.lookup.Acyclic<Resolved>,
-        cyclic_lookup: _pi.lookup.Cyclic<Resolved>,
+        acyclic_lookup: _pi.static_lookup.Acyclic<Resolved>,
+        cyclic_lookup: _pi.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): _pi.Dictionary<Resolved> => {
-    return _p.dictionary.from.dictionary($).resolve(handle_entry)
+    return _p.dictionary.from.dictionary($).resolve_static(handle_entry)
 }
 
 export const temp_map_list_with_state = <T, Target_Item, State, Result_Type extends { [id: string]: any }>(
