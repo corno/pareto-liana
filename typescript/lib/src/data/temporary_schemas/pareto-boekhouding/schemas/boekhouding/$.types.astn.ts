@@ -19,7 +19,7 @@ export const $ = modules(
             "Beheer": prop(t.component("Beheer")),
             "Jaren": prop(t.component("Jaren")),
         })),
-        
+
         "Fiscaal": module_(t.group({
             "Balans Hoofdcategorieen": prop(t.dictionary(t.group({
                 "Zijde": prop(t.state({
@@ -130,13 +130,16 @@ export const $ = modules(
 
         "Grootboekrekeningen": module_(t.group({
             "Balans": prop(t.dictionary(t.group({
+                "Stam": prop(t.reference_derived("Beheer", [vp.g("Grootboekrekeningen"), vp.g("Balans"), vp.d()])),
                 "Type": prop(t.state({
                     "Bankrekening": toption(t.nothing()),
                     "Overig": toption(t.nothing()),
                     "Informele rekening": toption(t.nothing()),
                 }))
             }))),
-            "Resultaat": prop(t.dictionary(t.nothing())),
+            "Resultaat": prop(t.dictionary(t.group({
+                "Stam": prop(t.reference_derived("Beheer", [vp.g("Grootboekrekeningen"), vp.g("Resultaat"), vp.d()])),
+            }))),
         })),
 
         "Jaarbeheer": module_(t.group({

@@ -45,7 +45,7 @@ export const Schema = (
                             )
                         )
                     }),
-                ).filter(
+                ).map_optionally(
                     ($) => $
                 ),
                 "imports ": _p_change_context($, ($) => {
@@ -281,7 +281,7 @@ export const Value = (
                                                         }
                                                     })
                                                 }),
-                                            ).filter(
+                                            ).map_optionally(
                                                 ($) => $,
                                             )
                                         )

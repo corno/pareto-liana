@@ -6,7 +6,9 @@ import { signatures, sig, value_parameter, lookup_parameter, sig_params } from "
 export const $ = signatures(
     {
         "Fiscaal": sig.local({}, {}),
-        "Grootboekrekeningen": sig.local({}, {}),
+        "Grootboekrekeningen": sig.local({
+            "Beheer": value_parameter("Beheer")
+        }, {}),
 
         "Grootboek Categorieen": sig.local({
             "Fiscaal": value_parameter("Fiscaal"),

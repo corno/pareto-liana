@@ -41,7 +41,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
     const xx = _p.decide.dictionary(
         _p.dictionary.from.dictionary(
             benchmark,
-        ).filter(
+        ).map_optionally(
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(

@@ -117,14 +117,25 @@ export const $ = resolver_modules(
         })),
 
         "Grootboekrekeningen": resolver(r.group({
-            "Balans": r.dictionary(r.group({
-                "Type": r.state({
-                    "Bankrekening": option(r.nothing()),
-                    "Overig": option(r.nothing()),
-                    "Informele rekening": option(r.nothing())
+            "Balans": r.dictionary_linked(
+                'sparse',
+                gvs.parameter("Beheer", [rvs.group("Grootboekrekeningen"), rvs.group("Balans")]),
+                r.group({
+                    "Stam": r.reference_derived(gvs.linked_entry([])),
+                    "Type": r.state({
+                        "Bankrekening": option(r.nothing()),
+                        "Overig": option(r.nothing()),
+                        "Informele rekening": option(r.nothing())
+                    })
                 })
-            })),
-            "Resultaat": r.dictionary(r.nothing()),
+            ),
+            "Resultaat": r.dictionary_linked(
+                'sparse',
+                gvs.parameter("Beheer", [rvs.group("Grootboekrekeningen"), rvs.group("Resultaat")]),
+                r.group({
+                    "Stam": r.reference_derived(gvs.linked_entry([]))
+                }),
+            ),
         })),
 
         "Jaarbeheer": resolver(r.group({
@@ -401,7 +412,9 @@ export const $ = resolver_modules(
                 "Nee": option(r.nothing()),
             }),
             "Startdatum boekjaar": r.simple_number(),
-            "Grootboekrekeningen": r.component("Grootboekrekeningen", {}, {}),
+            "Grootboekrekeningen": r.component("Grootboekrekeningen", {
+                "Beheer": av.parameter("Beheer"),
+            }, {}),
             "Eerste boekjaar": r.component("Eerste boekjaar", {}, {
                 "Jaren": al.acyclic.siblings(),
             }),
