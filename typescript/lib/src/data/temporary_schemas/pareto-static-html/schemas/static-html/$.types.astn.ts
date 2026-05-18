@@ -41,12 +41,13 @@ export const $ = modules(
                     })),
                     "rows": prop(t.list(t.group({
                         "classes": prop(t.component("Classes")),
-                        "type": prop(t.state({
-                            "th": toption(t.nothing()),
-                            "td": toption(t.nothing()),
-                        })),
                         "height": prop(t.optional(t.simple("Natural"))),
                         "cells": prop(t.list(t.group({
+                            "type": prop(t.state({
+                                "th": toption(t.nothing()),
+                                "td": toption(t.nothing()),
+                            })),
+                            "colspan": prop(t.optional(t.simple("Natural"))),
                             "classes": prop(t.component("Classes")),
                             "content": prop(t.component("Flow Content")),
                         }))),
