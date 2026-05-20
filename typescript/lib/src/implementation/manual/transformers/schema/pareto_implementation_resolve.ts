@@ -129,6 +129,7 @@ export const Resolver_Modules = (
             }),
         ).flatten(
             ($) => $,
+            (parent_id, child_id) => parent_id + child_id,
             {
                 duplicate_id: () => _p_unreachable_code_path("there is only one root key, 'external '"),
             }

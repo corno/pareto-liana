@@ -81,6 +81,7 @@ export const Schema = (
             }),
         ).flatten(
             ($) => $,
+            (parent_id, child_id) => parent_id + child_id,
             {
                 duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; 'serialize' and 'external'"),
             }

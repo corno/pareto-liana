@@ -111,6 +111,7 @@ export const Schema: _pi.Transformer_With_Parameter<
             }),
         ).flatten(
             ($) => $,
+            (parent_id, child_id) => parent_id + child_id,
             {
                 duplicate_id: () => _p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
             }
