@@ -375,16 +375,19 @@ export const $ = resolver_modules(
             "Bankrekening Mutatie Verwerkingen": r.dictionary_linked(
                 'sparse',
                 gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Bankrekeningen")]),
-                r.dictionary(r.state({
-                    "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
-                    "Balans": option(r.state({
-                        "Verrekenpost": option(r.group({
-                            "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
+                r.dictionary(r.group({
+                    "mutatie": r.reference_derived(gvs.linked_entry([])),
+                    "type": r.state({
+                        "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                        "Balans": option(r.state({
+                            "Verrekenpost": option(r.group({
+                                "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
+                            })),
+                            "Informele rekening": option(r.group({
+                                "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                            })),
                         })),
-                        "Informele rekening": option(r.group({
-                            "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
-                        })),
-                    })),
+                    })
                 })),
             ),
             "Memoriaal boekingen": r.dictionary_linked(
