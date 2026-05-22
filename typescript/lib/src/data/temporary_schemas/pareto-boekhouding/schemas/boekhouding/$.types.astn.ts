@@ -333,37 +333,46 @@ export const $ = modules(
         })),
 
         "Mutaties": module_(t.group({
-            "Verrekenpost mutaties": prop(t.dictionary(t.dictionary(t.group({
-                "Bedrag": prop(t.simple("Bedrag")),
-                "Afhandeling": prop(t.state({
-                    "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
-                    "Balans": toption(t.state({
-                        "Informele rekening": toption(t.group({
-                            "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
+            "Verrekenposten": prop(t.dictionary(t.group({
+                "Stam": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Verrekenposten"), vp.d()])),
+                "Mutaties": prop(t.dictionary(t.group({
+                    "Bedrag": prop(t.simple("Bedrag")),
+                    "Afhandeling": prop(t.state({
+                        "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
+                        "Balans": toption(t.state({
+                            "Informele rekening": toption(t.group({
+                                "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
+                            })),
+                        }))
+                    }))
+                })))
+            }))),
+            "Bankrekeningen": prop(t.dictionary(t.group({
+                "Stam": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Bankrekeningen"), vp.d()])),
+                "Mutatie Verwerkingen": prop(t.dictionary(t.group({
+                    "Stam": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Bankrekeningen"), vp.d(), vp.g("Mutaties"), vp.d()])),
+                    "type": prop(t.state({
+                        "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
+                        "Balans": toption(t.state({
+                            "Informele rekening": toption(t.group({
+                                "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
+                            })),
+                            "Verrekenpost": toption(t.group({
+                                "Verrekenpost": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Verrekenposten")])),
+                            })),
                         })),
                     }))
-                }))
-            })))),
-            "Bankrekening Mutatie Verwerkingen": prop(t.dictionary(t.dictionary(t.group({
-                "mutatie": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Bankrekeningen"), vp.d(), vp.g("Mutaties"), vp.d()])),
-                "type": prop(t.state({
-                    "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
-                    "Balans": toption(t.state({
-                        "Informele rekening": toption(t.group({
-                            "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
-                        })),
-                        "Verrekenpost": toption(t.group({
-                            "Verrekenpost": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Verrekenposten")])),
-                        })),
-                    })),
-                }))
-            })))),
-            "Memoriaal boekingen": prop(t.dictionary(t.dictionary(t.group({
-                "Bedrag": prop(t.simple("Bedrag")),
-                "Datum": prop(t.simple("Datum")),
-                "Omschrijving": prop(t.text_global("Omschrijving")),
-                "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [vp.g("Resultaat")])),
-            })))),
+                })))
+            }))),
+            "Overige Balans Items": prop(t.dictionary(t.group({
+                "Stam": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Overige balans items"), vp.d()])),
+                "Memoriaal Boekingen": prop(t.dictionary(t.group({
+                    "Bedrag": prop(t.simple("Bedrag")),
+                    "Datum": prop(t.simple("Datum")),
+                    "Omschrijving": prop(t.text_global("Omschrijving")),
+                    "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [vp.g("Resultaat")])),
+                })))
+            }))),
         })),
 
         "Balans Resultaat Mutatie": module_(t.group({

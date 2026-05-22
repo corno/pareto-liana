@@ -356,50 +356,58 @@ export const $ = resolver_modules(
         })),
 
         "Mutaties": resolver(r.group({
-            "Verrekenpost mutaties": r.dictionary_linked(
+            "Verrekenposten": r.dictionary_linked(
                 'sparse',
                 gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")]),
-                r.dictionary(r.group({
-                    "Bedrag": r.simple_number(),
-                    "Afhandeling": r.state({
-                        "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
-                        "Balans": option(r.state({
-                            "Informele rekening": option(r.group({
-                                "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
-                            })),
+                r.group({
+                    "Stam": r.reference_derived(gvs.linked_entry([])),
+                    "Mutaties": r.dictionary(r.group({
+                        "Bedrag": r.simple_number(),
+                        "Afhandeling": r.state({
+                            "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                            "Balans": option(r.state({
+                                "Informele rekening": option(r.group({
+                                    "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                                })),
 
-                        })),
-                    })
-                })),
+                            })),
+                        })
+                    }))
+                }),
             ),
-            "Bankrekening Mutatie Verwerkingen": r.dictionary_linked(
+            "Bankrekeningen": r.dictionary_linked(
                 'sparse',
                 gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Bankrekeningen")]),
-                r.dictionary(r.group({
-                    "mutatie": r.reference_derived(gvs.linked_entry([])),
-                    "type": r.state({
-                        "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
-                        "Balans": option(r.state({
-                            "Verrekenpost": option(r.group({
-                                "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
+                r.group({
+                    "Stam": r.reference_derived(gvs.linked_entry([])),
+                    "Mutatie Verwerkingen": r.dictionary(r.group({
+                        "Stam": r.reference_derived(gvs.linked_entry([])),
+                        "type": r.state({
+                            "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                            "Balans": option(r.state({
+                                "Verrekenpost": option(r.group({
+                                    "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
+                                })),
+                                "Informele rekening": option(r.group({
+                                    "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                                })),
                             })),
-                            "Informele rekening": option(r.group({
-                                "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
-                            })),
-                        })),
-                    })
-                })),
+                        })
+                    }))
+                })
             ),
-            "Memoriaal boekingen": r.dictionary_linked(
+            "Overige Balans Items": r.dictionary_linked(
                 'sparse',
                 gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]),
-                r.dictionary(r.group({
-                    "Bedrag": r.simple_number(),
-                    "Datum": r.simple_number(),
-                    "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                    "Omschrijving": r.text(),
+                r.group({
+                    "Stam": r.reference_derived(gvs.linked_entry([])),
+                    "Memoriaal Boekingen": r.dictionary(r.group({
+                        "Bedrag": r.simple_number(),
+                        "Datum": r.simple_number(),
+                        "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
+                        "Omschrijving": r.text(),
+                    })),
                 })),
-            ),
         })),
 
         "Eerste boekjaar": resolver(r.state({
