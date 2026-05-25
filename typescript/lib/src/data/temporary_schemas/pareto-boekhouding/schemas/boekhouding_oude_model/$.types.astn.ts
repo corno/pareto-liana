@@ -201,12 +201,18 @@ export const $ = modules(
                         })),
                     })),
                     "BTW-regime": prop(t.state({
-                        "Binnenland: heffing verlegd": toption(t.group({})),
+                        "Binnenland: heffing verlegd": toption(t.group({
+                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                        })),
                         "Geen BTW van toepassing": toption(t.group({
                             "BTW-periode": prop(t.text_global("Pseudo Reference")),
                         })),
-                        "Import van buiten de EU": toption(t.group({})),
-                        "Intracommunautair": toption(t.group({})),
+                        "Import van buiten de EU": toption(t.group({
+                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                        })),
+                        "Intracommunautair": toption(t.group({
+                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                        })),
                         "Standaard": toption(t.group({
                             "BTW-periode": prop(t.text_global("Pseudo Reference")),
                         })),

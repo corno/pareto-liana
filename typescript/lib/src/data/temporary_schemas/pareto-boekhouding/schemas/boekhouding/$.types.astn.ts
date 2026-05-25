@@ -7,6 +7,7 @@ import {
     prop,
     toption,
     vp,
+    prop_with_description,
 } from "../../../../../shorthands/schema"
 
 
@@ -131,11 +132,11 @@ export const $ = modules(
         "Grootboekrekeningen": module_(t.group({
             "Balans": prop(t.dictionary(t.group({
                 "Stam": prop(t.reference_derived("Beheer", [vp.g("Grootboekrekeningen"), vp.g("Balans"), vp.d()])),
-                "Type": prop(t.state({
-                    "Bankrekening": toption(t.nothing()),
-                    "Overig": toption(t.nothing()),
-                    "Informele rekening": toption(t.nothing()),
-                }))
+                // "Type": prop(t.state({
+                //     "Bankrekening": toption(t.nothing()),
+                //     "Overig": toption(t.nothing()),
+                //     "Informele rekening": toption(t.nothing()),
+                // }))
             }))),
             "Resultaat": prop(t.dictionary(t.group({
                 "Stam": prop(t.reference_derived("Beheer", [vp.g("Grootboekrekeningen"), vp.g("Resultaat"), vp.d()])),
@@ -171,16 +172,7 @@ export const $ = modules(
                 "Grootboekrekening voor Verkoop saldo": prop(t.reference("Grootboekrekeningen", [vp.g("Balans")])),
                 "Beginsaldo nog aan te geven BTW": prop(t.simple("Bedrag")),
                 "Beginsaldo winstreserve": prop(t.simple("Bedrag")),
-                "Informele rekeningen": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.simple("Bedrag")),
-                    "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [vp.g("Balans")])),
-                    "Nieuw": prop(t.state({
-                        "Ja": toption(t.nothing()),
-                        "Nee": toption(t.group({
-                            "Rekening": prop(t.component("Verwijzing naar Informele rekening")),
-                        })),
-                    }))
-                }))),
+                
                 "Bankrekeningen": prop(t.dictionary(t.group({
                     "Beginsaldo": prop(t.simple("Bedrag")),
                     "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [vp.g("Balans")])),
@@ -196,8 +188,18 @@ export const $ = modules(
                         "Omschrijving": prop(t.text_global("Omschrijving")),
                     }))),
                 }))),
-                "Overige balans items": prop(t.dictionary(t.component("Overige balans item"))),
-                "Verrekenposten": prop(t.dictionary(t.nothing())),
+                "Informele rekeningen": prop_with_description("rekening met tegenpartij", t.dictionary(t.group({
+                    "Beginsaldo": prop(t.simple("Bedrag")),
+                    "Grootboekrekening": prop(t.reference("Grootboekrekeningen", [vp.g("Balans")])),
+                    "Nieuw": prop(t.state({
+                        "Ja": toption(t.nothing()),
+                        "Nee": toption(t.group({
+                            "Rekening": prop(t.component("Verwijzing naar Informele rekening")),
+                        })),
+                    }))
+                }))),
+                "Overige balans items": prop_with_description("items die geen bankrekening of informele rekening zijn, denk aan voorraad, reservering e.d.", t.dictionary(t.component("Overige balans item"))),
+                "Verrekenposten": prop(t.dictionary(t.nothing())), //tijdelijke posten die aan het eind van het jaar 0 moeten zijn
             })),
         })),
 
@@ -226,15 +228,15 @@ export const $ = modules(
                         "Rekening courant": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
                     })),
                 })),
-                "BTW-regime": prop(t.state({
-                    "Binnenland: heffing verlegd": toption(t.nothing()),
-                    "Geen BTW van toepassing": toption(t.nothing()),
-                    "Import van buiten de EU": toption(t.nothing()),
-                    "Intracommunautair": toption(t.nothing()),
-                    "Standaard": toption(t.group({
-                        "BTW-periode": prop(t.reference("Jaarbeheer", [vp.g("Resultaat"), vp.g("BTW periodes")])),
-                    })),
-                })),
+                "BTW-periode": prop(t.reference("Jaarbeheer", [vp.g("Resultaat"), vp.g("BTW periodes")])),
+                // "BTW-regime": prop(t.state({
+                //     "Binnenland: heffing verlegd": toption(t.nothing()),
+                //     "Geen BTW van toepassing": toption(t.nothing()),
+                //     "Import van buiten de EU": toption(t.nothing()),
+                //     "Intracommunautair": toption(t.nothing()),
+                //     "Standaard": toption(t.group({
+                //     })),
+                // })),
                 "Brondocument": prop(t.state({
                     "Toegevoegd": toption(t.group({
                         "Document": prop(t.text_global("Bestandsnaam")),

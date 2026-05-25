@@ -122,11 +122,11 @@ export const $ = resolver_modules(
                 gvs.parameter("Beheer", [rvs.group("Grootboekrekeningen"), rvs.group("Balans")]),
                 r.group({
                     "Stam": r.reference_derived(gvs.linked_entry([])),
-                    "Type": r.state({
-                        "Bankrekening": option(r.nothing()),
-                        "Overig": option(r.nothing()),
-                        "Informele rekening": option(r.nothing())
-                    })
+                    // "Type": r.state({
+                    //     "Bankrekening": option(r.nothing()),
+                    //     "Overig": option(r.nothing()),
+                    //     "Informele rekening": option(r.nothing())
+                    // })
                 })
             ),
             "Resultaat": r.dictionary_linked(
@@ -241,15 +241,15 @@ export const $ = resolver_modules(
                         "Rekening courant": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
                     })),
                 }),
-                "BTW-regime": r.state({
-                    "Binnenland: heffing verlegd": option(r.nothing()),
-                    "Geen BTW van toepassing": option(r.nothing()),
-                    "Import van buiten de EU": option(r.nothing()),
-                    "Intracommunautair": option(r.nothing()),
-                    "Standaard": option(r.group({
-                        "BTW-periode": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
-                    })),
-                }),
+                "BTW-periode": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
+                // "BTW-regime": r.state({
+                //     "Binnenland: heffing verlegd": option(r.nothing()),
+                //     "Geen BTW van toepassing": option(r.nothing()),
+                //     "Import van buiten de EU": option(r.nothing()),
+                //     "Intracommunautair": option(r.nothing()),
+                //     "Standaard": option(r.group({
+                //     })),
+                // }),
                 "Brondocument": r.state({
                     "Toegevoegd": option(r.group({
                         "Document": r.text(),
