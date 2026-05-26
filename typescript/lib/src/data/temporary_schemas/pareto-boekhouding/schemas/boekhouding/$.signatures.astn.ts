@@ -47,7 +47,7 @@ export const $ = signatures(
         }, {
             "Jaren": lookup_parameter("Jaren"),
         }),
-        "Balans Resultaat Mutatie": sig.same_as("Mutaties"),
+        "Rekening Mutatie": sig.same_as("Mutaties"),
 
         "Jaren": sig.local({
             "Beheer": value_parameter("Beheer")

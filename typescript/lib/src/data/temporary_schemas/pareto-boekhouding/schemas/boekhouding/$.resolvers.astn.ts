@@ -346,7 +346,7 @@ export const $ = resolver_modules(
             })),
         })),
 
-        "Balans Resultaat Mutatie": resolver(r.group({
+        "Rekening Mutatie": resolver(r.group({
             "Jaar": r.optional(r.reference(ls.parameter("Jaren"))), //FIXME het jaar is optioneel, bepaal de juiste handelstransacties en jaarbeheer
             "type": r.state({
                 "Inkoop": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Handelstransacties", [rvs.group("Inkopen")])))),
@@ -364,7 +364,7 @@ export const $ = resolver_modules(
                     "Mutaties": r.dictionary(r.group({
                         "Bedrag": r.simple_number(),
                         "Afhandeling": r.state({
-                            "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                            "Resultaat": option(r.component("Rekening Mutatie", null, null)),
                             "Balans": option(r.state({
                                 "Informele rekening": option(r.group({
                                     "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
@@ -383,7 +383,7 @@ export const $ = resolver_modules(
                     "Mutatie Verwerkingen": r.dictionary(r.group({
                         "Stam": r.reference_derived(gvs.linked_entry([])),
                         "type": r.state({
-                            "Resultaat": option(r.component("Balans Resultaat Mutatie", null, null)),
+                            "Resultaat": option(r.component("Rekening Mutatie", null, null)),
                             "Balans": option(r.state({
                                 "Verrekenpost": option(r.group({
                                     "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))

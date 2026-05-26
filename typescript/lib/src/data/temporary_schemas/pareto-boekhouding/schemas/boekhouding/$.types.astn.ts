@@ -340,7 +340,7 @@ export const $ = modules(
                 "Mutaties": prop(t.dictionary(t.group({
                     "Bedrag": prop(t.simple("Bedrag")),
                     "Afhandeling": prop(t.state({
-                        "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
+                        "Resultaat": toption(t.component("Rekening Mutatie")),
                         "Balans": toption(t.state({
                             "Informele rekening": toption(t.group({
                                 "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
@@ -354,7 +354,7 @@ export const $ = modules(
                 "Mutatie Verwerkingen": prop(t.dictionary(t.group({
                     "Stam": prop(t.reference_derived("Jaarbeheer", [vp.g("Balans"), vp.g("Bankrekeningen"), vp.d(), vp.g("Mutaties"), vp.d()])),
                     "type": prop(t.state({
-                        "Resultaat": toption(t.component("Balans Resultaat Mutatie")),
+                        "Resultaat": toption(t.component("Rekening Mutatie")),
                         "Balans": toption(t.state({
                             "Informele rekening": toption(t.group({
                                 "Informele rekening": prop(t.reference("Jaarbeheer", [vp.g("Balans"), vp.g("Informele rekeningen")])),
@@ -377,7 +377,7 @@ export const $ = modules(
             }))),
         })),
 
-        "Balans Resultaat Mutatie": module_(t.group({
+        "Rekening Mutatie": module_(t.group({
             "Jaar": prop(t.optional(t.reference("Jaren", []))),
             "type": prop(t.state({
                 "Inkoop": toption(t.reference("Handelstransacties", [vp.g("Inkopen")])),
