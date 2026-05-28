@@ -3,6 +3,7 @@ import * as _pi from 'pareto-core/dist/interface'
 import * as _p_sl from 'pareto-core/dist/select_static_lookup'
 import _p_variables from 'pareto-core/dist/_p_variables'
 import _p_change_context from 'pareto-core/dist/_p_change_context'
+import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
@@ -38,7 +39,7 @@ export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.group.lite
                     'sibling schemas': _p_sl.stack.empty(
                     ),
                 },
-                null,
+                _p_create_symbol(),
             ),
         )
         return {
@@ -140,7 +141,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                     'sibling schemas': $l['sibling schemas'],
 
                 },
-                null,
+                _p_create_symbol(),
 
             )
             const p_resolver_imports = Resolver_Imports(
@@ -150,14 +151,14 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                     'sibling schemas': $l['sibling schemas'],
 
                 },
-                null,
+                _p_create_symbol(),
 
             )
             const p_globals: t_out.Schema.globals = _p_change_context($['globals'], ($) => Globals(
                 $,
                 abort,
-                null,
-                null,
+                _p_create_symbol(),
+                _p_create_symbol(),
             ))
             const p_types: t_out.Modules = _i_generic.temp_resolve(
                 $.modules['l dictionary'],
@@ -189,7 +190,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                             const p_types_2: t_out.Resolver.signatures.signatures = _p_change_context($, ($) => Signatures(
                                 $.signatures,
                                 abort,
-                                null,
+                                _p_create_symbol(),
                                 {
                                     'imports': p_schema_imports,
                                     'modules': p_types,
@@ -289,7 +290,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p_variables(
         {
             'sibling schemas': _p_sl.stack.push($l['sibling schemas'], $acyclic)
         },
-        null,
+        _p_create_symbol(),
     )),
 ))
 

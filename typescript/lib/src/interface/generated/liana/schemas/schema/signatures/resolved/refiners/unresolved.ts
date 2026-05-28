@@ -24,8 +24,8 @@ export namespace Package_ {
 export type Package_ = (
     context: Package_.I,
     abort: _pi.Abort<Package_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Package_.O
 
 export namespace Presence_ {
@@ -45,8 +45,8 @@ export namespace Presence_ {
 export type Presence_ = (
     context: Presence_.I,
     abort: _pi.Abort<Presence_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Presence_.O
 
 export namespace Simple_Type_ {
@@ -66,8 +66,8 @@ export namespace Simple_Type_ {
 export type Simple_Type_ = (
     context: Simple_Type_.I,
     abort: _pi.Abort<Simple_Type_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Simple_Type_.O
 
 export namespace Text_Type_ {
@@ -87,8 +87,8 @@ export namespace Text_Type_ {
 export type Text_Type_ = (
     context: Text_Type_.I,
     abort: _pi.Abort<Text_Type_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Text_Type_.O
 
 export namespace Globals_ {
@@ -108,8 +108,8 @@ export namespace Globals_ {
 export type Globals_ = (
     context: Globals_.I,
     abort: _pi.Abort<Globals_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Globals_.O
 
 export namespace Group_ {
@@ -507,7 +507,7 @@ export namespace Value_Path_ {
 export type Value_Path_ = (
     context: Value_Path_.I,
     abort: _pi.Abort<Value_Path_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'module': Value_Path_.P.module_
     },
@@ -539,7 +539,7 @@ export type Schemas_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schemas_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schemas_.O
 
 export namespace Resolver_Value_ {
@@ -1496,7 +1496,7 @@ export namespace Resolver_Relative_Value_Selection_ {
 export type Resolver_Relative_Value_Selection_ = (
     context: Resolver_Relative_Value_Selection_.I,
     abort: _pi.Abort<Resolver_Relative_Value_Selection_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Relative_Value_Selection_.P.value
     },
@@ -1521,7 +1521,7 @@ export namespace Resolver_Constraint_ {
 export type Resolver_Constraint_ = (
     context: Resolver_Constraint_.I,
     abort: _pi.Abort<Resolver_Constraint_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Constraint_.P.value
     },
@@ -1546,7 +1546,7 @@ export namespace Resolver_Optional_Value_Constraints_ {
 export type Resolver_Optional_Value_Constraints_ = (
     context: Resolver_Optional_Value_Constraints_.I,
     abort: _pi.Abort<Resolver_Optional_Value_Constraints_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Optional_Value_Constraints_.P.value
     },
@@ -1571,7 +1571,7 @@ export namespace Resolver_Value_Constraints_ {
 export type Resolver_Value_Constraints_ = (
     context: Resolver_Value_Constraints_.I,
     abort: _pi.Abort<Resolver_Value_Constraints_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Value_Constraints_.P.value
     },
@@ -1603,7 +1603,7 @@ export type Resolver_Value_Constraint_ = (
     lookups: {
         readonly 'property constraints': _pi.static_lookup.Acyclic<Resolver_Value_Constraint_.L.property_constraints>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Resolver_Value_Constraint_.O
 
 export namespace Resolver_ {
@@ -1629,7 +1629,7 @@ export namespace Resolver_ {
 export type Resolver_ = (
     context: Resolver_.I,
     abort: _pi.Abort<Resolver_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_.P.modules
         readonly 'resolver imports': Resolver_.P.resolver_imports
@@ -1658,7 +1658,7 @@ export namespace Resolver_Signature_Parameters_ {
 export type Resolver_Signature_Parameters_ = (
     context: Resolver_Signature_Parameters_.I,
     abort: _pi.Abort<Resolver_Signature_Parameters_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_Signature_Parameters_.P.modules
         readonly 'imports': Resolver_Signature_Parameters_.P.imports
@@ -1725,7 +1725,7 @@ export namespace Resolver_Signatures_ {
 export type Resolver_Signatures_ = (
     context: Resolver_Signatures_.I,
     abort: _pi.Abort<Resolver_Signatures_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_Signatures_.P.modules
         readonly 'imports': Resolver_Signatures_.P.imports
@@ -1757,7 +1757,7 @@ export namespace Resolver_Modules_ {
 export type Resolver_Modules_ = (
     context: Resolver_Modules_.I,
     abort: _pi.Abort<Resolver_Modules_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'signatures': Resolver_Modules_.P.signatures
         readonly 'modules': Resolver_Modules_.P.modules
@@ -1792,7 +1792,7 @@ export type Resolver_Reference_To_Value_Constraint_ = (
     lookups: {
         readonly 'property constraints': _pi.static_lookup.Acyclic<Resolver_Reference_To_Value_Constraint_.L.property_constraints>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Resolver_Reference_To_Value_Constraint_.O
 
 export namespace Resolver_Imports_ {
@@ -1821,7 +1821,7 @@ export type Resolver_Imports_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Resolver_Imports_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Resolver_Imports_.O
 
 export namespace Module_Specification_ {
@@ -1841,8 +1841,8 @@ export namespace Module_Specification_ {
 export type Module_Specification_ = (
     context: Module_Specification_.I,
     abort: _pi.Abort<Module_Specification_.E>,
-    lookups: null,
-    parameters: null,
+    lookups: symbol,
+    parameters: symbol,
 ) => Module_Specification_.O
 
 export namespace Schema_Tree_ {
@@ -1871,7 +1871,7 @@ export type Schema_Tree_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schema_Tree_.O
 
 export namespace Schema_ {
@@ -1900,7 +1900,7 @@ export type Schema_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schema_.O
 
 export namespace Schema_Imports_ {
@@ -1929,7 +1929,7 @@ export type Schema_Imports_ = (
     lookups: {
         readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_Imports_.L.sibling_schemas>
     },
-    parameters: null,
+    parameters: symbol,
 ) => Schema_Imports_.O
 
 export namespace Modules_ {
@@ -1965,7 +1965,7 @@ export namespace Modules_ {
 export type Modules_ = (
     context: Modules_.I,
     abort: _pi.Abort<Modules_.E>,
-    lookups: null,
+    lookups: symbol,
     parameters: {
         readonly 'globals': Modules_.P.globals
         readonly 'imports': Modules_.P.imports

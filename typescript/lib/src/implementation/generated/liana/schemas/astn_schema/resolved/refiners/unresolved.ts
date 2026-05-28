@@ -9,6 +9,8 @@ import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import _p_variables from 'pareto-core/dist/_p_variables'
 
+import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+
 import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
@@ -61,8 +63,8 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.lite
                         ($) => abort(
                             $,
                         ),
-                        null,
-                        null,
+                        _p_create_symbol(),
+                        _p_create_symbol(),
                     ),
                 ),
             ),
@@ -476,8 +478,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
                                                             ($) => abort(
                                                                 $,
                                                             ),
-                                                            null,
-                                                            null,
+                                                            _p_create_symbol(),
+                                                            _p_create_symbol(),
                                                         )],
                                                     )
                                                 default:
@@ -516,7 +518,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary
                     $a,
                 ),
             },
-            null,
+            _p_create_symbol(),
         ),
     ),
 )
@@ -540,7 +542,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                                 {
                                     'sibling schemas': $l['sibling schemas'],
                                 },
-                                null,
+                                _p_create_symbol(),
                             )],
                         )
                     case 'set':
@@ -554,7 +556,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_va
                                 {
                                     'sibling schemas': $l['sibling schemas'],
                                 },
-                                null,
+                                _p_create_symbol(),
                             )],
                         )
                     default:
@@ -580,7 +582,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.litera
                 {
                     'sibling schemas': $l['sibling schemas'],
                 },
-                null,
+                _p_create_symbol(),
             ),
         )
 
@@ -591,8 +593,8 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.litera
                 ($) => abort(
                     $,
                 ),
-                null,
-                null,
+                _p_create_symbol(),
+                _p_create_symbol(),
             ),
         )
 
@@ -603,7 +605,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.litera
                 ($) => abort(
                     $,
                 ),
-                null,
+                _p_create_symbol(),
                 {
                     'globals': _p.optional.literal.set(
                         prop_globals,

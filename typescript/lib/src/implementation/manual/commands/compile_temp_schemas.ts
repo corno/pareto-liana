@@ -2,6 +2,7 @@ import * as _p from 'pareto-core/dist/command'
 import * as _pi from 'pareto-core/dist/interface'
 import * as _pt from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -101,8 +102,8 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),
-                                    null,
-                                    null,
+                                    _p_create_symbol(),
+                                    _p_create_symbol(),
                                 ),
                                 ($) => [
                                     //write new interface files

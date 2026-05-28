@@ -1,6 +1,7 @@
 //core
 import * as _p from 'pareto-core/dist/command'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -41,8 +42,8 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),
-                                null,
-                                null,
+                                _p_create_symbol(),
+                                _p_create_symbol(),
                             ),
                             ($v) => [
                                 $cr['write file'].execute(

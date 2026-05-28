@@ -4,6 +4,7 @@ import * as _pt from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import _p_variables from 'pareto-core/dist/_p_variables'
 import _p_iterate from 'pareto-core/dist/_p_iterate'
+import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -85,8 +86,8 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                             'location': $p.source,
                                             'error': $,
                                         }]),
-                                        null,
-                                        null,
+                                        _p_create_symbol(),
+                                        _p_create_symbol(),
                                     )
                                     return {
                                         'omit (de)serializer': false,
@@ -108,8 +109,8 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         'location': $p.source,
                                         'error': $,
                                     }]),
-                                    null,
-                                    null,
+                                    _p_create_symbol(),
+                                    _p_create_symbol(),
                                 ))
                                 default: return _p.au($[0])
                             }
