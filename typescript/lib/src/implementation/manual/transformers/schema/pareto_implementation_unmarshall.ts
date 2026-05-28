@@ -399,7 +399,7 @@ export const Value = (
                                     sh.a.select(sh.sv.context([])),
                                     sh.lookups.not_set(),
                                     sh.arguments_.initialize({
-                                        "type": sh.a.state.literal("iso date udhr", sh.a.nothing()),
+                                        "type": sh.a.state.literal("iso date", sh.a.nothing()),
                                         "subdocument context": sh.a.optional.not_set(),
                                     }),
                                     [
