@@ -554,13 +554,10 @@ export namespace r {
         return sh.state(['text', null])
     }
 
-    export const simple_boolean = (): d_target.Resolver_Value => {
+    export const simple = (): d_target.Resolver_Value => {
         return sh.state(['simple', null])
     }
 
-    export const simple_number = (): d_target.Resolver_Value => {
-        return sh.state(['simple', null])
-    }
     export const component = (
         type: string,
         modules: null | _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,

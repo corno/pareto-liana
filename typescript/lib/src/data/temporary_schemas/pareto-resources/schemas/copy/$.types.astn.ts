@@ -17,9 +17,9 @@ export const $ = modules(
             "source": prop(t.component_external("path", "Node Path")),
             "target": prop(t.component_external("path", "Node Path")),
             "options": prop(t.group({
-                "recursive": prop(t.simple_boolean()),
-                "force": prop(t.simple_boolean()),
-                "errorOnExist": prop(t.simple_boolean()),
+                "recursive": prop(t.simple("boolean")),
+                "force": prop(t.simple("boolean")),
+                "errorOnExist": prop(t.simple("boolean")),
             })),
         })),
 

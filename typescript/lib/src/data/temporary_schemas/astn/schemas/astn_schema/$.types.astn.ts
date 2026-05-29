@@ -56,7 +56,7 @@ export const $ = modules(
             })),
             "dictionary": toption(t.group({
                 "value": prop(t.component("Value")),
-                "ordered": prop(t.simple_boolean()),
+                "ordered": prop(t.simple("boolean")),
             })),
             "group": toption(t.dictionary(t.component("Value"))),
             "list": toption(t.group({

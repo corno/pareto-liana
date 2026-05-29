@@ -19,6 +19,7 @@ import { $ as m_pareto_development_tools } from "./pareto-development-tools/modu
 import { $ as m_pareto_fountain_pen } from "./pareto-fountain-pen/module.astn"
 import { $ as m_pareto_graphviz } from "./pareto-graphviz/module.astn"
 import { $ as m_pareto_json } from "./pareto-json/module.astn"
+import { $ as m_pareto_json_schema } from "./pareto-json-schema/module.astn"
 import { $ as m_pareto_liana } from "./pareto-liana/module.astn"
 import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn"
 import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
@@ -102,10 +103,10 @@ export const $ = _p.dictionary.literal<d_package.Parameters>({
     //     'target path': "../astn-to-xml",
     //     'module': m_astn_to_xml,
     // },
-    // "json-to-astn": {
-    //     'target path': "../../../pareto-rosetta/json-to-astn",
-    //     'module': m_json_to_astn,
-    // },
+    "pareto-json-schema": {
+        'target path': "../pareto-json-schema",
+        'package': m_pareto_json_schema,
+    },
     // "git": {
     //     'target path': "../git",
     //     'module': m_git,

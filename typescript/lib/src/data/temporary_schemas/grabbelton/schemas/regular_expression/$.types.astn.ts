@@ -21,7 +21,7 @@ export const $ = modules(
             "type": prop(t.state({
                 "literal": toption(t.text_global("Text Value")),
                 "character class": toption(t.group({
-                    "negated": prop(t.simple_boolean()),
+                    "negated": prop(t.simple("boolean")),
                     "ranges": prop(t.list(t.state({
                         "literal": toption(t.simple("Character")), //should be a reference to a character in the dictionary
                         "range": toption(t.group({

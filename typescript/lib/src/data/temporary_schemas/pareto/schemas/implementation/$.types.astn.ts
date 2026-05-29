@@ -22,15 +22,15 @@ export const $ = modules(
 
         "Package": module_(t.group({
             "specials": prop(t.group({
-                "abort": prop(t.simple_boolean()),
-                "change context": toption(t.simple_boolean()),
-                "implement me": prop(t.simple_boolean()),
-                "iterate": prop(t.simple_boolean()),
-                "lookups": prop(t.simple_boolean()),
-                "list from text": prop(t.simple_boolean()),
-                "text from list": prop(t.simple_boolean()),
-                "unreachable code path": prop(t.simple_boolean()),
-                "variables": prop(t.simple_boolean()),
+                "abort": prop(t.simple("boolean")),
+                "change context": toption(t.simple("boolean")),
+                "implement me": prop(t.simple("boolean")),
+                "iterate": prop(t.simple("boolean")),
+                "lookups": prop(t.simple("boolean")),
+                "list from text": prop(t.simple("boolean")),
+                "text from list": prop(t.simple("boolean")),
+                "unreachable code path": prop(t.simple("boolean")),
+                "variables": prop(t.simple("boolean")),
             })),
             "type imports": prop(t.component_external("interface", "Imports")),
             "variable imports": prop(t.dictionary(t.group({
@@ -50,9 +50,9 @@ export const $ = modules(
                     "type": prop(t.text_global("TBD")),
                 })),
                 "expression": prop(t.component("Assign")),
-                "temp has abort": prop(t.simple_boolean()),
-                "temp has lookups": prop(t.simple_boolean()),
-                "temp has parameters": prop(t.simple_boolean()),
+                "temp has abort": prop(t.simple("boolean")),
+                "temp has lookups": prop(t.simple("boolean")),
+                "temp has parameters": prop(t.simple("boolean")),
             }))),
         })),
 
@@ -160,7 +160,7 @@ export const $ = modules(
                 "group": toption(t.state({
                     "literal": toption(t.group({
                         "properties": prop(t.dictionary(t.component("Assign"))),
-                        "have dependencies": prop(t.simple_boolean()),
+                        "have dependencies": prop(t.simple("boolean")),
                     })),
                 })),
                 "list": toption(t.state({

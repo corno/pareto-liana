@@ -15,7 +15,7 @@ export const $ = modules(
     {
 
         "Graph": module_(t.group({
-            "strict": prop(t.simple_boolean()),
+            "strict": prop(t.simple("boolean")),
             "type": prop(t.state({
                 "graph": toption(t.nothing()),
                 "digraph": toption(t.nothing()),

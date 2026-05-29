@@ -27,7 +27,7 @@ export const $ = modules(
                     "value": prop(t.text_global("text")),
                 })))
             }))),
-            "ends with unterminated string": prop(t.simple_boolean()),
+            "ends with unterminated string": prop(t.simple("boolean")),
         })),
     }
 )

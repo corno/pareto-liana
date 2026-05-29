@@ -24,7 +24,7 @@ export const $ = modules(
                 "if empty": prop(t.optional(t.component("Sentence"))),
                 "if not empty": prop(t.group({
                     "before": prop(t.optional(t.component("Sentence"))),
-                    "indent": prop(t.simple_boolean()),
+                    "indent": prop(t.simple("boolean")),
                     "separator": prop(t.optional(t.component("Phrase"))),
                     "after": prop(t.optional(t.component("Sentence"))),
                 })),

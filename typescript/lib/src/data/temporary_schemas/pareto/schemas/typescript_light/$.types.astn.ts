@@ -53,7 +53,7 @@ export const $ = modules(
                 "from": prop(t.component("String Literal")),
             })),
             "module declaration": toption(t.group({ //namespace
-                "export": prop(t.simple_boolean()),
+                "export": prop(t.simple("boolean")),
                 "name": prop(t.component("Identifier")),
                 "block": prop(t.component("Block")),
             })),
@@ -70,14 +70,14 @@ export const $ = modules(
                 }))),
             })),
             "type alias declaration": toption(t.group({
-                "export": prop(t.simple_boolean()),
+                "export": prop(t.simple("boolean")),
                 "name": prop(t.component("Identifier")),
                 "parameters": prop(t.list(t.component("Identifier"))),
                 "type": prop(t.component("Type")),
             })),
             "variable": toption(t.group({
-                "export": prop(t.simple_boolean()),
-                "const": prop(t.simple_boolean()),
+                "export": prop(t.simple("boolean")),
+                "const": prop(t.simple("boolean")),
                 "name": prop(t.component("Identifier")),
                 "type": prop(t.optional(t.component("Type"))),
                 "expression": prop(t.optional(t.component("Expression"))),
@@ -97,7 +97,7 @@ export const $ = modules(
             "number": toption(t.nothing()),
             "string": toption(t.nothing()),
             "tuple": toption(t.group({
-                "readonly": prop(t.simple_boolean()),
+                "readonly": prop(t.simple("boolean")),
                 "elements": prop(t.list(t.component("Type"))),
             })),
             "type literal": toption(t.group({
@@ -106,7 +106,7 @@ export const $ = modules(
                         "identifier": toption(t.component("Identifier")),
                         "string literal": toption(t.component("String Literal")),
                     })),
-                    "readonly": prop(t.simple_boolean()),
+                    "readonly": prop(t.simple("boolean")),
                     "type": prop(t.component("Type")),
                 }))),
             })),

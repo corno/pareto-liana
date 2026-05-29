@@ -37,7 +37,7 @@ export const $ = resolver_modules(
             "type": r.state({
                 "external": option(r.text()),
                 "ancestor": option(r.group({
-                    "number of steps": r.simple_number(),
+                    "number of steps": r.simple(),
                     "dependency": r.text(),
                 })),
                 "sibling": option(r.text()),
@@ -73,7 +73,7 @@ export const $ = resolver_modules(
                     "optional": option(r.nothing()),
                     "state": option(r.text()),
                 })),
-                "cyclic": r.simple_boolean(),
+                "cyclic": r.simple(),
             })),
             "state": option(r.dictionary(r.component("Value", {}, {}))),
             "text": option(r.nothing()),

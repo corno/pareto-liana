@@ -187,10 +187,6 @@ export const value_reference = (
  */
 export namespace t {
 
-    export const simple_boolean = (): d_target.Value => {
-        return sh.state(['simple', sh.state(['global', sh.reference("boolean")])])
-    }
-
     export const component_acyclic = (type: string): d_target.Value => {
         return sh.state(['component', {
             'type': sh.state(['internal acyclic', sh.reference(type)]),

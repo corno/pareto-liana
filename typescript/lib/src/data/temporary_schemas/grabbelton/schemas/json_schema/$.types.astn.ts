@@ -22,7 +22,7 @@ export const $ = modules(
             "array": toption(t.group({
                 "minItems": prop(t.optional(t.simple("amount"))),
                 "maxItems": prop(t.optional(t.simple("amount"))),
-                "uniqueItems": prop(t.optional(t.simple_boolean())),
+                "uniqueItems": prop(t.optional(t.simple("boolean"))),
                 "oneOf": prop(t.optional(t.list(t.component("Type")))),
                 "maxContains": prop(t.optional(t.simple("amount"))),
                 "minContains": prop(t.optional(t.simple("amount"))),

@@ -12,24 +12,19 @@ import {
 
 export const $ = modules(
     {
-        "Array Definition": module_(t.group({
-            "type": prop(t.state({
-                "list": toption(t.component("Definition"))
-                //FIXME concise group
-            }))
-        })),
+        "Array Definition": module_(t.component("Definition")),
         "Boolean Definition": module_(t.nothing()),
         "Null Definition": module_(t.nothing()),
         "Number Definition": module_(t.nothing()),
         "Object Definition": module_(t.group({
             "type": prop(t.state({
-                "verbose group": toption(t.group({
+                "static": toption(t.group({
                     "properties": prop(t.dictionary(t.group({
                         "definition": prop(t.component("Definition")),
-                        "optional": prop(t.simple_boolean()),
+                        "optional": prop(t.simple("boolean")),
                     }))),
                 })),
-                "dictionary": toption(t.component("Definition")),
+                "dynamic": toption(t.component("Definition")),
             })),
         })),
         "String Definition": module_(t.state({
@@ -62,7 +57,7 @@ export const $ = modules(
             "root": prop(t.text_global("text")),
         })),
 
-        "Error": module_(t.group({
+        "Errors": module_(t.list(t.group({
             "path": prop(t.text_global("text")),
             "type": prop(t.state({
                 "not the right type": toption(t.group({
@@ -78,7 +73,7 @@ export const $ = modules(
                     "type": prop(t.component("Value Type")),
                 })),
             })),
-        })),
+        }))),
 
         "Value Type": module_(t.state({
             "array": toption(t.nothing()),

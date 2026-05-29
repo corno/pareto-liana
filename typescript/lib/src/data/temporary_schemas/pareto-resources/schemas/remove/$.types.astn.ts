@@ -15,7 +15,7 @@ export const $ = modules(
     {
         "Parameters": module_(t.group({
             "path": prop(t.component_external("path", "Context Path")),
-            "error if not exists": prop(t.simple_boolean()),
+            "error if not exists": prop(t.simple("boolean")),
         })),
 
         "Error": module_(t.group({

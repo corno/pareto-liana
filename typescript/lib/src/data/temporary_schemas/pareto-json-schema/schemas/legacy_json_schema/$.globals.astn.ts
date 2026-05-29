@@ -11,8 +11,10 @@ export const $ = globals(
 
          'unconstrained',
     {
+        "text": text('single line'),
     },
     {
+        "boolean": n.boolean(),
     },
 )
 

@@ -3,7 +3,7 @@ import * as sh from "../../../../../shorthands/resolver"
 export const $ = sh.resolver_modules(
     {
         "Package": sh.resolver(sh.r.group({
-            "omit (de)serializer": sh.r.simple_boolean(),
+            "omit (de)serializer": sh.r.simple(),
             "schema tree": sh.r.component("Schema Tree", {}, {
                 "sibling schemas": sh.al.stack.empty(),
             }),
@@ -44,10 +44,10 @@ export const $ = sh.resolver_modules(
                 "number": sh.option(sh.r.group({
                     "precision": sh.r.state({
                         "approximation": sh.option(sh.r.group({
-                            "significant digits": sh.r.simple_number(),
+                            "significant digits": sh.r.simple(),
                         })),
                         "exact": sh.option(sh.r.group({
-                            "number of fractional digits": sh.r.optional(sh.r.simple_number()),
+                            "number of fractional digits": sh.r.optional(sh.r.simple()),
                             "type": sh.r.state({
                                 "integer": sh.option(sh.r.nothing()),
                                 "natural": sh.option(sh.r.nothing()),
@@ -627,7 +627,7 @@ export const $ = sh.resolver_modules(
                 "dictionary": sh.vcr.value([sh.rvs.group("resulting node"), sh.rvs.reference()], "dictionary"),
             }),
             "resulting dictionary": sh.r.reference_derived(sh.gvs.component("selection", "dictionary", [])),
-            "dense": sh.r.simple_boolean(),
+            "dense": sh.r.simple(),
         })),
 
         "Resolver Value": sh.resolver(sh.r.state({

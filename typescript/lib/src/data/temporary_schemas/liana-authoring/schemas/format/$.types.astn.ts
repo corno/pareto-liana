@@ -22,10 +22,10 @@ export const $ = modules(
 
         "Parameters": module_(t.group({
             "options": prop(t.group({
-                "insert spaces": prop(t.simple_boolean()),
-                "preserve delimiters": prop(t.simple_boolean()),
-                "preserve final newline state": prop(t.simple_boolean()),
-                "preserve commas": prop(t.simple_boolean()),
+                "insert spaces": prop(t.simple("boolean")),
+                "preserve delimiters": prop(t.simple("boolean")),
+                "preserve final newline state": prop(t.simple("boolean")),
+                "preserve commas": prop(t.simple("boolean")),
                 "indent string": prop(t.text_global("text")),
             })),
         })),

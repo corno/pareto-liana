@@ -29,7 +29,7 @@ export const $ = modules(
                 "float": toption(t.simple("Approximation")),
             })),
             "string": toption(t.text_global("Text Value")),
-            "boolean": toption(t.simple_boolean()),
+            "boolean": toption(t.simple("boolean")),
             "null": toption(t.nothing()),
         })),
     }

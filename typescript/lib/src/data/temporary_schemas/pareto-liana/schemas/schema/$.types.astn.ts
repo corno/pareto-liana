@@ -3,7 +3,7 @@ import * as sh from "../../../../../shorthands/schema"
 export const $ = sh.modules(
     {
         "Package": sh.module_(sh.t.group({
-            "omit (de)serializer": sh.prop(sh.t.simple_boolean()),
+            "omit (de)serializer": sh.prop(sh.t.simple("boolean")),
             "schema tree": sh.prop(sh.t.component("Schema Tree")),
         })),
 
@@ -333,7 +333,7 @@ export const $ = sh.modules(
                 "dictionary": sh.value_reference("Value", [sh.vp.s("dictionary")])
             })),
             "resulting dictionary": sh.prop(sh.t.reference_derived("Dictionary", [])),
-            "dense": sh.prop(sh.t.simple_boolean()),
+            "dense": sh.prop(sh.t.simple("boolean")),
         })),
 
         /**
