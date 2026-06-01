@@ -20,7 +20,7 @@ export const $ = modules(
 
         "Value": module_(t.state({
             "any": toption(t.nothing()),
-            "any of": toption(t.group({
+            "one of": toption(t.group({
                 "array": prop(t.optional(t.component("Array"))),
                 "boolean": prop(t.optional(t.component("Boolean"))),
                 "null": prop(t.optional(t.component("Null"))),
@@ -31,13 +31,15 @@ export const $ = modules(
                 "else": prop(t.optional(t.text_global("text"))),//FIXME: reference to a definition
             })),
             "definition reference": toption(t.text_global("text")), //FIXME: reference to a definition
-
-            "array": toption(t.component("Array")),
-            "boolean": toption(t.component("Boolean")),
-            "null": toption(t.component("Null")),
-            "number": toption(t.component("Number")),
-            "object": toption(t.component("Object")),
-            "string": toption(t.component("String")),
+            "primitive": toption(t.state({
+                "array": toption(t.component("Array")),
+                "boolean": toption(t.component("Boolean")),
+                "null": toption(t.component("Null")),
+                "number": toption(t.component("Number")),
+                "object": toption(t.component("Object")),
+                "string": toption(t.component("String")),
+            })),
+            "nullable": toption(t.component("Value")),
         })),
 
         "Array": module_(t.group({
@@ -69,7 +71,12 @@ export const $ = modules(
         "Static Object": module_(t.group({
             "properties": prop(t.dictionary(t.group({
                 "definition": prop(t.component("Value")),
-                "optional": prop(t.simple("boolean")),
+                "presence": prop(t.state({
+                    "required": toption(t.nothing()),
+                    "optional": toption(t.group({
+                        "nullable": toption(t.simple("boolean")),
+                    })),
+                })),
             }))),
         })),
 
