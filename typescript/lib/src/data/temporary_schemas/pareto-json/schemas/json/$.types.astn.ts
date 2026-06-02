@@ -17,15 +17,12 @@ export const $ = modules(
 
         "Value": module_(t.state({
             "array": toption(t.list(t.component("Value"))),
-            "object": toption(t.state({
-                "key value array": toption(t.list(t.group({
-                    "key": prop(t.text_global("Text Value")),
-                    "value": prop(t.component("Value"))
-                }))),
-                "dictionary": toption(t.dictionary(t.component("Value"))),
-            })),
+            "object": toption(t.list(t.group({
+                "key": prop(t.text_global("Text Value")),
+                "value": prop(t.component("Value"))
+            }))),
             "number": toption(t.state({
-                //depending on the source, one needs to be chosen.
+                //FIX, this should be one type, not two
                 "integer": toption(t.simple("Integer")),
                 "float": toption(t.simple("Approximation")),
             })),
@@ -33,6 +30,6 @@ export const $ = modules(
             "boolean": toption(t.simple("boolean")),
             "null": toption(t.nothing()),
         })),
-        
+
     }
 )

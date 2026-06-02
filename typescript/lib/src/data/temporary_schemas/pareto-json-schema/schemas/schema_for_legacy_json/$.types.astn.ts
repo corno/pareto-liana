@@ -28,8 +28,8 @@ export const $ = modules(
             "const": toption(t.component("Const Value")),
             "one of": toption(t.dictionary(t.component("Schema"))),
             "reference": toption(t.group({
-                "document": prop(t.optional(t.text_global("text"))),
-                "steps": prop(t.list(t.text_global("text"))),
+                "document": prop(t.optional(t.text_global("temp_ref"))),
+                "steps": prop(t.list(t.text_global("temp_ref"))),
             })), //FIXME: reference to a definition
             "type constraint": toption(t.state({
                 "single": toption(t.state({
@@ -57,7 +57,7 @@ export const $ = modules(
             "null": toption(t.nothing()),
             "number": toption(t.simple("number")),
             "object": toption(t.dictionary(t.component("Const Value"))),
-            "string": toption(t.simple("string")),
+            "string": toption(t.text_global("string")),
         })),
 
         "Array": module_(t.group({
