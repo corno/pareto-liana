@@ -12,41 +12,59 @@ import {
 
 export const $ = modules(
     {
-
-        "Schema": module_(t.group({
-            "definitions": prop(t.dictionary(t.component("Value"))),
-            "root": prop(t.text_global("text")), //FIXME: reference to a definition
+        "Document": module_(t.group({
+            "imports": prop(t.dictionary(t.component("Schema"))),
+            "definitions": prop(t.component("Definitions")),
+            "schema": prop(t.component("Schema")),
         })),
 
-        "Value": module_(t.state({
-            "any": toption(t.nothing()),
-            "one of": toption(t.group({
-                "array": prop(t.optional(t.component("Array"))),
-                "boolean": prop(t.optional(t.component("Boolean"))),
-                "null": prop(t.optional(t.component("Null"))),
-                "number": prop(t.optional(t.component("Number"))),
-                "object": prop(t.optional(t.component("Object"))),
-                "string": prop(t.optional(t.component("String"))),
+        "Definitions": module_(t.dictionary(t.group({
+            "definitions": prop(t.component("Definitions")),
+            "schema": prop(t.component("Schema")),
+        }))),
 
-                "else": prop(t.optional(t.text_global("text"))),//FIXME: reference to a definition
+        "Schema": module_(t.state({
+            "any": toption(t.nothing()),
+            "const": toption(t.component("Const Value")),
+            "one of": toption(t.dictionary(t.component("Schema"))),
+            "reference": toption(t.group({
+                "document": prop(t.optional(t.text_global("text"))),
+                "steps": prop(t.list(t.text_global("text"))),
+            })), //FIXME: reference to a definition
+            "type constraint": toption(t.state({
+                "single": toption(t.state({
+                    "array": toption(t.component("Array")),
+                    "boolean": toption(t.component("Boolean")),
+                    "null": toption(t.component("Null")),
+                    "number": toption(t.component("Number")),
+                    "object": toption(t.component("Object")),
+                    "string": toption(t.component("String")),
+                })),
+                "multiple": toption(t.group({
+                    "array": prop(t.optional(t.component("Array"))),
+                    "boolean": prop(t.optional(t.component("Boolean"))),
+                    "null": prop(t.optional(t.component("Null"))),
+                    "number": prop(t.optional(t.component("Number"))),
+                    "object": prop(t.optional(t.component("Object"))),
+                    "string": prop(t.optional(t.component("String"))),
+                })),
             })),
-            "definition reference": toption(t.text_global("text")), //FIXME: reference to a definition
-            "primitive": toption(t.state({
-                "array": toption(t.component("Array")),
-                "boolean": toption(t.component("Boolean")),
-                "null": toption(t.component("Null")),
-                "number": toption(t.component("Number")),
-                "object": toption(t.component("Object")),
-                "string": toption(t.component("String")),
-            })),
-            "nullable": toption(t.component("Value")),
+        })),
+
+        "Const Value": module_(t.state({
+            "array": toption(t.list(t.component("Const Value"))),
+            "boolean": toption(t.simple("boolean")),
+            "null": toption(t.nothing()),
+            "number": toption(t.simple("number")),
+            "object": toption(t.dictionary(t.component("Const Value"))),
+            "string": toption(t.simple("string")),
         })),
 
         "Array": module_(t.group({
             "type": prop(t.state({
-                "dynamic": toption(t.component("Value")),
+                "dynamic": toption(t.component("Schema")),
                 "static": toption(t.group({
-                    "properties": prop(t.dictionary(t.component("Value"))),
+                    "properties": prop(t.dictionary(t.component("Schema"))),
                 })),
             }))
         })),
@@ -60,23 +78,18 @@ export const $ = modules(
         "Object": module_(t.group({
             "type": prop(t.state({
                 "static": toption(t.component("Static Object")),
-                "dynamic": toption(t.component("Value")),
+                "dynamic": toption(t.component("Schema")),
                 "mixed": toption(t.group({
                     "static": prop(t.component("Static Object")),
-                    "dynamic": prop(t.component("Value")),
+                    "dynamic": prop(t.component("Schema")),
                 })),
             })),
         })),
 
         "Static Object": module_(t.group({
             "properties": prop(t.dictionary(t.group({
-                "definition": prop(t.component("Value")),
-                "presence": prop(t.state({
-                    "required": toption(t.nothing()),
-                    "optional": toption(t.group({
-                        "nullable": toption(t.simple("boolean")),
-                    })),
-                })),
+                "schema": prop(t.component("Schema")),
+                "optional": toption(t.simple("boolean")),
             }))),
         })),
 
