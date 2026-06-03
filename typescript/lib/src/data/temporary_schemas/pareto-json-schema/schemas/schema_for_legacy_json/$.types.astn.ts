@@ -13,15 +13,12 @@ import {
 export const $ = modules(
     {
         "Document": module_(t.group({
-            "imports": prop(t.dictionary(t.component("Schema"))),
+            "imports": prop(t.dictionary(t.component("Document"))),
             "definitions": prop(t.component("Definitions")),
-            "schema": prop(t.component("Schema")),
+            "root": prop(t.text_global("temp_ref")),
         })),
 
-        "Definitions": module_(t.dictionary(t.group({
-            "definitions": prop(t.component("Definitions")),
-            "schema": prop(t.component("Schema")),
-        }))),
+        "Definitions": module_(t.dictionary(t.component("Schema"))),
 
         "Schema": module_(t.state({
             "any": toption(t.nothing()),
@@ -29,7 +26,7 @@ export const $ = modules(
             "one of": toption(t.dictionary(t.component("Schema"))),
             "reference": toption(t.group({
                 "document": prop(t.optional(t.text_global("temp_ref"))),
-                "steps": prop(t.list(t.text_global("temp_ref"))),
+                "definition": prop(t.text_global("temp_ref")),
             })), //FIXME: reference to a definition
             "type constraint": toption(t.state({
                 "single": toption(t.state({
