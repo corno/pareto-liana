@@ -13,7 +13,7 @@ import { $ as globals } from "./$.globals.astn"
 
 export const $ = schema_(
     {
-        "path": schema_import_("path"),
+        "path unrestricted": schema_import_("fs unrestricted path"),
     }, {},
     globals,
     schema,

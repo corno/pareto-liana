@@ -7,13 +7,13 @@ import * as signatures from "../../../interface/signatures"
 
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
-import * as d_write_file from "pareto-resources/dist/interface/generated/liana/schemas/write_file/data"
+import * as d_write_file from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
-import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path/text"
+import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
 import * as r_schema_resolved_from_unresolved from "../../temp/resolvers/schema/unresolved_manual"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/path/path"
 import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"

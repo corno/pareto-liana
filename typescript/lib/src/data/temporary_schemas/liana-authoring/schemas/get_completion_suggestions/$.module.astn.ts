@@ -15,7 +15,7 @@ export const $ = schema_(
     {
         "completion suggestions": schema_import_("completion suggestions"),
         "location": schema_import_("location"),
-        "path": schema_import_("path"),
+        "path unrestricted": schema_import_("fs unrestricted path"),
     }, {},
     globals,
     schema,

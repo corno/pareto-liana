@@ -11,12 +11,12 @@ export namespace commands {
     export type compile_temp_schemas = _pi.Command_Procedure<
         resources_pareto.commands.main,
         {
-            'copy': resources_pareto.commands.copy
-            'log': resources_pareto.commands.log
-            'log error': resources_pareto.commands.log_error
-            'make directory': resources_pareto.commands.make_directory
-            'remove': resources_pareto.commands.remove
-            'write file': resources_pareto.commands.write_file
+            'copy': resources_pareto.commands.fs_unrestricted_copy
+            'log': resources_pareto.commands.stream_log
+            'log error': resources_pareto.commands.stream_log_error
+            'make directory': resources_pareto.commands.fs_unrestricted_make_directory
+            'remove': resources_pareto.commands.fs_unrestricted_remove
+            'write file': resources_pareto.commands.fs_unrestricted_write_file
         },
         null
     >
@@ -24,36 +24,36 @@ export namespace commands {
     export type generate_typescript_cli = _pi.Command_Procedure<
         resources_pareto.commands.main,
         {
-            'copy': resources_pareto.commands.copy
-            'log': resources_pareto.commands.log
-            'log error': resources_pareto.commands.log_error
-            'make directory': resources_pareto.commands.make_directory
-            'remove': resources_pareto.commands.remove
-            'write file': resources_pareto.commands.write_file
+            'copy': resources_pareto.commands.fs_unrestricted_copy
+            'log': resources_pareto.commands.stream_log
+            'log error': resources_pareto.commands.stream_log_error
+            'make directory': resources_pareto.commands.fs_unrestricted_make_directory
+            'remove': resources_pareto.commands.fs_unrestricted_remove
+            'write file': resources_pareto.commands.fs_unrestricted_write_file
         },
         {
-            'read file': resources_pareto.queries.read_file
+            'read file': resources_pareto.queries.fs_unrestricted_read_file
         }
     >
 
     export type generate_typescript = _pi.Command_Procedure<
         resources.commands.generate_typescript,
         {
-            'copy': resources_pareto.commands.copy
-            'make directory': resources_pareto.commands.make_directory
-            'remove': resources_pareto.commands.remove
-            'write file': resources_pareto.commands.write_file
+            'copy': resources_pareto.commands.fs_unrestricted_copy
+            'make directory': resources_pareto.commands.fs_unrestricted_make_directory
+            'remove': resources_pareto.commands.fs_unrestricted_remove
+            'write file': resources_pareto.commands.fs_unrestricted_write_file
         },
         {
-            'read file': resources_pareto.queries.read_file
+            'read file': resources_pareto.queries.fs_unrestricted_read_file
         }
     >
 
     export type serialize_schemas = _pi.Command_Procedure<
         resources_pareto.commands.main,
         {
-            'write file': resources_pareto.commands.write_file
-            'log error': resources_pareto.commands.log_error
+            'write file': resources_pareto.commands.fs_unrestricted_write_file
+            'log error': resources_pareto.commands.stream_log_error
         },
         null
     >

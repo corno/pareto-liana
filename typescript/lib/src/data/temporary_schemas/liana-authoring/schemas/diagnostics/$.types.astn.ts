@@ -26,7 +26,7 @@ export const $ = modules(
             "message": prop(t.text_global("text")),
             "related information": prop(t.optional(t.list(t.group({
                 "location": prop(t.group({
-                    "file path": prop(t.component_external("path", "Node Path")),
+                    "file path": prop(t.component_external("path unrestricted", "Node Path")),
                     "range": prop(t.component_external("location", "Possible Range")),
                 })),
                 "message": prop(t.text_global("text")),
@@ -46,7 +46,7 @@ export const $ = modules(
 
         "Parameters": module_(t.group({
             "content": prop(t.text_global("multi line text")),
-            "file path": prop(t.component_external("path", "Node Path")),
+            "file path": prop(t.component_external("path unrestricted", "Node Path")),
             "tab size": prop(t.simple("Natural")),
         })),
     }
