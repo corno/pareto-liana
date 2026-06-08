@@ -12,7 +12,7 @@ import { $ as x_get_on_hover_info } from "./schemas/get_on_hover_info/$.module.a
 import { $ as x_hover_info } from "./schemas/hover_info/$.module.astn"
 import { $ as x_astn_location } from "../astn-core/schemas/location/$.module.astn"
 import { $ as x_location } from "./schemas/location/$.module.astn"
-import { $ as x_path } from "../pareto-resources/schemas/fs/unrestricted/path/$.module.astn"
+import { $ as x_path_unrestricted } from "../pareto-resources/schemas/filesystem_unrestricted/path/$.module.astn"
 import { $ as x_seal } from "./schemas/seal/$.module.astn"
 import { $ as x_sort_alphabetically } from "./schemas/sort_alphabetically/$.module.astn"
 import { $ as x_text_edits } from "./schemas/text_edits/$.module.astn"
@@ -28,7 +28,7 @@ export const $ = sh.st.set({
     "hover info": x_hover_info,
     "astn location": x_astn_location,
     "location": x_location,
-    "fs unrestricted path": x_path,
+    "fs unrestricted path": x_path_unrestricted,
     "seal": x_seal,
     "sort alphabetically": x_sort_alphabetically,
     "text edits": x_text_edits,
