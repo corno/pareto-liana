@@ -11,7 +11,7 @@ import { $ as globals } from "./$.globals.astn"
 export const $ = schema_(
     {
         "path": schema_import_("fs sandboxed path"),
-        "unrestricted": schema_import_("fs unrestricted make directory"),
+        "unrestricted": schema_import_("fs unrestricted remove"),
     },
     {
         // "path": resolver_import_("path")

@@ -21,7 +21,7 @@ type My_Error_1 =
 import * as c_generate_typescript from "./generate_typescript"
 import * as r_unrestricted_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
 import * as t_generate_typescript_to_fp from "../transformers/generate_typescript/fountain_pen"
-import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/path/text"
+import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/text"
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"

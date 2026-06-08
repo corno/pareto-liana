@@ -8,12 +8,12 @@ _pn.run_main_command(
     ($r) => {
         return procedure(
             {
-                'make directory': $r.commands['make directory'],
-                'remove': $r.commands.remove,
-                'copy': $r.commands.copy,
-                'log': $r.commands.log,
-                'log error': $r.commands['log error'],
-                'write file': $r.commands['write file'],
+                'make directory': $r['filesystem unrestricted'].commands['make directory'](null),
+                'remove': $r['filesystem unrestricted'].commands.remove(null),
+                'copy': $r['filesystem unrestricted'].commands.copy(null),
+                'log': $r.stream.commands.log(null),
+                'log error': $r.stream.commands['log error'](null),
+                'write file': $r['filesystem unrestricted'].commands['write file'](null),
             },
             null,
         )

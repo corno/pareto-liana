@@ -8,8 +8,8 @@ _pn.run_main_command(
     ($r) => {
         return procedure(
             {
-                'write file': $r.commands['write file'],
-                'log error': $r.commands['log error']
+                'write file': $r['filesystem unrestricted'].commands['write file'](null),
+                'log error': $r.stream.commands['log error'](null)
             },
             null,
 
