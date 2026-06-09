@@ -24,6 +24,7 @@ import { $ as m_pareto_liana } from "./pareto-liana/module.astn"
 import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn"
 import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
 import { $ as m_pareto_stream } from "./pareto-stream/module.astn"
+import { $ as m_pareto_http_sandboxed } from "./pareto-http-sandboxed/module.astn"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
 import { $ as m_liana_targets } from "./liana-targets/module.astn"
 // import { $ as m_pareto_test } from "./pareto-test/module.astn"
@@ -79,6 +80,10 @@ export const $ = _p.dictionary.literal<d_package.Parameters>({
     "pareto-stream": {
         'target path': "../pareto-stream",
         'package': m_pareto_stream,
+    },
+    "pareto-http-sandboxed": {
+        'target path': "../pareto-http-sandboxed",
+        'package': m_pareto_http_sandboxed,
     },
     "pareto-static-html": {
         'target path': "../pareto-static-html",

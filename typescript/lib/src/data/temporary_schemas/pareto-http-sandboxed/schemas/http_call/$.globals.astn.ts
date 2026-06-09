@@ -1,19 +1,21 @@
 import * as _pi from 'pareto-core/dist/interface'
 
+
 import {
     globals,
     n,
     text,
-} from "../../../../../../shorthands/schema"
+} from "../../../../../shorthands/schema"
 
 
 export const $ = globals(
-
-         'unconstrained',
+    'unconstrained',
     {
+        "multi line text": text('multi line'),
         "text": text('single line'),
     },
     {
+        "status": n.integer(null),
     },
 )
 
