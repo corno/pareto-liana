@@ -34,11 +34,6 @@ import { $ as m_fs_unrestricted_stat_possible_node } from "./schemas/filesystem_
 import { $ as m_fs_unrestricted_write_file } from "./schemas/filesystem_unrestricted/write_file/$.module.astn"
 import { $ as m_list_of_characters } from "../pareto-fountain-pen/schemas/list_of_characters/$.module.astn"
 import { $ as m_path_non_normalized } from "./schemas/non_normalized_path/$.module.astn"
-import { $ as m_stream_get_instream_data } from "./schemas/stream/get_instream_data/$.module.astn"
-import { $ as m_stream_log } from "./schemas/stream/log/$.module.astn"
-import { $ as m_stream_log_error } from "./schemas/stream/log_error/$.module.astn"
-import { $ as m_stream_write_to_stderr } from "./schemas/stream/write_to_stderr/$.module.astn"
-import { $ as m_stream_write_to_stdout } from "./schemas/stream/write_to_stdout/$.module.astn"
 import { $ as m_terminal_output } from "./schemas/terminal_output/$.module.astn"
 
 export const $ = sh.st.set({
@@ -80,10 +75,5 @@ export const $ = sh.st.set({
     "fs unrestricted stat possible node": m_fs_unrestricted_stat_possible_node,
     "fs unrestricted stat": m_fs_unrestricted_stat,
     "fs unrestricted write file": m_fs_unrestricted_write_file,
-
-    "stream get instream data": m_stream_get_instream_data,
-    "stream log error": m_stream_log_error,
-    "stream log": m_stream_log,
-    "stream write to stderr": m_stream_write_to_stderr,
-    "stream write to stdout": m_stream_write_to_stdout,
+    
 })
