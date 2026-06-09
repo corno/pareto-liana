@@ -16,6 +16,7 @@ _pn.run_main_command(
                 'write file': $r['filesystem unrestricted'].commands['write file'],
             },
             null,
+            null,
         )
     },
 )

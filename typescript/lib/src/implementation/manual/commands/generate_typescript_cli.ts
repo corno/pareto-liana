@@ -69,6 +69,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                                 c_generate_typescript.$$(
                                     $cr,
                                     $qr,
+                                    null,
                                 ).execute(
                                     {
                                         'source': $v.source,

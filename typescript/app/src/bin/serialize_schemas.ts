@@ -12,7 +12,7 @@ _pn.run_main_command(
                 'log error': $r.stream.commands['log error']
             },
             null,
-
+            null,
         )
     },
 )

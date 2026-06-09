@@ -18,6 +18,7 @@ export namespace commands {
             'remove': resources_pareto.filesystem_unrestricted.commands.remove
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
         },
+        null,
         null
     >
 
@@ -33,7 +34,8 @@ export namespace commands {
         },
         {
             'read file': resources_pareto.filesystem_unrestricted.queries.read_file
-        }
+        },
+        null
     >
 
     export type generate_typescript = _pi.Command_Procedure<
@@ -46,7 +48,8 @@ export namespace commands {
         },
         {
             'read file': resources_pareto.filesystem_unrestricted.queries.read_file
-        }
+        },
+        null
     >
 
     export type serialize_schemas = _pi.Command_Procedure<
@@ -55,6 +58,7 @@ export namespace commands {
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
             'log error': resources_pareto.stream.commands.log_error
         },
+        null,
         null
     >
 

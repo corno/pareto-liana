@@ -17,6 +17,7 @@ import { $ as m_fs_sandboxed_make_directory } from "./schemas/filesystem_sandbox
 import { $ as m_fs_sandboxed_path } from "./schemas/filesystem_sandboxed/path/$.module.astn"
 import { $ as m_fs_sandboxed_read_directory } from "./schemas/filesystem_sandboxed/read_directory/$.module.astn"
 import { $ as m_fs_sandboxed_read_file } from "./schemas/filesystem_sandboxed/read_file/$.module.astn"
+import { $ as m_fs_sandboxed_read_file_within_context } from "./schemas/filesystem_sandboxed/read_file_within_context/$.module.astn"
 import { $ as m_fs_sandboxed_remove } from "./schemas/filesystem_sandboxed/remove/$.module.astn"
 import { $ as m_fs_sandboxed_stat } from "./schemas/filesystem_sandboxed/stat/$.module.astn"
 import { $ as m_fs_sandboxed_stat_possible_node } from "./schemas/filesystem_sandboxed/stat_possible_node/$.module.astn"
@@ -63,6 +64,7 @@ export const $ = sh.st.set({
     "fs sandboxed path": m_fs_sandboxed_path,
     "fs sandboxed read directory": m_fs_sandboxed_read_directory,
     "fs sandboxed read file": m_fs_sandboxed_read_file,
+    "fs sandboxed read file within context": m_fs_sandboxed_read_file_within_context,
     "fs sandboxed remove": m_fs_sandboxed_remove,
     "fs sandboxed stat possible node": m_fs_sandboxed_stat_possible_node,
     "fs sandboxed stat": m_fs_sandboxed_stat,

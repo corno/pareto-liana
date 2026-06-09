@@ -20,6 +20,7 @@ export const $ = modules(
         })),
 
         "Context Path": module_(t.group({
+            "start": prop(t.nothing()), //to make sure it is not castable to a unrestricted context path
             "subpath": prop(t.component("Context Subpath")),
         })),
 

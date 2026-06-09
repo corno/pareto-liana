@@ -110,13 +110,15 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                     c_write_to_directory(
                                         {
                                             'remove': $cr.remove,
-                                            'write to_file': c_write_to_file(
+                                            'write to file': c_write_to_file(
                                                 {
                                                     'write file': $cr['write file'],
                                                 },
                                                 null,
+                                                null,
                                             ),
                                         },
+                                        null,
                                         null,
                                     ).execute(
                                         {
@@ -141,13 +143,15 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                     c_write_to_directory(
                                         {
                                             'remove': $cr.remove,
-                                            'write to_file': c_write_to_file(
+                                            'write to file': c_write_to_file(
                                                 {
                                                     'write file': $cr['write file'],
                                                 },
                                                 null,
+                                                null,
                                             ),
                                         },
+                                        null,
                                         null,
                                     ).execute(
                                         {

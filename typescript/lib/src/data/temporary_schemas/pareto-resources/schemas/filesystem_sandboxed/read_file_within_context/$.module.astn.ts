@@ -10,6 +10,7 @@ import { $ as globals } from "./$.globals.astn"
 
 export const $ = schema_(
     {
+        "path": schema_import_("fs sandboxed path"),
         "list of characters": schema_import_("list of characters"),
         "unrestricted": schema_import_("fs unrestricted read file"),
     },
