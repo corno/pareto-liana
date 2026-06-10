@@ -1151,9 +1151,11 @@
                 `text types`: {
                     'multi line text': (
                         `type`: | `multi line` ~
+                        `link`: | `no` ~
                     )
                     'text': (
                         `type`: | `single line` ~
+                        `link`: | `no` ~
                     )
                 }
                 `simple types`: {
@@ -2576,6 +2578,33 @@
                                         `constraints`: _
                                         `description`: * "Text on a single line (like an input field)"
                                         `value`: | `nothing` ~
+                                    )
+                                }
+                                `results`: _
+                            )
+                        )
+                        'link': (
+                            `description`: _
+                            `value`: | `state` (
+                                `options`: {
+                                    'no': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `nothing` ~
+                                    )
+                                    'yes': (
+                                        `constraints`: _
+                                        `description`: _
+                                        `value`: | `group` {
+                                            'path prefix': (
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                            'path suffix': (
+                                                `description`: _
+                                                `value`: | `text` | `global` 'text'
+                                            )
+                                        }
                                     )
                                 }
                                 `results`: _
@@ -5148,6 +5177,31 @@
                                         'single line': (
                                             `constraints`: {}
                                             `resolver`: | `nothing` ~
+                                        )
+                                    }
+                                )
+                            )
+                            'link': (
+                                `definition`: ~
+                                `resolver`: | `state` (
+                                    `definition`: ~
+                                    `options`: {
+                                        'no': (
+                                            `constraints`: {}
+                                            `resolver`: | `nothing` ~
+                                        )
+                                        'yes': (
+                                            `constraints`: {}
+                                            `resolver`: | `group` {
+                                                'path prefix': (
+                                                    `definition`: ~
+                                                    `resolver`: | `text` ~
+                                                )
+                                                'path suffix': (
+                                                    `definition`: ~
+                                                    `resolver`: | `text` ~
+                                                )
+                                            }
                                         )
                                     }
                                 )

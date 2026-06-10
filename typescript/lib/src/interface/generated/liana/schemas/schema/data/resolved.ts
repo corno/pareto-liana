@@ -995,10 +995,34 @@ export namespace Text_Type_ {
         | readonly ['multi line', type_.multi_line]
         | readonly ['single line', type_.single_line]
     
+    export namespace link {
+        
+        export type no = null
+        
+        export namespace yes {
+            
+            export type path_prefix = string
+            
+            export type path_suffix = string
+            
+        }
+        
+        export type yes = {
+            readonly 'path prefix': yes.path_prefix
+            readonly 'path suffix': yes.path_suffix
+        }
+        
+    }
+    
+    export type link = 
+        | readonly ['no', link.no]
+        | readonly ['yes', link.yes]
+    
 }
 
 export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
+    readonly 'link': Text_Type_.link
 }
 
 export namespace Simple_Type_ {

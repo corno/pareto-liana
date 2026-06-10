@@ -57,8 +57,17 @@ export const module_ = (type: d_target.Value): d_target.Modules.l_dictionary.D.l
     'root value': type,
 })
 
-export const text = (type: 'single line' | 'multi line'): d_target.Text_Type => ({
+export const text = (
+    type: 'single line' | 'multi line',
+    path?: [string, string]
+): d_target.Text_Type => ({
     'type': type === 'single line' ? sh.state(['single line', null]) : sh.state(['multi line', null]),
+    'link': path === undefined
+        ? sh.state(['no', null])
+        : sh.state(['yes', {
+            'path prefix': path[0],
+            'path suffix': path[1],
+        }]),
 })
 
 export const prop = (

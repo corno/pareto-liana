@@ -438,6 +438,16 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
                 default: return _p.au($[0])
             }
         }),
+        'link': _p_change_context($.link['l state'], ($): t_out.Text_Type.link => {
+            switch ($[0]) {
+                case 'no': return _p.ss($, ($) => ['no', null])
+                case 'yes': return _p.ss($, ($) => ['yes', {
+                    'path prefix': $['path prefix'],
+                    'path suffix': $['path suffix'],
+                }])
+                default: return _p.au($[0])
+            }
+        }),
     }
 }
 export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {

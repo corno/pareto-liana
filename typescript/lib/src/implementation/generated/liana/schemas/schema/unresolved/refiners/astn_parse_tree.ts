@@ -4340,6 +4340,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
             'expected properties': _p.dictionary.literal(
                 {
                     "type": null,
+                    "link": null,
                 },
             ),
             'subdocument context': _p.optional.literal.not_set(),
@@ -4409,6 +4410,141 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => _p_change_context
                                                     $,
                                                     ($) => abort(
                                                         $,
+                                                    ),
+                                                )],
+                                            }),
+                                        )
+                                    default:
+                                        return abort(
+                                            ['liana', {
+                                                'type': ['state', ['unknown option', $['option']['token']['value']]],
+                                                'range': v_parse_tree_to_location.Value(
+                                                    $['value'],
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                            }],
+                                        )
+                                }
+                            },
+                        ),
+                    ),
+                ),
+                'link': _p_change_context(
+                    v_unmarshalled_from_parse_tree.Property(
+                        $,
+                        ($) => abort(
+                            $,
+                        ),
+                        {
+                            'id': 'link',
+                            'subdocument context': _p.optional.literal.not_set(),
+                        },
+                    ),
+                    ($) => _p_change_context(
+                        v_unmarshalled_from_parse_tree.State(
+                            $,
+                            ($) => abort(
+                                $,
+                            ),
+                        ),
+                        ($) => _p.decide.text(
+                            $['option']['token']['value'],
+                            ($t): t_out.Text_Type.link => {
+                                switch ($t) {
+                                    case 'no':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ({
+                                                'l location': v_parse_tree_to_location.Value(
+                                                    $,
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                'l state': ['no', v_unmarshalled_from_parse_tree.Nothing(
+                                                    $,
+                                                    ($) => abort(
+                                                        $,
+                                                    ),
+                                                )],
+                                            }),
+                                        )
+                                    case 'yes':
+                                        return _p_change_context(
+                                            $['value'],
+                                            ($) => ({
+                                                'l location': v_parse_tree_to_location.Value(
+                                                    $,
+                                                    {
+                                                        'subdocument context': _p.optional.literal.not_set(),
+                                                    },
+                                                ),
+                                                'l state': ['yes', _p_change_context(
+                                                    v_unmarshalled_from_parse_tree.Verbose_Group(
+                                                        $,
+                                                        ($) => abort(
+                                                            $,
+                                                        ),
+                                                        {
+                                                            'expected properties': _p.dictionary.literal(
+                                                                {
+                                                                    "path prefix": null,
+                                                                    "path suffix": null,
+                                                                },
+                                                            ),
+                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                        },
+                                                    ),
+                                                    ($) => _p_variables(
+                                                        () => {
+                                                            
+                                                            const var_verbose_group_range = v_parse_tree_to_location.Value(
+                                                                $['value'],
+                                                                {
+                                                                    'subdocument context': _p.optional.literal.not_set(),
+                                                                },
+                                                            )
+                                                            return {
+                                                                'path prefix': _p_change_context(
+                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                        {
+                                                                            'id': 'path prefix',
+                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                        },
+                                                                    ),
+                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                                'path suffix': _p_change_context(
+                                                                    v_unmarshalled_from_parse_tree.Property(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                        {
+                                                                            'id': 'path suffix',
+                                                                            'subdocument context': _p.optional.literal.not_set(),
+                                                                        },
+                                                                    ),
+                                                                    ($) => v_unmarshalled_from_parse_tree.Text(
+                                                                        $,
+                                                                        ($) => abort(
+                                                                            $,
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            }
+                                                        },
                                                     ),
                                                 )],
                                             }),

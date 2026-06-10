@@ -2158,6 +2158,57 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
             ),
         }),
     ),
+    'link': _p_change_context(
+        $['link'],
+        ($) => ({
+            'l location': ['in main document', {
+                'start': {
+                    'absolute': 42,
+                    'relative': {
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+                'end': {
+                    'absolute': 42,
+                    'relative': {
+                        'line': 42,
+                        'column': 42,
+                    },
+                },
+            }],
+            'l state': _p.decide.state(
+                $,
+                ($): t_out.Text_Type.link.l_state => {
+                    switch ($[0]) {
+                        case 'no':
+                            return _p.ss(
+                                $,
+                                ($) => ['no', null],
+                            )
+                        case 'yes':
+                            return _p.ss(
+                                $,
+                                ($) => ['yes', {
+                                    'path prefix': _p_change_context(
+                                        $['path prefix'],
+                                        ($) => $,
+                                    ),
+                                    'path suffix': _p_change_context(
+                                        $['path suffix'],
+                                        ($) => $,
+                                    ),
+                                }],
+                            )
+                        default:
+                            return _p.au(
+                                $[0],
+                            )
+                    }
+                },
+            ),
+        }),
+    ),
 })
 
 export const Simple_Type: t_signatures.Simple_Type = ($) => ({

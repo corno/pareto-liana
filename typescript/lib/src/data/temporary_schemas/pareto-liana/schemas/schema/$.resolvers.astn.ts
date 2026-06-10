@@ -64,6 +64,13 @@ export const $ = sh.resolver_modules(
                 "multi line": sh.option(sh.r.nothing()),
                 "single line": sh.option(sh.r.nothing()),
             }),
+            "link": sh.r.state({
+                "no": sh.option(sh.r.nothing()),
+                "yes": sh.option(sh.r.group({
+                    "path prefix": sh.r.text(),
+                    "path suffix": sh.r.text(),
+                })),
+            }),
         })),
 
         "Module Reference": sh.resolver(sh.r.group({

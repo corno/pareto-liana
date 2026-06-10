@@ -11,7 +11,7 @@ export const $ = globals(
 
     'constrained',
     {
-        "Bestandsnaam": text('single line'),
+        "Bestandsnaam": text('single line', ["./data/", ""]),
         "Wachtwoord": text('single line'),
         "Benaming": text('single line'),
         "Omschrijving": text('multi line'),

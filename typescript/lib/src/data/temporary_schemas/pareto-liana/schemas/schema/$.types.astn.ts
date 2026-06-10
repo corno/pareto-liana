@@ -256,6 +256,13 @@ export const $ = sh.modules(
                 "multi line": sh.toption_with_description("Text can contain line breaks (like a textarea)", sh.t.nothing()),
                 "single line": sh.toption_with_description("Text on a single line (like an input field)", sh.t.nothing()),
             })),
+            "link": sh.prop(sh.t.state({
+                "no": sh.toption(sh.t.nothing()),
+                "yes": sh.toption(sh.t.group({
+                    "path prefix": sh.prop(sh.t.text_global("text")),
+                    "path suffix": sh.prop(sh.t.text_global("text")),
+                })),
+            })),
         })),
 
         "Simple Type": sh.module_(sh.t.group({

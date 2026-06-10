@@ -1481,10 +1481,45 @@ export namespace Text_Type_ {
         readonly 'l state': type_.l_state
     }
     
+    export namespace link {
+        
+        export type l_location = i_location.Range
+        
+        export namespace l_state {
+            
+            export type no = null
+            
+            export namespace yes {
+                
+                export type path_prefix = string
+                
+                export type path_suffix = string
+                
+            }
+            
+            export type yes = {
+                readonly 'path prefix': yes.path_prefix
+                readonly 'path suffix': yes.path_suffix
+            }
+            
+        }
+        
+        export type l_state = 
+            | readonly ['no', l_state.no]
+            | readonly ['yes', l_state.yes]
+        
+    }
+    
+    export type link = {
+        readonly 'l location': link.l_location
+        readonly 'l state': link.l_state
+    }
+    
 }
 
 export type Text_Type_ = {
     readonly 'type': Text_Type_.type_
+    readonly 'link': Text_Type_.link
 }
 
 export namespace Simple_Type_ {

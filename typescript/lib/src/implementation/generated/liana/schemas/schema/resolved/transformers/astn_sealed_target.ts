@@ -1364,6 +1364,53 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', _p
                 },
             )],
         ),
+        "link": _p_change_context(
+            $['link'],
+            ($) => ['state', _p.decide.state(
+                $,
+                ($): t_out.Value.state => {
+                    switch ($[0]) {
+                        case 'no':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'no',
+                                    'value': ['nothing', null],
+                                }),
+                            )
+                        case 'yes':
+                            return _p.ss(
+                                $,
+                                ($) => ({
+                                    'option': 'yes',
+                                    'value': ['group', ['verbose', _p.dictionary.literal(
+                                        {
+                                            "path prefix": _p_change_context(
+                                                $['path prefix'],
+                                                ($) => ['text', {
+                                                    'delimiter': ['quote', null],
+                                                    'value': $,
+                                                }],
+                                            ),
+                                            "path suffix": _p_change_context(
+                                                $['path suffix'],
+                                                ($) => ['text', {
+                                                    'delimiter': ['quote', null],
+                                                    'value': $,
+                                                }],
+                                            ),
+                                        },
+                                    )]],
+                                }),
+                            )
+                        default:
+                            return _p.au(
+                                $[0],
+                            )
+                    }
+                },
+            )],
+        ),
     },
 )]]
 
