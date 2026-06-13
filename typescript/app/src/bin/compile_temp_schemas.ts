@@ -7,6 +7,8 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/compile
 _pn.run_main_command(
     ($r) => {
         return procedure(
+            null,
+            null,
             {
                 'make directory': $r['filesystem unrestricted'].commands['make directory'],
                 'remove': $r['filesystem unrestricted'].commands.remove,
@@ -15,8 +17,6 @@ _pn.run_main_command(
                 'log error': $r.stream.commands['log error'],
                 'write file': $r['filesystem unrestricted'].commands['write file'],
             },
-            null,
-            null,
         )
     },
 )

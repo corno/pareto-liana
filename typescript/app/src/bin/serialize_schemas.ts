@@ -7,12 +7,12 @@ import { $$ as procedure } from "lib/dist/implementation/manual/commands/seriali
 _pn.run_main_command(
     ($r) => {
         return procedure(
+            null,
+            null,
             {
                 'write file': $r['filesystem unrestricted'].commands['write file'],
                 'log error': $r.stream.commands['log error']
             },
-            null,
-            null,
         )
     },
 )

@@ -249,6 +249,7 @@ export const $ = modules(
                 "Regels": prop(t.dictionary(t.group({
                     "Bedrag": prop(t.state({
                         "Bekend": toption(t.group({
+                            //de volgende 2 properties moeten omgedraaid worden
                             "BTW-bedrag": prop(t.simple("Bedrag")),
                             "Bedrag inclusief geheven BTW": prop(t.simple("Bedrag")),
                         }))

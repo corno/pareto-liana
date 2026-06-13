@@ -11,6 +11,8 @@ export namespace commands {
 
     export type compile_temp_schemas = _pi.Command_Procedure<
         resources_pareto.resources.commands.main,
+        null,
+        null,
         {
             'copy': resources_pareto.filesystem_unrestricted.commands.copy
             'log': resources_pareto_stream.commands.log
@@ -18,13 +20,15 @@ export namespace commands {
             'make directory': resources_pareto.filesystem_unrestricted.commands.make_directory
             'remove': resources_pareto.filesystem_unrestricted.commands.remove
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
-        },
-        null,
-        null
+        }
     >
 
     export type generate_typescript_cli = _pi.Command_Procedure<
         resources_pareto.resources.commands.main,
+        null,
+        {
+            'read file': resources_pareto.filesystem_unrestricted.queries.read_file
+        },
         {
             'copy': resources_pareto.filesystem_unrestricted.commands.copy
             'log': resources_pareto_stream.commands.log
@@ -32,35 +36,31 @@ export namespace commands {
             'make directory': resources_pareto.filesystem_unrestricted.commands.make_directory
             'remove': resources_pareto.filesystem_unrestricted.commands.remove
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
-        },
-        {
-            'read file': resources_pareto.filesystem_unrestricted.queries.read_file
-        },
-        null
+        }
     >
 
     export type generate_typescript = _pi.Command_Procedure<
         resources.commands.generate_typescript,
+        null,
+        {
+            'read file': resources_pareto.filesystem_unrestricted.queries.read_file
+        },
         {
             'copy': resources_pareto.filesystem_unrestricted.commands.copy
             'make directory': resources_pareto.filesystem_unrestricted.commands.make_directory
             'remove': resources_pareto.filesystem_unrestricted.commands.remove
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
-        },
-        {
-            'read file': resources_pareto.filesystem_unrestricted.queries.read_file
-        },
-        null
+        }
     >
 
     export type serialize_schemas = _pi.Command_Procedure<
         resources_pareto.resources.commands.main,
+        null,
+        null,
         {
             'write file': resources_pareto.filesystem_unrestricted.commands.write_file
             'log error': resources_pareto_stream.commands.log_error
-        },
-        null,
-        null
+        }
     >
 
 }

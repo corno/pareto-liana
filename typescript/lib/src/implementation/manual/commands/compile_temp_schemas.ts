@@ -31,9 +31,9 @@ import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schem
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure(
-    ($p, $cr, $qr) => [
+    ($d, $s, $q, $c) => [
 
-        $cr.log.execute(
+        $c.log.execute(
             {
                 'message': sh.pg.sentences([
                     sh.sentence([
@@ -71,7 +71,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                         return [
 
                             //remove old implementation files
-                            $cr.remove.execute(
+                            $c.remove.execute(
                                 {
                                     'path': t_path_to_path.extend_context_path_with_single_step(
                                         path,
@@ -85,7 +85,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             ),
 
                             //remove old interface files
-                            $cr.remove.execute(
+                            $c.remove.execute(
                                 {
                                     'path': t_path_to_path.extend_context_path_with_single_step(
                                         path,
@@ -108,18 +108,18 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                 ($) => [
                                     //write new interface files
                                     c_write_to_directory(
+                                        null,
+                                        null,
                                         {
-                                            'remove': $cr.remove,
+                                            'remove': $c.remove,
                                             'write to file': c_write_to_file(
+                                                null,
+                                                null,
                                                 {
-                                                    'write file': $cr['write file'],
+                                                    'write file': $c['write file'],
                                                 },
-                                                null,
-                                                null,
                                             ),
                                         },
-                                        null,
-                                        null,
                                     ).execute(
                                         {
                                             'generic': {
@@ -141,18 +141,18 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                     ),
                                     //write new implementation files
                                     c_write_to_directory(
+                                        null,
+                                        null,
                                         {
-                                            'remove': $cr.remove,
+                                            'remove': $c.remove,
                                             'write to file': c_write_to_file(
+                                                null,
+                                                null,
                                                 {
-                                                    'write file': $cr['write file'],
+                                                    'write file': $c['write file'],
                                                 },
-                                                null,
-                                                null,
                                             ),
                                         },
-                                        null,
-                                        null,
                                     ).execute(
                                         {
                                             'path': implementation_module_path,
@@ -178,7 +178,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             ),
 
                             // //copy generic implementation files
-                            // $cr.copy.execute(
+                            // $c.copy.execute(
                             //     {
                             //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                             //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
@@ -192,7 +192,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             // ),
 
                             //copy core interface files
-                            // $cr.copy.execute(
+                            // $c.copy.execute(
                             //     {
                             //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                             //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
@@ -207,7 +207,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
 
 
                             //log
-                            $cr.log.execute(
+                            $c.log.execute(
                                 {
                                     'message': sh.pg.sentences([
                                         sh.sentence([
@@ -225,7 +225,7 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                 )
             ],
             ($) => [
-                $cr.log.execute(
+                $c.log.execute(
                     {
                         'message': sh.pg.sentences($.__to_list(
                             ($, id) => sh.sentence([t_generate_typescript_to_fp.Error(

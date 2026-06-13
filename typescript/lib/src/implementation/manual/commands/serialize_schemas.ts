@@ -30,7 +30,7 @@ type My_Error =
     | ['resolve error', d_resolve.Error]
 
 export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
-    ($p, $cr, $qr) => [
+    ($d, $s, $q, $c) => [
         _p.dictionaryx.parallel(
             poormans_modules,
             ($, id) => [
@@ -46,7 +46,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                 _p_create_symbol(),
                             ),
                             ($v) => [
-                                $cr['write file'].execute(
+                                $c['write file'].execute(
                                     {
                                         'path': t_path_to_path.create_node_path(
                                             t_path_to_path.extend_context_path_with_single_step(r_path_from_temp_string.Context_Path($['target path']), { 'addition': "liana" }),
@@ -73,7 +73,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                         )
                     ],
                     ($) => [
-                        $cr['log error'].execute(
+                        $c['log error'].execute(
                             {
                                 'message': sh.pg.sentences([
                                     sh.sentence([

@@ -27,7 +27,7 @@ import * as t_path_to_text from "pareto-resources/dist/implementation/manual/tra
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const $$: signatures.commands.generate_typescript_cli = _p.command_procedure(
-    ($p, $cr, $qr) => [
+    ($d, $s, $q, $c) => [
 
         _p.handle_error<d_main.Error, My_Error_1>(
             [
@@ -35,7 +35,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
 
                 _p.refine_without_error_transformation(
                     (abort) => _p_iterate(
-                        $p.arguments,
+                        $d.arguments,
                         null,
                         (iterator) => iterator.assert_finished(
                             () => ({
@@ -67,9 +67,9 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
 
 
                                 c_generate_typescript.$$(
-                                    $cr,
-                                    $qr,
                                     null,
+                                    $q,
+                                    $c,
                                 ).execute(
                                     {
                                         'source': $v.source,
@@ -79,7 +79,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                                     ($) => $,
                                 ),
                                 //log
-                                $cr.log.execute(
+                                $c.log.execute(
                                     {
                                         'message': sh.pg.sentences([
                                             sh.sentence([
@@ -94,7 +94,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
 
                             ],
                             ($) => [
-                                $cr['log error'].execute(
+                                $c['log error'].execute(
                                     {
                                         'message': sh.pg.sentences([
                                             sh.sentence([
@@ -112,7 +112,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                 )
             ],
             ($) => [
-                $cr['log error'].execute(
+                $c['log error'].execute(
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([

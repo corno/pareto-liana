@@ -29,16 +29,16 @@ import _p_cc from 'pareto-core/dist/_p_change_context'
 
 
 export const $$: signatures.commands.generate_typescript = _p.command_procedure(
-    ($p, $cr, $qr) => [
+    ($d, $s, $q, $c) => [
 
         _p.query(
-            $qr['read file'](
-                $p.source,
+            $q['read file'](
+                $d.source,
                 ($): d_resource.Error => ['could not read source', $]
             ),
             ($) => $,
             ($v2) => _p_variables(() => {
-                const path = $p.target
+                const path = $d.target
 
                 const lib_path = t_path_to_path.extend_context_path_with_list(
                     path,
@@ -68,14 +68,14 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 return [
 
                     _p.refine_without_error_transformation(
-                        (abort): d_schema.Package => _p.decide.state($p.type, ($) => {
+                        (abort): d_schema.Package => _p.decide.state($d.type, ($) => {
                             switch ($[0]) {
                                 case 'module specification': return _p.ss($, ($) => _p_variables(() => {
                                     const x = r_schema.Module_Specification(
                                         r_unresolved_schema_from_loc.Module_Specification(
                                             $v2,
                                             ($) => abort(['could not deserialize', {
-                                                'location': $p.source,
+                                                'location': $d.source,
                                                 'error': $,
                                             }]),
                                             {
@@ -83,7 +83,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                             }
                                         ),
                                         ($) => abort(['could not resolve module', {
-                                            'location': $p.source,
+                                            'location': $d.source,
                                             'error': $,
                                         }]),
                                         _p_create_symbol(),
@@ -98,7 +98,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     r_unresolved_schema_from_loc.Package(
                                         $v2,
                                         ($) => abort(['could not deserialize', {
-                                            'location': $p.source,
+                                            'location': $d.source,
                                             'error': $,
                                         }]),
                                         {
@@ -106,7 +106,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         }
                                     ),
                                     ($) => abort(['could not resolve module', {
-                                        'location': $p.source,
+                                        'location': $d.source,
                                         'error': $,
                                     }]),
                                     _p_create_symbol(),
@@ -119,18 +119,18 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
 
                             //write new interface files
                             c_write_to_directory(
+                                null,
+                                null,
                                 {
-                                    'remove': $cr.remove,
+                                    'remove': $c.remove,
                                     'write to file': c_write_to_file(
+                                        null,
+                                        null,
                                         {
-                                            'write file': $cr['write file'],
+                                            'write file': $c['write file'],
                                         },
-                                        null,
-                                        null,
                                     ),
                                 },
-                                null,
-                                null,
                             ).execute(
                                 {
                                     'generic': {
@@ -152,18 +152,18 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                             ),
                             //write new implementation files
                             c_write_to_directory(
+                                null,
+                                null,
                                 {
-                                    'remove': $cr.remove,
+                                    'remove': $c.remove,
                                     'write to file': c_write_to_file(
+                                        null,
+                                        null,
                                         {
-                                            'write file': $cr['write file'],
+                                            'write file': $c['write file'],
                                         },
-                                        null,
-                                        null,
                                     ),
                                 },
-                                null,
-                                null,
                             ).execute(
                                 {
                                     'path': implementation_module_path,
@@ -189,7 +189,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     ),
 
                     // //copy generic implementation files
-                    // $cr.copy.execute(
+                    // $c.copy.execute(
                     //     {
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                     //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
@@ -203,7 +203,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     // ),
 
                     //copy core interface files
-                    // $cr.copy.execute(
+                    // $c.copy.execute(
                     //     {
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                     //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
