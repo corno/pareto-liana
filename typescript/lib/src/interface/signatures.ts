@@ -1,4 +1,4 @@
-import * as _pci from 'pareto-core/dist/command_interface'
+import * as pci from 'pareto-core/dist/command_interface'
 
 import * as resources_pareto from "pareto-resources/dist/interface/resources"
 import * as resources_pareto_stream from "pareto-stream/dist/interface/resources"
@@ -9,7 +9,7 @@ import * as d_package from "./to_be_generated/compile_temp_schemas"
 
 export namespace commands {
 
-    export type compile_temp_schemas = _pci.Command_Procedure<
+    export type compile_temp_schemas = pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         null,
@@ -23,7 +23,7 @@ export namespace commands {
         }
     >
 
-    export type generate_typescript_cli = _pci.Command_Procedure<
+    export type generate_typescript_cli = pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         {
@@ -39,7 +39,7 @@ export namespace commands {
         }
     >
 
-    export type generate_typescript = _pci.Command_Procedure<
+    export type generate_typescript = pci.Command_Procedure<
         resources.commands.generate_typescript,
         null,
         {
@@ -53,7 +53,7 @@ export namespace commands {
         }
     >
 
-    export type serialize_schemas = _pci.Command_Procedure<
+    export type serialize_schemas = pci.Command_Procedure<
         resources_pareto.resources.commands.main,
         null,
         null,

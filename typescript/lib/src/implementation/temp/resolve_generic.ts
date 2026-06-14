@@ -1,7 +1,7 @@
-import * as _p from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
 import * as _p_temp from 'pareto-core/dist/select_static_lookup'
-import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as gen_loc from "liana-core/dist/interface/to_be_generated/document_and_location"
 import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
@@ -26,27 +26,27 @@ export type Resolved_Stack_Reference<T> = {
 
 //functions
 
-export const resolve_dense_dictionary = <Unresolved extends _pi.Value, Resolved extends _pi.Value, Benchmark extends _pi.Value>(
-    $: _pi.Dictionary<Unresolved>,
+export const resolve_dense_dictionary = <Unresolved extends pi.Value, Resolved extends pi.Value, Benchmark extends pi.Value>(
+    $: pi.Dictionary<Unresolved>,
     location: gen_loc.Range,
-    abort: _pi.Abort<gen_resolve.Error>,
-    benchmark: _pi.Dictionary<Benchmark>,
+    abort: pi.Abort<gen_resolve.Error>,
+    benchmark: pi.Dictionary<Benchmark>,
     handle_entry: (
         $: Unresolved,
         id: string,
-        $acyclic: _pi.static_lookup.Acyclic<Resolved>,
-        $cyclic: _pi.static_lookup.Cyclic<Resolved>,
+        $acyclic: pi.static_lookup.Acyclic<Resolved>,
+        $cyclic: pi.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
-): _pi.Dictionary<Resolved> => {
-    const xx = _p.decide.dictionary(
-        _p.dictionary.from.dictionary(
+): pi.Dictionary<Resolved> => {
+    const xx = pt.decide.dictionary(
+        pt.dictionary.from.dictionary(
             benchmark,
         ).map_optionally(
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(
-                () => _p.optional.literal.not_set<null>(),
-                () => _p.optional.literal.set(null),
+                () => pt.optional.literal.not_set<null>(),
+                () => pt.optional.literal.set(null),
             )
         )
     ).has_entries(
@@ -56,7 +56,7 @@ export const resolve_dense_dictionary = <Unresolved extends _pi.Value, Resolved 
         }),
         () => null
     )
-    return _p.dictionary.from.dictionary(
+    return pt.dictionary.from.dictionary(
         $,
     ).resolve_static(
         handle_entry
@@ -64,11 +64,11 @@ export const resolve_dense_dictionary = <Unresolved extends _pi.Value, Resolved 
 }
 export namespace abort {
 
-    export const state_constraint_found_expected = <T extends _pi.State>(
+    export const state_constraint_found_expected = <T extends pi.State>(
         found: string,
         expected: T,
         location: gen_loc.Range,
-        abort: _pi.Abort<gen_resolve.Error>,
+        abort: pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
             'expected': expected[0],
@@ -76,11 +76,11 @@ export namespace abort {
         }]],
         'location': location,
     })
-    export const state_constraint_expected_found = <T extends _pi.State>(
+    export const state_constraint_expected_found = <T extends pi.State>(
         expected: string,
         found: T,
         location: gen_loc.Range,
-        abort: _pi.Abort<gen_resolve.Error>,
+        abort: pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
             'expected': expected,
@@ -92,7 +92,7 @@ export namespace abort {
     export const same_node_constraint = (
         property: string,
         location: gen_loc.Range,
-        abort: _pi.Abort<gen_resolve.Error>,
+        abort: pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['same node', property]],
         'location': location,
@@ -101,7 +101,7 @@ export namespace abort {
     export const is_set_assertion = (
         parameter: string,
         location: gen_loc.Range,
-        abort: _pi.Abort<gen_resolve.Error>,
+        abort: pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],
         'location': location,
@@ -110,17 +110,17 @@ export namespace abort {
     export const parameter_is_set_assertion = (
         parameter: string,
         location: gen_loc.Range,
-        abort: _pi.Abort<gen_resolve.Error>,
+        abort: pi.Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],
         'location': location,
     })
 }
 
-export const get_entry_acyclic = <T extends _pi.Value>(
-    lookup: _pi.static_lookup.Acyclic<T>,
+export const get_entry_acyclic = <T extends pi.Value>(
+    lookup: pi.static_lookup.Acyclic<T>,
     ref: Unresolved_Reference,
-    abort: _pi.Abort<gen_resolve.Error>,
+    abort: pi.Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
     return {
         'l entry': lookup.get_entry(
@@ -144,17 +144,17 @@ export const get_entry_acyclic = <T extends _pi.Value>(
     }
 }
 
-export const get_entry_cyclic = <T extends _pi.Value>(
-    lookup: _pi.static_lookup.Cyclic<T>,
+export const get_entry_cyclic = <T extends pi.Value>(
+    lookup: pi.static_lookup.Cyclic<T>,
     reference: Unresolved_Reference,
-    abort: _pi.Abort<gen_resolve.Error>,
-): Resolved_Reference<_pi.Circular_Dependency<T>> => {
+    abort: pi.Abort<gen_resolve.Error>,
+): Resolved_Reference<pi.Circular_Dependency<T>> => {
     return {
         'l id': reference['l reference'],
         'l entry': lookup.get_entry(
             reference['l reference'],
             {
-                accessing_cyclic_sibling_before_it_is_resolved: () => _p_unreachable_code_path("this should not happen, this means there is a bug in the implementation of the cyclic lookup, it should not allow access to cyclic entries before they are resolved"),
+                accessing_cyclic_sibling_before_it_is_resolved: () => p_unreachable_code_path("this should not happen, this means there is a bug in the implementation of the cyclic lookup, it should not allow access to cyclic entries before they are resolved"),
                 no_such_entry: () => abort({
                     'type': ['lookup', ['no such entry', reference['l reference']]],
                     'location': reference['l location'],
@@ -168,10 +168,10 @@ export const get_entry_cyclic = <T extends _pi.Value>(
     }
 }
 
-export const get_entry_stack = <T extends _pi.Value>(
-    stack: _pi.static_lookup.Stack<T>,
+export const get_entry_stack = <T extends pi.Value>(
+    stack: pi.static_lookup.Stack<T>,
     reference: Unresolved_Reference,
-    abort: _pi.Abort<gen_resolve.Error>,
+    abort: pi.Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
     return {
         'l id': reference['l reference'],
@@ -212,10 +212,10 @@ export const get_entry_stack = <T extends _pi.Value>(
     }
 }
 
-export const temp_assert = <Type extends _pi.Value, Error extends _pi.Value>(
-    condition: () => _pi.Optional_Value<Error>,
+export const temp_assert = <Type extends pi.Value, Error extends pi.Value>(
+    condition: () => pi.Optional_Value<Error>,
     callback: () => Type,
-    abort: _pi.Abort<Error>,
+    abort: pi.Abort<Error>,
 ): Type => {
     const c = condition()
     c.__extract_data(
@@ -229,25 +229,25 @@ export const temp_assert = <Type extends _pi.Value, Error extends _pi.Value>(
     return callback()
 }
 
-export const temp_optional_map = <In extends _pi.Value, Out extends _pi.Value>(
-    $: _pi.Optional_Value<In>,
+export const temp_optional_map = <In extends pi.Value, Out extends pi.Value>(
+    $: pi.Optional_Value<In>,
     callback: ($: In) => Out,
-): _pi.Optional_Value<Out> => _p.optional.from.optional($).map(callback)
+): pi.Optional_Value<Out> => pt.optional.from.optional($).map(callback)
 
-export const temp_resolve = <T extends _pi.Value, Resolved extends _pi.Value>(
-    $: _pi.Dictionary<T>,
+export const temp_resolve = <T extends pi.Value, Resolved extends pi.Value>(
+    $: pi.Dictionary<T>,
     handle_entry: (
         $: T,
         id: string,
-        acyclic_lookup: _pi.static_lookup.Acyclic<Resolved>,
-        cyclic_lookup: _pi.static_lookup.Cyclic<Resolved>,
+        acyclic_lookup: pi.static_lookup.Acyclic<Resolved>,
+        cyclic_lookup: pi.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
-): _pi.Dictionary<Resolved> => {
-    return _p.dictionary.from.dictionary($).resolve_static(handle_entry)
+): pi.Dictionary<Resolved> => {
+    return pt.dictionary.from.dictionary($).resolve_static(handle_entry)
 }
 
-export const temp_map_list_with_state = <T extends _pi.Value, Target_Item extends _pi.Value, State extends _pi.Value, Result_Type extends _pi.Group>(
-    $: _pi.List<T>,
+export const temp_map_list_with_state = <T extends pi.Value, Target_Item extends pi.Value, State extends pi.Value, Result_Type extends pi.Group>(
+    $: pi.List<T>,
     initial_state: State,
     handle_item: (
         value: T,
@@ -258,10 +258,10 @@ export const temp_map_list_with_state = <T extends _pi.Value, Target_Item extend
         state: State
     ) => State,
     wrapup: (
-        final_list: _pi.List<Target_Item>,
+        final_list: pi.List<Target_Item>,
         final_state: State
     ) => Result_Type,
-): Result_Type => _p.group.from.list($).map_with_state(
+): Result_Type => pt.group.from.list($).map_with_state(
     initial_state,
     handle_item,
     update_state,

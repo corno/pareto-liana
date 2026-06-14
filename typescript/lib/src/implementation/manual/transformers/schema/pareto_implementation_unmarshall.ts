@@ -1,6 +1,6 @@
-import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/assign'
-import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import * as pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 //data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -27,35 +27,35 @@ const location = sh.a.select(
     )
 )
 
-export const Schema: _pi.Transformer_With_Parameter<
+export const Schema: pi.Transformer_With_Parameter<
     d_in.Schema,
     d_out.Package_Set.D,
     {
         'depth': number,
-        'path': _pi.List<string>,
+        'path': pi.List<string>,
     }
 > = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context', 'list from text', 'variables'],
-        _p.dictionary.literal({
+        pt.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                _p.list.nested_literal_old([
-                    _p.list.literal([
+                pt.list.nested_literal_old([
+                    pt.list.literal([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal([
+                    pt.list.literal([
                         "signatures",
                     ]),
                     $.complexity[0] === 'constrained'
-                        ? _p.list.literal(["unresolved"])
-                        : _p.list.literal([]),
-                    _p.list.literal([
+                        ? pt.list.literal(["unresolved"])
+                        : pt.list.literal([]),
+                    pt.list.literal([
                         "refiners",
                         "astn parse tree"
                     ]),
@@ -64,22 +64,22 @@ export const Schema: _pi.Transformer_With_Parameter<
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                _p.list.nested_literal_old([
-                    _p.list.literal([
+                pt.list.nested_literal_old([
+                    pt.list.literal([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
                     $.complexity[0] === 'constrained'
-                        ? _p.list.literal(["data", "unresolved"])
-                        : _p.list.literal(["data"]),
+                        ? pt.list.literal(["data", "unresolved"])
+                        : pt.list.literal(["data"]),
                 ]),
             ),
         }),
-        _p.dictionary.from.dictionary(
-            _p.dictionary.literal({
-                "": _p.dictionary.literal({
+        pt.dictionary.from.dictionary(
+            pt.dictionary.literal({
+                "": pt.dictionary.literal({
 
                     "unmarshalled from parse tree": sh_i.import_.external(
                         "liana-core",
@@ -113,7 +113,7 @@ export const Schema: _pi.Transformer_With_Parameter<
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,
             {
-                duplicate_id: () => _p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
+                duplicate_id: () => p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
             }
         ),
         $.modules.__d_map(($, id) => sh.algorithm(
@@ -124,7 +124,7 @@ export const Schema: _pi.Transformer_With_Parameter<
                 $['root value'],
                 {
                     'temp type': id,
-                    'temp subselection': _p.list.literal([]),
+                    'temp subselection': pt.list.literal([]),
                     'constrained': constrained
                 }
             ),
@@ -136,21 +136,21 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'temp type': string
-        'temp subselection': _pi.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': pi.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
         'constrained': boolean
     },
 ): d_out.Assign => {
-    return _p.decide.state($, ($) => {
+    return pt.decide.state($, ($) => {
         switch ($[0]) {
-            case 'component': return _p.ss($, ($) => {
+            case 'component': return pt.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
-                        _p.decide.state($.type, ($) => {
+                        pt.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
-                                case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                                case 'internal acyclic': return _p.ss($, ($) => sh.call.local($['l id']))
-                                default: return _p.au($[0])
+                                case 'external': return pt.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
+                                case 'internal': return pt.ss($, ($) => sh.call.local($['l id']))
+                                case 'internal acyclic': return pt.ss($, ($) => sh.call.local($['l id']))
+                                default: return pt.au($[0])
                             }
                         }),
                         sh.a.select(sh.sv.context([])),
@@ -161,7 +161,7 @@ export const Value = (
                     )
                 )
             })
-            case 'dictionary': return _p.ss($, ($) => {
+            case 'dictionary': return pt.ss($, ($) => {
                 return sh.a.change_context(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "Dictionary"),
@@ -198,7 +198,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': _p.list.nested_literal_old([
+                                            'temp subselection': pt.list.nested_literal_old([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.group("l dictionary"),
@@ -219,7 +219,7 @@ export const Value = (
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': _p.list.nested_literal_old([
+                                    'temp subselection': pt.list.nested_literal_old([
                                         $p['temp subselection'],
                                         [
                                             sh_i.sub.dictionary(),
@@ -231,7 +231,7 @@ export const Value = (
                         )
                 )
             })
-            case 'group': return _p.ss($, ($) => sh.a.change_context(
+            case 'group': return pt.ss($, ($) => sh.a.change_context(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Verbose Group"),
                     sh.a.select(sh.sv.context([])),
@@ -278,7 +278,7 @@ export const Value = (
                             $.value,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': _p.list.nested_literal_old([
+                                'temp subselection': pt.list.nested_literal_old([
                                     $p['temp subselection'],
                                     [
                                         sh_i.sub.group(id),
@@ -290,7 +290,7 @@ export const Value = (
                     )))
                 ),
             ))
-            case 'list': return _p.ss($, ($) => {
+            case 'list': return pt.ss($, ($) => {
                 return $p.constrained
                     ? sh.a.group.literal({
                         "l location": location,
@@ -315,7 +315,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': _p.list.nested_literal_old([
+                                            'temp subselection': pt.list.nested_literal_old([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.group("l list"),
@@ -349,7 +349,7 @@ export const Value = (
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': _p.list.nested_literal_old([
+                                    'temp subselection': pt.list.nested_literal_old([
                                         $p['temp subselection'],
                                         [
                                             sh_i.sub.list(),
@@ -361,7 +361,7 @@ export const Value = (
                         ),
                     )
             })
-            case 'nothing': return _p.ss($, ($) => sh.a.select(
+            case 'nothing': return pt.ss($, ($) => sh.a.select(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Nothing"),
                     sh.a.select(sh.sv.context([])),
@@ -372,11 +372,11 @@ export const Value = (
                     ],
                 )
             ))
-            case 'simple': return _p.ss($, ($) => _p.decide.state($, ($) => {
+            case 'simple': return pt.ss($, ($) => pt.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'global': return _p.ss($, ($) => _p.decide.state($['l entry'].type, ($) => {
+                    case 'global': return pt.ss($, ($) => pt.decide.state($['l entry'].type, ($) => {
                         switch ($[0]) {
-                            case 'boolean': return _p.ss($, ($) => sh.a.select(
+                            case 'boolean': return pt.ss($, ($) => sh.a.select(
                                 sh.sv.call(
                                     sh.call.external("unmarshalled from parse tree", "Boolean"),
                                     sh.a.select(sh.sv.context([])),
@@ -391,7 +391,7 @@ export const Value = (
                                     ],
                                 ),
                             ))
-                            case 'date': return _p.ss($, ($) => sh.a.select(
+                            case 'date': return pt.ss($, ($) => sh.a.select(
                                 sh.sv.call(
                                     sh.call.external("unmarshalled from parse tree", "Number"),
                                     sh.a.select(sh.sv.context([])),
@@ -406,25 +406,25 @@ export const Value = (
                                     ],
                                 ),
                             ))
-                            case 'number': return _p.ss($, ($) => sh.a.select(
+                            case 'number': return pt.ss($, ($) => sh.a.select(
                                 sh.sv.call(
                                     sh.call.external("unmarshalled from parse tree", "Number"),
                                     sh.a.select(sh.sv.context([])),
                                     sh.a.select(sh.sv.context([])),
                                     sh.lookups.not_set(),
                                     sh.arguments_.initialize({
-                                        "type": _p.decide.state($.precision, ($) => {
+                                        "type": pt.decide.state($.precision, ($) => {
                                             switch ($[0]) {
-                                                case 'approximation': return _p.ss($, ($) => sh.a.state.literal("scientific notation", sh.a.group.literal({
+                                                case 'approximation': return pt.ss($, ($) => sh.a.state.literal("scientific notation", sh.a.group.literal({
                                                     "precision": sh.a.number.natural_literal($['significant digits']),
                                                 })))
-                                                case 'exact': return _p.ss($, ($) => $['number of fractional digits'].__decide(
+                                                case 'exact': return pt.ss($, ($) => $['number of fractional digits'].__decide(
                                                     ($) => sh.a.state.literal("fractional decimal", sh.a.group.literal({
                                                         "digits": sh.a.number.natural_literal($),
                                                     })),
                                                     () => sh.a.state.literal("decimal", sh.a.nothing())
                                                 ))
-                                                default: return _p.au($[0])
+                                                default: return pt.au($[0])
                                             }
                                         }),
                                         "subdocument context": sh.a.optional.not_set(),
@@ -434,13 +434,13 @@ export const Value = (
                                 ),
                             ))
 
-                            default: return _p.au($[0])
+                            default: return pt.au($[0])
                         }
                     }))
-                    default: return _p.au($[0])
+                    default: return pt.au($[0])
                 }
             }))
-            case 'optional': return _p.ss($, ($) => sh.a.optional.map(
+            case 'optional': return pt.ss($, ($) => sh.a.optional.map(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Optional"),
                     sh.a.select(sh.sv.context([])),
@@ -455,7 +455,7 @@ export const Value = (
                     $,
                     {
                         'temp type': $p['temp type'],
-                        'temp subselection': _p.list.nested_literal_old([
+                        'temp subselection': pt.list.nested_literal_old([
                             $p['temp subselection'],
                             [
                                 sh_i.sub.optional(),
@@ -465,9 +465,9 @@ export const Value = (
                     }
                 ),
             ))
-            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
+            case 'reference': return pt.ss($, ($) => pt.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.a.select(
+                    case 'derived': return pt.ss($, ($) => sh.a.select(
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Nothing"),
                             sh.a.select(sh.sv.context([])),
@@ -478,7 +478,7 @@ export const Value = (
                             ],
                         )
                     ))
-                    case 'selected': return _p.ss($, ($) => sh.a.group.literal({
+                    case 'selected': return pt.ss($, ($) => sh.a.group.literal({
                         "l location": location,
                         "l reference": sh.a.select(
                             sh.sv.call(
@@ -492,10 +492,10 @@ export const Value = (
                             )
                         ),
                     }))
-                    default: return _p.au($[0])
+                    default: return pt.au($[0])
                 }
             }))
-            case 'state': return _p.ss($, ($) => sh.a.change_context(
+            case 'state': return pt.ss($, ($) => sh.a.change_context(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "State"),
                     sh.a.select(sh.sv.context([])),
@@ -519,7 +519,7 @@ export const Value = (
                                             $.value,
                                             {
                                                 'temp type': $p['temp type'],
-                                                'temp subselection': _p.list.nested_literal_old([
+                                                'temp subselection': pt.list.nested_literal_old([
                                                     $p['temp subselection'],
                                                     [
                                                         sh_i.sub.group("l state"),
@@ -537,7 +537,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': _p.list.nested_literal_old([
+                                            'temp subselection': pt.list.nested_literal_old([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.state(id),
@@ -565,13 +565,13 @@ export const Value = (
                             )
                         ),
                     }))),
-                    sh.type_node_reference("out", $p['temp type'], _p.list.nested_literal_old([
+                    sh.type_node_reference("out", $p['temp type'], pt.list.nested_literal_old([
                         $p['temp subselection'],
                         [
                         ]
                     ])))
             ))
-            case 'text': return _p.ss($, ($) => sh.a.select(
+            case 'text': return pt.ss($, ($) => sh.a.select(
                 sh.sv.call(
                     sh.call.external("unmarshalled from parse tree", "Text"),
                     sh.a.select(sh.sv.context([])),
@@ -582,7 +582,7 @@ export const Value = (
                     ],
                 )
             ))
-            default: return _p.au($[0])
+            default: return pt.au($[0])
         }
     })
 }

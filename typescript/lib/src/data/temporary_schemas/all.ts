@@ -1,6 +1,6 @@
-import * as _p from 'pareto-core-shorthands/dist/unconstrained' //should be unresolved_data I think
+import * as pt from 'pareto-core-shorthands/dist/unconstrained' //should be unresolved_data I think
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as d_package from "../../interface/to_be_generated/compile_temp_schemas"
 
@@ -32,7 +32,7 @@ import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
 
 
 
-export const $ = _p.dictionary.literal<d_package.Parameters>({
+export const $ = pt.dictionary.literal<d_package.Parameters>({
     "astn": {
         'target path': "../astn",
         'package': m_astn,

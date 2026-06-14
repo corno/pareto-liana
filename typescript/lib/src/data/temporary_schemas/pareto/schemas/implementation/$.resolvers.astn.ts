@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core/dist/interface'
+import * as pi from 'pareto-core/dist/interface'
 
 import { resolver_modules, r, resolver, option } from "../../../../../shorthands/resolver"
 

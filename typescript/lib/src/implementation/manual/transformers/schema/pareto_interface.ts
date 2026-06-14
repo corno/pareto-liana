@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unconstrained'
 
 

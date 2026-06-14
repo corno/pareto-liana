@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
@@ -26,17 +26,17 @@ export const Schema = (
     }
 ): d_out.Package_Set.D => {
     const schema = $
-    const constrainedx: boolean = _p.decide.state($.complexity, ($) => {
+    const constrainedx: boolean = pt.decide.state($.complexity, ($) => {
         switch ($[0]) {
-            case 'constrained': return _p.ss($, ($) => true)
-            case 'unconstrained': return _p.ss($, ($) => false)
-            default: return _p.au($[0])
+            case 'constrained': return pt.ss($, ($) => true)
+            case 'unconstrained': return pt.ss($, ($) => false)
+            default: return pt.au($[0])
         }
     })
     return sh.m.set({
 
         "data": constrainedx
-            ? m.set(_p.dictionary.literal({
+            ? m.set(pt.dictionary.literal({
                 "resolved": t_types.Schema(
                     schema,
                     {
@@ -64,15 +64,15 @@ export const Schema = (
             ),
         "signatures": $p['omit (de)serializer']
             ? sh.m.set({})
-            : _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
+            : pt.decide.state($.complexity, ($): d_out.Package_Set.D => {
                 switch ($[0]) {
-                    case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                    case 'constrained': return pt.ss($, ($): d_out.Package_Set.D => sh.m.set({
                         "resolved": sh.m.set({
                             "transformers": sh.m.set({
                                 "astn sealed target": t_marshall.Schema(
                                     schema,
                                     {
-                                        'constrained': _p.optional.literal.set("resolved"),
+                                        'constrained': pt.optional.literal.set("resolved"),
                                     }
                                 ),
                                 "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
@@ -104,18 +104,18 @@ export const Schema = (
                             //     "astn sealed target": t_marshall.Schema(
                             //         schema,
                             //         {
-                            //             'constrained': _p.optional.literal.set("unresolved"),
+                            //             'constrained': pt.optional.literal.set("unresolved"),
                             //         }
                             //     ),
                             // }),
                         }),
                     }))
-                    case 'unconstrained': return _p.ss($, ($) => sh.m.set({
+                    case 'unconstrained': return pt.ss($, ($) => sh.m.set({
                         "transformers": sh.m.set({
                             "astn sealed target": t_marshall.Schema(
                                 schema,
                                 {
-                                    'constrained': _p.optional.literal.not_set(),
+                                    'constrained': pt.optional.literal.not_set(),
                                 }
                             ),
                             "fountain pen": t_serialize.Schema(schema, {
@@ -134,14 +134,14 @@ export const Schema = (
                             }),
                         }),
                     }))
-                    default: return _p.au($[0])
+                    default: return pt.au($[0])
                 }
             })
     })
-    // return m.set(_p.dictionary.from.dictionary(
-    //     _p.dictionary.literal<_pi.Optional_Value<d_out.Package_Set.D>>({
-    //         "data": _p.optional.literal.set(constrained
-    //             ? m.set(_p.dictionary.literal({
+    // return m.set(pt.dictionary.from.dictionary(
+    //     pt.dictionary.literal<pi.Optional_Value<d_out.Package_Set.D>>({
+    //         "data": pt.optional.literal.set(constrained
+    //             ? m.set(pt.dictionary.literal({
     //                 "resolved": t_types.Schema(
     //                     schema,
     //                     {
@@ -169,22 +169,22 @@ export const Schema = (
     //             ),
     //         ),
 
-    //         "resolve": _p.decide.state($.complexity, ($) => {
+    //         "resolve": pt.decide.state($.complexity, ($) => {
     //             switch ($[0]) {
-    //                 case 'constrained': return _p.ss($, ($) => _p.optional.literal.set(t_resolve.Signatures(
+    //                 case 'constrained': return pt.ss($, ($) => pt.optional.literal.set(t_resolve.Signatures(
     //                     $.signatures.signatures
     //                 )))
-    //                 case 'unconstrained': return _p.ss($, ($) => _p.optional.literal.not_set())
-    //                 default: return _p.au($[0])
+    //                 case 'unconstrained': return pt.ss($, ($) => pt.optional.literal.not_set())
+    //                 default: return pt.au($[0])
     //             }
     //         }),
-    //         "boilerplate for migrate": _p.optional.literal.set(t_migrate_boilerplate.Schema(
+    //         "boilerplate for migrate": pt.optional.literal.set(t_migrate_boilerplate.Schema(
     //             schema,
     //             {
     //                 'constrained': constrained
     //             }
     //         )),
-    //         "unmarshall": _p.optional.from.boolean(
+    //         "unmarshall": pt.optional.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_unmarshall.Schema(
@@ -194,7 +194,7 @@ export const Schema = (
     //                 }
     //             )
     //         ),
-    //         "marshall": _p.optional.from.boolean(
+    //         "marshall": pt.optional.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_marshall.Schema(
@@ -204,7 +204,7 @@ export const Schema = (
     //                 }
     //             )
     //         ),
-    //         "serialize": _p.optional.from.boolean(
+    //         "serialize": pt.optional.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_serialize.Schema(
@@ -214,7 +214,7 @@ export const Schema = (
     //                 }
     //             ),
     //         ),
-    //         "deserialize": _p.optional.from.boolean(
+    //         "deserialize": pt.optional.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_deserialize.Schema(
@@ -226,7 +226,7 @@ export const Schema = (
     //         ),
 
     //         //this needs some work; merging the parameters for deserialization with the parameters for resolving.
-    //         // "deserialize resolved": _p.optional.from_boolean(
+    //         // "deserialize resolved": pt.optional.from_boolean(
     //         //     constrained,
     //         //     t_deserialize_resolved.Schema(
     //         //         schema,
@@ -248,11 +248,11 @@ export const Schema_Tree = (
     $p: {
         'omit (de)serializer': boolean
     }
-): d_out.Package_Set.D => _p.decide.state($, ($) => {
+): d_out.Package_Set.D => pt.decide.state($, ($) => {
     switch ($[0]) {
-        case 'schema': return _p.ss($, ($) => Schema($, $p))
-        case 'set': return _p.ss($, ($) => Schemas($, $p))
-        default: return _p.au($[0])
+        case 'schema': return pt.ss($, ($) => Schema($, $p))
+        case 'set': return pt.ss($, ($) => Schemas($, $p))
+        default: return pt.au($[0])
     }
 })
 
@@ -262,10 +262,10 @@ export const Schemas = (
     $p: {
         'omit (de)serializer': boolean
     }
-): d_out.Package_Set.D => m.set($.__d_map(($) => _p.decide.state($, ($) => {
+): d_out.Package_Set.D => m.set($.__d_map(($) => pt.decide.state($, ($) => {
     switch ($[0]) {
-        case 'schema': return _p.ss($, ($) => Schema($, $p))
-        case 'set': return _p.ss($, ($) => Schemas($, $p))
-        default: return _p.au($[0])
+        case 'schema': return pt.ss($, ($) => Schema($, $p))
+        case 'set': return pt.ss($, ($) => Schemas($, $p))
+        default: return pt.au($[0])
     }
 })))

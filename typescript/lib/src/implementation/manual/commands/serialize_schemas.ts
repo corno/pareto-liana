@@ -1,8 +1,8 @@
 //core
-import * as _p from 'pareto-core/dist/command'
+import * as pt from 'pareto-core/dist/command'
 import * as _pt from 'pareto-core/dist/assign'
-import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -30,21 +30,21 @@ type My_Error =
     | ['error writing file', d_write_file.Error]
     | ['resolve error', d_resolve.Error]
 
-export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
+export const $$: signatures.commands.serialize_schemas = pt.command_procedure(
     ($d, $s, $q, $c) => [
-        _p.dictionaryx.parallel(
+        pt.dictionaryx.parallel(
             poormans_modules,
             ($, id) => [
 
-                _p.handle_error<d_main.Error, My_Error>(
+                pt.handle_error<d_main.Error, My_Error>(
                     [
 
-                        _p.refine_without_error_transformation(
+                        pt.refine_without_error_transformation(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),
-                                _p_create_symbol(),
-                                _p_create_symbol(),
+                                p_create_symbol(),
+                                p_create_symbol(),
                             ),
                             ($v) => [
                                 $c['write file'].execute(
@@ -53,7 +53,7 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                             t_path_to_path.extend_context_path_with_single_step(r_path_from_temp_string.Context_Path($['target path']), { 'addition': "liana" }),
                                             { 'node': "module.liana.lna" }
                                         ),
-                                        // 'data': _p_list_from_text(
+                                        // 'data': p_list_from_text(
                                         //     "IMPLEMENT SERIALIZATION HERE",
                                         //     ($) => $,
                                         // )

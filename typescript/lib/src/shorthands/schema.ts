@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core-shorthands/dist/unresolved_data'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
@@ -20,7 +20,7 @@ export const package_ = (
 export namespace st {
 
     export const set = (
-        schemas: _p.Raw_Or_Normal_Dictionary<d_target.Schema_Tree>,
+        schemas: pt.Raw_Or_Normal_Dictionary<d_target.Schema_Tree>,
     ): d_target.Schema_Tree => {
         return sh.state(['set', sh.dictionary(schemas)])
     }
@@ -34,15 +34,15 @@ export namespace st {
 }
 
 export const modules = (
-    modules: _p.Raw_Or_Normal_Dictionary<d_target.Modules.l_dictionary.D.l_entry>,
+    modules: pt.Raw_Or_Normal_Dictionary<d_target.Modules.l_dictionary.D.l_entry>,
 ): d_target.Modules => {
     return sh.dictionary(modules)
 }
 
 export const globals = (
     complexity: 'unconstrained' | 'constrained',
-    text_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.text_types.l_dictionary.D.l_entry>,
-    simple_types: _p.Raw_Or_Normal_Dictionary<d_target.Globals.simple_types.l_dictionary.D.l_entry>,
+    text_types: pt.Raw_Or_Normal_Dictionary<d_target.Globals.text_types.l_dictionary.D.l_entry>,
+    simple_types: pt.Raw_Or_Normal_Dictionary<d_target.Globals.simple_types.l_dictionary.D.l_entry>,
 ): d_target.Globals => {
     return {
         'complexity': complexity === 'unconstrained'
@@ -80,16 +80,16 @@ export const prop = (
 export const toption = (
     node: d_target.Value,
 ): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
-    'constraints': _p.optionalx.not_set(),
+    'constraints': pt.optionalx.not_set(),
     'description': sh.optionalx.not_set(),
     'value': node,
 })
 
 export const toption_constrained = (
-    constraints: _p.Raw_Or_Normal_Dictionary<d_target.Option_Constraints.O.l_dictionary.D.l_entry>,
+    constraints: pt.Raw_Or_Normal_Dictionary<d_target.Option_Constraints.O.l_dictionary.D.l_entry>,
     node: d_target.Value,
 ): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
-    'constraints': _p.optionalx.set(sh.dictionary(constraints)),
+    'constraints': pt.optionalx.set(sh.dictionary(constraints)),
     'description': sh.optionalx.not_set(),
     'value': node,
 })
@@ -98,8 +98,8 @@ export const toption_with_description = (
     description: string,
     node: d_target.Value,
 ): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
-    'constraints': _p.optionalx.not_set(),
-    'description': _p.optionalx.set(description),
+    'constraints': pt.optionalx.not_set(),
+    'description': pt.optionalx.set(description),
     'value': node,
 })
 
@@ -107,7 +107,7 @@ export const prop_with_description = (
     description: string,
     node: d_target.Value,
 ): d_target.Group.l_dictionary.D.l_entry => ({
-    'description': _p.optionalx.set(description),
+    'description': pt.optionalx.set(description),
     'value': node,
 })
 
@@ -123,7 +123,7 @@ export namespace n {
     export const integer = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
         'type': sh.state(['number', {
             'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
-                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'number of fractional digits': pt.optionalx.literal<number>(number_of_fractional_digits),
                 'type': sh.state(['integer', null]),
             }])
 
@@ -142,7 +142,7 @@ export namespace n {
     export const natural = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
         'type': sh.state(['number', {
             'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
-                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'number of fractional digits': pt.optionalx.literal<number>(number_of_fractional_digits),
                 'type': sh.state(['natural', null]),
             }])
 
@@ -156,7 +156,7 @@ export namespace n {
     export const positive_natural = (number_of_fractional_digits: null | number): d_target.Simple_Type => ({
         'type': sh.state(['number', {
             'precision': sh.state<d_target.Simple_Type.type_.l_state.number_.precision.l_state>(['exact', {
-                'number of fractional digits': _p.optionalx.literal<number>(number_of_fractional_digits),
+                'number of fractional digits': pt.optionalx.literal<number>(number_of_fractional_digits),
                 'type': sh.state(['positive natural', null]),
             }])
 
@@ -237,7 +237,7 @@ export namespace t {
         }])
     }
 
-    export const group = (properties: _p.Raw_Or_Normal_Dictionary<d_target.Group.l_dictionary.D.l_entry>): d_target.Value => {
+    export const group = (properties: pt.Raw_Or_Normal_Dictionary<d_target.Group.l_dictionary.D.l_entry>): d_target.Value => {
         return sh.state(['group', sh.dictionary(properties)])
     }
 
@@ -320,7 +320,7 @@ export namespace t {
         type: string,
         tail: d_target.Value_Path.tail.l_list.L.l_item[],
         dependency?: "cyclic" | "acyclic",
-        results?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+        results?: pt.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_target.Value => {
 
         const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
@@ -355,7 +355,7 @@ export namespace t {
     export const reference_stack = (
         type: string,
         tail: d_target.Value_Path.tail.l_list.L.l_item[],
-        results?: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+        results?: pt.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_target.Value => {
 
         const p_type: d_target.Value.l_state.reference.type_ = sh.state(['selected', {
@@ -411,7 +411,7 @@ export namespace t {
     }
 
     export const state = (
-        options: _p.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>
+        options: pt.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>
     ): d_target.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
@@ -419,8 +419,8 @@ export namespace t {
         }])
     }
     export const state_with_result = (
-        options: _p.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>,
-        results: _p.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
+        options: pt.Raw_Or_Normal_Dictionary<d_target.Value.l_state.state.options.l_dictionary.D.l_entry>,
+        results: pt.Raw_Or_Normal_Dictionary<d_target.Value_Results.O.l_dictionary.D.l_entry>,
     ): d_target.Value => {
         return sh.state(['state', {
             'options': sh.dictionary(options),
@@ -470,8 +470,8 @@ export const unconstrained = (
     return null
 }
 export const schema_ = (
-    schema_imports: _p.Raw_Or_Normal_Dictionary<d_target.Schema_Imports.l_dictionary.D.l_entry>,
-    resolver_imports: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Imports.l_dictionary.D.l_entry>,
+    schema_imports: pt.Raw_Or_Normal_Dictionary<d_target.Schema_Imports.l_dictionary.D.l_entry>,
+    resolver_imports: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Imports.l_dictionary.D.l_entry>,
     globals: d_target.Globals,
     modules: d_target.Modules,
     resolve: null | d_target.Schema.complexity.l_state.constrained,

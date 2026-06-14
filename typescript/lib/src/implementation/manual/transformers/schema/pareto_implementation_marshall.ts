@@ -1,6 +1,6 @@
-import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/assign'
-import _p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import * as pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -11,7 +11,7 @@ import * as sh_i from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'path': _pi.List<string>,
+        'path': pi.List<string>,
         'depth': number
     }
 ): d_out.Package_Set.D => {
@@ -19,27 +19,27 @@ export const Schema = (
 
     return sh.m.package_(
         ['change context', 'text from list'],
-        _p.dictionary.literal({
+        pt.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                _p.list.nested_literal_old([
-                    _p.list.literal([
+                pt.list.nested_literal_old([
+                    pt.list.literal([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal([
+                    pt.list.literal([
                         "signatures"
                     ]),
                     constrained
-                        ? _p.list.literal([
+                        ? pt.list.literal([
                             "resolved"
                         ])
-                        : _p.list.literal([
+                        : pt.list.literal([
                         ]),
-                    _p.list.literal([
+                    pt.list.literal([
                         "transformers",
                         "astn sealed target"
                     ])
@@ -59,12 +59,12 @@ export const Schema = (
             ),
 
         }),
-        _p.dictionary.from.dictionary(
-            _p.dictionary.literal({
-                "": _p.dictionary.literal({
+        pt.dictionary.from.dictionary(
+            pt.dictionary.literal({
+                "": pt.dictionary.literal({
                     "primitives to text": sh_i.import_.external(
                         "liana-core",
-                        _p.list.literal([
+                        pt.list.literal([
                             "dist",
                             "implementation",
                             "manual",
@@ -83,7 +83,7 @@ export const Schema = (
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,
             {
-                duplicate_id: () => _p_unreachable_code_path("the root keys are fixed; '' and 'external'"),
+                duplicate_id: () => p_unreachable_code_path("the root keys are fixed; '' and 'external'"),
             }
 
         ),
@@ -95,7 +95,7 @@ export const Schema = (
                 $['root value'],
                 {
                     'type': id,
-                    'subselection': _p.list.literal([])
+                    'subselection': pt.list.literal([])
                 }
             ),
         )),
@@ -106,28 +106,28 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type': string
-        'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+        'subselection': pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
     },
-): d_out.Assign => _p.decide.state($, ($) => {
+): d_out.Assign => pt.decide.state($, ($) => {
     switch ($[0]) {
-        case 'component': return _p.ss($, ($) => sh.a.select(
+        case 'component': return pt.ss($, ($) => sh.a.select(
             sh.sv.call(
-                _p.decide.state($.type, ($) => {
+                pt.decide.state($.type, ($) => {
                     switch ($[0]) {
-                        case 'external': return _p.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
-                        case 'internal acyclic': return _p.ss($, ($) => sh.call.local($['l id']))
-                        case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                        default: return _p.au($[0])
+                        case 'external': return pt.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
+                        case 'internal acyclic': return pt.ss($, ($) => sh.call.local($['l id']))
+                        case 'internal': return pt.ss($, ($) => sh.call.local($['l id']))
+                        default: return pt.au($[0])
                     }
                 }),
-                sh.a.select(sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
+                sh.a.select(sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
                 [],
             )
         ))
-        case 'dictionary': return _p.ss($, ($) => sh.a.state.literal(
+        case 'dictionary': return pt.ss($, ($) => sh.a.state.literal(
             "dictionary",
             sh.a.dictionary.from.dictionary.map(
                 sh.sv.context([]),
@@ -135,7 +135,7 @@ export const Value = (
                     $.value,
                     {
                         'type': $p.type,
-                        'subselection': _p.list.nested_literal_old([
+                        'subselection': pt.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh.sub.dictionary(),
@@ -145,7 +145,7 @@ export const Value = (
                 )
             )
         ))
-        case 'group': return _p.ss($, ($) => sh.a.state.literal(
+        case 'group': return pt.ss($, ($) => sh.a.state.literal(
             "group",
             sh.a.state.literal(
                 "verbose",
@@ -155,7 +155,7 @@ export const Value = (
                         $.value,
                         {
                             'type': $p.type,
-                            'subselection': _p.list.nested_literal_old([
+                            'subselection': pt.list.nested_literal_old([
                                 $p.subselection,
                                 [
                                     sh.sub.group(id),
@@ -166,13 +166,13 @@ export const Value = (
                 )))
             )
         ))
-        case 'list': return _p.ss($, ($) => {
+        case 'list': return pt.ss($, ($) => {
 
             const x = Value(
                 $.value,
                 {
                     'type': $p.type,
-                    'subselection': _p.list.nested_literal_old([
+                    'subselection': pt.list.nested_literal_old([
                         $p.subselection,
                         [
                             sh.sub.list(),
@@ -184,7 +184,7 @@ export const Value = (
             return sh.a.state.literal(
                 "list",
                 sh.a.list.from.list.map(
-                    sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                    sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                     $.results.__decide(
                         ($) => sh.a.change_context(
                             sh.sv.context(["l item"]),
@@ -195,16 +195,16 @@ export const Value = (
                 )
             )
         })
-        case 'nothing': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
-        case 'simple': return _p.ss($, ($) => _p.decide.state($, ($) => {
+        case 'nothing': return pt.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
+        case 'simple': return pt.ss($, ($) => pt.decide.state($, ($) => {
             switch ($[0]) {
-                case 'global': return _p.ss($, ($) => {
+                case 'global': return pt.ss($, ($) => {
                     const x = $['l entry']
 
 
-                    return _p.decide.state($['l entry'].type, ($) => {
+                    return pt.decide.state($['l entry'].type, ($) => {
                         switch ($[0]) {
-                            case 'boolean': return _p.ss($, ($) => sh.a.state.literal(
+                            case 'boolean': return pt.ss($, ($) => sh.a.state.literal(
                                 "text",
                                 sh.a.group.literal({
                                     "delimiter": sh.a.state.literal("none", sh.a.nothing()),
@@ -220,7 +220,7 @@ export const Value = (
                                     ),
                                 })
                             ))
-                            case 'date': return _p.ss($, ($) => sh.a.state.literal(
+                            case 'date': return pt.ss($, ($) => sh.a.state.literal(
                                 "text",
                                 sh.a.group.literal({
                                     "delimiter": sh.a.state.literal("none", sh.a.nothing()),
@@ -236,14 +236,14 @@ export const Value = (
                                     ),
                                 })
                             ))
-                            case 'number': return _p.ss($, ($) => sh.a.state.literal(
+                            case 'number': return pt.ss($, ($) => sh.a.state.literal(
                                 "text",
                                 sh.a.group.literal({
                                     "delimiter": sh.a.state.literal("none", sh.a.nothing()),
                                     "value": sh.a.select(
-                                        _p.decide.state($.precision, ($) => {
+                                        pt.decide.state($.precision, ($) => {
                                             switch ($[0]) {
-                                                case 'approximation': return _p.ss($, ($) => sh.sv.call(
+                                                case 'approximation': return pt.ss($, ($) => sh.sv.call(
                                                     sh.call.external("primitives to text", "scientific notation"),
                                                     sh.a.select(sh.sv.context([])),
                                                     null,
@@ -255,7 +255,7 @@ export const Value = (
                                                     }),
                                                     [],
                                                 ))
-                                                case 'exact': return _p.ss($, ($) => $['number of fractional digits'].__decide(
+                                                case 'exact': return pt.ss($, ($) => $['number of fractional digits'].__decide(
                                                     ($) => sh.sv.call(
                                                         sh.call.external("primitives to text", "fractional decimal"),
                                                         sh.a.select(sh.sv.context([])),
@@ -277,22 +277,22 @@ export const Value = (
                                                         [],
                                                     )
                                                 ))
-                                                default: return _p.au($[0])
+                                                default: return pt.au($[0])
                                             }
                                         })
                                     ),
                                 })
                             ))
 
-                            default: return _p.au($[0])
+                            default: return pt.au($[0])
                         }
                     })
                 })
-                default: return _p.au($[0])
+                default: return pt.au($[0])
             }
         }))
 
-        case 'optional': return _p.ss($, ($) => sh.a.state.literal(
+        case 'optional': return pt.ss($, ($) => sh.a.state.literal(
             "optional",
             sh.a.decide.optional(
                 sh.sv.context([]),
@@ -302,7 +302,7 @@ export const Value = (
                         $,
                         {
                             'type': $p.type,
-                            'subselection': _p.list.nested_literal_old([
+                            'subselection': pt.list.nested_literal_old([
                                 $p.subselection,
                                 [
                                     sh.sub.optional(),
@@ -321,30 +321,30 @@ export const Value = (
                     [sh.sub.state("optional")]
                 ),
             )))
-        case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
+        case 'reference': return pt.ss($, ($) => pt.decide.state($.type, ($) => {
             switch ($[0]) {
-                case 'derived': return _p.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
-                case 'selected': return _p.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
+                case 'derived': return pt.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
+                case 'selected': return pt.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
                     "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
                     "value": sh.a.text.copy(sh.sv.context($.results.__decide(
-                        ($) => _p.list.literal(["l value", "l id"]),
-                        () => _p.list.literal(["l id"])
+                        ($) => pt.list.literal(["l value", "l id"]),
+                        () => pt.list.literal(["l id"])
                     ))),
                 })))
-                default: return _p.au($[0])
+                default: return pt.au($[0])
             }
         }))
-        case 'state': return _p.ss($, ($) => sh.a.state.literal(
+        case 'state': return pt.ss($, ($) => sh.a.state.literal(
             "state",
             sh.a.decide.state(
-                sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                 $.options.__d_map(($, id) => sh.a.group.literal({
                     "option": sh.a.text.literal(id, 'identifier'),
                     "value": Value(
                         $.value,
                         {
                             'type': $p.type,
-                            'subselection': _p.list.nested_literal_old([
+                            'subselection': pt.list.nested_literal_old([
                                 $p.subselection,
                                 [
                                     sh.sub.state(id),
@@ -360,14 +360,14 @@ export const Value = (
                 ),
             )
         ))
-        case 'text': return _p.ss($, ($) => sh.a.state.literal(
+        case 'text': return pt.ss($, ($) => sh.a.state.literal(
             "text",
             sh.a.group.literal({
                 "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
                 "value": sh.a.text.copy(sh.sv.context([])),
             })
         ))
-        default: return _p.au($[0])
+        default: return pt.au($[0])
     }
 })
 

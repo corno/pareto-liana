@@ -1,4 +1,4 @@
-import * as _pi from 'pareto-core/dist/interface'
+import * as pi from 'pareto-core/dist/interface'
 
 import { signatures, sig, value_parameter, lookup_parameter, sig_params } from "../../../../../shorthands/signatures"
 

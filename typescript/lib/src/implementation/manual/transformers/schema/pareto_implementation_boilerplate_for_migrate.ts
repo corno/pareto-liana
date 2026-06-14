@@ -1,6 +1,6 @@
-import * as _pi from 'pareto-core/dist/interface'
-import * as _p from 'pareto-core/dist/assign'
-import _p_change_context from 'pareto-core/dist/_p_change_context'
+import * as pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import p_change_context from 'pareto-core/dist/_p_change_context'
 
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -31,33 +31,33 @@ export const Schema = (
     $: d_in.Schema,
     $p: {
         'depth': number,
-        'path': _pi.List<string>,
+        'path': pi.List<string>,
     }
 ): d_out.Package_Set.D => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context'],
-        _p.dictionary.literal({
+        pt.dictionary.literal({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                _p.list.nested_literal_old([
-                    _p.list.literal([
+                pt.list.nested_literal_old([
+                    pt.list.literal([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    _p.list.literal([
+                    pt.list.literal([
                         "signatures"
                     ]),
                     constrained
-                        ? _p.list.literal([
+                        ? pt.list.literal([
                             "resolved"
                         ])
-                        : _p.list.literal([
+                        : pt.list.literal([
                         ]),
-                    _p.list.literal([
+                    pt.list.literal([
                         "transformers",
                         "boilerplate for migrate"
                     ])
@@ -66,19 +66,19 @@ export const Schema = (
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                _p.list.nested_literal_old([
-                    _p.list.literal([
+                pt.list.nested_literal_old([
+                    pt.list.literal([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
                     constrained
-                        ? _p.list.literal([
+                        ? pt.list.literal([
                             "data",
                             "unresolved",
                         ])
-                        : _p.list.literal([
+                        : pt.list.literal([
                             "data",
                         ])
                 ])
@@ -95,7 +95,7 @@ export const Schema = (
                 $['root value'],
                 {
                     'type name': id,
-                    'subselection': _p.list.literal([]),
+                    'subselection': pt.list.literal([]),
                     'constrained': constrained,
                 }
             ),
@@ -107,24 +107,24 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type name': string
-        'subselection': _pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+        'subselection': pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
         'constrained': boolean
     },
 ): d_out.Assign => {
-    return _p.decide.state($, ($) => {
+    return pt.decide.state($, ($) => {
         switch ($[0]) {
-            case 'component': return _p.ss($, ($) => {
+            case 'component': return pt.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
-                        _p.decide.state($.type, ($) => {
+                        pt.decide.state($.type, ($) => {
                             switch ($[0]) {
-                                case 'external': return _p.ss($, ($) => sh.call.external($.import['l id'], $.module['l id']))
-                                case 'internal': return _p.ss($, ($) => sh.call.local($['l id']))
-                                case 'internal acyclic': return _p.ss($, ($) => sh.call.local($['l id']))
-                                default: return _p.au($[0])
+                                case 'external': return pt.ss($, ($) => sh.call.external($.import['l id'], $.module['l id']))
+                                case 'internal': return pt.ss($, ($) => sh.call.local($['l id']))
+                                case 'internal acyclic': return pt.ss($, ($) => sh.call.local($['l id']))
+                                default: return pt.au($[0])
                             }
                         }),
-                        sh.a.select(sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
+                        sh.a.select(sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -132,7 +132,7 @@ export const Value = (
                     )
                 )
             })
-            case 'dictionary': return _p.ss($, ($) => {
+            case 'dictionary': return pt.ss($, ($) => {
 
                 return $p.constrained
                     ? sh.a.group.literal({
@@ -144,7 +144,7 @@ export const Value = (
                                     $.value,
                                     {
                                         'type name': $p['type name'],
-                                        'subselection': _p.list.nested_literal_old([
+                                        'subselection': pt.list.nested_literal_old([
                                             $p.subselection,
                                             [
                                                 sh.sub.group("l dictionary"),
@@ -165,7 +165,7 @@ export const Value = (
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': _p.list.nested_literal_old([
+                                'subselection': pt.list.nested_literal_old([
                                     $p.subselection,
                                     [
                                         sh.sub.dictionary()
@@ -176,13 +176,13 @@ export const Value = (
                         )
                     )
             })
-            case 'group': return _p.ss($, ($) => sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
+            case 'group': return pt.ss($, ($) => sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
                 sh.sv.context([id]),
                 Value(
                     $.value,
                     {
                         'type name': $p['type name'],
-                        'subselection': _p.list.nested_literal_old([
+                        'subselection': pt.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh.sub.group(id)
@@ -192,20 +192,20 @@ export const Value = (
                     }
                 )
             ))))
-            case 'list': return _p.ss($, ($) => {
+            case 'list': return pt.ss($, ($) => {
 
                 return $p.constrained
                     ? sh.a.group.literal({
                         "l location": location,
                         "l list": sh.a.list.from.list.map(
-                            sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                            sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                             sh.a.group.literal({
-                                "l item": _p_change_context($, ($) => {
+                                "l item": p_change_context($, ($) => {
                                     const tn = Value(
                                         $.value,
                                         {
                                             'type name': $p['type name'],
-                                            'subselection': _p.list.nested_literal_old([
+                                            'subselection': pt.list.nested_literal_old([
                                                 $p.subselection,
                                                 [
                                                     sh.sub.group("l list"),
@@ -234,7 +234,7 @@ export const Value = (
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': _p.list.nested_literal_old([
+                                'subselection': pt.list.nested_literal_old([
                                     $p.subselection,
                                     [
                                         sh.sub.list()
@@ -246,15 +246,15 @@ export const Value = (
                     )
 
             })
-            case 'nothing': return _p.ss($, ($) => sh.a.nothing())
-            case 'simple': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
-            case 'optional': return _p.ss($, ($) => sh.a.optional.map(
+            case 'nothing': return pt.ss($, ($) => sh.a.nothing())
+            case 'simple': return pt.ss($, ($) => sh.a.select(sh.sv.context([])))
+            case 'optional': return pt.ss($, ($) => sh.a.optional.map(
                 sh.sv.context([]),
                 Value(
                     $,
                     {
                         'type name': $p['type name'],
-                        'subselection': _p.list.nested_literal_old([
+                        'subselection': pt.list.nested_literal_old([
                             $p.subselection,
                             [
                                 sh.sub.optional()
@@ -264,13 +264,13 @@ export const Value = (
                     }
                 )
             ))
-            case 'reference': return _p.ss($, ($) => _p.decide.state($.type, ($) => {
+            case 'reference': return pt.ss($, ($) => pt.decide.state($.type, ($) => {
                 switch ($[0]) {
-                    case 'derived': return _p.ss($, ($) => sh.a.nothing())
-                    case 'selected': return _p.ss($, ($) => {
+                    case 'derived': return pt.ss($, ($) => sh.a.nothing())
+                    case 'selected': return pt.ss($, ($) => {
                         const tn = sh.a.text.copy(sh.sv.context($.results.__decide(
-                            ($) => _p.list.literal(["l value", "l id"]),
-                            () => _p.list.literal(["l id"])
+                            ($) => pt.list.literal(["l value", "l id"]),
+                            () => pt.list.literal(["l id"])
                         )))
 
                         return $p.constrained
@@ -280,17 +280,17 @@ export const Value = (
                             })
                             : tn
                     })
-                    default: return _p.au($[0])
+                    default: return pt.au($[0])
                 }
             }))
-            case 'state': return _p.ss($, ($) => {
+            case 'state': return pt.ss($, ($) => {
                 const tn = sh.a.decide.state(
-                    sh.sv.context(_p.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                    sh.sv.context(pt.boolean.from.optional($.results).is_set() ? ["l value"] : []),
                     $.options.__d_map(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {
                             'type name': $p['type name'],
-                            'subselection': _p.list.nested_literal_old([
+                            'subselection': pt.list.nested_literal_old([
                                 $p.subselection,
                                 $p.constrained
                                     ? [
@@ -307,7 +307,7 @@ export const Value = (
                     sh.type_node_reference(
                         "out",
                         $p['type name'],
-                        _p.list.nested_literal_old([
+                        pt.list.nested_literal_old([
                             $p.subselection,
                             $p.constrained
                                 ? [
@@ -325,8 +325,8 @@ export const Value = (
                     })
                     : tn
             })
-            case 'text': return _p.ss($, ($) => sh.a.select(sh.sv.context([])))
-            default: return _p.au($[0])
+            case 'text': return pt.ss($, ($) => sh.a.select(sh.sv.context([])))
+            default: return pt.au($[0])
         }
     })
 }

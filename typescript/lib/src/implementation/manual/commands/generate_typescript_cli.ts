@@ -1,9 +1,9 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/command'
+import * as pi from 'pareto-core/dist/interface'
 import * as _pt from 'pareto-core/dist/assign'
-import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import _p_variables from 'pareto-core/dist/_p_variables'
-import _p_iterate from 'pareto-core/dist/_p_iterate'
+import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import p_variables from 'pareto-core/dist/_p_variables'
+import p_iterate from 'pareto-core/dist/_p_iterate'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -26,15 +26,15 @@ import * as t_path_to_text from "pareto-resources/dist/implementation/manual/tra
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.commands.generate_typescript_cli = _p.command_procedure(
+export const $$: signatures.commands.generate_typescript_cli = pt.command_procedure(
     ($d, $s, $q, $c) => [
 
-        _p.handle_error<d_main.Error, My_Error_1>(
+        pt.handle_error<d_main.Error, My_Error_1>(
             [
 
 
-                _p.refine_without_error_transformation(
-                    (abort) => _p_iterate(
+                pt.refine_without_error_transformation(
+                    (abort) => p_iterate(
                         $d.arguments,
                         null,
                         (iterator) => iterator.assert_finished(
@@ -62,7 +62,7 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                     ($v) => [
 
 
-                        _p.handle_error<My_Error_1, d_resource.Error>(
+                        pt.handle_error<My_Error_1, d_resource.Error>(
                             [
 
 

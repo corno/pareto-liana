@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core-shorthands/dist/unresolved_data'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core-shorthands/dist/unresolved_data'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
@@ -7,7 +7,7 @@ import * as d_target from "../interface/generated/liana/schemas/schema/data/unre
 
 
 export const signatures = (
-    signatures: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
+    signatures: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
 ): d_target.Resolver.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
@@ -15,8 +15,8 @@ export const signatures = (
 }
 
 export const sig_params = (
-    modules: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-    lookups: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    modules: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+    lookups: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
 ): d_target.Resolver_Signature_Parameters => {
     return {
         'modules': sh.dictionary(modules),
@@ -30,8 +30,8 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        modules: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-        lookups: _p.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+        modules: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+        lookups: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,

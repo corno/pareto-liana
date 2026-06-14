@@ -1,10 +1,9 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pi from 'pareto-core/dist/interface'
-import * as _pt from 'pareto-core/dist/assign'
-import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import _p_variables from 'pareto-core/dist/_p_variables'
-import _p_iterate from 'pareto-core/dist/_p_iterate'
-import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import * as p from 'pareto-core/dist/command'
+import * as pa from 'pareto-core/dist/assign'
+import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import p_variables from 'pareto-core/dist/_p_variables'
+import p_iterate from 'pareto-core/dist/_p_iterate'
+import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -25,30 +24,30 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
-import _p_cc from 'pareto-core/dist/_p_change_context'
+import p_change_context from 'pareto-core/dist/_p_change_context'
 
 
-export const $$: signatures.commands.generate_typescript = _p.command_procedure(
+export const $$: signatures.commands.generate_typescript = p.command_procedure(
     ($d, $s, $q, $c) => [
 
-        _p.query(
+        p.query(
             $q['read file'](
                 $d.source,
                 ($): d_resource.Error => ['could not read source', $]
             ),
             ($) => $,
-            ($v2) => _p_variables(() => {
+            ($v2) => p_variables(() => {
                 const path = $d.target
 
                 const lib_path = t_path_to_path.extend_context_path_with_list(
                     path,
-                    { 'addition': _p.list.literal(["typescript", "lib", "src"]) }
+                    { 'addition': p.list.literal(["typescript", "lib", "src"]) }
                 )
 
                 const interface_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
                         lib_path,
-                        { 'addition': _p.list.literal(["interface", "generated"]) }
+                        { 'addition': p.list.literal(["interface", "generated"]) }
                     ),
                     {
                         'node': "liana"
@@ -57,7 +56,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 const implementation_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
                         lib_path,
-                        { 'addition': _p.list.literal(["implementation", "generated"]) }
+                        { 'addition': p.list.literal(["implementation", "generated"]) }
                     ),
                     {
                         'node': "liana"
@@ -67,10 +66,10 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
 
                 return [
 
-                    _p.refine_without_error_transformation(
-                        (abort): d_schema.Package => _pt.decide.state($d.type, ($) => {
+                    p.refine_without_error_transformation(
+                        (abort): d_schema.Package => pa.decide.state($d.type, ($) => {
                             switch ($[0]) {
-                                case 'module specification': return _pt.ss($, ($) => _p_variables(() => {
+                                case 'module specification': return pa.ss($, ($) => p_variables(() => {
                                     const x = r_schema.Module_Specification(
                                         r_unresolved_schema_from_loc.Module_Specification(
                                             $v2,
@@ -86,15 +85,15 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                             'location': $d.source,
                                             'error': $,
                                         }]),
-                                        _p_create_symbol(),
-                                        _p_create_symbol(),
+                                        p_create_symbol(),
+                                        p_create_symbol(),
                                     )
                                     return {
                                         'omit (de)serializer': false,
                                         'schema tree': x.schema
                                     }
                                 }))
-                                case 'package': return _pt.ss($, ($) => r_schema.Package(
+                                case 'package': return pa.ss($, ($) => r_schema.Package(
                                     r_unresolved_schema_from_loc.Package(
                                         $v2,
                                         ($) => abort(['could not deserialize', {
@@ -109,10 +108,10 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         'location': $d.source,
                                         'error': $,
                                     }]),
-                                    _p_create_symbol(),
-                                    _p_create_symbol(),
+                                    p_create_symbol(),
+                                    p_create_symbol(),
                                 ))
-                                default: return _pt.au($[0])
+                                default: return pa.au($[0])
                             }
                         }),
                         ($) => [
@@ -194,9 +193,9 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                     //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
                     //         'options': {
-                    //             'recursive': _p.optional.literal.set(true),
-                    //             'force': _p.optional.literal.not_set(),
-                    //             'errorOnExist': _p.optional.literal.not_set(),
+                    //             'recursive': pt.optional.literal.set(true),
+                    //             'force': pt.optional.literal.not_set(),
+                    //             'errorOnExist': pt.optional.literal.not_set(),
                     //         }
                     //     },
                     //     ($) => ['could not copy generic implementation', null]
@@ -208,9 +207,9 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                     //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
                     //         'options': {
-                    //             'recursive': _p.optional.literal.set(true),
-                    //             'force': _p.optional.literal.not_set(),
-                    //             'errorOnExist': _p.optional.literal.not_set(),
+                    //             'recursive': pt.optional.literal.set(true),
+                    //             'force': pt.optional.literal.not_set(),
+                    //             'errorOnExist': pt.optional.literal.not_set(),
                     //         }
                     //     },
                     //     ($) => ['could not copy core interface', null]

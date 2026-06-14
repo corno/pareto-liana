@@ -1,8 +1,8 @@
-import * as _p from 'pareto-core/dist/command'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/command'
+import * as pi from 'pareto-core/dist/interface'
 import * as _pt from 'pareto-core/dist/assign'
-import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/signatures"
 
@@ -10,7 +10,7 @@ import * as signatures from "../../../interface/signatures"
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_generate_typescript from "../../../interface/to_be_generated/compile_temp_schemas"
 
-export type Error = _pi.Dictionary<d_generate_typescript.Error>
+export type Error = pi.Dictionary<d_generate_typescript.Error>
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
@@ -30,7 +30,7 @@ import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schem
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure(
+export const $$: signatures.commands.compile_temp_schemas = pt.command_procedure(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(
@@ -45,9 +45,9 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                 'exit code': 1
             })
         ),
-        _p.handle_error(
+        pt.handle_error(
             [
-                _p.dictionaryx.parallel<d_generate_typescript.Parameters, Error, d_generate_typescript.Error>(
+                pt.dictionaryx.parallel<d_generate_typescript.Parameters, Error, d_generate_typescript.Error>(
                     poormans_modules,
                     ($, id) => {
 
@@ -98,12 +98,12 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                                 ($) => ['could not remove interface', null]
                             ),
 
-                            _p.refine_without_error_transformation(
+                            pt.refine_without_error_transformation(
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),
-                                    _p_create_symbol(),
-                                    _p_create_symbol(),
+                                    p_create_symbol(),
+                                    p_create_symbol(),
                                 ),
                                 ($) => [
                                     //write new interface files
@@ -183,9 +183,9 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                             //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
                             //         'options': {
-                            //             'recursive': _p.optional.literal.set(true),
-                            //             'force': _p.optional.literal.not_set(),
-                            //             'errorOnExist': _p.optional.literal.not_set(),
+                            //             'recursive': pt.optional.literal.set(true),
+                            //             'force': pt.optional.literal.not_set(),
+                            //             'errorOnExist': pt.optional.literal.not_set(),
                             //         }
                             //     },
                             //     ($) => ['could not copy generic implementation', null]
@@ -197,9 +197,9 @@ export const $$: signatures.commands.compile_temp_schemas = _p.command_procedure
                             //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                             //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
                             //         'options': {
-                            //             'recursive': _p.optional.literal.set(true),
-                            //             'force': _p.optional.literal.not_set(),
-                            //             'errorOnExist': _p.optional.literal.not_set(),
+                            //             'recursive': pt.optional.literal.set(true),
+                            //             'force': pt.optional.literal.not_set(),
+                            //             'errorOnExist': pt.optional.literal.not_set(),
                             //         }
                             //     },
                             //     ($) => ['could not copy core interface', null]

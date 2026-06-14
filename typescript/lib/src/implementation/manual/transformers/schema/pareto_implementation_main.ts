@@ -1,5 +1,5 @@
-import * as _p from 'pareto-core/dist/assign'
-import * as _pi from 'pareto-core/dist/interface'
+import * as pt from 'pareto-core/dist/assign'
+import * as pi from 'pareto-core/dist/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -20,21 +20,21 @@ import * as t_unmarshall from "./pareto_implementation_unmarshall"
 export const Schema_Tree = (
     $: d_in.Schema_Tree,
     $p: {
-        'path': _pi.List<string>,
+        'path': pi.List<string>,
         'omit (de)serializer': boolean
     }
 ): d_out.Package_Set.D => {
-    return _p.decide.state($, ($) => {
+    return pt.decide.state($, ($) => {
         switch ($[0]) {
-            case 'schema': return _p.ss($, ($) => {
+            case 'schema': return pt.ss($, ($) => {
                 const imports = $['resolver imports']
                 const schema = $
 
                 return $p['omit (de)serializer']
                     ? sh.m.set({})
-                    : _p.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                    : pt.decide.state($.complexity, ($): d_out.Package_Set.D => {
                         switch ($[0]) {
-                            case 'constrained': return _p.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                            case 'constrained': return pt.ss($, ($): d_out.Package_Set.D => sh.m.set({
                                 "resolved": sh.m.set({
                                     "transformers": sh.m.set({
                                         "astn sealed target": t_marshall.Schema(
@@ -87,7 +87,7 @@ export const Schema_Tree = (
                                     }),
                                 }),
                             }))
-                            case 'unconstrained': return _p.ss($, ($) => sh.m.set({
+                            case 'unconstrained': return pt.ss($, ($) => sh.m.set({
                                 "transformers": sh.m.set({
                                     "astn sealed target": t_marshall.Schema(
                                         schema,
@@ -116,18 +116,18 @@ export const Schema_Tree = (
                                     }),
                                 }),
                             }))
-                            default: return _p.au($[0])
+                            default: return pt.au($[0])
                         }
                     })
             })
-            case 'set': return _p.ss($, ($): d_out.Package_Set.D => Schemas(
+            case 'set': return pt.ss($, ($): d_out.Package_Set.D => Schemas(
                         $,
                         {
                             'path': $p.path,
                             'omit (de)serializer': $p['omit (de)serializer'],
                         }
                     ))
-            default: return _p.au($[0])
+            default: return pt.au($[0])
         }
     })
 }
@@ -135,12 +135,12 @@ export const Schema_Tree = (
 export const Schemas = (
     $: d_in.Schemas,
     $p: {
-        'path': _pi.List<string>,
+        'path': pi.List<string>,
         'omit (de)serializer': boolean
     }
 ): d_out.Package_Set.D => {
     return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
-        'path': _p.list.nested_literal_old([
+        'path': pt.list.nested_literal_old([
             $p.path,
             [
                 id,
