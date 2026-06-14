@@ -1,5 +1,6 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
+import * as p_ti from 'pareto-core/dist/transformer/interface'
 
 import * as d_in from "../../../../interface/to_be_generated/compile_temp_schemas"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
@@ -9,7 +10,7 @@ import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manu
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: pi.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
+export const Error: p_ti.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
     'id': string,
     'character location reporting': ['zero based', null] | ['one based', null]
 }> = ($, $p) => {

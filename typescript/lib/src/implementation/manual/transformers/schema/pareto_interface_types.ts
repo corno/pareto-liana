@@ -1,7 +1,7 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
-import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
-import p_change_context from 'pareto-core/dist/_p_change_context'
+import * as p_di from 'pareto-core/dist/data/interface'
+import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
+import p_change_context from 'pareto-core/dist/specials/change_context'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
@@ -253,7 +253,7 @@ export const Value = (
                                     case 'resolved': return pt.ss($, ($) => {
                                         const ii = sh.t.group(
                                             pt.dictionary.from.dictionary(
-                                                pt.dictionary.literal<pi.Optional_Value<d_out.Value>>({
+                                                pt.dictionary.literal<p_di.Optional_Value<d_out.Value>>({
                                                     "l entry": pt.optional.literal.set(p_change_context($, ($) => {
                                                         const location = Module_Reference(referent['module'])
                                                         const subselection = pt.list.nested_literal_old([
@@ -381,7 +381,7 @@ const Value_Reference = (
 const Value_Path = (
     $: d_in.Value_Path,
 
-): pi.List<d_out.Value.reference.sub_selection.L> => {
+): p_di.List<d_out.Value.reference.sub_selection.L> => {
     return $.tail['l value'].__l_map(($) => pt.decide.state($['l item']['l value'], ($) => {
         switch ($[0]) {
             case 'dictionary': return pt.ss($, ($) => sh.sub.dictionary())

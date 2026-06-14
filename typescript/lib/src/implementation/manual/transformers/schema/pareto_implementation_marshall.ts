@@ -1,6 +1,6 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
-import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -11,7 +11,7 @@ import * as sh_i from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
         'depth': number
     }
 ): d_out.Package_Set.D => {
@@ -106,7 +106,7 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type': string
-        'subselection': pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+        'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
     },
 ): d_out.Assign => pt.decide.state($, ($) => {
     switch ($[0]) {

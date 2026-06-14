@@ -1,5 +1,5 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
 
 import * as i_generic from "liana-core/dist/interface/to_be_generated/deserialize"
 
@@ -25,7 +25,7 @@ export namespace Package_ {
 
 export type Package_ = (
     context: Package_.I,
-    abort: _pi.Abort<Package_.E>,
+    abort: p_i.Abort<Package_.E>,
     parameters: {
         readonly 'tab size': Package_.P.tab_size
     },
@@ -49,7 +49,7 @@ export namespace Schemas_ {
 
 export type Schemas_ = (
     context: Schemas_.I,
-    abort: _pi.Abort<Schemas_.E>,
+    abort: p_i.Abort<Schemas_.E>,
     parameters: {
         readonly 'tab size': Schemas_.P.tab_size
     },
@@ -73,7 +73,7 @@ export namespace Schema_ {
 
 export type Schema_ = (
     context: Schema_.I,
-    abort: _pi.Abort<Schema_.E>,
+    abort: p_i.Abort<Schema_.E>,
     parameters: {
         readonly 'tab size': Schema_.P.tab_size
     },
@@ -97,7 +97,7 @@ export namespace Schema_Imports_ {
 
 export type Schema_Imports_ = (
     context: Schema_Imports_.I,
-    abort: _pi.Abort<Schema_Imports_.E>,
+    abort: p_i.Abort<Schema_Imports_.E>,
     parameters: {
         readonly 'tab size': Schema_Imports_.P.tab_size
     },
@@ -121,7 +121,7 @@ export namespace Modules_ {
 
 export type Modules_ = (
     context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
+    abort: p_i.Abort<Modules_.E>,
     parameters: {
         readonly 'tab size': Modules_.P.tab_size
     },
@@ -145,7 +145,7 @@ export namespace Globals_ {
 
 export type Globals_ = (
     context: Globals_.I,
-    abort: _pi.Abort<Globals_.E>,
+    abort: p_i.Abort<Globals_.E>,
     parameters: {
         readonly 'tab size': Globals_.P.tab_size
     },
@@ -169,7 +169,7 @@ export namespace Dictionary_ {
 
 export type Dictionary_ = (
     context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
+    abort: p_i.Abort<Dictionary_.E>,
     parameters: {
         readonly 'tab size': Dictionary_.P.tab_size
     },
@@ -193,7 +193,7 @@ export namespace Value_ {
 
 export type Value_ = (
     context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
+    abort: p_i.Abort<Value_.E>,
     parameters: {
         readonly 'tab size': Value_.P.tab_size
     },
@@ -217,7 +217,7 @@ export namespace Resolver_ {
 
 export type Resolver_ = (
     context: Resolver_.I,
-    abort: _pi.Abort<Resolver_.E>,
+    abort: p_i.Abort<Resolver_.E>,
     parameters: {
         readonly 'tab size': Resolver_.P.tab_size
     },
@@ -241,7 +241,7 @@ export namespace Resolver_Imports_ {
 
 export type Resolver_Imports_ = (
     context: Resolver_Imports_.I,
-    abort: _pi.Abort<Resolver_Imports_.E>,
+    abort: p_i.Abort<Resolver_Imports_.E>,
     parameters: {
         readonly 'tab size': Resolver_Imports_.P.tab_size
     },
@@ -265,7 +265,7 @@ export namespace Resolver_Signatures_ {
 
 export type Resolver_Signatures_ = (
     context: Resolver_Signatures_.I,
-    abort: _pi.Abort<Resolver_Signatures_.E>,
+    abort: p_i.Abort<Resolver_Signatures_.E>,
     parameters: {
         readonly 'tab size': Resolver_Signatures_.P.tab_size
     },
@@ -289,7 +289,7 @@ export namespace Resolver_Signature_Parameters_ {
 
 export type Resolver_Signature_Parameters_ = (
     context: Resolver_Signature_Parameters_.I,
-    abort: _pi.Abort<Resolver_Signature_Parameters_.E>,
+    abort: p_i.Abort<Resolver_Signature_Parameters_.E>,
     parameters: {
         readonly 'tab size': Resolver_Signature_Parameters_.P.tab_size
     },
@@ -313,7 +313,7 @@ export namespace Resolver_Value_ {
 
 export type Resolver_Value_ = (
     context: Resolver_Value_.I,
-    abort: _pi.Abort<Resolver_Value_.E>,
+    abort: p_i.Abort<Resolver_Value_.E>,
     parameters: {
         readonly 'tab size': Resolver_Value_.P.tab_size
     },
@@ -337,7 +337,7 @@ export namespace Module_Specification_ {
 
 export type Module_Specification_ = (
     context: Module_Specification_.I,
-    abort: _pi.Abort<Module_Specification_.E>,
+    abort: p_i.Abort<Module_Specification_.E>,
     parameters: {
         readonly 'tab size': Module_Specification_.P.tab_size
     },
@@ -361,7 +361,7 @@ export namespace Schema_Tree_ {
 
 export type Schema_Tree_ = (
     context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
+    abort: p_i.Abort<Schema_Tree_.E>,
     parameters: {
         readonly 'tab size': Schema_Tree_.P.tab_size
     },
@@ -385,7 +385,7 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
+    abort: p_i.Abort<Text_Type_.E>,
     parameters: {
         readonly 'tab size': Text_Type_.P.tab_size
     },
@@ -409,7 +409,7 @@ export namespace Simple_Type_ {
 
 export type Simple_Type_ = (
     context: Simple_Type_.I,
-    abort: _pi.Abort<Simple_Type_.E>,
+    abort: p_i.Abort<Simple_Type_.E>,
     parameters: {
         readonly 'tab size': Simple_Type_.P.tab_size
     },
@@ -433,7 +433,7 @@ export namespace Module_ {
 
 export type Module_ = (
     context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
+    abort: p_i.Abort<Module_.E>,
     parameters: {
         readonly 'tab size': Module_.P.tab_size
     },
@@ -457,7 +457,7 @@ export namespace Presence_ {
 
 export type Presence_ = (
     context: Presence_.I,
-    abort: _pi.Abort<Presence_.E>,
+    abort: p_i.Abort<Presence_.E>,
     parameters: {
         readonly 'tab size': Presence_.P.tab_size
     },
@@ -481,7 +481,7 @@ export namespace Resolver_Modules_ {
 
 export type Resolver_Modules_ = (
     context: Resolver_Modules_.I,
-    abort: _pi.Abort<Resolver_Modules_.E>,
+    abort: p_i.Abort<Resolver_Modules_.E>,
     parameters: {
         readonly 'tab size': Resolver_Modules_.P.tab_size
     },
@@ -505,7 +505,7 @@ export namespace Resolver_Benchmark_ {
 
 export type Resolver_Benchmark_ = (
     context: Resolver_Benchmark_.I,
-    abort: _pi.Abort<Resolver_Benchmark_.E>,
+    abort: p_i.Abort<Resolver_Benchmark_.E>,
     parameters: {
         readonly 'tab size': Resolver_Benchmark_.P.tab_size
     },
@@ -529,7 +529,7 @@ export namespace Group_ {
 
 export type Group_ = (
     context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
+    abort: p_i.Abort<Group_.E>,
     parameters: {
         readonly 'tab size': Group_.P.tab_size
     },
@@ -553,7 +553,7 @@ export namespace Value_Reference_ {
 
 export type Value_Reference_ = (
     context: Value_Reference_.I,
-    abort: _pi.Abort<Value_Reference_.E>,
+    abort: p_i.Abort<Value_Reference_.E>,
     parameters: {
         readonly 'tab size': Value_Reference_.P.tab_size
     },
@@ -577,7 +577,7 @@ export namespace Value_Path_ {
 
 export type Value_Path_ = (
     context: Value_Path_.I,
-    abort: _pi.Abort<Value_Path_.E>,
+    abort: p_i.Abort<Value_Path_.E>,
     parameters: {
         readonly 'tab size': Value_Path_.P.tab_size
     },
@@ -601,7 +601,7 @@ export namespace Module_Reference_ {
 
 export type Module_Reference_ = (
     context: Module_Reference_.I,
-    abort: _pi.Abort<Module_Reference_.E>,
+    abort: p_i.Abort<Module_Reference_.E>,
     parameters: {
         readonly 'tab size': Module_Reference_.P.tab_size
     },
@@ -625,7 +625,7 @@ export namespace Resolver_Signature_ {
 
 export type Resolver_Signature_ = (
     context: Resolver_Signature_.I,
-    abort: _pi.Abort<Resolver_Signature_.E>,
+    abort: p_i.Abort<Resolver_Signature_.E>,
     parameters: {
         readonly 'tab size': Resolver_Signature_.P.tab_size
     },
@@ -649,7 +649,7 @@ export namespace Resolver_Relative_Value_Selection_ {
 
 export type Resolver_Relative_Value_Selection_ = (
     context: Resolver_Relative_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Relative_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Relative_Value_Selection_.E>,
     parameters: {
         readonly 'tab size': Resolver_Relative_Value_Selection_.P.tab_size
     },
@@ -673,7 +673,7 @@ export namespace Resolver_Lookup_Selection_ {
 
 export type Resolver_Lookup_Selection_ = (
     context: Resolver_Lookup_Selection_.I,
-    abort: _pi.Abort<Resolver_Lookup_Selection_.E>,
+    abort: p_i.Abort<Resolver_Lookup_Selection_.E>,
     parameters: {
         readonly 'tab size': Resolver_Lookup_Selection_.P.tab_size
     },
@@ -697,7 +697,7 @@ export namespace Resolver_Constraint_ {
 
 export type Resolver_Constraint_ = (
     context: Resolver_Constraint_.I,
-    abort: _pi.Abort<Resolver_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Constraint_.E>,
     parameters: {
         readonly 'tab size': Resolver_Constraint_.P.tab_size
     },
@@ -721,7 +721,7 @@ export namespace Resolver_Option_Constraints_ {
 
 export type Resolver_Option_Constraints_ = (
     context: Resolver_Option_Constraints_.I,
-    abort: _pi.Abort<Resolver_Option_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Option_Constraints_.E>,
     parameters: {
         readonly 'tab size': Resolver_Option_Constraints_.P.tab_size
     },
@@ -745,7 +745,7 @@ export namespace Resolver_Optional_Value_Constraints_ {
 
 export type Resolver_Optional_Value_Constraints_ = (
     context: Resolver_Optional_Value_Constraints_.I,
-    abort: _pi.Abort<Resolver_Optional_Value_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Optional_Value_Constraints_.E>,
     parameters: {
         readonly 'tab size': Resolver_Optional_Value_Constraints_.P.tab_size
     },
@@ -769,7 +769,7 @@ export namespace Resolver_Value_Constraints_ {
 
 export type Resolver_Value_Constraints_ = (
     context: Resolver_Value_Constraints_.I,
-    abort: _pi.Abort<Resolver_Value_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Value_Constraints_.E>,
     parameters: {
         readonly 'tab size': Resolver_Value_Constraints_.P.tab_size
     },
@@ -793,7 +793,7 @@ export namespace Resolver_Reference_To_Value_Constraint_ {
 
 export type Resolver_Reference_To_Value_Constraint_ = (
     context: Resolver_Reference_To_Value_Constraint_.I,
-    abort: _pi.Abort<Resolver_Reference_To_Value_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Reference_To_Value_Constraint_.E>,
     parameters: {
         readonly 'tab size': Resolver_Reference_To_Value_Constraint_.P.tab_size
     },
@@ -817,7 +817,7 @@ export namespace Resolver_Value_Constraint_ {
 
 export type Resolver_Value_Constraint_ = (
     context: Resolver_Value_Constraint_.I,
-    abort: _pi.Abort<Resolver_Value_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Value_Constraint_.E>,
     parameters: {
         readonly 'tab size': Resolver_Value_Constraint_.P.tab_size
     },
@@ -841,7 +841,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
 
 export type Resolver_Optional_Value_Initialization_ = (
     context: Resolver_Optional_Value_Initialization_.I,
-    abort: _pi.Abort<Resolver_Optional_Value_Initialization_.E>,
+    abort: p_i.Abort<Resolver_Optional_Value_Initialization_.E>,
     parameters: {
         readonly 'tab size': Resolver_Optional_Value_Initialization_.P.tab_size
     },
@@ -865,7 +865,7 @@ export namespace Resolver_Value_Group_ {
 
 export type Resolver_Value_Group_ = (
     context: Resolver_Value_Group_.I,
-    abort: _pi.Abort<Resolver_Value_Group_.E>,
+    abort: p_i.Abort<Resolver_Value_Group_.E>,
     parameters: {
         readonly 'tab size': Resolver_Value_Group_.P.tab_size
     },
@@ -889,7 +889,7 @@ export namespace Resolver_Value_List_Result_ {
 
 export type Resolver_Value_List_Result_ = (
     context: Resolver_Value_List_Result_.I,
-    abort: _pi.Abort<Resolver_Value_List_Result_.E>,
+    abort: p_i.Abort<Resolver_Value_List_Result_.E>,
     parameters: {
         readonly 'tab size': Resolver_Value_List_Result_.P.tab_size
     },
@@ -913,7 +913,7 @@ export namespace Value_Results_ {
 
 export type Value_Results_ = (
     context: Value_Results_.I,
-    abort: _pi.Abort<Value_Results_.E>,
+    abort: p_i.Abort<Value_Results_.E>,
     parameters: {
         readonly 'tab size': Value_Results_.P.tab_size
     },
@@ -937,7 +937,7 @@ export namespace Option_Constraints_ {
 
 export type Option_Constraints_ = (
     context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
+    abort: p_i.Abort<Option_Constraints_.E>,
     parameters: {
         readonly 'tab size': Option_Constraints_.P.tab_size
     },
@@ -961,7 +961,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
 
 export type Resolver_Guaranteed_Value_Selection_ = (
     context: Resolver_Guaranteed_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Guaranteed_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Guaranteed_Value_Selection_.E>,
     parameters: {
         readonly 'tab size': Resolver_Guaranteed_Value_Selection_.P.tab_size
     },
@@ -985,7 +985,7 @@ export namespace Resolver_Possible_Value_Selection_ {
 
 export type Resolver_Possible_Value_Selection_ = (
     context: Resolver_Possible_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Possible_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Possible_Value_Selection_.E>,
     parameters: {
         readonly 'tab size': Resolver_Possible_Value_Selection_.P.tab_size
     },

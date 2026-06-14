@@ -1,6 +1,6 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
-import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -8,8 +8,8 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-const temp_prepend = <T extends pi.Value>(
-    $: pi.Dictionary<T>,
+const temp_prepend = <T extends p_di.Value>(
+    $: p_di.Dictionary<T>,
     prefix: string
 ) => {
     const result: { [id: string]: T } = {}
@@ -56,7 +56,7 @@ const cycle_detected_error = sh.a.group.literal({
 export const Resolver_Modules = (
     $: d_in.Resolver_Modules,
     $p: {
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
         'imports': d_in.Resolver_Imports,
         'depth': number,
     }
@@ -136,7 +136,7 @@ export const Resolver_Modules = (
 export const Possible_Value_Selection = (
     $: d_in.Resolver_Possible_Value_Selection,
     $p: {
-        'tail': pi.List<d_out.Select_Value.regular.tail.L>
+        'tail': p_di.List<d_out.Select_Value.regular.tail.L>
     },
 ): d_out.Select_Value => {
     return pt.decide.state($, ($) => {
@@ -171,14 +171,14 @@ export const Optional_Argument_Initialization = (
 export const Resolver_Guaranteed_Value_Selection = (
     $: d_in.Resolver_Guaranteed_Value_Selection,
     $p: {
-        'tail': pi.List<d_out.Select_Value.regular.tail.L>
+        'tail': p_di.List<d_out.Select_Value.regular.tail.L>
     },
 ): d_out.Select_Value => {
-    const tail = (): pi.List<d_out.Select_Value.regular.tail.L> => pt.list.nested_literal_old([
+    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => pt.list.nested_literal_old([
         pt.list.from.list(
             $.tail.path['l value'],
         ).flatten(
-            ($) => pt.decide.state($['l item'], ($): pi.List<d_out.Select_Value.regular.tail.L> => {
+            ($) => pt.decide.state($['l item'], ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
                 switch ($[0]) {
                     case 'component': return pt.ss($, ($) => pt.list.literal([]))
                     case 'group': return pt.ss($, ($) => pt.list.literal([$['l id']]))
@@ -330,7 +330,7 @@ export const Resolver_Value = (
     $: d_in.Resolver_Value,
     $p: {
         'temp type': string
-        'temp subselection': pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
+        'temp subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
     },
 ): d_out.Assign => pt.decide.state($, ($) => {
     switch ($[0]) {

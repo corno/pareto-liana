@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
@@ -94,7 +94,7 @@ export const Module_Reference = (
 export const Value_Path = (
     $: d_in.Value_Path,
 ): d_out.Value.reference.sub_selection => {
-    const tail: pi.List<d_out.Value.reference.sub_selection.L> = $.tail['l value'].__l_map(($) => pt.decide.state($['l item']['l value'], ($) => {
+    const tail: p_di.List<d_out.Value.reference.sub_selection.L> = $.tail['l value'].__l_map(($) => pt.decide.state($['l item']['l value'], ($) => {
         switch ($[0]) {
             case 'dictionary': return pt.ss($, ($) => sh.sub.dictionary())
             case 'group': return pt.ss($, ($) => sh.sub.group($['l id']))

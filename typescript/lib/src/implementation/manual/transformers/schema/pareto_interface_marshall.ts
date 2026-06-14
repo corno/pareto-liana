@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
@@ -10,7 +10,7 @@ import * as sh from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'constrained': pi.Optional_Value<string>
+        'constrained': p_di.Optional_Value<string>
     }
 ): d_out.Package_Set.D => sh.m.package_functions(
     {

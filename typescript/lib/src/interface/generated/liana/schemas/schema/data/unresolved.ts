@@ -1,5 +1,6 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as i_location from "liana-core/dist/interface/to_be_generated/document_and_location"
 
@@ -37,7 +38,7 @@ export namespace Schemas_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -132,7 +133,7 @@ export namespace Schema_Imports_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -162,7 +163,7 @@ export namespace Modules_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -217,7 +218,7 @@ export namespace Globals_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -247,7 +248,7 @@ export namespace Globals_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -518,7 +519,7 @@ export namespace Value_ {
                                 
                             }
                             
-                            export type description = _pi.Optional_Value<description.O>
+                            export type description = p_di.Optional_Value<description.O>
                             
                             export type value = Value_
                             
@@ -539,7 +540,7 @@ export namespace Value_ {
                     
                 }
                 
-                export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+                export type l_dictionary = p_di.Dictionary<l_dictionary.D>
                 
             }
             
@@ -676,7 +677,7 @@ export namespace Resolver_Imports_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -706,7 +707,7 @@ export namespace Resolver_Signatures_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -749,7 +750,7 @@ export namespace Resolver_Signature_Parameters_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -820,7 +821,7 @@ export namespace Resolver_Signature_Parameters_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -991,7 +992,7 @@ export namespace Resolver_Value_ {
                                 
                             }
                             
-                            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+                            export type l_dictionary = p_di.Dictionary<l_dictionary.D>
                             
                         }
                         
@@ -1002,7 +1003,7 @@ export namespace Resolver_Value_ {
                         
                     }
                     
-                    export type modules = _pi.Optional_Value<modules.O>
+                    export type modules = p_di.Optional_Value<modules.O>
                     
                     export namespace lookups {
                         
@@ -1122,7 +1123,7 @@ export namespace Resolver_Value_ {
                                 
                             }
                             
-                            export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+                            export type l_dictionary = p_di.Dictionary<l_dictionary.D>
                             
                         }
                         
@@ -1133,7 +1134,7 @@ export namespace Resolver_Value_ {
                         
                     }
                     
-                    export type lookups = _pi.Optional_Value<lookups.O>
+                    export type lookups = p_di.Optional_Value<lookups.O>
                     
                 }
                 
@@ -1144,7 +1145,7 @@ export namespace Resolver_Value_ {
                 
             }
             
-            export type arguments_ = _pi.Optional_Value<arguments_.O>
+            export type arguments_ = p_di.Optional_Value<arguments_.O>
             
             export type constraints = Resolver_Value_Constraints_
             
@@ -1170,7 +1171,7 @@ export namespace Resolver_Value_ {
                 
             }
             
-            export type benchmark = _pi.Optional_Value<benchmark.O>
+            export type benchmark = p_di.Optional_Value<benchmark.O>
             
         }
         
@@ -1194,7 +1195,7 @@ export namespace Resolver_Value_ {
                 
             }
             
-            export type result = _pi.Optional_Value<result.O>
+            export type result = p_di.Optional_Value<result.O>
             
         }
         
@@ -1313,7 +1314,7 @@ export namespace Resolver_Value_ {
                     
                 }
                 
-                export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+                export type l_dictionary = p_di.Dictionary<l_dictionary.D>
                 
             }
             
@@ -1377,7 +1378,7 @@ export namespace Module_Specification_ {
             
         }
         
-        export type l_list = _pi.List<l_list.L>
+        export type l_list = p_di.List<l_list.L>
         
     }
     
@@ -1560,7 +1561,7 @@ export namespace Simple_Type_ {
                                 
                             }
                             
-                            export type number_of_fractional_digits = _pi.Optional_Value<number_of_fractional_digits.O>
+                            export type number_of_fractional_digits = p_di.Optional_Value<number_of_fractional_digits.O>
                             
                             export namespace type_ {
                                 
@@ -1699,7 +1700,7 @@ export namespace Resolver_Modules_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -1742,7 +1743,7 @@ export namespace Group_ {
                     
                 }
                 
-                export type description = _pi.Optional_Value<description.O>
+                export type description = p_di.Optional_Value<description.O>
                 
                 export type value = Value_
                 
@@ -1762,7 +1763,7 @@ export namespace Group_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -1859,7 +1860,7 @@ export namespace Value_Path_ {
             
         }
         
-        export type l_list = _pi.List<l_list.L>
+        export type l_list = p_di.List<l_list.L>
         
     }
     
@@ -2069,7 +2070,7 @@ export namespace Resolver_Relative_Value_Selection_ {
             
         }
         
-        export type l_list = _pi.List<l_list.L>
+        export type l_list = p_di.List<l_list.L>
         
     }
     
@@ -2316,7 +2317,7 @@ export namespace Resolver_Option_Constraints_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -2331,7 +2332,7 @@ export namespace Resolver_Optional_Value_Constraints_ {
     
 }
 
-export type Resolver_Optional_Value_Constraints_ = _pi.Optional_Value<Resolver_Optional_Value_Constraints_.O>
+export type Resolver_Optional_Value_Constraints_ = p_di.Optional_Value<Resolver_Optional_Value_Constraints_.O>
 
 export namespace Resolver_Value_Constraints_ {
     
@@ -2354,7 +2355,7 @@ export namespace Resolver_Value_Constraints_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -2468,7 +2469,7 @@ export namespace Resolver_Value_Group_ {
         
     }
     
-    export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+    export type l_dictionary = p_di.Dictionary<l_dictionary.D>
     
 }
 
@@ -2502,7 +2503,7 @@ export namespace Value_Results_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -2513,7 +2514,7 @@ export namespace Value_Results_ {
     
 }
 
-export type Value_Results_ = _pi.Optional_Value<Value_Results_.O>
+export type Value_Results_ = p_di.Optional_Value<Value_Results_.O>
 
 export namespace Option_Constraints_ {
     
@@ -2538,7 +2539,7 @@ export namespace Option_Constraints_ {
             
         }
         
-        export type l_dictionary = _pi.Dictionary<l_dictionary.D>
+        export type l_dictionary = p_di.Dictionary<l_dictionary.D>
         
     }
     
@@ -2549,7 +2550,7 @@ export namespace Option_Constraints_ {
     
 }
 
-export type Option_Constraints_ = _pi.Optional_Value<Option_Constraints_.O>
+export type Option_Constraints_ = p_di.Optional_Value<Option_Constraints_.O>
 
 export namespace Resolver_Guaranteed_Value_Selection_ {
     

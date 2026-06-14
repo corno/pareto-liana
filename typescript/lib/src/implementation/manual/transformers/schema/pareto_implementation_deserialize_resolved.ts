@@ -1,4 +1,4 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -10,7 +10,7 @@ import * as sh_i from "pareto/dist/shorthands/interface"
 export const Schema = (
     $: d_in.Schema,
     $p: {
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
         'depth': number,
     }
 ): d_out.Package_Set.D => {

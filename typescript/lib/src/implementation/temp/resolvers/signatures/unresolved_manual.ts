@@ -1,9 +1,9 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as p_sl from 'pareto-core/dist/select_static_lookup'
-import p_variables from 'pareto-core/dist/_p_variables'
-import p_change_context from 'pareto-core/dist/_p_change_context'
-import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_variables from 'pareto-core/dist/specials/variables'
+import p_change_context from 'pareto-core/dist/specials/change_context'
+import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
 // import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"

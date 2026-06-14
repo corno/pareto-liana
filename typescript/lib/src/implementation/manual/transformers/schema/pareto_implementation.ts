@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"

@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
@@ -139,7 +139,7 @@ export const Schema = (
             })
     })
     // return m.set(pt.dictionary.from.dictionary(
-    //     pt.dictionary.literal<pi.Optional_Value<d_out.Package_Set.D>>({
+    //     pt.dictionary.literal<p_di.Optional_Value<d_out.Package_Set.D>>({
     //         "data": pt.optional.literal.set(constrained
     //             ? m.set(pt.dictionary.literal({
     //                 "resolved": t_types.Schema(

@@ -1,10 +1,11 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
 
 //data types
 import * as d_in from "../../../../interface/to_be_generated/generate_typescript"
 import * as d_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
-export type Possible_Range = pi.Optional_Value<d_location.Range>
+export type Possible_Range = p_di.Optional_Value<d_location.Range>
 
 //dependencies
 import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
@@ -13,7 +14,7 @@ import * as t_deserialize_to_location from "liana-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: pi.Transformer<d_in.Error, Possible_Range> = ($) => {
+export const Error: p_ti.Transformer<d_in.Error, Possible_Range> = ($) => {
     return pt.decide.state($, ($): Possible_Range => {
         switch ($[0]) {
             case 'could not read source': return pt.ss($, ($): Possible_Range => pt.optional.literal.not_set())

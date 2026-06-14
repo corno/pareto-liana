@@ -1,10 +1,11 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_ri from 'pareto-core/dist/refiner/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import p_implement_me from 'pareto-core-dev/dist/implement_me'
 import p_log_debug_message from 'pareto-core-dev/dist/log_debug_message'
 import * as _p_temp from 'pareto-core/dist/assign'
-import p_list_build_deprecated from 'pareto-core/dist/_p_list_build_deprecated'
-import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_list_build_deprecated from 'pareto-core/dist/specials/list_build_deprecated'
+import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
 //data types
 import * as d_out from "../../../../interface/to_be_generated/temp_module_specifier"
@@ -17,7 +18,7 @@ import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schema
 import * as r_schema_resolved_from_unresolved from "../../../temp/resolvers/schema/unresolved_manual"
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 
-export type Module_Specifier = pi.Refiner<
+export type Module_Specifier = p_ri.Refiner<
     d_out.Temp_Module_Specifier,
     d_function.Error,
     d_in.List_of_Characters
@@ -41,15 +42,15 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
 
     const temp_find_schema = (
         $: d_out_schema.Schema_Tree,
-        schema_path: pi.List<string>,
+        schema_path: p_di.List<string>,
     ): d_out_schema.Schema => {
         const st = $
 
-        type Element_And_Rest<T extends pi.Value> = {
+        type Element_And_Rest<T extends p_di.Value> = {
             'element': T
-            'rest': pi.List<T>
+            'rest': p_di.List<T>
         }
-        const temp_pop_first_element = <T extends pi.Value>($: pi.List<T>): pi.Optional_Value<Element_And_Rest<T>> => {
+        const temp_pop_first_element = <T extends p_di.Value>($: p_di.List<T>): p_di.Optional_Value<Element_And_Rest<T>> => {
             const arr = $
             return pt.optional.from.optional(
                 $.__deprecated_get_possible_item_at(0),

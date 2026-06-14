@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -20,7 +20,7 @@ import * as t_unmarshall from "./pareto_implementation_unmarshall"
 export const Schema_Tree = (
     $: d_in.Schema_Tree,
     $p: {
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
         'omit (de)serializer': boolean
     }
 ): d_out.Package_Set.D => {
@@ -135,7 +135,7 @@ export const Schema_Tree = (
 export const Schemas = (
     $: d_in.Schemas,
     $p: {
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
         'omit (de)serializer': boolean
     }
 ): d_out.Package_Set.D => {

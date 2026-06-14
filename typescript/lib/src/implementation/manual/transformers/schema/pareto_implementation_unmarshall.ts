@@ -1,6 +1,7 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
+import * as p_ti from 'pareto-core/dist/transformer/interface'
 import * as pt from 'pareto-core/dist/assign'
-import p_unreachable_code_path from 'pareto-core/dist/_p_unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
 //data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -27,12 +28,12 @@ const location = sh.a.select(
     )
 )
 
-export const Schema: pi.Transformer_With_Parameter<
+export const Schema: p_ti.Transformer_With_Parameter<
     d_in.Schema,
     d_out.Package_Set.D,
     {
         'depth': number,
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
     }
 > = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
@@ -136,7 +137,7 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'temp type': string
-        'temp subselection': pi.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
+        'temp subselection': p_di.List<d_out_interface.Value.reference.sub_selection.L> //can be removed when exupery has type inference
         'constrained': boolean
     },
 ): d_out.Assign => {

@@ -1,5 +1,6 @@
 
-import * as _pi from 'pareto-core/dist/interface'
+import * as p_i from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as i_generic from "liana-core/dist/interface/to_be_generated/resolve"
 
@@ -23,7 +24,7 @@ export namespace Package_ {
 
 export type Package_ = (
     context: Package_.I,
-    abort: _pi.Abort<Package_.E>,
+    abort: p_i.Abort<Package_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Package_.O
@@ -44,7 +45,7 @@ export namespace Presence_ {
 
 export type Presence_ = (
     context: Presence_.I,
-    abort: _pi.Abort<Presence_.E>,
+    abort: p_i.Abort<Presence_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Presence_.O
@@ -65,7 +66,7 @@ export namespace Simple_Type_ {
 
 export type Simple_Type_ = (
     context: Simple_Type_.I,
-    abort: _pi.Abort<Simple_Type_.E>,
+    abort: p_i.Abort<Simple_Type_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Simple_Type_.O
@@ -86,7 +87,7 @@ export namespace Text_Type_ {
 
 export type Text_Type_ = (
     context: Text_Type_.I,
-    abort: _pi.Abort<Text_Type_.E>,
+    abort: p_i.Abort<Text_Type_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Text_Type_.O
@@ -107,7 +108,7 @@ export namespace Globals_ {
 
 export type Globals_ = (
     context: Globals_.I,
-    abort: _pi.Abort<Globals_.E>,
+    abort: p_i.Abort<Globals_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Globals_.O
@@ -140,7 +141,7 @@ export namespace Group_ {
             
         }
         
-        export type globals = _pi.Optional_Value<globals.O>
+        export type globals = p_di.Optional_Value<globals.O>
         
         export namespace imports {
             
@@ -148,7 +149,7 @@ export namespace Group_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -156,10 +157,10 @@ export namespace Group_ {
 
 export type Group_ = (
     context: Group_.I,
-    abort: _pi.Abort<Group_.E>,
+    abort: p_i.Abort<Group_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.static_lookup.Acyclic<Group_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.static_lookup.Cyclic<Group_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': p_di.static_lookup.Acyclic<Group_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': p_di.static_lookup.Cyclic<Group_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Group_.P.globals
@@ -195,7 +196,7 @@ export namespace Dictionary_ {
             
         }
         
-        export type globals = _pi.Optional_Value<globals.O>
+        export type globals = p_di.Optional_Value<globals.O>
         
         export namespace imports {
             
@@ -203,7 +204,7 @@ export namespace Dictionary_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -211,10 +212,10 @@ export namespace Dictionary_ {
 
 export type Dictionary_ = (
     context: Dictionary_.I,
-    abort: _pi.Abort<Dictionary_.E>,
+    abort: p_i.Abort<Dictionary_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.static_lookup.Acyclic<Dictionary_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.static_lookup.Cyclic<Dictionary_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': p_di.static_lookup.Acyclic<Dictionary_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': p_di.static_lookup.Cyclic<Dictionary_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Dictionary_.P.globals
@@ -250,7 +251,7 @@ export namespace Value_ {
             
         }
         
-        export type globals = _pi.Optional_Value<globals.O>
+        export type globals = p_di.Optional_Value<globals.O>
         
         export namespace imports {
             
@@ -258,7 +259,7 @@ export namespace Value_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -266,10 +267,10 @@ export namespace Value_ {
 
 export type Value_ = (
     context: Value_.I,
-    abort: _pi.Abort<Value_.E>,
+    abort: p_i.Abort<Value_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.static_lookup.Acyclic<Value_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.static_lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': p_di.static_lookup.Acyclic<Value_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': p_di.static_lookup.Cyclic<Value_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Value_.P.globals
@@ -299,7 +300,7 @@ export namespace Module_Reference_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -307,9 +308,9 @@ export namespace Module_Reference_ {
 
 export type Module_Reference_ = (
     context: Module_Reference_.I,
-    abort: _pi.Abort<Module_Reference_.E>,
+    abort: p_i.Abort<Module_Reference_.E>,
     lookups: {
-        readonly 'modules': _pi.static_lookup.Acyclic<Module_Reference_.L.modules>
+        readonly 'modules': p_di.static_lookup.Acyclic<Module_Reference_.L.modules>
     },
     parameters: {
         readonly 'imports': Module_Reference_.P.imports
@@ -338,7 +339,7 @@ export namespace Value_Reference_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -346,9 +347,9 @@ export namespace Value_Reference_ {
 
 export type Value_Reference_ = (
     context: Value_Reference_.I,
-    abort: _pi.Abort<Value_Reference_.E>,
+    abort: p_i.Abort<Value_Reference_.E>,
     lookups: {
-        readonly 'modules': _pi.static_lookup.Acyclic<Value_Reference_.L.modules>
+        readonly 'modules': p_di.static_lookup.Acyclic<Value_Reference_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Reference_.P.imports
@@ -377,7 +378,7 @@ export namespace Value_Results_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -385,9 +386,9 @@ export namespace Value_Results_ {
 
 export type Value_Results_ = (
     context: Value_Results_.I,
-    abort: _pi.Abort<Value_Results_.E>,
+    abort: p_i.Abort<Value_Results_.E>,
     lookups: {
-        readonly 'modules': _pi.static_lookup.Acyclic<Value_Results_.L.modules>
+        readonly 'modules': p_di.static_lookup.Acyclic<Value_Results_.L.modules>
     },
     parameters: {
         readonly 'imports': Value_Results_.P.imports
@@ -416,7 +417,7 @@ export namespace Option_Constraints_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -424,9 +425,9 @@ export namespace Option_Constraints_ {
 
 export type Option_Constraints_ = (
     context: Option_Constraints_.I,
-    abort: _pi.Abort<Option_Constraints_.E>,
+    abort: p_i.Abort<Option_Constraints_.E>,
     lookups: {
-        readonly 'modules': _pi.static_lookup.Acyclic<Option_Constraints_.L.modules>
+        readonly 'modules': p_di.static_lookup.Acyclic<Option_Constraints_.L.modules>
     },
     parameters: {
         readonly 'imports': Option_Constraints_.P.imports
@@ -461,7 +462,7 @@ export namespace Module_ {
             
         }
         
-        export type globals = _pi.Optional_Value<globals.O>
+        export type globals = p_di.Optional_Value<globals.O>
         
         export namespace imports {
             
@@ -469,7 +470,7 @@ export namespace Module_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -477,10 +478,10 @@ export namespace Module_ {
 
 export type Module_ = (
     context: Module_.I,
-    abort: _pi.Abort<Module_.E>,
+    abort: p_i.Abort<Module_.E>,
     lookups: {
-        readonly 'noncircular sibling modules': _pi.static_lookup.Acyclic<Module_.L.noncircular_sibling_modules>
-        readonly 'possibly circular dependent sibling modules': _pi.static_lookup.Cyclic<Module_.L.possibly_circular_dependent_sibling_modules>
+        readonly 'noncircular sibling modules': p_di.static_lookup.Acyclic<Module_.L.noncircular_sibling_modules>
+        readonly 'possibly circular dependent sibling modules': p_di.static_lookup.Cyclic<Module_.L.possibly_circular_dependent_sibling_modules>
     },
     parameters: {
         readonly 'globals': Module_.P.globals
@@ -506,7 +507,7 @@ export namespace Value_Path_ {
 
 export type Value_Path_ = (
     context: Value_Path_.I,
-    abort: _pi.Abort<Value_Path_.E>,
+    abort: p_i.Abort<Value_Path_.E>,
     lookups: symbol,
     parameters: {
         readonly 'module': Value_Path_.P.module_
@@ -535,9 +536,9 @@ export namespace Schemas_ {
 
 export type Schemas_ = (
     context: Schemas_.I,
-    abort: _pi.Abort<Schemas_.E>,
+    abort: p_i.Abort<Schemas_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.static_lookup.Stack<Schemas_.L.sibling_schemas>
+        readonly 'sibling schemas': p_di.static_lookup.Stack<Schemas_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schemas_.O
@@ -572,7 +573,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -580,7 +581,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -588,7 +589,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -596,7 +597,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -606,7 +607,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -614,7 +615,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -626,7 +627,7 @@ export namespace Resolver_Value_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -634,10 +635,10 @@ export namespace Resolver_Value_ {
 
 export type Resolver_Value_ = (
     context: Resolver_Value_.I,
-    abort: _pi.Abort<Resolver_Value_.E>,
+    abort: p_i.Abort<Resolver_Value_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Value_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Value_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Value_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Value_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Value_.P.definition
@@ -684,7 +685,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -692,7 +693,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -700,7 +701,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -708,7 +709,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -718,7 +719,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -726,7 +727,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -738,7 +739,7 @@ export namespace Resolver_Possible_Value_Selection_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -746,10 +747,10 @@ export namespace Resolver_Possible_Value_Selection_ {
 
 export type Resolver_Possible_Value_Selection_ = (
     context: Resolver_Possible_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Possible_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Possible_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Possible_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Possible_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Possible_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Possible_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Possible_Value_Selection_.P.definition
@@ -796,7 +797,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -804,7 +805,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -812,7 +813,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -820,7 +821,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -830,7 +831,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -838,7 +839,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -850,7 +851,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -858,10 +859,10 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
 
 export type Resolver_Guaranteed_Value_Selection_ = (
     context: Resolver_Guaranteed_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Guaranteed_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Guaranteed_Value_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Guaranteed_Value_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Guaranteed_Value_Selection_.P.definition
@@ -908,7 +909,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -916,7 +917,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -924,7 +925,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -932,7 +933,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -942,7 +943,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -950,7 +951,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -962,7 +963,7 @@ export namespace Resolver_Benchmark_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -970,10 +971,10 @@ export namespace Resolver_Benchmark_ {
 
 export type Resolver_Benchmark_ = (
     context: Resolver_Benchmark_.I,
-    abort: _pi.Abort<Resolver_Benchmark_.E>,
+    abort: p_i.Abort<Resolver_Benchmark_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Benchmark_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Benchmark_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Benchmark_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Benchmark_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Benchmark_.P.definition
@@ -1020,7 +1021,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -1028,7 +1029,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -1036,7 +1037,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -1044,7 +1045,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -1054,7 +1055,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -1062,7 +1063,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -1074,7 +1075,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -1082,10 +1083,10 @@ export namespace Resolver_Optional_Value_Initialization_ {
 
 export type Resolver_Optional_Value_Initialization_ = (
     context: Resolver_Optional_Value_Initialization_.I,
-    abort: _pi.Abort<Resolver_Optional_Value_Initialization_.E>,
+    abort: p_i.Abort<Resolver_Optional_Value_Initialization_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Optional_Value_Initialization_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Optional_Value_Initialization_.P.definition
@@ -1132,7 +1133,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -1140,7 +1141,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -1148,7 +1149,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -1156,7 +1157,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -1166,7 +1167,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -1174,7 +1175,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -1186,7 +1187,7 @@ export namespace Resolver_Lookup_Selection_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -1194,10 +1195,10 @@ export namespace Resolver_Lookup_Selection_ {
 
 export type Resolver_Lookup_Selection_ = (
     context: Resolver_Lookup_Selection_.I,
-    abort: _pi.Abort<Resolver_Lookup_Selection_.E>,
+    abort: p_i.Abort<Resolver_Lookup_Selection_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Lookup_Selection_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Lookup_Selection_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Lookup_Selection_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Lookup_Selection_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Lookup_Selection_.P.definition
@@ -1244,7 +1245,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -1252,7 +1253,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -1260,7 +1261,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -1268,7 +1269,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -1278,7 +1279,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -1286,7 +1287,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -1298,7 +1299,7 @@ export namespace Resolver_Option_Constraints_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -1306,10 +1307,10 @@ export namespace Resolver_Option_Constraints_ {
 
 export type Resolver_Option_Constraints_ = (
     context: Resolver_Option_Constraints_.I,
-    abort: _pi.Abort<Resolver_Option_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Option_Constraints_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Option_Constraints_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Option_Constraints_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Option_Constraints_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Option_Constraints_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Option_Constraints_.P.definition
@@ -1348,7 +1349,7 @@ export namespace Resolver_Value_List_Result_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -1356,9 +1357,9 @@ export namespace Resolver_Value_List_Result_ {
 
 export type Resolver_Value_List_Result_ = (
     context: Resolver_Value_List_Result_.I,
-    abort: _pi.Abort<Resolver_Value_List_Result_.E>,
+    abort: p_i.Abort<Resolver_Value_List_Result_.E>,
     lookups: {
-        readonly 'modules': _pi.static_lookup.Acyclic<Resolver_Value_List_Result_.L.modules>
+        readonly 'modules': p_di.static_lookup.Acyclic<Resolver_Value_List_Result_.L.modules>
     },
     parameters: {
         readonly 'imports': Resolver_Value_List_Result_.P.imports
@@ -1395,7 +1396,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type list_cursor = _pi.Optional_Value<list_cursor.O>
+        export type list_cursor = p_di.Optional_Value<list_cursor.O>
         
         export namespace linked_entry {
             
@@ -1403,7 +1404,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type linked_entry = _pi.Optional_Value<linked_entry.O>
+        export type linked_entry = p_di.Optional_Value<linked_entry.O>
         
         export namespace current_dictionary {
             
@@ -1411,7 +1412,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type current_dictionary = _pi.Optional_Value<current_dictionary.O>
+        export type current_dictionary = p_di.Optional_Value<current_dictionary.O>
         
         export namespace current_ordered_dictionary {
             
@@ -1419,7 +1420,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type current_ordered_dictionary = _pi.Optional_Value<current_ordered_dictionary.O>
+        export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
         export type signature = i_resolved.Resolver_Signature_
         
@@ -1429,7 +1430,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type schema_imports = _pi.Optional_Value<schema_imports.O>
+        export type schema_imports = p_di.Optional_Value<schema_imports.O>
         
         export namespace resolver_imports {
             
@@ -1437,7 +1438,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type resolver_imports = _pi.Optional_Value<resolver_imports.O>
+        export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
         export type signatures = i_resolved.Resolver_Signatures_
         
@@ -1449,7 +1450,7 @@ export namespace Resolver_Value_Group_ {
             
         }
         
-        export type option_constraints = _pi.Optional_Value<option_constraints.O>
+        export type option_constraints = p_di.Optional_Value<option_constraints.O>
         
     }
     
@@ -1457,10 +1458,10 @@ export namespace Resolver_Value_Group_ {
 
 export type Resolver_Value_Group_ = (
     context: Resolver_Value_Group_.I,
-    abort: _pi.Abort<Resolver_Value_Group_.E>,
+    abort: p_i.Abort<Resolver_Value_Group_.E>,
     lookups: {
-        readonly 'sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Value_Group_.L.sibling_property_resolvers>
-        readonly 'parent sibling property resolvers': _pi.static_lookup.Acyclic<Resolver_Value_Group_.L.parent_sibling_property_resolvers>
+        readonly 'sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Value_Group_.L.sibling_property_resolvers>
+        readonly 'parent sibling property resolvers': p_di.static_lookup.Acyclic<Resolver_Value_Group_.L.parent_sibling_property_resolvers>
     },
     parameters: {
         readonly 'definition': Resolver_Value_Group_.P.definition
@@ -1495,7 +1496,7 @@ export namespace Resolver_Relative_Value_Selection_ {
 
 export type Resolver_Relative_Value_Selection_ = (
     context: Resolver_Relative_Value_Selection_.I,
-    abort: _pi.Abort<Resolver_Relative_Value_Selection_.E>,
+    abort: p_i.Abort<Resolver_Relative_Value_Selection_.E>,
     lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Relative_Value_Selection_.P.value
@@ -1520,7 +1521,7 @@ export namespace Resolver_Constraint_ {
 
 export type Resolver_Constraint_ = (
     context: Resolver_Constraint_.I,
-    abort: _pi.Abort<Resolver_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Constraint_.E>,
     lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Constraint_.P.value
@@ -1545,7 +1546,7 @@ export namespace Resolver_Optional_Value_Constraints_ {
 
 export type Resolver_Optional_Value_Constraints_ = (
     context: Resolver_Optional_Value_Constraints_.I,
-    abort: _pi.Abort<Resolver_Optional_Value_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Optional_Value_Constraints_.E>,
     lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Optional_Value_Constraints_.P.value
@@ -1570,7 +1571,7 @@ export namespace Resolver_Value_Constraints_ {
 
 export type Resolver_Value_Constraints_ = (
     context: Resolver_Value_Constraints_.I,
-    abort: _pi.Abort<Resolver_Value_Constraints_.E>,
+    abort: p_i.Abort<Resolver_Value_Constraints_.E>,
     lookups: symbol,
     parameters: {
         readonly 'value': Resolver_Value_Constraints_.P.value
@@ -1599,9 +1600,9 @@ export namespace Resolver_Value_Constraint_ {
 
 export type Resolver_Value_Constraint_ = (
     context: Resolver_Value_Constraint_.I,
-    abort: _pi.Abort<Resolver_Value_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Value_Constraint_.E>,
     lookups: {
-        readonly 'property constraints': _pi.static_lookup.Acyclic<Resolver_Value_Constraint_.L.property_constraints>
+        readonly 'property constraints': p_di.static_lookup.Acyclic<Resolver_Value_Constraint_.L.property_constraints>
     },
     parameters: symbol,
 ) => Resolver_Value_Constraint_.O
@@ -1628,7 +1629,7 @@ export namespace Resolver_ {
 
 export type Resolver_ = (
     context: Resolver_.I,
-    abort: _pi.Abort<Resolver_.E>,
+    abort: p_i.Abort<Resolver_.E>,
     lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_.P.modules
@@ -1657,7 +1658,7 @@ export namespace Resolver_Signature_Parameters_ {
 
 export type Resolver_Signature_Parameters_ = (
     context: Resolver_Signature_Parameters_.I,
-    abort: _pi.Abort<Resolver_Signature_Parameters_.E>,
+    abort: p_i.Abort<Resolver_Signature_Parameters_.E>,
     lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_Signature_Parameters_.P.modules
@@ -1693,9 +1694,9 @@ export namespace Resolver_Signature_ {
 
 export type Resolver_Signature_ = (
     context: Resolver_Signature_.I,
-    abort: _pi.Abort<Resolver_Signature_.E>,
+    abort: p_i.Abort<Resolver_Signature_.E>,
     lookups: {
-        readonly 'sibling signatures': _pi.static_lookup.Acyclic<Resolver_Signature_.L.sibling_signatures>
+        readonly 'sibling signatures': p_di.static_lookup.Acyclic<Resolver_Signature_.L.sibling_signatures>
     },
     parameters: {
         readonly 'modules': Resolver_Signature_.P.modules
@@ -1724,7 +1725,7 @@ export namespace Resolver_Signatures_ {
 
 export type Resolver_Signatures_ = (
     context: Resolver_Signatures_.I,
-    abort: _pi.Abort<Resolver_Signatures_.E>,
+    abort: p_i.Abort<Resolver_Signatures_.E>,
     lookups: symbol,
     parameters: {
         readonly 'modules': Resolver_Signatures_.P.modules
@@ -1756,7 +1757,7 @@ export namespace Resolver_Modules_ {
 
 export type Resolver_Modules_ = (
     context: Resolver_Modules_.I,
-    abort: _pi.Abort<Resolver_Modules_.E>,
+    abort: p_i.Abort<Resolver_Modules_.E>,
     lookups: symbol,
     parameters: {
         readonly 'signatures': Resolver_Modules_.P.signatures
@@ -1788,9 +1789,9 @@ export namespace Resolver_Reference_To_Value_Constraint_ {
 
 export type Resolver_Reference_To_Value_Constraint_ = (
     context: Resolver_Reference_To_Value_Constraint_.I,
-    abort: _pi.Abort<Resolver_Reference_To_Value_Constraint_.E>,
+    abort: p_i.Abort<Resolver_Reference_To_Value_Constraint_.E>,
     lookups: {
-        readonly 'property constraints': _pi.static_lookup.Acyclic<Resolver_Reference_To_Value_Constraint_.L.property_constraints>
+        readonly 'property constraints': p_di.static_lookup.Acyclic<Resolver_Reference_To_Value_Constraint_.L.property_constraints>
     },
     parameters: symbol,
 ) => Resolver_Reference_To_Value_Constraint_.O
@@ -1817,9 +1818,9 @@ export namespace Resolver_Imports_ {
 
 export type Resolver_Imports_ = (
     context: Resolver_Imports_.I,
-    abort: _pi.Abort<Resolver_Imports_.E>,
+    abort: p_i.Abort<Resolver_Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.static_lookup.Stack<Resolver_Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': p_di.static_lookup.Stack<Resolver_Imports_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Resolver_Imports_.O
@@ -1840,7 +1841,7 @@ export namespace Module_Specification_ {
 
 export type Module_Specification_ = (
     context: Module_Specification_.I,
-    abort: _pi.Abort<Module_Specification_.E>,
+    abort: p_i.Abort<Module_Specification_.E>,
     lookups: symbol,
     parameters: symbol,
 ) => Module_Specification_.O
@@ -1867,9 +1868,9 @@ export namespace Schema_Tree_ {
 
 export type Schema_Tree_ = (
     context: Schema_Tree_.I,
-    abort: _pi.Abort<Schema_Tree_.E>,
+    abort: p_i.Abort<Schema_Tree_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_Tree_.L.sibling_schemas>
+        readonly 'sibling schemas': p_di.static_lookup.Stack<Schema_Tree_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schema_Tree_.O
@@ -1896,9 +1897,9 @@ export namespace Schema_ {
 
 export type Schema_ = (
     context: Schema_.I,
-    abort: _pi.Abort<Schema_.E>,
+    abort: p_i.Abort<Schema_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_.L.sibling_schemas>
+        readonly 'sibling schemas': p_di.static_lookup.Stack<Schema_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schema_.O
@@ -1925,9 +1926,9 @@ export namespace Schema_Imports_ {
 
 export type Schema_Imports_ = (
     context: Schema_Imports_.I,
-    abort: _pi.Abort<Schema_Imports_.E>,
+    abort: p_i.Abort<Schema_Imports_.E>,
     lookups: {
-        readonly 'sibling schemas': _pi.static_lookup.Stack<Schema_Imports_.L.sibling_schemas>
+        readonly 'sibling schemas': p_di.static_lookup.Stack<Schema_Imports_.L.sibling_schemas>
     },
     parameters: symbol,
 ) => Schema_Imports_.O
@@ -1948,7 +1949,7 @@ export namespace Modules_ {
             
         }
         
-        export type globals = _pi.Optional_Value<globals.O>
+        export type globals = p_di.Optional_Value<globals.O>
         
         export namespace imports {
             
@@ -1956,7 +1957,7 @@ export namespace Modules_ {
             
         }
         
-        export type imports = _pi.Optional_Value<imports.O>
+        export type imports = p_di.Optional_Value<imports.O>
         
     }
     
@@ -1964,7 +1965,7 @@ export namespace Modules_ {
 
 export type Modules_ = (
     context: Modules_.I,
-    abort: _pi.Abort<Modules_.E>,
+    abort: p_i.Abort<Modules_.E>,
     lookups: symbol,
     parameters: {
         readonly 'globals': Modules_.P.globals

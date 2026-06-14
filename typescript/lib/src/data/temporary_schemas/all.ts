@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-shorthands/dist/unconstrained' //should be unresolved_data I think
 
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_package from "../../interface/to_be_generated/compile_temp_schemas"
 

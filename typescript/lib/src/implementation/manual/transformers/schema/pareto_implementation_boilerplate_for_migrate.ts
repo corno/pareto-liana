@@ -1,6 +1,6 @@
-import * as pi from 'pareto-core/dist/interface'
+import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/assign'
-import p_change_context from 'pareto-core/dist/_p_change_context'
+import p_change_context from 'pareto-core/dist/specials/change_context'
 
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -31,7 +31,7 @@ export const Schema = (
     $: d_in.Schema,
     $p: {
         'depth': number,
-        'path': pi.List<string>,
+        'path': p_di.List<string>,
     }
 ): d_out.Package_Set.D => {
     const constrained = $.complexity[0] === 'constrained'
@@ -107,7 +107,7 @@ export const Value = (
     $: d_in.Value,
     $p: {
         'type name': string
-        'subselection': pi.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+        'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
         'constrained': boolean
     },
 ): d_out.Assign => {

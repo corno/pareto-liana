@@ -1,7 +1,7 @@
 //core
-import * as p_ from 'pareto-core/dist/command'
+import * as p_ from 'pareto-core/dist/command/implementation'
 import * as p_t from 'pareto-core/dist/assign'
-import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
 import * as signatures from "../../../interface/commands"
 

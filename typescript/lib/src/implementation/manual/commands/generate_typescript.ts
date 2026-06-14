@@ -1,9 +1,9 @@
-import * as p from 'pareto-core/dist/command'
+import * as p from 'pareto-core/dist/command/implementation'
 import * as pa from 'pareto-core/dist/assign'
-import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import p_variables from 'pareto-core/dist/_p_variables'
-import p_iterate from 'pareto-core/dist/_p_iterate'
-import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
+import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
+import p_variables from 'pareto-core/dist/specials/variables'
+import p_iterate from 'pareto-core/dist/specials/iterate'
+import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
 import * as signatures from "../../../interface/commands"
 
@@ -24,7 +24,7 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
-import p_change_context from 'pareto-core/dist/_p_change_context'
+import p_change_context from 'pareto-core/dist/specials/change_context'
 
 
 export const $$: signatures.procedures.generate_typescript = p.command_procedure(
