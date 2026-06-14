@@ -1,7 +1,6 @@
 //core
-import * as pt from 'pareto-core/dist/command'
-import * as _pt from 'pareto-core/dist/assign'
-import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as p_ from 'pareto-core/dist/command'
+import * as p_t from 'pareto-core/dist/assign'
 import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/commands"
@@ -30,16 +29,16 @@ type My_Error =
     | ['error writing file', d_write_file.Error]
     | ['resolve error', d_resolve.Error]
 
-export const $$: signatures.procedures.serialize_schemas = pt.command_procedure(
+export const $$: signatures.procedures.serialize_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [
-        pt.dictionaryx.parallel(
+        p_.dictionaryx.parallel(
             poormans_modules,
             ($, id) => [
 
-                pt.handle_error<d_main.Error, My_Error>(
+                p_.handle_error<d_main.Error, My_Error>(
                     [
 
-                        pt.refine_without_error_transformation(
+                        p_.refine_without_error_transformation(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),
@@ -81,9 +80,9 @@ export const $$: signatures.procedures.serialize_schemas = pt.command_procedure(
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
-                                        _pt.decide.state($, ($) => {
+                                        p_t.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'resolve error': return _pt.ss($, ($) => sh.ph.composed([
+                                                case 'resolve error': return p_t.ss($, ($) => sh.ph.composed([
                                                     t_loc_to_fp.Range(
                                                         $.location,
                                                         {
@@ -96,8 +95,8 @@ export const $$: signatures.procedures.serialize_schemas = pt.command_procedure(
                                                         $,
                                                     )
                                                 ]))
-                                                case 'error writing file': return _pt.ss($, ($) => t_write_file_to_fp.Error($))
-                                                default: return _pt.au($[0])
+                                                case 'error writing file': return p_t.ss($, ($) => t_write_file_to_fp.Error($))
+                                                default: return p_t.au($[0])
                                             }
                                         })
                                     ]),

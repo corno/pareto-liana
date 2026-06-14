@@ -1,7 +1,5 @@
-import * as pt from 'pareto-core/dist/command'
-import * as pi from 'pareto-core/dist/interface'
-import * as _pt from 'pareto-core/dist/assign'
-import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
+import * as p_ from 'pareto-core/dist/command'
+import * as p_ci from 'pareto-core/dist/command_interface'
 import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
 import * as signatures from "../../../interface/commands"
@@ -9,8 +7,6 @@ import * as signatures from "../../../interface/commands"
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_generate_typescript from "../../../interface/to_be_generated/compile_temp_schemas"
-
-export type Error = pi.Dictionary<d_generate_typescript.Error>
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
@@ -30,7 +26,7 @@ import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schem
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.procedures.compile_temp_schemas = pt.command_procedure(
+export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(
@@ -45,11 +41,11 @@ export const $$: signatures.procedures.compile_temp_schemas = pt.command_procedu
                 'exit code': 1
             })
         ),
-        pt.handle_error(
+        p_.handle_error(
             [
-                pt.dictionaryx.parallel<d_generate_typescript.Parameters, Error, d_generate_typescript.Error>(
+                p_.dictionaryx.parallel(
                     poormans_modules,
-                    ($, id) => {
+                    ($, id): p_.Command_Block<d_generate_typescript.Error> => {
 
                         const path = r_context_path_from_text.Context_Path(
                             `./out/source_code/${id}`
@@ -98,7 +94,7 @@ export const $$: signatures.procedures.compile_temp_schemas = pt.command_procedu
                                 ($) => ['could not remove interface', null]
                             ),
 
-                            pt.refine_without_error_transformation(
+                            p_.refine_without_error_transformation(
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),

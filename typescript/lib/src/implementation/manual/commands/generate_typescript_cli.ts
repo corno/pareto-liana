@@ -1,8 +1,5 @@
-import * as pt from 'pareto-core/dist/command'
-import * as pi from 'pareto-core/dist/interface'
-import * as _pt from 'pareto-core/dist/assign'
-import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
-import p_variables from 'pareto-core/dist/_p_variables'
+import * as p_ from 'pareto-core/dist/command'
+import * as p_t from 'pareto-core/dist/assign'
 import p_iterate from 'pareto-core/dist/_p_iterate'
 
 import * as signatures from "../../../interface/commands"
@@ -26,14 +23,14 @@ import * as t_path_to_text from "pareto-resources/dist/implementation/manual/tra
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.procedures.generate_typescript_cli = pt.command_procedure(
+export const $$: signatures.procedures.generate_typescript_cli = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
-        pt.handle_error<d_main.Error, My_Error_1>(
+        p_.handle_error<d_main.Error, My_Error_1>(
             [
 
 
-                pt.refine_without_error_transformation(
+                p_.refine_without_error_transformation(
                     (abort) => p_iterate(
                         $d.arguments,
                         null,
@@ -62,7 +59,7 @@ export const $$: signatures.procedures.generate_typescript_cli = pt.command_proc
                     ($v) => [
 
 
-                        pt.handle_error<My_Error_1, d_resource.Error>(
+                        p_.handle_error<My_Error_1, d_resource.Error>(
                             [
 
 
@@ -116,14 +113,14 @@ export const $$: signatures.procedures.generate_typescript_cli = pt.command_proc
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([
-                                _pt.decide.state($, ($) => {
+                                p_t.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'missing source path': return _pt.ss($, ($) => sh.ph.literal("missing source path argument"))
-                                        case 'invalid source path': return _pt.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                        case 'missing target path': return _pt.ss($, ($) => sh.ph.literal("missing target path argument"))
-                                        case 'too many arguments': return _pt.ss($, ($) => sh.ph.literal("too many arguments"))
-                                        case 'processing': return _pt.ss($, ($) => sh.ph.literal("error while processing"))
-                                        default: return _pt.au($[0])
+                                        case 'missing source path': return p_t.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                        case 'invalid source path': return p_t.ss($, ($) => sh.ph.literal("invalid source path argument"))
+                                        case 'missing target path': return p_t.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                        case 'too many arguments': return p_t.ss($, ($) => sh.ph.literal("too many arguments"))
+                                        case 'processing': return p_t.ss($, ($) => sh.ph.literal("error while processing"))
+                                        default: return p_t.au($[0])
                                     }
                                 })
                             ])
