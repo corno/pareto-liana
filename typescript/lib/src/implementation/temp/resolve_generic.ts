@@ -26,7 +26,7 @@ export type Resolved_Stack_Reference<T> = {
 
 //functions
 
-export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
+export const resolve_dense_dictionary = <Unresolved extends _pi.Value, Resolved extends _pi.Value, Benchmark extends _pi.Value>(
     $: _pi.Dictionary<Unresolved>,
     location: gen_loc.Range,
     abort: _pi.Abort<gen_resolve.Error>,
@@ -64,7 +64,7 @@ export const resolve_dense_dictionary = <Unresolved, Resolved, Benchmark>(
 }
 export namespace abort {
 
-    export const state_constraint_found_expected = <T extends readonly [string, any]>(
+    export const state_constraint_found_expected = <T extends _pi.State>(
         found: string,
         expected: T,
         location: gen_loc.Range,
@@ -76,7 +76,7 @@ export namespace abort {
         }]],
         'location': location,
     })
-    export const state_constraint_expected_found = <T extends readonly [string, any]>(
+    export const state_constraint_expected_found = <T extends _pi.State>(
         expected: string,
         found: T,
         location: gen_loc.Range,
@@ -117,7 +117,7 @@ export namespace abort {
     })
 }
 
-export const get_entry_acyclic = <T>(
+export const get_entry_acyclic = <T extends _pi.Value>(
     lookup: _pi.static_lookup.Acyclic<T>,
     ref: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
@@ -144,7 +144,7 @@ export const get_entry_acyclic = <T>(
     }
 }
 
-export const get_entry_cyclic = <T>(
+export const get_entry_cyclic = <T extends _pi.Value>(
     lookup: _pi.static_lookup.Cyclic<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
@@ -168,7 +168,7 @@ export const get_entry_cyclic = <T>(
     }
 }
 
-export const get_entry_stack = <T>(
+export const get_entry_stack = <T extends _pi.Value>(
     stack: _pi.static_lookup.Stack<T>,
     reference: Unresolved_Reference,
     abort: _pi.Abort<gen_resolve.Error>,
@@ -212,7 +212,7 @@ export const get_entry_stack = <T>(
     }
 }
 
-export const temp_assert = <Type, Error>(
+export const temp_assert = <Type extends _pi.Value, Error extends _pi.Value>(
     condition: () => _pi.Optional_Value<Error>,
     callback: () => Type,
     abort: _pi.Abort<Error>,
@@ -229,12 +229,12 @@ export const temp_assert = <Type, Error>(
     return callback()
 }
 
-export const temp_optional_map = <In, Out>(
+export const temp_optional_map = <In extends _pi.Value, Out extends _pi.Value>(
     $: _pi.Optional_Value<In>,
     callback: ($: In) => Out,
 ): _pi.Optional_Value<Out> => _p.optional.from.optional($).map(callback)
 
-export const temp_resolve = <T, Resolved>(
+export const temp_resolve = <T extends _pi.Value, Resolved extends _pi.Value>(
     $: _pi.Dictionary<T>,
     handle_entry: (
         $: T,
@@ -246,7 +246,7 @@ export const temp_resolve = <T, Resolved>(
     return _p.dictionary.from.dictionary($).resolve_static(handle_entry)
 }
 
-export const temp_map_list_with_state = <T, Target_Item, State, Result_Type extends { [id: string]: any }>(
+export const temp_map_list_with_state = <T extends _pi.Value, Target_Item extends _pi.Value, State extends _pi.Value, Result_Type extends _pi.Group>(
     $: _pi.List<T>,
     initial_state: State,
     handle_item: (

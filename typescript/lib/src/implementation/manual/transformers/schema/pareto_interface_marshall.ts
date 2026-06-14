@@ -31,8 +31,8 @@ export const Schema = (
             "data",
             _p.decide.optional(
                 $p.constrained,
-                ($) => [$],
-                () => []
+                ($) => _p.list.literal([$]),
+                () => _p.list.literal([])
             )
         ),
     },

@@ -234,16 +234,23 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
 
                                                             _p_change_context($, ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'not set': return _p.ss($, ($) => { })
+                                                                    case 'not set': return _p.ss($, ($) => {
+                                                                        return null
+                                                                    })
                                                                     case 'selection': return _p.ss($, ($) => {
                                                                         //FIXME
                                                                         _p_change_context($, ($) => {
                                                                             switch ($[0]) {
-                                                                                case 'parameter': return _p.ss($, ($) => { })
-                                                                                case 'result': return _p.ss($, ($) => { })
+                                                                                case 'parameter': return _p.ss($, ($) => {
+                                                                                    return null
+                                                                                })
+                                                                                case 'result': return _p.ss($, ($) => {
+                                                                                    return null
+                                                                                })
                                                                                 default: _p.au($[0])
                                                                             }
                                                                         })
+                                                                        return null
                                                                     })
                                                                     case 'set': return _p.ss($, ($) => {
 
@@ -254,10 +261,12 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                                 abort,
                                                                             )
                                                                         }
+                                                                        return null
                                                                     })
                                                                     default: _p.au($[0])
                                                                 }
                                                             })
+                                                            return null
 
                                                             //FIX validate that modules are the same
                                                         })
@@ -276,6 +285,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                     abort,
                                                                 )
                                                             }
+                                                            return null
                                                         })
                                                         case 'required': return _p.ss($, ($) => {
                                                             if (benchmark.presence[0] !== 'required') {
@@ -288,7 +298,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                     abort,
                                                                 )
                                                             }
-
+                                                            return null
                                                         })
                                                         default: return _p.au($[0])
                                                     }

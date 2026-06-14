@@ -50,35 +50,37 @@ export const Schema = (
                 ),
                 "imports ": _p_change_context($, ($) => {
                     // const types = $p['what to generate']
-                    return $p.imports.__d_map(($) => sh.import_.ancestor(
-                        $p.depth + 1 + $['schema set child']['l value']['l up steps'],
-                        $['schema set child']['l value']['l id'],
-                        _p.decide.state($.schema.complexity, ($) => {
-                            switch ($[0]) {
-                                case 'unconstrained': return _p.ss($, ($) => [
-                                    "data",
-                                ])
-                                case 'constrained': return _p.ss($, ($) => _p.decide.state($p.type, ($) => {
-                                    switch ($[0]) {
-                                        case 'unconstrained': return _p.ss($, ($) => [
-                                            "data",
-                                            "resolved",
-                                        ])
-                                        case 'unresolved': return _p.ss($, ($) => [
-                                            "data",
-                                            "unresolved",
-                                        ])
-                                        case 'resolved': return _p.ss($, ($) => [
-                                            "data",
-                                            "resolved",
-                                        ])
-                                        default: return _p.au($[0])
-                                    }
-                                }))
-                                default: return _p.au($[0])
-                            }
-                        }),
-                    ))
+                    return $p.imports.__d_map(
+                        ($) => sh.import_.ancestor(
+                            $p.depth + 1 + $['schema set child']['l value']['l up steps'],
+                            $['schema set child']['l value']['l id'],
+                            _p.decide.state($.schema.complexity, ($) => {
+                                switch ($[0]) {
+                                    case 'unconstrained': return _p.ss($, ($) => _p.list.literal([
+                                        "data",
+                                    ]))
+                                    case 'constrained': return _p.ss($, ($) => _p.decide.state($p.type, ($) => {
+                                        switch ($[0]) {
+                                            case 'unconstrained': return _p.ss($, ($) => _p.list.literal([
+                                                "data",
+                                                "resolved",
+                                            ]))
+                                            case 'unresolved': return _p.ss($, ($) => _p.list.literal([
+                                                "data",
+                                                "unresolved",
+                                            ]))
+                                            case 'resolved': return _p.ss($, ($) => _p.list.literal([
+                                                "data",
+                                                "resolved",
+                                            ]))
+                                            default: return _p.au($[0])
+                                        }
+                                    }))
+                                    default: return _p.au($[0])
+                                }
+                            }),
+                        )
+                    )
                 }),
             }),
         ).flatten(
@@ -253,24 +255,34 @@ export const Value = (
                                             _p.dictionary.from.dictionary(
                                                 _p.dictionary.literal<_pi.Optional_Value<d_out.Value>>({
                                                     "l entry": _p.optional.literal.set(_p_change_context($, ($) => {
-                                                        return sh.t.reference(
-                                                            Module_Reference(referent['module']),
-                                                            _p.list.nested_literal_old([
-                                                                Value_Path(referent.path),
-                                                                [
-                                                                    sh.sub.dictionary(),
-                                                                ]
-                                                            ]),
-                                                            _p.decide.state(selected.dependency, ($) => {
-                                                                switch ($[0]) {
+                                                        const location = Module_Reference(referent['module'])
+                                                        const subselection = _p.list.nested_literal_old([
+                                                            Value_Path(referent.path),
+                                                            [
+                                                                sh.sub.dictionary(),
+                                                            ]
+                                                        ])
+                                                        return _p.decide.state(selected.dependency, ($) => {
+                                                            switch ($[0]) {
 
-                                                                    case 'acyclic': return _p.ss($, ($) => 'acyclic')
-                                                                    case 'cyclic': return _p.ss($, ($) => 'cyclic')
-                                                                    case 'stack': return _p.ss($, ($) => 'acyclic')
-                                                                    default: return _p.au($[0])
-                                                                }
-                                                            })
-                                                        )
+                                                                case 'acyclic': return _p.ss($, ($) => sh.t.reference(
+                                                                    location,
+                                                                    subselection,
+                                                                    'acyclic'
+                                                                ))
+                                                                case 'cyclic': return _p.ss($, ($) => sh.t.reference(
+                                                                    location,
+                                                                    subselection,
+                                                                    'cyclic'
+                                                                ))
+                                                                case 'stack': return _p.ss($, ($) => sh.t.reference(
+                                                                    location,
+                                                                    subselection,
+                                                                    'acyclic'
+                                                                ))
+                                                                default: return _p.au($[0])
+                                                            }
+                                                        })
                                                     })),
                                                     "l id": _p.optional.literal.set(sh.t.text()),
                                                     "l up steps": _p.decide.state(selected.dependency, ($) => {

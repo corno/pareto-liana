@@ -327,8 +327,8 @@ export const Value = (
                 case 'selected': return _p.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
                     "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
                     "value": sh.a.text.copy(sh.sv.context($.results.__decide(
-                        ($) => ["l value", "l id"],
-                        () => ["l id"]
+                        ($) => _p.list.literal(["l value", "l id"]),
+                        () => _p.list.literal(["l id"])
                     ))),
                 })))
                 default: return _p.au($[0])

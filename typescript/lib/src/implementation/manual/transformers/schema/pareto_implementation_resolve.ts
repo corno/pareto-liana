@@ -8,13 +8,14 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-const temp_prepend = <T>(
+const temp_prepend = <T extends _pi.Value>(
     $: _pi.Dictionary<T>,
     prefix: string
 ) => {
     const result: { [id: string]: T } = {}
     $.__d_map(($, id) => {
         result[prefix + id] = $
+        return null
     })
     return _p.dictionary.literal(result)
 }
@@ -51,26 +52,6 @@ const cycle_detected_error = sh.a.group.literal({
     ),
     "location": sh.a.select(sh.sv.context(["l location"])),
 })
-
-const op_pad_dictionary_identifiers = <T>(
-    $: _pi.Dictionary<T>,
-    $p: {
-        'prefix': string,
-        'suffix': string
-    }
-): _pi.Dictionary<T> => _p.dictionary.from.list(
-    _p.list.from.dictionary(
-        $,
-    ).convert(
-        ($, id) => ({ 'id': id, value: $ })
-    ),
-).convert(
-    ($) => $p.prefix + $.id + $p.suffix,
-    ($) => $.value,
-    {
-        duplicate_id: () => _p_unreachable_code_path("the padding is fixed") // no possibility of duplicate id's
-    }
-)
 
 export const Resolver_Modules = (
     $: d_in.Resolver_Modules,
@@ -683,13 +664,13 @@ export const Resolver_Value = (
                                                 $p['temp subselection'],
                                                 _p.decide.optional(
                                                     results,
-                                                    () => [
+                                                    () => _p.list.literal([
                                                         sh_i.sub.group("l value"),
                                                         sh_i.sub.state(id),
-                                                    ],
-                                                    () => [
+                                                    ]),
+                                                    () => _p.list.literal([
                                                         sh_i.sub.state(id),
-                                                    ]
+                                                    ])
                                                 )
                                             ]),
                                         }
@@ -702,10 +683,10 @@ export const Resolver_Value = (
                                     $p['temp subselection'],
                                     _p.decide.optional(
                                         results,
-                                        () => [
+                                        () => _p.list.literal([
                                             sh_i.sub.group("l value"),
-                                        ],
-                                        () => []
+                                        ]),
+                                        () => _p.list.literal([])
                                     ),
                                 ]),
                             ),

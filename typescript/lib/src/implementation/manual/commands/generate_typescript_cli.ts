@@ -116,14 +116,14 @@ export const $$: signatures.commands.generate_typescript_cli = _p.command_proced
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([
-                                _p.decide.state($, ($) => {
+                                _pt.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'missing source path': return _p.ss($, ($) => sh.ph.literal("missing source path argument"))
-                                        case 'invalid source path': return _p.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                        case 'missing target path': return _p.ss($, ($) => sh.ph.literal("missing target path argument"))
-                                        case 'too many arguments': return _p.ss($, ($) => sh.ph.literal("too many arguments"))
-                                        case 'processing': return _p.ss($, ($) => sh.ph.literal("error while processing"))
-                                        default: return _p.au($[0])
+                                        case 'missing source path': return _pt.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                        case 'invalid source path': return _pt.ss($, ($) => sh.ph.literal("invalid source path argument"))
+                                        case 'missing target path': return _pt.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                        case 'too many arguments': return _pt.ss($, ($) => sh.ph.literal("too many arguments"))
+                                        case 'processing': return _pt.ss($, ($) => sh.ph.literal("error while processing"))
+                                        default: return _pt.au($[0])
                                     }
                                 })
                             ])

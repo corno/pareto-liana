@@ -45,11 +45,11 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
     ): d_out_schema.Schema => {
         const st = $
 
-        type Element_And_Rest<T> = {
+        type Element_And_Rest<T extends _pi.Value> = {
             'element': T
             'rest': _pi.List<T>
         }
-        const temp_pop_first_element = <T>($: _pi.List<T>): _pi.Optional_Value<Element_And_Rest<T>> => {
+        const temp_pop_first_element = <T extends _pi.Value>($: _pi.List<T>): _pi.Optional_Value<Element_And_Rest<T>> => {
             const arr = $
             return _p.optional.from.optional(
                 $.__deprecated_get_possible_item_at(0),
@@ -62,6 +62,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                                 $i['add item']($)
                             }
                             is_first = false
+                            return null
                         })
                     }),
                     'element': $,
@@ -133,6 +134,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                             () => {
                                 schema.modules.__d_map(($, id) => {
                                     _p_log_debug_message(`available type: ${id}`, () => { })
+                                    return null
                                 })
                                 _p_implement_me(`(FIXME: make this a reference) root type ${$['module resolver']} not found`)
                             }
@@ -150,6 +152,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                             () => {
                                 schema.modules.__d_map(($, id) => {
                                     _p_log_debug_message(`available type: ${id}`, () => { })
+                                    return null
                                 })
                                 _p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
                             }

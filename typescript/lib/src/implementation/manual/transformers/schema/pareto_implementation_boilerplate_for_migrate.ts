@@ -269,8 +269,8 @@ export const Value = (
                     case 'derived': return _p.ss($, ($) => sh.a.nothing())
                     case 'selected': return _p.ss($, ($) => {
                         const tn = sh.a.text.copy(sh.sv.context($.results.__decide(
-                            ($) => ["l value", "l id"],
-                            () => ["l id"]
+                            ($) => _p.list.literal(["l value", "l id"]),
+                            () => _p.list.literal(["l id"])
                         )))
 
                         return $p.constrained

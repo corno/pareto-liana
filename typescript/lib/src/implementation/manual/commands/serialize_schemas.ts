@@ -1,5 +1,6 @@
 //core
 import * as _p from 'pareto-core/dist/command'
+import * as _pt from 'pareto-core/dist/assign'
 import _p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import _p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
@@ -80,9 +81,9 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
-                                        _p.decide.state($, ($) => {
+                                        _pt.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'resolve error': return _p.ss($, ($) => sh.ph.composed([
+                                                case 'resolve error': return _pt.ss($, ($) => sh.ph.composed([
                                                     t_loc_to_fp.Range(
                                                         $.location,
                                                         {
@@ -95,8 +96,8 @@ export const $$: signatures.commands.serialize_schemas = _p.command_procedure(
                                                         $,
                                                     )
                                                 ]))
-                                                case 'error writing file': return _p.ss($, ($) => t_write_file_to_fp.Error($))
-                                                default: return _p.au($[0])
+                                                case 'error writing file': return _pt.ss($, ($) => t_write_file_to_fp.Error($))
+                                                default: return _pt.au($[0])
                                             }
                                         })
                                     ]),

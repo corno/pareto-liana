@@ -68,9 +68,9 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                 return [
 
                     _p.refine_without_error_transformation(
-                        (abort): d_schema.Package => _p.decide.state($d.type, ($) => {
+                        (abort): d_schema.Package => _pt.decide.state($d.type, ($) => {
                             switch ($[0]) {
-                                case 'module specification': return _p.ss($, ($) => _p_variables(() => {
+                                case 'module specification': return _pt.ss($, ($) => _p_variables(() => {
                                     const x = r_schema.Module_Specification(
                                         r_unresolved_schema_from_loc.Module_Specification(
                                             $v2,
@@ -94,7 +94,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                         'schema tree': x.schema
                                     }
                                 }))
-                                case 'package': return _p.ss($, ($) => r_schema.Package(
+                                case 'package': return _pt.ss($, ($) => r_schema.Package(
                                     r_unresolved_schema_from_loc.Package(
                                         $v2,
                                         ($) => abort(['could not deserialize', {
@@ -112,7 +112,7 @@ export const $$: signatures.commands.generate_typescript = _p.command_procedure(
                                     _p_create_symbol(),
                                     _p_create_symbol(),
                                 ))
-                                default: return _p.au($[0])
+                                default: return _pt.au($[0])
                             }
                         }),
                         ($) => [

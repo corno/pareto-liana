@@ -155,7 +155,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
 
             case 'reference': return _p.ss($, ($): t_out.Value => {
                 const loc = $.referent['module'].location['l location']
-                const temp = $p.globals.__decide(
+                $p.globals.__extract_data(
                     ($) => {
                         $.complexity[0] === 'unconstrained'
                             ? _i_generic.abort.state_constraint_found_expected("constrained", $.complexity, loc, abort)
