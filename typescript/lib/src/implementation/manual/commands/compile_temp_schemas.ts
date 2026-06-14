@@ -4,7 +4,7 @@ import * as _pt from 'pareto-core/dist/assign'
 import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
-import * as signatures from "../../../interface/signatures"
+import * as signatures from "../../../interface/commands"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
@@ -30,7 +30,7 @@ import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schem
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.commands.compile_temp_schemas = pt.command_procedure(
+export const $$: signatures.procedures.compile_temp_schemas = pt.command_procedure(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(

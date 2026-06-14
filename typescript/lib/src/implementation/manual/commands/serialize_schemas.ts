@@ -4,7 +4,7 @@ import * as _pt from 'pareto-core/dist/assign'
 import p_list_from_text from 'pareto-core/dist/_p_list_from_text'
 import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
-import * as signatures from "../../../interface/signatures"
+import * as signatures from "../../../interface/commands"
 
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
 import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
@@ -30,7 +30,7 @@ type My_Error =
     | ['error writing file', d_write_file.Error]
     | ['resolve error', d_resolve.Error]
 
-export const $$: signatures.commands.serialize_schemas = pt.command_procedure(
+export const $$: signatures.procedures.serialize_schemas = pt.command_procedure(
     ($d, $s, $q, $c) => [
         pt.dictionaryx.parallel(
             poormans_modules,

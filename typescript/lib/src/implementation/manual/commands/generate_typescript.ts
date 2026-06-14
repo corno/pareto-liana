@@ -5,7 +5,7 @@ import p_variables from 'pareto-core/dist/_p_variables'
 import p_iterate from 'pareto-core/dist/_p_iterate'
 import p_create_symbol from 'pareto-core/dist/_p_create_symbol'
 
-import * as signatures from "../../../interface/signatures"
+import * as signatures from "../../../interface/commands"
 
 // //data types
 import * as d_resource from "../../../interface/to_be_generated/generate_typescript"
@@ -27,7 +27,7 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 import p_change_context from 'pareto-core/dist/_p_change_context'
 
 
-export const $$: signatures.commands.generate_typescript = p.command_procedure(
+export const $$: signatures.procedures.generate_typescript = p.command_procedure(
     ($d, $s, $q, $c) => [
 
         p.query(
