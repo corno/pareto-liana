@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core-shorthands/dist/unresolved_data'
+import * as p_ from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
@@ -7,7 +7,7 @@ import * as d_target from "../interface/generated/liana/schemas/schema/data/unre
 import * as temp_schema from "./schema"
 
 export const resolver_modules = (
-    resolvers: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,
+    resolvers: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,
 ): d_target.Resolver_Modules => {
     return sh.dictionary(resolvers)
 }
@@ -454,7 +454,7 @@ export const option = (
 }
 
 export const option_constrained = (
-    constraints: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
+    constraints: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
     resolver: d_target.Resolver_Value,
 ): d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry => {
     return {
@@ -559,33 +559,33 @@ export namespace r {
 
     export const component = (
         type: string,
-        modules: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        modules: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
-            'arguments': pt.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
+            'arguments': p_.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>({}),
         }])
     }
     export const component_constrained = (
         type: string,
-        modules: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+        modules: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
-            'arguments': pt.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
+            'arguments': p_.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints),
         }])
@@ -593,9 +593,9 @@ export namespace r {
     export const component_external = (
         imp: string,
         type: string,
-        modules: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
-        lookups: null | pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
-        constraints?: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+        modules: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry>,
+        lookups: null | p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry>,
+        constraints?: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Value => {
         return sh.state(['component', {
             'definition': null,
@@ -605,9 +605,9 @@ export namespace r {
                 'signature': sh.reference(type),
             }]),
             'signature': null,
-            'arguments': pt.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
+            'arguments': p_.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
         }])
@@ -629,7 +629,7 @@ export namespace r {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
-            'benchmark': pt.optional.set({
+            'benchmark': p_.optional.set({
                 'selection': selection,
                 'resulting dictionary': null,
                 'dense': dense === 'dense',
@@ -638,7 +638,7 @@ export namespace r {
     }
 
     export const group = (
-        properties: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
+        properties: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Group.l_dictionary.D.l_entry.resolver> //FIXME: remove the 'this entry' step
     ): d_target.Resolver_Value => {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {
@@ -661,7 +661,7 @@ export namespace r {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': pt.optional.not_set<d_target.Resolver_Value.l_state.list.result.O>(),
+            'result': p_.optional.not_set<d_target.Resolver_Value.l_state.list.result.O>(),
         }])
     }
     export const list_with_result = (
@@ -672,7 +672,7 @@ export namespace r {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': pt.optional.set(result),
+            'result': p_.optional.set(result),
         }])
     }
 
@@ -690,7 +690,7 @@ export namespace r {
     }
 
     export const optional_constrained = (
-        constraints: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
+        constraints: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Option_Constraints.l_dictionary.D.l_entry>,
         type_resolver: d_target.Resolver_Value
     ): d_target.Resolver_Value => {
         return sh.state(['optional', {
@@ -712,7 +712,7 @@ export namespace r {
 
     export const reference = (
         lookup_selection: d_target.Resolver_Lookup_Selection,
-        constraints?: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+        constraints?: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Value => {
         return sh.state(['reference', {
             'definition': null,
@@ -726,7 +726,7 @@ export namespace r {
 
     export const reference_stack = (
         lookup_selection: d_target.Resolver_Lookup_Selection,
-        constraints?: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
+        constraints?: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Value => {
         return sh.state(['reference', {
             'definition': null,
@@ -739,7 +739,7 @@ export namespace r {
     }
 
     export const state = (
-        states: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry>
+        states: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Value.l_state.state.options.l_dictionary.D.l_entry>
     ): d_target.Resolver_Value => {
         return sh.state(['state', {
             'definition': null,

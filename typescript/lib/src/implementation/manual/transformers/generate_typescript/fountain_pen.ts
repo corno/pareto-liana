@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
 //data types
@@ -14,20 +14,20 @@ import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementati
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const Error: p_i.Transformer<d_in.Error, d_out.Phrase> = ($) => {
-    return pt.decide.state($, ($) => {
+    return p_.decide.state($, ($) => {
         switch ($[0]) {
-            case 'could not read source': return pt.ss($, ($) => sh.ph.composed([
+            case 'could not read source': return p_.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("could not read source"),
                 t_read_file_to_fountain_pen.Error($)
             ]))
-            case 'could not log': return pt.ss($, ($) => sh.ph.literal("could not log"))
-            case 'could not remove interface': return pt.ss($, ($) => sh.ph.literal("could not remove interface"))
-            case 'could not remove implementation': return pt.ss($, ($) => sh.ph.literal("could not remove implementation"))
-            case 'could not write interface': return pt.ss($, ($) => sh.ph.literal("could not write interface"))
-            case 'could not write implementation': return pt.ss($, ($) => sh.ph.literal("could not write implementation"))
-            case 'could not copy generic implementation': return pt.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
-            case 'could not copy core interface': return pt.ss($, ($) => sh.ph.literal("could not copy core interface"))
-            case 'could not resolve module': return pt.ss($, ($) => sh.ph.composed([
+            case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
+            case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))
+            case 'could not remove implementation': return p_.ss($, ($) => sh.ph.literal("could not remove implementation"))
+            case 'could not write interface': return p_.ss($, ($) => sh.ph.literal("could not write interface"))
+            case 'could not write implementation': return p_.ss($, ($) => sh.ph.literal("could not write implementation"))
+            case 'could not copy generic implementation': return p_.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
+            case 'could not copy core interface': return p_.ss($, ($) => sh.ph.literal("could not copy core interface"))
+            case 'could not resolve module': return p_.ss($, ($) => sh.ph.composed([
                 // t_location_to_fountain_pen.Range(
                 //     $.error.location,
                 //     {
@@ -40,16 +40,16 @@ export const Error: p_i.Transformer<d_in.Error, d_out.Phrase> = ($) => {
                     $.error,
                 )
             ]))
-            case 'could not deserialize': return pt.ss($, ($) => sh.ph.composed([
+            case 'could not deserialize': return p_.ss($, ($) => sh.ph.composed([
                 // t_location_to_fountain_pen.Range(
-                //     ['in main document', pt.decide.state(t_deserialize_to_location.Error($.error), ($): d_location.Range => {
+                //     ['in main document', p_.decide.state(t_deserialize_to_location.Error($.error), ($): d_location.Range => {
                 //         switch ($[0]) {
-                //             case 'range': return pt.ss($, ($) => $)
-                //             case 'end of document': return pt.ss($, ($) => ({
+                //             case 'range': return p_.ss($, ($) => $)
+                //             case 'end of document': return p_.ss($, ($) => ({
                 //                 'start': $.end,
                 //                 'end': $.end,
                 //             }))
-                //             default: return pt.au($[0])
+                //             default: return p_.au($[0])
                 //         }
                 //     })],
                 //     {
@@ -62,7 +62,7 @@ export const Error: p_i.Transformer<d_in.Error, d_out.Phrase> = ($) => {
                     $.error,
                 )
             ]))
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
 }

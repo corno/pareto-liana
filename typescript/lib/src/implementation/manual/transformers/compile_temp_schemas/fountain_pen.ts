@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
 import * as d_in from "../../../../interface/data/compile_temp_schemas"
@@ -17,16 +17,16 @@ export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
             sh.ph.literal("error in package '"),
             sh.ph.literal($p.id),
             sh.ph.literal("': "),
-            pt.decide.state($, ($) => {
+            p_.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'could not log': return pt.ss($, ($) => sh.ph.literal("could not log"))
-                    case 'could not remove interface': return pt.ss($, ($) => sh.ph.literal("could not remove interface"))
-                    case 'could not remove implementation': return pt.ss($, ($) => sh.ph.literal("could not remove implementation"))
-                    case 'could not write interface': return pt.ss($, ($) => sh.ph.literal("could not write interface"))
-                    case 'could not write implementation': return pt.ss($, ($) => sh.ph.literal("could not write implementation"))
-                    case 'could not copy generic implementation': return pt.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
-                    case 'could not copy core interface': return pt.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                    case 'could not deserialize module': return pt.ss($, ($) => sh.ph.composed([
+                    case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
+                    case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))
+                    case 'could not remove implementation': return p_.ss($, ($) => sh.ph.literal("could not remove implementation"))
+                    case 'could not write interface': return p_.ss($, ($) => sh.ph.literal("could not write interface"))
+                    case 'could not write implementation': return p_.ss($, ($) => sh.ph.literal("could not write implementation"))
+                    case 'could not copy generic implementation': return p_.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
+                    case 'could not copy core interface': return p_.ss($, ($) => sh.ph.literal("could not copy core interface"))
+                    case 'could not deserialize module': return p_.ss($, ($) => sh.ph.composed([
                         t_location_to_fountain_pen.Range(
                             $.location,
                             {
@@ -39,7 +39,7 @@ export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
                             $,
                         )
                     ]))
-                    default: return pt.au($[0])
+                    default: return p_.au($[0])
                 }
             })
         ])

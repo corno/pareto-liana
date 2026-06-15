@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core-shorthands/dist/unconstrained' 
+import * as p_ from 'pareto-core-shorthands/dist/unconstrained' 
 
 
 
@@ -32,7 +32,7 @@ import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
 
 
 
-export const $ = pt.dictionary<d_package.Parameters>({
+export const $ = p_.dictionary<d_package.Parameters>({
     "astn": {
         'target path': "../astn",
         'package': m_astn,

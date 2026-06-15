@@ -191,9 +191,9 @@ export const $$: signatures.procedures.generate_typescript = p_.command_procedur
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/implementation/generated/liana"), "generic"),
                     //         'target': t_path_to_path.extend_node_path(implementation_module_path, { 'addition': "generic" }),
                     //         'options': {
-                    //             'recursive': pt.literal.set(true),
-                    //             'force': pt.literal.not_set(),
-                    //             'errorOnExist': pt.literal.not_set(),
+                    //             'recursive': p_.literal.set(true),
+                    //             'force': p_.literal.not_set(),
+                    //             'errorOnExist': p_.literal.not_set(),
                     //         }
                     //     },
                     //     ($) => ['could not copy generic implementation', null]
@@ -205,9 +205,9 @@ export const $$: signatures.procedures.generate_typescript = p_.command_procedur
                     //         'source': t_path_to_path.create_node_path(ds_context_path.Context_Path("./lib/src/interface/generated/liana"), "core"),
                     //         'target': t_path_to_path.extend_node_path(interface_module_path, { 'addition': "core" }),
                     //         'options': {
-                    //             'recursive': pt.literal.set(true),
-                    //             'force': pt.literal.not_set(),
-                    //             'errorOnExist': pt.literal.not_set(),
+                    //             'recursive': p_.literal.set(true),
+                    //             'force': p_.literal.not_set(),
+                    //             'errorOnExist': p_.literal.not_set(),
                     //         }
                     //     },
                     //     ($) => ['could not copy core interface', null]

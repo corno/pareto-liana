@@ -1,5 +1,5 @@
 import * as p_di from 'pareto-core/dist/interface/data'
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -18,34 +18,34 @@ export const Schema = (
 
     return sh.m.package_(
         [],
-        pt.literal.dictionary({
+        p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.literal.nested_list([
-                    pt.literal.list([
+                p_.literal.nested_list([
+                    p_.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.literal.list([
+                    p_.literal.list([
                         "signatures"
                     ]),
                     constrained
-                        ? pt.literal.list([
+                        ? p_.literal.list([
                             "unresolved"
                         ])
-                        : pt.literal.list([
+                        : p_.literal.list([
                         ]),
-                    pt.literal.list([
+                    p_.literal.list([
                         "refiners",
                         "list of characters",
                     ])
                 ])
             ),
         }),
-        pt.literal.dictionary({
+        p_.literal.dictionary({
             "deserialize": sh_i.import_.external(
                 "astn-core",
                 [
@@ -57,7 +57,7 @@ export const Schema = (
                     "list of characters",
                 ],
             ),
-            "unmarshall": sh_i.import_.sibling("astn parse tree", pt.literal.nested_list([
+            "unmarshall": sh_i.import_.sibling("astn parse tree", p_.literal.nested_list([
             ])),
         }),
         $.modules.__d_map(($, id) => sh.algorithm(

@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -27,12 +27,12 @@ export const Schema = (
             ],
         ),
         "in": sh.import_.ancestor(
-            pt.boolean.from.optional($p.constrained).is_set() ? 3 : 2,
+            p_.boolean.from.optional($p.constrained).is_set() ? 3 : 2,
             "data",
-            pt.decide.optional(
+            p_.decide.optional(
                 $p.constrained,
-                ($) => pt.literal.list([$]),
-                () => pt.literal.list([])
+                ($) => p_.literal.list([$]),
+                () => p_.literal.list([])
             )
         ),
     },

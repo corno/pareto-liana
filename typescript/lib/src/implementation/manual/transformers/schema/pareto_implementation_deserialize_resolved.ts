@@ -1,5 +1,5 @@
 import * as p_di from 'pareto-core/dist/interface/data'
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
@@ -16,32 +16,32 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     return sh.m.package_(
         [],
-        pt.literal.dictionary({
+        p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.literal.nested_list([
-                    pt.literal.list([
+                p_.literal.nested_list([
+                    p_.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.literal.list([
+                    p_.literal.list([
                         "deserialize",
                     ])
                 ])
             ),
         }),
-        pt.literal.dictionary({
+        p_.literal.dictionary({
             "deserialize": sh_i.import_.ancestor(
                 2,
                 "unresolved",
-                pt.literal.list([
+                p_.literal.list([
                     "refiners",
                     "list of characters",
                 ])),
-            "resolve": sh_i.import_.sibling("unresolved", pt.literal.nested_list([
+            "resolve": sh_i.import_.sibling("unresolved", p_.literal.nested_list([
             ])),
         }),
         $.modules.__d_map(($, id) => sh.algorithm(

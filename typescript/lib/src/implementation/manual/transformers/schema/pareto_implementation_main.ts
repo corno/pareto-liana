@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -24,17 +24,17 @@ export const Schema_Tree = (
         'omit (de)serializer': boolean
     }
 ): d_out.Package_Set.D => {
-    return pt.decide.state($, ($) => {
+    return p_.decide.state($, ($) => {
         switch ($[0]) {
-            case 'schema': return pt.ss($, ($) => {
+            case 'schema': return p_.ss($, ($) => {
                 const imports = $['resolver imports']
                 const schema = $
 
                 return $p['omit (de)serializer']
                     ? sh.m.set({})
-                    : pt.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                    : p_.decide.state($.complexity, ($): d_out.Package_Set.D => {
                         switch ($[0]) {
-                            case 'constrained': return pt.ss($, ($): d_out.Package_Set.D => sh.m.set({
+                            case 'constrained': return p_.ss($, ($): d_out.Package_Set.D => sh.m.set({
                                 "resolved": sh.m.set({
                                     "transformers": sh.m.set({
                                         "astn sealed target": t_marshall.Schema(
@@ -87,7 +87,7 @@ export const Schema_Tree = (
                                     }),
                                 }),
                             }))
-                            case 'unconstrained': return pt.ss($, ($) => sh.m.set({
+                            case 'unconstrained': return p_.ss($, ($) => sh.m.set({
                                 "transformers": sh.m.set({
                                     "astn sealed target": t_marshall.Schema(
                                         schema,
@@ -116,18 +116,18 @@ export const Schema_Tree = (
                                     }),
                                 }),
                             }))
-                            default: return pt.au($[0])
+                            default: return p_.au($[0])
                         }
                     })
             })
-            case 'set': return pt.ss($, ($): d_out.Package_Set.D => Schemas(
+            case 'set': return p_.ss($, ($): d_out.Package_Set.D => Schemas(
                         $,
                         {
                             'path': $p.path,
                             'omit (de)serializer': $p['omit (de)serializer'],
                         }
                     ))
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
 }
@@ -140,7 +140,7 @@ export const Schemas = (
     }
 ): d_out.Package_Set.D => {
     return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
-        'path': pt.literal.nested_list([
+        'path': p_.literal.nested_list([
             $p.path,
             [
                 id,

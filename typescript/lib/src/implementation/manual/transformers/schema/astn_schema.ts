@@ -1,4 +1,4 @@
-import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
@@ -20,8 +20,8 @@ export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
 ) => ({
     //FIXME!! merge the number types with the text types in here
     "text types": sh.dictionary(
-        pt.dictionary.from.dictionary(
-            pt.literal.dictionary({
+        p_.dictionary.from.dictionary(
+            p_.literal.dictionary({
                 "t": $['text types'].__d_map(($) => {
                     return Text_Type($)
                 }),
@@ -57,68 +57,68 @@ export const Module: p_i.Transformer<d_in.Module, d_out.Modules.l_dictionary.D.l
 
 export const Value: p_i.Transformer<d_in.Value, d_out.Value> = (
     $
-) => sh.state(pt.decide.state($, ($): d_out.Value.l_state => {
+) => sh.state(p_.decide.state($, ($): d_out.Value.l_state => {
     switch ($[0]) {
-        case 'simple': return pt.ss($, ($): d_out.Value.l_state => ['text', sh.state(
-            pt.decide.state($, ($): d_out.Value.l_state.text.l_state => {
+        case 'simple': return p_.ss($, ($): d_out.Value.l_state => ['text', sh.state(
+            p_.decide.state($, ($): d_out.Value.l_state.text.l_state => {
                 switch ($[0]) {
-                    case 'global': return pt.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
+                    case 'global': return p_.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
 
-                    default: return pt.au($[0])
+                    default: return p_.au($[0])
                 }
             })
         )])
-        case 'list': return pt.ss($, ($) => ['list', {
+        case 'list': return p_.ss($, ($) => ['list', {
             'value': Value($.value)
         }])
-        case 'nothing': return pt.ss($, ($) => ['nothing', null])
-        case 'reference': return pt.ss($, ($) => pt.decide.state($.type, ($) => {
+        case 'nothing': return p_.ss($, ($) => ['nothing', null])
+        case 'reference': return p_.ss($, ($) => p_.decide.state($.type, ($) => {
             switch ($[0]) {
-                case 'derived': return pt.ss($, ($) => ['nothing', null])
-                case 'selected': return pt.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
+                case 'derived': return p_.ss($, ($) => ['nothing', null])
+                case 'selected': return p_.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
                     'type': sh.state(['single line', null])
                 }])])
-                default: return pt.au($[0])
+                default: return p_.au($[0])
             }
         }))
-        case 'component': return pt.ss($, ($) => ['component', sh.state(pt.decide.state($.type, ($): d_out.Value.l_state.component.l_state => {
+        case 'component': return p_.ss($, ($) => ['component', sh.state(p_.decide.state($.type, ($): d_out.Value.l_state.component.l_state => {
             switch ($[0]) {
-                case 'external': return pt.ss($, ($) => ['external', {
+                case 'external': return p_.ss($, ($) => ['external', {
                     'import': sh.reference($.import['l id']),
                     'type': sh.reference($.module['l id'])
                 }])
-                case 'internal acyclic': return pt.ss($, ($) => ['internal acyclic', sh.reference($['l id'])])
-                case 'internal': return pt.ss($, ($) => ['internal', sh.reference($['l id'])])
-                default: return pt.au($[0])
+                case 'internal acyclic': return p_.ss($, ($) => ['internal acyclic', sh.reference($['l id'])])
+                case 'internal': return p_.ss($, ($) => ['internal', sh.reference($['l id'])])
+                default: return p_.au($[0])
             }
         }))])
-        case 'dictionary': return pt.ss($, ($) => ['dictionary', {
+        case 'dictionary': return p_.ss($, ($) => ['dictionary', {
             'ordered': false,
             'value': Value($.value)
         }])
-        case 'group': return pt.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.value)))])
-        case 'optional': return pt.ss($, ($) => ['optional', Value($)])
-        case 'state': return pt.ss($, ($) => ['state', sh.dictionary($.options.__d_map(($) => Value($.value)))])
-        case 'text': return pt.ss($, ($) => ['text', sh.state(pt.decide.state($, ($): d_out.Value.l_state.text.l_state => {
+        case 'group': return p_.ss($, ($) => ['group', sh.dictionary($.__d_map(($) => Value($.value)))])
+        case 'optional': return p_.ss($, ($) => ['optional', Value($)])
+        case 'state': return p_.ss($, ($) => ['state', sh.dictionary($.options.__d_map(($) => Value($.value)))])
+        case 'text': return p_.ss($, ($) => ['text', sh.state(p_.decide.state($, ($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
-                case 'global': return pt.ss($, ($) => ['global', sh.reference("t" + $['l id'])])
-                case 'local': return pt.ss($, ($) => ['local', Text_Type($)])
-                default: return pt.au($[0])
+                case 'global': return p_.ss($, ($) => ['global', sh.reference("t" + $['l id'])])
+                case 'local': return p_.ss($, ($) => ['local', Text_Type($)])
+                default: return p_.au($[0])
             }
         }))])
-        // case 'type parameter': return pt.ss($, ($) => p_implement_me("xx"))
-        default: return pt.au($[0])
+        // case 'type parameter': return p_.ss($, ($) => p_implement_me("xx"))
+        default: return p_.au($[0])
     }
 }))
 
 export const Text_Type: p_i.Transformer<d_in.Text_Type, d_out.Text_Type> = (
     $
 ) => ({
-    'type': sh.state(pt.decide.state($.type, ($) => {
+    'type': sh.state(p_.decide.state($.type, ($) => {
         switch ($[0]) {
-            case 'multi line': return pt.ss($, ($) => ['multi line', null])
-            case 'single line': return pt.ss($, ($) => ['single line', null])
-            default: return pt.au($[0])
+            case 'multi line': return p_.ss($, ($) => ['multi line', null])
+            case 'single line': return p_.ss($, ($) => ['single line', null])
+            default: return p_.au($[0])
         }
     }))
 })
