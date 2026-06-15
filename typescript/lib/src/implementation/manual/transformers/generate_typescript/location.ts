@@ -3,7 +3,7 @@ import * as p_di from 'pareto-core/dist/interface/data'
 import * as pt from 'pareto-core/dist/implementation/transformer'
 
 //data types
-import * as d_in from "../../../../interface/to_be_generated/generate_typescript"
+import * as d_in from "../../../../interface/data/generate_typescript"
 import * as d_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
 export type Possible_Range = p_di.Optional_Value<d_location.Range>
 

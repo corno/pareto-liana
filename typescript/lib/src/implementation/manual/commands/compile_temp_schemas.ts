@@ -5,7 +5,7 @@ import * as signatures from "../../../interface/commands"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_generate_typescript from "../../../interface/to_be_generated/compile_temp_schemas"
+import * as d_generate_typescript from "../../../interface/data/compile_temp_schemas"
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all"

@@ -6,7 +6,7 @@ import * as signatures from "../../../interface/commands"
 
 // //data types
 import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
-import * as d_resource from "../../../interface/to_be_generated/generate_typescript"
+import * as d_resource from "../../../interface/data/generate_typescript"
 type My_Error_1 =
     | ['too many arguments', null]
     | ['missing source path', null]

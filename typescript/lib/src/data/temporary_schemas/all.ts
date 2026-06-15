@@ -2,7 +2,7 @@ import * as pt from 'pareto-core-shorthands/dist/unconstrained'
 
 
 
-import * as d_package from "../../interface/to_be_generated/compile_temp_schemas"
+import * as d_package from "../../interface/data/compile_temp_schemas"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
 // import { $ as m_antlr } from "./antlr/module.astn"

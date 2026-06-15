@@ -6,7 +6,7 @@ import p_create_symbol from 'pareto-core/dist/implementation/specials/create_sym
 import * as signatures from "../../../interface/commands"
 
 // //data types
-import * as d_resource from "../../../interface/to_be_generated/generate_typescript"
+import * as d_resource from "../../../interface/data/generate_typescript"
 import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved"
 
 //dependencies

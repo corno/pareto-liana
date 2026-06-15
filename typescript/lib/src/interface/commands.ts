@@ -4,7 +4,7 @@ import * as commands_pareto from "pareto-resources/dist/interface/resources"
 import * as commands_pareto_stream from "pareto-stream/dist/interface/commands"
 
 //data types
-import * as d_generate_typescript from "./to_be_generated/generate_typescript"
+import * as d_generate_typescript from "./data/generate_typescript"
 
 
 export namespace commands {

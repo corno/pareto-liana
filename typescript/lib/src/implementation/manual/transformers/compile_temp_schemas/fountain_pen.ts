@@ -1,7 +1,7 @@
 import * as pt from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
-import * as d_in from "../../../../interface/to_be_generated/compile_temp_schemas"
+import * as d_in from "../../../../interface/data/compile_temp_schemas"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
