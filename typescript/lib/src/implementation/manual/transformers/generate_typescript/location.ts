@@ -1,6 +1,6 @@
 import * as p_ti from 'pareto-core/dist/transformer/interface'
 import * as p_di from 'pareto-core/dist/data/interface'
-import * as pt from 'pareto-core/dist/assign'
+import * as pt from 'pareto-core/dist/transformer/implementation'
 
 //data types
 import * as d_in from "../../../../interface/to_be_generated/generate_typescript"

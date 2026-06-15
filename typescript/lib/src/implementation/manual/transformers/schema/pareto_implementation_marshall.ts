@@ -1,5 +1,5 @@
 import * as p_di from 'pareto-core/dist/data/interface'
-import * as pt from 'pareto-core/dist/assign'
+import * as pt from 'pareto-core/dist/transformer/implementation'
 import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
