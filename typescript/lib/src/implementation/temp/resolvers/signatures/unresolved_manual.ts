@@ -1,7 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as p_di from 'pareto-core/dist/data/interface'
 import * as p_sl from 'pareto-core/dist/select_static_lookup'
-import p_variables from 'pareto-core/dist/specials/variables'
 import p_change_context from 'pareto-core/dist/specials/change_context'
 import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
@@ -93,7 +91,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                     'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': pt.optional.literal.not_set(),
+                    'imports': pt.literal.not_set(),
                 },
 
             )
@@ -116,7 +114,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                     'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': pt.optional.literal.not_set(),
+                    'imports': pt.literal.not_set(),
                 },
 
             )

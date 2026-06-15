@@ -140,7 +140,7 @@ export const Schemas = (
     }
 ): d_out.Package_Set.D => {
     return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
-        'path': pt.list.nested_literal_old([
+        'path': pt.literal.nested_list([
             $p.path,
             [
                 id,

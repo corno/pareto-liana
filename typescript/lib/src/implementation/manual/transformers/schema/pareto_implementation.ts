@@ -1,5 +1,4 @@
 import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_di from 'pareto-core/dist/data/interface'
 import * as _psh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -9,11 +8,11 @@ import * as t_pareto_implementation_main from "./pareto_implementation_main"
 
 
 export const Package = ($: d_in.Package): d_out.Package_Set => {
-    return pt.dictionary.literal<d_out.Package_Set.D>({
+    return pt.literal.dictionary<d_out.Package_Set.D>({
         'schemas': t_pareto_implementation_main.Schema_Tree(
             $['schema tree'],
             {
-                'path': pt.list.literal([]),
+                'path': pt.literal.list([]),
                 'omit (de)serializer': $['omit (de)serializer'],
             }
         )

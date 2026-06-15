@@ -1,4 +1,4 @@
-import * as p_di from 'pareto-core/dist/data/interface'
+
 
 import {
     resolver_modules, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,

@@ -46,8 +46,8 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(
-                () => pt.optional.literal.not_set<null>(),
-                () => pt.optional.literal.set(null),
+                () => pt.literal.not_set<null>(),
+                () => pt.literal.set(null),
             )
         )
     ).has_entries(

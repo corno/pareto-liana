@@ -1,5 +1,4 @@
 import * as pt from 'pareto-core-shorthands/dist/unresolved_data'
-import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
@@ -567,9 +566,9 @@ export namespace r {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
-            'arguments': pt.optionalx.set({
-                'modules': modules === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(lookups)),
+            'arguments': pt.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>({}),
         }])
@@ -584,9 +583,9 @@ export namespace r {
             'definition': null,
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
-            'arguments': pt.optionalx.set({
-                'modules': modules === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(lookups)),
+            'arguments': pt.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints),
         }])
@@ -606,9 +605,9 @@ export namespace r {
                 'signature': sh.reference(type),
             }]),
             'signature': null,
-            'arguments': pt.optionalx.set({
-                'modules': modules === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optionalx.not_set() : pt.optionalx.set(sh.dictionary(lookups)),
+            'arguments': pt.optional.set({
+                'modules': modules === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : pt.optional.set(sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
         }])
@@ -618,7 +617,7 @@ export namespace r {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
-            'benchmark': sh.optionalx.not_set(),
+            'benchmark': sh.optional.not_set(),
         }])
     }
 
@@ -630,7 +629,7 @@ export namespace r {
         return sh.state(['dictionary', {
             'definition': null,
             'resolver': resolver,
-            'benchmark': pt.optionalx.set({
+            'benchmark': pt.optional.set({
                 'selection': selection,
                 'resulting dictionary': null,
                 'dense': dense === 'dense',
@@ -662,7 +661,7 @@ export namespace r {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': pt.optionalx.not_set<d_target.Resolver_Value.l_state.list.result.O>(),
+            'result': pt.optional.not_set<d_target.Resolver_Value.l_state.list.result.O>(),
         }])
     }
     export const list_with_result = (
@@ -673,7 +672,7 @@ export namespace r {
         return sh.state(['list', {
             'definition': null,
             'resolver': type_resolver,
-            'result': pt.optionalx.set(result),
+            'result': pt.optional.set(result),
         }])
     }
 

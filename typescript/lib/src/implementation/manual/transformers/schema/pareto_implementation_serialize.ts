@@ -18,34 +18,34 @@ export const Schema = (
 
     return sh.m.package_(
         [],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "signatures"
                     ]),
                     constrained
-                        ? pt.list.literal([
+                        ? pt.literal.list([
                             "resolved"
                         ])
-                        : pt.list.literal([
+                        : pt.literal.list([
                         ]),
-                    pt.list.literal([
+                    pt.literal.list([
                         "transformers",
                         "fountain pen",
                     ])
                 ])
             ),
         }),
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "serialize": sh_i.import_.external(
                 "astn-core",
                 [
@@ -57,7 +57,7 @@ export const Schema = (
                     "fountain pen",
                 ],
             ),
-            "marshall": sh_i.import_.sibling("astn sealed target", pt.list.nested_literal_old([
+            "marshall": sh_i.import_.sibling("astn sealed target", pt.literal.nested_list([
             ])),
         }),
         $.modules.__d_map(($, id) => sh.algorithm(

@@ -1,17 +1,14 @@
-import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_di from 'pareto-core/dist/data/interface'
-import * as _psh from 'pareto-core-shorthands/dist/unconstrained'
+import * as p_xxxx from 'pareto-core-shorthands/dist/unconstrained'
 
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
-import * as sh from "pareto/dist/shorthands/interface"
 import * as t_pareto_interface_main from "./pareto_interface_main"
 
 
 export const Package = ($: d_in.Package): d_out.Package_Set => {
-    return _psh.dictionary.literal({
+    return p_xxxx.dictionary({
         // "generic": sh.m.set({
         //     // "location": sh.m.package_(
         //     //     {},

@@ -17,22 +17,22 @@ import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 export const Error: p_ti.Transformer<d_in.Error, Possible_Range> = ($) => {
     return pt.decide.state($, ($): Possible_Range => {
         switch ($[0]) {
-            case 'could not read source': return pt.ss($, ($): Possible_Range => pt.optional.literal.not_set())
-            case 'could not log': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not remove interface': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not remove implementation': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not write interface': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not write implementation': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not copy generic implementation': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not copy core interface': return pt.ss($, ($) => pt.optional.literal.not_set())
-            case 'could not resolve module': return pt.ss($, ($): Possible_Range => pt.optional.literal.set( pt.decide.state($.error.location, ($) => {
+            case 'could not read source': return pt.ss($, ($): Possible_Range => pt.literal.not_set())
+            case 'could not log': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not remove interface': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not remove implementation': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not write interface': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not write implementation': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not copy generic implementation': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not copy core interface': return pt.ss($, ($) => pt.literal.not_set())
+            case 'could not resolve module': return pt.ss($, ($): Possible_Range => pt.literal.set( pt.decide.state($.error.location, ($) => {
                 switch ($[0]) {
                     case 'in main document': return pt.ss($, ($): d_location.Range => $)
                     case 'in subdocument':return pt.ss($, ($): d_location.Range => $.range)
                     default: return pt.au($[0])
                 }
             })))
-            case 'could not deserialize': return pt.ss($, ($) => pt.optional.literal.set(
+            case 'could not deserialize': return pt.ss($, ($) => pt.literal.set(
                 pt.decide.state(t_deserialize_to_location.Error($.error), ($): d_location.Range => {
                     switch ($[0]) {
                         case 'range': return pt.ss($, ($) => $)

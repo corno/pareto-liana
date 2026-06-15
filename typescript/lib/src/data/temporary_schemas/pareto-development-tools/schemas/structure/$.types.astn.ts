@@ -1,40 +1,31 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema"
 
 
-export const $ = modules(
+import * as sh from "../../../../../shorthands/schema"
+
+
+export const $ = sh.modules(
     {
-
-        "Directory": module_(t.state({
-            "dictionary": toption(t.component("Directory")),
-            "group": toption(t.dictionary(t.state({
-                "directory": toption(t.component("Directory")),
-                "file": toption(t.state({
-                    "manual": toption(t.nothing()),
-                    "generated": toption(t.group({
-                        "commit to git": prop(t.simple("boolean"))
+        "Directory": sh.module_(sh.t.state({
+            "dictionary": sh.toption(sh.t.component("Directory")),
+            "group": sh.toption(sh.t.dictionary(sh.t.state({
+                "directory": sh.toption(sh.t.component("Directory")),
+                "file": sh.toption(sh.t.state({
+                    "manual": sh.toption(sh.t.nothing()),
+                    "generated": sh.toption(sh.t.group({
+                        "commit to git": sh.prop(sh.t.simple("boolean"))
                     })),
                 })),
             }))),
-            "wildcards": toption(t.group({
-                "required directories": prop(t.simple("Natural")),
-                "additional directories allowed": prop(t.simple("boolean")),
-                "extensions": prop(t.list(t.text_global("text"))),
-                "warn": prop(t.simple("boolean")),
+            "wildcards": sh.toption(sh.t.group({
+                "required directories": sh.prop(sh.t.simple("Natural")),
+                "additional directories allowed": sh.prop(sh.t.simple("boolean")),
+                "extensions": sh.prop(sh.t.list(sh.t.text_global("text"))),
+                "warn": sh.prop(sh.t.simple("boolean")),
             })),
-            "freeform": toption(t.nothing()),
-            "ignore": toption(t.nothing()),
-            "generated": toption(t.group({
-                "commit to git": prop(t.simple("boolean"))
+            "freeform": sh.toption(sh.t.nothing()),
+            "ignore": sh.toption(sh.t.nothing()),
+            "generated": sh.toption(sh.t.group({
+                "commit to git": sh.prop(sh.t.simple("boolean"))
             })),
         })),
     }

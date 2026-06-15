@@ -1,26 +1,21 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as p_di from 'pareto-core/dist/data/interface'
-import * as _p_sl from 'pareto-core/dist/select_static_lookup'
+import * as p_sl from 'pareto-core/dist/select_static_lookup'
 import p_variables from 'pareto-core/dist/specials/variables'
 import p_change_context from 'pareto-core/dist/specials/change_context'
 import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
-// import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 
 import * as _i_generic from "../../resolve_generic"
 
-// import * as _r from "../../../interface/generated/liana/generic/resolved"
-
-
 import  { Value as Resolver_Value } from "../resolver/unresolved_manual"
 import  { Signatures } from "../signatures/unresolved_manual"
 import  { Value, Globals } from "../modules/unresolved_manual"
 
 
-export const Package: t_signatures.Package = ($, abort, $l, $p) => pt.group.literal.resolve(
+export const Package: t_signatures.Package = ($, abort, $l, $p) => pt.literal.group_resolve(
     () => {
 
         const prop_omit_$po_de$pc_serializer = p_change_context(
@@ -36,7 +31,7 @@ export const Package: t_signatures.Package = ($, abort, $l, $p) => pt.group.lite
                     $,
                 ),
                 {
-                    'sibling schemas': _p_sl.stack.empty(
+                    'sibling schemas': p_sl.stack.empty(
                     ),
                 },
                 p_create_symbol(),
@@ -171,8 +166,8 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                             'possibly circular dependent sibling modules': $cyclic,
                         },
                         {
-                            'imports': pt.optional.literal.set(p_schema_imports),
-                            'globals': pt.optional.literal.set(p_globals),
+                            'imports': pt.literal.set(p_schema_imports),
+                            'globals': pt.literal.set(p_globals),
                         },
 
                     )
@@ -208,7 +203,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                             ($, id, $acyclic, $cyclic) => {
 
                                 const p_linked_entry = _i_generic.get_entry_acyclic(
-                                    _p_sl.acyclic.from_resolved_dictionary(p_types),
+                                    p_sl.acyclic.from_resolved_dictionary(p_types),
                                     {
                                         'l reference': id,
                                         'l location': $['l location'],
@@ -216,7 +211,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                     abort,
                                 )
                                 const p_signature = _i_generic.get_entry_acyclic(
-                                    _p_sl.acyclic.from_resolved_dictionary(p_signatures.signatures),
+                                    p_sl.acyclic.from_resolved_dictionary(p_signatures.signatures),
                                     {
                                         'l reference': id,
                                         'l location': $['l location'],
@@ -228,23 +223,23 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                     $['l entry']['root value resolver'],
                                     abort,
                                     {
-                                        'sibling property resolvers': _p_sl.acyclic.not_set(),
-                                        'parent sibling property resolvers': _p_sl.acyclic.not_set(),
+                                        'sibling property resolvers': p_sl.acyclic.not_set(),
+                                        'parent sibling property resolvers': p_sl.acyclic.not_set(),
 
                                     },
                                     {
-                                        'list cursor': pt.optional.literal.not_set(),
-                                        'linked entry': pt.optional.literal.not_set(),
-                                        'current dictionary': pt.optional.literal.not_set(),
-                                        'current ordered dictionary': pt.optional.literal.not_set(),
-                                        'option constraints': pt.optional.literal.not_set(),
+                                        'list cursor': pt.literal.not_set(),
+                                        'linked entry': pt.literal.not_set(),
+                                        'current dictionary': pt.literal.not_set(),
+                                        'current ordered dictionary': pt.literal.not_set(),
+                                        'option constraints': pt.literal.not_set(),
 
                                         'definition': p_linked_entry['l entry']['root value'],
                                         'signature': p_signature['l entry'],
 
                                         'modules': p_types,
-                                        'schema imports': pt.optional.literal.set(p_schema_imports),
-                                        'resolver imports': pt.optional.literal.set(p_resolver_imports),
+                                        'schema imports': pt.literal.set(p_schema_imports),
+                                        'resolver imports': pt.literal.set(p_resolver_imports),
                                         'signatures': p_signatures.signatures
                                     },
                                 )
@@ -288,7 +283,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_variables((
         $['l entry'],
         abort,
         {
-            'sibling schemas': _p_sl.stack.push($l['sibling schemas'], $acyclic)
+            'sibling schemas': p_sl.stack.push($l['sibling schemas'], $acyclic)
         },
         p_create_symbol(),
     )),
@@ -301,7 +296,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         $.schema,
         abort,
         {
-            'sibling schemas': _p_sl.stack.empty(),
+            'sibling schemas': p_sl.stack.empty(),
         },
         $p,
     ),

@@ -1,6 +1,3 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-
-
 
 import { package_ } from "../../../shorthands/schema"
 

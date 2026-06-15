@@ -1,4 +1,4 @@
-import * as p_di from 'pareto-core/dist/data/interface'
+
 
 import * as sh from "../../../shorthands/schema"
 

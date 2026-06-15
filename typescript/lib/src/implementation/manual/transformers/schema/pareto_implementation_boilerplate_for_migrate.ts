@@ -5,7 +5,6 @@ import p_change_context from 'pareto-core/dist/specials/change_context'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
-import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
@@ -37,27 +36,27 @@ export const Schema = (
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context'],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "signatures"
                     ]),
                     constrained
-                        ? pt.list.literal([
+                        ? pt.literal.list([
                             "resolved"
                         ])
-                        : pt.list.literal([
+                        : pt.literal.list([
                         ]),
-                    pt.list.literal([
+                    pt.literal.list([
                         "transformers",
                         "boilerplate for migrate"
                     ])
@@ -66,19 +65,19 @@ export const Schema = (
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
                     constrained
-                        ? pt.list.literal([
+                        ? pt.literal.list([
                             "data",
                             "unresolved",
                         ])
-                        : pt.list.literal([
+                        : pt.literal.list([
                             "data",
                         ])
                 ])
@@ -95,7 +94,7 @@ export const Schema = (
                 $['root value'],
                 {
                     'type name': id,
-                    'subselection': pt.list.literal([]),
+                    'subselection': pt.literal.list([]),
                     'constrained': constrained,
                 }
             ),
@@ -144,7 +143,7 @@ export const Value = (
                                     $.value,
                                     {
                                         'type name': $p['type name'],
-                                        'subselection': pt.list.nested_literal_old([
+                                        'subselection': pt.literal.nested_list([
                                             $p.subselection,
                                             [
                                                 sh.sub.group("l dictionary"),
@@ -165,7 +164,7 @@ export const Value = (
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': pt.list.nested_literal_old([
+                                'subselection': pt.literal.nested_list([
                                     $p.subselection,
                                     [
                                         sh.sub.dictionary()
@@ -182,7 +181,7 @@ export const Value = (
                     $.value,
                     {
                         'type name': $p['type name'],
-                        'subselection': pt.list.nested_literal_old([
+                        'subselection': pt.literal.nested_list([
                             $p.subselection,
                             [
                                 sh.sub.group(id)
@@ -205,7 +204,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'type name': $p['type name'],
-                                            'subselection': pt.list.nested_literal_old([
+                                            'subselection': pt.literal.nested_list([
                                                 $p.subselection,
                                                 [
                                                     sh.sub.group("l list"),
@@ -234,7 +233,7 @@ export const Value = (
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': pt.list.nested_literal_old([
+                                'subselection': pt.literal.nested_list([
                                     $p.subselection,
                                     [
                                         sh.sub.list()
@@ -254,7 +253,7 @@ export const Value = (
                     $,
                     {
                         'type name': $p['type name'],
-                        'subselection': pt.list.nested_literal_old([
+                        'subselection': pt.literal.nested_list([
                             $p.subselection,
                             [
                                 sh.sub.optional()
@@ -269,8 +268,8 @@ export const Value = (
                     case 'derived': return pt.ss($, ($) => sh.a.nothing())
                     case 'selected': return pt.ss($, ($) => {
                         const tn = sh.a.text.copy(sh.sv.context($.results.__decide(
-                            ($) => pt.list.literal(["l value", "l id"]),
-                            () => pt.list.literal(["l id"])
+                            ($) => pt.literal.list(["l value", "l id"]),
+                            () => pt.literal.list(["l id"])
                         )))
 
                         return $p.constrained
@@ -290,7 +289,7 @@ export const Value = (
                         $.value,
                         {
                             'type name': $p['type name'],
-                            'subselection': pt.list.nested_literal_old([
+                            'subselection': pt.literal.nested_list([
                                 $p.subselection,
                                 $p.constrained
                                     ? [
@@ -307,7 +306,7 @@ export const Value = (
                     sh.type_node_reference(
                         "out",
                         $p['type name'],
-                        pt.list.nested_literal_old([
+                        pt.literal.nested_list([
                             $p.subselection,
                             $p.constrained
                                 ? [

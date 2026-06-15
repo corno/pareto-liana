@@ -39,24 +39,24 @@ export const Schema: p_ti.Transformer_With_Parameter<
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context', 'list from text', 'variables'],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "signatures",
                     ]),
                     $.complexity[0] === 'constrained'
-                        ? pt.list.literal(["unresolved"])
-                        : pt.list.literal([]),
-                    pt.list.literal([
+                        ? pt.literal.list(["unresolved"])
+                        : pt.literal.list([]),
+                    pt.literal.list([
                         "refiners",
                         "astn parse tree"
                     ]),
@@ -65,22 +65,22 @@ export const Schema: p_ti.Transformer_With_Parameter<
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
                     $.complexity[0] === 'constrained'
-                        ? pt.list.literal(["data", "unresolved"])
-                        : pt.list.literal(["data"]),
+                        ? pt.literal.list(["data", "unresolved"])
+                        : pt.literal.list(["data"]),
                 ]),
             ),
         }),
         pt.dictionary.from.dictionary(
-            pt.dictionary.literal({
-                "": pt.dictionary.literal({
+            pt.literal.dictionary({
+                "": pt.literal.dictionary({
 
                     "unmarshalled from parse tree": sh_i.import_.external(
                         "liana-core",
@@ -125,7 +125,7 @@ export const Schema: p_ti.Transformer_With_Parameter<
                 $['root value'],
                 {
                     'temp type': id,
-                    'temp subselection': pt.list.literal([]),
+                    'temp subselection': pt.literal.list([]),
                     'constrained': constrained
                 }
             ),
@@ -199,7 +199,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': pt.list.nested_literal_old([
+                                            'temp subselection': pt.literal.nested_list([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.group("l dictionary"),
@@ -220,7 +220,7 @@ export const Value = (
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': pt.list.nested_literal_old([
+                                    'temp subselection': pt.literal.nested_list([
                                         $p['temp subselection'],
                                         [
                                             sh_i.sub.dictionary(),
@@ -279,7 +279,7 @@ export const Value = (
                             $.value,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': pt.list.nested_literal_old([
+                                'temp subselection': pt.literal.nested_list([
                                     $p['temp subselection'],
                                     [
                                         sh_i.sub.group(id),
@@ -316,7 +316,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': pt.list.nested_literal_old([
+                                            'temp subselection': pt.literal.nested_list([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.group("l list"),
@@ -350,7 +350,7 @@ export const Value = (
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': pt.list.nested_literal_old([
+                                    'temp subselection': pt.literal.nested_list([
                                         $p['temp subselection'],
                                         [
                                             sh_i.sub.list(),
@@ -456,7 +456,7 @@ export const Value = (
                     $,
                     {
                         'temp type': $p['temp type'],
-                        'temp subselection': pt.list.nested_literal_old([
+                        'temp subselection': pt.literal.nested_list([
                             $p['temp subselection'],
                             [
                                 sh_i.sub.optional(),
@@ -520,7 +520,7 @@ export const Value = (
                                             $.value,
                                             {
                                                 'temp type': $p['temp type'],
-                                                'temp subselection': pt.list.nested_literal_old([
+                                                'temp subselection': pt.literal.nested_list([
                                                     $p['temp subselection'],
                                                     [
                                                         sh_i.sub.group("l state"),
@@ -538,7 +538,7 @@ export const Value = (
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': pt.list.nested_literal_old([
+                                            'temp subselection': pt.literal.nested_list([
                                                 $p['temp subselection'],
                                                 [
                                                     sh_i.sub.state(id),
@@ -566,7 +566,7 @@ export const Value = (
                             )
                         ),
                     }))),
-                    sh.type_node_reference("out", $p['temp type'], pt.list.nested_literal_old([
+                    sh.type_node_reference("out", $p['temp type'], pt.literal.nested_list([
                         $p['temp subselection'],
                         [
                         ]

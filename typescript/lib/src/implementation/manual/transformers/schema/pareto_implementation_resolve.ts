@@ -17,7 +17,7 @@ const temp_prepend = <T extends p_di.Value>(
         result[prefix + id] = $
         return null
     })
-    return pt.dictionary.literal(result)
+    return pt.literal.dictionary(result)
 }
 
 const no_such_entry_error = sh.a.group.literal({
@@ -63,37 +63,37 @@ export const Resolver_Modules = (
 ): d_out.Package_Set.D => {
     return sh.m.package_(
         ['change context', 'variables', 'lookups', 'unreachable code path'],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal(["data", "resolved"])
+                    pt.literal.list(["data", "resolved"])
                 ])
             ),
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "signatures"
                     ]),
-                    pt.list.literal([
+                    pt.literal.list([
                         "resolved"
                     ]),
-                    pt.list.literal([
+                    pt.literal.list([
                         "refiners",
                         "unresolved",
                     ])
@@ -101,7 +101,7 @@ export const Resolver_Modules = (
             ),
         }),
         pt.dictionary.from.dictionary(
-            pt.dictionary.literal({
+            pt.literal.dictionary({
                 "external ": $p.imports.__d_map(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
                     "resolved",
                     "refiners",
@@ -124,7 +124,7 @@ export const Resolver_Modules = (
                 $['root value resolver'],
                 {
                     'temp type': id,
-                    'temp subselection': pt.list.literal([])
+                    'temp subselection': pt.literal.list([])
                 }
             ),
         ))
@@ -162,8 +162,8 @@ export const Optional_Argument_Initialization = (
 ): d_out.Assign => pt.decide.state($, ($) => {
     switch ($[0]) {
         case 'not set': return pt.ss($, ($) => sh.a.optional.not_set())
-        case 'selection': return pt.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': pt.list.literal([]) })))
-        case 'set': return pt.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection($, { 'tail': pt.list.literal([]) }))))
+        case 'selection': return pt.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': pt.literal.list([]) })))
+        case 'set': return pt.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection($, { 'tail': pt.literal.list([]) }))))
         default: return pt.au($[0])
     }
 })
@@ -174,18 +174,18 @@ export const Resolver_Guaranteed_Value_Selection = (
         'tail': p_di.List<d_out.Select_Value.regular.tail.L>
     },
 ): d_out.Select_Value => {
-    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => pt.list.nested_literal_old([
+    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => pt.literal.nested_list([
         pt.list.from.list(
             $.tail.path['l value'],
         ).flatten(
             ($) => pt.decide.state($['l item'], ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
                 switch ($[0]) {
-                    case 'component': return pt.ss($, ($) => pt.list.literal([]))
-                    case 'group': return pt.ss($, ($) => pt.list.literal([$['l id']]))
+                    case 'component': return pt.ss($, ($) => pt.literal.list([]))
+                    case 'group': return pt.ss($, ($) => pt.literal.list([$['l id']]))
                     case 'reference': return pt.ss($, ($) => pt.decide.state($.definition.type, ($) => {
                         switch ($[0]) {
-                            case 'derived': return pt.ss($, ($) => pt.list.literal([]))
-                            case 'selected': return pt.ss($, ($) => pt.list.literal(["l entry"]))
+                            case 'derived': return pt.ss($, ($) => pt.literal.list([]))
+                            case 'selected': return pt.ss($, ($) => pt.literal.list(["l entry"]))
                             default: return pt.au($[0])
                         }
                     }))
@@ -233,7 +233,7 @@ export const Resolver_Lookup_Selection = (
                     Resolver_Guaranteed_Value_Selection(
                         $.selection,
                         {
-                            'tail': pt.list.literal([]),
+                            'tail': pt.literal.list([]),
                         }
                     )
                 ))
@@ -280,11 +280,11 @@ export const Option_Constraints = (
                             "location": sh.a.select(sh.sv.variable("location", []))
                         })),
                         null,
-                        // sh.type_node_reference("out", $p['sub'], pt.list.literal([]))
+                        // sh.type_node_reference("out", $p['sub'], pt.literal.list([]))
 
                     ))
                     case 'assert is set': return pt.ss($, ($) => sh.a.decide.optional(
-                        Possible_Value_Selection($, { 'tail': pt.list.literal([]) }),
+                        Possible_Value_Selection($, { 'tail': pt.literal.list([]) }),
                         sh.a.select(sh.sv.context([])),
                         sh.a.abort(sh.a.group.literal({
                             "type": sh.a.state.literal(
@@ -297,7 +297,7 @@ export const Option_Constraints = (
                             "location": sh.a.select(sh.sv.variable("location", []))
                         })),
                         // null,
-                        // sh.type_node_reference("out", $p['sub'] as any as string, pt.list.literal([]))
+                        // sh.type_node_reference("out", $p['sub'] as any as string, pt.literal.list([]))
                     ))
                     default: return pt.au($[0])
                 }
@@ -313,10 +313,10 @@ export const Option_Constraints = (
 //     // {
 //     //         switch ($[0]) {
 //     //     case 'assert is set': return pt.ss($, ($) => sh.a.decide.optional(
-//     //         Possible_Value_Selection($, { 'tail': () => pt.list.literal([]) }),
+//     //         Possible_Value_Selection($, { 'tail': () => pt.literal.list([]) }),
 //     //         sh.a.select(sh.sv.context([])),
 //     //         sh.a.implement_me("IM: assert is set"),
-//     //         sh.type_node_reference("out", $p['sub'] as any as string, pt.list.literal([]))
+//     //         sh.type_node_reference("out", $p['sub'] as any as string, pt.literal.list([]))
 //     //     ))
 //     //     case 'state': return pt.ss($, ($) => sh.a.implement_me("IM: state constraint")) // medium work
 //     //     default: return pt.au($[0])
@@ -399,7 +399,7 @@ export const Resolver_Value = (
                                                     Resolver_Guaranteed_Value_Selection(
                                                         $,
                                                         {
-                                                            'tail': pt.list.literal([]),
+                                                            'tail': pt.literal.list([]),
                                                         }
                                                     )
                                                 ))
@@ -434,7 +434,7 @@ export const Resolver_Value = (
                                 resolver,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': pt.list.nested_literal_old([
+                                    'temp subselection': pt.literal.nested_list([
                                         $p['temp subselection'],
                                         [
                                             sh_i.sub.dictionary(),
@@ -445,7 +445,7 @@ export const Resolver_Value = (
                             )
                         )
                     ),
-                    sh.type_node_reference("out", $p['temp type'], pt.list.nested_literal_old([
+                    sh.type_node_reference("out", $p['temp type'], pt.literal.nested_list([
                         $p['temp subselection'],
                         [
                             sh_i.sub.dictionary(),
@@ -461,7 +461,7 @@ export const Resolver_Value = (
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': pt.list.nested_literal_old([
+                                'temp subselection': pt.literal.nested_list([
                                     $p['temp subselection'],
                                     [
                                         sh_i.sub.dictionary(),
@@ -471,7 +471,7 @@ export const Resolver_Value = (
 
                         )
                     ),
-                    sh.type_node_reference("out", $p['temp type'], pt.list.nested_literal_old([
+                    sh.type_node_reference("out", $p['temp type'], pt.literal.nested_list([
                         $p['temp subselection'],
                         [
                             sh_i.sub.dictionary(),
@@ -489,7 +489,7 @@ export const Resolver_Value = (
                         $.resolver,
                         {
                             'temp type': $p['temp type'],
-                            'temp subselection': pt.list.nested_literal_old([
+                            'temp subselection': pt.literal.nested_list([
                                 $p['temp subselection'],
                                 [
                                     sh_i.sub.group(id)
@@ -515,7 +515,7 @@ export const Resolver_Value = (
                                     resolver,
                                     {
                                         'temp type': $p['temp type'],
-                                        'temp subselection': pt.list.nested_literal_old([
+                                        'temp subselection': pt.literal.nested_list([
                                             $p['temp subselection'],
                                             [
                                                 sh_i.sub.group("l value"),
@@ -543,7 +543,7 @@ export const Resolver_Value = (
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': pt.list.nested_literal_old([
+                                'temp subselection': pt.literal.nested_list([
                                     $p['temp subselection'],
                                     [
                                         sh_i.sub.list()
@@ -563,7 +563,7 @@ export const Resolver_Value = (
                 $.resolver,
                 {
                     'temp type': $p['temp type'],
-                    'temp subselection': pt.list.nested_literal_old([
+                    'temp subselection': pt.literal.nested_list([
                         $p['temp subselection'],
                         [
                             sh_i.sub.optional()
@@ -578,7 +578,7 @@ export const Resolver_Value = (
                     Resolver_Guaranteed_Value_Selection(
                         $.value,
                         {
-                            'tail': pt.list.literal([])
+                            'tail': pt.literal.list([])
                         }
                     )
                 ))
@@ -660,15 +660,15 @@ export const Resolver_Value = (
                                         $['resolver'],
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': pt.list.nested_literal_old([
+                                            'temp subselection': pt.literal.nested_list([
                                                 $p['temp subselection'],
                                                 pt.decide.optional(
                                                     results,
-                                                    () => pt.list.literal([
+                                                    () => pt.literal.list([
                                                         sh_i.sub.group("l value"),
                                                         sh_i.sub.state(id),
                                                     ]),
-                                                    () => pt.list.literal([
+                                                    () => pt.literal.list([
                                                         sh_i.sub.state(id),
                                                     ])
                                                 )
@@ -679,14 +679,14 @@ export const Resolver_Value = (
                             ))),
                             sh.type_node_reference(
                                 "out",
-                                $p['temp type'], pt.list.nested_literal_old([
+                                $p['temp type'], pt.literal.nested_list([
                                     $p['temp subselection'],
                                     pt.decide.optional(
                                         results,
-                                        () => pt.list.literal([
+                                        () => pt.literal.list([
                                             sh_i.sub.group("l value"),
                                         ]),
-                                        () => pt.list.literal([])
+                                        () => pt.literal.list([])
                                     ),
                                 ]),
                             ),

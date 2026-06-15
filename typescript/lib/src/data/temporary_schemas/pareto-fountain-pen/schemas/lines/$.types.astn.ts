@@ -1,19 +1,8 @@
-import * as p_di from 'pareto-core/dist/data/interface'
+import * as sh from "../../../../../shorthands/schema"
 
-import {
-    modules,
-    text,
-    n,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema"
-
-
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Lines": module_(t.list(t.text_global("Output"))),
+        "Lines": sh.module_(sh.t.list(sh.t.text_global("Output"))),
     }
 )
 

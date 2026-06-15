@@ -13,7 +13,7 @@
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
-// export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_omit_$po_de$pc_serializer = _p_change_context(
@@ -41,7 +41,7 @@
 //     },
 // )
 
-// export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_root_value = _p_change_context(
@@ -89,7 +89,7 @@
 //     ),
 // )
 
-// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_complexity = _p_change_context(
@@ -168,7 +168,7 @@
 //     },
 // )
 
-// export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_precision = _p_change_context(
@@ -184,7 +184,7 @@
 //                                 case 'approximation':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['approximation', _p.group.literal.resolve(
+//                                         ($) => ['approximation', _p.literal.group_resolve(
 //                                             () => {
                                                 
 //                                                 const prop_significant_digits = _p_change_context(
@@ -200,7 +200,7 @@
 //                                 case 'exact':
 //                                     return _p.ss(
 //                                         $,
-//                                         ($) => ['exact', _p.group.literal.resolve(
+//                                         ($) => ['exact', _p.literal.group_resolve(
 //                                             () => {
                                                 
 //                                                 const prop_decimal_separator_offset = _p_change_context(
@@ -270,7 +270,7 @@
 //     },
 // )
 
-// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_type = _p_change_context(
@@ -309,7 +309,7 @@
 //     },
 // )
 
-// export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_location = _p_change_context(
@@ -368,7 +368,7 @@
 //                                                         },
 //                                                     ),
 //                                                 )
-//                                                 return _p.group.literal.resolve(
+//                                                 return _p.literal.group_resolve(
 //                                                     () => {
                                                         
 //                                                         const prop_import = _p_change_context(
@@ -467,7 +467,7 @@
 //     },
 // )
 
-// export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_module = _p_change_context(
@@ -502,7 +502,7 @@
 //     },
 // )
 
-// export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_tail = _p_change_context(
@@ -817,7 +817,7 @@
 // ).resolve_static(
 //     ($, id, $a, $c): t_out.Group.D => _p_change_context(
 //         $['l entry'],
-//         ($) => _p.group.literal.resolve(
+//         ($) => _p.literal.group_resolve(
 //             () => {
                 
 //                 const prop_description = _p_change_context(
@@ -855,7 +855,7 @@
 //     ),
 // )
 
-// export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_value = _p_change_context(
@@ -897,7 +897,7 @@
 //                     case 'component':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['component', _p.group.literal.resolve(
+//                             ($) => ['component', _p.literal.group_resolve(
 //                                 () => {
                                     
 //                                     const prop_type = _p_change_context(
@@ -926,7 +926,7 @@
 //                                                                                     },
 //                                                                                 ),
 //                                                                             )
-//                                                                             return _p.group.literal.resolve(
+//                                                                             return _p.literal.group_resolve(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const prop_import = _p_change_context(
@@ -1132,7 +1132,7 @@
 //                     case 'list':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['list', _p.group.literal.resolve(
+//                             ($) => ['list', _p.literal.group_resolve(
 //                                 () => {
                                     
 //                                     const prop_value = _p_change_context(
@@ -1269,7 +1269,7 @@
 //                     case 'reference':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['reference', _p.group.literal.resolve(
+//                             ($) => ['reference', _p.literal.group_resolve(
 //                                 () => {
                                     
 //                                     const prop_referent = _p_change_context(
@@ -1328,7 +1328,7 @@
 //                                                                                     }
 //                                                                                 },
 //                                                                             )
-//                                                                             return _p.group.literal.resolve(
+//                                                                             return _p.literal.group_resolve(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const prop_dictionary = _p_change_context(
@@ -1417,7 +1417,7 @@
 //                     case 'state':
 //                         return _p.ss(
 //                             $,
-//                             ($) => ['state', _p.group.literal.resolve(
+//                             ($) => ['state', _p.literal.group_resolve(
 //                                 () => {
                                     
 //                                     const prop_options = _p_change_context(
@@ -1427,7 +1427,7 @@
 //                                         ).resolve_static(
 //                                             ($, id, $a, $c): t_out.Value.state.options.D => _p_change_context(
 //                                                 $['l entry'],
-//                                                 ($) => _p.group.literal.resolve(
+//                                                 ($) => _p.literal.group_resolve(
 //                                                     () => {
                                                         
 //                                                         const prop_constraints = _p_change_context(
@@ -1589,7 +1589,7 @@
 //     },
 // )
 
-// export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_path = _p_change_context(
@@ -1721,7 +1721,7 @@
 //                                                                         }
 //                                                                     },
 //                                                                 )
-//                                                                 return _p.group.literal.resolve(
+//                                                                 return _p.literal.group_resolve(
 //                                                                     () => {
                                                                         
 //                                                                         const prop_definition = _p_change_context(
@@ -1806,7 +1806,7 @@
 //     },
 // )
 
-// export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_modules = _p_change_context(
@@ -1816,7 +1816,7 @@
 //             ).resolve_static(
 //                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.modules.D => _p_change_context(
 //                     $['l entry'],
-//                     ($) => _p.group.literal.resolve(
+//                     ($) => _p.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_module = _p_change_context(
@@ -1832,7 +1832,7 @@
 //                                         ),
 //                                     },
 //                                     {
-//                                         'imports': _p.optional.literal.set(
+//                                         'imports': _p.literal.set(
 //                                             $p['imports'],
 //                                         ),
 //                                     },
@@ -1867,7 +1867,7 @@
 //             ).resolve_static(
 //                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.lookups.D => _p_change_context(
 //                     $['l entry'],
-//                     ($) => _p.group.literal.resolve(
+//                     ($) => _p.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_referent = _p_change_context(
@@ -1883,7 +1883,7 @@
 //                                         ),
 //                                     },
 //                                     {
-//                                         'imports': _p.optional.literal.set(
+//                                         'imports': _p.literal.set(
 //                                             $p['imports'],
 //                                         ),
 //                                     },
@@ -1962,7 +1962,7 @@
 //     },
 // )
 
-// export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_module = _p_change_context(
@@ -2183,12 +2183,12 @@
 //                                                 case 'state':
 //                                                     return _p.ss(
 //                                                         $,
-//                                                         ($) => ['state', _p.group.literal.resolve(
+//                                                         ($) => ['state', _p.literal.group_resolve(
 //                                                             () => {
                                                                 
 //                                                                 const prop_property = _p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => _p.group.literal.resolve(
+//                                                                     ($) => _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_l_value = {
@@ -2291,12 +2291,12 @@
 //                                                 case 'optional value':
 //                                                     return _p.ss(
 //                                                         $,
-//                                                         ($) => ['optional value', _p.group.literal.resolve(
+//                                                         ($) => ['optional value', _p.literal.group_resolve(
 //                                                             () => {
                                                                 
 //                                                                 const prop_property = _p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => _p.group.literal.resolve(
+//                                                                     ($) => _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_l_value = {
@@ -2416,7 +2416,7 @@
 //     },
 // )
 
-// export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_start = _p_change_context(
@@ -2560,12 +2560,12 @@
 //                                                             case 'component':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['component', _p.group.literal.resolve(
+//                                                                     ($) => ['component', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2676,12 +2676,12 @@
 //                                                             case 'reference':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['reference', _p.group.literal.resolve(
+//                                                                     ($) => ['reference', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2869,12 +2869,12 @@
 //                                                             case 'list':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['list', _p.group.literal.resolve(
+//                                                                     ($) => ['list', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2961,12 +2961,12 @@
 //                                                             case 'state':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['state', _p.group.literal.resolve(
+//                                                                     ($) => ['state', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -3069,12 +3069,12 @@
 //                                                             case 'optional value':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['optional value', _p.group.literal.resolve(
+//                                                                     ($) => ['optional value', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_property = _p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -3223,7 +3223,7 @@
 //     },
 // )
 
-// export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_type = _p_change_context(
@@ -3270,7 +3270,7 @@
 //                                                             case 'resolved dictionary':
 //                                                                 return _p.ss(
 //                                                                     $,
-//                                                                     ($) => ['resolved dictionary', _p.group.literal.resolve(
+//                                                                     ($) => ['resolved dictionary', _p.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_selection = _p_change_context(
@@ -3418,7 +3418,7 @@
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
-//                 return _p.group.literal.resolve(
+//                 return _p.literal.group_resolve(
 //                     () => {
                         
 //                         const prop_signature = _p_change_context(
@@ -3438,18 +3438,18 @@
 //                                     'parent sibling property resolvers': _p_sl.acyclic.not_set(),
 //                                 },
 //                                 {
-//                                     'option constraints': _p.optional.literal.not_set(),
-//                                     'list cursor': _p.optional.literal.not_set(),
-//                                     'linked entry': _p.optional.literal.not_set(),
-//                                     'current ordered dictionary': _p.optional.literal.not_set(),
-//                                     'current dictionary': _p.optional.literal.not_set(),
+//                                     'option constraints': _p.literal.not_set(),
+//                                     'list cursor': _p.literal.not_set(),
+//                                     'linked entry': _p.literal.not_set(),
+//                                     'current ordered dictionary': _p.literal.not_set(),
+//                                     'current dictionary': _p.literal.not_set(),
 //                                     'signature': prop_signature,
 //                                     'definition': var_referenced_entry['module']['root value'],
 //                                     'signatures': $p['signatures'],
-//                                     'schema imports': _p.optional.literal.set(
+//                                     'schema imports': _p.literal.set(
 //                                         $p['schema imports'],
 //                                     ),
-//                                     'resolver imports': _p.optional.literal.set(
+//                                     'resolver imports': _p.literal.set(
 //                                         $p['resolver imports'],
 //                                     ),
 //                                     'modules': $p['modules'],
@@ -3467,7 +3467,7 @@
 //     ),
 // )
 
-// export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_selection = _p_change_context(
@@ -3517,7 +3517,7 @@
 //                                                         }
 //                                                     },
 //                                                 )
-//                                                 return _p.group.literal.resolve(
+//                                                 return _p.literal.group_resolve(
 //                                                     () => {
                                                         
 //                                                         const prop_selected_state = _p_change_context(
@@ -3590,7 +3590,7 @@
 //                                                         }
 //                                                     },
 //                                                 )
-//                                                 return _p.group.literal.resolve(
+//                                                 return _p.literal.group_resolve(
 //                                                     () => {
                                                         
 //                                                         const prop_selected_optional_value = _p_change_context(
@@ -3638,7 +3638,7 @@
 //                             case 'state':
 //                                 return _p.ss(
 //                                     $,
-//                                     ($) => ['state', _p.group.literal.resolve(
+//                                     ($) => ['state', _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_selection = _p_change_context(
@@ -3723,7 +3723,7 @@
 //     ),
 // )
 
-// export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_start = _p_change_context(
@@ -3861,7 +3861,7 @@
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
-//                 return _p.group.literal.resolve(
+//                 return _p.literal.group_resolve(
 //                     () => {
                         
 //                         const prop_definition = _p_change_context(
@@ -3919,7 +3919,7 @@
 //     },
 // )
 
-// export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_selection = _p_change_context(
@@ -4022,7 +4022,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_definition = _p_change_context(
@@ -4067,12 +4067,12 @@
 //                                                                                             },
 //                                                                                         ),
 //                                                                                     )
-//                                                                                     return _p.group.literal.resolve(
+//                                                                                     return _p.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
 //                                                                                             const prop_schema_import = _p_change_context(
 //                                                                                                 $['schema import'],
-//                                                                                                 ($) => _p.group.literal.resolve(
+//                                                                                                 ($) => _p.literal.group_resolve(
 //                                                                                                     () => {
                                                                                                         
 //                                                                                                         const prop_l_value = {
@@ -4272,7 +4272,7 @@
 //                                                 ($) => _p.optional.from.optional(
 //                                                     $,
 //                                                 ).map(
-//                                                     ($) => _p.group.literal.resolve(
+//                                                     ($) => _p.literal.group_resolve(
 //                                                         () => {
                                                             
 //                                                             const prop_modules = _p_change_context(
@@ -4418,7 +4418,7 @@
 //                                                                                                                                     case 'push':
 //                                                                                                                                         return _p.ss(
 //                                                                                                                                             $,
-//                                                                                                                                             ($) => ['push', _p.group.literal.resolve(
+//                                                                                                                                             ($) => ['push', _p.literal.group_resolve(
 //                                                                                                                                                 () => {
                                                                                                                                                     
 //                                                                                                                                                     const prop_stack = _p_change_context(
@@ -4599,7 +4599,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_definition = _p_change_context(
@@ -4636,10 +4636,10 @@
 //                                                             "IM: OPTIONAL VALUE2",
 //                                                         ),
 //                                                         'definition': prop_definition['value'],
-//                                                         'current dictionary': _p.optional.literal.set(
+//                                                         'current dictionary': _p.literal.set(
 //                                                             prop_definition,
 //                                                         ),
-//                                                         'current ordered dictionary': _p.optional.literal.set(
+//                                                         'current ordered dictionary': _p.literal.set(
 //                                                             prop_definition,
 //                                                         ),
 //                                                         'modules': $p['modules'],
@@ -4738,7 +4738,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_definition = _p_change_context(
@@ -4777,7 +4777,7 @@
 //                                                     ),
 //                                                     $l,
 //                                                     {
-//                                                         'list cursor': _p.optional.literal.set(
+//                                                         'list cursor': _p.literal.set(
 //                                                             _pdev.implement_me(
 //                                                                 "IM: OPTIONAL VALUE",
 //                                                             ),
@@ -4888,7 +4888,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_constraints = _p_change_context(
@@ -4960,7 +4960,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_definition = _p_change_context(
@@ -5003,7 +5003,7 @@
 //                                                                                             }
 //                                                                                         },
 //                                                                                     )
-//                                                                                     return _p.group.literal.resolve(
+//                                                                                     return _p.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
 //                                                                                             const prop_value = _p_change_context(
@@ -5050,7 +5050,7 @@
 //                                                                                             }
 //                                                                                         },
 //                                                                                     )
-//                                                                                     return _p.group.literal.resolve(
+//                                                                                     return _p.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
 //                                                                                             const prop_definition = _p_change_context(
@@ -5137,7 +5137,7 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.group.literal.resolve(
+//                                     return _p.literal.group_resolve(
 //                                         () => {
                                             
 //                                             const prop_definition = _p_change_context(
@@ -5160,7 +5160,7 @@
 //                                                                 const var_referenced_entry = _pdev.implement_me(
 //                                                                     "IM: referenced entry",
 //                                                                 )
-//                                                                 return _p.group.literal.resolve(
+//                                                                 return _p.literal.group_resolve(
 //                                                                     () => {
                                                                         
 //                                                                         const prop_constraints = _p_change_context(
@@ -5257,12 +5257,12 @@
 //     },
 // )
 
-// export const Resolver: t_signatures.Resolver = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Resolver: t_signatures.Resolver = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_signatures = _p_change_context(
 //             $['signatures'],
-//             ($) => _p.group.literal.resolve(
+//             ($) => _p.literal.group_resolve(
 //                 () => {
                     
 //                     const prop_signatures = _p_change_context(
@@ -5330,7 +5330,7 @@
 //     ),
 // )
 
-// export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_schema = _p_change_context(
@@ -5417,7 +5417,7 @@
 //     },
 // )
 
-// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.group.literal.resolve(
+// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.literal.group_resolve(
 //     () => {
         
 //         const prop_schema_imports = _p_change_context(
@@ -5469,10 +5469,10 @@
 //                 ),
 //                 null,
 //                 {
-//                     'globals': _p.optional.literal.set(
+//                     'globals': _p.literal.set(
 //                         prop_globals,
 //                     ),
-//                     'imports': _p.optional.literal.set(
+//                     'imports': _p.literal.set(
 //                         prop_schema_imports,
 //                     ),
 //                 },
@@ -5535,12 +5535,12 @@
 // ).resolve_static(
 //     ($, id, $a, $c): t_out.Schema_Imports.D => _p_change_context(
 //         $['l entry'],
-//         ($) => _p.group.literal.resolve(
+//         ($) => _p.literal.group_resolve(
 //             () => {
                 
 //                 const prop_schema_set_child = _p_change_context(
 //                     $['schema set child'],
-//                     ($) => _p.group.literal.resolve(
+//                     ($) => _p.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_l_value = {
@@ -5651,12 +5651,12 @@
 // ).resolve_static(
 //     ($, id, $a, $c): t_out.Resolver_Imports.D => _p_change_context(
 //         $['l entry'],
-//         ($) => _p.group.literal.resolve(
+//         ($) => _p.literal.group_resolve(
 //             () => {
                 
 //                 const prop_schema_set_child = _p_change_context(
 //                     $['schema set child'],
-//                     ($) => _p.group.literal.resolve(
+//                     ($) => _p.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_l_value = {

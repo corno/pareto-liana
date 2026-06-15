@@ -1,5 +1,4 @@
 import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_di from 'pareto-core/dist/data/interface'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
@@ -36,7 +35,7 @@ export const Schema = (
     return sh.m.set({
 
         "data": constrainedx
-            ? m.set(pt.dictionary.literal({
+            ? m.set(pt.literal.dictionary({
                 "resolved": t_types.Schema(
                     schema,
                     {
@@ -72,7 +71,7 @@ export const Schema = (
                                 "astn sealed target": t_marshall.Schema(
                                     schema,
                                     {
-                                        'constrained': pt.optional.literal.set("resolved"),
+                                        'constrained': pt.literal.set("resolved"),
                                     }
                                 ),
                                 "boilerplate for migrate": t_boilerplate_for_migrate.Schema(schema, {
@@ -104,7 +103,7 @@ export const Schema = (
                             //     "astn sealed target": t_marshall.Schema(
                             //         schema,
                             //         {
-                            //             'constrained': pt.optional.literal.set("unresolved"),
+                            //             'constrained': pt.literal.set("unresolved"),
                             //         }
                             //     ),
                             // }),
@@ -115,7 +114,7 @@ export const Schema = (
                             "astn sealed target": t_marshall.Schema(
                                 schema,
                                 {
-                                    'constrained': pt.optional.literal.not_set(),
+                                    'constrained': pt.literal.not_set(),
                                 }
                             ),
                             "fountain pen": t_serialize.Schema(schema, {
@@ -140,8 +139,8 @@ export const Schema = (
     })
     // return m.set(pt.dictionary.from.dictionary(
     //     pt.dictionary.literal<p_di.Optional_Value<d_out.Package_Set.D>>({
-    //         "data": pt.optional.literal.set(constrained
-    //             ? m.set(pt.dictionary.literal({
+    //         "data": pt.literal.set(constrained
+    //             ? m.set(pt.literal.dictionary({
     //                 "resolved": t_types.Schema(
     //                     schema,
     //                     {
@@ -171,14 +170,14 @@ export const Schema = (
 
     //         "resolve": pt.decide.state($.complexity, ($) => {
     //             switch ($[0]) {
-    //                 case 'constrained': return pt.ss($, ($) => pt.optional.literal.set(t_resolve.Signatures(
+    //                 case 'constrained': return pt.ss($, ($) => pt.literal.set(t_resolve.Signatures(
     //                     $.signatures.signatures
     //                 )))
-    //                 case 'unconstrained': return pt.ss($, ($) => pt.optional.literal.not_set())
+    //                 case 'unconstrained': return pt.ss($, ($) => pt.literal.not_set())
     //                 default: return pt.au($[0])
     //             }
     //         }),
-    //         "boilerplate for migrate": pt.optional.literal.set(t_migrate_boilerplate.Schema(
+    //         "boilerplate for migrate": pt.literal.set(t_migrate_boilerplate.Schema(
     //             schema,
     //             {
     //                 'constrained': constrained

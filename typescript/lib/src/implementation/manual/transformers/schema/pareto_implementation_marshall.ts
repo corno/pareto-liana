@@ -19,27 +19,27 @@ export const Schema = (
 
     return sh.m.package_(
         ['change context', 'text from list'],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "signatures"
                     ]),
                     constrained
-                        ? pt.list.literal([
+                        ? pt.literal.list([
                             "resolved"
                         ])
-                        : pt.list.literal([
+                        : pt.literal.list([
                         ]),
-                    pt.list.literal([
+                    pt.literal.list([
                         "transformers",
                         "astn sealed target"
                     ])
@@ -60,11 +60,11 @@ export const Schema = (
 
         }),
         pt.dictionary.from.dictionary(
-            pt.dictionary.literal({
-                "": pt.dictionary.literal({
+            pt.literal.dictionary({
+                "": pt.literal.dictionary({
                     "primitives to text": sh_i.import_.external(
                         "liana-core",
-                        pt.list.literal([
+                        pt.literal.list([
                             "dist",
                             "implementation",
                             "manual",
@@ -95,7 +95,7 @@ export const Schema = (
                 $['root value'],
                 {
                     'type': id,
-                    'subselection': pt.list.literal([])
+                    'subselection': pt.literal.list([])
                 }
             ),
         )),
@@ -135,7 +135,7 @@ export const Value = (
                     $.value,
                     {
                         'type': $p.type,
-                        'subselection': pt.list.nested_literal_old([
+                        'subselection': pt.literal.nested_list([
                             $p.subselection,
                             [
                                 sh.sub.dictionary(),
@@ -155,7 +155,7 @@ export const Value = (
                         $.value,
                         {
                             'type': $p.type,
-                            'subselection': pt.list.nested_literal_old([
+                            'subselection': pt.literal.nested_list([
                                 $p.subselection,
                                 [
                                     sh.sub.group(id),
@@ -172,7 +172,7 @@ export const Value = (
                 $.value,
                 {
                     'type': $p.type,
-                    'subselection': pt.list.nested_literal_old([
+                    'subselection': pt.literal.nested_list([
                         $p.subselection,
                         [
                             sh.sub.list(),
@@ -302,7 +302,7 @@ export const Value = (
                         $,
                         {
                             'type': $p.type,
-                            'subselection': pt.list.nested_literal_old([
+                            'subselection': pt.literal.nested_list([
                                 $p.subselection,
                                 [
                                     sh.sub.optional(),
@@ -327,8 +327,8 @@ export const Value = (
                 case 'selected': return pt.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
                     "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
                     "value": sh.a.text.copy(sh.sv.context($.results.__decide(
-                        ($) => pt.list.literal(["l value", "l id"]),
-                        () => pt.list.literal(["l id"])
+                        ($) => pt.literal.list(["l value", "l id"]),
+                        () => pt.literal.list(["l id"])
                     ))),
                 })))
                 default: return pt.au($[0])
@@ -344,7 +344,7 @@ export const Value = (
                         $.value,
                         {
                             'type': $p.type,
-                            'subselection': pt.list.nested_literal_old([
+                            'subselection': pt.literal.nested_list([
                                 $p.subselection,
                                 [
                                     sh.sub.state(id),

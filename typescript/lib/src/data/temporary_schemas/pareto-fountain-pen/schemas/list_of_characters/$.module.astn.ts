@@ -1,14 +1,9 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-
-
-
-import { schema_, constrained } from "../../../../../shorthands/schema"
-
+import * as sh from "../../../../../shorthands/schema"
 
 import { $ as schema } from "./$.types.astn"
 import { $ as globals } from "./$.globals.astn"
 
-export const $ = schema_(
+export const $ = sh.schema_(
     {}, {},
     globals,
     schema,

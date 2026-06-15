@@ -1,13 +1,10 @@
-import * as pt from 'pareto-core-shorthands/dist/unresolved_data'
-import * as p_di from 'pareto-core/dist/data/interface'
-
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
 import * as d_target from "../interface/generated/liana/schemas/schema/data/unresolved"
 
 
 export const signatures = (
-    signatures: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
+    signatures: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
 ): d_target.Resolver.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
@@ -15,8 +12,8 @@ export const signatures = (
 }
 
 export const sig_params = (
-    modules: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-    lookups: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    modules: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+    lookups: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
 ): d_target.Resolver_Signature_Parameters => {
     return {
         'modules': sh.dictionary(modules),
@@ -30,8 +27,8 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        modules: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-        lookups: pt.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+        modules: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+        lookups: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
     ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,

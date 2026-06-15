@@ -28,9 +28,9 @@ export const Schema = (
 
     return sh.m.package_data(
         pt.dictionary.from.dictionary(
-            pt.dictionary.literal({
+            pt.literal.dictionary({
                 "location": pt.dictionary.from.dictionary(
-                    pt.dictionary.literal({
+                    pt.literal.dictionary({
                         "": pt.optional.from.boolean(
                             add_location,
                         ).convert(
@@ -56,20 +56,20 @@ export const Schema = (
                             $['schema set child']['l value']['l id'],
                             pt.decide.state($.schema.complexity, ($) => {
                                 switch ($[0]) {
-                                    case 'unconstrained': return pt.ss($, ($) => pt.list.literal([
+                                    case 'unconstrained': return pt.ss($, ($) => pt.literal.list([
                                         "data",
                                     ]))
                                     case 'constrained': return pt.ss($, ($) => pt.decide.state($p.type, ($) => {
                                         switch ($[0]) {
-                                            case 'unconstrained': return pt.ss($, ($) => pt.list.literal([
+                                            case 'unconstrained': return pt.ss($, ($) => pt.literal.list([
                                                 "data",
                                                 "resolved",
                                             ]))
-                                            case 'unresolved': return pt.ss($, ($) => pt.list.literal([
+                                            case 'unresolved': return pt.ss($, ($) => pt.literal.list([
                                                 "data",
                                                 "unresolved",
                                             ]))
-                                            case 'resolved': return pt.ss($, ($) => pt.list.literal([
+                                            case 'resolved': return pt.ss($, ($) => pt.literal.list([
                                                 "data",
                                                 "resolved",
                                             ]))
@@ -253,10 +253,10 @@ export const Value = (
                                     case 'resolved': return pt.ss($, ($) => {
                                         const ii = sh.t.group(
                                             pt.dictionary.from.dictionary(
-                                                pt.dictionary.literal<p_di.Optional_Value<d_out.Value>>({
-                                                    "l entry": pt.optional.literal.set(p_change_context($, ($) => {
+                                                pt.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
+                                                    "l entry": pt.literal.set(p_change_context($, ($) => {
                                                         const location = Module_Reference(referent['module'])
-                                                        const subselection = pt.list.nested_literal_old([
+                                                        const subselection = pt.literal.nested_list([
                                                             Value_Path(referent.path),
                                                             [
                                                                 sh.sub.dictionary(),
@@ -284,12 +284,12 @@ export const Value = (
                                                             }
                                                         })
                                                     })),
-                                                    "l id": pt.optional.literal.set(sh.t.text()),
+                                                    "l id": pt.literal.set(sh.t.text()),
                                                     "l up steps": pt.decide.state(selected.dependency, ($) => {
                                                         switch ($[0]) {
-                                                            case 'acyclic': return pt.ss($, ($) => pt.optional.literal.not_set())
-                                                            case 'cyclic': return pt.ss($, ($) => pt.optional.literal.not_set())
-                                                            case 'stack': return pt.ss($, ($) => pt.optional.literal.set(sh.t.natural()))
+                                                            case 'acyclic': return pt.ss($, ($) => pt.literal.not_set())
+                                                            case 'cyclic': return pt.ss($, ($) => pt.literal.not_set())
+                                                            case 'stack': return pt.ss($, ($) => pt.literal.set(sh.t.natural()))
                                                             default: return pt.au($[0])
                                                         }
                                                     })

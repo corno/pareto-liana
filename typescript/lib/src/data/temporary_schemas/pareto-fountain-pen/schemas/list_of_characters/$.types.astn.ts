@@ -1,20 +1,10 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-
-import {
-    modules,
-    text,
-    n,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema"
+import * as sh from "../../../../../shorthands/schema"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
         
-        "List of Characters": module_(t.list(t.simple("Natural"))),
+        "List of Characters": sh.module_(sh.t.list(sh.t.simple("Natural"))),
 
     }
 )

@@ -1,11 +1,9 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as p_di from 'pareto-core/dist/data/interface'
-import * as _p_sl from 'pareto-core/dist/select_static_lookup'
+import * as p_sl from 'pareto-core/dist/select_static_lookup'
 import p_variables from 'pareto-core/dist/specials/variables'
 import p_change_context from 'pareto-core/dist/specials/change_context'
 import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
-// import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -38,12 +36,12 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                 () => _i_generic.abort.parameter_is_set_assertion("imports", loc, abort)
                             )
                             const p_schema_import = _i_generic.get_entry_acyclic(
-                                _p_sl.acyclic.from_resolved_dictionary(sc_schema_import),
+                                p_sl.acyclic.from_resolved_dictionary(sc_schema_import),
                                 $['schema import'],
                                 abort,
                             )
                             const p_resolver_import = _i_generic.get_entry_acyclic(
-                                _p_sl.acyclic.from_resolved_dictionary(sc_resolver_import),
+                                p_sl.acyclic.from_resolved_dictionary(sc_resolver_import),
                                 $['resolver import'],
                                 abort,
                             )
@@ -57,14 +55,14 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                 'schema import': p_schema_import,
                                 'resolver import': p_resolver_import,
                                 'signature': _i_generic.get_entry_acyclic(
-                                    _p_sl.acyclic.from_resolved_dictionary(pc_constrained.signatures.signatures),
+                                    p_sl.acyclic.from_resolved_dictionary(pc_constrained.signatures.signatures),
                                     $.signature,
                                     abort,
                                 )
                             }]
                         })
                         case 'internal': return pt.ss($, ($) => ['internal', _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(
+                            p_sl.acyclic.from_resolved_dictionary(
                                 $p['signatures'],
                             ),
                             $,
@@ -95,7 +93,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ($) => {
                         const x: t_out.Resolver_Value.component.arguments_.O = {
                             'lookups': $.lookups.__decide(
-                                ($) => pt.optional.literal.set(_i_generic.resolve_dense_dictionary(
+                                ($) => pt.literal.set(_i_generic.resolve_dense_dictionary(
                                     $['l dictionary'],
                                     $['l location'],
                                     abort,
@@ -159,21 +157,21 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                             _i_generic.abort.same_node_constraint("lookups", loc, abort)
                                         }
                                     }
-                                    return pt.optional.literal.not_set()
+                                    return pt.literal.not_set()
                                 }
                             ),
                             'modules': $.modules.__decide(
                                 ($) => {
                                     const values_location = $['l location']
 
-                                    return pt.optional.literal.set(_i_generic.resolve_dense_dictionary(
+                                    return pt.literal.set(_i_generic.resolve_dense_dictionary(
                                         $['l dictionary'],
                                         $['l location'],
                                         abort,
                                         p_signature['resolved parameters'].modules,
                                         ($, id, $acyclic, $cyclic) => p_change_context($, ($) => {
                                             const linked_entry = _i_generic.get_entry_acyclic(
-                                                _p_sl.acyclic.from_resolved_dictionary(p_signature['resolved parameters'].modules),
+                                                p_sl.acyclic.from_resolved_dictionary(p_signature['resolved parameters'].modules),
                                                 {
                                                     'l reference': id,
                                                     'l location': $['l location'],
@@ -189,7 +187,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                         $p,
                                                     )])
                                                     case 'parameter': return pt.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                                                        _p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
+                                                        p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
                                                         $,
                                                         abort,
                                                     )])
@@ -320,11 +318,11 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                             )
                                         }
                                     }
-                                    return pt.optional.literal.not_set()
+                                    return pt.literal.not_set()
                                 }
                             ),
                         }
-                        return pt.optional.literal.set(x)
+                        return pt.literal.set(x)
                     },
                     () => {
                         {
@@ -345,7 +343,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             }
                         }
 
-                        return pt.optional.literal.not_set()
+                        return pt.literal.not_set()
                     }
                 )
                 const p_constraints = Value_Constraints(
@@ -412,12 +410,12 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         $l,
                         {
                             'linked entry': p_benchmark.__decide( //optional value result ('benchmark')
-                                ($) => pt.optional.literal.set($),
+                                ($) => pt.literal.set($),
                                 () => $p['linked entry']
                             ),
                             'definition': p_definition.value,
-                            'current dictionary': pt.optional.literal.set(p_definition),
-                            'current ordered dictionary': pt.optional.literal.set(p_definition),//FIXME: is it ordered
+                            'current dictionary': pt.literal.set(p_definition),
+                            'current ordered dictionary': pt.literal.set(p_definition),//FIXME: is it ordered
 
                             'modules': $p.modules,
                             'schema imports': $p['schema imports'],
@@ -443,7 +441,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ($, id, $acyclic, $cyclic): t_out.Resolver_Value_Group.D => {
 
                         const p_definition = _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(x),
+                            p_sl.acyclic.from_resolved_dictionary(x),
                             {
                                 'l reference': id,
                                 'l location': $['l location'],
@@ -493,7 +491,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         $,
                         abort,
                         {
-                            'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
+                            'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                         },
                         {
                             'imports': $p['schema imports'],
@@ -507,7 +505,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     {
                         'definition': p_definition.value,
                         'list cursor': p_result.__decide( // optional value result ('result')
-                            ($) => pt.optional.literal.set($),
+                            ($) => pt.literal.set($),
                             () => $p['list cursor']
                         ), //setting the cursor
 
@@ -560,7 +558,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     },
                     {
                         'definition': x,
-                        'option constraints': pt.optional.literal.set(p_constraints),
+                        'option constraints': pt.literal.set(p_constraints),
 
                         'modules': $p.modules,
                         'schema imports': $p['schema imports'],
@@ -641,7 +639,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ($, id, $acyclic, $cyclic) => {
 
                         const x2 = _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(p_definition.options),
+                            p_sl.acyclic.from_resolved_dictionary(p_definition.options),
                             {
                                 'l reference': id,
                                 'l location': $['l location'],
@@ -663,7 +661,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             },
                             {
                                 'definition': x2['l entry'].value,
-                                'option constraints': pt.optional.literal.set(p_constraints),
+                                'option constraints': pt.literal.set(p_constraints),
 
                                 'modules': $p.modules,
                                 'schema imports': $p['schema imports'],
@@ -810,7 +808,7 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(sc_definition,),
+                            p_sl.acyclic.from_resolved_dictionary(sc_definition,),
                             $,
                             abort,
                         )
@@ -932,7 +930,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                             : p_sibling['l entry'].resolver[1]
 
                         const p_constraint = p_change_context($['constraint'], ($) => _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(x_component.constraints),
+                            p_sl.acyclic.from_resolved_dictionary(x_component.constraints),
                             $,
                             abort,
                         ))
@@ -958,7 +956,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                             : x_reference.type[1]
 
                         const p_constraint = p_change_context($['constraint'], ($) => _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(x_reference_selected.constraints),
+                            p_sl.acyclic.from_resolved_dictionary(x_reference_selected.constraints),
                             $,
                             abort,
                         ))
@@ -978,13 +976,13 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                     () => _i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
                 )
                 return ['option constraint', _i_generic.get_entry_acyclic(
-                    _p_sl.acyclic.from_resolved_dictionary(sc),
+                    p_sl.acyclic.from_resolved_dictionary(sc),
                     $,
                     abort,
                 )]
             })
             case 'parameter': return pt.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
+                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
                 $,
                 abort,
             )])
@@ -1026,7 +1024,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                 $.result,
                                 abort,
                                 {
-                                    'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                                 },
                                 {
                                     'imports': $p['schema imports'],
@@ -1051,7 +1049,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                 $.result,
                                 abort,
                                 {
-                                    'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                                 },
                                 {
                                     'imports': $p['schema imports'],
@@ -1183,7 +1181,7 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
                         )
                         : p_selection['resulting node'][1]
                     const p_option: t_out.Resolver_Option_Constraints.D.state.option = p_change_context($['option'], ($) => _i_generic.get_entry_acyclic(
-                        _p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
+                        p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
                         $,
                         abort,
                     ))
@@ -1227,7 +1225,7 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
                     )
                     : p_selection['resulting node'][1]
                 const p_option: t_out.Resolver_Constraint.type_.state.option = p_change_context($['option'], ($) => _i_generic.get_entry_acyclic(
-                    _p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
+                    p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
                     $,
                     abort,
                 ))
@@ -1273,7 +1271,7 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
     return p_change_context($['l state'], ($) => {
         switch ($[0]) {
             case 'parameter': return pt.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
+                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
                 $,
                 abort,
             )])
@@ -1294,7 +1292,7 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
                             $.result,
                             abort,
                             {
-                                'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                             },
                             {
                                 'imports': $p['schema imports'],
@@ -1320,7 +1318,7 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
                             $.result,
                             abort,
                             {
-                                'modules': _p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                             },
                             {
                                 'imports': $p['schema imports'],
@@ -1385,7 +1383,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                 }
             })])
             case 'parameter': return pt.ss($, ($) => ['parameter', _i_generic.get_entry_acyclic(
-                _p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].lookups),
+                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].lookups),
                 $,
                 abort
             )])
@@ -1426,14 +1424,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                     () => _i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                 )
                 const p_import = _i_generic.get_entry_acyclic(
-                    _p_sl.acyclic.from_resolved_dictionary(sc_import),
+                    p_sl.acyclic.from_resolved_dictionary(sc_import),
                     $.import,
                     abort
                 )
                 return ['external', {
                     'import': p_import,
                     'module': _i_generic.get_entry_acyclic(
-                        _p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
+                        p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
                         $.module,
                         abort,
                     )

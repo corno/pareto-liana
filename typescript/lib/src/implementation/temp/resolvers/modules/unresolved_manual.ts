@@ -1,7 +1,5 @@
 import * as pt from 'pareto-core/dist/assign'
-import * as p_di from 'pareto-core/dist/data/interface'
-import * as _p_sl from 'pareto-core/dist/select_static_lookup'
-import p_variables from 'pareto-core/dist/specials/variables'
+import * as p_sl from 'pareto-core/dist/select_static_lookup'
 import p_change_context from 'pareto-core/dist/specials/change_context'
 import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
 
@@ -22,7 +20,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
             case 'simple': return pt.ss($, ($): t_out.Value => ['simple', p_change_context($['l state'], ($): t_out.Value.simple => {
                 switch ($[0]) {
                     case 'global': return pt.ss($, ($): t_out.Value.simple => ['global', _i_generic.get_entry_acyclic(
-                        _p_sl.acyclic.from_resolved_dictionary(
+                        p_sl.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
                                 ($) => $['simple types'],
                                 () => _i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
@@ -37,7 +35,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
             case 'text': return pt.ss($, ($): t_out.Value => ['text', p_change_context($['l state'], ($): t_out.Value.text => {
                 switch ($[0]) {
                     case 'global': return pt.ss($, ($): t_out.Value.text => ['global', _i_generic.get_entry_acyclic(
-                        _p_sl.acyclic.from_resolved_dictionary(
+                        p_sl.acyclic.from_resolved_dictionary(
                             $p.globals.__decide(
                                 ($) => $['text types'],
                                 () => _i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
@@ -64,14 +62,14 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                 () => _i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                             )
                             const p_import = _i_generic.get_entry_acyclic(
-                                _p_sl.acyclic.from_resolved_dictionary(sc_import),
+                                p_sl.acyclic.from_resolved_dictionary(sc_import),
                                 $.import,
                                 abort,
                             )
                             return ['external', {
                                 'import': p_import,
                                 'module': _i_generic.get_entry_acyclic(
-                                    _p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
+                                    p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
                                     $.module,
                                     abort,
                                 )
@@ -394,14 +392,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                     () => _i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                 )
                 const p_import = _i_generic.get_entry_acyclic(
-                    _p_sl.acyclic.from_resolved_dictionary(sc_import),
+                    p_sl.acyclic.from_resolved_dictionary(sc_import),
                     $.import,
                     abort
                 )
                 return ['external', {
                     'import': p_import,
                     'module': _i_generic.get_entry_acyclic(
-                        _p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
+                        p_sl.acyclic.from_resolved_dictionary(p_import['l entry'].schema.modules),
                         $.module,
                         abort,
                     )
@@ -485,7 +483,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(sc_definition),
+                            p_sl.acyclic.from_resolved_dictionary(sc_definition),
                             $,
                             abort,
                         )
@@ -547,7 +545,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             return $[1]
                         })
                         const p_child = _i_generic.get_entry_acyclic(
-                            _p_sl.acyclic.from_resolved_dictionary(P_state.options),
+                            p_sl.acyclic.from_resolved_dictionary(P_state.options),
                             $,
                             abort,
                         )

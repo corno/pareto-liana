@@ -1,20 +1,14 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema"
+import * as sh from "../../../../../shorthands/schema"
 
 
-export const $ = globals(
+export const $ = sh.globals(
 
          'unconstrained',
     {
-        "Output": text('single line'),
+        "Output": sh.text('single line'),
     },
     {
-        "Natural": n.natural(null),
+        "Natural": sh.n.natural(null),
     },
 )
 

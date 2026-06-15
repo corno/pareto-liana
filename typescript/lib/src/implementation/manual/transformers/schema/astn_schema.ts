@@ -1,5 +1,4 @@
 import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_di from 'pareto-core/dist/data/interface'
 import * as p_ti from 'pareto-core/dist/transformer/interface'
 import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
@@ -22,7 +21,7 @@ export const Globals: p_ti.Transformer<d_in.Globals, d_out.Globals> = (
     //FIXME!! merge the number types with the text types in here
     "text types": sh.dictionary(
         pt.dictionary.from.dictionary(
-            pt.dictionary.literal({
+            pt.literal.dictionary({
                 "t": $['text types'].__d_map(($) => {
                     return Text_Type($)
                 }),

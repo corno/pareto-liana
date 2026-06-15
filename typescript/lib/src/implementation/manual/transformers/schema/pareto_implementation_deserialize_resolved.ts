@@ -16,32 +16,32 @@ export const Schema = (
 ): d_out.Package_Set.D => {
     return sh.m.package_(
         [],
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                pt.list.nested_literal_old([
-                    pt.list.literal([
+                pt.literal.nested_list([
+                    pt.literal.list([
                         "generated",
                         "liana",
                         "schemas"
                     ]),
                     $p.path,
-                    pt.list.literal([
+                    pt.literal.list([
                         "deserialize",
                     ])
                 ])
             ),
         }),
-        pt.dictionary.literal({
+        pt.literal.dictionary({
             "deserialize": sh_i.import_.ancestor(
                 2,
                 "unresolved",
-                pt.list.literal([
+                pt.literal.list([
                     "refiners",
                     "list of characters",
                 ])),
-            "resolve": sh_i.import_.sibling("unresolved", pt.list.nested_literal_old([
+            "resolve": sh_i.import_.sibling("unresolved", pt.literal.nested_list([
             ])),
         }),
         $.modules.__d_map(($, id) => sh.algorithm(
