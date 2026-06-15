@@ -1,11 +1,11 @@
-import * as pt from 'pareto-core/dist/assign'
-import * as p_ri from 'pareto-core/dist/refiner/interface'
-import * as p_di from 'pareto-core/dist/data/interface'
+import * as p_ from 'pareto-core/dist/implementation/refiner'
+import * as p_temp from 'pareto-core/dist/assign'
+import * as p_i from 'pareto-core/dist/interface/refiner'
+import * as p_di from 'pareto-core/dist/interface/data'
 import p_implement_me from 'pareto-core-dev/dist/implement_me'
 import p_log_debug_message from 'pareto-core-dev/dist/log_debug_message'
-import * as _p_temp from 'pareto-core/dist/assign'
-import p_list_build_deprecated from 'pareto-core/dist/specials/list_build_deprecated'
-import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
+import p_list_build_deprecated from 'pareto-core/dist/implementation/specials/list_build_deprecated'
+import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
 //data types
 import * as d_out from "../../../../interface/to_be_generated/temp_module_specifier"
@@ -18,7 +18,7 @@ import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schema
 import * as r_schema_resolved_from_unresolved from "../../../temp/resolvers/schema/unresolved_manual"
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 
-export type Module_Specifier = p_ri.Refiner<
+export type Module_Specifier = p_i.Refiner<
     d_out.Temp_Module_Specifier,
     d_function.Error,
     d_in.List_of_Characters
@@ -52,7 +52,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
         }
         const temp_pop_first_element = <T extends p_di.Value>($: p_di.List<T>): p_di.Optional_Value<Element_And_Rest<T>> => {
             const arr = $
-            return pt.optional.from.optional(
+            return p_temp.optional.from.optional(
                 $.__deprecated_get_possible_item_at(0),
             ).map(
                 ($) => ({
@@ -73,36 +73,36 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
         return temp_pop_first_element(schema_path).__decide(
             ($) => {
                 const split = $
-                return _p_temp.decide.state(st, ($) => {
+                return p_.decide.state(st, ($) => {
                     switch ($[0]) {
 
-                        case 'schema': return _p_temp.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
-                        case 'set': return _p_temp.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
+                        case 'schema': return p_.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
+                        case 'set': return p_.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
                             ($) => temp_find_schema($, split.rest),
                             () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                         ))
-                        default: return _p_temp.au($[0])
+                        default: return p_.au($[0])
                     }
                 })
             },
-            () => _p_temp.decide.state($, ($) => {
+            () => p_.decide.state($, ($) => {
                 switch ($[0]) {
-                    case 'schema': return _p_temp.ss($, ($) => $)
-                    case 'set': return _p_temp.ss($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
-                    default: return _p_temp.au($[0])
+                    case 'schema': return p_.ss($, ($) => $)
+                    case 'set': return p_.ss($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
+                    default: return p_.au($[0])
                 }
             })
         )
     }
     const schema = temp_find_schema(almost_resolved_module_specification.schema, almost_resolved_module_specification['schema path'])
 
-    return pt.decide.state(almost_resolved_module_specification.complexity, ($): d_out.Temp_Module_Specifier => {
+    return p_.decide.state(almost_resolved_module_specification.complexity, ($): d_out.Temp_Module_Specifier => {
         switch ($[0]) {
-            case 'constrained': return pt.ss($, ($): d_out.Temp_Module_Specifier => {
-                const constrained_schema = pt.decide.state(schema.complexity, ($): d_out_schema.Resolver => {
+            case 'constrained': return p_.ss($, ($): d_out.Temp_Module_Specifier => {
+                const constrained_schema = p_.decide.state(schema.complexity, ($): d_out_schema.Resolver => {
                     switch ($[0]) {
-                        case 'constrained': return pt.ss($, ($) => $)
-                        case 'unconstrained': return pt.ss($, ($) => abort(['resolve error', {
+                        case 'constrained': return p_.ss($, ($) => $)
+                        case 'unconstrained': return p_.ss($, ($) => abort(['resolve error', {
                             'location': ['in main document', {
                                 'start': {
                                     'absolute': 0,
@@ -124,7 +124,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                                 'found': "unconstrained",
                             }]]
                         }]))
-                        default: return pt.au($[0])
+                        default: return p_.au($[0])
                     }
                 })
                 return ['constrained', {
@@ -144,7 +144,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     }
                 }]
             })
-            case 'unconstrained': return pt.ss($, ($) => {
+            case 'unconstrained': return p_.ss($, ($) => {
 
                 return ['unconstrained', {
                     'module': {
@@ -162,7 +162,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     }
                 }]
             })
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
 

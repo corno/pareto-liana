@@ -1,9 +1,7 @@
-import * as p from 'pareto-core/dist/command/implementation'
-import * as pa from 'pareto-core/dist/assign'
-import p_list_from_text from 'pareto-core/dist/specials/list_from_text'
-import p_variables from 'pareto-core/dist/specials/variables'
-import p_iterate from 'pareto-core/dist/specials/iterate'
-import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
+import * as p_ from 'pareto-core/dist/implementation/command'
+import * as p_temp from 'pareto-core/dist/implementation/transformer'
+import p_variables from 'pareto-core/dist/implementation/specials/variables'
+import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
 import * as signatures from "../../../interface/commands"
 
@@ -24,13 +22,13 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
-import p_change_context from 'pareto-core/dist/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 
-export const $$: signatures.procedures.generate_typescript = p.command_procedure(
+export const $$: signatures.procedures.generate_typescript = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
-        p.query(
+        p_.query(
             $q['read file'](
                 $d.source,
                 ($): d_resource.Error => ['could not read source', $]
@@ -41,13 +39,13 @@ export const $$: signatures.procedures.generate_typescript = p.command_procedure
 
                 const lib_path = t_path_to_path.extend_context_path_with_list(
                     path,
-                    { 'addition': p.literal.list(["typescript", "lib", "src"]) }
+                    { 'addition': p_.literal.list(["typescript", "lib", "src"]) }
                 )
 
                 const interface_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
                         lib_path,
-                        { 'addition': p.literal.list(["interface", "generated"]) }
+                        { 'addition': p_.literal.list(["interface", "generated"]) }
                     ),
                     {
                         'node': "liana"
@@ -56,7 +54,7 @@ export const $$: signatures.procedures.generate_typescript = p.command_procedure
                 const implementation_module_path = t_path_to_path.create_node_path(
                     t_path_to_path.extend_context_path_with_list(
                         lib_path,
-                        { 'addition': p.literal.list(["implementation", "generated"]) }
+                        { 'addition': p_.literal.list(["implementation", "generated"]) }
                     ),
                     {
                         'node': "liana"
@@ -66,10 +64,10 @@ export const $$: signatures.procedures.generate_typescript = p.command_procedure
 
                 return [
 
-                    p.refine_without_error_transformation(
-                        (abort): d_schema.Package => pa.decide.state($d.type, ($) => {
+                    p_.refine_without_error_transformation(
+                        (abort): d_schema.Package => p_temp.decide.state($d.type, ($) => {
                             switch ($[0]) {
-                                case 'module specification': return pa.ss($, ($) => p_variables(() => {
+                                case 'module specification': return p_temp.ss($, ($) => p_variables(() => {
                                     const x = r_schema.Module_Specification(
                                         r_unresolved_schema_from_loc.Module_Specification(
                                             $v2,
@@ -93,7 +91,7 @@ export const $$: signatures.procedures.generate_typescript = p.command_procedure
                                         'schema tree': x.schema
                                     }
                                 }))
-                                case 'package': return pa.ss($, ($) => r_schema.Package(
+                                case 'package': return p_temp.ss($, ($) => r_schema.Package(
                                     r_unresolved_schema_from_loc.Package(
                                         $v2,
                                         ($) => abort(['could not deserialize', {
@@ -111,7 +109,7 @@ export const $$: signatures.procedures.generate_typescript = p.command_procedure
                                     p_create_symbol(),
                                     p_create_symbol(),
                                 ))
-                                default: return pa.au($[0])
+                                default: return p_temp.au($[0])
                             }
                         }),
                         ($) => [

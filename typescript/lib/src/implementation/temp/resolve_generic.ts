@@ -1,10 +1,9 @@
-import * as pt from 'pareto-core/dist/assign'
-import * as p_di from 'pareto-core/dist/data/interface'
+import * as p_temp from 'pareto-core/dist/assign'
+import * as p_di from 'pareto-core/dist/interface/data'
 
-import * as _p_temp from 'pareto-core/dist/select_static_lookup'
-import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
-import { Abort } from 'pareto-core/dist/__internals/Abort'
+import { Abort } from 'pareto-core/dist/interface/__internal/Abort'
 
 import * as gen_loc from "liana-core/dist/interface/to_be_generated/document_and_location"
 import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
@@ -41,15 +40,15 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         $cyclic: p_di.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    const xx = pt.decide.dictionary(
-        pt.dictionary.from.dictionary(
+    const xx = p_temp.decide.dictionary(
+        p_temp.dictionary.from.dictionary(
             benchmark,
         ).map_optionally(
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(
-                () => pt.literal.not_set<null>(),
-                () => pt.literal.set(null),
+                () => p_temp.literal.not_set<null>(),
+                () => p_temp.literal.set(null),
             )
         )
     ).has_entries(
@@ -59,7 +58,7 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         }),
         () => null
     )
-    return pt.dictionary.from.dictionary(
+    return p_temp.dictionary.from.dictionary(
         $,
     ).resolve_static(
         handle_entry
@@ -235,7 +234,7 @@ export const temp_assert = <Type extends p_di.Value, Error extends p_di.Value>(
 export const temp_optional_map = <In extends p_di.Value, Out extends p_di.Value>(
     $: p_di.Optional_Value<In>,
     callback: ($: In) => Out,
-): p_di.Optional_Value<Out> => pt.optional.from.optional($).map(callback)
+): p_di.Optional_Value<Out> => p_temp.optional.from.optional($).map(callback)
 
 export const temp_resolve = <T extends p_di.Value, Resolved extends p_di.Value>(
     $: p_di.Dictionary<T>,
@@ -246,7 +245,7 @@ export const temp_resolve = <T extends p_di.Value, Resolved extends p_di.Value>(
         cyclic_lookup: p_di.static_lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    return pt.dictionary.from.dictionary($).resolve_static(handle_entry)
+    return p_temp.dictionary.from.dictionary($).resolve_static(handle_entry)
 }
 
 export const temp_map_list_with_state = <T extends p_di.Value, Target_Item extends p_di.Value, State extends p_di.Value, Result_Type extends p_di.Group>(
@@ -264,7 +263,7 @@ export const temp_map_list_with_state = <T extends p_di.Value, Target_Item exten
         final_list: p_di.List<Target_Item>,
         final_state: State
     ) => Result_Type,
-): Result_Type => pt.group.from.list($).map_with_state(
+): Result_Type => p_temp.group.from.list($).map_with_state(
     initial_state,
     handle_item,
     update_state,

@@ -1,25 +1,24 @@
-import * as pt from 'pareto-core/dist/assign'
-import * as p_sl from 'pareto-core/dist/select_static_lookup'
-import p_change_context from 'pareto-core/dist/specials/change_context'
-import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
+import * as p_ from 'pareto-core/dist/implementation/refiner'
+import * as p_sl from 'pareto-core/dist/implementation/refiner/select_static_lookup'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
-// import * as _i_generic from 'pareto-core/dist/algorithm_types/refiner/resolve'
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 
-import * as _i_generic from "../../resolve_generic"
+import * as i_generic from "../../resolve_generic"
 
 import { Module_Reference } from "../modules/unresolved_manual"
 
 export const Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => {
-    return _i_generic.resolve_dense_dictionary(
+    return i_generic.resolve_dense_dictionary(
         $['l dictionary'],
         $['l location'],
         abort,
         $p.modules,
         ($, id, $acyclic, $cyclic) => {
-            const p_linked_entry = _i_generic.get_entry_acyclic(
+            const p_linked_entry = i_generic.get_entry_acyclic(
                 p_sl.acyclic.from_resolved_dictionary($p.modules),
                 {
                     'l reference': id,
@@ -48,7 +47,7 @@ export const Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) =
 export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => {
     const p_parameters: t_out.Resolver_Signature.parameters = p_change_context($.parameters['l state'], ($): t_out.Resolver_Signature.parameters => {
         switch ($[0]) {
-            case 'local': return pt.ss($, ($) => ['local', Signature_Parameters(
+            case 'local': return p_.ss($, ($) => ['local', Signature_Parameters(
                 $,
                 abort,
                 p_create_symbol(),
@@ -57,12 +56,12 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
                     'modules': $p.modules,
                 },
             )])
-            case 'same as': return pt.ss($, ($) => ['same as', _i_generic.get_entry_acyclic(
+            case 'same as': return p_.ss($, ($) => ['same as', i_generic.get_entry_acyclic(
                 $l['sibling signatures'],
                 $,
                 abort,
             )])
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
     return {
@@ -70,9 +69,9 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
         'parameters': p_parameters,
         'resolved parameters': p_change_context(p_parameters, ($) => {
             switch ($[0]) {
-                case 'local': return pt.ss($, ($) => $)
-                case 'same as': return pt.ss($, ($) => $['l entry']['resolved parameters'])
-                default: return pt.au($[0])
+                case 'local': return p_.ss($, ($) => $)
+                case 'same as': return p_.ss($, ($) => $['l entry']['resolved parameters'])
+                default: return p_.au($[0])
             }
         })
     }
@@ -80,7 +79,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
 
 export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => {
 
-    const p_parameters_values: t_out.Resolver_Signature_Parameters.modules = _i_generic.temp_resolve(
+    const p_parameters_values: t_out.Resolver_Signature_Parameters.modules = i_generic.temp_resolve(
         $.modules['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
 
@@ -91,7 +90,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                     'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': pt.literal.not_set(),
+                    'imports': p_.literal.not_set(),
                 },
 
             )
@@ -104,7 +103,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
         },
     )
     const lookups_loc = $.lookups['l location']
-    const p_parameters_lookups: t_out.Resolver_Signature_Parameters.lookups = _i_generic.temp_resolve(
+    const p_parameters_lookups: t_out.Resolver_Signature_Parameters.lookups = i_generic.temp_resolve(
         $.lookups['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
             const p_referent = Module_Reference(
@@ -114,17 +113,17 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                     'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
                 },
                 {
-                    'imports': pt.literal.not_set(),
+                    'imports': p_.literal.not_set(),
                 },
 
             )
 
             const p_type: t_out.Resolver_Signature_Parameters.lookups.D.type_ = p_change_context($['l entry'].type['l state'], ($) => {
                 switch ($[0]) {
-                    case 'acyclic': return pt.ss($, ($) => ['acyclic', null])
-                    case 'cyclic': return pt.ss($, ($) => ['cyclic', null])
-                    case 'stack': return pt.ss($, ($) => ['stack', $])
-                    default: return pt.au($[0])
+                    case 'acyclic': return p_.ss($, ($) => ['acyclic', null])
+                    case 'cyclic': return p_.ss($, ($) => ['cyclic', null])
+                    case 'stack': return p_.ss($, ($) => ['stack', $])
+                    default: return p_.au($[0])
                 }
             })
             const p_presence = $['l entry'].presence['l state']
@@ -132,9 +131,9 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                 'referent': p_referent,
                 'dictionary': p_change_context(p_referent['resulting module']['root value'], ($) => { // component constraint (referent)
                     switch ($[0]) {
-                        case 'dictionary': return pt.ss($, ($) => $)
+                        case 'dictionary': return p_.ss($, ($) => $)
                         // default: return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}' @ ${$p['location 2 string'](lookups_loc)}`)
-                        default: return _i_generic.abort.state_constraint_found_expected(
+                        default: return i_generic.abort.state_constraint_found_expected(
                             "dictionary",
                             $,
                             lookups_loc,

@@ -1,6 +1,6 @@
-import * as p_ from 'pareto-core/dist/command/implementation'
-import * as p_t from 'pareto-core/dist/assign'
-import p_iterate from 'pareto-core/dist/specials/iterate'
+import * as p_ from 'pareto-core/dist/implementation/command'
+import * as p_temp from 'pareto-core/dist/implementation/transformer'
+import p_iterate from 'pareto-core/dist/implementation/specials/iterate'
 
 import * as signatures from "../../../interface/commands"
 
@@ -113,14 +113,14 @@ export const $$: signatures.procedures.generate_typescript_cli = p_.command_proc
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([
-                                p_t.decide.state($, ($) => {
+                                p_temp.decide.state($, ($) => {
                                     switch ($[0]) {
-                                        case 'missing source path': return p_t.ss($, ($) => sh.ph.literal("missing source path argument"))
-                                        case 'invalid source path': return p_t.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                        case 'missing target path': return p_t.ss($, ($) => sh.ph.literal("missing target path argument"))
-                                        case 'too many arguments': return p_t.ss($, ($) => sh.ph.literal("too many arguments"))
-                                        case 'processing': return p_t.ss($, ($) => sh.ph.literal("error while processing"))
-                                        default: return p_t.au($[0])
+                                        case 'missing source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                        case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
+                                        case 'missing target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                        case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
+                                        case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
+                                        default: return p_temp.au($[0])
                                     }
                                 })
                             ])

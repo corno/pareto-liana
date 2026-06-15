@@ -1,5 +1,5 @@
-import * as p_di from 'pareto-core/dist/data/interface'
-import * as pt from 'pareto-core/dist/transformer/implementation'
+import * as p_di from 'pareto-core/dist/interface/data'
+import * as pt from 'pareto-core/dist/implementation/transformer'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"

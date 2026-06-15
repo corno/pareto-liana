@@ -1,7 +1,7 @@
 //core
-import * as p_ from 'pareto-core/dist/command/implementation'
-import * as p_t from 'pareto-core/dist/assign'
-import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
+import * as p_ from 'pareto-core/dist/implementation/command'
+import * as p_temp from 'pareto-core/dist/implementation/transformer'
+import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
 import * as signatures from "../../../interface/commands"
 
@@ -80,9 +80,9 @@ export const $$: signatures.procedures.serialize_schemas = p_.command_procedure(
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
-                                        p_t.decide.state($, ($) => {
+                                        p_temp.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'resolve error': return p_t.ss($, ($) => sh.ph.composed([
+                                                case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
                                                     t_loc_to_fp.Range(
                                                         $.location,
                                                         {
@@ -95,8 +95,8 @@ export const $$: signatures.procedures.serialize_schemas = p_.command_procedure(
                                                         $,
                                                     )
                                                 ]))
-                                                case 'error writing file': return p_t.ss($, ($) => t_write_file_to_fp.Error($))
-                                                default: return p_t.au($[0])
+                                                case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_fp.Error($))
+                                                default: return p_temp.au($[0])
                                             }
                                         })
                                     ]),

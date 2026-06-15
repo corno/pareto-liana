@@ -1,21 +1,21 @@
-import * as pt from 'pareto-core/dist/assign'
-import * as p_sl from 'pareto-core/dist/select_static_lookup'
-import p_variables from 'pareto-core/dist/specials/variables'
-import p_change_context from 'pareto-core/dist/specials/change_context'
-import p_create_symbol from 'pareto-core/dist/specials/create_symbol'
+import * as p_ from 'pareto-core/dist/implementation/refiner'
+import * as p_sl from 'pareto-core/dist/implementation/refiner/select_static_lookup'
+import p_variables from 'pareto-core/dist/implementation/specials/variables'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
 import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 
-import * as _i_generic from "../../resolve_generic"
+import * as i_generic from "../../resolve_generic"
 
 import  { Value as Resolver_Value } from "../resolver/unresolved_manual"
 import  { Signatures } from "../signatures/unresolved_manual"
 import  { Value, Globals } from "../modules/unresolved_manual"
 
 
-export const Package: t_signatures.Package = ($, abort, $l, $p) => pt.literal.group_resolve(
+export const Package: t_signatures.Package = ($, abort, $l, $p) => p_.literal.group_resolve(
     () => {
 
         const prop_omit_$po_de$pc_serializer = p_change_context(
@@ -45,10 +45,10 @@ export const Package: t_signatures.Package = ($, abort, $l, $p) => pt.literal.gr
 )
 
 
-export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => p_variables(() => p_change_context($, ($) => _i_generic.temp_resolve(
+export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => p_variables(() => p_change_context($, ($) => i_generic.temp_resolve(
     $['l dictionary'],
     ($, id) => p_change_context($, ($) => p_change_context($, ($): t_out.Schema_Imports.D => {
-        const foo = p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
+        const foo = p_change_context($['l entry']['schema set child'], ($) => i_generic.get_entry_stack(
             $l['sibling schemas'],
             $,
             abort,
@@ -56,17 +56,17 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) =>
         const p_schema_set_child: t_out.Schema_Imports.D.schema_set_child = {
             'l value': foo,
             'l results': {
-                'schema': pt.decide.state(foo['l entry'], ($) => {
+                'schema': p_.decide.state(foo['l entry'], ($) => {
                     switch ($[0]) {
-                        case 'schema': return pt.ss($, ($) => $)
-                        case 'set': return pt.ss($, ($) => abort({
+                        case 'schema': return p_.ss($, ($) => $)
+                        case 'set': return p_.ss($, ($) => abort({
                             'type': ['constraint', ['state', {
                                 'expected': "schema",
                                 'found': "set",
                             }]],
                             'location': loc
                         }))
-                        default: return pt.au($[0])
+                        default: return p_.au($[0])
                     }
                 })
             }
@@ -79,11 +79,11 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) =>
         }
     })),
 )))
-export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => p_variables(() => p_change_context($, ($) => _i_generic.temp_resolve(
+export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => p_variables(() => p_change_context($, ($) => i_generic.temp_resolve(
     $['l dictionary'],
     ($, id) => p_change_context($, ($) => p_change_context($, ($): t_out.Resolver_Imports.D => {
         const loc = $['l entry']['schema set child']['l location']
-        const foo = p_change_context($['l entry']['schema set child'], ($) => _i_generic.get_entry_stack(
+        const foo = p_change_context($['l entry']['schema set child'], ($) => i_generic.get_entry_stack(
             $l['sibling schemas'],
             $,
             abort,
@@ -91,29 +91,29 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
         const p_schema_set_child: t_out.Resolver_Imports.D.schema_set_child = {
             'l value': foo,
             'l results': {
-                'resolver': pt.decide.state(foo['l entry'], ($) => {
+                'resolver': p_.decide.state(foo['l entry'], ($) => {
                     switch ($[0]) {
-                        case 'schema': return pt.ss($, ($) => pt.decide.state($.complexity, ($) => {
+                        case 'schema': return p_.ss($, ($) => p_.decide.state($.complexity, ($) => {
                             switch ($[0]) {
-                                case 'constrained': return pt.ss($, ($) => $)
-                                case 'unconstrained': return pt.ss($, ($) => abort({
+                                case 'constrained': return p_.ss($, ($) => $)
+                                case 'unconstrained': return p_.ss($, ($) => abort({
                                     'type': ['constraint', ['state', {
                                         'expected': "constrained",
                                         'found': "unconstrained",
                                     }]],
                                     'location': loc
                                 }))
-                                default: return pt.au($[0])
+                                default: return p_.au($[0])
                             }
                         }))
-                        case 'set': return pt.ss($, ($) => abort({
+                        case 'set': return p_.ss($, ($) => abort({
                             'type': ['constraint', ['state', {
                                 'expected': "schema",
                                 'found': "set",
                             }]],
                             'location': loc
                         }))
-                        default: return pt.au($[0])
+                        default: return p_.au($[0])
                     }
                 })
             }
@@ -128,7 +128,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
 
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_variables(() => p_change_context($['l state'], ($): t_out.Schemas.D => {
     switch ($[0]) {
-        case 'schema': return pt.ss($, ($) => ['schema', p_variables(() => {
+        case 'schema': return p_.ss($, ($) => ['schema', p_variables(() => {
             const p_schema_imports = Schema_Imports(
                 $['schema imports'],
                 abort,
@@ -155,7 +155,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                 p_create_symbol(),
                 p_create_symbol(),
             ))
-            const p_types: t_out.Modules = _i_generic.temp_resolve(
+            const p_types: t_out.Modules = i_generic.temp_resolve(
                 $.modules['l dictionary'],
                 ($, id, $acyclic, $cyclic) => {
                     const p_type = Value(
@@ -166,8 +166,8 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                             'possibly circular dependent sibling modules': $cyclic,
                         },
                         {
-                            'imports': pt.literal.set(p_schema_imports),
-                            'globals': pt.literal.set(p_globals),
+                            'imports': p_.literal.set(p_schema_imports),
+                            'globals': p_.literal.set(p_globals),
                         },
 
                     )
@@ -179,7 +179,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
             )
             const p_complexity: t_out.Schema.complexity = p_change_context($.complexity['l state'], ($) => {
                 switch ($[0]) {
-                    case 'constrained': return pt.ss($, ($) => {
+                    case 'constrained': return p_.ss($, ($) => {
 
                         const p_signatures: t_out.Resolver.signatures = p_change_context($.signatures, ($) => {
                             const p_types_2: t_out.Resolver.signatures.signatures = p_change_context($, ($) => Signatures(
@@ -195,14 +195,14 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                 'signatures': p_types_2,
                             }
                         })
-                        const p_modules: t_out.Resolver.modules = _i_generic.resolve_dense_dictionary(
+                        const p_modules: t_out.Resolver.modules = i_generic.resolve_dense_dictionary(
                             $.modules['l dictionary'],
                             $.modules['l location'],
                             abort,
                             p_signatures.signatures,
                             ($, id, $acyclic, $cyclic) => {
 
-                                const p_linked_entry = _i_generic.get_entry_acyclic(
+                                const p_linked_entry = i_generic.get_entry_acyclic(
                                     p_sl.acyclic.from_resolved_dictionary(p_types),
                                     {
                                         'l reference': id,
@@ -210,7 +210,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                     },
                                     abort,
                                 )
-                                const p_signature = _i_generic.get_entry_acyclic(
+                                const p_signature = i_generic.get_entry_acyclic(
                                     p_sl.acyclic.from_resolved_dictionary(p_signatures.signatures),
                                     {
                                         'l reference': id,
@@ -228,18 +228,18 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
 
                                     },
                                     {
-                                        'list cursor': pt.literal.not_set(),
-                                        'linked entry': pt.literal.not_set(),
-                                        'current dictionary': pt.literal.not_set(),
-                                        'current ordered dictionary': pt.literal.not_set(),
-                                        'option constraints': pt.literal.not_set(),
+                                        'list cursor': p_.literal.not_set(),
+                                        'linked entry': p_.literal.not_set(),
+                                        'current dictionary': p_.literal.not_set(),
+                                        'current ordered dictionary': p_.literal.not_set(),
+                                        'option constraints': p_.literal.not_set(),
 
                                         'definition': p_linked_entry['l entry']['root value'],
                                         'signature': p_signature['l entry'],
 
                                         'modules': p_types,
-                                        'schema imports': pt.literal.set(p_schema_imports),
-                                        'resolver imports': pt.literal.set(p_resolver_imports),
+                                        'schema imports': p_.literal.set(p_schema_imports),
+                                        'resolver imports': p_.literal.set(p_resolver_imports),
                                         'signatures': p_signatures.signatures
                                     },
                                 )
@@ -254,8 +254,8 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                             'modules': p_modules,
                         }]
                     })
-                    case 'unconstrained': return pt.ss($, ($) => ['unconstrained', null])
-                    default: return pt.au($[0])
+                    case 'unconstrained': return p_.ss($, ($) => ['unconstrained', null])
+                    default: return p_.au($[0])
                 }
             })
             return ({
@@ -267,17 +267,17 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
             })
         })])
         case 'set':
-        case 'set': return pt.ss($, ($) => ['set', Schemas(
+        case 'set': return p_.ss($, ($) => ['set', Schemas(
             $,
             abort,
             $l,
             $p,
         )])
-        default: return pt.au($[0])
+        default: return p_.au($[0])
     }
 }))
 
-export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_variables(() => _i_generic.temp_resolve(
+export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_variables(() => i_generic.temp_resolve(
     $['l dictionary'],
     ($, id, $acyclic, $cyclic) => p_change_context($, ($) => Schema_Tree(
         $['l entry'],
@@ -301,15 +301,15 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         $p,
     ),
     'schema path': $['schema path']['l list'].__l_map(($) => $['l item']),
-    'complexity': pt.decide.state($.complexity['l state'], ($) => {
+    'complexity': p_.decide.state($.complexity['l state'], ($) => {
         switch ($[0]) {
-            case 'constrained': return pt.ss($, ($) => ['constrained', {
+            case 'constrained': return p_.ss($, ($) => ['constrained', {
                 'module resolver': $['module resolver']
             }])
-            case 'unconstrained':return pt.ss($, ($) => ['unconstrained', {
+            case 'unconstrained':return p_.ss($, ($) => ['unconstrained', {
                 'module': $.module
             }])
-            default: return pt.au($[0])
+            default: return p_.au($[0])
         }
     })
 }))

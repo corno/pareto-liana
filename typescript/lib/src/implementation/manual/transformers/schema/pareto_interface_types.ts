@@ -1,7 +1,7 @@
-import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_di from 'pareto-core/dist/data/interface'
-import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
-import p_change_context from 'pareto-core/dist/specials/change_context'
+import * as pt from 'pareto-core/dist/implementation/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
+import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
+import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
