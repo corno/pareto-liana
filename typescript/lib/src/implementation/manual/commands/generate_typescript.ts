@@ -3,7 +3,7 @@ import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import p_variables from 'pareto-core/dist/implementation/specials/variables'
 import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
-import * as signatures from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands"
 
 // //data types
 import * as d_resource from "../../../interface/data/generate_typescript"
@@ -20,12 +20,7 @@ import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/i
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 
-// //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
-
-
-export const $$: signatures.procedures.generate_typescript = p_.command_procedure(
+export const $$: interface_.procedures.generate_typescript = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
         p_.query(
@@ -33,7 +28,6 @@ export const $$: signatures.procedures.generate_typescript = p_.command_procedur
                 $d.source,
                 ($): d_resource.Error => ['could not read source', $]
             ),
-            ($) => $,
             ($v2) => p_variables(() => {
                 const path = $d.target
 
