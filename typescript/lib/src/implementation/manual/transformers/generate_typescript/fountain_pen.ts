@@ -1,5 +1,5 @@
 import * as pt from 'pareto-core/dist/transformer/implementation'
-import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_i from 'pareto-core/dist/transformer/interface'
 
 //data types
 import * as d_in from "../../../../interface/to_be_generated/generate_typescript"
@@ -13,7 +13,7 @@ import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementati
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: p_ti.Transformer<d_in.Error, d_out.Phrase> = ($) => {
+export const Error: p_i.Transformer<d_in.Error, d_out.Phrase> = ($) => {
     return pt.decide.state($, ($) => {
         switch ($[0]) {
             case 'could not read source': return pt.ss($, ($) => sh.ph.composed([

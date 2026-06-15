@@ -1,8 +1,10 @@
 import * as pt from 'pareto-core/dist/assign'
 import * as p_di from 'pareto-core/dist/data/interface'
-import * as p_i from 'pareto-core/dist/interface'
+
 import * as _p_temp from 'pareto-core/dist/select_static_lookup'
 import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
+
+import { Abort } from 'pareto-core/dist/__internals/Abort'
 
 import * as gen_loc from "liana-core/dist/interface/to_be_generated/document_and_location"
 import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
@@ -30,7 +32,7 @@ export type Resolved_Stack_Reference<T> = {
 export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved extends p_di.Value, Benchmark extends p_di.Value>(
     $: p_di.Dictionary<Unresolved>,
     location: gen_loc.Range,
-    abort: p_i.Abort<gen_resolve.Error>,
+    abort: Abort<gen_resolve.Error>,
     benchmark: p_di.Dictionary<Benchmark>,
     handle_entry: (
         $: Unresolved,
@@ -69,7 +71,7 @@ export namespace abort {
         found: string,
         expected: T,
         location: gen_loc.Range,
-        abort: p_i.Abort<gen_resolve.Error>,
+        abort: Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
             'expected': expected[0],
@@ -81,7 +83,7 @@ export namespace abort {
         expected: string,
         found: T,
         location: gen_loc.Range,
-        abort: p_i.Abort<gen_resolve.Error>,
+        abort: Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['state', {
             'expected': expected,
@@ -93,7 +95,7 @@ export namespace abort {
     export const same_node_constraint = (
         property: string,
         location: gen_loc.Range,
-        abort: p_i.Abort<gen_resolve.Error>,
+        abort: Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['same node', property]],
         'location': location,
@@ -102,7 +104,7 @@ export namespace abort {
     export const is_set_assertion = (
         parameter: string,
         location: gen_loc.Range,
-        abort: p_i.Abort<gen_resolve.Error>,
+        abort: Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],
         'location': location,
@@ -111,7 +113,7 @@ export namespace abort {
     export const parameter_is_set_assertion = (
         parameter: string,
         location: gen_loc.Range,
-        abort: p_i.Abort<gen_resolve.Error>,
+        abort: Abort<gen_resolve.Error>,
     ) => abort({
         'type': ['constraint', ['optional value is not set', null]],
         'location': location,
@@ -121,7 +123,7 @@ export namespace abort {
 export const get_entry_acyclic = <T extends p_di.Value>(
     lookup: p_di.static_lookup.Acyclic<T>,
     ref: Unresolved_Reference,
-    abort: p_i.Abort<gen_resolve.Error>,
+    abort: Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
     return {
         'l entry': lookup.get_entry(
@@ -148,7 +150,7 @@ export const get_entry_acyclic = <T extends p_di.Value>(
 export const get_entry_cyclic = <T extends p_di.Value>(
     lookup: p_di.static_lookup.Cyclic<T>,
     reference: Unresolved_Reference,
-    abort: p_i.Abort<gen_resolve.Error>,
+    abort: Abort<gen_resolve.Error>,
 ): Resolved_Reference<p_di.Circular_Dependency<T>> => {
     return {
         'l id': reference['l reference'],
@@ -172,7 +174,7 @@ export const get_entry_cyclic = <T extends p_di.Value>(
 export const get_entry_stack = <T extends p_di.Value>(
     stack: p_di.static_lookup.Stack<T>,
     reference: Unresolved_Reference,
-    abort: p_i.Abort<gen_resolve.Error>,
+    abort: Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
     return {
         'l id': reference['l reference'],
@@ -216,7 +218,7 @@ export const get_entry_stack = <T extends p_di.Value>(
 export const temp_assert = <Type extends p_di.Value, Error extends p_di.Value>(
     condition: () => p_di.Optional_Value<Error>,
     callback: () => Type,
-    abort: p_i.Abort<Error>,
+    abort: Abort<Error>,
 ): Type => {
     const c = condition()
     c.__extract_data(

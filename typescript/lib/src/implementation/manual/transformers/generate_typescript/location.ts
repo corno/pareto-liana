@@ -1,4 +1,4 @@
-import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_i from 'pareto-core/dist/transformer/interface'
 import * as p_di from 'pareto-core/dist/data/interface'
 import * as pt from 'pareto-core/dist/transformer/implementation'
 
@@ -14,7 +14,7 @@ import * as t_deserialize_to_location from "liana-core/dist/implementation/manua
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: p_ti.Transformer<d_in.Error, Possible_Range> = ($) => {
+export const Error: p_i.Transformer<d_in.Error, Possible_Range> = ($) => {
     return pt.decide.state($, ($): Possible_Range => {
         switch ($[0]) {
             case 'could not read source': return pt.ss($, ($): Possible_Range => pt.literal.not_set())

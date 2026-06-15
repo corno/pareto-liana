@@ -1,5 +1,5 @@
 import * as p_di from 'pareto-core/dist/data/interface'
-import * as p_ti from 'pareto-core/dist/transformer/interface'
+import * as p_i from 'pareto-core/dist/transformer/interface'
 import * as pt from 'pareto-core/dist/transformer/implementation'
 import p_unreachable_code_path from 'pareto-core/dist/specials/unreachable_code_path'
 
@@ -28,7 +28,7 @@ const location = sh.a.select(
     )
 )
 
-export const Schema: p_ti.Transformer_With_Parameter<
+export const Schema: p_i.Transformer_With_Parameter<
     d_in.Schema,
     d_out.Package_Set.D,
     {
