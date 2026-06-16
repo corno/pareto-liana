@@ -31,14 +31,14 @@ type My_Error =
 
 export const $$: signatures.procedures.serialize_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [
-        p_.dictionaryx.parallel(
+        p_.dictionary(
             poormans_modules,
             ($, id) => [
 
                 p_.handle_error<d_main.Error, My_Error>(
                     [
 
-                        p_.refine_without_error_transformation(
+                        p_.refine(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),

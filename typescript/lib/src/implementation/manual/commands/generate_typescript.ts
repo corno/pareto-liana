@@ -58,7 +58,7 @@ export const $$: interface_.procedures.generate_typescript = p_.command_procedur
 
                 return [
 
-                    p_.refine_without_error_transformation(
+                    p_.refine(
                         (abort): d_schema.Package => p_temp.decide.state($d.type, ($) => {
                             switch ($[0]) {
                                 case 'module specification': return p_temp.ss($, ($) => p_variables(() => {

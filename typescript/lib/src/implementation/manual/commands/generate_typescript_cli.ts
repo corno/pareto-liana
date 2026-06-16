@@ -30,7 +30,7 @@ export const $$: signatures.procedures.generate_typescript_cli = p_.command_proc
             [
 
 
-                p_.refine_without_error_transformation(
+                p_.refine(
                     (abort) => p_iterate(
                         $d.arguments,
                         null,

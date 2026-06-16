@@ -42,7 +42,7 @@ export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedu
         ),
         p_.handle_error(
             [
-                p_.dictionaryx.parallel(
+                p_.dictionary(
                     poormans_modules,
                     ($, id): p_.Command_Block<d_generate_typescript.Error> => {
 
@@ -93,7 +93,7 @@ export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedu
                                 ($) => ['could not remove interface', null]
                             ),
 
-                            p_.refine_without_error_transformation(
+                            p_.refine(
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),
