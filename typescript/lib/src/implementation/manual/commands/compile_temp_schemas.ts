@@ -4,7 +4,7 @@ import p_create_symbol from 'pareto-core/dist/implementation/specials/create_sym
 import * as signatures from "../../../interface/commands"
 
 //data types
-import * as d_main from "pareto-resources/dist/interface/to_be_generated/temp_main"
+import * as d_main from "pareto-resources/dist/interface/data/temp_main"
 import * as d_generate_typescript from "../../../interface/data/compile_temp_schemas"
 
 //data
