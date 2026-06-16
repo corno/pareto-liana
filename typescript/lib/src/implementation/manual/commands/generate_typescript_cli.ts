@@ -28,8 +28,6 @@ export const $$: signatures.procedures.generate_typescript_cli = p_.command_proc
 
         p_.handle_error<d_main.Error, My_Error_1>(
             [
-
-
                 p_.refine(
                     (abort) => p_iterate(
                         $d.arguments,
@@ -57,8 +55,6 @@ export const $$: signatures.procedures.generate_typescript_cli = p_.command_proc
                         )
                     ),
                     ($v) => [
-
-
                         p_.handle_error<My_Error_1, d_resource.Error>(
                             [
 
