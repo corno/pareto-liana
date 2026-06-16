@@ -6,7 +6,7 @@ import p_create_symbol from 'pareto-core/dist/implementation/specials/create_sym
 import * as interface_ from "../../../interface/commands"
 
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
-import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
+import * as d_resolve from "liana-core/dist/interface/data/resolve"
 import * as d_write_file from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data

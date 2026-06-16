@@ -10,7 +10,7 @@ import p_create_symbol from 'pareto-core/dist/implementation/specials/create_sym
 //data types
 import * as d_out from "../../../../interface/data/temp_module_specifier"
 import * as d_out_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_function from "liana-core/dist/interface/to_be_generated/deserialize_resolved"
+import * as d_function from "liana-core/dist/interface/data/deserialize_resolved"
 import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
 
 

@@ -5,8 +5,8 @@ import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/un
 
 import { Abort } from 'pareto-core/dist/interface/__internal/Abort'
 
-import * as gen_loc from "liana-core/dist/interface/to_be_generated/document_and_location"
-import * as gen_resolve from "liana-core/dist/interface/to_be_generated/resolve"
+import * as gen_loc from "liana-core/dist/interface/data/document_and_location"
+import * as gen_resolve from "liana-core/dist/interface/data/resolve"
 
 //types
 
