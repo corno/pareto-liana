@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import p_iterate from 'pareto-core/dist/implementation/specials/iterate'
 
-import * as signatures from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands"
 
 // //data types
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
@@ -23,12 +23,12 @@ import * as t_path_to_text from "pareto-resources/dist/implementation/manual/tra
 // //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.procedures.generate_typescript_cli = p_.command_procedure(
+export const $$: interface_.procedures.generate_typescript_cli = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
-        p_.handle_error<d_main.Error, My_Error_1>(
+        p_.s.handle_error<d_main.Error, My_Error_1>(
             [
-                p_.refine(
+                p_.s.refine(
                     (abort) => p_iterate(
                         $d.arguments,
                         null,
@@ -55,7 +55,7 @@ export const $$: signatures.procedures.generate_typescript_cli = p_.command_proc
                         )
                     ),
                     ($v) => [
-                        p_.handle_error<My_Error_1, d_resource.Error>(
+                        p_.s.handle_error<My_Error_1, d_resource.Error>(
                             [
 
 

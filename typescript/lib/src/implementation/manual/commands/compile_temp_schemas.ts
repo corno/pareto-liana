@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
 import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
-import * as signatures from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands"
 
 //data types
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
@@ -25,7 +25,7 @@ import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schem
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedure(
+export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(
@@ -40,9 +40,9 @@ export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedu
                 'exit code': 1
             })
         ),
-        p_.handle_error(
+        p_.s.handle_error(
             [
-                p_.dictionary(
+                p_.s.dictionary(
                     poormans_modules,
                     ($, id): p_.Command_Block<d_generate_typescript.Error> => {
 
@@ -93,7 +93,7 @@ export const $$: signatures.procedures.compile_temp_schemas = p_.command_procedu
                                 ($) => ['could not remove interface', null]
                             ),
 
-                            p_.refine(
+                            p_.s.refine(
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),

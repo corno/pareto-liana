@@ -3,7 +3,7 @@ import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
-import * as signatures from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands"
 
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
 import * as d_resolve from "liana-core/dist/interface/to_be_generated/resolve"
@@ -29,16 +29,16 @@ type My_Error =
     | ['error writing file', d_write_file.Error]
     | ['resolve error', d_resolve.Error]
 
-export const $$: signatures.procedures.serialize_schemas = p_.command_procedure(
+export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [
-        p_.dictionary(
+        p_.s.dictionary(
             poormans_modules,
             ($, id) => [
 
-                p_.handle_error<d_main.Error, My_Error>(
+                p_.s.handle_error<d_main.Error, My_Error>(
                     [
 
-                        p_.refine(
+                        p_.s.refine(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),

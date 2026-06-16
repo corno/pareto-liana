@@ -23,7 +23,7 @@ import * as t_path_to_path from "pareto-resources/dist/implementation/manual/tra
 export const $$: interface_.procedures.generate_typescript = p_.command_procedure(
     ($d, $s, $q, $c) => [
 
-        p_.query(
+        p_.s.query(
             $q['read file'](
                 $d.source,
                 ($): d_resource.Error => ['could not read source', $]
@@ -58,7 +58,7 @@ export const $$: interface_.procedures.generate_typescript = p_.command_procedur
 
                 return [
 
-                    p_.refine(
+                    p_.s.refine(
                         (abort): d_schema.Package => p_temp.decide.state($d.type, ($) => {
                             switch ($[0]) {
                                 case 'module specification': return p_temp.ss($, ($) => p_variables(() => {
