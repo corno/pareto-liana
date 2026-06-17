@@ -502,7 +502,6 @@ export const Resolver_Value = (
         ))
         case 'list': return p_.ss($, ($) => {
             const resolver: d_in.Resolver_Value = $.resolver
-            const results = $.definition.results
             return $.result.__decide(
                 ($) => sh.a.group.literal({
                     "l value": sh.a.list.from.list.map_with_state(
