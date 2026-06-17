@@ -1,29 +1,45 @@
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
 
+namespace interface_ {
+
+    export type Schema_Tree = p_i.Transformer_With_Parameter<
+        d_in.Schema_Tree,
+        d_out.Package_Set.D,
+        {
+            'path': p_di.List<string>,
+            'omit (de)serializer': boolean
+        }
+    >
+
+    export type Schemas = p_i.Transformer_With_Parameter<
+        d_in.Schemas,
+        d_out.Package_Set.D,
+        {
+            'path': p_di.List<string>,
+            'omit (de)serializer': boolean
+        }
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/implementation"
 
+//dependencies
 import * as t_boilerplate_for_migrate from "./pareto_implementation_boilerplate_for_migrate"
-
 import * as t_resolve from "./pareto_implementation_resolve"
-
 import * as t_serialize from "./pareto_implementation_serialize"
 import * as t_deserialize from "./pareto_implementation_deserialize"
-import * as t_deserialize_resolved from "./pareto_implementation_deserialize_resolved"
-
 import * as t_marshall from "./pareto_implementation_marshall"
 import * as t_unmarshall from "./pareto_implementation_unmarshall"
 
-export const Schema_Tree = (
-    $: d_in.Schema_Tree,
-    $p: {
-        'path': p_di.List<string>,
-        'omit (de)serializer': boolean
-    }
-): d_out.Package_Set.D => {
+export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
     return p_.decide.state($, ($) => {
         switch ($[0]) {
             case 'schema': return p_.ss($, ($) => {
@@ -121,24 +137,18 @@ export const Schema_Tree = (
                     })
             })
             case 'set': return p_.ss($, ($): d_out.Package_Set.D => Schemas(
-                        $,
-                        {
-                            'path': $p.path,
-                            'omit (de)serializer': $p['omit (de)serializer'],
-                        }
-                    ))
+                $,
+                {
+                    'path': $p.path,
+                    'omit (de)serializer': $p['omit (de)serializer'],
+                }
+            ))
             default: return p_.au($[0])
         }
     })
 }
 
-export const Schemas = (
-    $: d_in.Schemas,
-    $p: {
-        'path': p_di.List<string>,
-        'omit (de)serializer': boolean
-    }
-): d_out.Package_Set.D => {
+export const Schemas: interface_.Schemas = ($, $p) => {
     return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
         'path': p_.literal.nested_list([
             $p.path,

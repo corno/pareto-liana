@@ -1,11 +1,36 @@
-import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
 import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
-
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
 
+namespace interface_ {
+
+    export type Schema = p_i.Transformer_With_Parameter<
+        d_in.Schema,
+        d_out.Package_Set.D,
+        {
+            'depth': number
+            'path': p_di.List<string>
+        }
+    >
+
+    export type Value = p_i.Transformer_With_Parameter<
+        d_in.Value,
+        d_out.Assign,
+        {
+            'type name': string
+            'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+            'constrained': boolean
+        }
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
@@ -26,13 +51,7 @@ const location = sh.a.state.literal("in main document", sh.a.group.literal({
     })
 }))
 
-export const Schema = (
-    $: d_in.Schema,
-    $p: {
-        'depth': number,
-        'path': p_di.List<string>,
-    }
-): d_out.Package_Set.D => {
+export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
         ['change context'],
@@ -102,14 +121,7 @@ export const Schema = (
     )
 
 }
-export const Value = (
-    $: d_in.Value,
-    $p: {
-        'type name': string
-        'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
-        'constrained': boolean
-    },
-): d_out.Assign => {
+export const Value: interface_.Value = ($, $p) => {
     return p_.decide.state($, ($) => {
         switch ($[0]) {
             case 'component': return p_.ss($, ($) => {

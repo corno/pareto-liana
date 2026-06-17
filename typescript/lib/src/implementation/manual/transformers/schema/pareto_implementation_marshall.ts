@@ -1,20 +1,40 @@
-import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
+
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
 
+namespace interface_ {
+
+    export type Schema = p_i.Transformer_With_Parameter<
+        d_in.Schema,
+        d_out.Package_Set.D,
+        {
+            'path': p_di.List<string>,
+            'depth': number,
+        }
+    >
+
+    export type Value = p_i.Transformer_With_Parameter<
+        d_in.Value,
+        d_out.Assign,
+        {
+            'type': string
+            'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+        }
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-export const Schema = (
-    $: d_in.Schema,
-    $p: {
-        'path': p_di.List<string>,
-        'depth': number
-    }
-): d_out.Package_Set.D => {
+export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
 
     return sh.m.package_(
@@ -102,13 +122,7 @@ export const Schema = (
     )
 }
 
-export const Value = (
-    $: d_in.Value,
-    $p: {
-        'type': string
-        'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
-    },
-): d_out.Assign => p_.decide.state($, ($) => {
+export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
     switch ($[0]) {
         case 'component': return p_.ss($, ($) => sh.a.select(
             sh.sv.call(
@@ -370,24 +384,3 @@ export const Value = (
         default: return p_.au($[0])
     }
 })
-
-// sh.a.state.literal(
-//             "text",
-//             sh.a.group.literal({
-//                 "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-//                 "value": sh.a.select(
-//                     sh.sv.text_from_list(
-//                         sh.sv.call(
-//                             sh.call.external("primitives to text", "Number"),
-//                             sh.a.select(sh.sv.context([])),
-//                             null,
-//                             sh.lookups.not_set(),
-//                             sh.arguments_.not_set(),
-//                             [],
-//                         ),
-//                         sh.a.select(sh.sv.context([])),
-//                         []
-//                     )
-//                 ),
-//             })
-//         )

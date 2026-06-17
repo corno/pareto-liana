@@ -146,7 +146,9 @@ export const get_entry_acyclic = <T extends p_di.Value>(
     }
 }
 
-export const get_entry_cyclic = <T extends p_di.Value>(
+export const get_entry_cyclic = <
+    T extends p_di.Value
+>(
     lookup: p_di.static_lookup.Cyclic<T>,
     reference: Unresolved_Reference,
     abort: Abort<gen_resolve.Error>,
@@ -170,7 +172,9 @@ export const get_entry_cyclic = <T extends p_di.Value>(
     }
 }
 
-export const get_entry_stack = <T extends p_di.Value>(
+export const get_entry_stack = <
+    T extends p_di.Value
+>(
     stack: p_di.static_lookup.Stack<T>,
     reference: Unresolved_Reference,
     abort: Abort<gen_resolve.Error>,
@@ -214,7 +218,10 @@ export const get_entry_stack = <T extends p_di.Value>(
     }
 }
 
-export const temp_assert = <Type extends p_di.Value, Error extends p_di.Value>(
+export const temp_assert = <
+    Type extends p_di.Value,
+    Error extends p_di.Value
+>(
     condition: () => p_di.Optional_Value<Error>,
     callback: () => Type,
     abort: Abort<Error>,
@@ -231,12 +238,18 @@ export const temp_assert = <Type extends p_di.Value, Error extends p_di.Value>(
     return callback()
 }
 
-export const temp_optional_map = <In extends p_di.Value, Out extends p_di.Value>(
+export const temp_optional_map = <
+    In extends p_di.Value,
+    Out extends p_di.Value
+>(
     $: p_di.Optional_Value<In>,
     callback: ($: In) => Out,
 ): p_di.Optional_Value<Out> => p_temp.optional.from.optional($).map(callback)
 
-export const temp_resolve = <T extends p_di.Value, Resolved extends p_di.Value>(
+export const temp_resolve = <
+    T extends p_di.Value,
+    Resolved extends p_di.Value
+>(
     $: p_di.Dictionary<T>,
     handle_entry: (
         $: T,
@@ -248,7 +261,12 @@ export const temp_resolve = <T extends p_di.Value, Resolved extends p_di.Value>(
     return p_temp.dictionary.from.dictionary($).resolve_static(handle_entry)
 }
 
-export const temp_map_list_with_state = <T extends p_di.Value, Target_Item extends p_di.Value, State extends p_di.Value, Result_Type extends p_di.Group>(
+export const temp_map_list_with_state = <
+    T extends p_di.Value,
+    Target_Item extends p_di.Value,
+    State extends p_di.Value,
+    Result_Type extends p_di.Group
+>(
     $: p_di.List<T>,
     initial_state: State,
     handle_item: (

@@ -1,29 +1,52 @@
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
-import { m } from "pareto/dist/shorthands/interface"
+namespace interface_ {
+
+    export type Schema = p_i.Transformer_With_Parameter<
+        d_in.Schema,
+        d_out.Package_Set.D,
+        {
+            'omit (de)serializer': boolean
+        }
+    >
+
+    export type Schema_Tree = p_i.Transformer_With_Parameter<
+        d_in.Schema_Tree,
+        d_out.Package_Set.D,
+        {
+            'omit (de)serializer': boolean
+        }
+    >
+
+    export type Schemas = p_i.Transformer_With_Parameter<
+        d_in.Schemas,
+        d_out.Package_Set.D,
+        {
+            'omit (de)serializer': boolean
+        }
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/interface"
 
+//dependencies
 import * as t_boilerplate_for_migrate from "./pareto_interface_boilerplate_for_migrate"
 import * as t_resolve from "./pareto_interface_resolve"
 import * as t_types from "./pareto_interface_types"
-
 import * as t_marshall from "./pareto_interface_marshall"
 import * as t_unmarshall from "./pareto_interface_unmarshall"
-
 import * as t_serialize from "./pareto_interface_serialize"
 import * as t_deserialize from "./pareto_interface_deserialize"
-import * as t_deserialize_resolved from "./pareto_interface_deserialize_resolved"
 
 
-export const Schema = (
-    $: d_in.Schema,
-    $p: {
-        'omit (de)serializer': boolean
-    }
-): d_out.Package_Set.D => {
+export const Schema: interface_.Schema = ($, $p) => {
     const schema = $
     const constrainedx: boolean = p_.decide.state($.complexity, ($) => {
         switch ($[0]) {
@@ -35,7 +58,7 @@ export const Schema = (
     return sh.m.set({
 
         "data": constrainedx
-            ? m.set(p_.literal.dictionary({
+            ? sh.m.set(p_.literal.dictionary({
                 "resolved": t_types.Schema(
                     schema,
                     {
@@ -82,7 +105,7 @@ export const Schema = (
                                 })
                             }),
                             "refiners": sh.m.set({
-                                "unresolved": t_resolve.Signatures($.signatures.signatures
+                                "unresolved": t_resolve.Resolver_Signatures($.signatures.signatures
                                 ),
                                 // "list of characters": t_deserialize_resolved.Schema(schema, {
                                 //     'depth': 7,
@@ -242,12 +265,7 @@ export const Schema = (
     // ))
 }
 
-export const Schema_Tree = (
-    $: d_in.Schema_Tree,
-    $p: {
-        'omit (de)serializer': boolean
-    }
-): d_out.Package_Set.D => p_.decide.state($, ($) => {
+export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.decide.state($, ($) => {
     switch ($[0]) {
         case 'schema': return p_.ss($, ($) => Schema($, $p))
         case 'set': return p_.ss($, ($) => Schemas($, $p))
@@ -256,12 +274,7 @@ export const Schema_Tree = (
 })
 
 
-export const Schemas = (
-    $: d_in.Schemas,
-    $p: {
-        'omit (de)serializer': boolean
-    }
-): d_out.Package_Set.D => m.set($.__d_map(($) => p_.decide.state($, ($) => {
+export const Schemas: interface_.Schemas = ($, $p) => sh.m.set($.__d_map(($) => p_.decide.state($, ($) => {
     switch ($[0]) {
         case 'schema': return p_.ss($, ($) => Schema($, $p))
         case 'set': return p_.ss($, ($) => Schemas($, $p))

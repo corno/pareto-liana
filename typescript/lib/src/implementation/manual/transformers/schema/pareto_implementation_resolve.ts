@@ -1,10 +1,50 @@
-import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
 
+namespace interface_ {
+
+    export type Resolver_Modules = p_i.Transformer_With_Parameter<
+        d_in.Resolver_Modules,
+        d_out.Package_Set.D,
+        {
+            'path': p_di.List<string>,
+            'imports': d_in.Resolver_Imports,
+            'depth': number,
+        }
+    >
+
+    export type Possible_Value_Selection = p_i.Transformer_With_Parameter<
+        d_in.Resolver_Possible_Value_Selection,
+        d_out.Select_Value,
+        {
+            'tail': p_di.List<d_out.Select_Value.regular.tail.L>
+        }
+    >
+
+    export type Optional_Value_Initialization = p_i.Transformer<
+        d_in.Resolver_Optional_Value_Initialization,
+        d_out.Assign
+    >
+
+    export type Value_Constraint = p_i.Transformer<
+        d_in.Resolver_Value_Constraint,
+        d_out.Assign
+    >
+
+    export type Constraint = p_i.Transformer<
+        d_in.Resolver_Constraint,
+        d_out.Assign
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
@@ -53,14 +93,7 @@ const cycle_detected_error = sh.a.group.literal({
     "location": sh.a.select(sh.sv.context(["l location"])),
 })
 
-export const Resolver_Modules = (
-    $: d_in.Resolver_Modules,
-    $p: {
-        'path': p_di.List<string>,
-        'imports': d_in.Resolver_Imports,
-        'depth': number,
-    }
-): d_out.Package_Set.D => {
+export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
     return sh.m.package_(
         ['change context', 'variables', 'lookups', 'unreachable code path'],
         p_.literal.dictionary({
@@ -133,12 +166,7 @@ export const Resolver_Modules = (
 
 
 
-export const Possible_Value_Selection = (
-    $: d_in.Resolver_Possible_Value_Selection,
-    $p: {
-        'tail': p_di.List<d_out.Select_Value.regular.tail.L>
-    },
-): d_out.Select_Value => {
+export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($, $p) => {
     return p_.decide.state($, ($) => {
         switch ($[0]) {
             case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], $p.tail))
@@ -157,9 +185,7 @@ export const Possible_Value_Selection = (
 }
 
 
-export const Optional_Argument_Initialization = (
-    $: d_in.Resolver_Optional_Value_Initialization,
-): d_out.Assign => p_.decide.state($, ($) => {
+export const Optional_Value_Initialization: interface_.Optional_Value_Initialization = ($) => p_.decide.state($, ($) => {
     switch ($[0]) {
         case 'not set': return p_.ss($, ($) => sh.a.optional.not_set())
         case 'selection': return p_.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
@@ -394,7 +420,7 @@ export const Resolver_Value = (
                                     ($) => sh.arguments_.initialize($.__d_map(
                                         ($) => p_.decide.state($, ($) => {
                                             switch ($[0]) {
-                                                case 'optional': return p_.ss($, ($) => Optional_Argument_Initialization($))
+                                                case 'optional': return p_.ss($, ($) => Optional_Value_Initialization($))
                                                 case 'required': return p_.ss($, ($) => sh.a.select(
                                                     Resolver_Guaranteed_Value_Selection(
                                                         $,
@@ -699,30 +725,27 @@ export const Resolver_Value = (
     }
 })
 
-export const Value_Constraint = (
+export const Value_Constraint: interface_.Value_Constraint = (
     $: d_in.Resolver_Value_Constraint,
 ): d_out.Assign => {
-    return Constraint(
+    return Resolver_Constraint(
         $.constraint,
-        {
-            'sub': p_.decide.state($.start, ($) => {
-                switch ($[0]) {
-                    case 'value': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result1"))
-                    case 'sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result2"))
-                    default: return p_.au($[0])
-                }
-            })
-        }
+        // {
+        //     'sub': p_.decide.state($.start, ($) => {
+        //         switch ($[0]) {
+        //             case 'value': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result1"))
+        //             case 'sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result2"))
+        //             default: return p_.au($[0])
+        //         }
+        //     })
+        // }
     )
 }
 
-export const Constraint = (
-    $: d_in.Resolver_Constraint,
-    $p: {
-        sub: d_out.Select_Value
-    }
+export const Resolver_Constraint: interface_.Constraint = (
+    $: d_in.Resolver_Constraint
 ): d_out.Assign => {
-    const rvs = Relative_Value_Selection($.selection, { sub: $p.sub })
+    const rvs = Relative_Value_Selection($.selection)
     return p_.decide.state($.type, ($) => {
         switch ($[0]) {
             case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
@@ -751,9 +774,6 @@ export const Constraint = (
 
 export const Relative_Value_Selection = (
     $: d_in.Resolver_Relative_Value_Selection,
-    $p: {
-        sub: d_out.Select_Value
-    }
 ): d_out.Select_Value => {
     $.path['l value'].__l_map(($) => null)
     return sh.sv.implement_me("IM: rvs")

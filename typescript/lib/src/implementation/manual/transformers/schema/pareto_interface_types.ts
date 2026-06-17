@@ -1,11 +1,65 @@
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
 
+namespace interface_ {
+
+    export type Schema = p_i.Transformer_With_Parameter<
+        d_in.Schema,
+        d_out.Package_Set.D,
+        {
+            'imports': d_in.Schema_Imports,
+            'depth': number,
+            'type':
+            | ['unconstrained', null]
+            | ['unresolved', null]
+            | ['resolved', null]
+        }
+    >
+
+    export type Module_Reference = p_i.Transformer<
+        d_in.Module_Reference,
+        d_out.Module_Reference
+    >
+
+    export type Value = p_i.Transformer_With_Parameter<
+        d_in.Value,
+        d_out.Value,
+        {
+            'type':
+            | ['unconstrained', null]
+            | ['unresolved', null]
+            | ['resolved', null]
+        }
+    >
+
+    export type Value_Results = p_i.Transformer_With_Parameter<
+        d_in.Value_Results,
+        d_out.Value,
+        {
+            'base type': d_out.Value
+        }
+    >
+
+    export type Simple_Type = p_i.Transformer<
+        d_in.Simple_Type,
+        d_out.Value
+    >
+
+    export type Value_Path = p_i.Transformer<
+        d_in.Value_Path,
+        d_out.Value.reference.sub_selection
+    >
+
+}
+
+//dependencies
 import * as sh from "pareto/dist/shorthands/interface"
 
 const location = sh.t.component_imported(
@@ -13,17 +67,7 @@ const location = sh.t.component_imported(
     "Range",
 )
 
-export const Schema = (
-    $: d_in.Schema,
-    $p: {
-        'imports': d_in.Schema_Imports,
-        'depth': number,
-        'type':
-        | ['unconstrained', null]
-        | ['unresolved', null]
-        | ['resolved', null]
-    }
-): d_out.Package_Set.D => {
+export const Schema: interface_.Schema = ($, $p) => {
     const add_location = $p.type[0] === 'unresolved'
 
     return sh.m.package_data(
@@ -100,9 +144,7 @@ export const Schema = (
     )
 }
 
-export const Module_Reference = (
-    $: d_in.Module_Reference,
-): d_out.Module_Reference => p_.decide.state($.location, ($) => {
+export const Module_Reference: interface_.Module_Reference = ($) => p_.decide.state($.location, ($) => {
     switch ($[0]) {
         case 'internal': return p_.ss($, ($) => sh.mr.local($['l id']))
         case 'external': return p_.ss($, ($) => sh.mr.imported(
@@ -113,17 +155,8 @@ export const Module_Reference = (
     }
 })
 
-export const Value = (
-    $: d_in.Value,
-    $p: {
-        'type':
-        | ['unconstrained', null]
-        | ['unresolved', null]
-        | ['resolved', null]
-    }
-): d_out.Value => {
+export const Value: interface_.Value = ($, $p) => {
 
-    const add_location = $p.type[0] === 'unresolved'
     return p_.decide.state($, ($) => {
         switch ($[0]) {
             case 'component': return p_.ss($, ($) => {
@@ -151,7 +184,7 @@ export const Value = (
                     )
                     : x
             })
-            case 'dictionary': return p_.ss($, ($) => add_location
+            case 'dictionary': return p_.ss($, ($) => $p.type[0] === 'unresolved'
                 ? sh.t.group({
                     "l location": location,
                     "l dictionary": sh.t.dictionary(sh.t.group({
@@ -238,7 +271,7 @@ export const Value = (
 
                 return p_.decide.state($.type, ($) => {
                     switch ($[0]) {
-                        case 'derived': return p_.ss($, ($) => add_location
+                        case 'derived': return p_.ss($, ($) => $p.type[0] === 'unresolved'
                             ? sh.t.nothing()
                             : Value_Reference(referent)
                         )
@@ -251,57 +284,56 @@ export const Value = (
                                         "l reference": sh.t.text(),
                                     }))
                                     case 'resolved': return p_.ss($, ($) => {
-                                        const ii = sh.t.group(
-                                            p_.dictionary.from.dictionary(
-                                                p_.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
-                                                    "l entry": p_.literal.set(p_change_context($, ($) => {
-                                                        const location = Module_Reference(referent['module'])
-                                                        const subselection = p_.literal.nested_list([
-                                                            Value_Path(referent.path),
-                                                            [
-                                                                sh.sub.dictionary(),
-                                                            ]
-                                                        ])
-                                                        return p_.decide.state(selected.dependency, ($) => {
-                                                            switch ($[0]) {
-
-                                                                case 'acyclic': return p_.ss($, ($) => sh.t.reference(
-                                                                    location,
-                                                                    subselection,
-                                                                    'acyclic'
-                                                                ))
-                                                                case 'cyclic': return p_.ss($, ($) => sh.t.reference(
-                                                                    location,
-                                                                    subselection,
-                                                                    'cyclic'
-                                                                ))
-                                                                case 'stack': return p_.ss($, ($) => sh.t.reference(
-                                                                    location,
-                                                                    subselection,
-                                                                    'acyclic'
-                                                                ))
-                                                                default: return p_.au($[0])
-                                                            }
-                                                        })
-                                                    })),
-                                                    "l id": p_.literal.set(sh.t.text()),
-                                                    "l up steps": p_.decide.state(selected.dependency, ($) => {
-                                                        switch ($[0]) {
-                                                            case 'acyclic': return p_.ss($, ($) => p_.literal.not_set())
-                                                            case 'cyclic': return p_.ss($, ($) => p_.literal.not_set())
-                                                            case 'stack': return p_.ss($, ($) => p_.literal.set(sh.t.natural()))
-                                                            default: return p_.au($[0])
-                                                        }
-                                                    })
-                                                }),
-                                            ).map_optionally(
-                                                ($) => $,
-                                            )
-                                        )
                                         return Value_Results(
                                             selected.results,
                                             {
-                                                'base type': ii,
+                                                'base type': sh.t.group(
+                                                    p_.dictionary.from.dictionary(
+                                                        p_.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
+                                                            "l entry": p_.literal.set(p_change_context($, ($) => {
+                                                                const location = Module_Reference(referent['module'])
+                                                                const subselection = p_.literal.nested_list([
+                                                                    Value_Path(referent.path),
+                                                                    [
+                                                                        sh.sub.dictionary(),
+                                                                    ]
+                                                                ])
+                                                                return p_.decide.state(selected.dependency, ($) => {
+                                                                    switch ($[0]) {
+
+                                                                        case 'acyclic': return p_.ss($, ($) => sh.t.reference(
+                                                                            location,
+                                                                            subselection,
+                                                                            'acyclic'
+                                                                        ))
+                                                                        case 'cyclic': return p_.ss($, ($) => sh.t.reference(
+                                                                            location,
+                                                                            subselection,
+                                                                            'cyclic'
+                                                                        ))
+                                                                        case 'stack': return p_.ss($, ($) => sh.t.reference(
+                                                                            location,
+                                                                            subselection,
+                                                                            'acyclic'
+                                                                        ))
+                                                                        default: return p_.au($[0])
+                                                                    }
+                                                                })
+                                                            })),
+                                                            "l id": p_.literal.set(sh.t.text()),
+                                                            "l up steps": p_.decide.state(selected.dependency, ($) => {
+                                                                switch ($[0]) {
+                                                                    case 'acyclic': return p_.ss($, ($) => p_.literal.not_set())
+                                                                    case 'cyclic': return p_.ss($, ($) => p_.literal.not_set())
+                                                                    case 'stack': return p_.ss($, ($) => p_.literal.set(sh.t.natural()))
+                                                                    default: return p_.au($[0])
+                                                                }
+                                                            })
+                                                        }),
+                                                    ).map_optionally(
+                                                        ($) => $,
+                                                    )
+                                                ),
                                             }
                                         )
                                     })
@@ -347,12 +379,7 @@ export const Value = (
     })
 }
 
-const Value_Results = (
-    $: d_in.Value_Results,
-    $p: {
-        'base type': d_out.Value
-    }
-): d_out.Value => {
+const Value_Results: interface_.Value_Results = ($, $p) => {
     return p_.decide.optional(
         $,
         ($) => sh.t.group({
@@ -378,10 +405,7 @@ const Value_Reference = (
     )
 }
 
-const Value_Path = (
-    $: d_in.Value_Path,
-
-): p_di.List<d_out.Value.reference.sub_selection.L> => {
+const Value_Path: interface_.Value_Path = ($) => {
     return $.tail['l value'].__l_map(($) => p_.decide.state($['l item']['l value'], ($) => {
         switch ($[0]) {
             case 'dictionary': return p_.ss($, ($) => sh.sub.dictionary())
@@ -394,9 +418,7 @@ const Value_Path = (
     }))
 }
 
-export const Simple_Type = (
-    $: d_in.Simple_Type,
-): d_out.Value => {
+export const Simple_Type: interface_.Simple_Type = ($) => {
     return p_.decide.state($.type, ($) => {
         switch ($[0]) {
             case 'boolean': return p_.ss($, ($) => sh.t.boolean())

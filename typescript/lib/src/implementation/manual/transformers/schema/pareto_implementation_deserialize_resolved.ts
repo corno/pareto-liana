@@ -1,19 +1,29 @@
-import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_di from 'pareto-core/dist/interface/data'
 
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
 
+export namespace interface_ {
+
+    export type Schema = p_i.Transformer_With_Parameter<
+        d_in.Schema,
+        d_out.Package_Set.D,
+        {
+            'path': p_di.List<string>,
+            'depth': number,
+        }
+    >
+
+}
+
+//shorthands
 import * as sh from "pareto/dist/shorthands/implementation"
 import * as sh_i from "pareto/dist/shorthands/interface"
 
-export const Schema = (
-    $: d_in.Schema,
-    $p: {
-        'path': p_di.List<string>,
-        'depth': number,
-    }
-): d_out.Package_Set.D => {
+export const Schema: interface_.Schema = ($, $p) => {
     return sh.m.package_(
         [],
         p_.literal.dictionary({
