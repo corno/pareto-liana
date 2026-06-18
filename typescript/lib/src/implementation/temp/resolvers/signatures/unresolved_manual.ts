@@ -1,5 +1,5 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_sl from 'pareto-core/dist/implementation/refiner/select_static_lookup'
+import * as p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 

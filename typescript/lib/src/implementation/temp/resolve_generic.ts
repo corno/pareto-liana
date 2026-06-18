@@ -1,5 +1,6 @@
 import * as p_temp from 'pareto-core/dist/assign'
 import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_ri from 'pareto-core/dist/interface/refiner'
 
 import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
@@ -36,8 +37,8 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
     handle_entry: (
         $: Unresolved,
         id: string,
-        $acyclic: p_di.static_lookup.Acyclic<Resolved>,
-        $cyclic: p_di.static_lookup.Cyclic<Resolved>,
+        $acyclic: p_ri.lookup.Acyclic<Resolved>,
+        $cyclic: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
     const xx = p_temp.decide.dictionary(
@@ -60,7 +61,7 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
     )
     return p_temp.dictionary.from.dictionary(
         $,
-    ).resolve_static(
+    ).resolve_refiner(
         handle_entry
     )
 }
@@ -120,7 +121,7 @@ export namespace abort {
 }
 
 export const get_entry_acyclic = <T extends p_di.Value>(
-    lookup: p_di.static_lookup.Acyclic<T>,
+    lookup: p_ri.lookup.Acyclic<T>,
     ref: Unresolved_Reference,
     abort: Abort<gen_resolve.Error>,
 ): Resolved_Reference<T> => {
@@ -149,7 +150,7 @@ export const get_entry_acyclic = <T extends p_di.Value>(
 export const get_entry_cyclic = <
     T extends p_di.Value
 >(
-    lookup: p_di.static_lookup.Cyclic<T>,
+    lookup: p_ri.lookup.Cyclic<T>,
     reference: Unresolved_Reference,
     abort: Abort<gen_resolve.Error>,
 ): Resolved_Reference<p_di.Circular_Dependency<T>> => {
@@ -175,7 +176,7 @@ export const get_entry_cyclic = <
 export const get_entry_stack = <
     T extends p_di.Value
 >(
-    stack: p_di.static_lookup.Stack<T>,
+    stack: p_ri.lookup.Stack<T>,
     reference: Unresolved_Reference,
     abort: Abort<gen_resolve.Error>,
 ): Resolved_Stack_Reference<T> => {
@@ -254,11 +255,11 @@ export const temp_resolve = <
     handle_entry: (
         $: T,
         id: string,
-        acyclic_lookup: p_di.static_lookup.Acyclic<Resolved>,
-        cyclic_lookup: p_di.static_lookup.Cyclic<Resolved>,
+        acyclic_lookup: p_ri.lookup.Acyclic<Resolved>,
+        cyclic_lookup: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    return p_temp.dictionary.from.dictionary($).resolve_static(handle_entry)
+    return p_temp.dictionary.from.dictionary($).resolve_refiner(handle_entry)
 }
 
 export const temp_map_list_with_state = <
