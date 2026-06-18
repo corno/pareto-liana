@@ -48,7 +48,7 @@ import * as t_deserialize from "./pareto_interface_deserialize"
 
 export const Schema: interface_.Schema = ($, $p) => {
     const schema = $
-    const constrainedx: boolean = p_.decide.state($.complexity, ($) => {
+    const constrainedx: boolean = p_.from.state($.complexity).decide(($) => {
         switch ($[0]) {
             case 'constrained': return p_.ss($, ($) => true)
             case 'unconstrained': return p_.ss($, ($) => false)
@@ -86,7 +86,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             ),
         "signatures": $p['omit (de)serializer']
             ? sh.m.set({})
-            : p_.decide.state($.complexity, ($): d_out.Package_Set.D => {
+            : p_.from.state($.complexity).decide(($): d_out.Package_Set.D => {
                 switch ($[0]) {
                     case 'constrained': return p_.ss($, ($): d_out.Package_Set.D => sh.m.set({
                         "resolved": sh.m.set({
@@ -160,7 +160,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 }
             })
     })
-    // return m.set(p_.dictionary.from.dictionary(
+    // return m.set(p_.from.dictionary(
     //     p_.dictionary.literal<p_di.Optional_Value<d_out.Package_Set.D>>({
     //         "data": p_.literal.set(constrained
     //             ? m.set(p_.literal.dictionary({
@@ -191,7 +191,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     //             ),
     //         ),
 
-    //         "resolve": p_.decide.state($.complexity, ($) => {
+    //         "resolve": p_.from.state($.complexity).decide(($) => {
     //             switch ($[0]) {
     //                 case 'constrained': return p_.ss($, ($) => p_.literal.set(t_resolve.Signatures(
     //                     $.signatures.signatures
@@ -206,7 +206,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     //                 'constrained': constrained
     //             }
     //         )),
-    //         "unmarshall": p_.optional.from.boolean(
+    //         "unmarshall": p_.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_unmarshall.Schema(
@@ -216,7 +216,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     //                 }
     //             )
     //         ),
-    //         "marshall": p_.optional.from.boolean(
+    //         "marshall": p_.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_marshall.Schema(
@@ -226,7 +226,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     //                 }
     //             )
     //         ),
-    //         "serialize": p_.optional.from.boolean(
+    //         "serialize": p_.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_serialize.Schema(
@@ -236,7 +236,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     //                 }
     //             ),
     //         ),
-    //         "deserialize": p_.optional.from.boolean(
+    //         "deserialize": p_.from.boolean(
     //             !$p['omit (de)serializer'],
     //         ).convert(
     //             () => t_deserialize.Schema(
@@ -265,7 +265,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     // ))
 }
 
-export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.decide.state($, ($) => {
+export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.from.state($).decide(($) => {
     switch ($[0]) {
         case 'schema': return p_.ss($, ($) => Schema($, $p))
         case 'set': return p_.ss($, ($) => Schemas($, $p))
@@ -274,7 +274,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.decide.state($,
 })
 
 
-export const Schemas: interface_.Schemas = ($, $p) => sh.m.set($.__d_map(($) => p_.decide.state($, ($) => {
+export const Schemas: interface_.Schemas = ($, $p) => sh.m.set($.__d_map_deprecated(($) => p_.from.state($).decide(($) => {
     switch ($[0]) {
         case 'schema': return p_.ss($, ($) => Schema($, $p))
         case 'set': return p_.ss($, ($) => Schemas($, $p))

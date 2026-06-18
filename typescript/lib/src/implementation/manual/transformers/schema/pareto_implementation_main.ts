@@ -40,7 +40,7 @@ import * as t_marshall from "./pareto_implementation_marshall"
 import * as t_unmarshall from "./pareto_implementation_unmarshall"
 
 export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
-    return p_.decide.state($, ($) => {
+    return p_.from.state($).decide(($) => {
         switch ($[0]) {
             case 'schema': return p_.ss($, ($) => {
                 const imports = $['resolver imports']
@@ -48,7 +48,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
 
                 return $p['omit (de)serializer']
                     ? sh.m.set({})
-                    : p_.decide.state($.complexity, ($): d_out.Package_Set.D => {
+                    : p_.from.state($.complexity).decide(($): d_out.Package_Set.D => {
                         switch ($[0]) {
                             case 'constrained': return p_.ss($, ($): d_out.Package_Set.D => sh.m.set({
                                 "resolved": sh.m.set({
@@ -149,7 +149,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
 }
 
 export const Schemas: interface_.Schemas = ($, $p) => {
-    return sh.m.set($.__d_map(($, id) => Schema_Tree($, {
+    return sh.m.set($.__d_map_deprecated(($, id) => Schema_Tree($, {
         'path': p_.literal.nested_list([
             $p.path,
             [

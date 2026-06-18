@@ -1,7 +1,7 @@
 
 
 import {
-    signatures, sig, lookup_parameter, value_parameter,
+    signatures, sig, parameter,
 } from "../../../../../shorthands/signatures"
 
 
@@ -12,26 +12,26 @@ export const $ = signatures(
 
         "Value": sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "globals": parameter.module("Globals", 'optional'),
+                "imports": parameter.module("Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": lookup_parameter("Modules"),
-                "possibly circular dependent sibling modules": lookup_parameter("Modules", 'cyclic'),
+                "noncircular sibling modules": parameter.lookup("Modules"),
+                "possibly circular dependent sibling modules": parameter.lookup("Modules", 'cyclic'),
             }
         ),
 
         "Schemas": sig.local(
             {},
             {
-                "sibling schemas": lookup_parameter("Schemas", 'stack'),
+                "sibling schemas": parameter.lookup("Schemas", 'stack'),
             }
         ),
 
         "Schema Tree": sig.local(
             {},
             {
-                "sibling schemas": lookup_parameter("Schemas", 'stack'),
+                "sibling schemas": parameter.lookup("Schemas", 'stack'),
             }
         ),
         "Schema": sig.same_as("Schemas"),
@@ -39,8 +39,8 @@ export const $ = signatures(
 
         "Modules": sig.local(
             {
-                "globals": value_parameter("Globals", 'optional'),
-                "imports": value_parameter("Imports", 'optional'),
+                "globals": parameter.module("Globals", 'optional'),
+                "imports": parameter.module("Imports", 'optional'),
             },
             {},
         ),

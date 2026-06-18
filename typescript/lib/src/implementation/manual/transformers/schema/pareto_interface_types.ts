@@ -71,13 +71,13 @@ export const Schema: interface_.Schema = ($, $p) => {
     const add_location = $p.type[0] === 'unresolved'
 
     return sh.m.package_data(
-        p_.dictionary.from.dictionary(
+        p_.from.dictionary(
             p_.literal.dictionary({
-                "location": p_.dictionary.from.dictionary(
+                "location": p_.from.dictionary(
                     p_.literal.dictionary({
-                        "": p_.optional.from.boolean(
+                        "": p_.from.boolean(
                             add_location,
-                        ).convert(
+                        ).convert_to_optional(
                             () => sh.import_.external(
                                 "liana-core",
                                 [
@@ -94,16 +94,16 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ),
                 "imports ": p_change_context($, ($) => {
                     // const types = $p['what to generate']
-                    return $p.imports.__d_map(
+                    return $p.imports.__d_map_deprecated(
                         ($) => sh.import_.ancestor(
                             $p.depth + 1 + $['schema set child']['l value']['l up steps'],
                             $['schema set child']['l value']['l id'],
-                            p_.decide.state($.schema.complexity, ($) => {
+                            p_.from.state($.schema.complexity).decide(($) => {
                                 switch ($[0]) {
                                     case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
                                         "data",
                                     ]))
-                                    case 'constrained': return p_.ss($, ($) => p_.decide.state($p.type, ($) => {
+                                    case 'constrained': return p_.ss($, ($) => p_.from.state($p.type).decide(($) => {
                                         switch ($[0]) {
                                             case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
                                                 "data",
@@ -135,7 +135,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             }
 
         ),
-        $.modules.__d_map(($) => sh.type.data(Value(
+        $.modules.__d_map_deprecated(($) => sh.type.data(Value(
             $['root value'],
             {
                 'type': $p.type,
@@ -144,7 +144,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     )
 }
 
-export const Module_Reference: interface_.Module_Reference = ($) => p_.decide.state($.location, ($) => {
+export const Module_Reference: interface_.Module_Reference = ($) => p_.from.state($.location).decide(($) => {
     switch ($[0]) {
         case 'internal': return p_.ss($, ($) => sh.mr.local($['l id']))
         case 'external': return p_.ss($, ($) => sh.mr.imported(
@@ -157,10 +157,10 @@ export const Module_Reference: interface_.Module_Reference = ($) => p_.decide.st
 
 export const Value: interface_.Value = ($, $p) => {
 
-    return p_.decide.state($, ($) => {
+    return p_.from.state($).decide(($) => {
         switch ($[0]) {
             case 'component': return p_.ss($, ($) => {
-                const x: d_out.Value = p_.decide.state($.type, ($) => {
+                const x: d_out.Value = p_.from.state($.type).decide(($) => {
                     switch ($[0]) {
                         case 'external': return p_.ss($, ($) => sh.t.component_imported(
                             "imports " + $.import['l id'],
@@ -202,7 +202,7 @@ export const Value: interface_.Value = ($, $p) => {
                     $p
                 ))
             )
-            case 'group': return p_.ss($, ($) => sh.t.group($.__d_map(($, id) => Value(
+            case 'group': return p_.ss($, ($) => sh.t.group($.__d_map_deprecated(($, id) => Value(
                 $.value,
                 {
                     'type': $p.type,
@@ -211,7 +211,7 @@ export const Value: interface_.Value = ($, $p) => {
             case 'list': return p_.ss($, ($) => {
                 const list = $
 
-                return p_.decide.state($p.type, ($) => {
+                return p_.from.state($p.type).decide(($) => {
                     switch ($[0]) {
                         case 'unconstrained': return p_.ss($, ($) => sh.t.list(Value(
                             list.value,
@@ -230,10 +230,11 @@ export const Value: interface_.Value = ($, $p) => {
                         case 'resolved': return p_.ss($, ($) => Value_Results(
                             list.results,
                             {
-                                'base type': sh.t.list(p_.decide.optional(
+                                'base type': sh.t.list(p_.from.optional(
                                     list.results,
+                                ).decide(
                                     ($) => sh.t.group({
-                                        "l results": sh.t.group(p_.dictionary.from.dictionary(
+                                        "l results": sh.t.group(p_.from.dictionary(
                                             $,
                                         ).map(
                                             ($) => Value_Reference($)
@@ -256,7 +257,7 @@ export const Value: interface_.Value = ($, $p) => {
             }
             )
             case 'nothing': return p_.ss($, ($) => sh.t.nothing())
-            case 'simple': return p_.ss($, ($) => p_.decide.state($, ($) => {
+            case 'simple': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'global': return p_.ss($, ($) => Simple_Type($['l entry']))
                     default: return p_.au($[0])
@@ -269,7 +270,7 @@ export const Value: interface_.Value = ($, $p) => {
             case 'reference': return p_.ss($, ($) => {
                 const referent = $.referent
 
-                return p_.decide.state($.type, ($) => {
+                return p_.from.state($.type).decide(($) => {
                     switch ($[0]) {
                         case 'derived': return p_.ss($, ($) => $p.type[0] === 'unresolved'
                             ? sh.t.nothing()
@@ -277,7 +278,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                         case 'selected': return p_.ss($, ($) => {
                             const selected = $
-                            return p_.decide.state($p.type, ($) => {
+                            return p_.from.state($p.type).decide(($) => {
                                 switch ($[0]) {
                                     case 'unconstrained': return p_.ss($, ($) => sh.t.group({ //this is weird; a reference in an unconstrained schema
                                         "l location": location,
@@ -288,7 +289,7 @@ export const Value: interface_.Value = ($, $p) => {
                                             selected.results,
                                             {
                                                 'base type': sh.t.group(
-                                                    p_.dictionary.from.dictionary(
+                                                    p_.from.dictionary(
                                                         p_.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
                                                             "l entry": p_.literal.set(p_change_context($, ($) => {
                                                                 const location = Module_Reference(referent['module'])
@@ -298,7 +299,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                         sh.sub.dictionary(),
                                                                     ]
                                                                 ])
-                                                                return p_.decide.state(selected.dependency, ($) => {
+                                                                return p_.from.state(selected.dependency).decide(($) => {
                                                                     switch ($[0]) {
 
                                                                         case 'acyclic': return p_.ss($, ($) => sh.t.reference(
@@ -321,7 +322,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                 })
                                                             })),
                                                             "l id": p_.literal.set(sh.t.text()),
-                                                            "l up steps": p_.decide.state(selected.dependency, ($) => {
+                                                            "l up steps": p_.from.state(selected.dependency).decide(($) => {
                                                                 switch ($[0]) {
                                                                     case 'acyclic': return p_.ss($, ($) => p_.literal.not_set())
                                                                     case 'cyclic': return p_.ss($, ($) => p_.literal.not_set())
@@ -351,11 +352,11 @@ export const Value: interface_.Value = ($, $p) => {
             })
             case 'state': return p_.ss($, ($) => {
                 const results = $.results
-                const i = sh.t.state($.options.__d_map(($, id) => Value(
+                const i = sh.t.state($.options.__d_map_deprecated(($, id) => Value(
                     $.value,
                     $p
                 )))
-                return p_.decide.state($p.type, ($) => {
+                return p_.from.state($p.type).decide(($) => {
                     switch ($[0]) {
                         case 'unconstrained': return p_.ss($, ($) => i)
                         case 'unresolved': return p_.ss($, ($) => sh.t.group({
@@ -380,11 +381,12 @@ export const Value: interface_.Value = ($, $p) => {
 }
 
 const Value_Results: interface_.Value_Results = ($, $p) => {
-    return p_.decide.optional(
+    return p_.from.optional(
         $,
+    ).decide(
         ($) => sh.t.group({
             "l results": sh.t.group(
-                p_.dictionary.from.dictionary(
+                p_.from.dictionary(
                     $,
                 ).map(
                     ($) => Value_Reference($)
@@ -406,7 +408,7 @@ const Value_Reference = (
 }
 
 const Value_Path: interface_.Value_Path = ($) => {
-    return $.tail['l value'].__l_map(($) => p_.decide.state($['l item']['l value'], ($) => {
+    return $.tail['l value'].__l_map_deprecated(($) => p_.from.state($['l item']['l value']).decide(($) => {
         switch ($[0]) {
             case 'dictionary': return p_.ss($, ($) => sh.sub.dictionary())
             case 'group': return p_.ss($, ($) => sh.sub.group($['l id']))
@@ -419,14 +421,14 @@ const Value_Path: interface_.Value_Path = ($) => {
 }
 
 export const Simple_Type: interface_.Simple_Type = ($) => {
-    return p_.decide.state($.type, ($) => {
+    return p_.from.state($.type).decide(($) => {
         switch ($[0]) {
             case 'boolean': return p_.ss($, ($) => sh.t.boolean())
             case 'date': return p_.ss($, ($) => sh.t.integer())
-            case 'number': return p_.ss($, ($) => p_.decide.state($.precision, ($) => {
+            case 'number': return p_.ss($, ($) => p_.from.state($.precision).decide(($) => {
                 switch ($[0]) {
                     case 'approximation': return p_.ss($, ($) => sh.t.number_approximation())
-                    case 'exact': return p_.ss($, ($) => p_.decide.state($.type, ($) => {
+                    case 'exact': return p_.ss($, ($) => p_.from.state($.type).decide(($) => {
                         switch ($[0]) {
                             case 'integer': return p_.ss($, ($) => sh.t.integer())
                             case 'natural': return p_.ss($, ($) => sh.t.natural())

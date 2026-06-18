@@ -17,7 +17,7 @@ export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
             sh.ph.literal("error in package '"),
             sh.ph.literal($p.id),
             sh.ph.literal("': "),
-            p_.decide.state($, ($) => {
+            p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
                     case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))

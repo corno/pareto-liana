@@ -56,7 +56,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) =>
         const p_schema_set_child: t_out.Schema_Imports.D.schema_set_child = {
             'l value': foo,
             'l results': {
-                'schema': p_.decide.state(foo['l entry'], ($) => {
+                'schema': p_.from.state(foo['l entry']).decide(($) => {
                     switch ($[0]) {
                         case 'schema': return p_.ss($, ($) => $)
                         case 'set': return p_.ss($, ($) => abort({
@@ -91,9 +91,9 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
         const p_schema_set_child: t_out.Resolver_Imports.D.schema_set_child = {
             'l value': foo,
             'l results': {
-                'resolver': p_.decide.state(foo['l entry'], ($) => {
+                'resolver': p_.from.state(foo['l entry']).decide(($) => {
                     switch ($[0]) {
-                        case 'schema': return p_.ss($, ($) => p_.decide.state($.complexity, ($) => {
+                        case 'schema': return p_.ss($, ($) => p_.from.state($.complexity).decide(($) => {
                             switch ($[0]) {
                                 case 'constrained': return p_.ss($, ($) => $)
                                 case 'unconstrained': return p_.ss($, ($) => abort({
@@ -300,8 +300,8 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         },
         $p,
     ),
-    'schema path': $['schema path']['l list'].__l_map(($) => $['l item']),
-    'complexity': p_.decide.state($.complexity['l state'], ($) => {
+    'schema path': $['schema path']['l list'].__l_map_deprecated(($) => $['l item']),
+    'complexity': p_.from.state($.complexity['l state']).decide(($) => {
         switch ($[0]) {
             case 'constrained': return p_.ss($, ($) => ['constrained', {
                 'module resolver': $['module resolver']

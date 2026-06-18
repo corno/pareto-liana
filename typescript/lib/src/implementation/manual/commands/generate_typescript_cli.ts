@@ -109,7 +109,7 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([
-                                p_temp.decide.state($, ($) => {
+                                p_temp.from.state($).decide(($) => {
                                     switch ($[0]) {
                                         case 'missing source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
                                         case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))

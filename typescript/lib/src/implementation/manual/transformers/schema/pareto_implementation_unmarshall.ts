@@ -93,7 +93,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ]),
             ),
         }),
-        p_.dictionary.from.dictionary(
+        p_.from.dictionary(
             p_.literal.dictionary({
                 "": p_.literal.dictionary({
 
@@ -120,7 +120,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                         ]
                     ),
                 }),
-                "external ": $['schema imports'].__d_map(($, id) => constrained
+                "external ": $['schema imports'].__d_map_deprecated(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
                 ),
@@ -132,7 +132,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 duplicate_id: () => p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
             }
         ),
-        $.modules.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
             "signatures",
             id,
             ['abort'],
@@ -149,12 +149,12 @@ export const Schema: interface_.Schema = ($, $p) => {
 }
 
 export const Value: interface_.Value = ($, $p) => {
-    return p_.decide.state($, ($) => {
+    return p_.from.state($).decide(($) => {
         switch ($[0]) {
             case 'component': return p_.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
-                        p_.decide.state($.type, ($) => {
+                        p_.from.state($.type).decide(($) => {
                             switch ($[0]) {
                                 case 'external': return p_.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                                 case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
@@ -247,7 +247,7 @@ export const Value: interface_.Value = ($, $p) => {
                     sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
-                        "expected properties": sh.a.dictionary.literal($.__d_map(($) => sh.a.nothing())),
+                        "expected properties": sh.a.dictionary.literal($.__d_map_deprecated(($) => sh.a.nothing())),
                         "subdocument context": sh.a.optional.not_set(),
                     }),
                     [
@@ -270,7 +270,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )
                         ),
                     },
-                    sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
+                    sh.a.group.literal($.__d_map_deprecated(($, id) => sh.a.change_context(
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Property"),
                             sh.a.select(sh.sv.context([])),
@@ -381,9 +381,9 @@ export const Value: interface_.Value = ($, $p) => {
                     ],
                 )
             ))
-            case 'simple': return p_.ss($, ($) => p_.decide.state($, ($) => {
+            case 'simple': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                 switch ($[0]) {
-                    case 'global': return p_.ss($, ($) => p_.decide.state($['l entry'].type, ($) => {
+                    case 'global': return p_.ss($, ($) => p_.from.state($['l entry'].type).decide(($) => {
                         switch ($[0]) {
                             case 'boolean': return p_.ss($, ($) => sh.a.select(
                                 sh.sv.call(
@@ -422,7 +422,7 @@ export const Value: interface_.Value = ($, $p) => {
                                     sh.a.select(sh.sv.context([])),
                                     sh.lookups.not_set(),
                                     sh.arguments_.initialize({
-                                        "type": p_.decide.state($.precision, ($) => {
+                                        "type": p_.from.state($.precision).decide(($) => {
                                             switch ($[0]) {
                                                 case 'approximation': return p_.ss($, ($) => sh.a.state.literal("scientific notation", sh.a.group.literal({
                                                     "precision": sh.a.number.natural_literal($['significant digits']),
@@ -474,7 +474,7 @@ export const Value: interface_.Value = ($, $p) => {
                     }
                 ),
             ))
-            case 'reference': return p_.ss($, ($) => p_.decide.state($.type, ($) => {
+            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(($) => {
                 switch ($[0]) {
                     case 'derived': return p_.ss($, ($) => sh.a.select(
                         sh.sv.call(
@@ -516,7 +516,7 @@ export const Value: interface_.Value = ($, $p) => {
                 ),
                 sh.a.decide.text(
                     sh.sv.context(["option", "token", "value"]),
-                    $.options.__d_map(
+                    $.options.__d_map_deprecated(
                         ($, id) => sh.a.change_context(
                             sh.sv.context(["value"]),
                             $p.constrained

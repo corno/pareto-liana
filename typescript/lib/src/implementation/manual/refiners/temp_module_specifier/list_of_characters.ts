@@ -1,5 +1,4 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_temp from 'pareto-core/dist/assign'
 import * as p_i from 'pareto-core/dist/interface/refiner'
 import * as p_di from 'pareto-core/dist/interface/data'
 import p_implement_me from 'pareto-core-dev/dist/implement_me'
@@ -52,13 +51,13 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
         }
         const temp_pop_first_element = <T extends p_di.Value>($: p_di.List<T>): p_di.Optional_Value<Element_And_Rest<T>> => {
             const arr = $
-            return p_temp.optional.from.optional(
+            return p_.from.optional(
                 $.__deprecated_get_possible_item_at(0),
             ).map(
                 ($) => ({
                     'rest': p_list_build_deprecated(($i) => {
                         let is_first = true
-                        arr.__l_map(($) => {
+                        arr.__l_map_deprecated(($) => {
                             if (!is_first) {
                                 $i['add item']($)
                             }
@@ -73,7 +72,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
         return temp_pop_first_element(schema_path).__decide(
             ($) => {
                 const split = $
-                return p_.decide.state(st, ($) => {
+                return p_.from.state(st).decide(($) => {
                     switch ($[0]) {
 
                         case 'schema': return p_.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
@@ -85,7 +84,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     }
                 })
             },
-            () => p_.decide.state($, ($) => {
+            () => p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'schema': return p_.ss($, ($) => $)
                     case 'set': return p_.ss($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
@@ -96,10 +95,10 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
     }
     const schema = temp_find_schema(almost_resolved_module_specification.schema, almost_resolved_module_specification['schema path'])
 
-    return p_.decide.state(almost_resolved_module_specification.complexity, ($): d_out.Temp_Module_Specifier => {
+    return p_.from.state(almost_resolved_module_specification.complexity).decide(($): d_out.Temp_Module_Specifier => {
         switch ($[0]) {
             case 'constrained': return p_.ss($, ($): d_out.Temp_Module_Specifier => {
-                const constrained_schema = p_.decide.state(schema.complexity, ($): d_out_schema.Resolver => {
+                const constrained_schema = p_.from.state(schema.complexity).decide(($): d_out_schema.Resolver => {
                     switch ($[0]) {
                         case 'constrained': return p_.ss($, ($) => $)
                         case 'unconstrained': return p_.ss($, ($) => abort(['resolve error', {
@@ -133,7 +132,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                         'entry': constrained_schema.modules.__get_possible_entry_deprecated($['module resolver']).__decide(
                             ($) => $,
                             () => {
-                                schema.modules.__d_map(($, id) => {
+                                schema.modules.__d_map_deprecated(($, id) => {
                                     p_log_debug_message(`available type: ${id}`, () => { })
                                     return null
                                 })
@@ -151,7 +150,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                         'entry': schema.modules.__get_possible_entry_deprecated($.module).__decide(
                             ($) => $,
                             () => {
-                                schema.modules.__d_map(($, id) => {
+                                schema.modules.__d_map_deprecated(($, id) => {
                                     p_log_debug_message(`available type: ${id}`, () => { })
                                     return null
                                 })

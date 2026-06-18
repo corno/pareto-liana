@@ -102,10 +102,10 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ])
             ),
         }),
-        $['schema imports'].__d_map(($, id) => constrained
+        $['schema imports'].__d_map_deprecated(($, id) => constrained
             ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
             : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "boilerplate for migrate"])),
-        $.modules.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
             "signatures",
             id,
             [],
@@ -122,12 +122,12 @@ export const Schema: interface_.Schema = ($, $p) => {
 
 }
 export const Value: interface_.Value = ($, $p) => {
-    return p_.decide.state($, ($) => {
+    return p_.from.state($).decide(($) => {
         switch ($[0]) {
             case 'component': return p_.ss($, ($) => {
                 return sh.a.select(
                     sh.sv.call(
-                        p_.decide.state($.type, ($) => {
+                        p_.from.state($.type).decide(($) => {
                             switch ($[0]) {
                                 case 'external': return p_.ss($, ($) => sh.call.external($.import['l id'], $.module['l id']))
                                 case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
@@ -135,7 +135,7 @@ export const Value: interface_.Value = ($, $p) => {
                                 default: return p_.au($[0])
                             }
                         }),
-                        sh.a.select(sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
+                        sh.a.select(sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : [])),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -187,7 +187,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                     )
             })
-            case 'group': return p_.ss($, ($) => sh.a.group.literal($.__d_map(($, id) => sh.a.change_context(
+            case 'group': return p_.ss($, ($) => sh.a.group.literal($.__d_map_deprecated(($, id) => sh.a.change_context(
                 sh.sv.context([id]),
                 Value(
                     $.value,
@@ -209,7 +209,7 @@ export const Value: interface_.Value = ($, $p) => {
                     ? sh.a.group.literal({
                         "l location": location,
                         "l list": sh.a.list.from.list.map(
-                            sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                            sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
                             sh.a.group.literal({
                                 "l item": p_change_context($, ($) => {
                                     const tn = Value(
@@ -275,7 +275,7 @@ export const Value: interface_.Value = ($, $p) => {
                     }
                 )
             ))
-            case 'reference': return p_.ss($, ($) => p_.decide.state($.type, ($) => {
+            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(($) => {
                 switch ($[0]) {
                     case 'derived': return p_.ss($, ($) => sh.a.nothing())
                     case 'selected': return p_.ss($, ($) => {
@@ -296,8 +296,8 @@ export const Value: interface_.Value = ($, $p) => {
             }))
             case 'state': return p_.ss($, ($) => {
                 const tn = sh.a.decide.state(
-                    sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : []),
-                    $.options.__d_map(($, id) => sh.a.state.literal(id, Value(
+                    sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
+                    $.options.__d_map_deprecated(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {
                             'type name': $p['type name'],

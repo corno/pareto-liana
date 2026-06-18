@@ -70,7 +70,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "marshall": sh_i.import_.sibling("astn sealed target", p_.literal.nested_list([
             ])),
         }),
-        $.modules.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
             "signatures",
             id,
             [],

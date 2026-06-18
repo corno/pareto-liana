@@ -1,4 +1,5 @@
-import * as p_temp from 'pareto-core/dist/assign'
+import * as p_ from 'pareto-core/dist/implementation/refiner'
+import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ri from 'pareto-core/dist/interface/refiner'
 
@@ -41,27 +42,27 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         $cyclic: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    const xx = p_temp.decide.dictionary(
-        p_temp.dictionary.from.dictionary(
+    const xx = p_temp.from.dictionary(
+        p_temp.from.dictionary(
             benchmark,
         ).map_optionally(
             (_, id) => $.__get_possible_entry_deprecated(
                 id,
             ).__decide(
-                () => p_temp.literal.not_set<null>(),
-                () => p_temp.literal.set(null),
+                () => p_.literal.not_set<null>(),
+                () => p_.literal.set(null),
             )
         )
-    ).has_entries(
+    ).on_has_entries(
         ($) => abort({
             'type': ['missing required entries', $],
             'location': location,
         }),
         () => null
     )
-    return p_temp.dictionary.from.dictionary(
+    return p_.from.dictionary(
         $,
-    ).resolve_refiner(
+    ).resolve(
         handle_entry
     )
 }
@@ -245,7 +246,7 @@ export const temp_optional_map = <
 >(
     $: p_di.Optional_Value<In>,
     callback: ($: In) => Out,
-): p_di.Optional_Value<Out> => p_temp.optional.from.optional($).map(callback)
+): p_di.Optional_Value<Out> => p_.from.optional($).map(callback)
 
 export const temp_resolve = <
     T extends p_di.Value,
@@ -259,7 +260,7 @@ export const temp_resolve = <
         cyclic_lookup: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    return p_temp.dictionary.from.dictionary($).resolve_refiner(handle_entry)
+    return p_.from.dictionary($).resolve(handle_entry)
 }
 
 export const temp_map_list_with_state = <
@@ -282,7 +283,7 @@ export const temp_map_list_with_state = <
         final_list: p_di.List<Target_Item>,
         final_state: State
     ) => Result_Type,
-): Result_Type => p_temp.group.from.list($).map_with_state(
+): Result_Type => p_.from.list($).map_with_state(
     initial_state,
     handle_item,
     update_state,

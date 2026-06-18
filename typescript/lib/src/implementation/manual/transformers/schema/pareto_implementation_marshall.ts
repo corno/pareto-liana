@@ -79,7 +79,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             ),
 
         }),
-        p_.dictionary.from.dictionary(
+        p_.from.dictionary(
             p_.literal.dictionary({
                 "": p_.literal.dictionary({
                     "primitives to text": sh_i.import_.external(
@@ -94,7 +94,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                         ]),
                     ),
                 }),
-                "external ": $['schema imports'].__d_map(($, id) => constrained
+                "external ": $['schema imports'].__d_map_deprecated(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
                 ),
@@ -107,7 +107,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             }
 
         ),
-        $.modules.__d_map(($, id) => sh.algorithm(
+        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
             "signatures",
             id,
             [],
@@ -122,11 +122,11 @@ export const Schema: interface_.Schema = ($, $p) => {
     )
 }
 
-export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
+export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) => {
     switch ($[0]) {
         case 'component': return p_.ss($, ($) => sh.a.select(
             sh.sv.call(
-                p_.decide.state($.type, ($) => {
+                p_.from.state($.type).decide(($) => {
                     switch ($[0]) {
                         case 'external': return p_.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                         case 'internal acyclic': return p_.ss($, ($) => sh.call.local($['l id']))
@@ -134,7 +134,7 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
                         default: return p_.au($[0])
                     }
                 }),
-                sh.a.select(sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : [])),
+                sh.a.select(sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : [])),
                 null,
                 sh.lookups.not_set(),
                 sh.arguments_.not_set(),
@@ -163,7 +163,7 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
             "group",
             sh.a.state.literal(
                 "verbose",
-                sh.a.dictionary.literal($.__d_map(($, id) => sh.a.change_context(
+                sh.a.dictionary.literal($.__d_map_deprecated(($, id) => sh.a.change_context(
                     sh.sv.context([id]),
                     Value(
                         $.value,
@@ -198,7 +198,7 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
             return sh.a.state.literal(
                 "list",
                 sh.a.list.from.list.map(
-                    sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : []),
+                    sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
                     $.results.__decide(
                         ($) => sh.a.change_context(
                             sh.sv.context(["l item"]),
@@ -210,13 +210,13 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
             )
         })
         case 'nothing': return p_.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
-        case 'simple': return p_.ss($, ($) => p_.decide.state($, ($) => {
+        case 'simple': return p_.ss($, ($) => p_.from.state($).decide(($) => {
             switch ($[0]) {
                 case 'global': return p_.ss($, ($) => {
                     const x = $['l entry']
 
 
-                    return p_.decide.state($['l entry'].type, ($) => {
+                    return p_.from.state($['l entry'].type).decide(($) => {
                         switch ($[0]) {
                             case 'boolean': return p_.ss($, ($) => sh.a.state.literal(
                                 "text",
@@ -255,7 +255,7 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
                                 sh.a.group.literal({
                                     "delimiter": sh.a.state.literal("none", sh.a.nothing()),
                                     "value": sh.a.select(
-                                        p_.decide.state($.precision, ($) => {
+                                        p_.from.state($.precision).decide(($) => {
                                             switch ($[0]) {
                                                 case 'approximation': return p_.ss($, ($) => sh.sv.call(
                                                     sh.call.external("primitives to text", "scientific notation"),
@@ -335,7 +335,7 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
                     [sh.sub.state("optional")]
                 ),
             )))
-        case 'reference': return p_.ss($, ($) => p_.decide.state($.type, ($) => {
+        case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(($) => {
             switch ($[0]) {
                 case 'derived': return p_.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
                 case 'selected': return p_.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
@@ -351,8 +351,8 @@ export const Value: interface_.Value = ($, $p) => p_.decide.state($, ($) => {
         case 'state': return p_.ss($, ($) => sh.a.state.literal(
             "state",
             sh.a.decide.state(
-                sh.sv.context(p_.boolean.from.optional($.results).is_set() ? ["l value"] : []),
-                $.options.__d_map(($, id) => sh.a.group.literal({
+                sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
+                $.options.__d_map_deprecated(($, id) => sh.a.group.literal({
                     "option": sh.a.text.literal(id, 'identifier'),
                     "value": Value(
                         $.value,

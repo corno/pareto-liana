@@ -1,62 +1,62 @@
 
 
-import { signatures, sig, value_parameter, lookup_parameter, sig_params } from "../../../../../shorthands/signatures"
+import { signatures, sig, parameter, sig_params } from "../../../../../shorthands/signatures"
 
 
 export const $ = signatures(
     {
         "Fiscaal": sig.local({}, {}),
         "Grootboekrekeningen": sig.local({
-            "Beheer": value_parameter("Beheer")
+            "Beheer": parameter.module("Beheer")
         }, {}),
 
         "Grootboek Categorieen": sig.local({
-            "Fiscaal": value_parameter("Fiscaal"),
+            "Fiscaal": parameter.module("Fiscaal"),
         }, {
         }),
         
         "Beheer": sig.local({
-            "Grootboek Categorieen": value_parameter("Grootboek Categorieen"),
+            "Grootboek Categorieen": parameter.module("Grootboek Categorieen"),
         }, {}),
 
         "Jaarbeheer": sig.local({
-            "Eerste boekjaar": value_parameter("Eerste boekjaar"),
-            "Grootboekrekeningen": value_parameter("Grootboekrekeningen"),
+            "Eerste boekjaar": parameter.module("Eerste boekjaar"),
+            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
         }, {
-            "Jaren": lookup_parameter("Jaren"),
+            "Jaren": parameter.lookup("Jaren"),
         }),
         "Overige balans item": sig.same_as("Jaarbeheer"),
 
         "Verwijzing naar Informele rekening": sig.local({
-            "Jaarbeheer": value_parameter("Jaarbeheer")
+            "Jaarbeheer": parameter.module("Jaarbeheer")
         }, {}),
         "Verwijzing naar Bankrekening": sig.local({
-            "Jaarbeheer": value_parameter("Jaarbeheer")
+            "Jaarbeheer": parameter.module("Jaarbeheer")
         }, {}),
         "Handelstransacties": sig.local({
-            "Beheer": value_parameter("Beheer"),
-            "Grootboekrekeningen": value_parameter("Grootboekrekeningen"),
-            "Jaarbeheer": value_parameter("Jaarbeheer"),
+            "Beheer": parameter.module("Beheer"),
+            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
+            "Jaarbeheer": parameter.module("Jaarbeheer"),
         }, {}),
         
         "Mutaties": sig.local({
-            "Beheer": value_parameter("Beheer"),
-            "Grootboekrekeningen": value_parameter("Grootboekrekeningen"),
-            "Jaarbeheer": value_parameter("Jaarbeheer"),
-            "Handelstransacties": value_parameter("Handelstransacties"),
+            "Beheer": parameter.module("Beheer"),
+            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
+            "Jaarbeheer": parameter.module("Jaarbeheer"),
+            "Handelstransacties": parameter.module("Handelstransacties"),
         }, {
-            "Jaren": lookup_parameter("Jaren"),
+            "Jaren": parameter.lookup("Jaren"),
         }),
         "Rekening Mutatie": sig.same_as("Mutaties"),
 
         "Jaren": sig.local({
-            "Beheer": value_parameter("Beheer")
+            "Beheer": parameter.module("Beheer")
         }, {}),
 
         "Root": sig.local({}, {}),
 
         "Eerste boekjaar": sig.local({}, {
-            "Jaren": lookup_parameter("Jaren"),
+            "Jaren": parameter.lookup("Jaren"),
         }),
     },
 )

@@ -102,19 +102,19 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                         //do additional validation
                                         return p_change_context($['l entry']['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
-                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.decide.state($['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
+                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide( ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
                                                     switch ($[0]) {
                                                         case 'not set': return p_.ss($, ($) => ['not set', null])
                                                         default: return p_.au($[0])
                                                     }
                                                 })])
-                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.decide.state($['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
+                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide( ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
                                                     switch ($[0]) {
                                                         case 'not set': return p_.ss($, ($) => ['not set', null])
                                                         default: return p_.au($[0])
                                                     }
                                                 })])
-                                                case 'stack': return p_.ss($, ($) => ['stack', p_.decide.state($['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
+                                                case 'stack': return p_.ss($, ($) => ['stack', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
                                                     switch ($[0]) {
                                                         case 'empty': return p_.ss($, ($) => ['empty', null])
                                                         case 'push': return p_.ss($, ($) => {
@@ -720,7 +720,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 //                             },
                 //                         }
                 //                     )
-                //                     return $.value.__d_map(($) => Value_Selection_Tail(
+                //                     return $.value.__d_map_deprecated(($) => Value_Selection_Tail(
                 //                         $,
                 //                         {
                 //                             'location 2 string': l2s,
@@ -1342,7 +1342,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
     const loc = $.type['l location']
     const p_type: t_out.Resolver_Lookup_Selection.type_ = p_change_context($['type'], ($) => p_change_context($['l state'], ($): t_out.Resolver_Lookup_Selection.type_ => {
         switch ($[0]) {
-            case 'acyclic': return p_.ss($, ($): t_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.decide.state($['l state'], ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
+            case 'acyclic': return p_.ss($, ($): t_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
                 switch ($[0]) {
                     case 'resolved dictionary': return p_.ss($, ($) => {
                         const p_selection = Guaranteed_Value_Selection(
@@ -1373,7 +1373,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                     default: return p_.au($[0])
                 }
             })])
-            case 'cyclic': return p_.ss($, ($) => ['cyclic', p_.decide.state($['l state'], ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
+            case 'cyclic': return p_.ss($, ($) => ['cyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
                 switch ($[0]) {
                     case 'siblings': return p_.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
                         ($) => $,
@@ -1392,14 +1392,14 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
     }))
     const p_resulting_dictionary = p_change_context(p_type, ($): t_out.Value.dictionary => {
         switch ($[0]) {
-            case 'acyclic': return p_.ss($, ($) => p_.decide.state($, ($) => {
+            case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'siblings': return p_.ss($, ($) => $)
                     case 'resolved dictionary': return p_.ss($, ($) => $['selected dictionary'])
                     default: return p_.au($[0])
                 }
             }))
-            case 'cyclic': return p_.ss($, ($) => p_.decide.state($, ($) => {
+            case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
                 switch ($[0]) {
                     case 'siblings': return p_.ss($, ($) => $)
                     default: return p_.au($[0])

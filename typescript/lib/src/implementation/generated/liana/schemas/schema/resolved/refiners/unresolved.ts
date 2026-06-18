@@ -1,27 +1,27 @@
 
-// import * as _p from 'pareto-core/dist/assign'
+// import * as p_ from 'pareto-core/dist/implementation/refiner'
 
-// import _p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+// import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
 
 // import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 
 // import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
 
-// import _p_variables from 'pareto-core/dist/implementation/specials/variables'
+// import p_variables from 'pareto-core/dist/implementation/specials/variables'
 
 // import * as t_out from "../../../../../../../interface/generated/liana/schemas/schema/data/resolved"
 
 // import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
-// export const Package: t_signatures.Package = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Package: t_signatures.Package = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_omit_$po_de$pc_serializer = _p_change_context(
+//         const prop_omit_$po_de$pc_serializer = p_change_context(
 //             $['omit (de)serializer'],
 //             ($) => $,
 //         )
         
-//         const prop_schema_tree = _p_change_context(
+//         const prop_schema_tree = p_change_context(
 //             $['schema tree'],
 //             ($) => Schema_Tree(
 //                 $,
@@ -41,10 +41,10 @@
 //     },
 // )
 
-// export const Module: t_signatures.Module = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Module: t_signatures.Module = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_root_value = _p_change_context(
+//         const prop_root_value = p_change_context(
 //             $['root value'],
 //             ($) => Value(
 //                 $,
@@ -67,10 +67,10 @@
 //     },
 // )
 
-// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Modules.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Modules.D => p_change_context(
 //         $['l entry'],
 //         ($) => Module(
 //             $,
@@ -89,31 +89,31 @@
 //     ),
 // )
 
-// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Globals: t_signatures.Globals = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_complexity = _p_change_context(
+//         const prop_complexity = p_change_context(
 //             $['complexity'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Globals.complexity => {
 //                             switch ($[0]) {
 //                                 case 'unconstrained':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['unconstrained', null],
 //                                     )
 //                                 case 'constrained':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['constrained', null],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -123,12 +123,12 @@
 //             ),
 //         )
         
-//         const prop_text_types = _p_change_context(
+//         const prop_text_types = p_change_context(
 //             $['text types'],
-//             ($) => _p.dictionary.from.dictionary(
+//             ($) => p_.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_refiner(
-//                 ($, id, $a, $c): t_out.Globals.text_types.D => _p_change_context(
+//             ).resolve(
+//                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
 //                     $['l entry'],
 //                     ($) => Text_Type(
 //                         $,
@@ -142,12 +142,12 @@
 //             ),
 //         )
         
-//         const prop_number_types = _p_change_context(
+//         const prop_number_types = p_change_context(
 //             $['number types'],
-//             ($) => _p.dictionary.from.dictionary(
+//             ($) => p_.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_refiner(
-//                 ($, id, $a, $c): t_out.Globals.number_types.D => _p_change_context(
+//             ).resolve(
+//                 ($, id, $a, $c): t_out.Globals.number_types.D => p_change_context(
 //                     $['l entry'],
 //                     ($) => Number_Type(
 //                         $,
@@ -168,26 +168,26 @@
 //     },
 // )
 
-// export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Number_Type: t_signatures.Number_Type = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_precision = _p_change_context(
+//         const prop_precision = p_change_context(
 //             $['precision'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Number_Type.precision => {
 //                             switch ($[0]) {
 //                                 case 'approximation':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['approximation', _p.literal.group_resolve(
+//                                         ($) => ['approximation', p_.literal.group_resolve(
 //                                             () => {
                                                 
-//                                                 const prop_significant_digits = _p_change_context(
+//                                                 const prop_significant_digits = p_change_context(
 //                                                     $['significant digits'],
 //                                                     ($) => $,
 //                                                 )
@@ -198,47 +198,47 @@
 //                                         )],
 //                                     )
 //                                 case 'exact':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['exact', _p.literal.group_resolve(
+//                                         ($) => ['exact', p_.literal.group_resolve(
 //                                             () => {
                                                 
-//                                                 const prop_decimal_separator_offset = _p_change_context(
+//                                                 const prop_decimal_separator_offset = p_change_context(
 //                                                     $['decimal separator offset'],
-//                                                     ($) => _p.optional.from.optional(
+//                                                     ($) => p_.from.optional(
 //                                                         $,
 //                                                     ).map(
 //                                                         ($) => $,
 //                                                     ),
 //                                                 )
                                                 
-//                                                 const prop_type = _p_change_context(
+//                                                 const prop_type = p_change_context(
 //                                                     $['type'],
-//                                                     ($) => _p_variables(
+//                                                     ($) => p_variables(
 //                                                         () => {
                                                             
 //                                                             const var_location = $['l location']
-//                                                             return _p.decide.state(
+//                                                             return p_decide_state(
 //                                                                 $['l state'],
 //                                                                 ($): t_out.Number_Type.precision.exact.type_ => {
 //                                                                     switch ($[0]) {
 //                                                                         case 'integer':
-//                                                                             return _p.ss(
+//                                                                             return p_.ss(
 //                                                                                 $,
 //                                                                                 ($) => ['integer', null],
 //                                                                             )
 //                                                                         case 'natural':
-//                                                                             return _p.ss(
+//                                                                             return p_.ss(
 //                                                                                 $,
 //                                                                                 ($) => ['natural', null],
 //                                                                             )
 //                                                                         case 'positive natural':
-//                                                                             return _p.ss(
+//                                                                             return p_.ss(
 //                                                                                 $,
 //                                                                                 ($) => ['positive natural', null],
 //                                                                             )
 //                                                                         default:
-//                                                                             return _p.au(
+//                                                                             return p_.au(
 //                                                                                 $[0],
 //                                                                             )
 //                                                                     }
@@ -255,7 +255,7 @@
 //                                         )],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -270,31 +270,31 @@
 //     },
 // )
 
-// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_type = _p_change_context(
+//         const prop_type = p_change_context(
 //             $['type'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['multi line', null],
 //                                     )
 //                                 case 'single line':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['single line', null],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -309,21 +309,21 @@
 //     },
 // )
 
-// export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_location = _p_change_context(
+//         const prop_location = p_change_context(
 //             $['location'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Module_Reference.location => {
 //                             switch ($[0]) {
 //                                 case 'internal':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['internal', {
 //                                             'l entry': $l['modules'].get_entry(
@@ -353,12 +353,12 @@
 //                                         }],
 //                                     )
 //                                 case 'external':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['external', _p_variables(
+//                                         ($) => ['external', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_import = _p.decide.optional(
+//                                                 const var_constraint_import = p_decide_optional(
 //                                                     $p['imports'],
 //                                                     ($) => $,
 //                                                     () => abort(
@@ -368,10 +368,10 @@
 //                                                         },
 //                                                     ),
 //                                                 )
-//                                                 return _p.literal.group_resolve(
+//                                                 return p_.literal.group_resolve(
 //                                                     () => {
                                                         
-//                                                         const prop_import = _p_change_context(
+//                                                         const prop_import = p_change_context(
 //                                                             $['import'],
 //                                                             ($) => ({
 //                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -403,7 +403,7 @@
 //                                                             }),
 //                                                         )
                                                         
-//                                                         const prop_module = _p_change_context(
+//                                                         const prop_module = p_change_context(
 //                                                             $['module'],
 //                                                             ($) => ({
 //                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -444,7 +444,7 @@
 //                                         )],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -454,7 +454,7 @@
 //             ),
 //         )
         
-//         const prop_resulting_module = _p_change_context(
+//         const prop_resulting_module = p_change_context(
 //             $['resulting module'],
 //             ($) => _pdev.implement_me(
 //                 "IM: STATE",
@@ -467,10 +467,10 @@
 //     },
 // )
 
-// export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_module = _p_change_context(
+//         const prop_module = p_change_context(
 //             $['module'],
 //             ($) => Module_Reference(
 //                 $,
@@ -482,7 +482,7 @@
 //             ),
 //         )
         
-//         const prop_path = _p_change_context(
+//         const prop_path = p_change_context(
 //             $['path'],
 //             ($) => Value_Path(
 //                 $,
@@ -502,21 +502,21 @@
 //     },
 // )
 
-// export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_tail = _p_change_context(
+//         const prop_tail = p_change_context(
 //             $['tail'],
 //             ($) => ({
-//                 'l value': _p.list.map_with_state(
+//                 'l value': p_.list.map_with_state(
 //                     $['l list'],
 //                     _pdev.implement_me(
 //                         "IM: initial state",
 //                     ),
 //                     ($) => ({
-//                         'l item': _p_change_context(
+//                         'l item': p_change_context(
 //                             $['l item'],
-//                             ($) => _p_variables(
+//                             ($) => p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
@@ -526,22 +526,22 @@
 //                                                 "IM: value reference",
 //                                             ),
 //                                         },
-//                                         'l value': _p.decide.state(
+//                                         'l value': p_decide_state(
 //                                             $['l state'],
 //                                             ($): t_out.Value_Path.tail.l_value.L.l_item.l_value => {
 //                                                 switch ($[0]) {
 //                                                     case 'dictionary':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
-//                                                             ($) => ['dictionary', _p_variables(
+//                                                             ($) => ['dictionary', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                     const var_constraint_definition = p_decide_state(
 //                                                                         $,
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'dictionary':
-//                                                                                     return _p.ss(
+//                                                                                     return p_.ss(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -560,17 +560,17 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'group':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
-//                                                             ($) => ['group', _p_variables(
+//                                                             ($) => ['group', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                     const var_constraint_definition = p_decide_state(
 //                                                                         $,
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'group':
-//                                                                                     return _p.ss(
+//                                                                                     return p_.ss(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -616,17 +616,17 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'list':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
-//                                                             ($) => ['list', _p_variables(
+//                                                             ($) => ['list', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                     const var_constraint_definition = p_decide_state(
 //                                                                         $,
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'list':
-//                                                                                     return _p.ss(
+//                                                                                     return p_.ss(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -645,17 +645,17 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'optional':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
-//                                                             ($) => ['optional', _p_variables(
+//                                                             ($) => ['optional', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                     const var_constraint_definition = p_decide_state(
 //                                                                         $,
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'optional':
-//                                                                                     return _p.ss(
+//                                                                                     return p_.ss(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -674,17 +674,17 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'state':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
-//                                                             ($) => ['state', _p_variables(
+//                                                             ($) => ['state', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                     const var_constraint_definition = p_decide_state(
 //                                                                         $,
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'state':
-//                                                                                     return _p.ss(
+//                                                                                     return p_.ss(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -730,7 +730,7 @@
 //                                                             )],
 //                                                         )
 //                                                     default:
-//                                                         return _p.au(
+//                                                         return p_.au(
 //                                                             $[0],
 //                                                         )
 //                                                 }
@@ -759,7 +759,7 @@
 //             }),
 //         )
         
-//         const prop_resulting_node = _p_change_context(
+//         const prop_resulting_node = p_change_context(
 //             $['resulting node'],
 //             ($) => _pdev.implement_me(
 //                 "IM: LIST",
@@ -772,13 +772,13 @@
 //     },
 // )
 
-// export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => _p.optional.from.optional(
+// export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => p_.from.optional(
 //     $,
 // ).map(
-//     ($) => _p.dictionary.from.dictionary(
+//     ($) => p_.from.dictionary(
 //         $['l dictionary'],
-//     ).resolve_refiner(
-//         ($, id, $a, $c): t_out.Value_Results.O.D => _p_change_context(
+//     ).resolve(
+//         ($, id, $a, $c): t_out.Value_Results.O.D => p_change_context(
 //             $['l entry'],
 //             ($) => Value_Reference(
 //                 $,
@@ -792,13 +792,13 @@
 //     ),
 // )
 
-// export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => _p.optional.from.optional(
+// export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => p_.from.optional(
 //     $,
 // ).map(
-//     ($) => _p.dictionary.from.dictionary(
+//     ($) => p_.from.dictionary(
 //         $['l dictionary'],
-//     ).resolve_refiner(
-//         ($, id, $a, $c): t_out.Option_Constraints.O.D => _p_change_context(
+//     ).resolve(
+//         ($, id, $a, $c): t_out.Option_Constraints.O.D => p_change_context(
 //             $['l entry'],
 //             ($) => Value_Reference(
 //                 $,
@@ -812,24 +812,24 @@
 //     ),
 // )
 
-// export const Group: t_signatures.Group = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Group: t_signatures.Group = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Group.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Group.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p.literal.group_resolve(
+//         ($) => p_.literal.group_resolve(
 //             () => {
                 
-//                 const prop_description = _p_change_context(
+//                 const prop_description = p_change_context(
 //                     $['description'],
-//                     ($) => _p.optional.from.optional(
+//                     ($) => p_.from.optional(
 //                         $,
 //                     ).map(
 //                         ($) => $,
 //                     ),
 //                 )
                 
-//                 const prop_value = _p_change_context(
+//                 const prop_value = p_change_context(
 //                     $['value'],
 //                     ($) => Value(
 //                         $,
@@ -855,10 +855,10 @@
 //     ),
 // )
 
-// export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Dictionary: t_signatures.Dictionary = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_value = _p_change_context(
+//         const prop_value = p_change_context(
 //             $['value'],
 //             ($) => Value(
 //                 $,
@@ -881,42 +881,42 @@
 //     },
 // )
 
-// export const Value: t_signatures.Value = ($, abort, $l, $p) => _p_variables(
+// export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['boolean', null],
 //                         )
 //                     case 'component':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['component', _p.literal.group_resolve(
+//                             ($) => ['component', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_type = _p_change_context(
+//                                     const prop_type = p_change_context(
 //                                         $['type'],
-//                                         ($) => _p_variables(
+//                                         ($) => p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Value.component.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'external':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['external', _p_variables(
+//                                                                     ($) => ['external', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_import = _p.decide.optional(
+//                                                                             const var_constraint_import = p_decide_optional(
 //                                                                                 $p['imports'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -926,10 +926,10 @@
 //                                                                                     },
 //                                                                                 ),
 //                                                                             )
-//                                                                             return _p.literal.group_resolve(
+//                                                                             return p_.literal.group_resolve(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const prop_import = _p_change_context(
+//                                                                                     const prop_import = p_change_context(
 //                                                                                         $['import'],
 //                                                                                         ($) => ({
 //                                                                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -961,7 +961,7 @@
 //                                                                                         }),
 //                                                                                     )
                                                                                     
-//                                                                                     const prop_module = _p_change_context(
+//                                                                                     const prop_module = p_change_context(
 //                                                                                         $['module'],
 //                                                                                         ($) => ({
 //                                                                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -1002,7 +1002,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'internal acyclic':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
 //                                                                     ($) => ['internal acyclic', {
 //                                                                         'l entry': $l['noncircular sibling modules'].get_entry(
@@ -1032,7 +1032,7 @@
 //                                                                     }],
 //                                                                 )
 //                                                             case 'internal':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
 //                                                                     ($) => ['internal', {
 //                                                                         'l entry': $l['possibly circular dependent sibling modules'].get_entry(
@@ -1061,7 +1061,7 @@
 //                                                                     }],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -1071,7 +1071,7 @@
 //                                         ),
 //                                     )
                                     
-//                                     const prop_results = _p_change_context(
+//                                     const prop_results = p_change_context(
 //                                         $['results'],
 //                                         ($) => Value_Results(
 //                                             $,
@@ -1094,7 +1094,7 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['dictionary', Dictionary(
 //                                 $,
@@ -1112,7 +1112,7 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['group', Group(
 //                                 $,
@@ -1130,12 +1130,12 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['list', _p.literal.group_resolve(
+//                             ($) => ['list', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_value = _p_change_context(
+//                                     const prop_value = p_change_context(
 //                                         $['value'],
 //                                         ($) => Value(
 //                                             $,
@@ -1147,7 +1147,7 @@
 //                                         ),
 //                                     )
                                     
-//                                     const prop_results = _p_change_context(
+//                                     const prop_results = p_change_context(
 //                                         $['results'],
 //                                         ($) => Value_Results(
 //                                             $,
@@ -1170,28 +1170,28 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['nothing', null],
 //                         )
 //                     case 'number':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['number', _p_variables(
+//                             ($) => ['number', p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Value.number_ => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['global', _p_variables(
+//                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = _p.decide.optional(
+//                                                                 const var_constraint_globals = p_decide_optional(
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -1233,7 +1233,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['local', Number_Type(
 //                                                             $,
@@ -1245,7 +1245,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -1255,7 +1255,7 @@
 //                             )],
 //                         )
 //                     case 'optional':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['optional', Value(
 //                                 $,
@@ -1267,12 +1267,12 @@
 //                             )],
 //                         )
 //                     case 'reference':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['reference', _p.literal.group_resolve(
+//                             ($) => ['reference', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_referent = _p_change_context(
+//                                     const prop_referent = p_change_context(
 //                                         $['referent'],
 //                                         ($) => Value_Reference(
 //                                             $,
@@ -1288,33 +1288,33 @@
 //                                         ),
 //                                     )
                                     
-//                                     const prop_type = _p_change_context(
+//                                     const prop_type = p_change_context(
 //                                         $['type'],
-//                                         ($) => _p_variables(
+//                                         ($) => p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Value.reference.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'derived':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
 //                                                                     ($) => ['derived', null],
 //                                                                 )
 //                                                             case 'selected':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['selected', _p_variables(
+//                                                                     ($) => ['selected', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_dictionary = _p.decide.state(
+//                                                                             const var_constraint_dictionary = p_decide_state(
 //                                                                                 $,
 //                                                                                 ($) => {
 //                                                                                     switch ($[0]) {
 //                                                                                         case 'dictionary':
-//                                                                                             return _p.ss(
+//                                                                                             return p_.ss(
 //                                                                                                 $,
 //                                                                                                 ($) => $,
 //                                                                                             )
@@ -1328,41 +1328,41 @@
 //                                                                                     }
 //                                                                                 },
 //                                                                             )
-//                                                                             return _p.literal.group_resolve(
+//                                                                             return p_.literal.group_resolve(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const prop_dictionary = _p_change_context(
+//                                                                                     const prop_dictionary = p_change_context(
 //                                                                                         $['dictionary'],
 //                                                                                         ($) => var_constraint_dictionary,
 //                                                                                     )
                                                                                     
-//                                                                                     const prop_dependency = _p_change_context(
+//                                                                                     const prop_dependency = p_change_context(
 //                                                                                         $['dependency'],
-//                                                                                         ($) => _p_variables(
+//                                                                                         ($) => p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
-//                                                                                                 return _p.decide.state(
+//                                                                                                 return p_decide_state(
 //                                                                                                     $['l state'],
 //                                                                                                     ($): t_out.Value.reference.type_.selected.dependency => {
 //                                                                                                         switch ($[0]) {
 //                                                                                                             case 'acyclic':
-//                                                                                                                 return _p.ss(
+//                                                                                                                 return p_.ss(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['acyclic', null],
 //                                                                                                                 )
 //                                                                                                             case 'cyclic':
-//                                                                                                                 return _p.ss(
+//                                                                                                                 return p_.ss(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['cyclic', null],
 //                                                                                                                 )
 //                                                                                                             case 'stack':
-//                                                                                                                 return _p.ss(
+//                                                                                                                 return p_.ss(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['stack', null],
 //                                                                                                                 )
 //                                                                                                             default:
-//                                                                                                                 return _p.au(
+//                                                                                                                 return p_.au(
 //                                                                                                                     $[0],
 //                                                                                                                 )
 //                                                                                                         }
@@ -1372,7 +1372,7 @@
 //                                                                                         ),
 //                                                                                     )
                                                                                     
-//                                                                                     const prop_results = _p_change_context(
+//                                                                                     const prop_results = p_change_context(
 //                                                                                         $['results'],
 //                                                                                         ($) => Value_Results(
 //                                                                                             $,
@@ -1398,7 +1398,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -1415,22 +1415,22 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['state', _p.literal.group_resolve(
+//                             ($) => ['state', p_.literal.group_resolve(
 //                                 () => {
                                     
-//                                     const prop_options = _p_change_context(
+//                                     const prop_options = p_change_context(
 //                                         $['options'],
-//                                         ($) => _p.dictionary.from.dictionary(
+//                                         ($) => p_.from.dictionary(
 //                                             $['l dictionary'],
-//                                         ).resolve_refiner(
-//                                             ($, id, $a, $c): t_out.Value.state.options.D => _p_change_context(
+//                                         ).resolve(
+//                                             ($, id, $a, $c): t_out.Value.state.options.D => p_change_context(
 //                                                 $['l entry'],
-//                                                 ($) => _p.literal.group_resolve(
+//                                                 ($) => p_.literal.group_resolve(
 //                                                     () => {
                                                         
-//                                                         const prop_constraints = _p_change_context(
+//                                                         const prop_constraints = p_change_context(
 //                                                             $['constraints'],
 //                                                             ($) => Option_Constraints(
 //                                                                 $,
@@ -1446,7 +1446,7 @@
 //                                                             ),
 //                                                         )
                                                         
-//                                                         const prop_value = _p_change_context(
+//                                                         const prop_value = p_change_context(
 //                                                             $['value'],
 //                                                             ($) => Value(
 //                                                                 $,
@@ -1458,9 +1458,9 @@
 //                                                             ),
 //                                                         )
                                                         
-//                                                         const prop_description = _p_change_context(
+//                                                         const prop_description = p_change_context(
 //                                                             $['description'],
-//                                                             ($) => _p.optional.from.optional(
+//                                                             ($) => p_.from.optional(
 //                                                                 $,
 //                                                             ).map(
 //                                                                 ($) => $,
@@ -1477,7 +1477,7 @@
 //                                         ),
 //                                     )
                                     
-//                                     const prop_results = _p_change_context(
+//                                     const prop_results = p_change_context(
 //                                         $['results'],
 //                                         ($) => Value_Results(
 //                                             $,
@@ -1500,23 +1500,23 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['text', _p_variables(
+//                             ($) => ['text', p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['global', _p_variables(
+//                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = _p.decide.optional(
+//                                                                 const var_constraint_globals = p_decide_optional(
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -1558,7 +1558,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => ['local', Text_Type(
 //                                                             $,
@@ -1570,7 +1570,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -1580,7 +1580,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -1589,40 +1589,40 @@
 //     },
 // )
 
-// export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_path = _p_change_context(
+//         const prop_path = p_change_context(
 //             $['path'],
 //             ($) => ({
-//                 'l value': _p.list.map_with_state(
+//                 'l value': p_.list.map_with_state(
 //                     $['l list'],
 //                     _pdev.implement_me(
 //                         "IM: initial state",
 //                     ),
 //                     ($) => ({
-//                         'l item': _p_change_context(
+//                         'l item': p_change_context(
 //                             $['l item'],
-//                             ($) => _p_variables(
+//                             ($) => p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L.l_item => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['component', _p_variables(
+//                                                         ($) => ['component', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = _p.decide.state(
+//                                                                 const var_constraint_definition = p_decide_state(
 //                                                                     $,
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'component':
-//                                                                                 return _p.ss(
+//                                                                                 return p_.ss(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1641,17 +1641,17 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'group':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['group', _p_variables(
+//                                                         ($) => ['group', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = _p.decide.state(
+//                                                                 const var_constraint_definition = p_decide_state(
 //                                                                     $,
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'group':
-//                                                                                 return _p.ss(
+//                                                                                 return p_.ss(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1697,17 +1697,17 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'reference':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['reference', _p_variables(
+//                                                         ($) => ['reference', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = _p.decide.state(
+//                                                                 const var_constraint_definition = p_decide_state(
 //                                                                     $,
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'reference':
-//                                                                                 return _p.ss(
+//                                                                                 return p_.ss(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1721,10 +1721,10 @@
 //                                                                         }
 //                                                                     },
 //                                                                 )
-//                                                                 return _p.literal.group_resolve(
+//                                                                 return p_.literal.group_resolve(
 //                                                                     () => {
                                                                         
-//                                                                         const prop_definition = _p_change_context(
+//                                                                         const prop_definition = p_change_context(
 //                                                                             $['definition'],
 //                                                                             ($) => var_constraint_definition,
 //                                                                         )
@@ -1737,7 +1737,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -1765,7 +1765,7 @@
 //             }),
 //         )
         
-//         const prop_resulting_node = _p_change_context(
+//         const prop_resulting_node = p_change_context(
 //             $['resulting node'],
 //             ($) => _pdev.implement_me(
 //                 "IM: LIST",
@@ -1778,26 +1778,26 @@
 //     },
 // )
 
-// export const Presence: t_signatures.Presence = ($, abort, $l, $p) => _p_variables(
+// export const Presence: t_signatures.Presence = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Presence => {
 //                 switch ($[0]) {
 //                     case 'optional':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['optional', null],
 //                         )
 //                     case 'required':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['required', null],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -1806,20 +1806,20 @@
 //     },
 // )
 
-// export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_modules = _p_change_context(
+//         const prop_modules = p_change_context(
 //             $['modules'],
-//             ($) => _p.dictionary.from.dictionary(
+//             ($) => p_.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_refiner(
-//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.modules.D => _p_change_context(
+//             ).resolve(
+//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.modules.D => p_change_context(
 //                     $['l entry'],
-//                     ($) => _p.literal.group_resolve(
+//                     ($) => p_.literal.group_resolve(
 //                         () => {
                             
-//                             const prop_module = _p_change_context(
+//                             const prop_module = p_change_context(
 //                                 $['module'],
 //                                 ($) => Module_Reference(
 //                                     $,
@@ -1832,14 +1832,14 @@
 //                                         ),
 //                                     },
 //                                     {
-//                                         'imports': _p.literal.set(
+//                                         'imports': p_.literal.set(
 //                                             $p['imports'],
 //                                         ),
 //                                     },
 //                                 ),
 //                             )
                             
-//                             const prop_presence = _p_change_context(
+//                             const prop_presence = p_change_context(
 //                                 $['presence'],
 //                                 ($) => Presence(
 //                                     $,
@@ -1860,17 +1860,17 @@
 //             ),
 //         )
         
-//         const prop_lookups = _p_change_context(
+//         const prop_lookups = p_change_context(
 //             $['lookups'],
-//             ($) => _p.dictionary.from.dictionary(
+//             ($) => p_.from.dictionary(
 //                 $['l dictionary'],
-//             ).resolve_refiner(
-//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.lookups.D => _p_change_context(
+//             ).resolve(
+//                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.lookups.D => p_change_context(
 //                     $['l entry'],
-//                     ($) => _p.literal.group_resolve(
+//                     ($) => p_.literal.group_resolve(
 //                         () => {
                             
-//                             const prop_referent = _p_change_context(
+//                             const prop_referent = p_change_context(
 //                                 $['referent'],
 //                                 ($) => Module_Reference(
 //                                     $,
@@ -1883,47 +1883,47 @@
 //                                         ),
 //                                     },
 //                                     {
-//                                         'imports': _p.literal.set(
+//                                         'imports': p_.literal.set(
 //                                             $p['imports'],
 //                                         ),
 //                                     },
 //                                 ),
 //                             )
                             
-//                             const prop_dictionary = _p_change_context(
+//                             const prop_dictionary = p_change_context(
 //                                 $['dictionary'],
 //                                 ($) => _pdev.implement_me(
 //                                     "IM: COMPONENT",
 //                                 ),
 //                             )
                             
-//                             const prop_type = _p_change_context(
+//                             const prop_type = p_change_context(
 //                                 $['type'],
-//                                 ($) => _p_variables(
+//                                 ($) => p_variables(
 //                                     () => {
                                         
 //                                         const var_location = $['l location']
-//                                         return _p.decide.state(
+//                                         return p_decide_state(
 //                                             $['l state'],
 //                                             ($): t_out.Resolver_Signature_Parameters.lookups.D.type_ => {
 //                                                 switch ($[0]) {
 //                                                     case 'cyclic':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => ['cyclic', null],
 //                                                         )
 //                                                     case 'acyclic':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => ['acyclic', null],
 //                                                         )
 //                                                     case 'stack':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => ['stack', null],
 //                                                         )
 //                                                     default:
-//                                                         return _p.au(
+//                                                         return p_.au(
 //                                                             $[0],
 //                                                         )
 //                                                 }
@@ -1933,7 +1933,7 @@
 //                                 ),
 //                             )
                             
-//                             const prop_presence = _p_change_context(
+//                             const prop_presence = p_change_context(
 //                                 $['presence'],
 //                                 ($) => Presence(
 //                                     $,
@@ -1962,26 +1962,26 @@
 //     },
 // )
 
-// export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_module = _p_change_context(
+//         const prop_module = p_change_context(
 //             $['module'],
 //             ($) => $p['module'],
 //         )
         
-//         const prop_parameters = _p_change_context(
+//         const prop_parameters = p_change_context(
 //             $['parameters'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Resolver_Signature.parameters => {
 //                             switch ($[0]) {
 //                                 case 'local':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['local', Resolver_Signature_Parameters(
 //                                             $,
@@ -1996,7 +1996,7 @@
 //                                         )],
 //                                     )
 //                                 case 'same as':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['same as', {
 //                                             'l entry': $l['sibling signatures'].get_entry(
@@ -2026,7 +2026,7 @@
 //                                         }],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -2036,7 +2036,7 @@
 //             ),
 //         )
         
-//         const prop_resolved_parameters = _p_change_context(
+//         const prop_resolved_parameters = p_change_context(
 //             $['resolved parameters'],
 //             ($) => _pdev.implement_me(
 //                 "IM: STATE",
@@ -2050,12 +2050,12 @@
 //     },
 // )
 
-// export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Signatures.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Signatures.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p_variables(
+//         ($) => p_variables(
 //             () => {
                 
 //                 const var_location = $['l location']
@@ -2082,21 +2082,21 @@
 //     ),
 // )
 
-// export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Resolver_Optional_Value_Initialization => {
 //                 switch ($[0]) {
 //                     case 'not set':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['not set', null],
 //                         )
 //                     case 'set':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['set', Resolver_Guaranteed_Value_Selection(
 //                                 $,
@@ -2108,7 +2108,7 @@
 //                             )],
 //                         )
 //                     case 'selection':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['selection', Resolver_Possible_Value_Selection(
 //                                 $,
@@ -2120,7 +2120,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -2129,16 +2129,16 @@
 //     },
 // )
 
-// export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Resolver_Possible_Value_Selection => {
 //                 switch ($[0]) {
 //                     case 'parameter':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['parameter', {
 //                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2170,25 +2170,25 @@
 //                             }],
 //                         )
 //                     case 'result':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['result', _p_variables(
+//                             ($) => ['result', p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return _p.decide.state(
+//                                     return p_decide_state(
 //                                         $['l state'],
 //                                         ($): t_out.Resolver_Possible_Value_Selection.result => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['state', _p.literal.group_resolve(
+//                                                         ($) => ['state', p_.literal.group_resolve(
 //                                                             () => {
                                                                 
-//                                                                 const prop_property = _p_change_context(
+//                                                                 const prop_property = p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => _p.literal.group_resolve(
+//                                                                     ($) => p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_l_value = {
@@ -2218,19 +2218,19 @@
 //                                                                                 'l id': $['l reference'],
 //                                                                             }
                                                                             
-//                                                                             const prop_l_results = _p_variables(
+//                                                                             const prop_l_results = p_variables(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const var_location = $['l location']
 //                                                                                     return {
-//                                                                                         'state': _p.decide.state(
+//                                                                                         'state': p_decide_state(
 //                                                                                             _pdev.implement_me(
 //                                                                                                 "IM: rvs",
 //                                                                                             ),
 //                                                                                             ($) => {
 //                                                                                                 switch ($[0]) {
 //                                                                                                     case 'state':
-//                                                                                                         return _p.ss(
+//                                                                                                         return p_.ss(
 //                                                                                                             $,
 //                                                                                                             ($) => $,
 //                                                                                                         )
@@ -2258,12 +2258,12 @@
 //                                                                     ),
 //                                                                 )
                                                                 
-//                                                                 const prop_state = _p_change_context(
+//                                                                 const prop_state = p_change_context(
 //                                                                     $['state'],
 //                                                                     ($) => prop_property['l results']['state'],
 //                                                                 )
                                                                 
-//                                                                 const prop_result = _p_change_context(
+//                                                                 const prop_result = p_change_context(
 //                                                                     $['result'],
 //                                                                     ($) => Module_Reference(
 //                                                                         $,
@@ -2289,14 +2289,14 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'optional value':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
-//                                                         ($) => ['optional value', _p.literal.group_resolve(
+//                                                         ($) => ['optional value', p_.literal.group_resolve(
 //                                                             () => {
                                                                 
-//                                                                 const prop_property = _p_change_context(
+//                                                                 const prop_property = p_change_context(
 //                                                                     $['property'],
-//                                                                     ($) => _p.literal.group_resolve(
+//                                                                     ($) => p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
 //                                                                             const prop_l_value = {
@@ -2326,19 +2326,19 @@
 //                                                                                 'l id': $['l reference'],
 //                                                                             }
                                                                             
-//                                                                             const prop_l_results = _p_variables(
+//                                                                             const prop_l_results = p_variables(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const var_location = $['l location']
 //                                                                                     return {
-//                                                                                         'optional': _p.decide.state(
+//                                                                                         'optional': p_decide_state(
 //                                                                                             _pdev.implement_me(
 //                                                                                                 "IM: rvs",
 //                                                                                             ),
 //                                                                                             ($) => {
 //                                                                                                 switch ($[0]) {
 //                                                                                                     case 'optional':
-//                                                                                                         return _p.ss(
+//                                                                                                         return p_.ss(
 //                                                                                                             $,
 //                                                                                                             ($) => $,
 //                                                                                                         )
@@ -2366,12 +2366,12 @@
 //                                                                     ),
 //                                                                 )
                                                                 
-//                                                                 const prop_optional_value = _p_change_context(
+//                                                                 const prop_optional_value = p_change_context(
 //                                                                     $['optional value'],
 //                                                                     ($) => prop_property['l results']['optional'],
 //                                                                 )
                                                                 
-//                                                                 const prop_result = _p_change_context(
+//                                                                 const prop_result = p_change_context(
 //                                                                     $['result'],
 //                                                                     ($) => Module_Reference(
 //                                                                         $,
@@ -2397,7 +2397,7 @@
 //                                                         )],
 //                                                     )
 //                                                 default:
-//                                                     return _p.au(
+//                                                     return p_.au(
 //                                                         $[0],
 //                                                     )
 //                                             }
@@ -2407,7 +2407,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -2416,31 +2416,31 @@
 //     },
 // )
 
-// export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_start = _p_change_context(
+//         const prop_start = p_change_context(
 //             $['start'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
 //                             switch ($[0]) {
 //                                 case 'list cursor':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['list cursor', null],
 //                                     )
 //                                 case 'linked entry':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['linked entry', null],
 //                                     )
 //                                 case 'sibling':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['sibling', {
 //                                             'l entry': $l['sibling property resolvers'].get_entry(
@@ -2470,7 +2470,7 @@
 //                                         }],
 //                                     )
 //                                 case 'parent sibling':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['parent sibling', {
 //                                             'l entry': $l['parent sibling property resolvers'].get_entry(
@@ -2500,12 +2500,12 @@
 //                                         }],
 //                                     )
 //                                 case 'option constraint':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['option constraint', _p_variables(
+//                                         ($) => ['option constraint', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_oc = _p.decide.optional(
+//                                                 const var_constraint_oc = p_decide_optional(
 //                                                     $p['option constraints'],
 //                                                     ($) => $,
 //                                                     () => abort(
@@ -2547,25 +2547,25 @@
 //                                         )],
 //                                     )
 //                                 case 'constraint':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['constraint', _p_variables(
+//                                         ($) => ['constraint', p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
 //                                                         switch ($[0]) {
 //                                                             case 'component':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['component', _p.literal.group_resolve(
+//                                                                     ($) => ['component', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_property = _p_change_context(
+//                                                                             const prop_property = p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2595,19 +2595,19 @@
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
                                                                                         
-//                                                                                         const prop_l_results = _p_variables(
+//                                                                                         const prop_l_results = p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
 //                                                                                                 return {
-//                                                                                                     'component': _p.decide.state(
+//                                                                                                     'component': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'component':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2635,7 +2635,7 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_constraint = _p_change_context(
+//                                                                             const prop_constraint = p_change_context(
 //                                                                                 $['constraint'],
 //                                                                                 ($) => ({
 //                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2674,14 +2674,14 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'reference':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['reference', _p.literal.group_resolve(
+//                                                                     ($) => ['reference', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_property = _p_change_context(
+//                                                                             const prop_property = p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2711,19 +2711,19 @@
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
                                                                                         
-//                                                                                         const prop_l_results = _p_variables(
+//                                                                                         const prop_l_results = p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
 //                                                                                                 return {
-//                                                                                                     'reference': _p.decide.state(
+//                                                                                                     'reference': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'reference':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2740,14 +2740,14 @@
 //                                                                                                             }
 //                                                                                                         },
 //                                                                                                     ),
-//                                                                                                     'selected': _p.decide.state(
+//                                                                                                     'selected': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'selected':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2775,7 +2775,7 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_constraint = _p_change_context(
+//                                                                             const prop_constraint = p_change_context(
 //                                                                                 $['constraint'],
 //                                                                                 ($) => ({
 //                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2814,7 +2814,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -2824,7 +2824,7 @@
 //                                         )],
 //                                     )
 //                                 case 'parameter':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['parameter', {
 //                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2856,25 +2856,25 @@
 //                                         }],
 //                                     )
 //                                 case 'result':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['result', _p_variables(
+//                                         ($) => ['result', p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
 //                                                         switch ($[0]) {
 //                                                             case 'list':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['list', _p.literal.group_resolve(
+//                                                                     ($) => ['list', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_property = _p_change_context(
+//                                                                             const prop_property = p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2904,19 +2904,19 @@
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
                                                                                         
-//                                                                                         const prop_l_results = _p_variables(
+//                                                                                         const prop_l_results = p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
 //                                                                                                 return {
-//                                                                                                     'list': _p.decide.state(
+//                                                                                                     'list': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'list':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2947,7 +2947,7 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_list_result = _p_change_context(
+//                                                                             const prop_list_result = p_change_context(
 //                                                                                 $['list result'],
 //                                                                                 ($) => prop_property['l results']['result'],
 //                                                                             )
@@ -2959,14 +2959,14 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'state':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['state', _p.literal.group_resolve(
+//                                                                     ($) => ['state', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_property = _p_change_context(
+//                                                                             const prop_property = p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -2996,19 +2996,19 @@
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
                                                                                         
-//                                                                                         const prop_l_results = _p_variables(
+//                                                                                         const prop_l_results = p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
 //                                                                                                 return {
-//                                                                                                     'state': _p.decide.state(
+//                                                                                                     'state': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'state':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -3036,12 +3036,12 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_state = _p_change_context(
+//                                                                             const prop_state = p_change_context(
 //                                                                                 $['state'],
 //                                                                                 ($) => prop_property['l results']['state'],
 //                                                                             )
                                                                             
-//                                                                             const prop_result = _p_change_context(
+//                                                                             const prop_result = p_change_context(
 //                                                                                 $['result'],
 //                                                                                 ($) => Module_Reference(
 //                                                                                     $,
@@ -3067,14 +3067,14 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'optional value':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['optional value', _p.literal.group_resolve(
+//                                                                     ($) => ['optional value', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_property = _p_change_context(
+//                                                                             const prop_property = p_change_context(
 //                                                                                 $['property'],
-//                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                     () => {
                                                                                         
 //                                                                                         const prop_l_value = {
@@ -3104,19 +3104,19 @@
 //                                                                                             'l id': $['l reference'],
 //                                                                                         }
                                                                                         
-//                                                                                         const prop_l_results = _p_variables(
+//                                                                                         const prop_l_results = p_variables(
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
 //                                                                                                 return {
-//                                                                                                     'optional': _p.decide.state(
+//                                                                                                     'optional': p_decide_state(
 //                                                                                                         _pdev.implement_me(
 //                                                                                                             "IM: rvs",
 //                                                                                                         ),
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'optional':
-//                                                                                                                     return _p.ss(
+//                                                                                                                     return p_.ss(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -3144,12 +3144,12 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_optional_value = _p_change_context(
+//                                                                             const prop_optional_value = p_change_context(
 //                                                                                 $['optional value'],
 //                                                                                 ($) => prop_property['l results']['optional'],
 //                                                                             )
                                                                             
-//                                                                             const prop_result = _p_change_context(
+//                                                                             const prop_result = p_change_context(
 //                                                                                 $['result'],
 //                                                                                 ($) => Module_Reference(
 //                                                                                     $,
@@ -3175,7 +3175,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -3185,7 +3185,7 @@
 //                                         )],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -3195,7 +3195,7 @@
 //             ),
 //         )
         
-//         const prop_tail = _p_change_context(
+//         const prop_tail = p_change_context(
 //             $['tail'],
 //             ($) => Resolver_Relative_Value_Selection(
 //                 $,
@@ -3211,7 +3211,7 @@
 //             ),
 //         )
         
-//         const prop_resulting_node = _p_change_context(
+//         const prop_resulting_node = p_change_context(
 //             $['resulting node'],
 //             ($) => prop_tail['resulting node'],
 //         )
@@ -3223,37 +3223,37 @@
 //     },
 // )
 
-// export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_type = _p_change_context(
+//         const prop_type = p_change_context(
 //             $['type'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Resolver_Lookup_Selection.type_ => {
 //                             switch ($[0]) {
 //                                 case 'acyclic':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['acyclic', _p_variables(
+//                                         ($) => ['acyclic', p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['siblings', _p_variables(
+//                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_cd = _p.decide.optional(
+//                                                                             const var_constraint_cd = p_decide_optional(
 //                                                                                 $p['current ordered dictionary'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -3268,12 +3268,12 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'resolved dictionary':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['resolved dictionary', _p.literal.group_resolve(
+//                                                                     ($) => ['resolved dictionary', p_.literal.group_resolve(
 //                                                                         () => {
                                                                             
-//                                                                             const prop_selection = _p_change_context(
+//                                                                             const prop_selection = p_change_context(
 //                                                                                 $['selection'],
 //                                                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                                                     $,
@@ -3285,7 +3285,7 @@
 //                                                                                 ),
 //                                                                             )
                                                                             
-//                                                                             const prop_selected_dictionary = _p_change_context(
+//                                                                             const prop_selected_dictionary = p_change_context(
 //                                                                                 $['selected dictionary'],
 //                                                                                 ($) => _pdev.implement_me(
 //                                                                                     "IM: COMPONENT",
@@ -3299,7 +3299,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -3309,23 +3309,23 @@
 //                                         )],
 //                                     )
 //                                 case 'cyclic':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['cyclic', _p_variables(
+//                                         ($) => ['cyclic', p_variables(
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return _p.decide.state(
+//                                                 return p_decide_state(
 //                                                     $['l state'],
 //                                                     ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
-//                                                                     ($) => ['siblings', _p_variables(
+//                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_cd = _p.decide.optional(
+//                                                                             const var_constraint_cd = p_decide_optional(
 //                                                                                 $p['current dictionary'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -3340,7 +3340,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             default:
-//                                                                 return _p.au(
+//                                                                 return p_.au(
 //                                                                     $[0],
 //                                                                 )
 //                                                         }
@@ -3350,7 +3350,7 @@
 //                                         )],
 //                                     )
 //                                 case 'parameter':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['parameter', {
 //                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -3382,7 +3382,7 @@
 //                                         }],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -3392,7 +3392,7 @@
 //             ),
 //         )
         
-//         const prop_resulting_dictionary = _p_change_context(
+//         const prop_resulting_dictionary = p_change_context(
 //             $['resulting dictionary'],
 //             ($) => _pdev.implement_me(
 //                 "IM: STATE",
@@ -3405,12 +3405,12 @@
 //     },
 // )
 
-// export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Modules.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Modules.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p_variables(
+//         ($) => p_variables(
 //             () => {
                 
 //                 const var_location = $['l location']
@@ -3418,15 +3418,15 @@
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
-//                 return _p.literal.group_resolve(
+//                 return p_.literal.group_resolve(
 //                     () => {
                         
-//                         const prop_signature = _p_change_context(
+//                         const prop_signature = p_change_context(
 //                             $['signature'],
 //                             ($) => var_referenced_entry,
 //                         )
                         
-//                         const prop_root_value_resolver = _p_change_context(
+//                         const prop_root_value_resolver = p_change_context(
 //                             $['root value resolver'],
 //                             ($) => Resolver_Value(
 //                                 $,
@@ -3438,18 +3438,18 @@
 //                                     'parent sibling property resolvers': _p_sl.acyclic.not_set(),
 //                                 },
 //                                 {
-//                                     'option constraints': _p.literal.not_set(),
-//                                     'list cursor': _p.literal.not_set(),
-//                                     'linked entry': _p.literal.not_set(),
-//                                     'current ordered dictionary': _p.literal.not_set(),
-//                                     'current dictionary': _p.literal.not_set(),
+//                                     'option constraints': p_.literal.not_set(),
+//                                     'list cursor': p_.literal.not_set(),
+//                                     'linked entry': p_.literal.not_set(),
+//                                     'current ordered dictionary': p_.literal.not_set(),
+//                                     'current dictionary': p_.literal.not_set(),
 //                                     'signature': prop_signature,
 //                                     'definition': var_referenced_entry['module']['root value'],
 //                                     'signatures': $p['signatures'],
-//                                     'schema imports': _p.literal.set(
+//                                     'schema imports': p_.literal.set(
 //                                         $p['schema imports'],
 //                                     ),
-//                                     'resolver imports': _p.literal.set(
+//                                     'resolver imports': p_.literal.set(
 //                                         $p['resolver imports'],
 //                                     ),
 //                                     'modules': $p['modules'],
@@ -3467,10 +3467,10 @@
 //     ),
 // )
 
-// export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_selection = _p_change_context(
+//         const prop_selection = p_change_context(
 //             $['selection'],
 //             ($) => Resolver_Relative_Value_Selection(
 //                 $,
@@ -3482,28 +3482,28 @@
 //             ),
 //         )
         
-//         const prop_type = _p_change_context(
+//         const prop_type = p_change_context(
 //             $['type'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Resolver_Constraint.type_ => {
 //                             switch ($[0]) {
 //                                 case 'state':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['state', _p_variables(
+//                                         ($) => ['state', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_state = _p.decide.state(
+//                                                 const var_constraint_state = p_decide_state(
 //                                                     $,
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
 //                                                                     ($) => $,
 //                                                                 )
@@ -3517,15 +3517,15 @@
 //                                                         }
 //                                                     },
 //                                                 )
-//                                                 return _p.literal.group_resolve(
+//                                                 return p_.literal.group_resolve(
 //                                                     () => {
                                                         
-//                                                         const prop_selected_state = _p_change_context(
+//                                                         const prop_selected_state = p_change_context(
 //                                                             $['selected state'],
 //                                                             ($) => var_constraint_state,
 //                                                         )
                                                         
-//                                                         const prop_option = _p_change_context(
+//                                                         const prop_option = p_change_context(
 //                                                             $['option'],
 //                                                             ($) => ({
 //                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -3566,17 +3566,17 @@
 //                                         )],
 //                                     )
 //                                 case 'optional value':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
-//                                         ($) => ['optional value', _p_variables(
+//                                         ($) => ['optional value', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_optional = _p.decide.state(
+//                                                 const var_constraint_optional = p_decide_state(
 //                                                     $,
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
-//                                                                 return _p.ss(
+//                                                                 return p_.ss(
 //                                                                     $,
 //                                                                     ($) => $,
 //                                                                 )
@@ -3590,10 +3590,10 @@
 //                                                         }
 //                                                     },
 //                                                 )
-//                                                 return _p.literal.group_resolve(
+//                                                 return p_.literal.group_resolve(
 //                                                     () => {
                                                         
-//                                                         const prop_selected_optional_value = _p_change_context(
+//                                                         const prop_selected_optional_value = p_change_context(
 //                                                             $['selected optional value'],
 //                                                             ($) => var_constraint_optional,
 //                                                         )
@@ -3606,7 +3606,7 @@
 //                                         )],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -3622,26 +3622,26 @@
 //     },
 // )
 
-// export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Option_Constraints.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Option_Constraints.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p_variables(
+//         ($) => p_variables(
 //             () => {
                 
 //                 const var_location = $['l location']
-//                 return _p.decide.state(
+//                 return p_decide_state(
 //                     $['l state'],
 //                     ($): t_out.Resolver_Option_Constraints.D => {
 //                         switch ($[0]) {
 //                             case 'state':
-//                                 return _p.ss(
+//                                 return p_.ss(
 //                                     $,
-//                                     ($) => ['state', _p.literal.group_resolve(
+//                                     ($) => ['state', p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_selection = _p_change_context(
+//                                             const prop_selection = p_change_context(
 //                                                 $['selection'],
 //                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                     $,
@@ -3653,14 +3653,14 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_selected_state = _p_change_context(
+//                                             const prop_selected_state = p_change_context(
 //                                                 $['selected state'],
 //                                                 ($) => _pdev.implement_me(
 //                                                     "IM: COMPONENT",
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_option = _p_change_context(
+//                                             const prop_option = p_change_context(
 //                                                 $['option'],
 //                                                 ($) => ({
 //                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -3700,7 +3700,7 @@
 //                                     )],
 //                                 )
 //                             case 'assert is set':
-//                                 return _p.ss(
+//                                 return p_.ss(
 //                                     $,
 //                                     ($) => ['assert is set', Resolver_Possible_Value_Selection(
 //                                         $,
@@ -3712,7 +3712,7 @@
 //                                     )],
 //                                 )
 //                             default:
-//                                 return _p.au(
+//                                 return p_.au(
 //                                     $[0],
 //                                 )
 //                         }
@@ -3723,26 +3723,26 @@
 //     ),
 // )
 
-// export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_start = _p_change_context(
+//         const prop_start = p_change_context(
 //             $['start'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Resolver_Value_Constraint.start => {
 //                             switch ($[0]) {
 //                                 case 'value':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['value', null],
 //                                     )
 //                                 case 'sibling':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['sibling', Resolver_Reference_To_Value_Constraint(
 //                                             $,
@@ -3756,7 +3756,7 @@
 //                                         )],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -3766,7 +3766,7 @@
 //             ),
 //         )
         
-//         const prop_constraint = _p_change_context(
+//         const prop_constraint = p_change_context(
 //             $['constraint'],
 //             ($) => Resolver_Constraint(
 //                 $,
@@ -3788,7 +3788,7 @@
 //     },
 // )
 
-// export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $l, $p) => _p.optional.from.optional(
+// export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $l, $p) => p_.from.optional(
 //     $,
 // ).map(
 //     ($) => Resolver_Value_Constraints(
@@ -3803,10 +3803,10 @@
 //     ),
 // )
 
-// export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Value_Constraints.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Value_Constraints.D => p_change_context(
 //         $['l entry'],
 //         ($) => Resolver_Value_Constraint(
 //             $,
@@ -3848,12 +3848,12 @@
 //     'l id': $['l reference'],
 // })
 
-// export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Value_Group.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Value_Group.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p_variables(
+//         ($) => p_variables(
 //             () => {
                 
 //                 const var_location = $['l location']
@@ -3861,15 +3861,15 @@
 //                 const var_referenced_entry = _pdev.implement_me(
 //                     "IM: referenced entry",
 //                 )
-//                 return _p.literal.group_resolve(
+//                 return p_.literal.group_resolve(
 //                     () => {
                         
-//                         const prop_definition = _p_change_context(
+//                         const prop_definition = p_change_context(
 //                             $['definition'],
 //                             ($) => var_referenced_entry,
 //                         )
                         
-//                         const prop_resolver = _p_change_context(
+//                         const prop_resolver = p_change_context(
 //                             $['resolver'],
 //                             ($) => Resolver_Value(
 //                                 $,
@@ -3919,10 +3919,10 @@
 //     },
 // )
 
-// export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver_Benchmark: t_signatures.Resolver_Benchmark = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_selection = _p_change_context(
+//         const prop_selection = p_change_context(
 //             $['selection'],
 //             ($) => ({
 //                 'l results': {
@@ -3941,14 +3941,14 @@
 //             }),
 //         )
         
-//         const prop_resulting_dictionary = _p_change_context(
+//         const prop_resulting_dictionary = p_change_context(
 //             $['resulting dictionary'],
 //             ($) => _pdev.implement_me(
 //                 "IM: COMPONENT",
 //             ),
 //         )
         
-//         const prop_dense = _p_change_context(
+//         const prop_dense = p_change_context(
 //             $['dense'],
 //             ($) => $,
 //         )
@@ -3960,26 +3960,26 @@
 //     },
 // )
 
-// export const Resolver_Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => _p_variables(
+// export const Resolver_Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Resolver_Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['boolean', _p_variables(
+//                             ($) => ['boolean', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'boolean':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -3998,17 +3998,17 @@
 //                             )],
 //                         )
 //                     case 'component':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['component', _p_variables(
+//                             ($) => ['component', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4022,31 +4022,31 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_definition = _p_change_context(
+//                                             const prop_definition = p_change_context(
 //                                                 $['definition'],
 //                                                 ($) => var_constraint_definition,
 //                                             )
                                             
-//                                             const prop_location = _p_change_context(
+//                                             const prop_location = p_change_context(
 //                                                 $['location'],
-//                                                 ($) => _p_variables(
+//                                                 ($) => p_variables(
 //                                                     () => {
                                                         
 //                                                         const var_location = $['l location']
-//                                                         return _p.decide.state(
+//                                                         return p_decide_state(
 //                                                             $['l state'],
 //                                                             ($): t_out.Resolver_Value.component.location => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'external':
-//                                                                         return _p.ss(
+//                                                                         return p_.ss(
 //                                                                             $,
-//                                                                             ($) => ['external', _p_variables(
+//                                                                             ($) => ['external', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_schema_import = _p.decide.optional(
+//                                                                                     const var_constraint_schema_import = p_decide_optional(
 //                                                                                         $p['schema imports'],
 //                                                                                         ($) => $,
 //                                                                                         () => abort(
@@ -4057,7 +4057,7 @@
 //                                                                                         ),
 //                                                                                     )
                                                                                     
-//                                                                                     const var_constraint_resolver_import = _p.decide.optional(
+//                                                                                     const var_constraint_resolver_import = p_decide_optional(
 //                                                                                         $p['resolver imports'],
 //                                                                                         ($) => $,
 //                                                                                         () => abort(
@@ -4067,12 +4067,12 @@
 //                                                                                             },
 //                                                                                         ),
 //                                                                                     )
-//                                                                                     return _p.literal.group_resolve(
+//                                                                                     return p_.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
-//                                                                                             const prop_schema_import = _p_change_context(
+//                                                                                             const prop_schema_import = p_change_context(
 //                                                                                                 $['schema import'],
-//                                                                                                 ($) => _p.literal.group_resolve(
+//                                                                                                 ($) => p_.literal.group_resolve(
 //                                                                                                     () => {
                                                                                                         
 //                                                                                                         const prop_l_value = {
@@ -4104,19 +4104,19 @@
 //                                                                                                             'l id': $['l reference'],
 //                                                                                                         }
                                                                                                         
-//                                                                                                         const prop_l_results = _p_variables(
+//                                                                                                         const prop_l_results = p_variables(
 //                                                                                                             () => {
                                                                                                                 
 //                                                                                                                 const var_location = $['l location']
 //                                                                                                                 return {
-//                                                                                                                     'constrained': _p.decide.state(
+//                                                                                                                     'constrained': p_decide_state(
 //                                                                                                                         _pdev.implement_me(
 //                                                                                                                             "IM: rvs",
 //                                                                                                                         ),
 //                                                                                                                         ($) => {
 //                                                                                                                             switch ($[0]) {
 //                                                                                                                                 case 'constrained':
-//                                                                                                                                     return _p.ss(
+//                                                                                                                                     return p_.ss(
 //                                                                                                                                         $,
 //                                                                                                                                         ($) => $,
 //                                                                                                                                     )
@@ -4144,7 +4144,7 @@
 //                                                                                                 ),
 //                                                                                             )
                                                                                             
-//                                                                                             const prop_resolver_import = _p_change_context(
+//                                                                                             const prop_resolver_import = p_change_context(
 //                                                                                                 $['resolver import'],
 //                                                                                                 ($) => ({
 //                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4176,7 +4176,7 @@
 //                                                                                                 }),
 //                                                                                             )
                                                                                             
-//                                                                                             const prop_signature = _p_change_context(
+//                                                                                             const prop_signature = p_change_context(
 //                                                                                                 $['signature'],
 //                                                                                                 ($) => ({
 //                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4218,7 +4218,7 @@
 //                                                                             )],
 //                                                                         )
 //                                                                     case 'internal':
-//                                                                         return _p.ss(
+//                                                                         return p_.ss(
 //                                                                             $,
 //                                                                             ($) => ['internal', {
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4250,7 +4250,7 @@
 //                                                                             }],
 //                                                                         )
 //                                                                     default:
-//                                                                         return _p.au(
+//                                                                         return p_.au(
 //                                                                             $[0],
 //                                                                         )
 //                                                                 }
@@ -4260,32 +4260,32 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_signature = _p_change_context(
+//                                             const prop_signature = p_change_context(
 //                                                 $['signature'],
 //                                                 ($) => _pdev.implement_me(
 //                                                     "IM: STATE",
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_arguments = _p_change_context(
+//                                             const prop_arguments = p_change_context(
 //                                                 $['arguments'],
-//                                                 ($) => _p.optional.from.optional(
+//                                                 ($) => p_.from.optional(
 //                                                     $,
 //                                                 ).map(
-//                                                     ($) => _p.literal.group_resolve(
+//                                                     ($) => p_.literal.group_resolve(
 //                                                         () => {
                                                             
-//                                                             const prop_modules = _p_change_context(
+//                                                             const prop_modules = p_change_context(
 //                                                                 $['modules'],
-//                                                                 ($) => _p.optional.from.optional(
+//                                                                 ($) => p_.from.optional(
 //                                                                     $,
 //                                                                 ).map(
-//                                                                     ($) => _p.dictionary.from.dictionary(
+//                                                                     ($) => p_.from.dictionary(
 //                                                                         $['l dictionary'],
-//                                                                     ).resolve_refiner(
-//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.modules.O.D => _p_change_context(
+//                                                                     ).resolve(
+//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.modules.O.D => p_change_context(
 //                                                                             $['l entry'],
-//                                                                             ($) => _p_variables(
+//                                                                             ($) => p_variables(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const var_location = $['l location']
@@ -4293,16 +4293,16 @@
 //                                                                                     const var_referenced_entry = _pdev.implement_me(
 //                                                                                         "IM: referenced entry",
 //                                                                                     )
-//                                                                                     return _p_variables(
+//                                                                                     return p_variables(
 //                                                                                         () => {
                                                                                             
 //                                                                                             const var_location = $['l location']
-//                                                                                             return _p.decide.state(
+//                                                                                             return p_decide_state(
 //                                                                                                 $['l state'],
 //                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.modules.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'optional':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['optional', Resolver_Optional_Value_Initialization(
 //                                                                                                                     $,
@@ -4314,7 +4314,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'required':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['required', Resolver_Guaranteed_Value_Selection(
 //                                                                                                                     $,
@@ -4326,7 +4326,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'parameter':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['parameter', {
 //                                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4358,7 +4358,7 @@
 //                                                                                                                 }],
 //                                                                                                             )
 //                                                                                                         default:
-//                                                                                                             return _p.au(
+//                                                                                                             return p_.au(
 //                                                                                                                 $[0],
 //                                                                                                             )
 //                                                                                                     }
@@ -4373,17 +4373,17 @@
 //                                                                 ),
 //                                                             )
                                                             
-//                                                             const prop_lookups = _p_change_context(
+//                                                             const prop_lookups = p_change_context(
 //                                                                 $['lookups'],
-//                                                                 ($) => _p.optional.from.optional(
+//                                                                 ($) => p_.from.optional(
 //                                                                     $,
 //                                                                 ).map(
-//                                                                     ($) => _p.dictionary.from.dictionary(
+//                                                                     ($) => p_.from.dictionary(
 //                                                                         $['l dictionary'],
-//                                                                     ).resolve_refiner(
-//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => _p_change_context(
+//                                                                     ).resolve(
+//                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => p_change_context(
 //                                                                             $['l entry'],
-//                                                                             ($) => _p_variables(
+//                                                                             ($) => p_variables(
 //                                                                                 () => {
                                                                                     
 //                                                                                     const var_location = $['l location']
@@ -4391,37 +4391,37 @@
 //                                                                                     const var_referenced_entry = _pdev.implement_me(
 //                                                                                         "IM: referenced entry",
 //                                                                                     )
-//                                                                                     return _p_variables(
+//                                                                                     return p_variables(
 //                                                                                         () => {
                                                                                             
 //                                                                                             const var_location = $['l location']
-//                                                                                             return _p.decide.state(
+//                                                                                             return p_decide_state(
 //                                                                                                 $['l state'],
 //                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'stack':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['stack', _p_variables(
+//                                                                                                                 ($) => ['stack', p_variables(
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return _p.decide.state(
+//                                                                                                                         return p_decide_state(
 //                                                                                                                             $['l state'],
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'empty':
-//                                                                                                                                         return _p.ss(
+//                                                                                                                                         return p_.ss(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['empty', null],
 //                                                                                                                                         )
 //                                                                                                                                     case 'push':
-//                                                                                                                                         return _p.ss(
+//                                                                                                                                         return p_.ss(
 //                                                                                                                                             $,
-//                                                                                                                                             ($) => ['push', _p.literal.group_resolve(
+//                                                                                                                                             ($) => ['push', p_.literal.group_resolve(
 //                                                                                                                                                 () => {
                                                                                                                                                     
-//                                                                                                                                                     const prop_stack = _p_change_context(
+//                                                                                                                                                     const prop_stack = p_change_context(
 //                                                                                                                                                         $['stack'],
 //                                                                                                                                                         ($) => Resolver_Lookup_Selection(
 //                                                                                                                                                             $,
@@ -4433,7 +4433,7 @@
 //                                                                                                                                                         ),
 //                                                                                                                                                     )
                                                                                                                                                     
-//                                                                                                                                                     const prop_item = _p_change_context(
+//                                                                                                                                                     const prop_item = p_change_context(
 //                                                                                                                                                         $['item'],
 //                                                                                                                                                         ($) => Resolver_Lookup_Selection(
 //                                                                                                                                                             $,
@@ -4452,7 +4452,7 @@
 //                                                                                                                                             )],
 //                                                                                                                                         )
 //                                                                                                                                     default:
-//                                                                                                                                         return _p.au(
+//                                                                                                                                         return p_.au(
 //                                                                                                                                             $[0],
 //                                                                                                                                         )
 //                                                                                                                                 }
@@ -4462,23 +4462,23 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'acyclic':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['acyclic', _p_variables(
+//                                                                                                                 ($) => ['acyclic', p_variables(
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return _p.decide.state(
+//                                                                                                                         return p_decide_state(
 //                                                                                                                             $['l state'],
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
-//                                                                                                                                         return _p.ss(
+//                                                                                                                                         return p_.ss(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['not set', null],
 //                                                                                                                                         )
 //                                                                                                                                     default:
-//                                                                                                                                         return _p.au(
+//                                                                                                                                         return p_.au(
 //                                                                                                                                             $[0],
 //                                                                                                                                         )
 //                                                                                                                                 }
@@ -4488,23 +4488,23 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'cyclic':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
-//                                                                                                                 ($) => ['cyclic', _p_variables(
+//                                                                                                                 ($) => ['cyclic', p_variables(
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return _p.decide.state(
+//                                                                                                                         return p_decide_state(
 //                                                                                                                             $['l state'],
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
-//                                                                                                                                         return _p.ss(
+//                                                                                                                                         return p_.ss(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['not set', null],
 //                                                                                                                                         )
 //                                                                                                                                     default:
-//                                                                                                                                         return _p.au(
+//                                                                                                                                         return p_.au(
 //                                                                                                                                             $[0],
 //                                                                                                                                         )
 //                                                                                                                                 }
@@ -4514,7 +4514,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'selection':
-//                                                                                                             return _p.ss(
+//                                                                                                             return p_.ss(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['selection', Resolver_Lookup_Selection(
 //                                                                                                                     $,
@@ -4526,7 +4526,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         default:
-//                                                                                                             return _p.au(
+//                                                                                                             return p_.au(
 //                                                                                                                 $[0],
 //                                                                                                             )
 //                                                                                                     }
@@ -4549,7 +4549,7 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_constraints = _p_change_context(
+//                                             const prop_constraints = p_change_context(
 //                                                 $['constraints'],
 //                                                 ($) => Resolver_Value_Constraints(
 //                                                     $,
@@ -4575,17 +4575,17 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['dictionary', _p_variables(
+//                             ($) => ['dictionary', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'dictionary':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4599,17 +4599,17 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_definition = _p_change_context(
+//                                             const prop_definition = p_change_context(
 //                                                 $['definition'],
 //                                                 ($) => var_constraint_definition,
 //                                             )
                                             
-//                                             const prop_benchmark = _p_change_context(
+//                                             const prop_benchmark = p_change_context(
 //                                                 $['benchmark'],
-//                                                 ($) => _p.optional.from.optional(
+//                                                 ($) => p_.from.optional(
 //                                                     $,
 //                                                 ).map(
 //                                                     ($) => Resolver_Benchmark(
@@ -4623,7 +4623,7 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_resolver = _p_change_context(
+//                                             const prop_resolver = p_change_context(
 //                                                 $['resolver'],
 //                                                 ($) => Resolver_Value(
 //                                                     $,
@@ -4636,10 +4636,10 @@
 //                                                             "IM: OPTIONAL VALUE2",
 //                                                         ),
 //                                                         'definition': prop_definition['value'],
-//                                                         'current dictionary': _p.literal.set(
+//                                                         'current dictionary': p_.literal.set(
 //                                                             prop_definition,
 //                                                         ),
-//                                                         'current ordered dictionary': _p.literal.set(
+//                                                         'current ordered dictionary': p_.literal.set(
 //                                                             prop_definition,
 //                                                         ),
 //                                                         'modules': $p['modules'],
@@ -4663,17 +4663,17 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['group', _p_variables(
+//                             ($) => ['group', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'group':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4714,17 +4714,17 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['list', _p_variables(
+//                             ($) => ['list', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'list':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4738,17 +4738,17 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_definition = _p_change_context(
+//                                             const prop_definition = p_change_context(
 //                                                 $['definition'],
 //                                                 ($) => var_constraint_definition,
 //                                             )
                                             
-//                                             const prop_result = _p_change_context(
+//                                             const prop_result = p_change_context(
 //                                                 $['result'],
-//                                                 ($) => _p.optional.from.optional(
+//                                                 ($) => p_.from.optional(
 //                                                     $,
 //                                                 ).map(
 //                                                     ($) => Resolver_Value_List_Result(
@@ -4768,7 +4768,7 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_resolver = _p_change_context(
+//                                             const prop_resolver = p_change_context(
 //                                                 $['resolver'],
 //                                                 ($) => Resolver_Value(
 //                                                     $,
@@ -4777,7 +4777,7 @@
 //                                                     ),
 //                                                     $l,
 //                                                     {
-//                                                         'list cursor': _p.literal.set(
+//                                                         'list cursor': p_.literal.set(
 //                                                             _pdev.implement_me(
 //                                                                 "IM: OPTIONAL VALUE",
 //                                                             ),
@@ -4806,17 +4806,17 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['nothing', _p_variables(
+//                             ($) => ['nothing', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'nothing':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4835,17 +4835,17 @@
 //                             )],
 //                         )
 //                     case 'number':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['number', _p_variables(
+//                             ($) => ['number', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'number':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4864,17 +4864,17 @@
 //                             )],
 //                         )
 //                     case 'optional':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['optional', _p_variables(
+//                             ($) => ['optional', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'optional':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4888,10 +4888,10 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_constraints = _p_change_context(
+//                                             const prop_constraints = p_change_context(
 //                                                 $['constraints'],
 //                                                 ($) => Resolver_Option_Constraints(
 //                                                     $,
@@ -4903,7 +4903,7 @@
 //                                                 ),
 //                                             )
                                             
-//                                             const prop_resolver = _p_change_context(
+//                                             const prop_resolver = p_change_context(
 //                                                 $['resolver'],
 //                                                 ($) => Resolver_Value(
 //                                                     $,
@@ -4936,17 +4936,17 @@
 //                             )],
 //                         )
 //                     case 'reference':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['reference', _p_variables(
+//                             ($) => ['reference', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'reference':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4960,36 +4960,36 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_definition = _p_change_context(
+//                                             const prop_definition = p_change_context(
 //                                                 $['definition'],
 //                                                 ($) => var_constraint_definition,
 //                                             )
                                             
-//                                             const prop_type = _p_change_context(
+//                                             const prop_type = p_change_context(
 //                                                 $['type'],
-//                                                 ($) => _p_variables(
+//                                                 ($) => p_variables(
 //                                                     () => {
                                                         
 //                                                         const var_location = $['l location']
-//                                                         return _p.decide.state(
+//                                                         return p_decide_state(
 //                                                             $['l state'],
 //                                                             ($): t_out.Resolver_Value.reference.type_ => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'derived':
-//                                                                         return _p.ss(
+//                                                                         return p_.ss(
 //                                                                             $,
-//                                                                             ($) => ['derived', _p_variables(
+//                                                                             ($) => ['derived', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                                     const var_constraint_definition = p_decide_state(
 //                                                                                         $,
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'derived':
-//                                                                                                     return _p.ss(
+//                                                                                                     return p_.ss(
 //                                                                                                         $,
 //                                                                                                         ($) => $,
 //                                                                                                     )
@@ -5003,10 +5003,10 @@
 //                                                                                             }
 //                                                                                         },
 //                                                                                     )
-//                                                                                     return _p.literal.group_resolve(
+//                                                                                     return p_.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
-//                                                                                             const prop_value = _p_change_context(
+//                                                                                             const prop_value = p_change_context(
 //                                                                                                 $['value'],
 //                                                                                                 ($) => Resolver_Guaranteed_Value_Selection(
 //                                                                                                     $,
@@ -5026,17 +5026,17 @@
 //                                                                             )],
 //                                                                         )
 //                                                                     case 'selected':
-//                                                                         return _p.ss(
+//                                                                         return p_.ss(
 //                                                                             $,
-//                                                                             ($) => ['selected', _p_variables(
+//                                                                             ($) => ['selected', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_definition = _p.decide.state(
+//                                                                                     const var_constraint_definition = p_decide_state(
 //                                                                                         $,
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'selected':
-//                                                                                                     return _p.ss(
+//                                                                                                     return p_.ss(
 //                                                                                                         $,
 //                                                                                                         ($) => $,
 //                                                                                                     )
@@ -5050,15 +5050,15 @@
 //                                                                                             }
 //                                                                                         },
 //                                                                                     )
-//                                                                                     return _p.literal.group_resolve(
+//                                                                                     return p_.literal.group_resolve(
 //                                                                                         () => {
                                                                                             
-//                                                                                             const prop_definition = _p_change_context(
+//                                                                                             const prop_definition = p_change_context(
 //                                                                                                 $['definition'],
 //                                                                                                 ($) => var_constraint_definition,
 //                                                                                             )
                                                                                             
-//                                                                                             const prop_lookup = _p_change_context(
+//                                                                                             const prop_lookup = p_change_context(
 //                                                                                                 $['lookup'],
 //                                                                                                 ($) => Resolver_Lookup_Selection(
 //                                                                                                     $,
@@ -5070,7 +5070,7 @@
 //                                                                                                 ),
 //                                                                                             )
                                                                                             
-//                                                                                             const prop_constraints = _p_change_context(
+//                                                                                             const prop_constraints = p_change_context(
 //                                                                                                 $['constraints'],
 //                                                                                                 ($) => Resolver_Value_Constraints(
 //                                                                                                     $,
@@ -5094,7 +5094,7 @@
 //                                                                             )],
 //                                                                         )
 //                                                                     default:
-//                                                                         return _p.au(
+//                                                                         return p_.au(
 //                                                                             $[0],
 //                                                                         )
 //                                                                 }
@@ -5113,17 +5113,17 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['state', _p_variables(
+//                             ($) => ['state', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -5137,22 +5137,22 @@
 //                                             }
 //                                         },
 //                                     )
-//                                     return _p.literal.group_resolve(
+//                                     return p_.literal.group_resolve(
 //                                         () => {
                                             
-//                                             const prop_definition = _p_change_context(
+//                                             const prop_definition = p_change_context(
 //                                                 $['definition'],
 //                                                 ($) => var_constraint_definition,
 //                                             )
                                             
-//                                             const prop_states = _p_change_context(
+//                                             const prop_states = p_change_context(
 //                                                 $['states'],
-//                                                 ($) => _p.dictionary.from.dictionary(
+//                                                 ($) => p_.from.dictionary(
 //                                                     $['l dictionary'],
-//                                                 ).resolve_refiner(
-//                                                     ($, id, $a, $c): t_out.Resolver_Value.state.states.D => _p_change_context(
+//                                                 ).resolve(
+//                                                     ($, id, $a, $c): t_out.Resolver_Value.state.states.D => p_change_context(
 //                                                         $['l entry'],
-//                                                         ($) => _p_variables(
+//                                                         ($) => p_variables(
 //                                                             () => {
                                                                 
 //                                                                 const var_location = $['l location']
@@ -5160,10 +5160,10 @@
 //                                                                 const var_referenced_entry = _pdev.implement_me(
 //                                                                     "IM: referenced entry",
 //                                                                 )
-//                                                                 return _p.literal.group_resolve(
+//                                                                 return p_.literal.group_resolve(
 //                                                                     () => {
                                                                         
-//                                                                         const prop_constraints = _p_change_context(
+//                                                                         const prop_constraints = p_change_context(
 //                                                                             $['constraints'],
 //                                                                             ($) => Resolver_Option_Constraints(
 //                                                                                 $,
@@ -5175,7 +5175,7 @@
 //                                                                             ),
 //                                                                         )
                                                                         
-//                                                                         const prop_resolver = _p_change_context(
+//                                                                         const prop_resolver = p_change_context(
 //                                                                             $['resolver'],
 //                                                                             ($) => Resolver_Value(
 //                                                                                 $,
@@ -5219,17 +5219,17 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
-//                             ($) => ['text', _p_variables(
+//                             ($) => ['text', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = _p.decide.state(
+//                                     const var_constraint_definition = p_decide_state(
 //                                         $,
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'text':
-//                                                     return _p.ss(
+//                                                     return p_.ss(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -5248,7 +5248,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -5257,15 +5257,15 @@
 //     },
 // )
 
-// export const Resolver: t_signatures.Resolver = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Resolver: t_signatures.Resolver = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_signatures = _p_change_context(
+//         const prop_signatures = p_change_context(
 //             $['signatures'],
-//             ($) => _p.literal.group_resolve(
+//             ($) => p_.literal.group_resolve(
 //                 () => {
                     
-//                     const prop_signatures = _p_change_context(
+//                     const prop_signatures = p_change_context(
 //                         $['signatures'],
 //                         ($) => Resolver_Signatures(
 //                             $,
@@ -5286,7 +5286,7 @@
 //             ),
 //         )
         
-//         const prop_modules = _p_change_context(
+//         const prop_modules = p_change_context(
 //             $['modules'],
 //             ($) => Resolver_Modules(
 //                 $,
@@ -5309,10 +5309,10 @@
 //     },
 // )
 
-// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Schemas.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
 //         $['l entry'],
 //         ($) => Schema_Tree(
 //             $,
@@ -5330,10 +5330,10 @@
 //     ),
 // )
 
-// export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Module_Specification: t_signatures.Module_Specification = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_schema = _p_change_context(
+//         const prop_schema = p_change_context(
 //             $['schema'],
 //             ($) => Schema_Tree(
 //                 $,
@@ -5347,19 +5347,19 @@
 //             ),
 //         )
         
-//         const prop_schema_path = _p_change_context(
+//         const prop_schema_path = p_change_context(
 //             $['schema path'],
-//             ($) => _p.list.from.list(
+//             ($) => p_.from.list(
 //                 $['l list'],
 //             ).map(
-//                 ($) => _p_change_context(
+//                 ($) => p_change_context(
 //                     $['l item'],
 //                     ($) => $,
 //                 ),
 //             ),
 //         )
         
-//         const prop_module = _p_change_context(
+//         const prop_module = p_change_context(
 //             $['module'],
 //             ($) => $,
 //         )
@@ -5371,16 +5371,16 @@
 //     },
 // )
 
-// export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => _p_variables(
+// export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_variables(
 //     () => {
         
 //         const var_location = $['l location']
-//         return _p.decide.state(
+//         return p_decide_state(
 //             $['l state'],
 //             ($): t_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['schema', Schema(
 //                                 $,
@@ -5394,7 +5394,7 @@
 //                             )],
 //                         )
 //                     case 'set':
-//                         return _p.ss(
+//                         return p_.ss(
 //                             $,
 //                             ($) => ['set', Schemas(
 //                                 $,
@@ -5408,7 +5408,7 @@
 //                             )],
 //                         )
 //                     default:
-//                         return _p.au(
+//                         return p_.au(
 //                             $[0],
 //                         )
 //                 }
@@ -5417,10 +5417,10 @@
 //     },
 // )
 
-// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => _p.literal.group_resolve(
+// export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.group_resolve(
 //     () => {
         
-//         const prop_schema_imports = _p_change_context(
+//         const prop_schema_imports = p_change_context(
 //             $['schema imports'],
 //             ($) => Schema_Imports(
 //                 $,
@@ -5434,7 +5434,7 @@
 //             ),
 //         )
         
-//         const prop_resolver_imports = _p_change_context(
+//         const prop_resolver_imports = p_change_context(
 //             $['resolver imports'],
 //             ($) => Resolver_Imports(
 //                 $,
@@ -5448,7 +5448,7 @@
 //             ),
 //         )
         
-//         const prop_globals = _p_change_context(
+//         const prop_globals = p_change_context(
 //             $['globals'],
 //             ($) => Globals(
 //                 $,
@@ -5460,7 +5460,7 @@
 //             ),
 //         )
         
-//         const prop_modules = _p_change_context(
+//         const prop_modules = p_change_context(
 //             $['modules'],
 //             ($) => Modules(
 //                 $,
@@ -5469,28 +5469,28 @@
 //                 ),
 //                 null,
 //                 {
-//                     'globals': _p.literal.set(
+//                     'globals': p_.literal.set(
 //                         prop_globals,
 //                     ),
-//                     'imports': _p.literal.set(
+//                     'imports': p_.literal.set(
 //                         prop_schema_imports,
 //                     ),
 //                 },
 //             ),
 //         )
         
-//         const prop_complexity = _p_change_context(
+//         const prop_complexity = p_change_context(
 //             $['complexity'],
-//             ($) => _p_variables(
+//             ($) => p_variables(
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return _p.decide.state(
+//                     return p_decide_state(
 //                         $['l state'],
 //                         ($): t_out.Schema.complexity => {
 //                             switch ($[0]) {
 //                                 case 'constrained':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['constrained', Resolver(
 //                                             $,
@@ -5506,12 +5506,12 @@
 //                                         )],
 //                                     )
 //                                 case 'unconstrained':
-//                                     return _p.ss(
+//                                     return p_.ss(
 //                                         $,
 //                                         ($) => ['unconstrained', null],
 //                                     )
 //                                 default:
-//                                     return _p.au(
+//                                     return p_.au(
 //                                         $[0],
 //                                     )
 //                             }
@@ -5530,17 +5530,17 @@
 //     },
 // )
 
-// export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Schema_Imports.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Schema_Imports.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p.literal.group_resolve(
+//         ($) => p_.literal.group_resolve(
 //             () => {
                 
-//                 const prop_schema_set_child = _p_change_context(
+//                 const prop_schema_set_child = p_change_context(
 //                     $['schema set child'],
-//                     ($) => _p.literal.group_resolve(
+//                     ($) => p_.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_l_value = {
@@ -5593,19 +5593,19 @@
 //                                 ),
 //                             }
                             
-//                             const prop_l_results = _p_variables(
+//                             const prop_l_results = p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
 //                                     return {
-//                                         'schema': _p.decide.state(
+//                                         'schema': p_decide_state(
 //                                             _pdev.implement_me(
 //                                                 "IM: rvs",
 //                                             ),
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )
@@ -5633,7 +5633,7 @@
 //                     ),
 //                 )
                 
-//                 const prop_schema = _p_change_context(
+//                 const prop_schema = p_change_context(
 //                     $['schema'],
 //                     ($) => prop_schema_set_child['l results']['schema'],
 //                 )
@@ -5646,17 +5646,17 @@
 //     ),
 // )
 
-// export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => _p.dictionary.from.dictionary(
+// export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => p_.from.dictionary(
 //     $['l dictionary'],
-// ).resolve_refiner(
-//     ($, id, $a, $c): t_out.Resolver_Imports.D => _p_change_context(
+// ).resolve(
+//     ($, id, $a, $c): t_out.Resolver_Imports.D => p_change_context(
 //         $['l entry'],
-//         ($) => _p.literal.group_resolve(
+//         ($) => p_.literal.group_resolve(
 //             () => {
                 
-//                 const prop_schema_set_child = _p_change_context(
+//                 const prop_schema_set_child = p_change_context(
 //                     $['schema set child'],
-//                     ($) => _p.literal.group_resolve(
+//                     ($) => p_.literal.group_resolve(
 //                         () => {
                             
 //                             const prop_l_value = {
@@ -5709,19 +5709,19 @@
 //                                 ),
 //                             }
                             
-//                             const prop_l_results = _p_variables(
+//                             const prop_l_results = p_variables(
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
 //                                     return {
-//                                         'resolver': _p.decide.state(
+//                                         'resolver': p_decide_state(
 //                                             _pdev.implement_me(
 //                                                 "IM: rvs",
 //                                             ),
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return _p.ss(
+//                                                         return p_.ss(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )
@@ -5749,7 +5749,7 @@
 //                     ),
 //                 )
                 
-//                 const prop_resolver = _p_change_context(
+//                 const prop_resolver = p_change_context(
 //                     $['resolver'],
 //                     ($) => prop_schema_set_child['l results']['resolver'],
 //                 )

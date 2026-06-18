@@ -53,7 +53,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 : [],
         ),
     },
-    $.modules.__d_map(($, id) => sh.type.refiner(
+    $.modules.__d_map_deprecated(($, id) => sh.type.refiner(
         sh.t.component_imported(
             "in",
             "List of Characters",

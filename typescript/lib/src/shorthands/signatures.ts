@@ -51,58 +51,63 @@ export namespace sig {
     }
 }
 
-export const value_parameter = (
-    name: string,
-    presence?: 'optional' | 'required',
-): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
-    return {
-        'module': {
-            'location': sh.state(['internal', sh.reference(name)]),
-            'resulting module': null,
-        },
-        'presence': presence === 'optional'
-            ? sh.state(['optional', null])
-            : sh.state(['required', null]),
-    }
-}
+export namespace parameter {
 
-export const value_parameter_external = (
-    imp: string,
-    type: string,
-    presence?: 'optional' | 'required',
-): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
-    return {
-        'module': {
-            'location': sh.state(['external', {
-                'import': sh.reference(imp),
-                'module': sh.reference(type),
-            }]),
-            'resulting module': null,
-        },
-        'presence': presence === 'optional'
-            ? sh.state(['optional', null])
-            : sh.state(['required', null]),
-    }
-}
 
-export const lookup_parameter = (
-    name: string,
-    type?: 'acyclic' | 'cyclic' | 'stack',
-    presence?: 'optional' | 'required',
-): d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry => {
-    return {
-        'referent': {
-            'location': sh.state(['internal', sh.reference(name)]),
-            'resulting module': null,
-        },
-        'dictionary': null,
-        'type': type === 'cyclic'
-            ? sh.state(['cyclic', null])
-            : type === 'stack'
-                ? sh.state(['stack', null])
-                : sh.state(['acyclic', null]),
-        'presence': presence === 'optional'
-            ? sh.state(['optional', null])
-            : sh.state(['required', null]),
+    export const module = (
+        name: string,
+        presence?: 'optional' | 'required',
+    ): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
+        return {
+            'module': {
+                'location': sh.state(['internal', sh.reference(name)]),
+                'resulting module': null,
+            },
+            'presence': presence === 'optional'
+                ? sh.state(['optional', null])
+                : sh.state(['required', null]),
+        }
     }
+    export const module_external = (
+        imp: string,
+        type: string,
+        presence?: 'optional' | 'required',
+    ): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
+        return {
+            'module': {
+                'location': sh.state(['external', {
+                    'import': sh.reference(imp),
+                    'module': sh.reference(type),
+                }]),
+                'resulting module': null,
+            },
+            'presence': presence === 'optional'
+                ? sh.state(['optional', null])
+                : sh.state(['required', null]),
+        }
+    }
+
+    export const lookup = (
+        name: string,
+        type?: 'acyclic' | 'cyclic' | 'stack',
+        presence?: 'optional' | 'required',
+    ): d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry => {
+        return {
+            'referent': {
+                'location': sh.state(['internal', sh.reference(name)]),
+                'resulting module': null,
+            },
+            'dictionary': null,
+            'type': type === 'cyclic'
+                ? sh.state(['cyclic', null])
+                : type === 'stack'
+                    ? sh.state(['stack', null])
+                    : sh.state(['acyclic', null]),
+            'presence': presence === 'optional'
+                ? sh.state(['optional', null])
+                : sh.state(['required', null]),
+        }
+    }
+
+
 }

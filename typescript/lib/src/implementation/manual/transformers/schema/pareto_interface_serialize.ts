@@ -46,7 +46,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ],
             ),
         },
-        $.modules.__d_map(($, id) => sh.type.transformer(
+        $.modules.__d_map_deprecated(($, id) => sh.type.transformer(
             sh.t.component_imported(
                 "in",
                 id,

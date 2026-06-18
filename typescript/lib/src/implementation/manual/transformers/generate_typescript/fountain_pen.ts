@@ -14,7 +14,7 @@ import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementati
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
 export const Error: p_i.Transformer<d_in.Error, d_out.Phrase> = ($) => {
-    return p_.decide.state($, ($) => {
+    return p_.from.state($).decide(($) => {
         switch ($[0]) {
             case 'could not read source': return p_.ss($, ($) => sh.ph.composed([
                 sh.ph.literal("could not read source"),

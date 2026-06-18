@@ -80,7 +80,7 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
-                                        p_temp.decide.state($, ($) => {
+                                        p_temp.from.state($).decide(($) => {
                                             switch ($[0]) {
                                                 case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
                                                     t_loc_to_fp.Range(

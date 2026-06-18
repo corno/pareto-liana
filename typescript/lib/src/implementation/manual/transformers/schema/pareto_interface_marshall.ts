@@ -37,16 +37,17 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
             ],
         ),
         "in": sh.import_.ancestor(
-            p_.boolean.from.optional($p.constrained).is_set() ? 3 : 2,
+            p_.from.optional($p.constrained).is_set() ? 3 : 2,
             "data",
-            p_.decide.optional(
+            p_.from.optional(
                 $p.constrained,
+            ).decide(
                 ($) => p_.literal.list([$]),
                 () => p_.literal.list([])
             )
         ),
     },
-    $.modules.__d_map(($, id) => sh.type.transformer(
+    $.modules.__d_map_deprecated(($, id) => sh.type.transformer(
         sh.t.component_imported(
             "in",
             id,

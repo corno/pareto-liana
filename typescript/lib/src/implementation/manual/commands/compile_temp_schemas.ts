@@ -1,4 +1,5 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
+import * as p_t from 'pareto-core/dist/implementation/transformer'
 import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
 
 import * as interface_ from "../../../interface/commands"
@@ -222,7 +223,7 @@ export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedu
             ($) => [
                 $c.log.execute(
                     {
-                        'message': sh.pg.sentences($.__to_list(
+                        'message': sh.pg.sentences(p_t.from.dictionary($).convert_to_list(
                             ($, id) => sh.sentence([t_generate_typescript_to_fp.Error(
                                 $,
                                 {
