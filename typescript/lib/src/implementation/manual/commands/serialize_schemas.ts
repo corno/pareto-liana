@@ -1,7 +1,7 @@
 //core
 import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_temp from 'pareto-core/dist/implementation/transformer'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+
 
 import * as interface_ from "../../../interface/commands"
 
@@ -42,8 +42,8 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
                                 ($) => abort(['resolve error', $]),
-                                p_create_symbol(),
-                                p_create_symbol(),
+                                p_.literal.nothing(),
+                                p_.literal.nothing(),
                             ),
                             ($v) => [
                                 $c['write file'].execute(

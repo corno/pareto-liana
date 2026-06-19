@@ -3,7 +3,7 @@ import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ri from 'pareto-core/dist/interface/refiner'
 
-import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 
 import { Abort } from 'pareto-core/dist/interface/__internal/Abort'
 

@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_temp from 'pareto-core/dist/implementation/transformer'
-import p_variables from 'pareto-core/dist/implementation/specials/variables'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_variables from 'pareto-core/dist/implementation/command/specials/variables'
+
 
 import * as interface_ from "../../../interface/commands"
 
@@ -77,8 +77,8 @@ export const $$: interface_.procedures.generate_typescript = p_.command_procedur
                                             'location': $d.source,
                                             'error': $,
                                         }]),
-                                        p_create_symbol(),
-                                        p_create_symbol(),
+                                        p_.literal.nothing(),
+                                        p_.literal.nothing(),
                                     )
                                     return {
                                         'omit (de)serializer': false,
@@ -100,8 +100,8 @@ export const $$: interface_.procedures.generate_typescript = p_.command_procedur
                                         'location': $d.source,
                                         'error': $,
                                     }]),
-                                    p_create_symbol(),
-                                    p_create_symbol(),
+                                    p_.literal.nothing(),
+                                    p_.literal.nothing(),
                                 ))
                                 default: return p_temp.au($[0])
                             }

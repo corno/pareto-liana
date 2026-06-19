@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_temp from 'pareto-core/dist/implementation/transformer'
-import p_iterate from 'pareto-core/dist/implementation/specials/iterate'
+import p_iterate from 'pareto-core/dist/implementation/refiner/specials/iterate'
 
 import * as interface_ from "../../../interface/commands"
 

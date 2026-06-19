@@ -3,8 +3,8 @@ import * as p_i from 'pareto-core/dist/interface/refiner'
 import * as p_di from 'pareto-core/dist/interface/data'
 import p_implement_me from 'pareto-core-dev/dist/implement_me'
 import p_log_debug_message from 'pareto-core-dev/dist/log_debug_message'
-import p_list_build_deprecated from 'pareto-core/dist/implementation/specials/list_build_deprecated'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_list_build_deprecated from 'pareto-core/dist/implementation/refiner/specials/list_build_deprecated'
+
 
 //data types
 import * as d_out from "../../../../interface/data/temp_module_specifier"
@@ -35,8 +35,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
             }
         ),
         ($) => abort(['resolve error', $]),
-        p_create_symbol(),
-        p_create_symbol(),
+        p_.literal.nothing(),
+        p_.literal.nothing(),
     )
 
     const temp_find_schema = (

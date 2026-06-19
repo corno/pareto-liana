@@ -1,8 +1,8 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
 import * as p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
-import p_variables from 'pareto-core/dist/implementation/specials/variables'
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
+import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+
 
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
@@ -349,7 +349,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 const p_constraints = Value_Constraints(
                     $.constraints,
                     abort,
-                    p_create_symbol(),
+                    p_.literal.nothing(),
                     {
                         'value': p_change_context(p_location, ($): t_out.Value => {
                             switch ($[0]) {
@@ -610,7 +610,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                 const p_constraints = Value_Constraints(
                                     $.constraints,
                                     abort,
-                                    p_create_symbol(),
+                                    p_.literal.nothing(),
                                     {
                                         'value': p_lookup['resulting dictionary'].value
                                     }
@@ -701,7 +701,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 //                         'imports': $l.imports,
                 //                         'modules': $l.modules,
                 //                     }),
-                //                     'modules': p_create_symbol(),
+                //                     'modules': p_.literal.nothing(),
                 //                 }),
                 //             }
                 //         ))
@@ -885,7 +885,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
             const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
                 $['l entry'].constraint,
                 abort,
-                p_create_symbol(),
+                p_.literal.nothing(),
                 {
 
                     'value': p_change_context(p_start, ($) => {
@@ -1076,7 +1076,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
     const p_tail = Relative_Value_Selection(
         $.tail,
         abort,
-        p_create_symbol(),
+        p_.literal.nothing(),
         {
             'value': p_variables(() => {
                 const pvs = ($: t_out.Resolver_Possible_Value_Selection) => p_change_context($, ($): t_out.Module => {
@@ -1207,7 +1207,7 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
     const p_selection: t_out.Resolver_Constraint.selection = p_change_context($['selection'], ($) => Relative_Value_Selection(
         $,
         abort,
-        p_create_symbol(),
+        p_.literal.nothing(),
         {
             'value': $p.value,
         }

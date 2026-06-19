@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
-import p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 

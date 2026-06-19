@@ -5,15 +5,15 @@ import * as p_di from 'pareto-core/dist/interface/data'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => $.__decide(assign, otherwise)
 
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
+import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
 
 import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
 
-import _p_unreachable_code_path from 'pareto-core/dist/implementation/specials/unreachable_code_path'
+import _p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 
-import p_variables from 'pareto-core/dist/implementation/specials/variables'
+import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
 
-import _p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+
 
 import * as t_out from "../../../../../../../interface/generated/liana/schemas/astn_schema/data/resolved"
 
@@ -67,8 +67,8 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => p_.literal.gr
                         ($) => abort(
                             $,
                         ),
-                        _p_create_symbol(),
-                        _p_create_symbol(),
+                        p_.literal.nothing(),
+                        p_.literal.nothing(),
                     ),
                 ),
             ),
@@ -482,8 +482,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
                                                             ($) => abort(
                                                                 $,
                                                             ),
-                                                            _p_create_symbol(),
-                                                            _p_create_symbol(),
+                                                            p_.literal.nothing(),
+                                                            p_.literal.nothing(),
                                                         )],
                                                     )
                                                 default:
@@ -522,7 +522,7 @@ export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dicti
                     $a,
                 ),
             },
-            _p_create_symbol(),
+            p_.literal.nothing(),
         ),
     ),
 )
@@ -546,7 +546,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                 {
                                     'sibling schemas': $l['sibling schemas'],
                                 },
-                                _p_create_symbol(),
+                                p_.literal.nothing(),
                             )],
                         )
                     case 'set':
@@ -560,7 +560,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                 {
                                     'sibling schemas': $l['sibling schemas'],
                                 },
-                                _p_create_symbol(),
+                                p_.literal.nothing(),
                             )],
                         )
                     default:
@@ -586,7 +586,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.grou
                 {
                     'sibling schemas': $l['sibling schemas'],
                 },
-                _p_create_symbol(),
+                p_.literal.nothing(),
             ),
         )
 
@@ -597,8 +597,8 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.grou
                 ($) => abort(
                     $,
                 ),
-                _p_create_symbol(),
-                _p_create_symbol(),
+                p_.literal.nothing(),
+                p_.literal.nothing(),
             ),
         )
 
@@ -609,7 +609,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.grou
                 ($) => abort(
                     $,
                 ),
-                _p_create_symbol(),
+                p_.literal.nothing(),
                 {
                     'globals': p_.literal.set(
                         prop_globals,

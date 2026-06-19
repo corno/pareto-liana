@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
 import * as p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+
 
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
@@ -45,8 +45,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     case 'local': return p_.ss($, ($) => ['local', Text_Type(
                         $,
                         abort,
-                        p_create_symbol(),
-                        p_create_symbol(),
+                        p_.literal.nothing(),
+                        p_.literal.nothing(),
                     )])
                     default: return p_.au($[0])
                 }
@@ -273,7 +273,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
             // case 'type parameter': return _pt.ss($, ($) => ['type parameter', _i_generic.get_entry(
             //     _p_temp.dictionary_to_lookup(
             //         $p['type parameters'],
-            //         p_create_symbol(),
+            //         p_.literal.nothing(),
             //     ),
             //     {
             //         'reference': $,
@@ -373,7 +373,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
         'path': Value_Path(
             $.path,
             abort,
-            p_create_symbol(),
+            p_.literal.nothing(),
             {
                 'module': p_module_location['resulting module']
             },
@@ -582,8 +582,8 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
         ($, id, $acyclic, $cyclic) => Simple_Type(
             $['l entry'],
             abort,
-            p_create_symbol(),
-            p_create_symbol(),
+            p_.literal.nothing(),
+            p_.literal.nothing(),
         ),
     )
     const p_text_types: t_out.Globals.text_types = i_generic.temp_resolve(
@@ -591,8 +591,8 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
         ($, id, $acyclic, $cyclic) => Text_Type(
             $['l entry'],
             abort,
-            p_create_symbol(),
-            p_create_symbol(),
+            p_.literal.nothing(),
+            p_.literal.nothing(),
         ),
     )
     return {

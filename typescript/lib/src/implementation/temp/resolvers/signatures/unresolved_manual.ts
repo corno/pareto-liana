@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
 import * as p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
-import p_change_context from 'pareto-core/dist/implementation/specials/change_context'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+
 
 import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
 
@@ -50,7 +50,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
             case 'local': return p_.ss($, ($) => ['local', Signature_Parameters(
                 $,
                 abort,
-                p_create_symbol(),
+                p_.literal.nothing(),
                 {
                     'imports': $p.imports,
                     'modules': $p.modules,

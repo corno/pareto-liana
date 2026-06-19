@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/dist/implementation/command'
 import * as p_t from 'pareto-core/dist/implementation/transformer'
-import p_create_symbol from 'pareto-core/dist/implementation/specials/create_symbol'
+
 
 import * as interface_ from "../../../interface/commands"
 
@@ -98,8 +98,8 @@ export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedu
                                 (abort) => r_schema.Package(
                                     $.package,
                                     ($) => abort(['could not deserialize module', $]),
-                                    p_create_symbol(),
-                                    p_create_symbol(),
+                                    p_.literal.nothing(),
+                                    p_.literal.nothing(),
                                 ),
                                 ($) => [
                                     //write new interface files
