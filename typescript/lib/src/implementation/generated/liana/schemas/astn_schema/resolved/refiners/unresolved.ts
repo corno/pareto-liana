@@ -7,7 +7,7 @@ const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.
 
 import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
 
-import * as _p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
+import * as _p_sl from 'pareto-core/dist/implementation/refiner/specials/lookup'
 
 import _p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 

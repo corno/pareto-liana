@@ -1,5 +1,5 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_sl from 'pareto-core/dist/implementation/refiner/select_lookup'
+import * as p_sl from 'pareto-core/dist/implementation/refiner/specials/lookup'
 import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
 import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
 
