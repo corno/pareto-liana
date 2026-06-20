@@ -14,7 +14,7 @@ import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 
 //dependencies
 import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
-import * as r_schema_resolved_from_unresolved from "../../temp/resolvers/schema/unresolved_manual"
+import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"

@@ -14,7 +14,7 @@ import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
 import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
-import * as r_schema from "../../temp/resolvers/schema/unresolved_manual"
+import * as r_schema from "../../to_be_generated/refiners/schema/unresolved_manual"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
 import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation"

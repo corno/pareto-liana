@@ -14,7 +14,7 @@ import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schema
 
 
 //dependencies
-import * as r_schema_resolved_from_unresolved from "../../../temp/resolvers/schema/unresolved_manual"
+import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/refiners/schema/unresolved_manual"
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
 
 export type Module_Specifier = p_i.Refiner<
