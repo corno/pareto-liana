@@ -343,7 +343,7 @@ export const Option_Constraints = (
 //     //     case 'state': return p_.ss($, ($) => sh.a.implement_me("IM: state constraint")) // medium work
 //     //     default: return p_.au($[0])
 //     // }
-//     $.__decide(),
+//     $.__ decide(),
 //     $p.sub
 //  )
 
@@ -375,8 +375,8 @@ export const Resolver_Value = (
                             }),
                             sh.a.select(sh.sv.context(p_.from.optional($.definition.results).is_set() ? [] : [])),
                             sh.a.select(sh.sv.context([])),
-                            $.arguments.__decide(
-                                ($) => $.lookups.__decide(
+                            p_.from.optional($.arguments).decide(
+                                ($) => p_.from.optional($.lookups).decide(
                                     ($) => sh.lookups.initialize($.__d_map_deprecated(
                                         ($) => p_.from.state($).decide(($) => {
                                             switch ($[0]) {
@@ -411,8 +411,8 @@ export const Resolver_Value = (
                                 ),
                                 () => sh.lookups.not_set()
                             ),
-                            $.arguments.__decide(
-                                ($) => $.modules.__decide(
+                            p_.from.optional($.arguments).decide(
+                                ($) => p_.from.optional($.modules).decide(
                                     ($) => sh.arguments_.initialize($.__d_map_deprecated(
                                         ($) => p_.from.state($).decide(($) => {
                                             switch ($[0]) {
@@ -442,7 +442,7 @@ export const Resolver_Value = (
         })
         case 'dictionary': return p_.ss($, ($) => {
             const resolver = $.resolver
-            return $.benchmark.__decide(
+            return p_.from.optional($.benchmark).decide(
                 ($) => sh.a.dictionary.from.dictionary.resolve( //FIXME: validate denseness
                     sh.sv.context(["l dictionary"]),
                     sh.a.change_context(
@@ -524,7 +524,7 @@ export const Resolver_Value = (
         ))
         case 'list': return p_.ss($, ($) => {
             const resolver: d_in.Resolver_Value = $.resolver
-            return $.result.__decide(
+            return p_.from.optional($.result).decide(
                 ($) => sh.a.group.literal({
                     "l value": sh.a.list.from.list.map_with_state(
                         sh.sv.context(["l list"]),
@@ -773,7 +773,7 @@ export const Resolver_Constraint: interface_.Constraint = (
 export const Relative_Value_Selection = (
     $: d_in.Resolver_Relative_Value_Selection,
 ): d_out.Select_Value => {
-    $.path['l value'].__l_map_deprecated(($) => null)
+    p_.from.list($.path['l value']).map(($) => null)
     return sh.sv.implement_me("IM: rvs")
 }
 

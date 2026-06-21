@@ -199,7 +199,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                 "list",
                 sh.a.list.from.list.map(
                     sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
-                    $.results.__decide(
+                    p_.from.optional($.results).decide(
                         ($) => sh.a.change_context(
                             sh.sv.context(["l item"]),
                             x,
@@ -269,7 +269,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                                                     }),
                                                     [],
                                                 ))
-                                                case 'exact': return p_.ss($, ($) => $['number of fractional digits'].__decide(
+                                                case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
                                                     ($) => sh.sv.call(
                                                         sh.call.external("primitives to text", "fractional decimal"),
                                                         sh.a.select(sh.sv.context([])),
@@ -340,7 +340,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                 case 'derived': return p_.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
                 case 'selected': return p_.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
                     "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
-                    "value": sh.a.text.copy(sh.sv.context($.results.__decide(
+                    "value": sh.a.text.copy(sh.sv.context(p_.from.optional($.results).decide(
                         ($) => p_.literal.list(["l value", "l id"]),
                         () => p_.literal.list(["l id"])
                     ))),

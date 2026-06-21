@@ -427,7 +427,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                 case 'approximation': return p_.ss($, ($) => sh.a.state.literal("scientific notation", sh.a.group.literal({
                                                     "precision": sh.a.number.natural_literal($['significant digits']),
                                                 })))
-                                                case 'exact': return p_.ss($, ($) => $['number of fractional digits'].__decide(
+                                                case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
                                                     ($) => sh.a.state.literal("fractional decimal", sh.a.group.literal({
                                                         "digits": sh.a.number.natural_literal($),
                                                     })),

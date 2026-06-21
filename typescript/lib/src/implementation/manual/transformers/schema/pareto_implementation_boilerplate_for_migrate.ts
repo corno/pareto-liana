@@ -227,7 +227,7 @@ export const Value: interface_.Value = ($, $p) => {
                                             'constrained': $p.constrained,
                                         }
                                     )
-                                    return $.results.__decide(
+                                    return p_.from.optional($.results).decide(
                                         ($) => sh.a.change_context(
                                             sh.sv.context(["l item"]),
                                             tn
@@ -279,7 +279,7 @@ export const Value: interface_.Value = ($, $p) => {
                 switch ($[0]) {
                     case 'derived': return p_.ss($, ($) => sh.a.nothing())
                     case 'selected': return p_.ss($, ($) => {
-                        const tn = sh.a.text.copy(sh.sv.context($.results.__decide(
+                        const tn = sh.a.text.copy(sh.sv.context(p_.from.optional($.results).decide(
                             ($) => p_.literal.list(["l value", "l id"]),
                             () => p_.literal.list(["l id"])
                         )))

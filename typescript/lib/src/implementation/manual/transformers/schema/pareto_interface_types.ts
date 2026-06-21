@@ -408,7 +408,7 @@ const Value_Reference = (
 }
 
 const Value_Path: interface_.Value_Path = ($) => {
-    return $.tail['l value'].__l_map_deprecated(($) => p_.from.state($['l item']['l value']).decide(($) => {
+    return p_.from.list($.tail['l value']).map(($) => p_.from.state($['l item']['l value']).decide(($) => {
         switch ($[0]) {
             case 'dictionary': return p_.ss($, ($) => sh.sub.dictionary())
             case 'group': return p_.ss($, ($) => sh.sub.group($['l id']))
