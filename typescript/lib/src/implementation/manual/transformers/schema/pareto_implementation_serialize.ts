@@ -67,7 +67,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "fountain pen",
                 ],
             ),
-            "marshall": sh_i.import_.sibling("astn sealed target", p_.literal.nested_list([
+            "marshall": sh_i.import_.sibling("astn sealed target", p_.literal.list([
             ])),
         }),
         $.modules.__d_map_deprecated(($, id) => sh.algorithm(

@@ -157,11 +157,11 @@ export const Value: interface_.Value = ($, $p) => {
                                         'type name': $p['type name'],
                                         'subselection': p_.literal.nested_list([
                                             $p.subselection,
-                                            [
+                                            p_.literal.list([
                                                 sh.sub.group("l dictionary"),
                                                 sh.sub.dictionary(),
                                                 sh.sub.group("l entry"),
-                                            ]
+                                            ])
                                         ]),
                                         'constrained': $p.constrained,
                                     }
@@ -178,9 +178,9 @@ export const Value: interface_.Value = ($, $p) => {
                                 'type name': $p['type name'],
                                 'subselection': p_.literal.nested_list([
                                     $p.subselection,
-                                    [
+                                    p_.literal.list([
                                         sh.sub.dictionary()
-                                    ]
+                                    ])
                                 ]),
                                 'constrained': $p.constrained,
                             }
@@ -195,9 +195,9 @@ export const Value: interface_.Value = ($, $p) => {
                         'type name': $p['type name'],
                         'subselection': p_.literal.nested_list([
                             $p.subselection,
-                            [
+                            p_.literal.list([
                                 sh.sub.group(id)
-                            ]
+                            ])
                         ]),
                         'constrained': $p.constrained,
                     }
@@ -218,11 +218,11 @@ export const Value: interface_.Value = ($, $p) => {
                                             'type name': $p['type name'],
                                             'subselection': p_.literal.nested_list([
                                                 $p.subselection,
-                                                [
+                                                p_.literal.list([
                                                     sh.sub.group("l list"),
                                                     sh.sub.list(),
                                                     sh.sub.group("l item"),
-                                                ]
+                                                ])
                                             ]),
                                             'constrained': $p.constrained,
                                         }
@@ -247,9 +247,9 @@ export const Value: interface_.Value = ($, $p) => {
                                 'type name': $p['type name'],
                                 'subselection': p_.literal.nested_list([
                                     $p.subselection,
-                                    [
+                                    p_.literal.list([
                                         sh.sub.list()
-                                    ]
+                                    ])
                                 ]),
                                 'constrained': $p.constrained,
                             }
@@ -267,9 +267,9 @@ export const Value: interface_.Value = ($, $p) => {
                         'type name': $p['type name'],
                         'subselection': p_.literal.nested_list([
                             $p.subselection,
-                            [
+                            p_.literal.list([
                                 sh.sub.optional()
-                            ]
+                            ])
                         ]),
                         'constrained': $p.constrained,
                     }
@@ -304,13 +304,13 @@ export const Value: interface_.Value = ($, $p) => {
                             'subselection': p_.literal.nested_list([
                                 $p.subselection,
                                 $p.constrained
-                                    ? [
+                                    ? p_.literal.list([
                                         sh.sub.group("l state"),
                                         sh.sub.state(id)
-                                    ]
-                                    : [
+                                    ])
+                                    : p_.literal.list([
                                         sh.sub.state(id)
-                                    ]
+                                    ])
                             ]),
                             'constrained': $p.constrained,
                         }
@@ -321,11 +321,10 @@ export const Value: interface_.Value = ($, $p) => {
                         p_.literal.nested_list([
                             $p.subselection,
                             $p.constrained
-                                ? [
+                                ? p_.literal.list([
                                     sh.sub.group("l state"),
-                                ]
-                                : [
-                                ]
+                                ])
+                                : p_.literal.list([])
                         ]),
                     ),
                 )

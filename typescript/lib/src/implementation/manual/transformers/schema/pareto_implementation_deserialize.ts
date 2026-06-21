@@ -67,7 +67,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "list of characters",
                 ],
             ),
-            "unmarshall": sh_i.import_.sibling("astn parse tree", p_.literal.nested_list([
+            "unmarshall": sh_i.import_.sibling("astn parse tree", p_.literal.list([
             ])),
         }),
         $.modules.__d_map_deprecated(($, id) => sh.algorithm(

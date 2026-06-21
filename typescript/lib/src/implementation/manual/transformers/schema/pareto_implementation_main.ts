@@ -152,9 +152,9 @@ export const Schemas: interface_.Schemas = ($, $p) => {
     return sh.m.set($.__d_map_deprecated(($, id) => Schema_Tree($, {
         'path': p_.literal.nested_list([
             $p.path,
-            [
+            p_.literal.list([
                 id,
-            ]
+            ])
         ]),
         'omit (de)serializer': $p['omit (de)serializer']
     })))

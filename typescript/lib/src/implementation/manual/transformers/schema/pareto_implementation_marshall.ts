@@ -151,9 +151,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                         'type': $p.type,
                         'subselection': p_.literal.nested_list([
                             $p.subselection,
-                            [
+                            p_.literal.list([
                                 sh.sub.dictionary(),
-                            ]
+                            ])
                         ]),
                     }
                 )
@@ -171,9 +171,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                             'type': $p.type,
                             'subselection': p_.literal.nested_list([
                                 $p.subselection,
-                                [
+                                p_.literal.list([
                                     sh.sub.group(id),
-                                ]
+                                ])
                             ]),
                         }
                     )
@@ -188,9 +188,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                     'type': $p.type,
                     'subselection': p_.literal.nested_list([
                         $p.subselection,
-                        [
+                        p_.literal.list([
                             sh.sub.list(),
-                        ]
+                        ])
                     ]),
                 }
             )
@@ -318,9 +318,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                             'type': $p.type,
                             'subselection': p_.literal.nested_list([
                                 $p.subselection,
-                                [
+                                p_.literal.list([
                                     sh.sub.optional(),
-                                ]
+                                ])
                             ]),
                         }
                     ),
@@ -360,9 +360,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(($) =>
                             'type': $p.type,
                             'subselection': p_.literal.nested_list([
                                 $p.subselection,
-                                [
+                                p_.literal.list([
                                     sh.sub.state(id),
-                                ]
+                                ])
                             ]),
                         }
                     )

@@ -121,15 +121,11 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
                     ]),
                     $p.path,
                     p_.literal.list([
-                        "signatures"
-                    ]),
-                    p_.literal.list([
-                        "resolved"
-                    ]),
-                    p_.literal.list([
+                        "signatures",
+                        "resolved",
                         "refiners",
                         "unresolved",
-                    ])
+                    ]),
                 ])
             ),
         }),
@@ -462,9 +458,9 @@ export const Resolver_Value = (
                                     'temp type': $p['temp type'],
                                     'temp subselection': p_.literal.nested_list([
                                         $p['temp subselection'],
-                                        [
+                                        p_.literal.list([
                                             sh_i.sub.dictionary(),
-                                        ]
+                                        ])
                                     ]),
                                 }
 
@@ -473,9 +469,9 @@ export const Resolver_Value = (
                     ),
                     sh.type_node_reference("out", $p['temp type'], p_.literal.nested_list([
                         $p['temp subselection'],
-                        [
+                        p_.literal.list([
                             sh_i.sub.dictionary(),
-                        ]
+                        ])
                     ]))
 
                 ),
@@ -489,9 +485,9 @@ export const Resolver_Value = (
                                 'temp type': $p['temp type'],
                                 'temp subselection': p_.literal.nested_list([
                                     $p['temp subselection'],
-                                    [
+                                    p_.literal.list([
                                         sh_i.sub.dictionary(),
-                                    ]
+                                    ])
                                 ]),
                             }
 
@@ -499,9 +495,9 @@ export const Resolver_Value = (
                     ),
                     sh.type_node_reference("out", $p['temp type'], p_.literal.nested_list([
                         $p['temp subselection'],
-                        [
+                        p_.literal.list([
                             sh_i.sub.dictionary(),
-                        ]
+                        ])
                     ]))
 
                 )
@@ -517,9 +513,9 @@ export const Resolver_Value = (
                             'temp type': $p['temp type'],
                             'temp subselection': p_.literal.nested_list([
                                 $p['temp subselection'],
-                                [
+                                p_.literal.list([
                                     sh_i.sub.group(id)
-                                ]
+                                ])
                             ]),
                         }
                     )
@@ -542,11 +538,11 @@ export const Resolver_Value = (
                                         'temp type': $p['temp type'],
                                         'temp subselection': p_.literal.nested_list([
                                             $p['temp subselection'],
-                                            [
+                                            p_.literal.list([
                                                 sh_i.sub.group("l value"),
                                                 sh_i.sub.list(),
                                                 sh_i.sub.group("l item"),
-                                            ]
+                                            ])
                                         ]),
                                     }
                                 ),
@@ -570,9 +566,9 @@ export const Resolver_Value = (
                                 'temp type': $p['temp type'],
                                 'temp subselection': p_.literal.nested_list([
                                     $p['temp subselection'],
-                                    [
+                                    p_.literal.list([
                                         sh_i.sub.list()
-                                    ]
+                                    ])
                                 ]),
                             }
                         )
@@ -590,9 +586,9 @@ export const Resolver_Value = (
                     'temp type': $p['temp type'],
                     'temp subselection': p_.literal.nested_list([
                         $p['temp subselection'],
-                        [
+                        p_.literal.list([
                             sh_i.sub.optional()
-                        ]
+                        ])
                     ]),
                 }
             )

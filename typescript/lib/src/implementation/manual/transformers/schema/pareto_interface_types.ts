@@ -295,9 +295,9 @@ export const Value: interface_.Value = ($, $p) => {
                                                                 const location = Module_Reference(referent['module'])
                                                                 const subselection = p_.literal.nested_list([
                                                                     Value_Path(referent.path),
-                                                                    [
+                                                                    p_.literal.list([
                                                                         sh.sub.dictionary(),
-                                                                    ]
+                                                                    ])
                                                                 ])
                                                                 return p_.from.state(selected.dependency).decide(($) => {
                                                                     switch ($[0]) {
