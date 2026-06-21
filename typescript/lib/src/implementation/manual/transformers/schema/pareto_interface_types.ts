@@ -293,12 +293,10 @@ export const Value: interface_.Value = ($, $p) => {
                                                         p_.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
                                                             "l entry": p_.literal.set(p_change_context($, ($) => {
                                                                 const location = Module_Reference(referent['module'])
-                                                                const subselection = p_.literal.nested_list([
+                                                                const subselection = p_.literal.chain(
                                                                     Value_Path(referent.path),
-                                                                    p_.literal.list([
-                                                                        sh.sub.dictionary(),
-                                                                    ])
-                                                                ])
+                                                                    sh.sub.dictionary(),
+                                                                )
                                                                 return p_.from.state(selected.dependency).decide(($) => {
                                                                     switch ($[0]) {
 

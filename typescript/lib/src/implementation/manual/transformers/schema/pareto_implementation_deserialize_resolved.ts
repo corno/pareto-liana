@@ -30,7 +30,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",

@@ -100,7 +100,7 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -113,7 +113,7 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -185,7 +185,12 @@ export const Optional_Value_Initialization: interface_.Optional_Value_Initializa
     switch ($[0]) {
         case 'not set': return p_.ss($, ($) => sh.a.optional.not_set())
         case 'selection': return p_.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
-        case 'set': return p_.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection($, { 'tail': p_.literal.list([]) }))))
+        case 'set': return p_.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection(
+            $,
+            {
+                'tail': p_.literal.list([])
+            }
+        ))))
         default: return p_.au($[0])
     }
 })
@@ -196,7 +201,7 @@ export const Resolver_Guaranteed_Value_Selection = (
         'tail': p_di.List<d_out.Select_Value.regular.tail.L>
     },
 ): d_out.Select_Value => {
-    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => p_.literal.nested_list([
+    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => p_.literal.segmented_list([
         p_.from.list(
             $.tail.path['l value'],
         ).flatten(
@@ -373,7 +378,7 @@ export const Resolver_Value = (
                                     default: return p_.au($[0])
                                 }
                             }),
-                            sh.a.select(sh.sv.context(p_.from.optional($.definition.results).is_set() ? [] : [])),
+                            sh.a.select(sh.sv.context([])),
                             sh.a.select(sh.sv.context([])),
                             p_.from.optional($.arguments).decide(
                                 ($) => p_.from.optional($.lookups).decide(
@@ -456,23 +461,19 @@ export const Resolver_Value = (
                                 resolver,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': p_.literal.nested_list([
+                                    'temp subselection': p_.literal.chain(
                                         $p['temp subselection'],
-                                        p_.literal.list([
-                                            sh_i.sub.dictionary(),
-                                        ])
-                                    ]),
+                                        sh_i.sub.dictionary(),
+                                    ),
                                 }
 
                             )
                         )
                     ),
-                    sh.type_node_reference("out", $p['temp type'], p_.literal.nested_list([
+                    sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
                         $p['temp subselection'],
-                        p_.literal.list([
-                            sh_i.sub.dictionary(),
-                        ])
-                    ]))
+                        sh_i.sub.dictionary(),
+                    ))
 
                 ),
                 () => sh.a.dictionary.from.dictionary.resolve(
@@ -483,22 +484,18 @@ export const Resolver_Value = (
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': p_.literal.nested_list([
+                                'temp subselection': p_.literal.chain(
                                     $p['temp subselection'],
-                                    p_.literal.list([
-                                        sh_i.sub.dictionary(),
-                                    ])
-                                ]),
+                                    sh_i.sub.dictionary(),
+                                ),
                             }
 
                         )
                     ),
-                    sh.type_node_reference("out", $p['temp type'], p_.literal.nested_list([
+                    sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
                         $p['temp subselection'],
-                        p_.literal.list([
-                            sh_i.sub.dictionary(),
-                        ])
-                    ]))
+                        sh_i.sub.dictionary(),
+                    ))
 
                 )
             )
@@ -511,12 +508,10 @@ export const Resolver_Value = (
                         $.resolver,
                         {
                             'temp type': $p['temp type'],
-                            'temp subselection': p_.literal.nested_list([
+                            'temp subselection': p_.literal.chain(
                                 $p['temp subselection'],
-                                p_.literal.list([
-                                    sh_i.sub.group(id)
-                                ])
-                            ]),
+                                sh_i.sub.group(id)
+                            ),
                         }
                     )
                 )
@@ -536,7 +531,7 @@ export const Resolver_Value = (
                                     resolver,
                                     {
                                         'temp type': $p['temp type'],
-                                        'temp subselection': p_.literal.nested_list([
+                                        'temp subselection': p_.literal.segmented_list([
                                             $p['temp subselection'],
                                             p_.literal.list([
                                                 sh_i.sub.group("l value"),
@@ -564,12 +559,10 @@ export const Resolver_Value = (
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': p_.literal.nested_list([
+                                'temp subselection': p_.literal.chain(
                                     $p['temp subselection'],
-                                    p_.literal.list([
-                                        sh_i.sub.list()
-                                    ])
-                                ]),
+                                    sh_i.sub.list()
+                                ),
                             }
                         )
                     )
@@ -584,12 +577,10 @@ export const Resolver_Value = (
                 $.resolver,
                 {
                     'temp type': $p['temp type'],
-                    'temp subselection': p_.literal.nested_list([
+                    'temp subselection': p_.literal.chain(
                         $p['temp subselection'],
-                        p_.literal.list([
-                            sh_i.sub.optional()
-                        ])
-                    ]),
+                        sh_i.sub.optional()
+                    ),
                 }
             )
         ))
@@ -681,7 +672,7 @@ export const Resolver_Value = (
                                         $['resolver'],
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': p_.literal.nested_list([
+                                            'temp subselection': p_.literal.segmented_list([
                                                 $p['temp subselection'],
                                                 p_.from.optional(
                                                     results,
@@ -701,7 +692,7 @@ export const Resolver_Value = (
                             ))),
                             sh.type_node_reference(
                                 "out",
-                                $p['temp type'], p_.literal.nested_list([
+                                $p['temp type'], p_.literal.segmented_list([
                                     $p['temp subselection'],
                                     p_.from.optional(
                                         results,

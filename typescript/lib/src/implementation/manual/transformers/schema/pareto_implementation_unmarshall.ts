@@ -9,7 +9,7 @@ import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementa
 import * as d_out_interface from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
 
 namespace interface_ {
-    
+
     export type Schema = p_i.Transformer_With_Parameter<
         d_in.Schema,
         d_out.Package_Set.D,
@@ -58,7 +58,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -80,7 +80,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -207,7 +207,7 @@ export const Value: interface_.Value = ($, $p) => {
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': p_.literal.nested_list([
+                                            'temp subselection': p_.literal.segmented_list([
                                                 $p['temp subselection'],
                                                 p_.literal.list([
                                                     sh_i.sub.group("l dictionary"),
@@ -228,12 +228,10 @@ export const Value: interface_.Value = ($, $p) => {
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': p_.literal.nested_list([
+                                    'temp subselection': p_.literal.chain(
                                         $p['temp subselection'],
-                                        p_.literal.list([
-                                            sh_i.sub.dictionary(),
-                                        ])
-                                    ]),
+                                        sh_i.sub.dictionary(),
+                                    ),
                                     'constrained': $p.constrained
                                 }
                             ),
@@ -287,12 +285,10 @@ export const Value: interface_.Value = ($, $p) => {
                             $.value,
                             {
                                 'temp type': $p['temp type'],
-                                'temp subselection': p_.literal.nested_list([
+                                'temp subselection': p_.literal.chain(
                                     $p['temp subselection'],
-                                    p_.literal.list([
-                                        sh_i.sub.group(id),
-                                    ])
-                                ]),
+                                    sh_i.sub.group(id),
+                                ),
                                 'constrained': $p.constrained
                             }
                         )
@@ -324,7 +320,7 @@ export const Value: interface_.Value = ($, $p) => {
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': p_.literal.nested_list([
+                                            'temp subselection': p_.literal.segmented_list([
                                                 $p['temp subselection'],
                                                 p_.literal.list([
                                                     sh_i.sub.group("l list"),
@@ -358,12 +354,10 @@ export const Value: interface_.Value = ($, $p) => {
                                 $.value,
                                 {
                                     'temp type': $p['temp type'],
-                                    'temp subselection': p_.literal.nested_list([
+                                    'temp subselection': p_.literal.chain(
                                         $p['temp subselection'],
-                                        p_.literal.list([
-                                            sh_i.sub.list(),
-                                        ])
-                                    ]),
+                                        sh_i.sub.list(),
+                                    ),
                                     'constrained': $p.constrained
                                 }
                             )
@@ -464,12 +458,10 @@ export const Value: interface_.Value = ($, $p) => {
                     $,
                     {
                         'temp type': $p['temp type'],
-                        'temp subselection': p_.literal.nested_list([
+                        'temp subselection': p_.literal.chain(
                             $p['temp subselection'],
-                            p_.literal.list([
-                                sh_i.sub.optional(),
-                            ])
-                        ]),
+                            sh_i.sub.optional(),
+                        ),
                         'constrained': $p.constrained
                     }
                 ),
@@ -528,7 +520,7 @@ export const Value: interface_.Value = ($, $p) => {
                                             $.value,
                                             {
                                                 'temp type': $p['temp type'],
-                                                'temp subselection': p_.literal.nested_list([
+                                                'temp subselection': p_.literal.segmented_list([
                                                     $p['temp subselection'],
                                                     p_.literal.list([
                                                         sh_i.sub.group("l state"),
@@ -546,12 +538,10 @@ export const Value: interface_.Value = ($, $p) => {
                                         $.value,
                                         {
                                             'temp type': $p['temp type'],
-                                            'temp subselection': p_.literal.nested_list([
+                                            'temp subselection': p_.literal.chain(
                                                 $p['temp subselection'],
-                                                p_.literal.list([
-                                                    sh_i.sub.state(id),
-                                                ])
-                                            ]),
+                                                sh_i.sub.state(id),
+                                            ),
                                             'constrained': $p.constrained
                                         }
                                     )

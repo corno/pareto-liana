@@ -59,7 +59,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -84,7 +84,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "out": sh_i.import_.ancestor(
                 $p.depth,
                 "interface",
-                p_.literal.nested_list([
+                p_.literal.segmented_list([
                     p_.literal.list([
                         "generated",
                         "liana",
@@ -135,7 +135,14 @@ export const Value: interface_.Value = ($, $p) => {
                                 default: return p_.au($[0])
                             }
                         }),
-                        sh.a.select(sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : [])),
+                        sh.a.select(
+                            sh.sv.context(
+                                p_.from.optional($.results).decide<d_out.Select_Value.regular.tail>(
+                                    ($) => p_.literal.list(["l value"]),
+                                    () => p_.literal.list([])
+                                )
+                            )
+                        ),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
@@ -155,7 +162,7 @@ export const Value: interface_.Value = ($, $p) => {
                                     $.value,
                                     {
                                         'type name': $p['type name'],
-                                        'subselection': p_.literal.nested_list([
+                                        'subselection': p_.literal.segmented_list([
                                             $p.subselection,
                                             p_.literal.list([
                                                 sh.sub.group("l dictionary"),
@@ -176,12 +183,10 @@ export const Value: interface_.Value = ($, $p) => {
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': p_.literal.nested_list([
+                                'subselection': p_.literal.chain(
                                     $p.subselection,
-                                    p_.literal.list([
-                                        sh.sub.dictionary()
-                                    ])
-                                ]),
+                                    sh.sub.dictionary()
+                                ),
                                 'constrained': $p.constrained,
                             }
                         )
@@ -193,12 +198,10 @@ export const Value: interface_.Value = ($, $p) => {
                     $.value,
                     {
                         'type name': $p['type name'],
-                        'subselection': p_.literal.nested_list([
+                        'subselection': p_.literal.chain(
                             $p.subselection,
-                            p_.literal.list([
-                                sh.sub.group(id)
-                            ])
-                        ]),
+                            sh.sub.group(id)
+                        ),
                         'constrained': $p.constrained,
                     }
                 )
@@ -209,14 +212,17 @@ export const Value: interface_.Value = ($, $p) => {
                     ? sh.a.group.literal({
                         "l location": location,
                         "l list": sh.a.list.from.list.map(
-                            sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
+                            sh.sv.context(p_.from.optional($.results).decide(
+                                ($) => p_.literal.list(["l value"]),
+                                () => p_.literal.list([])
+                            )),
                             sh.a.group.literal({
                                 "l item": p_change_context($, ($) => {
                                     const tn = Value(
                                         $.value,
                                         {
                                             'type name': $p['type name'],
-                                            'subselection': p_.literal.nested_list([
+                                            'subselection': p_.literal.segmented_list([
                                                 $p.subselection,
                                                 p_.literal.list([
                                                     sh.sub.group("l list"),
@@ -245,12 +251,10 @@ export const Value: interface_.Value = ($, $p) => {
                             $.value,
                             {
                                 'type name': $p['type name'],
-                                'subselection': p_.literal.nested_list([
+                                'subselection': p_.literal.chain(
                                     $p.subselection,
-                                    p_.literal.list([
-                                        sh.sub.list()
-                                    ])
-                                ]),
+                                    sh.sub.list()
+                                ),
                                 'constrained': $p.constrained,
                             }
                         )
@@ -265,12 +269,10 @@ export const Value: interface_.Value = ($, $p) => {
                     $,
                     {
                         'type name': $p['type name'],
-                        'subselection': p_.literal.nested_list([
+                        'subselection': p_.literal.chain(
                             $p.subselection,
-                            p_.literal.list([
-                                sh.sub.optional()
-                            ])
-                        ]),
+                            sh.sub.optional()
+                        ),
                         'constrained': $p.constrained,
                     }
                 )
@@ -296,12 +298,15 @@ export const Value: interface_.Value = ($, $p) => {
             }))
             case 'state': return p_.ss($, ($) => {
                 const tn = sh.a.decide.state(
-                    sh.sv.context(p_.from.optional($.results).is_set() ? ["l value"] : []),
+                    sh.sv.context(p_.from.optional($.results).decide(
+                        ($) => p_.literal.list(["l value"]),
+                        () => p_.literal.list([])
+                    )),
                     $.options.__d_map_deprecated(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {
                             'type name': $p['type name'],
-                            'subselection': p_.literal.nested_list([
+                            'subselection': p_.literal.segmented_list([
                                 $p.subselection,
                                 $p.constrained
                                     ? p_.literal.list([
@@ -318,7 +323,7 @@ export const Value: interface_.Value = ($, $p) => {
                     sh.type_node_reference(
                         "out",
                         $p['type name'],
-                        p_.literal.nested_list([
+                        p_.literal.segmented_list([
                             $p.subselection,
                             $p.constrained
                                 ? p_.literal.list([

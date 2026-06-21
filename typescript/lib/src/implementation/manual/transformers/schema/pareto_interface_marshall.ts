@@ -37,7 +37,10 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
             ],
         ),
         "in": sh.import_.ancestor(
-            p_.from.optional($p.constrained).is_set() ? 3 : 2,
+            p_.from.optional($p.constrained).decide(
+                ($) => 3,
+                () => 2,
+            ),
             "data",
             p_.from.optional(
                 $p.constrained,

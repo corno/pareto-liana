@@ -127,7 +127,7 @@ export const Value_Path = (
 //         $['type location'],
 //         {
 //             'reference sub part': Type_Node_Path($.path.tail),
-//             p_.literal.nested_list([
+//             p_.literal.nested_ list([
 //             tail,
 //             [
 //                 sh.sub.dictionary()
