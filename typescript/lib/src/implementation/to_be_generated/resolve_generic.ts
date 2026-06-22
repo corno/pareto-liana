@@ -42,9 +42,7 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         $cyclic: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    const xx = p_temp.from.dictionary(
-        p_temp.from.dictionary(
-            benchmark,
+    const xx = p_temp.from.dictionary(p_temp.from.dictionary(benchmark,
         ).map_optionally(
             (_, id) => p_temp.from.dictionary($).get_possible_entry(
                 id,
@@ -59,8 +57,7 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         }),
         () => null
     )
-    return p_.from.dictionary(
-        $,
+    return p_.from.dictionary($,
     ).resolve(
         handle_entry
     )

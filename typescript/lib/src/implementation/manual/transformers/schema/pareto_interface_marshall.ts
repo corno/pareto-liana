@@ -42,23 +42,23 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 () => 2,
             ),
             "data",
-            p_.from.optional(
-                $p.constrained,
+            p_.from.optional($p.constrained,
             ).decide(
                 ($) => p_.literal.list([$]),
                 () => p_.literal.list([])
             )
         ),
     },
-    p_.from.dictionary($.modules).map(($, id) => sh.type.transformer(
-        sh.t.component_imported(
-            "in",
-            id,
-        ),
-        sh.t.component_imported(
-            "out",
-            "Value",
-        ),
-        null,
-    )),
+    p_.from.dictionary($.modules).map(
+        ($, id) => sh.type.transformer(
+            sh.t.component_imported(
+                "in",
+                id,
+            ),
+            sh.t.component_imported(
+                "out",
+                "Value",
+            ),
+            null,
+        )),
 )

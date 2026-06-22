@@ -54,18 +54,19 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ],
             ),
         },
-        p_.from.dictionary($.modules).map(($, id) => sh.type.refiner(
-            sh.t.component_imported(
-                "in",
-                "Value",
-            ),
-            sh.t.component_imported(
-                "out",
-                id,
-            ),
-            sh.t.component_imported("generic", "Error"),
-            null,
-            null,
-        )),
+        p_.from.dictionary($.modules).map(
+            ($, id) => sh.type.refiner(
+                sh.t.component_imported(
+                    "in",
+                    "Value",
+                ),
+                sh.t.component_imported(
+                    "out",
+                    id,
+                ),
+                sh.t.component_imported("generic", "Error"),
+                null,
+                null,
+            )),
     )
 }

@@ -26,7 +26,7 @@ export const Schema: interface_.Schema = ($, $p) => {
 
         {
             "in": sh.import_.ancestor(
-                $p.constrained ? 3: 2,
+                $p.constrained ? 3 : 2,
                 "data",
                 $p.constrained
                     ? [
@@ -47,16 +47,17 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ],
             ),
         },
-        p_.from.dictionary($.modules).map(($, id) => sh.type.transformer(
-            sh.t.component_imported(
-                "in",
-                id,
-            ),
-            sh.t.component_imported(
-                "out",
-                "Paragraph",
-            ),
-            null,
-        )),
+        p_.from.dictionary($.modules).map(
+            ($, id) => sh.type.transformer(
+                sh.t.component_imported(
+                    "in",
+                    id,
+                ),
+                sh.t.component_imported(
+                    "out",
+                    "Paragraph",
+                ),
+                null,
+            )),
     )
 }

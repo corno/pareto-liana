@@ -67,8 +67,7 @@
 //     },
 // )
 
-// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Modules.D => p_change_context(
 //         $['l entry'],
@@ -125,8 +124,7 @@
         
 //         const prop_text_types = p_change_context(
 //             $['text types'],
-//             ($) => p_.from.dictionary(
-//                 $['l dictionary'],
+//             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
 //                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
 //                     $['l entry'],
@@ -144,8 +142,7 @@
         
 //         const prop_number_types = p_change_context(
 //             $['number types'],
-//             ($) => p_.from.dictionary(
-//                 $['l dictionary'],
+//             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
 //                 ($, id, $a, $c): t_out.Globals.number_types.D => p_change_context(
 //                     $['l entry'],
@@ -205,8 +202,7 @@
                                                 
 //                                                 const prop_decimal_separator_offset = p_change_context(
 //                                                     $['decimal separator offset'],
-//                                                     ($) => p_.from.optional(
-//                                                         $,
+//                                                     ($) => p_.from.optional(//                                                         $,
 //                                                     ).map(
 //                                                         ($) => $,
 //                                                     ),
@@ -772,11 +768,9 @@
 //     },
 // )
 
-// export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => p_.from.optional(
-//     $,
+// export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => p_.from.optional(//     $,
 // ).map(
-//     ($) => p_.from.dictionary(
-//         $['l dictionary'],
+//     ($) => p_.from.dictionary(//         $['l dictionary'],
 //     ).resolve(
 //         ($, id, $a, $c): t_out.Value_Results.O.D => p_change_context(
 //             $['l entry'],
@@ -792,11 +786,9 @@
 //     ),
 // )
 
-// export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => p_.from.optional(
-//     $,
+// export const Option_Constraints: t_signatures.Option_Constraints = ($, abort, $l, $p) => p_.from.optional(//     $,
 // ).map(
-//     ($) => p_.from.dictionary(
-//         $['l dictionary'],
+//     ($) => p_.from.dictionary(//         $['l dictionary'],
 //     ).resolve(
 //         ($, id, $a, $c): t_out.Option_Constraints.O.D => p_change_context(
 //             $['l entry'],
@@ -812,8 +804,7 @@
 //     ),
 // )
 
-// export const Group: t_signatures.Group = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Group: t_signatures.Group = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Group.D => p_change_context(
 //         $['l entry'],
@@ -822,8 +813,7 @@
                 
 //                 const prop_description = p_change_context(
 //                     $['description'],
-//                     ($) => p_.from.optional(
-//                         $,
+//                     ($) => p_.from.optional(//                         $,
 //                     ).map(
 //                         ($) => $,
 //                     ),
@@ -1422,8 +1412,7 @@
                                     
 //                                     const prop_options = p_change_context(
 //                                         $['options'],
-//                                         ($) => p_.from.dictionary(
-//                                             $['l dictionary'],
+//                                         ($) => p_.from.dictionary(//                                             $['l dictionary'],
 //                                         ).resolve(
 //                                             ($, id, $a, $c): t_out.Value.state.options.D => p_change_context(
 //                                                 $['l entry'],
@@ -1460,8 +1449,7 @@
                                                         
 //                                                         const prop_description = p_change_context(
 //                                                             $['description'],
-//                                                             ($) => p_.from.optional(
-//                                                                 $,
+//                                                             ($) => p_.from.optional(//                                                                 $,
 //                                                             ).map(
 //                                                                 ($) => $,
 //                                                             ),
@@ -1811,8 +1799,7 @@
         
 //         const prop_modules = p_change_context(
 //             $['modules'],
-//             ($) => p_.from.dictionary(
-//                 $['l dictionary'],
+//             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
 //                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.modules.D => p_change_context(
 //                     $['l entry'],
@@ -1862,8 +1849,7 @@
         
 //         const prop_lookups = p_change_context(
 //             $['lookups'],
-//             ($) => p_.from.dictionary(
-//                 $['l dictionary'],
+//             ($) => p_.from.dictionary(//                 $['l dictionary'],
 //             ).resolve(
 //                 ($, id, $a, $c): t_out.Resolver_Signature_Parameters.lookups.D => p_change_context(
 //                     $['l entry'],
@@ -2050,8 +2036,7 @@
 //     },
 // )
 
-// export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Signatures.D => p_change_context(
 //         $['l entry'],
@@ -3405,8 +3390,7 @@
 //     },
 // )
 
-// export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Modules.D => p_change_context(
 //         $['l entry'],
@@ -3622,8 +3606,7 @@
 //     },
 // )
 
-// export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Option_Constraints.D => p_change_context(
 //         $['l entry'],
@@ -3788,8 +3771,7 @@
 //     },
 // )
 
-// export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $l, $p) => p_.from.optional(
-//     $,
+// export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort, $l, $p) => p_.from.optional(//     $,
 // ).map(
 //     ($) => Resolver_Value_Constraints(
 //         $,
@@ -3803,8 +3785,7 @@
 //     ),
 // )
 
-// export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Value_Constraints.D => p_change_context(
 //         $['l entry'],
@@ -3848,8 +3829,7 @@
 //     'l id': $['l reference'],
 // })
 
-// export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Value_Group.D => p_change_context(
 //         $['l entry'],
@@ -4269,19 +4249,16 @@
                                             
 //                                             const prop_arguments = p_change_context(
 //                                                 $['arguments'],
-//                                                 ($) => p_.from.optional(
-//                                                     $,
+//                                                 ($) => p_.from.optional(//                                                     $,
 //                                                 ).map(
 //                                                     ($) => p_.literal.group_resolve(
 //                                                         () => {
                                                             
 //                                                             const prop_modules = p_change_context(
 //                                                                 $['modules'],
-//                                                                 ($) => p_.from.optional(
-//                                                                     $,
+//                                                                 ($) => p_.from.optional(//                                                                     $,
 //                                                                 ).map(
-//                                                                     ($) => p_.from.dictionary(
-//                                                                         $['l dictionary'],
+//                                                                     ($) => p_.from.dictionary(//                                                                         $['l dictionary'],
 //                                                                     ).resolve(
 //                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.modules.O.D => p_change_context(
 //                                                                             $['l entry'],
@@ -4375,11 +4352,9 @@
                                                             
 //                                                             const prop_lookups = p_change_context(
 //                                                                 $['lookups'],
-//                                                                 ($) => p_.from.optional(
-//                                                                     $,
+//                                                                 ($) => p_.from.optional(//                                                                     $,
 //                                                                 ).map(
-//                                                                     ($) => p_.from.dictionary(
-//                                                                         $['l dictionary'],
+//                                                                     ($) => p_.from.dictionary(//                                                                         $['l dictionary'],
 //                                                                     ).resolve(
 //                                                                         ($, id, $a, $c): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => p_change_context(
 //                                                                             $['l entry'],
@@ -4609,8 +4584,7 @@
                                             
 //                                             const prop_benchmark = p_change_context(
 //                                                 $['benchmark'],
-//                                                 ($) => p_.from.optional(
-//                                                     $,
+//                                                 ($) => p_.from.optional(//                                                     $,
 //                                                 ).map(
 //                                                     ($) => Resolver_Benchmark(
 //                                                         $,
@@ -4748,8 +4722,7 @@
                                             
 //                                             const prop_result = p_change_context(
 //                                                 $['result'],
-//                                                 ($) => p_.from.optional(
-//                                                     $,
+//                                                 ($) => p_.from.optional(//                                                     $,
 //                                                 ).map(
 //                                                     ($) => Resolver_Value_List_Result(
 //                                                         $,
@@ -5147,8 +5120,7 @@
                                             
 //                                             const prop_states = p_change_context(
 //                                                 $['states'],
-//                                                 ($) => p_.from.dictionary(
-//                                                     $['l dictionary'],
+//                                                 ($) => p_.from.dictionary(//                                                     $['l dictionary'],
 //                                                 ).resolve(
 //                                                     ($, id, $a, $c): t_out.Resolver_Value.state.states.D => p_change_context(
 //                                                         $['l entry'],
@@ -5309,8 +5281,7 @@
 //     },
 // )
 
-// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
 //         $['l entry'],
@@ -5349,8 +5320,7 @@
         
 //         const prop_schema_path = p_change_context(
 //             $['schema path'],
-//             ($) => p_.from.list(
-//                 $['l list'],
+//             ($) => p_.from.list(//                 $['l list'],
 //             ).map(
 //                 ($) => p_change_context(
 //                     $['l item'],
@@ -5530,8 +5500,7 @@
 //     },
 // )
 
-// export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Schema_Imports.D => p_change_context(
 //         $['l entry'],
@@ -5646,8 +5615,7 @@
 //     ),
 // )
 
-// export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => p_.from.dictionary(
-//     $['l dictionary'],
+// export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p) => p_.from.dictionary(//     $['l dictionary'],
 // ).resolve(
 //     ($, id, $a, $c): t_out.Resolver_Imports.D => p_change_context(
 //         $['l entry'],

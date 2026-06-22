@@ -643,15 +643,16 @@ export namespace r {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {
             'l location': temp_dict['l location'],
-            'l dictionary': temp_dict['l dictionary'].__d_map_deprecated(($) => {
-                return {
-                    'l location': $['l location'],
-                    'l entry': {
-                        'definition': null,
-                        'resolver': $['l entry']
-                    },
-                }
-            })
+            'l dictionary': temp_dict['l dictionary'].__d_map_deprecated(
+                ($) => {
+                    return {
+                        'l location': $['l location'],
+                        'l entry': {
+                            'definition': null,
+                            'resolver': $['l entry']
+                        },
+                    }
+                })
         }])
     }
 

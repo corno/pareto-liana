@@ -14,10 +14,11 @@ export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
     'character location reporting': ['zero based', null] | ['one based', null]
 }> = ($, $p) => {
     return sh.ph.composed([
-            sh.ph.literal("error in package '"),
-            sh.ph.literal($p.id),
-            sh.ph.literal("': "),
-            p_.from.state($).decide(($) => {
+        sh.ph.literal("error in package '"),
+        sh.ph.literal($p.id),
+        sh.ph.literal("': "),
+        p_.from.state($).decide(
+            ($) => {
                 switch ($[0]) {
                     case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
                     case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))
@@ -42,5 +43,5 @@ export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
                     default: return p_.au($[0])
                 }
             })
-        ])
+    ])
 }

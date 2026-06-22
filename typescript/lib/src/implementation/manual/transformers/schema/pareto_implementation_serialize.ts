@@ -70,29 +70,30 @@ export const Schema: interface_.Schema = ($, $p) => {
             "marshall": sh_i.import_.sibling("astn sealed target", p_.literal.list([
             ])),
         }),
-        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
-            "signatures",
-            id,
-            [],
-            sh.a.select(
-                sh.sv.call(
-                    sh.call.external("serialize", "Document"),
-                    sh.a.select(
-                        sh.sv.call(
-                            sh.call.external("marshall", id),
-                            sh.a.select(sh.sv.context([])),
-                            null,
-                            sh.lookups.not_set(),
-                            sh.arguments_.not_set(),
-                            [],
-                        )
-                    ),
-                    null,
-                    sh.lookups.not_set(),
-                    sh.arguments_.not_set(),
-                    [],
+        p_.from.dictionary($.modules).map(
+            ($, id) => sh.algorithm(
+                "signatures",
+                id,
+                [],
+                sh.a.select(
+                    sh.sv.call(
+                        sh.call.external("serialize", "Document"),
+                        sh.a.select(
+                            sh.sv.call(
+                                sh.call.external("marshall", id),
+                                sh.a.select(sh.sv.context([])),
+                                null,
+                                sh.lookups.not_set(),
+                                sh.arguments_.not_set(),
+                                [],
+                            )
+                        ),
+                        null,
+                        sh.lookups.not_set(),
+                        sh.arguments_.not_set(),
+                        [],
+                    )
                 )
-            )
-        )),
+            )),
     )
 }

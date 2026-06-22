@@ -53,10 +53,11 @@ const temp_prepend = <T extends p_di.Value>(
     prefix: string
 ) => {
     const result: { [id: string]: T } = {}
-    p_.from.dictionary($).map(($, id) => {
-        result[prefix + id] = $
-        return null
-    })
+    p_.from.dictionary($).map(
+        ($, id) => {
+            result[prefix + id] = $
+            return null
+        })
     return p_.literal.dictionary(result)
 }
 
@@ -129,14 +130,14 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
                 ])
             ),
         }),
-        p_.from.dictionary(
-            p_.literal.dictionary({
-                "external ": $p.imports.__d_map_deprecated(($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
+        p_.from.dictionary(p_.literal.dictionary({
+            "external ": $p.imports.__d_map_deprecated(
+                ($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
                     "resolved",
                     "refiners",
                     "unresolved"
                 ]))
-            }),
+        }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,
@@ -145,55 +146,59 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
             }
 
         ),
-        p_.from.dictionary($).map(($, id) => sh.algorithm(
-            "signatures",
-            id,
-            ['abort', 'lookups', 'parameters'],
-            Resolver_Value(
-                $['root value resolver'],
-                {
-                    'temp type': id,
-                    'temp subselection': p_.literal.list([])
-                }
-            ),
-        ))
+        p_.from.dictionary($).map(
+            ($, id) => sh.algorithm(
+                "signatures",
+                id,
+                ['abort', 'lookups', 'parameters'],
+                Resolver_Value(
+                    $['root value resolver'],
+                    {
+                        'temp type': id,
+                        'temp subselection': p_.literal.list([])
+                    }
+                ),
+            ))
     )
 }
 
 
 
 export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($, $p) => {
-    return p_.from.state($).decide(($) => {
-        switch ($[0]) {
-            case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], $p.tail))
-            case 'result': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-                switch ($[0]) {
-                    case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE2")) //quite some work
-                    case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE2")) //quite some work
+    return p_.from.state($).decide(
+        ($) => {
+            switch ($[0]) {
+                case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], $p.tail))
+                case 'result': return p_.ss($, ($) => p_.from.state($).decide(
+                    ($) => {
+                        switch ($[0]) {
+                            case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE2")) //quite some work
+                            case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE2")) //quite some work
 
-                    default: return p_.au($[0])
-                }
-            }))
+                            default: return p_.au($[0])
+                        }
+                    }))
 
-            default: return p_.au($[0])
-        }
-    })
+                default: return p_.au($[0])
+            }
+        })
 }
 
 
-export const Optional_Value_Initialization: interface_.Optional_Value_Initialization = ($) => p_.from.state($).decide(($) => {
-    switch ($[0]) {
-        case 'not set': return p_.ss($, ($) => sh.a.optional.not_set())
-        case 'selection': return p_.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
-        case 'set': return p_.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection(
-            $,
-            {
-                'tail': p_.literal.list([])
-            }
-        ))))
-        default: return p_.au($[0])
-    }
-})
+export const Optional_Value_Initialization: interface_.Optional_Value_Initialization = ($) => p_.from.state($).decide(
+    ($) => {
+        switch ($[0]) {
+            case 'not set': return p_.ss($, ($) => sh.a.optional.not_set())
+            case 'selection': return p_.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
+            case 'set': return p_.ss($, ($) => sh.a.optional.set(sh.a.select(Resolver_Guaranteed_Value_Selection(
+                $,
+                {
+                    'tail': p_.literal.list([])
+                }
+            ))))
+            default: return p_.au($[0])
+        }
+    })
 
 export const Resolver_Guaranteed_Value_Selection = (
     $: d_in.Resolver_Guaranteed_Value_Selection,
@@ -202,83 +207,90 @@ export const Resolver_Guaranteed_Value_Selection = (
     },
 ): d_out.Select_Value => {
     const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => p_.literal.segmented_list([
-        p_.from.list(
-            $.tail.path['l value'],
+        p_.from.list($.tail.path['l value'],
         ).flatten(
-            ($) => p_.from.state($['l item']).decide(($): p_di.List<d_out.Select_Value.regular.tail.L> => {
-                switch ($[0]) {
-                    case 'component': return p_.ss($, ($) => p_.literal.list([]))
-                    case 'group': return p_.ss($, ($) => p_.literal.list([$['l id']]))
-                    case 'reference': return p_.ss($, ($) => p_.from.state($.definition.type).decide(($) => {
-                        switch ($[0]) {
-                            case 'derived': return p_.ss($, ($) => p_.literal.list([]))
-                            case 'selected': return p_.ss($, ($) => p_.literal.list(["l entry"]))
-                            default: return p_.au($[0])
-                        }
-                    }))
-                    default: return p_.au($[0])
-                }
-            })
+            ($) => p_.from.state($['l item']).decide(
+                ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
+                    switch ($[0]) {
+                        case 'component': return p_.ss($, ($) => p_.literal.list([]))
+                        case 'group': return p_.ss($, ($) => p_.literal.list([$['l id']]))
+                        case 'reference': return p_.ss($, ($) => p_.from.state($.definition.type).decide(
+                            ($) => {
+                                switch ($[0]) {
+                                    case 'derived': return p_.ss($, ($) => p_.literal.list([]))
+                                    case 'selected': return p_.ss($, ($) => p_.literal.list(["l entry"]))
+                                    default: return p_.au($[0])
+                                }
+                            }))
+                        default: return p_.au($[0])
+                    }
+                })
         ),
         $p.tail
     ])
-    return p_.from.state($.start).decide(($) => {
-        switch ($[0]) {
-            case 'constraint': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-                switch ($[0]) {
-                    case 'component': return p_.ss($, ($) => sh.sv.implement_me("IM: COMPONENT")) //simple
-                    case 'reference': return p_.ss($, ($) => sh.sv.sibling($.property['l id'], ["l results", $.constraint['l id']])) //simple
-                    default: return p_.au($[0])
-                }
-            }))
-            case 'list cursor': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST CURSOR"))
-            case 'linked entry': return p_.ss($, ($) => sh.sv.variable("referenced entry", tail()))
-            case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], []))
-            case 'parent sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: PARENT SIBLING"))
-            case 'option constraint': return p_.ss($, ($) => sh.sv.variable("constraint " + $['l id'], tail()))
-            case 'result': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-                switch ($[0]) {
-                    case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE"))  // quite some work
-                    case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE")) // quite some work
-                    case 'list': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST")) // quite some work
-                    default: return p_.au($[0])
-                }
-            }))
-            case 'sibling': return p_.ss($, ($) => sh.sv.sibling($['l id'], tail()))
-            default: return p_.au($[0])
-        }
-    })
+    return p_.from.state($.start).decide(
+        ($) => {
+            switch ($[0]) {
+                case 'constraint': return p_.ss($, ($) => p_.from.state($).decide(
+                    ($) => {
+                        switch ($[0]) {
+                            case 'component': return p_.ss($, ($) => sh.sv.implement_me("IM: COMPONENT")) //simple
+                            case 'reference': return p_.ss($, ($) => sh.sv.sibling($.property['l id'], ["l results", $.constraint['l id']])) //simple
+                            default: return p_.au($[0])
+                        }
+                    }))
+                case 'list cursor': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST CURSOR"))
+                case 'linked entry': return p_.ss($, ($) => sh.sv.variable("referenced entry", tail()))
+                case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], []))
+                case 'parent sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: PARENT SIBLING"))
+                case 'option constraint': return p_.ss($, ($) => sh.sv.variable("constraint " + $['l id'], tail()))
+                case 'result': return p_.ss($, ($) => p_.from.state($).decide(
+                    ($) => {
+                        switch ($[0]) {
+                            case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE"))  // quite some work
+                            case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE")) // quite some work
+                            case 'list': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST")) // quite some work
+                            default: return p_.au($[0])
+                        }
+                    }))
+                case 'sibling': return p_.ss($, ($) => sh.sv.sibling($['l id'], tail()))
+                default: return p_.au($[0])
+            }
+        })
 }
 
 export const Resolver_Lookup_Selection = (
     $: d_in.Resolver_Lookup_Selection,
-): d_out.Select_Lookup => p_.from.state($.type).decide(($) => {
-    switch ($[0]) {
-        case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-            switch ($[0]) {
-                case 'resolved dictionary': return p_.ss($, ($) => sh.sl.acyclic.resolved_dictionary(
-                    Resolver_Guaranteed_Value_Selection(
-                        $.selection,
-                        {
-                            'tail': p_.literal.list([]),
-                        }
-                    )
-                ))
-                case 'siblings': return p_.ss($, ($) => sh.sl.acyclic.siblings())
-                default: return p_.au($[0])
-            }
-        }))
-        case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-            switch ($[0]) {
-                case 'siblings': return p_.ss($, ($) => sh.sl.cyclic.siblings())
+): d_out.Select_Lookup => p_.from.state($.type).decide(
+    ($) => {
+        switch ($[0]) {
+            case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                ($) => {
+                    switch ($[0]) {
+                        case 'resolved dictionary': return p_.ss($, ($) => sh.sl.acyclic.resolved_dictionary(
+                            Resolver_Guaranteed_Value_Selection(
+                                $.selection,
+                                {
+                                    'tail': p_.literal.list([]),
+                                }
+                            )
+                        ))
+                        case 'siblings': return p_.ss($, ($) => sh.sl.acyclic.siblings())
+                        default: return p_.au($[0])
+                    }
+                }))
+            case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                ($) => {
+                    switch ($[0]) {
+                        case 'siblings': return p_.ss($, ($) => sh.sl.cyclic.siblings())
 
-                default: return p_.au($[0])
-            }
-        }))
-        case 'parameter': return p_.ss($, ($) => sh.sl.from_parameter($['l id']))
-        default: return p_.au($[0])
-    }
-})
+                        default: return p_.au($[0])
+                    }
+                }))
+            case 'parameter': return p_.ss($, ($) => sh.sl.from_parameter($['l id']))
+            default: return p_.au($[0])
+        }
+    })
 
 export const Option_Constraints = (
     $: d_in.Resolver_Option_Constraints,
@@ -287,48 +299,48 @@ export const Option_Constraints = (
     },
 ): d_out.Assign => p_.from.dictionary($).on_has_entries(
     ($) => sh.a.variables(
-        p_.from.dictionary(
-            temp_prepend($, "constraint "),
+        p_.from.dictionary(temp_prepend($, "constraint "),
         ).map(
-            ($, id) => p_.from.state($).decide(($) => {
-                switch ($[0]) {
-                    case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
-                        sh.sv.context([]),
-                        $.option['l id'],
-                        sh.a.select(sh.sv.context([])),
-                        sh.a.abort(sh.a.group.literal({
-                            "type": sh.a.state.literal(
-                                "option constraint",
-                                sh.a.state.literal(
-                                    "no such option",
-                                    sh.a.text.literal($.option['l id'], 'freeform')
-                                )
-                            ),
-                            "location": sh.a.select(sh.sv.variable("location", []))
-                        })),
-                        null,
-                        // sh.type_node_reference("out", $p['sub'], p_.literal.list([]))
+            ($, id) => p_.from.state($).decide(
+                ($) => {
+                    switch ($[0]) {
+                        case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
+                            sh.sv.context([]),
+                            $.option['l id'],
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.abort(sh.a.group.literal({
+                                "type": sh.a.state.literal(
+                                    "option constraint",
+                                    sh.a.state.literal(
+                                        "no such option",
+                                        sh.a.text.literal($.option['l id'], 'freeform')
+                                    )
+                                ),
+                                "location": sh.a.select(sh.sv.variable("location", []))
+                            })),
+                            null,
+                            // sh.type_node_reference("out", $p['sub'], p_.literal.list([]))
 
-                    ))
-                    case 'assert is set': return p_.ss($, ($) => sh.a.decide.optional(
-                        Possible_Value_Selection($, { 'tail': p_.literal.list([]) }),
-                        sh.a.select(sh.sv.context([])),
-                        sh.a.abort(sh.a.group.literal({
-                            "type": sh.a.state.literal(
-                                "constraint",
-                                sh.a.state.literal(
-                                    "optional value is not set",
-                                    sh.a.nothing(),
-                                )
-                            ),
-                            "location": sh.a.select(sh.sv.variable("location", []))
-                        })),
-                        // null,
-                        // sh.type_node_reference("out", $p['sub'] as any as string, p_.literal.list([]))
-                    ))
-                    default: return p_.au($[0])
-                }
-            })
+                        ))
+                        case 'assert is set': return p_.ss($, ($) => sh.a.decide.optional(
+                            Possible_Value_Selection($, { 'tail': p_.literal.list([]) }),
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.abort(sh.a.group.literal({
+                                "type": sh.a.state.literal(
+                                    "constraint",
+                                    sh.a.state.literal(
+                                        "optional value is not set",
+                                        sh.a.nothing(),
+                                    )
+                                ),
+                                "location": sh.a.select(sh.sv.variable("location", []))
+                            })),
+                            // null,
+                            // sh.type_node_reference("out", $p['sub'] as any as string, p_.literal.list([]))
+                        ))
+                        default: return p_.au($[0])
+                    }
+                })
         ),
         $p.sub
     ),
@@ -359,106 +371,136 @@ export const Resolver_Value = (
         'temp type': string
         'temp subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
     },
-): d_out.Assign => p_.from.state($).decide(($) => {
-    switch ($[0]) {
+): d_out.Assign => p_.from.state($).decide(
+    ($) => {
+        switch ($[0]) {
 
-        case 'component': return p_.ss($, ($) => {
+            case 'component': return p_.ss($, ($) => {
 
-            const results = $.definition.results
+                const results = $.definition.results
 
-            return Value_Results(
-                $.definition.results,
-                {
-                    'base type': sh.a.select(
-                        sh.sv.call(
-                            p_.from.state($.location).decide(($) => {
-                                switch ($[0]) {
-                                    case 'external': return p_.ss($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
-                                    case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
-                                    default: return p_.au($[0])
-                                }
-                            }),
-                            sh.a.select(sh.sv.context([])),
-                            sh.a.select(sh.sv.context([])),
-                            p_.from.optional($.arguments).decide(
-                                ($) => p_.from.optional($.lookups).decide(
-                                    ($) => sh.lookups.initialize(p_.from.dictionary($).map(
-                                        ($) => p_.from.state($).decide(($) => {
-                                            switch ($[0]) {
-                                                case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+                return Value_Results(
+                    $.definition.results,
+                    {
+                        'base type': sh.a.select(
+                            sh.sv.call(
+                                p_.from.state($.location).decide(
+                                    ($) => {
+                                        switch ($[0]) {
+                                            case 'external': return p_.ss($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
+                                            case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
+                                            default: return p_.au($[0])
+                                        }
+                                    }),
+                                sh.a.select(sh.sv.context([])),
+                                sh.a.select(sh.sv.context([])),
+                                p_.from.optional($.arguments).decide(
+                                    ($) => p_.from.optional($.lookups).decide(
+                                        ($) => sh.lookups.initialize(p_.from.dictionary($).map(
+                                            ($) => p_.from.state($).decide(
+                                                ($) => {
                                                     switch ($[0]) {
-                                                        case 'not set': return p_.ss($, ($) => sh.sl.acyclic.not_set())
+                                                        case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                                                            ($) => {
+                                                                switch ($[0]) {
+                                                                    case 'not set': return p_.ss($, ($) => sh.sl.acyclic.not_set())
+                                                                    default: return p_.au($[0])
+                                                                }
+                                                            }))
+                                                        case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                                                            ($) => {
+                                                                switch ($[0]) {
+                                                                    case 'not set': return p_.ss($, ($) => sh.sl.cyclic.not_set())
+                                                                    default: return p_.au($[0])
+                                                                }
+                                                            }))
+                                                        case 'stack': return p_.ss($, ($) => p_.from.state($).decide(
+                                                            ($) => {
+                                                                switch ($[0]) {
+                                                                    case 'empty': return p_.ss($, ($) => sh.sl.stack.empty())
+                                                                    case 'push': return p_.ss($, ($) => sh.sl.stack.push(
+                                                                        Resolver_Lookup_Selection($['stack']),
+                                                                        Resolver_Lookup_Selection($['item']),
+                                                                    ))
+                                                                    default: return p_.au($[0])
+                                                                }
+                                                            }))
+                                                        case 'selection': return p_.ss($, ($) => Resolver_Lookup_Selection($))
                                                         default: return p_.au($[0])
                                                     }
-                                                }))
-                                                case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+                                                }),
+                                        )),
+                                        () => sh.lookups.pass_through()
+                                    ),
+                                    () => sh.lookups.not_set()
+                                ),
+                                p_.from.optional($.arguments).decide(
+                                    ($) => p_.from.optional($.modules).decide(
+                                        ($) => sh.arguments_.initialize(p_.from.dictionary($).map(
+                                            ($) => p_.from.state($).decide(
+                                                ($) => {
                                                     switch ($[0]) {
-                                                        case 'not set': return p_.ss($, ($) => sh.sl.cyclic.not_set())
-                                                        default: return p_.au($[0])
-                                                    }
-                                                }))
-                                                case 'stack': return p_.ss($, ($) => p_.from.state($).decide(($) => {
-                                                    switch ($[0]) {
-                                                        case 'empty': return p_.ss($, ($) => sh.sl.stack.empty())
-                                                        case 'push': return p_.ss($, ($) => sh.sl.stack.push(
-                                                            Resolver_Lookup_Selection($['stack']),
-                                                            Resolver_Lookup_Selection($['item']),
+                                                        case 'optional': return p_.ss($, ($) => Optional_Value_Initialization($))
+                                                        case 'required': return p_.ss($, ($) => sh.a.select(
+                                                            Resolver_Guaranteed_Value_Selection(
+                                                                $,
+                                                                {
+                                                                    'tail': p_.literal.list([]),
+                                                                }
+                                                            )
                                                         ))
+                                                        case 'parameter': return p_.ss($, ($) => sh.a.select(sh.sv.parameter($['l id'], [])))
                                                         default: return p_.au($[0])
                                                     }
-                                                }))
-                                                case 'selection': return p_.ss($, ($) => Resolver_Lookup_Selection($))
-                                                default: return p_.au($[0])
-                                            }
-                                        }),
-                                    )),
-                                    () => sh.lookups.pass_through()
+                                                }),
+                                        )),
+                                        () => sh.arguments_.pass_through()
+                                    ),
+                                    () => sh.arguments_.not_set()
                                 ),
-                                () => sh.lookups.not_set()
-                            ),
-                            p_.from.optional($.arguments).decide(
-                                ($) => p_.from.optional($.modules).decide(
-                                    ($) => sh.arguments_.initialize(p_.from.dictionary($).map(
-                                        ($) => p_.from.state($).decide(($) => {
-                                            switch ($[0]) {
-                                                case 'optional': return p_.ss($, ($) => Optional_Value_Initialization($))
-                                                case 'required': return p_.ss($, ($) => sh.a.select(
-                                                    Resolver_Guaranteed_Value_Selection(
-                                                        $,
-                                                        {
-                                                            'tail': p_.literal.list([]),
-                                                        }
-                                                    )
-                                                ))
-                                                case 'parameter': return p_.ss($, ($) => sh.a.select(sh.sv.parameter($['l id'], [])))
-                                                default: return p_.au($[0])
-                                            }
-                                        }),
-                                    )),
-                                    () => sh.arguments_.pass_through()
-                                ),
-                                () => sh.arguments_.not_set()
-                            ),
-                            [],
+                                [],
+                            )
                         )
-                    )
-                }
-            )
-        })
-        case 'dictionary': return p_.ss($, ($) => {
-            const resolver = $.resolver
-            return p_.from.optional($.benchmark).decide(
-                ($) => sh.a.dictionary.from.dictionary.resolve( //FIXME: validate denseness
-                    sh.sv.context(["l dictionary"]),
-                    sh.a.change_context(
-                        sh.sv.context(["l entry"]),
-                        sh.a.variables(
-                            {
-                                "location": sh.a.select(sh.sv.context(["l location"])),
-                                "referenced entry": sh.a.implement_me("IM: referenced entry"),
-                            },
+                    }
+                )
+            })
+            case 'dictionary': return p_.ss($, ($) => {
+                const resolver = $.resolver
+                return p_.from.optional($.benchmark).decide(
+                    ($) => sh.a.dictionary.from.dictionary.resolve( //FIXME: validate denseness
+                        sh.sv.context(["l dictionary"]),
+                        sh.a.change_context(
+                            sh.sv.context(["l entry"]),
+                            sh.a.variables(
+                                {
+                                    "location": sh.a.select(sh.sv.context(["l location"])),
+                                    "referenced entry": sh.a.implement_me("IM: referenced entry"),
+                                },
+                                Resolver_Value(
+                                    resolver,
+                                    {
+                                        'temp type': $p['temp type'],
+                                        'temp subselection': p_.literal.chain(
+                                            $p['temp subselection'],
+                                            sh_i.sub.dictionary(),
+                                        ),
+                                    }
+
+                                )
+                            )
+                        ),
+                        sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
+                            $p['temp subselection'],
+                            sh_i.sub.dictionary(),
+                        ))
+
+                    ),
+                    () => sh.a.dictionary.from.dictionary.resolve(
+                        sh.sv.context(["l dictionary"]),
+                        sh.a.change_context(
+                            sh.sv.context(["l entry"]),
                             Resolver_Value(
-                                resolver,
+                                $.resolver,
                                 {
                                     'temp type': $p['temp type'],
                                     'temp subselection': p_.literal.chain(
@@ -468,251 +510,229 @@ export const Resolver_Value = (
                                 }
 
                             )
-                        )
-                    ),
-                    sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
-                        $p['temp subselection'],
-                        sh_i.sub.dictionary(),
-                    ))
+                        ),
+                        sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
+                            $p['temp subselection'],
+                            sh_i.sub.dictionary(),
+                        ))
 
-                ),
-                () => sh.a.dictionary.from.dictionary.resolve(
-                    sh.sv.context(["l dictionary"]),
-                    sh.a.change_context(
-                        sh.sv.context(["l entry"]),
+                    )
+                )
+            })
+            case 'group': return p_.ss($, ($) => sh.a.group.literal_resolve(
+                p_.from.dictionary($).map(
+                    ($, id) => sh.a.change_context(
+                        sh.sv.context([id]),
                         Resolver_Value(
                             $.resolver,
                             {
                                 'temp type': $p['temp type'],
                                 'temp subselection': p_.literal.chain(
                                     $p['temp subselection'],
-                                    sh_i.sub.dictionary(),
-                                ),
-                            }
-
-                        )
-                    ),
-                    sh.type_node_reference("out", $p['temp type'], p_.literal.chain(
-                        $p['temp subselection'],
-                        sh_i.sub.dictionary(),
-                    ))
-
-                )
-            )
-        })
-        case 'group': return p_.ss($, ($) => sh.a.group.literal_resolve(
-            p_.from.dictionary($).map(
-                ($, id) => sh.a.change_context(
-                    sh.sv.context([id]),
-                    Resolver_Value(
-                        $.resolver,
-                        {
-                            'temp type': $p['temp type'],
-                            'temp subselection': p_.literal.chain(
-                                $p['temp subselection'],
-                                sh_i.sub.group(id)
-                            ),
-                        }
-                    )
-                )
-            )
-        ))
-        case 'list': return p_.ss($, ($) => {
-            const resolver: d_in.Resolver_Value = $.resolver
-            return p_.from.optional($.result).decide(
-                ($) => sh.a.group.literal({
-                    "l value": sh.a.list.from.list.map_with_state(
-                        sh.sv.context(["l list"]),
-                        sh.a.implement_me("IM: initial state"),
-                        sh.a.group.literal({
-                            "l item": sh.a.change_context(
-                                sh.sv.context(["l item"]),
-                                Resolver_Value(
-                                    resolver,
-                                    {
-                                        'temp type': $p['temp type'],
-                                        'temp subselection': p_.literal.segmented_list([
-                                            $p['temp subselection'],
-                                            p_.literal.list([
-                                                sh_i.sub.group("l value"),
-                                                sh_i.sub.list(),
-                                                sh_i.sub.group("l item"),
-                                            ])
-                                        ]),
-                                    }
-                                ),
-                            ),
-                            "l result": sh.a.implement_me("IM: result aggregation") //depends on the aggregation
-                        }),
-                        sh.a.implement_me("IM: update state"),
-                        sh.a.implement_me("IM: wrapup"),
-                    ),
-                    "l results": sh.a.group.literal({
-                        "result": sh.a.implement_me("IM: result aggregation") //this one is hardcode for now
-                    })
-                }),
-                () => sh.a.list.from.list.map(
-                    sh.sv.context(["l list"]),
-                    sh.a.change_context(
-                        sh.sv.context(["l item"]),
-                        Resolver_Value(
-                            $.resolver,
-                            {
-                                'temp type': $p['temp type'],
-                                'temp subselection': p_.literal.chain(
-                                    $p['temp subselection'],
-                                    sh_i.sub.list()
+                                    sh_i.sub.group(id)
                                 ),
                             }
                         )
                     )
                 )
-            )
-        })
-        case 'nothing': return p_.ss($, ($) => sh.a.nothing())
-        case 'simple': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
-        case 'optional': return p_.ss($, ($) => sh.a.optional.map(
-            sh.sv.context([]),
-            Resolver_Value( //FIX option constraints and value results
-                $.resolver,
-                {
-                    'temp type': $p['temp type'],
-                    'temp subselection': p_.literal.chain(
-                        $p['temp subselection'],
-                        sh_i.sub.optional()
-                    ),
-                }
-            )
-        ))
-        case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(($) => {
-            switch ($[0]) {
-                case 'derived': return p_.ss($, ($) => sh.a.select(
-                    Resolver_Guaranteed_Value_Selection(
-                        $.value,
-                        {
-                            'tail': p_.literal.list([])
-                        }
-                    )
-                ))
-                case 'selected': return p_.ss($, ($) => {
-                    const x = $.lookup
-                    const x_out = Resolver_Lookup_Selection(x)
-                    return Value_Constraints(
-                        $.constraints,
-                        {
-                            'sub': p_.from.state($.definition.dependency).decide(($) => {
-                                switch ($[0]) {
-                                    case 'stack': return p_.ss($, ($) => sh.a.group.literal({
-                                        "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
-                                            x_out,
-                                            sh.a.select(sh.sv.context(["l reference"])),
-                                            no_such_entry_error,
-                                            no_context_lookup_error,
-                                            cycle_detected_error,
-
-                                        )),
-                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
-                                        // "l up steps": sh.a.implement_me("IM: FIXME UPSTEPS"),
-                                        "l up steps": sh.a.select(sh.sv.lookup_depth(
-                                            x_out,
-                                            sh.a.select(sh.sv.context(["l reference"])),
-                                            no_such_entry_error,
-                                            no_context_lookup_error,
-                                            cycle_detected_error,
-
-                                        )),
-                                    }))
-                                    case 'acyclic': return p_.ss($, ($) => sh.a.group.literal({
-                                        // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
-                                        "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
-                                            x_out,
-                                            sh.a.select(sh.sv.context(["l reference"])),
-                                            no_such_entry_error,
-                                            no_context_lookup_error,
-                                            cycle_detected_error,
-
-                                        )),
-                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
-                                    }))
-                                    case 'cyclic': return p_.ss($, ($) => sh.a.group.literal({
-                                        "l entry": sh.a.select(sh.sv.lookup_entry_cyclic(
-                                            x_out,
-                                            sh.a.select(sh.sv.context(["l reference"])),
-                                            no_such_entry_error,
-                                            no_context_lookup_error,
-                                            sh.a.unreachable("the generated resolver should take care of accessing before resolved"),
-
-                                        )),
-                                        "l id": sh.a.select(sh.sv.context(["l reference"])),
-                                    }))
-                                    default: return p_.au($[0])
-                                }
-                            })
-                        }
-                    )
-                })
-                default: return p_.au($[0])
-            }
-        }))
-        case 'state': return p_.ss($, ($) => {
-            const results = $.definition.results
-            return sh.a.variables(
-                {
-                    "location": sh.a.select(sh.sv.context(["l location"])),
-                },
-                Value_Results(
-                    $.definition.results,
-                    {
-                        'base type': sh.a.decide.state(
-                            sh.sv.context(["l state"]),
-                            p_.from.dictionary($.options).map(($, id) => sh.a.state.literal(id, Option_Constraints(
-                                $.constraints,
-                                {
-                                    'sub': Resolver_Value(
-                                        $['resolver'],
+            ))
+            case 'list': return p_.ss($, ($) => {
+                const resolver: d_in.Resolver_Value = $.resolver
+                return p_.from.optional($.result).decide(
+                    ($) => sh.a.group.literal({
+                        "l value": sh.a.list.from.list.map_with_state(
+                            sh.sv.context(["l list"]),
+                            sh.a.implement_me("IM: initial state"),
+                            sh.a.group.literal({
+                                "l item": sh.a.change_context(
+                                    sh.sv.context(["l item"]),
+                                    Resolver_Value(
+                                        resolver,
                                         {
                                             'temp type': $p['temp type'],
                                             'temp subselection': p_.literal.segmented_list([
                                                 $p['temp subselection'],
-                                                p_.from.optional(
-                                                    results,
-                                                ).decide(
-                                                    () => p_.literal.list([
-                                                        sh_i.sub.group("l value"),
-                                                        sh_i.sub.state(id),
-                                                    ]),
-                                                    () => p_.literal.list([
-                                                        sh_i.sub.state(id),
-                                                    ])
-                                                )
+                                                p_.literal.list([
+                                                    sh_i.sub.group("l value"),
+                                                    sh_i.sub.list(),
+                                                    sh_i.sub.group("l item"),
+                                                ])
                                             ]),
                                         }
-                                    )
-                                }
-                            ))),
-                            sh.type_node_reference(
-                                "out",
-                                $p['temp type'], p_.literal.segmented_list([
-                                    $p['temp subselection'],
-                                    p_.from.optional(
-                                        results,
-                                    ).decide(
-                                        () => p_.literal.list([
-                                            sh_i.sub.group("l value"),
-                                        ]),
-                                        () => p_.literal.list([])
                                     ),
-                                ]),
-                            ),
+                                ),
+                                "l result": sh.a.implement_me("IM: result aggregation") //depends on the aggregation
+                            }),
+                            sh.a.implement_me("IM: update state"),
+                            sh.a.implement_me("IM: wrapup"),
+                        ),
+                        "l results": sh.a.group.literal({
+                            "result": sh.a.implement_me("IM: result aggregation") //this one is hardcode for now
+                        })
+                    }),
+                    () => sh.a.list.from.list.map(
+                        sh.sv.context(["l list"]),
+                        sh.a.change_context(
+                            sh.sv.context(["l item"]),
+                            Resolver_Value(
+                                $.resolver,
+                                {
+                                    'temp type': $p['temp type'],
+                                    'temp subselection': p_.literal.chain(
+                                        $p['temp subselection'],
+                                        sh_i.sub.list()
+                                    ),
+                                }
+                            )
                         )
+                    )
+                )
+            })
+            case 'nothing': return p_.ss($, ($) => sh.a.nothing())
+            case 'simple': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
+            case 'optional': return p_.ss($, ($) => sh.a.optional.map(
+                sh.sv.context([]),
+                Resolver_Value( //FIX option constraints and value results
+                    $.resolver,
+                    {
+                        'temp type': $p['temp type'],
+                        'temp subselection': p_.literal.chain(
+                            $p['temp subselection'],
+                            sh_i.sub.optional()
+                        ),
                     }
                 )
-            )
-        })
-        case 'text': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
-        default: return p_.au($[0])
-    }
-})
+            ))
+            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+                ($) => {
+                    switch ($[0]) {
+                        case 'derived': return p_.ss($, ($) => sh.a.select(
+                            Resolver_Guaranteed_Value_Selection(
+                                $.value,
+                                {
+                                    'tail': p_.literal.list([])
+                                }
+                            )
+                        ))
+                        case 'selected': return p_.ss($, ($) => {
+                            const x = $.lookup
+                            const x_out = Resolver_Lookup_Selection(x)
+                            return Value_Constraints(
+                                $.constraints,
+                                {
+                                    'sub': p_.from.state($.definition.dependency).decide(
+                                        ($) => {
+                                            switch ($[0]) {
+                                                case 'stack': return p_.ss($, ($) => sh.a.group.literal({
+                                                    "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
+                                                        x_out,
+                                                        sh.a.select(sh.sv.context(["l reference"])),
+                                                        no_such_entry_error,
+                                                        no_context_lookup_error,
+                                                        cycle_detected_error,
+
+                                                    )),
+                                                    "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                                    // "l up steps": sh.a.implement_me("IM: FIXME UPSTEPS"),
+                                                    "l up steps": sh.a.select(sh.sv.lookup_depth(
+                                                        x_out,
+                                                        sh.a.select(sh.sv.context(["l reference"])),
+                                                        no_such_entry_error,
+                                                        no_context_lookup_error,
+                                                        cycle_detected_error,
+
+                                                    )),
+                                                }))
+                                                case 'acyclic': return p_.ss($, ($) => sh.a.group.literal({
+                                                    // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
+                                                    "l entry": sh.a.select(sh.sv.lookup_entry_acyclic(
+                                                        x_out,
+                                                        sh.a.select(sh.sv.context(["l reference"])),
+                                                        no_such_entry_error,
+                                                        no_context_lookup_error,
+                                                        cycle_detected_error,
+
+                                                    )),
+                                                    "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                                }))
+                                                case 'cyclic': return p_.ss($, ($) => sh.a.group.literal({
+                                                    "l entry": sh.a.select(sh.sv.lookup_entry_cyclic(
+                                                        x_out,
+                                                        sh.a.select(sh.sv.context(["l reference"])),
+                                                        no_such_entry_error,
+                                                        no_context_lookup_error,
+                                                        sh.a.unreachable("the generated resolver should take care of accessing before resolved"),
+
+                                                    )),
+                                                    "l id": sh.a.select(sh.sv.context(["l reference"])),
+                                                }))
+                                                default: return p_.au($[0])
+                                            }
+                                        })
+                                }
+                            )
+                        })
+                        default: return p_.au($[0])
+                    }
+                }))
+            case 'state': return p_.ss($, ($) => {
+                const results = $.definition.results
+                return sh.a.variables(
+                    {
+                        "location": sh.a.select(sh.sv.context(["l location"])),
+                    },
+                    Value_Results(
+                        $.definition.results,
+                        {
+                            'base type': sh.a.decide.state(
+                                sh.sv.context(["l state"]),
+                                p_.from.dictionary($.options).map(
+                                    ($, id) => sh.a.state.literal(id, Option_Constraints(
+                                        $.constraints,
+                                        {
+                                            'sub': Resolver_Value(
+                                                $['resolver'],
+                                                {
+                                                    'temp type': $p['temp type'],
+                                                    'temp subselection': p_.literal.segmented_list([
+                                                        $p['temp subselection'],
+                                                        p_.from.optional(results,
+                                                        ).decide(
+                                                            () => p_.literal.list([
+                                                                sh_i.sub.group("l value"),
+                                                                sh_i.sub.state(id),
+                                                            ]),
+                                                            () => p_.literal.list([
+                                                                sh_i.sub.state(id),
+                                                            ])
+                                                        )
+                                                    ]),
+                                                }
+                                            )
+                                        }
+                                    ))),
+                                sh.type_node_reference(
+                                    "out",
+                                    $p['temp type'], p_.literal.segmented_list([
+                                        $p['temp subselection'],
+                                        p_.from.optional(results,
+                                        ).decide(
+                                            () => p_.literal.list([
+                                                sh_i.sub.group("l value"),
+                                            ]),
+                                            () => p_.literal.list([])
+                                        ),
+                                    ]),
+                                ),
+                            )
+                        }
+                    )
+                )
+            })
+            case 'text': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
+            default: return p_.au($[0])
+        }
+    })
 
 export const Value_Constraint: interface_.Value_Constraint = (
     $: d_in.Resolver_Value_Constraint,
@@ -720,7 +740,8 @@ export const Value_Constraint: interface_.Value_Constraint = (
     return Resolver_Constraint(
         $.constraint,
         // {
-        //     'sub': p_.from.state($.start).decide(($) => {
+        //     'sub': p_.from.state($.start).decide(
+        // ($) => {
         //         switch ($[0]) {
         //             case 'value': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result1"))
         //             case 'sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result2"))
@@ -735,36 +756,38 @@ export const Resolver_Constraint: interface_.Constraint = (
     $: d_in.Resolver_Constraint
 ): d_out.Assign => {
     const rvs = Relative_Value_Selection($.selection)
-    return p_.from.state($.type).decide(($) => {
-        switch ($[0]) {
-            case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
-                rvs,
-                $.option['l id'],
-                sh.a.select(sh.sv.context([])),
-                sh.a.abort(sh.a.group.literal({
-                    "type": sh.a.state.literal(
-                        "constraint",
-                        sh.a.state.literal(
-                            "state",
-                            sh.a.group.literal({
-                                "expected": sh.a.text.literal($.option['l id'], 'freeform'),
-                                "found": sh.a.text.option_name(),
-                            })
-                        )
-                    ),
-                    "location": sh.a.select(sh.sv.variable("location", []))
-                })), null,
-            ))
-            case 'optional value': return p_.ss($, ($) => sh.a.implement_me("IM: constraint2"))
-            default: return p_.au($[0])
-        }
-    })
+    return p_.from.state($.type).decide(
+        ($) => {
+            switch ($[0]) {
+                case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
+                    rvs,
+                    $.option['l id'],
+                    sh.a.select(sh.sv.context([])),
+                    sh.a.abort(sh.a.group.literal({
+                        "type": sh.a.state.literal(
+                            "constraint",
+                            sh.a.state.literal(
+                                "state",
+                                sh.a.group.literal({
+                                    "expected": sh.a.text.literal($.option['l id'], 'freeform'),
+                                    "found": sh.a.text.option_name(),
+                                })
+                            )
+                        ),
+                        "location": sh.a.select(sh.sv.variable("location", []))
+                    })), null,
+                ))
+                case 'optional value': return p_.ss($, ($) => sh.a.implement_me("IM: constraint2"))
+                default: return p_.au($[0])
+            }
+        })
 }
 
 export const Relative_Value_Selection = (
     $: d_in.Resolver_Relative_Value_Selection,
 ): d_out.Select_Value => {
-    p_.from.list($.path['l value']).map(($) => null)
+    p_.from.list($.path['l value']).map(
+        ($) => null)
     return sh.sv.implement_me("IM: rvs")
 }
 
@@ -781,7 +804,8 @@ export const Value_Constraints = (
                 {
                     "location": sh.a.select(sh.sv.context(["l location"])),
                 },
-                sh.a.group.literal(p_.from.dictionary($).map(($, id) => Value_Constraint($)))
+                sh.a.group.literal(p_.from.dictionary($).map(
+                    ($, id) => Value_Constraint($)))
             ),
         }),
         () => $p.sub
@@ -801,13 +825,11 @@ export const Value_Results = (
         'base type': d_out.Assign
     }
 ): d_out.Assign => {
-    return p_.from.optional(
-        $,
+    return p_.from.optional($,
     ).decide(
         ($) => sh.a.group.literal({
             "l results": sh.a.group.literal(
-                p_.from.dictionary(
-                    $,
+                p_.from.dictionary($,
                 ).map(
                     ($) => Value_Reference($)
                 )

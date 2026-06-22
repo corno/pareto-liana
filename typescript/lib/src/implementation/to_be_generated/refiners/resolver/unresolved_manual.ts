@@ -102,42 +102,43 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                         //do additional validation
                                         return p_change_context($['l entry']['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
-                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide( ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
+                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
                                                     switch ($[0]) {
                                                         case 'not set': return p_.ss($, ($) => ['not set', null])
                                                         default: return p_.au($[0])
                                                     }
                                                 })])
-                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide( ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
+                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
                                                     switch ($[0]) {
                                                         case 'not set': return p_.ss($, ($) => ['not set', null])
                                                         default: return p_.au($[0])
                                                     }
                                                 })])
-                                                case 'stack': return p_.ss($, ($) => ['stack', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
-                                                    switch ($[0]) {
-                                                        case 'empty': return p_.ss($, ($) => ['empty', null])
-                                                        case 'push': return p_.ss($, ($) => {
-                                                            const p_stack = Lookup_Selection(
-                                                                $.stack,
-                                                                abort,
-                                                                $l,
-                                                                $p,
-                                                            )
-                                                            const p_element = Lookup_Selection(
-                                                                $.item,
-                                                                abort,
-                                                                $l,
-                                                                $p,
-                                                            )
-                                                            return ['push', {
-                                                                'stack': p_stack,
-                                                                'item': p_element
-                                                            }]
-                                                        })
-                                                        default: return p_.au($[0])
-                                                    }
-                                                })])
+                                                case 'stack': return p_.ss($, ($) => ['stack', p_.from.state($['l state']).decide(
+                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
+                                                        switch ($[0]) {
+                                                            case 'empty': return p_.ss($, ($) => ['empty', null])
+                                                            case 'push': return p_.ss($, ($) => {
+                                                                const p_stack = Lookup_Selection(
+                                                                    $.stack,
+                                                                    abort,
+                                                                    $l,
+                                                                    $p,
+                                                                )
+                                                                const p_element = Lookup_Selection(
+                                                                    $.item,
+                                                                    abort,
+                                                                    $l,
+                                                                    $p,
+                                                                )
+                                                                return ['push', {
+                                                                    'stack': p_stack,
+                                                                    'item': p_element
+                                                                }]
+                                                            })
+                                                            default: return p_.au($[0])
+                                                        }
+                                                    })])
                                                 case 'selection': return p_.ss($, ($) => ['selection', Lookup_Selection(
                                                     $,
                                                     abort,
@@ -683,8 +684,10 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 )
 
 
-                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Resolver_Relative_Value_Selection.tail.L, _i_out.Value> => pa.deprecated_block(() => {
-                //     return pa.deprecated_block(() => {
+                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Resolver_Relative_Value_Selection.tail.L, _i_out.Value> => pa.deprecated_block(
+                // () => {
+                //     return pa.deprecated_block(
+                // () => {
 
                 //         const sc_definition: _i_out.Value.state = pa.deprecated_cc(current, ($) => {
                 //             if ($[0] !== 'state') {
@@ -720,7 +723,8 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 //                             },
                 //                         }
                 //                     )
-                //                     return p_.from.dictionary($.value).map(($) => Value_Selection_Tail(
+                //                     return p_.from.dictionary($.value).map(
+                // ($) => Value_Selection_Tail(
                 //                         $,
                 //                         {
                 //                             'location 2 string': l2s,
@@ -769,428 +773,434 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
     })
     return p_type
 }
-export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => p_variables(() => {
+export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => p_variables(
+    () => {
 
-    const p_path: t_out.Resolver_Relative_Value_Selection.path = i_generic.temp_map_list_with_state(
-        $.path['l list'],
-        $p.value,
-        ($, current): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
-            const sg_loc = $['l location']
-            return p_change_context($['l item']['l state'], ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
-                switch ($[0]) {
-                    case 'component': return p_.ss($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+        const p_path: t_out.Resolver_Relative_Value_Selection.path = i_generic.temp_map_list_with_state(
+            $.path['l list'],
+            $p.value,
+            ($, current): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                const sg_loc = $['l location']
+                return p_change_context($['l item']['l state'], ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                    switch ($[0]) {
+                        case 'component': return p_.ss($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
 
-                        const sc_definition: t_out.Value.component = p_change_context(current, ($) => {
-                            if ($[0] !== 'component') {
-                                return i_generic.abort.state_constraint_expected_found("component", $, sg_loc, abort)
+                            const sc_definition: t_out.Value.component = p_change_context(current, ($) => {
+                                if ($[0] !== 'component') {
+                                    return i_generic.abort.state_constraint_expected_found("component", $, sg_loc, abort)
+                                }
+                                return $[1]
+                            })
+                            return {
+                                'l item': ['component', null],
+                                'l results': {
+                                    'result': p_change_context(sc_definition.type, ($) => {
+                                        switch ($[0]) {
+                                            case 'external': return p_.ss($, ($) => $.module['l entry']['root value'])
+                                            case 'internal acyclic': return p_.ss($, ($) => $['l entry']['root value'])
+                                            case 'internal': return p_.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
+                                            default: return p_.au($[0])
+                                        }
+                                    })
+                                }
                             }
-                            return $[1]
                         })
-                        return {
-                            'l item': ['component', null],
-                            'l results': {
-                                'result': p_change_context(sc_definition.type, ($) => {
-                                    switch ($[0]) {
-                                        case 'external': return p_.ss($, ($) => $.module['l entry']['root value'])
-                                        case 'internal acyclic': return p_.ss($, ($) => $['l entry']['root value'])
-                                        case 'internal': return p_.ss($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
-                                        default: return p_.au($[0])
-                                    }
-                                })
+                        case 'group': return p_.ss($, ($) => {
+                            const sc_definition: t_out.Value.group = p_change_context(current, ($) => {
+                                if ($[0] !== 'group') {
+                                    return i_generic.abort.state_constraint_expected_found("group", $, sg_loc, abort)
+                                }
+                                return $[1]
+                            })
+                            const p_child = i_generic.get_entry_acyclic(
+                                p_sl.acyclic.from_resolved_dictionary(sc_definition,),
+                                $,
+                                abort,
+                            )
+                            return {
+                                'l item': ['group', p_child],
+                                'l results': {
+                                    'result': p_child['l entry'].value
+                                }
                             }
-                        }
-                    })
-                    case 'group': return p_.ss($, ($) => {
-                        const sc_definition: t_out.Value.group = p_change_context(current, ($) => {
-                            if ($[0] !== 'group') {
-                                return i_generic.abort.state_constraint_expected_found("group", $, sg_loc, abort)
-                            }
-                            return $[1]
                         })
-                        const p_child = i_generic.get_entry_acyclic(
-                            p_sl.acyclic.from_resolved_dictionary(sc_definition,),
-                            $,
-                            abort,
-                        )
-                        return {
-                            'l item': ['group', p_child],
-                            'l results': {
-                                'result': p_child['l entry'].value
-                            }
-                        }
-                    })
-                    case 'reference': return p_.ss($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                        case 'reference': return p_.ss($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
 
-                        const sc_definition: t_out.Value.reference = p_change_context(current, ($) => {
-                            if ($[0] !== 'reference') {
-                                return i_generic.abort.state_constraint_expected_found("reference", $, sg_loc, abort)
+                            const sc_definition: t_out.Value.reference = p_change_context(current, ($) => {
+                                if ($[0] !== 'reference') {
+                                    return i_generic.abort.state_constraint_expected_found("reference", $, sg_loc, abort)
+                                }
+                                return $[1]
+                            })
+                            const referent: t_out.Value_Reference = sc_definition.referent
+                            const x: t_out.Value = p_change_context(sc_definition.type, ($) => {
+                                switch ($[0]) {
+                                    case 'derived': return p_.ss($, ($) => referent.path['resulting node'])
+                                    case 'selected': return p_.ss($, ($) => p_change_context(referent.path['resulting node'], ($) => {
+                                        switch ($[0]) {
+                                            case 'dictionary': return p_.ss($, ($) => $.value)
+                                            default: return i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
+                                        }
+                                    }))
+                                    default: return p_.au($[0])
+                                }
+                            })
+                            return {
+                                'l item': ['reference', {
+                                    'definition': sc_definition
+                                }],
+                                'l results': {
+                                    'result': x
+                                }
                             }
-                            return $[1]
                         })
-                        const referent: t_out.Value_Reference = sc_definition.referent
-                        const x: t_out.Value = p_change_context(sc_definition.type, ($) => {
-                            switch ($[0]) {
-                                case 'derived': return p_.ss($, ($) => referent.path['resulting node'])
-                                case 'selected': return p_.ss($, ($) => p_change_context(referent.path['resulting node'], ($) => {
-                                    switch ($[0]) {
-                                        case 'dictionary': return p_.ss($, ($) => $.value)
-                                        default: return i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
-                                    }
-                                }))
-                                default: return p_.au($[0])
-                            }
-                        })
-                        return {
-                            'l item': ['reference', {
-                                'definition': sc_definition
-                            }],
-                            'l results': {
-                                'result': x
-                            }
-                        }
-                    })
-                    default: return p_.au($[0])
+                        default: return p_.au($[0])
+                    }
+                })
+            },
+            ($) => $['l results'].result,
+            (list, result) => ({
+                'l value': list,
+                'l results': {
+                    'result': result,
                 }
-            })
-        },
-        ($) => $['l results'].result,
-        (list, result) => ({
-            'l value': list,
-            'l results': {
-                'result': result,
-            }
-        }),
-    )
-    return {
-        'path': p_path,
-        'resulting node': p_path['l results'].result, // list result
-    }
-})
+            }),
+        )
+        return {
+            'path': p_path,
+            'resulting node': p_path['l results'].result, // list result
+        }
+    })
 
 export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, abort, $l, $p) => {
     return p_change_context($, ($) => i_generic.temp_resolve(
         $['l dictionary'],
-        ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_variables(() => {
-            const p_start: t_out.Resolver_Value_Constraint.start = p_change_context($['l entry'].start['l state'], ($) => {
+        ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_variables(
+            () => {
+                const p_start: t_out.Resolver_Value_Constraint.start = p_change_context($['l entry'].start['l state'], ($) => {
+                    switch ($[0]) {
+                        case 'value': return p_.ss($, ($) => ['value', null])
+                        case 'sibling': return p_.ss($, ($) => ['sibling', i_generic.get_entry_acyclic(
+                            $acyclic,
+                            $,
+                            abort,
+                        )])
+                        default: return p_.au($[0])
+                    }
+                })
+                const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
+                    $['l entry'].constraint,
+                    abort,
+                    p_.literal.nothing(),
+                    {
+
+                        'value': p_change_context(p_start, ($) => {
+                            switch ($[0]) {
+                                case 'value': return p_.ss($, ($) => $p.value)
+                                case 'sibling': return p_.ss($, ($) => p_change_context($['l entry'].constraint.type, ($) => {
+                                    switch ($[0]) {
+                                        case 'state': return p_.ss($, ($) => $.option['l entry'].value)
+                                        case 'optional value': return p_.ss($, ($) => $['selected optional value'])
+                                        default: return p_.au($[0])
+                                    }
+                                }))
+                                default: return p_.au($[0])
+                            }
+                        }),
+                    },
+                )
+                return ({
+                    'start': p_start,
+                    'constraint': p_constraint,
+                })
+            })),
+    ))
+}
+
+export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => p_variables(
+    () => p_variables(
+        () => {
+            const start_location = $.start['l location']
+            const p_start: t_out.Resolver_Guaranteed_Value_Selection.start = p_change_context($.start['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
                 switch ($[0]) {
-                    case 'value': return p_.ss($, ($) => ['value', null])
-                    case 'sibling': return p_.ss($, ($) => ['sibling', i_generic.get_entry_acyclic(
-                        $acyclic,
+                    case 'constraint': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['constraint', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
+                        switch ($[0]) {
+                            case 'component': return p_.ss($, ($) => {
+                                const loc = $['property']['l location']
+                                const p_sibling = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                    $l['sibling property resolvers'],
+                                    $,
+                                    abort,
+                                ))
+
+                                const x_component = p_sibling['l entry'].resolver[0] !== 'component'
+                                    ? i_generic.abort.state_constraint_found_expected("component", p_sibling['l entry'].resolver, loc, abort)
+                                    : p_sibling['l entry'].resolver[1]
+
+                                const p_constraint = p_change_context($['constraint'], ($) => i_generic.get_entry_acyclic(
+                                    p_sl.acyclic.from_resolved_dictionary(x_component.constraints),
+                                    $,
+                                    abort,
+                                ))
+                                return ['component', {
+                                    'property': p_sibling,
+                                    'constraint': p_constraint
+                                }]
+                            })
+                            case 'reference': return p_.ss($, ($) => {
+                                const loc = $['property']['l location']
+                                const p_sibling = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                    $l['sibling property resolvers'],
+                                    $,
+                                    abort,
+                                ))
+
+                                const x_reference = p_sibling['l entry'].resolver[0] !== 'reference'
+                                    ? i_generic.abort.state_constraint_found_expected("reference", p_sibling['l entry'].resolver, loc, abort)
+                                    : p_sibling['l entry'].resolver[1]
+
+                                const x_reference_selected = x_reference.type[0] !== 'selected'
+                                    ? i_generic.abort.state_constraint_expected_found("selected", x_reference.type, loc, abort)
+                                    : x_reference.type[1]
+
+                                const p_constraint = p_change_context($['constraint'], ($) => i_generic.get_entry_acyclic(
+                                    p_sl.acyclic.from_resolved_dictionary(x_reference_selected.constraints),
+                                    $,
+                                    abort,
+                                ))
+                                return ['reference', {
+                                    'property': p_sibling,
+                                    'constraint': p_constraint
+                                }]
+                            })
+                            default: return p_.au($[0])
+                        }
+                    })])
+                    case 'list cursor': return p_.ss($, ($) => ['list cursor', null])
+                    case 'linked entry': return p_.ss($, ($) => ['linked entry', null])
+                    case 'option constraint': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
+                        const sc = p_.from.optional($p['option constraints']).decide(
+                            ($) => $,
+                            () => i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
+                        )
+                        return ['option constraint', i_generic.get_entry_acyclic(
+                            p_sl.acyclic.from_resolved_dictionary(sc),
+                            $,
+                            abort,
+                        )]
+                    })
+                    case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
+                        p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
+                        $,
+                        abort,
+                    )])
+                    case 'result': return p_.ss($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
+                        switch ($[0]) {
+                            case 'list': return p_.ss($, ($) => {
+                                const loc = $['property']['l location']
+                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                    $l['sibling property resolvers'],
+                                    $,
+                                    abort,
+                                ))
+                                const p_list_result_a = p_change_context($['list result'], ($) => p_sibling['l entry'].resolver[0] !== 'list'
+                                    ? i_generic.abort.state_constraint_found_expected("list", p_sibling['l entry'].resolver, loc, abort)
+                                    : p_sibling['l entry'].resolver[1])
+                                const p_list_result: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_.from.optional(p_list_result_a.result).decide(
+                                    ($) => $,
+                                    () => i_generic.abort.is_set_assertion("list result", loc, abort)
+                                )
+                                return ['list', {
+                                    'property': p_sibling,
+                                    'list result': p_list_result,
+                                }]
+                            })
+                            case 'state': return p_.ss($, ($) => {
+                                const loc = $['property']['l location']
+                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                    $l['sibling property resolvers'],
+                                    $,
+                                    abort,
+                                ))
+                                const P_state = p_change_context($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
+                                    ? i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
+                                    : p_sibling['l entry'].resolver[1])
+                                return ['state', {
+                                    'property': p_sibling,
+                                    'state': P_state,
+                                    'result': Module_Reference(
+                                        $.result,
+                                        abort,
+                                        {
+                                            'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                        },
+                                        {
+                                            'imports': $p['schema imports'],
+                                        },
+                                    )
+                                }]
+                            })
+                            case 'optional value': return p_.ss($, ($) => {
+                                const loc = $['property']['l location']
+                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                    $l['sibling property resolvers'],
+                                    $,
+                                    abort,
+                                ))
+                                const p_optional_value = p_change_context($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
+                                    ? i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
+                                    : p_sibling['l entry'].resolver[1])
+                                return ['optional value', {
+                                    'property': p_sibling,
+                                    'optional value': p_optional_value,
+                                    'result': Module_Reference(
+                                        $.result,
+                                        abort,
+                                        {
+                                            'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                        },
+                                        {
+                                            'imports': $p['schema imports'],
+                                        },
+                                    )
+                                }]
+                            })
+                            default: return p_.au($[0])
+                        }
+                    })])
+                    case 'sibling': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['sibling', i_generic.get_entry_acyclic(
+                        $l['sibling property resolvers'],
+                        $,
+                        abort,
+                    )])
+                    case 'parent sibling': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['parent sibling', i_generic.get_entry_acyclic(
+                        $l['parent sibling property resolvers'],
                         $,
                         abort,
                     )])
                     default: return p_.au($[0])
                 }
             })
-            const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
-                $['l entry'].constraint,
+            const p_tail = Relative_Value_Selection(
+                $.tail,
                 abort,
                 p_.literal.nothing(),
                 {
-
-                    'value': p_change_context(p_start, ($) => {
-                        switch ($[0]) {
-                            case 'value': return p_.ss($, ($) => $p.value)
-                            case 'sibling': return p_.ss($, ($) => p_change_context($['l entry'].constraint.type, ($) => {
+                    'value': p_variables(
+                        () => {
+                            const pvs = ($: t_out.Resolver_Possible_Value_Selection) => p_change_context($, ($): t_out.Module => {
+                                return p_change_context($, ($) => {
+                                    switch ($[0]) {
+                                        case 'parameter': return p_.ss($, ($) => $['l entry'].module['resulting module'])
+                                        case 'result': return p_.ss($, ($) => p_change_context($, ($) => {
+                                            switch ($[0]) {
+                                                case 'state': return p_.ss($, ($) => $.result['resulting module'])
+                                                case 'optional value': return p_.ss($, ($) => $.result['resulting module'])
+                                                default: return p_.au($[0])
+                                            }
+                                        }))
+                                        default: return p_.au($[0])
+                                    }
+                                })
+                            })['root value']
+                            const start_loc = $.start['l location']
+                            const gvs_start = ($: t_out.Resolver_Guaranteed_Value_Selection.start) => p_change_context($, ($): t_out.Value => {
                                 switch ($[0]) {
-                                    case 'state': return p_.ss($, ($) => $.option['l entry'].value)
-                                    case 'optional value': return p_.ss($, ($) => $['selected optional value'])
+                                    case 'constraint': return p_.ss($, ($) => p_change_context($, ($) => {
+                                        switch ($[0]) {
+                                            case 'component': return p_.ss($, ($) => p_change_context($.constraint['l entry'].constraint.type, ($) => {
+                                                switch ($[0]) {
+                                                    case 'state': return p_.ss($, ($) => $.option['l entry'].value)
+                                                    case 'optional value': return p_.ss($, ($) => $['selected optional value'])
+                                                    default: return p_.au($[0])
+                                                }
+                                            }))
+                                            case 'reference': return p_.ss($, ($) => p_change_context($.constraint['l entry'].constraint.type, ($) => {
+                                                switch ($[0]) {
+                                                    case 'state': return p_.ss($, ($) => $.option['l entry'].value)
+                                                    case 'optional value': return p_.ss($, ($) => $['selected optional value'])
+
+                                                    default: return p_.au($[0])
+                                                }
+                                            }))
+
+                                            default: return p_.au($[0])
+                                        }
+                                    }))
+                                    case 'parameter': return p_.ss($, ($) => $['l entry'].module['resulting module']['root value'])
+                                    case 'result': return p_.ss($, ($) => p_change_context($, ($) => {
+                                        switch ($[0]) {
+                                            case 'state': return p_.ss($, ($) => $.result['resulting module']['root value'])
+                                            case 'optional value': return p_.ss($, ($) => $.result['resulting module']['root value'])
+                                            case 'list': return p_.ss($, ($) => $['list result']['resulting module']['root value'])
+                                            default: return p_.au($[0])
+                                        }
+                                    }))
+                                    case 'list cursor': return p_.ss($, ($) => p_.from.optional($p['list cursor']).decide(
+                                        ($) => $['resulting module']['root value'],
+                                        () => i_generic.abort.parameter_is_set_assertion("list cursor", start_loc, abort)
+                                    ))
+                                    case 'linked entry': return p_.ss($, ($) => p_.from.optional($p['linked entry']).decide(
+                                        ($) => $['resulting dictionary'].value,
+                                        () => i_generic.abort.parameter_is_set_assertion("linked entry", start_loc, abort)
+                                    ))
+                                    case 'option constraint': return p_.ss($, ($) => p_change_context($['l entry'], ($) => {
+                                        switch ($[0]) {
+                                            case 'state': return p_.ss($, ($) => $.option['l entry'].value)
+                                            case 'assert is set': return p_.ss($, ($) => pvs($))
+                                            default: return p_.au($[0])
+                                        }
+                                    }))
+                                    case 'sibling': return p_.ss($, ($) => $['l entry'].definition.value)
+                                    case 'parent sibling': return p_.ss($, ($) => $['l entry'].definition.value)
                                     default: return p_.au($[0])
                                 }
-                            }))
-                            default: return p_.au($[0])
-                        }
-                    }),
+                            })
+                            return gvs_start(p_start)
+                        })
                 },
             )
+            const p_resulting_type: t_out.Value = p_tail['resulting node']
             return ({
                 'start': p_start,
-                'constraint': p_constraint,
+                'tail': p_tail,
+                'resulting node': p_resulting_type,
             })
-        })),
-    ))
-}
-
-export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_Selection = ($, abort, $l, $p) => p_variables(() => p_variables(() => {
-    const start_location = $.start['l location']
-    const p_start: t_out.Resolver_Guaranteed_Value_Selection.start = p_change_context($.start['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
-        switch ($[0]) {
-            case 'constraint': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['constraint', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
-                switch ($[0]) {
-                    case 'component': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-
-                        const x_component = p_sibling['l entry'].resolver[0] !== 'component'
-                            ? i_generic.abort.state_constraint_found_expected("component", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1]
-
-                        const p_constraint = p_change_context($['constraint'], ($) => i_generic.get_entry_acyclic(
-                            p_sl.acyclic.from_resolved_dictionary(x_component.constraints),
-                            $,
-                            abort,
-                        ))
-                        return ['component', {
-                            'property': p_sibling,
-                            'constraint': p_constraint
-                        }]
-                    })
-                    case 'reference': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-
-                        const x_reference = p_sibling['l entry'].resolver[0] !== 'reference'
-                            ? i_generic.abort.state_constraint_found_expected("reference", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1]
-
-                        const x_reference_selected = x_reference.type[0] !== 'selected'
-                            ? i_generic.abort.state_constraint_expected_found("selected", x_reference.type, loc, abort)
-                            : x_reference.type[1]
-
-                        const p_constraint = p_change_context($['constraint'], ($) => i_generic.get_entry_acyclic(
-                            p_sl.acyclic.from_resolved_dictionary(x_reference_selected.constraints),
-                            $,
-                            abort,
-                        ))
-                        return ['reference', {
-                            'property': p_sibling,
-                            'constraint': p_constraint
-                        }]
-                    })
-                    default: return p_.au($[0])
-                }
-            })])
-            case 'list cursor': return p_.ss($, ($) => ['list cursor', null])
-            case 'linked entry': return p_.ss($, ($) => ['linked entry', null])
-            case 'option constraint': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
-                const sc = p_.from.optional($p['option constraints']).decide(
-                    ($) => $,
-                    () => i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
-                )
-                return ['option constraint', i_generic.get_entry_acyclic(
-                    p_sl.acyclic.from_resolved_dictionary(sc),
-                    $,
-                    abort,
-                )]
-            })
-            case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
-                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
-                $,
-                abort,
-            )])
-            case 'result': return p_.ss($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
-                switch ($[0]) {
-                    case 'list': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-                        const p_list_result_a = p_change_context($['list result'], ($) => p_sibling['l entry'].resolver[0] !== 'list'
-                            ? i_generic.abort.state_constraint_found_expected("list", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1])
-                        const p_list_result: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_.from.optional(p_list_result_a.result).decide(
-                            ($) => $,
-                            () => i_generic.abort.is_set_assertion("list result", loc, abort)
-                        )
-                        return ['list', {
-                            'property': p_sibling,
-                            'list result': p_list_result,
-                        }]
-                    })
-                    case 'state': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-                        const P_state = p_change_context($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
-                            ? i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1])
-                        return ['state', {
-                            'property': p_sibling,
-                            'state': P_state,
-                            'result': Module_Reference(
-                                $.result,
-                                abort,
-                                {
-                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
-                                },
-                                {
-                                    'imports': $p['schema imports'],
-                                },
-                            )
-                        }]
-                    })
-                    case 'optional value': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-                        const p_optional_value = p_change_context($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
-                            ? i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1])
-                        return ['optional value', {
-                            'property': p_sibling,
-                            'optional value': p_optional_value,
-                            'result': Module_Reference(
-                                $.result,
-                                abort,
-                                {
-                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
-                                },
-                                {
-                                    'imports': $p['schema imports'],
-                                },
-                            )
-                        }]
-                    })
-                    default: return p_.au($[0])
-                }
-            })])
-            case 'sibling': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['sibling', i_generic.get_entry_acyclic(
-                $l['sibling property resolvers'],
-                $,
-                abort,
-            )])
-            case 'parent sibling': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['parent sibling', i_generic.get_entry_acyclic(
-                $l['parent sibling property resolvers'],
-                $,
-                abort,
-            )])
-            default: return p_.au($[0])
-        }
-    })
-    const p_tail = Relative_Value_Selection(
-        $.tail,
-        abort,
-        p_.literal.nothing(),
-        {
-            'value': p_variables(() => {
-                const pvs = ($: t_out.Resolver_Possible_Value_Selection) => p_change_context($, ($): t_out.Module => {
-                    return p_change_context($, ($) => {
-                        switch ($[0]) {
-                            case 'parameter': return p_.ss($, ($) => $['l entry'].module['resulting module'])
-                            case 'result': return p_.ss($, ($) => p_change_context($, ($) => {
-                                switch ($[0]) {
-                                    case 'state': return p_.ss($, ($) => $.result['resulting module'])
-                                    case 'optional value': return p_.ss($, ($) => $.result['resulting module'])
-                                    default: return p_.au($[0])
-                                }
-                            }))
-                            default: return p_.au($[0])
-                        }
-                    })
-                })['root value']
-                const start_loc = $.start['l location']
-                const gvs_start = ($: t_out.Resolver_Guaranteed_Value_Selection.start) => p_change_context($, ($): t_out.Value => {
-                    switch ($[0]) {
-                        case 'constraint': return p_.ss($, ($) => p_change_context($, ($) => {
-                            switch ($[0]) {
-                                case 'component': return p_.ss($, ($) => p_change_context($.constraint['l entry'].constraint.type, ($) => {
-                                    switch ($[0]) {
-                                        case 'state': return p_.ss($, ($) => $.option['l entry'].value)
-                                        case 'optional value': return p_.ss($, ($) => $['selected optional value'])
-                                        default: return p_.au($[0])
-                                    }
-                                }))
-                                case 'reference': return p_.ss($, ($) => p_change_context($.constraint['l entry'].constraint.type, ($) => {
-                                    switch ($[0]) {
-                                        case 'state': return p_.ss($, ($) => $.option['l entry'].value)
-                                        case 'optional value': return p_.ss($, ($) => $['selected optional value'])
-
-                                        default: return p_.au($[0])
-                                    }
-                                }))
-
-                                default: return p_.au($[0])
-                            }
-                        }))
-                        case 'parameter': return p_.ss($, ($) => $['l entry'].module['resulting module']['root value'])
-                        case 'result': return p_.ss($, ($) => p_change_context($, ($) => {
-                            switch ($[0]) {
-                                case 'state': return p_.ss($, ($) => $.result['resulting module']['root value'])
-                                case 'optional value': return p_.ss($, ($) => $.result['resulting module']['root value'])
-                                case 'list': return p_.ss($, ($) => $['list result']['resulting module']['root value'])
-                                default: return p_.au($[0])
-                            }
-                        }))
-                        case 'list cursor': return p_.ss($, ($) => p_.from.optional($p['list cursor']).decide(
-                            ($) => $['resulting module']['root value'],
-                            () => i_generic.abort.parameter_is_set_assertion("list cursor", start_loc, abort)
-                        ))
-                        case 'linked entry': return p_.ss($, ($) => p_.from.optional($p['linked entry']).decide(
-                            ($) => $['resulting dictionary'].value,
-                            () => i_generic.abort.parameter_is_set_assertion("linked entry", start_loc, abort)
-                        ))
-                        case 'option constraint': return p_.ss($, ($) => p_change_context($['l entry'], ($) => {
-                            switch ($[0]) {
-                                case 'state': return p_.ss($, ($) => $.option['l entry'].value)
-                                case 'assert is set': return p_.ss($, ($) => pvs($))
-                                default: return p_.au($[0])
-                            }
-                        }))
-                        case 'sibling': return p_.ss($, ($) => $['l entry'].definition.value)
-                        case 'parent sibling': return p_.ss($, ($) => $['l entry'].definition.value)
-                        default: return p_.au($[0])
-                    }
-                })
-                return gvs_start(p_start)
-            })
-        },
-    )
-    const p_resulting_type: t_out.Value = p_tail['resulting node']
-    return ({
-        'start': p_start,
-        'tail': p_tail,
-        'resulting node': p_resulting_type,
-    })
-}))
+        }))
 
 export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, abort, $l, $p) => {
     return p_change_context($, ($) => i_generic.temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_change_context($['l entry']['l state'], ($) => {
             switch ($[0]) {
-                case 'state': return p_.ss($, ($) => ['state', p_variables(() => {
-                    const loc = $.selection.start['l location']
-                    const p_selection: t_out.Resolver_Option_Constraints.D.state.selection = p_change_context($['selection'], ($) => Guaranteed_Value_Selection(
-                        $,
-                        abort,
-                        $l,
-                        $p,
-                    ))
-                    const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
-                        ? i_generic.abort.state_constraint_found_expected(
-                            "state",
-                            p_selection['resulting node'],
-                            loc,
+                case 'state': return p_.ss($, ($) => ['state', p_variables(
+                    () => {
+                        const loc = $.selection.start['l location']
+                        const p_selection: t_out.Resolver_Option_Constraints.D.state.selection = p_change_context($['selection'], ($) => Guaranteed_Value_Selection(
+                            $,
                             abort,
-                        )
-                        : p_selection['resulting node'][1]
-                    const p_option: t_out.Resolver_Option_Constraints.D.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
-                        p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
-                        $,
-                        abort,
-                    ))
-                    return ({
-                        'selected state': p_selected_state,
-                        'selection': p_selection,
-                        'option': p_option,
-                    })
-                })])
+                            $l,
+                            $p,
+                        ))
+                        const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
+                            ? i_generic.abort.state_constraint_found_expected(
+                                "state",
+                                p_selection['resulting node'],
+                                loc,
+                                abort,
+                            )
+                            : p_selection['resulting node'][1]
+                        const p_option: t_out.Resolver_Option_Constraints.D.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
+                            p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
+                            $,
+                            abort,
+                        ))
+                        return ({
+                            'selected state': p_selected_state,
+                            'selection': p_selection,
+                            'option': p_option,
+                        })
+                    })])
                 case 'assert is set': return p_.ss($, ($) => ['assert is set', Possibly_Optional(
                     $,
                     abort,
@@ -1256,164 +1266,172 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
     }
 }
 
-export const Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($, abort, $l, $p) => p_variables(() => p_change_context($['l state'], ($) => {
-    switch ($[0]) {
-        case 'not set': return p_.ss($, ($) => ['not set', null])
-        case 'set': return p_.ss($, ($) => ['set', Guaranteed_Value_Selection($, abort, $l, $p)])
-        case 'selection': return p_.ss($, ($): t_out.Resolver_Optional_Value_Initialization => {
-            return ['selection', Possibly_Optional($, abort, $l, $p)]
-        })
-        default: return p_.au($[0])
-    }
-}))
-
-export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection = ($, abort, $l, $p) => p_variables(() => {
-    return p_change_context($['l state'], ($) => {
+export const Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($, abort, $l, $p) => p_variables(
+    () => p_change_context($['l state'], ($) => {
         switch ($[0]) {
-            case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
-                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
-                $,
-                abort,
-            )])
-            case 'result': return p_.ss($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Possible_Value_Selection.result => {
-                switch ($[0]) {
-                    case 'state': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling: t_out.Resolver_Possible_Value_Selection.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-                        const P_state = p_change_context($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
-                            ? i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1])
-
-                        const p_result = Module_Reference(
-                            $.result,
-                            abort,
-                            {
-                                'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
-                            },
-                            {
-                                'imports': $p['schema imports'],
-                            },
-                        )
-                        return ['state', {
-                            'property': p_sibling,
-                            'state': P_state,
-                            'result': p_result,
-                        }]
-                    })
-                    case 'optional value': return p_.ss($, ($) => {
-                        const loc = $['property']['l location']
-                        const p_sibling: t_out.Resolver_Possible_Value_Selection.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
-                            $l['sibling property resolvers'],
-                            $,
-                            abort,
-                        ))
-                        const p_optional_value = p_change_context($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
-                            ? i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
-                            : p_sibling['l entry'].resolver[1])
-                        const p_result = Module_Reference(
-                            $.result,
-                            abort,
-                            {
-                                'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
-                            },
-                            {
-                                'imports': $p['schema imports'],
-                            },
-                        )
-                        return ['optional value', {
-                            'property': p_sibling,
-                            'optional value': p_optional_value,
-                            'result': p_result,
-                        }]
-                    })
-                    default: return p_.au($[0])
-                }
-            })])
-            default: return p_.au($[0])
-        }
-    })
-})
-
-export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => p_variables(() => p_variables(() => {
-    const loc = $.type['l location']
-    const p_type: t_out.Resolver_Lookup_Selection.type_ = p_change_context($['type'], ($) => p_change_context($['l state'], ($): t_out.Resolver_Lookup_Selection.type_ => {
-        switch ($[0]) {
-            case 'acyclic': return p_.ss($, ($): t_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
-                switch ($[0]) {
-                    case 'resolved dictionary': return p_.ss($, ($) => {
-                        const p_selection = Guaranteed_Value_Selection(
-                            $.selection,
-                            abort,
-                            $l,
-                            $p,
-                        )
-
-                        const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
-                            ? i_generic.abort.state_constraint_found_expected(
-                                "dictionary",
-                                p_selection['resulting node'],
-                                $.selection.start['l location'], //$['selected dictionary'].location,
-                                abort,
-                            )
-                            : p_selection['resulting node'][1]
-
-                        return ['resolved dictionary', {
-                            'selection': p_selection,
-                            'selected dictionary': p_selected_dictionary,
-                        }]
-                    })
-                    case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
-                        ($) => $,
-                        () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
-                    )])
-                    default: return p_.au($[0])
-                }
-            })])
-            case 'cyclic': return p_.ss($, ($) => ['cyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
-                switch ($[0]) {
-                    case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
-                        ($) => $,
-                        () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
-                    )])
-                    default: return p_.au($[0])
-                }
-            })])
-            case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
-                p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].lookups),
-                $,
-                abort
-            )])
+            case 'not set': return p_.ss($, ($) => ['not set', null])
+            case 'set': return p_.ss($, ($) => ['set', Guaranteed_Value_Selection($, abort, $l, $p)])
+            case 'selection': return p_.ss($, ($): t_out.Resolver_Optional_Value_Initialization => {
+                return ['selection', Possibly_Optional($, abort, $l, $p)]
+            })
             default: return p_.au($[0])
         }
     }))
-    const p_resulting_dictionary = p_change_context(p_type, ($): t_out.Value.dictionary => {
-        switch ($[0]) {
-            case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+
+export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection = ($, abort, $l, $p) => p_variables(
+    () => {
+        return p_change_context($['l state'], ($) => {
+            switch ($[0]) {
+                case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
+                    p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].modules),
+                    $,
+                    abort,
+                )])
+                case 'result': return p_.ss($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Possible_Value_Selection.result => {
+                    switch ($[0]) {
+                        case 'state': return p_.ss($, ($) => {
+                            const loc = $['property']['l location']
+                            const p_sibling: t_out.Resolver_Possible_Value_Selection.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                $l['sibling property resolvers'],
+                                $,
+                                abort,
+                            ))
+                            const P_state = p_change_context($['state'], ($) => p_sibling['l entry'].resolver[0] !== 'state'
+                                ? i_generic.abort.state_constraint_found_expected("state", p_sibling['l entry'].resolver, loc, abort)
+                                : p_sibling['l entry'].resolver[1])
+
+                            const p_result = Module_Reference(
+                                $.result,
+                                abort,
+                                {
+                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                },
+                                {
+                                    'imports': $p['schema imports'],
+                                },
+                            )
+                            return ['state', {
+                                'property': p_sibling,
+                                'state': P_state,
+                                'result': p_result,
+                            }]
+                        })
+                        case 'optional value': return p_.ss($, ($) => {
+                            const loc = $['property']['l location']
+                            const p_sibling: t_out.Resolver_Possible_Value_Selection.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                $l['sibling property resolvers'],
+                                $,
+                                abort,
+                            ))
+                            const p_optional_value = p_change_context($['optional value'], ($) => p_sibling['l entry'].resolver[0] !== 'optional'
+                                ? i_generic.abort.state_constraint_found_expected("optional", p_sibling['l entry'].resolver, loc, abort)
+                                : p_sibling['l entry'].resolver[1])
+                            const p_result = Module_Reference(
+                                $.result,
+                                abort,
+                                {
+                                    'modules': p_sl.acyclic.from_resolved_dictionary($p.modules),
+                                },
+                                {
+                                    'imports': $p['schema imports'],
+                                },
+                            )
+                            return ['optional value', {
+                                'property': p_sibling,
+                                'optional value': p_optional_value,
+                                'result': p_result,
+                            }]
+                        })
+                        default: return p_.au($[0])
+                    }
+                })])
+                default: return p_.au($[0])
+            }
+        })
+    })
+
+export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abort, $l, $p) => p_variables(
+    () => p_variables(
+        () => {
+            const loc = $.type['l location']
+            const p_type: t_out.Resolver_Lookup_Selection.type_ = p_change_context($['type'], ($) => p_change_context($['l state'], ($): t_out.Resolver_Lookup_Selection.type_ => {
                 switch ($[0]) {
-                    case 'siblings': return p_.ss($, ($) => $)
-                    case 'resolved dictionary': return p_.ss($, ($) => $['selected dictionary'])
+                    case 'acyclic': return p_.ss($, ($): t_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.from.state($['l state']).decide(
+                        ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
+                            switch ($[0]) {
+                                case 'resolved dictionary': return p_.ss($, ($) => {
+                                    const p_selection = Guaranteed_Value_Selection(
+                                        $.selection,
+                                        abort,
+                                        $l,
+                                        $p,
+                                    )
+
+                                    const p_selected_dictionary = p_selection['resulting node'][0] !== 'dictionary' // component constraint (selection)
+                                        ? i_generic.abort.state_constraint_found_expected(
+                                            "dictionary",
+                                            p_selection['resulting node'],
+                                            $.selection.start['l location'], //$['selected dictionary'].location,
+                                            abort,
+                                        )
+                                        : p_selection['resulting node'][1]
+
+                                    return ['resolved dictionary', {
+                                        'selection': p_selection,
+                                        'selected dictionary': p_selected_dictionary,
+                                    }]
+                                })
+                                case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
+                                    ($) => $,
+                                    () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
+                                )])
+                                default: return p_.au($[0])
+                            }
+                        })])
+                    case 'cyclic': return p_.ss($, ($) => ['cyclic', p_.from.state($['l state']).decide(
+                        ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
+                            switch ($[0]) {
+                                case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
+                                    ($) => $,
+                                    () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
+                                )])
+                                default: return p_.au($[0])
+                            }
+                        })])
+                    case 'parameter': return p_.ss($, ($) => ['parameter', i_generic.get_entry_acyclic(
+                        p_sl.acyclic.from_resolved_dictionary($p.signature['resolved parameters'].lookups),
+                        $,
+                        abort
+                    )])
                     default: return p_.au($[0])
                 }
             }))
-            case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
+            const p_resulting_dictionary = p_change_context(p_type, ($): t_out.Value.dictionary => {
                 switch ($[0]) {
-                    case 'siblings': return p_.ss($, ($) => $)
+                    case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                        ($) => {
+                            switch ($[0]) {
+                                case 'siblings': return p_.ss($, ($) => $)
+                                case 'resolved dictionary': return p_.ss($, ($) => $['selected dictionary'])
+                                default: return p_.au($[0])
+                            }
+                        }))
+                    case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                        ($) => {
+                            switch ($[0]) {
+                                case 'siblings': return p_.ss($, ($) => $)
+                                default: return p_.au($[0])
+                            }
+                        }))
+                    case 'parameter': return p_.ss($, ($) => $['l entry'].dictionary)
                     default: return p_.au($[0])
                 }
-            }))
-            case 'parameter': return p_.ss($, ($) => $['l entry'].dictionary)
-            default: return p_.au($[0])
-        }
-    })
-    return ({
-        'type': p_type,
-        'resulting dictionary': p_resulting_dictionary,
-    })
-}))
+            })
+            return ({
+                'type': p_type,
+                'resulting dictionary': p_resulting_dictionary,
+            })
+        }))
 
 export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => {
     const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {

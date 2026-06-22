@@ -109,16 +109,17 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                     {
                         'message': sh.pg.sentences([
                             sh.sentence([
-                                p_temp.from.state($).decide(($) => {
-                                    switch ($[0]) {
-                                        case 'missing source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
-                                        case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                        case 'missing target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
-                                        case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
-                                        case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
-                                        default: return p_temp.au($[0])
-                                    }
-                                })
+                                p_temp.from.state($).decide(
+                                    ($) => {
+                                        switch ($[0]) {
+                                            case 'missing source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                            case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
+                                            case 'missing target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                            case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
+                                            case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
+                                            default: return p_temp.au($[0])
+                                        }
+                                    })
                             ])
                         ])
                     },

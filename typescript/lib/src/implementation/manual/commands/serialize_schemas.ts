@@ -80,25 +80,26 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                                         sh.ph.literal("Error serializing schema for module '"),
                                         sh.ph.literal(id),
                                         sh.ph.literal("': "),
-                                        p_temp.from.state($).decide(($) => {
-                                            switch ($[0]) {
-                                                case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
-                                                    t_loc_to_fp.Range(
-                                                        $.location,
-                                                        {
-                                                            'document resource identifier': "unknown DRI",
-                                                            'character location reporting': ['one based', null]
-                                                        }
-                                                    ),
-                                                    sh.ph.literal(": "),
-                                                    t_resolve_to_fp.Error(
-                                                        $,
-                                                    )
-                                                ]))
-                                                case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_fp.Error($))
-                                                default: return p_temp.au($[0])
-                                            }
-                                        })
+                                        p_temp.from.state($).decide(
+                                            ($) => {
+                                                switch ($[0]) {
+                                                    case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
+                                                        t_loc_to_fp.Range(
+                                                            $.location,
+                                                            {
+                                                                'document resource identifier': "unknown DRI",
+                                                                'character location reporting': ['one based', null]
+                                                            }
+                                                        ),
+                                                        sh.ph.literal(": "),
+                                                        t_resolve_to_fp.Error(
+                                                            $,
+                                                        )
+                                                    ]))
+                                                    case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_fp.Error($))
+                                                    default: return p_temp.au($[0])
+                                                }
+                                            })
                                     ]),
 
                                 ])

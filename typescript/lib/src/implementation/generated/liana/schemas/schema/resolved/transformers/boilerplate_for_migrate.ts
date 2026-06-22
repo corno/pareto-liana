@@ -41,8 +41,7 @@ export const Schemas: t_signatures.Schemas = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Schema_Tree(
@@ -156,8 +155,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -225,8 +223,7 @@ export const Modules: t_signatures.Modules = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Module(
@@ -314,8 +311,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     },
                 },
             }],
-            'l dictionary': p_.from.dictionary(
-                $,
+            'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': Text_Type(
@@ -360,8 +356,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     },
                 },
             }],
-            'l dictionary': p_.from.dictionary(
-                $,
+            'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': Simple_Type(
@@ -794,8 +789,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             },
                                         },
                                     }],
-                                    'l dictionary': p_.from.dictionary(
-                                        $,
+                                    'l dictionary': p_.from.dictionary($,
                                     ).map(
                                         ($, id) => ({
                                             'l entry': {
@@ -807,8 +801,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 ),
                                                 'description': p_change_context(
                                                     $['description'],
-                                                    ($) => p_.from.optional(
-                                                        $,
+                                                    ($) => p_.from.optional($,
                                                     ).map(
                                                         ($) => $,
                                                     ),
@@ -957,8 +950,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -1026,8 +1018,7 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Resolver_Signature(
@@ -1073,8 +1064,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                     },
                 },
             }],
-            'l dictionary': p_.from.dictionary(
-                $,
+            'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': {
@@ -1130,8 +1120,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                     },
                 },
             }],
-            'l dictionary': p_.from.dictionary(
-                $,
+            'l dictionary': p_.from.dictionary($,
             ).map(
                 ($, id) => ({
                     'l entry': {
@@ -1383,14 +1372,12 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                             'arguments': p_change_context(
                                 $['arguments'],
-                                ($) => p_.from.optional(
-                                    $,
+                                ($) => p_.from.optional($,
                                 ).map(
                                     ($) => ({
                                         'modules': p_change_context(
                                             $['modules'],
-                                            ($) => p_.from.optional(
-                                                $,
+                                            ($) => p_.from.optional($,
                                             ).map(
                                                 ($) => ({
                                                     'l location': ['in main document', {
@@ -1409,8 +1396,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             },
                                                         },
                                                     }],
-                                                    'l dictionary': p_.from.dictionary(
-                                                        $,
+                                                    'l dictionary': p_.from.dictionary($,
                                                     ).map(
                                                         ($, id) => ({
                                                             'l entry': {
@@ -1502,8 +1488,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                         ),
                                         'lookups': p_change_context(
                                             $['lookups'],
-                                            ($) => p_.from.optional(
-                                                $,
+                                            ($) => p_.from.optional($,
                                             ).map(
                                                 ($) => ({
                                                     'l location': ['in main document', {
@@ -1522,8 +1507,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             },
                                                         },
                                                     }],
-                                                    'l dictionary': p_.from.dictionary(
-                                                        $,
+                                                    'l dictionary': p_.from.dictionary($,
                                                     ).map(
                                                         ($, id) => ({
                                                             'l entry': {
@@ -1742,8 +1726,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                             'benchmark': p_change_context(
                                 $['benchmark'],
-                                ($) => p_.from.optional(
-                                    $,
+                                ($) => p_.from.optional($,
                                 ).map(
                                     ($) => Resolver_Benchmark(
                                         $,
@@ -1775,8 +1758,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                             'result': p_change_context(
                                 $['result'],
-                                ($) => p_.from.optional(
-                                    $,
+                                ($) => p_.from.optional($,
                                 ).map(
                                     ($) => Resolver_Value_List_Result(
                                         $,
@@ -1916,8 +1898,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                             },
                                         },
                                     }],
-                                    'l dictionary': p_.from.dictionary(
-                                        $,
+                                    'l dictionary': p_.from.dictionary($,
                                     ).map(
                                         ($, id) => ({
                                             'l entry': {
@@ -1996,8 +1977,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                     },
                 },
             }],
-            'l list': p_.from.list(
-                $,
+            'l list': p_.from.list($,
             ).map(
                 ($) => ({
                     'l item': $,
@@ -2292,8 +2272,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                                 ($) => ['exact', {
                                                                     'number of fractional digits': p_change_context(
                                                                         $['number of fractional digits'],
-                                                                        ($) => p_.from.optional(
-                                                                            $,
+                                                                        ($) => p_.from.optional($,
                                                                         ).map(
                                                                             ($) => $,
                                                                         ),
@@ -2435,8 +2414,7 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -2505,15 +2483,13 @@ export const Group: t_signatures.Group = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
                 'description': p_change_context(
                     $['description'],
-                    ($) => p_.from.optional(
-                        $,
+                    ($) => p_.from.optional($,
                     ).map(
                         ($) => $,
                     ),
@@ -2580,8 +2556,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                     },
                 },
             }],
-            'l list': p_.from.list(
-                $['l value'],
+            'l list': p_.from.list($['l value'],
             ).map(
                 ($) => ({
                     'l item': p_change_context(
@@ -2908,8 +2883,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                     },
                 },
             }],
-            'l list': p_.from.list(
-                $['l value'],
+            'l list': p_.from.list($['l value'],
             ).map(
                 ($) => ({
                     'l item': p_change_context(
@@ -3262,8 +3236,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -3360,8 +3333,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     ),
 })
 
-export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => p_.from.optional(
-    $,
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => p_.from.optional($,
 ).map(
     ($) => Resolver_Value_Constraints(
         $,
@@ -3385,8 +3357,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': Resolver_Value_Constraint(
@@ -3551,8 +3522,7 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($) => ({
             },
         },
     }],
-    'l dictionary': p_.from.dictionary(
-        $,
+    'l dictionary': p_.from.dictionary($,
     ).map(
         ($, id) => ({
             'l entry': {
@@ -3591,8 +3561,7 @@ export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result
     $,
 )
 
-export const Value_Results: t_signatures.Value_Results = ($) => p_.from.optional(
-    $,
+export const Value_Results: t_signatures.Value_Results = ($) => p_.from.optional($,
 ).map(
     ($) => ({
         'l location': ['in main document', {
@@ -3611,8 +3580,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => p_.from.optional
                 },
             },
         }],
-        'l dictionary': p_.from.dictionary(
-            $,
+        'l dictionary': p_.from.dictionary($,
         ).map(
             ($, id) => ({
                 'l entry': Value_Reference(
@@ -3639,8 +3607,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => p_.from.optional
     }),
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => p_.from.optional(
-    $,
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => p_.from.optional($,
 ).map(
     ($) => ({
         'l location': ['in main document', {
@@ -3659,8 +3626,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($) => p_.fro
                 },
             },
         }],
-        'l dictionary': p_.from.dictionary(
-            $,
+        'l dictionary': p_.from.dictionary($,
         ).map(
             ($, id) => ({
                 'l entry': Value_Reference(

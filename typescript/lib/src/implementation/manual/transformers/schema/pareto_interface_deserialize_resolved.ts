@@ -51,19 +51,20 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 : [],
         ),
     },
-    p_.from.dictionary($.modules).map(($, id) => sh.type.refiner(
-        sh.t.component_imported(
-            "in",
-            "List of Characters",
-        ),
-        sh.t.component_imported(
-            "out",
-            id,
-        ),
-        sh.t.component_imported("generic", "Error"),
-        null,
-        {
-            "tab size": sh.t.natural(),
-        },
-    )),
+    p_.from.dictionary($.modules).map(
+        ($, id) => sh.type.refiner(
+            sh.t.component_imported(
+                "in",
+                "List of Characters",
+            ),
+            sh.t.component_imported(
+                "out",
+                id,
+            ),
+            sh.t.component_imported("generic", "Error"),
+            null,
+            {
+                "tab size": sh.t.natural(),
+            },
+        )),
 )

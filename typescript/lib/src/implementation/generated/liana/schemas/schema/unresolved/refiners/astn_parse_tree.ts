@@ -107,8 +107,7 @@ export const Schemas: t_signatures.Schemas = ($, abort) => p_change_context(
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -326,8 +325,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort) => p_chang
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -432,8 +430,7 @@ export const Modules: t_signatures.Modules = ($, abort) => p_change_context(
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -583,8 +580,7 @@ export const Globals: t_signatures.Globals = ($, abort) => p_change_context(
                                     'subdocument context': p_.literal.not_set(),
                                 },
                             ),
-                            'l dictionary': p_.from.dictionary(
-                                $['entries'],
+                            'l dictionary': p_.from.dictionary($['entries'],
                             ).map(
                                 ($, id) => ({
                                     'l location': v_parse_tree_to_location.Value(
@@ -632,8 +628,7 @@ export const Globals: t_signatures.Globals = ($, abort) => p_change_context(
                                     'subdocument context': p_.literal.not_set(),
                                 },
                             ),
-                            'l dictionary': p_.from.dictionary(
-                                $['entries'],
+                            'l dictionary': p_.from.dictionary($['entries'],
                             ).map(
                                 ($, id) => ({
                                     'l location': v_parse_tree_to_location.Value(
@@ -1530,8 +1525,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                                                 'subdocument context': p_.literal.not_set(),
                                                             },
                                                         ),
-                                                        'l dictionary': p_.from.dictionary(
-                                                            $['entries'],
+                                                        'l dictionary': p_.from.dictionary($['entries'],
                                                         ).map(
                                                             ($, id) => ({
                                                                 'l location': v_parse_tree_to_location.Value(
@@ -1596,8 +1590,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                                                                             'subdocument context': p_.literal.not_set(),
                                                                                         },
                                                                                     ),
-                                                                                    ($) => p_.from.optional(
-                                                                                        v_unmarshalled_from_parse_tree.Optional(
+                                                                                    ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                                                             $,
                                                                                             ($) => abort(
                                                                                                 $,
@@ -1888,8 +1881,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort) => p_c
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -1994,8 +1986,7 @@ export const Resolver_Signatures: t_signatures.Resolver_Signatures = ($, abort) 
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -2069,8 +2060,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                     'subdocument context': p_.literal.not_set(),
                                 },
                             ),
-                            'l dictionary': p_.from.dictionary(
-                                $['entries'],
+                            'l dictionary': p_.from.dictionary($['entries'],
                             ).map(
                                 ($, id) => ({
                                     'l location': v_parse_tree_to_location.Value(
@@ -2178,8 +2168,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                     'subdocument context': p_.literal.not_set(),
                                 },
                             ),
-                            'l dictionary': p_.from.dictionary(
-                                $['entries'],
+                            'l dictionary': p_.from.dictionary($['entries'],
                             ).map(
                                 ($, id) => ({
                                     'l location': v_parse_tree_to_location.Value(
@@ -2660,8 +2649,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                         'subdocument context': p_.literal.not_set(),
                                                     },
                                                 ),
-                                                ($) => p_.from.optional(
-                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                         $,
                                                         ($) => abort(
                                                             $,
@@ -2705,8 +2693,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                 'subdocument context': p_.literal.not_set(),
                                                                             },
                                                                         ),
-                                                                        ($) => p_.from.optional(
-                                                                            v_unmarshalled_from_parse_tree.Optional(
+                                                                        ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                                                 $,
                                                                                 ($) => abort(
                                                                                     $,
@@ -2730,8 +2717,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                             'subdocument context': p_.literal.not_set(),
                                                                                         },
                                                                                     ),
-                                                                                    'l dictionary': p_.from.dictionary(
-                                                                                        $['entries'],
+                                                                                    'l dictionary': p_.from.dictionary($['entries'],
                                                                                     ).map(
                                                                                         ($, id) => ({
                                                                                             'l location': v_parse_tree_to_location.Value(
@@ -2846,8 +2832,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                 'subdocument context': p_.literal.not_set(),
                                                                             },
                                                                         ),
-                                                                        ($) => p_.from.optional(
-                                                                            v_unmarshalled_from_parse_tree.Optional(
+                                                                        ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                                                 $,
                                                                                 ($) => abort(
                                                                                     $,
@@ -2871,8 +2856,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                             'subdocument context': p_.literal.not_set(),
                                                                                         },
                                                                                     ),
-                                                                                    'l dictionary': p_.from.dictionary(
-                                                                                        $['entries'],
+                                                                                    'l dictionary': p_.from.dictionary($['entries'],
                                                                                     ).map(
                                                                                         ($, id) => ({
                                                                                             'l location': v_parse_tree_to_location.Value(
@@ -3295,8 +3279,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                         'subdocument context': p_.literal.not_set(),
                                                     },
                                                 ),
-                                                ($) => p_.from.optional(
-                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                         $,
                                                         ($) => abort(
                                                             $,
@@ -3419,8 +3402,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                         'subdocument context': p_.literal.not_set(),
                                                     },
                                                 ),
-                                                ($) => p_.from.optional(
-                                                    v_unmarshalled_from_parse_tree.Optional(
+                                                ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                         $,
                                                         ($) => abort(
                                                             $,
@@ -3892,8 +3874,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                 'subdocument context': p_.literal.not_set(),
                                                             },
                                                         ),
-                                                        'l dictionary': p_.from.dictionary(
-                                                            $['entries'],
+                                                        'l dictionary': p_.from.dictionary($['entries'],
                                                         ).map(
                                                             ($, id) => ({
                                                                 'l location': v_parse_tree_to_location.Value(
@@ -4077,8 +4058,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
                                 'subdocument context': p_.literal.not_set(),
                             },
                         ),
-                        'l list': p_.from.list(
-                            v_unmarshalled_from_parse_tree.List(
+                        'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
                                 $,
                                 ($) => abort(
                                     $,
@@ -4825,8 +4805,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort) => p_change_cont
                                                                                                                             'subdocument context': p_.literal.not_set(),
                                                                                                                         },
                                                                                                                     ),
-                                                                                                                    ($) => p_.from.optional(
-                                                                                                                        v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                    ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                                                                                                             $,
                                                                                                                             ($) => abort(
                                                                                                                                 $,
@@ -5118,8 +5097,7 @@ export const Resolver_Modules: t_signatures.Resolver_Modules = ($, abort) => p_c
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -5306,8 +5284,7 @@ export const Group: t_signatures.Group = ($, abort) => p_change_context(
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -5353,8 +5330,7 @@ export const Group: t_signatures.Group = ($, abort) => p_change_context(
                                             'subdocument context': p_.literal.not_set(),
                                         },
                                     ),
-                                    ($) => p_.from.optional(
-                                        v_unmarshalled_from_parse_tree.Optional(
+                                    ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
                                             $,
                                             ($) => abort(
                                                 $,
@@ -5507,8 +5483,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort) => p_change_contex
                                 'subdocument context': p_.literal.not_set(),
                             },
                         ),
-                        'l list': p_.from.list(
-                            v_unmarshalled_from_parse_tree.List(
+                        'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
                                 $,
                                 ($) => abort(
                                     $,
@@ -6091,8 +6066,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                 'subdocument context': p_.literal.not_set(),
                             },
                         ),
-                        'l list': p_.from.list(
-                            v_unmarshalled_from_parse_tree.List(
+                        'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
                                 $,
                                 ($) => abort(
                                     $,
@@ -6825,8 +6799,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -6990,8 +6963,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
     }),
 )
 
-export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort) => p_.from.optional(
-    v_unmarshalled_from_parse_tree.Optional(
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
         $,
         ($) => abort(
             $,
@@ -7023,8 +6995,7 @@ export const Resolver_Value_Constraints: t_signatures.Resolver_Value_Constraints
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -7282,8 +7253,7 @@ export const Resolver_Value_Group: t_signatures.Resolver_Value_Group = ($, abort
                 'subdocument context': p_.literal.not_set(),
             },
         ),
-        'l dictionary': p_.from.dictionary(
-            $['entries'],
+        'l dictionary': p_.from.dictionary($['entries'],
         ).map(
             ($, id) => ({
                 'l location': v_parse_tree_to_location.Value(
@@ -7370,8 +7340,7 @@ export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result
     ),
 )
 
-export const Value_Results: t_signatures.Value_Results = ($, abort) => p_.from.optional(
-    v_unmarshalled_from_parse_tree.Optional(
+export const Value_Results: t_signatures.Value_Results = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
         $,
         ($) => abort(
             $,
@@ -7395,8 +7364,7 @@ export const Value_Results: t_signatures.Value_Results = ($, abort) => p_.from.o
                     'subdocument context': p_.literal.not_set(),
                 },
             ),
-            'l dictionary': p_.from.dictionary(
-                $['entries'],
+            'l dictionary': p_.from.dictionary($['entries'],
             ).map(
                 ($, id) => ({
                     'l location': v_parse_tree_to_location.Value(
@@ -7417,8 +7385,7 @@ export const Value_Results: t_signatures.Value_Results = ($, abort) => p_.from.o
     ),
 )
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) => p_.from.optional(
-    v_unmarshalled_from_parse_tree.Optional(
+export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
         $,
         ($) => abort(
             $,
@@ -7442,8 +7409,7 @@ export const Option_Constraints: t_signatures.Option_Constraints = ($, abort) =>
                     'subdocument context': p_.literal.not_set(),
                 },
             ),
-            'l dictionary': p_.from.dictionary(
-                $['entries'],
+            'l dictionary': p_.from.dictionary($['entries'],
             ).map(
                 ($, id) => ({
                     'l location': v_parse_tree_to_location.Value(

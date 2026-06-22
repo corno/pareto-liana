@@ -54,29 +54,30 @@ export const Schema: interface_.Schema = ($, $p) => {
             "resolve": sh_i.import_.sibling("unresolved", p_.literal.list([
             ])),
         }),
-        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
-            "signatures",
-            id,
-            ['abort', 'lookups', 'parameters'],
-            sh.a.select(sh.sv.call(
-                sh.call.external("resolve", id),
-                sh.a.select(
-                    sh.sv.call(
-                        sh.call.external("deserialize", id),
-                        sh.a.select(sh.sv.context([])),
-                        sh.a.state.literal("tbd", sh.a.nothing()),
-                        sh.lookups.not_set(),
-                        sh.arguments_.initialize({
-                            "tab size": sh.a.number.integer_copy(sh.sv.parameter("tab size", []))
-                        }),
-                        []
-                    )
-                ),
-                sh.a.state.literal("tbd", sh.a.nothing()),
-                sh.lookups.pass_through(),
-                sh.arguments_.pass_through(),
-                []
-            ))
-        )),
+        p_.from.dictionary($.modules).map(
+            ($, id) => sh.algorithm(
+                "signatures",
+                id,
+                ['abort', 'lookups', 'parameters'],
+                sh.a.select(sh.sv.call(
+                    sh.call.external("resolve", id),
+                    sh.a.select(
+                        sh.sv.call(
+                            sh.call.external("deserialize", id),
+                            sh.a.select(sh.sv.context([])),
+                            sh.a.state.literal("tbd", sh.a.nothing()),
+                            sh.lookups.not_set(),
+                            sh.arguments_.initialize({
+                                "tab size": sh.a.number.integer_copy(sh.sv.parameter("tab size", []))
+                            }),
+                            []
+                        )
+                    ),
+                    sh.a.state.literal("tbd", sh.a.nothing()),
+                    sh.lookups.pass_through(),
+                    sh.arguments_.pass_through(),
+                    []
+                ))
+            )),
     )
 }

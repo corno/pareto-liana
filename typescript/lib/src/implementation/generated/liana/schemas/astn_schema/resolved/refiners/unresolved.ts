@@ -19,8 +19,7 @@ import * as t_out from "../../../../../../../interface/generated/liana/schemas/a
 
 import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/astn_schema/signatures/resolved/refiners/unresolved"
 
-export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary(
-    $['l dictionary'],
+export const Modules: t_signatures.Modules = ($, abort, $l, $p) => p_.from.dictionary($['l dictionary'],
 ).resolve(
     ($, id, $a, $c): t_out.Modules.D => p_change_context(
         $['l entry'],
@@ -57,8 +56,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => p_.literal.gr
 
         const prop_text_types = p_change_context(
             $['text types'],
-            ($) => p_.from.dictionary(
-                $['l dictionary'],
+            ($) => p_.from.dictionary($['l dictionary'],
             ).resolve(
                 ($, id, $a, $c): t_out.Globals.text_types.D => p_change_context(
                     $['l entry'],
@@ -335,8 +333,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
                     case 'group':
                         return p_.ss(
                             $,
-                            ($) => ['group', p_.from.dictionary(
-                                $['l dictionary'],
+                            ($) => ['group', p_.from.dictionary($['l dictionary'],
                             ).resolve(
                                 ($, id, $a, $c): t_out.Value.group.D => p_change_context(
                                     $['l entry'],
@@ -400,8 +397,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
                     case 'state':
                         return p_.ss(
                             $,
-                            ($) => ['state', p_.from.dictionary(
-                                $['l dictionary'],
+                            ($) => ['state', p_.from.dictionary($['l dictionary'],
                             ).resolve(
                                 ($, id, $a, $c): t_out.Value.state.D => p_change_context(
                                     $['l entry'],
@@ -506,8 +502,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => p_variables(
     },
 )
 
-export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary(
-    $['l dictionary'],
+export const Schemas: t_signatures.Schemas = ($, abort, $l, $p) => p_.from.dictionary($['l dictionary'],
 ).resolve(
     ($, id, $a, $c): t_out.Schemas.D => p_change_context(
         $['l entry'],
@@ -628,8 +623,7 @@ export const Schema: t_signatures.Schema = ($, abort, $l, $p) => p_.literal.grou
     },
 )
 
-export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary(
-    $['l dictionary'],
+export const Imports: t_signatures.Imports = ($, abort, $l, $p) => p_.from.dictionary($['l dictionary'],
 ).resolve(
     ($, id, $a, $c): t_out.Imports.D => p_change_context(
         $['l entry'],

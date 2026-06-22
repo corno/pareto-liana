@@ -15,8 +15,8 @@ export const $ = sh.resolver_modules(
                 "globals": sh.av.parameter("globals"),
                 "imports": sh.av.parameter("imports"),
             }, {
-                "noncircular sibling modules": sh.al.parameter(("noncircular sibling modules")),
-                "possibly circular dependent sibling modules": sh.al.parameter(("possibly circular dependent sibling modules")),
+                "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
             })
         })),
 
