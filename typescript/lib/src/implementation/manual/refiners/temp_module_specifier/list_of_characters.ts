@@ -100,7 +100,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
     return p_.from.state(almost_resolved_module_specification.complexity).decide(($): d_out.Temp_Module_Specifier => {
         switch ($[0]) {
             case 'constrained': return p_.ss($, ($): d_out.Temp_Module_Specifier => {
-                const constrained_schema = p_.from.state(schema.complexity).decide(($): d_out_schema.Resolver => {
+                const $p_resolver = p_.from.state(schema.complexity).decide(($): d_out_schema.Resolver => {
                     switch ($[0]) {
                         case 'constrained': return p_.ss($, ($) => $)
                         case 'unconstrained': return p_.ss($, ($) => abort(['resolve error', {
@@ -129,9 +129,9 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     }
                 })
                 return ['constrained', {
-                    'resolver': constrained_schema,
+                    'resolver': $p_resolver,
                     'module resolver': {
-                        'entry': p_t.from.dictionary(constrained_schema.modules).get_possible_entry(
+                        'entry': p_t.from.dictionary($p_resolver.modules).get_possible_entry(
                             $['module resolver'],
                             ($) => $,
                             () => {
