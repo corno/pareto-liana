@@ -77,7 +77,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     switch ($[0]) {
 
                         case 'schema': return p_.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
-                        case 'set': return p_.ss($, ($) => p_t.from.dictionary($).get_possible_entry(split.element).__decide(
+                        case 'set': return p_.ss($, ($) => p_t.from.dictionary($).get_possible_entry(
+                            split.element,
                             ($) => temp_find_schema($, split.rest),
                             () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                         ))
@@ -130,7 +131,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                 return ['constrained', {
                     'resolver': constrained_schema,
                     'module resolver': {
-                        'entry': p_t.from.dictionary(constrained_schema.modules).get_possible_entry($['module resolver']).__decide(
+                        'entry': p_t.from.dictionary(constrained_schema.modules).get_possible_entry(
+                            $['module resolver'],
                             ($) => $,
                             () => {
                                 schema.modules.__d_map_deprecated(($, id) => {

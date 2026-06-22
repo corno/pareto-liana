@@ -46,9 +46,8 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         p_temp.from.dictionary(
             benchmark,
         ).map_optionally(
-            (_, id) => p_.from.optional(
-                p_temp.from.dictionary($).get_possible_entry(id)
-            ).decide(
+            (_, id) => p_temp.from.dictionary($).get_possible_entry(
+                id,
                 () => p_.literal.not_set<null>(),
                 () => p_.literal.set(null),
             )
