@@ -27,11 +27,11 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 const p_location = p_change_context($.location['l state'], ($): t_out.Resolver_Value.component.location => {
                     switch ($[0]) {
                         case 'external': return p_.ss($, ($) => {
-                            const sc_schema_import = $p['schema imports'].__decide(
+                            const sc_schema_import = p_.from.optional($p['schema imports']).decide(
                                 ($) => $,
                                 () => i_generic.abort.parameter_is_set_assertion("imports", loc, abort)
                             )
-                            const sc_resolver_import = $p['resolver imports'].__decide(
+                            const sc_resolver_import = p_.from.optional($p['resolver imports']).decide(
                                 ($) => $,
                                 () => i_generic.abort.parameter_is_set_assertion("imports", loc, abort)
                             )
@@ -89,10 +89,10 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 if (p_signature.module !== x_type) {
                     i_generic.abort.same_node_constraint("module.value", loc, abort)
                 }
-                const p_arguments: t_out.Resolver_Value.component.arguments_ = $.arguments.__decide(
+                const p_arguments: t_out.Resolver_Value.component.arguments_ = p_.from.optional($.arguments).decide(
                     ($) => {
                         const x: t_out.Resolver_Value.component.arguments_.O = {
-                            'lookups': $.lookups.__decide(
+                            'lookups': p_.from.optional($.lookups).decide(
                                 ($) => p_.literal.set(i_generic.resolve_dense_dictionary(
                                     $['l dictionary'],
                                     $['l location'],
@@ -160,7 +160,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                     return p_.literal.not_set()
                                 }
                             ),
-                            'modules': $.modules.__decide(
+                            'modules': p_.from.optional($.modules).decide(
                                 ($) => {
                                     const values_location = $['l location']
 
@@ -409,7 +409,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         abort,
                         $l,
                         {
-                            'linked entry': p_benchmark.__decide( //optional value result ('benchmark')
+                            'linked entry': p_.from.optional(p_benchmark).decide( //optional value result ('benchmark')
                                 ($) => p_.literal.set($),
                                 () => $p['linked entry']
                             ),
@@ -504,7 +504,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     $l,
                     {
                         'definition': p_definition.value,
-                        'list cursor': p_result.__decide( // optional value result ('result')
+                        'list cursor': p_.from.optional(p_result).decide( // optional value result ('result')
                             ($) => p_.literal.set($),
                             () => $p['list cursor']
                         ), //setting the cursor
@@ -971,7 +971,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
             case 'list cursor': return p_.ss($, ($) => ['list cursor', null])
             case 'linked entry': return p_.ss($, ($) => ['linked entry', null])
             case 'option constraint': return p_.ss($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
-                const sc = $p['option constraints'].__decide(
+                const sc = p_.from.optional($p['option constraints']).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
                 )
@@ -998,7 +998,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                         const p_list_result_a = p_change_context($['list result'], ($) => p_sibling['l entry'].resolver[0] !== 'list'
                             ? i_generic.abort.state_constraint_found_expected("list", p_sibling['l entry'].resolver, loc, abort)
                             : p_sibling['l entry'].resolver[1])
-                        const p_list_result: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_list_result_a.result.__decide(
+                        const p_list_result: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_.from.optional(p_list_result_a.result).decide(
                             ($) => $,
                             () => i_generic.abort.is_set_assertion("list result", loc, abort)
                         )
@@ -1127,11 +1127,11 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                 default: return p_.au($[0])
                             }
                         }))
-                        case 'list cursor': return p_.ss($, ($) => $p['list cursor'].__decide(
+                        case 'list cursor': return p_.ss($, ($) => p_.from.optional($p['list cursor']).decide(
                             ($) => $['resulting module']['root value'],
                             () => i_generic.abort.parameter_is_set_assertion("list cursor", start_loc, abort)
                         ))
-                        case 'linked entry': return p_.ss($, ($) => $p['linked entry'].__decide(
+                        case 'linked entry': return p_.ss($, ($) => p_.from.optional($p['linked entry']).decide(
                             ($) => $['resulting dictionary'].value,
                             () => i_generic.abort.parameter_is_set_assertion("linked entry", start_loc, abort)
                         ))
@@ -1366,7 +1366,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                             'selected dictionary': p_selected_dictionary,
                         }]
                     })
-                    case 'siblings': return p_.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
+                    case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
                         ($) => $,
                         () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                     )])
@@ -1375,7 +1375,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
             })])
             case 'cyclic': return p_.ss($, ($) => ['cyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
                 switch ($[0]) {
-                    case 'siblings': return p_.ss($, ($) => ['siblings', $p['current dictionary'].__decide(
+                    case 'siblings': return p_.ss($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
                         ($) => $,
                         () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                     )])
@@ -1419,7 +1419,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
     const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
             case 'external': return p_.ss($, ($): t_out.Module_Reference.location => {
-                const sc_import = $p.imports.__decide(
+                const sc_import = p_.from.optional($p.imports).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                 )

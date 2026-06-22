@@ -70,7 +70,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                 }),
             )
         }
-        return temp_pop_first_element(schema_path).__decide(
+        return p_.from.optional(temp_pop_first_element(schema_path)).decide(
             ($) => {
                 const split = $
                 return p_.from.state(st).decide(($) => {

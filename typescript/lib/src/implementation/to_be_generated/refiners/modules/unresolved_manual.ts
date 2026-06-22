@@ -19,7 +19,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 switch ($[0]) {
                     case 'global': return p_.ss($, ($): t_out.Value.simple => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
-                            $p.globals.__decide(
+                            p_.from.optional($p.globals).decide(
                                 ($) => $['simple types'],
                                 () => i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
                             ),
@@ -34,7 +34,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 switch ($[0]) {
                     case 'global': return p_.ss($, ($): t_out.Value.text => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
-                            $p.globals.__decide(
+                            p_.from.optional($p.globals).decide(
                                 ($) => $['text types'],
                                 () => i_generic.abort.parameter_is_set_assertion("globals", $['l location'], abort)
                             ),
@@ -55,7 +55,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 'type': p_change_context($.type['l state'], ($): t_out.Value.component.type_ => {
                     switch ($[0]) {
                         case 'external': return p_.ss($, ($) => {
-                            const sc_import = $p.imports.__decide(
+                            const sc_import = p_.from.optional($p.imports).decide(
                                 ($) => $,
                                 () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                             )
@@ -385,7 +385,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
     const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
             case 'external': return p_.ss($, ($): t_out.Module_Reference.location => {
-                const sc_import = $p.imports.__decide(
+                const sc_import = p_.from.optional($p.imports).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
                 )
