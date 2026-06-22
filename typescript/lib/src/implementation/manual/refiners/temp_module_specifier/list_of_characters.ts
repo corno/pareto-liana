@@ -1,4 +1,5 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
+import * as p_t from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/refiner'
 import * as p_di from 'pareto-core/dist/interface/data'
 import p_implement_me from 'pareto-core-dev/dist/implement_me'
@@ -57,7 +58,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                 ($) => ({
                     'rest': p_list_build_deprecated(($i) => {
                         let is_first = true
-                        arr.__l_map_deprecated(($) => {
+                        p_.from.list(arr).map(($) => {
                             if (!is_first) {
                                 $i['add item']($)
                             }
@@ -76,7 +77,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     switch ($[0]) {
 
                         case 'schema': return p_.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
-                        case 'set': return p_.ss($, ($) => $.__get_possible_entry_deprecated(split.element).__decide(
+                        case 'set': return p_.ss($, ($) => p_t.from.dictionary($).get_possible_entry(split.element).__decide(
                             ($) => temp_find_schema($, split.rest),
                             () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                         ))
@@ -129,7 +130,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                 return ['constrained', {
                     'resolver': constrained_schema,
                     'module resolver': {
-                        'entry': constrained_schema.modules.__get_possible_entry_deprecated($['module resolver']).__decide(
+                        'entry': p_t.from.dictionary(constrained_schema.modules).get_possible_entry($['module resolver']).__decide(
                             ($) => $,
                             () => {
                                 schema.modules.__d_map_deprecated(($, id) => {
@@ -147,14 +148,16 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
 
                 return ['unconstrained', {
                     'module': {
-                        'entry': schema.modules.__get_possible_entry_deprecated($.module).__decide(
-                            ($) => $,
-                            () => {
-                                schema.modules.__d_map_deprecated(($, id) => {
-                                    p_log_debug_message(`available type: ${id}`, () => { })
-                                    return null
-                                })
-                                p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
+                        'entry': p_.from.dictionary(schema.modules).get_entry(
+                            $.module,
+                            {
+                                'no_such_entry': () => {
+                                    schema.modules.__d_map_deprecated(($, id) => {
+                                        p_log_debug_message(`available type: ${id}`, () => { })
+                                        return null
+                                    })
+                                    return p_implement_me(`(FIXME: make this a reference) root type ${$.module} not found`)
+                                }
                             }
                         ),
                         'id': $.module,

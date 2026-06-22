@@ -114,25 +114,3 @@ export const Value_Path = (
     }))
     return tail
 }
-
-// export const Type_Part_Reference = (
-//     $: d_in.Type_Node_Reference,
-//     $p: {
-//         'add dictionary tail': boolean
-//     }
-
-// ): d_out.Type => {
-
-//     return Module_Reference(
-//         $['type location'],
-//         {
-//             'reference sub part': Type_Node_Path($.path.tail),
-//             p_.literal.nested_ list([
-//             tail,
-//             [
-//                 sh.sub.dictionary()
-//             ]
-//         ])
-//         }
-//     )
-// }

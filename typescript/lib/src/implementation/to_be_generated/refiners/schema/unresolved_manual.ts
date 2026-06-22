@@ -300,7 +300,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         },
         $p,
     ),
-    'schema path': $['schema path']['l list'].__l_map_deprecated(($) => $['l item']),
+    'schema path': p_.from.list($['schema path']['l list']).map(($) => $['l item']),
     'complexity': p_.from.state($.complexity['l state']).decide(($) => {
         switch ($[0]) {
             case 'constrained': return p_.ss($, ($) => ['constrained', {
