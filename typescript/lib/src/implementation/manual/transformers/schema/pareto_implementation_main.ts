@@ -149,7 +149,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
 }
 
 export const Schemas: interface_.Schemas = ($, $p) => {
-    return sh.m.set($.__d_map_deprecated(($, id) => Schema_Tree($, {
+    return sh.m.set(p_.from.dictionary($).map(($, id) => Schema_Tree($, {
         'path': p_.literal.chain(
             $p.path,
                 id,

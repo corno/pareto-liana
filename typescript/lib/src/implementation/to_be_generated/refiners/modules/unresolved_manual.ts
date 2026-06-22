@@ -270,7 +270,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     },
                 )
             }])
-            // case 'type parameter': return _pt.ss($, ($) => ['type parameter', _i_generic.get_entry(
+            // case 'type parameter': return _pt.ss($, ($) => ['type parameter', _i_generic.get_ entry(
             //     _p_temp.dictionary_to_lookup(
             //         $p['type parameters'],
             //         p_.literal.nothing(),

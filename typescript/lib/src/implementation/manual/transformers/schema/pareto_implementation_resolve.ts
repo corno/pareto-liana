@@ -53,7 +53,7 @@ const temp_prepend = <T extends p_di.Value>(
     prefix: string
 ) => {
     const result: { [id: string]: T } = {}
-    $.__d_map_deprecated(($, id) => {
+    p_.from.dictionary($).map(($, id) => {
         result[prefix + id] = $
         return null
     })
@@ -145,7 +145,7 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
             }
 
         ),
-        $.__d_map_deprecated(($, id) => sh.algorithm(
+        p_.from.dictionary($).map(($, id) => sh.algorithm(
             "signatures",
             id,
             ['abort', 'lookups', 'parameters'],
@@ -382,7 +382,7 @@ export const Resolver_Value = (
                             sh.a.select(sh.sv.context([])),
                             p_.from.optional($.arguments).decide(
                                 ($) => p_.from.optional($.lookups).decide(
-                                    ($) => sh.lookups.initialize($.__d_map_deprecated(
+                                    ($) => sh.lookups.initialize(p_.from.dictionary($).map(
                                         ($) => p_.from.state($).decide(($) => {
                                             switch ($[0]) {
                                                 case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(($) => {
@@ -418,7 +418,7 @@ export const Resolver_Value = (
                             ),
                             p_.from.optional($.arguments).decide(
                                 ($) => p_.from.optional($.modules).decide(
-                                    ($) => sh.arguments_.initialize($.__d_map_deprecated(
+                                    ($) => sh.arguments_.initialize(p_.from.dictionary($).map(
                                         ($) => p_.from.state($).decide(($) => {
                                             switch ($[0]) {
                                                 case 'optional': return p_.ss($, ($) => Optional_Value_Initialization($))
@@ -501,7 +501,7 @@ export const Resolver_Value = (
             )
         })
         case 'group': return p_.ss($, ($) => sh.a.group.literal_resolve(
-            $.__d_map_deprecated(
+            p_.from.dictionary($).map(
                 ($, id) => sh.a.change_context(
                     sh.sv.context([id]),
                     Resolver_Value(
@@ -665,7 +665,7 @@ export const Resolver_Value = (
                     {
                         'base type': sh.a.decide.state(
                             sh.sv.context(["l state"]),
-                            $.options.__d_map_deprecated(($, id) => sh.a.state.literal(id, Option_Constraints(
+                            p_.from.dictionary($.options).map(($, id) => sh.a.state.literal(id, Option_Constraints(
                                 $.constraints,
                                 {
                                     'sub': Resolver_Value(
@@ -781,7 +781,7 @@ export const Value_Constraints = (
                 {
                     "location": sh.a.select(sh.sv.context(["l location"])),
                 },
-                sh.a.group.literal($.__d_map_deprecated(($, id) => Value_Constraint($)))
+                sh.a.group.literal(p_.from.dictionary($).map(($, id) => Value_Constraint($)))
             ),
         }),
         () => $p.sub

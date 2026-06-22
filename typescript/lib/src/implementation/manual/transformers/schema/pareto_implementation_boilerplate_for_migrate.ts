@@ -102,10 +102,10 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ])
             ),
         }),
-        $['schema imports'].__d_map_deprecated(($, id) => constrained
+        p_.from.dictionary($['schema imports']).map(($, id) => constrained
             ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
             : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "boilerplate for migrate"])),
-        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
+        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
             "signatures",
             id,
             [],
@@ -192,7 +192,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                     )
             })
-            case 'group': return p_.ss($, ($) => sh.a.group.literal($.__d_map_deprecated(($, id) => sh.a.change_context(
+            case 'group': return p_.ss($, ($) => sh.a.group.literal(p_.from.dictionary($).map(($, id) => sh.a.change_context(
                 sh.sv.context([id]),
                 Value(
                     $.value,
@@ -302,7 +302,7 @@ export const Value: interface_.Value = ($, $p) => {
                         ($) => p_.literal.list(["l value"]),
                         () => p_.literal.list([])
                     )),
-                    $.options.__d_map_deprecated(($, id) => sh.a.state.literal(id, Value(
+                    p_.from.dictionary($.options).map(($, id) => sh.a.state.literal(id, Value(
                         $.value,
                         {
                             'type name': $p['type name'],

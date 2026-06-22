@@ -77,8 +77,8 @@ export const Schema: interface_.Schema = ($, $p) => {
                     p_.literal.dictionary({
                         "": p_.from.boolean(
                             add_location,
-                        ).convert_to_optional(
-                            () => sh.import_.external(
+                        ).decide(
+                            () => p_.literal.set(sh.import_.external(
                                 "liana-core",
                                 [
                                     "dist",
@@ -86,7 +86,8 @@ export const Schema: interface_.Schema = ($, $p) => {
                                     "to be generated",
                                     "document and location",
                                 ]
-                            )
+                            )),
+                            () => p_.literal.not_set(),
                         )
                     }),
                 ).map_optionally(
@@ -135,7 +136,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             }
 
         ),
-        $.modules.__d_map_deprecated(($) => sh.type.data(Value(
+        p_.from.dictionary($.modules).map(($) => sh.type.data(Value(
             $['root value'],
             {
                 'type': $p.type,
@@ -202,7 +203,7 @@ export const Value: interface_.Value = ($, $p) => {
                     $p
                 ))
             )
-            case 'group': return p_.ss($, ($) => sh.t.group($.__d_map_deprecated(($, id) => Value(
+            case 'group': return p_.ss($, ($) => sh.t.group(p_.from.dictionary($).map(($, id) => Value(
                 $.value,
                 {
                     'type': $p.type,
@@ -350,7 +351,7 @@ export const Value: interface_.Value = ($, $p) => {
             })
             case 'state': return p_.ss($, ($) => {
                 const results = $.results
-                const i = sh.t.state($.options.__d_map_deprecated(($, id) => Value(
+                const i = sh.t.state(p_.from.dictionary($.options).map(($, id) => Value(
                     $.value,
                     $p
                 )))

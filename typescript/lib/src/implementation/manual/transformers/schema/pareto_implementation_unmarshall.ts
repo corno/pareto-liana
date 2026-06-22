@@ -120,7 +120,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                         ]
                     ),
                 }),
-                "external ": $['schema imports'].__d_map_deprecated(($, id) => constrained
+                "external ": p_.from.dictionary($['schema imports']).map(($, id) => constrained
                     ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
                     : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
                 ),
@@ -132,7 +132,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 duplicate_id: () => p_unreachable_code_path("the keys in the root entry with the empty id do not conflict with the other key: 'external '")
             }
         ),
-        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
+        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
             "signatures",
             id,
             ['abort'],
@@ -245,7 +245,7 @@ export const Value: interface_.Value = ($, $p) => {
                     sh.a.select(sh.sv.context([])),
                     sh.lookups.not_set(),
                     sh.arguments_.initialize({
-                        "expected properties": sh.a.dictionary.literal($.__d_map_deprecated(($) => sh.a.nothing())),
+                        "expected properties": sh.a.dictionary.literal(p_.from.dictionary($).map(($) => sh.a.nothing())),
                         "subdocument context": sh.a.optional.not_set(),
                     }),
                     [
@@ -268,7 +268,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )
                         ),
                     },
-                    sh.a.group.literal($.__d_map_deprecated(($, id) => sh.a.change_context(
+                    sh.a.group.literal(p_.from.dictionary($).map(($, id) => sh.a.change_context(
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Property"),
                             sh.a.select(sh.sv.context([])),
@@ -508,7 +508,7 @@ export const Value: interface_.Value = ($, $p) => {
                 ),
                 sh.a.decide.text(
                     sh.sv.context(["option", "token", "value"]),
-                    $.options.__d_map_deprecated(
+                    p_.from.dictionary($.options).map(
                         ($, id) => sh.a.change_context(
                             sh.sv.context(["value"]),
                             $p.constrained

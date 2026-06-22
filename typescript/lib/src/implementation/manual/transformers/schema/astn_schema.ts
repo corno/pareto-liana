@@ -12,7 +12,7 @@ export const Schema: p_i.Transformer<d_in.Schema, d_out.Schema> = (
 ) => ({
     'globals': Globals($.globals),
     'imports': Schema_Imports($['schema imports']),
-    'types': sh.dictionary($.modules.__d_map_deprecated(($) => Module($))),
+    'types': sh.dictionary(p_.from.dictionary($.modules).map(($) => Module($))),
 })
 
 export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
@@ -22,10 +22,10 @@ export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
     "text types": sh.dictionary(
         p_.from.dictionary(
             p_.literal.dictionary({
-                "t": $['text types'].__d_map_deprecated(($) => {
+                "t": p_.from.dictionary($['text types']).map(($) => {
                     return Text_Type($)
                 }),
-                "n": $['simple types'].__d_map_deprecated(($): d_out.Text_Type => {
+                "n": p_.from.dictionary($['simple types']).map(($): d_out.Text_Type => {
                     return {
                         'type': sh.state(['single line', null])
                     }
@@ -44,7 +44,7 @@ export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
 
 export const Schema_Imports: p_i.Transformer<d_in.Schema_Imports, d_out.Imports> = (
     $
-) => sh.dictionary($.__d_map_deprecated(($) => ({
+) => sh.dictionary(p_.from.dictionary($).map(($) => ({
     'schema': null,
     'schema set child': sh.reference($['schema set child']['l value']['l id'])
 })))
@@ -96,9 +96,9 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Value> = (
             'ordered': false,
             'value': Value($.value)
         }])
-        case 'group': return p_.ss($, ($) => ['group', sh.dictionary($.__d_map_deprecated(($) => Value($.value)))])
+        case 'group': return p_.ss($, ($) => ['group', sh.dictionary(p_.from.dictionary($).map(($) => Value($.value)))])
         case 'optional': return p_.ss($, ($) => ['optional', Value($)])
-        case 'state': return p_.ss($, ($) => ['state', sh.dictionary($.options.__d_map_deprecated(($) => Value($.value)))])
+        case 'state': return p_.ss($, ($) => ['state', sh.dictionary(p_.from.dictionary($.options).map(($) => Value($.value)))])
         case 'text': return p_.ss($, ($) => ['text', sh.state(p_.from.state($).decide(($): d_out.Value.l_state.text.l_state => {
             switch ($[0]) {
                 case 'global': return p_.ss($, ($) => ['global', sh.reference("t" + $['l id'])])

@@ -50,7 +50,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
             )
         ),
     },
-    $.modules.__d_map_deprecated(($, id) => sh.type.transformer(
+    p_.from.dictionary($.modules).map(($, id) => sh.type.transformer(
         sh.t.component_imported(
             "in",
             id,

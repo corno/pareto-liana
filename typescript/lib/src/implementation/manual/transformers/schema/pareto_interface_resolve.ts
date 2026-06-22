@@ -41,7 +41,7 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                 ["unresolved"]
             ),
         },
-        $.__d_map_deprecated(
+        p_.from.dictionary($).map(
             ($, id) => sh.type.refiner(
                 sh.t.component_imported("unresolved", id),
                 sh.t.component_imported("resolved", id),

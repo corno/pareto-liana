@@ -1,3 +1,4 @@
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
 //data types
@@ -53,7 +54,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 : [],
         ),
     },
-    $.modules.__d_map_deprecated(($, id) => sh.type.refiner(
+    p_.from.dictionary($.modules).map(($, id) => sh.type.refiner(
         sh.t.component_imported(
             "in",
             "List of Characters",

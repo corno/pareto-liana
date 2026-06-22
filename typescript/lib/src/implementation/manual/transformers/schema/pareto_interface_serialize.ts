@@ -1,3 +1,4 @@
+import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 
 //data types
@@ -46,7 +47,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ],
             ),
         },
-        $.modules.__d_map_deprecated(($, id) => sh.type.transformer(
+        p_.from.dictionary($.modules).map(($, id) => sh.type.transformer(
             sh.t.component_imported(
                 "in",
                 id,

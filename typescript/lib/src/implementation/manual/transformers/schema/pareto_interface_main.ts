@@ -274,7 +274,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.from.state($).d
 })
 
 
-export const Schemas: interface_.Schemas = ($, $p) => sh.m.set($.__d_map_deprecated(($) => p_.from.state($).decide(($) => {
+export const Schemas: interface_.Schemas = ($, $p) => sh.m.set(p_.from.dictionary($).map(($) => p_.from.state($).decide(($) => {
     switch ($[0]) {
         case 'schema': return p_.ss($, ($) => Schema($, $p))
         case 'set': return p_.ss($, ($) => Schemas($, $p))

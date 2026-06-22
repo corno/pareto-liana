@@ -54,7 +54,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "resolve": sh_i.import_.sibling("unresolved", p_.literal.list([
             ])),
         }),
-        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
+        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
             "signatures",
             id,
             ['abort', 'lookups', 'parameters'],

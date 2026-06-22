@@ -70,7 +70,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             "unmarshall": sh_i.import_.sibling("astn parse tree", p_.literal.list([
             ])),
         }),
-        $.modules.__d_map_deprecated(($, id) => sh.algorithm(
+        p_.from.dictionary($.modules).map(($, id) => sh.algorithm(
             "signatures",
             id,
             ['abort', 'parameters'],

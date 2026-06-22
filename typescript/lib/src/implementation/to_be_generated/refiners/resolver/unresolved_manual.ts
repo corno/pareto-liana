@@ -710,7 +710,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 //             {
                 //                 'location 2 string': l2s,
                 //                 'map': ($, $p) => {
-                //                     const linked_entry = _i_generic.get_entry(
+                //                     const linked_entry = _i_generic.get_ entry(
                 //                         _p_temp.dictionary_to_lookup(sc_definition, null),
                 //                         {
                 //                             'location 2 string': l2s,
@@ -720,7 +720,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 //                             },
                 //                         }
                 //                     )
-                //                     return $.value.__d_map_deprecated(($) => Value_Selection_Tail(
+                //                     return p_.from.dictionary($.value).map(($) => Value_Selection_Tail(
                 //                         $,
                 //                         {
                 //                             'location 2 string': l2s,
