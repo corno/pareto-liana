@@ -1,4 +1,5 @@
 import * as p_ from 'pareto-core-shorthands/dist/unresolved_data'
+import * as p_t from 'pareto-core/dist/implementation/transformer'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
@@ -643,7 +644,7 @@ export namespace r {
         const temp_dict = sh.dictionary(properties)
         return sh.state(['group', {
             'l location': temp_dict['l location'],
-            'l dictionary': temp_dict['l dictionary'].__d_map_deprecated(
+            'l dictionary': p_t.from.dictionary(temp_dict['l dictionary']).map(
                 ($) => {
                     return {
                         'l location': $['l location'],

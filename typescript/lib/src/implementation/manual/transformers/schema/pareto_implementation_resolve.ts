@@ -131,7 +131,7 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
             ),
         }),
         p_.from.dictionary(p_.literal.dictionary({
-            "external ": $p.imports.__d_map_deprecated(
+            "external ": p_.from.dictionary($p.imports).map(
                 ($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
                     "resolved",
                     "refiners",

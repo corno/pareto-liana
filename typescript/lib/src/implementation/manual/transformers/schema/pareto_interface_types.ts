@@ -93,7 +93,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             ),
             "imports ": p_change_context($, ($) => {
                 // const types = $p['what to generate']
-                return $p.imports.__d_map_deprecated(
+                return p_.from.dictionary($p.imports).map(
                     ($) => sh.import_.ancestor(
                         $p.depth + 1 + $['schema set child']['l value']['l up steps'],
                         $['schema set child']['l value']['l id'],

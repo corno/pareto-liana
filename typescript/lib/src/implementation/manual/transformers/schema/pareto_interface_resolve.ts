@@ -46,7 +46,7 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                 sh.t.component_imported("unresolved", id),
                 sh.t.component_imported("resolved", id),
                 sh.t.component_imported("generic", "Error"),
-                $['resolved parameters'].lookups.__d_map_deprecated(
+                p_.from.dictionary($['resolved parameters'].lookups).map(
                     ($): d_out.Package.content.functions.D.type_.refiner.lookups.O.D => {
                         const y = sh.t.reference(
                             Module_Reference($.referent),
@@ -63,8 +63,9 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                                     default: return p_.au($[0])
                                 }
                             })
-                    }),
-                $['resolved parameters'].modules.__d_map_deprecated(
+                    }
+                ),
+                p_.from.dictionary($['resolved parameters'].modules).map(
                     ($) => {
                         const temp_2 = sh.t.reference(
                             Module_Reference($['module']),
