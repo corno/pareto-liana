@@ -150,10 +150,10 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                             }
                         }),
                     sh.a.select(
-sh.sv.context(p_.from.optional($.results).decide(
-                        ($) => p_.literal.list(["l value"]),
-                        () => p_.literal.list([])
-                    ))),
+                        sh.sv.context(p_.from.optional($.results).decide(
+                            ($) => p_.literal.list(["l value"]),
+                            () => p_.literal.list([])
+                        ))),
                     null,
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
@@ -234,7 +234,10 @@ sh.sv.context(p_.from.optional($.results).decide(
                     )
                 )
             })
-            case 'nothing': return p_.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
+            case 'nothing': return p_.ss($, ($) => sh.a.state.literal(
+                "nothing",
+                sh.a.nothing()
+            ))
             case 'simple': return p_.ss($, ($) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
@@ -249,7 +252,8 @@ sh.sv.context(p_.from.optional($.results).decide(
                                             "text",
                                             sh.a.group.literal(
                                                 p_.literal.dictionary({
-                                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                                    "delimiter": sh.a.state.literal(
+                                                        "none", sh.a.nothing()),
                                                     "value": sh.a.select(
                                                         sh.sv.call(
                                                             sh.call.external("primitives to text", "true false"),
@@ -271,7 +275,8 @@ sh.sv.context(p_.from.optional($.results).decide(
                                             "text",
                                             sh.a.group.literal(
                                                 p_.literal.dictionary({
-                                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                                    "delimiter": sh.a.state.literal(
+                                                        "none", sh.a.nothing()),
                                                     "value": sh.a.select(
                                                         sh.sv.call(
                                                             sh.call.external("primitives to text", "iso date udhr"),
@@ -340,9 +345,9 @@ sh.sv.context(p_.from.optional($.results).decide(
                                                                         () => sh.sv.call(
                                                                             sh.call.external("primitives to text", "decimal"),
                                                                             sh.a.select(
-sh.sv.context(
-                                                                                p_.literal.list([])
-                                                                            )),
+                                                                                sh.sv.context(
+                                                                                    p_.literal.list([])
+                                                                                )),
                                                                             null,
                                                                             sh.lookups.not_set(),
                                                                             sh.arguments_.not_set(),
@@ -408,12 +413,14 @@ sh.sv.context(
                             "text",
                             sh.a.group.literal(
                                 p_.literal.dictionary({
-                                    "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
+                                    "delimiter": sh.a.state.literal(
+                                        "apostrophe",
+                                        sh.a.nothing()),
                                     "value": sh.a.text.copy(
-sh.sv.context(p_.from.optional($.results).decide(
-                                        ($) => p_.literal.list(["l value", "l id"]),
-                                        () => p_.literal.list(["l id"])
-                                    ))),
+                                        sh.sv.context(p_.from.optional($.results).decide(
+                                            ($) => p_.literal.list(["l value", "l id"]),
+                                            () => p_.literal.list(["l id"])
+                                        ))),
                                 })
                             )
                         ))
@@ -457,11 +464,13 @@ sh.sv.context(p_.from.optional($.results).decide(
                 "text",
                 sh.a.group.literal(
                     p_.literal.dictionary({
-                        "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
+                        "delimiter": sh.a.state.literal(
+                            "quote",
+                            sh.a.nothing()),
                         "value": sh.a.text.copy(
-sh.sv.context(
-                            p_.literal.list([])
-                        )),
+                            sh.sv.context(
+                                p_.literal.list([])
+                            )),
                     })
                 )
             ))
