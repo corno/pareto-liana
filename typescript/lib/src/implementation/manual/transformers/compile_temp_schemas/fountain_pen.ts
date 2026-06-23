@@ -9,10 +9,14 @@ import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manu
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
 
-export const Error: p_i.Transformer_With_Parameter<d_in.Error, d_out.Phrase, {
-    'id': string,
-    'character location reporting': ['zero based', null] | ['one based', null]
-}> = ($, $p) => {
+export const Error: p_i.Transformer_With_Parameter<
+    d_in.Error,
+    d_out.Phrase,
+    {
+        'id': string,
+        'character location reporting': ['zero based', null] | ['one based', null]
+    }
+> = ($, $p) => {
     return sh.ph.composed([
         sh.ph.literal("error in package '"),
         sh.ph.literal($p.id),

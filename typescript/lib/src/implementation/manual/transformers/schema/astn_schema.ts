@@ -7,7 +7,9 @@ import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
-export const Schema: p_i.Transformer<d_in.Schema, d_out.Schema> = (
+export const Schema: p_i.Transformer<
+d_in.Schema, d_out.Schema
+> = (
     $
 ) => ({
     'globals': Globals($.globals),
@@ -16,7 +18,9 @@ export const Schema: p_i.Transformer<d_in.Schema, d_out.Schema> = (
         ($) => Module($))),
 })
 
-export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
+export const Globals: p_i.Transformer<
+d_in.Globals, d_out.Globals
+> = (
     $
 ) => ({
     //FIXME!! merge the number types with the text types in here
@@ -45,7 +49,9 @@ export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
     ),
 })
 
-export const Schema_Imports: p_i.Transformer<d_in.Schema_Imports, d_out.Imports> = (
+export const Schema_Imports: p_i.Transformer<
+d_in.Schema_Imports, d_out.Imports
+> = (
     $
 ) => sh.dictionary(p_.from.dictionary($).map(
     ($) => ({
@@ -53,13 +59,17 @@ export const Schema_Imports: p_i.Transformer<d_in.Schema_Imports, d_out.Imports>
         'schema set child': sh.reference($['schema set child']['l value']['l id'])
     })))
 
-export const Module: p_i.Transformer<d_in.Module, d_out.Modules.l_dictionary.D.l_entry> = (
+export const Module: p_i.Transformer<
+d_in.Module, d_out.Modules.l_dictionary.D.l_entry
+> = (
     $
 ) => ({
     'root value': Value($['root value'])
 })
 
-export const Value: p_i.Transformer<d_in.Value, d_out.Value> = (
+export const Value: p_i.Transformer<
+d_in.Value, d_out.Value
+> = (
     $
 ) => sh.state(p_.from.state($).decide(
     ($): d_out.Value.l_state => {
@@ -122,7 +132,9 @@ export const Value: p_i.Transformer<d_in.Value, d_out.Value> = (
         }
     }))
 
-export const Text_Type: p_i.Transformer<d_in.Text_Type, d_out.Text_Type> = (
+export const Text_Type: p_i.Transformer<
+d_in.Text_Type, d_out.Text_Type
+> = (
     $
 ) => ({
     'type': sh.state(p_.from.state($.type).decide(
