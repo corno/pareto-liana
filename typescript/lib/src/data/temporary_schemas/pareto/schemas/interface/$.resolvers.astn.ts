@@ -1,6 +1,6 @@
 
 
-import { resolver_modules, r, resolver, option as option } from "../../../../../shorthands/resolver"
+import { resolver_modules, r, resolver, option as option } from "../../../../../shorthands/resolver/manual"
 
 
 export const $ = resolver_modules(

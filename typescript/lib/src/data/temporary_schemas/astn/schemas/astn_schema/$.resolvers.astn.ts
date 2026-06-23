@@ -2,7 +2,7 @@
 
 import {
     resolver_modules, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs,
-} from "../../../../../shorthands/resolver"
+} from "../../../../../shorthands/resolver/manual"
 
 
 

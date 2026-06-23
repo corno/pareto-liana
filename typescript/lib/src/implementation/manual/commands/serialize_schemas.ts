@@ -23,7 +23,7 @@ import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transfor
 import * as t_loc_to_fp from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 type My_Error =
     | ['error writing file', d_write_file.Error]

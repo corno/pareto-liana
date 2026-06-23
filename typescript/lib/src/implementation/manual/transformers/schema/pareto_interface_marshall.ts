@@ -19,14 +19,14 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 
 export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
-    {
+    p_.literal.dictionary({
         "out": sh.import_.external(
             "astn-core",
-            [
+            p_.literal.list([
                 "dist",
                 "interface",
                 "generated",
@@ -34,7 +34,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 "schemas",
                 "sealed target",
                 "data",
-            ],
+            ]),
         ),
         "in": sh.import_.ancestor(
             p_.from.optional($p.constrained).decide(
@@ -47,7 +47,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 () => p_.literal.list([])
             )
         ),
-    },
+    }),
     p_.from.dictionary($.modules).map(
         ($, id) => sh.type.transformer(
             sh.t.component_imported(

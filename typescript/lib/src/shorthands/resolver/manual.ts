@@ -3,9 +3,9 @@ import * as p_t from 'pareto-core/dist/implementation/transformer'
 
 import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
 
-import * as d_target from "../interface/generated/liana/schemas/schema/data/unresolved"
+import * as d_target from "../../interface/generated/liana/schemas/schema/data/unresolved"
 
-import * as temp_schema from "./schema"
+import * as temp_schema from "../schema/manual"
 
 export const resolver_modules = (
     resolvers: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,
@@ -568,8 +568,10 @@ export namespace r {
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': p_.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary<d_target.Resolver_Value_Constraints.l_dictionary.D.l_entry>({}),
         }])
@@ -585,8 +587,10 @@ export namespace r {
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': p_.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints),
         }])
@@ -607,8 +611,10 @@ export namespace r {
             }]),
             'signature': null,
             'arguments': p_.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(sh.dictionary(lookups)),
+                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(modules)),
+                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(
+                    sh.dictionary(lookups)),
             }),
             'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
         }])

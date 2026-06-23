@@ -20,12 +20,13 @@ export namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation"
-import * as sh_i from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation/target"
+import * as sh_i from "pareto/dist/shorthands/interface/target"
 
-export const Schema: interface_.Schema = ($, $p) => {
+export const Schema: interface_.Schema = ($,
+    $p) => {
     return sh.m.package_(
-        [],
+        p_.literal.list([]),
         p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -51,33 +52,58 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "refiners",
                     "list of characters",
                 ])),
-            "resolve": sh_i.import_.sibling("unresolved", p_.literal.list([
-            ])),
+            "resolve": sh_i.import_.sibling(
+                "unresolved",
+                p_.literal.list([])
+            ),
         }),
         p_.from.dictionary($.modules).map(
-            ($, id) => sh.algorithm(
-                "signatures",
-                id,
-                ['abort', 'lookups', 'parameters'],
-                sh.a.select(sh.sv.call(
-                    sh.call.external("resolve", id),
+            ($,
+                id) => sh.algorithm(
+                    "signatures",
+                    id,
+                    p_.literal.list(['abort',
+                        'lookups',
+                        'parameters']),
                     sh.a.select(
-                        sh.sv.call(
-                            sh.call.external("deserialize", id),
-                            sh.a.select(sh.sv.context([])),
-                            sh.a.state.literal("tbd", sh.a.nothing()),
-                            sh.lookups.not_set(),
-                            sh.arguments_.initialize({
-                                "tab size": sh.a.number.integer_copy(sh.sv.parameter("tab size", []))
-                            }),
-                            []
-                        )
-                    ),
-                    sh.a.state.literal("tbd", sh.a.nothing()),
-                    sh.lookups.pass_through(),
-                    sh.arguments_.pass_through(),
-                    []
-                ))
-            )),
+sh.sv.call(
+                        sh.call.external(
+                            "resolve",
+                            id
+                        ),
+                        sh.a.select(
+                            sh.sv.call(
+                                sh.call.external(
+                                    "deserialize",
+                                    id
+                                ),
+                                sh.a.select(
+                                    sh.sv.context(
+                                        p_.literal.list([])
+                                    )),
+                                sh.a.state.literal("tbd",
+                                    sh.a.nothing()),
+                                sh.lookups.not_set(),
+                                sh.arguments_.initialize(
+                                    p_.literal.dictionary({
+                                        "tab size": sh.a.number.integer_copy(
+sh.sv.parameter(
+                                            "tab size",
+                                            p_.literal.list([])
+                                        ))
+                                    }),
+                                ),
+                                p_.literal.list([])
+                            )
+                        ),
+                        sh.a.state.literal(
+                            "tbd",
+                            sh.a.nothing()
+                        ),
+                        sh.lookups.pass_through(),
+                        sh.arguments_.pass_through(),
+                        p_.literal.list([])
+                    ))
+                )),
     )
 }

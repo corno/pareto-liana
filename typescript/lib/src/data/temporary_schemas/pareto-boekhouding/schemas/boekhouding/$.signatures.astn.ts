@@ -1,6 +1,6 @@
 
 
-import { signatures, sig, parameter, sig_params } from "../../../../../shorthands/signatures"
+import { signatures, sig, parameter, sig_params } from "../../../../../shorthands/signatures/manual"
 
 
 export const $ = signatures(

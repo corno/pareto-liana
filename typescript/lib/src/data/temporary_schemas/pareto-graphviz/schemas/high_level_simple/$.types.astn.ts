@@ -8,7 +8,7 @@ import {
     prop,
     text,
     toption,
-} from "../../../../../shorthands/schema"
+} from "../../../../../shorthands/schema/manual"
 
 
 export const $ = modules(

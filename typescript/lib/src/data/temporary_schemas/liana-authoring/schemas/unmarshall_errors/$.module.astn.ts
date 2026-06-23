@@ -1,6 +1,6 @@
 
 
-import { schema_, schema_import_ } from "../../../../../shorthands/schema"
+import { schema_, schema_import_ } from "../../../../../shorthands/schema/manual"
 
 
 import { $ as schema } from "./$.types.astn"

@@ -31,14 +31,17 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation"
-import * as sh_i from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation/target"
+import * as sh_i from "pareto/dist/shorthands/interface/target"
 
 export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
 
     return sh.m.package_(
-        ['change context', 'text from list'],
+        p_.literal.list([
+            'change context',
+            'text from list'
+        ]),
         p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -67,7 +70,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             ),
             "out": sh_i.import_.external(
                 "astn-core",
-                [
+                p_.literal.list([
                     "dist",
                     "interface",
                     "generated",
@@ -75,7 +78,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "schemas",
                     "sealed target",
                     "data",
-                ],
+                ]),
             ),
 
         }),
@@ -96,8 +99,16 @@ export const Schema: interface_.Schema = ($, $p) => {
                 }),
                 "external ": p_.from.dictionary($['schema imports']).map(
                     ($, id) => constrained
-                        ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
-                        : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
+                        ? sh_i.import_.ancestor(
+                            3,
+                            $['schema set child']['l value']['l id'],
+                            p_.literal.list(["resolved", "transformers", "astn sealed target"])
+                        )
+                        : sh_i.import_.ancestor(
+                            2,
+                            $['schema set child']['l value']['l id'],
+                            p_.literal.list(["transformers", "astn sealed target"])
+                        )
                 ),
             }),
         ).flatten(
@@ -112,7 +123,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             ($, id) => sh.algorithm(
                 "signatures",
                 id,
-                [],
+                p_.literal.list([]),
                 Value(
                     $['root value'],
                     {
@@ -138,20 +149,23 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                 default: return p_.au($[0])
                             }
                         }),
-                    sh.a.select(sh.sv.context(p_.from.optional($.results).decide(
+                    sh.a.select(
+sh.sv.context(p_.from.optional($.results).decide(
                         ($) => p_.literal.list(["l value"]),
                         () => p_.literal.list([])
                     ))),
                     null,
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    [],
+                    p_.literal.list([]),
                 )
             ))
             case 'dictionary': return p_.ss($, ($) => sh.a.state.literal(
                 "dictionary",
                 sh.a.dictionary.from.dictionary.map(
-                    sh.sv.context([]),
+                    sh.sv.context(
+                        p_.literal.list([])
+                    ),
                     Value(
                         $.value,
                         {
@@ -170,7 +184,11 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     "verbose",
                     sh.a.dictionary.literal(p_.from.dictionary($).map(
                         ($, id) => sh.a.change_context(
-                            sh.sv.context([id]),
+                            sh.sv.context(
+                                p_.literal.list([
+                                    id
+                                ])
+                            ),
                             Value(
                                 $.value,
                                 {
@@ -206,7 +224,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                         )),
                         p_.from.optional($.results).decide(
                             ($) => sh.a.change_context(
-                                sh.sv.context(["l item"]),
+                                sh.sv.context(
+                                    p_.literal.list(["l item"])
+                                ),
                                 x,
                             ),
                             () => x
@@ -227,83 +247,115 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                     switch ($[0]) {
                                         case 'boolean': return p_.ss($, ($) => sh.a.state.literal(
                                             "text",
-                                            sh.a.group.literal({
-                                                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-                                                "value": sh.a.select(
-                                                    sh.sv.call(
-                                                        sh.call.external("primitives to text", "true false"),
-                                                        sh.a.select(sh.sv.context([])),
-                                                        null,
-                                                        sh.lookups.not_set(),
-                                                        sh.arguments_.not_set(),
-                                                        [],
-                                                    )
-                                                ),
-                                            })
+                                            sh.a.group.literal(
+                                                p_.literal.dictionary({
+                                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                                    "value": sh.a.select(
+                                                        sh.sv.call(
+                                                            sh.call.external("primitives to text", "true false"),
+                                                            sh.a.select(
+                                                                sh.sv.context(
+                                                                    p_.literal.list([])
+                                                                )
+                                                            ),
+                                                            null,
+                                                            sh.lookups.not_set(),
+                                                            sh.arguments_.not_set(),
+                                                            p_.literal.list([]),
+                                                        )
+                                                    ),
+                                                })
+                                            )
                                         ))
                                         case 'date': return p_.ss($, ($) => sh.a.state.literal(
                                             "text",
-                                            sh.a.group.literal({
-                                                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-                                                "value": sh.a.select(
-                                                    sh.sv.call(
-                                                        sh.call.external("primitives to text", "iso date udhr"),
-                                                        sh.a.select(sh.sv.context([])),
-                                                        null,
-                                                        sh.lookups.not_set(),
-                                                        sh.arguments_.not_set(),
-                                                        [],
-                                                    )
-                                                ),
-                                            })
+                                            sh.a.group.literal(
+                                                p_.literal.dictionary({
+                                                    "delimiter": sh.a.state.literal("none", sh.a.nothing()),
+                                                    "value": sh.a.select(
+                                                        sh.sv.call(
+                                                            sh.call.external("primitives to text", "iso date udhr"),
+                                                            sh.a.select(
+                                                                sh.sv.context(
+                                                                    p_.literal.list([])
+                                                                )
+                                                            ),
+                                                            null,
+                                                            sh.lookups.not_set(),
+                                                            sh.arguments_.not_set(),
+                                                            p_.literal.list([]),
+                                                        )
+                                                    ),
+                                                })
+                                            )
                                         ))
                                         case 'number': return p_.ss($, ($) => sh.a.state.literal(
                                             "text",
-                                            sh.a.group.literal({
-                                                "delimiter": sh.a.state.literal("none", sh.a.nothing()),
-                                                "value": sh.a.select(
-                                                    p_.from.state($.precision).decide(
-                                                        ($) => {
-                                                            switch ($[0]) {
-                                                                case 'approximation': return p_.ss($, ($) => sh.sv.call(
-                                                                    sh.call.external("primitives to text", "scientific notation"),
-                                                                    sh.a.select(sh.sv.context([])),
-                                                                    null,
-                                                                    sh.lookups.not_set(),
-                                                                    sh.arguments_.initialize({
-                                                                        "digits": sh.a.number.natural_literal(
-                                                                            $['significant digits']
-                                                                        )
-                                                                    }),
-                                                                    [],
-                                                                ))
-                                                                case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
-                                                                    ($) => sh.sv.call(
-                                                                        sh.call.external("primitives to text", "fractional decimal"),
-                                                                        sh.a.select(sh.sv.context([])),
-                                                                        null,
-                                                                        sh.lookups.not_set(),
-                                                                        sh.arguments_.initialize({
-                                                                            "number of fractional digits": sh.a.number.natural_literal(
-                                                                                $
+                                            sh.a.group.literal(
+                                                p_.literal.dictionary({
+                                                    "delimiter": sh.a.state.literal(
+                                                        "none",
+                                                        sh.a.nothing()
+                                                    ),
+                                                    "value": sh.a.select(
+                                                        p_.from.state($.precision).decide(
+                                                            ($) => {
+                                                                switch ($[0]) {
+                                                                    case 'approximation': return p_.ss($, ($) => sh.sv.call(
+                                                                        sh.call.external("primitives to text", "scientific notation"),
+                                                                        sh.a.select(
+                                                                            sh.sv.context(
+                                                                                p_.literal.list([])
                                                                             )
-                                                                        }),
-                                                                        [],
-                                                                    ),
-                                                                    () => sh.sv.call(
-                                                                        sh.call.external("primitives to text", "decimal"),
-                                                                        sh.a.select(sh.sv.context([])),
+                                                                        ),
                                                                         null,
                                                                         sh.lookups.not_set(),
-                                                                        sh.arguments_.not_set(),
-                                                                        [],
-                                                                    )
-                                                                ))
-                                                                default: return p_.au($[0])
+                                                                        sh.arguments_.initialize(
+                                                                            p_.literal.dictionary({
+                                                                                "digits": sh.a.number.natural_literal(
+                                                                                    $['significant digits']
+                                                                                )
+                                                                            }),
+                                                                        ),
+                                                                        p_.literal.list([]),
+                                                                    ))
+                                                                    case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
+                                                                        ($) => sh.sv.call(
+                                                                            sh.call.external("primitives to text", "fractional decimal"),
+                                                                            sh.a.select(
+                                                                                sh.sv.context(
+                                                                                    p_.literal.list([])
+                                                                                )),
+                                                                            null,
+                                                                            sh.lookups.not_set(),
+                                                                            sh.arguments_.initialize(
+                                                                                p_.literal.dictionary({
+                                                                                    "number of fractional digits": sh.a.number.natural_literal(
+                                                                                        $
+                                                                                    )
+                                                                                }),
+                                                                            ),
+                                                                            p_.literal.list([]),
+                                                                        ),
+                                                                        () => sh.sv.call(
+                                                                            sh.call.external("primitives to text", "decimal"),
+                                                                            sh.a.select(
+sh.sv.context(
+                                                                                p_.literal.list([])
+                                                                            )),
+                                                                            null,
+                                                                            sh.lookups.not_set(),
+                                                                            sh.arguments_.not_set(),
+                                                                            p_.literal.list([]),
+                                                                        )
+                                                                    ))
+                                                                    default: return p_.au($[0])
+                                                                }
                                                             }
-                                                        })
-                                                ),
-                                            })
+                                                        )
+                                                    ),
+                                                })
+                                            )
                                         ))
 
                                         default: return p_.au($[0])
@@ -317,7 +369,9 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
             case 'optional': return p_.ss($, ($) => sh.a.state.literal(
                 "optional",
                 sh.a.decide.optional(
-                    sh.sv.context([]),
+                    sh.sv.context(
+                        p_.literal.list([])
+                    ),
                     sh.a.state.literal(
                         "set",
                         Value(
@@ -338,20 +392,31 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     sh.type_node_reference(
                         "out",
                         "Value",
-                        [sh.sub.state("optional")]
+                        p_.literal.list([
+                            sh.sub.state("optional")
+                        ])
                     ),
                 )))
             case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'derived': return p_.ss($, ($) => sh.a.state.literal("nothing", sh.a.nothing()))
-                        case 'selected': return p_.ss($, ($) => sh.a.state.literal("text", sh.a.group.literal({
-                            "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
-                            "value": sh.a.text.copy(sh.sv.context(p_.from.optional($.results).decide(
-                                ($) => p_.literal.list(["l value", "l id"]),
-                                () => p_.literal.list(["l id"])
-                            ))),
-                        })))
+                        case 'derived': return p_.ss($, ($) => sh.a.state.literal(
+                            "nothing",
+                            sh.a.nothing()
+                        ))
+                        case 'selected': return p_.ss($, ($) => sh.a.state.literal(
+                            "text",
+                            sh.a.group.literal(
+                                p_.literal.dictionary({
+                                    "delimiter": sh.a.state.literal("apostrophe", sh.a.nothing()),
+                                    "value": sh.a.text.copy(
+sh.sv.context(p_.from.optional($.results).decide(
+                                        ($) => p_.literal.list(["l value", "l id"]),
+                                        () => p_.literal.list(["l id"])
+                                    ))),
+                                })
+                            )
+                        ))
                         default: return p_.au($[0])
                     }
                 }))
@@ -363,32 +428,42 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                         () => p_.literal.list([])
                     )),
                     p_.from.dictionary($.options).map(
-                        ($, id) => sh.a.group.literal({
-                            "option": sh.a.text.literal(id, 'identifier'),
-                            "value": Value(
-                                $.value,
-                                {
-                                    'type': $p.type,
-                                    'subselection': p_.literal.chain(
-                                        $p.subselection,
-                                        sh.sub.state(id),
-                                    ),
-                                }
-                            )
-                        })),
+                        ($, id) => sh.a.group.literal(
+                            p_.literal.dictionary({
+                                "option": sh.a.text.literal(id, 'identifier'),
+                                "value": Value(
+                                    $.value,
+                                    {
+                                        'type': $p.type,
+                                        'subselection': p_.literal.chain(
+                                            $p.subselection,
+                                            sh.sub.state(id),
+                                        ),
+                                    }
+                                )
+                            })
+                        )
+                    ),
                     sh.type_node_reference(
                         "out",
                         "Value",
-                        [sh.sub.state("state")]
+                        p_.literal.list([
+                            sh.sub.state("state")
+                        ])
                     ),
                 )
             ))
             case 'text': return p_.ss($, ($) => sh.a.state.literal(
                 "text",
-                sh.a.group.literal({
-                    "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
-                    "value": sh.a.text.copy(sh.sv.context([])),
-                })
+                sh.a.group.literal(
+                    p_.literal.dictionary({
+                        "delimiter": sh.a.state.literal("quote", sh.a.nothing()),
+                        "value": sh.a.text.copy(
+sh.sv.context(
+                            p_.literal.list([])
+                        )),
+                    })
+                )
             ))
             default: return p_.au($[0])
         }

@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 
 import { $ as x_astn_location } from "../astn-core/schemas/location/$.module.astn"

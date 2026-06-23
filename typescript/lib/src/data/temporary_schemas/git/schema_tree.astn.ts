@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 
 import { $ as x_git } from "./schemas/git/$.module.astn"

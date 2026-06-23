@@ -7,7 +7,7 @@ import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schem
 import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
 import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const Error: p_i.Transformer_With_Parameter<
     d_in.Error,

@@ -2,7 +2,7 @@
 
 import {
     resolver_modules, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
-} from "../../../../../shorthands/resolver"
+} from "../../../../../shorthands/resolver/manual"
 
 
 export const $ = resolver_modules(

@@ -60,7 +60,7 @@ namespace interface_ {
 }
 
 //dependencies
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 const location = sh.t.component_imported(
     "location",
@@ -77,14 +77,15 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "": p_.from.boolean(
                         add_location,
                     ).decide(
-                        () => p_.literal.set(sh.import_.external(
+                        () => p_.literal.set(
+sh.import_.external(
                             "liana-core",
-                            [
+                            p_.literal.list([
                                 "dist",
                                 "interface",
                                 "to be generated",
                                 "document and location",
-                            ]
+                            ])
                         )),
                         () => p_.literal.not_set(),
                     )
@@ -188,18 +189,24 @@ export const Value: interface_.Value = ($, $p) => {
                         : x
                 })
                 case 'dictionary': return p_.ss($, ($) => $p.type[0] === 'unresolved'
-                    ? sh.t.group({
-                        "l location": location,
-                        "l dictionary": sh.t.dictionary(sh.t.group({
+                    ? sh.t.group(
+                        p_.literal.dictionary({
                             "l location": location,
-                            "l entry": Value(
-                                $.value,
-                                {
-                                    'type': $p.type,
-                                }
+                            "l dictionary": sh.t.dictionary(
+                                sh.t.group(
+                                    p_.literal.dictionary({
+                                        "l location": location,
+                                        "l entry": Value(
+                                            $.value,
+                                            {
+                                                'type': $p.type,
+                                            }
+                                        )
+                                    })
+                                )
                             )
-                        }))
-                    })
+                        })
+                    )
                     : sh.t.dictionary(Value(
                         $.value,
                         $p
@@ -222,31 +229,39 @@ export const Value: interface_.Value = ($, $p) => {
                                     list.value,
                                     $p
                                 )))
-                                case 'unresolved': return p_.ss($, ($) => sh.t.group({
-                                    "l location": location,
-                                    "l list": sh.t.list(sh.t.group({
+                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                    p_.literal.dictionary({
                                         "l location": location,
-                                        "l item": Value(
-                                            list.value,
-                                            $p
+                                        "l list": sh.t.list(
+                                            sh.t.group(
+                                                p_.literal.dictionary({
+                                                    "l location": location,
+                                                    "l item": Value(
+                                                        list.value,
+                                                        $p
+                                                    )
+                                                })
+                                            )
                                         )
-                                    }))
-                                }))
+                                    })
+                                ))
                                 case 'resolved': return p_.ss($, ($) => Value_Results(
                                     list.results,
                                     {
                                         'base type': sh.t.list(
                                             p_.from.optional(list.results).decide(
-                                                ($) => sh.t.group({
-                                                    "l results": sh.t.group(
-                                                        p_.from.dictionary($).map(
-                                                            ($) => Value_Reference($)
-                                                        )),
-                                                    "l item": Value(
-                                                        list.value,
-                                                        $p
-                                                    )
-                                                }),
+                                                ($) => sh.t.group(
+                                                    p_.literal.dictionary({
+                                                        "l results": sh.t.group(
+                                                            p_.from.dictionary($).map(
+                                                                ($) => Value_Reference($)
+                                                            )),
+                                                        "l item": Value(
+                                                            list.value,
+                                                            $p
+                                                        )
+                                                    })
+                                                ),
                                                 () => Value(
                                                     list.value,
                                                     $p
@@ -286,10 +301,12 @@ export const Value: interface_.Value = ($, $p) => {
                                     return p_.from.state($p.type).decide(
                                         ($) => {
                                             switch ($[0]) {
-                                                case 'unconstrained': return p_.ss($, ($) => sh.t.group({ //this is weird; a reference in an unconstrained schema
-                                                    "l location": location,
-                                                    "l reference": sh.t.text(),
-                                                }))
+                                                case 'unconstrained': return p_.ss($, ($) => sh.t.group(
+                                                    p_.literal.dictionary({ //this is weird; a reference in an unconstrained schema
+                                                        "l location": location,
+                                                        "l reference": sh.t.text(),
+                                                    })
+                                                ))
                                                 case 'resolved': return p_.ss($, ($) => {
                                                     return Value_Results(
                                                         selected.results,
@@ -325,13 +342,15 @@ export const Value: interface_.Value = ($, $p) => {
                                                                                 }
                                                                             })
                                                                     })),
-                                                                    "l id": p_.literal.set(sh.t.text()),
+                                                                    "l id": p_.literal.set(
+sh.t.text()),
                                                                     "l up steps": p_.from.state(selected.dependency).decide(
                                                                         ($) => {
                                                                             switch ($[0]) {
                                                                                 case 'acyclic': return p_.ss($, ($) => p_.literal.not_set())
                                                                                 case 'cyclic': return p_.ss($, ($) => p_.literal.not_set())
-                                                                                case 'stack': return p_.ss($, ($) => p_.literal.set(sh.t.natural()))
+                                                                                case 'stack': return p_.ss($, ($) => p_.literal.set(
+sh.t.natural()))
                                                                                 default: return p_.au($[0])
                                                                             }
                                                                         })
@@ -340,10 +359,12 @@ export const Value: interface_.Value = ($, $p) => {
                                                         }
                                                     )
                                                 })
-                                                case 'unresolved': return p_.ss($, ($) => sh.t.group({
-                                                    "l location": location,
-                                                    "l reference": sh.t.text(),
-                                                }))
+                                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                                    p_.literal.dictionary({
+                                                        "l location": location,
+                                                        "l reference": sh.t.text(),
+                                                    })
+                                                ))
                                                 default: return p_.au($[0])
                                             }
                                         })
@@ -363,10 +384,12 @@ export const Value: interface_.Value = ($, $p) => {
                         ($) => {
                             switch ($[0]) {
                                 case 'unconstrained': return p_.ss($, ($) => i)
-                                case 'unresolved': return p_.ss($, ($) => sh.t.group({
-                                    "l location": location,
-                                    "l state": i
-                                }))
+                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                    p_.literal.dictionary({
+                                        "l location": location,
+                                        "l state": i
+                                    })
+                                ))
                                 case 'resolved': return p_.ss($, ($) => Value_Results(
                                     results,
                                     {
@@ -386,14 +409,16 @@ export const Value: interface_.Value = ($, $p) => {
 
 const Value_Results: interface_.Value_Results = ($, $p) => {
     return p_.from.optional($).decide(
-        ($) => sh.t.group({
-            "l results": sh.t.group(
-                p_.from.dictionary($).map(
-                    ($) => Value_Reference($)
-                )
-            ),
-            "l value": $p['base type'],
-        }),
+        ($) => sh.t.group(
+            p_.literal.dictionary({
+                "l results": sh.t.group(
+                    p_.from.dictionary($).map(
+                        ($) => Value_Reference($)
+                    )
+                ),
+                "l value": $p['base type'],
+            }),
+        ),
         () => $p['base type']
     )
 }

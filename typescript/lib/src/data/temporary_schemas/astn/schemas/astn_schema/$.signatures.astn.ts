@@ -2,7 +2,7 @@
 
 import {
     signatures, sig, parameter,
-} from "../../../../../shorthands/signatures"
+} from "../../../../../shorthands/signatures/manual"
 
 
 export const $ = signatures(

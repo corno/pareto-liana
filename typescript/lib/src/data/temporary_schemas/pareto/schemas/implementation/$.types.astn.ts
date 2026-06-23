@@ -8,7 +8,7 @@ import {
     module_,
     prop,
     toption,
-} from "../../../../../shorthands/schema"
+} from "../../../../../shorthands/schema/manual"
 
 
 

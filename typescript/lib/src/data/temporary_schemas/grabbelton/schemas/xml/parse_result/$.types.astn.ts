@@ -7,7 +7,7 @@ import {
     n,
     prop,
     toption,
-} from "../../../../../../shorthands/schema"
+} from "../../../../../../shorthands/schema/manual"
 import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $ = modules(

@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 import { $ as x_alan_light_oldstyle } from "./schemas/alan_light_oldstyle/$.module.astn"
 import { $ as x_csv } from "./schemas/csv/$.module.astn"

@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 
 import { $ as m_execute_sandboxed_command_executable } from "./schemas/execute_sandboxed/command_executable/$.module.astn"

@@ -21,7 +21,7 @@ import * as t_generate_typescript_to_fp from "../transformers/generate_typescrip
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/text"
 
 // //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.procedures.generate_typescript_cli = p_.command_procedure(
     ($d, $s, $q, $c) => [

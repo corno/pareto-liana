@@ -24,7 +24,7 @@ import * as r_context_path_from_text from "pareto-resources/dist/implementation/
 import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schemas/fountain_pen"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedure(
     ($d, $s, $q, $c) => [

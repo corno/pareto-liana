@@ -15,32 +15,32 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 
 export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
     return sh.m.package_functions(
-        {
+        p_.literal.dictionary({
             "generic": sh.import_.external(
                 "liana-core",
-                [
+                p_.literal.list([
                     "dist",
                     "interface",
                     "to be generated",
                     "resolve",
-                ],
+                ])
             ),
             "resolved": sh.import_.ancestor(
                 3,
                 "data",
-                ["resolved"]
+                p_.literal.list(["resolved"])
             ),
             "unresolved": sh.import_.ancestor(
                 3,
                 "data",
-                ["unresolved"]
+                p_.literal.list(["unresolved"])
             ),
-        },
+        }),
         p_.from.dictionary($).map(
             ($, id) => sh.type.refiner(
                 sh.t.component_imported("unresolved", id),
@@ -62,7 +62,8 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                                     case 'stack': return p_.ss($, ($) => ['stack', y])
                                     default: return p_.au($[0])
                                 }
-                            })
+                            }
+                        )
                     }
                 ),
                 p_.from.dictionary($['resolved parameters'].modules).map(
@@ -79,7 +80,8 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                                     default: return p_.au($[0])
                                 }
                             })
-                    }),
+                    }
+                ),
             )
         ),
     )

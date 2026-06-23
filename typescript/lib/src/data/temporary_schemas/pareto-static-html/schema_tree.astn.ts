@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 
 import { $ as x_static_html } from "./schemas/static-html/$.module.astn"

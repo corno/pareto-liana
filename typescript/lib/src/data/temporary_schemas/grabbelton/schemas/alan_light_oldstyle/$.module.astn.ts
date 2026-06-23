@@ -3,7 +3,7 @@
 
 
 
-import { schema_, constrained } from "../../../../../shorthands/schema"
+import { schema_, constrained } from "../../../../../shorthands/schema/manual"
 
 
 import { $ as schema } from "./$.types.astn"

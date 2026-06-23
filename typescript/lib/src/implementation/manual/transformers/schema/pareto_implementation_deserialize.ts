@@ -20,14 +20,14 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation"
-import * as sh_i from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation/target"
+import * as sh_i from "pareto/dist/shorthands/interface/target"
 
 export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
 
     return sh.m.package_(
-        [],
+        p_.literal.list([]),
         p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -58,41 +58,75 @@ export const Schema: interface_.Schema = ($, $p) => {
         p_.literal.dictionary({
             "deserialize": sh_i.import_.external(
                 "astn-core",
-                [
+                p_.literal.list([
                     "dist",
                     "implementation",
                     "manual",
                     "refiners",
                     "parse tree",
                     "list of characters",
-                ],
+                ]),
             ),
-            "unmarshall": sh_i.import_.sibling("astn parse tree", p_.literal.list([
-            ])),
+            "unmarshall": sh_i.import_.sibling(
+                "astn parse tree",
+                p_.literal.list([])
+            ),
         }),
         p_.from.dictionary($.modules).map(
             ($, id) => sh.algorithm(
                 "signatures",
                 id,
-                ['abort', 'parameters'],
-                sh.a.select(sh.sv.call(
-                    sh.call.external("unmarshall", id),
+                p_.literal.list(['abort', 'parameters']),
+                sh.a.select(
+sh.sv.call(
+                    sh.call.external(
+                        "unmarshall",
+                        id
+                    ),
                     sh.a.select(
                         sh.sv.call(
-                            sh.call.external("deserialize", "Document"),
-                            sh.a.select(sh.sv.context([])),
-                            sh.a.state.literal("parse error", sh.a.select(sh.sv.context([]))),
+                            sh.call.external(
+                                "deserialize",
+                                "Document"
+                            ),
+                            sh.a.select(
+                                sh.sv.context(
+                                    p_.literal.list([])
+                                )),
+                            sh.a.state.literal(
+                                "parse error",
+                                sh.a.select(
+                                    sh.sv.context(
+                                        p_.literal.list([])
+                                    )
+                                )
+                            ),
                             sh.lookups.not_set(),
-                            sh.arguments_.initialize({
-                                "tab size": sh.a.number.integer_copy(sh.sv.parameter("tab size", []))
-                            }),
-                            ["content"]
+                            sh.arguments_.initialize(
+                                p_.literal.dictionary({
+                                    "tab size": sh.a.number.integer_copy(
+                                        sh.sv.parameter(
+                                            "tab size",
+                                            p_.literal.list([])
+                                        ))
+                                })
+                            ),
+                            p_.literal.list([
+                                "content"
+                            ])
                         )
                     ),
-                    sh.a.state.literal("unmarshall error", sh.a.select(sh.sv.context([]))),
+                    sh.a.state.literal(
+                        "unmarshall error",
+                        sh.a.select(
+                            sh.sv.context(
+                                p_.literal.list([])
+                            )
+                        )
+                    ),
                     sh.lookups.not_set(),
                     sh.arguments_.not_set(),
-                    []
+                    p_.literal.list([])
                 ))
             )),
     )

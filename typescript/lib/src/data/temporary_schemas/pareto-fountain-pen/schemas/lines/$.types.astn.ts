@@ -1,8 +1,10 @@
-import * as sh from "../../../../../shorthands/schema"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 export const $ = sh.modules(
     {
-        "Lines": sh.module_(sh.t.list(sh.t.text_global("Output"))),
+        "Lines": sh.module_(
+sh.t.list(
+sh.t.text_global("Output"))),
     }
 )
 

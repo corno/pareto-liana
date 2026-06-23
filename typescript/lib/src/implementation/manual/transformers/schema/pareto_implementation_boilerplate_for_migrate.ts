@@ -31,30 +31,43 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation"
-import * as sh_i from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation/target"
+import * as sh_i from "pareto/dist/shorthands/interface/target"
 
-const location = sh.a.state.literal("in main document", sh.a.group.literal({
-    "start": sh.a.group.literal({
-        "absolute": sh.a.number.integer_literal(42),
-        "relative": sh.a.group.literal({
-            "line": sh.a.number.integer_literal(42),
-            "column": sh.a.number.integer_literal(42),
+const location = sh.a.state.literal(
+    "in main document",
+    sh.a.group.literal(
+        p_.literal.dictionary({
+            "start": sh.a.group.literal(
+                p_.literal.dictionary({
+                    "absolute": sh.a.number.integer_literal(42),
+                    "relative": sh.a.group.literal(
+                        p_.literal.dictionary({
+                            "line": sh.a.number.integer_literal(42),
+                            "column": sh.a.number.integer_literal(42),
+                        })
+                    )
+                })
+            ),
+            "end": sh.a.group.literal(
+                p_.literal.dictionary({
+                    "absolute": sh.a.number.integer_literal(42),
+                    "relative": sh.a.group.literal(
+                        p_.literal.dictionary({
+                            "line": sh.a.number.integer_literal(42),
+                            "column": sh.a.number.integer_literal(42),
+                        })
+                    )
+                })
+            )
         })
-    }),
-    "end": sh.a.group.literal({
-        "absolute": sh.a.number.integer_literal(42),
-        "relative": sh.a.group.literal({
-            "line": sh.a.number.integer_literal(42),
-            "column": sh.a.number.integer_literal(42),
-        })
-    })
-}))
+    )
+)
 
 export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
     return sh.m.package_(
-        ['change context'],
+        p_.literal.list(['change context']),
         p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -104,13 +117,22 @@ export const Schema: interface_.Schema = ($, $p) => {
         }),
         p_.from.dictionary($['schema imports']).map(
             ($, id) => constrained
-                ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "boilerplate for migrate"])
-                : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "boilerplate for migrate"])),
+                ? sh_i.import_.ancestor(
+                    3,
+                    $['schema set child']['l value']['l id'],
+                    p_.literal.list(["resolved", "transformers", "boilerplate for migrate"])
+                )
+                : sh_i.import_.ancestor(
+                    2,
+                    $['schema set child']['l value']['l id'],
+                    p_.literal.list(["transformers", "boilerplate for migrate"])
+                )
+        ),
         p_.from.dictionary($.modules).map(
             ($, id) => sh.algorithm(
                 "signatures",
                 id,
-                [],
+                p_.literal.list([]),
                 Value(
                     $['root value'],
                     {
@@ -150,39 +172,47 @@ export const Value: interface_.Value = ($, $p) => {
                             null,
                             sh.lookups.not_set(),
                             sh.arguments_.not_set(),
-                            [],
+                            p_.literal.list([]),
                         )
                     )
                 })
                 case 'dictionary': return p_.ss($, ($) => {
 
                     return $p.constrained
-                        ? sh.a.group.literal({
-                            "l location": location,
-                            "l dictionary": sh.a.dictionary.from.dictionary.map(
-                                sh.sv.context([]),
-                                sh.a.group.literal({
-                                    "l entry": Value(
-                                        $.value,
-                                        {
-                                            'type name': $p['type name'],
-                                            'subselection': p_.literal.segmented_list([
-                                                $p.subselection,
-                                                p_.literal.list([
-                                                    sh.sub.group("l dictionary"),
-                                                    sh.sub.dictionary(),
-                                                    sh.sub.group("l entry"),
-                                                ])
-                                            ]),
-                                            'constrained': $p.constrained,
-                                        }
+                        ? sh.a.group.literal(
+                            p_.literal.dictionary({
+                                "l location": location,
+                                "l dictionary": sh.a.dictionary.from.dictionary.map(
+                                    sh.sv.context(
+                                        p_.literal.list([])
                                     ),
-                                    "l location": location
-                                })
-                            )
-                        })
+                                    sh.a.group.literal(
+                                        p_.literal.dictionary({
+                                            "l entry": Value(
+                                                $.value,
+                                                {
+                                                    'type name': $p['type name'],
+                                                    'subselection': p_.literal.segmented_list([
+                                                        $p.subselection,
+                                                        p_.literal.list([
+                                                            sh.sub.group("l dictionary"),
+                                                            sh.sub.dictionary(),
+                                                            sh.sub.group("l entry"),
+                                                        ])
+                                                    ]),
+                                                    'constrained': $p.constrained,
+                                                }
+                                            ),
+                                            "l location": location
+                                        })
+                                    )
+                                )
+                            })
+                        )
                         : sh.a.dictionary.from.dictionary.map(
-                            sh.sv.context([]),
+                            sh.sv.context(
+                                p_.literal.list([])
+                            ),
                             Value(
                                 $.value,
                                 {
@@ -196,62 +226,79 @@ export const Value: interface_.Value = ($, $p) => {
                             )
                         )
                 })
-                case 'group': return p_.ss($, ($) => sh.a.group.literal(p_.from.dictionary($).map(
-                    ($, id) => sh.a.change_context(
-                        sh.sv.context([id]),
-                        Value(
-                            $.value,
-                            {
-                                'type name': $p['type name'],
-                                'subselection': p_.literal.chain(
-                                    $p.subselection,
-                                    sh.sub.group(id)
-                                ),
-                                'constrained': $p.constrained,
-                            }
+                case 'group': return p_.ss($, ($) => sh.a.group.literal(
+                    p_.from.dictionary($).map(
+                        ($, id) => sh.a.change_context(
+                            sh.sv.context(
+                                p_.literal.list([
+                                    id
+                                ])
+                            ),
+                            Value(
+                                $.value,
+                                {
+                                    'type name': $p['type name'],
+                                    'subselection': p_.literal.chain(
+                                        $p.subselection,
+                                        sh.sub.group(id)
+                                    ),
+                                    'constrained': $p.constrained,
+                                }
+                            )
                         )
-                    ))))
+                    )
+                ))
                 case 'list': return p_.ss($, ($) => {
 
                     return $p.constrained
-                        ? sh.a.group.literal({
-                            "l location": location,
-                            "l list": sh.a.list.from.list.map(
-                                sh.sv.context(p_.from.optional($.results).decide(
-                                    ($) => p_.literal.list(["l value"]),
-                                    () => p_.literal.list([])
-                                )),
-                                sh.a.group.literal({
-                                    "l item": p_change_context($, ($) => {
-                                        const tn = Value(
-                                            $.value,
-                                            {
-                                                'type name': $p['type name'],
-                                                'subselection': p_.literal.segmented_list([
-                                                    $p.subselection,
-                                                    p_.literal.list([
-                                                        sh.sub.group("l list"),
-                                                        sh.sub.list(),
-                                                        sh.sub.group("l item"),
-                                                    ])
-                                                ]),
-                                                'constrained': $p.constrained,
-                                            }
-                                        )
-                                        return p_.from.optional($.results).decide(
-                                            ($) => sh.a.change_context(
-                                                sh.sv.context(["l item"]),
-                                                tn
-                                            ),
-                                            () => tn
-                                        )
-                                    }),
-                                    "l location": location
-                                })
-                            )
-                        })
+                        ? sh.a.group.literal(
+                            p_.literal.dictionary({
+                                "l location": location,
+                                "l list": sh.a.list.from.list.map(
+                                    sh.sv.context(p_.from.optional($.results).decide(
+                                        ($) => p_.literal.list(["l value"]),
+                                        () => p_.literal.list([])
+                                    )),
+                                    sh.a.group.literal(
+                                        p_.literal.dictionary({
+                                            "l item": p_change_context($, ($) => {
+                                                const tn = Value(
+                                                    $.value,
+                                                    {
+                                                        'type name': $p['type name'],
+                                                        'subselection': p_.literal.segmented_list([
+                                                            $p.subselection,
+                                                            p_.literal.list([
+                                                                sh.sub.group("l list"),
+                                                                sh.sub.list(),
+                                                                sh.sub.group("l item"),
+                                                            ])
+                                                        ]),
+                                                        'constrained': $p.constrained,
+                                                    }
+                                                )
+                                                return p_.from.optional($.results).decide(
+                                                    ($) => sh.a.change_context(
+                                                        sh.sv.context(
+                                                            p_.literal.list([
+                                                                "l item"
+                                                            ])
+                                                        ),
+                                                        tn
+                                                    ),
+                                                    () => tn
+                                                )
+                                            }),
+                                            "l location": location
+                                        })
+                                    )
+                                )
+                            })
+                        )
                         : sh.a.list.from.list.map(
-                            sh.sv.context([]),
+                            sh.sv.context(
+                                p_.literal.list([])
+                            ),
                             Value(
                                 $.value,
                                 {
@@ -267,9 +314,14 @@ export const Value: interface_.Value = ($, $p) => {
 
                 })
                 case 'nothing': return p_.ss($, ($) => sh.a.nothing())
-                case 'simple': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
+                case 'simple': return p_.ss($, ($) => sh.a.select(
+sh.sv.context(
+                    p_.literal.list([])
+                )))
                 case 'optional': return p_.ss($, ($) => sh.a.optional.map(
-                    sh.sv.context([]),
+                    sh.sv.context(
+                        p_.literal.list([])
+                    ),
                     Value(
                         $,
                         {
@@ -287,16 +339,19 @@ export const Value: interface_.Value = ($, $p) => {
                         switch ($[0]) {
                             case 'derived': return p_.ss($, ($) => sh.a.nothing())
                             case 'selected': return p_.ss($, ($) => {
-                                const tn = sh.a.text.copy(sh.sv.context(p_.from.optional($.results).decide(
+                                const tn = sh.a.text.copy(
+sh.sv.context(p_.from.optional($.results).decide(
                                     ($) => p_.literal.list(["l value", "l id"]),
                                     () => p_.literal.list(["l id"])
                                 )))
 
                                 return $p.constrained
-                                    ? sh.a.group.literal({
-                                        "l location": location,
-                                        "l reference": tn
-                                    })
+                                    ? sh.a.group.literal(
+                                        p_.literal.dictionary({
+                                            "l location": location,
+                                            "l reference": tn
+                                        })
+                                    )
                                     : tn
                             })
                             default: return p_.au($[0])
@@ -341,13 +396,19 @@ export const Value: interface_.Value = ($, $p) => {
                         ),
                     )
                     return $p.constrained
-                        ? sh.a.group.literal({
-                            "l location": location,
-                            "l state": tn
-                        })
+                        ? sh.a.group.literal(
+                            p_.literal.dictionary({
+                                "l location": location,
+                                "l state": tn
+                            })
+                        )
                         : tn
                 })
-                case 'text': return p_.ss($, ($) => sh.a.select(sh.sv.context([])))
+                case 'text': return p_.ss($, ($) => sh.a.select(
+                    sh.sv.context(
+                        p_.literal.list([])
+                    )
+                ))
                 default: return p_.au($[0])
             }
         })

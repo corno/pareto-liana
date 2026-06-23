@@ -18,23 +18,24 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 
 export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
-    {
+    p_.literal.dictionary({
         "generic": sh.import_.external(
             "liana-core",
-            [
+            p_.literal.list([
                 "dist",
                 "interface",
                 "to be generated",
                 "deserialize",
-            ],
+            ]),
+
         ),
         "in": sh.import_.external(
             "pareto-fountain-pen",
-            [
+            p_.literal.list([
                 "dist",
                 "interface",
                 "generated",
@@ -42,18 +43,20 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 "schemas",
                 "list of characters",
                 "data",
-            ],
+            ]),
         ),
         "out": sh.import_.ancestor(
-            $p.constrained ? 3 : 2,
+            $p.constrained
+                ? 3
+                : 2,
             "data",
             $p.constrained
-                ? [
+                ? p_.literal.list([
                     "unresolved",
-                ]
-                : [],
+                ])
+                : p_.literal.list([]),
         ),
-    },
+    }),
     p_.from.dictionary($.modules).map(
         ($, id) => sh.type.refiner(
             sh.t.component_imported(
@@ -66,8 +69,8 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
             ),
             sh.t.component_imported("generic", "Error"),
             null,
-            {
+            p_.literal.dictionary({
                 "tab size": sh.t.natural(),
-            },
+            }),
         )),
 )

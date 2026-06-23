@@ -12,7 +12,7 @@ import * as t_deserialize_to_location from "liana-core/dist/implementation/manua
 
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose"
+import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const Error: p_i.Transformer<
 d_in.Error, Possible_Range

@@ -1,6 +1,6 @@
 
 
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 import { $ as m_fountain_pen } from "../pareto-fountain-pen/schemas/prose/$.module.astn"
 import { $ as m_list_of_characters } from "../pareto-fountain-pen/schemas/list_of_characters/$.module.astn"

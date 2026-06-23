@@ -17,33 +17,33 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 
 export const Schema: interface_.Schema = ($, $p) => {
     return sh.m.package_functions(
-        {
+        p_.literal.dictionary({
             "generic": sh.import_.external(
                 "liana-core",
-                [
+                p_.literal.list([
                     "dist",
                     "interface",
                     "to be generated",
                     "unmarshall",
-                ],
+                ]),
             ),
             "out": sh.import_.ancestor(
                 $p.constrained ? 3 : 2,
                 "data",
                 $p.constrained
-                    ? [
+                    ? p_.literal.list([
                         "unresolved",
-                    ]
-                    : [],
+                    ])
+                    : p_.literal.list([]),
             ),
             "in": sh.import_.external(
                 "astn-core",
-                [
+                p_.literal.list([
                     "dist",
                     "interface",
                     "generated",
@@ -51,9 +51,9 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "schemas",
                     "parse tree",
                     "data",
-                ],
+                ]),
             ),
-        },
+        }),
         p_.from.dictionary($.modules).map(
             ($, id) => sh.type.refiner(
                 sh.t.component_imported(

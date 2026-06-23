@@ -20,14 +20,14 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation"
-import * as sh_i from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/implementation/target"
+import * as sh_i from "pareto/dist/shorthands/interface/target"
 
 export const Schema: interface_.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
 
     return sh.m.package_(
-        [],
+        p_.literal.list([]),
         p_.literal.dictionary({
             "signatures": sh_i.import_.ancestor(
                 $p.depth,
@@ -46,8 +46,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                         ? p_.literal.list([
                             "resolved"
                         ])
-                        : p_.literal.list([
-                        ]),
+                        : p_.literal.list([]),
                     p_.literal.list([
                         "transformers",
                         "fountain pen",
@@ -58,40 +57,52 @@ export const Schema: interface_.Schema = ($, $p) => {
         p_.literal.dictionary({
             "serialize": sh_i.import_.external(
                 "astn-core",
-                [
+                p_.literal.list([
                     "dist",
                     "implementation",
                     "manual",
                     "transformers",
                     "sealed target",
                     "fountain pen",
-                ],
+                ]),
             ),
-            "marshall": sh_i.import_.sibling("astn sealed target", p_.literal.list([
-            ])),
+            "marshall": sh_i.import_.sibling(
+                "astn sealed target",
+                p_.literal.list([])
+            ),
         }),
         p_.from.dictionary($.modules).map(
             ($, id) => sh.algorithm(
                 "signatures",
                 id,
-                [],
+                p_.literal.list([]),
                 sh.a.select(
                     sh.sv.call(
-                        sh.call.external("serialize", "Document"),
+                        sh.call.external(
+                            "serialize",
+                            "Document"
+                        ),
                         sh.a.select(
                             sh.sv.call(
-                                sh.call.external("marshall", id),
-                                sh.a.select(sh.sv.context([])),
+                                sh.call.external(
+                                    "marshall",
+                                    id
+                                ),
+                                sh.a.select(
+                                    sh.sv.context(
+                                        p_.literal.list([])
+                                    )
+                                ),
                                 null,
                                 sh.lookups.not_set(),
                                 sh.arguments_.not_set(),
-                                [],
+                                p_.literal.list([]),
                             )
                         ),
                         null,
                         sh.lookups.not_set(),
                         sh.arguments_.not_set(),
-                        [],
+                        p_.literal.list([]),
                     )
                 )
             )),

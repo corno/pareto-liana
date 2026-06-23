@@ -18,25 +18,25 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface"
+import * as sh from "pareto/dist/shorthands/interface/target"
 
 
 export const Schema: interface_.Schema = ($, $p) => {
     return sh.m.package_functions(
 
-        {
+        p_.literal.dictionary({
             "in": sh.import_.ancestor(
                 $p.constrained ? 3 : 2,
                 "data",
                 $p.constrained
-                    ? [
+                    ? p_.literal.list([
                         "resolved",
-                    ]
-                    : [],
+                    ])
+                    : p_.literal.list([]),
             ),
             "out": sh.import_.external(
                 "pareto-fountain-pen",
-                [
+                p_.literal.list([
                     "dist",
                     "interface",
                     "generated",
@@ -44,9 +44,9 @@ export const Schema: interface_.Schema = ($, $p) => {
                     "schemas",
                     "prose",
                     "data",
-                ],
+                ]),
             ),
-        },
+        }),
         p_.from.dictionary($.modules).map(
             ($, id) => sh.type.transformer(
                 sh.t.component_imported(

@@ -19,7 +19,7 @@ namespace interface_ {
 import * as t_pareto_interface_main from "./pareto_interface_main"
 
 //shorthands
-import * as p_xxxx from 'pareto-core-shorthands/dist/unconstrained'
+import * as p_xxxx from 'pareto-core-shorthands/dist/unconstrained_manual'
 
 
 export const Package: interface_.Package = ($) => {

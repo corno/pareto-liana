@@ -2,7 +2,7 @@
 
 
 
-import { package_ } from "../../../shorthands/schema"
+import { package_ } from "../../../shorthands/schema/manual"
 
 import { $ as schema_tree } from "./schema_tree.astn"
 

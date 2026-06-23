@@ -9,8 +9,8 @@ import {
     prop,
     toption,
     vp,
-} from "../../../../../shorthands/schema"
-import * as sh from "../../../../../shorthands/schema"
+} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
 

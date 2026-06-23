@@ -4,7 +4,7 @@ import {
     globals,
     n,
     text,
-} from "../../../../../../shorthands/schema"
+} from "../../../../../../shorthands/schema/manual"
 import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
 
 export const $ = globals(

@@ -1,5 +1,5 @@
 
-import * as sh from "../../../../../shorthands/signatures"
+import * as sh from "../../../../../shorthands/signatures/manual"
 
 export const $ = sh.signatures(
     {

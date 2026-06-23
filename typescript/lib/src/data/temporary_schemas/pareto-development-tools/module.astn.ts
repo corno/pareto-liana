@@ -1,4 +1,4 @@
-import * as sh from "../../../shorthands/schema"
+import * as sh from "../../../shorthands/schema/manual"
 
 import { $ as schema_tree } from "./schema_tree.astn"
 
