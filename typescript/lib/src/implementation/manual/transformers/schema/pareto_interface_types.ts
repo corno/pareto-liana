@@ -71,63 +71,61 @@ export const Schema: interface_.Schema = ($, $p) => {
     const add_location = $p.type[0] === 'unresolved'
 
     return sh.m.package_data(
-        p_.from.dictionary(p_.literal.dictionary({
-            "location": p_.from.dictionary(p_.literal.dictionary({
-                "": p_.from.boolean(
-                    add_location,
-                ).decide(
-                    () => p_.literal.set(sh.import_.external(
-                        "liana-core",
-                        [
-                            "dist",
-                            "interface",
-                            "to be generated",
-                            "document and location",
-                        ]
-                    )),
-                    () => p_.literal.not_set(),
-                )
-            }),
-            ).map_optionally(
-                ($) => $
-            ),
-            "imports ": p_change_context($, ($) => {
-                // const types = $p['what to generate']
-                return p_.from.dictionary($p.imports).map(
-                    ($) => sh.import_.ancestor(
-                        $p.depth + 1 + $['schema set child']['l value']['l up steps'],
-                        $['schema set child']['l value']['l id'],
-                        p_.from.state($.schema.complexity).decide(
-                            ($) => {
-                                switch ($[0]) {
-                                    case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
-                                        "data",
-                                    ]))
-                                    case 'constrained': return p_.ss($, ($) => p_.from.state($p.type).decide(
-                                        ($) => {
-                                            switch ($[0]) {
-                                                case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
-                                                    "data",
-                                                    "resolved",
-                                                ]))
-                                                case 'unresolved': return p_.ss($, ($) => p_.literal.list([
-                                                    "data",
-                                                    "unresolved",
-                                                ]))
-                                                case 'resolved': return p_.ss($, ($) => p_.literal.list([
-                                                    "data",
-                                                    "resolved",
-                                                ]))
-                                                default: return p_.au($[0])
-                                            }
-                                        }))
-                                    default: return p_.au($[0])
-                                }
-                            }),
+        p_.from.dictionary(
+            p_.literal.dictionary({
+                "location": p_.literal.optionals_dictionary({
+                    "": p_.from.boolean(
+                        add_location,
+                    ).decide(
+                        () => p_.literal.set(sh.import_.external(
+                            "liana-core",
+                            [
+                                "dist",
+                                "interface",
+                                "to be generated",
+                                "document and location",
+                            ]
+                        )),
+                        () => p_.literal.not_set(),
                     )
-                )
+                }),
+                "imports ": p_change_context($, ($) => {
+                    // const types = $p['what to generate']
+                    return p_.from.dictionary($p.imports).map(
+                        ($) => sh.import_.ancestor(
+                            $p.depth + 1 + $['schema set child']['l value']['l up steps'],
+                            $['schema set child']['l value']['l id'],
+                            p_.from.state($.schema.complexity).decide(
+                                ($) => {
+                                    switch ($[0]) {
+                                        case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
+                                            "data",
+                                        ]))
+                                        case 'constrained': return p_.ss($, ($) => p_.from.state($p.type).decide(
+                                            ($) => {
+                                                switch ($[0]) {
+                                                    case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
+                                                        "data",
+                                                        "resolved",
+                                                    ]))
+                                                    case 'unresolved': return p_.ss($, ($) => p_.literal.list([
+                                                        "data",
+                                                        "unresolved",
+                                                    ]))
+                                                    case 'resolved': return p_.ss($, ($) => p_.literal.list([
+                                                        "data",
+                                                        "resolved",
+                                                    ]))
+                                                    default: return p_.au($[0])
+                                                }
+                                            }))
+                                        default: return p_.au($[0])
+                                    }
+                                }),
+                        )
+                    )
+                }),
             }),
-        }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,
@@ -237,23 +235,23 @@ export const Value: interface_.Value = ($, $p) => {
                                 case 'resolved': return p_.ss($, ($) => Value_Results(
                                     list.results,
                                     {
-                                        'base type': sh.t.list(p_.from.optional(list.results,
-                                        ).decide(
-                                            ($) => sh.t.group({
-                                                "l results": sh.t.group(p_.from.dictionary($,
-                                                ).map(
-                                                    ($) => Value_Reference($)
-                                                )),
-                                                "l item": Value(
+                                        'base type': sh.t.list(
+                                            p_.from.optional(list.results).decide(
+                                                ($) => sh.t.group({
+                                                    "l results": sh.t.group(
+                                                        p_.from.dictionary($).map(
+                                                            ($) => Value_Reference($)
+                                                        )),
+                                                    "l item": Value(
+                                                        list.value,
+                                                        $p
+                                                    )
+                                                }),
+                                                () => Value(
                                                     list.value,
                                                     $p
                                                 )
-                                            }),
-                                            () => Value(
-                                                list.value,
-                                                $p
-                                            )
-                                        )),
+                                            )),
                                     }
                                 ))
                                 default: return p_.au($[0])
@@ -297,7 +295,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                         selected.results,
                                                         {
                                                             'base type': sh.t.group(
-                                                                p_.from.dictionary(p_.literal.dictionary<p_di.Optional_Value<d_out.Value>>({
+                                                                p_.literal.optionals_dictionary<d_out.Value>({
                                                                     "l entry": p_.literal.set(p_change_context($, ($) => {
                                                                         const location = Module_Reference(referent['module'])
                                                                         const subselection = p_.literal.chain(
@@ -337,10 +335,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                                 default: return p_.au($[0])
                                                                             }
                                                                         })
-                                                                }),
-                                                                ).map_optionally(
-                                                                    ($) => $,
-                                                                )
+                                                                })
                                                             ),
                                                         }
                                                     )
@@ -390,12 +385,10 @@ export const Value: interface_.Value = ($, $p) => {
 }
 
 const Value_Results: interface_.Value_Results = ($, $p) => {
-    return p_.from.optional($,
-    ).decide(
+    return p_.from.optional($).decide(
         ($) => sh.t.group({
             "l results": sh.t.group(
-                p_.from.dictionary($,
-                ).map(
+                p_.from.dictionary($).map(
                     ($) => Value_Reference($)
                 )
             ),

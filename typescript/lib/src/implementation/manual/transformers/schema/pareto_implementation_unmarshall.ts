@@ -93,38 +93,39 @@ export const Schema: interface_.Schema = ($, $p) => {
                 ]),
             ),
         }),
-        p_.from.dictionary(p_.literal.dictionary({
-            "": p_.literal.dictionary({
+        p_.from.dictionary(
+            p_.literal.dictionary({
+                "": p_.literal.dictionary({
 
-                "unmarshalled from parse tree": sh_i.import_.external(
-                    "liana-core",
-                    [
-                        "dist",
-                        "implementation",
-                        "manual",
-                        "refiners",
-                        "unmarshalled",
-                        "astn parse tree"
-                    ]
-                ),
-                "parse tree to location": sh_i.import_.external(
-                    "liana-core",
-                    [
-                        "dist",
-                        "implementation",
-                        "manual",
-                        "transformers",
-                        "parse tree",
-                        "start token range"
-                    ]
+                    "unmarshalled from parse tree": sh_i.import_.external(
+                        "liana-core",
+                        [
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "refiners",
+                            "unmarshalled",
+                            "astn parse tree"
+                        ]
+                    ),
+                    "parse tree to location": sh_i.import_.external(
+                        "liana-core",
+                        [
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "transformers",
+                            "parse tree",
+                            "start token range"
+                        ]
+                    ),
+                }),
+                "external ": p_.from.dictionary($['schema imports']).map(
+                    ($, id) => constrained
+                        ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
+                        : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
                 ),
             }),
-            "external ": p_.from.dictionary($['schema imports']).map(
-                ($, id) => constrained
-                    ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["unresolved", "refiners", "astn parse tree"])
-                    : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["refiners", "astn parse tree"])
-            ),
-        }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,

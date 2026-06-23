@@ -130,14 +130,15 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
                 ])
             ),
         }),
-        p_.from.dictionary(p_.literal.dictionary({
-            "external ": p_.from.dictionary($p.imports).map(
-                ($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
-                    "resolved",
-                    "refiners",
-                    "unresolved"
-                ]))
-        }),
+        p_.from.dictionary(
+            p_.literal.dictionary({
+                "external ": p_.from.dictionary($p.imports).map(
+                    ($, id) => sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], [
+                        "resolved",
+                        "refiners",
+                        "unresolved"
+                    ]))
+            }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,
@@ -207,8 +208,7 @@ export const Resolver_Guaranteed_Value_Selection = (
     },
 ): d_out.Select_Value => {
     const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => p_.literal.segmented_list([
-        p_.from.list($.tail.path['l value'],
-        ).flatten(
+        p_.from.list($.tail.path['l value']).flatten(
             ($) => p_.from.state($['l item']).decide(
                 ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
                     switch ($[0]) {
@@ -299,7 +299,8 @@ export const Option_Constraints = (
     },
 ): d_out.Assign => p_.from.dictionary($).on_has_entries(
     ($) => sh.a.variables(
-        p_.from.dictionary(temp_prepend($, "constraint "),
+        p_.from.dictionary(
+            temp_prepend($, "constraint "),
         ).map(
             ($, id) => p_.from.state($).decide(
                 ($) => {
@@ -696,8 +697,7 @@ export const Resolver_Value = (
                                                     'temp type': $p['temp type'],
                                                     'temp subselection': p_.literal.segmented_list([
                                                         $p['temp subselection'],
-                                                        p_.from.optional(results,
-                                                        ).decide(
+                                                        p_.from.optional(results).decide(
                                                             () => p_.literal.list([
                                                                 sh_i.sub.group("l value"),
                                                                 sh_i.sub.state(id),
@@ -715,8 +715,7 @@ export const Resolver_Value = (
                                     "out",
                                     $p['temp type'], p_.literal.segmented_list([
                                         $p['temp subselection'],
-                                        p_.from.optional(results,
-                                        ).decide(
+                                        p_.from.optional(results).decide(
                                             () => p_.literal.list([
                                                 sh_i.sub.group("l value"),
                                             ]),
@@ -825,12 +824,10 @@ export const Value_Results = (
         'base type': d_out.Assign
     }
 ): d_out.Assign => {
-    return p_.from.optional($,
-    ).decide(
+    return p_.from.optional($).decide(
         ($) => sh.a.group.literal({
             "l results": sh.a.group.literal(
-                p_.from.dictionary($,
-                ).map(
+                p_.from.dictionary($).map(
                     ($) => Value_Reference($)
                 )
             ),

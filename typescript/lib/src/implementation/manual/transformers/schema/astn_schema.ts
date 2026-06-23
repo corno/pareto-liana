@@ -21,18 +21,19 @@ export const Globals: p_i.Transformer<d_in.Globals, d_out.Globals> = (
 ) => ({
     //FIXME!! merge the number types with the text types in here
     "text types": sh.dictionary(
-        p_.from.dictionary(p_.literal.dictionary({
-            "t": p_.from.dictionary($['text types']).map(
-                ($) => {
-                    return Text_Type($)
-                }),
-            "n": p_.from.dictionary($['simple types']).map(
-                ($): d_out.Text_Type => {
-                    return {
-                        'type': sh.state(['single line', null])
-                    }
-                })
-        }),
+        p_.from.dictionary(
+            p_.literal.dictionary({
+                "t": p_.from.dictionary($['text types']).map(
+                    ($) => {
+                        return Text_Type($)
+                    }),
+                "n": p_.from.dictionary($['simple types']).map(
+                    ($): d_out.Text_Type => {
+                        return {
+                            'type': sh.state(['single line', null])
+                        }
+                    })
+            }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,

@@ -42,8 +42,7 @@ export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
                 () => 2,
             ),
             "data",
-            p_.from.optional($p.constrained,
-            ).decide(
+            p_.from.optional($p.constrained).decide(
                 ($) => p_.literal.list([$]),
                 () => p_.literal.list([])
             )

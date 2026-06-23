@@ -102,18 +102,20 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                         //do additional validation
                                         return p_change_context($['l entry']['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
-                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
-                                                    switch ($[0]) {
-                                                        case 'not set': return p_.ss($, ($) => ['not set', null])
-                                                        default: return p_.au($[0])
-                                                    }
-                                                })])
-                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
-                                                    switch ($[0]) {
-                                                        case 'not set': return p_.ss($, ($) => ['not set', null])
-                                                        default: return p_.au($[0])
-                                                    }
-                                                })])
+                                                case 'acyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide(
+                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
+                                                        switch ($[0]) {
+                                                            case 'not set': return p_.ss($, ($) => ['not set', null])
+                                                            default: return p_.au($[0])
+                                                        }
+                                                    })])
+                                                case 'cyclic': return p_.ss($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(
+                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
+                                                        switch ($[0]) {
+                                                            case 'not set': return p_.ss($, ($) => ['not set', null])
+                                                            default: return p_.au($[0])
+                                                        }
+                                                    })])
                                                 case 'stack': return p_.ss($, ($) => ['stack', p_.from.state($['l state']).decide(
                                                     ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
                                                         switch ($[0]) {
@@ -410,7 +412,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         abort,
                         $l,
                         {
-                            'linked entry': p_.from.optional(p_benchmark).decide( //optional value result ('benchmark')
+                            'linked entry': p_.from.optional(p_benchmark).decide(
                                 ($) => p_.literal.set($),
                                 () => $p['linked entry']
                             ),
@@ -505,7 +507,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     $l,
                     {
                         'definition': p_definition.value,
-                        'list cursor': p_.from.optional(p_result).decide( // optional value result ('result')
+                        'list cursor': p_.from.optional(p_result).decide(
                             ($) => p_.literal.set($),
                             () => $p['list cursor']
                         ), //setting the cursor

@@ -42,8 +42,8 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         $cyclic: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    const xx = p_temp.from.dictionary(p_temp.from.dictionary(benchmark,
-        ).map_optionally(
+    const xx = p_temp.from.dictionary(
+        p_temp.from.dictionary(benchmark).map_optionally(
             (_, id) => p_temp.from.dictionary($).get_possible_entry(
                 id,
                 () => p_.literal.not_set<null>(),
@@ -57,8 +57,7 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         }),
         () => null
     )
-    return p_.from.dictionary($,
-    ).resolve(
+    return p_.from.dictionary($).resolve(
         handle_entry
     )
 }
@@ -242,7 +241,9 @@ export const temp_optional_map = <
 >(
     $: p_di.Optional_Value<In>,
     callback: ($: In) => Out,
-): p_di.Optional_Value<Out> => p_.from.optional($).map(callback)
+): p_di.Optional_Value<Out> => p_.from.optional($).map(
+    callback
+)
 
 export const temp_resolve = <
     T extends p_di.Value,
@@ -256,7 +257,9 @@ export const temp_resolve = <
         cyclic_lookup: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    return p_.from.dictionary($).resolve(handle_entry)
+    return p_.from.dictionary($).resolve(
+        handle_entry
+    )
 }
 
 export const temp_map_list_with_state = <

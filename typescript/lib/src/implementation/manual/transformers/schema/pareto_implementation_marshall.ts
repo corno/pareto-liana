@@ -79,26 +79,27 @@ export const Schema: interface_.Schema = ($, $p) => {
             ),
 
         }),
-        p_.from.dictionary(p_.literal.dictionary({
-            "": p_.literal.dictionary({
-                "primitives to text": sh_i.import_.external(
-                    "liana-core",
-                    p_.literal.list([
-                        "dist",
-                        "implementation",
-                        "manual",
-                        "transformers",
-                        "primitives",
-                        "text",
-                    ]),
+        p_.from.dictionary(
+            p_.literal.dictionary({
+                "": p_.literal.dictionary({
+                    "primitives to text": sh_i.import_.external(
+                        "liana-core",
+                        p_.literal.list([
+                            "dist",
+                            "implementation",
+                            "manual",
+                            "transformers",
+                            "primitives",
+                            "text",
+                        ]),
+                    ),
+                }),
+                "external ": p_.from.dictionary($['schema imports']).map(
+                    ($, id) => constrained
+                        ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
+                        : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
                 ),
             }),
-            "external ": p_.from.dictionary($['schema imports']).map(
-                ($, id) => constrained
-                    ? sh_i.import_.ancestor(3, $['schema set child']['l value']['l id'], ["resolved", "transformers", "astn sealed target"])
-                    : sh_i.import_.ancestor(2, $['schema set child']['l value']['l id'], ["transformers", "astn sealed target"])
-            ),
-        }),
         ).flatten(
             ($) => $,
             (parent_id, child_id) => parent_id + child_id,

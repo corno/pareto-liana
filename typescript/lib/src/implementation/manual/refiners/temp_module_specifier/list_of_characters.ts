@@ -52,7 +52,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
         }
         const temp_pop_first_element = <T extends p_di.Value>($: p_di.List<T>): p_di.Optional_Value<Element_And_Rest<T>> => {
             const arr = $
-            return p_.from.optional($.__deprecated_get_possible_item_at(0),
+            return p_.from.optional(
+                $.__deprecated_get_possible_item_at(0),
             ).map(
                 ($) => ({
                     'rest': p_list_build_deprecated(
