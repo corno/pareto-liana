@@ -32,27 +32,24 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                     (abort) => p_iterate(
                         $d.arguments,
                         null,
-                        (iterator) => iterator.assert_finished(
-                            () => ({
-                                'source': r_unrestricted_path_from_text.Node_Path(
-                                    iterator.consume(
-                                        ($) => $,
-                                        () => abort(['missing source path', null])
-                                    ),
-                                    () => abort(['invalid source path', null]),
-                                    { 'pedantic': true }
+                        p_.literal.set<My_Error_1>(['too many arguments', null]),
+                        abort,
+                        (iterator) => ({
+                            'source': r_unrestricted_path_from_text.Node_Path(
+                                iterator.consume(
+                                    ($) => $,
+                                    () => abort(['missing source path', null])
                                 ),
-                                'target': r_unrestricted_path_from_text.Context_Path(
-                                    iterator.consume(
-                                        ($) => $,
-                                        () => abort(['missing target path', null])
-                                    ),
-                                )
-                            }),
-                            {
-                                'not_finished': ($) => abort(['too many arguments', null])
-                            }
-                        )
+                                () => abort(['invalid source path', null]),
+                                { 'pedantic': true }
+                            ),
+                            'target': r_unrestricted_path_from_text.Context_Path(
+                                iterator.consume(
+                                    ($) => $,
+                                    () => abort(['missing target path', null])
+                                ),
+                            )
+                        })
                     ),
                     ($v) => [
                         p_.s.handle_error<My_Error_1, d_resource.Error>(
