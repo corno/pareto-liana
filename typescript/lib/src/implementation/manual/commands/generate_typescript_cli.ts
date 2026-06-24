@@ -32,7 +32,7 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                     (abort) => p_iterate(
                         $d.arguments,
                         null,
-                        p_.literal.set<My_Error_1>(['too many arguments', null]),
+                        () => p_.literal.set<My_Error_1>(['too many arguments', null]),
                         abort,
                         (iterator) => ({
                             'source': r_unrestricted_path_from_text.Node_Path(
