@@ -7,12 +7,23 @@ import * as interface_ from "../../../interface/commands"
 // //data types
 import * as d_main from "pareto-resources/dist/interface/data/temp_main"
 import * as d_resource from "../../../interface/data/generate_typescript"
+import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_path/data"
 type My_Error_1 =
     | ['too many arguments', null]
-    | ['missing source path', null]
+    | ['missing', {
+        'expected': Expected,
+    }]
     | ['invalid source path', null]
-    | ['missing target path', null]
     | ['processing', null]
+
+type Expected =
+    | ['source path', null]
+    | ['target path', null]
+
+type Res = {
+    'source': d_path.Node_Path
+    'target': d_path.Context_Path
+}
 
 //dependencies
 import * as c_generate_typescript from "./generate_typescript"
@@ -29,28 +40,37 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
         p_.s.handle_error<d_main.Error, My_Error_1>(
             [
                 p_.s.refine(
-                    (abort) => p_iterate(
-                        $d.arguments,
-                        null,
-                        () => p_.literal.set<My_Error_1>(['too many arguments', null]),
-                        abort,
-                        (iterator) => ({
-                            'source': r_unrestricted_path_from_text.Node_Path(
-                                iterator.consume(
-                                    ($) => $,
-                                    () => abort(['missing source path', null])
-                                ),
-                                () => abort(['invalid source path', null]),
-                                { 'pedantic': true }
-                            ),
-                            'target': r_unrestricted_path_from_text.Context_Path(
-                                iterator.consume(
-                                    ($) => $,
-                                    () => abort(['missing target path', null])
-                                ),
-                            )
+                    (abort) => p_iterate<
+                        Res,
+                        My_Error_1,
+                        Expected,
+                        string,
+                        null
+                    >({
+                        list: $d.arguments,
+                        end_info: null,
+                        create_dangling_item_error: () => p_.literal.set<My_Error_1>(['too many arguments', null]),
+                        abort: abort,
+                        create_expectation_error: (expected, found) => ['missing', { 'expected': expected }],
+                        assign: (iterator) => ({
+                            'source': iterator.expect({
+                                discard: false,
+                                expected: ['source path', null],
+                                item: ($, abort) => r_unrestricted_path_from_text.Node_Path(
+                                    $,
+                                    () => iterator.abort(['invalid source path', null]),
+                                    { 'pedantic': true }
+                                )
+                            }),
+                            'target': iterator.expect({
+                                discard: false,
+                                expected: ['target path', null],
+                                item: ($, abort) => r_unrestricted_path_from_text.Context_Path(
+                                    $,
+                                )
+                            }),
                         })
-                    ),
+                    }),
                     ($v) => [
                         p_.s.handle_error<My_Error_1, d_resource.Error>(
                             [
@@ -109,9 +129,16 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                                 p_temp.from.state($).decide(
                                     ($) => {
                                         switch ($[0]) {
-                                            case 'missing source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                            case 'missing': return p_temp.ss($, ($) => p_temp.from.state($.expected).decide(
+                                                ($) => {
+                                                    switch ($[0]) {
+                                                        case 'source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
+                                                        case 'target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                                        default: return p_temp.au($[0])
+                                                    }
+                                                }
+                                            ))
                                             case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                            case 'missing target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
                                             case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
                                             case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
                                             default: return p_temp.au($[0])
