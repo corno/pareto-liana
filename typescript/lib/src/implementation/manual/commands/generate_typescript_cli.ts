@@ -42,33 +42,33 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                 p_.s.refine(
                     (abort) => p_iterate<
                         Res,
-                        My_Error_1,
-                        Expected,
                         string,
                         null
                     >({
                         list: $d.arguments,
                         end_info: null,
-                        create_dangling_item_error: () => p_.literal.set<My_Error_1>(['too many arguments', null]),
-                        abort: abort,
-                        create_expectation_error: (expected, found) => ['missing', { 'expected': expected }],
+                        on_dangling_item: () => abort(['too many arguments', null]),
+                        // create_expectation_error: (expected, found) => ['missing', { 'expected': expected }],
                         assign: (iterator) => ({
-                            'source': iterator.expect({
-                                discard: false,
-                                expected: ['source path', null],
-                                item: ($, abort) => r_unrestricted_path_from_text.Node_Path(
-                                    $,
-                                    () => iterator.abort(['invalid source path', null]),
-                                    { 'pedantic': true }
-                                )
-                            }),
-                            'target': iterator.expect({
-                                discard: false,
-                                expected: ['target path', null],
-                                item: ($, abort) => r_unrestricted_path_from_text.Context_Path(
-                                    $,
-                                )
-                            }),
+
+                            'source': r_unrestricted_path_from_text.Node_Path(
+                                iterator.consume.text(
+                                    ($) => $,
+                                    (end_info) => abort(['missing', {
+                                        'expected': ['source path', null]
+                                    }])
+                                ),
+                                () => abort(['invalid source path', null]),
+                                { 'pedantic': false }
+                            ),
+                            'target': r_unrestricted_path_from_text.Context_Path(
+                                iterator.consume.text(
+                                    ($) => $,
+                                    (end_info) => abort(['missing', {
+                                        'expected': ['target path', null]
+                                    }])
+                                ),
+                            ),
                         })
                     }),
                     ($v) => [
