@@ -52,21 +52,21 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                         assign: (iterator) => ({
 
                             'source': r_unrestricted_path_from_text.Node_Path(
-                                iterator.consume.text(
-                                    ($) => $,
-                                    (end_info) => abort(['missing', {
+                                iterator.consume(
+                                    ($) => abort(['missing', {
                                         'expected': ['source path', null]
-                                    }])
+                                    }]),
+                                    ($) => $,
                                 ),
                                 () => abort(['invalid source path', null]),
                                 { 'pedantic': false }
                             ),
                             'target': r_unrestricted_path_from_text.Context_Path(
-                                iterator.consume.text(
-                                    ($) => $,
-                                    (end_info) => abort(['missing', {
+                                iterator.consume(
+                                    ($) => abort(['missing', {
                                         'expected': ['target path', null]
-                                    }])
+                                    }]),
+                                    ($) => $,
                                 ),
                             ),
                         })
