@@ -132,7 +132,6 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                 'dictionary': p_change_context(p_referent['resulting module']['root value'], ($) => { // component constraint (referent)
                     switch ($[0]) {
                         case 'dictionary': return p_.ss($, ($) => $)
-                        // default: return _i_generic.abort.tbd(`not a 'dictionary' but a '${$[0]}' @ ${$p['location 2 string'](lookups_loc)}`)
                         default: return i_generic.abort.state_constraint_found_expected(
                             "dictionary",
                             $,
