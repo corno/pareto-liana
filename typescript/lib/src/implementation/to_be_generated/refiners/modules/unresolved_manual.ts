@@ -150,15 +150,15 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
 
             case 'reference': return p_.ss($, ($): t_out.Value => {
                 const loc = $.referent['module'].location['l location']
-                $p.globals.__extract_data(
-                    ($) => {
-                        $.complexity[0] === 'unconstrained'
-                            ? i_generic.abort.state_constraint_found_expected("constrained", $.complexity, loc, abort)
-                            : $.complexity[1]
+                // $p.globals.__deprecated_extract_data(
+                //     ($) => {
+                //         $.complexity[0] === 'unconstrained'
+                //             ? i_generic.abort.state_constraint_found_expected("constrained", $.complexity, loc, abort)
+                //             : $.complexity[1]
 
-                    },
-                    () => i_generic.abort.parameter_is_set_assertion("globals", loc, abort)
-                )
+                //     },
+                //     () => i_generic.abort.parameter_is_set_assertion("globals", loc, abort)
+                // )
                 const p_referent = Value_Reference(
                     $.referent,
                     abort,

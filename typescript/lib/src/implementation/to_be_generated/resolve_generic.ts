@@ -223,7 +223,7 @@ export const temp_assert = <
     abort: Abort<Error>,
 ): Type => {
     const c = condition()
-    c.__extract_data(
+    c.__deprecated_extract_data(
         ($) => {
             abort($)
         },
