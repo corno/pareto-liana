@@ -438,7 +438,7 @@ export const Resolver_Value = (
 
             case 'component': return p_.ss($, ($) => {
 
-                const results = $.definition.results
+                // const results = $.definition.results
 
                 return Value_Results(
                     $.definition.results,

@@ -530,15 +530,15 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 }]
             })
             case 'nothing': return p_.ss($, ($) => {
-                const x = $p.definition[0] !== 'nothing'
-                    ? i_generic.abort.state_constraint_found_expected("nothing", $p.definition, loc, abort)
-                    : $p.definition[1]
+                // const x = $p.definition[0] !== 'nothing'
+                //     ? i_generic.abort.state_constraint_found_expected("nothing", $p.definition, loc, abort)
+                //     : $p.definition[1]
                 return ['nothing', null]
             })
             case 'simple': return p_.ss($, ($) => {
-                const x = $p.definition[0] !== 'simple'
-                    ? i_generic.abort.state_constraint_found_expected("simple", $p.definition, loc, abort)
-                    : $p.definition[1]
+                // const x = $p.definition[0] !== 'simple'
+                //     ? i_generic.abort.state_constraint_found_expected("simple", $p.definition, loc, abort)
+                //     : $p.definition[1]
                 return ['simple', null]
             })
             case 'optional': return p_.ss($, ($) => {
@@ -588,9 +588,9 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     'type': p_change_context($.type['l state'], ($): t_out.Resolver_Value.reference.type_ => {
                         switch ($[0]) {
                             case 'derived': return p_.ss($, ($) => {
-                                const p_definition_2 = p_definition.type[0] !== 'derived'
-                                    ? i_generic.abort.state_constraint_found_expected("derived", p_definition.type, loc, abort)
-                                    : p_definition.type[1]
+                                // const p_definition_2 = p_definition.type[0] !== 'derived'
+                                //     ? i_generic.abort.state_constraint_found_expected("derived", p_definition.type, loc, abort)
+                                //     : p_definition.type[1]
                                 return ['derived', {
                                     'value': Guaranteed_Value_Selection(
                                         $.value,
@@ -758,9 +758,9 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 }]
             })
             case 'text': return p_.ss($, ($) => {
-                const x = $p.definition[0] !== 'text'
-                    ? i_generic.abort.state_constraint_found_expected("text", $p.definition, loc, abort)
-                    : $p.definition[1]
+                // const x = $p.definition[0] !== 'text'
+                //     ? i_generic.abort.state_constraint_found_expected("text", $p.definition, loc, abort)
+                //     : $p.definition[1]
                 return ['text', null]
             })
             // case 'type parameter': return _pt.ss($, ($) => {

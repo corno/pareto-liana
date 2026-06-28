@@ -12,7 +12,6 @@ import * as i_generic from "../../resolve_generic"
 
 
 export const Value: t_signatures.Value = ($, abort, $l, $p) => {
-    const loc = $['l location']
     return p_change_context($['l state'], ($): t_out.Value => {
         switch ($[0]) {
             case 'simple': return p_.ss($, ($): t_out.Value => ['simple', p_change_context($['l state'], ($): t_out.Value.simple => {

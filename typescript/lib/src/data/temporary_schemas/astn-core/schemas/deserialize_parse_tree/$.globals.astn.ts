@@ -3,7 +3,6 @@
 import {
     globals,
     n,
-    text,
 } from "../../../../../shorthands/schema/manual"
 
 

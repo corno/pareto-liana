@@ -11,8 +11,6 @@ export type Possible_Range = p_di.Optional_Value<d_location.Range>
 import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
 
 
-//shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
 export const Error: p_i.Transformer<
 d_in.Error, Possible_Range

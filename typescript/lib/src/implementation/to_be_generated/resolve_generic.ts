@@ -1,5 +1,4 @@
 import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_temp from 'pareto-core/dist/implementation/transformer'
 import * as p_di from 'pareto-core/dist/interface/data'
 import * as p_ri from 'pareto-core/dist/interface/refiner'
 
@@ -42,21 +41,21 @@ export const resolve_dense_dictionary = <Unresolved extends p_di.Value, Resolved
         $cyclic: p_ri.lookup.Cyclic<Resolved>,
     ) => Resolved,
 ): p_di.Dictionary<Resolved> => {
-    const xx = p_temp.from.dictionary(
-        p_temp.from.dictionary(benchmark).map_optionally(
-            (_, id) => p_temp.from.dictionary($).get_possible_entry(
-                id,
-                () => p_.literal.not_set<null>(),
-                () => p_.literal.set(null),
-            )
-        )
-    ).on_has_entries(
-        ($) => abort({
-            'type': ['missing required entries', $],
-            'location': location,
-        }),
-        () => null
-    )
+    // const xx = p_temp.from.dictionary(
+    //     p_temp.from.dictionary(benchmark).map_optionally(
+    //         (_, id) => p_temp.from.dictionary($).get_possible_entry(
+    //             id,
+    //             () => p_.literal.not_set<null>(),
+    //             () => p_.literal.set(null),
+    //         )
+    //     )
+    // ).on_has_entries(
+    //     ($) => abort({
+    //         'type': ['missing required entries', $],
+    //         'location': location,
+    //     }),
+    //     () => null
+    // )
     return p_.from.dictionary($).resolve(
         handle_entry
     )

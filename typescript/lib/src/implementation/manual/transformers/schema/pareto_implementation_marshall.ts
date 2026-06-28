@@ -242,9 +242,6 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
                         case 'global': return p_.ss($, ($) => {
-                            const x = $['l entry']
-
-
                             return p_.from.state($['l entry'].type).decide(
                                 ($) => {
                                     switch ($[0]) {

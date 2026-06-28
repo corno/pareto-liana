@@ -4,10 +4,6 @@ import {
     modules,
     t,
     module_,
-    n,
-    prop,
-    toption,
-    text,
 } from "../../../../../shorthands/schema/manual"
 
 
