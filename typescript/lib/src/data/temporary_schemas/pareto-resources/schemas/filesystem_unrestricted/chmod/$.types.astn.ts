@@ -1,44 +1,35 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "path": prop(t.component_external("path", "Node Path")),
-            "mode": prop(t.group({
-                "owner": prop(t.component("Permissions")),
-                "group": prop(t.component("Permissions")),
-                "others": prop(t.component("Permissions")),
-                "special bits": prop(t.optional(t.group({
-                    "setuid": prop(t.simple("boolean")),
-                    "setgid": prop(t.simple("boolean")),
-                    "sticky": prop(t.simple("boolean")),
+        "Parameters": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.component_external("path", "Node Path")),
+            "mode": sh.prop(sh.t.group({
+                "owner": sh.prop(sh.t.component("Permissions")),
+                "group": sh.prop(sh.t.component("Permissions")),
+                "others": sh.prop(sh.t.component("Permissions")),
+                "special bits": sh.prop(sh.t.optional(sh.t.group({
+                    "setuid": sh.prop(sh.t.simple("boolean")),
+                    "setgid": sh.prop(sh.t.simple("boolean")),
+                    "sticky": sh.prop(sh.t.simple("boolean")),
                 }))),
             })),
         })),
 
-        "Permissions": module_(t.group({
-            "read": prop(t.simple("boolean")),
-            "write": prop(t.simple("boolean")),
-            "execute": prop(t.simple("boolean")),
+        "Permissions": sh.module_(sh.t.group({
+            "read": sh.prop(sh.t.simple("boolean")),
+            "write": sh.prop(sh.t.simple("boolean")),
+            "execute": sh.prop(sh.t.simple("boolean")),
         })),
 
-        "Error": module_(t.group({
-            "path": prop(t.component_external("path", "Node Path")),
-            "type": prop(t.state({
-                "path does not exist": toption(t.nothing()),
-                "permission denied": toption(t.nothing()),
-                "invalid mode": toption(t.nothing()),
+        "Error": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.component_external("path", "Node Path")),
+            "type": sh.prop(sh.t.state({
+                "path does not exist": sh.toption(sh.t.nothing()),
+                "permission denied": sh.toption(sh.t.nothing()),
+                "invalid mode": sh.toption(sh.t.nothing()),
             }))
         })),
     }

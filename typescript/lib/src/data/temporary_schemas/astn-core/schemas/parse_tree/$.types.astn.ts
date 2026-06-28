@@ -1,115 +1,106 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Document": module_(t.group({
-            "header": prop(t.optional(t.group({
-                "!": prop(t.component("Structural Token")),
-                "value": prop(t.component("Value")),
+        "Document": sh.module_(sh.t.group({
+            "header": sh.prop(sh.t.optional(sh.t.group({
+                "!": sh.prop(sh.t.component("Structural Token")),
+                "value": sh.prop(sh.t.component("Value")),
             }))),
-            "content": prop(t.component("Content")),
+            "content": sh.prop(sh.t.component("Content")),
         })),
 
-        "Content": module_(t.component("Value")),
+        "Content": sh.module_(sh.t.component("Value")),
 
-        "Value": module_(t.group({
-            "type": prop(t.state({
-                "concrete": toption(t.state({
-                    "dictionary": toption(t.group({
-                        "{": prop(t.component("Structural Token")),
-                        "entries": prop(t.component("ID Value Pairs")),
-                        "}": prop(t.component("Structural Token")),
+        "Value": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "concrete": sh.toption(sh.t.state({
+                    "dictionary": sh.toption(sh.t.group({
+                        "{": sh.prop(sh.t.component("Structural Token")),
+                        "entries": sh.prop(sh.t.component("ID Value Pairs")),
+                        "}": sh.prop(sh.t.component("Structural Token")),
                     })),
-                    "group": toption(t.state({
-                        "concise": toption(t.group({
-                            "<": prop(t.component("Structural Token")),
-                            "properties": prop(t.component("Items")),
-                            ">": prop(t.component("Structural Token")),
+                    "group": sh.toption(sh.t.state({
+                        "concise": sh.toption(sh.t.group({
+                            "<": sh.prop(sh.t.component("Structural Token")),
+                            "properties": sh.prop(sh.t.component("Items")),
+                            ">": sh.prop(sh.t.component("Structural Token")),
                         })),
-                        "verbose": toption(t.group({
-                            "(": prop(t.component("Structural Token")),
-                            "properties": prop(t.component("ID Value Pairs")),
-                            ")": prop(t.component("Structural Token")),
-                        })),
-                    })),
-                    "list": toption(t.group({
-                        "[": prop(t.component("Structural Token")),
-                        "items": prop(t.component("Items")),
-                        "]": prop(t.component("Structural Token")),
-                    })),
-                    "nothing": toption(t.group({
-                        "~": prop(t.component("Structural Token")),
-                    })),
-                    "optional": toption(t.state({
-                        "set": toption(t.group({
-                            "*": prop(t.component("Structural Token")),
-                            "value": prop(t.component("Value")),
-                        })),
-                        "not set": toption(t.group({
-                            "_": prop(t.component("Structural Token")),
+                        "verbose": sh.toption(sh.t.group({
+                            "(": sh.prop(sh.t.component("Structural Token")),
+                            "properties": sh.prop(sh.t.component("ID Value Pairs")),
+                            ")": sh.prop(sh.t.component("Structural Token")),
                         })),
                     })),
-                    "state": toption(t.group({
-                        "|": prop(t.component("Structural Token")),
-                        "status": prop(t.state({
-                            "missing": toption(t.group({
-                                "#": prop(t.component("Structural Token")),
+                    "list": sh.toption(sh.t.group({
+                        "[": sh.prop(sh.t.component("Structural Token")),
+                        "items": sh.prop(sh.t.component("Items")),
+                        "]": sh.prop(sh.t.component("Structural Token")),
+                    })),
+                    "nothing": sh.toption(sh.t.group({
+                        "~": sh.prop(sh.t.component("Structural Token")),
+                    })),
+                    "optional": sh.toption(sh.t.state({
+                        "set": sh.toption(sh.t.group({
+                            "*": sh.prop(sh.t.component("Structural Token")),
+                            "value": sh.prop(sh.t.component("Value")),
+                        })),
+                        "not set": sh.toption(sh.t.group({
+                            "_": sh.prop(sh.t.component("Structural Token")),
+                        })),
+                    })),
+                    "state": sh.toption(sh.t.group({
+                        "|": sh.prop(sh.t.component("Structural Token")),
+                        "status": sh.prop(sh.t.state({
+                            "missing": sh.toption(sh.t.group({
+                                "#": sh.prop(sh.t.component("Structural Token")),
                             })),
-                            "set": toption(t.group({
-                                "option": prop(t.component("Text")),
-                                "value": prop(t.component("Value")),
+                            "set": sh.toption(sh.t.group({
+                                "option": sh.prop(sh.t.component("Text")),
+                                "value": sh.prop(sh.t.component("Value")),
                             }))
                         })),
                     })),
-                    "text": toption(t.component("Text")),
+                    "text": sh.toption(sh.t.component("Text")),
                 })),
-                "include": toption(t.component("Include")),
-                "missing": toption(t.group({
-                    "#": prop(t.component("Structural Token")),
+                "include": sh.toption(sh.t.component("Include")),
+                "missing": sh.toption(sh.t.group({
+                    "#": sh.prop(sh.t.component("Structural Token")),
                 })),
             })),
         })),
 
-        "Include": module_(t.group({
-            "@": prop(t.component("Structural Token")),
-            "path": prop(t.component("Text")),
+        "Include": sh.module_(sh.t.group({
+            "@": sh.prop(sh.t.component("Structural Token")),
+            "path": sh.prop(sh.t.component("Text")),
         })),
 
-        "Structural Token": module_(t.group({
-            "trailing trivia": prop(t.component_external("token", "Trivia")),
-            "range": prop(t.component_external("location", "Range")),
+        "Structural Token": sh.module_(sh.t.group({
+            "trailing trivia": sh.prop(sh.t.component_external("token", "Trivia")),
+            "range": sh.prop(sh.t.component_external("location", "Range")),
         })),
 
-        "Text": module_(t.group({
-            "trailing trivia": prop(t.component_external("token", "Trivia")),
-            "range": prop(t.component_external("location", "Range")),
-            "token": prop(t.component_external("token", "Text")),
+        "Text": sh.module_(sh.t.group({
+            "trailing trivia": sh.prop(sh.t.component_external("token", "Trivia")),
+            "range": sh.prop(sh.t.component_external("location", "Range")),
+            "token": sh.prop(sh.t.component_external("token", "Text")),
         })),
 
-        "ID Value Pairs": module_(t.list(t.component("ID Value Pair"))),
+        "ID Value Pairs": sh.module_(sh.t.list(sh.t.component("ID Value Pair"))),
 
-        "ID Value Pair": module_(t.group({
-            "id": prop(t.component("Text")),
-            "assignment": prop(t.optional(t.group({
-                ":": prop(t.component("Structural Token")),
-                "value": prop(t.optional(t.component("Value"))),
+        "ID Value Pair": sh.module_(sh.t.group({
+            "id": sh.prop(sh.t.component("Text")),
+            "assignment": sh.prop(sh.t.optional(sh.t.group({
+                ":": sh.prop(sh.t.component("Structural Token")),
+                "value": sh.prop(sh.t.optional(sh.t.component("Value"))),
             }))),
         })),
 
-        "Items": module_(t.list(t.group({
-            "value": prop(t.component("Value")),
+        "Items": sh.module_(sh.t.list(sh.t.group({
+            "value": sh.prop(sh.t.component("Value")),
         }))),
     },
 )

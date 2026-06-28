@@ -1,24 +1,15 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "path": prop(t.component_external("path", "Node Path")),
-            "data": prop(t.component_external("list of characters", "List of Characters")),
+        "Parameters": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.component_external("path", "Node Path")),
+            "data": sh.prop(sh.t.component_external("list of characters", "List of Characters")),
         })),
 
-        "Error": module_(t.component_external("unrestricted", "Error")),
+        "Error": sh.module_(sh.t.component_external("unrestricted", "Error")),
         
     }
 )

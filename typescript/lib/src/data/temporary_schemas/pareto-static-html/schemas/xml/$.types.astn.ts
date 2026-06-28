@@ -1,63 +1,54 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Document": module_(t.group({
-            "doc type": prop(t.optional(t.group({
-                "name": prop(t.text_global("text")),
+        "Document": sh.module_(sh.t.group({
+            "doc type": sh.prop(sh.t.optional(sh.t.group({
+                "name": sh.prop(sh.t.text_global("text")),
             }))),
-            "root": prop(t.component("Element")),
+            "root": sh.prop(sh.t.component("Element")),
         })),
 
-        "Element": module_(t.group({
-            "name": prop(t.component("Qualified Name")),
-            "attributes": prop(t.list(t.group({
-                "name": prop(t.component("Qualified Name")),
-                "value": prop(t.text_global("text")),
+        "Element": sh.module_(sh.t.group({
+            "name": sh.prop(sh.t.component("Qualified Name")),
+            "attributes": sh.prop(sh.t.list(sh.t.group({
+                "name": sh.prop(sh.t.component("Qualified Name")),
+                "value": sh.prop(sh.t.text_global("text")),
             }))),
-            "content type": prop(t.state({
-                "empty": toption(t.group({})),
-                "text only": toption(t.group({
-                    "value": prop(t.text_global("text")),
+            "content type": sh.prop(sh.t.state({
+                "empty": sh.toption(sh.t.group({})),
+                "text only": sh.toption(sh.t.group({
+                    "value": sh.prop(sh.t.text_global("text")),
                 })),
-                "mixed": toption(t.component("Mixed Content")),
-                "nodes only": toption(t.group({
-                    "children": prop(t.list(t.component("Node"))),
+                "mixed": sh.toption(sh.t.component("Mixed Content")),
+                "nodes only": sh.toption(sh.t.group({
+                    "children": sh.prop(sh.t.list(sh.t.component("Node"))),
                 })),
 
             })),
         })),
 
-        "Mixed Content": module_(t.list(t.state({
-            "node": toption(t.component("Node")),
-            "text": toption(t.group({
-                "value": prop(t.text_global("text")),
+        "Mixed Content": sh.module_(sh.t.list(sh.t.state({
+            "node": sh.toption(sh.t.component("Node")),
+            "text": sh.toption(sh.t.group({
+                "value": sh.prop(sh.t.text_global("text")),
             })),
         }))),
 
-        "Qualified Name": module_(t.group({
-            "namespace prefix": prop(t.optional(t.text_global("text"))),
-            "local name": prop(t.text_global("text")),
+        "Qualified Name": sh.module_(sh.t.group({
+            "namespace prefix": sh.prop(sh.t.optional(sh.t.text_global("text"))),
+            "local name": sh.prop(sh.t.text_global("text")),
         })),
 
-        "Node": module_(t.state({
-            "element": toption(t.component("Element")),
-            "comment": toption(t.text_global("text")),
-            "cdata": toption(t.text_global("text")),
-            "processing instruction": toption(t.group({
-                "target": prop(t.text_global("text")),
-                "data": prop(t.text_global("text")),
+        "Node": sh.module_(sh.t.state({
+            "element": sh.toption(sh.t.component("Element")),
+            "comment": sh.toption(sh.t.text_global("text")),
+            "cdata": sh.toption(sh.t.text_global("text")),
+            "processing instruction": sh.toption(sh.t.group({
+                "target": sh.prop(sh.t.text_global("text")),
+                "data": sh.prop(sh.t.text_global("text")),
             })),
         }))
 

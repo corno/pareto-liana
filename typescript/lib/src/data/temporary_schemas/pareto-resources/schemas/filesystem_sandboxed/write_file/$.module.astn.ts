@@ -2,21 +2,20 @@
 
 
 
-import { schema_, schema_import_ } from "../../../../../../shorthands/schema/manual"
-
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 import { $ as schema } from "./$.types.astn"
 import { $ as globals } from "./$.globals.astn"
 
-export const $ = schema_(
+export const $ = sh.schema_(
     {
-        "path": schema_import_("fs sandboxed path"),
-        "list of characters": schema_import_("list of characters"),
-        "unrestricted": schema_import_("fs unrestricted write file"),
+        "path": sh.schema_import_("fs sandboxed path"),
+        "list of characters": sh.schema_import_("list of characters"),
+        "unrestricted": sh.schema_import_("fs unrestricted write file"),
     },
     {
-        // "path": resolver_import_("path"),
-        // "list of characters": resolver_import_("list of characters"),
+        // "path": sh.resolver_import_("path"),
+        // "list of characters": sh.resolver_import_("list of characters"),
     },
     globals,
     schema,

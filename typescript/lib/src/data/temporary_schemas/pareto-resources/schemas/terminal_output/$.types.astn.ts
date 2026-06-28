@@ -1,21 +1,12 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Message": module_(t.group({
-            "lines": prop(t.list(t.text_global("text"))),
-            "raw": prop(t.text_global("multi line text")),
+        "Message": sh.module_(sh.t.group({
+            "lines": sh.prop(sh.t.list(sh.t.text_global("text"))),
+            "raw": sh.prop(sh.t.text_global("multi line text")),
         })),
     }
 )

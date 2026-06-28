@@ -1,55 +1,46 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
         
-        "Serialization Chunk": module_(t.group({
-            "serializationFormatVersion": prop(t.text_global("text")),
-            "languages": prop(t.list(t.group({
-                "key": prop(t.text_global("text")),
-                "version": prop(t.text_global("text")),
+        "Serialization Chunk": sh.module_(sh.t.group({
+            "serializationFormatVersion": sh.prop(sh.t.text_global("text")),
+            "languages": sh.prop(sh.t.list(sh.t.group({
+                "key": sh.prop(sh.t.text_global("text")),
+                "version": sh.prop(sh.t.text_global("text")),
             }))),
-            "nodes": prop(t.list(t.group({
-                "id": prop(t.text_global("text")),
-                "range": prop(t.component_external("location", "Range")),
-                "parent": prop(t.optional(t.text_global("text"))),
-                "classifier": prop(t.component("Meta Pointer")),
-                "properties": prop(t.list(t.group({
-                    "property": prop(t.component("Meta Pointer")),
-                    "value": prop(t.text_global("text")),
+            "nodes": sh.prop(sh.t.list(sh.t.group({
+                "id": sh.prop(sh.t.text_global("text")),
+                "range": sh.prop(sh.t.component_external("location", "Range")),
+                "parent": sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                "classifier": sh.prop(sh.t.component("Meta Pointer")),
+                "properties": sh.prop(sh.t.list(sh.t.group({
+                    "property": sh.prop(sh.t.component("Meta Pointer")),
+                    "value": sh.prop(sh.t.text_global("text")),
                 }))),
-                "references": prop(t.list(t.group({
-                    "reference": prop(t.component("Meta Pointer")),
-                    "targets": prop(t.component("Targets")),
+                "references": sh.prop(sh.t.list(sh.t.group({
+                    "reference": sh.prop(sh.t.component("Meta Pointer")),
+                    "targets": sh.prop(sh.t.component("Targets")),
                 }))),
-                "containments": prop(t.list(t.group({
-                    "containment": prop(t.component("Meta Pointer")),
-                    "children": prop(t.list(t.text_global("text"))),
+                "containments": sh.prop(sh.t.list(sh.t.group({
+                    "containment": sh.prop(sh.t.component("Meta Pointer")),
+                    "children": sh.prop(sh.t.list(sh.t.text_global("text"))),
                 }))),
-                "annotations": prop(t.list(t.text_global("text"))),
+                "annotations": sh.prop(sh.t.list(sh.t.text_global("text"))),
             }))),
         })),
 
-        "Targets": module_(t.list(t.group({
-            "resolveInfo": prop(t.text_global("text")),
-            "reference": prop(t.optional(t.text_global("text"))),
+        "Targets": sh.module_(sh.t.list(sh.t.group({
+            "resolveInfo": sh.prop(sh.t.text_global("text")),
+            "reference": sh.prop(sh.t.optional(sh.t.text_global("text"))),
         }))),
 
-        "Meta Pointer": module_(t.group({
-            "language": prop(t.text_global("text")),
-            "key": prop(t.text_global("text")),
-            "version": prop(t.text_global("text")),
+        "Meta Pointer": sh.module_(sh.t.group({
+            "language": sh.prop(sh.t.text_global("text")),
+            "key": sh.prop(sh.t.text_global("text")),
+            "version": sh.prop(sh.t.text_global("text")),
         })),
     }
 )

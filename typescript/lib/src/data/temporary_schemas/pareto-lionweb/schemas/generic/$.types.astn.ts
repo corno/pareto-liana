@@ -1,29 +1,20 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "ID": module_(t.group({
-            "key": prop(t.text_global("text")),
-            "id": prop(t.text_global("text")),
-            "source": prop(t.optional(t.component_external("location", "Range"))),
+        "ID": sh.module_(sh.t.group({
+            "key": sh.prop(sh.t.text_global("text")),
+            "id": sh.prop(sh.t.text_global("text")),
+            "source": sh.prop(sh.t.optional(sh.t.component_external("location", "Range"))),
         })),
-        "Raw Reference": module_(t.group({
-            "resolveInfo": prop(t.text_global("text")),
-            "reference": prop(t.optional(t.text_global("text"))),
+        "Raw Reference": sh.module_(sh.t.group({
+            "resolveInfo": sh.prop(sh.t.text_global("text")),
+            "reference": sh.prop(sh.t.optional(sh.t.text_global("text"))),
         })),
-        "Singular Reference": module_(t.component("Raw Reference")),
-        "References": module_(t.list(t.component("Raw Reference"))),
-        "Optional Reference": module_(t.optional(t.component("Raw Reference"))),
+        "Singular Reference": sh.module_(sh.t.component("Raw Reference")),
+        "References": sh.module_(sh.t.list(sh.t.component("Raw Reference"))),
+        "Optional Reference": sh.module_(sh.t.optional(sh.t.component("Raw Reference"))),
     }
 )

@@ -1,28 +1,19 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "path": prop(t.component_external("path", "Context Path")),
-            "error if not exists": prop(t.simple("boolean")),
+        "Parameters": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.component_external("path", "Context Path")),
+            "error if not exists": sh.prop(sh.t.simple("boolean")),
         })),
 
-        "Error": module_(t.group({
-            "path": prop(t.component_external("path", "Context Path")),
-            "type": prop(t.state({
-                "node does not exist": toption(t.nothing()),
-                "permission denied": toption(t.nothing()),
+        "Error": sh.module_(sh.t.group({
+            "path": sh.prop(sh.t.component_external("path", "Context Path")),
+            "type": sh.prop(sh.t.state({
+                "node does not exist": sh.toption(sh.t.nothing()),
+                "permission denied": sh.toption(sh.t.nothing()),
             }))
         })),
     }

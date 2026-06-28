@@ -1,27 +1,19 @@
 
-
-import {
-    modules,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Semantic Version": module_(t.group({
-            "major": prop(t.text_global("Text Value")),
-            "minor": prop(t.text_global("Text Value")),
-            "patch": prop(t.text_global("Text Value")),
-            "pre-release identifiers": prop(t.list(t.component("Number or Text"))),
-            "build identifiers": prop(t.list(t.text_global("Text Value"))),
+        "Semantic Version": sh.module_(sh.t.group({
+            "major": sh.prop(sh.t.text_global("Text Value")),
+            "minor": sh.prop(sh.t.text_global("Text Value")),
+            "patch": sh.prop(sh.t.text_global("Text Value")),
+            "pre-release identifiers": sh.prop(sh.t.list(sh.t.component("Number or Text"))),
+            "build identifiers": sh.prop(sh.t.list(sh.t.text_global("Text Value"))),
         })),
-        "Number or Text": module_(t.state({
-            "numeric": toption(t.text_global("Text Value")), //is this correct?
-            "alphanumeric": toption(t.text_global("Text Value")),
+        "Number or Text": sh.module_(sh.t.state({
+            "numeric": sh.toption(sh.t.text_global("Text Value")), //is this correct?
+            "alphanumeric": sh.toption(sh.t.text_global("Text Value")),
         })),
     }
 )

@@ -1,82 +1,73 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Parameters": module_(t.group({
-            "url": prop(t.group({
-                "path": prop(t.list(t.text_global("text"))),
-                "query": prop(t.list(t.group({
-                    "key": prop(t.text_global("text")),
-                    "value": prop(t.text_global("text")),
+        "Parameters": sh.module_(sh.t.group({
+            "url": sh.prop(sh.t.group({
+                "path": sh.prop(sh.t.list(sh.t.text_global("text"))),
+                "query": sh.prop(sh.t.list(sh.t.group({
+                    "key": sh.prop(sh.t.text_global("text")),
+                    "value": sh.prop(sh.t.text_global("text")),
                 }))),
-                "fragment": prop(t.optional(t.text_global("text"))),
+                "fragment": sh.prop(sh.t.optional(sh.t.text_global("text"))),
             })),
-            "method": prop(t.state({
-                "GET": toption(t.nothing()),
-                "POST": toption(t.text_global("multi line text")),
-                "PUT": toption(t.text_global("multi line text")),
-                "DELETE": toption(t.nothing()),
-                "PATCH": toption(t.text_global("multi line text")),
-                "HEAD": toption(t.nothing()),
-                "OPTIONS": toption(t.nothing()),
-                "CONNECT": toption(t.nothing()),
-                "TRACE": toption(t.nothing()),
+            "method": sh.prop(sh.t.state({
+                "GET": sh.toption(sh.t.nothing()),
+                "POST": sh.toption(sh.t.text_global("multi line text")),
+                "PUT": sh.toption(sh.t.text_global("multi line text")),
+                "DELETE": sh.toption(sh.t.nothing()),
+                "PATCH": sh.toption(sh.t.text_global("multi line text")),
+                "HEAD": sh.toption(sh.t.nothing()),
+                "OPTIONS": sh.toption(sh.t.nothing()),
+                "CONNECT": sh.toption(sh.t.nothing()),
+                "TRACE": sh.toption(sh.t.nothing()),
             })),
-            "headers": prop(t.dictionary(t.text_global("text"))),
+            "headers": sh.prop(sh.t.dictionary(sh.t.text_global("text"))),
         })),
 
-        "Error": module_(t.state({
-            "dns": toption(t.group({
-                "hostname": prop(t.text_global("text")),
-                "message": prop(t.text_global("text")),
+        "Error": sh.module_(sh.t.state({
+            "dns": sh.toption(sh.t.group({
+                "hostname": sh.prop(sh.t.text_global("text")),
+                "message": sh.prop(sh.t.text_global("text")),
             })),
-            "connection": toption(t.state({
-                "refused": toption(t.nothing()),
-                "reset": toption(t.nothing()),
-                "timeout": toption(t.nothing()),
-                "unreachable": toption(t.group({
-                    "type": prop(t.state({
-                        "network": toption(t.nothing()),
-                        "host": toption(t.nothing()),
+            "connection": sh.toption(sh.t.state({
+                "refused": sh.toption(sh.t.nothing()),
+                "reset": sh.toption(sh.t.nothing()),
+                "timeout": sh.toption(sh.t.nothing()),
+                "unreachable": sh.toption(sh.t.group({
+                    "type": sh.prop(sh.t.state({
+                        "network": sh.toption(sh.t.nothing()),
+                        "host": sh.toption(sh.t.nothing()),
                     })),
                 })),
-                "other": toption(t.group({
-                    "code": prop(t.text_global("text")),
-                    "message": prop(t.text_global("text")),
+                "other": sh.toption(sh.t.group({
+                    "code": sh.prop(sh.t.text_global("text")),
+                    "message": sh.prop(sh.t.text_global("text")),
                 })),
             })),
-            "tls": toption(t.group({
-                "code": prop(t.text_global("text")),
-                "message": prop(t.text_global("text")),
+            "tls": sh.toption(sh.t.group({
+                "code": sh.prop(sh.t.text_global("text")),
+                "message": sh.prop(sh.t.text_global("text")),
             })),
-            "timeout": toption(t.nothing()), // Application-level timeout
-            "aborted": toption(t.nothing()),
-            "http": toption(t.component("Response")), // HTTP error responses
-            "other": toption(t.group({
-                "code": prop(t.optional(t.text_global("text"))),
-                "message": prop(t.text_global("text")),
+            "timeout": sh.toption(sh.t.nothing()), // Application-level timeout
+            "aborted": sh.toption(sh.t.nothing()),
+            "http": sh.toption(sh.t.component("Response")), // HTTP error responses
+            "other": sh.toption(sh.t.group({
+                "code": sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                "message": sh.prop(sh.t.text_global("text")),
             })),
         })),
 
-        "Result": module_(t.component("Response")),
+        "Result": sh.module_(sh.t.component("Response")),
 
 
-        "Response": module_(t.group({
-            "status": prop(t.simple("status")), // 200-599
-            "body": prop(t.optional(t.text_global("multi line text"))),
-            "headers": prop(t.dictionary(t.text_global("text"))),
+        "Response": sh.module_(sh.t.group({
+            "status": sh.prop(sh.t.simple("status")), // 200-599
+            "body": sh.prop(sh.t.optional(sh.t.text_global("multi line text"))),
+            "headers": sh.prop(sh.t.dictionary(sh.t.text_global("text"))),
         })),
 
     }

@@ -1,21 +1,12 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Sort Parameters": module_(t.group({
-            "position": prop(t.component_external("location", "Position")),
+        "Sort Parameters": sh.module_(sh.t.group({
+            "position": sh.prop(sh.t.component_external("location", "Position")),
         })),
 
     }

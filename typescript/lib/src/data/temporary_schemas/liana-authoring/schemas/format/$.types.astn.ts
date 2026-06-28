@@ -1,32 +1,23 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Result": module_(t.component_external("text edits", "Text Edits")),
+        "Result": sh.module_(sh.t.component_external("text edits", "Text Edits")),
 
-        "Error": module_(t.group({
-            "message": prop(t.text_global("text")),
+        "Error": sh.module_(sh.t.group({
+            "message": sh.prop(sh.t.text_global("text")),
         })),
 
-        "Parameters": module_(t.group({
-            "options": prop(t.group({
-                "insert spaces": prop(t.simple("boolean")),
-                "preserve delimiters": prop(t.simple("boolean")),
-                "preserve final newline state": prop(t.simple("boolean")),
-                "preserve commas": prop(t.simple("boolean")),
-                "indent string": prop(t.text_global("text")),
+        "Parameters": sh.module_(sh.t.group({
+            "options": sh.prop(sh.t.group({
+                "insert spaces": sh.prop(sh.t.simple("boolean")),
+                "preserve delimiters": sh.prop(sh.t.simple("boolean")),
+                "preserve final newline state": sh.prop(sh.t.simple("boolean")),
+                "preserve commas": sh.prop(sh.t.simple("boolean")),
+                "indent string": sh.prop(sh.t.text_global("text")),
             })),
         })),
 

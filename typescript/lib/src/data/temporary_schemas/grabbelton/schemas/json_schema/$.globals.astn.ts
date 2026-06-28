@@ -1,23 +1,17 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
          'unconstrained',
     {
-        "url": text('single line'),
-        "text value": text('single line'),
-        "regex": text('single line'),
-        "identifier": text('single line'),
+        "url": sh.text('single line'),
+        "text value": sh.text('single line'),
+        "regex": sh.text('single line'),
+        "identifier": sh.text('single line'),
     },
     {
-        "amount": n.natural(null),
+        "amount": sh.n.natural(null),
     },
 )
 

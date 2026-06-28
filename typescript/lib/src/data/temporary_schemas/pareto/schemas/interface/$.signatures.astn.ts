@@ -1,14 +1,11 @@
+import * as sh from "../../../../../shorthands/signatures/manual"
 
-
-import { signatures, sig } from "../../../../../shorthands/signatures/manual"
-
-
-export const $  = signatures(
+export const $  = sh.signatures(
     {
-        "Package": sig.local({}, {}),
-        "Package Set": sig.local({}, {}),
-        "Imports": sig.local({}, {}),
-        "Value": sig.local({}, {}),
-        "Module Reference": sig.local({}, {}),
+        "Package": sh.sig.local({}, {}),
+        "Package Set": sh.sig.local({}, {}),
+        "Imports": sh.sig.local({}, {}),
+        "Value": sh.sig.local({}, {}),
+        "Module Reference": sh.sig.local({}, {}),
     },
 )

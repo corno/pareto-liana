@@ -1,19 +1,13 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
          'constrained',
     {
     },
     {
-        "boolean": n.boolean(),
+        "boolean": sh.n.boolean(),
     },
 )
 

@@ -1,80 +1,71 @@
 
+import * as sh from "../../../../../../shorthands/schema/manual"
 
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../../shorthands/schema/manual"
-import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
-
-export const $ = modules(
+export const $ = sh.modules(
     {
 
 
-        "Tokenizer Result": module_(t.group({
-            "leading whitespace": prop(t.text_global("Text Value")),
-            "tokens": prop(t.list(t.component("Annotated Token"))),
+        "Tokenizer Result": sh.module_(sh.t.group({
+            "leading whitespace": sh.prop(sh.t.text_global("Text Value")),
+            "tokens": sh.prop(sh.t.list(sh.t.component("Annotated Token"))),
         })),
 
-        "Token": module_(t.state({
-            "<": toption(t.nothing()),
-            "/": toption(t.nothing()),
-            ">": toption(t.nothing()),
-            "/>": toption(t.nothing()),
-            "?": toption(t.nothing()),
-            "=": toption(t.nothing()),
-            "string": toption(t.text_global("Text Value")),
-            "comment": toption(t.text_global("Text Value")),
-            "identifier": toption(t.text_global("Text Value")),
-            "text node": toption(t.text_global("Text Value")),
-            "invalid": toption(t.nothing()),
+        "Token": sh.module_(sh.t.state({
+            "<": sh.toption(sh.t.nothing()),
+            "/": sh.toption(sh.t.nothing()),
+            ">": sh.toption(sh.t.nothing()),
+            "/>": sh.toption(sh.t.nothing()),
+            "?": sh.toption(sh.t.nothing()),
+            "=": sh.toption(sh.t.nothing()),
+            "string": sh.toption(sh.t.text_global("Text Value")),
+            "comment": sh.toption(sh.t.text_global("Text Value")),
+            "identifier": sh.toption(sh.t.text_global("Text Value")),
+            "text node": sh.toption(sh.t.text_global("Text Value")),
+            "invalid": sh.toption(sh.t.nothing()),
 
         })),
 
-        "Annotation": module_(t.group({
-            "position": prop(t.simple("Natural")),
-            "line": prop(t.simple("Natural")),
-            "column": prop(t.simple("Natural")),
+        "Annotation": sh.module_(sh.t.group({
+            "position": sh.prop(sh.t.simple("Natural")),
+            "line": sh.prop(sh.t.simple("Natural")),
+            "column": sh.prop(sh.t.simple("Natural")),
         })),
 
 
-        "Annotated Token": module_(t.group({
-            "type": prop(t.component("Token")),
-            "annotation": prop(t.component("Annotation")),
-            "trailing whitespace": prop(t.text_global("Text Value")),
+        "Annotated Token": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.component("Token")),
+            "annotation": sh.prop(sh.t.component("Annotation")),
+            "trailing whitespace": sh.prop(sh.t.text_global("Text Value")),
         })),
 
-        "Document": module_(t.group({
-            "declaration": prop(t.optional(t.group({
-                "attributes": prop(t.component("Attributes")),
+        "Document": sh.module_(sh.t.group({
+            "declaration": sh.prop(sh.t.optional(sh.t.group({
+                "attributes": sh.prop(sh.t.component("Attributes")),
             }))),
-            "children": prop(t.component("Content")),
+            "children": sh.prop(sh.t.component("Content")),
         })),
-        "Attributes": module_(t.dictionary(t.text_global("Text Value"))),
-        "Content": module_(t.group({
-            "preceding chardata": prop(t.optional(t.text_global("Text Value"))),
-            "nodes": prop(t.list(t.group({
-                "type": prop(t.state({
-                    "cdata": toption(t.text_global("Text Value")),
-                    "comment": toption(t.text_global("Text Value")),
-                    "element": toption(t.component("Element")),
-                    "processing instruction": toption(t.group({
-                        "target": prop(t.text_global("Text Value")),
-                        "data": prop(t.text_global("Text Value")),
+        "Attributes": sh.module_(sh.t.dictionary(sh.t.text_global("Text Value"))),
+        "Content": sh.module_(sh.t.group({
+            "preceding chardata": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
+            "nodes": sh.prop(sh.t.list(sh.t.group({
+                "type": sh.prop(sh.t.state({
+                    "cdata": sh.toption(sh.t.text_global("Text Value")),
+                    "comment": sh.toption(sh.t.text_global("Text Value")),
+                    "element": sh.toption(sh.t.component("Element")),
+                    "processing instruction": sh.toption(sh.t.group({
+                        "target": sh.prop(sh.t.text_global("Text Value")),
+                        "data": sh.prop(sh.t.text_global("Text Value")),
                     })),
-                    "entity reference": toption(t.text_global("Text Value")),
+                    "entity reference": sh.toption(sh.t.text_global("Text Value")),
                 })),
-                "trailing chardata": prop(t.optional(t.text_global("Text Value"))),
+                "trailing chardata": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
             })))
         })),
-        "Element": module_(t.group({
-            "name": prop(t.text_global("Text Value")),
-            "attributes": prop(t.component("Attributes")),
-            //"mixed": t.boolean(),
-            "children": prop(t.component("Content")),
+        "Element": sh.module_(sh.t.group({
+            "name": sh.prop(sh.t.text_global("Text Value")),
+            "attributes": sh.prop(sh.t.component("Attributes")),
+            //"mixed": sh.t.boolean(),
+            "children": sh.prop(sh.t.component("Content")),
         })),
     }
 )

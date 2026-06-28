@@ -1,39 +1,30 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Node Path": module_(t.group({
-            "context": prop(t.component("Context Path")),
-            "node": prop(t.text_global("text")),
+        "Node Path": sh.module_(sh.t.group({
+            "context": sh.prop(sh.t.component("Context Path")),
+            "node": sh.prop(sh.t.text_global("text")),
         })),
 
-        "Context Path": module_(t.group({
-            "start": prop(t.component("Start")),
-            "subpath": prop(t.component("Context Subpath")),
+        "Context Path": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.component("Start")),
+            "subpath": sh.prop(sh.t.component("Context Subpath")),
         })),
 
-        "Context Subpath": module_(t.list(t.text_global("text"))),
+        "Context Subpath": sh.module_(sh.t.list(sh.t.text_global("text"))),
 
-        "Start": module_(t.state({
-            "absolute": toption(t.nothing()),
-            "relative": toption(t.group({
-                "up steps": prop(t.component("Up Steps")),
+        "Start": sh.module_(sh.t.state({
+            "absolute": sh.toption(sh.t.nothing()),
+            "relative": sh.toption(sh.t.group({
+                "up steps": sh.prop(sh.t.component("Up Steps")),
             })),
         })),
 
-        "Up Steps": module_(t.simple("Natural")),
+        "Up Steps": sh.module_(sh.t.simple("Natural")),
         
     }
 )

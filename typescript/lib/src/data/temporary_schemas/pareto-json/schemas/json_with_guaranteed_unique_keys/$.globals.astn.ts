@@ -1,22 +1,15 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
     'unconstrained',
     {
-        "Text Value": text('single line'),
+        "Text Value": sh.text('single line'),
     },
     {
-        "Integer": n.integer(null),
-        "Approximation": n.approximation(16),
-        "boolean": n.boolean(),
+        "Integer": sh.n.integer(null),
+        "Approximation": sh.n.approximation(16),
+        "boolean": sh.n.boolean(),
     },
 )

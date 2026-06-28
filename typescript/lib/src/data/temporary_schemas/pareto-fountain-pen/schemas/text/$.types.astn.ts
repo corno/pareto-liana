@@ -1,20 +1,11 @@
 
-
-import {
-    modules,
-    text,
-    n,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
         
-        "Text": module_(t.text_global("text")),
+        "Text": sh.module_(sh.t.text_global("text")),
 
     }
 )

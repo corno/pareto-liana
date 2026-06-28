@@ -1,27 +1,19 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Decision": module_(t.group({
-            "decision number": prop(t.simple("Integer")),
-            "atn decision state": prop(t.simple("Integer")),
-            "alternatives": prop(t.dictionary(t.group({
-                "alternative number": prop(t.simple("Integer")),
-                "token sets": prop(t.dictionary(t.group({
-                    "context depth": prop(t.simple("Integer")),
-                    "intervals": prop(t.dictionary(t.group({
-                        "min": prop(t.simple("Integer")),
-                        "max": prop(t.simple("Integer")),
+        "Decision": sh.module_(sh.t.group({
+            "decision number": sh.prop(sh.t.simple("Integer")),
+            "atn decision state": sh.prop(sh.t.simple("Integer")),
+            "alternatives": sh.prop(sh.t.dictionary(sh.t.group({
+                "alternative number": sh.prop(sh.t.simple("Integer")),
+                "token sets": sh.prop(sh.t.dictionary(sh.t.group({
+                    "context depth": sh.prop(sh.t.simple("Integer")),
+                    "intervals": sh.prop(sh.t.dictionary(sh.t.group({
+                        "min": sh.prop(sh.t.simple("Integer")),
+                        "max": sh.prop(sh.t.simple("Integer")),
                     }))),
                 }))),
             }))),

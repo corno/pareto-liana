@@ -1,42 +1,33 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Text Edits": module_(t.list(t.state({
-            "insert": toption(t.group({
-                "location": prop(t.component("Relative Location")),
-                "text": prop(t.text_global("text")),
+        "Text Edits": sh.module_(sh.t.list(sh.t.state({
+            "insert": sh.toption(sh.t.group({
+                "location": sh.prop(sh.t.component("Relative Location")),
+                "text": sh.prop(sh.t.text_global("text")),
             })),
-            "replace": toption(t.group({
-                "range": prop(t.component("Relative Range")),
-                "text": prop(t.text_global("text")),
+            "replace": sh.toption(sh.t.group({
+                "range": sh.prop(sh.t.component("Relative Range")),
+                "text": sh.prop(sh.t.text_global("text")),
             })),
-            "delete": toption(t.group({
-                "range": prop(t.component("Relative Range")),
+            "delete": sh.toption(sh.t.group({
+                "range": sh.prop(sh.t.component("Relative Range")),
             })),
         }))),
 
-        "Relative Range": module_(t.group({
-            "start": prop(t.component("Relative Location")),
-            "end": prop(t.component("Relative Location")),
+        "Relative Range": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.component("Relative Location")),
+            "end": sh.prop(sh.t.component("Relative Location")),
         })),
 
-        "ID Value Pairs To Be Sorted": module_(t.dictionary(t.text_global("text"))),
+        "ID Value Pairs To Be Sorted": sh.module_(sh.t.dictionary(sh.t.text_global("text"))),
 
-        "Relative Location": module_(t.group({
-            "line": prop(t.simple("Natural")),
-            "column": prop(t.simple("Natural")), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
+        "Relative Location": sh.module_(sh.t.group({
+            "line": sh.prop(sh.t.simple("Natural")),
+            "column": sh.prop(sh.t.simple("Natural")), //this value takes the width of a tab into account, if you don't want that, configure the tab width to be 1
         })),
     },
 )

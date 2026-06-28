@@ -2,7 +2,7 @@
 
 
 
-import { schema_, constrained, schema_import_, resolver_import_ } from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
 import { $ as schema } from "./$.types.astn"
@@ -10,16 +10,16 @@ import { $ as globals } from "./$.globals.astn"
 import { $ as signatures } from "./$.signatures.astn"
 import { $ as resolver } from "./$.resolvers.astn"
 
-export const $ = schema_(
+export const $ = sh.schema_(
     {
-        "interface": schema_import_("interface"),
+        "interface": sh.schema_import_("interface"),
     },
     {
-        "interface": resolver_import_("interface"),
+        "interface": sh.resolver_import_("interface"),
     },
     globals,
     schema,
-    constrained(
+    sh.constrained(
         signatures,
         resolver,
     ),

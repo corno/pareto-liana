@@ -1,27 +1,18 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Parameters": module_(t.group({
-            "source": prop(t.group({
-                "document resource identifier": prop(t.text_global("text")),
-                "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "source": sh.prop(sh.t.group({
+                "document resource identifier": sh.prop(sh.t.text_global("text")),
+                "tab size": sh.prop(sh.t.simple("Natural")),
             })),
-            "target": prop(t.group({
-                "indentation": prop(t.text_global("text")),
-                "newline": prop(t.text_global("text")),
+            "target": sh.prop(sh.t.group({
+                "indentation": sh.prop(sh.t.text_global("text")),
+                "newline": sh.prop(sh.t.text_global("text")),
             })),
         })),
 

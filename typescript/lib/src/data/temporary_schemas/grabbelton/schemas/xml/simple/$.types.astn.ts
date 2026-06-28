@@ -1,41 +1,32 @@
 
+import * as sh from "../../../../../../shorthands/schema/manual"
 
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../../shorthands/schema/manual"
-import * as g_ from "../../../../../../interface/generated/liana/schemas/schema/data/unresolved"
-
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Document": module_(t.group({
-            "declaration": prop(t.optional(t.group({
-                "attributes": prop(t.component("Attributes")),
+        "Document": sh.module_(sh.t.group({
+            "declaration": sh.prop(sh.t.optional(sh.t.group({
+                "attributes": sh.prop(sh.t.component("Attributes")),
             }))),
-            "children": prop(t.component("Children")),
+            "children": sh.prop(sh.t.component("Children")),
         })),
-        "Attributes": module_(t.dictionary(t.text_global("Text Value"))),
-        "Children": module_(t.list(t.state({
-            "cdata": toption(t.text_global("Text Value")),
-            "comment": toption(t.text_global("Text Value")),
-            "element": toption(t.component("Element")),
-            "processing instruction": toption(t.group({
-                "target": prop(t.text_global("Text Value")),
-                "data": prop(t.text_global("Text Value")),
+        "Attributes": sh.module_(sh.t.dictionary(sh.t.text_global("Text Value"))),
+        "Children": sh.module_(sh.t.list(sh.t.state({
+            "cdata": sh.toption(sh.t.text_global("Text Value")),
+            "comment": sh.toption(sh.t.text_global("Text Value")),
+            "element": sh.toption(sh.t.component("Element")),
+            "processing instruction": sh.toption(sh.t.group({
+                "target": sh.prop(sh.t.text_global("Text Value")),
+                "data": sh.prop(sh.t.text_global("Text Value")),
             })),
-            "text": toption(t.text_global("Text Value")),
-            "entity reference": toption(t.text_global("Text Value")),
+            "text": sh.toption(sh.t.text_global("Text Value")),
+            "entity reference": sh.toption(sh.t.text_global("Text Value")),
         }))),
-        "Element": module_(t.group({
-            "name": prop(t.text_global("Text Value")),
-            "attributes": prop(t.component("Attributes")),
-            //"mixed": t.boolean(),
-            "children": prop(t.component("Children")),
+        "Element": sh.module_(sh.t.group({
+            "name": sh.prop(sh.t.text_global("Text Value")),
+            "attributes": sh.prop(sh.t.component("Attributes")),
+            //"mixed": sh.t.boolean(),
+            "children": sh.prop(sh.t.component("Children")),
         })),
     }
 )

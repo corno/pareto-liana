@@ -1,80 +1,69 @@
 
-
-import {
-    modules,
-    n,
-    t,
-    module_,
-    text,
-    prop,
-    toption,
-    vp,
-} from "../../../../../shorthands/schema/manual"
 import * as sh from "../../../../../shorthands/schema/manual"
 
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Schema Tree": module_(t.state({
-            "set": toption(t.component("Schemas")),
-            "schema": toption(t.component("Schema")),
+        "Schema Tree": sh.module_(sh.t.state({
+            "set": sh.toption(sh.t.component("Schemas")),
+            "schema": sh.toption(sh.t.component("Schema")),
         })),
 
-        "Schemas": module_(t.dictionary(t.component("Schema Tree"))),
+        "Schemas": sh.module_(sh.t.dictionary(sh.t.component("Schema Tree"))),
 
-        "Schema": module_(t.group({
-            "imports": prop(t.component("Imports")),
-            "globals": prop(t.component("Globals")),
-            "types": prop(t.component("Modules")),
+        "Schema": sh.module_(sh.t.group({
+            "imports": sh.prop(sh.t.component("Imports")),
+            "globals": sh.prop(sh.t.component("Globals")),
+            "types": sh.prop(sh.t.component("Modules")),
         })),
 
-        "Imports": module_(t.dictionary(t.group({
-            "schema set child": prop(t.reference_stack("Schemas", [], {
+        "Imports": sh.module_(sh.t.dictionary(sh.t.group({
+            "schema set child": sh.prop(sh.t.reference_stack("Schemas", [], {
                 "schema": sh.value_reference("Schema", []),
             })),
-            "schema": prop(t.reference_derived("Schema", [])),
+            "schema": sh.prop(sh.t.reference_derived("Schema", [])),
         }))),
 
-        "Globals": module_(t.group({
-            "text types": prop(t.dictionary(t.component("Text Type"))),
+        "Globals": sh.module_(sh.t.group({
+            "text types": sh.prop(sh.t.dictionary(sh.t.component("Text Type"))),
         })),
 
-        "Modules": module_(t.dictionary(t.group({
-            "root value": prop(t.component("Value"))
+        "Modules": sh.module_(sh.t.dictionary(sh.t.group({
+            "root value": sh.prop(sh.t.component("Value"))
         }))),
 
-        "Value": module_(t.state({
-            "component": toption(t.state({
-                "external": toption(t.group({
-                    "import": prop(t.reference("Imports", [])),
-                    "type": prop(t.reference("Modules", [])),
+        "Value": sh.module_(sh.t.state({
+            "component": sh.toption(sh.t.state({
+                "external": sh.toption(sh.t.group({
+                    "import": sh.prop(sh.t.reference("Imports", [])),
+                    "type": sh.prop(sh.t.reference("Modules", [])),
                 })),
-                "internal acyclic": toption(t.reference("Modules", [])),
-                "internal": toption(t.reference("Modules", [], 'cyclic')),
+                "internal acyclic": sh.toption(sh.t.reference("Modules", [])),
+                "internal": sh.toption(sh.t.reference("Modules", [], 'cyclic')),
             })),
-            "dictionary": toption(t.group({
-                "value": prop(t.component("Value")),
-                "ordered": prop(t.simple("boolean")),
+            "dictionary": sh.toption(sh.t.group({
+                "value": sh.prop(sh.t.component("Value")),
+                "ordered": sh.prop(sh.t.simple("boolean")),
             })),
-            "group": toption(t.dictionary(t.component("Value"))),
-            "list": toption(t.group({
-                "value": prop(t.component("Value")),
+            "group": sh.toption(sh.t.dictionary(sh.t.component("Value"))),
+            "list": sh.toption(sh.t.group({
+                "value": sh.prop(sh.t.component("Value")),
             })),
-            "nothing": toption(t.nothing()),
-            "optional": toption(t.component("Value")),
-            "state": toption(t.dictionary(t.component("Value"))),
-            "text": toption(t.state({
-                "global": toption(t.reference("Globals", [vp.g("text types")])),
-                "local": toption(t.component("Text Type")),
+            "nothing": sh.toption(sh.t.nothing()),
+            "optional": sh.toption(sh.t.component("Value")),
+            "state": sh.toption(sh.t.dictionary(sh.t.component("Value"))),
+            "text": sh.toption(sh.t.state({
+                "global": sh.toption(sh.t.reference("Globals", [sh.vp.g("text types")])),
+                "local": sh.toption(sh.t.component("Text Type")),
             })),
         })),
 
-        "Text Type": module_(t.group({
-            "type": prop(t.state({
-                "multi line": toption(t.nothing()),
-                "single line": toption(t.nothing()),
+        "Text Type": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "multi line": sh.toption(sh.t.nothing()),
+                "single line": sh.toption(sh.t.nothing()),
             })),
         })),
 

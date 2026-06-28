@@ -1,326 +1,317 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Git Command": module_(t.state({
-            "view": toption(t.state({
-                "workspace": toption(t.state({
-                    "status": toption(t.group({ // git status
-                        'porcelain': prop(t.optional(t.text_global("text"))),
-                        'short': prop(t.simple("boolean")),
-                        'branch': prop(t.simple("boolean")),
-                        'show stash': prop(t.simple("boolean")),
+        "Git Command": sh.module_(sh.t.state({
+            "view": sh.toption(sh.t.state({
+                "workspace": sh.toption(sh.t.state({
+                    "status": sh.toption(sh.t.group({ // git status
+                        'porcelain': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'short': sh.prop(sh.t.simple("boolean")),
+                        'branch': sh.prop(sh.t.simple("boolean")),
+                        'show stash': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "diff": toption(t.group({ // git diff
-                        'cached': prop(t.simple("boolean")), // --cached for staged changes
-                        'name only': prop(t.simple("boolean")),
-                        'stat': prop(t.simple("boolean")),
-                        'files': prop(t.optional(t.list(t.text_global("text")))),
+                    "diff": sh.toption(sh.t.group({ // git diff
+                        'cached': sh.prop(sh.t.simple("boolean")), // --cached for staged changes
+                        'name only': sh.prop(sh.t.simple("boolean")),
+                        'stat': sh.prop(sh.t.simple("boolean")),
+                        'files': sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("text")))),
                     })),
-                    "show": toption(t.group({ // git show
-                        'commit': prop(t.optional(t.text_global("text"))),
-                        'name only': prop(t.simple("boolean")),
-                        'stat': prop(t.simple("boolean")),
-                    })),
-                })),
-                "index": toption(t.state({
-                    "diff cached": toption(t.group({ // git diff --cached
-                        'name only': prop(t.simple("boolean")),
-                        'stat': prop(t.simple("boolean")),
-                        'files': prop(t.optional(t.list(t.text_global("text")))),
-                    })),
-                    "status": toption(t.group({ // git status (shows staged files)
-                        'porcelain': prop(t.optional(t.text_global("text"))),
-                        'short': prop(t.simple("boolean")),
+                    "show": sh.toption(sh.t.group({ // git show
+                        'commit': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'name only': sh.prop(sh.t.simple("boolean")),
+                        'stat': sh.prop(sh.t.simple("boolean")),
                     })),
                 })),
-                "stash": toption(t.state({
-                    "list": toption(t.group({ // git stash.b.st
-                        'oneline': prop(t.simple("boolean")),
+                "index": sh.toption(sh.t.state({
+                    "diff cached": sh.toption(sh.t.group({ // git diff --cached
+                        'name only': sh.prop(sh.t.simple("boolean")),
+                        'stat': sh.prop(sh.t.simple("boolean")),
+                        'files': sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("text")))),
                     })),
-                    "show": toption(t.group({ // git stash show
-                        'stash': prop(t.optional(t.text_global("text"))),
-                        'patch': prop(t.simple("boolean")),
-                    })),
-                })),
-                "local repo": toption(t.state({
-                    "log": toption(t.group({ // git log
-                        'oneline': prop(t.simple("boolean")),
-                        'graph': prop(t.simple("boolean")),
-                        'all': prop(t.simple("boolean")),
-                        'since': prop(t.optional(t.text_global("text"))),
-                        'until': prop(t.optional(t.text_global("text"))),
-                        'author': prop(t.optional(t.text_global("text"))),
-                        'grep': prop(t.optional(t.text_global("text"))),
-                        'max count': prop(t.optional(t.simple("Natural"))),
-                    })),
-                    "branch": toption(t.group({ // git branch (list)
-                        'all': prop(t.simple("boolean")),
-                        'remote': prop(t.simple("boolean")),
-                        'verbose': prop(t.simple("boolean")),
-                    })),
-                    "tag": toption(t.group({ // git tag (list)
-                        'list': prop(t.optional(t.text_global("text"))), // pattern
-                    })),
-                    "reflog": toption(t.group({ // git reflog
-                        'branch': prop(t.optional(t.text_global("text"))),
-                        'oneline': prop(t.simple("boolean")),
+                    "status": sh.toption(sh.t.group({ // git status (shows staged files)
+                        'porcelain': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'short': sh.prop(sh.t.simple("boolean")),
                     })),
                 })),
-                "remote repo": toption(t.state({
-                    "remote": toption(t.group({ // git remote
-                        'verbose': prop(t.simple("boolean")),
+                "stash": sh.toption(sh.t.state({
+                    "list": sh.toption(sh.t.group({ // git stash.b.st
+                        'oneline': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "ls remote": toption(t.group({ // git ls-remote
-                        'heads': prop(t.simple("boolean")),
-                        'tags': prop(t.simple("boolean")),
-                        'remote': prop(t.optional(t.text_global("text"))),
-                    })),
-                    "fetch dry run": toption(t.group({ // git fetch --dry-run
-                        'all': prop(t.simple("boolean")),
-                        'remote': prop(t.optional(t.text_global("text"))),
+                    "show": sh.toption(sh.t.group({ // git stash show
+                        'stash': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'patch': sh.prop(sh.t.simple("boolean")),
                     })),
                 })),
-                "configuration": toption(t.state({
-                    "config": toption(t.group({ // git config
-                        'list': prop(t.simple("boolean")),
-                        'global': prop(t.simple("boolean")),
-                        'local': prop(t.simple("boolean")),
-                        'system': prop(t.simple("boolean")),
-                        'key': prop(t.optional(t.text_global("text"))),
+                "local repo": sh.toption(sh.t.state({
+                    "log": sh.toption(sh.t.group({ // git log
+                        'oneline': sh.prop(sh.t.simple("boolean")),
+                        'graph': sh.prop(sh.t.simple("boolean")),
+                        'all': sh.prop(sh.t.simple("boolean")),
+                        'since': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'until': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'author': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'grep': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'max count': sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                    })),
+                    "branch": sh.toption(sh.t.group({ // git branch (list)
+                        'all': sh.prop(sh.t.simple("boolean")),
+                        'remote': sh.prop(sh.t.simple("boolean")),
+                        'verbose': sh.prop(sh.t.simple("boolean")),
+                    })),
+                    "tag": sh.toption(sh.t.group({ // git tag (list)
+                        'list': sh.prop(sh.t.optional(sh.t.text_global("text"))), // pattern
+                    })),
+                    "reflog": sh.toption(sh.t.group({ // git reflog
+                        'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'oneline': sh.prop(sh.t.simple("boolean")),
+                    })),
+                })),
+                "remote repo": sh.toption(sh.t.state({
+                    "remote": sh.toption(sh.t.group({ // git remote
+                        'verbose': sh.prop(sh.t.simple("boolean")),
+                    })),
+                    "ls remote": sh.toption(sh.t.group({ // git ls-remote
+                        'heads': sh.prop(sh.t.simple("boolean")),
+                        'tags': sh.prop(sh.t.simple("boolean")),
+                        'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                    })),
+                    "fetch dry run": sh.toption(sh.t.group({ // git fetch --dry-run
+                        'all': sh.prop(sh.t.simple("boolean")),
+                        'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                    })),
+                })),
+                "configuration": sh.toption(sh.t.state({
+                    "config": sh.toption(sh.t.group({ // git config
+                        'list': sh.prop(sh.t.simple("boolean")),
+                        'global': sh.prop(sh.t.simple("boolean")),
+                        'local': sh.prop(sh.t.simple("boolean")),
+                        'system': sh.prop(sh.t.simple("boolean")),
+                        'key': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                     })),
                 })),
             })),
-            "change": toption(t.state({
-                "workspace": toption(t.state({
-                    "checkout file": toption(t.group({ // git checkout -- file (restore workspace)
-                        'files': prop(t.list(t.text_global("text"))),
-                        'force': prop(t.simple("boolean")),
+            "change": sh.toption(sh.t.state({
+                "workspace": sh.toption(sh.t.state({
+                    "checkout file": sh.toption(sh.t.group({ // git checkout -- file (restore workspace)
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                        'force': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "restore": toption(t.group({ // git restore (restore workspace)
-                        'files': prop(t.list(t.text_global("text"))),
-                        'source': prop(t.optional(t.text_global("text"))),
-                        'worktree': prop(t.simple("boolean")),
+                    "restore": sh.toption(sh.t.group({ // git restore (restore workspace)
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                        'source': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'worktree': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "clean": toption(t.group({ // git clean
-                        'dry run': prop(t.simple("boolean")),
-                        'force': prop(t.simple("boolean")),
-                        'directories': prop(t.simple("boolean")),
-                        'ignored': prop(t.simple("boolean")),
-                    })),
-                })),
-                "index": toption(t.state({
-                    "add": toption(t.group({ // git add
-                        'files': prop(t.list(t.text_global("text"))),
-                        'all': prop(t.simple("boolean")),
-                        'patch': prop(t.simple("boolean")),
-                        'update': prop(t.simple("boolean")),
-                    })),
-                    "reset files": toption(t.group({ // git reset -- files (unstage)
-                        'files': prop(t.list(t.text_global("text"))),
-                    })),
-                    "restore staged": toption(t.group({ // git restore --staged
-                        'files': prop(t.list(t.text_global("text"))),
-                    })),
-                    "rm": toption(t.group({ // git rm
-                        'files': prop(t.list(t.text_global("text"))),
-                        'cached': prop(t.simple("boolean")), // remove from index only
-                        'force': prop(t.simple("boolean")),
+                    "clean": sh.toption(sh.t.group({ // git clean
+                        'dry run': sh.prop(sh.t.simple("boolean")),
+                        'force': sh.prop(sh.t.simple("boolean")),
+                        'directories': sh.prop(sh.t.simple("boolean")),
+                        'ignored': sh.prop(sh.t.simple("boolean")),
                     })),
                 })),
-                "stash": toption(t.state({
-                    "push": toption(t.group({ // git stash push
-                        'message': prop(t.optional(t.text_global("text"))),
-                        'keep index': prop(t.simple("boolean")),
-                        'include untracked': prop(t.simple("boolean")),
-                        'files': prop(t.optional(t.list(t.text_global("text")))),
+                "index": sh.toption(sh.t.state({
+                    "add": sh.toption(sh.t.group({ // git add
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                        'all': sh.prop(sh.t.simple("boolean")),
+                        'patch': sh.prop(sh.t.simple("boolean")),
+                        'update': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "pop": toption(t.group({ // git stash pop
-                        'stash': prop(t.optional(t.text_global("text"))),
-                        'index': prop(t.simple("boolean")),
+                    "reset files": sh.toption(sh.t.group({ // git reset -- files (unstage)
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
                     })),
-                    "apply": toption(t.group({ // git stash apply
-                        'stash': prop(t.optional(t.text_global("text"))),
-                        'index': prop(t.simple("boolean")),
+                    "restore staged": sh.toption(sh.t.group({ // git restore --staged
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
                     })),
-                    "drop": toption(t.group({ // git stash drop
-                        'stash': prop(t.optional(t.text_global("text"))),
+                    "rm": sh.toption(sh.t.group({ // git rm
+                        'files': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                        'cached': sh.prop(sh.t.simple("boolean")), // remove from index only
+                        'force': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "clear": toption(t.group({})), // git stash clear
                 })),
-                "local repo": toption(t.state({
-                    "append": toption(t.state({ // ✅ Safe operations - append-only
-                        "commit": toption(t.group({ // git commit
-                            'message': prop(t.text_global("text")),
-                            'amend': prop(t.simple("boolean")), // Note: amend is actually destructive if commit is published
-                            'all': prop(t.simple("boolean")),
-                            'no verify': prop(t.simple("boolean")),
-                            'signoff': prop(t.simple("boolean")),
+                "stash": sh.toption(sh.t.state({
+                    "push": sh.toption(sh.t.group({ // git stash push
+                        'message': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'keep index': sh.prop(sh.t.simple("boolean")),
+                        'include untracked': sh.prop(sh.t.simple("boolean")),
+                        'files': sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("text")))),
+                    })),
+                    "pop": sh.toption(sh.t.group({ // git stash pop
+                        'stash': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'index': sh.prop(sh.t.simple("boolean")),
+                    })),
+                    "apply": sh.toption(sh.t.group({ // git stash apply
+                        'stash': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'index': sh.prop(sh.t.simple("boolean")),
+                    })),
+                    "drop": sh.toption(sh.t.group({ // git stash drop
+                        'stash': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                    })),
+                    "clear": sh.toption(sh.t.group({})), // git stash clear
+                })),
+                "local repo": sh.toption(sh.t.state({
+                    "append": sh.toption(sh.t.state({ // ✅ Safe operations - append-only
+                        "commit": sh.toption(sh.t.group({ // git commit
+                            'message': sh.prop(sh.t.text_global("text")),
+                            'amend': sh.prop(sh.t.simple("boolean")), // Note: amend is actually destructive if commit is published
+                            'all': sh.prop(sh.t.simple("boolean")),
+                            'no verify': sh.prop(sh.t.simple("boolean")),
+                            'signoff': sh.prop(sh.t.simple("boolean")),
                         })),
-                        "merge": toption(t.group({ // git merge (fast-forward or merge commit)
-                            'branch': prop(t.text_global("text")),
-                            'no ff': prop(t.simple("boolean")),
-                            'ff only': prop(t.simple("boolean")),
-                            'no commit': prop(t.simple("boolean")),
-                            'message': prop(t.optional(t.text_global("text"))),
+                        "merge": sh.toption(sh.t.group({ // git merge (fast-forward or merge commit)
+                            'branch': sh.prop(sh.t.text_global("text")),
+                            'no ff': sh.prop(sh.t.simple("boolean")),
+                            'ff only': sh.prop(sh.t.simple("boolean")),
+                            'no commit': sh.prop(sh.t.simple("boolean")),
+                            'message': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                         })),
-                        "cherry pick": toption(t.group({ // git cherry-pick
-                            'commits': prop(t.list(t.text_global("text"))),
-                            'no commit': prop(t.simple("boolean")),
-                            'mainline': prop(t.optional(t.simple("Natural"))),
+                        "cherry pick": sh.toption(sh.t.group({ // git cherry-pick
+                            'commits': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                            'no commit': sh.prop(sh.t.simple("boolean")),
+                            'mainline': sh.prop(sh.t.optional(sh.t.simple("Natural"))),
                         })),
-                        "revert": toption(t.group({ // git revert
-                            'commits': prop(t.list(t.text_global("text"))),
-                            'no commit': prop(t.simple("boolean")),
-                            'mainline': prop(t.optional(t.simple("Natural"))),
+                        "revert": sh.toption(sh.t.group({ // git revert
+                            'commits': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                            'no commit': sh.prop(sh.t.simple("boolean")),
+                            'mainline': sh.prop(sh.t.optional(sh.t.simple("Natural"))),
                         })),
-                        "branch create": toption(t.group({ // git branch <name>
-                            'name': prop(t.text_global("text")),
-                            'start point': prop(t.optional(t.text_global("text"))),
+                        "branch create": sh.toption(sh.t.group({ // git branch <name>
+                            'name': sh.prop(sh.t.text_global("text")),
+                            'start point': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                         })),
-                        "tag create": toption(t.group({ // git tag <name>
-                            'name': prop(t.text_global("text")),
-                            'commit': prop(t.optional(t.text_global("text"))),
-                            'message': prop(t.optional(t.text_global("text"))),
-                            'annotated': prop(t.simple("boolean")),
+                        "tag create": sh.toption(sh.t.group({ // git tag <name>
+                            'name': sh.prop(sh.t.text_global("text")),
+                            'commit': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'message': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'annotated': sh.prop(sh.t.simple("boolean")),
                         })),
-                        "pull rebase private": toption(t.group({ // git pull --rebase (only safe if commits not published)
-                            'remote': prop(t.optional(t.text_global("text"))),
-                            'branch': prop(t.optional(t.text_global("text"))),
+                        "pull rebase private": sh.toption(sh.t.group({ // git pull --rebase (only safe if commits not published)
+                            'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                         })),
                     })),
-                    "destroy": toption(t.state({ // ⚠️ History-rewriting operations - force push required
-                        "reset": toption(t.group({ // git reset (moves branch pointer backward)
-                            'mode': prop(t.state({
-                                'soft': toption(t.group({})), // keeps workspace and index
-                                'mixed': toption(t.group({})), // keeps workspace, resets index (default)
-                                'hard': toption(t.group({})), // ⚠️ DANGEROUS: resets workspace and index
+                    "destroy": sh.toption(sh.t.state({ // ⚠️ History-rewriting operations - force push required
+                        "reset": sh.toption(sh.t.group({ // git reset (moves branch pointer backward)
+                            'mode': sh.prop(sh.t.state({
+                                'soft': sh.toption(sh.t.group({})), // keeps workspace and index
+                                'mixed': sh.toption(sh.t.group({})), // keeps workspace, resets index (default)
+                                'hard': sh.toption(sh.t.group({})), // ⚠️ DANGEROUS: resets workspace and index
                             })),
-                            'target': prop(t.text_global("text")), // commit/branch to reset to
+                            'target': sh.prop(sh.t.text_global("text")), // commit/branch to reset to
                         })),
-                        "commit amend": toption(t.group({ // git commit --amend (rewrites last commit)
-                            'message': prop(t.optional(t.text_global("text"))),
-                            'no edit': prop(t.simple("boolean")),
-                            'all': prop(t.simple("boolean")),
+                        "commit amend": sh.toption(sh.t.group({ // git commit --amend (rewrites last commit)
+                            'message': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'no edit': sh.prop(sh.t.simple("boolean")),
+                            'all': sh.prop(sh.t.simple("boolean")),
                         })),
-                        "rebase": toption(t.group({ // git rebase (rewrites commits)
-                            'onto': prop(t.text_global("text")),
-                            'interactive': prop(t.simple("boolean")),
-                            'preserve merges': prop(t.simple("boolean")),
-                            'strategy': prop(t.optional(t.text_global("text"))),
+                        "rebase": sh.toption(sh.t.group({ // git rebase (rewrites commits)
+                            'onto': sh.prop(sh.t.text_global("text")),
+                            'interactive': sh.prop(sh.t.simple("boolean")),
+                            'preserve merges': sh.prop(sh.t.simple("boolean")),
+                            'strategy': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                         })),
-                        "filter repo": toption(t.group({ // git filter-repo (rewrites large parts of history)
-                            'path': prop(t.optional(t.text_global("text"))),
-                            'invert paths': prop(t.simple("boolean")),
-                            'force': prop(t.simple("boolean")),
+                        "filter repo": sh.toption(sh.t.group({ // git filter-repo (rewrites large parts of history)
+                            'path': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'invert paths': sh.prop(sh.t.simple("boolean")),
+                            'force': sh.prop(sh.t.simple("boolean")),
                         })),
-                        "tag force": toption(t.group({ // git tag -f (reassign tag to new commit)
-                            'name': prop(t.text_global("text")),
-                            'commit': prop(t.optional(t.text_global("text"))),
-                            'message': prop(t.optional(t.text_global("text"))),
+                        "tag force": sh.toption(sh.t.group({ // git tag -f (reassign tag to new commit)
+                            'name': sh.prop(sh.t.text_global("text")),
+                            'commit': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                            'message': sh.prop(sh.t.optional(sh.t.text_global("text"))),
                         })),
-                        "branch delete": toption(t.group({ // git branch -d/-D
-                            'name': prop(t.text_global("text")),
-                            'force': prop(t.simple("boolean")), // -D vs -d
+                        "branch delete": sh.toption(sh.t.group({ // git branch -d/-D
+                            'name': sh.prop(sh.t.text_global("text")),
+                            'force': sh.prop(sh.t.simple("boolean")), // -D vs -d
                         })),
-                        "tag delete": toption(t.group({ // git tag -d
-                            'name': prop(t.text_global("text")),
+                        "tag delete": sh.toption(sh.t.group({ // git tag -d
+                            'name': sh.prop(sh.t.text_global("text")),
                         })),
-                        "gc": toption(t.group({ // git gc (garbage collect unreachable commits)
-                            'aggressive': prop(t.simple("boolean")),
-                            'prune': prop(t.optional(t.text_global("text"))), // prune date
+                        "gc": sh.toption(sh.t.group({ // git gc (garbage collect unreachable commits)
+                            'aggressive': sh.prop(sh.t.simple("boolean")),
+                            'prune': sh.prop(sh.t.optional(sh.t.text_global("text"))), // prune date
                         })),
                     })),
                 })),
-                "remote repo": toption(t.state({
-                    "fetch": toption(t.group({ // git fetch
-                        'all': prop(t.simple("boolean")),
-                        'remote': prop(t.optional(t.text_global("text"))),
-                        'branch': prop(t.optional(t.text_global("text"))),
-                        'prune': prop(t.simple("boolean")),
+                "remote repo": sh.toption(sh.t.state({
+                    "fetch": sh.toption(sh.t.group({ // git fetch
+                        'all': sh.prop(sh.t.simple("boolean")),
+                        'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'prune': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "push": toption(t.group({ // git push
-                        'remote': prop(t.optional(t.text_global("text"))),
-                        'branch': prop(t.optional(t.text_global("text"))),
-                        'force': prop(t.simple("boolean")), // ⚠️ DANGEROUS
-                        'force with lease': prop(t.simple("boolean")), // safer force
-                        'set upstream': prop(t.simple("boolean")),
-                        'tags': prop(t.simple("boolean")),
-                        'delete': prop(t.optional(t.text_global("text"))), // delete remote branch
+                    "push": sh.toption(sh.t.group({ // git push
+                        'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'force': sh.prop(sh.t.simple("boolean")), // ⚠️ DANGEROUS
+                        'force with lease': sh.prop(sh.t.simple("boolean")), // safer force
+                        'set upstream': sh.prop(sh.t.simple("boolean")),
+                        'tags': sh.prop(sh.t.simple("boolean")),
+                        'delete': sh.prop(sh.t.optional(sh.t.text_global("text"))), // delete remote branch
                     })),
-                    "pull": toption(t.group({ // git pull
-                        'remote': prop(t.optional(t.text_global("text"))),
-                        'branch': prop(t.optional(t.text_global("text"))),
-                        'rebase': prop(t.simple("boolean")),
-                        'no rebase': prop(t.simple("boolean")),
-                        'ff only': prop(t.simple("boolean")),
+                    "pull": sh.toption(sh.t.group({ // git pull
+                        'remote': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'rebase': sh.prop(sh.t.simple("boolean")),
+                        'no rebase': sh.prop(sh.t.simple("boolean")),
+                        'ff only': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "clone": toption(t.group({ // git clone
-                        'url': prop(t.text_global("text")),
-                        'directory': prop(t.optional(t.text_global("text"))),
-                        'branch': prop(t.optional(t.text_global("text"))),
-                        'depth': prop(t.optional(t.simple("Natural"))),
-                        'recursive': prop(t.simple("boolean")),
+                    "clone": sh.toption(sh.t.group({ // git clone
+                        'url': sh.prop(sh.t.text_global("text")),
+                        'directory': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'branch': sh.prop(sh.t.optional(sh.t.text_global("text"))),
+                        'depth': sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                        'recursive': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "remote add": toption(t.group({ // git remote add
-                        'name': prop(t.text_global("text")),
-                        'url': prop(t.text_global("text")),
+                    "remote add": sh.toption(sh.t.group({ // git remote add
+                        'name': sh.prop(sh.t.text_global("text")),
+                        'url': sh.prop(sh.t.text_global("text")),
                     })),
-                    "remote remove": toption(t.group({ // git remote remove
-                        'name': prop(t.text_global("text")),
+                    "remote remove": sh.toption(sh.t.group({ // git remote remove
+                        'name': sh.prop(sh.t.text_global("text")),
                     })),
                 })),
-                "configuration": toption(t.state({
-                    "config set": toption(t.group({ // git config <key> <value>
-                        'key': prop(t.text_global("text")),
-                        'value': prop(t.text_global("text")),
-                        'global': prop(t.simple("boolean")),
-                        'local': prop(t.simple("boolean")),
-                        'system': prop(t.simple("boolean")),
+                "configuration": sh.toption(sh.t.state({
+                    "config set": sh.toption(sh.t.group({ // git config <key> <value>
+                        'key': sh.prop(sh.t.text_global("text")),
+                        'value': sh.prop(sh.t.text_global("text")),
+                        'global': sh.prop(sh.t.simple("boolean")),
+                        'local': sh.prop(sh.t.simple("boolean")),
+                        'system': sh.prop(sh.t.simple("boolean")),
                     })),
-                    "config unset": toption(t.group({ // git config --unset <key>
-                        'key': prop(t.text_global("text")),
-                        'global': prop(t.simple("boolean")),
-                        'local': prop(t.simple("boolean")),
-                        'system': prop(t.simple("boolean")),
+                    "config unset": sh.toption(sh.t.group({ // git config --unset <key>
+                        'key': sh.prop(sh.t.text_global("text")),
+                        'global': sh.prop(sh.t.simple("boolean")),
+                        'local': sh.prop(sh.t.simple("boolean")),
+                        'system': sh.prop(sh.t.simple("boolean")),
                     })),
                 })),
             })),
         })),
 
         // Safety metadata types
-        "Safety Level": module_(t.state({
-            'safe': toption(t.group({ // ✅ Safe for collaboration
-                'description': prop(t.text_global("multi line text")),
+        "Safety Level": sh.module_(sh.t.state({
+            'safe': sh.toption(sh.t.group({ // ✅ Safe for collaboration
+                'description': sh.prop(sh.t.text_global("multi line text")),
             })),
-            'risky': toption(t.group({ // ⚠️ Requires force push
-                'description': prop(t.text_global("multi line text")),
-                'areas affected': prop(t.list(t.text_global("text"))), // which areas are modified
+            'risky': sh.toption(sh.t.group({ // ⚠️ Requires force push
+                'description': sh.prop(sh.t.text_global("multi line text")),
+                'areas affected': sh.prop(sh.t.list(sh.t.text_global("text"))), // which areas are modified
             })),
-            'destructive': toption(t.group({ // ❌ Black swan - multiple area effects
-                'description': prop(t.text_global("multi line text")),
-                'areas affected': prop(t.list(t.text_global("text"))),
-                'warning': prop(t.text_global("multi line text")),
+            'destructive': sh.toption(sh.t.group({ // ❌ Black swan - multiple area effects
+                'description': sh.prop(sh.t.text_global("multi line text")),
+                'areas affected': sh.prop(sh.t.list(sh.t.text_global("text"))),
+                'warning': sh.prop(sh.t.text_global("multi line text")),
             })),
         })),
 
         // Command execution result
-        "Command Result": module_(t.group({
-            'command line': prop(t.text_global("text")), // the actual git command to execute
-            'safety level': prop(t.text_global("text")), // references Safety Level
-            'requires force push': prop(t.simple("boolean")),
-            'affected areas': prop(t.list(t.text_global("text"))), // workspace, index, stash, local repo, remote repo, configuration
+        "Command Result": sh.module_(sh.t.group({
+            'command line': sh.prop(sh.t.text_global("text")), // the actual git command to execute
+            'safety level': sh.prop(sh.t.text_global("text")), // references Safety Level
+            'requires force push': sh.prop(sh.t.simple("boolean")),
+            'affected areas': sh.prop(sh.t.list(sh.t.text_global("text"))), // workspace, index, stash, local repo, remote repo, configuration
         })),
     }
 )

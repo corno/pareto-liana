@@ -1,48 +1,40 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Regular Expression": module_(t.group({
-            "characters": prop(t.dictionary(t.simple("Character"))),
-            "sequence": prop(t.component("Sequence")),
+        "Regular Expression": sh.module_(sh.t.group({
+            "characters": sh.prop(sh.t.dictionary(sh.t.simple("Character"))),
+            "sequence": sh.prop(sh.t.component("Sequence")),
         })),
 
-        "Sequence": module_(t.list(t.group({
-            "type": prop(t.state({
-                "literal": toption(t.text_global("Text Value")),
-                "character class": toption(t.group({
-                    "negated": prop(t.simple("boolean")),
-                    "ranges": prop(t.list(t.state({
-                        "literal": toption(t.simple("Character")), //should be a reference to a character in the dictionary
-                        "range": toption(t.group({
-                            "from": prop(t.simple("Character")),
-                            "to": prop(t.simple("Character")),
+        "Sequence": sh.module_(sh.t.list(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "literal": sh.toption(sh.t.text_global("Text Value")),
+                "character class": sh.toption(sh.t.group({
+                    "negated": sh.prop(sh.t.simple("boolean")),
+                    "ranges": sh.prop(sh.t.list(sh.t.state({
+                        "literal": sh.toption(sh.t.simple("Character")), //should be a reference to a character in the dictionary
+                        "range": sh.toption(sh.t.group({
+                            "from": sh.prop(sh.t.simple("Character")),
+                            "to": sh.prop(sh.t.simple("Character")),
                         })),
                     }))),
                 })),
-                "group": toption(t.group({
-                    "expression": prop(t.component("Sequence")),
+                "group": sh.toption(sh.t.group({
+                    "expression": sh.prop(sh.t.component("Sequence")),
                 })),
-                "alternation": toption(t.list(t.component("Sequence"))),
+                "alternation": sh.toption(sh.t.list(sh.t.component("Sequence"))),
             })),
-            "quantifier": prop(t.optional(t.state({
-                "optional": toption(t.nothing()), // ?
-                "multiple": toption(t.nothing()), // *
-                "one or more": toption(t.nothing()), // +
-                // "exact": t.number_local(n.natural(null)), // {n}
-                // "between": t.group({
-                //     "min": t.number_local(n.natural(null)), // {n,m}
-                //     "max": t.number_local(n.natural(null)),
+            "quantifier": sh.prop(sh.t.optional(sh.t.state({
+                "optional": sh.toption(sh.t.nothing()), // ?
+                "multiple": sh.toption(sh.t.nothing()), // *
+                "one or more": sh.toption(sh.t.nothing()), // +
+                // "exact": sh.t.number_local(n.natural(null)), // {n}
+                // "between": sh.t.group({
+                //     "min": sh.t.number_local(n.natural(null)), // {n,m}
+                //     "max": sh.t.number_local(n.natural(null)),
                 // }),
 
             }))),

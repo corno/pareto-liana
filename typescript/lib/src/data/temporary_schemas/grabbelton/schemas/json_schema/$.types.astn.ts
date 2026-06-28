@@ -1,61 +1,53 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Document": module_(t.group({
-            "$schema": prop(t.text_global("url")),
-            "$id": prop(t.text_global("url")),
-            "type": prop(t.component("Type")),
+        "Document": sh.module_(sh.t.group({
+            "$schema": sh.prop(sh.t.text_global("url")),
+            "$id": sh.prop(sh.t.text_global("url")),
+            "type": sh.prop(sh.t.component("Type")),
         })),
 
-        "Type": module_(t.state({
-            "array": toption(t.group({
-                "minItems": prop(t.optional(t.simple("amount"))),
-                "maxItems": prop(t.optional(t.simple("amount"))),
-                "uniqueItems": prop(t.optional(t.simple("boolean"))),
-                "oneOf": prop(t.optional(t.list(t.component("Type")))),
-                "maxContains": prop(t.optional(t.simple("amount"))),
-                "minContains": prop(t.optional(t.simple("amount"))),
+        "Type": sh.module_(sh.t.state({
+            "array": sh.toption(sh.t.group({
+                "minItems": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "maxItems": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "uniqueItems": sh.prop(sh.t.optional(sh.t.simple("boolean"))),
+                "oneOf": sh.prop(sh.t.optional(sh.t.list(sh.t.component("Type")))),
+                "maxContains": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "minContains": sh.prop(sh.t.optional(sh.t.simple("amount"))),
             })),
-            "number": toption(t.group({
-                "multipleOf": prop(t.optional(t.simple("amount"))),
-                "minimum": prop(t.optional(t.simple("amount"))),
-                "maximum": prop(t.optional(t.simple("amount"))),
-                "exclusiveMinimum": prop(t.optional(t.simple("amount"))),
-                "exclusiveMaximum": prop(t.optional(t.simple("amount"))),
+            "number": sh.toption(sh.t.group({
+                "multipleOf": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "minimum": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "maximum": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "exclusiveMinimum": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "exclusiveMaximum": sh.prop(sh.t.optional(sh.t.simple("amount"))),
             })),
-            "object": toption(t.group({
-                "minProperties": prop(t.optional(t.simple("amount"))),
-                "maxProperties": prop(t.optional(t.simple("amount"))),
-                "required": prop(t.optional(t.list(t.text_global("identifier")))),
-                "dependentRequired": prop(t.optional(t.list(t.text_global("identifier")))),
+            "object": sh.toption(sh.t.group({
+                "minProperties": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "maxProperties": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "required": sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("identifier")))),
+                "dependentRequired": sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("identifier")))),
                 
-                // "properties": t.optional(t.dictionary(t.component("Type"))),
-                // "additionalProperties": t.optional(t.component("Type")),
-                // "patternProperties": t.optional(t.dictionary(t.component("Type"))),
-                // "propertyNames": t.optional(t.component("Type")),
-                // "dependencies": t.optional(t.dictionary(t.component("Type"))),
-                // "propertyDependencies": t.optional(t.dictionary(t.list(t.text_global("identifier")))),
-                // "unevaluatedProperties": t.optional(t.component("Type")),
-                // "unevaluatedItems": t.optional(t.component("Type")),
-                // "additionalItems": t.optional(t.component("Type")),
-                // "minContains": t.optional(t.number_global("amount")),
-                // "maxContains": t.optional(t.number_global("amount")),
+                // "properties": sh.t.optional(sh.t.dictionary(sh.t.component("Type"))),
+                // "additionalProperties": sh.t.optional(sh.t.component("Type")),
+                // "patternProperties": sh.t.optional(sh.t.dictionary(sh.t.component("Type"))),
+                // "propertyNames": sh.t.optional(sh.t.component("Type")),
+                // "dependencies": sh.t.optional(sh.t.dictionary(sh.t.component("Type"))),
+                // "propertyDependencies": sh.t.optional(sh.t.dictionary(sh.t.list(sh.t.text_global("identifier")))),
+                // "unevaluatedProperties": sh.t.optional(sh.t.component("Type")),
+                // "unevaluatedItems": sh.t.optional(sh.t.component("Type")),
+                // "additionalItems": sh.t.optional(sh.t.component("Type")),
+                // "minContains": sh.t.optional(sh.t.number_global("amount")),
+                // "maxContains": sh.t.optional(sh.t.number_global("amount")),
             })),
-            "string": toption(t.group({
-                "minLength": prop(t.optional(t.simple("amount"))),
-                "maxLength": prop(t.optional(t.simple("amount"))),
-                "pattern": prop(t.optional(t.text_global("regex"))),
+            "string": sh.toption(sh.t.group({
+                "minLength": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "maxLength": sh.prop(sh.t.optional(sh.t.simple("amount"))),
+                "pattern": sh.prop(sh.t.optional(sh.t.text_global("regex"))),
             })),
         }))
     }

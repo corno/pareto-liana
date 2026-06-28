@@ -1,121 +1,118 @@
 
-
-import {
-    resolver_modules, r, resolver, al, ls, av, gvs, ovi, rvs, option, option_constrained, oc, vcr, pvs,
-} from "../../../../../shorthands/resolver/manual"
+import * as sh from "../../../../../shorthands/resolver/manual"
 
 
 
 
-export const $ = resolver_modules(
+export const $ = sh.resolver_modules(
     {
 
-        "Modules": resolver(r.dictionary(r.group({
-            "root value": r.component(
+        "Modules": sh.resolver(sh.r.dictionary(sh.r.group({
+            "root value": sh.r.component(
                 "Value",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.acyclic.siblings(),
-                    "possibly circular dependent sibling modules": al.cyclic.siblings(),
+                    "noncircular sibling modules": sh.al.acyclic.siblings(),
+                    "possibly circular dependent sibling modules": sh.al.cyclic.siblings(),
                 }
             )
         }))),
 
-        "Globals": resolver(r.group({
-            "text types": r.dictionary(r.component("Text Type", {}, {})),
+        "Globals": sh.resolver(sh.r.group({
+            "text types": sh.r.dictionary(sh.r.component("Text Type", {}, {})),
         })),
 
-        "Text Type": resolver(r.group({
-            "type": r.state({
-                "multi line": option(r.nothing()),
-                "single line": option(r.nothing()),
+        "Text Type": sh.resolver(sh.r.group({
+            "type": sh.r.state({
+                "multi line": sh.option(sh.r.nothing()),
+                "single line": sh.option(sh.r.nothing()),
             }),
         })),
 
 
-        "Value": resolver(r.state({
-            "component": option(r.state({
-                "external": option_constrained({ "import": oc.assert_set(pvs.parameter("imports")) }, r.group({
-                    "import": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("import", []))),
-                    "type": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("import", [rvs.reference(), rvs.group("schema"), rvs.reference(), rvs.group("types"), rvs.component()]))),
+        "Value": sh.resolver(sh.r.state({
+            "component": sh.option(sh.r.state({
+                "external": sh.option_constrained({ "import": sh.oc.assert_set(sh.pvs.parameter("imports")) }, sh.r.group({
+                    "import": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("import", []))),
+                    "type": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("import", [sh.rvs.reference(), sh.rvs.group("schema"), sh.rvs.reference(), sh.rvs.group("types"), sh.rvs.component()]))),
                 })),
-                "internal acyclic": option(r.reference(ls.parameter("noncircular sibling modules"))),
-                "internal": option(r.reference(ls.parameter("possibly circular dependent sibling modules"))),
+                "internal acyclic": sh.option(sh.r.reference(sh.ls.parameter("noncircular sibling modules"))),
+                "internal": sh.option(sh.r.reference(sh.ls.parameter("possibly circular dependent sibling modules"))),
             })),
-            "dictionary": option(r.group({
-                "value": r.component("Value",
+            "dictionary": sh.option(sh.r.group({
+                "value": sh.r.component("Value",
                     {
-                        "globals": av.parameter("globals"),
-                        "imports": av.parameter("imports"),
+                        "globals": sh.av.parameter("globals"),
+                        "imports": sh.av.parameter("imports"),
                     },
                     {
-                        "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                        "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                        "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                        "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                     }
                 ),
-                "ordered": r.simple(),
+                "ordered": sh.r.simple(),
             })),
-            "group": option(r.dictionary(r.component("Value",
+            "group": sh.option(sh.r.dictionary(sh.r.component("Value",
                 {
-                    "globals": av.parameter("globals"),
-                    "imports": av.parameter("imports"),
+                    "globals": sh.av.parameter("globals"),
+                    "imports": sh.av.parameter("imports"),
                 },
                 {
-                    "noncircular sibling modules": al.parameter("noncircular sibling modules"),
-                    "possibly circular dependent sibling modules": al.parameter("possibly circular dependent sibling modules"),
+                    "noncircular sibling modules": sh.al.parameter("noncircular sibling modules"),
+                    "possibly circular dependent sibling modules": sh.al.parameter("possibly circular dependent sibling modules"),
                 }
             ))),
-            "list": option(r.group({
-                "value": r.component("Value", null, null),
+            "list": sh.option(sh.r.group({
+                "value": sh.r.component("Value", null, null),
             })),
-            "nothing": option(r.nothing()),
+            "nothing": sh.option(sh.r.nothing()),
 
-            "optional": option(r.component("Value", null, null)),
+            "optional": sh.option(sh.r.component("Value", null, null)),
 
-            "state": option(r.dictionary(r.component("Value", null, null))),
-            "text": option(r.state({
-                "global": option_constrained({ "globals": oc.assert_set(pvs.parameter("globals")) }, r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("globals", [rvs.group("text types")])))),
-                "local": option(r.component("Text Type", {}, {})),
+            "state": sh.option(sh.r.dictionary(sh.r.component("Value", null, null))),
+            "text": sh.option(sh.r.state({
+                "global": sh.option_constrained({ "globals": sh.oc.assert_set(sh.pvs.parameter("globals")) }, sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("globals", [sh.rvs.group("text types")])))),
+                "local": sh.option(sh.r.component("Text Type", {}, {})),
             })),
         })),
 
-        "Schemas": resolver(r.dictionary(r.component("Schema Tree", {}, {
-            "sibling schemas": al.stack.push(
-                ls.parameter("sibling schemas"),
-                ls.acyclic.siblings()
+        "Schemas": sh.resolver(sh.r.dictionary(sh.r.component("Schema Tree", {}, {
+            "sibling schemas": sh.al.stack.push(
+                sh.ls.parameter("sibling schemas"),
+                sh.ls.acyclic.siblings()
             ),
         }))),
 
-        "Schema Tree": resolver(r.state({
-            "schema": option(r.component("Schema", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+        "Schema Tree": sh.resolver(sh.r.state({
+            "schema": sh.option(sh.r.component("Schema", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             })),
-            "set": option(r.component("Schemas", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+            "set": sh.option(sh.r.component("Schemas", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             }))
         })),
 
-        "Schema": resolver(r.group({
-            "imports": r.component("Imports", {}, {
-                "sibling schemas": al.parameter("sibling schemas"),
+        "Schema": sh.resolver(sh.r.group({
+            "imports": sh.r.component("Imports", {}, {
+                "sibling schemas": sh.al.parameter("sibling schemas"),
             }),
-            "globals": r.component("Globals", {
+            "globals": sh.r.component("Globals", {
             }, {}),
-            "types": r.component("Modules", {
-                "globals": av.optional(ovi.set(gvs.sibling("globals", []))),
-                "imports": av.optional(ovi.set(gvs.sibling("imports", [rvs.component()]))),
+            "types": sh.r.component("Modules", {
+                "globals": sh.av.optional(sh.ovi.set(sh.gvs.sibling("globals", []))),
+                "imports": sh.av.optional(sh.ovi.set(sh.gvs.sibling("imports", [sh.rvs.component()]))),
             }, {
             }),
         })),
 
-        "Imports": resolver(r.dictionary(r.group({
-            "schema set child": r.reference_stack(ls.parameter("sibling schemas"), {
-                "schema": vcr.value([rvs.component()], "schema"),
+        "Imports": sh.resolver(sh.r.dictionary(sh.r.group({
+            "schema set child": sh.r.reference_stack(sh.ls.parameter("sibling schemas"), {
+                "schema": sh.vcr.value([sh.rvs.component()], "schema"),
             }),
-            "schema": r.reference_derived(gvs.reference("schema set child", "schema", [])),
+            "schema": sh.r.reference_derived(sh.gvs.reference("schema set child", "schema", [])),
         }))),
     }
 )

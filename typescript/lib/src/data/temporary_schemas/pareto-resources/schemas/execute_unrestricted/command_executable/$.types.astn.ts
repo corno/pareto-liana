@@ -1,31 +1,22 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "program": prop(t.text_global("text")),
-            "args": prop(t.list(t.text_global("text"))),
-            "working directory": prop(t.optional(t.component_external("path", "Context Path"))),
+        "Parameters": sh.module_(sh.t.group({
+            "program": sh.prop(sh.t.text_global("text")),
+            "args": sh.prop(sh.t.list(sh.t.text_global("text"))),
+            "working directory": sh.prop(sh.t.optional(sh.t.component_external("path", "Context Path"))),
         })),
 
-        "Error": module_(t.state({
-            "failed to spawn": toption(t.group({
-                "message": prop(t.component_external("terminal output", "Message")),
+        "Error": sh.module_(sh.t.state({
+            "failed to spawn": sh.toption(sh.t.group({
+                "message": sh.prop(sh.t.component_external("terminal output", "Message")),
             })),
-            "non zero exit code": toption(t.group({
-                "exit code": prop(t.optional(t.simple("Integer"))),
-                "stderr": prop(t.component_external("terminal output", "Message")),
+            "non zero exit code": sh.toption(sh.t.group({
+                "exit code": sh.prop(sh.t.optional(sh.t.simple("Integer"))),
+                "stderr": sh.prop(sh.t.component_external("terminal output", "Message")),
             })),
         })),
     }

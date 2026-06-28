@@ -1,53 +1,44 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Diagnostics": module_(t.list(t.component("Diagnostic"))),
+        "Diagnostics": sh.module_(sh.t.list(sh.t.component("Diagnostic"))),
 
-        "Diagnostic": module_(t.group({
-            "severity": prop(t.state({
-                "error": toption(t.nothing()),
-                "warning": toption(t.nothing()),
-                "information": toption(t.nothing()),
-                "hint": toption(t.nothing()),
+        "Diagnostic": sh.module_(sh.t.group({
+            "severity": sh.prop(sh.t.state({
+                "error": sh.toption(sh.t.nothing()),
+                "warning": sh.toption(sh.t.nothing()),
+                "information": sh.toption(sh.t.nothing()),
+                "hint": sh.toption(sh.t.nothing()),
             })),
-            "range": prop(t.optional(t.component_external("location", "Possible Range"))), //this is optional because some diagnostics might not be related to the context file (e.g. schema files or included files)
-            "message": prop(t.text_global("text")),
-            "related information": prop(t.optional(t.list(t.group({
-                "location": prop(t.group({
-                    "file path": prop(t.component_external("path unrestricted", "Node Path")),
-                    "range": prop(t.component_external("location", "Possible Range")),
+            "range": sh.prop(sh.t.optional(sh.t.component_external("location", "Possible Range"))), //this is optional because some diagnostics might not be related to the context file (e.g. schema files or included files)
+            "message": sh.prop(sh.t.text_global("text")),
+            "related information": sh.prop(sh.t.optional(sh.t.list(sh.t.group({
+                "location": sh.prop(sh.t.group({
+                    "file path": sh.prop(sh.t.component_external("path unrestricted", "Node Path")),
+                    "range": sh.prop(sh.t.component_external("location", "Possible Range")),
                 })),
-                "message": prop(t.text_global("text")),
+                "message": sh.prop(sh.t.text_global("text")),
             })))),
-            "type": prop(t.state({
-                "semantic": toption(t.nothing()),
-                "deserialize": toption(t.nothing()),
-                "schema": toption(t.nothing()),
+            "type": sh.prop(sh.t.state({
+                "semantic": sh.toption(sh.t.nothing()),
+                "deserialize": sh.toption(sh.t.nothing()),
+                "schema": sh.toption(sh.t.nothing()),
             }))
         })),
 
 
         //are these below still needed?
-        "Result": module_(t.group({
-            "diagnostics": prop(t.component("Diagnostics")),
+        "Result": sh.module_(sh.t.group({
+            "diagnostics": sh.prop(sh.t.component("Diagnostics")),
         })),
 
-        "Parameters": module_(t.group({
-            "content": prop(t.text_global("multi line text")),
-            "file path": prop(t.component_external("path unrestricted", "Node Path")),
-            "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "content": sh.prop(sh.t.text_global("multi line text")),
+            "file path": sh.prop(sh.t.component_external("path unrestricted", "Node Path")),
+            "tab size": sh.prop(sh.t.simple("Natural")),
         })),
     }
 )

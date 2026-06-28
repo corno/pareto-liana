@@ -1,32 +1,23 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Result": module_(t.group({
-            "contents": prop(t.group({
-                "hover texts": prop(t.component_external("hover info", "Hover Texts")),
+        "Result": sh.module_(sh.t.group({
+            "contents": sh.prop(sh.t.group({
+                "hover texts": sh.prop(sh.t.component_external("hover info", "Hover Texts")),
             })),
         })),
 
-        "Parameters": module_(t.group({
-            "content": prop(t.text_global("multi line text")),
-            "source": prop(t.group({
-                "file path": prop(t.component_external("path unrestricted", "Node Path")),
-                "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "content": sh.prop(sh.t.text_global("multi line text")),
+            "source": sh.prop(sh.t.group({
+                "file path": sh.prop(sh.t.component_external("path unrestricted", "Node Path")),
+                "tab size": sh.prop(sh.t.simple("Natural")),
             })),
-            "position": prop(t.component_external("location", "Position")),
+            "position": sh.prop(sh.t.component_external("location", "Position")),
         })),
 
     }

@@ -1,28 +1,19 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    text,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Graph": module_(t.group({
-            "attributes": prop(t.component_external("attributes", "Attributes")),
-            "nodes": prop(t.dictionary(t.group({
-                "attributes": prop(t.component_external("attributes", "Attributes"))
+        "Graph": sh.module_(sh.t.group({
+            "attributes": sh.prop(sh.t.component_external("attributes", "Attributes")),
+            "nodes": sh.prop(sh.t.dictionary(sh.t.group({
+                "attributes": sh.prop(sh.t.component_external("attributes", "Attributes"))
             }))),
-            "edges": prop(t.list(t.group({
-                "from": prop(t.text_global("text")),
-                "to": prop(t.text_global("text")),
-                "attributes": prop(t.component_external("attributes", "Attributes"))
+            "edges": sh.prop(sh.t.list(sh.t.group({
+                "from": sh.prop(sh.t.text_global("text")),
+                "to": sh.prop(sh.t.text_global("text")),
+                "attributes": sh.prop(sh.t.component_external("attributes", "Attributes"))
             }))),
         })),
     }

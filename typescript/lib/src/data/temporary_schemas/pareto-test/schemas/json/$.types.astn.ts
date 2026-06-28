@@ -1,36 +1,28 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Document": module_(t.component("Value")),
+        "Document": sh.module_(sh.t.component("Value")),
 
-        "Value": module_(t.state({
-            "array": toption(t.list(t.component("Value"))),
-            "object": toption(t.state({
-                "key value array": toption(t.list(t.group({
-                    "key": prop(t.text_global("Text Value")),
-                    "value": prop(t.component("Value"))
+        "Value": sh.module_(sh.t.state({
+            "array": sh.toption(sh.t.list(sh.t.component("Value"))),
+            "object": sh.toption(sh.t.state({
+                "key value array": sh.toption(sh.t.list(sh.t.group({
+                    "key": sh.prop(sh.t.text_global("Text Value")),
+                    "value": sh.prop(sh.t.component("Value"))
                 }))),
-                "dictionary": toption(t.dictionary(t.component("Value"))),
+                "dictionary": sh.toption(sh.t.dictionary(sh.t.component("Value"))),
             })),
-            "number": toption(t.state({
-                "integer": toption(t.simple("Integer")),
-                "float": toption(t.simple("Approximation")),
+            "number": sh.toption(sh.t.state({
+                "integer": sh.toption(sh.t.simple("Integer")),
+                "float": sh.toption(sh.t.simple("Approximation")),
             })),
-            "string": toption(t.text_global("Text Value")),
-            "boolean": toption(t.simple("boolean")),
-            "null": toption(t.nothing()),
+            "string": sh.toption(sh.t.text_global("Text Value")),
+            "boolean": sh.toption(sh.t.simple("boolean")),
+            "null": sh.toption(sh.t.nothing()),
         })),
     }
 )

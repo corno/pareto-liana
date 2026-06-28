@@ -1,83 +1,74 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Graph": module_(t.group({
-            "strict": prop(t.simple("boolean")),
-            "type": prop(t.state({
-                "graph": toption(t.nothing()),
-                "digraph": toption(t.nothing()),
+        "Graph": sh.module_(sh.t.group({
+            "strict": sh.prop(sh.t.simple("boolean")),
+            "type": sh.prop(sh.t.state({
+                "graph": sh.toption(sh.t.nothing()),
+                "digraph": sh.toption(sh.t.nothing()),
             })),
-            "name": prop(t.optional(t.component("ID"))),
-            "statements": prop(t.component("Statements")),
+            "name": sh.prop(sh.t.optional(sh.t.component("ID"))),
+            "statements": sh.prop(sh.t.component("Statements")),
         })),
 
-        "Statements": module_(t.list(t.state({
-            "node": toption(t.group({
-                "node": prop(t.component("Node ID")),
-                "attributes": prop(t.component("Attributes")),
+        "Statements": sh.module_(sh.t.list(sh.t.state({
+            "node": sh.toption(sh.t.group({
+                "node": sh.prop(sh.t.component("Node ID")),
+                "attributes": sh.prop(sh.t.component("Attributes")),
             })),
-            "edge": toption(t.group({
-                "left": prop(t.component("End Point")),
+            "edge": sh.toption(sh.t.group({
+                "left": sh.prop(sh.t.component("End Point")),
                 //the operator (-- or ->) can be derived from the graph type
-                "right": prop(t.list(t.component("End Point"))),
-                "attributes": prop(t.component("Attributes")),
+                "right": sh.prop(sh.t.list(sh.t.component("End Point"))),
+                "attributes": sh.prop(sh.t.component("Attributes")),
             })),
-            "attributes": toption(t.group({
-                "type": prop(t.state({
-                    "graph": toption(t.nothing()),
-                    "node": toption(t.nothing()),
-                    "edge": toption(t.nothing()),
+            "attributes": sh.toption(sh.t.group({
+                "type": sh.prop(sh.t.state({
+                    "graph": sh.toption(sh.t.nothing()),
+                    "node": sh.toption(sh.t.nothing()),
+                    "edge": sh.toption(sh.t.nothing()),
                 })),
-                "attributes": prop(t.component("Attributes")),
+                "attributes": sh.prop(sh.t.component("Attributes")),
             })),
-            "attribute assignment": toption(t.group({
-                "name": prop(t.component("ID")),
-                "value": prop(t.component("ID")),
+            "attribute assignment": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.component("ID")),
+                "value": sh.prop(sh.t.component("ID")),
             })),
-            "subgraph": toption(t.component("Subgraph")),
+            "subgraph": sh.toption(sh.t.component("Subgraph")),
         }))),
 
-        "End Point": module_(t.state({
-            "node": toption(t.component("Node ID")),
-            "subgraph": toption(t.component("Subgraph")),
+        "End Point": sh.module_(sh.t.state({
+            "node": sh.toption(sh.t.component("Node ID")),
+            "subgraph": sh.toption(sh.t.component("Subgraph")),
         })),
 
-        "Attributes": module_(t.list(t.group({
-            "name": prop(t.component("ID")),
-            "value": prop(t.component("ID")),
+        "Attributes": sh.module_(sh.t.list(sh.t.group({
+            "name": sh.prop(sh.t.component("ID")),
+            "value": sh.prop(sh.t.component("ID")),
         }))),
 
-        "Node ID": module_(t.group({
-            "id": prop(t.component("ID")),
-            "port": prop(t.optional(t.group({
-                "port": prop(t.component("ID")),
-                "compass point": prop(t.optional(t.component("ID"))),
+        "Node ID": sh.module_(sh.t.group({
+            "id": sh.prop(sh.t.component("ID")),
+            "port": sh.prop(sh.t.optional(sh.t.group({
+                "port": sh.prop(sh.t.component("ID")),
+                "compass point": sh.prop(sh.t.optional(sh.t.component("ID"))),
             })))
         })),
 
-        "ID": module_(t.state({
-            "id": toption(t.text_global("id")),
-            "string": toption(t.text_global("Text Value")),
-            "html": toption(t.component_external("html", "Phrasing Element")),
-            "number": toption(t.simple("Integer")),
+        "ID": sh.module_(sh.t.state({
+            "id": sh.toption(sh.t.text_global("id")),
+            "string": sh.toption(sh.t.text_global("Text Value")),
+            "html": sh.toption(sh.t.component_external("html", "Phrasing Element")),
+            "number": sh.toption(sh.t.simple("Integer")),
         })),
 
-        "Subgraph": module_(t.group({
-            "subgraph": prop(t.optional(t.optional(t.component("ID")))), // is it a subgraph? and if yes, does it have a name?
-            "statements": prop(t.component("Statements")),
+        "Subgraph": sh.module_(sh.t.group({
+            "subgraph": sh.prop(sh.t.optional(sh.t.optional(sh.t.component("ID")))), // is it a subgraph? and if yes, does it have a name?
+            "statements": sh.prop(sh.t.component("Statements")),
         })),
     }
 )

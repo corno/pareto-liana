@@ -1,27 +1,18 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.component_external("path", "Node Path")),
+        "Parameters": sh.module_(sh.t.component_external("path", "Node Path")),
 
-        "Result": module_(t.state({
-            "does not exist": toption(t.nothing()),
-            "file": toption(t.nothing()),
-            "directory": toption(t.nothing()),
+        "Result": sh.module_(sh.t.state({
+            "does not exist": sh.toption(sh.t.nothing()),
+            "file": sh.toption(sh.t.nothing()),
+            "directory": sh.toption(sh.t.nothing()),
         })),
 
-        "Error": module_(t.component_external("unrestricted", "Error")),
+        "Error": sh.module_(sh.t.component_external("unrestricted", "Error")),
     }
 )
 

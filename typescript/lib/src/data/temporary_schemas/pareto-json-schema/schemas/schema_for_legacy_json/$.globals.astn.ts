@@ -1,22 +1,15 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
          'unconstrained',
     {
-        "temp_ref": text('single line'),
-        "string": text('single line'),
+        "temp_ref": sh.text('single line'),
+        "string": sh.text('single line'),
     },
     {
-        "boolean": n.boolean(),
-        "number": n.integer(0), //FIXME; allow any number, not just integers
+        "boolean": sh.n.boolean(),
+        "number": sh.n.integer(0), //FIXME; allow any number, not just integers
     },
 )
 

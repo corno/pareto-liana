@@ -1,90 +1,88 @@
+import * as sh from "../../../../../shorthands/resolver/manual"
 
 
-import { resolver_modules, r, resolver, option as option } from "../../../../../shorthands/resolver/manual"
-
-
-export const $ = resolver_modules(
+export const $ = sh.resolver_modules(
     {
-        "Package Set": resolver(r.dictionary(r.state({
-            "package": option(r.component("Package", {}, {})),
-            "set": option(r.component("Package Set", {}, {})),
+        "Package Set": sh.resolver(sh.r.dictionary(sh.r.state({
+            "package": sh.option(sh.r.component("Package", {}, {})),
+            "set": sh.option(sh.r.component("Package Set", {}, {})),
         }))),
 
-        "Package": resolver(r.group({
-            "imports": r.component("Imports", {}, {}),
-            "content": r.state({
-                "data modules": option(r.dictionary(r.component("Value", {}, {}))),
-                "functions": option(r.dictionary(r.group({
-                    "result": r.component("Value", {}, {}),
-                    "context": r.component("Value", {}, {}),
-                    "type": r.state({
-                        "transformer": option(r.nothing()),
-                        "refiner": option(r.group({
-                            "error": r.optional(r.component("Value", {}, {})),
-                            "lookups": r.optional(r.dictionary(r.state({
-                                "acyclic": option(r.component("Value", {}, {})),
-                                "cyclic": option(r.component("Value", {}, {})),
-                                "stack": option(r.component("Value", {}, {})),
+        "Package": sh.resolver(sh.r.group({
+            "imports": sh.r.component("Imports", {}, {}),
+            "content": sh.r.state({
+                "data modules": sh.option(sh.r.dictionary(sh.r.component("Value", {}, {}))),
+                "functions": sh.option(sh.r.dictionary(sh.r.group({
+                    "result": sh.r.component("Value", {}, {}),
+                    "context": sh.r.component("Value", {}, {}),
+                    "type": sh.r.state({
+                        "transformer": sh.option(sh.r.nothing()),
+                        "refiner": sh.option(sh.r.group({
+                            "error": sh.r.optional(sh.r.component("Value", {}, {})),
+                            "lookups": sh.r.optional(sh.r.dictionary(sh.r.state({
+                                "acyclic": sh.option(sh.r.component("Value", {}, {})),
+                                "cyclic": sh.option(sh.r.component("Value", {}, {})),
+                                "stack": sh.option(sh.r.component("Value", {}, {})),
                             }))),
                         })),
                     }),
-                    "parameters": r.optional(r.dictionary(r.component("Value", {}, {}))),
+                    "parameters": sh.r.optional(sh.r.dictionary(sh.r.component("Value", {}, {}))),
                 }))),
             }),
         })),
 
-        "Imports": resolver(r.dictionary(r.group({
-            "type": r.state({
-                "external": option(r.text()),
-                "ancestor": option(r.group({
-                    "number of steps": r.simple(),
-                    "dependency": r.text(),
+        "Imports": sh.resolver(sh.r.dictionary(sh.r.group({
+            "type": sh.r.state({
+                "external": sh.option(sh.r.text()),
+                "ancestor": sh.option(sh.r.group({
+                    "number of steps": sh.r.simple(),
+                    "dependency": sh.r.text(),
                 })),
-                "sibling": option(r.text()),
+                "sibling": sh.option(sh.r.text()),
             }),
-            "tail": r.list(r.text()),
+            "tail": sh.r.list(sh.r.text()),
         }))),
 
-        "Value": resolver(r.state({
+        "Value": sh.resolver(sh.r.state({
 
-            "boolean": option(r.nothing()),
-            "component": option(r.group({
-                "location": r.component("Module Reference", {}, {}),
+            "boolean": sh.option(sh.r.nothing()),
+            "component": sh.option(sh.r.group({
+                "location": sh.r.component("Module Reference", {}, {}),
             })),
-            "dictionary": option(r.component("Value", {}, {})),
-            "group": option(r.dictionary(r.component("Value", {}, {}))),
-            "list": option(r.component("Value", {}, {})),
-            "nothing": option(r.nothing()),
+            "dictionary": sh.option(sh.r.component("Value", {}, {})),
+            "group": sh.option(sh.r.dictionary(sh.r.component("Value", {}, {}))),
+            "list": sh.option(sh.r.component("Value", {}, {})),
+            "nothing": sh.option(sh.r.nothing()),
 
-            "number": option(r.state({
-                "exact": option(r.state({
-                    "natural": option(r.nothing()),
-                    "integer": option(r.nothing()),
+            "number": sh.option(sh.r.state({
+                "exact": sh.option(sh.r.state({
+                    "natural": sh.option(sh.r.nothing()),
+                    "integer": sh.option(sh.r.nothing()),
                 })),
-                "approximation": option(r.nothing()),
+                "approximation": sh.option(sh.r.nothing()),
             })),
-            "optional": option(r.component("Value", {}, {})),
-            "reference": option(r.group({
-                "location": r.component("Module Reference", {}, {}),
-                "sub selection": r.list(r.state({
-                    "dictionary": option(r.nothing()),
-                    "group": option(r.text()),
-                    "list": option(r.nothing()),
-                    "optional": option(r.nothing()),
-                    "state": option(r.text()),
+            "optional": sh.option(sh.r.component("Value", {}, {})),
+            "reference": sh.option(sh.r.group({
+                "location": sh.r.component("Module Reference", {}, {}),
+                "sub selection": sh.r.list(sh.r.state({
+                    "dictionary": sh.option(sh.r.nothing()),
+                    "group": sh.option(sh.r.text()),
+                    "list": sh.option(sh.r.nothing()),
+                    "optional": sh.option(sh.r.nothing()),
+                    "state": sh.option(sh.r.text()),
                 })),
-                "cyclic": r.simple(),
+                "cyclic": sh.r.simple(),
             })),
-            "state": option(r.dictionary(r.component("Value", {}, {}))),
-            "text": option(r.nothing()),
+            "state": sh.option(sh.r.dictionary(sh.r.component("Value", {}, {}))),
+            "text": sh.option(sh.r.nothing()),
         })),
 
-        "Module Reference": resolver(r.state({
-            "import": option(r.group({
-                "import": r.text(),
-                "type": r.text(),
+        "Module Reference": sh.resolver(sh.r.state({
+            "import": sh.option(sh.r.group({
+                "import": sh.r.text(),
+                "type": sh.r.text(),
             })),
-            "local": option(r.text()),
+            "local": sh.option(sh.r.text()),
         })),
 
     })

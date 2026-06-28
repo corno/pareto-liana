@@ -1,62 +1,62 @@
 
 
-import { signatures, sig, parameter, sig_params } from "../../../../../shorthands/signatures/manual"
+import * as sh from "../../../../../shorthands/signatures/manual"
 
 
-export const $ = signatures(
+export const $ = sh.signatures(
     {
-        "Fiscaal": sig.local({}, {}),
-        "Grootboekrekeningen": sig.local({
-            "Beheer": parameter.module("Beheer")
+        "Fiscaal": sh.sig.local({}, {}),
+        "Grootboekrekeningen": sh.sig.local({
+            "Beheer": sh.parameter.module("Beheer")
         }, {}),
 
-        "Grootboek Categorieen": sig.local({
-            "Fiscaal": parameter.module("Fiscaal"),
+        "Grootboek Categorieen": sh.sig.local({
+            "Fiscaal": sh.parameter.module("Fiscaal"),
         }, {
         }),
         
-        "Beheer": sig.local({
-            "Grootboek Categorieen": parameter.module("Grootboek Categorieen"),
+        "Beheer": sh.sig.local({
+            "Grootboek Categorieen": sh.parameter.module("Grootboek Categorieen"),
         }, {}),
 
-        "Jaarbeheer": sig.local({
-            "Eerste boekjaar": parameter.module("Eerste boekjaar"),
-            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
+        "Jaarbeheer": sh.sig.local({
+            "Eerste boekjaar": sh.parameter.module("Eerste boekjaar"),
+            "Grootboekrekeningen": sh.parameter.module("Grootboekrekeningen"),
         }, {
-            "Jaren": parameter.lookup("Jaren"),
+            "Jaren": sh.parameter.lookup("Jaren"),
         }),
-        "Overige balans item": sig.same_as("Jaarbeheer"),
+        "Overige balans item": sh.sig.same_as("Jaarbeheer"),
 
-        "Verwijzing naar Informele rekening": sig.local({
-            "Jaarbeheer": parameter.module("Jaarbeheer")
+        "Verwijzing naar Informele rekening": sh.sig.local({
+            "Jaarbeheer": sh.parameter.module("Jaarbeheer")
         }, {}),
-        "Verwijzing naar Bankrekening": sig.local({
-            "Jaarbeheer": parameter.module("Jaarbeheer")
+        "Verwijzing naar Bankrekening": sh.sig.local({
+            "Jaarbeheer": sh.parameter.module("Jaarbeheer")
         }, {}),
-        "Handelstransacties": sig.local({
-            "Beheer": parameter.module("Beheer"),
-            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
-            "Jaarbeheer": parameter.module("Jaarbeheer"),
+        "Handelstransacties": sh.sig.local({
+            "Beheer": sh.parameter.module("Beheer"),
+            "Grootboekrekeningen": sh.parameter.module("Grootboekrekeningen"),
+            "Jaarbeheer": sh.parameter.module("Jaarbeheer"),
         }, {}),
         
-        "Mutaties": sig.local({
-            "Beheer": parameter.module("Beheer"),
-            "Grootboekrekeningen": parameter.module("Grootboekrekeningen"),
-            "Jaarbeheer": parameter.module("Jaarbeheer"),
-            "Handelstransacties": parameter.module("Handelstransacties"),
+        "Mutaties": sh.sig.local({
+            "Beheer": sh.parameter.module("Beheer"),
+            "Grootboekrekeningen": sh.parameter.module("Grootboekrekeningen"),
+            "Jaarbeheer": sh.parameter.module("Jaarbeheer"),
+            "Handelstransacties": sh.parameter.module("Handelstransacties"),
         }, {
-            "Jaren": parameter.lookup("Jaren"),
+            "Jaren": sh.parameter.lookup("Jaren"),
         }),
-        "Rekening Mutatie": sig.same_as("Mutaties"),
+        "Rekening Mutatie": sh.sig.same_as("Mutaties"),
 
-        "Jaren": sig.local({
-            "Beheer": parameter.module("Beheer")
+        "Jaren": sh.sig.local({
+            "Beheer": sh.parameter.module("Beheer")
         }, {}),
 
-        "Root": sig.local({}, {}),
+        "Root": sh.sig.local({}, {}),
 
-        "Eerste boekjaar": sig.local({}, {
-            "Jaren": parameter.lookup("Jaren"),
+        "Eerste boekjaar": sh.sig.local({}, {
+            "Jaren": sh.parameter.lookup("Jaren"),
         }),
     },
 )

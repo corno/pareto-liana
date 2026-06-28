@@ -1,14 +1,6 @@
+import * as sh from "../../../../../../shorthands/schema/manual"
 
-
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
          'unconstrained',
     {

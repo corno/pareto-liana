@@ -1,34 +1,25 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Result": module_(t.text_global("text")),
+        "Result": sh.module_(sh.t.text_global("text")),
 
-        // "Error": module_(t.state({
+        // "Error": sh.module_(sh.t.state({
 
         // })),
 
-        "Parameters": module_(t.group({
-            "content": prop(t.text_global("multi line text")),
-            "source": prop(t.group({
-                "file path": prop(t.component_external("path unrestricted", "Node Path")),
-                "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "content": sh.prop(sh.t.text_global("multi line text")),
+            "source": sh.prop(sh.t.group({
+                "file path": sh.prop(sh.t.component_external("path unrestricted", "Node Path")),
+                "tab size": sh.prop(sh.t.simple("Natural")),
             })),
-            "target": prop(t.group({
-                "indentation": prop(t.text_global("text")),
-                "newline": prop(t.text_global("text")),
+            "target": sh.prop(sh.t.group({
+                "indentation": sh.prop(sh.t.text_global("text")),
+                "newline": sh.prop(sh.t.text_global("text")),
             })),
         })),
 

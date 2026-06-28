@@ -1,54 +1,45 @@
 
-
-import {
-    modules,
-    text,
-    n,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
         
-        "Paragraph": module_(t.state({
-            "composed": toption(t.list(t.component("Paragraph"))),
-            "sentences": toption(t.list(t.component("Sentence"))),
-            "optional": toption(t.optional(t.component("Paragraph"))),
-            "nothing": toption(t.nothing()),
-            "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Sentence"))),
-                "if empty": prop(t.optional(t.component("Sentence"))),
-                "if not empty": prop(t.group({
-                    "before": prop(t.optional(t.component("Sentence"))),
-                    "indent": prop(t.simple("boolean")),
-                    "separator": prop(t.optional(t.component("Phrase"))),
-                    "after": prop(t.optional(t.component("Sentence"))),
+        "Paragraph": sh.module_(sh.t.state({
+            "composed": sh.toption(sh.t.list(sh.t.component("Paragraph"))),
+            "sentences": sh.toption(sh.t.list(sh.t.component("Sentence"))),
+            "optional": sh.toption(sh.t.optional(sh.t.component("Paragraph"))),
+            "nothing": sh.toption(sh.t.nothing()),
+            "rich list": sh.toption(sh.t.group({
+                "items": sh.prop(sh.t.list(sh.t.component("Sentence"))),
+                "if empty": sh.prop(sh.t.optional(sh.t.component("Sentence"))),
+                "if not empty": sh.prop(sh.t.group({
+                    "before": sh.prop(sh.t.optional(sh.t.component("Sentence"))),
+                    "indent": sh.prop(sh.t.simple("boolean")),
+                    "separator": sh.prop(sh.t.optional(sh.t.component("Phrase"))),
+                    "after": sh.prop(sh.t.optional(sh.t.component("Sentence"))),
                 })),
             }))
         })),
 
-        "Sentence": module_(t.list(t.component("Phrase"))),
+        "Sentence": sh.module_(sh.t.list(sh.t.component("Phrase"))),
 
-        "Phrase": module_(t.state({
-            "value": toption(t.state({
-                "text": toption(t.text_global("Output")),
-                "list of characters": toption(t.component_external("list of characters", "List of Characters")),
+        "Phrase": sh.module_(sh.t.state({
+            "value": sh.toption(sh.t.state({
+                "text": sh.toption(sh.t.text_global("Output")),
+                "list of characters": sh.toption(sh.t.component_external("list of characters", "List of Characters")),
             })),
-            "indent": toption(t.component("Paragraph")),
-            "composed": toption(t.list(t.component("Phrase"))),
-            "optional": toption(t.optional(t.component("Phrase"))),
-            "nothing": toption(t.nothing()),
-            "rich list": toption(t.group({
-                "items": prop(t.list(t.component("Phrase"))),
-                "if empty": prop(t.component("Phrase")),
-                "if not empty": prop(t.group({
-                    "before": prop(t.component("Phrase")),
-                    "separator": prop(t.component("Phrase")),
-                    "after": prop(t.component("Phrase")),
+            "indent": sh.toption(sh.t.component("Paragraph")),
+            "composed": sh.toption(sh.t.list(sh.t.component("Phrase"))),
+            "optional": sh.toption(sh.t.optional(sh.t.component("Phrase"))),
+            "nothing": sh.toption(sh.t.nothing()),
+            "rich list": sh.toption(sh.t.group({
+                "items": sh.prop(sh.t.list(sh.t.component("Phrase"))),
+                "if empty": sh.prop(sh.t.component("Phrase")),
+                "if not empty": sh.prop(sh.t.group({
+                    "before": sh.prop(sh.t.component("Phrase")),
+                    "separator": sh.prop(sh.t.component("Phrase")),
+                    "after": sh.prop(sh.t.component("Phrase")),
                 })),
             })),
         })),

@@ -1,373 +1,370 @@
 
-
-import {
-    resolver_modules, r, resolver, option, option_constrained, al, ls, av, gvs, rvs, oc,
-} from "../../../../../shorthands/resolver/manual"
+import * as sh from "../../../../../shorthands/resolver/manual"
 
 
-export const $ = resolver_modules(
+export const $ = sh.resolver_modules(
     {
-        "Fiscaal": resolver(r.group({
-            "Balans Hoofdcategorieen": r.dictionary(r.group({
-                "Zijde": r.state({
-                    "Activa": option(r.nothing()),
-                    "Passiva": option(r.nothing())
+        "Fiscaal": sh.resolver(sh.r.group({
+            "Balans Hoofdcategorieen": sh.r.dictionary(sh.r.group({
+                "Zijde": sh.r.state({
+                    "Activa": sh.option(sh.r.nothing()),
+                    "Passiva": sh.option(sh.r.nothing())
                 }),
-                "Subcategorieen": r.dictionary(r.nothing())
+                "Subcategorieen": sh.r.dictionary(sh.r.nothing())
             })),
-            "Resultaat Hoofdcategorieen": r.dictionary(r.group({
-                "Zijde": r.state({
-                    "Kosten": option(r.nothing()),
-                    "Opbrengsten": option(r.nothing())
+            "Resultaat Hoofdcategorieen": sh.r.dictionary(sh.r.group({
+                "Zijde": sh.r.state({
+                    "Kosten": sh.option(sh.r.nothing()),
+                    "Opbrengsten": sh.option(sh.r.nothing())
                 }),
-                "Subcategorieen": r.dictionary(r.nothing())
+                "Subcategorieen": sh.r.dictionary(sh.r.nothing())
             })),
         })),
 
-        "Grootboek Categorieen": resolver(r.group({
-            "Correctietypes vennootschapsbelasting": r.dictionary(r.group({
-                "Te corrigeren promillage": r.simple(),
+        "Grootboek Categorieen": sh.resolver(sh.r.group({
+            "Correctietypes vennootschapsbelasting": sh.r.dictionary(sh.r.group({
+                "Te corrigeren promillage": sh.r.simple(),
             })),
-            "Balans": r.dictionary(r.group({
-                "Zijde": r.state({
-                    "Activa": option(r.nothing()),
-                    "Passiva": option(r.nothing())
+            "Balans": sh.r.dictionary(sh.r.group({
+                "Zijde": sh.r.state({
+                    "Activa": sh.option(sh.r.nothing()),
+                    "Passiva": sh.option(sh.r.nothing())
                 }),
-                "Subcategorieen": r.dictionary(r.group({
-                    "Hoofdcategorie fiscus": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Fiscaal", [rvs.group("Balans Hoofdcategorieen")]))),
-                    "Subcategorie fiscus": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("Hoofdcategorie fiscus", [rvs.reference(), rvs.group("Subcategorieen")]))),
+                "Subcategorieen": sh.r.dictionary(sh.r.group({
+                    "Hoofdcategorie fiscus": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Fiscaal", [sh.rvs.group("Balans Hoofdcategorieen")]))),
+                    "Subcategorie fiscus": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("Hoofdcategorie fiscus", [sh.rvs.reference(), sh.rvs.group("Subcategorieen")]))),
                 }))
             })),
-            "Resultaat": r.dictionary(r.group({
-                "Zijde": r.state({
-                    "Kosten": option(r.nothing()),
-                    "Opbrengsten": option(r.nothing())
+            "Resultaat": sh.r.dictionary(sh.r.group({
+                "Zijde": sh.r.state({
+                    "Kosten": sh.option(sh.r.nothing()),
+                    "Opbrengsten": sh.option(sh.r.nothing())
                 }),
-                "Subcategorieen": r.dictionary(r.group({
-                    "Hoofdcategorie fiscus": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Fiscaal", [rvs.group("Resultaat Hoofdcategorieen")]))),
-                    "Subcategorie fiscus": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("Hoofdcategorie fiscus", [rvs.reference(), rvs.group("Subcategorieen")]))),
+                "Subcategorieen": sh.r.dictionary(sh.r.group({
+                    "Hoofdcategorie fiscus": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Fiscaal", [sh.rvs.group("Resultaat Hoofdcategorieen")]))),
+                    "Subcategorie fiscus": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("Hoofdcategorie fiscus", [sh.rvs.reference(), sh.rvs.group("Subcategorieen")]))),
                 }))
             })),
         })),
 
-        "Beheer": resolver(r.group({
-            "BTW-categorieen": r.dictionary(r.group({
-                "BTW-heffing": r.state({
-                    "Ja": option(r.group({
-                        "BTW-promillage": r.simple(),
+        "Beheer": sh.resolver(sh.r.group({
+            "BTW-categorieen": sh.r.dictionary(sh.r.group({
+                "BTW-heffing": sh.r.state({
+                    "Ja": sh.option(sh.r.group({
+                        "BTW-promillage": sh.r.simple(),
                     })),
-                    "Nee": option(r.nothing()),
+                    "Nee": sh.option(sh.r.nothing()),
                 })
             })),
-            "Grootboekrekeningen": r.group({
-                "Balans": r.dictionary(r.group({
-                    "Hoofdcategorie": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Balans")]))),
-                    "Subcategorie": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("Hoofdcategorie", [rvs.reference(), rvs.group("Subcategorieen")]))),
-                    "Zijde": r.state({
-                        "Activa": option(r.nothing()),
-                        "Passiva": option(r.nothing())
+            "Grootboekrekeningen": sh.r.group({
+                "Balans": sh.r.dictionary(sh.r.group({
+                    "Hoofdcategorie": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboek Categorieen", [sh.rvs.group("Balans")]))),
+                    "Subcategorie": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("Hoofdcategorie", [sh.rvs.reference(), sh.rvs.group("Subcategorieen")]))),
+                    "Zijde": sh.r.state({
+                        "Activa": sh.option(sh.r.nothing()),
+                        "Passiva": sh.option(sh.r.nothing())
                     }),
                 })),
-                "Resultaat": r.dictionary(r.group({
-                    "Hoofdcategorie": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Resultaat")]))),
-                    "Subcategorie": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("Hoofdcategorie", [rvs.reference(), rvs.group("Subcategorieen")]))),
-                    "Zijde": r.state({
-                        "Kosten": option(r.group({
-                            "Correctie op vennootschapsbelasting": r.state({
-                                "Ja": option(r.group({
-                                    "Correctietype": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboek Categorieen", [rvs.group("Correctietypes vennootschapsbelasting")]))),
+                "Resultaat": sh.r.dictionary(sh.r.group({
+                    "Hoofdcategorie": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboek Categorieen", [sh.rvs.group("Resultaat")]))),
+                    "Subcategorie": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("Hoofdcategorie", [sh.rvs.reference(), sh.rvs.group("Subcategorieen")]))),
+                    "Zijde": sh.r.state({
+                        "Kosten": sh.option(sh.r.group({
+                            "Correctie op vennootschapsbelasting": sh.r.state({
+                                "Ja": sh.option(sh.r.group({
+                                    "Correctietype": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboek Categorieen", [sh.rvs.group("Correctietypes vennootschapsbelasting")]))),
                                 })),
-                                "Nee": option(r.nothing()),
+                                "Nee": sh.option(sh.r.nothing()),
                             })
                         })),
-                        "Opbrengsten": option(r.nothing())
+                        "Opbrengsten": sh.option(sh.r.nothing())
                     }),
                 })),
             }),
-            "Rekeningen": r.group({
-                "Bank": r.dictionary(r.nothing()),
-                "Informeel": r.dictionary(r.nothing()),
+            "Rekeningen": sh.r.group({
+                "Bank": sh.r.dictionary(sh.r.nothing()),
+                "Informeel": sh.r.dictionary(sh.r.nothing()),
 
             }),
-            "Gebruikers": r.dictionary(r.group({
-                "Volledige naam": r.text(),
-                "Wachtwoord": r.text(),
+            "Gebruikers": sh.r.dictionary(sh.r.group({
+                "Volledige naam": sh.r.text(),
+                "Wachtwoord": sh.r.text(),
             })),
-            "Klanten": r.dictionary(r.group({
-                "Licentieovereenkomsten": r.dictionary(r.group({
-                    "Periodes": r.dictionary(r.group({
-                        "Bedrag": r.simple(),
+            "Klanten": sh.r.dictionary(sh.r.group({
+                "Licentieovereenkomsten": sh.r.dictionary(sh.r.group({
+                    "Periodes": sh.r.dictionary(sh.r.group({
+                        "Bedrag": sh.r.simple(),
                     })),
                 })),
-                "Projecten": r.dictionary(r.group({
-                    "Offertes": r.dictionary(r.group({
-                        "Opbrengsten": r.dictionary(r.group({
-                            "Type": r.state({
-                                "Project": option(r.group({
-                                    "Bedrag": r.simple(),
-                                    "Betaaldatum": r.simple(),
+                "Projecten": sh.r.dictionary(sh.r.group({
+                    "Offertes": sh.r.dictionary(sh.r.group({
+                        "Opbrengsten": sh.r.dictionary(sh.r.group({
+                            "Type": sh.r.state({
+                                "Project": sh.option(sh.r.group({
+                                    "Bedrag": sh.r.simple(),
+                                    "Betaaldatum": sh.r.simple(),
                                 })),
                             }),
                         })),
                     })),
                 })),
             })),
-            "Leveranciers": r.dictionary(r.nothing()),
-            "Medewerkers": r.dictionary(r.nothing()),
+            "Leveranciers": sh.r.dictionary(sh.r.nothing()),
+            "Medewerkers": sh.r.dictionary(sh.r.nothing()),
         })),
 
-        "Grootboekrekeningen": resolver(r.group({
-            "Balans": r.dictionary_linked(
+        "Grootboekrekeningen": sh.resolver(sh.r.group({
+            "Balans": sh.r.dictionary_linked(
                 'sparse',
-                gvs.parameter("Beheer", [rvs.group("Grootboekrekeningen"), rvs.group("Balans")]),
-                r.group({
-                    "Stam": r.reference_derived(gvs.linked_entry([])),
-                    // "Type": r.state({
-                    //     "Bankrekening": option(r.nothing()),
-                    //     "Overig": option(r.nothing()),
-                    //     "Informele rekening": option(r.nothing())
+                sh.gvs.parameter("Beheer", [sh.rvs.group("Grootboekrekeningen"), sh.rvs.group("Balans")]),
+                sh.r.group({
+                    "Stam": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                    // "Type": sh.r.state({
+                    //     "Bankrekening": sh.option(sh.r.nothing()),
+                    //     "Overig": sh.option(sh.r.nothing()),
+                    //     "Informele rekening": sh.option(sh.r.nothing())
                     // })
                 })
             ),
-            "Resultaat": r.dictionary_linked(
+            "Resultaat": sh.r.dictionary_linked(
                 'sparse',
-                gvs.parameter("Beheer", [rvs.group("Grootboekrekeningen"), rvs.group("Resultaat")]),
-                r.group({
-                    "Stam": r.reference_derived(gvs.linked_entry([]))
+                sh.gvs.parameter("Beheer", [sh.rvs.group("Grootboekrekeningen"), sh.rvs.group("Resultaat")]),
+                sh.r.group({
+                    "Stam": sh.r.reference_derived(sh.gvs.linked_entry([]))
                 }),
             ),
         })),
 
-        "Jaarbeheer": resolver(r.group({
-            "Resultaat": r.group({
-                "Grootboekrekening voor BTW afrondingen": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Resultaat")]))),
-                "Salarisrondes": r.dictionary(r.nothing()),
-                "BTW periodes": r.dictionary(r.group({
-                    "1. BTW-categorieen": r.dictionary(r.nothing()),
-                    "Documenten": r.dictionary(r.group({
-                        "Bestand": r.text(),
+        "Jaarbeheer": sh.resolver(sh.r.group({
+            "Resultaat": sh.r.group({
+                "Grootboekrekening voor BTW afrondingen": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Resultaat")]))),
+                "Salarisrondes": sh.r.dictionary(sh.r.nothing()),
+                "BTW periodes": sh.r.dictionary(sh.r.group({
+                    "1. BTW-categorieen": sh.r.dictionary(sh.r.nothing()),
+                    "Documenten": sh.r.dictionary(sh.r.group({
+                        "Bestand": sh.r.text(),
                     })),
-                    "Omschrijving": r.text(),
-                    "Status": r.state({
-                        "Aangegeven": option(r.group({
-                            "Afronding": r.simple(),
-                            "Bedrag": r.simple(),
-                            "Datum": r.simple(),
+                    "Omschrijving": sh.r.text(),
+                    "Status": sh.r.state({
+                        "Aangegeven": sh.option(sh.r.group({
+                            "Afronding": sh.r.simple(),
+                            "Bedrag": sh.r.simple(),
+                            "Datum": sh.r.simple(),
                         })),
-                        "Openstaand": option(r.nothing()),
+                        "Openstaand": sh.option(sh.r.nothing()),
                     }),
                 })),
             }),
-            "Balans": r.group({
-                "Beginsaldo nog aan te geven BTW": r.simple(),
-                "Beginsaldo winstreserve": r.simple(),
-                "Grootboekrekening voor nog aan te geven BTW": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                "Grootboekrekening voor resultaat dit jaar": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                "Grootboekrekening voor winstreserve": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                "Grootboekrekening voor Inkoop saldo": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                "Grootboekrekening voor Verkoop saldo": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                "Informele rekeningen": r.dictionary(r.group({
-                    "Beginsaldo": r.simple(),
-                    "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                    "Nieuw": r.state({
-                        "Ja": option(r.nothing()),
-                        "Nee": option_constrained(
+            "Balans": sh.r.group({
+                "Beginsaldo nog aan te geven BTW": sh.r.simple(),
+                "Beginsaldo winstreserve": sh.r.simple(),
+                "Grootboekrekening voor nog aan te geven BTW": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                "Grootboekrekening voor resultaat dit jaar": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                "Grootboekrekening voor winstreserve": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                "Grootboekrekening voor Inkoop saldo": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                "Grootboekrekening voor Verkoop saldo": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                "Informele rekeningen": sh.r.dictionary(sh.r.group({
+                    "Beginsaldo": sh.r.simple(),
+                    "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                    "Nieuw": sh.r.state({
+                        "Ja": sh.option(sh.r.nothing()),
+                        "Nee": sh.option_constrained(
                             {
-                                "Niet Nieuw": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
+                                "Niet Nieuw": sh.oc.state(sh.gvs.parameter("Eerste boekjaar", []), "Nee"),
                             },
-                            r.group({
-                                "Rekening": r.component("Verwijzing naar Informele rekening", {
-                                    "Jaarbeheer": av.required(gvs.option_constraint("Niet Nieuw", [rvs.group("Vorig boekjaar"), rvs.reference(), rvs.group("Jaarbeheer"), rvs.component()])),
+                            sh.r.group({
+                                "Rekening": sh.r.component("Verwijzing naar Informele rekening", {
+                                    "Jaarbeheer": sh.av.required(sh.gvs.option_constraint("Niet Nieuw", [sh.rvs.group("Vorig boekjaar"), sh.rvs.reference(), sh.rvs.group("Jaarbeheer"), sh.rvs.component()])),
                                 }, {}),
                             })
                         ),
                     })
                 })),
-                "Bankrekeningen": r.dictionary(r.group({
-                    "Beginsaldo": r.simple(),
-                    "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                    "Nieuw": r.state({
-                        "Ja": option(r.nothing()),
-                        "Nee": option_constrained(
+                "Bankrekeningen": sh.r.dictionary(sh.r.group({
+                    "Beginsaldo": sh.r.simple(),
+                    "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                    "Nieuw": sh.r.state({
+                        "Ja": sh.option(sh.r.nothing()),
+                        "Nee": sh.option_constrained(
                             {
-                                "Niet Nieuw": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
+                                "Niet Nieuw": sh.oc.state(sh.gvs.parameter("Eerste boekjaar", []), "Nee"),
                             },
-                            r.group({
-                                "Rekening": r.component("Verwijzing naar Bankrekening", {
-                                    "Jaarbeheer": av.required(gvs.option_constraint("Niet Nieuw", [rvs.group("Vorig boekjaar"), rvs.reference(), rvs.group("Jaarbeheer"), rvs.component()])),
+                            sh.r.group({
+                                "Rekening": sh.r.component("Verwijzing naar Bankrekening", {
+                                    "Jaarbeheer": sh.av.required(sh.gvs.option_constraint("Niet Nieuw", [sh.rvs.group("Vorig boekjaar"), sh.rvs.reference(), sh.rvs.group("Jaarbeheer"), sh.rvs.component()])),
                                 }, {}),
                             })
                         ),
                     }),
-                    "Mutaties": r.dictionary(r.group({
-                        "Bedrag": r.simple(),
-                        "Datum": r.simple(),
-                        "Omschrijving": r.text(),
+                    "Mutaties": sh.r.dictionary(sh.r.group({
+                        "Bedrag": sh.r.simple(),
+                        "Datum": sh.r.simple(),
+                        "Omschrijving": sh.r.text(),
                     })),
                 })),
-                "Overige balans items": r.dictionary(r.component("Overige balans item", null, null)),
-                "Verrekenposten": r.dictionary(r.nothing()),
+                "Overige balans items": sh.r.dictionary(sh.r.component("Overige balans item", null, null)),
+                "Verrekenposten": sh.r.dictionary(sh.r.nothing()),
 
             }),
         })),
 
-        "Overige balans item": resolver(r.group({
-            "Beginsaldo": r.simple(),
-            "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-            "Nieuw": r.state({
-                "Ja": option(r.nothing()),
-                "Nee": option_constrained(
+        "Overige balans item": sh.resolver(sh.r.group({
+            "Beginsaldo": sh.r.simple(),
+            "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+            "Nieuw": sh.r.state({
+                "Ja": sh.option(sh.r.nothing()),
+                "Nee": sh.option_constrained(
                     {
-                        "Volgend boekjaar": oc.state(gvs.parameter("Eerste boekjaar", []), "Nee"),
+                        "Volgend boekjaar": sh.oc.state(sh.gvs.parameter("Eerste boekjaar", []), "Nee"),
                     },
-                    r.group({
-                        "Balans item": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("Volgend boekjaar", [rvs.group("Vorig boekjaar"), rvs.reference(), rvs.group("Jaarbeheer"), rvs.component(), rvs.group("Balans"), rvs.group("Overige balans items")])))
+                    sh.r.group({
+                        "Balans item": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("Volgend boekjaar", [sh.rvs.group("Vorig boekjaar"), sh.rvs.reference(), sh.rvs.group("Jaarbeheer"), sh.rvs.component(), sh.rvs.group("Balans"), sh.rvs.group("Overige balans items")])))
                     })
                 ),
             }),
         })),
 
-        "Verwijzing naar Informele rekening": resolver(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))),
-        "Verwijzing naar Bankrekening": resolver(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Bankrekeningen")])))),
+        "Verwijzing naar Informele rekening": sh.resolver(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Informele rekeningen")])))),
+        "Verwijzing naar Bankrekening": sh.resolver(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Bankrekeningen")])))),
 
-        "Handelstransacties": resolver(r.group({
-            "Inkopen": r.dictionary(r.group({
-                "Afhandeling": r.state({
-                    "Mutaties": option(r.nothing()),
-                    "Nog te betalen": option(r.group({
-                        "Betalingstermijn": r.simple(),
+        "Handelstransacties": sh.resolver(sh.r.group({
+            "Inkopen": sh.r.dictionary(sh.r.group({
+                "Afhandeling": sh.r.state({
+                    "Mutaties": sh.option(sh.r.nothing()),
+                    "Nog te betalen": sh.option(sh.r.group({
+                        "Betalingstermijn": sh.r.simple(),
                     })),
-                    "Rekening courant": option(r.group({
-                        "Rekening courant": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                    "Rekening courant": sh.option(sh.r.group({
+                        "Rekening courant": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Informele rekeningen")])))
                     })),
                 }),
-                "BTW-periode": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
-                // "BTW-regime": r.state({
-                //     "Binnenland: heffing verlegd": option(r.nothing()),
-                //     "Geen BTW van toepassing": option(r.nothing()),
-                //     "Import van buiten de EU": option(r.nothing()),
-                //     "Intracommunautair": option(r.nothing()),
-                //     "Standaard": option(r.group({
+                "BTW-periode": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Resultaat"), sh.rvs.group("BTW periodes")]))),
+                // "BTW-regime": sh.r.state({
+                //     "Binnenland: heffing verlegd": sh.option(sh.r.nothing()),
+                //     "Geen BTW van toepassing": sh.option(sh.r.nothing()),
+                //     "Import van buiten de EU": sh.option(sh.r.nothing()),
+                //     "Intracommunautair": sh.option(sh.r.nothing()),
+                //     "Standaard": sh.option(sh.r.group({
                 //     })),
                 // }),
-                "Brondocument": r.state({
-                    "Toegevoegd": option(r.group({
-                        "Document": r.text(),
+                "Brondocument": sh.r.state({
+                    "Toegevoegd": sh.option(sh.r.group({
+                        "Document": sh.r.text(),
                     })),
-                    "Niet van toepassing": option(r.nothing()),
-                    "Ontbreekt": option(r.nothing()),
+                    "Niet van toepassing": sh.option(sh.r.nothing()),
+                    "Ontbreekt": sh.option(sh.r.nothing()),
                 }),
-                "Datum": r.simple(),
-                "Regels": r.dictionary(r.group({
-                    "Bedrag": r.state({
-                        "Bekend": option(r.group({
-                            "BTW-bedrag": r.simple(),
-                            "Bedrag inclusief geheven BTW": r.simple(),
+                "Datum": sh.r.simple(),
+                "Regels": sh.r.dictionary(sh.r.group({
+                    "Bedrag": sh.r.state({
+                        "Bekend": sh.option(sh.r.group({
+                            "BTW-bedrag": sh.r.simple(),
+                            "Bedrag inclusief geheven BTW": sh.r.simple(),
                         }))
                     }),
-                    "Omschrijving": r.text(),
-                    "Type": r.state({
-                        "Balans": option(r.group({
-                            "Balans item": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]))),
+                    "Omschrijving": sh.r.text(),
+                    "Type": sh.r.state({
+                        "Balans": sh.option(sh.r.group({
+                            "Balans item": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Overige balans items")]))),
                         })),
-                        "Kosten": option(r.group({
-                            "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Resultaat")]))),
+                        "Kosten": sh.option(sh.r.group({
+                            "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Resultaat")]))),
                         })),
                     }),
                 })),
-                "Type": r.state({
-                    "Bonnetje": option(r.nothing()),
-                    "Inkoop (met crediteur)": option(r.group({
-                        "Crediteur": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Beheer", [rvs.group("Leveranciers")]))),
-                        "Factuurnummer": r.text()
+                "Type": sh.r.state({
+                    "Bonnetje": sh.option(sh.r.nothing()),
+                    "Inkoop (met crediteur)": sh.option(sh.r.group({
+                        "Crediteur": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Beheer", [sh.rvs.group("Leveranciers")]))),
+                        "Factuurnummer": sh.r.text()
                     })),
-                    "Loonheffing": option(r.group({
-                        "Ronde": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("Salarisrondes")]))),
+                    "Loonheffing": sh.option(sh.r.group({
+                        "Ronde": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Resultaat"), sh.rvs.group("Salarisrondes")]))),
                     })),
-                    "Salaris": option(r.group({
-                        "Ronde": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("Salarisrondes")]))),
-                        "Medewerker": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Beheer", [rvs.group("Medewerkers")]))),
+                    "Salaris": sh.option(sh.r.group({
+                        "Ronde": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Resultaat"), sh.rvs.group("Salarisrondes")]))),
+                        "Medewerker": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Beheer", [sh.rvs.group("Medewerkers")]))),
                     })),
                 }),
             })),
-            "Verkopen": r.dictionary(r.group({
-                "Datum": r.simple(),
-                "Betalingstermijn": r.simple(),
-                "BTW-periode": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")]))),
-                "Brondocument": r.state({
-                    "Toegevoegd": option(r.group({
-                        "Document": r.text()
+            "Verkopen": sh.r.dictionary(sh.r.group({
+                "Datum": sh.r.simple(),
+                "Betalingstermijn": sh.r.simple(),
+                "BTW-periode": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Resultaat"), sh.rvs.group("BTW periodes")]))),
+                "Brondocument": sh.r.state({
+                    "Toegevoegd": sh.option(sh.r.group({
+                        "Document": sh.r.text()
                     })),
                 }),
-                "Debiteur": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Beheer", [rvs.group("Klanten")]))),
-                "Contracttype": r.state({
-                    "Project": option(r.group({
-                        "Project": r.reference(ls.acyclic.resolved_dictionary(gvs.parent_sibling("Debiteur", [rvs.reference(), rvs.group("Projecten")]))),
-                        "Offerte": r.reference(ls.acyclic.resolved_dictionary(gvs.sibling("Project", [rvs.reference(), rvs.group("Offertes")]))),
+                "Debiteur": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Beheer", [sh.rvs.group("Klanten")]))),
+                "Contracttype": sh.r.state({
+                    "Project": sh.option(sh.r.group({
+                        "Project": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parent_sibling("Debiteur", [sh.rvs.reference(), sh.rvs.group("Projecten")]))),
+                        "Offerte": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.sibling("Project", [sh.rvs.reference(), sh.rvs.group("Offertes")]))),
                     })),
-                    "Licentieovereenkomst": option(r.group({
-                        "Overeenkomst": r.reference(ls.acyclic.resolved_dictionary(gvs.parent_sibling("Debiteur", [rvs.reference(), rvs.group("Licentieovereenkomsten")]))),
-                    })),
-                }),
-                "Afhandeling": r.state({
-                    "Mutaties": option(r.nothing()),
-                    "Rekening courant": option(r.group({
-                        "Rekening courant": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")]))),
+                    "Licentieovereenkomst": sh.option(sh.r.group({
+                        "Overeenkomst": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parent_sibling("Debiteur", [sh.rvs.reference(), sh.rvs.group("Licentieovereenkomsten")]))),
                     })),
                 }),
-                "Regels": r.dictionary(r.group({
-                    "BTW-regime": r.state({
-                        "Intracommunautair": option(r.nothing()),
-                        "Standaard": option(r.group({
-                            "BTW-categorie": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Beheer", [rvs.group("BTW-categorieen")]))),
+                "Afhandeling": sh.r.state({
+                    "Mutaties": sh.option(sh.r.nothing()),
+                    "Rekening courant": sh.option(sh.r.group({
+                        "Rekening courant": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Informele rekeningen")]))),
+                    })),
+                }),
+                "Regels": sh.r.dictionary(sh.r.group({
+                    "BTW-regime": sh.r.state({
+                        "Intracommunautair": sh.option(sh.r.nothing()),
+                        "Standaard": sh.option(sh.r.group({
+                            "BTW-categorie": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Beheer", [sh.rvs.group("BTW-categorieen")]))),
                         })),
-                        "Binnenland: heffing verlegd": option(r.nothing()),
+                        "Binnenland: heffing verlegd": sh.option(sh.r.nothing()),
                     }),
-                    "Bedrag exclusief BTW": r.simple(),
-                    "Contracttype": r.state({
-                        "Project": option_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Project"), }, r.group({
-                            "Opbrengst": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("Definitie", [rvs.group("Offerte"), rvs.reference(), rvs.group("Opbrengsten")]))),
+                    "Bedrag exclusief BTW": sh.r.simple(),
+                    "Contracttype": sh.r.state({
+                        "Project": sh.option_constrained({ "Definitie": sh.oc.state(sh.gvs.parent_sibling("Contracttype", []), "Project"), }, sh.r.group({
+                            "Opbrengst": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("Definitie", [sh.rvs.group("Offerte"), sh.rvs.reference(), sh.rvs.group("Opbrengsten")]))),
                         })),
-                        "Los": option(r.nothing()),
-                        "Licentieovereenkomst": option_constrained({ "Definitie": oc.state(gvs.parent_sibling("Contracttype", []), "Licentieovereenkomst"), }, r.group({
-                            "Periode": r.reference(ls.acyclic.resolved_dictionary(gvs.option_constraint("Definitie", [rvs.group("Overeenkomst"), rvs.reference(), rvs.group("Periodes")]))),
+                        "Los": sh.option(sh.r.nothing()),
+                        "Licentieovereenkomst": sh.option_constrained({ "Definitie": sh.oc.state(sh.gvs.parent_sibling("Contracttype", []), "Licentieovereenkomst"), }, sh.r.group({
+                            "Periode": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.option_constraint("Definitie", [sh.rvs.group("Overeenkomst"), sh.rvs.reference(), sh.rvs.group("Periodes")]))),
                         })),
                     }),
-                    "Omschrijving": r.text(),
-                    "Type": r.state({
-                        "Opbrengsten": option(r.group({
-                            "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Resultaat")]))),
+                    "Omschrijving": sh.r.text(),
+                    "Type": sh.r.state({
+                        "Opbrengsten": sh.option(sh.r.group({
+                            "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Resultaat")]))),
                         })),
-                        "Balans": option(r.group({
-                            "Balans item": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]))),
+                        "Balans": sh.option(sh.r.group({
+                            "Balans item": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Overige balans items")]))),
                         })),
                     }),
                 })),
             })),
         })),
 
-        "Rekening Mutatie": resolver(r.group({
-            "Jaar": r.optional(r.reference(ls.parameter("Jaren"))), //FIXME het jaar is optioneel, bepaal de juiste handelstransacties en jaarbeheer
-            "type": r.state({
-                "Inkoop": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Handelstransacties", [rvs.group("Inkopen")])))),
-                "Verkoop": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Handelstransacties", [rvs.group("Verkopen")])))),
-                "BTW-periode": option(r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Resultaat"), rvs.group("BTW periodes")])))),
+        "Rekening Mutatie": sh.resolver(sh.r.group({
+            "Jaar": sh.r.optional(sh.r.reference(sh.ls.parameter("Jaren"))), //FIXME het jaar is optioneel, bepaal de juiste handelstransacties en jaarbeheer
+            "type": sh.r.state({
+                "Inkoop": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Handelstransacties", [sh.rvs.group("Inkopen")])))),
+                "Verkoop": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Handelstransacties", [sh.rvs.group("Verkopen")])))),
+                "BTW-periode": sh.option(sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Resultaat"), sh.rvs.group("BTW periodes")])))),
             })
         })),
 
-        "Mutaties": resolver(r.group({
-            "Verrekenposten": r.dictionary_linked(
+        "Mutaties": sh.resolver(sh.r.group({
+            "Verrekenposten": sh.r.dictionary_linked(
                 'sparse',
-                gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")]),
-                r.group({
-                    "Stam": r.reference_derived(gvs.linked_entry([])),
-                    "Mutaties": r.dictionary(r.group({
-                        "Bedrag": r.simple(),
-                        "Afhandeling": r.state({
-                            "Resultaat": option(r.component("Rekening Mutatie", null, null)),
-                            "Balans": option(r.state({
-                                "Informele rekening": option(r.group({
-                                    "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Verrekenposten")]),
+                sh.r.group({
+                    "Stam": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                    "Mutaties": sh.r.dictionary(sh.r.group({
+                        "Bedrag": sh.r.simple(),
+                        "Afhandeling": sh.r.state({
+                            "Resultaat": sh.option(sh.r.component("Rekening Mutatie", null, null)),
+                            "Balans": sh.option(sh.r.state({
+                                "Informele rekening": sh.option(sh.r.group({
+                                    "Informele rekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Informele rekeningen")])))
                                 })),
 
                             })),
@@ -375,91 +372,91 @@ export const $ = resolver_modules(
                     }))
                 }),
             ),
-            "Bankrekeningen": r.dictionary_linked(
+            "Bankrekeningen": sh.r.dictionary_linked(
                 'sparse',
-                gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Bankrekeningen")]),
-                r.group({
-                    "Stam": r.reference_derived(gvs.linked_entry([])),
-                    "Mutatie Verwerkingen": r.dictionary(r.group({
-                        "Stam": r.reference_derived(gvs.linked_entry([])),
-                        "type": r.state({
-                            "Resultaat": option(r.component("Rekening Mutatie", null, null)),
-                            "Balans": option(r.state({
-                                "Verrekenpost": option(r.group({
-                                    "Verrekenpost": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Verrekenposten")])))
+                sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Bankrekeningen")]),
+                sh.r.group({
+                    "Stam": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                    "Mutatie Verwerkingen": sh.r.dictionary(sh.r.group({
+                        "Stam": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                        "type": sh.r.state({
+                            "Resultaat": sh.option(sh.r.component("Rekening Mutatie", null, null)),
+                            "Balans": sh.option(sh.r.state({
+                                "Verrekenpost": sh.option(sh.r.group({
+                                    "Verrekenpost": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Verrekenposten")])))
                                 })),
-                                "Informele rekening": option(r.group({
-                                    "Informele rekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Informele rekeningen")])))
+                                "Informele rekening": sh.option(sh.r.group({
+                                    "Informele rekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Informele rekeningen")])))
                                 })),
                             })),
                         })
                     }))
                 })
             ),
-            "Overige Balans Items": r.dictionary_linked(
+            "Overige Balans Items": sh.r.dictionary_linked(
                 'sparse',
-                gvs.parameter("Jaarbeheer", [rvs.group("Balans"), rvs.group("Overige balans items")]),
-                r.group({
-                    "Stam": r.reference_derived(gvs.linked_entry([])),
-                    "Memoriaal Boekingen": r.dictionary(r.group({
-                        "Bedrag": r.simple(),
-                        "Datum": r.simple(),
-                        "Grootboekrekening": r.reference(ls.acyclic.resolved_dictionary(gvs.parameter("Grootboekrekeningen", [rvs.group("Balans")]))),
-                        "Omschrijving": r.text(),
+                sh.gvs.parameter("Jaarbeheer", [sh.rvs.group("Balans"), sh.rvs.group("Overige balans items")]),
+                sh.r.group({
+                    "Stam": sh.r.reference_derived(sh.gvs.linked_entry([])),
+                    "Memoriaal Boekingen": sh.r.dictionary(sh.r.group({
+                        "Bedrag": sh.r.simple(),
+                        "Datum": sh.r.simple(),
+                        "Grootboekrekening": sh.r.reference(sh.ls.acyclic.resolved_dictionary(sh.gvs.parameter("Grootboekrekeningen", [sh.rvs.group("Balans")]))),
+                        "Omschrijving": sh.r.text(),
                     })),
                 })),
         })),
 
-        "Eerste boekjaar": resolver(r.state({
-            "Ja": option(r.nothing()),
-            "Nee": option(r.group({
-                "Vorig boekjaar": r.reference(ls.parameter("Jaren"))
+        "Eerste boekjaar": sh.resolver(sh.r.state({
+            "Ja": sh.option(sh.r.nothing()),
+            "Nee": sh.option(sh.r.group({
+                "Vorig boekjaar": sh.r.reference(sh.ls.parameter("Jaren"))
             })),
         })),
 
-        "Jaren": resolver(r.dictionary(r.group({
-            "Afgesloten": r.state({
-                "Ja": option(r.nothing()),
-                "Nee": option(r.nothing()),
+        "Jaren": sh.resolver(sh.r.dictionary(sh.r.group({
+            "Afgesloten": sh.r.state({
+                "Ja": sh.option(sh.r.nothing()),
+                "Nee": sh.option(sh.r.nothing()),
             }),
-            "Startdatum boekjaar": r.simple(),
-            "Grootboekrekeningen": r.component("Grootboekrekeningen", {
-                "Beheer": av.parameter("Beheer"),
+            "Startdatum boekjaar": sh.r.simple(),
+            "Grootboekrekeningen": sh.r.component("Grootboekrekeningen", {
+                "Beheer": sh.av.parameter("Beheer"),
             }, {}),
-            "Eerste boekjaar": r.component("Eerste boekjaar", {}, {
-                "Jaren": al.acyclic.siblings(),
+            "Eerste boekjaar": sh.r.component("Eerste boekjaar", {}, {
+                "Jaren": sh.al.acyclic.siblings(),
             }),
-            "Jaarbeheer": r.component("Jaarbeheer", {
-                "Grootboekrekeningen": av.required(gvs.sibling("Grootboekrekeningen", [])),
-                "Eerste boekjaar": av.required(gvs.sibling("Eerste boekjaar", [])),
+            "Jaarbeheer": sh.r.component("Jaarbeheer", {
+                "Grootboekrekeningen": sh.av.required(sh.gvs.sibling("Grootboekrekeningen", [])),
+                "Eerste boekjaar": sh.av.required(sh.gvs.sibling("Eerste boekjaar", [])),
             }, {
-                "Jaren": al.acyclic.siblings(),
+                "Jaren": sh.al.acyclic.siblings(),
             }),
-            "Handelstransacties": r.component("Handelstransacties", {
-                "Beheer": av.parameter("Beheer"),
-                "Grootboekrekeningen": av.required(gvs.sibling("Grootboekrekeningen", [])),
-                "Jaarbeheer": av.required(gvs.sibling("Jaarbeheer", []))
+            "Handelstransacties": sh.r.component("Handelstransacties", {
+                "Beheer": sh.av.parameter("Beheer"),
+                "Grootboekrekeningen": sh.av.required(sh.gvs.sibling("Grootboekrekeningen", [])),
+                "Jaarbeheer": sh.av.required(sh.gvs.sibling("Jaarbeheer", []))
             }, {}),
-            "Mutaties": r.component("Mutaties", {
-                "Beheer": av.parameter("Beheer"),
-                "Grootboekrekeningen": av.required(gvs.sibling("Grootboekrekeningen", [])),
-                "Jaarbeheer": av.required(gvs.sibling("Jaarbeheer", [])),
-                "Handelstransacties": av.required(gvs.sibling("Handelstransacties", []))
+            "Mutaties": sh.r.component("Mutaties", {
+                "Beheer": sh.av.parameter("Beheer"),
+                "Grootboekrekeningen": sh.av.required(sh.gvs.sibling("Grootboekrekeningen", [])),
+                "Jaarbeheer": sh.av.required(sh.gvs.sibling("Jaarbeheer", [])),
+                "Handelstransacties": sh.av.required(sh.gvs.sibling("Handelstransacties", []))
             }, {
-                "Jaren": al.acyclic.siblings(),
+                "Jaren": sh.al.acyclic.siblings(),
             }),
         }))),
 
-        "Root": resolver(r.group({
-            "Fiscaal": r.component("Fiscaal", {}, {}),
-            "Categorieen": r.component("Grootboek Categorieen", {
-                "Fiscaal": av.required(gvs.sibling("Fiscaal", [])),
+        "Root": sh.resolver(sh.r.group({
+            "Fiscaal": sh.r.component("Fiscaal", {}, {}),
+            "Categorieen": sh.r.component("Grootboek Categorieen", {
+                "Fiscaal": sh.av.required(sh.gvs.sibling("Fiscaal", [])),
             }, {}),
-            "Beheer": r.component("Beheer", {
-                "Grootboek Categorieen": av.required(gvs.sibling("Categorieen", [])),
+            "Beheer": sh.r.component("Beheer", {
+                "Grootboek Categorieen": sh.av.required(sh.gvs.sibling("Categorieen", [])),
             }, {}),
-            "Jaren": r.component("Jaren", {
-                "Beheer": av.required(gvs.sibling("Beheer", []))
+            "Jaren": sh.r.component("Jaren", {
+                "Beheer": sh.av.required(sh.gvs.sibling("Beheer", []))
             }, {}),
         })),
     }

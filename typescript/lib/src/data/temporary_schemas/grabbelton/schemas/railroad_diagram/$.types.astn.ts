@@ -1,64 +1,53 @@
 
+import * as sh from "../../../../../shorthands/schema/manual"
 
-
-
-import {
-    n,
-    modules,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
-
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Grammar": module_(t.group({
-            "productions": prop(t.component("Productions")),
-            //"main rule": t.text_global("text")
+        "Grammar": sh.module_(sh.t.group({
+            "productions": sh.prop(sh.t.component("Productions")),
+            //"main rule": sh.t.text_global("text")
         })),
-        "Production": module_(t.state({
-            "choice": toption(t.component("Choice")),
-            "link": toption(t.text_global("url")),
+        "Production": sh.module_(sh.t.state({
+            "choice": sh.toption(sh.t.component("Choice")),
+            "link": sh.toption(sh.t.text_global("url")),
         })),
-        "Choice": module_(t.list(t.component("Composite Expression"))),
-        "Composite Expression": module_(t.state({
-            "item list": toption(t.list(t.component("Item"))),
-            "special": toption(t.group({
-                "preceding item": prop(t.component("Item")),
-                "character": prop(t.state({
-                    "minus": toption(t.nothing()), //matches any string that matches the preceding item, but does not the succeeding item
-                    "double star": toption(t.nothing()), //shorthand: 'A ** B' becomes '(A ( B A )* )?'
-                    "double plus": toption(t.nothing()), //shorthand: 'A ++ B' becomes 'A ( B A )*'
+        "Choice": sh.module_(sh.t.list(sh.t.component("Composite Expression"))),
+        "Composite Expression": sh.module_(sh.t.state({
+            "item list": sh.toption(sh.t.list(sh.t.component("Item"))),
+            "special": sh.toption(sh.t.group({
+                "preceding item": sh.prop(sh.t.component("Item")),
+                "character": sh.prop(sh.t.state({
+                    "minus": sh.toption(sh.t.nothing()), //matches any string that matches the preceding item, but does not the succeeding item
+                    "double star": sh.toption(sh.t.nothing()), //shorthand: 'A ** B' becomes '(A ( B A )* )?'
+                    "double plus": sh.toption(sh.t.nothing()), //shorthand: 'A ++ B' becomes 'A ( B A )*'
                 })),
-                "succeeding item": prop(t.component("Item")),
+                "succeeding item": sh.prop(sh.t.component("Item")),
             })),
         })),
-        "Item": module_(t.group({
-            "primary": prop(t.component("Primary")),
-            "occurence": prop(t.state({
-                "once": toption(t.nothing()),
-                "zero or more": toption(t.nothing()),
-                "one or more": toption(t.nothing()),
-                "optional": toption(t.nothing()),
+        "Item": sh.module_(sh.t.group({
+            "primary": sh.prop(sh.t.component("Primary")),
+            "occurence": sh.prop(sh.t.state({
+                "once": sh.toption(sh.t.nothing()),
+                "zero or more": sh.toption(sh.t.nothing()),
+                "one or more": sh.toption(sh.t.nothing()),
+                "optional": sh.toption(sh.t.nothing()),
             })),
         })),
-        "Primary": module_(t.state({
-            // "reference": t.reference("Productions", []), FIXME: make schema constrained first
-            "literal": toption(t.text_global("text")),
-            "character code": toption(t.simple("Natural")),
-            // "character class": t.group({
-            //     "negated": t.boolean(),
-            //     "type" : t.state({
-            //         "char": t.nothing(),
+        "Primary": sh.module_(sh.t.state({
+            // "reference": sh.t.reference("Productions", []), FIXME: make schema constrained first
+            "literal": sh.toption(sh.t.text_global("text")),
+            "character code": sh.toption(sh.t.simple("Natural")),
+            // "character class": sh.t.group({
+            //     "negated": sh.t.boolean(),
+            //     "type" : sh.t.state({
+            //         "char": sh.t.nothing(),
             //     }),
             // }),
-            "choice": toption(t.component("Choice")),
+            "choice": sh.toption(sh.t.component("Choice")),
 
         })),
-        "Productions": module_(t.dictionary(t.component("Production"))),
+        "Productions": sh.module_(sh.t.dictionary(sh.t.component("Production"))),
 
 
     }

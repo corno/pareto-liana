@@ -1,25 +1,18 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
     'unconstrained',
     {
-        "scheme": text('single line'),
-        "userinfo": text('single line'),
-        "host": text('single line'),
-        "segment": text('single line'),
-        "query": text('single line'),
-        "fragment": text('single line'),
+        "scheme": sh.text('single line'),
+        "userinfo": sh.text('single line'),
+        "host": sh.text('single line'),
+        "segment": sh.text('single line'),
+        "query": sh.text('single line'),
+        "fragment": sh.text('single line'),
     },
     {
-        "port": n.integer(null),
+        "port": sh.n.integer(null),
     },
 )
 

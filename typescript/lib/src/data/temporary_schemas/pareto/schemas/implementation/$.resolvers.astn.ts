@@ -1,394 +1,394 @@
 
 
-import { resolver_modules, r, resolver, option } from "../../../../../shorthands/resolver/manual"
+import * as sh from "../../../../../shorthands/resolver/manual"
 
 
-export const $ = resolver_modules(
+export const $ = sh.resolver_modules(
     {
 
-        "Package Set": resolver(r.dictionary(r.state({
-            "package": option(r.component("Package", {}, {})),
-            "set": option(r.component("Package Set", {}, {})),
+        "Package Set": sh.resolver(sh.r.dictionary(sh.r.state({
+            "package": sh.option(sh.r.component("Package", {}, {})),
+            "set": sh.option(sh.r.component("Package Set", {}, {})),
         }))),
 
-        "Package": resolver(r.group({
-            "specials": r.group({
-                "abort": r.simple(),
-                "change context": r.simple(),
-                "implement me": r.simple(),
-                "iterate": r.simple(),
-                "lookups": r.simple(),
-                "list from text": r.simple(),
-                "text from list": r.simple(),
-                "unreachable code path": r.simple(),
-                "variables": r.simple(),
+        "Package": sh.resolver(sh.r.group({
+            "specials": sh.r.group({
+                "abort": sh.r.simple(),
+                "change context": sh.r.simple(),
+                "implement me": sh.r.simple(),
+                "iterate": sh.r.simple(),
+                "lookups": sh.r.simple(),
+                "list from text": sh.r.simple(),
+                "text from list": sh.r.simple(),
+                "unreachable code path": sh.r.simple(),
+                "variables": sh.r.simple(),
             }),
-            "type imports": r.component_external("interface", "Imports", {}, {}),
-            "variable imports": r.dictionary(r.group({
-                "tail": r.list(r.text()),
-                "type": r.state({
-                    "ancestor": option(r.group({
-                        "dependency": r.text(),
-                        "number of steps": r.simple(),
+            "type imports": sh.r.component_external("interface", "Imports", {}, {}),
+            "variable imports": sh.r.dictionary(sh.r.group({
+                "tail": sh.r.list(sh.r.text()),
+                "type": sh.r.state({
+                    "ancestor": sh.option(sh.r.group({
+                        "dependency": sh.r.text(),
+                        "number of steps": sh.r.simple(),
                     })),
-                    "external": option(r.text()),
-                    "sibling": option(r.text()),
+                    "external": sh.option(sh.r.text()),
+                    "sibling": sh.option(sh.r.text()),
                 }),
             })),
-            "functions": r.dictionary(r.group({
-                "type": r.group({
-                    "import": r.text(),
-                    "type": r.text(),
+            "functions": sh.r.dictionary(sh.r.group({
+                "type": sh.r.group({
+                    "import": sh.r.text(),
+                    "type": sh.r.text(),
                 }),
-                "expression": r.component("Assign", {}, {}),
-                "temp has abort": r.simple(),
-                "temp has lookups": r.simple(),
-                "temp has parameters": r.simple(),
+                "expression": sh.r.component("Assign", {}, {}),
+                "temp has abort": sh.r.simple(),
+                "temp has lookups": sh.r.simple(),
+                "temp has parameters": sh.r.simple(),
             })),
         })),
 
-        "Temp Value Type Specification": resolver(r.group({
-            "type": r.group({
-                "import": r.text(),
-                "type": r.text(),
+        "Temp Value Type Specification": sh.resolver(sh.r.group({
+            "type": sh.r.group({
+                "import": sh.r.text(),
+                "type": sh.r.text(),
             }),
-            "sub selection": r.list(r.state({
-                "dictionary": option(r.nothing()),
-                "group": option(r.text()),
-                "list": option(r.nothing()),
-                "optional": option(r.nothing()),
-                "state": option(r.text()),
+            "sub selection": sh.r.list(sh.r.state({
+                "dictionary": sh.option(sh.r.nothing()),
+                "group": sh.option(sh.r.text()),
+                "list": sh.option(sh.r.nothing()),
+                "optional": sh.option(sh.r.nothing()),
+                "state": sh.option(sh.r.text()),
             })),
         })),
 
-        "Assign": resolver(r.state({
-            "decide": option(r.group({
-                "source": r.component("Select Value", {}, {}),
-                "type": r.state({
-                    "boolean": option(r.group({
-                        "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "if false": r.component("Assign", {}, {}),
-                        "if true": r.component("Assign", {}, {}),
+        "Assign": sh.resolver(sh.r.state({
+            "decide": sh.option(sh.r.group({
+                "source": sh.r.component("Select Value", {}, {}),
+                "type": sh.r.state({
+                    "boolean": sh.option(sh.r.group({
+                        "temp resulting node": sh.r.optional(sh.r.component("Temp Value Type Specification", {}, {})),
+                        "if false": sh.r.component("Assign", {}, {}),
+                        "if true": sh.r.component("Assign", {}, {}),
                     })),
-                    "optional": option(r.group({
-                        "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "if not set": r.component("Assign", {}, {}),
-                        "if set": r.component("Assign", {}, {}),
+                    "optional": sh.option(sh.r.group({
+                        "temp resulting node": sh.r.optional(sh.r.component("Temp Value Type Specification", {}, {})),
+                        "if not set": sh.r.component("Assign", {}, {}),
+                        "if set": sh.r.component("Assign", {}, {}),
                     })),
-                    "state": option(r.group({
-                        "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "type": r.state({
-                            "partial": option(r.group({
-                                "options": r.dictionary(r.component("Assign", {}, {})),
-                                "default": r.component("Assign", {}, {}),
+                    "state": sh.option(sh.r.group({
+                        "temp resulting node": sh.r.optional(sh.r.component("Temp Value Type Specification", {}, {})),
+                        "type": sh.r.state({
+                            "partial": sh.option(sh.r.group({
+                                "options": sh.r.dictionary(sh.r.component("Assign", {}, {})),
+                                "default": sh.r.component("Assign", {}, {}),
                             })),
-                            "full": option(r.group({
-                                "options": r.dictionary(r.component("Assign", {}, {})),
+                            "full": sh.option(sh.r.group({
+                                "options": sh.r.dictionary(sh.r.component("Assign", {}, {})),
                             })),
-                            "single": option(r.group({
-                                "option": r.text(),
-                                "if true": r.component("Assign", {}, {}),
-                                "if false": r.component("Assign", {}, {}),
+                            "single": sh.option(sh.r.group({
+                                "option": sh.r.text(),
+                                "if true": sh.r.component("Assign", {}, {}),
+                                "if false": sh.r.component("Assign", {}, {}),
                             })),
 
                         }),
                     })),
-                    "text": option(r.group({
-                        "temp resulting node": r.optional(r.component("Temp Value Type Specification", {}, {})),
-                        "cases": r.dictionary(r.component("Assign", {}, {})),
-                        "default": r.component("Assign", {}, {}),
+                    "text": sh.option(sh.r.group({
+                        "temp resulting node": sh.r.optional(sh.r.component("Temp Value Type Specification", {}, {})),
+                        "cases": sh.r.dictionary(sh.r.component("Assign", {}, {})),
+                        "default": sh.r.component("Assign", {}, {}),
                     })),
                 }),
             })),
-            "construct": option(r.state({
-                "boolean": option(r.state({
-                    "literal": option(r.state({
-                        "false": option(r.nothing()),
-                        "true": option(r.nothing()),
+            "construct": sh.option(sh.r.state({
+                "boolean": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.state({
+                        "false": sh.option(sh.r.nothing()),
+                        "true": sh.option(sh.r.nothing()),
                     })),
-                    "from": option(r.group({
-                        "selection": r.component("Select Value", {}, {}),
-                        "type": r.state({
-                            "boolean": option(r.state({
-                                "not": option(r.nothing()),
-                                "copy": option(r.nothing()),
+                    "from": sh.option(sh.r.group({
+                        "selection": sh.r.component("Select Value", {}, {}),
+                        "type": sh.r.state({
+                            "boolean": sh.option(sh.r.state({
+                                "not": sh.option(sh.r.nothing()),
+                                "copy": sh.option(sh.r.nothing()),
                             })),
-                            "dictionary": option(r.state({
-                                "is empty": option(r.nothing()),
+                            "dictionary": sh.option(sh.r.state({
+                                "is empty": sh.option(sh.r.nothing()),
                             })),
-                            "list": option(r.state({
-                                "is empty": option(r.nothing()),
+                            "list": sh.option(sh.r.state({
+                                "is empty": sh.option(sh.r.nothing()),
                             })),
                         }),
                     })),
                 })),
-                "dictionary": option(r.state({
-                    "literal": option(r.dictionary(r.component("Assign", {}, {}))),
-                    "from": option(r.group({
-                        "selection": r.component("Select Value", {}, {}),
-                        "type": r.state({
-                            "dictionary": option(r.state({
-                                "filter": option(r.group({
-                                    "assign entry": r.component("Assign", {}, {})
+                "dictionary": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.dictionary(sh.r.component("Assign", {}, {}))),
+                    "from": sh.option(sh.r.group({
+                        "selection": sh.r.component("Select Value", {}, {}),
+                        "type": sh.r.state({
+                            "dictionary": sh.option(sh.r.state({
+                                "filter": sh.option(sh.r.group({
+                                    "assign entry": sh.r.component("Assign", {}, {})
                                 })),
-                                "map": option(r.group({
-                                    "assign entry": r.component("Assign", {}, {})
+                                "map": sh.option(sh.r.group({
+                                    "assign entry": sh.r.component("Assign", {}, {})
                                 })),
-                                "resolve": option(r.group({
-                                    "assign entry": r.component("Assign", {}, {}),
-                                    "temp resulting entry node": r.component("Temp Value Type Specification", {}, {}),
-                                })),
-                            })),
-                            "list": option(r.state({
-                                "convert": option(r.group({
-                                    "assign id": r.component("Assign", {}, {}),
-                                    "assign entry": r.component("Assign", {}, {}),
-                                    "abort": r.component("Assign", {}, {}),
+                                "resolve": sh.option(sh.r.group({
+                                    "assign entry": sh.r.component("Assign", {}, {}),
+                                    "temp resulting entry node": sh.r.component("Temp Value Type Specification", {}, {}),
                                 })),
                             })),
-                        }),
-                    })),
-                })),
-                "group": option(r.state({
-                    "literal": option(r.group({
-                        "properties": r.dictionary(r.component("Assign", {}, {})),
-                        "have dependencies": r.simple(),
-                    })),
-                })),
-                "list": option(r.state({
-                    "literal": option(r.list(r.component("Assign", {}, {}))),
-                    "from": option(r.group({
-                        "selection": r.component("Select Value", {}, {}),
-                        "type": r.state({
-                            "dictionary": option(r.state({
-                                "convert": option(r.group({
-                                    "assign entry": r.component("Assign", {}, {}),
+                            "list": sh.option(sh.r.state({
+                                "convert": sh.option(sh.r.group({
+                                    "assign id": sh.r.component("Assign", {}, {}),
+                                    "assign entry": sh.r.component("Assign", {}, {}),
+                                    "abort": sh.r.component("Assign", {}, {}),
                                 })),
-                            })),
-                            "list": option(r.state({
-                                "filter": option(r.group({
-                                    "assign item": r.component("Assign", {}, {})
-                                })),
-                                "map": option(r.group({
-                                    "assign item": r.component("Assign", {}, {})
-                                })),
-                                "map with state": option(r.group({
-                                    "initialize state": r.component("Assign", {}, {}),
-                                    "assign item": r.component("Assign", {}, {}),
-                                    "update state": r.component("Assign", {}, {}),
-                                    "wrap up": r.component("Assign", {}, {}),
-                                })),
-                                "reduce": option(r.group({
-                                    "initialize state": r.component("Assign", {}, {}),
-                                    "assign item": r.component("Assign", {}, {}),
-                                })),
-                                "reverse": option(r.nothing()),
                             })),
                         }),
                     })),
                 })),
-                "nothing": option(r.nothing()),
-                "number": option(r.state({
-                    "approximation": option(r.state({
-                        "copy": option(r.component("Select Value", {}, {})),
-                        "literal": option(r.simple()),
+                "group": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.group({
+                        "properties": sh.r.dictionary(sh.r.component("Assign", {}, {})),
+                        "have dependencies": sh.r.simple(),
                     })),
-                    "integer": option(r.state({
-                        "copy": option(r.component("Select Value", {}, {})),
-                        "divide": option(r.group({
-                            "assign dividend": r.component("Select Value", {}, {}),
-                            "assign divisor": r.component("Select Value", {}, {}),
-                            "abort": r.component("Assign", {}, {})
+                })),
+                "list": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.list(sh.r.component("Assign", {}, {}))),
+                    "from": sh.option(sh.r.group({
+                        "selection": sh.r.component("Select Value", {}, {}),
+                        "type": sh.r.state({
+                            "dictionary": sh.option(sh.r.state({
+                                "convert": sh.option(sh.r.group({
+                                    "assign entry": sh.r.component("Assign", {}, {}),
+                                })),
+                            })),
+                            "list": sh.option(sh.r.state({
+                                "filter": sh.option(sh.r.group({
+                                    "assign item": sh.r.component("Assign", {}, {})
+                                })),
+                                "map": sh.option(sh.r.group({
+                                    "assign item": sh.r.component("Assign", {}, {})
+                                })),
+                                "map with state": sh.option(sh.r.group({
+                                    "initialize state": sh.r.component("Assign", {}, {}),
+                                    "assign item": sh.r.component("Assign", {}, {}),
+                                    "update state": sh.r.component("Assign", {}, {}),
+                                    "wrap up": sh.r.component("Assign", {}, {}),
+                                })),
+                                "reduce": sh.option(sh.r.group({
+                                    "initialize state": sh.r.component("Assign", {}, {}),
+                                    "assign item": sh.r.component("Assign", {}, {}),
+                                })),
+                                "reverse": sh.option(sh.r.nothing()),
+                            })),
+                        }),
+                    })),
+                })),
+                "nothing": sh.option(sh.r.nothing()),
+                "number": sh.option(sh.r.state({
+                    "approximation": sh.option(sh.r.state({
+                        "copy": sh.option(sh.r.component("Select Value", {}, {})),
+                        "literal": sh.option(sh.r.simple()),
+                    })),
+                    "integer": sh.option(sh.r.state({
+                        "copy": sh.option(sh.r.component("Select Value", {}, {})),
+                        "divide": sh.option(sh.r.group({
+                            "assign dividend": sh.r.component("Select Value", {}, {}),
+                            "assign divisor": sh.r.component("Select Value", {}, {}),
+                            "abort": sh.r.component("Assign", {}, {})
                         })),
-                        "literal": option(r.simple()),
+                        "literal": sh.option(sh.r.simple()),
                     })),
-                    "natural": option(r.state({
-                        "copy": option(r.component("Select Value", {}, {})),
-                        "literal": option(r.simple()),
-                        "number of dictionary entries": option(r.group({
-                            "dictionary": r.component("Select Value", {}, {})
+                    "natural": sh.option(sh.r.state({
+                        "copy": sh.option(sh.r.component("Select Value", {}, {})),
+                        "literal": sh.option(sh.r.simple()),
+                        "number of dictionary entries": sh.option(sh.r.group({
+                            "dictionary": sh.r.component("Select Value", {}, {})
                         })),
-                        "number of list items": option(r.group({
-                            "list": r.component("Select Value", {}, {})
+                        "number of list items": sh.option(sh.r.group({
+                            "list": sh.r.component("Select Value", {}, {})
                         })),
-                        "source column": option(r.nothing()),
-                        "source line": option(r.nothing()),
+                        "source column": sh.option(sh.r.nothing()),
+                        "source line": sh.option(sh.r.nothing()),
                     })),
                 })),
-                "optional": option(r.state({
-                    "literal": option(r.state({
-                        "not set": option(r.nothing()),
-                        "set": option(r.component("Assign", {}, {})),
+                "optional": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.state({
+                        "not set": sh.option(sh.r.nothing()),
+                        "set": sh.option(sh.r.component("Assign", {}, {})),
                     })),
-                    "from": option(r.group({
-                        "selection": r.component("Select Value", {}, {}),
-                        "type": r.state({
-                            "boolean": option(r.state({
-                                "convert": option(r.group({
-                                    "assign set": r.component("Assign", {}, {}),
+                    "from": sh.option(sh.r.group({
+                        "selection": sh.r.component("Select Value", {}, {}),
+                        "type": sh.r.state({
+                            "boolean": sh.option(sh.r.state({
+                                "convert": sh.option(sh.r.group({
+                                    "assign set": sh.r.component("Assign", {}, {}),
                                 })),
                             })),
-                            "optional": option(r.state({
-                                "map": option(r.group({
-                                    "assign set": r.component("Assign", {}, {})
+                            "optional": sh.option(sh.r.state({
+                                "map": sh.option(sh.r.group({
+                                    "assign set": sh.r.component("Assign", {}, {})
                                 })),
                             })),
                         }),
                     })),
                 })),
-                "state": option(r.state({
-                    "literal": option(r.group({
-                        "option": r.text(),
-                        "assign option": r.component("Assign", {}, {}),
+                "state": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.group({
+                        "option": sh.r.text(),
+                        "assign option": sh.r.component("Assign", {}, {}),
                     })),
                 })),
-                "text": option(r.state({
-                    "literal": option(r.group({
-                        "type": r.state({
-                            "identifier": option(r.nothing()),
-                            "freeform": option(r.nothing()),
+                "text": sh.option(sh.r.state({
+                    "literal": sh.option(sh.r.group({
+                        "type": sh.r.state({
+                            "identifier": sh.option(sh.r.nothing()),
+                            "freeform": sh.option(sh.r.nothing()),
                         }),
-                        "value": r.text(),
+                        "value": sh.r.text(),
                     })),
-                    "from": option(r.group({
-                        "selection": r.component("Select Value", {}, {}),
-                        "type": r.state({
-                            "text": option(r.state({
-                                "copy": option(r.nothing()),
+                    "from": sh.option(sh.r.group({
+                        "selection": sh.r.component("Select Value", {}, {}),
+                        "type": sh.r.state({
+                            "text": sh.option(sh.r.state({
+                                "copy": sh.option(sh.r.nothing()),
                             })),
                         }),
                     })),
-                    "source document": option(r.nothing()),
-                    "entry id": option(r.nothing()),
-                    "option name": option(r.nothing()),
+                    "source document": sh.option(sh.r.nothing()),
+                    "entry id": sh.option(sh.r.nothing()),
+                    "option name": sh.option(sh.r.nothing()),
                 })),
             })),
-            "select": option(r.component("Select Value", {}, {})),
-            "special": option(r.state({
-                "abort": option(r.component("Assign", {}, {})),
-                "assert": option(r.group({
-                    "tester": r.component("Assign", {}, {}),
-                    "normal flow": r.component("Assign", {}, {}),
+            "select": sh.option(sh.r.component("Select Value", {}, {})),
+            "special": sh.option(sh.r.state({
+                "abort": sh.option(sh.r.component("Assign", {}, {})),
+                "assert": sh.option(sh.r.group({
+                    "tester": sh.r.component("Assign", {}, {}),
+                    "normal flow": sh.r.component("Assign", {}, {}),
                 })),
-                "change context": option(r.group({
-                    "new context": r.component("Select Value", {}, {}),
-                    "expression": r.component("Assign", {}, {}),
+                "change context": sh.option(sh.r.group({
+                    "new context": sh.r.component("Select Value", {}, {}),
+                    "expression": sh.r.component("Assign", {}, {}),
                 })),
-                "variables": option(r.group({
-                    "variables": r.dictionary(r.component("Assign", {}, {})),
-                    "assign": r.component("Assign", {}, {}),
+                "variables": sh.option(sh.r.group({
+                    "variables": sh.r.dictionary(sh.r.component("Assign", {}, {})),
+                    "assign": sh.r.component("Assign", {}, {}),
                 })),
-                "implement me": option(r.text()),
-                "iterate": option(r.group({
-                    "list": r.component("Select Value", {}, {}),
-                    "assign": r.component("Assign", {}, {}),
+                "implement me": sh.option(sh.r.text()),
+                "iterate": sh.option(sh.r.group({
+                    "list": sh.r.component("Select Value", {}, {}),
+                    "assign": sh.r.component("Assign", {}, {}),
                 })),
-                "unreachable": option(r.group({
-                    "explanation": r.text(),
+                "unreachable": sh.option(sh.r.group({
+                    "explanation": sh.r.text(),
                 })),
             })),
         })),
 
-        "Select Value": resolver(r.state({
-            "implement me": option(r.text()),
-            "regular": option(r.group({
-                "start": r.state({
-                    "call": option(r.group({
-                        "source": r.state({
-                            "local": option(r.text()),
-                            "imported": option(r.group({
-                                "import": r.text(),
-                                "variable": r.text(),
+        "Select Value": sh.resolver(sh.r.state({
+            "implement me": sh.option(sh.r.text()),
+            "regular": sh.option(sh.r.group({
+                "start": sh.r.state({
+                    "call": sh.option(sh.r.group({
+                        "source": sh.r.state({
+                            "local": sh.option(sh.r.text()),
+                            "imported": sh.option(sh.r.group({
+                                "import": sh.r.text(),
+                                "variable": sh.r.text(),
                             })),
                         }),
-                        "context": r.component("Assign", {}, {}),
-                        "abort": r.optional(r.component("Assign", {}, {})),
-                        "lookups": r.optional(r.state({
-                            "initialize": option(r.dictionary(r.component("Select Lookup", {}, {}))),
-                            "pass through": option(r.nothing()),
+                        "context": sh.r.component("Assign", {}, {}),
+                        "abort": sh.r.optional(sh.r.component("Assign", {}, {})),
+                        "lookups": sh.r.optional(sh.r.state({
+                            "initialize": sh.option(sh.r.dictionary(sh.r.component("Select Lookup", {}, {}))),
+                            "pass through": sh.option(sh.r.nothing()),
                         })),
-                        "arguments": r.optional(r.state({
-                            "initialize": option(r.dictionary(r.component("Assign", {}, {}))),
-                            "pass through": option(r.nothing()),
+                        "arguments": sh.r.optional(sh.r.state({
+                            "initialize": sh.option(sh.r.dictionary(sh.r.component("Assign", {}, {}))),
+                            "pass through": sh.option(sh.r.nothing()),
                         })),
                     })),
-                    "context": option(r.nothing()),
-                    "dictionary entry": option(r.group({
-                        "dictionary": r.component("Select Value", {}, {}),
-                        "id": r.component("Assign", {}, {}),
-                        "no such entry handler": r.component("Assign", {}, {}),
+                    "context": sh.option(sh.r.nothing()),
+                    "dictionary entry": sh.option(sh.r.group({
+                        "dictionary": sh.r.component("Select Value", {}, {}),
+                        "id": sh.r.component("Assign", {}, {}),
+                        "no such entry handler": sh.r.component("Assign", {}, {}),
                     })),
-                    "list from text": option(r.group({
-                        "source": r.component("Select Value", {}, {}),
-                        "assign item": r.component("Assign", {}, {}),
+                    "list from text": sh.option(sh.r.group({
+                        "source": sh.r.component("Select Value", {}, {}),
+                        "assign item": sh.r.component("Assign", {}, {}),
                     })),
-                    "lookup entry": option(r.group({
-                        "lookup": r.component("Select Lookup", {}, {}),
-                        "id": r.component("Assign", {}, {}),
-                        "type": r.state({
-                            "acyclic": option(r.group({
-                                "abort handlers": r.group({
-                                    "no such entry": r.component("Assign", {}, {}),
-                                    "no context lookup": r.component("Assign", {}, {}),
-                                    "cycle detected": r.component("Assign", {}, {}),
+                    "lookup entry": sh.option(sh.r.group({
+                        "lookup": sh.r.component("Select Lookup", {}, {}),
+                        "id": sh.r.component("Assign", {}, {}),
+                        "type": sh.r.state({
+                            "acyclic": sh.option(sh.r.group({
+                                "abort handlers": sh.r.group({
+                                    "no such entry": sh.r.component("Assign", {}, {}),
+                                    "no context lookup": sh.r.component("Assign", {}, {}),
+                                    "cycle detected": sh.r.component("Assign", {}, {}),
                                 }),
                             })),
-                            "cyclic": option(r.group({
-                                "abort handlers": r.group({
-                                    "no such entry": r.component("Assign", {}, {}),
-                                    "no context lookup": r.component("Assign", {}, {}),
-                                    "accessing cyclic sibling before it is resolved": r.component("Assign", {}, {}),
+                            "cyclic": sh.option(sh.r.group({
+                                "abort handlers": sh.r.group({
+                                    "no such entry": sh.r.component("Assign", {}, {}),
+                                    "no context lookup": sh.r.component("Assign", {}, {}),
+                                    "accessing cyclic sibling before it is resolved": sh.r.component("Assign", {}, {}),
                                 }),
                             })),
-                            "stack": option(r.group({
-                                "abort handlers": r.group({
-                                    "no such entry": r.component("Assign", {}, {}),
-                                    "no context lookup": r.component("Assign", {}, {}),
-                                    "cycle detected": r.component("Assign", {}, {}),
+                            "stack": sh.option(sh.r.group({
+                                "abort handlers": sh.r.group({
+                                    "no such entry": sh.r.component("Assign", {}, {}),
+                                    "no context lookup": sh.r.component("Assign", {}, {}),
+                                    "cycle detected": sh.r.component("Assign", {}, {}),
                                 }),
                             })),
                         })
                     })),
-                    "lookup entry depth": option(r.group({
-                        "lookup": r.component("Select Lookup", {}, {}),
-                        "id": r.component("Assign", {}, {}),
-                        "abort handlers": r.group({
-                            "no such entry": r.component("Assign", {}, {}),
-                            "no context lookup": r.component("Assign", {}, {}),
-                            "cycle detected": r.component("Assign", {}, {}),
+                    "lookup entry depth": sh.option(sh.r.group({
+                        "lookup": sh.r.component("Select Lookup", {}, {}),
+                        "id": sh.r.component("Assign", {}, {}),
+                        "abort handlers": sh.r.group({
+                            "no such entry": sh.r.component("Assign", {}, {}),
+                            "no context lookup": sh.r.component("Assign", {}, {}),
+                            "cycle detected": sh.r.component("Assign", {}, {}),
                         }),
                     })),
-                    "parameter": option(r.text()),
-                    "parent sibling": option(r.text()),
-                    "sibling": option(r.text()),
-                    "state": option(r.nothing()),
-                    "text from list": option(r.group({
-                        "source": r.component("Select Value", {}, {}),
-                        "assign character": r.component("Assign", {}, {}),
+                    "parameter": sh.option(sh.r.text()),
+                    "parent sibling": sh.option(sh.r.text()),
+                    "sibling": sh.option(sh.r.text()),
+                    "state": sh.option(sh.r.nothing()),
+                    "text from list": sh.option(sh.r.group({
+                        "source": sh.r.component("Select Value", {}, {}),
+                        "assign character": sh.r.component("Assign", {}, {}),
                     })),
-                    "variable": option(r.text()),
+                    "variable": sh.option(sh.r.text()),
                 }),
-                "tail": r.list(r.text()),
+                "tail": sh.r.list(sh.r.text()),
             }))
         })),
 
-        "Select Lookup": resolver(r.state({
-            "implement me": option(r.text()),
-            "from parameter": option(r.text()),
-            "acyclic": option(r.state({
-                "not set": option(r.nothing()),
-                "siblings": option(r.nothing()),
-                "resolved dictionary": option(r.component("Select Value", {}, {})),
+        "Select Lookup": sh.resolver(sh.r.state({
+            "implement me": sh.option(sh.r.text()),
+            "from parameter": sh.option(sh.r.text()),
+            "acyclic": sh.option(sh.r.state({
+                "not set": sh.option(sh.r.nothing()),
+                "siblings": sh.option(sh.r.nothing()),
+                "resolved dictionary": sh.option(sh.r.component("Select Value", {}, {})),
             })),
-            "cyclic": option(r.state({
-                "not set": option(r.nothing()),
-                "siblings": option(r.nothing()),
+            "cyclic": sh.option(sh.r.state({
+                "not set": sh.option(sh.r.nothing()),
+                "siblings": sh.option(sh.r.nothing()),
             })),
-            "stack": option(r.state({
-                "empty": option(r.nothing()),
-                "push": option(r.group({
-                    "stack": r.component("Select Lookup", {}, {}),
-                    "acyclic": r.component("Select Lookup", {}, {}),
+            "stack": sh.option(sh.r.state({
+                "empty": sh.option(sh.r.nothing()),
+                "push": sh.option(sh.r.group({
+                    "stack": sh.r.component("Select Lookup", {}, {}),
+                    "acyclic": sh.r.component("Select Lookup", {}, {}),
                 })),
             })),
         })),

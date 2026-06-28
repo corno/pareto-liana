@@ -1,38 +1,30 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "DFA": module_(t.group({
-            "decision": prop(t.simple("Integer")),
-            "atn start state": prop(t.simple("State Number")),
-            "is precedence dfa": prop(t.simple("boolean")),
-            "states": prop(t.list(t.group({
-                "state number": prop(t.simple("Integer")),
-                "is accept state": prop(t.simple("boolean")),
-                "prediction": prop(t.optional(t.simple("Integer"))),
-                "requires full context": prop(t.simple("boolean")),
-                "edges": prop(t.list(t.group({
-                    "symbol": prop(t.simple("Integer")),
-                    "target state": prop(t.simple("Integer")),
+        "DFA": sh.module_(sh.t.group({
+            "decision": sh.prop(sh.t.simple("Integer")),
+            "atn start state": sh.prop(sh.t.simple("State Number")),
+            "is precedence dfa": sh.prop(sh.t.simple("boolean")),
+            "states": sh.prop(sh.t.list(sh.t.group({
+                "state number": sh.prop(sh.t.simple("Integer")),
+                "is accept state": sh.prop(sh.t.simple("boolean")),
+                "prediction": sh.prop(sh.t.optional(sh.t.simple("Integer"))),
+                "requires full context": sh.prop(sh.t.simple("boolean")),
+                "edges": sh.prop(sh.t.list(sh.t.group({
+                    "symbol": sh.prop(sh.t.simple("Integer")),
+                    "target state": sh.prop(sh.t.simple("Integer")),
                 }))),
-                "predicates": prop(t.optional(t.list(t.group({
-                    "alt": prop(t.simple("Integer")),
-                    "predicate": prop(t.text_global("Text Value")),
+                "predicates": sh.prop(sh.t.optional(sh.t.list(sh.t.group({
+                    "alt": sh.prop(sh.t.simple("Integer")),
+                    "predicate": sh.prop(sh.t.text_global("Text Value")),
                 })))),
-                "configs": prop(t.optional(t.list(t.group({
-                    "state": prop(t.simple("State Number")),
-                    "alt": prop(t.simple("Integer")),
-                    "semantic context": prop(t.optional(t.text_global("Text Value"))),
+                "configs": sh.prop(sh.t.optional(sh.t.list(sh.t.group({
+                    "state": sh.prop(sh.t.simple("State Number")),
+                    "alt": sh.prop(sh.t.simple("Integer")),
+                    "semantic context": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
                 })))),
             }))),
         })),

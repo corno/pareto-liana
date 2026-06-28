@@ -1,23 +1,14 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "message": prop(t.component_external("fountain pen", "Paragraph")),
+        "Parameters": sh.module_(sh.t.group({
+            "message": sh.prop(sh.t.component_external("fountain pen", "Paragraph")),
         })),
 
-        "Error": module_(t.nothing()) //I'm not aware of any errors that could occur at this time
+        "Error": sh.module_(sh.t.nothing()) //I'm not aware of any errors that could occur at this time
         
     }
 )

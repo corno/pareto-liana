@@ -1,26 +1,17 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Phrasing content": module_(t.list(t.state({
-            "text": toption(t.text_global("TBD")),
-            "element": toption(t.component("Phrasing")),
+        "Phrasing content": sh.module_(sh.t.list(sh.t.state({
+            "text": sh.toption(sh.t.text_global("TBD")),
+            "element": sh.toption(sh.t.component("Phrasing")),
         }))),
 
-        "Flow content": module_(t.list(t.state({
-            "phrase": toption(t.component("Phrasing content")),
-            "flow": toption(t.component("Flow")),
+        "Flow content": sh.module_(sh.t.list(sh.t.state({
+            "phrase": sh.toption(sh.t.component("Phrasing content")),
+            "flow": sh.toption(sh.t.component("Flow")),
         }))),
 
         /*
@@ -63,26 +54,26 @@ export const $ = modules(
         tr
         */
 
-        "Document": module_(t.group({
-            "lang": prop(t.optional(t.text_global("TBD"))),
-            "head": prop(t.group({
-                "title": prop(t.text_global("TBD"))
+        "Document": sh.module_(sh.t.group({
+            "lang": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+            "head": sh.prop(sh.t.group({
+                "title": sh.prop(sh.t.text_global("TBD"))
             })),
-            "body": prop(t.component("Flow content"))
+            "body": sh.prop(sh.t.component("Flow content"))
         })),
 
-        "Edit": module_(t.group({
-            "cite": prop(t.optional(t.text_global("TBD"))),
-            "datetime": prop(t.optional(t.text_global("TBD"))),
+        "Edit": sh.module_(sh.t.group({
+            "cite": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+            "datetime": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
         })),
 
-        "Embedded": module_(t.state({
-            "audio": toption(t.group({
+        "Embedded": sh.module_(sh.t.state({
+            "audio": sh.toption(sh.t.group({
                 /*FIXME*/
                 // If the element has a src attribute: zero or more track elements, then transparent, but with no media element descendants.
                 // If the element does not have a src attribute: zero or more source elements, then zero or more track elements, then transparent, but with no media element descendants.
             })),
-            "embed": toption(t.group({
+            "embed": sh.toption(sh.t.group({
                 /*FIXME*/
                 // src — Address of the resource
                 // type — Type of embedded resource
@@ -90,7 +81,7 @@ export const $ = modules(
                 // height — Vertical dimension
                 // Any other attribute that has no namespace (see prose).
             })),
-            "iframe": toption(t.group({
+            "iframe": sh.toption(sh.t.group({
                 /*FIXME*/
                 // src — Address of the resource
                 // srcdoc — A document to render in the iframe
@@ -103,7 +94,7 @@ export const $ = modules(
                 // referrerpolicy — Referrer policy for fetches initiated by the element
                 // loading — Used when determining loading deferral
             })),
-            "img": toption(t.group({
+            "img": sh.toption(sh.t.group({
                 /*FIXME*/
                 // alt — Replacement text for use when images are not available
                 // src — Address of the resource
@@ -119,7 +110,7 @@ export const $ = modules(
                 // loading — Used when determining loading deferral
                 // fetchpriority — Sets the priority for fetches initiated by the element
             })),
-            "object": toption(t.group({
+            "object": sh.toption(sh.t.group({
                 /*FIXME*/
                 // data — Address of the resource
                 // type — Type of embedded resource
@@ -127,9 +118,9 @@ export const $ = modules(
                 // form — Associates the element with a form element
                 // width — Horizontal dimension
                 // height — Vertical dimension
-                "content": prop(t.component("Embedded content"))
+                "content": sh.prop(sh.t.component("Embedded content"))
             })),
-            "video": toption(t.group({
+            "video": sh.toption(sh.t.group({
                 /*FIXME*/
                 // src — Address of the resource
                 // crossorigin — How the element handles crossorigin requests
@@ -146,7 +137,7 @@ export const $ = modules(
                 //If the element has a src attribute: zero or more track elements, then transparent, but with no media element descendants.
                 //If the element does not have a src attribute: zero or more source elements, then zero or more track elements, then transparent, but with no media element descendants.
             })),
-            "canvas": toption(t.group({
+            "canvas": sh.toption(sh.t.group({
                 /*FIXME*/
                 // width — Horizontal dimension
                 // height — Vertical dimension
@@ -154,20 +145,20 @@ export const $ = modules(
                 //Transparent, but with no interactive content descendants except for a elements, img elements with usemap attributes, button elements, input elements whose type attribute are in the Checkbox or Radio Button states,
                 // input elements that are buttons, and select elements with a multiple attribute or a display size greater than 1.
             })),
-            "math": toption(t.group({/*FIXME*/ })),
-            "picture": toption(t.group({
+            "math": sh.toption(sh.t.group({/*FIXME*/ })),
+            "picture": sh.toption(sh.t.group({
                 /*FIXME*/
                 //Zero or more source elements, followed by one img element, optionally intermixed with script-supporting elements.
             })),
-            "svg": toption(t.group({/*FIXME*/ })),
+            "svg": sh.toption(sh.t.group({/*FIXME*/ })),
         })),
 
-        "Embedded content": module_(t.list(t.component("Embedded"))),
+        "Embedded content": sh.module_(sh.t.list(sh.t.component("Embedded"))),
 
-        "Template": module_(t.component("Flow content")),
+        "Template": sh.module_(sh.t.component("Flow content")),
 
-        "Script supporting": module_(t.state({
-            "script": toption(t.group({
+        "Script supporting": sh.module_(sh.t.state({
+            "script": sh.toption(sh.t.group({
                 /*FIXME*/
                 // src — Address of the resource
                 // type — Type of script
@@ -183,32 +174,32 @@ export const $ = modules(
                 //If there is no src attribute, depends on the value of the type attribute, but must match script content restrictions.
                 //If there is a src attribute, the element must be either empty or contain only script documentation that also matches script content restrictions.
             })),
-            "template": toption(t.component("Template")),
+            "template": sh.toption(sh.t.component("Template")),
         })),
 
-        "Heading": module_(t.state({
-            "h1": toption(t.component("Phrasing content")),
-            "h2": toption(t.component("Phrasing content")),
-            "h3": toption(t.component("Phrasing content")),
-            "h4": toption(t.component("Phrasing content")),
-            "h5": toption(t.component("Phrasing content")),
-            "h6": toption(t.component("Phrasing content")),
-            "hgroup": toption(t.group({
-                "content before": prop(t.state({
-                    "p": toption(t.group({/*FIXME*/ })),
-                    "script supporting": toption(t.component("Script supporting")),
+        "Heading": sh.module_(sh.t.state({
+            "h1": sh.toption(sh.t.component("Phrasing content")),
+            "h2": sh.toption(sh.t.component("Phrasing content")),
+            "h3": sh.toption(sh.t.component("Phrasing content")),
+            "h4": sh.toption(sh.t.component("Phrasing content")),
+            "h5": sh.toption(sh.t.component("Phrasing content")),
+            "h6": sh.toption(sh.t.component("Phrasing content")),
+            "hgroup": sh.toption(sh.t.group({
+                "content before": sh.prop(sh.t.state({
+                    "p": sh.toption(sh.t.group({/*FIXME*/ })),
+                    "script supporting": sh.toption(sh.t.component("Script supporting")),
                 })),
-                "heading": prop(t.state({
-                    "h1 ": toption(t.component("Phrasing content")),
-                    "h2": toption(t.component("Phrasing content")),
-                    "h3": toption(t.component("Phrasing content")),
-                    "h4": toption(t.component("Phrasing content")),
-                    "h5": toption(t.component("Phrasing content")),
-                    "h6": toption(t.component("Phrasing content")),
+                "heading": sh.prop(sh.t.state({
+                    "h1 ": sh.toption(sh.t.component("Phrasing content")),
+                    "h2": sh.toption(sh.t.component("Phrasing content")),
+                    "h3": sh.toption(sh.t.component("Phrasing content")),
+                    "h4": sh.toption(sh.t.component("Phrasing content")),
+                    "h5": sh.toption(sh.t.component("Phrasing content")),
+                    "h6": sh.toption(sh.t.component("Phrasing content")),
                 })),
-                "content after": prop(t.state({
-                    "p": toption(t.group({/*FIXME*/ })),
-                    "script supporting": toption(t.component("Script supporting")),
+                "content after": sh.prop(sh.t.state({
+                    "p": sh.toption(sh.t.group({/*FIXME*/ })),
+                    "script supporting": sh.toption(sh.t.component("Script supporting")),
                 })),
             })),
         })),
@@ -216,79 +207,79 @@ export const $ = modules(
         //"Heading content": type(list(component("Heading"))),
         //"Script supporting content": type(list(component("Script supporting"))),
 
-        "Sectioning content": module_(t.state({
-            "article": toption(t.component("Flow content")),
-            "aside": toption(t.component("Flow content")),
-            "nav": toption(t.component("Flow content")),
-            "section": toption(t.component("Flow content")),
+        "Sectioning content": sh.module_(sh.t.state({
+            "article": sh.toption(sh.t.component("Flow content")),
+            "aside": sh.toption(sh.t.component("Flow content")),
+            "nav": sh.toption(sh.t.component("Flow content")),
+            "section": sh.toption(sh.t.component("Flow content")),
         })),
 
-        "Flow": module_(t.state({
+        "Flow": sh.module_(sh.t.state({
             //generic attributes
-            "id": toption(t.group({
-                "id": prop(t.text_global("TBD")),
-                "child": prop(t.component("Flow")),
+            "id": sh.toption(sh.t.group({
+                "id": sh.prop(sh.t.text_global("TBD")),
+                "child": sh.prop(sh.t.component("Flow")),
             })),
-            "class": toption(t.group({
-                "class": prop(t.text_global("TBD")),
-                "child": prop(t.component("Flow")),
+            "class": sh.toption(sh.t.group({
+                "class": sh.prop(sh.t.text_global("TBD")),
+                "child": sh.prop(sh.t.component("Flow")),
             })),
             /**
              * a'phrase' element does not exist in HTML, but this deviation from the standard is needed to handle whitespace properly 
              */
-            "script supporting": toption(t.component("Script supporting")),
-            "embedded": toption(t.component("Embedded")),
-            "details": toption(t.group({
-                "summary": prop(t.list(t.state({
-                    "phrasing": toption(t.component("Phrasing content")),
-                    "heading": toption(t.component("Heading")),
+            "script supporting": sh.toption(sh.t.component("Script supporting")),
+            "embedded": sh.toption(sh.t.component("Embedded")),
+            "details": sh.toption(sh.t.group({
+                "summary": sh.prop(sh.t.list(sh.t.state({
+                    "phrasing": sh.toption(sh.t.component("Phrasing content")),
+                    "heading": sh.toption(sh.t.component("Heading")),
                 }))),
-                "content": prop(t.component("Flow content")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "address": toption(t.group({
+            "address": sh.toption(sh.t.group({
                 /*FIXME*/
                 //Flow content, but with no heading content descendants, no sectioning content descendants, and no header, footer, or address element descendants.Flow content, but with no heading content descendants, no sectioning content descendants, and no header, footer, or address element descendants.
             })),
-            "blockquote": toption(t.group({
-                "cite": prop(t.text_global("TBD")),
-                "content": prop(t.component("Flow content")),
+            "blockquote": sh.toption(sh.t.group({
+                "cite": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "del": toption(t.group({
-                "edit": prop(t.component("Edit")),
-                "content": prop(t.component("Flow content")),
+            "del": sh.toption(sh.t.group({
+                "edit": sh.prop(sh.t.component("Edit")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "dialog": toption(t.group({
-                "open": prop(t.optional(t.text_global("TBD"))),
-                "content": prop(t.component("Flow content")),
+            "dialog": sh.toption(sh.t.group({
+                "open": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "div": toption(t.component("Flow content")),
-            "dl": toption(t.state({
-                "divs": toption(t.group({/*FIXME*/ })),
-                "dts": toption(t.group({/*FIXME*/ })),
+            "div": sh.toption(sh.t.component("Flow content")),
+            "dl": sh.toption(sh.t.state({
+                "divs": sh.toption(sh.t.group({/*FIXME*/ })),
+                "dts": sh.toption(sh.t.group({/*FIXME*/ })),
             })), //description list
-            "fieldset": toption(t.group({
+            "fieldset": sh.toption(sh.t.group({
                 /*FIXME*/
-                "legend": prop(t.optional(t.group({/*FIXME*/ }))),
+                "legend": sh.prop(sh.t.optional(sh.t.group({/*FIXME*/ }))),
                 // disabled — Whether the descendant form controls, except any inside legend, are disabled
                 // form — Associates the element with a form element
                 // name — Name of the element to use in the form.elements API.
-                "content": prop(t.component("Flow content")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "figure": toption(t.group({
-                "caption": prop(t.optional(t.group({
-                    "content": prop(t.component("Flow content")),
-                    "position": prop(t.state({
-                        "top": toption(t.group({})),
-                        "botom": toption(t.group({})),
+            "figure": sh.toption(sh.t.group({
+                "caption": sh.prop(sh.t.optional(sh.t.group({
+                    "content": sh.prop(sh.t.component("Flow content")),
+                    "position": sh.prop(sh.t.state({
+                        "top": sh.toption(sh.t.group({})),
+                        "botom": sh.toption(sh.t.group({})),
                     })),
                 }))),
-                "content": prop(t.component("Flow content")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "footer": toption(t.group({
+            "footer": sh.toption(sh.t.group({
                 /*FIXME*/
                 //Flow content, but with no header or footer element descendants
             })),
-            "form": toption(t.group({
+            "form": sh.toption(sh.t.group({
                 /*FIXME*/
                 // accept-charset — Character encodings to use for form submission
                 // action — URL to use for form submission
@@ -301,30 +292,30 @@ export const $ = modules(
                 // rel
                 //"content": Flow content, but with no form element descendants.
             })),
-            "header": toption(t.group({
+            "header": sh.toption(sh.t.group({
                 /*FIXME*/
                 //Flow content, but with no header or footer element descendants
             })),
-            "hr": toption(t.group({})),
-            "ins": toption(t.group({
-                "edit": prop(t.component("Edit")),
-                "content": prop(t.component("Flow content")),
+            "hr": sh.toption(sh.t.group({})),
+            "ins": sh.toption(sh.t.group({
+                "edit": sh.prop(sh.t.component("Edit")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
             /**
              * FIXME
              * A hierarchically correct main element is one whose ancestor elements are limited to html, body, div, form
              * without an accessible name, and autonomous custom elements. Each main element must be a hierarchically correct main element.
              */
-            "main": toption(t.component("Flow content")),
-            "map": toption(t.group({
-                "name": prop(t.text_global("TBD")),
-                "content": prop(t.component("Flow content")),
+            "main": sh.toption(sh.t.component("Flow content")),
+            "map": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "menu": toption(t.list(t.state({
-                "li": toption(t.component("Flow content")),
-                "script supporting": toption(t.component("Script supporting")),
+            "menu": sh.toption(sh.t.list(sh.t.state({
+                "li": sh.toption(sh.t.component("Flow content")),
+                "script supporting": sh.toption(sh.t.component("Script supporting")),
             }))),
-            "object": toption(t.group({
+            "object": sh.toption(sh.t.group({
                 /*FIXME*/
                 // data — Address of the resource
                 // type — Type of embedded resource
@@ -332,61 +323,61 @@ export const $ = modules(
                 // form — Associates the element with a form element
                 // width — Horizontal dimension
                 // height — Vertical dimension
-                "content": prop(t.component("Flow content")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "ol": toption(t.group({
-                "reversed": prop(t.optional(t.text_global("TBD"))),
-                "start": prop(t.optional(t.text_global("TBD"))),
-                "type": prop(t.optional(t.state({
-                    "1": toption(t.group({})),
-                    "a": toption(t.group({})),
-                    "A": toption(t.group({})),
-                    "i": toption(t.group({})),
-                    "I": toption(t.group({})),
+            "ol": sh.toption(sh.t.group({
+                "reversed": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+                "start": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+                "type": sh.prop(sh.t.optional(sh.t.state({
+                    "1": sh.toption(sh.t.group({})),
+                    "a": sh.toption(sh.t.group({})),
+                    "A": sh.toption(sh.t.group({})),
+                    "i": sh.toption(sh.t.group({})),
+                    "I": sh.toption(sh.t.group({})),
                 }))),
-                "content": prop(t.list(t.state({
-                    "li": toption(t.group({
-                        "value": prop(t.text_global("TBD")),
-                        "content": prop(t.component("Flow content")),
+                "content": sh.prop(sh.t.list(sh.t.state({
+                    "li": sh.toption(sh.t.group({
+                        "value": sh.prop(sh.t.text_global("TBD")),
+                        "content": sh.prop(sh.t.component("Flow content")),
                     })),
-                    "script supporting": toption(t.component("Script supporting")),
+                    "script supporting": sh.toption(sh.t.component("Script supporting")),
                 })))
             })),
-            "p": toption(t.component("Phrasing content")),
-            "pre": toption(t.component("Phrasing content")),
-            "search": toption(t.component("Flow content")),
-            "slot": toption(t.group({
-                "name": prop(t.text_global("TBD")),
-                "content": prop(t.component("Flow content")),
+            "p": sh.toption(sh.t.component("Phrasing content")),
+            "pre": sh.toption(sh.t.component("Phrasing content")),
+            "search": sh.toption(sh.t.component("Flow content")),
+            "slot": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Flow content")),
             })),
-            "table": toption(t.group({
+            "table": sh.toption(sh.t.group({
                 /*FIXME*/
-                "caption": prop(t.optional(t.component("Flow content"))),
-                "colgroups": prop(t.list(t.group({/*FIXME*/ }))),
-                //"thead": prop(optional(component("Flow content"))),
+                "caption": sh.prop(sh.t.optional(sh.t.component("Flow content"))),
+                "colgroups": sh.prop(sh.t.list(sh.t.group({/*FIXME*/ }))),
+                //"thead": sh.prop(optional(component("Flow content"))),
 
             })),
-            "ul": toption(t.list(t.state({
-                "li": toption(t.component("Flow content")),
-                "script supporting": toption(t.component("Script supporting")),
+            "ul": sh.toption(sh.t.list(sh.t.state({
+                "li": sh.toption(sh.t.component("Flow content")),
+                "script supporting": sh.toption(sh.t.component("Script supporting")),
             }))),
-            "heading": toption(t.component("Heading")),
-            "sectioning": toption(t.component("Sectioning content")),
+            "heading": sh.toption(sh.t.component("Heading")),
+            "sectioning": sh.toption(sh.t.component("Sectioning content")),
         })),
 
-        "Phrasing": module_(t.state({
+        "Phrasing": sh.module_(sh.t.state({
             //generic attributes
-            "id": toption(t.group({
-                "id": prop(t.text_global("TBD")),
-                "child": prop(t.component("Phrasing"))
+            "id": sh.toption(sh.t.group({
+                "id": sh.prop(sh.t.text_global("TBD")),
+                "child": sh.prop(sh.t.component("Phrasing"))
             })),
-            "class": toption(t.group({
-                "class": prop(t.text_global("TBD")),
-                "child": prop(t.component("Phrasing"))
+            "class": sh.toption(sh.t.group({
+                "class": sh.prop(sh.t.text_global("TBD")),
+                "child": sh.prop(sh.t.component("Phrasing"))
             })),
 
             //elements
-            "link": toption(t.group({
+            "link": sh.toption(sh.t.group({
                 /*FIXME*/
                 // href — Address of the hyperlink
                 // crossorigin — How the element handles crossorigin requests
@@ -406,7 +397,7 @@ export const $ = modules(
                 // fetchpriority — Sets the priority for fetches initiated by the element
                 // Also, the title attribute has special semantics on this element: Title of the link; CSS style sheet set name.
             })),
-            "meta": toption(t.group({
+            "meta": sh.toption(sh.t.group({
                 /*FIXME*/
 
                 // name — Metadata name
@@ -423,7 +414,7 @@ export const $ = modules(
                 // If the itemprop attribute is present: where metadata content is expected.
                 // If the itemprop attribute is present: where phrasing content is expected.                
             })),
-            "noscript": toption(t.group({
+            "noscript": sh.toption(sh.t.group({
                 /*FIXME*/
                 //content: 
                 // When scripting is disabled, in a head element: in any order, zero or more link elements, zero or more style elements, and zero or more meta elements.
@@ -431,7 +422,7 @@ export const $ = modules(
                 // Otherwise: text that conforms to the requirements given in the prose.
 
             })),
-            "object": toption(t.group({
+            "object": sh.toption(sh.t.group({
                 /*FIXME*/
                 // data — Address of the resource
                 // type — Type of embedded resource
@@ -439,11 +430,11 @@ export const $ = modules(
                 // form — Associates the element with a form element
                 // width — Horizontal dimension
                 // height — Vertical dimension
-                "content": prop(t.component("Phrasing content"))
+                "content": sh.prop(sh.t.component("Phrasing content"))
             })),
-            "script supporting": toption(t.component("Script supporting")),
-            "a": toption(t.group({/*FIXMEX*/ })),
-            "button": toption(t.group({
+            "script supporting": sh.toption(sh.t.component("Script supporting")),
+            "a": sh.toption(sh.t.group({/*FIXMEX*/ })),
+            "button": sh.toption(sh.t.group({
                 /*FIXME*/
                 // disabled — Whether the form control is disabled
                 // form — Associates the element with a form element
@@ -462,7 +453,7 @@ export const $ = modules(
                 //Phrasing content, but there must be no interactive content descendant and no descendant with the tabindex attribute specified.
 
             })),
-            "input": toption(t.group({
+            "input": sh.toption(sh.t.group({
                 /*FIXME*/
                 // accept — Hint for expected file type in file upload controls
                 // alt — Replacement text for use when images are not available
@@ -498,12 +489,12 @@ export const $ = modules(
                 // width — Horizontal dimension
                 // Also, the title attribute has special semantics on this element: Description of pattern (when used with pattern attribute).
             })),
-            "label": toption(t.group({
+            "label": sh.toption(sh.t.group({
                 /*FIXME*/
                 //for — Associate the label with form control
                 //content: Phrasing content, but with no descendant labelable elements unless it is the element's labeled control, and no descendant label elements.
             })),
-            "select": toption(t.group({
+            "select": sh.toption(sh.t.group({
                 // autocomplete — Hint for form autofill feature
                 // disabled — Whether the form control is disabled
                 // form — Associates the element with a form element
@@ -511,19 +502,19 @@ export const $ = modules(
                 // name — Name of the element to use for form submission and in the form.elements API
                 // required — Whether the control is required for form submission
                 // size — Size of the control
-                "content": prop(t.list(t.state({
-                    "option": toption(t.group({/*FIXME*/ })),
-                    "optgroup": toption(t.group({
+                "content": sh.prop(sh.t.list(sh.t.state({
+                    "option": sh.toption(sh.t.group({/*FIXME*/ })),
+                    "optgroup": sh.toption(sh.t.group({
                         //label
                         //disabled
-                        "options": prop(t.list(t.group({
+                        "options": sh.prop(sh.t.list(sh.t.group({
                             /*FIXME*/
                         })))
                     })),
-                    "script supporting": toption(t.component("Script supporting")),
+                    "script supporting": sh.toption(sh.t.component("Script supporting")),
                 }))),
             })),
-            "textarea": toption(t.group({
+            "textarea": sh.toption(sh.t.group({
                 /*FIXME*/
                 // autocomplete — Hint for form autofill feature
                 // cols — Maximum number of characters per line
@@ -538,13 +529,13 @@ export const $ = modules(
                 // required — Whether the control is required for form submission
                 // rows — Number of lines to show
                 // wrap — How the value of the form control is to be wrapped for form submission 
-                "content": prop(t.text_global("TBD")),
+                "content": sh.prop(sh.t.text_global("TBD")),
             })),
-            "abbr": toption(t.group({
-                "title": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "abbr": sh.toption(sh.t.group({
+                "title": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "area": toption(t.group({ //FIXME: needs a 'map' ancestor
+            "area": sh.toption(sh.t.group({ //FIXME: needs a 'map' ancestor
                 /*FIXME*/
                 // alt — Replacement text for use when images are not available
                 // coords — Coordinates for the shape to be created in an image map
@@ -556,50 +547,50 @@ export const $ = modules(
                 // rel — Relationship between the location in the document containing the hyperlink and the destination resource
                 // referrerpolicy — Referrer policy for fetches initiated by the element
             })),
-            "b": toption(t.component("Phrasing content")),
-            "bdi": toption(t.group({
-                "dir": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "b": sh.toption(sh.t.component("Phrasing content")),
+            "bdi": sh.toption(sh.t.group({
+                "dir": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "bdo": toption(t.group({
-                "dir": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "bdo": sh.toption(sh.t.group({
+                "dir": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "br": toption(t.group({})), //line break
-            "cite": toption(t.component("Phrasing content")),
-            "code": toption(t.component("Phrasing content")),
-            "data": toption(t.group({
-                "value": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "br": sh.toption(sh.t.group({})), //line break
+            "cite": sh.toption(sh.t.component("Phrasing content")),
+            "code": sh.toption(sh.t.component("Phrasing content")),
+            "data": sh.toption(sh.t.group({
+                "value": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "datalist": toption(t.state({
-                "phrasing": toption(t.component("Phrasing content")),
-                "options": toption(t.list(t.state({
-                    "option": toption(t.group({/*FIXME*/ })),
-                    "script supporting": toption(t.component("Script supporting")),
+            "datalist": sh.toption(sh.t.state({
+                "phrasing": sh.toption(sh.t.component("Phrasing content")),
+                "options": sh.toption(sh.t.list(sh.t.state({
+                    "option": sh.toption(sh.t.group({/*FIXME*/ })),
+                    "script supporting": sh.toption(sh.t.component("Script supporting")),
                 }))),
             })),
-            "del": toption(t.group({
-                "edit": prop(t.component("Edit")),
-                "content": prop(t.component("Phrasing content"))
+            "del": sh.toption(sh.t.group({
+                "edit": sh.prop(sh.t.component("Edit")),
+                "content": sh.prop(sh.t.component("Phrasing content"))
             })),
-            "dfn": toption(t.group({ //FIXME: there may not be a dfn ancestor
-                "title": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "dfn": sh.toption(sh.t.group({ //FIXME: there may not be a dfn ancestor
+                "title": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "em": toption(t.component("Phrasing content")),
-            "i": toption(t.component("Phrasing content")),
-            "ins": toption(t.group({
-                "edit": prop(t.component("Edit")),
-                "content": prop(t.component("Phrasing content")),
+            "em": sh.toption(sh.t.component("Phrasing content")),
+            "i": sh.toption(sh.t.component("Phrasing content")),
+            "ins": sh.toption(sh.t.group({
+                "edit": sh.prop(sh.t.component("Edit")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "kbd": toption(t.component("Phrasing content")),
-            "map": toption(t.group({
-                "name": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content"))
+            "kbd": sh.toption(sh.t.component("Phrasing content")),
+            "map": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content"))
             })),
-            "mark": toption(t.component("Phrasing content")),
-            "meter": toption(t.group({
+            "mark": sh.toption(sh.t.component("Phrasing content")),
+            "meter": sh.toption(sh.t.group({
                 /*FIXME*/
 
                 // value — Current value of the element
@@ -612,22 +603,22 @@ export const $ = modules(
                 // content:
                 // Phrasing content, but there must be no meter element descendants.
             })),
-            "output": toption(t.group({
-                "for": prop(t.optional(t.text_global("TBD"))),
-                "form": prop(t.text_global("TBD")),//optional?
-                "name": prop(t.text_global("TBD")),//optional?
-                "content": prop(t.component("Phrasing content")),
+            "output": sh.toption(sh.t.group({
+                "for": sh.prop(sh.t.optional(sh.t.text_global("TBD"))),
+                "form": sh.prop(sh.t.text_global("TBD")),//optional?
+                "name": sh.prop(sh.t.text_global("TBD")),//optional?
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "progress": toption(t.group({ //FIXME: there may not be any progress element ancestors
-                "value": prop(t.text_global("TBD")),
-                "max": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "progress": sh.toption(sh.t.group({ //FIXME: there may not be any progress element ancestors
+                "value": sh.prop(sh.t.text_global("TBD")),
+                "max": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "q": toption(t.group({
-                "cite": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "q": sh.toption(sh.t.group({
+                "cite": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "ruby": toption(t.group({
+            "ruby": sh.toption(sh.t.group({
                 /*FIXME*/
                 // One or the other of the following:
                 // Phrasing content, but with no ruby elements and with no ruby element descendants
@@ -636,28 +627,28 @@ export const $ = modules(
                 // One or more rt elements
                 // An rp element followed by one or more rt elements, each of which is itself followed by an rp element            
             })),
-            "s": toption(t.component("Phrasing content")),
-            "samp": toption(t.component("Phrasing content")),
-            "slot": toption(t.group({
-                "name": prop(t.text_global("TBD")),
-                "content": prop(t.component("Phrasing content")),
+            "s": sh.toption(sh.t.component("Phrasing content")),
+            "samp": sh.toption(sh.t.component("Phrasing content")),
+            "slot": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("TBD")),
+                "content": sh.prop(sh.t.component("Phrasing content")),
             })),
-            "small": toption(t.component("Phrasing content")),
-            "span": toption(t.component("Phrasing content")),
-            "strong": toption(t.component("Phrasing content")),
-            "sub": toption(t.component("Phrasing content")),
-            "sup": toption(t.component("Phrasing content")),
-            "time": toption(t.state({
-                "datetime": toption(t.group({
-                    "value": prop(t.text_global("TBD")),
-                    "content": prop(t.component("Phrasing content")),
+            "small": sh.toption(sh.t.component("Phrasing content")),
+            "span": sh.toption(sh.t.component("Phrasing content")),
+            "strong": sh.toption(sh.t.component("Phrasing content")),
+            "sub": sh.toption(sh.t.component("Phrasing content")),
+            "sup": sh.toption(sh.t.component("Phrasing content")),
+            "time": sh.toption(sh.t.state({
+                "datetime": sh.toption(sh.t.group({
+                    "value": sh.prop(sh.t.text_global("TBD")),
+                    "content": sh.prop(sh.t.component("Phrasing content")),
                 })),
-                "text": toption(t.text_global("TBD")),
+                "text": sh.toption(sh.t.text_global("TBD")),
             })),
-            "u": toption(t.component("Phrasing content")),
-            "var": toption(t.component("Phrasing content")),
-            "wbr": toption(t.group({})), //line break opportunity
-            "embedded": toption(t.component("Embedded")),
+            "u": sh.toption(sh.t.component("Phrasing content")),
+            "var": sh.toption(sh.t.component("Phrasing content")),
+            "wbr": sh.toption(sh.t.group({})), //line break opportunity
+            "embedded": sh.toption(sh.t.component("Embedded")),
         })),
     }
 )

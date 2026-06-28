@@ -1,31 +1,22 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Result": module_(t.group({
-            "completion suggestions": prop(t.component_external("completion suggestions", "Completion Suggestions")),
+        "Result": sh.module_(sh.t.group({
+            "completion suggestions": sh.prop(sh.t.component_external("completion suggestions", "Completion Suggestions")),
         })),
 
-        "Parameters": module_(t.group({
-            "content": prop(t.text_global("multi line text")),
-            "source": prop(t.group({
-                "file path": prop(t.component_external("path unrestricted", "Node Path")),
-                "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "content": sh.prop(sh.t.text_global("multi line text")),
+            "source": sh.prop(sh.t.group({
+                "file path": sh.prop(sh.t.component_external("path unrestricted", "Node Path")),
+                "tab size": sh.prop(sh.t.simple("Natural")),
             })),
-            "position": prop(t.component_external("location", "Position")),
-            "indent": prop(t.text_global("text")),
+            "position": sh.prop(sh.t.component_external("location", "Position")),
+            "indent": sh.prop(sh.t.text_global("text")),
         })),
 
     }

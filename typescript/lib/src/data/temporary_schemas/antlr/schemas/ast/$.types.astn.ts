@@ -1,83 +1,75 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Grammar": module_(t.group({
-            "name": prop(t.text_global("Text Value")),
-            "file name": prop(t.optional(t.text_global("Text Value"))),
-            "type": prop(t.state({
-                "lexer": toption(t.group({
-                    "modes": prop(t.optional(t.dictionary(t.list(t.text_global("Text Value"))))),
+        "Grammar": sh.module_(sh.t.group({
+            "name": sh.prop(sh.t.text_global("Text Value")),
+            "file name": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
+            "type": sh.prop(sh.t.state({
+                "lexer": sh.toption(sh.t.group({
+                    "modes": sh.prop(sh.t.optional(sh.t.dictionary(sh.t.list(sh.t.text_global("Text Value"))))),
                 })),
-                "parser": toption(t.nothing()),
-                "combined": toption(t.group({
-                    "implicit lexer": prop(t.optional(t.component("Grammar"))),
+                "parser": sh.toption(sh.t.nothing()),
+                "combined": sh.toption(sh.t.group({
+                    "implicit lexer": sh.prop(sh.t.optional(sh.t.component("Grammar"))),
                 })),
-                "unknown": toption(t.nothing()),
+                "unknown": sh.toption(sh.t.nothing()),
             })),
-            "rules": prop(t.dictionary(t.component("Rule"))),
-            "token name to type map": prop(t.dictionary(t.simple("Integer"))),
-            "string literal to type map": prop(t.dictionary(t.simple("Integer"))),
-            "named actions": prop(t.optional(t.dictionary(t.text_global("Multi Line Text")))),
-            "imported grammars": prop(t.optional(t.list(t.component("Grammar")))),
+            "rules": sh.prop(sh.t.dictionary(sh.t.component("Rule"))),
+            "token name to type map": sh.prop(sh.t.dictionary(sh.t.simple("Integer"))),
+            "string literal to type map": sh.prop(sh.t.dictionary(sh.t.simple("Integer"))),
+            "named actions": sh.prop(sh.t.optional(sh.t.dictionary(sh.t.text_global("Multi Line Text")))),
+            "imported grammars": sh.prop(sh.t.optional(sh.t.list(sh.t.component("Grammar")))),
         })),
 
-        "Rule": module_(t.group({
-            "modifiers": prop(t.optional(t.list(t.text_global("Text Value")))),
-            "args": prop(t.optional(t.text_global("Multi Line Text"))),
-            "returns": prop(t.optional(t.text_global("Multi Line Text"))),
-            "locals": prop(t.optional(t.text_global("Multi Line Text"))),
-            "alternatives": prop(t.list(t.component("Alternative"))),
-            "named actions": prop(t.optional(t.dictionary(t.text_global("Multi Line Text")))),
-            "exceptions": prop(t.optional(t.list(t.text_global("Multi Line Text")))),
+        "Rule": sh.module_(sh.t.group({
+            "modifiers": sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("Text Value")))),
+            "args": sh.prop(sh.t.optional(sh.t.text_global("Multi Line Text"))),
+            "returns": sh.prop(sh.t.optional(sh.t.text_global("Multi Line Text"))),
+            "locals": sh.prop(sh.t.optional(sh.t.text_global("Multi Line Text"))),
+            "alternatives": sh.prop(sh.t.list(sh.t.component("Alternative"))),
+            "named actions": sh.prop(sh.t.optional(sh.t.dictionary(sh.t.text_global("Multi Line Text")))),
+            "exceptions": sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("Multi Line Text")))),
         })),
 
-        "Alternative": module_(t.group({
-            "items": prop(t.list(t.component("Item"))),
-            "actions": prop(t.optional(t.list(t.text_global("Multi Line Text")))),
-            "label": prop(t.optional(t.text_global("Text Value"))),
+        "Alternative": sh.module_(sh.t.group({
+            "items": sh.prop(sh.t.list(sh.t.component("Item"))),
+            "actions": sh.prop(sh.t.optional(sh.t.list(sh.t.text_global("Multi Line Text")))),
+            "label": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
         })),
 
-        "Item": module_(t.state({
-            "token": toption(t.group({
-                "name": prop(t.text_global("Text Value")),
-                "label": prop(t.optional(t.text_global("Text Value"))),
+        "Item": sh.module_(sh.t.state({
+            "token": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("Text Value")),
+                "label": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
             })),
-            "rule": toption(t.group({
-                "name": prop(t.text_global("Text Value")),
-                "arguments": prop(t.optional(t.text_global("Multi Line Text"))),
-                "label": prop(t.optional(t.text_global("Text Value"))),
+            "rule": sh.toption(sh.t.group({
+                "name": sh.prop(sh.t.text_global("Text Value")),
+                "arguments": sh.prop(sh.t.optional(sh.t.text_global("Multi Line Text"))),
+                "label": sh.prop(sh.t.optional(sh.t.text_global("Text Value"))),
             })),
-            "action": toption(t.group({
-                "code": prop(t.text_global("Multi Line Text")),
+            "action": sh.toption(sh.t.group({
+                "code": sh.prop(sh.t.text_global("Multi Line Text")),
             })),
-            "predicate": toption(t.group({
-                "code": prop(t.text_global("Multi Line Text")),
+            "predicate": sh.toption(sh.t.group({
+                "code": sh.prop(sh.t.text_global("Multi Line Text")),
             })),
-            "set": toption(t.group({
-                "items": prop(t.list(t.component("Item"))),
+            "set": sh.toption(sh.t.group({
+                "items": sh.prop(sh.t.list(sh.t.component("Item"))),
             })),
-            "range": toption(t.group({
-                "from": prop(t.text_global("Text Value")),
-                "to": prop(t.text_global("Text Value")),
+            "range": sh.toption(sh.t.group({
+                "from": sh.prop(sh.t.text_global("Text Value")),
+                "to": sh.prop(sh.t.text_global("Text Value")),
             })),
-            "wildcard": toption(t.nothing()),
-            "block": toption(t.group({
-                "alternatives": prop(t.list(t.component("Alternative"))),
-                "ebnf": prop(t.optional(t.state({
-                    "plus": toption(t.nothing()),
-                    "star": toption(t.nothing()),
-                    "optional": toption(t.nothing()),
+            "wildcard": sh.toption(sh.t.nothing()),
+            "block": sh.toption(sh.t.group({
+                "alternatives": sh.prop(sh.t.list(sh.t.component("Alternative"))),
+                "ebnf": sh.prop(sh.t.optional(sh.t.state({
+                    "plus": sh.toption(sh.t.nothing()),
+                    "star": sh.toption(sh.t.nothing()),
+                    "optional": sh.toption(sh.t.nothing()),
                 }))),
             })),
         })),

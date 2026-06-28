@@ -1,397 +1,387 @@
 
-
-import {
-    n,
-    modules,
-
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Root": module_(t.group({
-            "Bankrekeningen": prop(t.dictionary(t.group({}))),
-            "Beheer": prop(t.group({
-                "Balans": prop(t.group({
-                    "Grootboekrekeningen": prop(t.dictionary(t.group({
-                        "Hoofdcategorie": prop(t.text_global("Pseudo Reference")),
-                        "Subcategorie": prop(t.text_global("Pseudo Reference")),
-                        "Zijde": prop(t.state({
-                            "Activa": toption(t.group({})),
-                            "Passiva": toption(t.group({})),
+        "Root": sh.module_(sh.t.group({
+            "Bankrekeningen": sh.prop(sh.t.dictionary(sh.t.group({}))),
+            "Beheer": sh.prop(sh.t.group({
+                "Balans": sh.prop(sh.t.group({
+                    "Grootboekrekeningen": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Hoofdcategorie": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        "Subcategorie": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        "Zijde": sh.prop(sh.t.state({
+                            "Activa": sh.toption(sh.t.group({})),
+                            "Passiva": sh.toption(sh.t.group({})),
                         })),
                     }))),
-                    "Hoofdcategorieen": prop(t.dictionary(t.group({
-                        "Zijde": prop(t.state({
-                            "Activa": toption(t.group({})),
-                            "Passiva": toption(t.group({})),
+                    "Hoofdcategorieen": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Zijde": sh.prop(sh.t.state({
+                            "Activa": sh.toption(sh.t.group({})),
+                            "Passiva": sh.toption(sh.t.group({})),
                         })),
-                        "Subcategorieen": prop(t.dictionary(t.group({
-                            "Hoofdcategorie fiscus": prop(t.text_global("Pseudo Reference")),
-                            "Subcategorie fiscus": prop(t.text_global("Pseudo Reference")),
+                        "Subcategorieen": sh.prop(sh.t.dictionary(sh.t.group({
+                            "Hoofdcategorie fiscus": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Subcategorie fiscus": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })))
                     }))),
-                    "Hoofdcategorieen fiscus": prop(t.dictionary(t.group({
-                        "Zijde": prop(t.state({
-                            "Activa": toption(t.group({})),
-                            "Passiva": toption(t.group({})),
+                    "Hoofdcategorieen fiscus": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Zijde": sh.prop(sh.t.state({
+                            "Activa": sh.toption(sh.t.group({})),
+                            "Passiva": sh.toption(sh.t.group({})),
                         })),
-                        "Subcategorieen": prop(t.dictionary(t.group({})))
+                        "Subcategorieen": sh.prop(sh.t.dictionary(sh.t.group({})))
                     }))),
                 })),
-                "BTW-categorieen": prop(t.dictionary(t.group({
-                    "BTW-heffing": prop(t.state({
-                        "Ja": toption(t.group({
-                            "BTW-promillage": prop(t.simple("Promillage")),
+                "BTW-categorieen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "BTW-heffing": sh.prop(sh.t.state({
+                        "Ja": sh.toption(sh.t.group({
+                            "BTW-promillage": sh.prop(sh.t.simple("Promillage")),
                         })),
-                        "Nee": toption(t.group({}))
+                        "Nee": sh.toption(sh.t.group({}))
                     }))
                 }))),
-                "Gebruikers": prop(t.dictionary(t.group({
-                    "Volledige naam": prop(t.text_global("Benaming")),
-                    "Wachtwoord": prop(t.text_global("Wachtwoord")),
+                "Gebruikers": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Volledige naam": sh.prop(sh.t.text_global("Benaming")),
+                    "Wachtwoord": sh.prop(sh.t.text_global("Wachtwoord")),
                 }))),
-                "Huidige datum": prop(t.simple("Datum")),
-                "Resultaat": prop(t.group({
-                    "Correctietypes vennootschapsbelasting": prop(t.dictionary(t.group({
-                        "Te corrigeren promillage": prop(t.simple("Promillage")),
+                "Huidige datum": sh.prop(sh.t.simple("Datum")),
+                "Resultaat": sh.prop(sh.t.group({
+                    "Correctietypes vennootschapsbelasting": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Te corrigeren promillage": sh.prop(sh.t.simple("Promillage")),
                     }))),
-                    "Grootboekrekeningen": prop(t.dictionary(t.group({
-                        "Hoofdcategorie": prop(t.text_global("Pseudo Reference")),
-                        "Subcategorie": prop(t.text_global("Pseudo Reference")),
-                        "Zijde": prop(t.state({
-                            "Kosten": toption(t.group({
-                                "Correctie op vennootschapsbelasting": prop(t.state({
-                                    "Ja": toption(t.group({
-                                        "Correctietype": prop(t.text_global("Pseudo Reference")),
+                    "Grootboekrekeningen": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Hoofdcategorie": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        "Subcategorie": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        "Zijde": sh.prop(sh.t.state({
+                            "Kosten": sh.toption(sh.t.group({
+                                "Correctie op vennootschapsbelasting": sh.prop(sh.t.state({
+                                    "Ja": sh.toption(sh.t.group({
+                                        "Correctietype": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
-                                    "Nee": toption(t.group({})),
+                                    "Nee": sh.toption(sh.t.group({})),
                                 }))
                             })),
-                            "Opbrengsten": toption(t.group({})),
+                            "Opbrengsten": sh.toption(sh.t.group({})),
                         })),
                     }))),
-                    "Hoofdcategorieen": prop(t.dictionary(t.group({
-                        "Zijde": prop(t.state({
-                            "Kosten": toption(t.group({})),
-                            "Opbrengsten": toption(t.group({})),
+                    "Hoofdcategorieen": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Zijde": sh.prop(sh.t.state({
+                            "Kosten": sh.toption(sh.t.group({})),
+                            "Opbrengsten": sh.toption(sh.t.group({})),
                         })),
-                        "Subcategorieen": prop(t.dictionary(t.group({
-                            "Hoofdcategorie fiscus": prop(t.text_global("Pseudo Reference")),
-                            "Subcategorie fiscus": prop(t.text_global("Pseudo Reference")),
+                        "Subcategorieen": sh.prop(sh.t.dictionary(sh.t.group({
+                            "Hoofdcategorie fiscus": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Subcategorie fiscus": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })))
                     }))),
-                    "Hoofdcategorieen fiscus": prop(t.dictionary(t.group({
-                        "Zijde": prop(t.state({
-                            "Kosten": toption(t.group({})),
-                            "Opbrengsten": toption(t.group({})),
+                    "Hoofdcategorieen fiscus": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Zijde": sh.prop(sh.t.state({
+                            "Kosten": sh.toption(sh.t.group({})),
+                            "Opbrengsten": sh.toption(sh.t.group({})),
                         })),
-                        "Subcategorieen": prop(t.dictionary(t.group({})))
+                        "Subcategorieen": sh.prop(sh.t.dictionary(sh.t.group({})))
                     }))),
                 }))
             })),
-            "Informele rekeningen": prop(t.dictionary(t.group({}))),
-            "Jaren": prop(t.dictionary(t.group({
-                "Afgesloten": prop(t.state({
-                    "Ja": toption(t.group({})),
-                    "Nee": toption(t.group({})),
+            "Informele rekeningen": sh.prop(sh.t.dictionary(sh.t.group({}))),
+            "Jaren": sh.prop(sh.t.dictionary(sh.t.group({
+                "Afgesloten": sh.prop(sh.t.state({
+                    "Ja": sh.toption(sh.t.group({})),
+                    "Nee": sh.toption(sh.t.group({})),
                 })),
-                "Balans grootboekrekeningen": prop(t.dictionary(t.group({
-                    "Type": prop(t.state({
-                        "Bankrekening": toption(t.group({})),
-                        "Overig": toption(t.group({})),
-                        "Informele rekening": toption(t.group({})),
+                "Balans grootboekrekeningen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Type": sh.prop(sh.t.state({
+                        "Bankrekening": sh.toption(sh.t.group({})),
+                        "Overig": sh.toption(sh.t.group({})),
+                        "Informele rekening": sh.toption(sh.t.group({})),
                     }))
                 }))),
-                "Bankrekeningen": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.simple("Bedrag")),
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
-                    "Mutaties": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.simple("Bedrag")),
-                        "Datum": prop(t.simple("Datum")),
-                        "Omschrijving": prop(t.text_global("Omschrijving")),
-                        "Status": prop(t.state({
-                            "Nog te verwerken": toption(t.group({})),
-                            "Verwerkt": toption(t.group({
-                                "Afhandeling": prop(t.state({
-                                    "Inkoop": toption(t.group({
-                                        "Jaar": prop(t.text_global("Pseudo Reference")),
-                                        "Inkoop": prop(t.text_global("Pseudo Reference")),
+                "Bankrekeningen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Beginsaldo": sh.prop(sh.t.simple("Bedrag")),
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
+                    "Mutaties": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bedrag": sh.prop(sh.t.simple("Bedrag")),
+                        "Datum": sh.prop(sh.t.simple("Datum")),
+                        "Omschrijving": sh.prop(sh.t.text_global("Omschrijving")),
+                        "Status": sh.prop(sh.t.state({
+                            "Nog te verwerken": sh.toption(sh.t.group({})),
+                            "Verwerkt": sh.toption(sh.t.group({
+                                "Afhandeling": sh.prop(sh.t.state({
+                                    "Inkoop": sh.toption(sh.t.group({
+                                        "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                        "Inkoop": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
-                                    "Verrekenpost": toption(t.group({
-                                        "Verrekenpost": prop(t.text_global("Pseudo Reference")),
+                                    "Verrekenpost": sh.toption(sh.t.group({
+                                        "Verrekenpost": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
-                                    "BTW-periode": toption(t.group({
-                                        "Jaar": prop(t.text_global("Pseudo Reference")),
-                                        "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                                    "BTW-periode": sh.toption(sh.t.group({
+                                        "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                        "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
-                                    "Verkoop": toption(t.group({
-                                        "Jaar": prop(t.text_global("Pseudo Reference")),
-                                        "Verkoop": prop(t.text_global("Pseudo Reference")),
+                                    "Verkoop": sh.toption(sh.t.group({
+                                        "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                        "Verkoop": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
-                                    "Informele rekening": toption(t.group({
-                                        "Informele rekening": prop(t.text_global("Pseudo Reference")),
+                                    "Informele rekening": sh.toption(sh.t.group({
+                                        "Informele rekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                                     })),
                                 }))
                             })),
                         }))
                     }))),
-                    "Nieuw": prop(t.state({
-                        "Ja": toption(t.group({})),
-                        "Nee": toption(t.group({
-                            "Jaar": prop(t.text_global("Pseudo Reference")),
-                            "Rekening": prop(t.text_global("Pseudo Reference")),
+                    "Nieuw": sh.prop(sh.t.state({
+                        "Ja": sh.toption(sh.t.group({})),
+                        "Nee": sh.toption(sh.t.group({
+                            "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Rekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     })),
                 }))),
-                "Beginsaldo nog aan te geven BTW": prop(t.simple("Bedrag")),
-                "Beginsaldo winstreserve": prop(t.simple("Bedrag")),
-                "BTW periode saldo": prop(t.group({
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
+                "Beginsaldo nog aan te geven BTW": sh.prop(sh.t.simple("Bedrag")),
+                "Beginsaldo winstreserve": sh.prop(sh.t.simple("Bedrag")),
+                "BTW periode saldo": sh.prop(sh.t.group({
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                 })),
-                "BTW periodes": prop(t.dictionary(t.group({
-                    "1. BTW-categorieen": prop(t.dictionary(t.group({}))),
-                    "Documenten": prop(t.dictionary(t.group({
-                        "Bestand": prop(t.component("Bestandsnaam")),
+                "BTW periodes": sh.prop(sh.t.dictionary(sh.t.group({
+                    "1. BTW-categorieen": sh.prop(sh.t.dictionary(sh.t.group({}))),
+                    "Documenten": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bestand": sh.prop(sh.t.component("Bestandsnaam")),
                     }))),
-                    "Omschrijving": prop(t.text_global("Omschrijving")),
-                    "Status": prop(t.state({
-                        "Aangegeven": toption(t.group({
-                            "Afronding": prop(t.simple("Bedrag")),
-                            "Bedrag": prop(t.simple("Bedrag")),
-                            "Datum": prop(t.simple("Datum")),
+                    "Omschrijving": sh.prop(sh.t.text_global("Omschrijving")),
+                    "Status": sh.prop(sh.t.state({
+                        "Aangegeven": sh.toption(sh.t.group({
+                            "Afronding": sh.prop(sh.t.simple("Bedrag")),
+                            "Bedrag": sh.prop(sh.t.simple("Bedrag")),
+                            "Datum": sh.prop(sh.t.simple("Datum")),
                         })),
-                        "Openstaand": toption(t.group({})),
+                        "Openstaand": sh.toption(sh.t.group({})),
                     })),
                 }))),
-                "Eerste boekjaar": prop(t.state({
-                    "Ja": toption(t.group({})),
-                    "Nee": toption(t.group({
-                        "Vorig boekjaar": prop(t.text_global("Pseudo Reference")),
+                "Eerste boekjaar": sh.prop(sh.t.state({
+                    "Ja": sh.toption(sh.t.group({})),
+                    "Nee": sh.toption(sh.t.group({
+                        "Vorig boekjaar": sh.prop(sh.t.text_global("Pseudo Reference")),
                     })),
                 })),
-                "Grootboekrekening voor BTW afrondingen": prop(t.text_global("Pseudo Reference")),
-                "Grootboekrekening voor nog aan te geven BTW": prop(t.text_global("Pseudo Reference")),
-                "Grootboekrekening voor resultaat dit jaar": prop(t.text_global("Pseudo Reference")),
-                "Grootboekrekening voor winstreserve": prop(t.text_global("Pseudo Reference")),
-                "Informele rekeningen": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.simple("Bedrag")),
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
-                    "Nieuw": prop(t.state({
-                        "Ja": toption(t.group({})),
-                        "Nee": toption(t.group({
-                            "Jaar": prop(t.text_global("Pseudo Reference")),
-                            "Rekening": prop(t.text_global("Pseudo Reference")),
+                "Grootboekrekening voor BTW afrondingen": sh.prop(sh.t.text_global("Pseudo Reference")),
+                "Grootboekrekening voor nog aan te geven BTW": sh.prop(sh.t.text_global("Pseudo Reference")),
+                "Grootboekrekening voor resultaat dit jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                "Grootboekrekening voor winstreserve": sh.prop(sh.t.text_global("Pseudo Reference")),
+                "Informele rekeningen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Beginsaldo": sh.prop(sh.t.simple("Bedrag")),
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
+                    "Nieuw": sh.prop(sh.t.state({
+                        "Ja": sh.toption(sh.t.group({})),
+                        "Nee": sh.toption(sh.t.group({
+                            "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Rekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     }))
                 }))),
-                "Inkopen": prop(t.dictionary(t.group({
-                    "Afhandeling": prop(t.state({
-                        "Nog te betalen": toption(t.group({
-                            "Betalingstermijn": prop(t.simple("Dagen")),
+                "Inkopen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Afhandeling": sh.prop(sh.t.state({
+                        "Nog te betalen": sh.toption(sh.t.group({
+                            "Betalingstermijn": sh.prop(sh.t.simple("Dagen")),
                         })),
-                        "Mutaties": toption(t.group({})),
-                        "Rekening courant": toption(t.group({
-                            "Rekening courant": prop(t.text_global("Pseudo Reference")),
-                        })),
-                    })),
-                    "BTW-regime": prop(t.state({
-                        "Binnenland: heffing verlegd": toption(t.group({
-                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
-                        })),
-                        "Geen BTW van toepassing": toption(t.group({
-                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
-                        })),
-                        "Import van buiten de EU": toption(t.group({
-                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
-                        })),
-                        "Intracommunautair": toption(t.group({
-                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
-                        })),
-                        "Standaard": toption(t.group({
-                            "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                        "Mutaties": sh.toption(sh.t.group({})),
+                        "Rekening courant": sh.toption(sh.t.group({
+                            "Rekening courant": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     })),
-                    "Brondocument": prop(t.state({
-                        "Toegevoegd": toption(t.group({
-                            "Document": prop(t.component("Bestandsnaam")),
+                    "BTW-regime": sh.prop(sh.t.state({
+                        "Binnenland: heffing verlegd": sh.toption(sh.t.group({
+                            "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
-                        "Niet van toepassing": toption(t.group({})),
-                        "Ontbreekt": toption(t.group({})),
-                        "Nog toevoegen": toption(t.group({})),
+                        "Geen BTW van toepassing": sh.toption(sh.t.group({
+                            "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        })),
+                        "Import van buiten de EU": sh.toption(sh.t.group({
+                            "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        })),
+                        "Intracommunautair": sh.toption(sh.t.group({
+                            "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        })),
+                        "Standaard": sh.toption(sh.t.group({
+                            "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        })),
                     })),
-                    "Datum": prop(t.simple("Datum")),
-                    "Regels": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.state({
-                            "Bekend": toption(t.group({
-                                "BTW-bedrag": prop(t.simple("Bedrag")),
-                                "Bedrag inclusief geheven BTW": prop(t.simple("Bedrag")),
+                    "Brondocument": sh.prop(sh.t.state({
+                        "Toegevoegd": sh.toption(sh.t.group({
+                            "Document": sh.prop(sh.t.component("Bestandsnaam")),
+                        })),
+                        "Niet van toepassing": sh.toption(sh.t.group({})),
+                        "Ontbreekt": sh.toption(sh.t.group({})),
+                        "Nog toevoegen": sh.toption(sh.t.group({})),
+                    })),
+                    "Datum": sh.prop(sh.t.simple("Datum")),
+                    "Regels": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bedrag": sh.prop(sh.t.state({
+                            "Bekend": sh.toption(sh.t.group({
+                                "BTW-bedrag": sh.prop(sh.t.simple("Bedrag")),
+                                "Bedrag inclusief geheven BTW": sh.prop(sh.t.simple("Bedrag")),
                             }))
                         })),
-                        "Omschrijving": prop(t.text_global("Omschrijving")),
-                        "Type": prop(t.state({
-                            "Balans": toption(t.group({
-                                "Balans item": prop(t.text_global("Pseudo Reference")),
+                        "Omschrijving": sh.prop(sh.t.text_global("Omschrijving")),
+                        "Type": sh.prop(sh.t.state({
+                            "Balans": sh.toption(sh.t.group({
+                                "Balans item": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "Kosten": toption(t.group({
-                                "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
+                            "Kosten": sh.toption(sh.t.group({
+                                "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
                         })),
                     }))),
-                    "Type": prop(t.state({
-                        "Bonnetje": toption(t.group({})),
-                        "Inkoop (met crediteur)": toption(t.group({
-                            "Crediteur": prop(t.text_global("Pseudo Reference")),
-                            "Factuurnummer": prop(t.text_global("Benaming"))
+                    "Type": sh.prop(sh.t.state({
+                        "Bonnetje": sh.toption(sh.t.group({})),
+                        "Inkoop (met crediteur)": sh.toption(sh.t.group({
+                            "Crediteur": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Factuurnummer": sh.prop(sh.t.text_global("Benaming"))
                         })),
-                        "Loonheffing": toption(t.group({
-                            "Ronde": prop(t.text_global("Pseudo Reference")),
+                        "Loonheffing": sh.toption(sh.t.group({
+                            "Ronde": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
-                        "Salaris": toption(t.group({
-                            "Ronde": prop(t.text_global("Pseudo Reference")),
-                            "Medewerker": prop(t.text_global("Pseudo Reference")),
+                        "Salaris": sh.toption(sh.t.group({
+                            "Ronde": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Medewerker": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     })),
                 }))),
-                "Inkoop saldo": prop(t.group({
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
+                "Inkoop saldo": sh.prop(sh.t.group({
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                 })),
-                "Overige balans items": prop(t.dictionary(t.group({
-                    "Beginsaldo": prop(t.simple("Bedrag")),
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
-                    "Memoriaal boekingen": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.simple("Bedrag")),
-                        "Datum": prop(t.simple("Datum")),
-                        "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
-                        "Omschrijving": prop(t.text_global("Omschrijving")),
+                "Overige balans items": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Beginsaldo": sh.prop(sh.t.simple("Bedrag")),
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
+                    "Memoriaal boekingen": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bedrag": sh.prop(sh.t.simple("Bedrag")),
+                        "Datum": sh.prop(sh.t.simple("Datum")),
+                        "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
+                        "Omschrijving": sh.prop(sh.t.text_global("Omschrijving")),
                     }))),
-                    "Nieuw": prop(t.state({
-                        "Ja": toption(t.group({})),
-                        "Nee": toption(t.group({
-                            "Jaar": prop(t.text_global("Pseudo Reference")),
-                            "Balans item": prop(t.text_global("Pseudo Reference")),
+                    "Nieuw": sh.prop(sh.t.state({
+                        "Ja": sh.toption(sh.t.group({})),
+                        "Nee": sh.toption(sh.t.group({
+                            "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Balans item": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     })),
                 }))),
-                "Resultaat grootboekrekeningen": prop(t.dictionary(t.group({}))),
-                "Salarisrondes": prop(t.dictionary(t.group({}))),
-                "Startdatum boekjaar": prop(t.simple("Datum")),
-                "Verkoop saldo": prop(t.group({
-                    "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
+                "Resultaat grootboekrekeningen": sh.prop(sh.t.dictionary(sh.t.group({}))),
+                "Salarisrondes": sh.prop(sh.t.dictionary(sh.t.group({}))),
+                "Startdatum boekjaar": sh.prop(sh.t.simple("Datum")),
+                "Verkoop saldo": sh.prop(sh.t.group({
+                    "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                 })),
-                "Verkopen": prop(t.dictionary(t.group({
-                    "Afhandeling": prop(t.state({
-                        "Mutaties": toption(t.group({})),
-                        "Rekening courant": toption(t.group({
-                            "Rekening courant": prop(t.text_global("Pseudo Reference"))
+                "Verkopen": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Afhandeling": sh.prop(sh.t.state({
+                        "Mutaties": sh.toption(sh.t.group({})),
+                        "Rekening courant": sh.toption(sh.t.group({
+                            "Rekening courant": sh.prop(sh.t.text_global("Pseudo Reference"))
                         })),
                     })),
-                    "Betalingstermijn": prop(t.simple("Dagen")),
-                    "BTW-periode": prop(t.text_global("Pseudo Reference")),
-                    "Brondocument": prop(t.state({
-                        "Toegevoegd": toption(t.group({
-                            "Document": prop(t.component("Bestandsnaam"))
+                    "Betalingstermijn": sh.prop(sh.t.simple("Dagen")),
+                    "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
+                    "Brondocument": sh.prop(sh.t.state({
+                        "Toegevoegd": sh.toption(sh.t.group({
+                            "Document": sh.prop(sh.t.component("Bestandsnaam"))
                         })),
                     })),
-                    "Contracttype": prop(t.state({
-                        "Project": toption(t.group({
-                            "Project": prop(t.text_global("Pseudo Reference")),
-                            "Offerte": prop(t.text_global("Pseudo Reference")),
+                    "Contracttype": sh.prop(sh.t.state({
+                        "Project": sh.toption(sh.t.group({
+                            "Project": sh.prop(sh.t.text_global("Pseudo Reference")),
+                            "Offerte": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
-                        "Licentieovereenkomst": toption(t.group({
-                            "Overeenkomst": prop(t.text_global("Pseudo Reference")),
+                        "Licentieovereenkomst": sh.toption(sh.t.group({
+                            "Overeenkomst": sh.prop(sh.t.text_global("Pseudo Reference")),
                         })),
                     })),
-                    "Datum": prop(t.simple("Datum")),
-                    "Debiteur": prop(t.text_global("Pseudo Reference")),
-                    "Regels": prop(t.dictionary(t.group({
-                        "BTW-regime": prop(t.state({
-                            "Intracommunautair": toption(t.group({})),
-                            "Standaard": toption(t.group({
-                                "BTW-categorie": prop(t.text_global("Pseudo Reference")),
+                    "Datum": sh.prop(sh.t.simple("Datum")),
+                    "Debiteur": sh.prop(sh.t.text_global("Pseudo Reference")),
+                    "Regels": sh.prop(sh.t.dictionary(sh.t.group({
+                        "BTW-regime": sh.prop(sh.t.state({
+                            "Intracommunautair": sh.toption(sh.t.group({})),
+                            "Standaard": sh.toption(sh.t.group({
+                                "BTW-categorie": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "Binnenland: heffing verlegd": toption(t.group({})),
+                            "Binnenland: heffing verlegd": sh.toption(sh.t.group({})),
                         })),
-                        "Bedrag exclusief BTW": prop(t.simple("Bedrag")),
-                        "Contracttype": prop(t.state({
-                            "Project": toption(t.group({
-                                "Opbrengst": prop(t.text_global("Pseudo Reference")),
+                        "Bedrag exclusief BTW": sh.prop(sh.t.simple("Bedrag")),
+                        "Contracttype": sh.prop(sh.t.state({
+                            "Project": sh.toption(sh.t.group({
+                                "Opbrengst": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "Los": toption(t.group({})),
-                            "Licentieovereenkomst": toption(t.group({
-                                "Periode": prop(t.text_global("Pseudo Reference"))
+                            "Los": sh.toption(sh.t.group({})),
+                            "Licentieovereenkomst": sh.toption(sh.t.group({
+                                "Periode": sh.prop(sh.t.text_global("Pseudo Reference"))
                             })),
                         })),
-                        "Omschrijving": prop(t.text_global("Omschrijving")),
-                        "Type": prop(t.state({
-                            "Opbrengsten": toption(t.group({
-                                "Grootboekrekening": prop(t.text_global("Pseudo Reference")),
+                        "Omschrijving": sh.prop(sh.t.text_global("Omschrijving")),
+                        "Type": sh.prop(sh.t.state({
+                            "Opbrengsten": sh.toption(sh.t.group({
+                                "Grootboekrekening": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "Balans": toption(t.group({
-                                "Balans item": prop(t.text_global("Pseudo Reference")),
+                            "Balans": sh.toption(sh.t.group({
+                                "Balans item": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
                         })),
                     }))),
                 }))),
-                "Verrekenposten": prop(t.dictionary(t.group({
-                    "Mutaties": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.simple("Bedrag")),
-                        "Afhandeling": prop(t.state({
-                            "Inkoop": toption(t.group({
-                                "Jaar": prop(t.text_global("Pseudo Reference")),
-                                "Inkoop": prop(t.text_global("Pseudo Reference")),
+                "Verrekenposten": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Mutaties": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bedrag": sh.prop(sh.t.simple("Bedrag")),
+                        "Afhandeling": sh.prop(sh.t.state({
+                            "Inkoop": sh.toption(sh.t.group({
+                                "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                "Inkoop": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "Informele rekening": toption(t.group({
-                                "Informele rekening": prop(t.text_global("Pseudo Reference"))
+                            "Informele rekening": sh.toption(sh.t.group({
+                                "Informele rekening": sh.prop(sh.t.text_global("Pseudo Reference"))
                             })),
-                            "Verkoop": toption(t.group({
-                                "Jaar": prop(t.text_global("Pseudo Reference")),
-                                "Verkoop": prop(t.text_global("Pseudo Reference")),
+                            "Verkoop": sh.toption(sh.t.group({
+                                "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                "Verkoop": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
-                            "BTW-periode": toption(t.group({
-                                "Jaar": prop(t.text_global("Pseudo Reference")),
-                                "BTW-periode": prop(t.text_global("Pseudo Reference")),
+                            "BTW-periode": sh.toption(sh.t.group({
+                                "Jaar": sh.prop(sh.t.text_global("Pseudo Reference")),
+                                "BTW-periode": sh.prop(sh.t.text_global("Pseudo Reference")),
                             })),
                         }))
                     })))
                 }))),
             }))),
-            "Klanten": prop(t.dictionary(t.group({
-                "Licentieovereenkomsten": prop(t.dictionary(t.group({
-                    "Periodes": prop(t.dictionary(t.group({
-                        "Bedrag": prop(t.simple("Bedrag")),
+            "Klanten": sh.prop(sh.t.dictionary(sh.t.group({
+                "Licentieovereenkomsten": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Periodes": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Bedrag": sh.prop(sh.t.simple("Bedrag")),
                     }))),
                 }))),
-                "Projecten": prop(t.dictionary(t.group({
-                    "Offertes": prop(t.dictionary(t.group({
-                        "Opbrengsten": prop(t.dictionary(t.group({
-                            "Type": prop(t.state({
-                                "Project": toption(t.group({
-                                    "Bedrag": prop(t.simple("Bedrag")),
-                                    "Betaaldatum": prop(t.simple("Datum")),
+                "Projecten": sh.prop(sh.t.dictionary(sh.t.group({
+                    "Offertes": sh.prop(sh.t.dictionary(sh.t.group({
+                        "Opbrengsten": sh.prop(sh.t.dictionary(sh.t.group({
+                            "Type": sh.prop(sh.t.state({
+                                "Project": sh.toption(sh.t.group({
+                                    "Bedrag": sh.prop(sh.t.simple("Bedrag")),
+                                    "Betaaldatum": sh.prop(sh.t.simple("Datum")),
                                 })),
                             })),
                         }))),
                     }))),
                 }))),
             }))),
-            "Leveranciers": prop(t.dictionary(t.group({}))),
-            "Medewerkers": prop(t.dictionary(t.group({}))),
+            "Leveranciers": sh.prop(sh.t.dictionary(sh.t.group({}))),
+            "Medewerkers": sh.prop(sh.t.dictionary(sh.t.group({}))),
         })),
         
-        // "Bestandsnaam": type(t.group({
-        //     "Naam": prop(t.text_global("text")),
-        //     "Extensie": prop(t.text_global("text")),
+        // "Bestandsnaam": type(sh.t.group({
+        //     "Naam": sh.prop(sh.t.text_global("text")),
+        //     "Extensie": sh.prop(sh.t.text_global("text")),
         // }))  
 
-        "Bestandsnaam": module_(t.group({
-            "stem": prop(t.text_global("text")),
-            "extension": prop(t.text_global("text")),
+        "Bestandsnaam": sh.module_(sh.t.group({
+            "stem": sh.prop(sh.t.text_global("text")),
+            "extension": sh.prop(sh.t.text_global("text")),
         })),
     }
 )

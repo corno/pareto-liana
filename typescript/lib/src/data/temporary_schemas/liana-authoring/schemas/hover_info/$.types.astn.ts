@@ -1,20 +1,11 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Hover Texts": module_(t.list(t.text_global("text"))),
+        "Hover Texts": sh.module_(sh.t.list(sh.t.text_global("text"))),
 
     }
 )

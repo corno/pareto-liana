@@ -1,30 +1,21 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Node Path": module_(t.group({
-            "context": prop(t.component("Context Path")),
-            "node": prop(t.text_global("text")),
+        "Node Path": sh.module_(sh.t.group({
+            "context": sh.prop(sh.t.component("Context Path")),
+            "node": sh.prop(sh.t.text_global("text")),
         })),
 
-        "Context Path": module_(t.group({
-            "start": prop(t.nothing()), //to make sure it is not castable to a unrestricted context path
-            "subpath": prop(t.component("Context Subpath")),
+        "Context Path": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.nothing()), //to make sure it is not castable to a unrestricted context path
+            "subpath": sh.prop(sh.t.component("Context Subpath")),
         })),
 
-        "Context Subpath": module_(t.list(t.text_global("text"))),
+        "Context Subpath": sh.module_(sh.t.list(sh.t.text_global("text"))),
 
     }
 )

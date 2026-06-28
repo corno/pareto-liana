@@ -1,31 +1,22 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Completion Suggestions": module_(t.optional(t.group({
-            "type": prop(t.state({
-                "missing value": toption(t.nothing()),
-                "missing option": toption(t.nothing()),
-                "reference": toption(t.nothing()),
-                "property name": toption(t.nothing()),
-                "option name": toption(t.nothing()),
+        "Completion Suggestions": sh.module_(sh.t.optional(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "missing value": sh.toption(sh.t.nothing()),
+                "missing option": sh.toption(sh.t.nothing()),
+                "reference": sh.toption(sh.t.nothing()),
+                "property name": sh.toption(sh.t.nothing()),
+                "option name": sh.toption(sh.t.nothing()),
             })),
-            "suggestions": prop(t.list(t.group({
-                "label": prop(t.text_global("text")),
-                "insert text": prop(t.text_global("text")),
-                "documentation": prop(t.text_global("multi line text")),
+            "suggestions": sh.prop(sh.t.list(sh.t.group({
+                "label": sh.prop(sh.t.text_global("text")),
+                "insert text": sh.prop(sh.t.text_global("text")),
+                "documentation": sh.prop(sh.t.text_global("multi line text")),
             })))
         }))),
 

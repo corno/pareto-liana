@@ -1,69 +1,60 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Error": module_(t.group({
-            "type": prop(t.state({
-                "lexer": toption(t.component("Lexer Error")),
-                "parser": toption(t.component("Parser Error")),
+        "Error": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.state({
+                "lexer": sh.toption(sh.t.component("Lexer Error")),
+                "parser": sh.toption(sh.t.component("Parser Error")),
             })),
         })),
 
-        "Lexer Error": module_(t.group({
-            "range": prop(t.component_external("location", "Range")),
-            "expected": prop(t.state({
-                "no end of line in text": toption(t.nothing()),
-                "escape character": toption(t.group({
-                    "found": prop(t.optional(t.simple("Natural"))),
+        "Lexer Error": sh.module_(sh.t.group({
+            "range": sh.prop(sh.t.component_external("location", "Range")),
+            "expected": sh.prop(sh.t.state({
+                "no end of line in text": sh.toption(sh.t.nothing()),
+                "escape character": sh.toption(sh.t.group({
+                    "found": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
                 })),
-                "unicode character": toption(t.group({
-                    "found": prop(t.optional(t.simple("Natural"))),
+                "unicode character": sh.toption(sh.t.group({
+                    "found": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
                 })),
-                "block comment termination": toption(t.nothing()),
-                "text termination": toption(t.nothing()),
+                "block comment termination": sh.toption(sh.t.nothing()),
+                "text termination": sh.toption(sh.t.nothing()),
             }))
         })),
 
-        "Parser Error": module_(t.group({
-            "expected": prop(t.list(t.component("Expected"))),
-            "cause": prop(t.state({
-                "missing token": toption(t.group({
-                    "end": prop(t.component_external("location", "Location")),
+        "Parser Error": sh.module_(sh.t.group({
+            "expected": sh.prop(sh.t.list(sh.t.component("Expected"))),
+            "cause": sh.prop(sh.t.state({
+                "missing token": sh.toption(sh.t.group({
+                    "end": sh.prop(sh.t.component_external("location", "Location")),
                 })),
-                "unexpected token": toption(t.group({
-                    "found": prop(t.component_external("token", "Annotated Token")),
+                "unexpected token": sh.toption(sh.t.group({
+                    "found": sh.prop(sh.t.component_external("token", "Annotated Token")),
                 })),
             })),
         })),
 
-        "Expected": module_(t.state({
-            "a text value": toption(t.nothing()),
-            "any value": toption(t.nothing()),
-            "!": toption(t.nothing()),
-            ">": toption(t.nothing()),
-            "}": toption(t.nothing()),
-            "@": toption(t.nothing()),
-            ",": toption(t.nothing()),
-            ":": toption(t.nothing()),
-            ")": toption(t.nothing()),
-            "]": toption(t.nothing()),
-            "#": toption(t.nothing()),
+        "Expected": sh.module_(sh.t.state({
+            "a text value": sh.toption(sh.t.nothing()),
+            "any value": sh.toption(sh.t.nothing()),
+            "!": sh.toption(sh.t.nothing()),
+            ">": sh.toption(sh.t.nothing()),
+            "}": sh.toption(sh.t.nothing()),
+            "@": sh.toption(sh.t.nothing()),
+            ",": sh.toption(sh.t.nothing()),
+            ":": sh.toption(sh.t.nothing()),
+            ")": sh.toption(sh.t.nothing()),
+            "]": sh.toption(sh.t.nothing()),
+            "#": sh.toption(sh.t.nothing()),
         })),
 
-        "Parameters": module_(t.group({
-            "tab size": prop(t.simple("Natural")),
+        "Parameters": sh.module_(sh.t.group({
+            "tab size": sh.prop(sh.t.simple("Natural")),
         })),
 
     }

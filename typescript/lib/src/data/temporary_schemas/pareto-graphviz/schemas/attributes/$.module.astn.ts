@@ -2,15 +2,15 @@
 
 
 
-import { schema_, constrained, schema_import_, resolver_import_ } from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
 import { $ as schema } from "./$.types.astn"
 import { $ as globals } from "./$.globals.astn"
 
-export const $ = schema_(
+export const $ = sh.schema_(
     {
-        "html": schema_import_("html")
+        "html": sh.schema_import_("html")
     },
     {
         // "html": resolver_import_("html")

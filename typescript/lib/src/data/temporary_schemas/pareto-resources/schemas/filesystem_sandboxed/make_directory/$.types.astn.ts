@@ -1,24 +1,15 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Parameters": module_(t.group({
-            "delete existing": prop(t.simple("boolean")),
-            "path": prop(t.component_external("path", "Node Path")),
+        "Parameters": sh.module_(sh.t.group({
+            "delete existing": sh.prop(sh.t.simple("boolean")),
+            "path": sh.prop(sh.t.component_external("path", "Node Path")),
         })),
 
-        "Error": module_(t.component_external("unrestricted", "Error")),
+        "Error": sh.module_(sh.t.component_external("unrestricted", "Error")),
 
     }
 )

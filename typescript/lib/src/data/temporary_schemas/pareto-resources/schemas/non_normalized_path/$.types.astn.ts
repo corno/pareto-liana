@@ -1,28 +1,19 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Non Normalized Path": module_(t.group({
-            "leading slash": prop(t.simple("boolean")),
-            "segments": prop(t.list(t.state({
-                "parent": toption(t.nothing()),
-                "child": toption(t.text_global("text")),
-                "current": toption(t.nothing()),
-                "nothing": toption(t.nothing()),
+        "Non Normalized Path": sh.module_(sh.t.group({
+            "leading slash": sh.prop(sh.t.simple("boolean")),
+            "segments": sh.prop(sh.t.list(sh.t.state({
+                "parent": sh.toption(sh.t.nothing()),
+                "child": sh.toption(sh.t.text_global("text")),
+                "current": sh.toption(sh.t.nothing()),
+                "nothing": sh.toption(sh.t.nothing()),
             }))),
-            "trailing slash": prop(t.simple("boolean")),
+            "trailing slash": sh.prop(sh.t.simple("boolean")),
         }))
     }
 )

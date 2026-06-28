@@ -1,403 +1,394 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Package Set": module_(t.dictionary(t.state({
-            "package": toption(t.component("Package")),
-            "set": toption(t.component("Package Set")),
+        "Package Set": sh.module_(sh.t.dictionary(sh.t.state({
+            "package": sh.toption(sh.t.component("Package")),
+            "set": sh.toption(sh.t.component("Package Set")),
         }))),
 
-        "Package": module_(t.group({
-            "specials": prop(t.group({
-                "abort": prop(t.simple("boolean")),
-                "change context": toption(t.simple("boolean")),
-                "implement me": prop(t.simple("boolean")),
-                "iterate": prop(t.simple("boolean")),
-                "lookups": prop(t.simple("boolean")),
-                "list from text": prop(t.simple("boolean")),
-                "text from list": prop(t.simple("boolean")),
-                "unreachable code path": prop(t.simple("boolean")),
-                "variables": prop(t.simple("boolean")),
+        "Package": sh.module_(sh.t.group({
+            "specials": sh.prop(sh.t.group({
+                "abort": sh.prop(sh.t.simple("boolean")),
+                "change context": sh.toption(sh.t.simple("boolean")),
+                "implement me": sh.prop(sh.t.simple("boolean")),
+                "iterate": sh.prop(sh.t.simple("boolean")),
+                "lookups": sh.prop(sh.t.simple("boolean")),
+                "list from text": sh.prop(sh.t.simple("boolean")),
+                "text from list": sh.prop(sh.t.simple("boolean")),
+                "unreachable code path": sh.prop(sh.t.simple("boolean")),
+                "variables": sh.prop(sh.t.simple("boolean")),
             })),
-            "type imports": prop(t.component_external("interface", "Imports")),
-            "variable imports": prop(t.dictionary(t.group({
-                "tail": prop(t.list(t.text_global("TBD"))),
-                "type": prop(t.state({
-                    "ancestor": toption(t.group({
-                        "dependency": prop(t.text_global("TBD")),
-                        "number of steps": prop(t.simple("Natural")),
+            "type imports": sh.prop(sh.t.component_external("interface", "Imports")),
+            "variable imports": sh.prop(sh.t.dictionary(sh.t.group({
+                "tail": sh.prop(sh.t.list(sh.t.text_global("TBD"))),
+                "type": sh.prop(sh.t.state({
+                    "ancestor": sh.toption(sh.t.group({
+                        "dependency": sh.prop(sh.t.text_global("TBD")),
+                        "number of steps": sh.prop(sh.t.simple("Natural")),
                     })),
-                    "external": toption(t.text_global("TBD")),
-                    "sibling": toption(t.text_global("TBD")),
+                    "external": sh.toption(sh.t.text_global("TBD")),
+                    "sibling": sh.toption(sh.t.text_global("TBD")),
                 })),
             }))),
-            "functions": prop(t.dictionary(t.group({
-                "type": prop(t.group({
-                    "import": prop(t.text_global("TBD")),
-                    "type": prop(t.text_global("TBD")),
+            "functions": sh.prop(sh.t.dictionary(sh.t.group({
+                "type": sh.prop(sh.t.group({
+                    "import": sh.prop(sh.t.text_global("TBD")),
+                    "type": sh.prop(sh.t.text_global("TBD")),
                 })),
-                "expression": prop(t.component("Assign")),
-                "temp has abort": prop(t.simple("boolean")),
-                "temp has lookups": prop(t.simple("boolean")),
-                "temp has parameters": prop(t.simple("boolean")),
-            }))),
-        })),
-
-        "Temp Value Type Specification": module_(t.group({
-            "type": prop(t.group({
-                "import": prop(t.text_global("TBD")),
-                "type": prop(t.text_global("TBD")),
-            })),
-            "sub selection": prop(t.list(t.state({
-                "dictionary": toption(t.nothing()),
-                "group": toption(t.text_global("TBD")),
-                "list": toption(t.nothing()),
-                "optional": toption(t.nothing()),
-                "state": toption(t.text_global("TBD")),
+                "expression": sh.prop(sh.t.component("Assign")),
+                "temp has abort": sh.prop(sh.t.simple("boolean")),
+                "temp has lookups": sh.prop(sh.t.simple("boolean")),
+                "temp has parameters": sh.prop(sh.t.simple("boolean")),
             }))),
         })),
 
-        "Assign": module_(t.state({
-            "decide": toption(t.group({
-                "source": prop(t.component("Select Value")),
-                "type": prop(t.state({
-                    "boolean": toption(t.group({
-                        "temp resulting node": prop(t.optional(t.component("Temp Value Type Specification"))),
-                        "if false": prop(t.component("Assign")),
-                        "if true": prop(t.component("Assign")),
+        "Temp Value Type Specification": sh.module_(sh.t.group({
+            "type": sh.prop(sh.t.group({
+                "import": sh.prop(sh.t.text_global("TBD")),
+                "type": sh.prop(sh.t.text_global("TBD")),
+            })),
+            "sub selection": sh.prop(sh.t.list(sh.t.state({
+                "dictionary": sh.toption(sh.t.nothing()),
+                "group": sh.toption(sh.t.text_global("TBD")),
+                "list": sh.toption(sh.t.nothing()),
+                "optional": sh.toption(sh.t.nothing()),
+                "state": sh.toption(sh.t.text_global("TBD")),
+            }))),
+        })),
+
+        "Assign": sh.module_(sh.t.state({
+            "decide": sh.toption(sh.t.group({
+                "source": sh.prop(sh.t.component("Select Value")),
+                "type": sh.prop(sh.t.state({
+                    "boolean": sh.toption(sh.t.group({
+                        "temp resulting node": sh.prop(sh.t.optional(sh.t.component("Temp Value Type Specification"))),
+                        "if false": sh.prop(sh.t.component("Assign")),
+                        "if true": sh.prop(sh.t.component("Assign")),
                     })),
-                    "optional": toption(t.group({
-                        "temp resulting node": prop(t.optional(t.component("Temp Value Type Specification"))),
-                        "if not set": prop(t.component("Assign")),
-                        "if set": prop(t.component("Assign")),
+                    "optional": sh.toption(sh.t.group({
+                        "temp resulting node": sh.prop(sh.t.optional(sh.t.component("Temp Value Type Specification"))),
+                        "if not set": sh.prop(sh.t.component("Assign")),
+                        "if set": sh.prop(sh.t.component("Assign")),
                     })),
-                    "state": toption(t.group({
-                        "temp resulting node": prop(t.optional(t.component("Temp Value Type Specification"))),
-                        "type": prop(t.state({
-                            "partial": toption(t.group({
-                                "options": prop(t.dictionary(t.component("Assign"))),
-                                "default": prop(t.component("Assign")),
+                    "state": sh.toption(sh.t.group({
+                        "temp resulting node": sh.prop(sh.t.optional(sh.t.component("Temp Value Type Specification"))),
+                        "type": sh.prop(sh.t.state({
+                            "partial": sh.toption(sh.t.group({
+                                "options": sh.prop(sh.t.dictionary(sh.t.component("Assign"))),
+                                "default": sh.prop(sh.t.component("Assign")),
                             })),
-                            "full": toption(t.group({
-                                "options": prop(t.dictionary(t.component("Assign"))),
+                            "full": sh.toption(sh.t.group({
+                                "options": sh.prop(sh.t.dictionary(sh.t.component("Assign"))),
                             })),
-                            "single": toption(t.group({
-                                "option": prop(t.text_global("Identifier")),
-                                "if true": prop(t.component("Assign")),
-                                "if false": prop(t.component("Assign")),
+                            "single": sh.toption(sh.t.group({
+                                "option": sh.prop(sh.t.text_global("Identifier")),
+                                "if true": sh.prop(sh.t.component("Assign")),
+                                "if false": sh.prop(sh.t.component("Assign")),
                             })),
                         })),
                     })),
-                    "text": toption(t.group({
-                        "temp resulting node": prop(t.optional(t.component("Temp Value Type Specification"))),
-                        "cases": prop(t.dictionary(t.component("Assign"))),
-                        "default": prop(t.component("Assign")),
+                    "text": sh.toption(sh.t.group({
+                        "temp resulting node": sh.prop(sh.t.optional(sh.t.component("Temp Value Type Specification"))),
+                        "cases": sh.prop(sh.t.dictionary(sh.t.component("Assign"))),
+                        "default": sh.prop(sh.t.component("Assign")),
                     })),
                 })),
             })),
-            "construct": toption(t.state({
-                "boolean": toption(t.state({
-                    "literal": toption(t.state({
-                        "false": toption(t.nothing()),
-                        "true": toption(t.nothing()),
+            "construct": sh.toption(sh.t.state({
+                "boolean": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.state({
+                        "false": sh.toption(sh.t.nothing()),
+                        "true": sh.toption(sh.t.nothing()),
                     })),
-                    "from": toption(t.group({
-                        "selection": prop(t.component("Select Value")),
-                        "type": prop(t.state({
-                            "boolean": toption(t.state({
-                                "not": toption(t.nothing()),
-                                "copy": toption(t.nothing()),
+                    "from": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Select Value")),
+                        "type": sh.prop(sh.t.state({
+                            "boolean": sh.toption(sh.t.state({
+                                "not": sh.toption(sh.t.nothing()),
+                                "copy": sh.toption(sh.t.nothing()),
                             })),
-                            "dictionary": toption(t.state({
-                                "is empty": toption(t.nothing()),
+                            "dictionary": sh.toption(sh.t.state({
+                                "is empty": sh.toption(sh.t.nothing()),
                             })),
-                            "list": toption(t.state({
-                                "is empty": toption(t.nothing()),
-                            })),
-                        })),
-                    })),
-                })),
-                "dictionary": toption(t.state({
-                    "literal": toption(t.dictionary(t.component("Assign"))),
-                    "from": toption(t.group({
-                        "selection": prop(t.component("Select Value")),
-                        "type": prop(t.state({
-                            "dictionary": toption(t.state({
-                                "filter": toption(t.group({
-                                    "assign entry": prop(t.component("Assign"))
-                                })),
-                                "map": toption(t.group({
-                                    "assign entry": prop(t.component("Assign"))
-                                })),
-                                "resolve": toption(t.group({
-                                    "assign entry": prop(t.component("Assign")),
-                                    "temp resulting entry node": prop(t.component("Temp Value Type Specification")),
-                                })),
-                            })),
-                            "list": toption(t.state({
-                                "convert": toption(t.group({
-                                    "assign id": prop(t.component("Assign")),
-                                    "assign entry": prop(t.component("Assign")),
-                                    "abort": prop(t.component("Assign")),
-                                })),
+                            "list": sh.toption(sh.t.state({
+                                "is empty": sh.toption(sh.t.nothing()),
                             })),
                         })),
                     })),
                 })),
-                "group": toption(t.state({
-                    "literal": toption(t.group({
-                        "properties": prop(t.dictionary(t.component("Assign"))),
-                        "have dependencies": prop(t.simple("boolean")),
-                    })),
-                })),
-                "list": toption(t.state({
-                    "literal": toption(t.list(t.component("Assign"))),
-                    "from": toption(t.group({
-                        "selection": prop(t.component("Select Value")),
-                        "type": prop(t.state({
-                            "dictionary": toption(t.state({
-                                "convert": toption(t.group({
-                                    "assign entry": prop(t.component("Assign")),
+                "dictionary": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.dictionary(sh.t.component("Assign"))),
+                    "from": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Select Value")),
+                        "type": sh.prop(sh.t.state({
+                            "dictionary": sh.toption(sh.t.state({
+                                "filter": sh.toption(sh.t.group({
+                                    "assign entry": sh.prop(sh.t.component("Assign"))
+                                })),
+                                "map": sh.toption(sh.t.group({
+                                    "assign entry": sh.prop(sh.t.component("Assign"))
+                                })),
+                                "resolve": sh.toption(sh.t.group({
+                                    "assign entry": sh.prop(sh.t.component("Assign")),
+                                    "temp resulting entry node": sh.prop(sh.t.component("Temp Value Type Specification")),
                                 })),
                             })),
-                            "list": toption(t.state({
-                                "filter": toption(t.group({
-                                    "assign item": prop(t.component("Assign"))
-                                })),
-                                "map": toption(t.group({
-                                    "assign item": prop(t.component("Assign"))
-                                })),
-                                "map with state": toption(t.group({
-                                    "initialize state": prop(t.component("Assign")),
-                                    "assign item": prop(t.component("Assign")),
-                                    "update state": prop(t.component("Assign")),
-                                    "wrap up": prop(t.component("Assign")),
-                                })),
-                                "reduce": toption(t.group({
-                                    "initialize state": prop(t.component("Assign")),
-                                    "assign item": prop(t.component("Assign")),
-                                })),
-                                "reverse": toption(t.nothing()),
-                            })),
-                        })),
-                    })),
-                })),
-                "nothing": toption(t.nothing()),
-                "number": toption(t.state({
-                    "approximation": toption(t.state({
-                        "literal": toption(t.simple("Approximation")),
-                        "copy": toption(t.component("Select Value")),
-                    })),
-                    "integer": toption(t.state({
-                        "copy": toption(t.component("Select Value")),
-                        "divide": toption(t.group({
-                            "assign dividend": prop(t.component("Select Value")),
-                            "assign divisor": prop(t.component("Select Value")),
-                            "abort": prop(t.component("Assign")),
-                        })),
-                        "literal": toption(t.simple("Integer")),
-                    })),
-                    "natural": toption(t.state({
-                        "literal": toption(t.simple("Natural")),
-                        "copy": toption(t.component("Select Value")),
-                        "number of dictionary entries": toption(t.group({
-                            "dictionary": prop(t.component("Select Value"))
-                        })),
-                        "number of list items": toption(t.group({
-                            "list": prop(t.component("Select Value"))
-                        })),
-                        "source column": toption(t.nothing()),
-                        "source line": toption(t.nothing()),
-                    })),
-                })),
-                "optional": toption(t.state({
-                    "literal": toption(t.state({
-                        "not set": toption(t.nothing()),
-                        "set": toption(t.component("Assign")),
-                    })),
-                    "from": toption(t.group({
-                        "selection": prop(t.component("Select Value")),
-                        "type": prop(t.state({
-                            "boolean": toption(t.state({
-                                "convert": toption(t.group({
-                                    "assign set": prop(t.component("Assign")),
-                                })),
-                            })),
-                            "optional": toption(t.state({
-                                "map": toption(t.group({
-                                    "assign set": prop(t.component("Assign"))
+                            "list": sh.toption(sh.t.state({
+                                "convert": sh.toption(sh.t.group({
+                                    "assign id": sh.prop(sh.t.component("Assign")),
+                                    "assign entry": sh.prop(sh.t.component("Assign")),
+                                    "abort": sh.prop(sh.t.component("Assign")),
                                 })),
                             })),
                         })),
                     })),
                 })),
-                "state": toption(t.state({
-                    "literal": toption(t.group({
-                        "option": prop(t.text_global("Identifier")),
-                        "assign option": prop(t.component("Assign")),
+                "group": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.group({
+                        "properties": sh.prop(sh.t.dictionary(sh.t.component("Assign"))),
+                        "have dependencies": sh.prop(sh.t.simple("boolean")),
+                    })),
+                })),
+                "list": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.list(sh.t.component("Assign"))),
+                    "from": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Select Value")),
+                        "type": sh.prop(sh.t.state({
+                            "dictionary": sh.toption(sh.t.state({
+                                "convert": sh.toption(sh.t.group({
+                                    "assign entry": sh.prop(sh.t.component("Assign")),
+                                })),
+                            })),
+                            "list": sh.toption(sh.t.state({
+                                "filter": sh.toption(sh.t.group({
+                                    "assign item": sh.prop(sh.t.component("Assign"))
+                                })),
+                                "map": sh.toption(sh.t.group({
+                                    "assign item": sh.prop(sh.t.component("Assign"))
+                                })),
+                                "map with state": sh.toption(sh.t.group({
+                                    "initialize state": sh.prop(sh.t.component("Assign")),
+                                    "assign item": sh.prop(sh.t.component("Assign")),
+                                    "update state": sh.prop(sh.t.component("Assign")),
+                                    "wrap up": sh.prop(sh.t.component("Assign")),
+                                })),
+                                "reduce": sh.toption(sh.t.group({
+                                    "initialize state": sh.prop(sh.t.component("Assign")),
+                                    "assign item": sh.prop(sh.t.component("Assign")),
+                                })),
+                                "reverse": sh.toption(sh.t.nothing()),
+                            })),
+                        })),
+                    })),
+                })),
+                "nothing": sh.toption(sh.t.nothing()),
+                "number": sh.toption(sh.t.state({
+                    "approximation": sh.toption(sh.t.state({
+                        "literal": sh.toption(sh.t.simple("Approximation")),
+                        "copy": sh.toption(sh.t.component("Select Value")),
+                    })),
+                    "integer": sh.toption(sh.t.state({
+                        "copy": sh.toption(sh.t.component("Select Value")),
+                        "divide": sh.toption(sh.t.group({
+                            "assign dividend": sh.prop(sh.t.component("Select Value")),
+                            "assign divisor": sh.prop(sh.t.component("Select Value")),
+                            "abort": sh.prop(sh.t.component("Assign")),
+                        })),
+                        "literal": sh.toption(sh.t.simple("Integer")),
+                    })),
+                    "natural": sh.toption(sh.t.state({
+                        "literal": sh.toption(sh.t.simple("Natural")),
+                        "copy": sh.toption(sh.t.component("Select Value")),
+                        "number of dictionary entries": sh.toption(sh.t.group({
+                            "dictionary": sh.prop(sh.t.component("Select Value"))
+                        })),
+                        "number of list items": sh.toption(sh.t.group({
+                            "list": sh.prop(sh.t.component("Select Value"))
+                        })),
+                        "source column": sh.toption(sh.t.nothing()),
+                        "source line": sh.toption(sh.t.nothing()),
+                    })),
+                })),
+                "optional": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.state({
+                        "not set": sh.toption(sh.t.nothing()),
+                        "set": sh.toption(sh.t.component("Assign")),
+                    })),
+                    "from": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Select Value")),
+                        "type": sh.prop(sh.t.state({
+                            "boolean": sh.toption(sh.t.state({
+                                "convert": sh.toption(sh.t.group({
+                                    "assign set": sh.prop(sh.t.component("Assign")),
+                                })),
+                            })),
+                            "optional": sh.toption(sh.t.state({
+                                "map": sh.toption(sh.t.group({
+                                    "assign set": sh.prop(sh.t.component("Assign"))
+                                })),
+                            })),
+                        })),
+                    })),
+                })),
+                "state": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.group({
+                        "option": sh.prop(sh.t.text_global("Identifier")),
+                        "assign option": sh.prop(sh.t.component("Assign")),
                     }))
                 })),
-                "text": toption(t.state({
-                    "literal": toption(t.group({
-                        "type": prop(t.state({
-                            "identifier": toption(t.nothing()),
-                            "freeform": toption(t.nothing()),
+                "text": sh.toption(sh.t.state({
+                    "literal": sh.toption(sh.t.group({
+                        "type": sh.prop(sh.t.state({
+                            "identifier": sh.toption(sh.t.nothing()),
+                            "freeform": sh.toption(sh.t.nothing()),
                         })),
-                        "value": prop(t.text_global("text")),
+                        "value": sh.prop(sh.t.text_global("text")),
                     })),
-                    "from": toption(t.group({
-                        "selection": prop(t.component("Select Value")),
-                        "type": prop(t.state({
-                            "text": toption(t.state({
-                                "copy": toption(t.nothing()),
+                    "from": sh.toption(sh.t.group({
+                        "selection": sh.prop(sh.t.component("Select Value")),
+                        "type": sh.prop(sh.t.state({
+                            "text": sh.toption(sh.t.state({
+                                "copy": sh.toption(sh.t.nothing()),
                             })),
                         })),
                     })),
-                    "source document": toption(t.nothing()),
-                    "entry id": toption(t.nothing()),
-                    "option name": toption(t.nothing()),
+                    "source document": sh.toption(sh.t.nothing()),
+                    "entry id": sh.toption(sh.t.nothing()),
+                    "option name": sh.toption(sh.t.nothing()),
                 })),
             })),
-            "select": toption(t.component("Select Value")),
-            "special": toption(t.state({
-                "abort": toption(t.component("Assign")),
-                "assert": toption(t.group({
-                    "tester": prop(t.component("Assign")),
-                    "normal flow": prop(t.component("Assign")),
+            "select": sh.toption(sh.t.component("Select Value")),
+            "special": sh.toption(sh.t.state({
+                "abort": sh.toption(sh.t.component("Assign")),
+                "assert": sh.toption(sh.t.group({
+                    "tester": sh.prop(sh.t.component("Assign")),
+                    "normal flow": sh.prop(sh.t.component("Assign")),
                 })),
-                "change context": toption(t.group({
-                    "new context": prop(t.component("Select Value")),
-                    "expression": prop(t.component("Assign")),
+                "change context": sh.toption(sh.t.group({
+                    "new context": sh.prop(sh.t.component("Select Value")),
+                    "expression": sh.prop(sh.t.component("Assign")),
                 })),
-                "variables": toption(t.group({
-                    "variables": prop(t.dictionary(t.component("Assign"))),
-                    "assign": prop(t.component("Assign")),
+                "variables": sh.toption(sh.t.group({
+                    "variables": sh.prop(sh.t.dictionary(sh.t.component("Assign"))),
+                    "assign": sh.prop(sh.t.component("Assign")),
                 })),
-                "implement me": toption(t.text_global("text")),
-                "iterate": toption(t.group({
-                    "list": prop(t.component("Select Value")),
-                    "assign": prop(t.component("Assign")),
+                "implement me": sh.toption(sh.t.text_global("text")),
+                "iterate": sh.toption(sh.t.group({
+                    "list": sh.prop(sh.t.component("Select Value")),
+                    "assign": sh.prop(sh.t.component("Assign")),
                 })),
-                "unreachable": toption(t.group({
-                    "explanation": prop(t.text_global("text")),
+                "unreachable": sh.toption(sh.t.group({
+                    "explanation": sh.prop(sh.t.text_global("text")),
                 })),
             })),
         })),
 
-        "Select Value": module_(t.state({
-            "implement me": toption(t.text_global("text")),
-            "regular": toption(t.group({
-                "start": prop(t.state({
-                    "call": toption(t.group({
-                        "source": prop(t.state({
-                            "local": toption(t.text_global("TBD")),
-                            "imported": toption(t.group({
-                                "import": prop(t.text_global("TBD")),
-                                "variable": prop(t.text_global("TBD")),
+        "Select Value": sh.module_(sh.t.state({
+            "implement me": sh.toption(sh.t.text_global("text")),
+            "regular": sh.toption(sh.t.group({
+                "start": sh.prop(sh.t.state({
+                    "call": sh.toption(sh.t.group({
+                        "source": sh.prop(sh.t.state({
+                            "local": sh.toption(sh.t.text_global("TBD")),
+                            "imported": sh.toption(sh.t.group({
+                                "import": sh.prop(sh.t.text_global("TBD")),
+                                "variable": sh.prop(sh.t.text_global("TBD")),
                             }))
                         })),
-                        "context": prop(t.component("Assign")),
-                        "abort": prop(t.optional(t.component("Assign"))),
-                        "lookups": prop(t.optional(t.state({
-                            "initialize": toption(t.dictionary(t.component("Select Lookup"))),
-                            "pass through": toption(t.nothing()),
+                        "context": sh.prop(sh.t.component("Assign")),
+                        "abort": sh.prop(sh.t.optional(sh.t.component("Assign"))),
+                        "lookups": sh.prop(sh.t.optional(sh.t.state({
+                            "initialize": sh.toption(sh.t.dictionary(sh.t.component("Select Lookup"))),
+                            "pass through": sh.toption(sh.t.nothing()),
                         }))),
-                        "arguments": prop(t.optional(t.state({
-                            "initialize": toption(t.dictionary(t.component("Assign"))),
-                            "pass through": toption(t.nothing()),
+                        "arguments": sh.prop(sh.t.optional(sh.t.state({
+                            "initialize": sh.toption(sh.t.dictionary(sh.t.component("Assign"))),
+                            "pass through": sh.toption(sh.t.nothing()),
                         }))),
                     })),
-                    "context": toption(t.nothing()),
-                    "dictionary entry": toption(t.group({
-                        "dictionary": prop(t.component("Select Value")),
-                        "id": prop(t.component("Assign")),
-                        "no such entry handler": prop(t.component("Assign")),
+                    "context": sh.toption(sh.t.nothing()),
+                    "dictionary entry": sh.toption(sh.t.group({
+                        "dictionary": sh.prop(sh.t.component("Select Value")),
+                        "id": sh.prop(sh.t.component("Assign")),
+                        "no such entry handler": sh.prop(sh.t.component("Assign")),
                     })),
-                    "list from text": toption(t.group({
-                        "source": prop(t.component("Select Value")),
-                        "assign item": prop(t.component("Assign")),
+                    "list from text": sh.toption(sh.t.group({
+                        "source": sh.prop(sh.t.component("Select Value")),
+                        "assign item": sh.prop(sh.t.component("Assign")),
                     })),
-                    "lookup entry": toption(t.group({
-                        "lookup": prop(t.component("Select Lookup")),
-                        "id": prop(t.component("Assign")),
-                        "type": prop(t.state({
-                            "acyclic": toption(t.group({
-                                "abort handlers": prop(t.group({
-                                    "no such entry": prop(t.component("Assign")),
-                                    "no context lookup": prop(t.component("Assign")),
-                                    "cycle detected": prop(t.component("Assign")),
+                    "lookup entry": sh.toption(sh.t.group({
+                        "lookup": sh.prop(sh.t.component("Select Lookup")),
+                        "id": sh.prop(sh.t.component("Assign")),
+                        "type": sh.prop(sh.t.state({
+                            "acyclic": sh.toption(sh.t.group({
+                                "abort handlers": sh.prop(sh.t.group({
+                                    "no such entry": sh.prop(sh.t.component("Assign")),
+                                    "no context lookup": sh.prop(sh.t.component("Assign")),
+                                    "cycle detected": sh.prop(sh.t.component("Assign")),
                                 })),
                             })),
-                            "cyclic": toption(t.group({
-                                "abort handlers": prop(t.group({
-                                    "no such entry": prop(t.component("Assign")),
-                                    "no context lookup": prop(t.component("Assign")),
-                                    "accessing cyclic sibling before it is resolved": prop(t.component("Assign")),
+                            "cyclic": sh.toption(sh.t.group({
+                                "abort handlers": sh.prop(sh.t.group({
+                                    "no such entry": sh.prop(sh.t.component("Assign")),
+                                    "no context lookup": sh.prop(sh.t.component("Assign")),
+                                    "accessing cyclic sibling before it is resolved": sh.prop(sh.t.component("Assign")),
                                 })),
                             })),
-                            "stack": toption(t.group({
-                                "abort handlers": prop(t.group({
-                                    "no such entry": prop(t.component("Assign")),
-                                    "no context lookup": prop(t.component("Assign")),
-                                    "cycle detected": prop(t.component("Assign")),
+                            "stack": sh.toption(sh.t.group({
+                                "abort handlers": sh.prop(sh.t.group({
+                                    "no such entry": sh.prop(sh.t.component("Assign")),
+                                    "no context lookup": sh.prop(sh.t.component("Assign")),
+                                    "cycle detected": sh.prop(sh.t.component("Assign")),
                                 })),
                             })),
                         }))
                     })),
-                    "lookup entry depth": toption(t.group({
-                        "lookup": prop(t.component("Select Lookup")),
-                        "id": prop(t.component("Assign")),
-                        "abort handlers": prop(t.group({
-                            "no such entry": prop(t.component("Assign")),
-                            "no context lookup": prop(t.component("Assign")),
-                            "cycle detected": prop(t.component("Assign")),
+                    "lookup entry depth": sh.toption(sh.t.group({
+                        "lookup": sh.prop(sh.t.component("Select Lookup")),
+                        "id": sh.prop(sh.t.component("Assign")),
+                        "abort handlers": sh.prop(sh.t.group({
+                            "no such entry": sh.prop(sh.t.component("Assign")),
+                            "no context lookup": sh.prop(sh.t.component("Assign")),
+                            "cycle detected": sh.prop(sh.t.component("Assign")),
                         })),
                     })),
-                    "parameter": toption(t.text_global("TBD")),
-                    "parent sibling": toption(t.text_global("TBD")),
-                    "sibling": toption(t.text_global("TBD")),
-                    "state": toption(t.nothing()),
-                    "text from list": toption(t.group({
-                        "source": prop(t.component("Select Value")),
-                        "assign character": prop(t.component("Assign")),
+                    "parameter": sh.toption(sh.t.text_global("TBD")),
+                    "parent sibling": sh.toption(sh.t.text_global("TBD")),
+                    "sibling": sh.toption(sh.t.text_global("TBD")),
+                    "state": sh.toption(sh.t.nothing()),
+                    "text from list": sh.toption(sh.t.group({
+                        "source": sh.prop(sh.t.component("Select Value")),
+                        "assign character": sh.prop(sh.t.component("Assign")),
                     })),
-                    "variable": toption(t.text_global("TBD")),
+                    "variable": sh.toption(sh.t.text_global("TBD")),
                 })),
-                "tail": prop(t.list(t.text_global("TBD"))),
+                "tail": sh.prop(sh.t.list(sh.t.text_global("TBD"))),
             }))
         })),
 
-        "Select Lookup": module_(t.state({
-            "implement me": toption(t.text_global("text")),
-            "from parameter": toption(t.text_global("TBD")),
-            "stack": toption(t.state({
-                "empty": toption(t.nothing()),
-                "push": toption(t.group({
-                    "stack": prop(t.component("Select Lookup")),
-                    "acyclic": toption(t.component("Select Lookup")),
+        "Select Lookup": sh.module_(sh.t.state({
+            "implement me": sh.toption(sh.t.text_global("text")),
+            "from parameter": sh.toption(sh.t.text_global("TBD")),
+            "stack": sh.toption(sh.t.state({
+                "empty": sh.toption(sh.t.nothing()),
+                "push": sh.toption(sh.t.group({
+                    "stack": sh.prop(sh.t.component("Select Lookup")),
+                    "acyclic": sh.toption(sh.t.component("Select Lookup")),
                 })),
             })),
-            "acyclic": toption(t.state({
-                "not set": toption(t.nothing()),
-                "siblings": toption(t.nothing()),
-                "resolved dictionary": toption(t.component("Select Value")),
+            "acyclic": sh.toption(sh.t.state({
+                "not set": sh.toption(sh.t.nothing()),
+                "siblings": sh.toption(sh.t.nothing()),
+                "resolved dictionary": sh.toption(sh.t.component("Select Value")),
             })),
-            "cyclic": toption(t.state({
-                "not set": toption(t.nothing()),
-                "siblings": toption(t.nothing()),
+            "cyclic": sh.toption(sh.t.state({
+                "not set": sh.toption(sh.t.nothing()),
+                "siblings": sh.toption(sh.t.nothing()),
             })),
         })),
 

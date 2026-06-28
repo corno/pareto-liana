@@ -1,104 +1,95 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Document": module_(t.group({
-            "css": prop(t.text_global("multi line text")),
-            "root": prop(t.component("Flow Element")),
+        "Document": sh.module_(sh.t.group({
+            "css": sh.prop(sh.t.text_global("multi line text")),
+            "root": sh.prop(sh.t.component("Flow Element")),
         })),
 
-        "Flow Element": module_(t.state({
-            "div": toption(t.component("Flow Content")),
-            "dimensioned div": toption(t.group({
-                "width": prop(t.optional(t.simple("Natural"))),
-                "height": prop(t.optional(t.simple("Natural"))),
-                "content": prop(t.component("Flow Content")),
+        "Flow Element": sh.module_(sh.t.state({
+            "div": sh.toption(sh.t.component("Flow Content")),
+            "dimensioned div": sh.toption(sh.t.group({
+                "width": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                "height": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                "content": sh.prop(sh.t.component("Flow Content")),
             })),
-            "classified div": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "content": prop(t.component("Flow Content")),
+            "classified div": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "content": sh.prop(sh.t.component("Flow Content")),
             })),
-            "table": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "sections": prop(t.list(t.group({
-                    "classes": prop(t.component("Classes")),
-                    "type": prop(t.state({
-                        "header": toption(t.nothing()),
-                        "body": toption(t.nothing()),
-                        "footer": toption(t.nothing()),
+            "table": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "sections": sh.prop(sh.t.list(sh.t.group({
+                    "classes": sh.prop(sh.t.component("Classes")),
+                    "type": sh.prop(sh.t.state({
+                        "header": sh.toption(sh.t.nothing()),
+                        "body": sh.toption(sh.t.nothing()),
+                        "footer": sh.toption(sh.t.nothing()),
                     })),
-                    "rows": prop(t.list(t.group({
-                        "classes": prop(t.component("Classes")),
-                        "height": prop(t.optional(t.simple("Natural"))),
-                        "cells": prop(t.list(t.group({
-                            "type": prop(t.state({
-                                "th": toption(t.nothing()),
-                                "td": toption(t.nothing()),
+                    "rows": sh.prop(sh.t.list(sh.t.group({
+                        "classes": sh.prop(sh.t.component("Classes")),
+                        "height": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                        "cells": sh.prop(sh.t.list(sh.t.group({
+                            "type": sh.prop(sh.t.state({
+                                "th": sh.toption(sh.t.nothing()),
+                                "td": sh.toption(sh.t.nothing()),
                             })),
-                            "colspan": prop(t.optional(t.simple("Natural"))),
-                            "classes": prop(t.component("Classes")),
-                            "content": prop(t.component("Flow Content")),
+                            "colspan": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                            "classes": sh.prop(sh.t.component("Classes")),
+                            "content": sh.prop(sh.t.component("Flow Content")),
                         }))),
                     }))),
                 }))),
             })),
-            "span": toption(t.component("Phrasing Content")),
-            "label": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "text": prop(t.text_global("text")),
-                "content": prop(t.component("Flow Content")),
+            "span": sh.toption(sh.t.component("Phrasing Content")),
+            "label": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "text": sh.prop(sh.t.text_global("text")),
+                "content": sh.prop(sh.t.component("Flow Content")),
             })),
-            "img": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "src": prop(t.text_global("text")),
-                "alt": prop(t.text_global("text")),
-                "width": prop(t.optional(t.simple("Natural"))),
-                "height": prop(t.optional(t.simple("Natural"))),
+            "img": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "src": sh.prop(sh.t.text_global("text")),
+                "alt": sh.prop(sh.t.text_global("text")),
+                "width": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                "height": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
             })),
-            "svg": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "content": prop(t.component_external("xml", "Mixed Content")),
-                "width": prop(t.optional(t.simple("Natural"))),
-                "height": prop(t.optional(t.simple("Natural"))),
+            "svg": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "content": sh.prop(sh.t.component_external("xml", "Mixed Content")),
+                "width": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
+                "height": sh.prop(sh.t.optional(sh.t.simple("Natural"))),
             })),
 
         })),
 
-        "Flow Content": module_(t.list(t.component("Flow Element"))),
+        "Flow Content": sh.module_(sh.t.list(sh.t.component("Flow Element"))),
 
-        "Classes": module_(t.list(t.text_global("text"))),
+        "Classes": sh.module_(sh.t.list(sh.t.text_global("text"))),
 
-        "Phrasing Content": module_(t.list(t.component("Phrasing Element"))),
+        "Phrasing Content": sh.module_(sh.t.list(sh.t.component("Phrasing Element"))),
 
         //this one should be publicly available, so it is not inlined, even though it is only used once
-        "Phrasing Element": module_(t.state({
-            "span": toption(t.component("Phrasing Content")),
-            "classified span": toption(t.group({
-                "classes": prop(t.component("Classes")),
-                "content": prop(t.component("Phrasing Content")),
+        "Phrasing Element": sh.module_(sh.t.state({
+            "span": sh.toption(sh.t.component("Phrasing Content")),
+            "classified span": sh.toption(sh.t.group({
+                "classes": sh.prop(sh.t.component("Classes")),
+                "content": sh.prop(sh.t.component("Phrasing Content")),
             })),
-            "titled span": toption(t.group({
-                "title": prop(t.text_global("text")),
-                "content": prop(t.component("Phrasing Content")),
+            "titled span": sh.toption(sh.t.group({
+                "title": sh.prop(sh.t.text_global("text")),
+                "content": sh.prop(sh.t.component("Phrasing Content")),
             })),
-            "a": toption(t.group({
-                "text": prop(t.text_global("text")),
-                "href": prop(t.text_global("text")),
+            "a": sh.toption(sh.t.group({
+                "text": sh.prop(sh.t.text_global("text")),
+                "href": sh.prop(sh.t.text_global("text")),
             })),
-            "p": toption(t.group({
-                "text": prop(t.text_global("text")),
+            "p": sh.toption(sh.t.group({
+                "text": sh.prop(sh.t.text_global("text")),
             })),
         }))
     }

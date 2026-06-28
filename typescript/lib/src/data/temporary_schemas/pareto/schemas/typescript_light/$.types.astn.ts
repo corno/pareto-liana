@@ -1,210 +1,201 @@
 
-
-import {
-    modules,
-    n,
-    text,
-    t,
-    module_,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Directory": module_(t.dictionary(
-            t.state({
-                "file": toption(t.group({
-                    "statements": prop(t.component("Statements"))
+        "Directory": sh.module_(sh.t.dictionary(
+            sh.t.state({
+                "file": sh.toption(sh.t.group({
+                    "statements": sh.prop(sh.t.component("Statements"))
                 })),
-                "directory": toption(t.component("Directory")),
+                "directory": sh.toption(sh.t.component("Directory")),
             })
         )),
 
-        "Block": module_(t.component("Statements")),
+        "Block": sh.module_(sh.t.component("Statements")),
 
-        "Statements": module_(t.list(t.state({
-            "block": toption(t.component("Block")),
-            "export": toption(t.group({
-                "type": prop(t.state({
-                    "named exports": toption(t.group({
-                        "specifiers": prop(t.list(t.group({
-                            "name": prop(t.component("Identifier")),
-                            "as": prop(t.optional(t.component("Identifier"))),
+        "Statements": sh.module_(sh.t.list(sh.t.state({
+            "block": sh.toption(sh.t.component("Block")),
+            "export": sh.toption(sh.t.group({
+                "type": sh.prop(sh.t.state({
+                    "named exports": sh.toption(sh.t.group({
+                        "specifiers": sh.prop(sh.t.list(sh.t.group({
+                            "name": sh.prop(sh.t.component("Identifier")),
+                            "as": sh.prop(sh.t.optional(sh.t.component("Identifier"))),
                         }))),
-                        "from": prop(t.optional(t.component("String Literal"))),
+                        "from": sh.prop(sh.t.optional(sh.t.component("String Literal"))),
                     })),
                 })),
             })),
-            "expression": toption(t.component("Expression")),
-            "import": toption(t.group({
-                "type": prop(t.state({
-                    "default": toption(t.component("Identifier")),
-                    "namespace": toption(t.component("Identifier")),
-                    "named": toption(t.group({
-                        "specifiers": prop(t.list(t.group({
-                            "name": prop(t.component("Identifier")),
-                            "as": prop(t.optional(t.component("Identifier"))),
+            "expression": sh.toption(sh.t.component("Expression")),
+            "import": sh.toption(sh.t.group({
+                "type": sh.prop(sh.t.state({
+                    "default": sh.toption(sh.t.component("Identifier")),
+                    "namespace": sh.toption(sh.t.component("Identifier")),
+                    "named": sh.toption(sh.t.group({
+                        "specifiers": sh.prop(sh.t.list(sh.t.group({
+                            "name": sh.prop(sh.t.component("Identifier")),
+                            "as": sh.prop(sh.t.optional(sh.t.component("Identifier"))),
                         }))),
                     })),
                 })),
-                "from": prop(t.component("String Literal")),
+                "from": sh.prop(sh.t.component("String Literal")),
             })),
-            "module declaration": toption(t.group({ //namespace
-                "export": prop(t.simple("boolean")),
-                "name": prop(t.component("Identifier")),
-                "block": prop(t.component("Block")),
+            "module declaration": sh.toption(sh.t.group({ //namespace
+                "export": sh.prop(sh.t.simple("boolean")),
+                "name": sh.prop(sh.t.component("Identifier")),
+                "block": sh.prop(sh.t.component("Block")),
             })),
 
-            "return": toption(t.optional(t.component("Expression"))),
-            "switch": toption(t.group({
-                "expression": prop(t.component("Expression")),
-                "clauses": prop(t.list(t.group({
-                    "type": prop(t.state({
-                        "case": toption(t.component("Expression")),
-                        "default": toption(t.nothing()),
+            "return": sh.toption(sh.t.optional(sh.t.component("Expression"))),
+            "switch": sh.toption(sh.t.group({
+                "expression": sh.prop(sh.t.component("Expression")),
+                "clauses": sh.prop(sh.t.list(sh.t.group({
+                    "type": sh.prop(sh.t.state({
+                        "case": sh.toption(sh.t.component("Expression")),
+                        "default": sh.toption(sh.t.nothing()),
                     })),
-                    "statements": prop(t.component("Statements")),
+                    "statements": sh.prop(sh.t.component("Statements")),
                 }))),
             })),
-            "type alias declaration": toption(t.group({
-                "export": prop(t.simple("boolean")),
-                "name": prop(t.component("Identifier")),
-                "parameters": prop(t.list(t.component("Identifier"))),
-                "type": prop(t.component("Type")),
+            "type alias declaration": sh.toption(sh.t.group({
+                "export": sh.prop(sh.t.simple("boolean")),
+                "name": sh.prop(sh.t.component("Identifier")),
+                "parameters": sh.prop(sh.t.list(sh.t.component("Identifier"))),
+                "type": sh.prop(sh.t.component("Type")),
             })),
-            "variable": toption(t.group({
-                "export": prop(t.simple("boolean")),
-                "const": prop(t.simple("boolean")),
-                "name": prop(t.component("Identifier")),
-                "type": prop(t.optional(t.component("Type"))),
-                "expression": prop(t.optional(t.component("Expression"))),
+            "variable": sh.toption(sh.t.group({
+                "export": sh.prop(sh.t.simple("boolean")),
+                "const": sh.prop(sh.t.simple("boolean")),
+                "name": sh.prop(sh.t.component("Identifier")),
+                "type": sh.prop(sh.t.optional(sh.t.component("Type"))),
+                "expression": sh.prop(sh.t.optional(sh.t.component("Expression"))),
             })),
         }))),
 
-        "Type": module_(t.state({
-            "boolean": toption(t.nothing()),
-            "function": toption(t.group({
-                "type parameters": prop(t.list(t.component("Type"))),
-                "parameters": prop(t.component("Function Parameters")),
-                "return": prop(t.component("Type")),
+        "Type": sh.module_(sh.t.state({
+            "boolean": sh.toption(sh.t.nothing()),
+            "function": sh.toption(sh.t.group({
+                "type parameters": sh.prop(sh.t.list(sh.t.component("Type"))),
+                "parameters": sh.prop(sh.t.component("Function Parameters")),
+                "return": sh.prop(sh.t.component("Type")),
             })),
-            "literal type": toption(t.component("String Literal")),
-            "never": toption(t.nothing()),
-            "null": toption(t.nothing()),
-            "number": toption(t.nothing()),
-            "string": toption(t.nothing()),
-            "tuple": toption(t.group({
-                "readonly": prop(t.simple("boolean")),
-                "elements": prop(t.list(t.component("Type"))),
+            "literal type": sh.toption(sh.t.component("String Literal")),
+            "never": sh.toption(sh.t.nothing()),
+            "null": sh.toption(sh.t.nothing()),
+            "number": sh.toption(sh.t.nothing()),
+            "string": sh.toption(sh.t.nothing()),
+            "tuple": sh.toption(sh.t.group({
+                "readonly": sh.prop(sh.t.simple("boolean")),
+                "elements": sh.prop(sh.t.list(sh.t.component("Type"))),
             })),
-            "type literal": toption(t.group({
-                "properties": prop(t.list(t.group({
-                    "key": prop(t.state({
-                        "identifier": toption(t.component("Identifier")),
-                        "string literal": toption(t.component("String Literal")),
+            "type literal": sh.toption(sh.t.group({
+                "properties": sh.prop(sh.t.list(sh.t.group({
+                    "key": sh.prop(sh.t.state({
+                        "identifier": sh.toption(sh.t.component("Identifier")),
+                        "string literal": sh.toption(sh.t.component("String Literal")),
                     })),
-                    "readonly": prop(t.simple("boolean")),
-                    "type": prop(t.component("Type")),
+                    "readonly": sh.prop(sh.t.simple("boolean")),
+                    "type": sh.prop(sh.t.component("Type")),
                 }))),
             })),
-            "type reference": toption(t.group({
-                "start": prop(t.component("Identifier")),
-                "tail": prop(t.list(t.component("Identifier"))),
-                "type arguments": prop(t.list(t.component("Type"))),
+            "type reference": sh.toption(sh.t.group({
+                "start": sh.prop(sh.t.component("Identifier")),
+                "tail": sh.prop(sh.t.list(sh.t.component("Identifier"))),
+                "type arguments": sh.prop(sh.t.list(sh.t.component("Type"))),
             })),
-            "union": toption(t.list(t.component("Type"))),
-            "void": toption(t.nothing()),
+            "union": sh.toption(sh.t.list(sh.t.component("Type"))),
+            "void": sh.toption(sh.t.nothing()),
         })),
 
-        "Function Parameters": module_(t.list(t.group({
-            "name": prop(t.component("Identifier")),
-            "type": prop(t.optional(t.component("Type"))),
+        "Function Parameters": sh.module_(sh.t.list(sh.t.group({
+            "name": sh.prop(sh.t.component("Identifier")),
+            "type": sh.prop(sh.t.optional(sh.t.component("Type"))),
         }))),
 
-        "Expression": module_(t.state({
-            "array literal": toption(t.list(t.component("Expression"))),
-            "arrow function": toption(t.group({
-                "parameters": prop(t.component("Function Parameters")),
-                "return type": prop(t.optional(t.component("Type"))),
-                "body": prop(t.state({
-                    "block": toption(t.component("Block")),
-                    "expression": toption(t.component("Expression")),
+        "Expression": sh.module_(sh.t.state({
+            "array literal": sh.toption(sh.t.list(sh.t.component("Expression"))),
+            "arrow function": sh.toption(sh.t.group({
+                "parameters": sh.prop(sh.t.component("Function Parameters")),
+                "return type": sh.prop(sh.t.optional(sh.t.component("Type"))),
+                "body": sh.prop(sh.t.state({
+                    "block": sh.toption(sh.t.component("Block")),
+                    "expression": sh.toption(sh.t.component("Expression")),
                 })),
             })),
-            "assignment": toption(t.group({
-                "left": prop(t.component("Expression")),
-                "right": prop(t.component("Expression")),
+            "assignment": sh.toption(sh.t.group({
+                "left": sh.prop(sh.t.component("Expression")),
+                "right": sh.prop(sh.t.component("Expression")),
             })),
-            "call": toption(t.group({
-                "function selection": prop(t.component("Expression")),
-                "arguments": prop(t.list(t.component("Expression"))),
+            "call": sh.toption(sh.t.group({
+                "function selection": sh.prop(sh.t.component("Expression")),
+                "arguments": sh.prop(sh.t.list(sh.t.component("Expression"))),
             })),
-            "compare": toption(t.group({
-                "left": prop(t.component("Expression")),
-                "operator": prop(t.state({
-                    "loosely equal": toption(t.nothing()),
-                    "strictly equal": toption(t.nothing()),
-                    "loosely not equal": toption(t.nothing()),
-                    "strictly not equal": toption(t.nothing()),
-                    "smaller than": toption(t.nothing()),
-                    "smaller than or equal": toption(t.nothing()),
-                    "greater than": toption(t.nothing()),
-                    "greater than or equal": toption(t.nothing()),
+            "compare": sh.toption(sh.t.group({
+                "left": sh.prop(sh.t.component("Expression")),
+                "operator": sh.prop(sh.t.state({
+                    "loosely equal": sh.toption(sh.t.nothing()),
+                    "strictly equal": sh.toption(sh.t.nothing()),
+                    "loosely not equal": sh.toption(sh.t.nothing()),
+                    "strictly not equal": sh.toption(sh.t.nothing()),
+                    "smaller than": sh.toption(sh.t.nothing()),
+                    "smaller than or equal": sh.toption(sh.t.nothing()),
+                    "greater than": sh.toption(sh.t.nothing()),
+                    "greater than or equal": sh.toption(sh.t.nothing()),
                 })),
-                "right": prop(t.component("Expression")),
+                "right": sh.prop(sh.t.component("Expression")),
             })),
-            "conditional": toption(t.group({
-                "condition": prop(t.component("Expression")),
-                "if true": prop(t.component("Expression")),
-                "if false": prop(t.component("Expression")),
+            "conditional": sh.toption(sh.t.group({
+                "condition": sh.prop(sh.t.component("Expression")),
+                "if true": sh.prop(sh.t.component("Expression")),
+                "if false": sh.prop(sh.t.component("Expression")),
             })),
-            "element access": toption(t.group({
-                "collection": prop(t.component("Expression")),
-                "index": prop(t.component("Expression")),
+            "element access": sh.toption(sh.t.group({
+                "collection": sh.prop(sh.t.component("Expression")),
+                "index": sh.prop(sh.t.component("Expression")),
             })),
 
-            "identifier": toption(t.component("Identifier")),
-            "false": toption(t.nothing()),
-            "null": toption(t.nothing()),
-            "number literal": toption(t.simple("Approximation")),
-            "object literal": toption(t.group({
-                "properties": prop(t.list(t.group({
-                    "key": prop(t.state({
-                        "identifier": toption(t.component("Identifier")),
-                        "string literal": toption(t.component("String Literal")),
+            "identifier": sh.toption(sh.t.component("Identifier")),
+            "false": sh.toption(sh.t.nothing()),
+            "null": sh.toption(sh.t.nothing()),
+            "number literal": sh.toption(sh.t.simple("Approximation")),
+            "object literal": sh.toption(sh.t.group({
+                "properties": sh.prop(sh.t.list(sh.t.group({
+                    "key": sh.prop(sh.t.state({
+                        "identifier": sh.toption(sh.t.component("Identifier")),
+                        "string literal": sh.toption(sh.t.component("String Literal")),
                     })),
-                    "value": prop(t.component("Expression")),
+                    "value": sh.prop(sh.t.component("Expression")),
                 }))),
             })),
-            "parenthesized": toption(t.component("Expression")),
-            "property access": toption(t.group({
-                "object": prop(t.component("Expression")),
-                "property": prop(t.component("Identifier")),
+            "parenthesized": sh.toption(sh.t.component("Expression")),
+            "property access": sh.toption(sh.t.group({
+                "object": sh.prop(sh.t.component("Expression")),
+                "property": sh.prop(sh.t.component("Identifier")),
             })),
-            "string literal": toption(t.component("String Literal")),
-            "true": toption(t.nothing()),
-            "unary operation": toption(t.group({
-                "operator": prop(t.state({
-                    "negation": toption(t.nothing()),
-                    "logical not": toption(t.nothing()),
+            "string literal": sh.toption(sh.t.component("String Literal")),
+            "true": sh.toption(sh.t.nothing()),
+            "unary operation": sh.toption(sh.t.group({
+                "operator": sh.prop(sh.t.state({
+                    "negation": sh.toption(sh.t.nothing()),
+                    "logical not": sh.toption(sh.t.nothing()),
                 })),
-                "operand": prop(t.component("Expression")),
+                "operand": sh.prop(sh.t.component("Expression")),
             })),
         })),
 
-        "String Literal": module_(t.group({
-            "delimiter": prop(t.state({
-                "quote": toption(t.nothing()),
-                "apostrophe": toption(t.nothing()),
+        "String Literal": sh.module_(sh.t.group({
+            "delimiter": sh.prop(sh.t.state({
+                "quote": sh.toption(sh.t.nothing()),
+                "apostrophe": sh.toption(sh.t.nothing()),
             })),
-            "value": prop(t.text_global("text"))
+            "value": sh.prop(sh.t.text_global("text"))
         })),
 
-        "Identifier": module_(t.group({
-            "value": prop(t.text_global("text"))
+        "Identifier": sh.module_(sh.t.group({
+            "value": sh.prop(sh.t.text_global("text"))
         })),
 
     }

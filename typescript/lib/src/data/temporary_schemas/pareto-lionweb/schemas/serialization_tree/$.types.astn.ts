@@ -1,40 +1,31 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    prop,
-    toption,
-    text,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
-        "Serialization Tree": module_(t.group({
-            "serializationFormatVersion": prop(t.text_global("text")),
-            "languages": prop(t.list(t.group({
-                "key": prop(t.text_global("text")),
-                "version": prop(t.text_global("text")),
+        "Serialization Tree": sh.module_(sh.t.group({
+            "serializationFormatVersion": sh.prop(sh.t.text_global("text")),
+            "languages": sh.prop(sh.t.list(sh.t.group({
+                "key": sh.prop(sh.t.text_global("text")),
+                "version": sh.prop(sh.t.text_global("text")),
             }))),
-            "root node id": prop(t.text_global("text")),
-            "node tree": prop(t.component("Node")),
+            "root node id": sh.prop(sh.t.text_global("text")),
+            "node tree": sh.prop(sh.t.component("Node")),
         })),
 
-        "Node": module_(t.group({
-            "range": prop(t.component_external("location", "Range")),
-            "classifier": prop(t.text_global("text")),
-            "properties": prop(t.dictionary(t.text_global("text"))),
-            "containments": prop(t.dictionary(t.dictionary(t.component("Node")))),
-            "references": prop(t.dictionary(t.component("Targets"))),
-            "annotations": prop(t.list(t.text_global("text"))),
+        "Node": sh.module_(sh.t.group({
+            "range": sh.prop(sh.t.component_external("location", "Range")),
+            "classifier": sh.prop(sh.t.text_global("text")),
+            "properties": sh.prop(sh.t.dictionary(sh.t.text_global("text"))),
+            "containments": sh.prop(sh.t.dictionary(sh.t.dictionary(sh.t.component("Node")))),
+            "references": sh.prop(sh.t.dictionary(sh.t.component("Targets"))),
+            "annotations": sh.prop(sh.t.list(sh.t.text_global("text"))),
         })),
 
-        "Targets": module_(t.list(t.group({
-            "resolveInfo": prop(t.text_global("text")),
-            "reference": prop(t.optional(t.text_global("text"))),
+        "Targets": sh.module_(sh.t.list(sh.t.group({
+            "resolveInfo": sh.prop(sh.t.text_global("text")),
+            "reference": sh.prop(sh.t.optional(sh.t.text_global("text"))),
         }))),
     }
 )

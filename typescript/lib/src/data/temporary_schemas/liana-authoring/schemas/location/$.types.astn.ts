@@ -1,27 +1,18 @@
 
-
-import {
-    modules,
-    t,
-    module_,
-    n,
-    text,
-    prop,
-    toption,
-} from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual"
 
 
-export const $ = modules(
+export const $ = sh.modules(
     {
 
-        "Position": module_(t.group({
-            "line": prop(t.simple("Natural")),
-            "character": prop(t.simple("Natural")),
+        "Position": sh.module_(sh.t.group({
+            "line": sh.prop(sh.t.simple("Natural")),
+            "character": sh.prop(sh.t.simple("Natural")),
         })),
 
-        "Range FE": module_(t.group({
-            "start": prop(t.component("Position")),
-            "end": prop(t.component("Position")),
+        "Range FE": sh.module_(sh.t.group({
+            "start": sh.prop(sh.t.component("Position")),
+            "end": sh.prop(sh.t.component("Position")),
         })),
 
     }

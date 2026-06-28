@@ -1,46 +1,41 @@
+import * as sh from "../../../../../shorthands/signatures/manual"
 
-
-import {
-    signatures, sig, parameter,
-} from "../../../../../shorthands/signatures/manual"
-
-
-export const $ = signatures(
+export const $ = sh.signatures(
     {
-        "Text Type": sig.local({}, {}),
-        "Globals": sig.local({}, {}),
+        "Text Type": sh.sig.local({}, {}),
+        "Globals": sh.sig.local({}, {}),
 
-        "Value": sig.local(
+        "Value": sh.sig.local(
             {
-                "globals": parameter.module("Globals", 'optional'),
-                "imports": parameter.module("Imports", 'optional'),
+                "globals": sh.parameter.module("Globals", 'optional'),
+                "imports": sh.parameter.module("Imports", 'optional'),
             },
             {
-                "noncircular sibling modules": parameter.lookup("Modules"),
-                "possibly circular dependent sibling modules": parameter.lookup("Modules", 'cyclic'),
+                "noncircular sibling modules": sh.parameter.lookup("Modules"),
+                "possibly circular dependent sibling modules": sh.parameter.lookup("Modules", 'cyclic'),
             }
         ),
 
-        "Schemas": sig.local(
+        "Schemas": sh.sig.local(
             {},
             {
-                "sibling schemas": parameter.lookup("Schemas", 'stack'),
+                "sibling schemas": sh.parameter.lookup("Schemas", 'stack'),
             }
         ),
 
-        "Schema Tree": sig.local(
+        "Schema Tree": sh.sig.local(
             {},
             {
-                "sibling schemas": parameter.lookup("Schemas", 'stack'),
+                "sibling schemas": sh.parameter.lookup("Schemas", 'stack'),
             }
         ),
-        "Schema": sig.same_as("Schemas"),
-        "Imports": sig.same_as("Schemas"),
+        "Schema": sh.sig.same_as("Schemas"),
+        "Imports": sh.sig.same_as("Schemas"),
 
-        "Modules": sig.local(
+        "Modules": sh.sig.local(
             {
-                "globals": parameter.module("Globals", 'optional'),
-                "imports": parameter.module("Imports", 'optional'),
+                "globals": sh.parameter.module("Globals", 'optional'),
+                "imports": sh.parameter.module("Imports", 'optional'),
             },
             {},
         ),

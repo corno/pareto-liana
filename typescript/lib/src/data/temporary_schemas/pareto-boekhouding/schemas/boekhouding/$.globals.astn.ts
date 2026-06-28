@@ -1,26 +1,19 @@
+import * as sh from "../../../../../shorthands/schema/manual"
 
-
-import {
-    globals,
-    n,
-    text,
-} from "../../../../../shorthands/schema/manual"
-
-
-export const $ = globals(
+export const $ = sh.globals(
 
     'constrained',
     {
-        "Bestandsnaam": text('single line', ["./data/", ""]),
-        "Wachtwoord": text('single line'),
-        "Benaming": text('single line'),
-        "Omschrijving": text('multi line'),
+        "Bestandsnaam": sh.text('single line', ["./data/", ""]),
+        "Wachtwoord": sh.text('single line'),
+        "Benaming": sh.text('single line'),
+        "Omschrijving": sh.text('multi line'),
     },
     {
-        "Bedrag": n.integer(2),
-        "Dagen": n.positive_natural(null),
-        "Datum": n.date(),
-        "Promillage": n.natural(null),
+        "Bedrag": sh.n.integer(2),
+        "Dagen": sh.n.positive_natural(null),
+        "Datum": sh.n.date(),
+        "Promillage": sh.n.natural(null),
 
     },
 )
