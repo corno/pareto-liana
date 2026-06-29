@@ -27,6 +27,7 @@ import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
 import { $ as m_pareto_stream } from "./pareto-stream/module.astn"
 import { $ as m_pareto_http_sandboxed } from "./pareto-http-sandboxed/module.astn"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
+import { $ as m_pareto_typescript } from "./pareto-typescript/module.astn"
 import { $ as m_liana_targets } from "./liana-targets/module.astn"
 // import { $ as m_pareto_test } from "./pareto-test/module.astn"
 import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
@@ -63,9 +64,17 @@ export const $ = p_.dictionary<d_package.Parameters>(
             'target path': "../pareto-graphviz",
             'package': m_pareto_graphviz,
         },
+        "pareto-http-sandboxed": {
+            'target path': "../pareto-http-sandboxed",
+            'package': m_pareto_http_sandboxed,
+        },
         "pareto-json": {
             'target path': "../pareto-json",
             'package': m_pareto_json,
+        },
+        "pareto-json-schema": {
+            'target path': "../pareto-json-schema",
+            'package': m_pareto_json_schema,
         },
         "pareto-liana": {
             'target path': "../pareto-liana",
@@ -83,45 +92,21 @@ export const $ = p_.dictionary<d_package.Parameters>(
             'target path': "../pareto-stream",
             'package': m_pareto_stream,
         },
-        "pareto-http-sandboxed": {
-            'target path': "../pareto-http-sandboxed",
-            'package': m_pareto_http_sandboxed,
-        },
         "pareto-static-html": {
             'target path': "../pareto-static-html",
             'package': m_pareto_static_html,
+        },
+        "pareto-typescript": {
+            'target path': "../pareto-typescript",
+            'package': m_pareto_typescript,
+        },
+        "liana-authoring": {
+            'target path': "../liana-authoring",
+            'package': m_liana_authoring,
         },
         "liana-targets": {
             'target path': "../liana-targets",
             'package': m_liana_targets,
         },
-        // "pareto-test": {
-        //     'target path': "../pareto-test",
-        //     'module': m_pareto_test,
-        // },
-        "liana-authoring": {
-            'target path': "../liana-authoring",
-            'package': m_liana_authoring,
-        },
-        // "accounting_ruwe_data": {
-        //     'target path': "../../../pareto-rosetta/accounting_ruwe_data",
-        //     'module': m_accounting_ruwe_data,
-        // },
-        // "antlr": {
-        //     'target path': "../../../pareto-rosetta/antlr",
-        //     'module': m_antlr,
-        // },
-        // "astn-to-xml": {
-        //     'target path': "../astn-to-xml",
-        //     'module': m_astn_to_xml,
-        // },
-        "pareto-json-schema": {
-            'target path': "../pareto-json-schema",
-            'package': m_pareto_json_schema,
-        },
-        // "git": {
-        //     'target path': "../git",
-        //     'module': m_git,
-        // },
     })
 )
