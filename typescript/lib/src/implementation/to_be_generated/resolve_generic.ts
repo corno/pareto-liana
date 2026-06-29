@@ -222,16 +222,8 @@ export const temp_assert = <
     callback: () => Type,
     abort: Abort<Error>,
 ): Type => {
-    const c = condition()
-    c.__deprecated_extract_data(
-        ($) => {
-            abort($)
-        },
-        () => {
-
-        }
-    )
-    return callback()
+    const c = condition().__get_raw()
+    return c === null ? callback() : abort(c[0])
 }
 
 export const temp_optional_map = <
