@@ -192,12 +192,12 @@ export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($,
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'parameter': return p_.ss($, ($) => sh.sv.parameter($['l id'], $p.tail))
-                case 'result': return p_.ss($, ($) => p_.from.state($).decide(
+                case 'parameter': return p_.option($, ($) => sh.sv.parameter($['l id'], $p.tail))
+                case 'result': return p_.option($, ($) => p_.from.state($).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE2")) //quite some work
-                            case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE2")) //quite some work
+                            case 'state': return p_.option($, ($) => sh.sv.implement_me("IM: STATE2")) //quite some work
+                            case 'optional value': return p_.option($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE2")) //quite some work
 
                             default: return p_.au($[0])
                         }
@@ -212,9 +212,9 @@ export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($,
 export const Optional_Value_Initialization: interface_.Optional_Value_Initialization = ($) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
-            case 'not set': return p_.ss($, ($) => sh.a.optional.not_set())
-            case 'selection': return p_.ss($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
-            case 'set': return p_.ss($, ($) => sh.a.optional.set(
+            case 'not set': return p_.option($, ($) => sh.a.optional.not_set())
+            case 'selection': return p_.option($, ($) => sh.a.select(Possible_Value_Selection($, { 'tail': p_.literal.list([]) })))
+            case 'set': return p_.option($, ($) => sh.a.optional.set(
                 sh.a.select(Resolver_Guaranteed_Value_Selection(
                     $,
                     {
@@ -236,13 +236,13 @@ export const Resolver_Guaranteed_Value_Selection = (
             ($) => p_.from.state($['l item']).decide(
                 ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
                     switch ($[0]) {
-                        case 'component': return p_.ss($, ($) => p_.literal.list([]))
-                        case 'group': return p_.ss($, ($) => p_.literal.list([$['l id']]))
-                        case 'reference': return p_.ss($, ($) => p_.from.state($.definition.type).decide(
+                        case 'component': return p_.option($, ($) => p_.literal.list([]))
+                        case 'group': return p_.option($, ($) => p_.literal.list([$['l id']]))
+                        case 'reference': return p_.option($, ($) => p_.from.state($.definition.type).decide(
                             ($) => {
                                 switch ($[0]) {
-                                    case 'derived': return p_.ss($, ($) => p_.literal.list([]))
-                                    case 'selected': return p_.ss($, ($) => p_.literal.list(["l entry"]))
+                                    case 'derived': return p_.option($, ($) => p_.literal.list([]))
+                                    case 'selected': return p_.option($, ($) => p_.literal.list(["l entry"]))
                                     default: return p_.au($[0])
                                 }
                             }))
@@ -255,11 +255,11 @@ export const Resolver_Guaranteed_Value_Selection = (
     return p_.from.state($.start).decide(
         ($) => {
             switch ($[0]) {
-                case 'constraint': return p_.ss($, ($) => p_.from.state($).decide(
+                case 'constraint': return p_.option($, ($) => p_.from.state($).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'component': return p_.ss($, ($) => sh.sv.implement_me("IM: COMPONENT")) //simple
-                            case 'reference': return p_.ss($, ($) => sh.sv.sibling(
+                            case 'component': return p_.option($, ($) => sh.sv.implement_me("IM: COMPONENT")) //simple
+                            case 'reference': return p_.option($, ($) => sh.sv.sibling(
                                 $.property['l id'],
                                 p_.literal.list([
                                     "l results",
@@ -269,24 +269,24 @@ export const Resolver_Guaranteed_Value_Selection = (
                             default: return p_.au($[0])
                         }
                     }))
-                case 'list cursor': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST CURSOR"))
-                case 'linked entry': return p_.ss($, ($) => sh.sv.variable("referenced entry", tail()))
-                case 'parameter': return p_.ss($, ($) => sh.sv.parameter(
+                case 'list cursor': return p_.option($, ($) => sh.sv.implement_me("IM: LIST CURSOR"))
+                case 'linked entry': return p_.option($, ($) => sh.sv.variable("referenced entry", tail()))
+                case 'parameter': return p_.option($, ($) => sh.sv.parameter(
                     $['l id'],
                     p_.literal.list([])
                 ))
-                case 'parent sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: PARENT SIBLING"))
-                case 'option constraint': return p_.ss($, ($) => sh.sv.variable("constraint " + $['l id'], tail()))
-                case 'result': return p_.ss($, ($) => p_.from.state($).decide(
+                case 'parent sibling': return p_.option($, ($) => sh.sv.implement_me("IM: PARENT SIBLING"))
+                case 'option constraint': return p_.option($, ($) => sh.sv.variable("constraint " + $['l id'], tail()))
+                case 'result': return p_.option($, ($) => p_.from.state($).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'state': return p_.ss($, ($) => sh.sv.implement_me("IM: STATE"))  // quite some work
-                            case 'optional value': return p_.ss($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE")) // quite some work
-                            case 'list': return p_.ss($, ($) => sh.sv.implement_me("IM: LIST")) // quite some work
+                            case 'state': return p_.option($, ($) => sh.sv.implement_me("IM: STATE"))  // quite some work
+                            case 'optional value': return p_.option($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE")) // quite some work
+                            case 'list': return p_.option($, ($) => sh.sv.implement_me("IM: LIST")) // quite some work
                             default: return p_.au($[0])
                         }
                     }))
-                case 'sibling': return p_.ss($, ($) => sh.sv.sibling($['l id'], tail()))
+                case 'sibling': return p_.option($, ($) => sh.sv.sibling($['l id'], tail()))
                 default: return p_.au($[0])
             }
         })
@@ -297,10 +297,10 @@ export const Resolver_Lookup_Selection = (
 ): d_out.Select_Lookup => p_.from.state($.type).decide(
     ($) => {
         switch ($[0]) {
-            case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(
+            case 'acyclic': return p_.option($, ($) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'resolved dictionary': return p_.ss($, ($) => sh.sl.acyclic.resolved_dictionary(
+                        case 'resolved dictionary': return p_.option($, ($) => sh.sl.acyclic.resolved_dictionary(
                             Resolver_Guaranteed_Value_Selection(
                                 $.selection,
                                 {
@@ -308,19 +308,19 @@ export const Resolver_Lookup_Selection = (
                                 }
                             )
                         ))
-                        case 'siblings': return p_.ss($, ($) => sh.sl.acyclic.siblings())
+                        case 'siblings': return p_.option($, ($) => sh.sl.acyclic.siblings())
                         default: return p_.au($[0])
                     }
                 }))
-            case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(
+            case 'cyclic': return p_.option($, ($) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'siblings': return p_.ss($, ($) => sh.sl.cyclic.siblings())
+                        case 'siblings': return p_.option($, ($) => sh.sl.cyclic.siblings())
 
                         default: return p_.au($[0])
                     }
                 }))
-            case 'parameter': return p_.ss($, ($) => sh.sl.from_parameter($['l id']))
+            case 'parameter': return p_.option($, ($) => sh.sl.from_parameter($['l id']))
             default: return p_.au($[0])
         }
     })
@@ -338,7 +338,7 @@ export const Option_Constraints = (
             ($, id) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
+                        case 'state': return p_.option($, ($) => sh.a.decide.state_single(
                             sh.sv.context(
                                 p_.literal.list([])
                             ),
@@ -369,7 +369,7 @@ export const Option_Constraints = (
                             // sh.type_node_reference("out", $p['sub'], p_.literal.list([]))
 
                         ))
-                        case 'assert is set': return p_.ss($, ($) => sh.a.decide.optional(
+                        case 'assert is set': return p_.option($, ($) => sh.a.decide.optional(
                             Possible_Value_Selection($, { 'tail': p_.literal.list([]) }),
                             sh.a.select(
                                 sh.sv.context(
@@ -409,7 +409,7 @@ export const Option_Constraints = (
 //  sh.a.variables(
 //     // {
 //     //         switch ($[0]) {
-//     //     case 'assert is set': return p_.ss($, ($) => sh.a.decide.optional(
+//     //     case 'assert is set': return p_.option($, ($) => sh.a.decide.optional(
 //     //         Possible_Value_Selection($, { 'tail': () => p_.literal.list([]) }),
 //     //         sh.a.select(
 // sh.sv.context(
@@ -418,7 +418,7 @@ export const Option_Constraints = (
 //     //         sh.a.implement_me("IM: assert is set"),
 //     //         sh.type_node_reference("out", $p['sub'] as any as string, p_.literal.list([]))
 //     //     ))
-//     //     case 'state': return p_.ss($, ($) => sh.a.implement_me("IM: state constraint")) // medium work
+//     //     case 'state': return p_.option($, ($) => sh.a.implement_me("IM: state constraint")) // medium work
 //     //     default: return p_.au($[0])
 //     // }
 //     $.__ decide(),
@@ -436,7 +436,7 @@ export const Resolver_Value = (
     ($) => {
         switch ($[0]) {
 
-            case 'component': return p_.ss($, ($) => {
+            case 'component': return p_.option($, ($) => {
 
                 // const results = $.definition.results
 
@@ -448,8 +448,8 @@ export const Resolver_Value = (
                                 p_.from.state($.location).decide(
                                     ($) => {
                                         switch ($[0]) {
-                                            case 'external': return p_.ss($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
-                                            case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
+                                            case 'external': return p_.option($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
+                                            case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
                                             default: return p_.au($[0])
                                         }
                                     }),
@@ -467,32 +467,32 @@ export const Resolver_Value = (
                                             ($) => p_.from.state($).decide(
                                                 ($) => {
                                                     switch ($[0]) {
-                                                        case 'acyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                                                        case 'acyclic': return p_.option($, ($) => p_.from.state($).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'not set': return p_.ss($, ($) => sh.sl.acyclic.not_set())
+                                                                    case 'not set': return p_.option($, ($) => sh.sl.acyclic.not_set())
                                                                     default: return p_.au($[0])
                                                                 }
                                                             }))
-                                                        case 'cyclic': return p_.ss($, ($) => p_.from.state($).decide(
+                                                        case 'cyclic': return p_.option($, ($) => p_.from.state($).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'not set': return p_.ss($, ($) => sh.sl.cyclic.not_set())
+                                                                    case 'not set': return p_.option($, ($) => sh.sl.cyclic.not_set())
                                                                     default: return p_.au($[0])
                                                                 }
                                                             }))
-                                                        case 'stack': return p_.ss($, ($) => p_.from.state($).decide(
+                                                        case 'stack': return p_.option($, ($) => p_.from.state($).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'empty': return p_.ss($, ($) => sh.sl.stack.empty())
-                                                                    case 'push': return p_.ss($, ($) => sh.sl.stack.push(
+                                                                    case 'empty': return p_.option($, ($) => sh.sl.stack.empty())
+                                                                    case 'push': return p_.option($, ($) => sh.sl.stack.push(
                                                                         Resolver_Lookup_Selection($['stack']),
                                                                         Resolver_Lookup_Selection($['item']),
                                                                     ))
                                                                     default: return p_.au($[0])
                                                                 }
                                                             }))
-                                                        case 'selection': return p_.ss($, ($) => Resolver_Lookup_Selection($))
+                                                        case 'selection': return p_.option($, ($) => Resolver_Lookup_Selection($))
                                                         default: return p_.au($[0])
                                                     }
                                                 }),
@@ -507,8 +507,8 @@ export const Resolver_Value = (
                                             ($) => p_.from.state($).decide(
                                                 ($) => {
                                                     switch ($[0]) {
-                                                        case 'optional': return p_.ss($, ($) => Optional_Value_Initialization($))
-                                                        case 'required': return p_.ss($, ($) => sh.a.select(
+                                                        case 'optional': return p_.option($, ($) => Optional_Value_Initialization($))
+                                                        case 'required': return p_.option($, ($) => sh.a.select(
                                                             Resolver_Guaranteed_Value_Selection(
                                                                 $,
                                                                 {
@@ -516,7 +516,7 @@ export const Resolver_Value = (
                                                                 }
                                                             )
                                                         ))
-                                                        case 'parameter': return p_.ss($, ($) => sh.a.select(
+                                                        case 'parameter': return p_.option($, ($) => sh.a.select(
                                                             sh.sv.parameter(
                                                                 $['l id'],
                                                                 p_.literal.list([])
@@ -536,7 +536,7 @@ export const Resolver_Value = (
                     }
                 )
             })
-            case 'dictionary': return p_.ss($, ($) => {
+            case 'dictionary': return p_.option($, ($) => {
                 const resolver = $.resolver
                 return p_.from.optional($.benchmark).decide(
                     ($) => sh.a.dictionary.from.dictionary.resolve( //FIXME: validate denseness
@@ -603,7 +603,7 @@ export const Resolver_Value = (
                     )
                 )
             })
-            case 'group': return p_.ss($, ($) => sh.a.group.literal_resolve(
+            case 'group': return p_.option($, ($) => sh.a.group.literal_resolve(
                 p_.from.dictionary($).map(
                     ($, id) => sh.a.change_context(
                         sh.sv.context(
@@ -622,7 +622,7 @@ export const Resolver_Value = (
                     )
                 )
             ))
-            case 'list': return p_.ss($, ($) => {
+            case 'list': return p_.option($, ($) => {
                 const resolver: d_in.Resolver_Value = $.resolver
                 return p_.from.optional($.result).decide(
                     ($) => sh.a.group.literal(
@@ -688,12 +688,12 @@ export const Resolver_Value = (
                     )
                 )
             })
-            case 'nothing': return p_.ss($, ($) => sh.a.nothing())
-            case 'simple': return p_.ss($, ($) => sh.a.select(
+            case 'nothing': return p_.option($, ($) => sh.a.nothing())
+            case 'simple': return p_.option($, ($) => sh.a.select(
                 sh.sv.context(
                     p_.literal.list([])
                 )))
-            case 'optional': return p_.ss($, ($) => sh.a.optional.map(
+            case 'optional': return p_.option($, ($) => sh.a.optional.map(
                 sh.sv.context(
                     p_.literal.list([])
                 ),
@@ -708,10 +708,10 @@ export const Resolver_Value = (
                     }
                 )
             ))
-            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+            case 'reference': return p_.option($, ($) => p_.from.state($.type).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'derived': return p_.ss($, ($) => sh.a.select(
+                        case 'derived': return p_.option($, ($) => sh.a.select(
                             Resolver_Guaranteed_Value_Selection(
                                 $.value,
                                 {
@@ -719,7 +719,7 @@ export const Resolver_Value = (
                                 }
                             )
                         ))
-                        case 'selected': return p_.ss($, ($) => {
+                        case 'selected': return p_.option($, ($) => {
                             const x = $.lookup
                             const x_out = Resolver_Lookup_Selection(x)
                             return Value_Constraints(
@@ -728,7 +728,7 @@ export const Resolver_Value = (
                                     'sub': p_.from.state($.definition.dependency).decide(
                                         ($) => {
                                             switch ($[0]) {
-                                                case 'stack': return p_.ss($, ($) => sh.a.group.literal(
+                                                case 'stack': return p_.option($, ($) => sh.a.group.literal(
                                                     p_.literal.dictionary({
                                                         "l entry": sh.a.select(
                                                             sh.sv.lookup_entry_acyclic(
@@ -761,7 +761,7 @@ export const Resolver_Value = (
                                                             )),
                                                     })
                                                 ))
-                                                case 'acyclic': return p_.ss($, ($) => sh.a.group.literal(
+                                                case 'acyclic': return p_.option($, ($) => sh.a.group.literal(
                                                     p_.literal.dictionary({
                                                         // "l entry": sh.a.implement_me("IM: FIXME ACYCLIC ENTRY"),
                                                         "l entry": sh.a.select(
@@ -782,7 +782,7 @@ export const Resolver_Value = (
                                                             )),
                                                     })
                                                 ))
-                                                case 'cyclic': return p_.ss($, ($) => sh.a.group.literal(
+                                                case 'cyclic': return p_.option($, ($) => sh.a.group.literal(
                                                     p_.literal.dictionary({
                                                         "l entry": sh.a.select(
                                                             sh.sv.lookup_entry_cyclic(
@@ -811,8 +811,8 @@ export const Resolver_Value = (
                         default: return p_.au($[0])
                     }
                 }))
-            case 'state': return p_.ss($, ($) => {
-                const results = $.definition.results
+            case 'state': return p_.option($, ($) => {
+                const $v_results = $.definition.results
                 return sh.a.variables(
                     p_.literal.dictionary({
                         "location": sh.a.select(
@@ -837,7 +837,7 @@ export const Resolver_Value = (
                                                     'temp type': $p['temp type'],
                                                     'temp subselection': p_.literal.segmented_list([
                                                         $p['temp subselection'],
-                                                        p_.from.optional(results).decide(
+                                                        p_.from.optional($v_results).decide(
                                                             () => p_.literal.list([
                                                                 sh_i.sub.group("l value"),
                                                                 sh_i.sub.state(id),
@@ -855,7 +855,7 @@ export const Resolver_Value = (
                                     "out",
                                     $p['temp type'], p_.literal.segmented_list([
                                         $p['temp subselection'],
-                                        p_.from.optional(results).decide(
+                                        p_.from.optional($v_results).decide(
                                             () => p_.literal.list([
                                                 sh_i.sub.group("l value"),
                                             ]),
@@ -868,7 +868,7 @@ export const Resolver_Value = (
                     )
                 )
             })
-            case 'text': return p_.ss($, ($) => sh.a.select(
+            case 'text': return p_.option($, ($) => sh.a.select(
                 sh.sv.context(
                     p_.literal.list([])
                 )))
@@ -885,8 +885,8 @@ export const Value_Constraint: interface_.Value_Constraint = (
         //     'sub': p_.from.state($.start).decide(
         // ($) => {
         //         switch ($[0]) {
-        //             case 'value': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result1"))
-        //             case 'sibling': return p_.ss($, ($) => sh.sv.implement_me("IM: constraint result2"))
+        //             case 'value': return p_.option($, ($) => sh.sv.implement_me("IM: constraint result1"))
+        //             case 'sibling': return p_.option($, ($) => sh.sv.implement_me("IM: constraint result2"))
         //             default: return p_.au($[0])
         //         }
         //     })
@@ -901,7 +901,7 @@ export const Resolver_Constraint: interface_.Constraint = (
     return p_.from.state($.type).decide(
         ($) => {
             switch ($[0]) {
-                case 'state': return p_.ss($, ($) => sh.a.decide.state_single(
+                case 'state': return p_.option($, ($) => sh.a.decide.state_single(
                     rvs,
                     $.option['l id'],
                     sh.a.select(
@@ -935,7 +935,7 @@ export const Resolver_Constraint: interface_.Constraint = (
                     ),
                     null,
                 ))
-                case 'optional value': return p_.ss($, ($) => sh.a.implement_me("IM: constraint2"))
+                case 'optional value': return p_.option($, ($) => sh.a.implement_me("IM: constraint2"))
                 default: return p_.au($[0])
             }
         })

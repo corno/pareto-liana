@@ -43,7 +43,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'schema': return p_.ss($, ($) => {
+                case 'schema': return p_.option($, ($) => {
                     const imports = $['resolver imports']
                     const schema = $
 
@@ -54,7 +54,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                         : p_.from.state($.complexity).decide(
                             ($): d_out.Package_Set.D => {
                                 switch ($[0]) {
-                                    case 'constrained': return p_.ss($, ($): d_out.Package_Set.D => sh.m.set(
+                                    case 'constrained': return p_.option($, ($): d_out.Package_Set.D => sh.m.set(
                                         p_.literal.dictionary({
                                             "resolved": sh.m.set(
                                                 p_.literal.dictionary({
@@ -119,7 +119,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                                             ),
                                         })
                                     ))
-                                    case 'unconstrained': return p_.ss($, ($) => sh.m.set(
+                                    case 'unconstrained': return p_.option($, ($) => sh.m.set(
                                         p_.literal.dictionary({
                                             "transformers": sh.m.set(
                                                 p_.literal.dictionary({
@@ -158,7 +158,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                                 }
                             })
                 })
-                case 'set': return p_.ss($, ($): d_out.Package_Set.D => Schemas(
+                case 'set': return p_.option($, ($): d_out.Package_Set.D => Schemas(
                     $,
                     {
                         'path': $p.path,

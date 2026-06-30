@@ -24,14 +24,14 @@ export const Error: p_i.Transformer_With_Parameter<
         p_.from.state($).decide(
             ($) => {
                 switch ($[0]) {
-                    case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
-                    case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))
-                    case 'could not remove implementation': return p_.ss($, ($) => sh.ph.literal("could not remove implementation"))
-                    case 'could not write interface': return p_.ss($, ($) => sh.ph.literal("could not write interface"))
-                    case 'could not write implementation': return p_.ss($, ($) => sh.ph.literal("could not write implementation"))
-                    case 'could not copy generic implementation': return p_.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
-                    case 'could not copy core interface': return p_.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                    case 'could not deserialize module': return p_.ss($, ($) => sh.ph.composed([
+                    case 'could not log': return p_.option($, ($) => sh.ph.literal("could not log"))
+                    case 'could not remove interface': return p_.option($, ($) => sh.ph.literal("could not remove interface"))
+                    case 'could not remove implementation': return p_.option($, ($) => sh.ph.literal("could not remove implementation"))
+                    case 'could not write interface': return p_.option($, ($) => sh.ph.literal("could not write interface"))
+                    case 'could not write implementation': return p_.option($, ($) => sh.ph.literal("could not write implementation"))
+                    case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.literal("could not copy generic implementation"))
+                    case 'could not copy core interface': return p_.option($, ($) => sh.ph.literal("could not copy core interface"))
+                    case 'could not deserialize module': return p_.option($, ($) => sh.ph.composed([
                         t_location_to_fountain_pen.Range(
                             $.location,
                             {

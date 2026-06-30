@@ -18,28 +18,28 @@ d_in.Error, Possible_Range
     return p_.from.state($).decide(
         ($): Possible_Range => {
             switch ($[0]) {
-                case 'could not read source': return p_.ss($, ($): Possible_Range => p_.literal.not_set())
-                case 'could not log': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not remove interface': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not remove implementation': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not write interface': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not write implementation': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not copy generic implementation': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not copy core interface': return p_.ss($, ($) => p_.literal.not_set())
-                case 'could not resolve module': return p_.ss($, ($): Possible_Range => p_.literal.set(p_.from.state($.error.location).decide(
+                case 'could not read source': return p_.option($, ($): Possible_Range => p_.literal.not_set())
+                case 'could not log': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not remove interface': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not remove implementation': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not write interface': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not write implementation': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not copy generic implementation': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not copy core interface': return p_.option($, ($) => p_.literal.not_set())
+                case 'could not resolve module': return p_.option($, ($): Possible_Range => p_.literal.set(p_.from.state($.error.location).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'in main document': return p_.ss($, ($): d_location.Range => $)
-                            case 'in subdocument': return p_.ss($, ($): d_location.Range => $.range)
+                            case 'in main document': return p_.option($, ($): d_location.Range => $)
+                            case 'in subdocument': return p_.option($, ($): d_location.Range => $.range)
                             default: return p_.au($[0])
                         }
                     })))
-                case 'could not deserialize': return p_.ss($, ($) => p_.literal.set(
+                case 'could not deserialize': return p_.option($, ($) => p_.literal.set(
                     p_.from.state(t_deserialize_to_location.Error($.error)).decide(
                         ($): d_location.Range => {
                             switch ($[0]) {
-                                case 'range': return p_.ss($, ($) => $)
-                                case 'end of document': return p_.ss($, ($) => ({
+                                case 'range': return p_.option($, ($) => $)
+                                case 'end of document': return p_.option($, ($) => ({
                                     'start': $.end,
                                     'end': $.end,
                                 }))

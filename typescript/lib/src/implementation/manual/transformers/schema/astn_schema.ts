@@ -74,60 +74,60 @@ d_in.Value, d_out.Value
 ) => sh.state(p_.from.state($).decide(
     ($): d_out.Value.l_state => {
         switch ($[0]) {
-            case 'simple': return p_.ss($, ($): d_out.Value.l_state => ['text', sh.state(
+            case 'simple': return p_.option($, ($): d_out.Value.l_state => ['text', sh.state(
                 p_.from.state($).decide(
                     ($): d_out.Value.l_state.text.l_state => {
                         switch ($[0]) {
-                            case 'global': return p_.ss($, ($) => ['global', sh.reference("n" + $['l id'])])
+                            case 'global': return p_.option($, ($) => ['global', sh.reference("n" + $['l id'])])
 
                             default: return p_.au($[0])
                         }
                     })
             )])
-            case 'list': return p_.ss($, ($) => ['list', {
+            case 'list': return p_.option($, ($) => ['list', {
                 'value': Value($.value)
             }])
-            case 'nothing': return p_.ss($, ($) => ['nothing', null])
-            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+            case 'nothing': return p_.option($, ($) => ['nothing', null])
+            case 'reference': return p_.option($, ($) => p_.from.state($.type).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'derived': return p_.ss($, ($) => ['nothing', null])
-                        case 'selected': return p_.ss($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
+                        case 'derived': return p_.option($, ($) => ['nothing', null])
+                        case 'selected': return p_.option($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
                             'type': sh.state(['single line', null])
                         }])])
                         default: return p_.au($[0])
                     }
                 }))
-            case 'component': return p_.ss($, ($) => ['component', sh.state(p_.from.state($.type).decide(
+            case 'component': return p_.option($, ($) => ['component', sh.state(p_.from.state($.type).decide(
                 ($): d_out.Value.l_state.component.l_state => {
                     switch ($[0]) {
-                        case 'external': return p_.ss($, ($) => ['external', {
+                        case 'external': return p_.option($, ($) => ['external', {
                             'import': sh.reference($.import['l id']),
                             'type': sh.reference($.module['l id'])
                         }])
-                        case 'internal acyclic': return p_.ss($, ($) => ['internal acyclic', sh.reference($['l id'])])
-                        case 'internal': return p_.ss($, ($) => ['internal', sh.reference($['l id'])])
+                        case 'internal acyclic': return p_.option($, ($) => ['internal acyclic', sh.reference($['l id'])])
+                        case 'internal': return p_.option($, ($) => ['internal', sh.reference($['l id'])])
                         default: return p_.au($[0])
                     }
                 }))])
-            case 'dictionary': return p_.ss($, ($) => ['dictionary', {
+            case 'dictionary': return p_.option($, ($) => ['dictionary', {
                 'ordered': false,
                 'value': Value($.value)
             }])
-            case 'group': return p_.ss($, ($) => ['group', sh.dictionary(p_.from.dictionary($).map(
+            case 'group': return p_.option($, ($) => ['group', sh.dictionary(p_.from.dictionary($).map(
                 ($) => Value($.value)))])
-            case 'optional': return p_.ss($, ($) => ['optional', Value($)])
-            case 'state': return p_.ss($, ($) => ['state', sh.dictionary(p_.from.dictionary($.options).map(
+            case 'optional': return p_.option($, ($) => ['optional', Value($)])
+            case 'state': return p_.option($, ($) => ['state', sh.dictionary(p_.from.dictionary($.options).map(
                 ($) => Value($.value)))])
-            case 'text': return p_.ss($, ($) => ['text', sh.state(p_.from.state($).decide(
+            case 'text': return p_.option($, ($) => ['text', sh.state(p_.from.state($).decide(
                 ($): d_out.Value.l_state.text.l_state => {
                     switch ($[0]) {
-                        case 'global': return p_.ss($, ($) => ['global', sh.reference("t" + $['l id'])])
-                        case 'local': return p_.ss($, ($) => ['local', Text_Type($)])
+                        case 'global': return p_.option($, ($) => ['global', sh.reference("t" + $['l id'])])
+                        case 'local': return p_.option($, ($) => ['local', Text_Type($)])
                         default: return p_.au($[0])
                     }
                 }))])
-            // case 'type parameter': return p_.ss($, ($) => p_implement_me("xx"))
+            // case 'type parameter': return p_.option($, ($) => p_implement_me("xx"))
             default: return p_.au($[0])
         }
     }))
@@ -140,8 +140,8 @@ d_in.Text_Type, d_out.Text_Type
     'type': sh.state(p_.from.state($.type).decide(
         ($) => {
             switch ($[0]) {
-                case 'multi line': return p_.ss($, ($) => ['multi line', null])
-                case 'single line': return p_.ss($, ($) => ['single line', null])
+                case 'multi line': return p_.option($, ($) => ['multi line', null])
+                case 'single line': return p_.option($, ($) => ['single line', null])
                 default: return p_.au($[0])
             }
         }))

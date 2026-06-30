@@ -33,14 +33,14 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
         ($): t_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'set':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['set', Schemas(
                             $,
                         )],
                     )
                 case 'schema':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['schema', Schema(
                             $,
@@ -305,7 +305,7 @@ export const Value: t_signatures.Value = ($) => ({
         ($): t_out.Value.l_state => {
             switch ($[0]) {
                 case 'component':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['component', {
                             'l location': ['in main document', {
@@ -329,7 +329,7 @@ export const Value: t_signatures.Value = ($) => ({
                                 ($): t_out.Value.l_state.component.l_state => {
                                     switch ($[0]) {
                                         case 'external':
-                                            return p_.ss(
+                                            return p_.option(
                                                 $,
                                                 ($) => ['external', {
                                                     'import': p_change_context(
@@ -379,7 +379,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'internal acyclic':
-                                            return p_.ss(
+                                            return p_.option(
                                                 $,
                                                 ($) => ['internal acyclic', {
                                                     'l location': ['in main document', {
@@ -402,7 +402,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'internal':
-                                            return p_.ss(
+                                            return p_.option(
                                                 $,
                                                 ($) => ['internal', {
                                                     'l location': ['in main document', {
@@ -434,7 +434,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'dictionary':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['dictionary', {
                             'value': p_change_context(
@@ -450,7 +450,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'group':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['group', {
                             'l location': ['in main document', {
@@ -496,7 +496,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'list':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['list', {
                             'value': p_change_context(
@@ -508,19 +508,19 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'nothing':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['nothing', null],
                     )
                 case 'optional':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['optional', Value(
                             $,
                         )],
                     )
                 case 'state':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['state', {
                             'l location': ['in main document', {
@@ -566,7 +566,7 @@ export const Value: t_signatures.Value = ($) => ({
                         }],
                     )
                 case 'text':
-                    return p_.ss(
+                    return p_.option(
                         $,
                         ($) => ['text', {
                             'l location': ['in main document', {
@@ -590,7 +590,7 @@ export const Value: t_signatures.Value = ($) => ({
                                 ($): t_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global':
-                                            return p_.ss(
+                                            return p_.option(
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': ['in main document', {
@@ -613,7 +613,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                 }],
                                             )
                                         case 'local':
-                                            return p_.ss(
+                                            return p_.option(
                                                 $,
                                                 ($) => ['local', Text_Type(
                                                     $,
@@ -662,12 +662,12 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 ($): t_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line':
-                            return p_.ss(
+                            return p_.option(
                                 $,
                                 ($) => ['multi line', null],
                             )
                         case 'single line':
-                            return p_.ss(
+                            return p_.option(
                                 $,
                                 ($) => ['single line', null],
                             )

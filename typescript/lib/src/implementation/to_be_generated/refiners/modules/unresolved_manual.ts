@@ -14,9 +14,9 @@ import * as i_generic from "../../resolve_generic"
 export const Value: t_signatures.Value = ($, abort, $l, $p) => {
     return p_change_context($['l state'], ($): t_out.Value => {
         switch ($[0]) {
-            case 'simple': return p_.ss($, ($): t_out.Value => ['simple', p_change_context($['l state'], ($): t_out.Value.simple => {
+            case 'simple': return p_.option($, ($): t_out.Value => ['simple', p_change_context($['l state'], ($): t_out.Value.simple => {
                 switch ($[0]) {
-                    case 'global': return p_.ss($, ($): t_out.Value.simple => ['global', i_generic.get_entry_acyclic(
+                    case 'global': return p_.option($, ($): t_out.Value.simple => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
                             p_.from.optional($p.globals).decide(
                                 ($) => $['simple types'],
@@ -29,9 +29,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     default: return p_.au($[0])
                 }
             })])
-            case 'text': return p_.ss($, ($): t_out.Value => ['text', p_change_context($['l state'], ($): t_out.Value.text => {
+            case 'text': return p_.option($, ($): t_out.Value => ['text', p_change_context($['l state'], ($): t_out.Value.text => {
                 switch ($[0]) {
-                    case 'global': return p_.ss($, ($): t_out.Value.text => ['global', i_generic.get_entry_acyclic(
+                    case 'global': return p_.option($, ($): t_out.Value.text => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
                             p_.from.optional($p.globals).decide(
                                 ($) => $['text types'],
@@ -41,7 +41,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                         $,
                         abort
                     )])
-                    case 'local': return p_.ss($, ($) => ['local', Text_Type(
+                    case 'local': return p_.option($, ($) => ['local', Text_Type(
                         $,
                         abort,
                         p_.literal.nothing(),
@@ -50,10 +50,10 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     default: return p_.au($[0])
                 }
             })])
-            case 'component': return p_.ss($, ($): t_out.Value => ['component', {
+            case 'component': return p_.option($, ($): t_out.Value => ['component', {
                 'type': p_change_context($.type['l state'], ($): t_out.Value.component.type_ => {
                     switch ($[0]) {
-                        case 'external': return p_.ss($, ($) => {
+                        case 'external': return p_.option($, ($) => {
                             const sc_import = p_.from.optional($p.imports).decide(
                                 ($) => $,
                                 () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
@@ -72,12 +72,12 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                 )
                             }]
                         })
-                        case 'internal acyclic': return p_.ss($, ($) => ['internal acyclic', i_generic.get_entry_acyclic(
+                        case 'internal acyclic': return p_.option($, ($) => ['internal acyclic', i_generic.get_entry_acyclic(
                             $l['noncircular sibling modules'],
                             $,
                             abort,
                         )])
-                        case 'internal': return p_.ss($, ($) => ['internal', i_generic.get_entry_cyclic(
+                        case 'internal': return p_.option($, ($) => ['internal', i_generic.get_entry_cyclic(
                             $l['possibly circular dependent sibling modules'],
                             $,
                             abort
@@ -96,7 +96,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     },
                 )
             }])
-            case 'dictionary': return p_.ss($, ($) => {
+            case 'dictionary': return p_.option($, ($) => {
                 const p_type = Value(
                     $.value,
                     abort,
@@ -107,7 +107,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     'value': p_type,
                 }]
             })
-            case 'group': return p_.ss($, ($) => ['group', i_generic.temp_resolve(
+            case 'group': return p_.option($, ($) => ['group', i_generic.temp_resolve(
                 $['l dictionary'],
                 ($, id, $acyclic, $cyclic) => ({
                     'description': $['l entry'].description,
@@ -119,7 +119,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     )
                 }),
             )])
-            case 'list': return p_.ss($, ($): t_out.Value => {
+            case 'list': return p_.option($, ($): t_out.Value => {
                 const p_type = Value(
                     $.value,
                     abort,
@@ -140,15 +140,15 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     )
                 }]
             })
-            case 'nothing': return p_.ss($, ($) => ['nothing', null])
-            case 'optional': return p_.ss($, ($) => ['optional', Value(
+            case 'nothing': return p_.option($, ($) => ['nothing', null])
+            case 'optional': return p_.option($, ($) => ['optional', Value(
                 $,
                 abort,
                 $l,
                 $p,
             )])
 
-            case 'reference': return p_.ss($, ($): t_out.Value => {
+            case 'reference': return p_.option($, ($): t_out.Value => {
                 const loc = $.referent['module'].location['l location']
                 // $p.globals.__deprecated_extract_data(
                 //     ($) => {
@@ -171,11 +171,11 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 )
                 const p_type: t_out.Value.reference.type_ = p_change_context($.type['l state'], ($) => {
                     switch ($[0]) {
-                        case 'selected': return p_.ss($, ($) => {
+                        case 'selected': return p_.option($, ($) => {
                             return ['selected', {
                                 'dictionary': p_change_context(p_referent.path['resulting node'], ($) => { // component constraint (referent)
                                     switch ($[0]) {
-                                        case 'dictionary': return p_.ss($, ($) => $)
+                                        case 'dictionary': return p_.option($, ($) => $)
                                         default: return i_generic.abort.state_constraint_found_expected(
                                             "dictionary",
                                             $,
@@ -187,9 +187,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                 }),
                                 'dependency': p_change_context($.dependency['l state'], ($) => {
                                     switch ($[0]) {
-                                        case 'cyclic': return p_.ss($, ($) => ['cyclic', null])
-                                        case 'acyclic': return p_.ss($, ($) => ['acyclic', null])
-                                        case 'stack': return p_.ss($, ($) => ['stack', $])
+                                        case 'cyclic': return p_.option($, ($) => ['cyclic', null])
+                                        case 'acyclic': return p_.option($, ($) => ['acyclic', null])
+                                        case 'stack': return p_.option($, ($) => ['stack', $])
                                         default: return p_.au($[0])
                                     }
                                 }),
@@ -205,7 +205,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                 )
                             }]
                         })
-                        case 'derived': return p_.ss($, ($) => ['derived', null])
+                        case 'derived': return p_.option($, ($) => ['derived', null])
                         default: return p_.au($[0])
                     }
                 })
@@ -235,7 +235,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 //     }]
                 // }
             })
-            case 'state': return p_.ss($, ($) => ['state', {
+            case 'state': return p_.option($, ($) => ['state', {
                 'options': i_generic.temp_resolve(
                     $.options['l dictionary'],
                     ($, id, $acyclic, $cyclic) => ({
@@ -307,19 +307,19 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
     return {
         'type': p_change_context($.type['l state'], ($): t_out.Simple_Type.type_ => {
             switch ($[0]) {
-                case 'boolean': return p_.ss($, ($) => ['boolean', null])
-                case 'date': return p_.ss($, ($) => ['date', null])
-                case 'number': return p_.ss($, ($) => ['number', {
+                case 'boolean': return p_.option($, ($) => ['boolean', null])
+                case 'date': return p_.option($, ($) => ['date', null])
+                case 'number': return p_.option($, ($) => ['number', {
 
                     'precision': p_change_context($.precision['l state'], ($): t_out.Simple_Type.type_.number_.precision => {
                         switch ($[0]) {
-                            case 'exact': return p_.ss($, ($) => {
+                            case 'exact': return p_.option($, ($) => {
                                 return ['exact', {
                                     'type': p_change_context($.type['l state'], ($) => {
                                         switch ($[0]) {
-                                            case 'integer': return p_.ss($, ($) => ['integer', null])
-                                            case 'natural': return p_.ss($, ($) => ['natural', null])
-                                            case 'positive natural': return p_.ss($, ($) => ['positive natural', null])
+                                            case 'integer': return p_.option($, ($) => ['integer', null])
+                                            case 'natural': return p_.option($, ($) => ['natural', null])
+                                            case 'positive natural': return p_.option($, ($) => ['positive natural', null])
                                             default: return p_.au($[0])
                                         }
                                     }),
@@ -328,7 +328,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
                                     })
                                 }]
                             })
-                            case 'approximation': return p_.ss($, ($) => ['approximation', {
+                            case 'approximation': return p_.option($, ($) => ['approximation', {
                                 'significant digits': $['significant digits']
                             }])
                             default: return p_.au($[0])
@@ -383,7 +383,7 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
 export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => {
     const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
-            case 'external': return p_.ss($, ($): t_out.Module_Reference.location => {
+            case 'external': return p_.option($, ($): t_out.Module_Reference.location => {
                 const sc_import = p_.from.optional($p.imports).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
@@ -402,7 +402,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                     )
                 }]
             })
-            case 'internal': return p_.ss($, ($) => ['internal', i_generic.get_entry_acyclic(
+            case 'internal': return p_.option($, ($) => ['internal', i_generic.get_entry_acyclic(
                 $l['modules'],
                 $,
                 abort,
@@ -412,8 +412,8 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
     })
     const p_resulting_type = p_change_context(x, ($): t_out.Module => {
         switch ($[0]) {
-            case 'external': return p_.ss($, ($) => $.module['l entry'])
-            case 'internal': return p_.ss($, ($) => $['l entry'])
+            case 'external': return p_.option($, ($) => $.module['l entry'])
+            case 'internal': return p_.option($, ($) => $['l entry'])
             default: return p_.au($[0])
         }
     })
@@ -428,15 +428,15 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
     return {
         'type': p_change_context($.type['l state'], ($): t_out.Text_Type.type_ => {
             switch ($[0]) {
-                case 'single line': return p_.ss($, ($) => ['single line', null])
-                case 'multi line': return p_.ss($, ($) => ['multi line', null])
+                case 'single line': return p_.option($, ($) => ['single line', null])
+                case 'multi line': return p_.option($, ($) => ['multi line', null])
                 default: return p_.au($[0])
             }
         }),
         'link': p_change_context($.link['l state'], ($): t_out.Text_Type.link => {
             switch ($[0]) {
-                case 'no': return p_.ss($, ($) => ['no', null])
-                case 'yes': return p_.ss($, ($) => ['yes', {
+                case 'no': return p_.option($, ($) => ['no', null])
+                case 'yes': return p_.option($, ($) => ['yes', {
                     'path prefix': $['path prefix'],
                     'path suffix': $['path suffix'],
                 }])
@@ -453,7 +453,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
             const sg_loc = $['l location']
             return p_change_context($['l item']['l state'], ($): t_out.Value_Path.tail.l_value.L => {
                 switch ($[0]) {
-                    case 'dictionary': return p_.ss($, ($): t_out.Value_Path.tail.l_value.L => {
+                    case 'dictionary': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
                         const sc_definition: t_out.Value.dictionary = p_change_context(current, ($) => {
                             if ($[0] !== 'dictionary') {
                                 return i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
@@ -472,7 +472,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'group': return p_.ss($, ($) => {
+                    case 'group': return p_.option($, ($) => {
                         const sc_definition: t_out.Value.group = p_change_context(current, ($) => {
                             if ($[0] !== 'group') {
                                 return i_generic.abort.state_constraint_found_expected("group", $, sg_loc, abort)
@@ -496,7 +496,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'list': return p_.ss($, ($) => {
+                    case 'list': return p_.option($, ($) => {
                         const sc_definition: t_out.Value.list = p_change_context(current, ($) => {
                             if ($[0] !== 'list') {
                                 return i_generic.abort.state_constraint_found_expected("list", $, sg_loc, abort)
@@ -515,7 +515,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'optional': return p_.ss($, ($): t_out.Value_Path.tail.l_value.L => {
+                    case 'optional': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
                         const sc_definition: t_out.Value.optional = p_change_context(current, ($) => {
                             if ($[0] !== 'optional') {
                                 return i_generic.abort.state_constraint_found_expected("optional", $, sg_loc, abort)
@@ -534,7 +534,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'state': return p_.ss($, ($): t_out.Value_Path.tail.l_value.L => {
+                    case 'state': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
                         const P_state: t_out.Value.state = p_change_context(current, ($) => {
                             if ($[0] !== 'state') {
                                 return i_generic.abort.state_constraint_found_expected("state", $, sg_loc, abort)

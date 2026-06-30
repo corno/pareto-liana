@@ -60,8 +60,8 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) =>
                     'schema': p_.from.state(foo['l entry']).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'schema': return p_.ss($, ($) => $)
-                                case 'set': return p_.ss($, ($) => abort({
+                                case 'schema': return p_.option($, ($) => $)
+                                case 'set': return p_.option($, ($) => abort({
                                     'type': ['constraint', ['state', {
                                         'expected': "schema",
                                         'found': "set",
@@ -97,11 +97,11 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
                     'resolver': p_.from.state(foo['l entry']).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'schema': return p_.ss($, ($) => p_.from.state($.complexity).decide(
+                                case 'schema': return p_.option($, ($) => p_.from.state($.complexity).decide(
                                     ($) => {
                                         switch ($[0]) {
-                                            case 'constrained': return p_.ss($, ($) => $)
-                                            case 'unconstrained': return p_.ss($, ($) => abort({
+                                            case 'constrained': return p_.option($, ($) => $)
+                                            case 'unconstrained': return p_.option($, ($) => abort({
                                                 'type': ['constraint', ['state', {
                                                     'expected': "constrained",
                                                     'found': "unconstrained",
@@ -111,7 +111,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
                                             default: return p_.au($[0])
                                         }
                                     }))
-                                case 'set': return p_.ss($, ($) => abort({
+                                case 'set': return p_.option($, ($) => abort({
                                     'type': ['constraint', ['state', {
                                         'expected': "schema",
                                         'found': "set",
@@ -134,7 +134,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
 export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_variables(
     () => p_change_context($['l state'], ($): t_out.Schemas.D => {
         switch ($[0]) {
-            case 'schema': return p_.ss($, ($) => ['schema', p_variables(
+            case 'schema': return p_.option($, ($) => ['schema', p_variables(
                 () => {
                     const p_schema_imports = Schema_Imports(
                         $['schema imports'],
@@ -186,7 +186,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                     )
                     const p_complexity: t_out.Schema.complexity = p_change_context($.complexity['l state'], ($) => {
                         switch ($[0]) {
-                            case 'constrained': return p_.ss($, ($) => {
+                            case 'constrained': return p_.option($, ($) => {
 
                                 const p_signatures: t_out.Resolver.signatures = p_change_context($.signatures, ($) => {
                                     const p_types_2: t_out.Resolver.signatures.signatures = p_change_context($, ($) => Signatures(
@@ -261,7 +261,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                     'modules': p_modules,
                                 }]
                             })
-                            case 'unconstrained': return p_.ss($, ($) => ['unconstrained', null])
+                            case 'unconstrained': return p_.option($, ($) => ['unconstrained', null])
                             default: return p_.au($[0])
                         }
                     })
@@ -274,7 +274,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                     })
                 })])
             case 'set':
-            case 'set': return p_.ss($, ($) => ['set', Schemas(
+            case 'set': return p_.option($, ($) => ['set', Schemas(
                 $,
                 abort,
                 $l,
@@ -314,10 +314,10 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
         'complexity': p_.from.state($.complexity['l state']).decide(
             ($) => {
                 switch ($[0]) {
-                    case 'constrained': return p_.ss($, ($) => ['constrained', {
+                    case 'constrained': return p_.option($, ($) => ['constrained', {
                         'module resolver': $['module resolver']
                     }])
-                    case 'unconstrained': return p_.ss($, ($) => ['unconstrained', {
+                    case 'unconstrained': return p_.option($, ($) => ['unconstrained', {
                         'module': $.module
                     }])
                     default: return p_.au($[0])

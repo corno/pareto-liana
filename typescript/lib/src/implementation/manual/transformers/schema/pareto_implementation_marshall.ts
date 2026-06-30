@@ -138,14 +138,14 @@ export const Schema: interface_.Schema = ($, $p) => {
 export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
-            case 'component': return p_.ss($, ($) => sh.a.select(
+            case 'component': return p_.option($, ($) => sh.a.select(
                 sh.sv.call(
                     p_.from.state($.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'external': return p_.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
-                                case 'internal acyclic': return p_.ss($, ($) => sh.call.local($['l id']))
-                                case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
+                                case 'external': return p_.option($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
+                                case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
+                                case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
                                 default: return p_.au($[0])
                             }
                         }),
@@ -160,7 +160,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     p_.literal.list([]),
                 )
             ))
-            case 'dictionary': return p_.ss($, ($) => sh.a.state.literal(
+            case 'dictionary': return p_.option($, ($) => sh.a.state.literal(
                 "dictionary",
                 sh.a.dictionary.from.dictionary.map(
                     sh.sv.context(
@@ -178,7 +178,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     )
                 )
             ))
-            case 'group': return p_.ss($, ($) => sh.a.state.literal(
+            case 'group': return p_.option($, ($) => sh.a.state.literal(
                 "group",
                 sh.a.state.literal(
                     "verbose",
@@ -202,7 +202,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                         )))
                 )
             ))
-            case 'list': return p_.ss($, ($) => {
+            case 'list': return p_.option($, ($) => {
 
                 const x = Value(
                     $.value,
@@ -234,18 +234,18 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     )
                 )
             })
-            case 'nothing': return p_.ss($, ($) => sh.a.state.literal(
+            case 'nothing': return p_.option($, ($) => sh.a.state.literal(
                 "nothing",
                 sh.a.nothing()
             ))
-            case 'simple': return p_.ss($, ($) => p_.from.state($).decide(
+            case 'simple': return p_.option($, ($) => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'global': return p_.ss($, ($) => {
+                        case 'global': return p_.option($, ($) => {
                             return p_.from.state($['l entry'].type).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'boolean': return p_.ss($, ($) => sh.a.state.literal(
+                                        case 'boolean': return p_.option($, ($) => sh.a.state.literal(
                                             "text",
                                             sh.a.group.literal(
                                                 p_.literal.dictionary({
@@ -268,7 +268,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                                 })
                                             )
                                         ))
-                                        case 'date': return p_.ss($, ($) => sh.a.state.literal(
+                                        case 'date': return p_.option($, ($) => sh.a.state.literal(
                                             "text",
                                             sh.a.group.literal(
                                                 p_.literal.dictionary({
@@ -291,7 +291,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                                 })
                                             )
                                         ))
-                                        case 'number': return p_.ss($, ($) => sh.a.state.literal(
+                                        case 'number': return p_.option($, ($) => sh.a.state.literal(
                                             "text",
                                             sh.a.group.literal(
                                                 p_.literal.dictionary({
@@ -303,7 +303,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                                         p_.from.state($.precision).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'approximation': return p_.ss($, ($) => sh.sv.call(
+                                                                    case 'approximation': return p_.option($, ($) => sh.sv.call(
                                                                         sh.call.external("primitives to text", "scientific notation"),
                                                                         sh.a.select(
                                                                             sh.sv.context(
@@ -321,7 +321,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                                                         ),
                                                                         p_.literal.list([]),
                                                                     ))
-                                                                    case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
+                                                                    case 'exact': return p_.option($, ($) => p_.from.optional($['number of fractional digits']).decide(
                                                                         ($) => sh.sv.call(
                                                                             sh.call.external("primitives to text", "fractional decimal"),
                                                                             sh.a.select(
@@ -368,7 +368,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     }
                 }))
 
-            case 'optional': return p_.ss($, ($) => sh.a.state.literal(
+            case 'optional': return p_.option($, ($) => sh.a.state.literal(
                 "optional",
                 sh.a.decide.optional(
                     sh.sv.context(
@@ -399,14 +399,14 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                         ])
                     ),
                 )))
-            case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+            case 'reference': return p_.option($, ($) => p_.from.state($.type).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'derived': return p_.ss($, ($) => sh.a.state.literal(
+                        case 'derived': return p_.option($, ($) => sh.a.state.literal(
                             "nothing",
                             sh.a.nothing()
                         ))
-                        case 'selected': return p_.ss($, ($) => sh.a.state.literal(
+                        case 'selected': return p_.option($, ($) => sh.a.state.literal(
                             "text",
                             sh.a.group.literal(
                                 p_.literal.dictionary({
@@ -424,7 +424,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                         default: return p_.au($[0])
                     }
                 }))
-            case 'state': return p_.ss($, ($) => sh.a.state.literal(
+            case 'state': return p_.option($, ($) => sh.a.state.literal(
                 "state",
                 sh.a.decide.state(
                     sh.sv.context(p_.from.optional($.results).decide(
@@ -457,7 +457,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     ),
                 )
             ))
-            case 'text': return p_.ss($, ($) => sh.a.state.literal(
+            case 'text': return p_.option($, ($) => sh.a.state.literal(
                 "text",
                 sh.a.group.literal(
                     p_.literal.dictionary({

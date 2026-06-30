@@ -79,8 +79,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     ($) => {
                         switch ($[0]) {
 
-                            case 'schema': return p_.ss($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
-                            case 'set': return p_.ss($, ($) => p_t.from.dictionary($).get_possible_entry(
+                            case 'schema': return p_.option($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
+                            case 'set': return p_.option($, ($) => p_t.from.dictionary($).get_possible_entry(
                                 split.element,
                                 ($) => temp_find_schema($, split.rest),
                                 () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
@@ -92,8 +92,8 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
             () => p_.from.state($).decide(
                 ($) => {
                     switch ($[0]) {
-                        case 'schema': return p_.ss($, ($) => $)
-                        case 'set': return p_.ss($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
+                        case 'schema': return p_.option($, ($) => $)
+                        case 'set': return p_.option($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
                         default: return p_.au($[0])
                     }
                 })
@@ -104,12 +104,12 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
     return p_.from.state(almost_resolved_module_specification.complexity).decide(
         ($): d_out.Temp_Module_Specifier => {
             switch ($[0]) {
-                case 'constrained': return p_.ss($, ($): d_out.Temp_Module_Specifier => {
+                case 'constrained': return p_.option($, ($): d_out.Temp_Module_Specifier => {
                     const $p_resolver = p_.from.state($_schema.complexity).decide(
                         ($): d_out_schema.Resolver => {
                             switch ($[0]) {
-                                case 'constrained': return p_.ss($, ($) => $)
-                                case 'unconstrained': return p_.ss($, ($) => abort(['resolve error', {
+                                case 'constrained': return p_.option($, ($) => $)
+                                case 'unconstrained': return p_.option($, ($) => abort(['resolve error', {
                                     'location': ['in main document', {
                                         'start': {
                                             'absolute': 0,
@@ -154,7 +154,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                         }
                     }]
                 })
-                case 'unconstrained': return p_.ss($, ($) => {
+                case 'unconstrained': return p_.option($, ($) => {
 
                     return ['unconstrained', {
                         'module': {

@@ -57,9 +57,9 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                         return p_.from.state($.type).decide(
                             ($) => {
                                 switch ($[0]) {
-                                    case 'acyclic': return p_.ss($, ($) => ['acyclic', y])
-                                    case 'cyclic': return p_.ss($, ($) => ['cyclic', y])
-                                    case 'stack': return p_.ss($, ($) => ['stack', y])
+                                    case 'acyclic': return p_.option($, ($) => ['acyclic', y])
+                                    case 'cyclic': return p_.option($, ($) => ['cyclic', y])
+                                    case 'stack': return p_.option($, ($) => ['stack', y])
                                     default: return p_.au($[0])
                                 }
                             }
@@ -94,11 +94,11 @@ export const Module_Reference = (
     return p_.from.state($.location).decide(
         ($) => {
             switch ($[0]) {
-                case 'external': return p_.ss($, ($) => sh.mr.imported(
+                case 'external': return p_.option($, ($) => sh.mr.imported(
                     `imports ${$.import['l id']}`,
                     $.module['l id'],
                 ))
-                case 'internal': return p_.ss($, ($) => sh.mr.imported(
+                case 'internal': return p_.option($, ($) => sh.mr.imported(
                     "resolved",
                     $['l id'],
                 ))
@@ -114,11 +114,11 @@ export const Value_Path = (
         ($) => p_.from.state($['l item']['l value']).decide(
             ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return p_.ss($, ($) => sh.sub.dictionary())
-                    case 'group': return p_.ss($, ($) => sh.sub.group($['l id']))
-                    case 'list': return p_.ss($, ($) => sh.sub.list())
-                    case 'optional': return p_.ss($, ($) => sh.sub.optional())
-                    case 'state': return p_.ss($, ($) => sh.sub.state($['l id']))
+                    case 'dictionary': return p_.option($, ($) => sh.sub.dictionary())
+                    case 'group': return p_.option($, ($) => sh.sub.group($['l id']))
+                    case 'list': return p_.option($, ($) => sh.sub.list())
+                    case 'optional': return p_.option($, ($) => sh.sub.optional())
+                    case 'state': return p_.option($, ($) => sh.sub.state($['l id']))
                     default: return p_.au($[0])
                 }
             }))

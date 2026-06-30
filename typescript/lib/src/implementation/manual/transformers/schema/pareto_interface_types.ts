@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
-import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
 
 //data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
@@ -77,54 +77,51 @@ export const Schema: interface_.Schema = ($, $p) => {
                         add_location,
                     ).decide(
                         () => p_.literal.set(
-sh.import_.external(
-                            "liana-core",
-                            p_.literal.list([
-                                "dist",
-                                "interface",
-                                "to be generated",
-                                "document and location",
-                            ])
-                        )),
+                            sh.import_.external(
+                                "liana-core",
+                                p_.literal.list([
+                                    "dist",
+                                    "interface",
+                                    "to be generated",
+                                    "document and location",
+                                ])
+                            )),
                         () => p_.literal.not_set(),
                     )
                 }),
-                "imports ": p_change_context($, ($) => {
-                    // const types = $p['what to generate']
-                    return p_.from.dictionary($p.imports).map(
-                        ($) => sh.import_.ancestor(
-                            $p.depth + 1 + $['schema set child']['l value']['l up steps'],
-                            $['schema set child']['l value']['l id'],
-                            p_.from.state($.schema.complexity).decide(
-                                ($) => {
-                                    switch ($[0]) {
-                                        case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
-                                            "data",
-                                        ]))
-                                        case 'constrained': return p_.ss($, ($) => p_.from.state($p.type).decide(
-                                            ($) => {
-                                                switch ($[0]) {
-                                                    case 'unconstrained': return p_.ss($, ($) => p_.literal.list([
-                                                        "data",
-                                                        "resolved",
-                                                    ]))
-                                                    case 'unresolved': return p_.ss($, ($) => p_.literal.list([
-                                                        "data",
-                                                        "unresolved",
-                                                    ]))
-                                                    case 'resolved': return p_.ss($, ($) => p_.literal.list([
-                                                        "data",
-                                                        "resolved",
-                                                    ]))
-                                                    default: return p_.au($[0])
-                                                }
-                                            }))
-                                        default: return p_.au($[0])
-                                    }
-                                }),
-                        )
+                "imports ": p_.from.dictionary($p.imports).map(
+                    ($) => sh.import_.ancestor(
+                        $p.depth + 1 + $['schema set child']['l value']['l up steps'],
+                        $['schema set child']['l value']['l id'],
+                        p_.from.state($.schema.complexity).decide(
+                            ($) => {
+                                switch ($[0]) {
+                                    case 'unconstrained': return p_.option($, ($) => p_.literal.list([
+                                        "data",
+                                    ]))
+                                    case 'constrained': return p_.option($, ($) => p_.from.state($p.type).decide(
+                                        ($) => {
+                                            switch ($[0]) {
+                                                case 'unconstrained': return p_.option($, ($) => p_.literal.list([
+                                                    "data",
+                                                    "resolved",
+                                                ]))
+                                                case 'unresolved': return p_.option($, ($) => p_.literal.list([
+                                                    "data",
+                                                    "unresolved",
+                                                ]))
+                                                case 'resolved': return p_.option($, ($) => p_.literal.list([
+                                                    "data",
+                                                    "resolved",
+                                                ]))
+                                                default: return p_.au($[0])
+                                            }
+                                        }))
+                                    default: return p_.au($[0])
+                                }
+                            }),
                     )
-                }),
+                )
             }),
         ).flatten(
             ($) => $,
@@ -147,8 +144,8 @@ sh.import_.external(
 export const Module_Reference: interface_.Module_Reference = ($) => p_.from.state($.location).decide(
     ($) => {
         switch ($[0]) {
-            case 'internal': return p_.ss($, ($) => sh.mr.local($['l id']))
-            case 'external': return p_.ss($, ($) => sh.mr.imported(
+            case 'internal': return p_.option($, ($) => sh.mr.local($['l id']))
+            case 'external': return p_.option($, ($) => sh.mr.imported(
                 "imports " + $.import['l id'],
                 $.module['l id'],
             ))
@@ -156,23 +153,25 @@ export const Module_Reference: interface_.Module_Reference = ($) => p_.from.stat
         }
     })
 
+
+
 export const Value: interface_.Value = ($, $p) => {
 
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'component': return p_.ss($, ($) => {
+                case 'component': return p_.option($, ($) => {
                     const x: d_out.Value = p_.from.state($.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'external': return p_.ss($, ($) => sh.t.component_imported(
+                                case 'external': return p_.option($, ($) => sh.t.component_imported(
                                     "imports " + $.import['l id'],
                                     $.module['l id'],
                                 ))
-                                case 'internal': return p_.ss($, ($) => sh.t.component_sibling(
+                                case 'internal': return p_.option($, ($) => sh.t.component_sibling(
                                     $['l id'],
                                 ))
-                                case 'internal acyclic': return p_.ss($, ($) => sh.t.component_sibling( //FIXME: is this correct?
+                                case 'internal acyclic': return p_.option($, ($) => sh.t.component_sibling( //FIXME: is this correct?
                                     $['l id'],
                                 ))
                                 default: return p_.au($[0])
@@ -187,7 +186,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                         : x
                 })
-                case 'dictionary': return p_.ss($, ($) => $p.type[0] === 'unresolved'
+                case 'dictionary': return p_.option($, ($) => $p.type[0] === 'unresolved'
                     ? sh.t.group(
                         p_.literal.dictionary({
                             "l location": location,
@@ -211,24 +210,24 @@ export const Value: interface_.Value = ($, $p) => {
                         $p
                     ))
                 )
-                case 'group': return p_.ss($, ($) => sh.t.group(p_.from.dictionary($).map(
+                case 'group': return p_.option($, ($) => sh.t.group(p_.from.dictionary($).map(
                     ($, id) => Value(
                         $.value,
                         {
                             'type': $p.type,
                         }
                     ))))
-                case 'list': return p_.ss($, ($) => {
+                case 'list': return p_.option($, ($) => {
                     const list = $
 
                     return p_.from.state($p.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'unconstrained': return p_.ss($, ($) => sh.t.list(Value(
+                                case 'unconstrained': return p_.option($, ($) => sh.t.list(Value(
                                     list.value,
                                     $p
                                 )))
-                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                case 'unresolved': return p_.option($, ($) => sh.t.group(
                                     p_.literal.dictionary({
                                         "l location": location,
                                         "l list": sh.t.list(
@@ -244,7 +243,7 @@ export const Value: interface_.Value = ($, $p) => {
                                         )
                                     })
                                 ))
-                                case 'resolved': return p_.ss($, ($) => Value_Results(
+                                case 'resolved': return p_.option($, ($) => Value_Results(
                                     list.results,
                                     {
                                         'base type': sh.t.list(
@@ -273,83 +272,66 @@ export const Value: interface_.Value = ($, $p) => {
                         })
                 }
                 )
-                case 'nothing': return p_.ss($, ($) => sh.t.nothing())
-                case 'simple': return p_.ss($, ($) => p_.from.state($).decide(
+                case 'nothing': return p_.option($, ($) => sh.t.nothing())
+                case 'simple': return p_.option($, ($) => p_.from.state($).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'global': return p_.ss($, ($) => Simple_Type($['l entry']))
+                            case 'global': return p_.option($, ($) => Simple_Type($['l entry']))
                             default: return p_.au($[0])
                         }
                     }))
-                case 'optional': return p_.ss($, ($) => sh.t.optional(Value(
+                case 'optional': return p_.option($, ($) => sh.t.optional(Value(
                     $,
                     $p
                 )))
-                case 'reference': return p_.ss($, ($) => {
+                case 'reference': return p_.option($, ($) => {
                     const referent = $.referent
 
                     return p_.from.state($.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'derived': return p_.ss($, ($) => $p.type[0] === 'unresolved'
+                                case 'derived': return p_.option($, ($) => $p.type[0] === 'unresolved'
                                     ? sh.t.nothing()
                                     : Value_Reference(referent)
                                 )
-                                case 'selected': return p_.ss($, ($) => {
-                                    const selected = $
+                                case 'selected': return p_.option($, ($) => {
+                                    const $v_selected = $
                                     return p_.from.state($p.type).decide(
                                         ($) => {
                                             switch ($[0]) {
-                                                case 'unconstrained': return p_.ss($, ($) => sh.t.group(
+                                                case 'unconstrained': return p_.option($, ($) => sh.t.group(
                                                     p_.literal.dictionary({ //this is weird; a reference in an unconstrained schema
                                                         "l location": location,
                                                         "l reference": sh.t.text(),
                                                     })
                                                 ))
-                                                case 'resolved': return p_.ss($, ($) => {
+                                                case 'resolved': return p_.option($, ($) => {
                                                     return Value_Results(
-                                                        selected.results,
+                                                        $v_selected.results,
                                                         {
                                                             'base type': sh.t.group(
                                                                 p_.literal.optionals_dictionary<d_out.Value>({
-                                                                    "l entry": p_.literal.set(p_change_context($, ($) => {
-                                                                        const location = Module_Reference(referent['module'])
-                                                                        const subselection = p_.literal.chain(
-                                                                            Value_Path(referent.path),
-                                                                            sh.sub.dictionary(),
-                                                                        )
-                                                                        return p_.from.state(selected.dependency).decide(
+                                                                    "l entry": p_.literal.set(p_variables(() => {
+                                                                        return p_.from.state($v_selected.dependency).decide(
                                                                             ($) => {
                                                                                 switch ($[0]) {
 
-                                                                                    case 'acyclic': return p_.ss($, ($) => sh.t.reference(
-                                                                                        location,
-                                                                                        subselection,
-                                                                                        'acyclic'
-                                                                                    ))
-                                                                                    case 'cyclic': return p_.ss($, ($) => sh.t.reference(
-                                                                                        location,
-                                                                                        subselection,
-                                                                                        'cyclic'
-                                                                                    ))
-                                                                                    case 'stack': return p_.ss($, ($) => sh.t.reference(
-                                                                                        location,
-                                                                                        subselection,
-                                                                                        'acyclic'
-                                                                                    ))
+                                                                                    case 'acyclic': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'acyclic' }))
+                                                                                    case 'cyclic': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'cyclic' }))
+                                                                                    case 'stack': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'acyclic' }))
                                                                                     default: return p_.au($[0])
                                                                                 }
                                                                             })
                                                                     })),
                                                                     "l id": p_.literal.set(
-sh.t.text()),
-                                                                    "l up steps": p_.from.state(selected.dependency).decide(
+                                                                        sh.t.text()),
+                                                                    "l up steps": p_.from.state($v_selected.dependency).decide(
                                                                         ($) => {
                                                                             switch ($[0]) {
-                                                                                case 'acyclic': return p_.ss($, ($) => p_.literal.not_set())
-                                                                                case 'cyclic': return p_.ss($, ($) => p_.literal.not_set())
-                                                                                case 'stack': return p_.ss($, ($) => p_.literal.set(
-sh.t.natural()))
+                                                                                case 'acyclic': return p_.option($, ($) => p_.literal.not_set())
+                                                                                case 'cyclic': return p_.option($, ($) => p_.literal.not_set())
+                                                                                case 'stack': return p_.option($, ($) => p_.literal.set(
+                                                                                    sh.t.natural()))
                                                                                 default: return p_.au($[0])
                                                                             }
                                                                         })
@@ -358,7 +340,7 @@ sh.t.natural()))
                                                         }
                                                     )
                                                 })
-                                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                                case 'unresolved': return p_.option($, ($) => sh.t.group(
                                                     p_.literal.dictionary({
                                                         "l location": location,
                                                         "l reference": sh.t.text(),
@@ -372,7 +354,7 @@ sh.t.natural()))
                             }
                         })
                 })
-                case 'state': return p_.ss($, ($) => {
+                case 'state': return p_.option($, ($) => {
                     const results = $.results
                     const i = sh.t.state(p_.from.dictionary($.options).map(
                         ($, id) => Value(
@@ -382,14 +364,14 @@ sh.t.natural()))
                     return p_.from.state($p.type).decide(
                         ($) => {
                             switch ($[0]) {
-                                case 'unconstrained': return p_.ss($, ($) => i)
-                                case 'unresolved': return p_.ss($, ($) => sh.t.group(
+                                case 'unconstrained': return p_.option($, ($) => i)
+                                case 'unresolved': return p_.option($, ($) => sh.t.group(
                                     p_.literal.dictionary({
                                         "l location": location,
                                         "l state": i
                                     })
                                 ))
-                                case 'resolved': return p_.ss($, ($) => Value_Results(
+                                case 'resolved': return p_.option($, ($) => Value_Results(
                                     results,
                                     {
                                         'base type': i,
@@ -400,7 +382,7 @@ sh.t.natural()))
                         })
                 }
                 )
-                case 'text': return p_.ss($, ($) => sh.t.text())
+                case 'text': return p_.option($, ($) => sh.t.text())
                 default: return p_.au($[0])
             }
         })
@@ -431,16 +413,30 @@ const Value_Reference = (
     )
 }
 
+const Value_Reference_temp = (
+    $: d_in.Value_Reference,
+    $p: {
+        'type': "cyclic" | "acyclic"
+    }
+): d_out.Value => sh.t.reference(
+    Module_Reference($['module']),
+    p_.literal.chain(
+        Value_Path($.path),
+        sh.sub.dictionary(),
+    ),
+    $p.type,
+)
+
 const Value_Path: interface_.Value_Path = ($) => {
     return p_.from.list($.tail['l value']).map(
         ($) => p_.from.state($['l item']['l value']).decide(
             ($) => {
                 switch ($[0]) {
-                    case 'dictionary': return p_.ss($, ($) => sh.sub.dictionary())
-                    case 'group': return p_.ss($, ($) => sh.sub.group($['l id']))
-                    case 'list': return p_.ss($, ($) => sh.sub.list())
-                    case 'optional': return p_.ss($, ($) => sh.sub.optional())
-                    case 'state': return p_.ss($, ($) => sh.sub.state($['l id']))
+                    case 'dictionary': return p_.option($, ($) => sh.sub.dictionary())
+                    case 'group': return p_.option($, ($) => sh.sub.group($['l id']))
+                    case 'list': return p_.option($, ($) => sh.sub.list())
+                    case 'optional': return p_.option($, ($) => sh.sub.optional())
+                    case 'state': return p_.option($, ($) => sh.sub.state($['l id']))
                     default: return p_.au($[0])
                 }
             }))
@@ -450,18 +446,18 @@ export const Simple_Type: interface_.Simple_Type = ($) => {
     return p_.from.state($.type).decide(
         ($) => {
             switch ($[0]) {
-                case 'boolean': return p_.ss($, ($) => sh.t.boolean())
-                case 'date': return p_.ss($, ($) => sh.t.integer())
-                case 'number': return p_.ss($, ($) => p_.from.state($.precision).decide(
+                case 'boolean': return p_.option($, ($) => sh.t.boolean())
+                case 'date': return p_.option($, ($) => sh.t.integer())
+                case 'number': return p_.option($, ($) => p_.from.state($.precision).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'approximation': return p_.ss($, ($) => sh.t.number_approximation())
-                            case 'exact': return p_.ss($, ($) => p_.from.state($.type).decide(
+                            case 'approximation': return p_.option($, ($) => sh.t.number_approximation())
+                            case 'exact': return p_.option($, ($) => p_.from.state($.type).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'integer': return p_.ss($, ($) => sh.t.integer())
-                                        case 'natural': return p_.ss($, ($) => sh.t.natural())
-                                        case 'positive natural': return p_.ss($, ($) => sh.t.natural())
+                                        case 'integer': return p_.option($, ($) => sh.t.integer())
+                                        case 'natural': return p_.option($, ($) => sh.t.natural())
+                                        case 'positive natural': return p_.option($, ($) => sh.t.natural())
                                         default: return p_.au($[0])
                                     }
                                 }))

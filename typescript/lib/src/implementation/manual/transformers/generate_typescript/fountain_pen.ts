@@ -19,18 +19,18 @@ d_in.Error, d_out.Phrase
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'could not read source': return p_.ss($, ($) => sh.ph.composed([
+                case 'could not read source': return p_.option($, ($) => sh.ph.composed([
                     sh.ph.literal("could not read source"),
                     t_read_file_to_fountain_pen.Error($)
                 ]))
-                case 'could not log': return p_.ss($, ($) => sh.ph.literal("could not log"))
-                case 'could not remove interface': return p_.ss($, ($) => sh.ph.literal("could not remove interface"))
-                case 'could not remove implementation': return p_.ss($, ($) => sh.ph.literal("could not remove implementation"))
-                case 'could not write interface': return p_.ss($, ($) => sh.ph.literal("could not write interface"))
-                case 'could not write implementation': return p_.ss($, ($) => sh.ph.literal("could not write implementation"))
-                case 'could not copy generic implementation': return p_.ss($, ($) => sh.ph.literal("could not copy generic implementation"))
-                case 'could not copy core interface': return p_.ss($, ($) => sh.ph.literal("could not copy core interface"))
-                case 'could not resolve module': return p_.ss($, ($) => sh.ph.composed([
+                case 'could not log': return p_.option($, ($) => sh.ph.literal("could not log"))
+                case 'could not remove interface': return p_.option($, ($) => sh.ph.literal("could not remove interface"))
+                case 'could not remove implementation': return p_.option($, ($) => sh.ph.literal("could not remove implementation"))
+                case 'could not write interface': return p_.option($, ($) => sh.ph.literal("could not write interface"))
+                case 'could not write implementation': return p_.option($, ($) => sh.ph.literal("could not write implementation"))
+                case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.literal("could not copy generic implementation"))
+                case 'could not copy core interface': return p_.option($, ($) => sh.ph.literal("could not copy core interface"))
+                case 'could not resolve module': return p_.option($, ($) => sh.ph.composed([
                     // t_location_to_fountain_pen.Range(
                     //     $.error.location,
                     //     {
@@ -43,12 +43,12 @@ d_in.Error, d_out.Phrase
                         $.error,
                     )
                 ]))
-                case 'could not deserialize': return p_.ss($, ($) => sh.ph.composed([
+                case 'could not deserialize': return p_.option($, ($) => sh.ph.composed([
                     // t_location_to_fountain_pen.Range(
                     //     ['in main document', p_.decide.state(t_deserialize_to_location.Error($.error), ($): d_location.Range => {
                     //         switch ($[0]) {
-                    //             case 'range': return p_.ss($, ($) => $)
-                    //             case 'end of document': return p_.ss($, ($) => ({
+                    //             case 'range': return p_.option($, ($) => $)
+                    //             case 'end of document': return p_.option($, ($) => ({
                     //                 'start': $.end,
                     //                 'end': $.end,
                     //             }))

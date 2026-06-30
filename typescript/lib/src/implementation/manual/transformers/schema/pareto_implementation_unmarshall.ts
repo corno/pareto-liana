@@ -166,15 +166,15 @@ export const Value: interface_.Value = ($, $p) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'component': return p_.ss($, ($) => {
+                case 'component': return p_.option($, ($) => {
                     return sh.a.select(
                         sh.sv.call(
                             p_.from.state($.type).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'external': return p_.ss($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
-                                        case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
-                                        case 'internal acyclic': return p_.ss($, ($) => sh.call.local($['l id']))
+                                        case 'external': return p_.option($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
+                                        case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
+                                        case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
                                         default: return p_.au($[0])
                                     }
                                 }),
@@ -192,7 +192,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                     )
                 })
-                case 'dictionary': return p_.ss($, ($) => {
+                case 'dictionary': return p_.option($, ($) => {
                     return sh.a.change_context(
                         sh.sv.call(
                             sh.call.external("unmarshalled from parse tree", "Dictionary"),
@@ -280,7 +280,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )
                     )
                 })
-                case 'group': return p_.ss($, ($) => sh.a.change_context(
+                case 'group': return p_.option($, ($) => sh.a.change_context(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "Verbose Group"),
                         sh.a.select(
@@ -359,7 +359,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )))
                     ),
                 ))
-                case 'list': return p_.ss($, ($) => {
+                case 'list': return p_.option($, ($) => {
                     return $p.constrained
                         ? sh.a.group.literal(
                             p_.literal.dictionary({
@@ -452,7 +452,7 @@ export const Value: interface_.Value = ($, $p) => {
                             ),
                         )
                 })
-                case 'nothing': return p_.ss($, ($) => sh.a.select(
+                case 'nothing': return p_.option($, ($) => sh.a.select(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "Nothing"),
                         sh.a.select(
@@ -468,13 +468,13 @@ export const Value: interface_.Value = ($, $p) => {
                         p_.literal.list([]),
                     )
                 ))
-                case 'simple': return p_.ss($, ($) => p_.from.state($).decide(
+                case 'simple': return p_.option($, ($) => p_.from.state($).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'global': return p_.ss($, ($) => p_.from.state($['l entry'].type).decide(
+                            case 'global': return p_.option($, ($) => p_.from.state($['l entry'].type).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'boolean': return p_.ss($, ($) => sh.a.select(
+                                        case 'boolean': return p_.option($, ($) => sh.a.select(
                                             sh.sv.call(
                                                 sh.call.external("unmarshalled from parse tree", "Boolean"),
                                                 sh.a.select(
@@ -499,7 +499,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                 p_.literal.list([]),
                                             ),
                                         ))
-                                        case 'date': return p_.ss($, ($) => sh.a.select(
+                                        case 'date': return p_.option($, ($) => sh.a.select(
                                             sh.sv.call(
                                                 sh.call.external("unmarshalled from parse tree", "Number"),
                                                 sh.a.select(
@@ -524,7 +524,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                 p_.literal.list([]),
                                             ),
                                         ))
-                                        case 'number': return p_.ss($, ($) => sh.a.select(
+                                        case 'number': return p_.option($, ($) => sh.a.select(
                                             sh.sv.call(
                                                 sh.call.external(
                                                     "unmarshalled from parse tree",
@@ -544,7 +544,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                         "type": p_.from.state($.precision).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
-                                                                    case 'approximation': return p_.ss($, ($) => sh.a.state.literal(
+                                                                    case 'approximation': return p_.option($, ($) => sh.a.state.literal(
                                                                         "scientific notation",
                                                                         sh.a.group.literal(
                                                                             p_.literal.dictionary({
@@ -552,7 +552,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                             })
                                                                         )
                                                                     ))
-                                                                    case 'exact': return p_.ss($, ($) => p_.from.optional($['number of fractional digits']).decide(
+                                                                    case 'exact': return p_.option($, ($) => p_.from.optional($['number of fractional digits']).decide(
                                                                         ($) => sh.a.state.literal(
                                                                             "fractional decimal",
                                                                             sh.a.group.literal(
@@ -581,7 +581,7 @@ export const Value: interface_.Value = ($, $p) => {
                             default: return p_.au($[0])
                         }
                     }))
-                case 'optional': return p_.ss($, ($) => sh.a.optional.map(
+                case 'optional': return p_.option($, ($) => sh.a.optional.map(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "Optional"),
                         sh.a.select(
@@ -612,10 +612,10 @@ export const Value: interface_.Value = ($, $p) => {
                         }
                     ),
                 ))
-                case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+                case 'reference': return p_.option($, ($) => p_.from.state($.type).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'derived': return p_.ss($, ($) => sh.a.select(
+                            case 'derived': return p_.option($, ($) => sh.a.select(
                                 sh.sv.call(
                                     sh.call.external("unmarshalled from parse tree", "Nothing"),
                                     sh.a.select(
@@ -631,7 +631,7 @@ export const Value: interface_.Value = ($, $p) => {
                                     p_.literal.list([]),
                                 )
                             ))
-                            case 'selected': return p_.ss($, ($) => sh.a.group.literal(
+                            case 'selected': return p_.option($, ($) => sh.a.group.literal(
                                 p_.literal.dictionary({
                                     "l location": location,
                                     "l reference": sh.a.select(
@@ -655,7 +655,7 @@ export const Value: interface_.Value = ($, $p) => {
                             default: return p_.au($[0])
                         }
                     }))
-                case 'state': return p_.ss($, ($) => sh.a.change_context(
+                case 'state': return p_.option($, ($) => sh.a.change_context(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "State"),
                         sh.a.select(
@@ -756,7 +756,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )),
                         sh.type_node_reference("out", $p['temp type'], $p['temp subselection']))
                 ))
-                case 'text': return p_.ss($, ($) => sh.a.select(
+                case 'text': return p_.option($, ($) => sh.a.select(
                     sh.sv.call(
                         sh.call.external("unmarshalled from parse tree", "Text"),
                         sh.a.select(

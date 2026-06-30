@@ -102,12 +102,12 @@
 //                         ($): t_out.Globals.complexity => {
 //                             switch ($[0]) {
 //                                 case 'unconstrained':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['unconstrained', null],
 //                                     )
 //                                 case 'constrained':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['constrained', null],
 //                                     )
@@ -179,7 +179,7 @@
 //                         ($): t_out.Number_Type.precision => {
 //                             switch ($[0]) {
 //                                 case 'approximation':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['approximation', p_.literal.group_resolve(
 //                                             () => {
@@ -195,7 +195,7 @@
 //                                         )],
 //                                     )
 //                                 case 'exact':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['exact', p_.literal.group_resolve(
 //                                             () => {
@@ -219,17 +219,17 @@
 //                                                                 ($): t_out.Number_Type.precision.exact.type_ => {
 //                                                                     switch ($[0]) {
 //                                                                         case 'integer':
-//                                                                             return p_.ss(
+//                                                                             return p_.option(
 //                                                                                 $,
 //                                                                                 ($) => ['integer', null],
 //                                                                             )
 //                                                                         case 'natural':
-//                                                                             return p_.ss(
+//                                                                             return p_.option(
 //                                                                                 $,
 //                                                                                 ($) => ['natural', null],
 //                                                                             )
 //                                                                         case 'positive natural':
-//                                                                             return p_.ss(
+//                                                                             return p_.option(
 //                                                                                 $,
 //                                                                                 ($) => ['positive natural', null],
 //                                                                             )
@@ -280,12 +280,12 @@
 //                         ($): t_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['multi line', null],
 //                                     )
 //                                 case 'single line':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['single line', null],
 //                                     )
@@ -319,7 +319,7 @@
 //                         ($): t_out.Module_Reference.location => {
 //                             switch ($[0]) {
 //                                 case 'internal':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['internal', {
 //                                             'l entry': $l['modules'].get_entry(
@@ -349,7 +349,7 @@
 //                                         }],
 //                                     )
 //                                 case 'external':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['external', p_variables(
 //                                             () => {
@@ -527,7 +527,7 @@
 //                                             ($): t_out.Value_Path.tail.l_value.L.l_item.l_value => {
 //                                                 switch ($[0]) {
 //                                                     case 'dictionary':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['dictionary', p_variables(
 //                                                                 () => {
@@ -537,7 +537,7 @@
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'dictionary':
-//                                                                                     return p_.ss(
+//                                                                                     return p_.option(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -556,7 +556,7 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'group':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['group', p_variables(
 //                                                                 () => {
@@ -566,7 +566,7 @@
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'group':
-//                                                                                     return p_.ss(
+//                                                                                     return p_.option(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -612,7 +612,7 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'list':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['list', p_variables(
 //                                                                 () => {
@@ -622,7 +622,7 @@
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'list':
-//                                                                                     return p_.ss(
+//                                                                                     return p_.option(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -641,7 +641,7 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'optional':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['optional', p_variables(
 //                                                                 () => {
@@ -651,7 +651,7 @@
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'optional':
-//                                                                                     return p_.ss(
+//                                                                                     return p_.option(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -670,7 +670,7 @@
 //                                                             )],
 //                                                         )
 //                                                     case 'state':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['state', p_variables(
 //                                                                 () => {
@@ -680,7 +680,7 @@
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'state':
-//                                                                                     return p_.ss(
+//                                                                                     return p_.option(
 //                                                                                         $,
 //                                                                                         ($) => $,
 //                                                                                     )
@@ -880,12 +880,12 @@
 //             ($): t_out.Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['boolean', null],
 //                         )
 //                     case 'component':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['component', p_.literal.group_resolve(
 //                                 () => {
@@ -901,7 +901,7 @@
 //                                                     ($): t_out.Value.component.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'external':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['external', p_variables(
 //                                                                         () => {
@@ -992,7 +992,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'internal acyclic':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['internal acyclic', {
 //                                                                         'l entry': $l['noncircular sibling modules'].get_entry(
@@ -1022,7 +1022,7 @@
 //                                                                     }],
 //                                                                 )
 //                                                             case 'internal':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['internal', {
 //                                                                         'l entry': $l['possibly circular dependent sibling modules'].get_entry(
@@ -1084,7 +1084,7 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['dictionary', Dictionary(
 //                                 $,
@@ -1102,7 +1102,7 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['group', Group(
 //                                 $,
@@ -1120,7 +1120,7 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['list', p_.literal.group_resolve(
 //                                 () => {
@@ -1160,12 +1160,12 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['nothing', null],
 //                         )
 //                     case 'number':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['number', p_variables(
 //                                 () => {
@@ -1176,7 +1176,7 @@
 //                                         ($): t_out.Value.number_ => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
@@ -1223,7 +1223,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['local', Number_Type(
 //                                                             $,
@@ -1245,7 +1245,7 @@
 //                             )],
 //                         )
 //                     case 'optional':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['optional', Value(
 //                                 $,
@@ -1257,7 +1257,7 @@
 //                             )],
 //                         )
 //                     case 'reference':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['reference', p_.literal.group_resolve(
 //                                 () => {
@@ -1289,12 +1289,12 @@
 //                                                     ($): t_out.Value.reference.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'derived':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['derived', null],
 //                                                                 )
 //                                                             case 'selected':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['selected', p_variables(
 //                                                                         () => {
@@ -1304,7 +1304,7 @@
 //                                                                                 ($) => {
 //                                                                                     switch ($[0]) {
 //                                                                                         case 'dictionary':
-//                                                                                             return p_.ss(
+//                                                                                             return p_.option(
 //                                                                                                 $,
 //                                                                                                 ($) => $,
 //                                                                                             )
@@ -1337,17 +1337,17 @@
 //                                                                                                     ($): t_out.Value.reference.type_.selected.dependency => {
 //                                                                                                         switch ($[0]) {
 //                                                                                                             case 'acyclic':
-//                                                                                                                 return p_.ss(
+//                                                                                                                 return p_.option(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['acyclic', null],
 //                                                                                                                 )
 //                                                                                                             case 'cyclic':
-//                                                                                                                 return p_.ss(
+//                                                                                                                 return p_.option(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['cyclic', null],
 //                                                                                                                 )
 //                                                                                                             case 'stack':
-//                                                                                                                 return p_.ss(
+//                                                                                                                 return p_.option(
 //                                                                                                                     $,
 //                                                                                                                     ($) => ['stack', null],
 //                                                                                                                 )
@@ -1405,7 +1405,7 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['state', p_.literal.group_resolve(
 //                                 () => {
@@ -1488,7 +1488,7 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['text', p_variables(
 //                                 () => {
@@ -1499,7 +1499,7 @@
 //                                         ($): t_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
@@ -1546,7 +1546,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'local':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['local', Text_Type(
 //                                                             $,
@@ -1600,7 +1600,7 @@
 //                                         ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L.l_item => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['component', p_variables(
 //                                                             () => {
@@ -1610,7 +1610,7 @@
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'component':
-//                                                                                 return p_.ss(
+//                                                                                 return p_.option(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1629,7 +1629,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'group':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['group', p_variables(
 //                                                             () => {
@@ -1639,7 +1639,7 @@
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'group':
-//                                                                                 return p_.ss(
+//                                                                                 return p_.option(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1685,7 +1685,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'reference':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['reference', p_variables(
 //                                                             () => {
@@ -1695,7 +1695,7 @@
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'reference':
-//                                                                                 return p_.ss(
+//                                                                                 return p_.option(
 //                                                                                     $,
 //                                                                                     ($) => $,
 //                                                                                 )
@@ -1775,12 +1775,12 @@
 //             ($): t_out.Presence => {
 //                 switch ($[0]) {
 //                     case 'optional':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['optional', null],
 //                         )
 //                     case 'required':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['required', null],
 //                         )
@@ -1894,17 +1894,17 @@
 //                                             ($): t_out.Resolver_Signature_Parameters.lookups.D.type_ => {
 //                                                 switch ($[0]) {
 //                                                     case 'cyclic':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['cyclic', null],
 //                                                         )
 //                                                     case 'acyclic':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['acyclic', null],
 //                                                         )
 //                                                     case 'stack':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => ['stack', null],
 //                                                         )
@@ -1967,7 +1967,7 @@
 //                         ($): t_out.Resolver_Signature.parameters => {
 //                             switch ($[0]) {
 //                                 case 'local':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['local', Resolver_Signature_Parameters(
 //                                             $,
@@ -1982,7 +1982,7 @@
 //                                         )],
 //                                     )
 //                                 case 'same as':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['same as', {
 //                                             'l entry': $l['sibling signatures'].get_entry(
@@ -2076,12 +2076,12 @@
 //             ($): t_out.Resolver_Optional_Value_Initialization => {
 //                 switch ($[0]) {
 //                     case 'not set':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['not set', null],
 //                         )
 //                     case 'set':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['set', Resolver_Guaranteed_Value_Selection(
 //                                 $,
@@ -2093,7 +2093,7 @@
 //                             )],
 //                         )
 //                     case 'selection':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['selection', Resolver_Possible_Value_Selection(
 //                                 $,
@@ -2123,7 +2123,7 @@
 //             ($): t_out.Resolver_Possible_Value_Selection => {
 //                 switch ($[0]) {
 //                     case 'parameter':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['parameter', {
 //                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2155,7 +2155,7 @@
 //                             }],
 //                         )
 //                     case 'result':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['result', p_variables(
 //                                 () => {
@@ -2166,7 +2166,7 @@
 //                                         ($): t_out.Resolver_Possible_Value_Selection.result => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['state', p_.literal.group_resolve(
 //                                                             () => {
@@ -2215,7 +2215,7 @@
 //                                                                                             ($) => {
 //                                                                                                 switch ($[0]) {
 //                                                                                                     case 'state':
-//                                                                                                         return p_.ss(
+//                                                                                                         return p_.option(
 //                                                                                                             $,
 //                                                                                                             ($) => $,
 //                                                                                                         )
@@ -2274,7 +2274,7 @@
 //                                                         )],
 //                                                     )
 //                                                 case 'optional value':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => ['optional value', p_.literal.group_resolve(
 //                                                             () => {
@@ -2323,7 +2323,7 @@
 //                                                                                             ($) => {
 //                                                                                                 switch ($[0]) {
 //                                                                                                     case 'optional':
-//                                                                                                         return p_.ss(
+//                                                                                                         return p_.option(
 //                                                                                                             $,
 //                                                                                                             ($) => $,
 //                                                                                                         )
@@ -2415,17 +2415,17 @@
 //                         ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
 //                             switch ($[0]) {
 //                                 case 'list cursor':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['list cursor', null],
 //                                     )
 //                                 case 'linked entry':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['linked entry', null],
 //                                     )
 //                                 case 'sibling':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['sibling', {
 //                                             'l entry': $l['sibling property resolvers'].get_entry(
@@ -2455,7 +2455,7 @@
 //                                         }],
 //                                     )
 //                                 case 'parent sibling':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['parent sibling', {
 //                                             'l entry': $l['parent sibling property resolvers'].get_entry(
@@ -2485,7 +2485,7 @@
 //                                         }],
 //                                     )
 //                                 case 'option constraint':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['option constraint', p_variables(
 //                                             () => {
@@ -2532,7 +2532,7 @@
 //                                         )],
 //                                     )
 //                                 case 'constraint':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['constraint', p_variables(
 //                                             () => {
@@ -2543,7 +2543,7 @@
 //                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
 //                                                         switch ($[0]) {
 //                                                             case 'component':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['component', p_.literal.group_resolve(
 //                                                                         () => {
@@ -2592,7 +2592,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'component':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2659,7 +2659,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'reference':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['reference', p_.literal.group_resolve(
 //                                                                         () => {
@@ -2708,7 +2708,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'reference':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2732,7 +2732,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'selected':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2809,7 +2809,7 @@
 //                                         )],
 //                                     )
 //                                 case 'parameter':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['parameter', {
 //                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -2841,7 +2841,7 @@
 //                                         }],
 //                                     )
 //                                 case 'result':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['result', p_variables(
 //                                             () => {
@@ -2852,7 +2852,7 @@
 //                                                     ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
 //                                                         switch ($[0]) {
 //                                                             case 'list':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['list', p_.literal.group_resolve(
 //                                                                         () => {
@@ -2901,7 +2901,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'list':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -2944,7 +2944,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'state':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['state', p_.literal.group_resolve(
 //                                                                         () => {
@@ -2993,7 +2993,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'state':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -3052,7 +3052,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'optional value':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['optional value', p_.literal.group_resolve(
 //                                                                         () => {
@@ -3101,7 +3101,7 @@
 //                                                                                                         ($) => {
 //                                                                                                             switch ($[0]) {
 //                                                                                                                 case 'optional':
-//                                                                                                                     return p_.ss(
+//                                                                                                                     return p_.option(
 //                                                                                                                         $,
 //                                                                                                                         ($) => $,
 //                                                                                                                     )
@@ -3222,7 +3222,7 @@
 //                         ($): t_out.Resolver_Lookup_Selection.type_ => {
 //                             switch ($[0]) {
 //                                 case 'acyclic':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['acyclic', p_variables(
 //                                             () => {
@@ -3233,7 +3233,7 @@
 //                                                     ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
@@ -3253,7 +3253,7 @@
 //                                                                     )],
 //                                                                 )
 //                                                             case 'resolved dictionary':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['resolved dictionary', p_.literal.group_resolve(
 //                                                                         () => {
@@ -3294,7 +3294,7 @@
 //                                         )],
 //                                     )
 //                                 case 'cyclic':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['cyclic', p_variables(
 //                                             () => {
@@ -3305,7 +3305,7 @@
 //                                                     ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
@@ -3335,7 +3335,7 @@
 //                                         )],
 //                                     )
 //                                 case 'parameter':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['parameter', {
 //                                             'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -3477,7 +3477,7 @@
 //                         ($): t_out.Resolver_Constraint.type_ => {
 //                             switch ($[0]) {
 //                                 case 'state':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['state', p_variables(
 //                                             () => {
@@ -3487,7 +3487,7 @@
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => $,
 //                                                                 )
@@ -3550,7 +3550,7 @@
 //                                         )],
 //                                     )
 //                                 case 'optional value':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['optional value', p_variables(
 //                                             () => {
@@ -3560,7 +3560,7 @@
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
-//                                                                 return p_.ss(
+//                                                                 return p_.option(
 //                                                                     $,
 //                                                                     ($) => $,
 //                                                                 )
@@ -3619,7 +3619,7 @@
 //                     ($): t_out.Resolver_Option_Constraints.D => {
 //                         switch ($[0]) {
 //                             case 'state':
-//                                 return p_.ss(
+//                                 return p_.option(
 //                                     $,
 //                                     ($) => ['state', p_.literal.group_resolve(
 //                                         () => {
@@ -3683,7 +3683,7 @@
 //                                     )],
 //                                 )
 //                             case 'assert is set':
-//                                 return p_.ss(
+//                                 return p_.option(
 //                                     $,
 //                                     ($) => ['assert is set', Resolver_Possible_Value_Selection(
 //                                         $,
@@ -3720,12 +3720,12 @@
 //                         ($): t_out.Resolver_Value_Constraint.start => {
 //                             switch ($[0]) {
 //                                 case 'value':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['value', null],
 //                                     )
 //                                 case 'sibling':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['sibling', Resolver_Reference_To_Value_Constraint(
 //                                             $,
@@ -3949,7 +3949,7 @@
 //             ($): t_out.Resolver_Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['boolean', p_variables(
 //                                 () => {
@@ -3959,7 +3959,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'boolean':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -3978,7 +3978,7 @@
 //                             )],
 //                         )
 //                     case 'component':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['component', p_variables(
 //                                 () => {
@@ -3988,7 +3988,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4021,7 +4021,7 @@
 //                                                             ($): t_out.Resolver_Value.component.location => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'external':
-//                                                                         return p_.ss(
+//                                                                         return p_.option(
 //                                                                             $,
 //                                                                             ($) => ['external', p_variables(
 //                                                                                 () => {
@@ -4096,7 +4096,7 @@
 //                                                                                                                         ($) => {
 //                                                                                                                             switch ($[0]) {
 //                                                                                                                                 case 'constrained':
-//                                                                                                                                     return p_.ss(
+//                                                                                                                                     return p_.option(
 //                                                                                                                                         $,
 //                                                                                                                                         ($) => $,
 //                                                                                                                                     )
@@ -4198,7 +4198,7 @@
 //                                                                             )],
 //                                                                         )
 //                                                                     case 'internal':
-//                                                                         return p_.ss(
+//                                                                         return p_.option(
 //                                                                             $,
 //                                                                             ($) => ['internal', {
 //                                                                                 'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4279,7 +4279,7 @@
 //                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.modules.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'optional':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['optional', Resolver_Optional_Value_Initialization(
 //                                                                                                                     $,
@@ -4291,7 +4291,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'required':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['required', Resolver_Guaranteed_Value_Selection(
 //                                                                                                                     $,
@@ -4303,7 +4303,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'parameter':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['parameter', {
 //                                                                                                                     'l entry': _p_sl.acyclic.from_resolved_dictionary(
@@ -4375,7 +4375,7 @@
 //                                                                                                 ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'stack':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['stack', p_variables(
 //                                                                                                                     () => {
@@ -4386,12 +4386,12 @@
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'empty':
-//                                                                                                                                         return p_.ss(
+//                                                                                                                                         return p_.option(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['empty', null],
 //                                                                                                                                         )
 //                                                                                                                                     case 'push':
-//                                                                                                                                         return p_.ss(
+//                                                                                                                                         return p_.option(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['push', p_.literal.group_resolve(
 //                                                                                                                                                 () => {
@@ -4437,7 +4437,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'acyclic':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['acyclic', p_variables(
 //                                                                                                                     () => {
@@ -4448,7 +4448,7 @@
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
-//                                                                                                                                         return p_.ss(
+//                                                                                                                                         return p_.option(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['not set', null],
 //                                                                                                                                         )
@@ -4463,7 +4463,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'cyclic':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['cyclic', p_variables(
 //                                                                                                                     () => {
@@ -4474,7 +4474,7 @@
 //                                                                                                                             ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
-//                                                                                                                                         return p_.ss(
+//                                                                                                                                         return p_.option(
 //                                                                                                                                             $,
 //                                                                                                                                             ($) => ['not set', null],
 //                                                                                                                                         )
@@ -4489,7 +4489,7 @@
 //                                                                                                                 )],
 //                                                                                                             )
 //                                                                                                         case 'selection':
-//                                                                                                             return p_.ss(
+//                                                                                                             return p_.option(
 //                                                                                                                 $,
 //                                                                                                                 ($) => ['selection', Resolver_Lookup_Selection(
 //                                                                                                                     $,
@@ -4550,7 +4550,7 @@
 //                             )],
 //                         )
 //                     case 'dictionary':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['dictionary', p_variables(
 //                                 () => {
@@ -4560,7 +4560,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'dictionary':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4637,7 +4637,7 @@
 //                             )],
 //                         )
 //                     case 'group':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['group', p_variables(
 //                                 () => {
@@ -4647,7 +4647,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'group':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4688,7 +4688,7 @@
 //                             )],
 //                         )
 //                     case 'list':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['list', p_variables(
 //                                 () => {
@@ -4698,7 +4698,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'list':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4779,7 +4779,7 @@
 //                             )],
 //                         )
 //                     case 'nothing':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['nothing', p_variables(
 //                                 () => {
@@ -4789,7 +4789,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'nothing':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4808,7 +4808,7 @@
 //                             )],
 //                         )
 //                     case 'number':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['number', p_variables(
 //                                 () => {
@@ -4818,7 +4818,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'number':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4837,7 +4837,7 @@
 //                             )],
 //                         )
 //                     case 'optional':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['optional', p_variables(
 //                                 () => {
@@ -4847,7 +4847,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'optional':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4909,7 +4909,7 @@
 //                             )],
 //                         )
 //                     case 'reference':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['reference', p_variables(
 //                                 () => {
@@ -4919,7 +4919,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'reference':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -4952,7 +4952,7 @@
 //                                                             ($): t_out.Resolver_Value.reference.type_ => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'derived':
-//                                                                         return p_.ss(
+//                                                                         return p_.option(
 //                                                                             $,
 //                                                                             ($) => ['derived', p_variables(
 //                                                                                 () => {
@@ -4962,7 +4962,7 @@
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'derived':
-//                                                                                                     return p_.ss(
+//                                                                                                     return p_.option(
 //                                                                                                         $,
 //                                                                                                         ($) => $,
 //                                                                                                     )
@@ -4999,7 +4999,7 @@
 //                                                                             )],
 //                                                                         )
 //                                                                     case 'selected':
-//                                                                         return p_.ss(
+//                                                                         return p_.option(
 //                                                                             $,
 //                                                                             ($) => ['selected', p_variables(
 //                                                                                 () => {
@@ -5009,7 +5009,7 @@
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'selected':
-//                                                                                                     return p_.ss(
+//                                                                                                     return p_.option(
 //                                                                                                         $,
 //                                                                                                         ($) => $,
 //                                                                                                     )
@@ -5086,7 +5086,7 @@
 //                             )],
 //                         )
 //                     case 'state':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['state', p_variables(
 //                                 () => {
@@ -5096,7 +5096,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -5191,7 +5191,7 @@
 //                             )],
 //                         )
 //                     case 'text':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['text', p_variables(
 //                                 () => {
@@ -5201,7 +5201,7 @@
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'text':
-//                                                     return p_.ss(
+//                                                     return p_.option(
 //                                                         $,
 //                                                         ($) => $,
 //                                                     )
@@ -5350,7 +5350,7 @@
 //             ($): t_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['schema', Schema(
 //                                 $,
@@ -5364,7 +5364,7 @@
 //                             )],
 //                         )
 //                     case 'set':
-//                         return p_.ss(
+//                         return p_.option(
 //                             $,
 //                             ($) => ['set', Schemas(
 //                                 $,
@@ -5460,7 +5460,7 @@
 //                         ($): t_out.Schema.complexity => {
 //                             switch ($[0]) {
 //                                 case 'constrained':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['constrained', Resolver(
 //                                             $,
@@ -5476,7 +5476,7 @@
 //                                         )],
 //                                     )
 //                                 case 'unconstrained':
-//                                     return p_.ss(
+//                                     return p_.option(
 //                                         $,
 //                                         ($) => ['unconstrained', null],
 //                                     )
@@ -5574,7 +5574,7 @@
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )
@@ -5689,7 +5689,7 @@
 //                                             ($) => {
 //                                                 switch ($[0]) {
 //                                                     case 'schema':
-//                                                         return p_.ss(
+//                                                         return p_.option(
 //                                                             $,
 //                                                             ($) => $,
 //                                                         )

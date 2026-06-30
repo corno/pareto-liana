@@ -149,15 +149,15 @@ export const Value: interface_.Value = ($, $p) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'component': return p_.ss($, ($) => {
+                case 'component': return p_.option($, ($) => {
                     return sh.a.select(
                         sh.sv.call(
                             p_.from.state($.type).decide(
                                 ($) => {
                                     switch ($[0]) {
-                                        case 'external': return p_.ss($, ($) => sh.call.external($.import['l id'], $.module['l id']))
-                                        case 'internal': return p_.ss($, ($) => sh.call.local($['l id']))
-                                        case 'internal acyclic': return p_.ss($, ($) => sh.call.local($['l id']))
+                                        case 'external': return p_.option($, ($) => sh.call.external($.import['l id'], $.module['l id']))
+                                        case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
+                                        case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
                                         default: return p_.au($[0])
                                     }
                                 }),
@@ -176,7 +176,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                     )
                 })
-                case 'dictionary': return p_.ss($, ($) => {
+                case 'dictionary': return p_.option($, ($) => {
 
                     return $p.constrained
                         ? sh.a.group.literal(
@@ -226,7 +226,7 @@ export const Value: interface_.Value = ($, $p) => {
                             )
                         )
                 })
-                case 'group': return p_.ss($, ($) => sh.a.group.literal(
+                case 'group': return p_.option($, ($) => sh.a.group.literal(
                     p_.from.dictionary($).map(
                         ($, id) => sh.a.change_context(
                             sh.sv.context(
@@ -248,7 +248,7 @@ export const Value: interface_.Value = ($, $p) => {
                         )
                     )
                 ))
-                case 'list': return p_.ss($, ($) => {
+                case 'list': return p_.option($, ($) => {
 
                     return $p.constrained
                         ? sh.a.group.literal(
@@ -313,12 +313,12 @@ export const Value: interface_.Value = ($, $p) => {
                         )
 
                 })
-                case 'nothing': return p_.ss($, ($) => sh.a.nothing())
-                case 'simple': return p_.ss($, ($) => sh.a.select(
+                case 'nothing': return p_.option($, ($) => sh.a.nothing())
+                case 'simple': return p_.option($, ($) => sh.a.select(
 sh.sv.context(
                     p_.literal.list([])
                 )))
-                case 'optional': return p_.ss($, ($) => sh.a.optional.map(
+                case 'optional': return p_.option($, ($) => sh.a.optional.map(
                     sh.sv.context(
                         p_.literal.list([])
                     ),
@@ -334,11 +334,11 @@ sh.sv.context(
                         }
                     )
                 ))
-                case 'reference': return p_.ss($, ($) => p_.from.state($.type).decide(
+                case 'reference': return p_.option($, ($) => p_.from.state($.type).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'derived': return p_.ss($, ($) => sh.a.nothing())
-                            case 'selected': return p_.ss($, ($) => {
+                            case 'derived': return p_.option($, ($) => sh.a.nothing())
+                            case 'selected': return p_.option($, ($) => {
                                 const tn = sh.a.text.copy(
 sh.sv.context(p_.from.optional($.results).decide(
                                     ($) => p_.literal.list(["l value", "l id"]),
@@ -357,7 +357,7 @@ sh.sv.context(p_.from.optional($.results).decide(
                             default: return p_.au($[0])
                         }
                     }))
-                case 'state': return p_.ss($, ($) => {
+                case 'state': return p_.option($, ($) => {
                     const tn = sh.a.decide.state(
                         sh.sv.context(p_.from.optional($.results).decide(
                             ($) => p_.literal.list(["l value"]),
@@ -404,7 +404,7 @@ sh.sv.context(p_.from.optional($.results).decide(
                         )
                         : tn
                 })
-                case 'text': return p_.ss($, ($) => sh.a.select(
+                case 'text': return p_.option($, ($) => sh.a.select(
                     sh.sv.context(
                         p_.literal.list([])
                     )

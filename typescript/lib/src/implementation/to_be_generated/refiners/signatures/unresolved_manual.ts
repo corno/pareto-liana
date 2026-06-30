@@ -47,7 +47,7 @@ export const Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) =
 export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => {
     const p_parameters: t_out.Resolver_Signature.parameters = p_change_context($.parameters['l state'], ($): t_out.Resolver_Signature.parameters => {
         switch ($[0]) {
-            case 'local': return p_.ss($, ($) => ['local', Signature_Parameters(
+            case 'local': return p_.option($, ($) => ['local', Signature_Parameters(
                 $,
                 abort,
                 p_.literal.nothing(),
@@ -56,7 +56,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
                     'modules': $p.modules,
                 },
             )])
-            case 'same as': return p_.ss($, ($) => ['same as', i_generic.get_entry_acyclic(
+            case 'same as': return p_.option($, ($) => ['same as', i_generic.get_entry_acyclic(
                 $l['sibling signatures'],
                 $,
                 abort,
@@ -69,8 +69,8 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
         'parameters': p_parameters,
         'resolved parameters': p_change_context(p_parameters, ($) => {
             switch ($[0]) {
-                case 'local': return p_.ss($, ($) => $)
-                case 'same as': return p_.ss($, ($) => $['l entry']['resolved parameters'])
+                case 'local': return p_.option($, ($) => $)
+                case 'same as': return p_.option($, ($) => $['l entry']['resolved parameters'])
                 default: return p_.au($[0])
             }
         })
@@ -120,9 +120,9 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
 
             const p_type: t_out.Resolver_Signature_Parameters.lookups.D.type_ = p_change_context($['l entry'].type['l state'], ($) => {
                 switch ($[0]) {
-                    case 'acyclic': return p_.ss($, ($) => ['acyclic', null])
-                    case 'cyclic': return p_.ss($, ($) => ['cyclic', null])
-                    case 'stack': return p_.ss($, ($) => ['stack', $])
+                    case 'acyclic': return p_.option($, ($) => ['acyclic', null])
+                    case 'cyclic': return p_.option($, ($) => ['cyclic', null])
+                    case 'stack': return p_.option($, ($) => ['stack', $])
                     default: return p_.au($[0])
                 }
             })
@@ -131,7 +131,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                 'referent': p_referent,
                 'dictionary': p_change_context(p_referent['resulting module']['root value'], ($) => { // component constraint (referent)
                     switch ($[0]) {
-                        case 'dictionary': return p_.ss($, ($) => $)
+                        case 'dictionary': return p_.option($, ($) => $)
                         default: return i_generic.abort.state_constraint_found_expected(
                             "dictionary",
                             $,
