@@ -13,7 +13,8 @@ import * as t_deserialize_to_location from "liana-core/dist/implementation/manua
 
 
 export const Error: p_i.Transformer<
-d_in.Error, Possible_Range
+    d_in.Error,
+    Possible_Range
 > = ($) => {
     return p_.from.state($).decide(
         ($): Possible_Range => {

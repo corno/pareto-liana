@@ -16,11 +16,11 @@ import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
 import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
 import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
-import * as t_schema_to_fp from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"
+import * as t_schema_to_prose from "../../generated/liana/schemas/schema/resolved/transformers/fountain_pen"
 import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
-import * as t_write_file_to_fp from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
-import * as t_resolve_to_fp from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_loc_to_fp from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_write_file_to_prose from "pareto-resources/dist/implementation/manual/transformers/write_file/fountain_pen"
+import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
+import * as t_loc_to_prose from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
@@ -57,7 +57,7 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                                         //     ($) => $,
                                         // )
                                         'data': t_fp_to_loc.Paragraph(
-                                            t_schema_to_fp.Package(
+                                            t_schema_to_prose.Package(
                                                 $v,
                                             ),
                                             {
@@ -84,7 +84,7 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                                             ($) => {
                                                 switch ($[0]) {
                                                     case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
-                                                        t_loc_to_fp.Range(
+                                                        t_loc_to_prose.Range(
                                                             $.location,
                                                             {
                                                                 'document resource identifier': "unknown DRI",
@@ -92,11 +92,11 @@ export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
                                                             }
                                                         ),
                                                         sh.ph.literal(": "),
-                                                        t_resolve_to_fp.Error(
+                                                        t_resolve_to_prose.Error(
                                                             $,
                                                         )
                                                     ]))
-                                                    case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_fp.Error($))
+                                                    case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_prose.Error($))
                                                     default: return p_temp.au($[0])
                                                 }
                                             })

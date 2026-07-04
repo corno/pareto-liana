@@ -8,7 +8,8 @@ import * as d_in from "../../../../interface/generated/liana/schemas/schema/data
 import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
 export const Schema: p_i.Transformer<
-d_in.Schema, d_out.Schema
+    d_in.Schema,
+    d_out.Schema
 > = (
     $
 ) => ({
@@ -19,7 +20,8 @@ d_in.Schema, d_out.Schema
 })
 
 export const Globals: p_i.Transformer<
-d_in.Globals, d_out.Globals
+    d_in.Globals,
+    d_out.Globals
 > = (
     $
 ) => ({
@@ -50,7 +52,7 @@ d_in.Globals, d_out.Globals
 })
 
 export const Schema_Imports: p_i.Transformer<
-d_in.Schema_Imports, d_out.Imports
+    d_in.Schema_Imports, d_out.Imports
 > = (
     $
 ) => sh.dictionary(p_.from.dictionary($).map(
@@ -60,7 +62,7 @@ d_in.Schema_Imports, d_out.Imports
     })))
 
 export const Module: p_i.Transformer<
-d_in.Module, d_out.Modules.l_dictionary.D.l_entry
+    d_in.Module, d_out.Modules.l_dictionary.D.l_entry
 > = (
     $
 ) => ({
@@ -68,7 +70,7 @@ d_in.Module, d_out.Modules.l_dictionary.D.l_entry
 })
 
 export const Value: p_i.Transformer<
-d_in.Value, d_out.Value
+    d_in.Value, d_out.Value
 > = (
     $
 ) => sh.state(p_.from.state($).decide(
@@ -133,7 +135,7 @@ d_in.Value, d_out.Value
     }))
 
 export const Text_Type: p_i.Transformer<
-d_in.Text_Type, d_out.Text_Type
+    d_in.Text_Type, d_out.Text_Type
 > = (
     $
 ) => ({

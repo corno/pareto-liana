@@ -21,7 +21,7 @@ import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
 import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 import * as r_context_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
-import * as t_generate_typescript_to_fp from "../transformers/compile_temp_schemas/prose"
+import * as t_generate_typescript_to_prose from "../transformers/compile_temp_schemas/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
@@ -224,7 +224,7 @@ export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedu
                 $c.log.execute(
                     {
                         'message': sh.pg.sentences(p_t.from.dictionary($).convert_to_list(
-                            ($, id) => sh.sentence([t_generate_typescript_to_fp.Error(
+                            ($, id) => sh.sentence([t_generate_typescript_to_prose.Error(
                                 $,
                                 {
                                     'id': id,

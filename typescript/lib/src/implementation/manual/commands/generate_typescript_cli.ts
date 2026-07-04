@@ -28,7 +28,7 @@ type Res = {
 //dependencies
 import * as c_generate_typescript from "./generate_typescript"
 import * as r_unrestricted_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
-import * as t_generate_typescript_to_fp from "../transformers/generate_typescript/prose"
+import * as t_generate_typescript_to_prose from "../transformers/generate_typescript/prose"
 import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/text"
 
 // //shorthands
@@ -108,7 +108,7 @@ export const $$: interface_.procedures.generate_typescript_cli = p_.command_proc
                                     {
                                         'message': sh.pg.sentences([
                                             sh.sentence([
-                                                t_generate_typescript_to_fp.Error($),
+                                                t_generate_typescript_to_prose.Error($),
                                             ])
                                         ])
                                     },
