@@ -6,9 +6,9 @@ import * as d_in from "../../../../interface/data/generate_typescript"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
 //dependencies
-import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_deserialize_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/deserialize/fountain_pen"
-import * as t_read_file_to_fountain_pen from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
+import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
+import * as t_deserialize_to_prose from "liana-core/dist/implementation/manual/transformers/deserialize/fountain_pen"
+import * as t_read_file_to_prose from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
@@ -21,7 +21,7 @@ d_in.Error, d_out.Phrase
             switch ($[0]) {
                 case 'could not read source': return p_.option($, ($) => sh.ph.composed([
                     sh.ph.literal("could not read source"),
-                    t_read_file_to_fountain_pen.Error($)
+                    t_read_file_to_prose.Error($)
                 ]))
                 case 'could not log': return p_.option($, ($) => sh.ph.literal("could not log"))
                 case 'could not remove interface': return p_.option($, ($) => sh.ph.literal("could not remove interface"))
@@ -31,7 +31,7 @@ d_in.Error, d_out.Phrase
                 case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.literal("could not copy generic implementation"))
                 case 'could not copy core interface': return p_.option($, ($) => sh.ph.literal("could not copy core interface"))
                 case 'could not resolve module': return p_.option($, ($) => sh.ph.composed([
-                    // t_location_to_fountain_pen.Range(
+                    // t_location_to_prose.Range(
                     //     $.error.location,
                     //     {
                     //         'document resource identifier': t_path_to_text.Node_Path($.location),
@@ -39,12 +39,12 @@ d_in.Error, d_out.Phrase
                     //     }
                     // ),
                     // sh.ph.literal(": "),
-                    t_resolve_to_fountain_pen.Error(
+                    t_resolve_to_prose.Error(
                         $.error,
                     )
                 ]))
                 case 'could not deserialize': return p_.option($, ($) => sh.ph.composed([
-                    // t_location_to_fountain_pen.Range(
+                    // t_location_to_prose.Range(
                     //     ['in main document', p_.decide.state(t_deserialize_to_location.Error($.error), ($): d_location.Range => {
                     //         switch ($[0]) {
                     //             case 'range': return p_.option($, ($) => $)
@@ -61,7 +61,7 @@ d_in.Error, d_out.Phrase
                     //     }
                     // ),
                     // sh.ph.literal(": "),
-                    t_deserialize_to_fountain_pen.Error(
+                    t_deserialize_to_prose.Error(
                         $.error,
                     )
                 ]))

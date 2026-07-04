@@ -4,8 +4,8 @@ import * as p_i from 'pareto-core/dist/interface/transformer'
 import * as d_in from "../../../../interface/data/compile_temp_schemas"
 import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
 
-import * as t_resolve_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_location_to_fountain_pen from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
+import * as t_location_to_prose from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
 
@@ -32,7 +32,7 @@ export const Error: p_i.Transformer_With_Parameter<
                     case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.literal("could not copy generic implementation"))
                     case 'could not copy core interface': return p_.option($, ($) => sh.ph.literal("could not copy core interface"))
                     case 'could not deserialize module': return p_.option($, ($) => sh.ph.composed([
-                        t_location_to_fountain_pen.Range(
+                        t_location_to_prose.Range(
                             $.location,
                             {
                                 'document resource identifier': "unknown DRI",
@@ -40,7 +40,7 @@ export const Error: p_i.Transformer_With_Parameter<
                             }
                         ),
                         sh.ph.literal(": "),
-                        t_resolve_to_fountain_pen.Error(
+                        t_resolve_to_prose.Error(
                             $,
                         )
                     ]))
