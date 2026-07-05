@@ -1,15 +1,15 @@
-import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_sl from 'pareto-core/dist/implementation/refiner/specials/lookup'
-import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+import * as p_ from 'pareto-core/implementation/refiner'
+import * as p_sl from 'pareto-core/implementation/refiner/specials/lookup'
+import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
 
-import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
+import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved.js"
 
-import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
 
-import * as i_generic from "../../resolve_generic"
+import * as i_generic from "../../resolve_generic.js"
 
-import { Module_Reference } from "../modules/unresolved_manual"
+import { Module_Reference } from "../modules/unresolved_manual.js"
 
 export const Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) => {
     return i_generic.resolve_dense_dictionary(

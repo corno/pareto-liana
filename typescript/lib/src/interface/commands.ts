@@ -1,10 +1,10 @@
-import * as p_ from 'pareto-core/dist/interface/command'
+import * as p_ from 'pareto-core/interface/command'
 
-import * as commands_pareto from "pareto-resources/dist/interface/resources"
-import * as commands_pareto_stream from "pareto-stream/dist/interface/commands"
+import * as commands_pareto from "pareto-resources/interface/resources"
+import * as commands_pareto_stream from "pareto-stream/interface/commands"
 
 //data types
-import * as d_generate_typescript from "./data/generate_typescript"
+import * as d_generate_typescript from "./data/generate_typescript.js"
 
 
 export namespace commands {

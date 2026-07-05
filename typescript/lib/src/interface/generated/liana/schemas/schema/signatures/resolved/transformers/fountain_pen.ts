@@ -1,9 +1,9 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_in from "../../../data/resolved"
+import * as i_in from "../../../data/resolved.js"
 
-import * as i_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as i_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace Package_ {
     
@@ -661,7 +661,7 @@ export type Resolver_Possible_Value_Selection_ = (
     context: Resolver_Possible_Value_Selection_.I,
 ) => Resolver_Possible_Value_Selection_.O
 
-export { 
+export type { 
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

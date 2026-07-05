@@ -1,9 +1,9 @@
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
+import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved"
 
 namespace interface_ {
 
@@ -34,16 +34,16 @@ namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/interface/target"
+import * as sh from "pareto/shorthands/interface/target"
 
 //dependencies
-import * as t_boilerplate_for_migrate from "./pareto_interface_boilerplate_for_migrate"
-import * as t_resolve from "./pareto_interface_resolve"
-import * as t_types from "./pareto_interface_types"
-import * as t_marshall from "./pareto_interface_marshall"
-import * as t_unmarshall from "./pareto_interface_unmarshall"
-import * as t_serialize from "./pareto_interface_serialize"
-import * as t_deserialize from "./pareto_interface_deserialize"
+import * as t_boilerplate_for_migrate from "./pareto_interface_boilerplate_for_migrate.js"
+import * as t_resolve from "./pareto_interface_resolve.js"
+import * as t_types from "./pareto_interface_types.js"
+import * as t_marshall from "./pareto_interface_marshall.js"
+import * as t_unmarshall from "./pareto_interface_unmarshall.js"
+import * as t_serialize from "./pareto_interface_serialize.js"
+import * as t_deserialize from "./pareto_interface_deserialize.js"
 
 
 export const Schema: interface_.Schema = ($, $p) => {

@@ -1,5 +1,5 @@
 
-import * as sh from "../../../../../shorthands/resolver/manual"
+import * as sh from "../../../../../shorthands/resolver/manual.js"
 
 
 export const $ = sh.resolver_modules(

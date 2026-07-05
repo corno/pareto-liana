@@ -1,22 +1,22 @@
-import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_t from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/refiner'
-import * as p_di from 'pareto-core/dist/interface/data'
-import p_implement_me from 'pareto-core-dev/dist/implement_me'
-import p_log_debug_message from 'pareto-core-dev/dist/log_debug_message'
-import p_list_build_deprecated from 'pareto-core/dist/implementation/refiner/specials/list_build_deprecated'
+import * as p_ from 'pareto-core/implementation/refiner'
+import * as p_t from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/refiner'
+import * as p_di from 'pareto-core/interface/data'
+import p_implement_me from 'pareto-core-dev/implement_me'
+import p_log_debug_message from 'pareto-core-dev/log_debug_message'
+import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials/list_build_deprecated'
 
 
 //data types
-import * as d_out from "../../../../interface/data/temp_module_specifier"
-import * as d_out_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_function from "liana-core/dist/interface/data/deserialize_resolved"
-import * as d_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
+import * as d_out from "../../../../interface/data/temp_module_specifier.js"
+import * as d_out_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_function from "liana-core/interface/data/deserialize_resolved"
+import * as d_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
 
 //dependencies
-import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/refiners/schema/unresolved_manual"
-import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
+import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/refiners/schema/unresolved_manual.js"
+import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters.js"
 
 export type Module_Specifier = p_i.Refiner<
     d_out.Temp_Module_Specifier,

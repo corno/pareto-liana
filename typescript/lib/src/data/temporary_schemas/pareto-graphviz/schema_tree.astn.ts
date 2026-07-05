@@ -1,15 +1,15 @@
 
 
-import * as sh from "../../../shorthands/schema/manual"
+import * as sh from "../../../shorthands/schema/manual.js"
 
 
-import { $ as x_attributes } from "./schemas/attributes/$.module.astn"
-import { $ as x_file_structure } from "./schemas/file_structure/$.module.astn"
-import { $ as x_high_level } from "./schemas/high_level/$.module.astn"
-import { $ as x_high_level_simple } from "./schemas/high_level_simple/$.module.astn"
-import { $ as x_html } from "../pareto-static-html/schemas/static-html/$.module.astn"
-import { $ as x_low_level } from "./schemas/low_level/$.module.astn"
-import { $ as x_xml } from "../pareto-static-html/schemas/xml/$.module.astn"
+import { $ as x_attributes } from "./schemas/attributes/$.module.astn.js"
+import { $ as x_file_structure } from "./schemas/file_structure/$.module.astn.js"
+import { $ as x_high_level } from "./schemas/high_level/$.module.astn.js"
+import { $ as x_high_level_simple } from "./schemas/high_level_simple/$.module.astn.js"
+import { $ as x_html } from "../pareto-static-html/schemas/static-html/$.module.astn.js"
+import { $ as x_low_level } from "./schemas/low_level/$.module.astn.js"
+import { $ as x_xml } from "../pareto-static-html/schemas/xml/$.module.astn.js"
 
 export const $ = sh.st.set({
     "attributes": x_attributes,

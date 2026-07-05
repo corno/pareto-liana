@@ -1,13 +1,13 @@
-import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_di from 'pareto-core/dist/interface/data'
-import * as p_ri from 'pareto-core/dist/interface/refiner'
+import * as p_ from 'pareto-core/implementation/refiner'
+import * as p_di from 'pareto-core/interface/data'
+import * as p_ri from 'pareto-core/interface/refiner'
 
-import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
-import { Abort } from 'pareto-core/dist/interface/__internal/Abort'
+import { type Abort } from 'pareto-core/interface/__internal/Abort'
 
-import * as gen_loc from "liana-core/dist/interface/data/document_and_location"
-import * as gen_resolve from "liana-core/dist/interface/data/resolve"
+import * as gen_loc from "liana-core/interface/data/document_and_location"
+import * as gen_resolve from "liana-core/interface/data/resolve"
 
 //types
 

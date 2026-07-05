@@ -1,13 +1,13 @@
-import * as p_ from 'pareto-core/dist/implementation/command'
-import * as p_temp from 'pareto-core/dist/implementation/transformer'
-import p_iterate from 'pareto-core/dist/implementation/refiner/specials/iterate'
+import * as p_ from 'pareto-core/implementation/command'
+import * as p_temp from 'pareto-core/implementation/transformer'
+import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 
-import * as interface_ from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands.js"
 
 // //data types
-import * as d_main from "pareto-resources/dist/interface/data/temp_main"
-import * as d_resource from "../../../interface/data/generate_typescript"
-import * as d_path from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_path/data"
+import * as d_main from "pareto-resources/interface/data/temp_main"
+import * as d_resource from "../../../interface/data/generate_typescript.js"
+import * as d_path from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_path/data"
 type My_Error_1 =
     | ['too many arguments', null]
     | ['missing', {
@@ -26,13 +26,13 @@ type Res = {
 }
 
 //dependencies
-import * as c_generate_typescript from "./generate_typescript"
-import * as r_unrestricted_path_from_text from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
-import * as t_generate_typescript_to_prose from "../transformers/generate_typescript/prose"
-import * as t_path_to_text from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/text"
+import * as c_generate_typescript from "./generate_typescript.js"
+import * as r_unrestricted_path_from_text from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
+import * as t_generate_typescript_to_prose from "../transformers/generate_typescript/prose.js"
+import * as t_path_to_text from "pareto-resources/implementation/manual/transformers/unrestricted_path/text"
 
 // //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const $$: interface_.procedures.generate_typescript_cli = p_.command_procedure(
     ($d, $s, $q, $c) => [

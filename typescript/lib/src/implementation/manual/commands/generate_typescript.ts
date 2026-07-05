@@ -1,24 +1,24 @@
-import * as p_ from 'pareto-core/dist/implementation/command'
-import * as p_temp from 'pareto-core/dist/implementation/transformer'
-import p_variables from 'pareto-core/dist/implementation/command/specials/variables'
+import * as p_ from 'pareto-core/implementation/command'
+import * as p_temp from 'pareto-core/implementation/transformer'
+import p_variables from 'pareto-core/implementation/command/specials/variables'
 
 
-import * as interface_ from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands.js"
 
 // //data types
-import * as d_resource from "../../../interface/data/generate_typescript"
-import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as d_resource from "../../../interface/data/generate_typescript.js"
+import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved.js"
 
 //dependencies
-import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_directory"
-import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/dist/implementation/manual/commands/write_to_file"
-import * as r_schema from "../../to_be_generated/refiners/schema/unresolved_manual"
-import * as r_unresolved_schema_from_loc from "../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters"
-import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation"
-import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/dist/implementation/manual/transformers/interface/serialized_typescript"
-import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
+import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_directory"
+import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_file"
+import * as r_schema from "../../to_be_generated/refiners/schema/unresolved_manual.js"
+import * as r_unresolved_schema_from_loc from "../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters.js"
+import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
+import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/manual/transformers/implementation/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/manual/transformers/interface/serialized_typescript"
+import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 
 export const $$: interface_.procedures.generate_typescript = p_.command_procedure(
     ($d, $s, $q, $c) => [

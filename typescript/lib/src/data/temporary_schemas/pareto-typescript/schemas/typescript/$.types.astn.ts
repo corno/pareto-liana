@@ -1,5 +1,5 @@
 
-import * as sh from "../../../../../shorthands/schema/manual"
+import * as sh from "../../../../../shorthands/schema/manual.js"
 
 
 export const $ = sh.modules(
@@ -103,8 +103,8 @@ export const $ = sh.modules(
 
 
 
-// import * as p_ from 'pareto-core/dist/interface/data'
-// import * as d_ast from "../../modules/typescript_parser/interface/data/ast"
+// import * as p_ from 'pareto-core/interface/data'
+// import * as d_ast from "../../modules/typescript_parser/interface/data/ast.js"
 
 // export type Source_File = {
 //     'statements': Statements

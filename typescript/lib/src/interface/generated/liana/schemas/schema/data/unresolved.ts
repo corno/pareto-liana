@@ -1,8 +1,8 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
+import * as p_di from 'pareto-core/interface/data'
 
-import * as i_location from "liana-core/dist/interface/data/document_and_location"
+import * as i_location from "liana-core/interface/data/document_and_location"
 
 export namespace Package_ {
     
@@ -2939,7 +2939,7 @@ export type Resolver_Possible_Value_Selection_ = {
     readonly 'l state': Resolver_Possible_Value_Selection_.l_state
 }
 
-export { 
+export type { 
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

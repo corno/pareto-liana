@@ -1,6 +1,6 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
+import * as p_di from 'pareto-core/interface/data'
 
 export namespace Package_ {
     
@@ -2138,7 +2138,7 @@ export type Resolver_Possible_Value_Selection_ =
     | readonly ['parameter', Resolver_Possible_Value_Selection_.parameter]
     | readonly ['result', Resolver_Possible_Value_Selection_.result]
 
-export { 
+export type { 
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

@@ -1,9 +1,9 @@
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved"
+import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved"
 
 namespace interface_ {
 
@@ -15,10 +15,10 @@ namespace interface_ {
 }
 
 //dependencies
-import * as t_pareto_interface_main from "./pareto_interface_main"
+import * as t_pareto_interface_main from "./pareto_interface_main.js"
 
 //shorthands
-import * as p_xxxx from 'pareto-core-shorthands/dist/unconstrained_manual'
+import * as p_xxxx from 'pareto-core-shorthands/unconstrained_manual'
 
 
 export const Package: interface_.Package = ($) => {

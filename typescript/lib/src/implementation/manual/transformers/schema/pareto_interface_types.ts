@@ -1,11 +1,11 @@
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/transformer'
-import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
-import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
+import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
+import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
+import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
 
 namespace interface_ {
 
@@ -59,7 +59,7 @@ namespace interface_ {
 }
 
 //dependencies
-import * as sh from "pareto/dist/shorthands/interface/target"
+import * as sh from "pareto/shorthands/interface/target"
 
 const location = sh.t.component_imported(
     "location",

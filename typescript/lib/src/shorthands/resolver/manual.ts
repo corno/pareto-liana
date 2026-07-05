@@ -1,11 +1,11 @@
-import * as p_ from 'pareto-core-shorthands/dist/unresolved_data'
-import * as p_t from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core-shorthands/unresolved_data'
+import * as p_t from 'pareto-core/implementation/transformer'
 
-import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
+import * as sh from 'pareto-core-shorthands/unresolved_data'
 
-import * as d_target from "../../interface/generated/liana/schemas/schema/data/unresolved"
+import * as d_target from "../../interface/generated/liana/schemas/schema/data/unresolved.js"
 
-import * as temp_schema from "../schema/manual"
+import * as temp_schema from "../schema/manual.js"
 
 export const resolver_modules = (
     resolvers: p_.Raw_Or_Normal_Dictionary<d_target.Resolver_Modules.l_dictionary.D.l_entry>,

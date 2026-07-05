@@ -1,9 +1,9 @@
 
 
-import * as sh from "../../../shorthands/schema/manual"
+import * as sh from "../../../shorthands/schema/manual.js"
 
-import { $ as m_http_call } from "./schemas/http_call/$.module.astn"
-import { $ as m_uri } from "./schemas/uri/$.module.astn"
+import { $ as m_http_call } from "./schemas/http_call/$.module.astn.js"
+import { $ as m_uri } from "./schemas/uri/$.module.astn.js"
 
 export const $ = sh.st.set({
     "uri": m_uri,

@@ -1,13 +1,13 @@
 
 
-import * as sh from "../../../shorthands/schema/manual"
+import * as sh from "../../../shorthands/schema/manual.js"
 
 
-import { $ as m_deserialize_parse_tree } from "./schemas/deserialize_parse_tree/$.module.astn"
-import { $ as m_location } from "./schemas/location/$.module.astn"
-import { $ as m_parse_tree } from "./schemas/parse_tree/$.module.astn"
-import { $ as m_sealed_target } from "./schemas/sealed_target/$.module.astn"
-import { $ as m_token } from "./schemas/token/$.module.astn"
+import { $ as m_deserialize_parse_tree } from "./schemas/deserialize_parse_tree/$.module.astn.js"
+import { $ as m_location } from "./schemas/location/$.module.astn.js"
+import { $ as m_parse_tree } from "./schemas/parse_tree/$.module.astn.js"
+import { $ as m_sealed_target } from "./schemas/sealed_target/$.module.astn.js"
+import { $ as m_token } from "./schemas/token/$.module.astn.js"
 
 
 export const $ = sh.st.set({

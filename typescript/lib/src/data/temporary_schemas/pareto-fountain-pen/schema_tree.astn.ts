@@ -1,13 +1,13 @@
 
 
-import * as sh from "../../../shorthands/schema/manual"
+import * as sh from "../../../shorthands/schema/manual.js"
 
 
-import { $ as x_lines } from "./schemas/lines/$.module.astn"
-import { $ as x_list_of_characters } from "./schemas/list_of_characters/$.module.astn"
-import { $ as x_prose } from "./schemas/prose/$.module.astn"
-import { $ as x_semi_lines } from "./schemas/semi_lines/$.module.astn"
-import { $ as x_text } from "./schemas/text/$.module.astn"
+import { $ as x_lines } from "./schemas/lines/$.module.astn.js"
+import { $ as x_list_of_characters } from "./schemas/list_of_characters/$.module.astn.js"
+import { $ as x_prose } from "./schemas/prose/$.module.astn.js"
+import { $ as x_semi_lines } from "./schemas/semi_lines/$.module.astn.js"
+import { $ as x_text } from "./schemas/text/$.module.astn.js"
 
 
 export const $ = sh.st.set({

@@ -1,11 +1,11 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "liana-core/dist/interface/data/deserialize"
+import * as i_generic from "liana-core/interface/data/deserialize"
 
-import * as i_in from "pareto-fountain-pen/dist/interface/generated/liana/schemas/list_of_characters/data"
+import * as i_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
-import * as i_out from "../../../data/unresolved"
+import * as i_out from "../../../data/unresolved.js"
 
 export namespace Package_ {
     
@@ -991,7 +991,7 @@ export type Resolver_Possible_Value_Selection_ = (
     },
 ) => Resolver_Possible_Value_Selection_.O
 
-export { 
+export type { 
     Package_ as Package, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

@@ -1,36 +1,36 @@
-import * as p_ from 'pareto-core-shorthands/dist/unconstrained_target'
-import * as p_temp from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core-shorthands/unconstrained_target'
+import * as p_temp from 'pareto-core/implementation/transformer'
 
 
 
-import * as d_package from "../../interface/data/compile_temp_schemas"
+import * as d_package from "../../interface/data/compile_temp_schemas.js"
 
-// import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn"
-// import { $ as m_antlr } from "./antlr/module.astn"
-// import { $ as m_astn_to_xml } from "./astn-to-xml/module.astn"
-// import { $ as m_git } from "./git/module.astn"
-// import { $ as m_json_to_astn } from "./json-to-astn/module.astn"
+// import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn.js"
+// import { $ as m_antlr } from "./antlr/module.astn.js"
+// import { $ as m_astn_to_xml } from "./astn-to-xml/module.astn.js"
+// import { $ as m_git } from "./git/module.astn.js"
+// import { $ as m_json_to_astn } from "./json-to-astn/module.astn.js"
 
 
-import { $ as m_astn } from "./astn/module.astn"
-import { $ as m_astn_core } from "./astn-core/module.astn"
-import { $ as m_pareto } from "./pareto/module.astn"
-import { $ as m_pareto_boekhouding } from "./pareto-boekhouding/module.astn"
-import { $ as m_pareto_development_tools } from "./pareto-development-tools/module.astn"
-import { $ as m_pareto_fountain_pen } from "./pareto-fountain-pen/module.astn"
-import { $ as m_pareto_graphviz } from "./pareto-graphviz/module.astn"
-import { $ as m_pareto_json } from "./pareto-json/module.astn"
-import { $ as m_pareto_json_schema } from "./pareto-json-schema/module.astn"
-import { $ as m_pareto_liana } from "./pareto-liana/module.astn"
-import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn"
-import { $ as m_pareto_resources } from "./pareto-resources/module.astn"
-import { $ as m_pareto_stream } from "./pareto-stream/module.astn"
-import { $ as m_pareto_http_sandboxed } from "./pareto-http-sandboxed/module.astn"
-import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn"
-import { $ as m_pareto_typescript } from "./pareto-typescript/module.astn"
-import { $ as m_liana_targets } from "./liana-targets/module.astn"
-// import { $ as m_pareto_test } from "./pareto-test/module.astn"
-import { $ as m_liana_authoring } from "./liana-authoring/module.astn"
+import { $ as m_astn } from "./astn/module.astn.js"
+import { $ as m_astn_core } from "./astn-core/module.astn.js"
+import { $ as m_pareto } from "./pareto/module.astn.js"
+import { $ as m_pareto_boekhouding } from "./pareto-boekhouding/module.astn.js"
+import { $ as m_pareto_development_tools } from "./pareto-development-tools/module.astn.js"
+import { $ as m_pareto_fountain_pen } from "./pareto-fountain-pen/module.astn.js"
+import { $ as m_pareto_graphviz } from "./pareto-graphviz/module.astn.js"
+import { $ as m_pareto_json } from "./pareto-json/module.astn.js"
+import { $ as m_pareto_json_schema } from "./pareto-json-schema/module.astn.js"
+import { $ as m_pareto_liana } from "./pareto-liana/module.astn.js"
+import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn.js"
+import { $ as m_pareto_resources } from "./pareto-resources/module.astn.js"
+import { $ as m_pareto_stream } from "./pareto-stream/module.astn.js"
+import { $ as m_pareto_http_sandboxed } from "./pareto-http-sandboxed/module.astn.js"
+import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn.js"
+import { $ as m_pareto_typescript } from "./pareto-typescript/module.astn.js"
+import { $ as m_liana_targets } from "./liana-targets/module.astn.js"
+// import { $ as m_pareto_test } from "./pareto-test/module.astn.js"
+import { $ as m_liana_authoring } from "./liana-authoring/module.astn.js"
 
 
 

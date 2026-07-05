@@ -1,8 +1,8 @@
 #!/usr/bin/env -S node --enable-source-maps
 
-import * as p_h from 'pareto-host-nodejs'
+import * as p_h from 'pareto-host-nodejs/index'
 
-import { $$ as procedure } from "lib/dist/implementation/manual/commands/generate_typescript_cli"
+import { $$ as procedure } from "lib/implementation/manual/commands/generate_typescript_cli"
 
 p_h.run_main_command(
     ($r) => {

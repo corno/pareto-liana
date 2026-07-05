@@ -1,10 +1,10 @@
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/transformer'
-import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
+import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
+import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 export namespace interface_ {
     export type Schema = p_i.Transformer<
@@ -34,7 +34,7 @@ export namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto-core-shorthands/dist/unresolved_data"
+import * as sh from "pareto-core-shorthands/unresolved_data"
 
 export const Schema: interface_.Schema = ($) => ({
     'globals': Globals($.globals),

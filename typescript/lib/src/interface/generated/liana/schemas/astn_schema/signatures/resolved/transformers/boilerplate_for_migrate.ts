@@ -1,9 +1,9 @@
 
-import * as p_i from 'pareto-core/dist/interface/__internal/Abort'
+import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_out from "../../../data/unresolved"
+import * as i_out from "../../../data/unresolved.js"
 
-import * as i_in from "../../../data/resolved"
+import * as i_in from "../../../data/resolved.js"
 
 export namespace Schema_Tree_ {
     
@@ -133,7 +133,7 @@ export type Text_Type_ = (
     context: Text_Type_.I,
 ) => Text_Type_.O
 
-export { 
+export type { 
     Schema_Tree_ as Schema_Tree, 
     Schemas_ as Schemas, 
     Schema_ as Schema, 

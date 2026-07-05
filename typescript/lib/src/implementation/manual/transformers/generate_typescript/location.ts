@@ -1,10 +1,10 @@
-import * as p_i from 'pareto-core/dist/interface/transformer'
-import * as p_di from 'pareto-core/dist/interface/data'
-import * as p_ from 'pareto-core/dist/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
+import * as p_di from 'pareto-core/interface/data'
+import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import * as d_in from "../../../../interface/data/generate_typescript"
-import * as d_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
+import * as d_in from "../../../../interface/data/generate_typescript.js"
+import * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
 
 export namespace d_out {
 
@@ -21,7 +21,7 @@ export namespace interface_ {
 
 
 //dependencies
-import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
+import * as t_deserialize_to_location from "liana-core/implementation/manual/transformers/deserialize/location"
 
 
 

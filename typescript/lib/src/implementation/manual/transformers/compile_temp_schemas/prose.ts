@@ -1,9 +1,9 @@
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/transformer'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
 
 //data types
-import * as d_in from "../../../../interface/data/compile_temp_schemas"
-import * as d_out from "pareto-fountain-pen/dist/interface/generated/liana/schemas/prose/data"
+import * as d_in from "../../../../interface/data/compile_temp_schemas.js"
+import * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace d_function {
     export type Parameters = {
@@ -21,11 +21,11 @@ export namespace interface_ {
 }
 
 //dependencies
-import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/prose"
-import * as t_location_to_prose from "liana-core/dist/implementation/manual/transformers/location/prose"
+import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"
+import * as t_location_to_prose from "liana-core/implementation/manual/transformers/location/prose"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 export const Error: interface_.Error = ($, $p) => sh.ph.composed([
     sh.ph.literal("error in package '"),

@@ -1,10 +1,10 @@
-import * as p_ from 'pareto-core/dist/implementation/transformer'
-import * as p_i from 'pareto-core/dist/interface/transformer'
-import * as p_di from 'pareto-core/dist/interface/data'
+import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_i from 'pareto-core/interface/transformer'
+import * as p_di from 'pareto-core/interface/data'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
-import * as d_out from "pareto/dist/interface/generated/liana/schemas/implementation/data/resolved"
+import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
 
 export namespace interface_ {
 
@@ -20,8 +20,8 @@ export namespace interface_ {
 }
 
 //shorthands
-import * as sh from "pareto/dist/shorthands/implementation/target"
-import * as sh_i from "pareto/dist/shorthands/interface/target"
+import * as sh from "pareto/shorthands/implementation/target"
+import * as sh_i from "pareto/shorthands/interface/target"
 
 export const Schema: interface_.Schema = ($,
     $p) => {

@@ -1,15 +1,15 @@
 
 
-import * as sh from "../../../shorthands/schema/manual"
+import * as sh from "../../../shorthands/schema/manual.js"
 
-import { $ as m_fountain_pen } from "../pareto-fountain-pen/schemas/prose/$.module.astn"
-import { $ as m_list_of_characters } from "../pareto-fountain-pen/schemas/list_of_characters/$.module.astn"
+import { $ as m_fountain_pen } from "../pareto-fountain-pen/schemas/prose/$.module.astn.js"
+import { $ as m_list_of_characters } from "../pareto-fountain-pen/schemas/list_of_characters/$.module.astn.js"
 
-import { $ as m_get_instream_data } from "./schemas/get_instream_data/$.module.astn"
-import { $ as m_log } from "./schemas/log/$.module.astn"
-import { $ as m_log_error } from "./schemas/log_error/$.module.astn"
-import { $ as m_write_to_stderr } from "./schemas/write_to_stderr/$.module.astn"
-import { $ as m_write_to_stdout } from "./schemas/write_to_stdout/$.module.astn"
+import { $ as m_get_instream_data } from "./schemas/get_instream_data/$.module.astn.js"
+import { $ as m_log } from "./schemas/log/$.module.astn.js"
+import { $ as m_log_error } from "./schemas/log_error/$.module.astn.js"
+import { $ as m_write_to_stderr } from "./schemas/write_to_stderr/$.module.astn.js"
+import { $ as m_write_to_stdout } from "./schemas/write_to_stdout/$.module.astn.js"
 
 export const $ = sh.st.set({
     "fountain pen": m_fountain_pen,

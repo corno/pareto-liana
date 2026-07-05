@@ -1,29 +1,29 @@
 //core
-import * as p_ from 'pareto-core/dist/implementation/command'
-import * as p_temp from 'pareto-core/dist/implementation/transformer'
+import * as p_ from 'pareto-core/implementation/command'
+import * as p_temp from 'pareto-core/implementation/transformer'
 
 
-import * as interface_ from "../../../interface/commands"
+import * as interface_ from "../../../interface/commands.js"
 
-import * as d_main from "pareto-resources/dist/interface/data/temp_main"
-import * as d_resolve from "liana-core/dist/interface/data/resolve"
-import * as d_write_file from "pareto-resources/dist/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
+import * as d_main from "pareto-resources/interface/data/temp_main"
+import * as d_resolve from "liana-core/interface/data/resolve"
+import * as d_write_file from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data
-import { $ as poormans_modules } from "../../../data/temporary_schemas/all"
+import { $ as poormans_modules } from "../../../data/temporary_schemas/all.js"
 
 //dependencies
-import * as r_path_from_temp_string from "pareto-resources/dist/implementation/manual/refiners/path_unrestricted/text"
-import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual"
-import * as t_path_to_path from "pareto-resources/dist/implementation/manual/transformers/unrestricted_path/unrestricted_path"
-import * as t_schema_to_prose from "../../generated/liana/schemas/schema/resolved/transformers/prose"
-import * as t_fp_to_loc from "pareto-fountain-pen/dist/implementation/manual/transformers/prose/list_of_characters"
-import * as t_write_file_to_prose from "pareto-resources/dist/implementation/manual/transformers/write_file/prose"
-import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/prose"
-import * as t_loc_to_prose from "liana-core/dist/implementation/manual/transformers/location/prose"
+import * as r_path_from_temp_string from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
+import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual.js"
+import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
+import * as t_schema_to_prose from "../../generated/liana/schemas/schema/resolved/transformers/prose.js"
+import * as t_fp_to_loc from "pareto-fountain-pen/implementation/manual/transformers/prose/list_of_characters"
+import * as t_write_file_to_prose from "pareto-resources/implementation/manual/transformers/write_file/prose"
+import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"
+import * as t_loc_to_prose from "liana-core/implementation/manual/transformers/location/prose"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 type My_Error =
     | ['error writing file', d_write_file.Error]

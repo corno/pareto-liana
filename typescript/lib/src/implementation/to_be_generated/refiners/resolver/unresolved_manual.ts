@@ -1,14 +1,14 @@
-import * as p_ from 'pareto-core/dist/implementation/refiner'
-import * as p_sl from 'pareto-core/dist/implementation/refiner/specials/lookup'
-import p_variables from 'pareto-core/dist/implementation/refiner/specials/variables'
-import p_change_context from 'pareto-core/dist/implementation/refiner/specials/change_context'
+import * as p_ from 'pareto-core/implementation/refiner'
+import * as p_sl from 'pareto-core/implementation/refiner/specials/lookup'
+import p_variables from 'pareto-core/implementation/refiner/specials/variables'
+import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
 
-import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved"
+import * as t_signatures from "../../../../interface/generated/liana/schemas/schema/signatures/resolved/refiners/unresolved.js"
 
-import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved"
+import * as t_out from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
 
-import * as i_generic from "../../resolve_generic"
+import * as i_generic from "../../resolve_generic.js"
 
 
 export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
@@ -248,7 +248,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                                 case 'result': return p_.option($, ($) => {
                                                                                     return null
                                                                                 })
-                                                                                default: p_.au($[0])
+                                                                                default: return p_.au($[0])
                                                                             }
                                                                         })
                                                                         return null
@@ -264,7 +264,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                         }
                                                                         return null
                                                                     })
-                                                                    default: p_.au($[0])
+                                                                    default: return p_.au($[0])
                                                                 }
                                                             })
                                                             return null
