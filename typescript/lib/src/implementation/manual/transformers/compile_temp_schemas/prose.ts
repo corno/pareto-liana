@@ -21,8 +21,8 @@ export namespace interface_ {
 }
 
 //dependencies
-import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_location_to_prose from "liana-core/dist/implementation/manual/transformers/location/fountain_pen"
+import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/prose"
+import * as t_location_to_prose from "liana-core/dist/implementation/manual/transformers/location/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"

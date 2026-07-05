@@ -13,9 +13,9 @@ export namespace interface_ {
 }
 
 //dependencies
-import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/fountain_pen"
-import * as t_deserialize_to_prose from "liana-core/dist/implementation/manual/transformers/deserialize/fountain_pen"
-import * as t_read_file_to_prose from "pareto-resources/dist/implementation/manual/transformers/read_file/fountain_pen"
+import * as t_resolve_to_prose from "liana-core/dist/implementation/manual/transformers/resolve/prose"
+import * as t_deserialize_to_prose from "liana-core/dist/implementation/manual/transformers/deserialize/prose"
+import * as t_read_file_to_prose from "pareto-resources/dist/implementation/manual/transformers/read_file/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/dist/shorthands/prose/deprecated"
