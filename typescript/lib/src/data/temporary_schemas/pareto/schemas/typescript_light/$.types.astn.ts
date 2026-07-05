@@ -60,7 +60,7 @@ export const $ = sh.modules(
             "identifier": sh.toption(sh.t.component("Identifier")),
             "false": sh.toption(sh.t.nothing()),
             "null": sh.toption(sh.t.nothing()),
-            "number literal": sh.toption(sh.t.simple("Approximation")),
+            "number literal": sh.toption(sh.t.simple("number")),
             "object literal": sh.toption(sh.t.group({
                 "properties": sh.prop(sh.t.list(sh.t.group({
                     "key": sh.prop(sh.t.state({

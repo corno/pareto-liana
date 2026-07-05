@@ -27,7 +27,6 @@ import { $ as m_pareto_resources } from "./pareto-resources/module.astn.js"
 import { $ as m_pareto_stream } from "./pareto-stream/module.astn.js"
 import { $ as m_pareto_http_sandboxed } from "./pareto-http-sandboxed/module.astn.js"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn.js"
-import { $ as m_pareto_typescript } from "./pareto-typescript/module.astn.js"
 import { $ as m_liana_targets } from "./liana-targets/module.astn.js"
 // import { $ as m_pareto_test } from "./pareto-test/module.astn.js"
 import { $ as m_liana_authoring } from "./liana-authoring/module.astn.js"
@@ -64,10 +63,10 @@ export const $ = p_.dictionary<d_package.Parameters>(
             'target path': "../pareto-graphviz",
             'package': m_pareto_graphviz,
         },
-        "pareto-http-sandboxed": {
-            'target path': "../pareto-http-sandboxed",
-            'package': m_pareto_http_sandboxed,
-        },
+        // "pareto-http-sandboxed": {
+        //     'target path': "../pareto-http-sandboxed",
+        //     'package': m_pareto_http_sandboxed,
+        // },
         "pareto-json": {
             'target path': "../pareto-json",
             'package': m_pareto_json,
@@ -95,10 +94,6 @@ export const $ = p_.dictionary<d_package.Parameters>(
         "pareto-static-html": {
             'target path': "../pareto-static-html",
             'package': m_pareto_static_html,
-        },
-        "pareto-typescript": {
-            'target path': "../pareto-typescript",
-            'package': m_pareto_typescript,
         },
         "liana-authoring": {
             'target path': "../liana-authoring",
