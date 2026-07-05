@@ -5,21 +5,31 @@ import * as p_ from 'pareto-core/dist/implementation/transformer'
 //data types
 import * as d_in from "../../../../interface/data/generate_typescript"
 import * as d_location from "astn-core/dist/interface/generated/liana/schemas/location/data"
-export type Possible_Range = p_di.Optional_Value<d_location.Range>
+
+export namespace d_out {
+
+    export type Possible_Range = p_di.Optional_Value<d_location.Range>
+
+}
+
+export namespace interface_ {
+    export type Error = p_i.Transformer<
+        d_in.Error,
+        d_out.Possible_Range
+    >
+}
+
 
 //dependencies
 import * as t_deserialize_to_location from "liana-core/dist/implementation/manual/transformers/deserialize/location"
 
 
 
-export const Error: p_i.Transformer<
-    d_in.Error,
-    Possible_Range
-> = ($) => {
+export const Error: interface_.Error = ($) => {
     return p_.from.state($).decide(
-        ($): Possible_Range => {
+        ($) => {
             switch ($[0]) {
-                case 'could not read source': return p_.option($, ($): Possible_Range => p_.literal.not_set())
+                case 'could not read source': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not log': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not remove interface': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not remove implementation': return p_.option($, ($) => p_.literal.not_set())
@@ -27,17 +37,17 @@ export const Error: p_i.Transformer<
                 case 'could not write implementation': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not copy generic implementation': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not copy core interface': return p_.option($, ($) => p_.literal.not_set())
-                case 'could not resolve module': return p_.option($, ($): Possible_Range => p_.literal.set(p_.from.state($.error.location).decide(
+                case 'could not resolve module': return p_.option($, ($) => p_.literal.set(p_.from.state($.error.location).decide(
                     ($) => {
                         switch ($[0]) {
-                            case 'in main document': return p_.option($, ($): d_location.Range => $)
-                            case 'in subdocument': return p_.option($, ($): d_location.Range => $.range)
+                            case 'in main document': return p_.option($, ($) => $)
+                            case 'in subdocument': return p_.option($, ($) => $.range)
                             default: return p_.au($[0])
                         }
                     })))
                 case 'could not deserialize': return p_.option($, ($) => p_.literal.set(
                     p_.from.state(t_deserialize_to_location.Error($.error)).decide(
-                        ($): d_location.Range => {
+                        ($) => {
                             switch ($[0]) {
                                 case 'range': return p_.option($, ($) => $)
                                 case 'end of document': return p_.option($, ($) => ({

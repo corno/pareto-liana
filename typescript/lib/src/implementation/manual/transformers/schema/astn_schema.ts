@@ -2,29 +2,48 @@ import * as p_ from 'pareto-core/dist/implementation/transformer'
 import * as p_i from 'pareto-core/dist/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/dist/implementation/transformer/specials/unreachable_code_path'
 
-import * as sh from 'pareto-core-shorthands/dist/unresolved_data'
-
+//data types
 import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved"
 import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved"
 
-export const Schema: p_i.Transformer<
-    d_in.Schema,
-    d_out.Schema
-> = (
-    $
-) => ({
+export namespace interface_ {
+    export type Schema = p_i.Transformer<
+        d_in.Schema,
+        d_out.Schema
+    >
+    export type Globals = p_i.Transformer<
+        d_in.Globals,
+        d_out.Globals
+    >
+    export type Schema_Imports = p_i.Transformer<
+        d_in.Schema_Imports,
+        d_out.Imports
+    >
+    export type Module = p_i.Transformer<
+        d_in.Module,
+        d_out.Modules.l_dictionary.D.l_entry
+    >
+    export type Value = p_i.Transformer<
+        d_in.Value,
+        d_out.Value
+    >
+    export type Text_Type = p_i.Transformer<
+        d_in.Text_Type,
+        d_out.Text_Type
+    >
+}
+
+//shorthands
+import * as sh from "pareto-core-shorthands/dist/unresolved_data"
+
+export const Schema: interface_.Schema = ($) => ({
     'globals': Globals($.globals),
     'imports': Schema_Imports($['schema imports']),
     'types': sh.dictionary(p_.from.dictionary($.modules).map(
         ($) => Module($))),
 })
 
-export const Globals: p_i.Transformer<
-    d_in.Globals,
-    d_out.Globals
-> = (
-    $
-) => ({
+export const Globals: interface_.Globals = ($) => ({
     //FIXME!! merge the number types with the text types in here
     "text types": sh.dictionary(
         p_.from.dictionary(
@@ -51,29 +70,17 @@ export const Globals: p_i.Transformer<
     ),
 })
 
-export const Schema_Imports: p_i.Transformer<
-    d_in.Schema_Imports, d_out.Imports
-> = (
-    $
-) => sh.dictionary(p_.from.dictionary($).map(
+export const Schema_Imports: interface_.Schema_Imports = ($) => sh.dictionary(p_.from.dictionary($).map(
     ($) => ({
         'schema': null,
         'schema set child': sh.reference($['schema set child']['l value']['l id'])
     })))
 
-export const Module: p_i.Transformer<
-    d_in.Module, d_out.Modules.l_dictionary.D.l_entry
-> = (
-    $
-) => ({
+export const Module: interface_.Module = ($) => ({
     'root value': Value($['root value'])
 })
 
-export const Value: p_i.Transformer<
-    d_in.Value, d_out.Value
-> = (
-    $
-) => sh.state(p_.from.state($).decide(
+export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
     ($): d_out.Value.l_state => {
         switch ($[0]) {
             case 'simple': return p_.option($, ($): d_out.Value.l_state => ['text', sh.state(
@@ -134,11 +141,7 @@ export const Value: p_i.Transformer<
         }
     }))
 
-export const Text_Type: p_i.Transformer<
-    d_in.Text_Type, d_out.Text_Type
-> = (
-    $
-) => ({
+export const Text_Type: interface_.Text_Type = ($) => ({
     'type': sh.state(p_.from.state($.type).decide(
         ($) => {
             switch ($[0]) {

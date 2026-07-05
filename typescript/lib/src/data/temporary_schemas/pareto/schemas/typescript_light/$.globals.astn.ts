@@ -10,7 +10,7 @@ export const $ = sh.globals(
         "text": sh.text('single line'),
     },
     {
-        "Approximation": sh.n.approximation(10),
+        "number": sh.n.approximation(10),
         "boolean": sh.n.boolean(),
     },
 )
