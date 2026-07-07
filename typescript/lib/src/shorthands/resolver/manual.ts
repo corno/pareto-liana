@@ -568,8 +568,11 @@ export namespace r {
             'location': sh.state(['internal', sh.reference(type)]),
             'signature': null,
             'arguments': p_.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(
-                    sh.dictionary(modules)),
+                'modules': modules === null
+                    ? sh.optional.not_set()
+                    : p_.optional.set(
+                        sh.dictionary(modules)
+                    ),
                 'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(
                     sh.dictionary(lookups)),
             }),
@@ -611,12 +614,18 @@ export namespace r {
             }]),
             'signature': null,
             'arguments': p_.optional.set({
-                'modules': modules === null ? sh.optional.not_set() : p_.optional.set(
+                'modules': modules === null 
+                ? sh.optional.not_set()
+                 : p_.optional.set(
                     sh.dictionary(modules)),
-                'lookups': lookups === null ? sh.optional.not_set() : p_.optional.set(
+                'lookups': lookups === null 
+                ? sh.optional.not_set() 
+                : p_.optional.set(
                     sh.dictionary(lookups)),
             }),
-            'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
+            'constraints': sh.dictionary(constraints === undefined 
+                ? {} 
+                : constraints),
         }])
     }
 
@@ -727,7 +736,10 @@ export namespace r {
             'type': sh.state(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
-                'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
+                'constraints': sh.dictionary(constraints === undefined
+                    ? {}
+                    : constraints
+                ),
             }])
         }])
     }
@@ -741,7 +753,10 @@ export namespace r {
             'type': sh.state(['selected', {
                 'definition': null,
                 'lookup': lookup_selection,
-                'constraints': sh.dictionary(constraints === undefined ? {} : constraints),
+                'constraints': sh.dictionary(constraints === undefined
+                    ? {}
+                    : constraints
+                ),
             }])
         }])
     }

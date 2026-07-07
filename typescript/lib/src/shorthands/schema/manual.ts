@@ -59,7 +59,9 @@ export const text = (
     type: 'single line' | 'multi line',
     path?: [string, string]
 ): d_target.Text_Type => ({
-    'type': type === 'single line' ? sh.state(['single line', null]) : sh.state(['multi line', null]),
+    'type': type === 'single line'
+        ? sh.state(['single line', null])
+        : sh.state(['multi line', null]),
     'link': path === undefined
         ? sh.state(['no', null])
         : sh.state(['yes', {
@@ -88,7 +90,7 @@ export const toption_constrained = (
     node: d_target.Value,
 ): d_target.Value.l_state.state.options.l_dictionary.D.l_entry => ({
     'constraints': sh.optional.set(
-sh.dictionary(constraints)),
+        sh.dictionary(constraints)),
     'description': sh.optional.not_set(),
     'value': node,
 })
@@ -209,7 +211,7 @@ export namespace t {
         return sh.state(['component', {
             'type': sh.state(['internal', sh.reference(type)]),
             'results': sh.optional.set(
-sh.dictionary(results)),
+                sh.dictionary(results)),
         }])
     }
 
@@ -255,7 +257,7 @@ sh.dictionary(results)),
         return sh.state(['list', {
             'value': type,
             'results': sh.optional.set(
-sh.dictionary(results)),
+                sh.dictionary(results)),
         }])
     }
 
@@ -334,9 +336,11 @@ sh.dictionary(results)),
                 'resulting node': null
             },
             'dictionary': null,
-            'dependency': dependency === "cyclic" ? sh.state(['cyclic', null]) : sh.state(['acyclic', null]),
+            'dependency': dependency === "cyclic"
+                ? sh.state(['cyclic', null])
+                : sh.state(['acyclic', null]),
             'results': results ? sh.optional.set(
-sh.dictionary(results)) : sh.optional.not_set(),
+                sh.dictionary(results)) : sh.optional.not_set(),
         }])
         return sh.state(['reference', {
             'referent': {
@@ -364,7 +368,7 @@ sh.dictionary(results)) : sh.optional.not_set(),
             'dictionary': null,
             'dependency': sh.state(['stack', null]),
             'results': results ? sh.optional.set(
-sh.dictionary(results)) : sh.optional.not_set(),
+                sh.dictionary(results)) : sh.optional.not_set(),
         }])
         return sh.state(['reference', {
             'referent': {
@@ -428,7 +432,7 @@ sh.dictionary(results)) : sh.optional.not_set(),
         return sh.state(['state', {
             'options': sh.dictionary(options),
             'results': sh.optional.set(
-sh.dictionary(results)),
+                sh.dictionary(results)),
         }])
     }
 
