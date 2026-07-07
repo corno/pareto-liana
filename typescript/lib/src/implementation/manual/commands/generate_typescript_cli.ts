@@ -34,7 +34,7 @@ import * as t_path_to_text from "pareto-resources/implementation/manual/transfor
 // //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.procedures.generate_typescript_cli = p_.command_procedure(
+export const $$: interface_.generate_typescript_cli = p_.command(
     ($d, $s, $q, $c) => [
 
         p_.s.handle_error<d_main.Error, My_Error_1>(

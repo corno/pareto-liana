@@ -20,7 +20,7 @@ import * as t_pareto_implementation_to_serialized_typescript from "pareto/implem
 import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/manual/transformers/interface/serialized_typescript"
 import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 
-export const $$: interface_.procedures.generate_typescript = p_.command_procedure(
+export const $$: interface_.generate_typescript = p_.command(
     ($d, $s, $q, $c) => [
 
         p_.s.query(

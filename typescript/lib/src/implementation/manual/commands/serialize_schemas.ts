@@ -7,7 +7,7 @@ import * as interface_ from "../../../interface/commands.js"
 
 import * as d_main from "pareto-application-api/interface/data/main"
 import * as d_resolve from "liana-core/interface/data/resolve"
-import * as d_write_file from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
+import * as d_write_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all.js"
@@ -18,7 +18,7 @@ import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refine
 import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
 import * as t_schema_to_prose from "../../generated/liana/schemas/schema/resolved/transformers/prose.js"
 import * as t_fp_to_loc from "pareto-fountain-pen/implementation/manual/transformers/prose/list_of_characters"
-import * as t_write_file_to_prose from "pareto-resources/implementation/manual/transformers/write_file/prose"
+import * as t_write_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/manual/transformers/write_file/prose"
 import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"
 import * as t_loc_to_prose from "liana-core/implementation/manual/transformers/location/prose"
 
@@ -29,7 +29,7 @@ type My_Error =
     | ['error writing file', d_write_file.Error]
     | ['resolve error', d_resolve.Error]
 
-export const $$: interface_.procedures.serialize_schemas = p_.command_procedure(
+export const $$: interface_.serialize_schemas = p_.command(
     ($d, $s, $q, $c) => [
         p_.s.dictionary(
             poormans_modules,

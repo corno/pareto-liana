@@ -26,7 +26,7 @@ import * as t_generate_typescript_to_prose from "../transformers/compile_temp_sc
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.procedures.compile_temp_schemas = p_.command_procedure(
+export const $$: interface_.compile_temp_schemas = p_.command(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(
