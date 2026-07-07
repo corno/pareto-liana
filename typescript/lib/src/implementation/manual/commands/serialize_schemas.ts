@@ -5,7 +5,7 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 
 import * as interface_ from "../../../interface/commands.js"
 
-import * as d_main from "pareto-resources/interface/data/temp_main"
+import * as d_main from "pareto-application-api/interface/data/main"
 import * as d_resolve from "liana-core/interface/data/resolve"
 import * as d_write_file from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 

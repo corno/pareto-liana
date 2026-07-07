@@ -5,7 +5,7 @@ import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 import * as interface_ from "../../../interface/commands.js"
 
 // //data types
-import * as d_main from "pareto-resources/interface/data/temp_main"
+import * as d_main from "pareto-application-api/interface/data/main"
 import * as d_resource from "../../../interface/data/generate_typescript.js"
 import * as d_path from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_path/data"
 type My_Error_1 =

@@ -5,7 +5,7 @@ import * as p_t from 'pareto-core/implementation/transformer'
 import * as interface_ from "../../../interface/commands.js"
 
 //data types
-import * as d_main from "pareto-resources/interface/data/temp_main"
+import * as d_main from "pareto-application-api/interface/data/main"
 import * as d_generate_typescript from "../../../interface/data/compile_temp_schemas.js"
 
 //data
