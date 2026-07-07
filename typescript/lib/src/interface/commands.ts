@@ -7,7 +7,7 @@ import * as command_actions from "./command_actions.js"
 import * as query_actions_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/query_actions"
 
 
-export type compile_temp_schemas = p_.Command_Procedure<
+export type compile_temp_schemas = p_.Command<
     command_actions_pareto_application_api.main,
     null,
     null,
@@ -21,7 +21,7 @@ export type compile_temp_schemas = p_.Command_Procedure<
     }
 >
 
-export type generate_typescript_cli = p_.Command_Procedure<
+export type generate_typescript_cli = p_.Command<
     command_actions_pareto_application_api.main,
     null,
     {
@@ -37,7 +37,7 @@ export type generate_typescript_cli = p_.Command_Procedure<
     }
 >
 
-export type generate_typescript = p_.Command_Procedure<
+export type generate_typescript = p_.Command<
     command_actions.generate_typescript,
     null,
     {
@@ -51,7 +51,7 @@ export type generate_typescript = p_.Command_Procedure<
     }
 >
 
-export type serialize_schemas = p_.Command_Procedure<
+export type serialize_schemas = p_.Command<
     command_actions_pareto_application_api.main,
     null,
     null,
