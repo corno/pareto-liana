@@ -1,4 +1,4 @@
-import * as p_ from 'pareto-core/implementation/refiner'
+
 import * as p_t from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/refiner'
 import type * as p_di from 'pareto-core/interface/data'
@@ -12,10 +12,10 @@ import type * as d_out_schema from "../../../generated/liana/schemas/schema/data
 import type * as d_function from "liana-core/interface/data/deserialize_resolved"
 import type * as d_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
-export namespace interface_ {
+
     export type Module_Specifier = p_i.Refiner<
         d_out.Temp_Module_Specifier,
         d_function.Error,
         d_in.List_of_Characters
     >
-}
+
