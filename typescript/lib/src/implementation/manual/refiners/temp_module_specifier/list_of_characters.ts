@@ -1,11 +1,10 @@
 import * as p_ from 'pareto-core/implementation/refiner'
 import * as p_t from 'pareto-core/implementation/transformer'
-import * as p_i from 'pareto-core/interface/refiner'
-import * as p_di from 'pareto-core/interface/data'
+import type * as p_i from 'pareto-core/interface/refiner'
+import type * as p_di from 'pareto-core/interface/data'
 import p_implement_me from 'pareto-core-dev/implement_me'
 import p_log_debug_message from 'pareto-core-dev/log_debug_message'
 import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials/list_build_deprecated'
-
 
 //data types
 import type * as d_out from "../../../../interface/data/temp_module_specifier.js"
@@ -13,18 +12,19 @@ import type * as d_out_schema from "../../../../interface/generated/liana/schema
 import type * as d_function from "liana-core/interface/data/deserialize_resolved"
 import type * as d_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
+export namespace interface_ {
+    export type Module_Specifier = p_i.Refiner<
+        d_out.Temp_Module_Specifier,
+        d_function.Error,
+        d_in.List_of_Characters
+    >
+}
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/refiners/schema/unresolved_manual.js"
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters.js"
 
-export type Module_Specifier = p_i.Refiner<
-    d_out.Temp_Module_Specifier,
-    d_function.Error,
-    d_in.List_of_Characters
->
-
-export const Module_Specifier: Module_Specifier = ($, abort) => {
+export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
 
 
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
