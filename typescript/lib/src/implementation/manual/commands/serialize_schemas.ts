@@ -3,7 +3,7 @@ import * as p_ from 'pareto-core/implementation/command'
 import * as p_temp from 'pareto-core/implementation/transformer'
 
 
-import * as interface_ from "../../../interface/commands.js"
+import * as interface_ from "../../../interface/declarations/commands.js"
 
 import * as d_main from "pareto-application-api/interface/data/main"
 import * as d_resolve from "liana-core/interface/data/resolve"

@@ -3,7 +3,7 @@ import * as p_ from 'pareto-core/interface/command'
 import * as command_actions_pareto_stream_api from "pareto-stream-api/interface/command_actions"
 import * as command_actions_pareto_application_api from "pareto-application-api/interface/command_actions"
 import * as command_actions_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/command_actions"
-import * as command_actions from "./command_actions.js"
+import * as command_actions from "../actions/commands.js"
 import * as query_actions_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/query_actions"
 
 
