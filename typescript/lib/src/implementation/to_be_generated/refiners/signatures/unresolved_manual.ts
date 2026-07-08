@@ -61,7 +61,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
                 $,
                 abort,
             )])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     return {
@@ -71,7 +71,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
             switch ($[0]) {
                 case 'local': return p_.option($, ($) => $)
                 case 'same as': return p_.option($, ($) => $['l entry']['resolved parameters'])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
     }
@@ -123,7 +123,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
                     case 'acyclic': return p_.option($, ($) => ['acyclic', null])
                     case 'cyclic': return p_.option($, ($) => ['cyclic', null])
                     case 'stack': return p_.option($, ($) => ['stack', $])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
             const p_presence = $['l entry'].presence['l state']

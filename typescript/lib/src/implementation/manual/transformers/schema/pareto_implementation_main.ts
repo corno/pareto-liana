@@ -154,7 +154,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                                             ),
                                         })
                                     ))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             })
                 })
@@ -165,7 +165,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                         'omit (de)serializer': $p['omit (de)serializer'],
                     }
                 ))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

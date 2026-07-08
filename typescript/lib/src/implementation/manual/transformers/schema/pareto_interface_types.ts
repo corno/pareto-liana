@@ -114,10 +114,10 @@ export const Schema: interface_.Schema = ($, $p) => {
                                                     "data",
                                                     "resolved",
                                                 ]))
-                                                default: return p_.au($[0])
+                                                default: return p_.exhaustive($[0])
                                             }
                                         }))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }),
                     )
@@ -149,7 +149,7 @@ export const Module_Reference: interface_.Module_Reference = ($) => p_.from.stat
                 "imports " + $.import['l id'],
                 $.module['l id'],
             ))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -174,7 +174,7 @@ export const Value: interface_.Value = ($, $p) => {
                                 case 'internal acyclic': return p_.option($, ($) => sh.t.component_sibling( //FIXME: is this correct?
                                     $['l id'],
                                 ))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                     return $p.type[0] === 'resolved'
@@ -267,7 +267,7 @@ export const Value: interface_.Value = ($, $p) => {
                                             )),
                                     }
                                 ))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 }
@@ -277,7 +277,7 @@ export const Value: interface_.Value = ($, $p) => {
                     ($) => {
                         switch ($[0]) {
                             case 'global': return p_.option($, ($) => Simple_Type($['l entry']))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'optional': return p_.option($, ($) => sh.t.optional(Value(
@@ -319,7 +319,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                                     case 'acyclic': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'acyclic' }))
                                                                                     case 'cyclic': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'cyclic' }))
                                                                                     case 'stack': return p_.option($, ($) => Value_Reference_temp(referent, { 'type': 'acyclic' }))
-                                                                                    default: return p_.au($[0])
+                                                                                    default: return p_.exhaustive($[0])
                                                                                 }
                                                                             })
                                                                     })),
@@ -332,7 +332,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                                 case 'cyclic': return p_.option($, ($) => p_.literal.not_set())
                                                                                 case 'stack': return p_.option($, ($) => p_.literal.set(
                                                                                     sh.t.natural()))
-                                                                                default: return p_.au($[0])
+                                                                                default: return p_.exhaustive($[0])
                                                                             }
                                                                         })
                                                                 })
@@ -346,11 +346,11 @@ export const Value: interface_.Value = ($, $p) => {
                                                         "l reference": sh.t.text(),
                                                     })
                                                 ))
-                                                default: return p_.au($[0])
+                                                default: return p_.exhaustive($[0])
                                             }
                                         })
                                 })
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 })
@@ -377,13 +377,13 @@ export const Value: interface_.Value = ($, $p) => {
                                         'base type': i,
                                     }
                                 ))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 }
                 )
                 case 'text': return p_.option($, ($) => sh.t.text())
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }
@@ -437,7 +437,7 @@ const Value_Path: interface_.Value_Path = ($) => {
                     case 'list': return p_.option($, ($) => sh.sub.list())
                     case 'optional': return p_.option($, ($) => sh.sub.optional())
                     case 'state': return p_.option($, ($) => sh.sub.state($['l id']))
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             }))
 }
@@ -458,13 +458,13 @@ export const Simple_Type: interface_.Simple_Type = ($) => {
                                         case 'integer': return p_.option($, ($) => sh.t.integer())
                                         case 'natural': return p_.option($, ($) => sh.t.natural())
                                         case 'positive natural': return p_.option($, ($) => sh.t.natural())
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

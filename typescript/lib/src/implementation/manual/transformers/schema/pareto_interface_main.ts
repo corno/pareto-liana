@@ -53,7 +53,7 @@ export const Schema: interface_.Schema = ($, $p) => {
             switch ($[0]) {
                 case 'constrained': return p_.option($, ($) => true)
                 case 'unconstrained': return p_.option($, ($) => false)
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
     return sh.m.set(
@@ -179,7 +179,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                                     )
                                 })
                             ))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }
                 )
@@ -221,7 +221,7 @@ export const Schema: interface_.Schema = ($, $p) => {
         //                     $.signatures.signatures
         //                 )))
         //                 case 'unconstrained': return p_.option($, ($) => p_.literal.not_set())
-        //                 default: return p_.au($[0])
+        //                 default: return p_.exhaustive($[0])
         //             }
         //         }),
         //         "boilerplate for migrate": p_.literal.set(t_migrate_boilerplate.Schema(
@@ -295,7 +295,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.from.state($).d
         switch ($[0]) {
             case 'schema': return p_.option($, ($) => Schema($, $p))
             case 'set': return p_.option($, ($) => Schemas($, $p))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -306,6 +306,6 @@ export const Schemas: interface_.Schemas = ($, $p) => sh.m.set(p_.from.dictionar
             switch ($[0]) {
                 case 'schema': return p_.option($, ($) => Schema($, $p))
                 case 'set': return p_.option($, ($) => Schemas($, $p))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })))

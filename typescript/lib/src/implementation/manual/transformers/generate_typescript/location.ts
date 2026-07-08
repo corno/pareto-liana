@@ -42,7 +42,7 @@ export const Error: interface_.Error = ($) => {
                         switch ($[0]) {
                             case 'in main document': return p_.option($, ($) => $)
                             case 'in subdocument': return p_.option($, ($) => $.range)
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })))
                 case 'could not deserialize': return p_.option($, ($) => p_.literal.set(
@@ -54,11 +54,11 @@ export const Error: interface_.Error = ($) => {
                                     'start': $.end,
                                     'end': $.end,
                                 }))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 ))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

@@ -68,7 +68,7 @@ export const Schema_Imports: t_signatures.Schema_Imports = ($, abort, $l, $p) =>
                                     }]],
                                     'location': loc
                                 }))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 }
@@ -108,7 +108,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
                                                 }]],
                                                 'location': loc
                                             }))
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }))
                                 case 'set': return p_.option($, ($) => abort({
@@ -118,7 +118,7 @@ export const Resolver_Imports: t_signatures.Resolver_Imports = ($, abort, $l, $p
                                     }]],
                                     'location': loc
                                 }))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                 }
@@ -262,7 +262,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                                 }]
                             })
                             case 'unconstrained': return p_.option($, ($) => ['unconstrained', null])
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })
                     return ({
@@ -280,7 +280,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort, $l, $p) => p_var
                 $l,
                 $p,
             )])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     }))
 
@@ -320,7 +320,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
                     case 'unconstrained': return p_.option($, ($) => ['unconstrained', {
                         'module': $.module
                     }])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
     }))

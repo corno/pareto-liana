@@ -134,14 +134,14 @@ export const $$: interface_.generate_typescript_cli = p_.command(
                                                     switch ($[0]) {
                                                         case 'source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
                                                         case 'target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
-                                                        default: return p_temp.au($[0])
+                                                        default: return p_temp.exhaustive($[0])
                                                     }
                                                 }
                                             ))
                                             case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
                                             case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
                                             case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
-                                            default: return p_temp.au($[0])
+                                            default: return p_temp.exhaustive($[0])
                                         }
                                     })
                             ])

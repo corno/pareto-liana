@@ -146,7 +146,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                 case 'external': return p_.option($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                                 case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
                                 case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         }),
                     sh.a.select(
@@ -351,7 +351,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                                                             p_.literal.list([]),
                                                                         )
                                                                     ))
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }
                                                         )
@@ -360,11 +360,11 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                             )
                                         ))
 
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 })
                         })
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
 
@@ -421,7 +421,7 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                                 })
                             )
                         ))
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'state': return p_.option($, ($) => sh.a.state.literal(
@@ -471,6 +471,6 @@ export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
                     })
                 )
             ))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })

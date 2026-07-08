@@ -45,7 +45,7 @@ export const Error: interface_.Error = ($) => {
                         $.error,
                     )
                 ]))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

@@ -68,14 +68,14 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             $,
                             abort,
                         )])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
                 const p_signature: t_out.Resolver_Value.component.signature = p_change_context(p_location, ($) => {
                     switch ($[0]) {
                         case 'external': return p_.option($, ($) => $.signature['l entry'])
                         case 'internal': return p_.option($, ($) => $['l entry'])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
                 const x_type: t_out.Modules.D = p_change_context(x.type, ($) => {
@@ -83,7 +83,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         case 'external': return p_.option($, ($) => $.module['l entry'])
                         case 'internal acyclic': return p_.option($, ($) => $['l entry'])
                         case 'internal': return p_.option($, ($) => $['l entry'].get_circular_dependent())
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
                 if (p_signature.module !== x_type) {
@@ -106,14 +106,14 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                     ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
                                                         switch ($[0]) {
                                                             case 'not set': return p_.option($, ($) => ['not set', null])
-                                                            default: return p_.au($[0])
+                                                            default: return p_.exhaustive($[0])
                                                         }
                                                     })])
                                                 case 'cyclic': return p_.option($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(
                                                     ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
                                                         switch ($[0]) {
                                                             case 'not set': return p_.option($, ($) => ['not set', null])
-                                                            default: return p_.au($[0])
+                                                            default: return p_.exhaustive($[0])
                                                         }
                                                     })])
                                                 case 'stack': return p_.option($, ($) => ['stack', p_.from.state($['l state']).decide(
@@ -138,7 +138,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                     'item': p_element
                                                                 }]
                                                             })
-                                                            default: return p_.au($[0])
+                                                            default: return p_.exhaustive($[0])
                                                         }
                                                     })])
                                                 case 'selection': return p_.option($, ($) => ['selection', Lookup_Selection(
@@ -147,7 +147,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                     $l,
                                                     $p,
                                                 )])
-                                                default: return p_.au($[0])
+                                                default: return p_.exhaustive($[0])
                                             }
                                         })
                                     }),
@@ -200,7 +200,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                         $l,
                                                         $p,
                                                     )])
-                                                    default: return p_.au($[0])
+                                                    default: return p_.exhaustive($[0])
                                                 }
                                             })
                                             {
@@ -216,7 +216,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                     case 'external': return p_.option($, ($) => $.module['l entry']['root value'])
                                                                     case 'internal acyclic': return p_.option($, ($) => $['l entry']['root value'])
                                                                     case 'internal': return p_.option($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, once we are resolving value resolvers, all value are resolved
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }))
                                                             case 'reference': return p_.option($, ($) => $.referent.path['resulting node'])
@@ -248,7 +248,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                                 case 'result': return p_.option($, ($) => {
                                                                                     return null
                                                                                 })
-                                                                                default: return p_.au($[0])
+                                                                                default: return p_.exhaustive($[0])
                                                                             }
                                                                         })
                                                                         return null
@@ -264,7 +264,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                                         }
                                                                         return null
                                                                     })
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             })
                                                             return null
@@ -301,7 +301,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                             }
                                                             return null
                                                         })
-                                                        default: return p_.au($[0])
+                                                        default: return p_.exhaustive($[0])
                                                     }
                                                 })
                                             }
@@ -358,7 +358,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             switch ($[0]) {
                                 case 'external': return p_.option($, ($) => $.signature['l entry'].module['root value'])
                                 case 'internal': return p_.option($, ($) => $['l entry'].module['root value'])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                     }
@@ -624,7 +624,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                     'constraints': p_constraints,
                                 }]
                             })
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })
                 }]
@@ -770,7 +770,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
             //         : $p.definition[1]
             //     return ['type parameter', null]
             // })
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     return p_type
@@ -801,7 +801,7 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                                             case 'external': return p_.option($, ($) => $.module['l entry']['root value'])
                                             case 'internal acyclic': return p_.option($, ($) => $['l entry']['root value'])
                                             case 'internal': return p_.option($, ($) => $['l entry'].get_circular_dependent()['root value']) //this is safe, the modules have been resolved at this stage
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     })
                                 }
@@ -844,7 +844,7 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                                             default: return i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
                                         }
                                     }))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             })
                             return {
@@ -856,7 +856,7 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                                 }
                             }
                         })
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
             },
@@ -887,7 +887,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
                             $,
                             abort,
                         )])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
                 const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
@@ -903,10 +903,10 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
                                     switch ($[0]) {
                                         case 'state': return p_.option($, ($) => $.option['l entry'].value)
                                         case 'optional value': return p_.option($, ($) => $['selected optional value'])
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         }),
                     },
@@ -975,7 +975,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                     'constraint': p_constraint
                                 }]
                             })
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })])
                     case 'list cursor': return p_.option($, ($) => ['list cursor', null])
@@ -1067,7 +1067,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                     )
                                 }]
                             })
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })])
                     case 'sibling': return p_.option($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['sibling', i_generic.get_entry_acyclic(
@@ -1080,7 +1080,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                         $,
                         abort,
                     )])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
             const p_tail = Relative_Value_Selection(
@@ -1098,10 +1098,10 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                             switch ($[0]) {
                                                 case 'state': return p_.option($, ($) => $.result['resulting module'])
                                                 case 'optional value': return p_.option($, ($) => $.result['resulting module'])
-                                                default: return p_.au($[0])
+                                                default: return p_.exhaustive($[0])
                                             }
                                         }))
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 })
                             })['root value']
@@ -1114,7 +1114,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                                 switch ($[0]) {
                                                     case 'state': return p_.option($, ($) => $.option['l entry'].value)
                                                     case 'optional value': return p_.option($, ($) => $['selected optional value'])
-                                                    default: return p_.au($[0])
+                                                    default: return p_.exhaustive($[0])
                                                 }
                                             }))
                                             case 'reference': return p_.option($, ($) => p_change_context($.constraint['l entry'].constraint.type, ($) => {
@@ -1122,11 +1122,11 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                                     case 'state': return p_.option($, ($) => $.option['l entry'].value)
                                                     case 'optional value': return p_.option($, ($) => $['selected optional value'])
 
-                                                    default: return p_.au($[0])
+                                                    default: return p_.exhaustive($[0])
                                                 }
                                             }))
 
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }))
                                     case 'parameter': return p_.option($, ($) => $['l entry'].module['resulting module']['root value'])
@@ -1135,7 +1135,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                             case 'state': return p_.option($, ($) => $.result['resulting module']['root value'])
                                             case 'optional value': return p_.option($, ($) => $.result['resulting module']['root value'])
                                             case 'list': return p_.option($, ($) => $['list result']['resulting module']['root value'])
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }))
                                     case 'list cursor': return p_.option($, ($) => p_.from.optional($p['list cursor']).decide(
@@ -1150,12 +1150,12 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                         switch ($[0]) {
                                             case 'state': return p_.option($, ($) => $.option['l entry'].value)
                                             case 'assert is set': return p_.option($, ($) => pvs($))
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }))
                                     case 'sibling': return p_.option($, ($) => $['l entry'].definition.value)
                                     case 'parent sibling': return p_.option($, ($) => $['l entry'].definition.value)
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             })
                             return gvs_start(p_start)
@@ -1209,7 +1209,7 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
                     $l,
                     $p,
                 )])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })),
     ))
@@ -1259,7 +1259,7 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
                     'selected optional value': p_selected_optional_value,
                 }]
             })
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     }))
     return {
@@ -1276,7 +1276,7 @@ export const Optional_Value_Initialization: t_signatures.Resolver_Optional_Value
             case 'selection': return p_.option($, ($): t_out.Resolver_Optional_Value_Initialization => {
                 return ['selection', Possibly_Optional($, abort, $l, $p)]
             })
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     }))
 
@@ -1344,10 +1344,10 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
                                 'result': p_result,
                             }]
                         })
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
     })
@@ -1387,7 +1387,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                                     ($) => $,
                                     () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                                 )])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })])
                     case 'cyclic': return p_.option($, ($) => ['cyclic', p_.from.state($['l state']).decide(
@@ -1397,7 +1397,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                                     ($) => $,
                                     () => i_generic.abort.parameter_is_set_assertion("current directory", loc, abort)
                                 )])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })])
                     case 'parameter': return p_.option($, ($) => ['parameter', i_generic.get_entry_acyclic(
@@ -1405,7 +1405,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                         $,
                         abort
                     )])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             }))
             const p_resulting_dictionary = p_change_context(p_type, ($): t_out.Value.dictionary => {
@@ -1415,18 +1415,18 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                             switch ($[0]) {
                                 case 'siblings': return p_.option($, ($) => $)
                                 case 'resolved dictionary': return p_.option($, ($) => $['selected dictionary'])
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         }))
                     case 'cyclic': return p_.option($, ($) => p_.from.state($).decide(
                         ($) => {
                             switch ($[0]) {
                                 case 'siblings': return p_.option($, ($) => $)
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         }))
                     case 'parameter': return p_.option($, ($) => $['l entry'].dictionary)
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
             return ({
@@ -1462,14 +1462,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                 $,
                 abort,
             )])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     const p_resulting_type = p_change_context(x, ($): t_out.Module => {
         switch ($[0]) {
             case 'external': return p_.option($, ($) => $.module['l entry'])
             case 'internal': return p_.option($, ($) => $['l entry'])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     return {

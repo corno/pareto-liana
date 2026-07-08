@@ -158,7 +158,7 @@ export const Value: interface_.Value = ($, $p) => {
                                         case 'external': return p_.option($, ($) => sh.call.external($.import['l id'], $.module['l id']))
                                         case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
                                         case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }),
                             sh.a.select(
@@ -354,7 +354,7 @@ sh.sv.context(p_.from.optional($.results).decide(
                                     )
                                     : tn
                             })
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'state': return p_.option($, ($) => {
@@ -409,7 +409,7 @@ sh.sv.context(p_.from.optional($.results).decide(
                         p_.literal.list([])
                     )
                 ))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

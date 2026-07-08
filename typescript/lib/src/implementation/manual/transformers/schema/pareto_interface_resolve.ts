@@ -60,7 +60,7 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                                     case 'acyclic': return p_.option($, ($) => ['acyclic', y])
                                     case 'cyclic': return p_.option($, ($) => ['cyclic', y])
                                     case 'stack': return p_.option($, ($) => ['stack', y])
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }
                         )
@@ -77,7 +77,7 @@ export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
                                 switch ($[0]) {
                                     case 'optional': return sh.t.optional(temp_2)
                                     case 'required': return temp_2
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             })
                     }
@@ -102,7 +102,7 @@ export const Module_Reference = (
                     "resolved",
                     $['l id'],
                 ))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }
@@ -119,7 +119,7 @@ export const Value_Path = (
                     case 'list': return p_.option($, ($) => sh.sub.list())
                     case 'optional': return p_.option($, ($) => sh.sub.optional())
                     case 'state': return p_.option($, ($) => sh.sub.state($['l id']))
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             }))
     return tail

@@ -175,7 +175,7 @@ export const Value: interface_.Value = ($, $p) => {
                                         case 'external': return p_.option($, ($) => sh.call.external(`external ${$.import['l id']}`, $.module['l id']))
                                         case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
                                         case 'internal acyclic': return p_.option($, ($) => sh.call.local($['l id']))
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }),
                             sh.a.select(
@@ -566,7 +566,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                                             sh.a.nothing()
                                                                         )
                                                                     ))
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }),
                                                         "subdocument context": sh.a.optional.not_set(),
@@ -575,10 +575,10 @@ export const Value: interface_.Value = ($, $p) => {
                                                 p_.literal.list([]),
                                             ),
                                         ))
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'optional': return p_.option($, ($) => sh.a.optional.map(
@@ -652,7 +652,7 @@ export const Value: interface_.Value = ($, $p) => {
                                     ),
                                 })
                             ))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'state': return p_.option($, ($) => sh.a.change_context(
@@ -772,7 +772,7 @@ export const Value: interface_.Value = ($, $p) => {
                         p_.literal.list([]),
                     )
                 ))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

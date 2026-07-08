@@ -26,7 +26,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                         $,
                         abort,
                     )])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })])
             case 'text': return p_.option($, ($): t_out.Value => ['text', p_change_context($['l state'], ($): t_out.Value.text => {
@@ -47,7 +47,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                         p_.literal.nothing(),
                         p_.literal.nothing(),
                     )])
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })])
             case 'component': return p_.option($, ($): t_out.Value => ['component', {
@@ -82,7 +82,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                             $,
                             abort
                         )])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }),
                 'results': Value_Results(
@@ -190,7 +190,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                                         case 'cyclic': return p_.option($, ($) => ['cyclic', null])
                                         case 'acyclic': return p_.option($, ($) => ['acyclic', null])
                                         case 'stack': return p_.option($, ($) => ['stack', $])
-                                        default: return p_.au($[0])
+                                        default: return p_.exhaustive($[0])
                                     }
                                 }),
                                 'results': Value_Results(
@@ -206,7 +206,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                             }]
                         })
                         case 'derived': return p_.option($, ($) => ['derived', null])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
 
@@ -279,7 +279,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
             //         'location 2 string': $p['location 2 string']
             //     }
             // )])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 }
@@ -320,7 +320,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
                                             case 'integer': return p_.option($, ($) => ['integer', null])
                                             case 'natural': return p_.option($, ($) => ['natural', null])
                                             case 'positive natural': return p_.option($, ($) => ['positive natural', null])
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }),
                                     'number of fractional digits': p_change_context($['number of fractional digits'], ($) => {
@@ -331,11 +331,11 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
                             case 'approximation': return p_.option($, ($) => ['approximation', {
                                 'significant digits': $['significant digits']
                             }])
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }),
                 }])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         }),
     }
@@ -407,14 +407,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
                 $,
                 abort,
             )])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     const p_resulting_type = p_change_context(x, ($): t_out.Module => {
         switch ($[0]) {
             case 'external': return p_.option($, ($) => $.module['l entry'])
             case 'internal': return p_.option($, ($) => $['l entry'])
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
     return {
@@ -430,7 +430,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
             switch ($[0]) {
                 case 'single line': return p_.option($, ($) => ['single line', null])
                 case 'multi line': return p_.option($, ($) => ['multi line', null])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         }),
         'link': p_change_context($.link['l state'], ($): t_out.Text_Type.link => {
@@ -440,7 +440,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
                     'path prefix': $['path prefix'],
                     'path suffix': $['path suffix'],
                 }])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         }),
     }
@@ -558,7 +558,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    default: return p_.au($[0])
+                    default: return p_.exhaustive($[0])
                 }
             })
         },

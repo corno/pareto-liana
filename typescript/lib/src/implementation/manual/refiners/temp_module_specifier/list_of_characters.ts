@@ -85,7 +85,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                                 ($) => temp_find_schema($, split.rest),
                                 () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                             ))
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })
             },
@@ -94,7 +94,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                     switch ($[0]) {
                         case 'schema': return p_.option($, ($) => $)
                         case 'set': return p_.option($, ($) => p_implement_me("(FIXME: make this a reference) the selected tree is a set, not a schema"))
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
         )
@@ -131,7 +131,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                                         'found': "unconstrained",
                                     }]]
                                 }]))
-                                default: return p_.au($[0])
+                                default: return p_.exhaustive($[0])
                             }
                         })
                     return ['constrained', {
@@ -176,7 +176,7 @@ export const Module_Specifier: Module_Specifier = ($, abort) => {
                         }
                     }]
                 })
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 

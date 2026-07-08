@@ -199,11 +199,11 @@ export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($,
                             case 'state': return p_.option($, ($) => sh.sv.implement_me("IM: STATE2")) //quite some work
                             case 'optional value': return p_.option($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE2")) //quite some work
 
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
 
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }
@@ -221,7 +221,7 @@ export const Optional_Value_Initialization: interface_.Optional_Value_Initializa
                         'tail': p_.literal.list([])
                     }
                 ))))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -243,10 +243,10 @@ export const Resolver_Guaranteed_Value_Selection = (
                                 switch ($[0]) {
                                     case 'derived': return p_.option($, ($) => p_.literal.list([]))
                                     case 'selected': return p_.option($, ($) => p_.literal.list(["l entry"]))
-                                    default: return p_.au($[0])
+                                    default: return p_.exhaustive($[0])
                                 }
                             }))
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
         ),
@@ -266,7 +266,7 @@ export const Resolver_Guaranteed_Value_Selection = (
                                     $.constraint['l id']
                                 ])
                             )) //simple
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'list cursor': return p_.option($, ($) => sh.sv.implement_me("IM: LIST CURSOR"))
@@ -283,11 +283,11 @@ export const Resolver_Guaranteed_Value_Selection = (
                             case 'state': return p_.option($, ($) => sh.sv.implement_me("IM: STATE"))  // quite some work
                             case 'optional value': return p_.option($, ($) => sh.sv.implement_me("IM: OPTIONAL VALUE")) // quite some work
                             case 'list': return p_.option($, ($) => sh.sv.implement_me("IM: LIST")) // quite some work
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     }))
                 case 'sibling': return p_.option($, ($) => sh.sv.sibling($['l id'], tail()))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }
@@ -309,7 +309,7 @@ export const Resolver_Lookup_Selection = (
                             )
                         ))
                         case 'siblings': return p_.option($, ($) => sh.sl.acyclic.siblings())
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'cyclic': return p_.option($, ($) => p_.from.state($).decide(
@@ -317,11 +317,11 @@ export const Resolver_Lookup_Selection = (
                     switch ($[0]) {
                         case 'siblings': return p_.option($, ($) => sh.sl.cyclic.siblings())
 
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'parameter': return p_.option($, ($) => sh.sl.from_parameter($['l id']))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -396,7 +396,7 @@ export const Option_Constraints = (
                             // null,
                             // sh.type_node_reference("out", $p['sub'] as any as string, p_.literal.list([]))
                         ))
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 })
         ),
@@ -419,7 +419,7 @@ export const Option_Constraints = (
 //     //         sh.type_node_reference("out", $p['sub'] as any as string, p_.literal.list([]))
 //     //     ))
 //     //     case 'state': return p_.option($, ($) => sh.a.implement_me("IM: state constraint")) // medium work
-//     //     default: return p_.au($[0])
+//     //     default: return p_.exhaustive($[0])
 //     // }
 //     $.__ decide(),
 //     $p.sub
@@ -450,7 +450,7 @@ export const Resolver_Value = (
                                         switch ($[0]) {
                                             case 'external': return p_.option($, ($) => sh.call.external("external " + $['resolver import']['l id'], $.signature['l id']))
                                             case 'internal': return p_.option($, ($) => sh.call.local($['l id']))
-                                            default: return p_.au($[0])
+                                            default: return p_.exhaustive($[0])
                                         }
                                     }),
                                 sh.a.select(
@@ -471,14 +471,14 @@ export const Resolver_Value = (
                                                             ($) => {
                                                                 switch ($[0]) {
                                                                     case 'not set': return p_.option($, ($) => sh.sl.acyclic.not_set())
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }))
                                                         case 'cyclic': return p_.option($, ($) => p_.from.state($).decide(
                                                             ($) => {
                                                                 switch ($[0]) {
                                                                     case 'not set': return p_.option($, ($) => sh.sl.cyclic.not_set())
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }))
                                                         case 'stack': return p_.option($, ($) => p_.from.state($).decide(
@@ -489,11 +489,11 @@ export const Resolver_Value = (
                                                                         Resolver_Lookup_Selection($['stack']),
                                                                         Resolver_Lookup_Selection($['item']),
                                                                     ))
-                                                                    default: return p_.au($[0])
+                                                                    default: return p_.exhaustive($[0])
                                                                 }
                                                             }))
                                                         case 'selection': return p_.option($, ($) => Resolver_Lookup_Selection($))
-                                                        default: return p_.au($[0])
+                                                        default: return p_.exhaustive($[0])
                                                     }
                                                 }),
                                         )),
@@ -522,7 +522,7 @@ export const Resolver_Value = (
                                                                 p_.literal.list([])
                                                             )
                                                         ))
-                                                        default: return p_.au($[0])
+                                                        default: return p_.exhaustive($[0])
                                                     }
                                                 }),
                                         )),
@@ -802,13 +802,13 @@ export const Resolver_Value = (
                                                             )),
                                                     })
                                                 ))
-                                                default: return p_.au($[0])
+                                                default: return p_.exhaustive($[0])
                                             }
                                         })
                                 }
                             )
                         })
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'state': return p_.option($, ($) => {
@@ -872,7 +872,7 @@ export const Resolver_Value = (
                 sh.sv.context(
                     p_.literal.list([])
                 )))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     })
 
@@ -887,7 +887,7 @@ export const Value_Constraint: interface_.Value_Constraint = (
         //         switch ($[0]) {
         //             case 'value': return p_.option($, ($) => sh.sv.implement_me("IM: constraint result1"))
         //             case 'sibling': return p_.option($, ($) => sh.sv.implement_me("IM: constraint result2"))
-        //             default: return p_.au($[0])
+        //             default: return p_.exhaustive($[0])
         //         }
         //     })
         // }
@@ -936,7 +936,7 @@ export const Resolver_Constraint: interface_.Constraint = (
                     null,
                 ))
                 case 'optional value': return p_.option($, ($) => sh.a.implement_me("IM: constraint2"))
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         })
 }

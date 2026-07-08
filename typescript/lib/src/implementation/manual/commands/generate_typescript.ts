@@ -106,7 +106,7 @@ export const $$: interface_.generate_typescript = p_.command(
                                             p_.literal.nothing(),
                                             p_.literal.nothing(),
                                         ))
-                                        default: return p_temp.au($[0])
+                                        default: return p_temp.exhaustive($[0])
                                     }
                                 }),
                             ($) => [

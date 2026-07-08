@@ -89,7 +89,7 @@ export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
                         switch ($[0]) {
                             case 'global': return p_.option($, ($) => ['global', sh.reference("n" + $['l id'])])
 
-                            default: return p_.au($[0])
+                            default: return p_.exhaustive($[0])
                         }
                     })
             )])
@@ -104,7 +104,7 @@ export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
                         case 'selected': return p_.option($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
                             'type': sh.state(['single line', null])
                         }])])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))
             case 'component': return p_.option($, ($) => ['component', sh.state(p_.from.state($.type).decide(
@@ -116,7 +116,7 @@ export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
                         }])
                         case 'internal acyclic': return p_.option($, ($) => ['internal acyclic', sh.reference($['l id'])])
                         case 'internal': return p_.option($, ($) => ['internal', sh.reference($['l id'])])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))])
             case 'dictionary': return p_.option($, ($) => ['dictionary', {
@@ -133,11 +133,11 @@ export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
                     switch ($[0]) {
                         case 'global': return p_.option($, ($) => ['global', sh.reference("t" + $['l id'])])
                         case 'local': return p_.option($, ($) => ['local', Text_Type($)])
-                        default: return p_.au($[0])
+                        default: return p_.exhaustive($[0])
                     }
                 }))])
             // case 'type parameter': return p_.option($, ($) => p_implement_me("xx"))
-            default: return p_.au($[0])
+            default: return p_.exhaustive($[0])
         }
     }))
 
@@ -147,7 +147,7 @@ export const Text_Type: interface_.Text_Type = ($) => ({
             switch ($[0]) {
                 case 'multi line': return p_.option($, ($) => ['multi line', null])
                 case 'single line': return p_.option($, ($) => ['single line', null])
-                default: return p_.au($[0])
+                default: return p_.exhaustive($[0])
             }
         }))
 })

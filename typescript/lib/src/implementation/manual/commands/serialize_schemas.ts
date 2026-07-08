@@ -97,7 +97,7 @@ export const $$: interface_.serialize_schemas = p_.command(
                                                         )
                                                     ]))
                                                     case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_prose.Error($))
-                                                    default: return p_temp.au($[0])
+                                                    default: return p_temp.exhaustive($[0])
                                                 }
                                             })
                                     ]),
