@@ -4,7 +4,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 //data types
 import type * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
 
-export namespace d_out {
+namespace d_out {
 
     export type Possible_Range = p_di.Optional_Value<d_location.Range>
 
