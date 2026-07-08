@@ -18,6 +18,7 @@ export namespace interface_ {
     >
 
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/schema/pareto_implementation_deserialize_resolved.js"
 
 //shorthands
 import * as sh from "pareto/shorthands/implementation/target"

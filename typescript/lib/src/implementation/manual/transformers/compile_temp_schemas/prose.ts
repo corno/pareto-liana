@@ -19,6 +19,7 @@ export namespace interface_ {
         d_function.Parameters
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/compile_temp_schemas/prose.js"
 
 //dependencies
 import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"

@@ -18,6 +18,7 @@ export namespace interface_ {
         d_out.Possible_Range
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/generate_typescript/location.js"
 
 
 //dependencies

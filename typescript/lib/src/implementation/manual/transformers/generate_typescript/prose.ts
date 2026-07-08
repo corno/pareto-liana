@@ -11,6 +11,7 @@ export namespace interface_ {
         d_out.Phrase
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/generate_typescript/prose.js"
 
 //dependencies
 import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"

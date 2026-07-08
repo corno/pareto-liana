@@ -32,6 +32,7 @@ export namespace interface_ {
         d_out.Text_Type
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/transformers/schema/astn_schema.js"
 
 //shorthands
 import * as sh from "pareto-core-shorthands/unresolved_data"

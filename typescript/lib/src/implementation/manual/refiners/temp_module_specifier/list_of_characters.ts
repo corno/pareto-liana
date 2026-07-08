@@ -19,6 +19,7 @@ export namespace interface_ {
         d_in.List_of_Characters
     >
 }
+import * as temp_interface_ from "../../../../interface/declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/refiners/schema/unresolved_manual.js"
