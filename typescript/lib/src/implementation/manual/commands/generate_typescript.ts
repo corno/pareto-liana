@@ -6,8 +6,8 @@ import p_variables from 'pareto-core/implementation/command/specials/variables'
 import * as interface_ from "../../../interface/declarations/commands.js"
 
 // //data types
-import * as d_resource from "../../../interface/data/generate_typescript.js"
-import * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_resource from "../../../interface/data/generate_typescript.js"
+import type * as d_schema from "../../../interface/generated/liana/schemas/schema/data/resolved.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_directory"

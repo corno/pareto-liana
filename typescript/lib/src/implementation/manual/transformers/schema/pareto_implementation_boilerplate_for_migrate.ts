@@ -4,8 +4,8 @@ import * as p_di from 'pareto-core/interface/data'
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
+import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
 
 namespace interface_ {
 

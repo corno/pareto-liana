@@ -4,8 +4,8 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
+import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved" //FIXME; this should be unresolved
 
 namespace interface_ {
 

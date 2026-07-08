@@ -8,10 +8,10 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 
 
 //data types
-import * as d_out from "../../../../interface/data/temp_module_specifier.js"
-import * as d_out_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_function from "liana-core/interface/data/deserialize_resolved"
-import * as d_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
+import type * as d_out from "../../../../interface/data/temp_module_specifier.js"
+import type * as d_out_schema from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_function from "liana-core/interface/data/deserialize_resolved"
+import type * as d_in from "pareto-fountain-pen/interface/generated/liana/schemas/list_of_characters/data"
 
 
 //dependencies

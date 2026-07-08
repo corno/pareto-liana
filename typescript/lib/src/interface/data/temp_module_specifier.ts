@@ -1,4 +1,4 @@
-import * as d_schema from "../generated/liana/schemas/schema/data/resolved.js"
+import type * as d_schema from "../generated/liana/schemas/schema/data/resolved.js"
 
 export type Temp_Module_Specifier =
     | ['constrained', {

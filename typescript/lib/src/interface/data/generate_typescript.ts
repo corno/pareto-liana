@@ -1,8 +1,8 @@
 
-import * as d_resolve from "liana-core/interface/data/resolve"
-import * as d_read_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_read_file/data"
-import * as d_deserialize from "liana-core/interface/data/deserialize"
-import * as d_path from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_path/data"
+import type * as d_resolve from "liana-core/interface/data/resolve"
+import type * as d_read_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_read_file/data"
+import type * as d_deserialize from "liana-core/interface/data/deserialize"
+import type * as d_path from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_path/data"
 
 
 export type Error =

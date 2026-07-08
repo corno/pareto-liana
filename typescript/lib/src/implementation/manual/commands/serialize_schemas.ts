@@ -5,9 +5,9 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 
 import * as interface_ from "../../../interface/declarations/commands.js"
 
-import * as d_main from "pareto-application-api/interface/data/main"
-import * as d_resolve from "liana-core/interface/data/resolve"
-import * as d_write_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
+import type * as d_main from "pareto-application-api/interface/data/main"
+import type * as d_resolve from "liana-core/interface/data/resolve"
+import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all.js"

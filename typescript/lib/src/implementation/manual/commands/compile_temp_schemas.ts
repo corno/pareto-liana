@@ -5,8 +5,8 @@ import * as p_t from 'pareto-core/implementation/transformer'
 import * as interface_ from "../../../interface/declarations/commands.js"
 
 //data types
-import * as d_main from "pareto-application-api/interface/data/main"
-import * as d_generate_typescript from "../../../interface/data/compile_temp_schemas.js"
+import type * as d_main from "pareto-application-api/interface/data/main"
+import type * as d_generate_typescript from "../../../interface/data/compile_temp_schemas.js"
 
 //data
 import { $ as poormans_modules } from "../../../data/temporary_schemas/all.js"

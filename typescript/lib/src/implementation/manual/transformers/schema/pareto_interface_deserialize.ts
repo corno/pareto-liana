@@ -2,8 +2,8 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import * as p_i from 'pareto-core/interface/transformer'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved"
+import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved"
 
 namespace interface_ {
 

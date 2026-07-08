@@ -3,8 +3,8 @@ import * as p_i from 'pareto-core/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
+import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 export namespace interface_ {
     export type Schema = p_i.Transformer<

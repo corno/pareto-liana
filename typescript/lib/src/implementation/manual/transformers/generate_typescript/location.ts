@@ -3,8 +3,8 @@ import * as p_di from 'pareto-core/interface/data'
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import * as d_in from "../../../../interface/data/generate_typescript.js"
-import * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
+import type * as d_in from "../../../../interface/data/generate_typescript.js"
+import type * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
 
 export namespace d_out {
 

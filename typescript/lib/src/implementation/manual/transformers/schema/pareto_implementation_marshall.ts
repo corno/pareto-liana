@@ -5,8 +5,8 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 
 
 //data types
-import * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
+import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
 
 namespace interface_ {
 

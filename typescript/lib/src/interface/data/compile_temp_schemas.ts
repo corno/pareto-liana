@@ -1,6 +1,6 @@
 
-import * as d_schema from "../generated/liana/schemas/schema/data/unresolved.js"
-import * as d_resolve from "liana-core/interface/data/resolve"
+import type * as d_schema from "../generated/liana/schemas/schema/data/unresolved.js"
+import type * as d_resolve from "liana-core/interface/data/resolve"
 
 export type Parameters = {
     // 'id': string,
