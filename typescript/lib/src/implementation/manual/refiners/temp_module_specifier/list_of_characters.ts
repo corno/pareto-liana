@@ -16,8 +16,6 @@ import * as r_schema_resolved_from_unresolved from "../../../to_be_generated/ref
 import * as r_schema_unresolved_from_loc from "../../../generated/liana/schemas/schema/unresolved/refiners/list_of_characters.js"
 
 export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
-
-
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,
