@@ -8,13 +8,13 @@ import type * as d_out from "pareto/interface/generated/liana/schemas/implementa
 
 
 
-    export type Schema = p_.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
-        {
-            'path': p_di.List<string>,
-            'depth': number,
-        }
-    >
+export type Schema = p_.Transformer_With_Parameter<
+    d_in.Schema,
+    d_out.Package_Set.D,
+    {
+        'path': p_di.List<string>,
+        'depth': number,
+    }
+>
 
 

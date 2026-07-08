@@ -9,8 +9,6 @@ import * as t_out from "../../../../interface/generated/liana/schemas/schema/dat
 
 import * as i_generic from "../../resolve_generic.js"
 
-
-
 export const Value: t_signatures.Value = ($, abort, $l, $p) => {
     return p_change_context($['l state'], ($): t_out.Value => {
         switch ($[0]) {
