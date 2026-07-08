@@ -1,4 +1,4 @@
-import type * as p_i from 'pareto-core/interface/transformer'
+import type * as p_ from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 
 
@@ -13,7 +13,7 @@ export namespace d_out {
 }
 
 
-export type Error = p_i.Transformer<
+export type Error = p_.Transformer<
     d_in.Error,
     d_out.Possible_Range
 >

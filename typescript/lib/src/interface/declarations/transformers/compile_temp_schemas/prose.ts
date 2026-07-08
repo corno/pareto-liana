@@ -1,5 +1,5 @@
 
-import type * as p_i from 'pareto-core/interface/transformer'
+import type * as p_ from 'pareto-core/interface/transformer'
 
 //data types
 import type * as d_in from "../../../data/compile_temp_schemas.js"
@@ -13,7 +13,7 @@ export namespace d_function {
 }
 
 
-export type Error = p_i.Transformer_With_Parameter<
+export type Error = p_.Transformer_With_Parameter<
     d_in.Error,
     d_out.Phrase,
     d_function.Parameters
