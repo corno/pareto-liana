@@ -1,9 +1,7 @@
-import type * as p_i from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import type * as d_in from "../../../../interface/data/generate_typescript.js"
 import type * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
 
 export namespace d_out {
@@ -11,14 +9,7 @@ export namespace d_out {
     export type Possible_Range = p_di.Optional_Value<d_location.Range>
 
 }
-
-export namespace interface_ {
-    export type Error = p_i.Transformer<
-        d_in.Error,
-        d_out.Possible_Range
-    >
-}
-import * as temp_interface_ from "../../../../interface/declarations/transformers/generate_typescript/location.js"
+import type * as interface_ from "../../../../interface/declarations/transformers/generate_typescript/location.js"
 
 
 //dependencies

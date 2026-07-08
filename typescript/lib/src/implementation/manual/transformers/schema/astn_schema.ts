@@ -1,38 +1,10 @@
 import * as p_ from 'pareto-core/implementation/transformer'
-import type * as p_i from 'pareto-core/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
-//data types
-import type * as d_in from "../../../../interface/generated/liana/schemas/schema/data/resolved.js"
-import type * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
+import type * as interface_ from "../../../../interface/declarations/transformers/schema/astn_schema.js"
 
-export namespace interface_ {
-    export type Schema = p_i.Transformer<
-        d_in.Schema,
-        d_out.Schema
-    >
-    export type Globals = p_i.Transformer<
-        d_in.Globals,
-        d_out.Globals
-    >
-    export type Schema_Imports = p_i.Transformer<
-        d_in.Schema_Imports,
-        d_out.Imports
-    >
-    export type Module = p_i.Transformer<
-        d_in.Module,
-        d_out.Modules.l_dictionary.D.l_entry
-    >
-    export type Value = p_i.Transformer<
-        d_in.Value,
-        d_out.Value
-    >
-    export type Text_Type = p_i.Transformer<
-        d_in.Text_Type,
-        d_out.Text_Type
-    >
-}
-import * as temp_interface_ from "../../../../interface/declarations/transformers/schema/astn_schema.js"
+//data types
+import type * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 //shorthands
 import * as sh from "pareto-core-shorthands/unresolved_data"
