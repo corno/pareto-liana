@@ -9,15 +9,15 @@ import type * as d_main from "pareto-application-api/interface/data/main"
 import type * as d_generate_typescript from "../../interface/data/compile_temp_schemas.js"
 
 //dependencies
-import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_directory"
-import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_file"
+import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
+import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_file"
 import * as r_schema from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/manual/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/manual/transformers/interface/serialized_typescript"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/transformers/implementation/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/transformers/interface/serialized_typescript"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
-import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
-import * as r_context_path_from_text from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
+import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
+import * as r_context_path_from_text from "pareto-resources/implementation/refiners/path_unrestricted/text"
 import * as t_generate_typescript_to_prose from "../transformers/compile_temp_schemas/prose.js"
 
 //shorthands

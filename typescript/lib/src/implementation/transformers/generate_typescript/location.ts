@@ -13,7 +13,7 @@ import type * as interface_ from "../../../declarations/transformers/generate_ty
 
 
 //dependencies
-import * as t_deserialize_to_location from "liana-core/implementation/manual/transformers/deserialize/location"
+import * as t_deserialize_to_location from "liana-core/implementation/transformers/deserialize/location"
 
 
 

@@ -13,14 +13,14 @@ import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface
 // import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
 
 //dependencies
-import * as r_path_from_temp_string from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
+import * as r_path_from_temp_string from "pareto-resources/implementation/refiners/path_unrestricted/text"
 import * as r_schema_resolved_from_unresolved from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
+import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
 import * as t_schema_to_prose from "../generated/liana/schemas/schema/resolved/transformers/prose.js"
-import * as t_fp_to_loc from "pareto-fountain-pen/implementation/manual/transformers/prose/list_of_characters"
-import * as t_write_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/manual/transformers/write_file/prose"
-import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"
-import * as t_loc_to_prose from "liana-core/implementation/manual/transformers/location/prose"
+import * as t_fp_to_loc from "pareto-fountain-pen/implementation/transformers/prose/list_of_characters"
+import * as t_write_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/transformers/write_file/prose"
+import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
+import * as t_loc_to_prose from "liana-core/implementation/transformers/location/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"

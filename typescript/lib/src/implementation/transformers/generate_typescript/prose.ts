@@ -3,9 +3,9 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as interface_ from "../../../declarations/transformers/generate_typescript/prose.js"
 
 //dependencies
-import * as t_resolve_to_prose from "liana-core/implementation/manual/transformers/resolve/prose"
-import * as t_deserialize_to_prose from "liana-core/implementation/manual/transformers/deserialize/prose"
-import * as t_read_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/manual/transformers/read_file/prose"
+import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
+import * as t_deserialize_to_prose from "liana-core/implementation/transformers/deserialize/prose"
+import * as t_read_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/transformers/read_file/prose"
 
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"

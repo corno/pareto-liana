@@ -13,7 +13,7 @@ import * as t_signatures from "../../../../../../interface/generated/liana/schem
 
 import * as t_out from "astn-core/interface/generated/liana/schemas/sealed_target/data"
 
-import * as v_primitives_to_text from "liana-core/implementation/manual/transformers/primitives/text"
+import * as v_primitives_to_text from "liana-core/implementation/transformers/primitives/text"
 
 export const Range: t_signatures.Range = ($) => ['group', ['verbose', p_.literal.dictionary(
     {

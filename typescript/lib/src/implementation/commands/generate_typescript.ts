@@ -10,15 +10,15 @@ import type * as d_resource from "../../interface/data/generate_typescript.js"
 import type * as d_schema from "../../interface/generated/liana/schemas/schema/data/resolved.js"
 
 //dependencies
-import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_directory"
-import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_file"
+import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
+import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_file"
 import * as r_schema from "../to_be_generated/refiners/schema/unresolved_manual.js"
 import * as r_unresolved_schema_from_loc from "../generated/liana/schemas/schema/unresolved/refiners/list_of_characters.js"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/manual/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/manual/transformers/interface/serialized_typescript"
-import * as t_path_to_path from "pareto-resources/implementation/manual/transformers/unrestricted_path/unrestricted_path"
+import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/transformers/implementation/serialized_typescript"
+import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/transformers/interface/serialized_typescript"
+import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
 
 export const $$: interface_.generate_typescript = p_.command(
     ($d, $s, $q, $c) => [

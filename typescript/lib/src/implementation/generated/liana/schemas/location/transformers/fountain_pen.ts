@@ -3,7 +3,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 
 import * as t_signatures from "../../../../../../interface/generated/liana/schemas/location/signatures/transformers/fountain_pen.js"
 
-import * as v_serialize from "astn-core/implementation/manual/transformers/sealed_target/prose"
+import * as v_serialize from "astn-core/implementation/transformers/sealed_target/prose"
 
 import * as v_marshall from "./astn_sealed_target.js"
 

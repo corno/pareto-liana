@@ -27,9 +27,9 @@ type Res = {
 
 //dependencies
 import * as c_generate_typescript from "./generate_typescript.js"
-import * as r_unrestricted_path_from_text from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
+import * as r_unrestricted_path_from_text from "pareto-resources/implementation/refiners/path_unrestricted/text"
 import * as t_generate_typescript_to_prose from "../transformers/generate_typescript/prose.js"
-import * as t_path_to_text from "pareto-resources/implementation/manual/transformers/unrestricted_path/text"
+import * as t_path_to_text from "pareto-resources/implementation/transformers/unrestricted_path/text"
 
 // //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
