@@ -3,7 +3,7 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 import p_variables from 'pareto-core/implementation/command/specials/variables'
 
 
-import type * as interface_ from "../../../interface/declarations/commands.js"
+import type * as interface_ from "../../../declarations/commands.js"
 
 // //data types
 import type * as d_resource from "../../../interface/data/generate_typescript.js"

@@ -5,11 +5,11 @@ import * as p_h from 'pareto-host-nodejs/index'
 import * as rs_filesystem_unrestricted from "pareto-resource-filesystem-unrestricted/index"
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as procedure } from "lib/implementation/manual/commands/serialize_schemas"
+import { $$ as c_command } from "lib/implementation/manual/commands/serialize_schemas"
 
 p_h.run_main_command(
     () => {
-        return procedure(
+        return c_command(
             null,
             null,
             {

@@ -5,7 +5,7 @@ import p_implement_me from 'pareto-core-dev/implement_me'
 import p_log_debug_message from 'pareto-core-dev/log_debug_message'
 import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials/list_build_deprecated'
 
-import type * as interface_ from "../../../../interface/declarations/refiners/temp_module_specifier/list_of_characters.js"
+import type * as interface_ from "../../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //data types
 import type * as d_out from "../../../../interface/data/temp_module_specifier.js"

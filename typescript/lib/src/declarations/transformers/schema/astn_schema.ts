@@ -2,8 +2,8 @@
 import type * as p_ from 'pareto-core/interface/transformer'
 
 //data types
-import type * as d_in from "../../../generated/liana/schemas/schema/data/resolved.js"
-import type * as d_out from "../../../generated/liana/schemas/astn_schema/data/unresolved.js"
+import type * as d_in from "../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 
 export type Schema = p_.Transformer<

@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
-import type * as interface_ from "../../../../interface/declarations/transformers/schema/astn_schema.js"
+import type * as interface_ from "../../../../declarations/transformers/schema/astn_schema.js"
 
 //data types
 import type * as d_out from "../../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"

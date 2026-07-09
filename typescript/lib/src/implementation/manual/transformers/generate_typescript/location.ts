@@ -9,7 +9,7 @@ namespace d_out {
     export type Possible_Range = p_di.Optional_Value<d_location.Range>
 
 }
-import type * as interface_ from "../../../../interface/declarations/transformers/generate_typescript/location.js"
+import type * as interface_ from "../../../../declarations/transformers/generate_typescript/location.js"
 
 
 //dependencies

@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../../interface/declarations/transformers/schema/pareto_implementation_deserialize_resolved.js"
+import type * as interface_ from "../../../../declarations/transformers/schema/pareto_implementation_deserialize_resolved.js"
 
 //shorthands
 import * as sh from "pareto/shorthands/implementation/target"

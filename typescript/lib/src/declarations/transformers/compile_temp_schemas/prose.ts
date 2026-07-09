@@ -2,7 +2,7 @@
 import type * as p_ from 'pareto-core/interface/transformer'
 
 //data types
-import type * as d_in from "../../../data/compile_temp_schemas.js"
+import type * as d_in from "../../../interface/data/compile_temp_schemas.js"
 import type * as d_out from "pareto-fountain-pen/interface/generated/liana/schemas/prose/data"
 
 export namespace d_function {
