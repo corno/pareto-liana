@@ -10,7 +10,7 @@ import type * as d_resolve from "liana-core/interface/data/resolve"
 import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
 
 //data
-import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
+// import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
 
 //dependencies
 import * as r_path_from_temp_string from "pareto-resources/implementation/manual/refiners/path_unrestricted/text"
@@ -32,7 +32,7 @@ type My_Error =
 export const $$: interface_.serialize_schemas = p_.command(
     ($d, $s, $q, $c) => [
         p_.s.dictionary(
-            poormans_modules,
+            $s.packages,
             ($, id) => [
 
                 p_.s.handle_error<d_main.Error, My_Error>(

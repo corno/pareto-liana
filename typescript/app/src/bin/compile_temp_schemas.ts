@@ -7,10 +7,14 @@ import * as rs_stream from "pareto-resource-stream/index"
 
 import { $$ as c_command } from "lib/implementation/commands/compile_temp_schemas"
 
+import { $ as data_packages } from "../data/temporary_schemas/all.js"
+
 p_h.run_main_command(
     () => {
         return c_command(
-            null,
+            {
+                'packages': data_packages
+            },
             null,
             {
                 'make directory': rs_filesystem_unrestricted.$.commands['make directory'],

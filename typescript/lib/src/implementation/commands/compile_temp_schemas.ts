@@ -8,9 +8,6 @@ import type * as interface_ from "../../declarations/commands.js"
 import type * as d_main from "pareto-application-api/interface/data/main"
 import type * as d_generate_typescript from "../../interface/data/compile_temp_schemas.js"
 
-//data
-import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
-
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_directory"
 import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/manual/commands/write_to_file"
@@ -44,7 +41,7 @@ export const $$: interface_.compile_temp_schemas = p_.command(
         p_.s.handle_error(
             [
                 p_.s.dictionary(
-                    poormans_modules,
+                    $s.packages,
                     ($, id): p_.Command_Block<d_generate_typescript.Error> => {
 
                         const path = r_context_path_from_text.Context_Path(

@@ -8,11 +8,14 @@ import type * as command_interfaces_pareto_filesystem_unrestricted_api from "par
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 import type * as d_generate_typescript from "../interface/data/generate_typescript.js"
+import type * as d_compile_temp_schemas from "../interface/data/compile_temp_schemas.js"
 
 
 export type compile_temp_schemas = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
-    null,
+    {
+        'packages': d_compile_temp_schemas.Packages
+    },
     null,
     {
         'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
@@ -59,7 +62,9 @@ export type generate_typescript = p_.Command_Implementation<
 
 export type serialize_schemas = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
-    null,
+    {
+        'packages': d_compile_temp_schemas.Packages
+    },
     null,
     {
         'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
