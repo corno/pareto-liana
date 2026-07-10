@@ -4,7 +4,7 @@ import type * as p_di from 'pareto-core/interface/data'
 
 //data types
 import type * as d_in from "../../../interface/data/generate_typescript.js"
-import type * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
+import type * as d_location from "astn-core/interface/data/location"
 
 export namespace d_out {
 

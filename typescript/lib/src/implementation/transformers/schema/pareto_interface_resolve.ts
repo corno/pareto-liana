@@ -3,7 +3,7 @@ import type * as p_i from 'pareto-core/interface/transformer'
 
 //data types
 import type * as d_in from "../../../modules/schema/interface/data/resolved.js"
-import type * as d_out from "pareto/interface/generated/liana/schemas/interface/data/resolved"
+import type * as d_out from "pareto/modules/interface/interface/data/resolved"
 
 namespace interface_ {
 

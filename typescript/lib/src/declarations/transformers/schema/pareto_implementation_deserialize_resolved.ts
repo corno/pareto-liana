@@ -4,7 +4,7 @@ import type * as p_di from 'pareto-core/interface/data'
 
 //data types
 import type * as d_in from "../../../modules/schema/interface/data/resolved.js"
-import type * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
+import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
 
 
 

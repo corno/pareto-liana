@@ -2,7 +2,7 @@ import type * as p_di from 'pareto-core/interface/data'
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import type * as d_location from "astn-core/interface/generated/liana/schemas/location/data"
+import type * as d_location from "astn-core/interface/data/location"
 
 namespace d_out {
 

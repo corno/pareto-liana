@@ -7,7 +7,7 @@ import type * as interface_ from "../../declarations/commands.js"
 // //data types
 import type * as d_main from "pareto-application-api/interface/data/main"
 import type * as d_resource from "../../interface/data/generate_typescript.js"
-import type * as d_path from "pareto-resources/interface/generated/liana/schemas/fs_unrestricted_path/data"
+import type * as d_path from "pareto-resources/interface/data/fs_unrestricted_path"
 type My_Error_1 =
     | ['too many arguments', null]
     | ['missing', {

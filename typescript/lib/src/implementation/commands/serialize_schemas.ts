@@ -7,7 +7,7 @@ import type * as interface_ from "../../declarations/commands.js"
 
 import type * as d_main from "pareto-application-api/interface/data/main"
 import type * as d_resolve from "liana-core/interface/data/resolve"
-import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface/generated/liana/schemas/fs_unrestricted_write_file/data"
+import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface/data/fs_unrestricted_write_file"
 
 //data
 // import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
