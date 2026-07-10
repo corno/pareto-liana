@@ -466,5 +466,6 @@ export const Simple_Type: interface_.Simple_Type = ($) => {
                     }))
                 default: return p_.exhaustive($[0])
             }
-        })
+        }
+    )
 }
