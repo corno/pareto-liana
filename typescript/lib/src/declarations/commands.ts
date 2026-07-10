@@ -1,9 +1,9 @@
 import * as p_ from 'pareto-core/interface/command_implementation'
 import * as p_inf from 'pareto-core/interface/command_interface'
 
-import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
 import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
