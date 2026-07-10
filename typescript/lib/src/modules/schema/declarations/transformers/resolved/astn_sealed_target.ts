@@ -1,15 +1,15 @@
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_out from "../../../data/unresolved.js"
+import * as i_out from "astn-core/interface/generated/liana/schemas/sealed_target/data"
 
-import * as i_in from "../../../data/resolved.js"
+import * as i_in from "../../../interface/data/resolved.js"
 
 export namespace Package_ {
     
     export type I = i_in.Package
     
-    export type O = i_out.Package
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -25,7 +25,7 @@ export namespace Schemas_ {
     
     export type I = i_in.Schemas
     
-    export type O = i_out.Schemas
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -41,7 +41,7 @@ export namespace Schema_ {
     
     export type I = i_in.Schema
     
-    export type O = i_out.Schema
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -57,7 +57,7 @@ export namespace Schema_Imports_ {
     
     export type I = i_in.Schema_Imports
     
-    export type O = i_out.Schema_Imports
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -73,7 +73,7 @@ export namespace Modules_ {
     
     export type I = i_in.Modules
     
-    export type O = i_out.Modules
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -89,7 +89,7 @@ export namespace Globals_ {
     
     export type I = i_in.Globals
     
-    export type O = i_out.Globals
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -105,7 +105,7 @@ export namespace Dictionary_ {
     
     export type I = i_in.Dictionary
     
-    export type O = i_out.Dictionary
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -137,7 +137,7 @@ export namespace Resolver_ {
     
     export type I = i_in.Resolver
     
-    export type O = i_out.Resolver
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -153,7 +153,7 @@ export namespace Resolver_Imports_ {
     
     export type I = i_in.Resolver_Imports
     
-    export type O = i_out.Resolver_Imports
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -169,7 +169,7 @@ export namespace Resolver_Signatures_ {
     
     export type I = i_in.Resolver_Signatures
     
-    export type O = i_out.Resolver_Signatures
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -185,7 +185,7 @@ export namespace Resolver_Signature_Parameters_ {
     
     export type I = i_in.Resolver_Signature_Parameters
     
-    export type O = i_out.Resolver_Signature_Parameters
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -201,7 +201,7 @@ export namespace Resolver_Value_ {
     
     export type I = i_in.Resolver_Value
     
-    export type O = i_out.Resolver_Value
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -217,7 +217,7 @@ export namespace Module_Specification_ {
     
     export type I = i_in.Module_Specification
     
-    export type O = i_out.Module_Specification
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -233,7 +233,7 @@ export namespace Schema_Tree_ {
     
     export type I = i_in.Schema_Tree
     
-    export type O = i_out.Schema_Tree
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -249,7 +249,7 @@ export namespace Text_Type_ {
     
     export type I = i_in.Text_Type
     
-    export type O = i_out.Text_Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -265,7 +265,7 @@ export namespace Simple_Type_ {
     
     export type I = i_in.Simple_Type
     
-    export type O = i_out.Simple_Type
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -281,7 +281,7 @@ export namespace Module_ {
     
     export type I = i_in.Module
     
-    export type O = i_out.Module
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -297,7 +297,7 @@ export namespace Presence_ {
     
     export type I = i_in.Presence
     
-    export type O = i_out.Presence
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -313,7 +313,7 @@ export namespace Resolver_Modules_ {
     
     export type I = i_in.Resolver_Modules
     
-    export type O = i_out.Resolver_Modules
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -329,7 +329,7 @@ export namespace Resolver_Benchmark_ {
     
     export type I = i_in.Resolver_Benchmark
     
-    export type O = i_out.Resolver_Benchmark
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -345,7 +345,7 @@ export namespace Group_ {
     
     export type I = i_in.Group
     
-    export type O = i_out.Group
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -361,7 +361,7 @@ export namespace Value_Reference_ {
     
     export type I = i_in.Value_Reference
     
-    export type O = i_out.Value_Reference
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -377,7 +377,7 @@ export namespace Value_Path_ {
     
     export type I = i_in.Value_Path
     
-    export type O = i_out.Value_Path
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -393,7 +393,7 @@ export namespace Module_Reference_ {
     
     export type I = i_in.Module_Reference
     
-    export type O = i_out.Module_Reference
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -409,7 +409,7 @@ export namespace Resolver_Signature_ {
     
     export type I = i_in.Resolver_Signature
     
-    export type O = i_out.Resolver_Signature
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -425,7 +425,7 @@ export namespace Resolver_Relative_Value_Selection_ {
     
     export type I = i_in.Resolver_Relative_Value_Selection
     
-    export type O = i_out.Resolver_Relative_Value_Selection
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -441,7 +441,7 @@ export namespace Resolver_Lookup_Selection_ {
     
     export type I = i_in.Resolver_Lookup_Selection
     
-    export type O = i_out.Resolver_Lookup_Selection
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -457,7 +457,7 @@ export namespace Resolver_Constraint_ {
     
     export type I = i_in.Resolver_Constraint
     
-    export type O = i_out.Resolver_Constraint
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -473,7 +473,7 @@ export namespace Resolver_Option_Constraints_ {
     
     export type I = i_in.Resolver_Option_Constraints
     
-    export type O = i_out.Resolver_Option_Constraints
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -489,7 +489,7 @@ export namespace Resolver_Optional_Value_Constraints_ {
     
     export type I = i_in.Resolver_Optional_Value_Constraints
     
-    export type O = i_out.Resolver_Optional_Value_Constraints
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -505,7 +505,7 @@ export namespace Resolver_Value_Constraints_ {
     
     export type I = i_in.Resolver_Value_Constraints
     
-    export type O = i_out.Resolver_Value_Constraints
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -521,7 +521,7 @@ export namespace Resolver_Reference_To_Value_Constraint_ {
     
     export type I = i_in.Resolver_Reference_To_Value_Constraint
     
-    export type O = i_out.Resolver_Reference_To_Value_Constraint
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -537,7 +537,7 @@ export namespace Resolver_Value_Constraint_ {
     
     export type I = i_in.Resolver_Value_Constraint
     
-    export type O = i_out.Resolver_Value_Constraint
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -553,7 +553,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
     
     export type I = i_in.Resolver_Optional_Value_Initialization
     
-    export type O = i_out.Resolver_Optional_Value_Initialization
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -569,7 +569,7 @@ export namespace Resolver_Value_Group_ {
     
     export type I = i_in.Resolver_Value_Group
     
-    export type O = i_out.Resolver_Value_Group
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -585,7 +585,7 @@ export namespace Resolver_Value_List_Result_ {
     
     export type I = i_in.Resolver_Value_List_Result
     
-    export type O = i_out.Resolver_Value_List_Result
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -601,7 +601,7 @@ export namespace Value_Results_ {
     
     export type I = i_in.Value_Results
     
-    export type O = i_out.Value_Results
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -617,7 +617,7 @@ export namespace Option_Constraints_ {
     
     export type I = i_in.Option_Constraints
     
-    export type O = i_out.Option_Constraints
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -633,7 +633,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
     
     export type I = i_in.Resolver_Guaranteed_Value_Selection
     
-    export type O = i_out.Resolver_Guaranteed_Value_Selection
+    export type O = i_out.Value
     
     export namespace P {
         
@@ -649,7 +649,7 @@ export namespace Resolver_Possible_Value_Selection_ {
     
     export type I = i_in.Resolver_Possible_Value_Selection
     
-    export type O = i_out.Resolver_Possible_Value_Selection
+    export type O = i_out.Value
     
     export namespace P {
         

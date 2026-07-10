@@ -7,9 +7,9 @@ const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.
 
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/signatures/resolved/transformers/boilerplate_for_migrate.js"
+import * as t_signatures from "../../../declarations/transformers/resolved/boilerplate_for_migrate.js"
 
-import * as t_out from "../../../../../../../interface/generated/liana/schemas/schema/data/unresolved.js"
+import * as t_out from "../../../interface/data/unresolved.js"
 
 export const Package: t_signatures.Package = ($) => ({
     'omit (de)serializer': p_change_context(

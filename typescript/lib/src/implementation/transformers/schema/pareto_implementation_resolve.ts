@@ -4,7 +4,7 @@ import type * as p_di from 'pareto-core/interface/data'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //data types
-import type * as d_in from "../../../interface/generated/liana/schemas/schema/data/resolved.js"
+import type * as d_in from "../../../modules/schema/interface/data/resolved.js"
 import type * as d_out from "pareto/interface/generated/liana/schemas/implementation/data/resolved"
 
 namespace interface_ {

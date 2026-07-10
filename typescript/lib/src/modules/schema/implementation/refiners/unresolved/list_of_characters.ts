@@ -1,6 +1,6 @@
 
 
-import * as t_signatures from "../../../../../../../interface/generated/liana/schemas/schema/signatures/unresolved/refiners/list_of_characters.js"
+import * as t_signatures from "../../../declarations/refiners/unresolved/list_of_characters.js"
 
 import * as v_deserialize from "astn-core/implementation/refiners/parse_tree/list_of_characters"
 

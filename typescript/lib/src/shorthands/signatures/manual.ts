@@ -1,6 +1,6 @@
 import * as sh from 'pareto-core-shorthands/unresolved_data'
 
-import type * as d_target from "../../interface/generated/liana/schemas/schema/data/unresolved.js"
+import type * as d_target from "../../modules/schema/interface/data/unresolved.js"
 
 
 export const signatures = (

@@ -16,7 +16,7 @@ import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface
 import * as r_path_from_temp_string from "pareto-resources/implementation/refiners/path_unrestricted/text"
 import * as r_schema_resolved_from_unresolved from "../to_be_generated/refiners/schema/unresolved_manual.js"
 import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
-import * as t_schema_to_prose from "../generated/liana/schemas/schema/resolved/transformers/prose.js"
+import * as t_schema_to_prose from "../../modules/schema/implementation/transformers/resolved/prose.js"
 import * as t_fp_to_loc from "pareto-fountain-pen/implementation/transformers/prose/list_of_characters"
 import * as t_write_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/transformers/write_file/prose"
 import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
