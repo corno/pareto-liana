@@ -6,7 +6,7 @@ import type * as interface_ from "../../declarations/commands.js"
 
 //data types
 import type * as d_main from "pareto-application-api/interface/data/main"
-import type * as d_generate_typescript from "../../interface/data/compile_temp_schemas.js"
+import type * as d_generate_typescript from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"

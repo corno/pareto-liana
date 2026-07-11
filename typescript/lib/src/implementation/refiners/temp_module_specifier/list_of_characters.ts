@@ -8,8 +8,8 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //data types
-import type * as d_out from "../../../interface/data/temp_module_specifier.js"
-import type * as d_out_schema from "../../../modules/schema/interface/data/resolved.js"
+import type * as d_out from "../../../interface/schemas/temp_module_specifier.js"
+import type * as d_out_schema from "../../../modules/schema/interface/schemas/resolved.js"
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual.js"

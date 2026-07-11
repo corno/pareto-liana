@@ -1,4 +1,4 @@
-import type * as d_schema from "../../modules/schema/interface/data/resolved.js"
+import type * as d_schema from "../../modules/schema/interface/schemas/resolved.js"
 
 export type Temp_Module_Specifier =
     | ['constrained', {

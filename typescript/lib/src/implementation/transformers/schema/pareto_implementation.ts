@@ -2,7 +2,7 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/data/resolved.js"
+import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
 import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {

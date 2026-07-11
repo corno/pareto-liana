@@ -8,8 +8,8 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 //data types
-import type * as d_generate_typescript from "../interface/data/generate_typescript.js"
-import type * as d_compile_temp_schemas from "../interface/data/compile_temp_schemas.js"
+import type * as d_generate_typescript from "../interface/schemas/generate_typescript.js"
+import type * as d_compile_temp_schemas from "../interface/schemas/compile_temp_schemas.js"
 
 
 export type compile_temp_schemas = p_.Command_Implementation<

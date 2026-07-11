@@ -9,7 +9,7 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import * as t_signatures from "../../../declarations/transformers/resolved/boilerplate_for_migrate.js"
 
-import * as t_out from "../../../interface/data/unresolved.js"
+import * as t_out from "../../../interface/schemas/unresolved.js"
 
 export const Package: t_signatures.Package = ($) => ({
     'omit (de)serializer': p_change_context(

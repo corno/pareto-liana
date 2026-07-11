@@ -4,7 +4,7 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/data/resolved.js"
+import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
 import type * as d_out from "pareto/modules/interface/interface/data/resolved" //FIXME; this should be unresolved
 
 namespace interface_ {
