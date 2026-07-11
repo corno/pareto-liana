@@ -4,7 +4,7 @@
 // import type * as interface_ from "../../../declarations/transformers/schema/astn_schema.js"
 
 // //data types
-// import type * as d_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
+// import type * as s_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 // //shorthands
 // import * as sh from "pareto-core-shorthands/unresolved_data"
@@ -26,7 +26,7 @@
 //                         return Text_Type($)
 //                     }),
 //                 "n": p_.from.dictionary($['simple types']).map(
-//                     ($): d_out.Text_Type => {
+//                     ($): s_out.Text_Type => {
 //                         return {
 //                             'type': sh.state(['single line', null])
 //                         }
@@ -54,11 +54,11 @@
 // })
 
 // export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
-//     ($): d_out.Value.l_state => {
+//     ($): s_out.Value.l_state => {
 //         switch ($[0]) {
-//             case 'simple': return p_.option($, ($): d_out.Value.l_state => ['text', sh.state(
+//             case 'simple': return p_.option($, ($): s_out.Value.l_state => ['text', sh.state(
 //                 p_.from.state($).decide(
-//                     ($): d_out.Value.l_state.text.l_state => {
+//                     ($): s_out.Value.l_state.text.l_state => {
 //                         switch ($[0]) {
 //                             case 'global': return p_.option($, ($) => ['global', sh.reference("n" + $['l id'])])
 
@@ -74,14 +74,14 @@
 //                 ($) => {
 //                     switch ($[0]) {
 //                         case 'derived': return p_.option($, ($) => ['nothing', null])
-//                         case 'selected': return p_.option($, ($) => ['text', sh.state<d_out.Value.l_state.text.l_state>(['local', {
+//                         case 'selected': return p_.option($, ($) => ['text', sh.state<s_out.Value.l_state.text.l_state>(['local', {
 //                             'type': sh.state(['single line', null])
 //                         }])])
 //                         default: return p_.exhaustive($[0])
 //                     }
 //                 }))
 //             case 'component': return p_.option($, ($) => ['component', sh.state(p_.from.state($.type).decide(
-//                 ($): d_out.Value.l_state.component.l_state => {
+//                 ($): s_out.Value.l_state.component.l_state => {
 //                     switch ($[0]) {
 //                         case 'external': return p_.option($, ($) => ['external', {
 //                             'import': sh.reference($.import['l id']),
@@ -102,7 +102,7 @@
 //             case 'state': return p_.option($, ($) => ['state', sh.dictionary(p_.from.dictionary($.options).map(
 //                 ($) => Value($.value)))])
 //             case 'text': return p_.option($, ($) => ['text', sh.state(p_.from.state($).decide(
-//                 ($): d_out.Value.l_state.text.l_state => {
+//                 ($): s_out.Value.l_state.text.l_state => {
 //                     switch ($[0]) {
 //                         case 'global': return p_.option($, ($) => ['global', sh.reference("t" + $['l id'])])
 //                         case 'local': return p_.option($, ($) => ['local', Text_Type($)])

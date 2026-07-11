@@ -2,30 +2,30 @@ import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/interface/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/interface/interface/data/resolved"
 
 namespace interface_ {
 
     export type Schema = p_i.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
+        s_in.Schema,
+        s_out.Package_Set.D,
         {
             'omit (de)serializer': boolean
         }
     >
 
     export type Schema_Tree = p_i.Transformer_With_Parameter<
-        d_in.Schema_Tree,
-        d_out.Package_Set.D,
+        s_in.Schema_Tree,
+        s_out.Package_Set.D,
         {
             'omit (de)serializer': boolean
         }
     >
 
     export type Schemas = p_i.Transformer_With_Parameter<
-        d_in.Schemas,
-        d_out.Package_Set.D,
+        s_in.Schemas,
+        s_out.Package_Set.D,
         {
             'omit (de)serializer': boolean
         }
@@ -91,9 +91,9 @@ export const Schema: interface_.Schema = ($, $p) => {
                     p_.literal.dictionary({})
                 )
                 : p_.from.state($.complexity).decide(
-                    ($): d_out.Package_Set.D => {
+                    ($): s_out.Package_Set.D => {
                         switch ($[0]) {
-                            case 'constrained': return p_.option($, ($): d_out.Package_Set.D => sh.m.set(
+                            case 'constrained': return p_.option($, ($): s_out.Package_Set.D => sh.m.set(
                                 p_.literal.dictionary({
                                     "resolved": sh.m.set(
                                         p_.literal.dictionary({
@@ -184,7 +184,7 @@ export const Schema: interface_.Schema = ($, $p) => {
                     }
                 )
         })
-        // return m.set(p_.from.dictionary(//     p_.dictionary.literal<p_di.Optional_Value<d_out.Package_Set.D>>({
+        // return m.set(p_.from.dictionary(//     p_.dictionary.literal<p_di.Optional_Value<s_out.Package_Set.D>>({
         //         "data": p_.literal.set(constrained
         //             ? m.set(p_.literal.dictionary({
         //                 "resolved": t_types.Schema(

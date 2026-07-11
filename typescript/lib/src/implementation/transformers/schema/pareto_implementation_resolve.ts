@@ -4,42 +4,42 @@ import type * as p_di from 'pareto-core/interface/data'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {
 
     export type Resolver_Modules = p_i.Transformer_With_Parameter<
-        d_in.Resolver_Modules,
-        d_out.Package_Set.D,
+        s_in.Resolver_Modules,
+        s_out.Package_Set.D,
         {
             'path': p_di.List<string>,
-            'imports': d_in.Resolver_Imports,
+            'imports': s_in.Resolver_Imports,
             'depth': number,
         }
     >
 
     export type Possible_Value_Selection = p_i.Transformer_With_Parameter<
-        d_in.Resolver_Possible_Value_Selection,
-        d_out.Select_Value,
+        s_in.Resolver_Possible_Value_Selection,
+        s_out.Select_Value,
         {
-            'tail': p_di.List<d_out.Select_Value.regular.tail.L>
+            'tail': p_di.List<s_out.Select_Value.regular.tail.L>
         }
     >
 
     export type Optional_Value_Initialization = p_i.Transformer<
-        d_in.Resolver_Optional_Value_Initialization,
-        d_out.Assign
+        s_in.Resolver_Optional_Value_Initialization,
+        s_out.Assign
     >
 
     export type Value_Constraint = p_i.Transformer<
-        d_in.Resolver_Value_Constraint,
-        d_out.Assign
+        s_in.Resolver_Value_Constraint,
+        s_out.Assign
     >
 
     export type Constraint = p_i.Transformer<
-        d_in.Resolver_Constraint,
-        d_out.Assign
+        s_in.Resolver_Constraint,
+        s_out.Assign
     >
 
 }
@@ -226,15 +226,15 @@ export const Optional_Value_Initialization: interface_.Optional_Value_Initializa
     })
 
 export const Resolver_Guaranteed_Value_Selection = (
-    $: d_in.Resolver_Guaranteed_Value_Selection,
+    $: s_in.Resolver_Guaranteed_Value_Selection,
     $p: {
-        'tail': p_di.List<d_out.Select_Value.regular.tail.L>
+        'tail': p_di.List<s_out.Select_Value.regular.tail.L>
     },
-): d_out.Select_Value => {
-    const tail = (): p_di.List<d_out.Select_Value.regular.tail.L> => p_.literal.segmented_list([
+): s_out.Select_Value => {
+    const tail = (): p_di.List<s_out.Select_Value.regular.tail.L> => p_.literal.segmented_list([
         p_.from.list($.tail.path['l value']).flatten(
             ($) => p_.from.state($['l item']).decide(
-                ($): p_di.List<d_out.Select_Value.regular.tail.L> => {
+                ($): p_di.List<s_out.Select_Value.regular.tail.L> => {
                     switch ($[0]) {
                         case 'component': return p_.option($, ($) => p_.literal.list([]))
                         case 'group': return p_.option($, ($) => p_.literal.list([$['l id']]))
@@ -293,8 +293,8 @@ export const Resolver_Guaranteed_Value_Selection = (
 }
 
 export const Resolver_Lookup_Selection = (
-    $: d_in.Resolver_Lookup_Selection,
-): d_out.Select_Lookup => p_.from.state($.type).decide(
+    $: s_in.Resolver_Lookup_Selection,
+): s_out.Select_Lookup => p_.from.state($.type).decide(
     ($) => {
         switch ($[0]) {
             case 'acyclic': return p_.option($, ($) => p_.from.state($).decide(
@@ -326,11 +326,11 @@ export const Resolver_Lookup_Selection = (
     })
 
 export const Option_Constraints = (
-    $: d_in.Resolver_Option_Constraints,
+    $: s_in.Resolver_Option_Constraints,
     $p: {
-        sub: d_out.Assign
+        sub: s_out.Assign
     },
-): d_out.Assign => p_.from.dictionary($).on_has_entries(
+): s_out.Assign => p_.from.dictionary($).on_has_entries(
     ($) => sh.a.variables(
         p_.from.dictionary(
             temp_prepend($, "constraint "),
@@ -427,12 +427,12 @@ export const Option_Constraints = (
 
 
 export const Resolver_Value = (
-    $: d_in.Resolver_Value,
+    $: s_in.Resolver_Value,
     $p: {
         'temp type': string
-        'temp subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
+        'temp subselection': p_di.List<s_out.Temp_Value_Type_Specification.sub_selection.L> //can be removed when pareto has type inference
     },
-): d_out.Assign => p_.from.state($).decide(
+): s_out.Assign => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
 
@@ -623,7 +623,7 @@ export const Resolver_Value = (
                 )
             ))
             case 'list': return p_.option($, ($) => {
-                const resolver: d_in.Resolver_Value = $.resolver
+                const resolver: s_in.Resolver_Value = $.resolver
                 return p_.from.optional($.result).decide(
                     ($) => sh.a.group.literal(
                         p_.literal.dictionary({
@@ -877,8 +877,8 @@ export const Resolver_Value = (
     })
 
 export const Value_Constraint: interface_.Value_Constraint = (
-    $: d_in.Resolver_Value_Constraint,
-): d_out.Assign => {
+    $: s_in.Resolver_Value_Constraint,
+): s_out.Assign => {
     return Resolver_Constraint(
         $.constraint,
         // {
@@ -895,8 +895,8 @@ export const Value_Constraint: interface_.Value_Constraint = (
 }
 
 export const Resolver_Constraint: interface_.Constraint = (
-    $: d_in.Resolver_Constraint
-): d_out.Assign => {
+    $: s_in.Resolver_Constraint
+): s_out.Assign => {
     const rvs = Relative_Value_Selection($.selection)
     return p_.from.state($.type).decide(
         ($) => {
@@ -942,19 +942,19 @@ export const Resolver_Constraint: interface_.Constraint = (
 }
 
 export const Relative_Value_Selection = (
-    $: d_in.Resolver_Relative_Value_Selection,
-): d_out.Select_Value => {
+    $: s_in.Resolver_Relative_Value_Selection,
+): s_out.Select_Value => {
     p_.from.list($.path['l value']).map(
         ($) => null)
     return sh.sv.implement_me("IM: rvs")
 }
 
 export const Value_Constraints = (
-    $: d_in.Resolver_Value_Constraints,
+    $: s_in.Resolver_Value_Constraints,
     $p: {
-        sub: d_out.Assign
+        sub: s_out.Assign
     }
-): d_out.Assign => {
+): s_out.Assign => {
     return p_.from.dictionary($).on_has_entries(
         () => sh.a.group.literal_resolve(
             p_.literal.dictionary({
@@ -977,18 +977,18 @@ export const Value_Constraints = (
 }
 
 export const Value_Reference = (
-    $: d_in.Value_Reference,
+    $: s_in.Value_Reference,
 
-): d_out.Assign => {
+): s_out.Assign => {
     return sh.a.implement_me("IM: value reference")
 }
 
 export const Value_Results = (
-    $: d_in.Value_Results,
+    $: s_in.Value_Results,
     $p: {
-        'base type': d_out.Assign
+        'base type': s_out.Assign
     }
-): d_out.Assign => {
+): s_out.Assign => {
     return p_.from.optional($).decide(
         ($) => sh.a.group.literal(
             p_.literal.dictionary({

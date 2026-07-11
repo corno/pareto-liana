@@ -8,14 +8,14 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 //data types
-import type * as d_generate_typescript from "../interface/schemas/generate_typescript.js"
-import type * as d_compile_temp_schemas from "../interface/schemas/compile_temp_schemas.js"
+import type * as s_generate_typescript from "../interface/schemas/generate_typescript.js"
+import type * as s_compile_temp_schemas from "../interface/schemas/compile_temp_schemas.js"
 
 
 export type compile_temp_schemas = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
-        'packages': d_compile_temp_schemas.Packages
+        'packages': s_compile_temp_schemas.Packages
     },
     null,
     {
@@ -46,8 +46,8 @@ export type generate_typescript_cli = p_.Command_Implementation<
 
 export type generate_typescript = p_.Command_Implementation<
     p_inf.Command_Interface<
-        d_generate_typescript.Error,
-        d_generate_typescript.Parameters
+        s_generate_typescript.Error,
+        s_generate_typescript.Parameters
     >,
     null,
     {
@@ -64,7 +64,7 @@ export type generate_typescript = p_.Command_Implementation<
 export type serialize_schemas = p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
-        'packages': d_compile_temp_schemas.Packages
+        'packages': s_compile_temp_schemas.Packages
     },
     null,
     {

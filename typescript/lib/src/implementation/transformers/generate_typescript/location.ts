@@ -2,11 +2,11 @@ import type * as p_di from 'pareto-core/interface/data'
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //data types
-import type * as d_location from "astn-core/interface/data/location"
+import type * as s_location from "astn-core/interface/data/location"
 
-namespace d_out {
+namespace s_out {
 
-    export type Possible_Range = p_di.Optional_Value<d_location.Range>
+    export type Possible_Range = p_di.Optional_Value<s_location.Range>
 
 }
 import type * as interface_ from "../../../declarations/transformers/generate_typescript/location.js"

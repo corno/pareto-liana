@@ -3,14 +3,14 @@ import type * as p_i from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {
 
     export type Schema = p_i.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
+        s_in.Schema,
+        s_out.Package_Set.D,
         {
             'depth': number,
             'path': p_di.List<string>,

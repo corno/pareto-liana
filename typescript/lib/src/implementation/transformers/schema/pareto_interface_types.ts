@@ -4,16 +4,16 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/interface/interface/data/resolved" //FIXME; this should be unresolved
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/interface/interface/data/resolved" //FIXME; this should be unresolved
 
 namespace interface_ {
 
     export type Schema = p_i.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
+        s_in.Schema,
+        s_out.Package_Set.D,
         {
-            'imports': d_in.Schema_Imports,
+            'imports': s_in.Schema_Imports,
             'depth': number,
             'type':
             | ['unconstrained', null]
@@ -23,13 +23,13 @@ namespace interface_ {
     >
 
     export type Module_Reference = p_i.Transformer<
-        d_in.Module_Reference,
-        d_out.Module_Reference
+        s_in.Module_Reference,
+        s_out.Module_Reference
     >
 
     export type Value = p_i.Transformer_With_Parameter<
-        d_in.Value,
-        d_out.Value,
+        s_in.Value,
+        s_out.Value,
         {
             'type':
             | ['unconstrained', null]
@@ -39,21 +39,21 @@ namespace interface_ {
     >
 
     export type Value_Results = p_i.Transformer_With_Parameter<
-        d_in.Value_Results,
-        d_out.Value,
+        s_in.Value_Results,
+        s_out.Value,
         {
-            'base type': d_out.Value
+            'base type': s_out.Value
         }
     >
 
     export type Simple_Type = p_i.Transformer<
-        d_in.Simple_Type,
-        d_out.Value
+        s_in.Simple_Type,
+        s_out.Value
     >
 
     export type Value_Path = p_i.Transformer<
-        d_in.Value_Path,
-        d_out.Value.reference.sub_selection
+        s_in.Value_Path,
+        s_out.Value.reference.sub_selection
     >
 
 }
@@ -161,7 +161,7 @@ export const Value: interface_.Value = ($, $p) => {
         ($) => {
             switch ($[0]) {
                 case 'component': return p_.option($, ($) => {
-                    const x: d_out.Value = p_.from.state($.type).decide(
+                    const x: s_out.Value = p_.from.state($.type).decide(
                         ($) => {
                             switch ($[0]) {
                                 case 'external': return p_.option($, ($) => sh.t.component_imported(
@@ -310,7 +310,7 @@ export const Value: interface_.Value = ($, $p) => {
                                                         $v_selected.results,
                                                         {
                                                             'base type': sh.t.group(
-                                                                p_.literal.optionals_dictionary<d_out.Value>({
+                                                                p_.literal.optionals_dictionary<s_out.Value>({
                                                                     "l entry": p_.literal.set(p_variables(() => {
                                                                         return p_.from.state($v_selected.dependency).decide(
                                                                             ($) => {
@@ -405,8 +405,8 @@ const Value_Results: interface_.Value_Results = ($, $p) => {
 }
 
 const Value_Reference = (
-    $: d_in.Value_Reference,
-): d_out.Value => {
+    $: s_in.Value_Reference,
+): s_out.Value => {
     return sh.t.reference(
         Module_Reference($['module']),
         Value_Path($.path)
@@ -414,11 +414,11 @@ const Value_Reference = (
 }
 
 const Value_Reference_temp = (
-    $: d_in.Value_Reference,
+    $: s_in.Value_Reference,
     $p: {
         'type': "cyclic" | "acyclic"
     }
-): d_out.Value => sh.t.reference(
+): s_out.Value => sh.t.reference(
     Module_Reference($['module']),
     p_.literal.chain(
         Value_Path($.path),

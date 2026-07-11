@@ -8,8 +8,8 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //data types
-import type * as d_out from "../../../interface/schemas/temp_module_specifier.js"
-import type * as d_out_schema from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "../../../interface/schemas/temp_module_specifier.js"
+import type * as s_out_schema from "../../../modules/schema/interface/schemas/resolved.js"
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual.js"
@@ -30,9 +30,9 @@ export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
     )
 
     const temp_find_schema = (
-        $: d_out_schema.Schema_Tree,
+        $: s_out_schema.Schema_Tree,
         schema_path: p_di.List<string>,
-    ): d_out_schema.Schema => {
+    ): s_out_schema.Schema => {
         const st = $
 
         type Element_And_Rest<T extends p_di.Value> = {
@@ -91,11 +91,11 @@ export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
     const $_schema = temp_find_schema(almost_resolved_module_specification.schema, almost_resolved_module_specification['schema path'])
 
     return p_.from.state(almost_resolved_module_specification.complexity).decide(
-        ($): d_out.Temp_Module_Specifier => {
+        ($): s_out.Temp_Module_Specifier => {
             switch ($[0]) {
-                case 'constrained': return p_.option($, ($): d_out.Temp_Module_Specifier => {
+                case 'constrained': return p_.option($, ($): s_out.Temp_Module_Specifier => {
                     const $p_resolver = p_.from.state($_schema.complexity).decide(
-                        ($): d_out_schema.Resolver => {
+                        ($): s_out_schema.Resolver => {
                             switch ($[0]) {
                                 case 'constrained': return p_.option($, ($) => $)
                                 case 'unconstrained': return p_.option($, ($) => abort(['resolve error', {

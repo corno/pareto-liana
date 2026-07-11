@@ -1,20 +1,20 @@
 import * as sh from 'pareto-core-shorthands/unresolved_data'
 
-import type * as d_target from "../../modules/schema/interface/schemas/unresolved.js"
+import type * as s_target from "../../modules/schema/interface/schemas/unresolved.js"
 
 
 export const signatures = (
-    signatures: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signatures.l_dictionary.D.l_entry>,
-): d_target.Resolver.signatures => {
+    signatures: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Signatures.l_dictionary.D.l_entry>,
+): s_target.Resolver.signatures => {
     return {
         'signatures': sh.dictionary(signatures)
     }
 }
 
 export const sig_params = (
-    modules: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-    lookups: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-): d_target.Resolver_Signature_Parameters => {
+    modules: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+    lookups: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+): s_target.Resolver_Signature_Parameters => {
     return {
         'modules': sh.dictionary(modules),
         'lookups': sh.dictionary(lookups),
@@ -27,9 +27,9 @@ export const sig_params = (
 export namespace sig {
 
     export const local = (
-        modules: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
-        lookups: sh.Raw_Or_Normal_Dictionary<d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
-    ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
+        modules: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry>,
+        lookups: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry>,
+    ): s_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['local', {
@@ -42,7 +42,7 @@ export namespace sig {
 
     export const same_as = (
         name: string
-    ): d_target.Resolver_Signatures.l_dictionary.D.l_entry => {
+    ): s_target.Resolver_Signatures.l_dictionary.D.l_entry => {
         return {
             'module': null,
             'parameters': sh.state(['same as', sh.reference(name)]),
@@ -57,7 +57,7 @@ export namespace parameter {
     export const module = (
         name: string,
         presence?: 'optional' | 'required',
-    ): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
+    ): s_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
         return {
             'module': {
                 'location': sh.state(['internal', sh.reference(name)]),
@@ -72,7 +72,7 @@ export namespace parameter {
         imp: string,
         type: string,
         presence?: 'optional' | 'required',
-    ): d_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
+    ): s_target.Resolver_Signature_Parameters.modules.l_dictionary.D.l_entry => {
         return {
             'module': {
                 'location': sh.state(['external', {
@@ -91,7 +91,7 @@ export namespace parameter {
         name: string,
         type?: 'acyclic' | 'cyclic' | 'stack',
         presence?: 'optional' | 'required',
-    ): d_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry => {
+    ): s_target.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry => {
         return {
             'referent': {
                 'location': sh.state(['internal', sh.reference(name)]),

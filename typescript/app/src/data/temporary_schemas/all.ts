@@ -3,7 +3,7 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 
 
 
-import type * as d_package from "lib/interface/schemas/compile_temp_schemas"
+import type * as s_package from "lib/interface/schemas/compile_temp_schemas"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn.js"
 // import { $ as m_antlr } from "./antlr/module.astn.js"
@@ -33,7 +33,7 @@ import { $ as m_liana_authoring } from "./liana-authoring/module.astn.js"
 
 
 
-export const $: d_package.Packages = p_.dictionary(
+export const $: s_package.Packages = p_.dictionary(
     p_temp.literal.dictionary({
         "astn": {
             'target path': "../astn",

@@ -5,8 +5,8 @@ import * as p_t from 'pareto-core/implementation/transformer'
 import type * as interface_ from "../../declarations/commands.js"
 
 //data types
-import type * as d_main from "pareto-application-api/interface/data/main"
-import type * as d_generate_typescript from "../../interface/schemas/compile_temp_schemas.js"
+import type * as s_main from "pareto-application-api/interface/data/main"
+import type * as s_generate_typescript from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
@@ -34,7 +34,7 @@ export const $$: interface_.compile_temp_schemas = p_.command(
                     ])
                 ])
             },
-            ($): d_main.Error => ({
+            ($): s_main.Error => ({
                 'exit code': 1
             })
         ),
@@ -42,7 +42,7 @@ export const $$: interface_.compile_temp_schemas = p_.command(
             [
                 p_.s.dictionary(
                     $s.packages,
-                    ($, id): p_.Command_Block<d_generate_typescript.Error> => {
+                    ($, id): p_.Command_Block<s_generate_typescript.Error> => {
 
                         const path = r_context_path_from_text.Context_Path(
                             `./out/source_code/${id}`

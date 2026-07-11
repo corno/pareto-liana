@@ -6,8 +6,8 @@ import p_variables from 'pareto-core/implementation/command/specials/variables'
 import type * as interface_ from "../../declarations/commands.js"
 
 // //data types
-import type * as d_resource from "../../interface/schemas/generate_typescript.js"
-import type * as d_schema from "../../modules/schema/interface/schemas/resolved.js"
+import type * as s_resource from "../../interface/schemas/generate_typescript.js"
+import type * as s_schema from "../../modules/schema/interface/schemas/resolved.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
@@ -26,7 +26,7 @@ export const $$: interface_.generate_typescript = p_.command(
         p_.s.query(
             $q['read file'](
                 $d.source,
-                ($): d_resource.Error => ['could not read source', $]
+                ($): s_resource.Error => ['could not read source', $]
             ),
             ($v2) => p_variables(
                 () => {
@@ -60,7 +60,7 @@ export const $$: interface_.generate_typescript = p_.command(
                     return [
 
                         p_.s.refine(
-                            (abort): d_schema.Package => p_temp.from.state($d.type).decide(
+                            (abort): s_schema.Package => p_temp.from.state($d.type).decide(
                                 ($) => {
                                     switch ($[0]) {
                                         case 'module specification': return p_temp.ss($, ($) => p_variables(

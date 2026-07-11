@@ -5,9 +5,9 @@ import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 import type * as interface_ from "../../declarations/commands.js"
 
 // //data types
-import type * as d_main from "pareto-application-api/interface/data/main"
-import type * as d_resource from "../../interface/schemas/generate_typescript.js"
-import type * as d_path from "pareto-resources/interface/data/fs_unrestricted_path"
+import type * as s_main from "pareto-application-api/interface/data/main"
+import type * as s_resource from "../../interface/schemas/generate_typescript.js"
+import type * as s_path from "pareto-resources/interface/data/fs_unrestricted_path"
 type My_Error_1 =
     | ['too many arguments', null]
     | ['missing', {
@@ -21,8 +21,8 @@ type Expected =
     | ['target path', null]
 
 type Res = {
-    'source': d_path.Node_Path
-    'target': d_path.Context_Path
+    'source': s_path.Node_Path
+    'target': s_path.Context_Path
 }
 
 //dependencies
@@ -37,7 +37,7 @@ import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 export const $$: interface_.generate_typescript_cli = p_.command(
     ($d, $s, $q, $c) => [
 
-        p_.s.handle_error<d_main.Error, My_Error_1>(
+        p_.s.handle_error<s_main.Error, My_Error_1>(
             [
                 p_.s.refine(
                     (abort) => p_iterate<
@@ -72,7 +72,7 @@ export const $$: interface_.generate_typescript_cli = p_.command(
                         })
                     }),
                     ($v) => [
-                        p_.s.handle_error<My_Error_1, d_resource.Error>(
+                        p_.s.handle_error<My_Error_1, s_resource.Error>(
                             [
 
 

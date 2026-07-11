@@ -3,14 +3,14 @@ import type * as p_i from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {
 
     export type Schema_Tree = p_i.Transformer_With_Parameter<
-        d_in.Schema_Tree,
-        d_out.Package_Set.D,
+        s_in.Schema_Tree,
+        s_out.Package_Set.D,
         {
             'path': p_di.List<string>,
             'omit (de)serializer': boolean
@@ -18,8 +18,8 @@ namespace interface_ {
     >
 
     export type Schemas = p_i.Transformer_With_Parameter<
-        d_in.Schemas,
-        d_out.Package_Set.D,
+        s_in.Schemas,
+        s_out.Package_Set.D,
         {
             'path': p_di.List<string>,
             'omit (de)serializer': boolean
@@ -52,9 +52,9 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                             p_.literal.dictionary({})
                         )
                         : p_.from.state($.complexity).decide(
-                            ($): d_out.Package_Set.D => {
+                            ($): s_out.Package_Set.D => {
                                 switch ($[0]) {
-                                    case 'constrained': return p_.option($, ($): d_out.Package_Set.D => sh.m.set(
+                                    case 'constrained': return p_.option($, ($): s_out.Package_Set.D => sh.m.set(
                                         p_.literal.dictionary({
                                             "resolved": sh.m.set(
                                                 p_.literal.dictionary({
@@ -158,7 +158,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
                                 }
                             })
                 })
-                case 'set': return p_.option($, ($): d_out.Package_Set.D => Schemas(
+                case 'set': return p_.option($, ($): s_out.Package_Set.D => Schemas(
                     $,
                     {
                         'path': $p.path,

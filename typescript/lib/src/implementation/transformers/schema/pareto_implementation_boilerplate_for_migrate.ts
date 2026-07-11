@@ -4,14 +4,14 @@ import type * as p_di from 'pareto-core/interface/data'
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {
 
     export type Schema = p_i.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
+        s_in.Schema,
+        s_out.Package_Set.D,
         {
             'depth': number
             'path': p_di.List<string>
@@ -19,11 +19,11 @@ namespace interface_ {
     >
 
     export type Value = p_i.Transformer_With_Parameter<
-        d_in.Value,
-        d_out.Assign,
+        s_in.Value,
+        s_out.Assign,
         {
             'type name': string
-            'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+            'subselection': p_di.List<s_out.Temp_Value_Type_Specification.sub_selection.L>
             'constrained': boolean
         }
     >
@@ -163,7 +163,7 @@ export const Value: interface_.Value = ($, $p) => {
                                 }),
                             sh.a.select(
                                 sh.sv.context(
-                                    p_.from.optional($.results).decide<d_out.Select_Value.regular.tail>(
+                                    p_.from.optional($.results).decide<s_out.Select_Value.regular.tail>(
                                         ($) => p_.literal.list(["l value"]),
                                         () => p_.literal.list([])
                                     )

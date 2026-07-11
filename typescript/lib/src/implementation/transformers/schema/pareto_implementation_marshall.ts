@@ -5,14 +5,14 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 
 
 //data types
-import type * as d_in from "../../../modules/schema/interface/schemas/resolved.js"
-import type * as d_out from "pareto/modules/implementation/interface/data/resolved"
+import type * as s_in from "../../../modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
 namespace interface_ {
 
     export type Schema = p_i.Transformer_With_Parameter<
-        d_in.Schema,
-        d_out.Package_Set.D,
+        s_in.Schema,
+        s_out.Package_Set.D,
         {
             'path': p_di.List<string>,
             'depth': number,
@@ -20,11 +20,11 @@ namespace interface_ {
     >
 
     export type Value = p_i.Transformer_With_Parameter<
-        d_in.Value,
-        d_out.Assign,
+        s_in.Value,
+        s_out.Assign,
         {
             'type': string
-            'subselection': p_di.List<d_out.Temp_Value_Type_Specification.sub_selection.L>
+            'subselection': p_di.List<s_out.Temp_Value_Type_Specification.sub_selection.L>
         }
     >
 

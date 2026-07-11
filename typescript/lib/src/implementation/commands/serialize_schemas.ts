@@ -5,9 +5,9 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 
 import type * as interface_ from "../../declarations/commands.js"
 
-import type * as d_main from "pareto-application-api/interface/data/main"
-import type * as d_resolve from "liana-core/interface/data/resolve"
-import type * as d_write_file from "pareto-filesystem-unrestricted-api/interface/data/fs_unrestricted_write_file"
+import type * as s_main from "pareto-application-api/interface/data/main"
+import type * as s_resolve from "liana-core/interface/data/resolve"
+import type * as s_write_file from "pareto-filesystem-unrestricted-api/interface/data/fs_unrestricted_write_file"
 
 //data
 // import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
@@ -26,8 +26,8 @@ import * as t_loc_to_prose from "liana-core/implementation/transformers/location
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
 type My_Error =
-    | ['error writing file', d_write_file.Error]
-    | ['resolve error', d_resolve.Error]
+    | ['error writing file', s_write_file.Error]
+    | ['resolve error', s_resolve.Error]
 
 export const $$: interface_.serialize_schemas = p_.command(
     ($d, $s, $q, $c) => [
@@ -35,7 +35,7 @@ export const $$: interface_.serialize_schemas = p_.command(
             $s.packages,
             ($, id) => [
 
-                p_.s.handle_error<d_main.Error, My_Error>(
+                p_.s.handle_error<s_main.Error, My_Error>(
                     [
 
                         p_.s.refine(

@@ -1,12 +1,12 @@
 import type * as p_ from 'pareto-core/interface/data'
 
-import type * as d_schema from "../../modules/schema/interface/schemas/unresolved.js"
-import type * as d_resolve from "liana-core/interface/data/resolve"
+import type * as s_schema from "../../modules/schema/interface/schemas/unresolved.js"
+import type * as s_resolve from "liana-core/interface/data/resolve"
 
 export type Package = {
     // 'id': string,
     'target path': string,
-    'package': d_schema.Package
+    'package': s_schema.Package
 }
 
 export type Packages = p_.Dictionary<Package>
@@ -19,4 +19,4 @@ export type Error =
     | ['could not write implementation', null]
     | ['could not copy generic implementation', null]
     | ['could not copy core interface', null]
-    | ['could not deserialize module', d_resolve.Error]
+    | ['could not deserialize module', s_resolve.Error]
