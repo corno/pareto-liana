@@ -1,6 +1,6 @@
 import * as sh from 'pareto-core-shorthands/unresolved_data'
 
-import type * as s_target from "../../modules/schema/interface/schemas/unresolved.js"
+import type * as s_target from "../../submodules/schema/interface/schemas/unresolved.js"
 
 
 export const signatures = (

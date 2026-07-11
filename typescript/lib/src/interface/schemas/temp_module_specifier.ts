@@ -1,4 +1,4 @@
-import type * as s_schema from "../../modules/schema/interface/schemas/resolved.js"
+import type * as s_schema from "../../submodules/schema/interface/schemas/resolved.js"
 
 export type Temp_Module_Specifier =
     | ['constrained', {

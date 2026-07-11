@@ -7,13 +7,13 @@ import type * as interface_ from "../../declarations/commands.js"
 
 // //data types
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
-import type * as s_schema from "../../modules/schema/interface/schemas/resolved.js"
+import type * as s_schema from "../../submodules/schema/interface/schemas/resolved.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
 import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_file"
 import * as r_schema from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as r_unresolved_schema_from_loc from "../../modules/schema/implementation/refiners/unresolved/list_of_characters.js"
+import * as r_unresolved_schema_from_loc from "../../submodules/schema/implementation/refiners/unresolved/list_of_characters.js"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
 import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/transformers/implementation/serialized_typescript"

@@ -3,7 +3,7 @@ import * as p_t from 'pareto-core/implementation/transformer'
 
 import * as sh from 'pareto-core-shorthands/unresolved_data'
 
-import type * as s_target from "../../modules/schema/interface/schemas/unresolved.js"
+import type * as s_target from "../../submodules/schema/interface/schemas/unresolved.js"
 
 import * as temp_schema from "../schema/manual.js"
 
