@@ -2,7 +2,7 @@ import type * as p_ from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 
 
-//data types
+//schemas
 import type * as s_in from "../../../interface/schemas/generate_typescript.js"
 import type * as s_location from "astn-core/interface/data/location"
 

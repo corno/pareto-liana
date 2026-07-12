@@ -3,7 +3,7 @@
 
 // import type * as interface_ from "../../../declarations/transformers/schema/astn_schema.js"
 
-// //data types
+// //schemas
 // import type * as s_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 
 // //shorthands

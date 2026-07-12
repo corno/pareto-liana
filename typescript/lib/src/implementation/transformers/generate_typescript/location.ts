@@ -1,7 +1,7 @@
 import type * as p_di from 'pareto-core/interface/data'
 import * as p_ from 'pareto-core/implementation/transformer'
 
-//data types
+//schemas
 import type * as s_location from "astn-core/interface/data/location"
 
 namespace s_out {

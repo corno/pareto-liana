@@ -3,7 +3,7 @@ import type * as p_i from 'pareto-core/interface/transformer'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
-//data types
+//schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
 import type * as s_out from "pareto/modules/interface/interface/data/resolved" //FIXME; this should be unresolved
 

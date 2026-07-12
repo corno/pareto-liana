@@ -4,7 +4,7 @@ import type * as p_di from 'pareto-core/interface/data'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 
-//data types
+//schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
 import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 

@@ -1,7 +1,7 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
 
-//data types
+//schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
 import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 

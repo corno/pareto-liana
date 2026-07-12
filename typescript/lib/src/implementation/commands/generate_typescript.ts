@@ -5,7 +5,7 @@ import p_variables from 'pareto-core/implementation/command/specials/variables'
 
 import type * as interface_ from "../../declarations/commands.js"
 
-// //data types
+// //schemas
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
 import type * as s_schema from "../../submodules/schema/interface/schemas/resolved.js"
 

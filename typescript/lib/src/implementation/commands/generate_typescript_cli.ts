@@ -4,7 +4,7 @@ import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 
 import type * as interface_ from "../../declarations/commands.js"
 
-// //data types
+// //schemas
 import type * as s_main from "pareto-application-api/interface/data/main"
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
 import type * as s_path from "pareto-resources/interface/data/fs_unrestricted_path"

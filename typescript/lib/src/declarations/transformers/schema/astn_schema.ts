@@ -1,7 +1,7 @@
 
 // import type * as p_ from 'pareto-core/interface/transformer'
 
-// //data types
+// //schemas
 // import type * as s_in from "../../../modules/schema/interface/data/resolved.js"
 // import type * as s_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
 

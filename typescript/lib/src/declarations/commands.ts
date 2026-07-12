@@ -7,7 +7,7 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
-//data types
+//schemas
 import type * as s_generate_typescript from "../interface/schemas/generate_typescript.js"
 import type * as s_compile_temp_schemas from "../interface/schemas/compile_temp_schemas.js"
 

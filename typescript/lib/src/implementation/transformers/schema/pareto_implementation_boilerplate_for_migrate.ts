@@ -3,7 +3,7 @@ import type * as p_i from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/data'
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-//data types
+//schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
 import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
