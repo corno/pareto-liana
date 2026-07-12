@@ -1,13 +1,16 @@
 import * as p_ from 'pareto-core/implementation/command'
 import * as p_temp from 'pareto-core/implementation/transformer'
 import p_variables from 'pareto-core/implementation/command/specials/variables'
+import type * as p_inf from 'pareto-core/interface/command_interface'
 
-
-import type * as interface_ from "../../declarations/commands.js"
+//interface dependencies
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 // //schemas
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
 import type * as s_schema from "../../submodules/schema/interface/schemas/resolved.js"
+import type * as s_generate_typescript from "../../interface/schemas/generate_typescript.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
@@ -20,7 +23,22 @@ import * as t_pareto_implementation_to_serialized_typescript from "pareto/implem
 import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/transformers/interface/serialized_typescript"
 import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
 
-export const $$: interface_.generate_typescript = p_.command(
+export const $$: p_.Command_Implementation<
+    p_inf.Command_Interface<
+        s_generate_typescript.Error,
+        s_generate_typescript.Parameters
+    >,
+    null,
+    {
+        'read file': query_interfaces_pareto_filesystem_unrestricted_api.read_file
+    },
+    {
+        'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
+        'make directory': command_interfaces_pareto_filesystem_unrestricted_api.make_directory
+        'remove': command_interfaces_pareto_filesystem_unrestricted_api.remove
+        'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
+    }
+> = p_.command(
     ($d, $s, $q, $c) => [
 
         p_.s.query(

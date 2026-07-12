@@ -2,15 +2,16 @@
 import * as p_ from 'pareto-core/implementation/command'
 import * as p_temp from 'pareto-core/implementation/transformer'
 
+//interface dependencies
+import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
-import type * as interface_ from "../../declarations/commands.js"
-
+//schemas
 import type * as s_main from "pareto-application-api/interface/data/main"
 import type * as s_resolve from "liana-core/interface/data/resolve"
 import type * as s_write_file from "pareto-filesystem-unrestricted-api/interface/data/fs_unrestricted_write_file"
-
-//data
-// import { $ as poormans_modules } from "../../data/temporary_schemas/all.js"
+import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies
 import * as r_path_from_temp_string from "pareto-resources/implementation/refiners/path_unrestricted/text"
@@ -29,7 +30,17 @@ type My_Error =
     | ['error writing file', s_write_file.Error]
     | ['resolve error', s_resolve.Error]
 
-export const $$: interface_.serialize_schemas = p_.command(
+export const $$: p_.Command_Implementation<
+    command_interfaces_pareto_application_api.main,
+    {
+        'packages': s_compile_temp_schemas.Packages
+    },
+    null,
+    {
+        'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
+        'log error': command_interfaces_pareto_stream_api.log_error
+    }
+> = p_.command(
     ($d, $s, $q, $c) => [
         p_.s.dictionary(
             $s.packages,

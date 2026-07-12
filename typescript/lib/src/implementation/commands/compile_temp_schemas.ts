@@ -2,11 +2,14 @@ import * as p_ from 'pareto-core/implementation/command'
 import * as p_t from 'pareto-core/implementation/transformer'
 
 
-import type * as interface_ from "../../declarations/commands.js"
+//interface dependencies
+import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 //schemas
 import type * as s_main from "pareto-application-api/interface/data/main"
-import type * as s_generate_typescript from "../../interface/schemas/compile_temp_schemas.js"
+import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies
 import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
@@ -23,7 +26,21 @@ import * as t_generate_typescript_to_prose from "../transformers/compile_temp_sc
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.compile_temp_schemas = p_.command(
+export const $$: p_.Command_Implementation<
+    command_interfaces_pareto_application_api.main,
+    {
+        'packages': s_compile_temp_schemas.Packages
+    },
+    null,
+    {
+        'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
+        'log': command_interfaces_pareto_stream_api.log
+        'log error': command_interfaces_pareto_stream_api.log_error
+        'make directory': command_interfaces_pareto_filesystem_unrestricted_api.make_directory
+        'remove': command_interfaces_pareto_filesystem_unrestricted_api.remove
+        'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
+    }
+> = p_.command(
     ($d, $s, $q, $c) => [
 
         $c.log.execute(
@@ -42,7 +59,7 @@ export const $$: interface_.compile_temp_schemas = p_.command(
             [
                 p_.s.dictionary(
                     $s.packages,
-                    ($, id): p_.Command_Block<s_generate_typescript.Error> => {
+                    ($, id): p_.Command_Block<s_compile_temp_schemas.Error> => {
 
                         const path = r_context_path_from_text.Context_Path(
                             `./out/source_code/${id}`

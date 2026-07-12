@@ -2,7 +2,11 @@ import * as p_ from 'pareto-core/implementation/command'
 import * as p_temp from 'pareto-core/implementation/transformer'
 import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 
-import type * as interface_ from "../../declarations/commands.js"
+//interface dependencies
+import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
+import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 // //schemas
 import type * as s_main from "pareto-application-api/interface/data/main"
@@ -34,7 +38,21 @@ import * as t_path_to_text from "pareto-resources/implementation/transformers/un
 // //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const $$: interface_.generate_typescript_cli = p_.command(
+export const $$: p_.Command_Implementation<
+    command_interfaces_pareto_application_api.main,
+    null,
+    {
+        'read file': query_interfaces_pareto_filesystem_unrestricted_api.read_file
+    },
+    {
+        'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
+        'log': command_interfaces_pareto_stream_api.log
+        'log error': command_interfaces_pareto_stream_api.log_error
+        'make directory': command_interfaces_pareto_filesystem_unrestricted_api.make_directory
+        'remove': command_interfaces_pareto_filesystem_unrestricted_api.remove
+        'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
+    }
+> = p_.command(
     ($d, $s, $q, $c) => [
 
         p_.s.handle_error<s_main.Error, My_Error_1>(
