@@ -1,6 +1,13 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../declarations/transformers/compile_temp_schemas/prose.js"
+import type * as s_in from "../../../interface/schemas/compile_temp_schemas.js"
+namespace declarations {
+    export type Error = p_.Transformer_With_Parameter<
+        s_in.Error,
+        s_out.Phrase,
+        s_parameters.Parameters
+    >
+}
 
 //dependencies
 import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
@@ -9,7 +16,7 @@ import * as t_location_to_prose from "liana-core/implementation/transformers/loc
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const Error: interface_.Error = ($, $p) => sh.ph.composed([
+export const Error: declarations.Error = ($, $p) => sh.ph.composed([
     sh.ph.literal("error in package '"),
     sh.ph.literal($p.id),
     sh.ph.literal("': "),

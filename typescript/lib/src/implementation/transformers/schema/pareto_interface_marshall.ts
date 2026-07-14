@@ -1,12 +1,12 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/interface/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/interface_resolved.js"
+namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<
         s_in.Schema,
@@ -22,7 +22,7 @@ namespace interface_ {
 import * as sh from "pareto/shorthands/interface/target"
 
 
-export const Schema: interface_.Schema = ($, $p) => sh.m.package_functions(
+export const Schema: declarations.Schema = ($, $p) => sh.m.package_functions(
     p_.literal.dictionary({
         "out": sh.import_.external(
             "astn-core",

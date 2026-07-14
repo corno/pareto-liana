@@ -5,16 +5,16 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import * as t_signatures from "../../../../submodules/schema/declarations/refiners/resolved/unresolved.js"
 
-import * as t_out from "../../../../submodules/schema/interface/schemas/resolved.js"
+import * as s_out from "../../../../submodules/schema/interface/schemas/resolved.js"
 
 import * as i_generic from "../../resolve_generic.js"
 
 export const Value: t_signatures.Value = ($, abort, $l, $p) => {
-    return p_change_context($['l state'], ($): t_out.Value => {
+    return p_change_context($['l state'], ($): s_out.Value => {
         switch ($[0]) {
-            case 'simple': return p_.option($, ($): t_out.Value => ['simple', p_change_context($['l state'], ($): t_out.Value.simple => {
+            case 'simple': return p_.option($, ($): s_out.Value => ['simple', p_change_context($['l state'], ($): s_out.Value.simple => {
                 switch ($[0]) {
-                    case 'global': return p_.option($, ($): t_out.Value.simple => ['global', i_generic.get_entry_acyclic(
+                    case 'global': return p_.option($, ($): s_out.Value.simple => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
                             p_.from.optional($p.globals).decide(
                                 ($) => $['simple types'],
@@ -27,9 +27,9 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     default: return p_.exhaustive($[0])
                 }
             })])
-            case 'text': return p_.option($, ($): t_out.Value => ['text', p_change_context($['l state'], ($): t_out.Value.text => {
+            case 'text': return p_.option($, ($): s_out.Value => ['text', p_change_context($['l state'], ($): s_out.Value.text => {
                 switch ($[0]) {
-                    case 'global': return p_.option($, ($): t_out.Value.text => ['global', i_generic.get_entry_acyclic(
+                    case 'global': return p_.option($, ($): s_out.Value.text => ['global', i_generic.get_entry_acyclic(
                         p_sl.acyclic.from_resolved_dictionary(
                             p_.from.optional($p.globals).decide(
                                 ($) => $['text types'],
@@ -48,8 +48,8 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     default: return p_.exhaustive($[0])
                 }
             })])
-            case 'component': return p_.option($, ($): t_out.Value => ['component', {
-                'type': p_change_context($.type['l state'], ($): t_out.Value.component.type_ => {
+            case 'component': return p_.option($, ($): s_out.Value => ['component', {
+                'type': p_change_context($.type['l state'], ($): s_out.Value.component.type_ => {
                     switch ($[0]) {
                         case 'external': return p_.option($, ($) => {
                             const sc_import = p_.from.optional($p.imports).decide(
@@ -117,7 +117,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                     )
                 }),
             )])
-            case 'list': return p_.option($, ($): t_out.Value => {
+            case 'list': return p_.option($, ($): s_out.Value => {
                 const p_type = Value(
                     $.value,
                     abort,
@@ -146,7 +146,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                 $p,
             )])
 
-            case 'reference': return p_.option($, ($): t_out.Value => {
+            case 'reference': return p_.option($, ($): s_out.Value => {
                 const loc = $.referent['module'].location['l location']
                 // $p.globals.__deprecated_extract_data(
                 //     ($) => {
@@ -167,7 +167,7 @@ export const Value: t_signatures.Value = ($, abort, $l, $p) => {
                         'imports': $p.imports,
                     },
                 )
-                const p_type: t_out.Value.reference.type_ = p_change_context($.type['l state'], ($) => {
+                const p_type: s_out.Value.reference.type_ = p_change_context($.type['l state'], ($) => {
                     switch ($[0]) {
                         case 'selected': return p_.option($, ($) => {
                             return ['selected', {
@@ -303,13 +303,13 @@ export const Value_Results: t_signatures.Value_Results = ($, abort, $l, $p) => {
 
 export const Simple_Type: t_signatures.Simple_Type = ($, abort, $l, $p) => {
     return {
-        'type': p_change_context($.type['l state'], ($): t_out.Simple_Type.type_ => {
+        'type': p_change_context($.type['l state'], ($): s_out.Simple_Type.type_ => {
             switch ($[0]) {
                 case 'boolean': return p_.option($, ($) => ['boolean', null])
                 case 'date': return p_.option($, ($) => ['date', null])
                 case 'number': return p_.option($, ($) => ['number', {
 
-                    'precision': p_change_context($.precision['l state'], ($): t_out.Simple_Type.type_.number_.precision => {
+                    'precision': p_change_context($.precision['l state'], ($): s_out.Simple_Type.type_.number_.precision => {
                         switch ($[0]) {
                             case 'exact': return p_.option($, ($) => {
                                 return ['exact', {
@@ -379,9 +379,9 @@ export const Value_Reference: t_signatures.Value_Reference = ($, abort, $l, $p) 
 }
 
 export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => {
-    const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
+    const x: s_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
-            case 'external': return p_.option($, ($): t_out.Module_Reference.location => {
+            case 'external': return p_.option($, ($): s_out.Module_Reference.location => {
                 const sc_import = p_.from.optional($p.imports).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
@@ -408,7 +408,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
             default: return p_.exhaustive($[0])
         }
     })
-    const p_resulting_type = p_change_context(x, ($): t_out.Module => {
+    const p_resulting_type = p_change_context(x, ($): s_out.Module => {
         switch ($[0]) {
             case 'external': return p_.option($, ($) => $.module['l entry'])
             case 'internal': return p_.option($, ($) => $['l entry'])
@@ -424,14 +424,14 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
 
 export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
     return {
-        'type': p_change_context($.type['l state'], ($): t_out.Text_Type.type_ => {
+        'type': p_change_context($.type['l state'], ($): s_out.Text_Type.type_ => {
             switch ($[0]) {
                 case 'single line': return p_.option($, ($) => ['single line', null])
                 case 'multi line': return p_.option($, ($) => ['multi line', null])
                 default: return p_.exhaustive($[0])
             }
         }),
-        'link': p_change_context($.link['l state'], ($): t_out.Text_Type.link => {
+        'link': p_change_context($.link['l state'], ($): s_out.Text_Type.link => {
             switch ($[0]) {
                 case 'no': return p_.option($, ($) => ['no', null])
                 case 'yes': return p_.option($, ($) => ['yes', {
@@ -444,15 +444,15 @@ export const Text_Type: t_signatures.Text_Type = ($, abort, $l, $p) => {
     }
 }
 export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
-    const p_tail_x: t_out.Value_Path.tail = i_generic.temp_map_list_with_state(
+    const p_tail_x: s_out.Value_Path.tail = i_generic.temp_map_list_with_state(
         $.tail['l list'],
         $p.module['root value'],
-        ($, current): t_out.Value_Path.tail.l_value.L => {
+        ($, current): s_out.Value_Path.tail.l_value.L => {
             const sg_loc = $['l location']
-            return p_change_context($['l item']['l state'], ($): t_out.Value_Path.tail.l_value.L => {
+            return p_change_context($['l item']['l state'], ($): s_out.Value_Path.tail.l_value.L => {
                 switch ($[0]) {
-                    case 'dictionary': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
-                        const sc_definition: t_out.Value.dictionary = p_change_context(current, ($) => {
+                    case 'dictionary': return p_.option($, ($): s_out.Value_Path.tail.l_value.L => {
+                        const sc_definition: s_out.Value.dictionary = p_change_context(current, ($) => {
                             if ($[0] !== 'dictionary') {
                                 return i_generic.abort.state_constraint_found_expected("dictionary", $, sg_loc, abort)
                             }
@@ -471,7 +471,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'group': return p_.option($, ($) => {
-                        const sc_definition: t_out.Value.group = p_change_context(current, ($) => {
+                        const sc_definition: s_out.Value.group = p_change_context(current, ($) => {
                             if ($[0] !== 'group') {
                                 return i_generic.abort.state_constraint_found_expected("group", $, sg_loc, abort)
                             }
@@ -495,7 +495,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                         }
                     })
                     case 'list': return p_.option($, ($) => {
-                        const sc_definition: t_out.Value.list = p_change_context(current, ($) => {
+                        const sc_definition: s_out.Value.list = p_change_context(current, ($) => {
                             if ($[0] !== 'list') {
                                 return i_generic.abort.state_constraint_found_expected("list", $, sg_loc, abort)
                             }
@@ -513,8 +513,8 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'optional': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
-                        const sc_definition: t_out.Value.optional = p_change_context(current, ($) => {
+                    case 'optional': return p_.option($, ($): s_out.Value_Path.tail.l_value.L => {
+                        const sc_definition: s_out.Value.optional = p_change_context(current, ($) => {
                             if ($[0] !== 'optional') {
                                 return i_generic.abort.state_constraint_found_expected("optional", $, sg_loc, abort)
                             }
@@ -532,8 +532,8 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
                             }
                         }
                     })
-                    case 'state': return p_.option($, ($): t_out.Value_Path.tail.l_value.L => {
-                        const P_state: t_out.Value.state = p_change_context(current, ($) => {
+                    case 'state': return p_.option($, ($): s_out.Value_Path.tail.l_value.L => {
+                        const P_state: s_out.Value.state = p_change_context(current, ($) => {
                             if ($[0] !== 'state') {
                                 return i_generic.abort.state_constraint_found_expected("state", $, sg_loc, abort)
                             }
@@ -574,7 +574,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort, $l, $p) => {
     }
 }
 export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
-    const p_simple_types: t_out.Globals.simple_types = i_generic.temp_resolve(
+    const p_simple_types: s_out.Globals.simple_types = i_generic.temp_resolve(
         $['simple types']['l dictionary'],
         ($, id, $acyclic, $cyclic) => Simple_Type(
             $['l entry'],
@@ -583,7 +583,7 @@ export const Globals: t_signatures.Globals = ($, abort, $l, $p) => {
             p_.literal.nothing(),
         ),
     )
-    const p_text_types: t_out.Globals.text_types = i_generic.temp_resolve(
+    const p_text_types: s_out.Globals.text_types = i_generic.temp_resolve(
         $['text types']['l dictionary'],
         ($, id, $acyclic, $cyclic) => Text_Type(
             $['l entry'],

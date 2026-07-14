@@ -5,9 +5,10 @@ import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/interface/interface/data/resolved" //FIXME; this should be unresolved
+import type * as s_out from "../../../interface/schemas/interface_resolved.js" //FIXME; this should be unresolved
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/interface_resolved.js"
+namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<
         s_in.Schema,
@@ -66,7 +67,7 @@ const location = sh.t.component_imported(
     "Range",
 )
 
-export const Schema: interface_.Schema = ($, $p) => {
+export const Schema: declarations.Schema = ($, $p) => {
     const add_location = $p.type[0] === 'unresolved'
 
     return sh.m.package_data(
@@ -141,7 +142,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     )
 }
 
-export const Module_Reference: interface_.Module_Reference = ($) => p_.from.state($.location).decide(
+export const Module_Reference: declarations.Module_Reference = ($) => p_.from.state($.location).decide(
     ($) => {
         switch ($[0]) {
             case 'internal': return p_.option($, ($) => sh.mr.local($['l id']))
@@ -155,7 +156,7 @@ export const Module_Reference: interface_.Module_Reference = ($) => p_.from.stat
 
 
 
-export const Value: interface_.Value = ($, $p) => {
+export const Value: declarations.Value = ($, $p) => {
 
     return p_.from.state($).decide(
         ($) => {
@@ -388,7 +389,7 @@ export const Value: interface_.Value = ($, $p) => {
         })
 }
 
-const Value_Results: interface_.Value_Results = ($, $p) => {
+const Value_Results: declarations.Value_Results = ($, $p) => {
     return p_.from.optional($).decide(
         ($) => sh.t.group(
             p_.literal.dictionary({
@@ -427,7 +428,7 @@ const Value_Reference_temp = (
     $p.type,
 )
 
-const Value_Path: interface_.Value_Path = ($) => {
+const Value_Path: declarations.Value_Path = ($) => {
     return p_.from.list($.tail['l value']).map(
         ($) => p_.from.state($['l item']['l value']).decide(
             ($) => {
@@ -442,7 +443,7 @@ const Value_Path: interface_.Value_Path = ($) => {
             }))
 }
 
-export const Simple_Type: interface_.Simple_Type = ($) => {
+export const Simple_Type: declarations.Simple_Type = ($) => {
     return p_.from.state($.type).decide(
         ($) => {
             switch ($[0]) {

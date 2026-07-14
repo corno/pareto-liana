@@ -1,8 +1,8 @@
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
-import * as p_di from 'pareto-core/interface/data'
+import * as p_di from 'pareto-core/interface/schema'
 
-import * as i_location from "liana-core/interface/data/document_and_location"
+import * as i_location from "./document_and_location.js"
 
 export namespace Package_ {
     

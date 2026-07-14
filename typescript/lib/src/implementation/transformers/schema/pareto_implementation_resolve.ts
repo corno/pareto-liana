@@ -1,13 +1,13 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/implementation_resolved.js"
+namespace declarations {
 
     export type Resolver_Modules = p_i.Transformer_With_Parameter<
         s_in.Resolver_Modules,
@@ -112,7 +112,7 @@ const cycle_detected_error = sh.a.group.literal(
     })
 )
 
-export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
+export const Resolver_Modules: declarations.Resolver_Modules = ($, $p) => {
     return sh.m.package_(
         p_.literal.list(['change context', 'variables', 'lookups', 'unreachable code path']),
         p_.literal.dictionary({
@@ -188,7 +188,7 @@ export const Resolver_Modules: interface_.Resolver_Modules = ($, $p) => {
 
 
 
-export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($, $p) => {
+export const Possible_Value_Selection: declarations.Possible_Value_Selection = ($, $p) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
@@ -209,7 +209,7 @@ export const Possible_Value_Selection: interface_.Possible_Value_Selection = ($,
 }
 
 
-export const Optional_Value_Initialization: interface_.Optional_Value_Initialization = ($) => p_.from.state($).decide(
+export const Optional_Value_Initialization: declarations.Optional_Value_Initialization = ($) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
             case 'not set': return p_.option($, ($) => sh.a.optional.not_set())
@@ -876,7 +876,7 @@ export const Resolver_Value = (
         }
     })
 
-export const Value_Constraint: interface_.Value_Constraint = (
+export const Value_Constraint: declarations.Value_Constraint = (
     $: s_in.Resolver_Value_Constraint,
 ): s_out.Assign => {
     return Resolver_Constraint(
@@ -894,7 +894,7 @@ export const Value_Constraint: interface_.Value_Constraint = (
     )
 }
 
-export const Resolver_Constraint: interface_.Constraint = (
+export const Resolver_Constraint: declarations.Constraint = (
     $: s_in.Resolver_Constraint
 ): s_out.Assign => {
     const rvs = Relative_Value_Selection($.selection)

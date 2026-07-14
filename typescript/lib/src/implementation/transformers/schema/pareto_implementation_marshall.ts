@@ -1,14 +1,14 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/implementation_resolved.js"
+namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<
         s_in.Schema,
@@ -34,7 +34,7 @@ namespace interface_ {
 import * as sh from "pareto/shorthands/implementation/target"
 import * as sh_i from "pareto/shorthands/interface/target"
 
-export const Schema: interface_.Schema = ($, $p) => {
+export const Schema: declarations.Schema = ($, $p) => {
     const constrained = $.complexity[0] === 'constrained'
 
     return sh.m.package_(
@@ -135,7 +135,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     )
 }
 
-export const Value: interface_.Value = ($, $p) => p_.from.state($).decide(
+export const Value: declarations.Value = ($, $p) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
             case 'component': return p_.option($, ($) => sh.a.select(

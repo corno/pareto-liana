@@ -8,9 +8,9 @@ import type * as command_interfaces_pareto_filesystem_unrestricted_api from "par
 import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 //schemas
-import type * as s_main from "pareto-application-api/interface/data/main"
-import type * as s_resolve from "liana-core/interface/data/resolve"
-import type * as s_write_file from "pareto-filesystem-unrestricted-api/interface/data/fs_unrestricted_write_file"
+import type * as s_main from "./main.js"
+import type * as s_resolve from "./resolve.js"
+import type * as s_write_file from "./fs_unrestricted_write_file.js"
 import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies

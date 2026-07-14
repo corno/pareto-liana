@@ -1,11 +1,10 @@
 import type * as p_i from 'pareto-core/interface/transformer'
 
-
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/interface/interface/data/resolved"
+import type * as s_out from "../../../interface/schemas/interface_resolved.js"
 
-namespace interface_ {
+namespace declarations {
 
     export type Package = p_i.Transformer<
         s_in.Package,
@@ -21,7 +20,7 @@ import * as t_pareto_interface_main from "./pareto_interface_main.js"
 import * as p_xxxx from 'pareto-core-shorthands/unconstrained_manual'
 
 
-export const Package: interface_.Package = ($) => {
+export const Package: declarations.Package = ($) => {
     return p_xxxx.dictionary({
         // "generic": sh.m.set({
         //     // "location": sh.m.package_(

@@ -1,7 +1,175 @@
 
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import * as t_signatures from "../../../declarations/transformers/resolved/fountain_pen.js"
+import type * as s_in from "../../../interface/schemas/resolved.js"
+import type * as s_out from "../../../interface/schemas/prose.js"
+
+namespace t_signatures {
+    export type Package = p_.Transformer<
+        s_in.Package,
+        s_out.Paragraph
+    >
+    export type Schemas = p_.Transformer<
+        s_in.Schemas,
+        s_out.Paragraph
+    >
+    export type Schema = p_.Transformer<
+        s_in.Schema,
+        s_out.Paragraph
+    >
+    export type Schema_Imports = p_.Transformer<
+        s_in.Schema_Imports,
+        s_out.Paragraph
+    >
+    export type Modules = p_.Transformer<
+        s_in.Modules,
+        s_out.Paragraph
+    >
+    export type Globals = p_.Transformer<
+        s_in.Globals,
+        s_out.Paragraph
+    >
+    export type Dictionary = p_.Transformer<
+        s_in.Dictionary,
+        s_out.Paragraph
+    >
+    export type Value = p_.Transformer<
+        s_in.Value,
+        s_out.Paragraph
+    >
+    export type Resolver = p_.Transformer<
+        s_in.Resolver,
+        s_out.Paragraph
+    >
+    export type Resolver_Imports = p_.Transformer<
+        s_in.Resolver_Imports,
+        s_out.Paragraph
+    >
+    export type Resolver_Signatures = p_.Transformer<
+        s_in.Resolver_Signatures,
+        s_out.Paragraph
+    >
+    export type Resolver_Signature_Parameters = p_.Transformer<
+        s_in.Resolver_Signature_Parameters,
+        s_out.Paragraph
+    >
+    export type Resolver_Value = p_.Transformer<
+        s_in.Resolver_Value,
+        s_out.Paragraph
+    >
+    export type Module_Specification = p_.Transformer<
+        s_in.Module_Specification,
+        s_out.Paragraph
+    >
+    export type Schema_Tree = p_.Transformer<
+        s_in.Schema_Tree,
+        s_out.Paragraph
+    >
+    export type Text_Type = p_.Transformer<
+        s_in.Text_Type,
+        s_out.Paragraph
+    >
+    export type Simple_Type = p_.Transformer<
+        s_in.Simple_Type,
+        s_out.Paragraph
+    >
+    export type Module = p_.Transformer<
+        s_in.Module,
+        s_out.Paragraph
+    >
+    export type Presence = p_.Transformer<
+        s_in.Presence,
+        s_out.Paragraph
+    >
+    export type Resolver_Modules = p_.Transformer<
+        s_in.Resolver_Modules,
+        s_out.Paragraph
+    >
+    export type Resolver_Benchmark = p_.Transformer<
+        s_in.Resolver_Benchmark,
+        s_out.Paragraph
+    >
+    export type Group = p_.Transformer<
+        s_in.Group,
+        s_out.Paragraph
+    >
+    export type Value_Reference = p_.Transformer<
+        s_in.Value_Reference,
+        s_out.Paragraph
+    >
+    export type Value_Path = p_.Transformer<
+        s_in.Value_Path,
+        s_out.Paragraph
+    >
+    export type Module_Reference = p_.Transformer<
+        s_in.Module_Reference,
+        s_out.Paragraph
+    >
+    export type Resolver_Signature = p_.Transformer<
+        s_in.Resolver_Signature,
+        s_out.Paragraph
+    >
+    export type Resolver_Relative_Value_Selection = p_.Transformer<
+        s_in.Resolver_Relative_Value_Selection,
+        s_out.Paragraph
+    >
+    export type Resolver_Lookup_Selection = p_.Transformer<
+        s_in.Resolver_Lookup_Selection,
+        s_out.Paragraph
+    >
+    export type Resolver_Constraint = p_.Transformer<
+        s_in.Resolver_Constraint,
+        s_out.Paragraph
+    >
+    export type Resolver_Option_Constraints = p_.Transformer<
+        s_in.Resolver_Option_Constraints,
+        s_out.Paragraph
+    >
+    export type Resolver_Optional_Value_Constraints = p_.Transformer<
+        s_in.Resolver_Optional_Value_Constraints,
+        s_out.Paragraph
+    >
+    export type Resolver_Value_Constraints = p_.Transformer<
+        s_in.Resolver_Value_Constraints,
+        s_out.Paragraph
+    >
+    export type Resolver_Reference_To_Value_Constraint = p_.Transformer<
+        s_in.Resolver_Reference_To_Value_Constraint,
+        s_out.Paragraph
+    >
+    export type Resolver_Value_Constraint = p_.Transformer<
+        s_in.Resolver_Value_Constraint,
+        s_out.Paragraph
+    >
+    export type Resolver_Optional_Value_Initialization = p_.Transformer<
+        s_in.Resolver_Optional_Value_Initialization,
+        s_out.Paragraph
+    >
+    export type Resolver_Value_Group = p_.Transformer<
+        s_in.Resolver_Value_Group,
+        s_out.Paragraph
+    >
+    export type Resolver_Value_List_Result = p_.Transformer<
+        s_in.Resolver_Value_List_Result,
+        s_out.Paragraph
+    >
+    export type Value_Results = p_.Transformer<
+        s_in.Value_Results,
+        s_out.Paragraph
+    >
+    export type Option_Constraints = p_.Transformer<
+        s_in.Option_Constraints,
+        s_out.Paragraph
+    >
+    export type Resolver_Guaranteed_Value_Selection = p_.Transformer<
+        s_in.Resolver_Guaranteed_Value_Selection,
+        s_out.Paragraph
+    >
+    export type Resolver_Possible_Value_Selection = p_.Transformer<
+        s_in.Resolver_Possible_Value_Selection,
+        s_out.Paragraph
+    >
+}
 
 import * as v_serialize from "astn-core/implementation/transformers/sealed_target/prose"
 

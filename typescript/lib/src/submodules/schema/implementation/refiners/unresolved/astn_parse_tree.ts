@@ -1,6 +1,6 @@
 
 import * as p_ from 'pareto-core/implementation/refiner'
-import * as p_di from 'pareto-core/interface/data'
+import * as p_di from 'pareto-core/interface/schema'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => p_.from.optional($).decide(assign, otherwise)
 const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
@@ -13,7 +13,7 @@ import p_variables from 'pareto-core/implementation/refiner/specials/variables'
 
 import * as t_signatures from "../../../declarations/refiners/unresolved/astn_parse_tree.js"
 
-import * as t_out from "../../../interface/schemas/unresolved.js"
+import * as s_out from "../../../interface/schemas/unresolved.js"
 
 import * as v_unmarshalled_from_parse_tree from "liana-core/implementation/refiners/unmarshalled/astn_parse_tree"
 
@@ -248,7 +248,7 @@ export const Schema: t_signatures.Schema = ($, abort) => p_change_context(
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Schema.complexity => {
+                            ($t): s_out.Schema.complexity => {
                                 switch ($t) {
                                     case 'constrained':
                                         return p_change_context(
@@ -497,7 +497,7 @@ export const Globals: t_signatures.Globals = ($, abort) => p_change_context(
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Globals.complexity => {
+                            ($t): s_out.Globals.complexity => {
                                 switch ($t) {
                                     case 'constrained':
                                         return p_change_context(
@@ -710,7 +710,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Value => {
+        ($t): s_out.Value => {
             switch ($t) {
                 case 'component':
                     return p_change_context(
@@ -768,7 +768,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Value.l_state.component.type_ => {
+                                                        ($t): s_out.Value.l_state.component.type_ => {
                                                             switch ($t) {
                                                                 case 'external':
                                                                     return p_change_context(
@@ -1108,7 +1108,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                 ),
                                 ($) => p_decide_text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Value.l_state.simple => {
+                                    ($t): s_out.Value.l_state.simple => {
                                         switch ($t) {
                                             case 'global':
                                                 return p_change_context(
@@ -1246,7 +1246,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Value.l_state.reference.type_ => {
+                                                        ($t): s_out.Value.l_state.reference.type_ => {
                                                             switch ($t) {
                                                                 case 'derived':
                                                                     return p_change_context(
@@ -1341,7 +1341,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                                                                                     ),
                                                                                                     ($) => p_decide_text(
                                                                                                         $['option']['token']['value'],
-                                                                                                        ($t): t_out.Value.l_state.reference.type_.l_state.selected.dependency => {
+                                                                                                        ($t): s_out.Value.l_state.reference.type_.l_state.selected.dependency => {
                                                                                                             switch ($t) {
                                                                                                                 case 'acyclic':
                                                                                                                     return p_change_context(
@@ -1675,7 +1675,7 @@ export const Value: t_signatures.Value = ($, abort) => p_change_context(
                                 ),
                                 ($) => p_decide_text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Value.l_state.text => {
+                                    ($t): s_out.Value.l_state.text => {
                                         switch ($t) {
                                             case 'global':
                                                 return p_change_context(
@@ -2261,7 +2261,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                                             ),
                                                             ($) => p_decide_text(
                                                                 $['option']['token']['value'],
-                                                                ($t): t_out.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry.type_ => {
+                                                                ($t): s_out.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry.type_ => {
                                                                     switch ($t) {
                                                                         case 'cyclic':
                                                                             return p_change_context(
@@ -2375,7 +2375,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Resolver_Value => {
+        ($t): s_out.Resolver_Value => {
             switch ($t) {
                 case 'component':
                     return p_change_context(
@@ -2454,7 +2454,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Value.l_state.component.location => {
+                                                        ($t): s_out.Resolver_Value.l_state.component.location => {
                                                             switch ($t) {
                                                                 case 'external':
                                                                     return p_change_context(
@@ -2735,7 +2735,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                                 ),
                                                                                                 ($) => p_decide_text(
                                                                                                     $['option']['token']['value'],
-                                                                                                    ($t): t_out.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
+                                                                                                    ($t): s_out.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry => {
                                                                                                         switch ($t) {
                                                                                                             case 'optional':
                                                                                                                 return p_change_context(
@@ -2874,7 +2874,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                                 ),
                                                                                                 ($) => p_decide_text(
                                                                                                     $['option']['token']['value'],
-                                                                                                    ($t): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
+                                                                                                    ($t): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry => {
                                                                                                         switch ($t) {
                                                                                                             case 'stack':
                                                                                                                 return p_change_context(
@@ -2895,7 +2895,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                                                             ),
                                                                                                                             ($) => p_decide_text(
                                                                                                                                 $['option']['token']['value'],
-                                                                                                                                ($t): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack => {
+                                                                                                                                ($t): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack => {
                                                                                                                                     switch ($t) {
                                                                                                                                         case 'empty':
                                                                                                                                             return p_change_context(
@@ -3030,7 +3030,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                                                             ),
                                                                                                                             ($) => p_decide_text(
                                                                                                                                 $['option']['token']['value'],
-                                                                                                                                ($t): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic => {
+                                                                                                                                ($t): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic => {
                                                                                                                                     switch ($t) {
                                                                                                                                         case 'not set':
                                                                                                                                             return p_change_context(
@@ -3087,7 +3087,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                                                                                             ),
                                                                                                                             ($) => p_decide_text(
                                                                                                                                 $['option']['token']['value'],
-                                                                                                                                ($t): t_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic => {
+                                                                                                                                ($t): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic => {
                                                                                                                                     switch ($t) {
                                                                                                                                         case 'not set':
                                                                                                                                             return p_change_context(
@@ -3611,7 +3611,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($, abort) => p_chang
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Value.l_state.reference.type_ => {
+                                                        ($t): s_out.Resolver_Value.l_state.reference.type_ => {
                                                             switch ($t) {
                                                                 case 'derived':
                                                                     return p_change_context(
@@ -4108,7 +4108,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($, abort
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Module_Specification.complexity => {
+                            ($t): s_out.Module_Specification.complexity => {
                                 switch ($t) {
                                     case 'constrained':
                                         return p_change_context(
@@ -4259,7 +4259,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($, abort) => p_change_cont
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Schema_Tree => {
+        ($t): s_out.Schema_Tree => {
             switch ($t) {
                 case 'schema':
                     return p_change_context(
@@ -4360,7 +4360,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => p_change_context(
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Text_Type.type_ => {
+                            ($t): s_out.Text_Type.type_ => {
                                 switch ($t) {
                                     case 'multi line':
                                         return p_change_context(
@@ -4435,7 +4435,7 @@ export const Text_Type: t_signatures.Text_Type = ($, abort) => p_change_context(
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Text_Type.link => {
+                            ($t): s_out.Text_Type.link => {
                                 switch ($t) {
                                     case 'no':
                                         return p_change_context(
@@ -4600,7 +4600,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort) => p_change_cont
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Simple_Type.type_ => {
+                            ($t): s_out.Simple_Type.type_ => {
                                 switch ($t) {
                                     case 'boolean':
                                         return p_change_context(
@@ -4693,7 +4693,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort) => p_change_cont
                                                                         ),
                                                                         ($) => p_decide_text(
                                                                             $['option']['token']['value'],
-                                                                            ($t): t_out.Simple_Type.type_.l_state.number_.precision => {
+                                                                            ($t): s_out.Simple_Type.type_.l_state.number_.precision => {
                                                                                 switch ($t) {
                                                                                     case 'approximation':
                                                                                         return p_change_context(
@@ -4844,7 +4844,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($, abort) => p_change_cont
                                                                                                                         ),
                                                                                                                         ($) => p_decide_text(
                                                                                                                             $['option']['token']['value'],
-                                                                                                                            ($t): t_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_ => {
+                                                                                                                            ($t): s_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_ => {
                                                                                                                                 switch ($t) {
                                                                                                                                     case 'integer':
                                                                                                                                         return p_change_context(
@@ -5025,7 +5025,7 @@ export const Presence: t_signatures.Presence = ($, abort) => p_change_context(
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Presence => {
+        ($t): s_out.Presence => {
             switch ($t) {
                 case 'optional':
                     return p_change_context(
@@ -5511,7 +5511,7 @@ export const Value_Path: t_signatures.Value_Path = ($, abort) => p_change_contex
                                         ),
                                         ($) => p_decide_text(
                                             $['option']['token']['value'],
-                                            ($t): t_out.Value_Path.tail.l_list.L.l_item => {
+                                            ($t): s_out.Value_Path.tail.l_list.L.l_item => {
                                                 switch ($t) {
                                                     case 'dictionary':
                                                         return p_change_context(
@@ -5709,7 +5709,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort) => p_c
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Module_Reference.location => {
+                            ($t): s_out.Module_Reference.location => {
                                 switch ($t) {
                                     case 'internal':
                                         return p_change_context(
@@ -5936,7 +5936,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($, abort) =>
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Resolver_Signature.parameters => {
+                            ($t): s_out.Resolver_Signature.parameters => {
                                 switch ($t) {
                                     case 'local':
                                         return p_change_context(
@@ -6094,7 +6094,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                         ),
                                         ($) => p_decide_text(
                                             $['option']['token']['value'],
-                                            ($t): t_out.Resolver_Relative_Value_Selection.path.l_list.L.l_item => {
+                                            ($t): s_out.Resolver_Relative_Value_Selection.path.l_list.L.l_item => {
                                                 switch ($t) {
                                                     case 'component':
                                                         return p_change_context(
@@ -6289,7 +6289,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Resolver_Lookup_Selection.type_ => {
+                            ($t): s_out.Resolver_Lookup_Selection.type_ => {
                                 switch ($t) {
                                     case 'acyclic':
                                         return p_change_context(
@@ -6310,7 +6310,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Lookup_Selection.type_.l_state.acyclic => {
+                                                        ($t): s_out.Resolver_Lookup_Selection.type_.l_state.acyclic => {
                                                             switch ($t) {
                                                                 case 'siblings':
                                                                     return p_change_context(
@@ -6445,7 +6445,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Lookup_Selection.type_.l_state.cyclic => {
+                                                        ($t): s_out.Resolver_Lookup_Selection.type_.l_state.cyclic => {
                                                             switch ($t) {
                                                                 case 'siblings':
                                                                     return p_change_context(
@@ -6613,7 +6613,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($, abort) 
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Resolver_Constraint.type_ => {
+                            ($t): s_out.Resolver_Constraint.type_ => {
                                 switch ($t) {
                                     case 'state':
                                         return p_change_context(
@@ -6817,7 +6817,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                     ),
                     ($) => p_decide_text(
                         $['option']['token']['value'],
-                        ($t): t_out.Resolver_Option_Constraints.l_dictionary.D.l_entry => {
+                        ($t): s_out.Resolver_Option_Constraints.l_dictionary.D.l_entry => {
                             switch ($t) {
                                 case 'state':
                                     return p_change_context(
@@ -7076,7 +7076,7 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Resolver_Value_Constraint.start => {
+                            ($t): s_out.Resolver_Value_Constraint.start => {
                                 switch ($t) {
                                     case 'value':
                                         return p_change_context(
@@ -7163,7 +7163,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Resolver_Optional_Value_Initialization => {
+        ($t): s_out.Resolver_Optional_Value_Initialization => {
             switch ($t) {
                 case 'not set':
                     return p_change_context(
@@ -7477,7 +7477,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                         ),
                         ($) => p_decide_text(
                             $['option']['token']['value'],
-                            ($t): t_out.Resolver_Guaranteed_Value_Selection.start => {
+                            ($t): s_out.Resolver_Guaranteed_Value_Selection.start => {
                                 switch ($t) {
                                     case 'sibling':
                                         return p_change_context(
@@ -7612,7 +7612,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Guaranteed_Value_Selection.start.l_state.constraint => {
+                                                        ($t): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.constraint => {
                                                             switch ($t) {
                                                                 case 'component':
                                                                     return p_change_context(
@@ -7865,7 +7865,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                     ),
                                                     ($) => p_decide_text(
                                                         $['option']['token']['value'],
-                                                        ($t): t_out.Resolver_Guaranteed_Value_Selection.start.l_state.result => {
+                                                        ($t): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.result => {
                                                             switch ($t) {
                                                                 case 'list':
                                                                     return p_change_context(
@@ -8248,7 +8248,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
     ),
     ($) => p_decide_text(
         $['option']['token']['value'],
-        ($t): t_out.Resolver_Possible_Value_Selection => {
+        ($t): s_out.Resolver_Possible_Value_Selection => {
             switch ($t) {
                 case 'parameter':
                     return p_change_context(
@@ -8295,7 +8295,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                 ),
                                 ($) => p_decide_text(
                                     $['option']['token']['value'],
-                                    ($t): t_out.Resolver_Possible_Value_Selection.l_state.result => {
+                                    ($t): s_out.Resolver_Possible_Value_Selection.l_state.result => {
                                         switch ($t) {
                                             case 'state':
                                                 return p_change_context(

@@ -3,9 +3,9 @@ import type * as p_i from 'pareto-core/interface/transformer'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/interface/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/interface_resolved.js"
+namespace declarations {
 
     export type Resolver_Signatures = p_i.Transformer<
         s_in.Resolver_Signatures,
@@ -18,7 +18,7 @@ namespace interface_ {
 import * as sh from "pareto/shorthands/interface/target"
 
 
-export const Resolver_Signatures: interface_.Resolver_Signatures = ($) => {
+export const Resolver_Signatures: declarations.Resolver_Signatures = ($) => {
     return sh.m.package_functions(
         p_.literal.dictionary({
             "generic": sh.import_.external(

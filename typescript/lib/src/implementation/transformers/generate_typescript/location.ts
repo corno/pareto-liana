@@ -1,15 +1,21 @@
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 import * as p_ from 'pareto-core/implementation/transformer'
 
 //schemas
-import type * as s_location from "astn-core/interface/data/location"
+import type * as s_location from "../../../interface/schemas/location.js"
 
 namespace s_out {
 
     export type Possible_Range = p_di.Optional_Value<s_location.Range>
 
 }
-import type * as interface_ from "../../../declarations/transformers/generate_typescript/location.js"
+import type * as s_in from "../../../interface/schemas/generate_typescript.js"
+namespace declarations {
+    export type Error = p_.Transformer<
+        s_in.Error,
+        s_out.Possible_Range
+    >
+}
 
 
 //dependencies
@@ -17,7 +23,7 @@ import * as t_deserialize_to_location from "liana-core/implementation/transforme
 
 
 
-export const Error: interface_.Error = ($) => {
+export const Error: declarations.Error = ($) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {

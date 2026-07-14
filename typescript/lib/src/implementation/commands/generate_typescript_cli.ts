@@ -9,9 +9,9 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
 
 // //schemas
-import type * as s_main from "pareto-application-api/interface/data/main"
+import type * as s_main from "./main.js"
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
-import type * as s_path from "pareto-resources/interface/data/fs_unrestricted_path"
+import type * as s_path from "../../../interface/schemas/fs_unrestricted_path"
 type My_Error_1 =
     | ['too many arguments', null]
     | ['missing', {

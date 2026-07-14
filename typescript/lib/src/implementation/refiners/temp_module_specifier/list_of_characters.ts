@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/refiner'
 import * as p_t from 'pareto-core/implementation/transformer'
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 import p_implement_me from 'pareto-core-dev/implement_me'
 import p_log_debug_message from 'pareto-core-dev/log_debug_message'
 import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials/list_build_deprecated'
@@ -8,7 +8,6 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //schemas
-import type * as s_out from "../../../interface/schemas/temp_module_specifier.js"
 import type * as s_out_schema from "../../../submodules/schema/interface/schemas/resolved.js"
 
 //dependencies

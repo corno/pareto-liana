@@ -1,12 +1,12 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 import type * as p_i from 'pareto-core/interface/transformer'
-import type * as p_di from 'pareto-core/interface/data'
+import type * as p_di from 'pareto-core/interface/schema'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/implementation/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/implementation_resolved.js"
+namespace declarations {
 
     export type Schema_Tree = p_i.Transformer_With_Parameter<
         s_in.Schema_Tree,
@@ -39,7 +39,7 @@ import * as t_deserialize from "./pareto_implementation_deserialize.js"
 import * as t_marshall from "./pareto_implementation_marshall.js"
 import * as t_unmarshall from "./pareto_implementation_unmarshall.js"
 
-export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
+export const Schema_Tree: declarations.Schema_Tree = ($, $p) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
@@ -170,7 +170,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => {
         })
 }
 
-export const Schemas: interface_.Schemas = ($, $p) => {
+export const Schemas: declarations.Schemas = ($, $p) => {
     return sh.m.set(p_.from.dictionary($).map(
         ($, id) => Schema_Tree($, {
             'path': p_.literal.chain(

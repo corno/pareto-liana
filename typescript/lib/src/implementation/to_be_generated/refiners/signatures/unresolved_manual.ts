@@ -5,7 +5,7 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import * as t_signatures from "../../../../submodules/schema/declarations/refiners/resolved/unresolved.js"
 
-import * as t_out from "../../../../submodules/schema/interface/schemas/resolved.js"
+import * as s_out from "../../../../submodules/schema/interface/schemas/resolved.js"
 
 import * as i_generic from "../../resolve_generic.js"
 
@@ -45,7 +45,7 @@ export const Signatures: t_signatures.Resolver_Signatures = ($, abort, $l, $p) =
 }
 
 export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => {
-    const p_parameters: t_out.Resolver_Signature.parameters = p_change_context($.parameters['l state'], ($): t_out.Resolver_Signature.parameters => {
+    const p_parameters: s_out.Resolver_Signature.parameters = p_change_context($.parameters['l state'], ($): s_out.Resolver_Signature.parameters => {
         switch ($[0]) {
             case 'local': return p_.option($, ($) => ['local', Signature_Parameters(
                 $,
@@ -79,7 +79,7 @@ export const Signature: t_signatures.Resolver_Signature = ($, abort, $l, $p) => 
 
 export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = ($, abort, $l, $p) => {
 
-    const p_parameters_values: t_out.Resolver_Signature_Parameters.modules = i_generic.temp_resolve(
+    const p_parameters_values: s_out.Resolver_Signature_Parameters.modules = i_generic.temp_resolve(
         $.modules['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
 
@@ -103,7 +103,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
         },
     )
     const lookups_loc = $.lookups['l location']
-    const p_parameters_lookups: t_out.Resolver_Signature_Parameters.lookups = i_generic.temp_resolve(
+    const p_parameters_lookups: s_out.Resolver_Signature_Parameters.lookups = i_generic.temp_resolve(
         $.lookups['l dictionary'],
         ($, id, $acyclic, $cyclic) => {
             const p_referent = Module_Reference(
@@ -118,7 +118,7 @@ export const Signature_Parameters: t_signatures.Resolver_Signature_Parameters = 
 
             )
 
-            const p_type: t_out.Resolver_Signature_Parameters.lookups.D.type_ = p_change_context($['l entry'].type['l state'], ($) => {
+            const p_type: s_out.Resolver_Signature_Parameters.lookups.D.type_ = p_change_context($['l entry'].type['l state'], ($) => {
                 switch ($[0]) {
                     case 'acyclic': return p_.option($, ($) => ['acyclic', null])
                     case 'cyclic': return p_.option($, ($) => ['cyclic', null])

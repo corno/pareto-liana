@@ -1,7 +1,7 @@
 // import * as p_ from 'pareto-core/implementation/transformer'
 // import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
-// import type * as interface_ from "../../../declarations/transformers/schema/astn_schema.js"
+// import type * as declarations from "../../../declarations/transformers/schema/astn_schema.js"
 
 // //schemas
 // import type * as s_out from "../../../interface/generated/liana/schemas/astn_schema/data/unresolved.js"
@@ -9,14 +9,14 @@
 // //shorthands
 // import * as sh from "pareto-core-shorthands/unresolved_data"
 
-// export const Schema: interface_.Schema = ($) => ({
+// export const Schema: declarations.Schema = ($) => ({
 //     'globals': Globals($.globals),
 //     'imports': Schema_Imports($['schema imports']),
 //     'types': sh.dictionary(p_.from.dictionary($.modules).map(
 //         ($) => Module($))),
 // })
 
-// export const Globals: interface_.Globals = ($) => ({
+// export const Globals: declarations.Globals = ($) => ({
 //     //FIXME!! merge the number types with the text types in here
 //     "text types": sh.dictionary(
 //         p_.from.dictionary(
@@ -43,17 +43,17 @@
 //     ),
 // })
 
-// export const Schema_Imports: interface_.Schema_Imports = ($) => sh.dictionary(p_.from.dictionary($).map(
+// export const Schema_Imports: declarations.Schema_Imports = ($) => sh.dictionary(p_.from.dictionary($).map(
 //     ($) => ({
 //         'schema': null,
 //         'schema set child': sh.reference($['schema set child']['l value']['l id'])
 //     })))
 
-// export const Module: interface_.Module = ($) => ({
+// export const Module: declarations.Module = ($) => ({
 //     'root value': Value($['root value'])
 // })
 
-// export const Value: interface_.Value = ($) => sh.state(p_.from.state($).decide(
+// export const Value: declarations.Value = ($) => sh.state(p_.from.state($).decide(
 //     ($): s_out.Value.l_state => {
 //         switch ($[0]) {
 //             case 'simple': return p_.option($, ($): s_out.Value.l_state => ['text', sh.state(
@@ -114,7 +114,7 @@
 //         }
 //     }))
 
-// export const Text_Type: interface_.Text_Type = ($) => ({
+// export const Text_Type: declarations.Text_Type = ($) => ({
 //     'type': sh.state(p_.from.state($.type).decide(
 //         ($) => {
 //             switch ($[0]) {

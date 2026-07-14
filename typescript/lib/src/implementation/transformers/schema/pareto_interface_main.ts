@@ -3,9 +3,9 @@ import type * as p_i from 'pareto-core/interface/transformer'
 
 //schemas
 import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out from "pareto/modules/interface/interface/data/resolved"
 
-namespace interface_ {
+import type * as s_out from "../../../interface/schemas/interface_resolved.js"
+namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<
         s_in.Schema,
@@ -46,7 +46,7 @@ import * as t_serialize from "./pareto_interface_serialize.js"
 import * as t_deserialize from "./pareto_interface_deserialize.js"
 
 
-export const Schema: interface_.Schema = ($, $p) => {
+export const Schema: declarations.Schema = ($, $p) => {
     const schema = $
     const constrainedx: boolean = p_.from.state($.complexity).decide(
         ($) => {
@@ -290,7 +290,7 @@ export const Schema: interface_.Schema = ($, $p) => {
     )
 }
 
-export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.from.state($).decide(
+export const Schema_Tree: declarations.Schema_Tree = ($, $p) => p_.from.state($).decide(
     ($) => {
         switch ($[0]) {
             case 'schema': return p_.option($, ($) => Schema($, $p))
@@ -300,7 +300,7 @@ export const Schema_Tree: interface_.Schema_Tree = ($, $p) => p_.from.state($).d
     })
 
 
-export const Schemas: interface_.Schemas = ($, $p) => sh.m.set(p_.from.dictionary($).map(
+export const Schemas: declarations.Schemas = ($, $p) => sh.m.set(p_.from.dictionary($).map(
     ($) => p_.from.state($).decide(
         ($) => {
             switch ($[0]) {

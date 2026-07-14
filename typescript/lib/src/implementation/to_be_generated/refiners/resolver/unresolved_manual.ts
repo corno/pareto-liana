@@ -6,16 +6,16 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import * as t_signatures from "../../../../submodules/schema/declarations/refiners/resolved/unresolved.js"
 
-import * as t_out from "../../../../submodules/schema/interface/schemas/resolved.js"
+import * as s_out from "../../../../submodules/schema/interface/schemas/resolved.js"
 
 import * as i_generic from "../../resolve_generic.js"
 
 
 export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
     const loc = $['l location']
-    const p_type = p_change_context($['l state'], ($): t_out.Resolver_Value => {
+    const p_type = p_change_context($['l state'], ($): s_out.Resolver_Value => {
         switch ($[0]) {
-            case 'component': return p_.option($, ($): t_out.Resolver_Value => {
+            case 'component': return p_.option($, ($): s_out.Resolver_Value => {
                 const x = $p.definition[0] !== 'component'
                     ? i_generic.abort.state_constraint_found_expected(
                         "component",
@@ -24,7 +24,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         abort,
                     )
                     : $p.definition[1]
-                const p_location = p_change_context($.location['l state'], ($): t_out.Resolver_Value.component.location => {
+                const p_location = p_change_context($.location['l state'], ($): s_out.Resolver_Value.component.location => {
                     switch ($[0]) {
                         case 'external': return p_.option($, ($) => {
                             const sc_schema_import = p_.from.optional($p['schema imports']).decide(
@@ -45,7 +45,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                 $['resolver import'],
                                 abort,
                             )
-                            const pc_constrained: t_out.Schema.complexity.constrained = p_change_context(p_schema_import['l entry'].schema.complexity, ($) => {
+                            const pc_constrained: s_out.Schema.complexity.constrained = p_change_context(p_schema_import['l entry'].schema.complexity, ($) => {
                                 switch ($[0]) {
                                     case 'constrained': return p_.option($, ($) => $)
                                     default: return i_generic.abort.state_constraint_found_expected("constrained", $, loc, abort)
@@ -71,14 +71,14 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                         default: return p_.exhaustive($[0])
                     }
                 })
-                const p_signature: t_out.Resolver_Value.component.signature = p_change_context(p_location, ($) => {
+                const p_signature: s_out.Resolver_Value.component.signature = p_change_context(p_location, ($) => {
                     switch ($[0]) {
                         case 'external': return p_.option($, ($) => $.signature['l entry'])
                         case 'internal': return p_.option($, ($) => $['l entry'])
                         default: return p_.exhaustive($[0])
                     }
                 })
-                const x_type: t_out.Modules.D = p_change_context(x.type, ($) => {
+                const x_type: s_out.Modules.D = p_change_context(x.type, ($) => {
                     switch ($[0]) {
                         case 'external': return p_.option($, ($) => $.module['l entry'])
                         case 'internal acyclic': return p_.option($, ($) => $['l entry'])
@@ -89,9 +89,9 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                 if (p_signature.module !== x_type) {
                     i_generic.abort.same_node_constraint("module.value", loc, abort)
                 }
-                const p_arguments: t_out.Resolver_Value.component.arguments_ = p_.from.optional($.arguments).decide(
+                const p_arguments: s_out.Resolver_Value.component.arguments_ = p_.from.optional($.arguments).decide(
                     ($) => {
-                        const x: t_out.Resolver_Value.component.arguments_.O = {
+                        const x: s_out.Resolver_Value.component.arguments_.O = {
                             'lookups': p_.from.optional($.lookups).decide(
                                 ($) => p_.literal.set(i_generic.resolve_dense_dictionary(
                                     $['l dictionary'],
@@ -100,24 +100,24 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                     p_signature['resolved parameters'].lookups,
                                     ($, id, $acyclic, $cyclic) => p_change_context($, ($) => {
                                         //do additional validation
-                                        return p_change_context($['l entry']['l state'], ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
+                                        return p_change_context($['l entry']['l state'], ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
                                             switch ($[0]) {
-                                                case 'acyclic': return p_.option($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide(
-                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
+                                                case 'acyclic': return p_.option($, ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['acyclic', p_.from.state($['l state']).decide(
+                                                    ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
                                                         switch ($[0]) {
                                                             case 'not set': return p_.option($, ($) => ['not set', null])
                                                             default: return p_.exhaustive($[0])
                                                         }
                                                     })])
-                                                case 'cyclic': return p_.option($, ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(
-                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
+                                                case 'cyclic': return p_.option($, ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D => ['cyclic', p_.from.state($['l state']).decide(
+                                                    ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
                                                         switch ($[0]) {
                                                             case 'not set': return p_.option($, ($) => ['not set', null])
                                                             default: return p_.exhaustive($[0])
                                                         }
                                                     })])
                                                 case 'stack': return p_.option($, ($) => ['stack', p_.from.state($['l state']).decide(
-                                                    ($): t_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
+                                                    ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
                                                         switch ($[0]) {
                                                             case 'empty': return p_.option($, ($) => ['empty', null])
                                                             case 'push': return p_.option($, ($) => {
@@ -181,7 +181,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                 },
                                                 abort,
                                             )
-                                            const out = p_change_context($['l entry']['l state'], ($): t_out.Resolver_Value.component.arguments_.O.modules.O.D => {
+                                            const out = p_change_context($['l entry']['l state'], ($): s_out.Resolver_Value.component.arguments_.O.modules.O.D => {
                                                 switch ($[0]) {
                                                     case 'optional': return p_.option($, ($) => ['optional', Optional_Value_Initialization(
                                                         $,
@@ -208,7 +208,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                                                 const benchmark = linked_entry['l entry']
                                                 const focus = out
 
-                                                const walk_path_till_end = ($: t_out.Value): t_out.Value => {
+                                                const walk_path_till_end = ($: s_out.Value): s_out.Value => {
                                                     return p_change_context($, ($) => {
                                                         switch ($[0]) {
                                                             case 'component': return p_.option($, ($) => p_change_context($.type, ($) => {
@@ -354,7 +354,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     abort,
                     p_.literal.nothing(),
                     {
-                        'value': p_change_context(p_location, ($): t_out.Value => {
+                        'value': p_change_context(p_location, ($): s_out.Value => {
                             switch ($[0]) {
                                 case 'external': return p_.option($, ($) => $.signature['l entry'].module['root value'])
                                 case 'internal': return p_.option($, ($) => $['l entry'].module['root value'])
@@ -378,7 +378,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
 
                 const p_benchmark = i_generic.temp_optional_map(
                     $.benchmark,
-                    ($): t_out.Resolver_Value.dictionary.benchmark.O => {
+                    ($): s_out.Resolver_Value.dictionary.benchmark.O => {
                         const p_selection = Guaranteed_Value_Selection(
                             $.selection,
                             abort,
@@ -441,7 +441,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     $['l location'],
                     abort,
                     x,
-                    ($, id, $acyclic, $cyclic): t_out.Resolver_Value_Group.D => {
+                    ($, id, $acyclic, $cyclic): s_out.Resolver_Value_Group.D => {
 
                         const p_definition = i_generic.get_entry_acyclic(
                             p_sl.acyclic.from_resolved_dictionary(x),
@@ -546,7 +546,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     ? i_generic.abort.state_constraint_found_expected("optional", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_constraints: t_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
+                const p_constraints: s_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
                     $.constraints,
                     abort,
                     $l,
@@ -579,13 +579,13 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     'resolver': p_resolver,
                 }]
             })
-            case 'reference': return p_.option($, ($): t_out.Resolver_Value => {
+            case 'reference': return p_.option($, ($): s_out.Resolver_Value => {
                 const p_definition = $p.definition[0] !== 'reference'
                     ? i_generic.abort.state_constraint_found_expected("reference", $p.definition, loc, abort)
                     : $p.definition[1]
                 return ['reference', {
                     'definition': p_definition,
-                    'type': p_change_context($.type['l state'], ($): t_out.Resolver_Value.reference.type_ => {
+                    'type': p_change_context($.type['l state'], ($): s_out.Resolver_Value.reference.type_ => {
                         switch ($[0]) {
                             case 'derived': return p_.option($, ($) => {
                                 // const p_definition_2 = p_definition.type[0] !== 'derived'
@@ -629,12 +629,12 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                     })
                 }]
             })
-            case 'state': return p_.option($, ($): t_out.Resolver_Value => {
+            case 'state': return p_.option($, ($): s_out.Resolver_Value => {
                 const p_definition = $p.definition[0] !== 'state'
                     ? i_generic.abort.state_constraint_found_expected("state", $p.definition, loc, abort)
                     : $p.definition[1]
 
-                const p_states: t_out.Resolver_Value.state.options = i_generic.resolve_dense_dictionary(
+                const p_states: s_out.Resolver_Value.state.options = i_generic.resolve_dense_dictionary(
                     $.options['l dictionary'],
                     $.options['l location'],
                     abort,
@@ -649,7 +649,7 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
                             },
                             abort,
                         )
-                        const p_constraints: t_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
+                        const p_constraints: s_out.Resolver_Value.state.options.D.constraints = Option_Constraints(
                             $['l entry'].constraints,
                             abort,
                             $l,
@@ -778,16 +778,16 @@ export const Value: t_signatures.Resolver_Value = ($, abort, $l, $p) => {
 export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Selection = ($, abort, $l, $p) => p_variables(
     () => {
 
-        const p_path: t_out.Resolver_Relative_Value_Selection.path = i_generic.temp_map_list_with_state(
+        const p_path: s_out.Resolver_Relative_Value_Selection.path = i_generic.temp_map_list_with_state(
             $.path['l list'],
             $p.value,
-            ($, current): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+            ($, current): s_out.Resolver_Relative_Value_Selection.path.l_value.L => {
                 const sg_loc = $['l location']
-                return p_change_context($['l item']['l state'], ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                return p_change_context($['l item']['l state'], ($): s_out.Resolver_Relative_Value_Selection.path.l_value.L => {
                     switch ($[0]) {
-                        case 'component': return p_.option($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                        case 'component': return p_.option($, ($): s_out.Resolver_Relative_Value_Selection.path.l_value.L => {
 
-                            const sc_definition: t_out.Value.component = p_change_context(current, ($) => {
+                            const sc_definition: s_out.Value.component = p_change_context(current, ($) => {
                                 if ($[0] !== 'component') {
                                     return i_generic.abort.state_constraint_expected_found("component", $, sg_loc, abort)
                                 }
@@ -808,7 +808,7 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                             }
                         })
                         case 'group': return p_.option($, ($) => {
-                            const sc_definition: t_out.Value.group = p_change_context(current, ($) => {
+                            const sc_definition: s_out.Value.group = p_change_context(current, ($) => {
                                 if ($[0] !== 'group') {
                                     return i_generic.abort.state_constraint_expected_found("group", $, sg_loc, abort)
                                 }
@@ -826,16 +826,16 @@ export const Relative_Value_Selection: t_signatures.Resolver_Relative_Value_Sele
                                 }
                             }
                         })
-                        case 'reference': return p_.option($, ($): t_out.Resolver_Relative_Value_Selection.path.l_value.L => {
+                        case 'reference': return p_.option($, ($): s_out.Resolver_Relative_Value_Selection.path.l_value.L => {
 
-                            const sc_definition: t_out.Value.reference = p_change_context(current, ($) => {
+                            const sc_definition: s_out.Value.reference = p_change_context(current, ($) => {
                                 if ($[0] !== 'reference') {
                                     return i_generic.abort.state_constraint_expected_found("reference", $, sg_loc, abort)
                                 }
                                 return $[1]
                             })
-                            const referent: t_out.Value_Reference = sc_definition.referent
-                            const x: t_out.Value = p_change_context(sc_definition.type, ($) => {
+                            const referent: s_out.Value_Reference = sc_definition.referent
+                            const x: s_out.Value = p_change_context(sc_definition.type, ($) => {
                                 switch ($[0]) {
                                     case 'derived': return p_.option($, ($) => referent.path['resulting node'])
                                     case 'selected': return p_.option($, ($) => p_change_context(referent.path['resulting node'], ($) => {
@@ -879,7 +879,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_variables(
             () => {
-                const p_start: t_out.Resolver_Value_Constraint.start = p_change_context($['l entry'].start['l state'], ($) => {
+                const p_start: s_out.Resolver_Value_Constraint.start = p_change_context($['l entry'].start['l state'], ($) => {
                     switch ($[0]) {
                         case 'value': return p_.option($, ($) => ['value', null])
                         case 'sibling': return p_.option($, ($) => ['sibling', i_generic.get_entry_acyclic(
@@ -890,7 +890,7 @@ export const Value_Constraints: t_signatures.Resolver_Value_Constraints = ($, ab
                         default: return p_.exhaustive($[0])
                     }
                 })
-                const p_constraint: t_out.Resolver_Value_Constraint.constraint = Constraint(
+                const p_constraint: s_out.Resolver_Value_Constraint.constraint = Constraint(
                     $['l entry'].constraint,
                     abort,
                     p_.literal.nothing(),
@@ -923,9 +923,9 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
     () => p_variables(
         () => {
             const start_location = $.start['l location']
-            const p_start: t_out.Resolver_Guaranteed_Value_Selection.start = p_change_context($.start['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
+            const p_start: s_out.Resolver_Guaranteed_Value_Selection.start = p_change_context($.start['l state'], ($): s_out.Resolver_Guaranteed_Value_Selection.start => {
                 switch ($[0]) {
-                    case 'constraint': return p_.option($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['constraint', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
+                    case 'constraint': return p_.option($, ($): s_out.Resolver_Guaranteed_Value_Selection.start => ['constraint', p_change_context($['l state'], ($): s_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
                         switch ($[0]) {
                             case 'component': return p_.option($, ($) => {
                                 const loc = $['property']['l location']
@@ -980,7 +980,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                     })])
                     case 'list cursor': return p_.option($, ($) => ['list cursor', null])
                     case 'linked entry': return p_.option($, ($) => ['linked entry', null])
-                    case 'option constraint': return p_.option($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => {
+                    case 'option constraint': return p_.option($, ($): s_out.Resolver_Guaranteed_Value_Selection.start => {
                         const sc = p_.from.optional($p['option constraints']).decide(
                             ($) => $,
                             () => i_generic.abort.parameter_is_set_assertion("option constraints", start_location, abort)
@@ -996,11 +996,11 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                         $,
                         abort,
                     )])
-                    case 'result': return p_.option($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Guaranteed_Value_Selection.start.result => {
+                    case 'result': return p_.option($, ($) => ['result', p_change_context($['l state'], ($): s_out.Resolver_Guaranteed_Value_Selection.start.result => {
                         switch ($[0]) {
                             case 'list': return p_.option($, ($) => {
                                 const loc = $['property']['l location']
-                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                const p_sibling: s_out.Resolver_Guaranteed_Value_Selection.start.result.list.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
                                     $l['sibling property resolvers'],
                                     $,
                                     abort,
@@ -1008,7 +1008,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                 const p_list_result_a = p_change_context($['list result'], ($) => p_sibling['l entry'].resolver[0] !== 'list'
                                     ? i_generic.abort.state_constraint_found_expected("list", p_sibling['l entry'].resolver, loc, abort)
                                     : p_sibling['l entry'].resolver[1])
-                                const p_list_result: t_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_.from.optional(p_list_result_a.result).decide(
+                                const p_list_result: s_out.Resolver_Guaranteed_Value_Selection.start.result.list.list_result = p_.from.optional(p_list_result_a.result).decide(
                                     ($) => $,
                                     () => i_generic.abort.is_set_assertion("list result", loc, abort)
                                 )
@@ -1019,7 +1019,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                             })
                             case 'state': return p_.option($, ($) => {
                                 const loc = $['property']['l location']
-                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                const p_sibling: s_out.Resolver_Guaranteed_Value_Selection.start.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
                                     $l['sibling property resolvers'],
                                     $,
                                     abort,
@@ -1044,7 +1044,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                             })
                             case 'optional value': return p_.option($, ($) => {
                                 const loc = $['property']['l location']
-                                const p_sibling: t_out.Resolver_Guaranteed_Value_Selection.start.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                                const p_sibling: s_out.Resolver_Guaranteed_Value_Selection.start.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
                                     $l['sibling property resolvers'],
                                     $,
                                     abort,
@@ -1070,12 +1070,12 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                             default: return p_.exhaustive($[0])
                         }
                     })])
-                    case 'sibling': return p_.option($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['sibling', i_generic.get_entry_acyclic(
+                    case 'sibling': return p_.option($, ($): s_out.Resolver_Guaranteed_Value_Selection.start => ['sibling', i_generic.get_entry_acyclic(
                         $l['sibling property resolvers'],
                         $,
                         abort,
                     )])
-                    case 'parent sibling': return p_.option($, ($): t_out.Resolver_Guaranteed_Value_Selection.start => ['parent sibling', i_generic.get_entry_acyclic(
+                    case 'parent sibling': return p_.option($, ($): s_out.Resolver_Guaranteed_Value_Selection.start => ['parent sibling', i_generic.get_entry_acyclic(
                         $l['parent sibling property resolvers'],
                         $,
                         abort,
@@ -1090,7 +1090,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                 {
                     'value': p_variables(
                         () => {
-                            const pvs = ($: t_out.Resolver_Possible_Value_Selection) => p_change_context($, ($): t_out.Module => {
+                            const pvs = ($: s_out.Resolver_Possible_Value_Selection) => p_change_context($, ($): s_out.Module => {
                                 return p_change_context($, ($) => {
                                     switch ($[0]) {
                                         case 'parameter': return p_.option($, ($) => $['l entry'].module['resulting module'])
@@ -1106,7 +1106,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                                 })
                             })['root value']
                             const start_loc = $.start['l location']
-                            const gvs_start = ($: t_out.Resolver_Guaranteed_Value_Selection.start) => p_change_context($, ($): t_out.Value => {
+                            const gvs_start = ($: s_out.Resolver_Guaranteed_Value_Selection.start) => p_change_context($, ($): s_out.Value => {
                                 switch ($[0]) {
                                     case 'constraint': return p_.option($, ($) => p_change_context($, ($) => {
                                         switch ($[0]) {
@@ -1162,7 +1162,7 @@ export const Guaranteed_Value_Selection: t_signatures.Resolver_Guaranteed_Value_
                         })
                 },
             )
-            const p_resulting_type: t_out.Value = p_tail['resulting node']
+            const p_resulting_type: s_out.Value = p_tail['resulting node']
             return ({
                 'start': p_start,
                 'tail': p_tail,
@@ -1178,7 +1178,7 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
                 case 'state': return p_.option($, ($) => ['state', p_variables(
                     () => {
                         const loc = $.selection.start['l location']
-                        const p_selection: t_out.Resolver_Option_Constraints.D.state.selection = p_change_context($['selection'], ($) => Guaranteed_Value_Selection(
+                        const p_selection: s_out.Resolver_Option_Constraints.D.state.selection = p_change_context($['selection'], ($) => Guaranteed_Value_Selection(
                             $,
                             abort,
                             $l,
@@ -1192,7 +1192,7 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
                                 abort,
                             )
                             : p_selection['resulting node'][1]
-                        const p_option: t_out.Resolver_Option_Constraints.D.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
+                        const p_option: s_out.Resolver_Option_Constraints.D.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
                             p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
                             $,
                             abort,
@@ -1216,7 +1216,7 @@ export const Option_Constraints: t_signatures.Resolver_Option_Constraints = ($, 
 }
 
 export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) => {
-    const p_selection: t_out.Resolver_Constraint.selection = p_change_context($['selection'], ($) => Relative_Value_Selection(
+    const p_selection: s_out.Resolver_Constraint.selection = p_change_context($['selection'], ($) => Relative_Value_Selection(
         $,
         abort,
         p_.literal.nothing(),
@@ -1225,7 +1225,7 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
         }
     ))
     const loc = $.type['l location']
-    const p_type: t_out.Resolver_Constraint.type_ = p_change_context($.type, ($) => p_change_context($['l state'], ($) => {
+    const p_type: s_out.Resolver_Constraint.type_ = p_change_context($.type, ($) => p_change_context($['l state'], ($) => {
         switch ($[0]) {
             case 'state': return p_.option($, ($) => {
                 const p_selected_state = p_selection['resulting node'][0] !== 'state' // component constraint ('selection')
@@ -1236,7 +1236,7 @@ export const Constraint: t_signatures.Resolver_Constraint = ($, abort, $l, $p) =
                         abort,
                     )
                     : p_selection['resulting node'][1]
-                const p_option: t_out.Resolver_Constraint.type_.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
+                const p_option: s_out.Resolver_Constraint.type_.state.option = p_change_context($['option'], ($) => i_generic.get_entry_acyclic(
                     p_sl.acyclic.from_resolved_dictionary(p_selected_state.options),
                     $,
                     abort,
@@ -1273,7 +1273,7 @@ export const Optional_Value_Initialization: t_signatures.Resolver_Optional_Value
         switch ($[0]) {
             case 'not set': return p_.option($, ($) => ['not set', null])
             case 'set': return p_.option($, ($) => ['set', Guaranteed_Value_Selection($, abort, $l, $p)])
-            case 'selection': return p_.option($, ($): t_out.Resolver_Optional_Value_Initialization => {
+            case 'selection': return p_.option($, ($): s_out.Resolver_Optional_Value_Initialization => {
                 return ['selection', Possibly_Optional($, abort, $l, $p)]
             })
             default: return p_.exhaustive($[0])
@@ -1289,11 +1289,11 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
                     $,
                     abort,
                 )])
-                case 'result': return p_.option($, ($) => ['result', p_change_context($['l state'], ($): t_out.Resolver_Possible_Value_Selection.result => {
+                case 'result': return p_.option($, ($) => ['result', p_change_context($['l state'], ($): s_out.Resolver_Possible_Value_Selection.result => {
                     switch ($[0]) {
                         case 'state': return p_.option($, ($) => {
                             const loc = $['property']['l location']
-                            const p_sibling: t_out.Resolver_Possible_Value_Selection.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                            const p_sibling: s_out.Resolver_Possible_Value_Selection.result.state.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
                                 $l['sibling property resolvers'],
                                 $,
                                 abort,
@@ -1320,7 +1320,7 @@ export const Possibly_Optional: t_signatures.Resolver_Possible_Value_Selection =
                         })
                         case 'optional value': return p_.option($, ($) => {
                             const loc = $['property']['l location']
-                            const p_sibling: t_out.Resolver_Possible_Value_Selection.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
+                            const p_sibling: s_out.Resolver_Possible_Value_Selection.result.optional_value.property = p_change_context($['property'], ($) => i_generic.get_entry_acyclic(
                                 $l['sibling property resolvers'],
                                 $,
                                 abort,
@@ -1356,10 +1356,10 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
     () => p_variables(
         () => {
             const loc = $.type['l location']
-            const p_type: t_out.Resolver_Lookup_Selection.type_ = p_change_context($['type'], ($) => p_change_context($['l state'], ($): t_out.Resolver_Lookup_Selection.type_ => {
+            const p_type: s_out.Resolver_Lookup_Selection.type_ = p_change_context($['type'], ($) => p_change_context($['l state'], ($): s_out.Resolver_Lookup_Selection.type_ => {
                 switch ($[0]) {
-                    case 'acyclic': return p_.option($, ($): t_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.from.state($['l state']).decide(
-                        ($): t_out.Resolver_Lookup_Selection.type_.acyclic => {
+                    case 'acyclic': return p_.option($, ($): s_out.Resolver_Lookup_Selection.type_ => ['acyclic', p_.from.state($['l state']).decide(
+                        ($): s_out.Resolver_Lookup_Selection.type_.acyclic => {
                             switch ($[0]) {
                                 case 'resolved dictionary': return p_.option($, ($) => {
                                     const p_selection = Guaranteed_Value_Selection(
@@ -1391,7 +1391,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                             }
                         })])
                     case 'cyclic': return p_.option($, ($) => ['cyclic', p_.from.state($['l state']).decide(
-                        ($): t_out.Resolver_Lookup_Selection.type_.cyclic => {
+                        ($): s_out.Resolver_Lookup_Selection.type_.cyclic => {
                             switch ($[0]) {
                                 case 'siblings': return p_.option($, ($) => ['siblings', p_.from.optional($p['current dictionary']).decide(
                                     ($) => $,
@@ -1408,7 +1408,7 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
                     default: return p_.exhaustive($[0])
                 }
             }))
-            const p_resulting_dictionary = p_change_context(p_type, ($): t_out.Value.dictionary => {
+            const p_resulting_dictionary = p_change_context(p_type, ($): s_out.Value.dictionary => {
                 switch ($[0]) {
                     case 'acyclic': return p_.option($, ($) => p_.from.state($).decide(
                         ($) => {
@@ -1436,9 +1436,9 @@ export const Lookup_Selection: t_signatures.Resolver_Lookup_Selection = ($, abor
         }))
 
 export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p) => {
-    const x: t_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
+    const x: s_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
-            case 'external': return p_.option($, ($): t_out.Module_Reference.location => {
+            case 'external': return p_.option($, ($): s_out.Module_Reference.location => {
                 const sc_import = p_.from.optional($p.imports).decide(
                     ($) => $,
                     () => i_generic.abort.parameter_is_set_assertion("imports", $.import['l location'], abort)
@@ -1465,7 +1465,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($, abort, $l, $p
             default: return p_.exhaustive($[0])
         }
     })
-    const p_resulting_type = p_change_context(x, ($): t_out.Module => {
+    const p_resulting_type = p_change_context(x, ($): s_out.Module => {
         switch ($[0]) {
             case 'external': return p_.option($, ($) => $.module['l entry'])
             case 'internal': return p_.option($, ($) => $['l entry'])

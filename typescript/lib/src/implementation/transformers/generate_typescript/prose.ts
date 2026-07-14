@@ -1,6 +1,12 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../declarations/transformers/generate_typescript/prose.js"
+import type * as s_in from "../../../interface/schemas/generate_typescript.js"
+namespace declarations {
+    export type Error = p_.Transformer<
+        s_in.Error,
+        s_out.Phrase
+    >
+}
 
 //dependencies
 import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
@@ -10,7 +16,7 @@ import * as t_read_file_to_prose from "pareto-filesystem-unrestricted-api/implem
 //shorthands
 import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
 
-export const Error: interface_.Error = ($) => {
+export const Error: declarations.Error = ($) => {
     return p_.from.state($).decide(
         ($) => {
             switch ($[0]) {

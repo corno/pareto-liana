@@ -8,7 +8,7 @@ import type * as command_interfaces_pareto_filesystem_unrestricted_api from "par
 import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 //schemas
-import type * as s_main from "pareto-application-api/interface/data/main"
+import type * as s_main from "../../../interface/schemas/main.js"
 import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
 
 //dependencies

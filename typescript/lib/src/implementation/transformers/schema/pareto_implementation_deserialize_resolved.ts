@@ -1,12 +1,26 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as interface_ from "../../../declarations/transformers/schema/pareto_implementation_deserialize_resolved.js"
+import type * as p_di from 'pareto-core/interface/schema'
+import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
+import type * as s_out from "pareto/interface/schemas/"
+
+
+namespace declarations {
+    export type Schema = p_.Transformer_With_Parameter<
+        s_in.Schema,
+        s_out.Package_Set.D,
+        {
+        'path': p_di.List<string>,
+        'depth': number,
+        }
+    >
+}
 
 //shorthands
 import * as sh from "pareto/shorthands/implementation/target"
 import * as sh_i from "pareto/shorthands/interface/target"
 
-export const Schema: interface_.Schema = ($,
+export const Schema: declarations.Schema = ($,
     $p) => {
     return sh.m.package_(
         p_.literal.list([]),
