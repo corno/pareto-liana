@@ -24,7 +24,7 @@ import * as r_context_path_from_text from "pareto-resources/implementation/refin
 import * as t_generate_typescript_to_prose from "../transformers/compile_temp_schemas/prose.js"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 export const $$: p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
@@ -47,7 +47,7 @@ export const $$: p_.Command_Implementation<
             {
                 'message': sh.pg.sentences([
                     sh.sentence([
-                        sh.ph.literal("generating..."),
+                        sh.ph.text("generating..."),
                     ])
                 ])
             },
@@ -222,8 +222,8 @@ export const $$: p_.Command_Implementation<
                                     'message': sh.pg.sentences([
                                         sh.sentence([
 
-                                            sh.ph.literal("generated package: "),
-                                            sh.ph.literal(id),
+                                            sh.ph.text("generated package: "),
+                                            sh.ph.text(id),
                                         ])
                                     ]),
                                 },

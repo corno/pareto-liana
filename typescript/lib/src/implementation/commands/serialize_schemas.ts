@@ -24,7 +24,7 @@ import * as t_resolve_to_prose from "liana-core/implementation/transformers/reso
 import * as t_loc_to_prose from "liana-core/implementation/transformers/location/prose"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 type My_Error =
     | ['error writing file', s_write_file.Error]
@@ -88,9 +88,9 @@ export const $$: p_.Command_Implementation<
                             {
                                 'message': sh.pg.sentences([
                                     sh.sentence([
-                                        sh.ph.literal("Error serializing schema for module '"),
-                                        sh.ph.literal(id),
-                                        sh.ph.literal("': "),
+                                        sh.ph.text("Error serializing schema for module '"),
+                                        sh.ph.text(id),
+                                        sh.ph.text("': "),
                                         p_temp.from.state($).decide(
                                             ($) => {
                                                 switch ($[0]) {
@@ -102,7 +102,7 @@ export const $$: p_.Command_Implementation<
                                                                 'character location reporting': ['one based', null]
                                                             }
                                                         ),
-                                                        sh.ph.literal(": "),
+                                                        sh.ph.text(": "),
                                                         t_resolve_to_prose.Error(
                                                             $,
                                                         )

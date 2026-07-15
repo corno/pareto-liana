@@ -14,22 +14,22 @@ import * as t_resolve_to_prose from "liana-core/implementation/transformers/reso
 import * as t_location_to_prose from "liana-core/implementation/transformers/location/prose"
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 export const Error: declarations.Error = ($, $p) => sh.ph.composed([
-    sh.ph.literal("error in package '"),
-    sh.ph.literal($p.id),
-    sh.ph.literal("': "),
+    sh.ph.text("error in package '"),
+    sh.ph.text($p.id),
+    sh.ph.text("': "),
     p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'could not log': return p_.option($, ($) => sh.ph.literal("could not log"))
-                case 'could not remove interface': return p_.option($, ($) => sh.ph.literal("could not remove interface"))
-                case 'could not remove implementation': return p_.option($, ($) => sh.ph.literal("could not remove implementation"))
-                case 'could not write interface': return p_.option($, ($) => sh.ph.literal("could not write interface"))
-                case 'could not write implementation': return p_.option($, ($) => sh.ph.literal("could not write implementation"))
-                case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.literal("could not copy generic implementation"))
-                case 'could not copy core interface': return p_.option($, ($) => sh.ph.literal("could not copy core interface"))
+                case 'could not log': return p_.option($, ($) => sh.ph.text("could not log"))
+                case 'could not remove interface': return p_.option($, ($) => sh.ph.text("could not remove interface"))
+                case 'could not remove implementation': return p_.option($, ($) => sh.ph.text("could not remove implementation"))
+                case 'could not write interface': return p_.option($, ($) => sh.ph.text("could not write interface"))
+                case 'could not write implementation': return p_.option($, ($) => sh.ph.text("could not write implementation"))
+                case 'could not copy generic implementation': return p_.option($, ($) => sh.ph.text("could not copy generic implementation"))
+                case 'could not copy core interface': return p_.option($, ($) => sh.ph.text("could not copy core interface"))
                 case 'could not deserialize module': return p_.option($, ($) => sh.ph.composed([
                     t_location_to_prose.Range(
                         $.location,
@@ -38,7 +38,7 @@ export const Error: declarations.Error = ($, $p) => sh.ph.composed([
                             'character location reporting': ['one based', null],
                         }
                     ),
-                    sh.ph.literal(": "),
+                    sh.ph.text(": "),
                     t_resolve_to_prose.Error(
                         $,
                     )

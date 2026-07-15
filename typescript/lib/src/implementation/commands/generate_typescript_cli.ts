@@ -36,7 +36,7 @@ import * as t_generate_typescript_to_prose from "../transformers/generate_typesc
 import * as t_path_to_text from "pareto-resources/implementation/transformers/unrestricted_path/text"
 
 // //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
 
 export const $$: p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
@@ -112,8 +112,8 @@ export const $$: p_.Command_Implementation<
                                         'message': sh.pg.sentences([
                                             sh.sentence([
 
-                                                sh.ph.literal("generated package: "),
-                                                sh.ph.literal(t_path_to_text.Node_Path($v.source)),
+                                                sh.ph.text("generated package: "),
+                                                sh.ph.text(t_path_to_text.Node_Path($v.source)),
                                             ])
                                         ]),
                                     },
@@ -150,15 +150,15 @@ export const $$: p_.Command_Implementation<
                                             case 'missing': return p_temp.ss($, ($) => p_temp.from.state($.expected).decide(
                                                 ($) => {
                                                     switch ($[0]) {
-                                                        case 'source path': return p_temp.ss($, ($) => sh.ph.literal("missing source path argument"))
-                                                        case 'target path': return p_temp.ss($, ($) => sh.ph.literal("missing target path argument"))
+                                                        case 'source path': return p_temp.ss($, ($) => sh.ph.text("missing source path argument"))
+                                                        case 'target path': return p_temp.ss($, ($) => sh.ph.text("missing target path argument"))
                                                         default: return p_temp.exhaustive($[0])
                                                     }
                                                 }
                                             ))
-                                            case 'invalid source path': return p_temp.ss($, ($) => sh.ph.literal("invalid source path argument"))
-                                            case 'too many arguments': return p_temp.ss($, ($) => sh.ph.literal("too many arguments"))
-                                            case 'processing': return p_temp.ss($, ($) => sh.ph.literal("error while processing"))
+                                            case 'invalid source path': return p_temp.ss($, ($) => sh.ph.text("invalid source path argument"))
+                                            case 'too many arguments': return p_temp.ss($, ($) => sh.ph.text("too many arguments"))
+                                            case 'processing': return p_temp.ss($, ($) => sh.ph.text("error while processing"))
                                             default: return p_temp.exhaustive($[0])
                                         }
                                     })
