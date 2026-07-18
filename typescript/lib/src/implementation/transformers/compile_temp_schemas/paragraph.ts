@@ -16,7 +16,7 @@ namespace declarations {
 }
 
 //dependencies
-import * as ser_resolving from "liana-core/modules/resolving/implementation/serializers/resolving"
+import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/implementation/serializers/resolving"
 import * as ser_location from "astn-core/modules/deserialization/implementation/serializers/location"
 
 //shorthands

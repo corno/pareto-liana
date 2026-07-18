@@ -10,7 +10,7 @@ namespace declarations {
 }
 
 //dependencies
-import * as ser_resolving from "liana-core/modules/resolving/implementation/serializers/resolving"
+import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/implementation/serializers/resolving"
 import * as ser_unresolved_document_deserialization from "liana-core/modules/unresolved_document_deserialization/implementation/serializers/unresolved_document_deserialization"
 import * as ser_read_file from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/read_file"
 

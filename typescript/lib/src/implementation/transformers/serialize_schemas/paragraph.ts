@@ -8,7 +8,7 @@ import * as s_out from "../../../interface/schemas/paragraph.js"
 import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
 
 //dependencies
-import * as ser_resolving from "liana-core/modules/resolving/implementation/serializers/resolving"
+import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/implementation/serializers/resolving"
 import * as ser_write_file from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/write_file"
 import * as ser_location from "astn-core/modules/deserialization/implementation/serializers/location"
 

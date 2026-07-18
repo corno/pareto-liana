@@ -1,1 +1,1 @@
-export * from "liana-core/modules/resolving/schemas/resolving"
+export * from "liana-core/modules/resolved_document_deserialization/schemas/resolving"
