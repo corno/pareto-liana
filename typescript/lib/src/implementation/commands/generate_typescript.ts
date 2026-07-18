@@ -9,7 +9,7 @@ import type * as query_interfaces_pareto_filesystem_unrestricted_api from "paret
 
 // //schemas
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
-import type * as s_schema from "../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
+import type * as s_schema from "../../modules/liana.generated/modules/schema/schemas/resolved.js"
 import type * as s_generate_typescript from "../../interface/schemas/generate_typescript.js"
 
 //dependencies

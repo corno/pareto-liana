@@ -1,6 +1,6 @@
 import type * as p_ from 'pareto-core/interface/schema'
 
-import type * as s_schema from "../../modules/liana.generated/modules/schema/interface/schemas/unresolved.js"
+import type * as s_schema from "../../modules/liana.generated/modules/schema/schemas/unresolved.js"
 
 export type Package = {
     // 'id': string,

@@ -7,7 +7,7 @@ const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.
 
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
-import type * as s_in from "../../../interface/schemas/resolved.js"
+import type * as s_in from "../../../schemas/resolved.js"
 namespace t_signatures {
     export type Package = p_.Transformer<
         s_in.Package,
@@ -175,7 +175,7 @@ namespace t_signatures {
     >
 }
 
-import * as s_out from "../../../interface/schemas/unresolved.js"
+import * as s_out from "../../../schemas/unresolved.js"
 
 export const Package: t_signatures.Package = ($) => ({
     'omit (de)serializer': p_change_context(

@@ -8,7 +8,7 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //schemas
-import type * as s_out_schema from "../../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
+import type * as s_out_schema from "../../../modules/liana.generated/modules/schema/schemas/resolved.js"
 import type * as s_out from "../../../interface/schemas/temp_module_specifier.js"
 
 //dependencies

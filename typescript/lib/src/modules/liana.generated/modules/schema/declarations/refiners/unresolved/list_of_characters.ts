@@ -1,11 +1,11 @@
 
 import * as p_i from 'pareto-core/interface/__internal/Abort'
 
-import * as i_generic from "../../../interface/schemas/unresolved_document_desrialization.js"
+import * as i_generic from "../../../schemas/unresolved_document_desrialization.js"
 
-import * as i_in from "../../../interface/schemas/list_of_characters.js"
+import * as i_in from "../../../schemas/list_of_characters.js"
 
-import * as i_out from "../../../interface/schemas/unresolved.js"
+import * as i_out from "../../../schemas/unresolved.js"
 
 export namespace Package_ {
     

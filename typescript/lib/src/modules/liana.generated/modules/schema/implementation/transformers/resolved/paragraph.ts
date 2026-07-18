@@ -1,8 +1,8 @@
 
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import type * as s_in from "../../../interface/schemas/resolved.js"
-import type * as s_out from "../../../interface/schemas/paragraph.js"
+import type * as s_in from "../../../schemas/resolved.js"
+import type * as s_out from "../../../schemas/paragraph.js"
 
 namespace t_signatures {
     export type Package = p_.Transformer<

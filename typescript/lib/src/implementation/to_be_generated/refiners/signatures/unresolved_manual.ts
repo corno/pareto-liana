@@ -5,7 +5,7 @@ import p_change_context from 'pareto-core/implementation/refiner/specials/change
 
 import * as t_signatures from "../../../../modules/liana.generated/modules/schema/declarations/refiners/resolved/unresolved.js"
 
-import * as s_out from "../../../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
+import * as s_out from "../../../../modules/liana.generated/modules/schema/schemas/resolved.js"
 
 import * as i_generic from "../../resolve_generic.js"
 
