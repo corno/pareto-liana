@@ -19,7 +19,7 @@ namespace declarations {
 
 
 //dependencies
-import * as t_deserialize_to_location from "liana-core/implementation/transformers/deserialize/location"
+import * as t_deserialize_to_location from "liana-core/modules/unresolved_document_deserialization/implementation/transformers/unresolved_document_deserialization/location"
 
 
 
@@ -35,14 +35,7 @@ export const Error: declarations.Error = ($) => {
                 case 'could not write implementation': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not copy generic implementation': return p_.option($, ($) => p_.literal.not_set())
                 case 'could not copy core interface': return p_.option($, ($) => p_.literal.not_set())
-                case 'could not resolve module': return p_.option($, ($) => p_.literal.set(p_.from.state($.error.location).decide(
-                    ($) => {
-                        switch ($[0]) {
-                            case 'in main document': return p_.option($, ($) => $)
-                            case 'in subdocument': return p_.option($, ($) => $.range)
-                            default: return p_.exhaustive($[0])
-                        }
-                    })))
+                case 'could not resolve module': return p_.option($, ($) => p_.literal.set($.error.location))
                 case 'could not deserialize': return p_.option($, ($) => p_.literal.set(
                     p_.from.state(t_deserialize_to_location.Error($.error)).decide(
                         ($) => {

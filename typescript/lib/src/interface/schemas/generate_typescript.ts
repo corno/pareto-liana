@@ -1,7 +1,7 @@
 
-import type * as s_resolve from "./resolve.js"
+import type * as s_resolve from "./resolving.js"
 import type * as s_read_file from "./fs_unrestricted_read_file.js"
-import type * as s_deserialize from "./deserialize.js"
+import type * as s_deserialize from "./unresolved_document_deserialization.js"
 import type * as s_path from "./fs_unrestricted_path.js"
 
 

@@ -4,51 +4,55 @@ import * as p_t from 'pareto-core/implementation/transformer'
 
 //interface dependencies
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
-import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/commands"
 import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 //schemas
-import type * as s_main from "../../../interface/schemas/main.js"
+import type * as s_main from "pareto-application-api/interface/schemas/main"
 import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
+import type * as s_packages from "../../interface/schemas/packages.js"
 
 //dependencies
-import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
-import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_file"
+import { $$ as write_directory_content } from "pareto-filesystem-unrestricted-api/modules/helpers/implementation/commands/write_directory_content"
+import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/deserializers/path"
 import * as r_schema from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/transformers/interface/serialized_typescript"
+import * as t_generate_typescript_to_paragraph from "../transformers/compile_temp_schemas/paragraph.js"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
-import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
-import * as r_context_path_from_text from "pareto-resources/implementation/refiners/path_unrestricted/text"
-import * as t_generate_typescript_to_prose from "../transformers/compile_temp_schemas/prose.js"
+import * as t_paragraph_to_serialized from "pareto-fountain-pen/_implementation/transformers/paragraph/serialized"
+import * as t_pareto_implementation_to_typescript_directory from "pareto/modules/implementation_old/implementation/transformers/implementation/to_be_written_directory_content"
+import * as t_pareto_interface_to_typescript_directory from "pareto/modules/interface_old/implementation/transformers/interface/to_be_written_directory_content"
+import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/transformers/path/path"
+
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
 
 export const $$: p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
-        'packages': s_compile_temp_schemas.Packages
+        'packages': s_packages.Packages,
+        'error message indentation': string
+        'file indentation': string
+        'newline': string
     },
     null,
     {
         'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
-        'log': command_interfaces_pareto_stream_api.log
-        'log error': command_interfaces_pareto_stream_api.log_error
+        'log lines': command_interfaces_pareto_stream_api.log_lines
+        'log error lines': command_interfaces_pareto_stream_api.log_error_lines
         'make directory': command_interfaces_pareto_filesystem_unrestricted_api.make_directory
         'remove': command_interfaces_pareto_filesystem_unrestricted_api.remove
         'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
+
     }
 > = p_.command(
     ($d, $s, $q, $c) => [
 
-        $c.log.execute(
+        $c['log lines'].execute(
             {
-                'message': sh.pg.sentences([
-                    sh.sentence([
-                        sh.ph.text("generating..."),
-                    ])
+                'lines': p_.literal.list([
+                    "generating..."
                 ])
             },
             ($): s_main.Error => ({
@@ -61,7 +65,7 @@ export const $$: p_.Command_Implementation<
                     $s.packages,
                     ($, id): p_.Command_Block<s_compile_temp_schemas.Error> => {
 
-                        const path = r_context_path_from_text.Context_Path(
+                        const path = deser_path.Context_Path(
                             `./out/source_code/${id}`
                         )
 
@@ -117,71 +121,68 @@ export const $$: p_.Command_Implementation<
                                 ),
                                 ($) => [
                                     //write new interface files
-                                    c_write_to_directory(
-                                        null,
+                                    write_directory_content(
+                                        {
+                                            'remove before writing': true
+                                        },
                                         null,
                                         {
                                             'remove': $c.remove,
-                                            'write to file': c_write_to_file(
-                                                null,
-                                                null,
-                                                {
-                                                    'write file': $c['write file'],
-                                                },
-                                            ),
+                                            'write file': $c['write file'],
                                         },
                                     ).execute(
                                         {
-                                            'generic': {
-                                                'escape spaces in path': true,
-                                                'prose serialize': {
-                                                    'indentation': "    ",
-                                                    'newline': "\n",
-                                                },
-                                            },
-                                            'path': interface_module_path,
-                                            'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
+                                            'path': t_path_to_path.deprecated_node_path_to_context_path(interface_module_path),
+                                            'directory': t_pareto_interface_to_typescript_directory.Package_Set(
                                                 t_liana_to_pareto_interface.Package(
                                                     $,
-                                                )
+                                                ),
+                                                {
+                                                    'file write parameters': {
+                                                        'newline': $s.newline,
+                                                    },
+                                                    'serialization parameters': {
+                                                        'typescript': {
+                                                            'replace empty type literals by symbol': true,
+                                                        },
+                                                        'indentation': $s['file indentation'],
+                                                    }
+                                                }
                                             ),
-                                            'remove before creating': true,
                                         },
                                         ($) => ['could not write interface', null]
                                     ),
                                     //write new implementation files
-                                    c_write_to_directory(
-                                        null,
+                                    write_directory_content(
+                                        {
+                                            'remove before writing': true
+                                        },
                                         null,
                                         {
                                             'remove': $c.remove,
-                                            'write to file': c_write_to_file(
-                                                null,
-                                                null,
-                                                {
-                                                    'write file': $c['write file'],
-                                                },
-                                            ),
+                                            'write file': $c['write file'],
                                         },
                                     ).execute(
                                         {
-                                            'path': implementation_module_path,
-                                            'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
+                                            'path': t_path_to_path.deprecated_node_path_to_context_path(implementation_module_path),
+                                            'directory': t_pareto_implementation_to_typescript_directory.Package_Set(
                                                 t_liana_to_pareto_implementation.Package(
                                                     $,
-                                                )
+                                                ),
+                                                {
+                                                    'file write parameters': {
+                                                        'newline': $s.newline,
+                                                    },
+                                                    'serialization parameters': {
+                                                        'typescript': {
+                                                            'replace empty type literals by symbol': true,
+                                                        },
+                                                        'indentation': $s['file indentation'],
+                                                    }
+                                                }
                                             ),
-                                            'remove before creating': true,
-                                            'generic': {
-                                                'escape spaces in path': true,
-                                                'prose serialize': {
-                                                    'indentation': "    ",
-                                                    'newline': "\n",
-                                                },
-
-                                            },
                                         },
-                                        ($) => ['could not write implementation', null]
+                                        ($) => ['could not write interface', null]
                                     ),
 
                                 ]
@@ -217,14 +218,11 @@ export const $$: p_.Command_Implementation<
 
 
                             //log
-                            $c.log.execute(
+                            $c['log lines'].execute(
                                 {
-                                    'message': sh.pg.sentences([
-                                        sh.sentence([
-
-                                            sh.ph.text("generated package: "),
-                                            sh.ph.text(id),
-                                        ])
+                                    'lines': p_.literal.list([
+                                        "generated package: ",
+                                        id,
                                     ]),
                                 },
                                 ($) => ['could not log', null]
@@ -235,17 +233,24 @@ export const $$: p_.Command_Implementation<
                 )
             ],
             ($) => [
-                $c.log.execute(
+                $c['log lines'].execute(
                     {
-                        'message': sh.pg.sentences(p_t.from.dictionary($).convert_to_list(
-                            ($, id) => sh.sentence([t_generate_typescript_to_prose.Error(
-                                $,
-                                {
-                                    'id': id,
-                                    'character location reporting': ['one based', null]
-                                }
-                            )])
-                        ))
+                        'lines': t_paragraph_to_serialized.Paragraph(
+                            sh.pg.sentences(
+                                p_t.from.dictionary($).convert_to_list(
+                                    ($, id) => sh.sentence([t_generate_typescript_to_paragraph.Error(
+                                        $,
+                                        {
+                                            'id': id,
+                                            'character location reporting': ['one based', null]
+                                        }
+                                    )])
+                                )
+                            ),
+                            {
+                                'indentation': $s['error message indentation'],
+                            }
+                        )
                     },
                     ($) => ({
                         'exit code': 1

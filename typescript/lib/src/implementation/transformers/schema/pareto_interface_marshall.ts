@@ -3,9 +3,9 @@ import type * as p_i from 'pareto-core/interface/transformer'
 import type * as p_di from 'pareto-core/interface/schema'
 
 //schemas
-import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
+import type * as s_in from "../../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
 
-import type * as s_out from "../../../interface/schemas/interface_resolved.js"
+import type * as s_out from "../../../interface/schemas/pareto_interface_resolved.js"
 namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<

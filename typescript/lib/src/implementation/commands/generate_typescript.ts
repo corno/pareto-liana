@@ -4,31 +4,33 @@ import p_variables from 'pareto-core/implementation/command/specials/variables'
 import type * as p_inf from 'pareto-core/interface/command_interface'
 
 //interface dependencies
-import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
-import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/commands"
+import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/queries"
 
 // //schemas
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
-import type * as s_schema from "../../submodules/schema/interface/schemas/resolved.js"
+import type * as s_schema from "../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
 import type * as s_generate_typescript from "../../interface/schemas/generate_typescript.js"
 
 //dependencies
-import { $$ as c_write_to_directory } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_directory"
-import { $$ as c_write_to_file } from "pareto-fountain-pen-file-structure/implementation/commands/write_to_file"
+import { $$ as write_directory_content } from "pareto-filesystem-unrestricted-api/modules/helpers/implementation/commands/write_directory_content"
 import * as r_schema from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as r_unresolved_schema_from_loc from "../../submodules/schema/implementation/refiners/unresolved/list_of_characters.js"
+import * as r_unresolved_schema_from_loc from "../../modules/liana.generated/modules/schema/implementation/refiners/unresolved/list_of_characters.js"
 import * as t_liana_to_pareto_implementation from "../transformers/schema/pareto_implementation.js"
 import * as t_liana_to_pareto_interface from "../transformers/schema/pareto_interface.js"
-import * as t_pareto_implementation_to_serialized_typescript from "pareto/implementation/transformers/implementation/serialized_typescript"
-import * as t_pareto_interface_to_serialized_typescript from "pareto/implementation/transformers/interface/serialized_typescript"
-import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
+import * as t_pareto_implementation_to_typescript_directory from "pareto/modules/implementation_old/implementation/transformers/implementation/to_be_written_directory_content"
+import * as t_pareto_interface_to_typescript_directory from "pareto/modules/interface_old/implementation/transformers/interface/to_be_written_directory_content"
+import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/transformers/path/path"
 
 export const $$: p_.Command_Implementation<
     p_inf.Command_Interface<
         s_generate_typescript.Error,
         s_generate_typescript.Parameters
     >,
-    null,
+    {
+        'file indentation': string
+        'newline': string
+    },
     {
         'read file': query_interfaces_pareto_filesystem_unrestricted_api.read_file
     },
@@ -85,7 +87,7 @@ export const $$: p_.Command_Implementation<
                                             () => {
                                                 const x = r_schema.Module_Specification(
                                                     r_unresolved_schema_from_loc.Module_Specification(
-                                                        $v2,
+                                                        $v2.data,
                                                         ($) => abort(['could not deserialize', {
                                                             'location': $d.source,
                                                             'error': $,
@@ -108,7 +110,7 @@ export const $$: p_.Command_Implementation<
                                             }))
                                         case 'package': return p_temp.ss($, ($) => r_schema.Package(
                                             r_unresolved_schema_from_loc.Package(
-                                                $v2,
+                                                $v2.data,
                                                 ($) => abort(['could not deserialize', {
                                                     'location': $d.source,
                                                     'error': $,
@@ -130,73 +132,69 @@ export const $$: p_.Command_Implementation<
                             ($) => [
 
                                 //write new interface files
-                                c_write_to_directory(
-                                    null,
+                                write_directory_content(
+                                    {
+                                        'remove before writing': true
+                                    },
                                     null,
                                     {
                                         'remove': $c.remove,
-                                        'write to file': c_write_to_file(
-                                            null,
-                                            null,
-                                            {
-                                                'write file': $c['write file'],
-                                            },
-                                        ),
+                                        'write file': $c['write file'],
                                     },
                                 ).execute(
                                     {
-                                        'generic': {
-                                            'escape spaces in path': true,
-                                            'prose serialize': {
-                                                'indentation': "    ",
-                                                'newline': "\n",
-                                            },
-                                        },
-                                        'path': interface_module_path,
-                                        'directory': t_pareto_interface_to_serialized_typescript.Package_Set(
+                                        'path': t_path_to_path.deprecated_node_path_to_context_path(interface_module_path),
+                                        'directory': t_pareto_interface_to_typescript_directory.Package_Set(
                                             t_liana_to_pareto_interface.Package(
                                                 $,
-                                            )
+                                            ),
+                                            {
+                                                'file write parameters': {
+                                                    'newline': $s.newline,
+                                                },
+                                                'serialization parameters': {
+                                                    'typescript': {
+                                                        'replace empty type literals by symbol': true,
+                                                    },
+                                                    'indentation': $s['file indentation'],
+                                                }
+                                            }
                                         ),
-                                        'remove before creating': true,
                                     },
                                     ($) => ['could not write interface', null]
                                 ),
                                 //write new implementation files
-                                c_write_to_directory(
-                                    null,
+                                write_directory_content(
+                                    {
+                                        'remove before writing': true
+                                    },
                                     null,
                                     {
                                         'remove': $c.remove,
-                                        'write to file': c_write_to_file(
-                                            null,
-                                            null,
-                                            {
-                                                'write file': $c['write file'],
-                                            },
-                                        ),
+                                        'write file': $c['write file'],
                                     },
                                 ).execute(
                                     {
-                                        'path': implementation_module_path,
-                                        'directory': t_pareto_implementation_to_serialized_typescript.Package_Set(
+                                        'path': t_path_to_path.deprecated_node_path_to_context_path(implementation_module_path),
+                                        'directory': t_pareto_implementation_to_typescript_directory.Package_Set(
                                             t_liana_to_pareto_implementation.Package(
                                                 $,
-                                            )
+                                            ),
+                                            {
+                                                'file write parameters': {
+                                                    'newline': $s.newline,
+                                                },
+                                                'serialization parameters': {
+                                                    'typescript': {
+                                                        'replace empty type literals by symbol': true,
+                                                    },
+                                                    'indentation': $s['file indentation'],
+                                                }
+                                            }
                                         ),
-                                        'remove before creating': true,
-                                        'generic': {
-                                            'escape spaces in path': true,
-                                            'prose serialize': {
-                                                'indentation': "    ",
-                                                'newline': "\n",
-                                            },
-
-                                        },
                                     },
-                                    ($) => ['could not write implementation', null]
+                                    ($) => ['could not write interface', null]
                                 ),
-
                             ]
                         ),
 

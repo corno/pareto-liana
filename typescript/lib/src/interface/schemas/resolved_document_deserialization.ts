@@ -1,0 +1,1 @@
+export * from "liana-core/modules/resolving/schemas/resolved_document_deserialization"

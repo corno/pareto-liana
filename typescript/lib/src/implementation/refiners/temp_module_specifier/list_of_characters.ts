@@ -8,22 +8,23 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
 
 //schemas
-import type * as s_out_schema from "../../../submodules/schema/interface/schemas/resolved.js"
+import type * as s_out_schema from "../../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
+import type * as s_out from "../../../interface/schemas/temp_module_specifier.js"
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as r_schema_unresolved_from_loc from "../../../submodules/schema/implementation/refiners/unresolved/list_of_characters.js"
+import * as r_schema_unresolved_from_loc from "../../../modules/liana.generated/modules/schema/implementation/refiners/unresolved/list_of_characters.js"
 
 export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,
-            ($) => abort(['deserialize', $]),
+            ($) => abort(['unresolved document deserialization', $]),
             {
                 'tab size': 4,
             }
         ),
-        ($) => abort(['resolve error', $]),
+        ($) => abort(['resolving', $]),
         p_.literal.nothing(),
         p_.literal.nothing(),
     )
@@ -97,8 +98,8 @@ export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
                         ($): s_out_schema.Resolver => {
                             switch ($[0]) {
                                 case 'constrained': return p_.option($, ($) => $)
-                                case 'unconstrained': return p_.option($, ($) => abort(['resolve error', {
-                                    'location': ['in main document', {
+                                case 'unconstrained': return p_.option($, ($) => abort(['resolving', {
+                                    'location': {
                                         'start': {
                                             'absolute': 0,
                                             'relative': {
@@ -113,7 +114,7 @@ export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
                                                 'line': 0,
                                             }
                                         },
-                                    }],
+                                    },
                                     'type': ['constraint', ['state', {
                                         'expected': "constrained",
                                         'found': "unconstrained",

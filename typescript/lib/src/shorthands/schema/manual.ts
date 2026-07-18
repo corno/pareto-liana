@@ -1,7 +1,7 @@
 
-import * as sh from 'pareto-core-shorthands/unresolved_data'
+import * as sh from 'liana-core/temp_shorthand_helpers/unresolved_data'
 
-import type * as s_target from "../../submodules/schema/interface/schemas/unresolved.js"
+import type * as s_target from "../../modules/liana.generated/modules/schema/interface/schemas/unresolved.js"
 
 export const package_ = (
     schema_tree: s_target.Schema_Tree,

@@ -1,15 +1,5 @@
-import type * as p_ from 'pareto-core/interface/schema'
 
-import type * as s_schema from "../../submodules/schema/interface/schemas/unresolved.js"
-import type * as s_resolve from "./resolve.js"
-
-export type Package = {
-    // 'id': string,
-    'target path': string,
-    'package': s_schema.Package
-}
-
-export type Packages = p_.Dictionary<Package>
+import type * as s_resolve from "./resolving.js"
 
 export type Error =
     | ['could not log', null]

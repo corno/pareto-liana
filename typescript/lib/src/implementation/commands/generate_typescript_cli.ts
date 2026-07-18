@@ -4,25 +4,16 @@ import p_iterate from 'pareto-core/implementation/refiner/specials/iterate'
 
 //interface dependencies
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
-import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/commands"
 import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
-import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/queries"
+import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/queries"
 
 // //schemas
-import type * as s_main from "./main.js"
+import type * as s_main from "pareto-application-api/interface/schemas/main"
 import type * as s_resource from "../../interface/schemas/generate_typescript.js"
-import type * as s_path from "../../../interface/schemas/fs_unrestricted_path"
-type My_Error_1 =
-    | ['too many arguments', null]
-    | ['missing', {
-        'expected': Expected,
-    }]
-    | ['invalid source path', null]
-    | ['processing', null]
+import type * as s_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/schemas/path"
 
-type Expected =
-    | ['source path', null]
-    | ['target path', null]
+import type * as s_generate_typescript_cli from "../../interface/schemas/generate_typescript_cli.js"
 
 type Res = {
     'source': s_path.Node_Path
@@ -31,23 +22,28 @@ type Res = {
 
 //dependencies
 import * as c_generate_typescript from "./generate_typescript.js"
-import * as r_unrestricted_path_from_text from "pareto-resources/implementation/refiners/path_unrestricted/text"
-import * as t_generate_typescript_to_prose from "../transformers/generate_typescript/prose.js"
-import * as t_path_to_text from "pareto-resources/implementation/transformers/unrestricted_path/text"
+import * as t_generate_typescript_to_serialized from "../transformers/generate_typescript/serialized.js"
+import * as ser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/path"
+import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/deserializers/path"
+import * as t_paragraph_to_serialized_paragraph from "pareto-fountain-pen/_implementation/transformers/paragraph/serialized"
 
 // //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
+import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
 
 export const $$: p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
-    null,
+    {
+        'error message indentation': string
+        'file indentation': string
+        'newline': string
+    },
     {
         'read file': query_interfaces_pareto_filesystem_unrestricted_api.read_file
     },
     {
         'copy': command_interfaces_pareto_filesystem_unrestricted_api.copy
-        'log': command_interfaces_pareto_stream_api.log
-        'log error': command_interfaces_pareto_stream_api.log_error
+        'log lines': command_interfaces_pareto_stream_api.log_lines
+        'log error lines': command_interfaces_pareto_stream_api.log_error_lines
         'make directory': command_interfaces_pareto_filesystem_unrestricted_api.make_directory
         'remove': command_interfaces_pareto_filesystem_unrestricted_api.remove
         'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
@@ -55,7 +51,7 @@ export const $$: p_.Command_Implementation<
 > = p_.command(
     ($d, $s, $q, $c) => [
 
-        p_.s.handle_error<s_main.Error, My_Error_1>(
+        p_.s.handle_error<s_main.Error, s_generate_typescript_cli.Error>(
             [
                 p_.s.refine(
                     (abort) => p_iterate<
@@ -69,7 +65,7 @@ export const $$: p_.Command_Implementation<
                         // create_expectation_error: (expected, found) => ['missing', { 'expected': expected }],
                         assign: (iterator) => ({
 
-                            'source': r_unrestricted_path_from_text.Node_Path(
+                            'source': deser_path.Node_Path(
                                 iterator.consume(
                                     ($) => abort(['missing', {
                                         'expected': ['source path', null]
@@ -79,7 +75,7 @@ export const $$: p_.Command_Implementation<
                                 () => abort(['invalid source path', null]),
                                 { 'pedantic': false }
                             ),
-                            'target': r_unrestricted_path_from_text.Context_Path(
+                            'target': deser_path.Context_Path(
                                 iterator.consume(
                                     ($) => abort(['missing', {
                                         'expected': ['target path', null]
@@ -90,12 +86,15 @@ export const $$: p_.Command_Implementation<
                         })
                     }),
                     ($v) => [
-                        p_.s.handle_error<My_Error_1, s_resource.Error>(
+                        p_.s.handle_error<s_generate_typescript_cli.Error, s_resource.Error>(
                             [
 
 
                                 c_generate_typescript.$$(
-                                    null,
+                                    {
+                                        'file indentation': $s['file indentation'],
+                                        'newline': $s.newline,
+                                    },
                                     $q,
                                     $c,
                                 ).execute(
@@ -107,14 +106,11 @@ export const $$: p_.Command_Implementation<
                                     ($) => $,
                                 ),
                                 //log
-                                $c.log.execute(
+                                $c['log lines'].execute(
                                     {
-                                        'message': sh.pg.sentences([
-                                            sh.sentence([
-
-                                                sh.ph.text("generated package: "),
-                                                sh.ph.text(t_path_to_text.Node_Path($v.source)),
-                                            ])
+                                        'lines': p_.literal.list([
+                                            "generated package: ",
+                                            ser_path.Node_Path($v.source),
                                         ]),
                                     },
                                     ($) => ['could not log', null]
@@ -122,13 +118,14 @@ export const $$: p_.Command_Implementation<
 
                             ],
                             ($) => [
-                                $c['log error'].execute(
+                                $c['log error lines'].execute(
                                     {
-                                        'message': sh.pg.sentences([
-                                            sh.sentence([
-                                                t_generate_typescript_to_prose.Error($),
-                                            ])
-                                        ])
+                                        'lines': t_generate_typescript_to_serialized.Error(
+                                            $,
+                                            {
+                                                'indentation': $s['error message indentation'],
+                                            }
+                                        )
                                     },
                                     ($) => ['processing', null]
                                 )
@@ -140,30 +137,32 @@ export const $$: p_.Command_Implementation<
                 )
             ],
             ($) => [
-                $c['log error'].execute(
+                $c['log error lines'].execute(
                     {
-                        'message': sh.pg.sentences([
-                            sh.sentence([
-                                p_temp.from.state($).decide(
-                                    ($) => {
-                                        switch ($[0]) {
-                                            case 'missing': return p_temp.ss($, ($) => p_temp.from.state($.expected).decide(
-                                                ($) => {
-                                                    switch ($[0]) {
-                                                        case 'source path': return p_temp.ss($, ($) => sh.ph.text("missing source path argument"))
-                                                        case 'target path': return p_temp.ss($, ($) => sh.ph.text("missing target path argument"))
-                                                        default: return p_temp.exhaustive($[0])
-                                                    }
+                        'lines': t_paragraph_to_serialized_paragraph.Phrase(
+                            p_temp.from.state($).decide(
+                                ($) => {
+                                    switch ($[0]) {
+                                        case 'missing': return p_temp.ss($, ($) => p_temp.from.state($.expected).decide(
+                                            ($) => {
+                                                switch ($[0]) {
+                                                    case 'source path': return p_temp.ss($, ($) => sh.ph.text("missing source path argument"))
+                                                    case 'target path': return p_temp.ss($, ($) => sh.ph.text("missing target path argument"))
+                                                    default: return p_temp.exhaustive($[0])
                                                 }
-                                            ))
-                                            case 'invalid source path': return p_temp.ss($, ($) => sh.ph.text("invalid source path argument"))
-                                            case 'too many arguments': return p_temp.ss($, ($) => sh.ph.text("too many arguments"))
-                                            case 'processing': return p_temp.ss($, ($) => sh.ph.text("error while processing"))
-                                            default: return p_temp.exhaustive($[0])
-                                        }
-                                    })
-                            ])
-                        ])
+                                            }
+                                        ))
+                                        case 'invalid source path': return p_temp.ss($, ($) => sh.ph.text("invalid source path argument"))
+                                        case 'too many arguments': return p_temp.ss($, ($) => sh.ph.text("too many arguments"))
+                                        case 'processing': return p_temp.ss($, ($) => sh.ph.text("error while processing"))
+                                        default: return p_temp.exhaustive($[0])
+                                    }
+                                }
+                            ),
+                            {
+                                'indentation': $s['error message indentation']
+                            }
+                        )
                     },
                     ($) => ({
                         'exit code': 2

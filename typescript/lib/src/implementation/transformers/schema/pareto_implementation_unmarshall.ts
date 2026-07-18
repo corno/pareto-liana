@@ -4,10 +4,10 @@ import type * as p_di from 'pareto-core/interface/schema'
 import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
 
 //schemas
-import type * as s_in from "../../../submodules/schema/interface/schemas/resolved.js"
-import type * as s_out_interface from "./resolved.js"
+import type * as s_in from "../../../modules/liana.generated/modules/schema/interface/schemas/resolved.js"
+import type * as s_out_interface from "../../../interface/schemas/pareto_interface_resolved.js"
 
-import type * as s_out from "../../../interface/schemas/implementation_resolved.js"
+import type * as s_out from "../../../interface/schemas/pareto_implementation_resolved.js"
 namespace declarations {
 
     export type Schema = p_i.Transformer_With_Parameter<

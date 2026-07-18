@@ -1,44 +1,36 @@
 //core
 import * as p_ from 'pareto-core/implementation/command'
-import * as p_temp from 'pareto-core/implementation/transformer'
 
 //interface dependencies
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
-import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/interface/commands"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/commands"
 import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
 
 //schemas
-import type * as s_main from "./main.js"
-import type * as s_resolve from "./resolve.js"
-import type * as s_write_file from "./fs_unrestricted_write_file.js"
-import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
+import type * as s_main from "pareto-application-api/interface/schemas/main"
+import type * as s_packages from "../../interface/schemas/packages.js"
+import type * as s_serialize_schemas from "../../interface/schemas/serialize_schemas.js"
 
 //dependencies
-import * as r_path_from_temp_string from "pareto-resources/implementation/refiners/path_unrestricted/text"
+import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/deserializers/path"
 import * as r_schema_resolved_from_unresolved from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as t_path_to_path from "pareto-resources/implementation/transformers/unrestricted_path/unrestricted_path"
-import * as t_schema_to_prose from "../../submodules/schema/implementation/transformers/resolved/prose.js"
-import * as t_fp_to_loc from "pareto-fountain-pen/implementation/transformers/prose/list_of_characters"
-import * as t_write_file_to_prose from "pareto-filesystem-unrestricted-api/implementation/transformers/write_file/prose"
-import * as t_resolve_to_prose from "liana-core/implementation/transformers/resolve/prose"
-import * as t_loc_to_prose from "liana-core/implementation/transformers/location/prose"
+import * as t_paragraph_to_serialized from "pareto-fountain-pen/_implementation/transformers/paragraph/serialized"
+import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/transformers/path/path"
+import * as t_schema_to_paragraph from "../../modules/liana.generated/modules/schema/implementation/transformers/resolved/paragraph.js"
+import * as t_serialize_schemas_to_paragraph from "../../implementation/transformers/serialize_schemas/paragraph.js"
 
-//shorthands
-import * as sh from "pareto-fountain-pen/shorthands/prose_simple/deprecated"
-
-type My_Error =
-    | ['error writing file', s_write_file.Error]
-    | ['resolve error', s_resolve.Error]
 
 export const $$: p_.Command_Implementation<
     command_interfaces_pareto_application_api.main,
     {
-        'packages': s_compile_temp_schemas.Packages
+        'packages': s_packages.Packages
+        'newline': string
+        'indentation': string
     },
     null,
     {
         'write file': command_interfaces_pareto_filesystem_unrestricted_api.write_file
-        'log error': command_interfaces_pareto_stream_api.log_error
+        'log error lines': command_interfaces_pareto_stream_api.log_error_lines
     }
 > = p_.command(
     ($d, $s, $q, $c) => [
@@ -46,13 +38,13 @@ export const $$: p_.Command_Implementation<
             $s.packages,
             ($, id) => [
 
-                p_.s.handle_error<s_main.Error, My_Error>(
+                p_.s.handle_error<s_main.Error, s_serialize_schemas.Error>(
                     [
 
                         p_.s.refine(
                             (abort) => r_schema_resolved_from_unresolved.Package(
                                 $.package,
-                                ($) => abort(['resolve error', $]),
+                                ($) => abort(['resolving', $]),
                                 p_.literal.nothing(),
                                 p_.literal.nothing(),
                             ),
@@ -60,22 +52,31 @@ export const $$: p_.Command_Implementation<
                                 $c['write file'].execute(
                                     {
                                         'path': t_path_to_path.create_node_path(
-                                            t_path_to_path.extend_context_path_with_single_step(r_path_from_temp_string.Context_Path($['target path']), { 'addition': "liana" }),
+                                            t_path_to_path.extend_context_path_with_single_step(
+                                                deser_path.Context_Path($['target path']),
+                                                {
+                                                    'addition': "liana"
+                                                }
+                                            ),
                                             { 'node': "module.liana.lna" }
                                         ),
                                         // 'data': p_list_from_text(
                                         //     "IMPLEMENT SERIALIZATION HERE",
                                         //     ($) => $,
                                         // )
-                                        'data': t_fp_to_loc.Paragraph(
-                                            t_schema_to_prose.Package(
-                                                $v,
+                                        'content': {
+                                            'lines': t_paragraph_to_serialized.Paragraph(
+                                                t_schema_to_paragraph.Package(
+                                                    $v,
+                                                ),
+                                                {
+                                                    'indentation': $s.indentation,
+                                                }
                                             ),
-                                            {
-                                                'indentation': "    ",
-                                                'newline': '\n'
+                                            'parameters': {
+                                                'newline': $s.newline,
                                             }
-                                        ),
+                                        },
                                     },
                                     ($) => ['error writing file', $]
                                 )
@@ -84,36 +85,19 @@ export const $$: p_.Command_Implementation<
                         )
                     ],
                     ($) => [
-                        $c['log error'].execute(
+                        $c['log error lines'].execute(
                             {
-                                'message': sh.pg.sentences([
-                                    sh.sentence([
-                                        sh.ph.text("Error serializing schema for module '"),
-                                        sh.ph.text(id),
-                                        sh.ph.text("': "),
-                                        p_temp.from.state($).decide(
-                                            ($) => {
-                                                switch ($[0]) {
-                                                    case 'resolve error': return p_temp.ss($, ($) => sh.ph.composed([
-                                                        t_loc_to_prose.Range(
-                                                            $.location,
-                                                            {
-                                                                'document resource identifier': "unknown DRI",
-                                                                'character location reporting': ['one based', null]
-                                                            }
-                                                        ),
-                                                        sh.ph.text(": "),
-                                                        t_resolve_to_prose.Error(
-                                                            $,
-                                                        )
-                                                    ]))
-                                                    case 'error writing file': return p_temp.ss($, ($) => t_write_file_to_prose.Error($))
-                                                    default: return p_temp.exhaustive($[0])
-                                                }
-                                            })
-                                    ]),
-
-                                ])
+                                'lines': t_paragraph_to_serialized.Phrase(
+                                    t_serialize_schemas_to_paragraph.Error(
+                                        $,
+                                        {
+                                            'id': id,
+                                        }
+                                    ),
+                                    {
+                                        'indentation': $s.indentation
+                                    }
+                                )
                             },
                             ($) => ({
                                 'exit code': 2,

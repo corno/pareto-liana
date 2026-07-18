@@ -11,7 +11,11 @@ import { $$ as c_command } from "lib/implementation/commands/generate_typescript
 p_h.run_main_command(
     () => {
         return c_command(
-            null,
+            {
+                'error message indentation': "    ",
+                'file indentation': "    ",
+                'newline': "\n",
+            },
             {
                 'read file': rs_filesystem_unrestricted.$.queries['read file'],
             },
@@ -19,8 +23,8 @@ p_h.run_main_command(
                 'make directory': rs_filesystem_unrestricted.$.commands['make directory'],
                 'remove': rs_filesystem_unrestricted.$.commands.remove,
                 'copy': rs_filesystem_unrestricted.$.commands.copy,
-                'log': rs_stream.$.commands.log,
-                'log error': rs_stream.$.commands['log error'],
+                'log lines': rs_stream.$.commands['log lines'],
+                'log error lines': rs_stream.$.commands['log error lines'],
                 'write file': rs_filesystem_unrestricted.$.commands['write file'],
             },
         )

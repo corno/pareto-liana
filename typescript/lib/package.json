@@ -24,7 +24,6 @@
     "pareto-core-shorthands": "^0.2.0",
     "pareto-filesystem-unrestricted-api": "^0.1.0",
     "pareto-fountain-pen": "^0.4.0",
-    "pareto-resources": "^0.2.0",
     "pareto-stream-api": "^0.1.0"
   }
 }

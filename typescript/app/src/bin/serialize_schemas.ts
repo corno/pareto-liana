@@ -12,12 +12,14 @@ p_h.run_main_command(
     () => {
         return c_command(
             {
-                'packages': data_packages
+                'packages': data_packages,
+                'indentation': "    ",
+                'newline': "\n",
             },
             null,
             {
                 'write file': rs_filesystem_unrestricted.$.commands['write file'],
-                'log error': rs_stream.$.commands['log error']
+                'log error lines': rs_stream.$.commands['log error lines']
             },
         )
     },
