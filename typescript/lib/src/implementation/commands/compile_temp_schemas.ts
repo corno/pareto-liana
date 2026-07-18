@@ -9,7 +9,7 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 
 //schemas
 import type * as s_main from "pareto-application-api/interface/schemas/main"
-import type * as s_compile_temp_schemas from "../../interface/schemas/compile_temp_schemas.js"
+import type * as s_compile_temp_schemas from "../../interface/schemas/temp_schema_compilation.js"
 import type * as s_packages from "../../interface/schemas/packages.js"
 
 //dependencies

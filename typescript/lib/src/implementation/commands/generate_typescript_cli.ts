@@ -10,10 +10,10 @@ import type * as query_interfaces_pareto_filesystem_unrestricted_api from "paret
 
 // //schemas
 import type * as s_main from "pareto-application-api/interface/schemas/main"
-import type * as s_resource from "../../interface/schemas/generate_typescript.js"
+import type * as s_resource from "../../interface/schemas/typescript_generation.js"
 import type * as s_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/schemas/path"
 
-import type * as s_generate_typescript_cli from "../../interface/schemas/generate_typescript_cli.js"
+import type * as s_generate_typescript_cli from "../../interface/schemas/typescript_generation_from_the_command_line.js"
 
 type Res = {
     'source': s_path.Node_Path

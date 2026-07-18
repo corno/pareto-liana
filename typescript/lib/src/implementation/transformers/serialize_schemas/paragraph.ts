@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import * as s_in from "../../../interface/schemas/serialize_schemas.js"
+import * as s_in from "../../../interface/schemas/schema_serialization.js"
 import * as s_out from "../../../interface/schemas/paragraph.js"
 
 

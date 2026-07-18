@@ -9,7 +9,7 @@ import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/in
 //schemas
 import type * as s_main from "pareto-application-api/interface/schemas/main"
 import type * as s_packages from "../../interface/schemas/packages.js"
-import type * as s_serialize_schemas from "../../interface/schemas/serialize_schemas.js"
+import type * as s_serialize_schemas from "../../interface/schemas/schema_serialization.js"
 
 //dependencies
 import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/deserializers/path"

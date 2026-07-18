@@ -1,6 +1,6 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 // import type * as s_parameters from "../../../interface"
-import type * as s_in from "../../../interface/schemas/compile_temp_schemas.js"
+import type * as s_in from "../../../interface/schemas/temp_schema_compilation.js"
 import type * as s_out from "pareto-fountain-pen/interface/schemas/paragraph"
 import type * as s_parameters_clr from "astn-core/modules/deserialization/schemas/location_serialization"
 

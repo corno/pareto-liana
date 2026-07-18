@@ -8,9 +8,9 @@ import type * as command_interfaces_pareto_filesystem_unrestricted_api from "par
 import type * as query_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/queries"
 
 // //schemas
-import type * as s_resource from "../../interface/schemas/generate_typescript.js"
+import type * as s_resource from "../../interface/schemas/typescript_generation.js"
 import type * as s_schema from "../../modules/liana.generated/modules/schema/schemas/resolved.js"
-import type * as s_generate_typescript from "../../interface/schemas/generate_typescript.js"
+import type * as s_generate_typescript from "../../interface/schemas/typescript_generation.js"
 
 //dependencies
 import { $$ as write_directory_content } from "pareto-filesystem-unrestricted-api/modules/helpers/implementation/commands/write_directory_content"
