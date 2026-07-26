@@ -5,7 +5,18 @@ import p_implement_me from 'pareto-core-dev/implement_me'
 import p_log_debug_message from 'pareto-core-dev/log_debug_message'
 import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials/list_build_deprecated'
 
-import type * as interface_ from "../../../declarations/refiners/temp_module_specifier/list_of_characters.js"
+
+//schemas
+import type * as s_function from "../../../interface/schemas/resolved_document_deserialization.js"
+import type * as s_in from "../../../interface/schemas/list_of_characters.js"
+
+
+export type Module_Specifier = p_.Refiner<
+    s_out.Temp_Module_Specifier,
+    s_function.Error,
+    s_in.List_Of_Characters
+>
+
 
 //schemas
 import type * as s_out_schema from "../../../modules/liana.generated/modules/schema/schemas/resolved.js"
@@ -15,7 +26,7 @@ import type * as s_out from "../../../interface/schemas/temp_module_specifier.js
 import * as r_schema_resolved_from_unresolved from "../../to_be_generated/refiners/schema/unresolved_manual.js"
 import * as r_schema_unresolved_from_loc from "../../../modules/liana.generated/modules/schema/implementation/refiners/unresolved/list_of_characters.js"
 
-export const Module_Specifier: interface_.Module_Specifier = ($, abort) => {
+export const Module_Specifier: Module_Specifier = ($, abort) => {
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,

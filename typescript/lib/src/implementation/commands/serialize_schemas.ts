@@ -17,7 +17,7 @@ import * as r_schema_resolved_from_unresolved from "../to_be_generated/refiners/
 import * as t_paragraph_to_serialized from "pareto-fountain-pen/_implementation/transformers/paragraph/serialized"
 import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/transformers/path/path"
 import * as t_schema_to_paragraph from "../../modules/liana.generated/modules/schema/implementation/transformers/resolved/paragraph.js"
-import * as t_serialize_schemas_to_paragraph from "../../implementation/transformers/serialize_schemas/paragraph.js"
+import * as t_serialize_schemas_to_paragraph from "../transformers/schema_serialization/paragraph.js"
 
 
 export const $$: p_.Command_Implementation<
