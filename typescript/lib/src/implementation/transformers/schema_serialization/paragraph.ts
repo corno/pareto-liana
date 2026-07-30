@@ -1,11 +1,11 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
 import * as s_in from "../../../interface/schemas/schema_serialization.js"
-import * as s_out from "../../../interface/schemas/paragraph.js"
+import * as s_out from "pareto-fountain-pen/modules/paragraph/schemas/paragraph"
 
 
 //shorthands
-import * as sh from "pareto-fountain-pen/shorthands/paragraph/deprecated"
+import * as sh from "pareto-fountain-pen/modules/paragraph/shorthands/deprecated"
 
 //dependencies
 import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/implementation/serializers/resolving"

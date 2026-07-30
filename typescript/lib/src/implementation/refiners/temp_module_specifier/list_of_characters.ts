@@ -7,7 +7,7 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 
 
 //schemas
-import type * as s_function from "../../../interface/schemas/resolved_document_deserialization.js"
+import type * as s_function from "liana-core/modules/resolved_document_deserialization/schemas/resolved_document_deserialization"
 import type * as s_in from "../../../interface/schemas/list_of_characters.js"
 
 
