@@ -2,21 +2,21 @@
 import * as p_ from 'pareto-core/implementation/command'
 
 //interface dependencies
-import type * as command_interfaces_pareto_application_api from "pareto-application-api/interface/commands"
-import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/interface/commands"
-import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/interface/commands"
+import type * as command_interfaces_pareto_application_api from "pareto-application-api/commands/interfaces"
+import type * as command_interfaces_pareto_filesystem_unrestricted_api from "pareto-filesystem-unrestricted-api/modules/unrestricted/commands/interfaces"
+import type * as command_interfaces_pareto_stream_api from "pareto-stream-api/commands/interfaces"
 
 //schemas
-import type * as s_main from "pareto-application-api/interface/schemas/main"
-import type * as s_packages from "../../interface/schemas/packages.js"
-import type * as s_serialize_schemas from "../../interface/schemas/schema_serialization.js"
+import type * as s_main from "pareto-application-api/schemas/main/schema"
+import type * as s_packages from "../../schemas/packages.js"
+import type * as s_serialize_schemas from "../../schemas/schema_serialization.js"
 
 //dependencies
-import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/deserializers/path"
+import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/path/deserializers"
 import * as r_schema_resolved_from_unresolved from "../to_be_generated/refiners/schema/unresolved_manual.js"
-import * as t_paragraph_to_serialized from "pareto-fountain-pen/modules/paragraph/implementation/transformers/paragraph/serialized"
-import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/transformers/path/path"
-import * as t_schema_to_paragraph from "../../modules/liana.generated/modules/schema/implementation/transformers/resolved/paragraph.js"
+import * as t_paragraph_to_serialized from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/transformers/serialized"
+import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/path/transformers/path"
+import * as t_schema_to_paragraph from "../../modules/schema.generated/implementation/transformers/resolved/paragraph.js"
 import * as t_serialize_schemas_to_paragraph from "../transformers/schema_serialization/paragraph.js"
 
 

@@ -1,16 +1,16 @@
 import * as p_ from 'pareto-core/implementation/transformer'
 
-import * as s_in from "../../../interface/schemas/schema_serialization.js"
-import * as s_out from "pareto-fountain-pen/modules/paragraph/schemas/paragraph"
+import * as s_in from "../../../schemas/schema_serialization.js"
+import * as s_out from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/schema"
 
 
 //shorthands
-import * as sh from "pareto-fountain-pen/modules/paragraph/shorthands/deprecated"
+import * as sh from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/shorthands/deprecated"
 
 //dependencies
-import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/implementation/serializers/resolving"
-import * as ser_write_file from "pareto-filesystem-unrestricted-api/modules/unrestricted/implementation/serializers/write_file"
-import * as ser_location from "astn-core/modules/deserialization/implementation/serializers/location"
+import * as ser_resolving from "liana-core/modules/resolved_document_deserialization/schemas/resolving/serializers"
+import * as ser_write_file from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/write_file/serializers"
+import * as ser_location from "astn-core/modules/deserialization/schemas/location/serializers"
 
 export const Error: p_.Transformer_With_Parameter<
     s_in.Error,

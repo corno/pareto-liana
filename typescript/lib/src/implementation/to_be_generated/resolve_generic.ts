@@ -6,8 +6,8 @@ import p_unreachable_code_path from 'pareto-core/implementation/transformer/spec
 
 import { type Abort } from 'pareto-core/interface/__internal/Abort'
 
-import * as gen_loc from "astn-core/modules/deserialization/schemas/location"
-import * as gen_resolve from "liana-core/modules/resolved_document_deserialization/schemas/resolving"
+import * as gen_loc from "astn-core/modules/deserialization/schemas/location/schema"
+import * as gen_resolve from "liana-core/modules/resolved_document_deserialization/schemas/resolving/schema"
 
 //types
 

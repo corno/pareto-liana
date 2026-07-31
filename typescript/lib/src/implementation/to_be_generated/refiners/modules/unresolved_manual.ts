@@ -3,9 +3,9 @@ import * as p_sl from 'pareto-core/implementation/refiner/specials/lookup'
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
 
-import * as t_signatures from "../../../../modules/liana.generated/modules/schema/declarations/refiners/resolved/unresolved.js"
+import * as t_signatures from "../../../../modules/schema.generated/declarations/refiners/resolved/unresolved.js"
 
-import * as s_out from "../../../../modules/liana.generated/modules/schema/schemas/resolved.js"
+import * as s_out from "../../../../modules/schema.generated/schemas/resolved/schema.js"
 
 import * as i_generic from "../../resolve_generic.js"
 

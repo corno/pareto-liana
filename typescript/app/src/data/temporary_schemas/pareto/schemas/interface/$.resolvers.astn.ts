@@ -1,4 +1,4 @@
-import * as sh from "lib/shorthands/resolver/manual"
+import * as sh from "lib/schemas/resolver/shorthands/manual"
 
 
 export const $ = sh.resolver_modules(
