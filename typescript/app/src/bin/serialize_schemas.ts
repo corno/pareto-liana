@@ -6,7 +6,7 @@ import { $ as data_packages } from "../data/temporary_schemas/all.js"
 import * as rs_filesystem_unrestricted from "pareto-resource-filesystem-unrestricted/index"
 import * as rs_stream from "pareto-resource-stream/index"
 
-import { $$ as c_command } from "lib/implementation/commands/serialize_schemas"
+import { $$ as c_command } from "lib/commands/implementations/serialize_schemas"
 
 p_h.run_main_command(
     () => {

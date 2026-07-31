@@ -1,4 +1,4 @@
-import * as sh from "lib/shorthands/signatures/manual"
+import * as sh from "lib/schemas/signatures/shorthands/manual"
 
 export const $ = sh.signatures(
     {

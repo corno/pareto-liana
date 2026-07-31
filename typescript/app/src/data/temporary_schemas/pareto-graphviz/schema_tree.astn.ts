@@ -1,6 +1,6 @@
 
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 
 import { $ as x_attributes } from "./schemas/attributes/$.module.astn.js"

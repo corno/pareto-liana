@@ -1,6 +1,6 @@
 
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 import { $ as m_http_call } from "./schemas/http_call/$.module.astn.js"
 import { $ as m_uri } from "./schemas/uri/$.module.astn.js"

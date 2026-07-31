@@ -1,7 +1,7 @@
 
 
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 
 import { $ as x_boekhouding } from "./schemas/boekhouding/$.module.astn.js"

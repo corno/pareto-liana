@@ -1,6 +1,6 @@
 
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 
 import { $ as x_completion_suggestions } from "./schemas/completion_suggestions/$.module.astn.js"

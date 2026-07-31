@@ -1,5 +1,5 @@
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 //this schema is intended to make it easy to generate typescript code,
 //but it is by design not intended to be a complete representation of the typescript language.

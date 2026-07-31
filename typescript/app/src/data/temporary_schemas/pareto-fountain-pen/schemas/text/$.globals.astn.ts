@@ -1,4 +1,4 @@
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 export const $ = sh.globals(
     'unconstrained',

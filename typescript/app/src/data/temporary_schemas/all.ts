@@ -3,7 +3,7 @@ import * as p_temp from 'pareto-core/implementation/transformer'
 
 
 
-import type * as s_package from "lib/schemas/packages"
+import type * as s_package from "lib/schemas/packages/schema"
 
 // import { $ as m_accounting_ruwe_data } from "./accounting_ruwe_data/module.astn.js"
 // import { $ as m_antlr } from "./antlr/module.astn.js"

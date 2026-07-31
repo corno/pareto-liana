@@ -4,7 +4,7 @@ import * as sh from 'liana-core/temp/shorthand_helpers/unresolved_data'
 
 import type * as s_target from "../../../modules/schema.generated/schemas/unresolved/schema.js"
 
-import * as temp_schema from "../../../shorthands/schema/manual.js"
+import * as temp_schema from "../../schema/shorthands/manual.js"
 
 export const resolver_modules = (
     resolvers: sh.Raw_Or_Normal_Dictionary<s_target.Resolver_Modules.l_dictionary.D.l_entry>,

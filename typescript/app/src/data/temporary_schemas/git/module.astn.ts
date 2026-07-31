@@ -2,7 +2,7 @@
 
 
 
-import { package_ } from "lib/shorthands/schema/manual"
+import { package_ } from "lib/schemas/schema/shorthands/manual"
 
 import { $ as schema_tree } from "./schema_tree.astn.js"
 

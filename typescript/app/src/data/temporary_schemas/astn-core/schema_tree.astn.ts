@@ -1,6 +1,6 @@
 
 
-import * as sh from "lib/shorthands/schema/manual"
+import * as sh from "lib/schemas/schema/shorthands/manual"
 
 
 import { $ as m_deserialize_parse_tree } from "./schemas/deserialize_parse_tree/$.module.astn.js"
