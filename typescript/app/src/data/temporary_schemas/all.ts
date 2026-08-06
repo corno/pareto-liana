@@ -38,10 +38,10 @@ export const $: s_package.Packages = p_.dictionary(
             'target path': "../astn",
             'package': m_astn,
         },
-        "astn-core": {
-            'target path': "../astn-core",
-            'package': m_astn_core,
-        },
+        // "astn-core": {
+        //     'target path': "../astn-core",
+        //     'package': m_astn_core,
+        // },
         "pareto": {
             'target path': "../pareto",
             'package': m_pareto,
@@ -54,10 +54,10 @@ export const $: s_package.Packages = p_.dictionary(
             'target path': "../pareto-development-tools",
             'package': m_pareto_development_tools,
         },
-        "pareto-fountain-pen": {
-            'target path': "../pareto-fountain-pen",
-            'package': m_pareto_fountain_pen,
-        },
+        // "pareto-fountain-pen": {
+        //     'target path': "../pareto-fountain-pen",
+        //     'package': m_pareto_fountain_pen,
+        // },
         "pareto-graphviz": {
             'target path': "../pareto-graphviz",
             'package': m_pareto_graphviz,
@@ -66,10 +66,10 @@ export const $: s_package.Packages = p_.dictionary(
         //     'target path': "../pareto-http-sandboxed",
         //     'package': m_pareto_http_sandboxed,
         // },
-        "pareto-json": {
-            'target path': "../pareto-json",
-            'package': m_pareto_json,
-        },
+        // "pareto-json": {
+        //     'target path': "../pareto-json",
+        //     'package': m_pareto_json,
+        // },
         "pareto-json-schema": {
             'target path': "../pareto-json-schema",
             'package': m_pareto_json_schema,
@@ -82,22 +82,22 @@ export const $: s_package.Packages = p_.dictionary(
             'target path': "../pareto-lionweb",
             'package': m_pareto_lionweb,
         },
-        "pareto-resources": {
-            'target path': "../pareto-resources",
-            'package': m_pareto_resources,
-        },
-        "pareto-stream": {
-            'target path': "../pareto-stream",
-            'package': m_pareto_stream,
-        },
+        // "pareto-resources": {
+        //     'target path': "../pareto-resources",
+        //     'package': m_pareto_resources,
+        // },
+        // "pareto-stream": {
+        //     'target path': "../pareto-stream",
+        //     'package': m_pareto_stream,
+        // },
         "pareto-static-html": {
             'target path': "../pareto-static-html",
             'package': m_pareto_static_html,
         },
-        "liana-authoring": {
-            'target path': "../liana-authoring",
-            'package': m_liana_authoring,
-        },
+        // "liana-authoring": {
+        //     'target path': "../liana-authoring",
+        //     'package': m_liana_authoring,
+        // },
         "liana-targets": {
             'target path': "../liana-targets",
             'package': m_liana_targets,
