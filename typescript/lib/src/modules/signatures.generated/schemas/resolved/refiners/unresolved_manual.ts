@@ -14,6 +14,7 @@ import * as i_resolved from "../../../../schema.generated/schemas/resolved/schem
 
 import * as i_unresolved from "../../../../schema.generated/schemas/unresolved/schema.js"
 
+namespace declarations {
 export namespace Package_ {
     
     export type I = i_unresolved.Package
@@ -1978,6 +1979,7 @@ export type Modules_ = (
         readonly 'imports': Modules_.P.imports
     },
 ) => Modules_.O
+}
 
 import * as s_out from "../../../../schema.generated/schemas/resolved/schema.js"
 
@@ -1985,7 +1987,7 @@ import * as i_generic2 from "../../../../../temp/resolve_generic.js"
 
 import { Module_Reference } from "../../../../modules.generated/schemas/resolved/refiners/unresolved_manual.js"
 
-export const Signatures: Resolver_Signatures_ = ($, abort, $l, $p) => {
+export const Signatures: declarations.Resolver_Signatures_ = ($, abort, $l, $p) => {
     return i_generic2.resolve_dense_dictionary(
         $['l dictionary'],
         $['l location'],
@@ -2018,7 +2020,7 @@ export const Signatures: Resolver_Signatures_ = ($, abort, $l, $p) => {
     )
 }
 
-export const Signature: Resolver_Signature_ = ($, abort, $l, $p) => {
+export const Signature: declarations.Resolver_Signature_ = ($, abort, $l, $p) => {
     const p_parameters: s_out.Resolver_Signature.parameters = p_change_context($.parameters['l state'], ($): s_out.Resolver_Signature.parameters => {
         switch ($[0]) {
             case 'local': return p_.option($, ($) => ['local', Signature_Parameters(
@@ -2051,7 +2053,7 @@ export const Signature: Resolver_Signature_ = ($, abort, $l, $p) => {
     }
 }
 
-export const Signature_Parameters: Resolver_Signature_Parameters_ = ($, abort, $l, $p) => {
+export const Signature_Parameters: declarations.Resolver_Signature_Parameters_ = ($, abort, $l, $p) => {
 
     const p_parameters_values: s_out.Resolver_Signature_Parameters.modules = i_generic2.temp_resolve(
         $.modules['l dictionary'],

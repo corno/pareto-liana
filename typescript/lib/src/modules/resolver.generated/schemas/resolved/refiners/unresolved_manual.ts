@@ -14,6 +14,7 @@ import * as i_resolved from "../../../../schema.generated/schemas/resolved/schem
 
 import * as i_unresolved from "../../../../schema.generated/schemas/unresolved/schema.js"
 
+namespace declarations {
 export namespace Package_ {
     
     export type I = i_unresolved.Package
@@ -1978,13 +1979,14 @@ export type Modules_ = (
         readonly 'imports': Modules_.P.imports
     },
 ) => Modules_.O
+}
 
 import * as s_out from "../../../../schema.generated/schemas/resolved/schema.js"
 
 import * as i_generic2 from "../../../../../temp/resolve_generic.js"
 
 
-export const Value: Resolver_Value_ = ($, abort, $l, $p) => {
+export const Value: declarations.Resolver_Value_ = ($, abort, $l, $p) => {
     const loc = $['l location']
     const p_type = p_change_context($['l state'], ($): s_out.Resolver_Value => {
         switch ($[0]) {
@@ -2748,7 +2750,7 @@ export const Value: Resolver_Value_ = ($, abort, $l, $p) => {
     })
     return p_type
 }
-export const Relative_Value_Selection: Resolver_Relative_Value_Selection_ = ($, abort, $l, $p) => p_variables(
+export const Relative_Value_Selection: declarations.Resolver_Relative_Value_Selection_ = ($, abort, $l, $p) => p_variables(
     () => {
 
         const p_path: s_out.Resolver_Relative_Value_Selection.path = i_generic2.temp_map_list_with_state(
@@ -2847,7 +2849,7 @@ export const Relative_Value_Selection: Resolver_Relative_Value_Selection_ = ($, 
         }
     })
 
-export const Value_Constraints: Resolver_Value_Constraints_ = ($, abort, $l, $p) => {
+export const Value_Constraints: declarations.Resolver_Value_Constraints_ = ($, abort, $l, $p) => {
     return p_change_context($, ($) => i_generic2.temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_variables(
@@ -2892,7 +2894,7 @@ export const Value_Constraints: Resolver_Value_Constraints_ = ($, abort, $l, $p)
     ))
 }
 
-export const Guaranteed_Value_Selection: Resolver_Guaranteed_Value_Selection_ = ($, abort, $l, $p) => p_variables(
+export const Guaranteed_Value_Selection: declarations.Resolver_Guaranteed_Value_Selection_ = ($, abort, $l, $p) => p_variables(
     () => p_variables(
         () => {
             const start_location = $.start['l location']
@@ -3143,7 +3145,7 @@ export const Guaranteed_Value_Selection: Resolver_Guaranteed_Value_Selection_ = 
             })
         }))
 
-export const Option_Constraints: Resolver_Option_Constraints_ = ($, abort, $l, $p) => {
+export const Option_Constraints: declarations.Resolver_Option_Constraints_ = ($, abort, $l, $p) => {
     return p_change_context($, ($) => i_generic2.temp_resolve(
         $['l dictionary'],
         ($, id, $acyclic, $cyclic) => p_change_context($, ($) => p_change_context($['l entry']['l state'], ($) => {
@@ -3188,7 +3190,7 @@ export const Option_Constraints: Resolver_Option_Constraints_ = ($, abort, $l, $
     ))
 }
 
-export const Constraint: Resolver_Constraint_ = ($, abort, $l, $p) => {
+export const Constraint: declarations.Resolver_Constraint_ = ($, abort, $l, $p) => {
     const p_selection: s_out.Resolver_Constraint.selection = p_change_context($['selection'], ($) => Relative_Value_Selection(
         $,
         abort,
@@ -3241,7 +3243,7 @@ export const Constraint: Resolver_Constraint_ = ($, abort, $l, $p) => {
     }
 }
 
-export const Optional_Value_Initialization: Resolver_Optional_Value_Initialization_ = ($, abort, $l, $p) => p_variables(
+export const Optional_Value_Initialization: declarations.Resolver_Optional_Value_Initialization_ = ($, abort, $l, $p) => p_variables(
     () => p_change_context($['l state'], ($) => {
         switch ($[0]) {
             case 'not set': return p_.option($, ($) => ['not set', null])
@@ -3253,7 +3255,7 @@ export const Optional_Value_Initialization: Resolver_Optional_Value_Initializati
         }
     }))
 
-export const Possibly_Optional: Resolver_Possible_Value_Selection_ = ($, abort, $l, $p) => p_variables(
+export const Possibly_Optional: declarations.Resolver_Possible_Value_Selection_ = ($, abort, $l, $p) => p_variables(
     () => {
         return p_change_context($['l state'], ($) => {
             switch ($[0]) {
@@ -3325,7 +3327,7 @@ export const Possibly_Optional: Resolver_Possible_Value_Selection_ = ($, abort, 
         })
     })
 
-export const Lookup_Selection: Resolver_Lookup_Selection_ = ($, abort, $l, $p) => p_variables(
+export const Lookup_Selection: declarations.Resolver_Lookup_Selection_ = ($, abort, $l, $p) => p_variables(
     () => p_variables(
         () => {
             const loc = $.type['l location']
@@ -3408,7 +3410,7 @@ export const Lookup_Selection: Resolver_Lookup_Selection_ = ($, abort, $l, $p) =
             })
         }))
 
-export const Module_Reference: Module_Reference_ = ($, abort, $l, $p) => {
+export const Module_Reference: declarations.Module_Reference_ = ($, abort, $l, $p) => {
     const x: s_out.Module_Reference.location = p_change_context($.location['l state'], ($) => {
         switch ($[0]) {
             case 'external': return p_.option($, ($): s_out.Module_Reference.location => {

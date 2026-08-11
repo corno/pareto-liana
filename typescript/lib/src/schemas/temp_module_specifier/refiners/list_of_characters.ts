@@ -9,24 +9,23 @@ import p_list_build_deprecated from 'pareto-core/implementation/refiner/specials
 //schemas
 import type * as s_function from "liana-core/modules/resolved_document_deserialization/schemas/resolved_document_deserialization/schema"
 import type * as s_in from "astn-core/modules/deserialization/schemas/list_of_characters/schema"
-
-
-export type Module_Specifier = p_.Refiner<
-    s_out.Temp_Module_Specifier,
-    s_function.Error,
-    s_in.List_Of_Characters
->
-
-
-//schemas
 import type * as s_out_schema from "../../../modules/schema.generated/schemas/resolved/schema.js"
 import type * as s_out from "../schema.js"
+
+namespace declarations {
+    export type Module_Specifier = p_.Refiner<
+        s_out.Temp_Module_Specifier,
+        s_function.Error,
+        s_in.List_Of_Characters
+    >
+}
+
 
 //dependencies
 import * as r_schema_resolved_from_unresolved from "../../../modules/schema.generated/schemas/resolved/refiners/unresolved_manual.js"
 import * as r_schema_unresolved_from_loc from "../../../modules/schema.generated/schemas/unresolved/refiners/list_of_characters.js"
 
-export const Module_Specifier: Module_Specifier = ($, abort) => {
+export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,

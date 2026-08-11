@@ -7,788 +7,790 @@ import * as i_out from "../../../schemas/unresolved/schema.js"
 
 import * as i_in from "astn-core/modules/deserialization/schemas/parse_tree/schema"
 
-export namespace Package_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Package
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+namespace declarations {
+    export namespace Package_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Package
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Package_ = (
-    context: Package_.I,
-    abort: p_i.Abort<Package_.E>,
-) => Package_.O
+    export type Package_ = (
+        context: Package_.I,
+        abort: p_i.Abort<Package_.E>,
+    ) => Package_.O
 
-export namespace Schemas_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schemas
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Schemas_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Schemas
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Schemas_ = (
-    context: Schemas_.I,
-    abort: p_i.Abort<Schemas_.E>,
-) => Schemas_.O
+    export type Schemas_ = (
+        context: Schemas_.I,
+        abort: p_i.Abort<Schemas_.E>,
+    ) => Schemas_.O
 
-export namespace Schema_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schema
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Schema_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Schema
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Schema_ = (
-    context: Schema_.I,
-    abort: p_i.Abort<Schema_.E>,
-) => Schema_.O
+    export type Schema_ = (
+        context: Schema_.I,
+        abort: p_i.Abort<Schema_.E>,
+    ) => Schema_.O
 
-export namespace Schema_Imports_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schema_Imports
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Schema_Imports_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Schema_Imports
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Schema_Imports_ = (
-    context: Schema_Imports_.I,
-    abort: p_i.Abort<Schema_Imports_.E>,
-) => Schema_Imports_.O
+    export type Schema_Imports_ = (
+        context: Schema_Imports_.I,
+        abort: p_i.Abort<Schema_Imports_.E>,
+    ) => Schema_Imports_.O
 
-export namespace Modules_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Modules
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Modules_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Modules
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Modules_ = (
-    context: Modules_.I,
-    abort: p_i.Abort<Modules_.E>,
-) => Modules_.O
+    export type Modules_ = (
+        context: Modules_.I,
+        abort: p_i.Abort<Modules_.E>,
+    ) => Modules_.O
 
-export namespace Globals_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Globals
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Globals_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Globals
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Globals_ = (
-    context: Globals_.I,
-    abort: p_i.Abort<Globals_.E>,
-) => Globals_.O
+    export type Globals_ = (
+        context: Globals_.I,
+        abort: p_i.Abort<Globals_.E>,
+    ) => Globals_.O
 
-export namespace Dictionary_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Dictionary
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Dictionary_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Dictionary
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Dictionary_ = (
-    context: Dictionary_.I,
-    abort: p_i.Abort<Dictionary_.E>,
-) => Dictionary_.O
+    export type Dictionary_ = (
+        context: Dictionary_.I,
+        abort: p_i.Abort<Dictionary_.E>,
+    ) => Dictionary_.O
 
-export namespace Value_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Value_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Value
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Value_ = (
-    context: Value_.I,
-    abort: p_i.Abort<Value_.E>,
-) => Value_.O
+    export type Value_ = (
+        context: Value_.I,
+        abort: p_i.Abort<Value_.E>,
+    ) => Value_.O
 
-export namespace Resolver_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_ = (
-    context: Resolver_.I,
-    abort: p_i.Abort<Resolver_.E>,
-) => Resolver_.O
+    export type Resolver_ = (
+        context: Resolver_.I,
+        abort: p_i.Abort<Resolver_.E>,
+    ) => Resolver_.O
 
-export namespace Resolver_Imports_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Imports
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Imports_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Imports
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Imports_ = (
-    context: Resolver_Imports_.I,
-    abort: p_i.Abort<Resolver_Imports_.E>,
-) => Resolver_Imports_.O
+    export type Resolver_Imports_ = (
+        context: Resolver_Imports_.I,
+        abort: p_i.Abort<Resolver_Imports_.E>,
+    ) => Resolver_Imports_.O
 
-export namespace Resolver_Signatures_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Signatures
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Signatures_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Signatures
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Signatures_ = (
-    context: Resolver_Signatures_.I,
-    abort: p_i.Abort<Resolver_Signatures_.E>,
-) => Resolver_Signatures_.O
+    export type Resolver_Signatures_ = (
+        context: Resolver_Signatures_.I,
+        abort: p_i.Abort<Resolver_Signatures_.E>,
+    ) => Resolver_Signatures_.O
 
-export namespace Resolver_Signature_Parameters_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Signature_Parameters
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Signature_Parameters_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Signature_Parameters
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Signature_Parameters_ = (
-    context: Resolver_Signature_Parameters_.I,
-    abort: p_i.Abort<Resolver_Signature_Parameters_.E>,
-) => Resolver_Signature_Parameters_.O
+    export type Resolver_Signature_Parameters_ = (
+        context: Resolver_Signature_Parameters_.I,
+        abort: p_i.Abort<Resolver_Signature_Parameters_.E>,
+    ) => Resolver_Signature_Parameters_.O
 
-export namespace Resolver_Value_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Value
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Value_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Value
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Value_ = (
-    context: Resolver_Value_.I,
-    abort: p_i.Abort<Resolver_Value_.E>,
-) => Resolver_Value_.O
+    export type Resolver_Value_ = (
+        context: Resolver_Value_.I,
+        abort: p_i.Abort<Resolver_Value_.E>,
+    ) => Resolver_Value_.O
 
-export namespace Module_Specification_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module_Specification
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Module_Specification_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Module_Specification
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Module_Specification_ = (
-    context: Module_Specification_.I,
-    abort: p_i.Abort<Module_Specification_.E>,
-) => Module_Specification_.O
+    export type Module_Specification_ = (
+        context: Module_Specification_.I,
+        abort: p_i.Abort<Module_Specification_.E>,
+    ) => Module_Specification_.O
 
-export namespace Schema_Tree_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Schema_Tree
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Schema_Tree_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Schema_Tree
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Schema_Tree_ = (
-    context: Schema_Tree_.I,
-    abort: p_i.Abort<Schema_Tree_.E>,
-) => Schema_Tree_.O
+    export type Schema_Tree_ = (
+        context: Schema_Tree_.I,
+        abort: p_i.Abort<Schema_Tree_.E>,
+    ) => Schema_Tree_.O
 
-export namespace Text_Type_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Text_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Text_Type_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Text_Type
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Text_Type_ = (
-    context: Text_Type_.I,
-    abort: p_i.Abort<Text_Type_.E>,
-) => Text_Type_.O
+    export type Text_Type_ = (
+        context: Text_Type_.I,
+        abort: p_i.Abort<Text_Type_.E>,
+    ) => Text_Type_.O
 
-export namespace Simple_Type_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Simple_Type
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Simple_Type_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Simple_Type
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Simple_Type_ = (
-    context: Simple_Type_.I,
-    abort: p_i.Abort<Simple_Type_.E>,
-) => Simple_Type_.O
+    export type Simple_Type_ = (
+        context: Simple_Type_.I,
+        abort: p_i.Abort<Simple_Type_.E>,
+    ) => Simple_Type_.O
 
-export namespace Module_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Module_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Module
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Module_ = (
-    context: Module_.I,
-    abort: p_i.Abort<Module_.E>,
-) => Module_.O
+    export type Module_ = (
+        context: Module_.I,
+        abort: p_i.Abort<Module_.E>,
+    ) => Module_.O
 
-export namespace Presence_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Presence
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Presence_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Presence
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Presence_ = (
-    context: Presence_.I,
-    abort: p_i.Abort<Presence_.E>,
-) => Presence_.O
+    export type Presence_ = (
+        context: Presence_.I,
+        abort: p_i.Abort<Presence_.E>,
+    ) => Presence_.O
 
-export namespace Resolver_Modules_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Modules
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Modules_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Modules
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Modules_ = (
-    context: Resolver_Modules_.I,
-    abort: p_i.Abort<Resolver_Modules_.E>,
-) => Resolver_Modules_.O
+    export type Resolver_Modules_ = (
+        context: Resolver_Modules_.I,
+        abort: p_i.Abort<Resolver_Modules_.E>,
+    ) => Resolver_Modules_.O
 
-export namespace Resolver_Benchmark_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Benchmark
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Benchmark_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Benchmark
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Benchmark_ = (
-    context: Resolver_Benchmark_.I,
-    abort: p_i.Abort<Resolver_Benchmark_.E>,
-) => Resolver_Benchmark_.O
+    export type Resolver_Benchmark_ = (
+        context: Resolver_Benchmark_.I,
+        abort: p_i.Abort<Resolver_Benchmark_.E>,
+    ) => Resolver_Benchmark_.O
 
-export namespace Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Group_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Group
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Group_ = (
-    context: Group_.I,
-    abort: p_i.Abort<Group_.E>,
-) => Group_.O
+    export type Group_ = (
+        context: Group_.I,
+        abort: p_i.Abort<Group_.E>,
+    ) => Group_.O
 
-export namespace Value_Reference_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Reference
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Value_Reference_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Value_Reference
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Value_Reference_ = (
-    context: Value_Reference_.I,
-    abort: p_i.Abort<Value_Reference_.E>,
-) => Value_Reference_.O
+    export type Value_Reference_ = (
+        context: Value_Reference_.I,
+        abort: p_i.Abort<Value_Reference_.E>,
+    ) => Value_Reference_.O
 
-export namespace Value_Path_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Path
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Value_Path_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Value_Path
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Value_Path_ = (
-    context: Value_Path_.I,
-    abort: p_i.Abort<Value_Path_.E>,
-) => Value_Path_.O
+    export type Value_Path_ = (
+        context: Value_Path_.I,
+        abort: p_i.Abort<Value_Path_.E>,
+    ) => Value_Path_.O
 
-export namespace Module_Reference_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Module_Reference
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Module_Reference_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Module_Reference
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Module_Reference_ = (
-    context: Module_Reference_.I,
-    abort: p_i.Abort<Module_Reference_.E>,
-) => Module_Reference_.O
+    export type Module_Reference_ = (
+        context: Module_Reference_.I,
+        abort: p_i.Abort<Module_Reference_.E>,
+    ) => Module_Reference_.O
 
-export namespace Resolver_Signature_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Signature
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Signature_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Signature
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Signature_ = (
-    context: Resolver_Signature_.I,
-    abort: p_i.Abort<Resolver_Signature_.E>,
-) => Resolver_Signature_.O
+    export type Resolver_Signature_ = (
+        context: Resolver_Signature_.I,
+        abort: p_i.Abort<Resolver_Signature_.E>,
+    ) => Resolver_Signature_.O
 
-export namespace Resolver_Relative_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Relative_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Relative_Value_Selection_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Relative_Value_Selection
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Relative_Value_Selection_ = (
-    context: Resolver_Relative_Value_Selection_.I,
-    abort: p_i.Abort<Resolver_Relative_Value_Selection_.E>,
-) => Resolver_Relative_Value_Selection_.O
+    export type Resolver_Relative_Value_Selection_ = (
+        context: Resolver_Relative_Value_Selection_.I,
+        abort: p_i.Abort<Resolver_Relative_Value_Selection_.E>,
+    ) => Resolver_Relative_Value_Selection_.O
 
-export namespace Resolver_Lookup_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Lookup_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Lookup_Selection_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Lookup_Selection
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Lookup_Selection_ = (
-    context: Resolver_Lookup_Selection_.I,
-    abort: p_i.Abort<Resolver_Lookup_Selection_.E>,
-) => Resolver_Lookup_Selection_.O
+    export type Resolver_Lookup_Selection_ = (
+        context: Resolver_Lookup_Selection_.I,
+        abort: p_i.Abort<Resolver_Lookup_Selection_.E>,
+    ) => Resolver_Lookup_Selection_.O
 
-export namespace Resolver_Constraint_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Constraint
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Constraint_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Constraint
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Constraint_ = (
-    context: Resolver_Constraint_.I,
-    abort: p_i.Abort<Resolver_Constraint_.E>,
-) => Resolver_Constraint_.O
+    export type Resolver_Constraint_ = (
+        context: Resolver_Constraint_.I,
+        abort: p_i.Abort<Resolver_Constraint_.E>,
+    ) => Resolver_Constraint_.O
 
-export namespace Resolver_Option_Constraints_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Option_Constraints
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Option_Constraints_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Option_Constraints
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Option_Constraints_ = (
-    context: Resolver_Option_Constraints_.I,
-    abort: p_i.Abort<Resolver_Option_Constraints_.E>,
-) => Resolver_Option_Constraints_.O
+    export type Resolver_Option_Constraints_ = (
+        context: Resolver_Option_Constraints_.I,
+        abort: p_i.Abort<Resolver_Option_Constraints_.E>,
+    ) => Resolver_Option_Constraints_.O
 
-export namespace Resolver_Optional_Value_Constraints_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Optional_Value_Constraints
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Optional_Value_Constraints_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Optional_Value_Constraints
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Optional_Value_Constraints_ = (
-    context: Resolver_Optional_Value_Constraints_.I,
-    abort: p_i.Abort<Resolver_Optional_Value_Constraints_.E>,
-) => Resolver_Optional_Value_Constraints_.O
+    export type Resolver_Optional_Value_Constraints_ = (
+        context: Resolver_Optional_Value_Constraints_.I,
+        abort: p_i.Abort<Resolver_Optional_Value_Constraints_.E>,
+    ) => Resolver_Optional_Value_Constraints_.O
 
-export namespace Resolver_Value_Constraints_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Value_Constraints
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Value_Constraints_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Value_Constraints
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Value_Constraints_ = (
-    context: Resolver_Value_Constraints_.I,
-    abort: p_i.Abort<Resolver_Value_Constraints_.E>,
-) => Resolver_Value_Constraints_.O
+    export type Resolver_Value_Constraints_ = (
+        context: Resolver_Value_Constraints_.I,
+        abort: p_i.Abort<Resolver_Value_Constraints_.E>,
+    ) => Resolver_Value_Constraints_.O
 
-export namespace Resolver_Reference_To_Value_Constraint_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Reference_To_Value_Constraint
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Reference_To_Value_Constraint_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Reference_To_Value_Constraint
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Reference_To_Value_Constraint_ = (
-    context: Resolver_Reference_To_Value_Constraint_.I,
-    abort: p_i.Abort<Resolver_Reference_To_Value_Constraint_.E>,
-) => Resolver_Reference_To_Value_Constraint_.O
+    export type Resolver_Reference_To_Value_Constraint_ = (
+        context: Resolver_Reference_To_Value_Constraint_.I,
+        abort: p_i.Abort<Resolver_Reference_To_Value_Constraint_.E>,
+    ) => Resolver_Reference_To_Value_Constraint_.O
 
-export namespace Resolver_Value_Constraint_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Value_Constraint
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Value_Constraint_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Value_Constraint
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Value_Constraint_ = (
-    context: Resolver_Value_Constraint_.I,
-    abort: p_i.Abort<Resolver_Value_Constraint_.E>,
-) => Resolver_Value_Constraint_.O
+    export type Resolver_Value_Constraint_ = (
+        context: Resolver_Value_Constraint_.I,
+        abort: p_i.Abort<Resolver_Value_Constraint_.E>,
+    ) => Resolver_Value_Constraint_.O
 
-export namespace Resolver_Optional_Value_Initialization_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Optional_Value_Initialization
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Optional_Value_Initialization_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Optional_Value_Initialization
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Optional_Value_Initialization_ = (
-    context: Resolver_Optional_Value_Initialization_.I,
-    abort: p_i.Abort<Resolver_Optional_Value_Initialization_.E>,
-) => Resolver_Optional_Value_Initialization_.O
+    export type Resolver_Optional_Value_Initialization_ = (
+        context: Resolver_Optional_Value_Initialization_.I,
+        abort: p_i.Abort<Resolver_Optional_Value_Initialization_.E>,
+    ) => Resolver_Optional_Value_Initialization_.O
 
-export namespace Resolver_Value_Group_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Value_Group
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Value_Group_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Value_Group
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Value_Group_ = (
-    context: Resolver_Value_Group_.I,
-    abort: p_i.Abort<Resolver_Value_Group_.E>,
-) => Resolver_Value_Group_.O
+    export type Resolver_Value_Group_ = (
+        context: Resolver_Value_Group_.I,
+        abort: p_i.Abort<Resolver_Value_Group_.E>,
+    ) => Resolver_Value_Group_.O
 
-export namespace Resolver_Value_List_Result_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Value_List_Result
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Value_List_Result_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Value_List_Result
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Value_List_Result_ = (
-    context: Resolver_Value_List_Result_.I,
-    abort: p_i.Abort<Resolver_Value_List_Result_.E>,
-) => Resolver_Value_List_Result_.O
+    export type Resolver_Value_List_Result_ = (
+        context: Resolver_Value_List_Result_.I,
+        abort: p_i.Abort<Resolver_Value_List_Result_.E>,
+    ) => Resolver_Value_List_Result_.O
 
-export namespace Value_Results_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Value_Results
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Value_Results_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Value_Results
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Value_Results_ = (
-    context: Value_Results_.I,
-    abort: p_i.Abort<Value_Results_.E>,
-) => Value_Results_.O
+    export type Value_Results_ = (
+        context: Value_Results_.I,
+        abort: p_i.Abort<Value_Results_.E>,
+    ) => Value_Results_.O
 
-export namespace Option_Constraints_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Option_Constraints
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Option_Constraints_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Option_Constraints
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Option_Constraints_ = (
-    context: Option_Constraints_.I,
-    abort: p_i.Abort<Option_Constraints_.E>,
-) => Option_Constraints_.O
+    export type Option_Constraints_ = (
+        context: Option_Constraints_.I,
+        abort: p_i.Abort<Option_Constraints_.E>,
+    ) => Option_Constraints_.O
 
-export namespace Resolver_Guaranteed_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Guaranteed_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Guaranteed_Value_Selection_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Guaranteed_Value_Selection
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Guaranteed_Value_Selection_ = (
-    context: Resolver_Guaranteed_Value_Selection_.I,
-    abort: p_i.Abort<Resolver_Guaranteed_Value_Selection_.E>,
-) => Resolver_Guaranteed_Value_Selection_.O
+    export type Resolver_Guaranteed_Value_Selection_ = (
+        context: Resolver_Guaranteed_Value_Selection_.I,
+        abort: p_i.Abort<Resolver_Guaranteed_Value_Selection_.E>,
+    ) => Resolver_Guaranteed_Value_Selection_.O
 
-export namespace Resolver_Possible_Value_Selection_ {
-    
-    export type I = i_in.Value
-    
-    export type O = i_out.Resolver_Possible_Value_Selection
-    
-    export type E = i_generic.Error
-    
-    export namespace P {
-        
+    export namespace Resolver_Possible_Value_Selection_ {
+
+        export type I = i_in.Value
+
+        export type O = i_out.Resolver_Possible_Value_Selection
+
+        export type E = i_generic.Error
+
+        export namespace P {
+
+        }
+
     }
-    
-}
 
-export type Resolver_Possible_Value_Selection_ = (
-    context: Resolver_Possible_Value_Selection_.I,
-    abort: p_i.Abort<Resolver_Possible_Value_Selection_.E>,
-) => Resolver_Possible_Value_Selection_.O
+    export type Resolver_Possible_Value_Selection_ = (
+        context: Resolver_Possible_Value_Selection_.I,
+        abort: p_i.Abort<Resolver_Possible_Value_Selection_.E>,
+    ) => Resolver_Possible_Value_Selection_.O
+}
 
 
 import * as p_ from 'pareto-core/implementation/refiner'
-const p_decide_text = <B>($: string,  assign: ($: string) => B) => assign($)
+const p_decide_text = <B>($: string, assign: ($: string) => B) => assign($)
 
 import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
 
@@ -800,7 +802,7 @@ import * as v_unmarshalled_from_parse_tree from "liana-core/modules/value_unmars
 
 import * as v_parse_tree_to_location from "astn-core/modules/deserialization/schemas/parse_tree/transformers/start_token_range"
 
-export const Package: Package_ = ($, abort) => p_change_context(
+export const Package: declarations.Package_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -868,7 +870,7 @@ export const Package: Package_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Schemas: Schemas_ = ($, abort) => p_change_context(
+export const Schemas: declarations.Schemas_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -896,7 +898,7 @@ export const Schemas: Schemas_ = ($, abort) => p_change_context(
     }),
 )
 
-export const Schema: Schema_ = ($, abort) => p_change_context(
+export const Schema: declarations.Schema_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -1065,7 +1067,7 @@ export const Schema: Schema_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Schema_Imports: Schema_Imports_ = ($, abort) => p_change_context(
+export const Schema_Imports: declarations.Schema_Imports_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -1155,7 +1157,7 @@ export const Schema_Imports: Schema_Imports_ = ($, abort) => p_change_context(
     }),
 )
 
-export const Modules: Modules_ = ($, abort) => p_change_context(
+export const Modules: declarations.Modules_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -1183,7 +1185,7 @@ export const Modules: Modules_ = ($, abort) => p_change_context(
     }),
 )
 
-export const Globals: Globals_ = ($, abort) => p_change_context(
+export const Globals: declarations.Globals_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -1356,7 +1358,7 @@ export const Globals: Globals_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Dictionary: Dictionary_ = ($, abort) => p_change_context(
+export const Dictionary: declarations.Dictionary_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -1401,7 +1403,7 @@ export const Dictionary: Dictionary_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Value: Value_ = ($, abort) => p_change_context(
+export const Value: declarations.Value_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -2180,11 +2182,11 @@ export const Value: Value_ = ($, abort) => p_change_context(
                                                                                         },
                                                                                     ),
                                                                                     ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                                                        $,
+                                                                                        ($) => abort(
                                                                                             $,
-                                                                                            ($) => abort(
-                                                                                                $,
-                                                                                            ),
-                                                                                        )['optional'],
+                                                                                        ),
+                                                                                    )['optional'],
                                                                                     ).map(
                                                                                         ($) => v_unmarshalled_from_parse_tree.Text(
                                                                                             $,
@@ -2327,7 +2329,7 @@ export const Value: Value_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Resolver: Resolver_ = ($, abort) => p_change_context(
+export const Resolver: declarations.Resolver_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -2429,7 +2431,7 @@ export const Resolver: Resolver_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Resolver_Imports: Resolver_Imports_ = ($, abort) => p_change_context(
+export const Resolver_Imports: declarations.Resolver_Imports_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -2519,7 +2521,7 @@ export const Resolver_Imports: Resolver_Imports_ = ($, abort) => p_change_contex
     }),
 )
 
-export const Resolver_Signatures: Resolver_Signatures_ = ($, abort) => p_change_context(
+export const Resolver_Signatures: declarations.Resolver_Signatures_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -2547,7 +2549,7 @@ export const Resolver_Signatures: Resolver_Signatures_ = ($, abort) => p_change_
     }),
 )
 
-export const Resolver_Signature_Parameters: Resolver_Signature_Parameters_ = ($, abort) => p_change_context(
+export const Resolver_Signature_Parameters: declarations.Resolver_Signature_Parameters_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -2868,7 +2870,7 @@ export const Resolver_Signature_Parameters: Resolver_Signature_Parameters_ = ($,
     ),
 )
 
-export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
+export const Resolver_Value: declarations.Resolver_Value_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -3122,11 +3124,11 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
                                                     },
                                                 ),
                                                 ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                    $,
+                                                    ($) => abort(
                                                         $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                    )['optional'],
+                                                    ),
+                                                )['optional'],
                                                 ).map(
                                                     ($) => p_change_context(
                                                         v_unmarshalled_from_parse_tree.Verbose_Group(
@@ -3163,11 +3165,11 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
                                                                             },
                                                                         ),
                                                                         ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                                            $,
+                                                                            ($) => abort(
                                                                                 $,
-                                                                                ($) => abort(
-                                                                                    $,
-                                                                                ),
-                                                                            )['optional'],
+                                                                            ),
+                                                                        )['optional'],
                                                                         ).map(
                                                                             ($) => p_change_context(
                                                                                 v_unmarshalled_from_parse_tree.Dictionary(
@@ -3278,11 +3280,11 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
                                                                             },
                                                                         ),
                                                                         ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                                            $,
+                                                                            ($) => abort(
                                                                                 $,
-                                                                                ($) => abort(
-                                                                                    $,
-                                                                                ),
-                                                                            )['optional'],
+                                                                            ),
+                                                                        )['optional'],
                                                                         ).map(
                                                                             ($) => p_change_context(
                                                                                 v_unmarshalled_from_parse_tree.Dictionary(
@@ -3671,11 +3673,11 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
                                                     },
                                                 ),
                                                 ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                    $,
+                                                    ($) => abort(
                                                         $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                    )['optional'],
+                                                    ),
+                                                )['optional'],
                                                 ).map(
                                                     ($) => Resolver_Benchmark(
                                                         $,
@@ -3785,11 +3787,11 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
                                                     },
                                                 ),
                                                 ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                    $,
+                                                    ($) => abort(
                                                         $,
-                                                        ($) => abort(
-                                                            $,
-                                                        ),
-                                                    )['optional'],
+                                                    ),
+                                                )['optional'],
                                                 ).map(
                                                     ($) => Resolver_Value_List_Result(
                                                         $,
@@ -4320,7 +4322,7 @@ export const Resolver_Value: Resolver_Value_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Module_Specification: Module_Specification_ = ($, abort) => p_change_context(
+export const Module_Specification: declarations.Module_Specification_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -4378,11 +4380,11 @@ export const Module_Specification: Module_Specification_ = ($, abort) => p_chang
                             $,
                         ),
                         'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
+                            $,
+                            ($) => abort(
                                 $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            )['items'],
+                            ),
+                        )['items'],
                         ).map(
                             ($) => p_change_context(
                                 $['value'],
@@ -4548,7 +4550,7 @@ export const Module_Specification: Module_Specification_ = ($, abort) => p_chang
     ),
 )
 
-export const Schema_Tree: Schema_Tree_ = ($, abort) => p_change_context(
+export const Schema_Tree: declarations.Schema_Tree_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -4603,7 +4605,7 @@ export const Schema_Tree: Schema_Tree_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Text_Type: Text_Type_ = ($, abort) => p_change_context(
+export const Text_Type: declarations.Text_Type_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -4820,7 +4822,7 @@ export const Text_Type: Text_Type_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Simple_Type: Simple_Type_ = ($, abort) => p_change_context(
+export const Simple_Type: declarations.Simple_Type_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5044,11 +5046,11 @@ export const Simple_Type: Simple_Type_ = ($, abort) => p_change_context(
                                                                                                                         },
                                                                                                                     ),
                                                                                                                     ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                                                                                                        $,
+                                                                                                                        ($) => abort(
                                                                                                                             $,
-                                                                                                                            ($) => abort(
-                                                                                                                                $,
-                                                                                                                            ),
-                                                                                                                        )['optional'],
+                                                                                                                        ),
+                                                                                                                    )['optional'],
                                                                                                                     ).map(
                                                                                                                         ($) => v_unmarshalled_from_parse_tree.Number(
                                                                                                                             $,
@@ -5188,7 +5190,7 @@ export const Simple_Type: Simple_Type_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Module: Module_ = ($, abort) => p_change_context(
+export const Module: declarations.Module_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5233,7 +5235,7 @@ export const Module: Module_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Presence: Presence_ = ($, abort) => p_change_context(
+export const Presence: declarations.Presence_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -5288,7 +5290,7 @@ export const Presence: Presence_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Resolver_Modules: Resolver_Modules_ = ($, abort) => p_change_context(
+export const Resolver_Modules: declarations.Resolver_Modules_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -5373,7 +5375,7 @@ export const Resolver_Modules: Resolver_Modules_ = ($, abort) => p_change_contex
     }),
 )
 
-export const Resolver_Benchmark: Resolver_Benchmark_ = ($, abort) => p_change_context(
+export const Resolver_Benchmark: declarations.Resolver_Benchmark_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5460,7 +5462,7 @@ export const Resolver_Benchmark: Resolver_Benchmark_ = ($, abort) => p_change_co
     ),
 )
 
-export const Group: Group_ = ($, abort) => p_change_context(
+export const Group: declarations.Group_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -5512,11 +5514,11 @@ export const Group: Group_ = ($, abort) => p_change_context(
                                         },
                                     ),
                                     ($) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+                                        $,
+                                        ($) => abort(
                                             $,
-                                            ($) => abort(
-                                                $,
-                                            ),
-                                        )['optional'],
+                                        ),
+                                    )['optional'],
                                     ).map(
                                         ($) => v_unmarshalled_from_parse_tree.Text(
                                             $,
@@ -5553,7 +5555,7 @@ export const Group: Group_ = ($, abort) => p_change_context(
     }),
 )
 
-export const Value_Reference: Value_Reference_ = ($, abort) => p_change_context(
+export const Value_Reference: declarations.Value_Reference_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5617,7 +5619,7 @@ export const Value_Reference: Value_Reference_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Value_Path: Value_Path_ = ($, abort) => p_change_context(
+export const Value_Path: declarations.Value_Path_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5656,11 +5658,11 @@ export const Value_Path: Value_Path_ = ($, abort) => p_change_context(
                             $,
                         ),
                         'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
+                            $,
+                            ($) => abort(
                                 $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            )['items'],
+                            ),
+                        )['items'],
                         ).map(
                             ($) => p_change_context(
                                 $['value'],
@@ -5805,7 +5807,7 @@ export const Value_Path: Value_Path_ = ($, abort) => p_change_context(
     ),
 )
 
-export const Module_Reference: Module_Reference_ = ($, abort) => p_change_context(
+export const Module_Reference: declarations.Module_Reference_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -5989,7 +5991,7 @@ export const Module_Reference: Module_Reference_ = ($, abort) => p_change_contex
     ),
 )
 
-export const Resolver_Signature: Resolver_Signature_ = ($, abort) => p_change_context(
+export const Resolver_Signature: declarations.Resolver_Signature_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -6125,7 +6127,7 @@ export const Resolver_Signature: Resolver_Signature_ = ($, abort) => p_change_co
     ),
 )
 
-export const Resolver_Relative_Value_Selection: Resolver_Relative_Value_Selection_ = ($, abort) => p_change_context(
+export const Resolver_Relative_Value_Selection: declarations.Resolver_Relative_Value_Selection_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -6164,11 +6166,11 @@ export const Resolver_Relative_Value_Selection: Resolver_Relative_Value_Selectio
                             $,
                         ),
                         'l list': p_.from.list(v_unmarshalled_from_parse_tree.List(
+                            $,
+                            ($) => abort(
                                 $,
-                                ($) => abort(
-                                    $,
-                                ),
-                            )['items'],
+                            ),
+                        )['items'],
                         ).map(
                             ($) => p_change_context(
                                 $['value'],
@@ -6316,7 +6318,7 @@ export const Resolver_Relative_Value_Selection: Resolver_Relative_Value_Selectio
     ),
 )
 
-export const Resolver_Lookup_Selection: Resolver_Lookup_Selection_ = ($, abort) => p_change_context(
+export const Resolver_Lookup_Selection: declarations.Resolver_Lookup_Selection_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -6586,7 +6588,7 @@ export const Resolver_Lookup_Selection: Resolver_Lookup_Selection_ = ($, abort) 
     ),
 )
 
-export const Resolver_Constraint: Resolver_Constraint_ = ($, abort) => p_change_context(
+export const Resolver_Constraint: declarations.Resolver_Constraint_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -6798,7 +6800,7 @@ export const Resolver_Constraint: Resolver_Constraint_ = ($, abort) => p_change_
     ),
 )
 
-export const Resolver_Option_Constraints: Resolver_Option_Constraints_ = ($, abort) => p_change_context(
+export const Resolver_Option_Constraints: declarations.Resolver_Option_Constraints_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -6955,12 +6957,12 @@ export const Resolver_Option_Constraints: Resolver_Option_Constraints_ = ($, abo
     }),
 )
 
-export const Resolver_Optional_Value_Constraints: Resolver_Optional_Value_Constraints_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+export const Resolver_Optional_Value_Constraints: declarations.Resolver_Optional_Value_Constraints_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+    $,
+    ($) => abort(
         $,
-        ($) => abort(
-            $,
-        ),
-    )['optional'],
+    ),
+)['optional'],
 ).map(
     ($) => Resolver_Value_Constraints(
         $,
@@ -6970,7 +6972,7 @@ export const Resolver_Optional_Value_Constraints: Resolver_Optional_Value_Constr
     ),
 )
 
-export const Resolver_Value_Constraints: Resolver_Value_Constraints_ = ($, abort) => p_change_context(
+export const Resolver_Value_Constraints: declarations.Resolver_Value_Constraints_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -6998,7 +7000,7 @@ export const Resolver_Value_Constraints: Resolver_Value_Constraints_ = ($, abort
     }),
 )
 
-export const Resolver_Reference_To_Value_Constraint: Resolver_Reference_To_Value_Constraint_ = ($, abort) => ({
+export const Resolver_Reference_To_Value_Constraint: declarations.Resolver_Reference_To_Value_Constraint_ = ($, abort) => ({
     'l location': v_parse_tree_to_location.Value(
         $,
     ),
@@ -7010,7 +7012,7 @@ export const Resolver_Reference_To_Value_Constraint: Resolver_Reference_To_Value
     ),
 })
 
-export const Resolver_Value_Constraint: Resolver_Value_Constraint_ = ($, abort) => p_change_context(
+export const Resolver_Value_Constraint: declarations.Resolver_Value_Constraint_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -7122,7 +7124,7 @@ export const Resolver_Value_Constraint: Resolver_Value_Constraint_ = ($, abort) 
     ),
 )
 
-export const Resolver_Optional_Value_Initialization: Resolver_Optional_Value_Initialization_ = ($, abort) => p_change_context(
+export const Resolver_Optional_Value_Initialization: declarations.Resolver_Optional_Value_Initialization_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
@@ -7192,7 +7194,7 @@ export const Resolver_Optional_Value_Initialization: Resolver_Optional_Value_Ini
     ),
 )
 
-export const Resolver_Value_Group: Resolver_Value_Group_ = ($, abort) => p_change_context(
+export const Resolver_Value_Group: declarations.Resolver_Value_Group_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Dictionary(
         $,
         ($) => abort(
@@ -7277,19 +7279,19 @@ export const Resolver_Value_Group: Resolver_Value_Group_ = ($, abort) => p_chang
     }),
 )
 
-export const Resolver_Value_List_Result: Resolver_Value_List_Result_ = ($, abort) => Module_Reference(
+export const Resolver_Value_List_Result: declarations.Resolver_Value_List_Result_ = ($, abort) => Module_Reference(
     $,
     ($) => abort(
         $,
     ),
 )
 
-export const Value_Results: Value_Results_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+export const Value_Results: declarations.Value_Results_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+    $,
+    ($) => abort(
         $,
-        ($) => abort(
-            $,
-        ),
-    )['optional'],
+    ),
+)['optional'],
 ).map(
     ($) => p_change_context(
         v_unmarshalled_from_parse_tree.Dictionary(
@@ -7320,12 +7322,12 @@ export const Value_Results: Value_Results_ = ($, abort) => p_.from.optional(v_un
     ),
 )
 
-export const Option_Constraints: Option_Constraints_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+export const Option_Constraints: declarations.Option_Constraints_ = ($, abort) => p_.from.optional(v_unmarshalled_from_parse_tree.Optional(
+    $,
+    ($) => abort(
         $,
-        ($) => abort(
-            $,
-        ),
-    )['optional'],
+    ),
+)['optional'],
 ).map(
     ($) => p_change_context(
         v_unmarshalled_from_parse_tree.Dictionary(
@@ -7356,7 +7358,7 @@ export const Option_Constraints: Option_Constraints_ = ($, abort) => p_.from.opt
     ),
 )
 
-export const Resolver_Guaranteed_Value_Selection: Resolver_Guaranteed_Value_Selection_ = ($, abort) => p_change_context(
+export const Resolver_Guaranteed_Value_Selection: declarations.Resolver_Guaranteed_Value_Selection_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.Verbose_Group(
         $,
         ($) => abort(
@@ -8066,7 +8068,7 @@ export const Resolver_Guaranteed_Value_Selection: Resolver_Guaranteed_Value_Sele
     ),
 )
 
-export const Resolver_Possible_Value_Selection: Resolver_Possible_Value_Selection_ = ($, abort) => p_change_context(
+export const Resolver_Possible_Value_Selection: declarations.Resolver_Possible_Value_Selection_ = ($, abort) => p_change_context(
     v_unmarshalled_from_parse_tree.State(
         $,
         ($) => abort(
