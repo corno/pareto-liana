@@ -13,22 +13,15 @@ import type * as s_package from "lib/schemas/packages/schema"
 
 
 import { $ as m_astn } from "./astn/module.astn.js"
-import { $ as m_astn_core } from "./astn-core/module.astn.js"
 import { $ as m_pareto } from "./pareto/module.astn.js"
 import { $ as m_pareto_boekhouding } from "./pareto-boekhouding/module.astn.js"
 import { $ as m_pareto_development_tools } from "./pareto-development-tools/module.astn.js"
-import { $ as m_pareto_fountain_pen } from "./pareto-fountain-pen/module.astn.js"
 import { $ as m_pareto_graphviz } from "./pareto-graphviz/module.astn.js"
-import { $ as m_pareto_json } from "./pareto-json/module.astn.js"
 import { $ as m_pareto_json_schema } from "./pareto-json-schema/module.astn.js"
 import { $ as m_pareto_liana } from "./pareto-liana/module.astn.js"
 import { $ as m_pareto_lionweb } from "./pareto-lionweb/module.astn.js"
-import { $ as m_pareto_resources } from "./pareto-resources/module.astn.js"
-import { $ as m_pareto_stream } from "./pareto-stream-api/module.astn.js"
 import { $ as m_pareto_static_html } from "./pareto-static-html/module.astn.js"
 import { $ as m_liana_targets } from "./liana-targets/module.astn.js"
-// import { $ as m_pareto_test } from "./pareto-test/module.astn.js"
-import { $ as m_liana_authoring } from "./liana-authoring/module.astn.js"
 
 
 
