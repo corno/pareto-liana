@@ -1,6 +1,6 @@
 import * as sh from 'liana-core/temp/shorthand_helpers/unresolved_data'
 
-import type * as s_target from "../../../modules/schema.generated/schemas/unresolved/schema.js"
+import type * as s_target from "../schema.js"
 
 
 export const signatures = (

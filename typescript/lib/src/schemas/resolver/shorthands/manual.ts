@@ -2,7 +2,7 @@ import * as p_t from 'pareto-core/implementation/transformer'
 
 import * as sh from 'liana-core/temp/shorthand_helpers/unresolved_data'
 
-import type * as s_target from "../../../modules/schema.generated/schemas/unresolved/schema.js"
+import type * as s_target from "../schema.js"
 
 import * as temp_schema from "../../schema/shorthands/manual.js"
 
