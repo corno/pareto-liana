@@ -25,7 +25,7 @@ export const Error: p_.Transformer_With_Parameter<
     p_.from.state($).decide(
         ($) => {
             switch ($[0]) {
-                case 'resolving': return p_.ss($, ($) => sh.ph.composed([
+                case 'resolving': return p_.option($, ($) => sh.ph.composed([
                     sh.ph.text(
                         ser_location.Range(
                             $.location,
@@ -41,7 +41,7 @@ export const Error: p_.Transformer_With_Parameter<
                         )
                     )
                 ]))
-                case 'error writing file': return p_.ss($, ($) => sh.ph.text(ser_write_file.Error($)))
+                case 'error writing file': return p_.option($, ($) => sh.ph.text(ser_write_file.Error($)))
                 default: return p_.exhaustive($[0])
             }
         })

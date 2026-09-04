@@ -281,20 +281,17 @@ export const Schema: t_signatures.Schema = ($) => ({
                 $,
                 ($): s_out.Schema.complexity.l_state => {
                     switch ($[0]) {
-                        case 'constrained':
-                            return p_.option(
+                        case 'constrained': return p_.option(
                                 $,
                                 ($) => ['constrained', Resolver(
                                     $,
                                 )],
                             )
-                        case 'unconstrained':
-                            return p_.option(
+                        case 'unconstrained': return p_.option(
                                 $,
                                 ($) => ['unconstrained', null],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -439,18 +436,15 @@ export const Globals: t_signatures.Globals = ($) => ({
                 $,
                 ($): s_out.Globals.complexity.l_state => {
                     switch ($[0]) {
-                        case 'constrained':
-                            return p_.option(
+                        case 'constrained': return p_.option(
                                 $,
                                 ($) => ['constrained', null],
                             )
-                        case 'unconstrained':
-                            return p_.option(
+                        case 'unconstrained': return p_.option(
                                 $,
                                 ($) => ['unconstrained', null],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -580,8 +574,7 @@ export const Value: t_signatures.Value = ($) => ({
         $,
         ($): s_out.Value.l_state => {
             switch ($[0]) {
-                case 'component':
-                    return p_.option(
+                case 'component': return p_.option(
                         $,
                         ($) => ['component', {
                             'type': p_change_context(
@@ -607,8 +600,7 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                         ($): s_out.Value.l_state.component.type_.l_state => {
                                             switch ($[0]) {
-                                                case 'external':
-                                                    return p_.option(
+                                                case 'external': return p_.option(
                                                         $,
                                                         ($) => ['external', {
                                                             'import': p_change_context(
@@ -657,8 +649,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             ),
                                                         }],
                                                     )
-                                                case 'internal':
-                                                    return p_.option(
+                                                case 'internal': return p_.option(
                                                         $,
                                                         ($) => ['internal', {
                                                             'l location': {
@@ -680,8 +671,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
-                                                case 'internal acyclic':
-                                                    return p_.option(
+                                                case 'internal acyclic': return p_.option(
                                                         $,
                                                         ($) => ['internal acyclic', {
                                                             'l location': {
@@ -703,8 +693,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -720,22 +709,19 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                case 'dictionary':
-                    return p_.option(
+                case 'dictionary': return p_.option(
                         $,
                         ($) => ['dictionary', Dictionary(
                             $,
                         )],
                     )
-                case 'group':
-                    return p_.option(
+                case 'group': return p_.option(
                         $,
                         ($) => ['group', Group(
                             $,
                         )],
                     )
-                case 'list':
-                    return p_.option(
+                case 'list': return p_.option(
                         $,
                         ($) => ['list', {
                             'value': p_change_context(
@@ -752,13 +738,11 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                case 'nothing':
-                    return p_.option(
+                case 'nothing': return p_.option(
                         $,
                         ($) => ['nothing', null],
                     )
-                case 'simple':
-                    return p_.option(
+                case 'simple': return p_.option(
                         $,
                         ($) => ['simple', {
                             'l location': {
@@ -781,8 +765,7 @@ export const Value: t_signatures.Value = ($) => ({
                                 $,
                                 ($): s_out.Value.l_state.simple.l_state => {
                                     switch ($[0]) {
-                                        case 'global':
-                                            return p_.option(
+                                        case 'global': return p_.option(
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': {
@@ -804,8 +787,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                     'l reference': $['l id'],
                                                 }],
                                             )
-                                        default:
-                                            return p_.au(
+                                        default: return p_.exhaustive(
                                                 $[0],
                                             )
                                     }
@@ -813,15 +795,13 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                case 'optional':
-                    return p_.option(
+                case 'optional': return p_.option(
                         $,
                         ($) => ['optional', Value(
                             $,
                         )],
                     )
-                case 'reference':
-                    return p_.option(
+                case 'reference': return p_.option(
                         $,
                         ($) => ['reference', {
                             'referent': p_change_context(
@@ -853,13 +833,11 @@ export const Value: t_signatures.Value = ($) => ({
                                         $,
                                         ($): s_out.Value.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
-                                                case 'derived':
-                                                    return p_.option(
+                                                case 'derived': return p_.option(
                                                         $,
                                                         ($) => ['derived', null],
                                                     )
-                                                case 'selected':
-                                                    return p_.option(
+                                                case 'selected': return p_.option(
                                                         $,
                                                         ($) => ['selected', {
                                                             'dictionary': p_change_context(
@@ -889,23 +867,19 @@ export const Value: t_signatures.Value = ($) => ({
                                                                         $,
                                                                         ($): s_out.Value.l_state.reference.type_.l_state.selected.dependency.l_state => {
                                                                             switch ($[0]) {
-                                                                                case 'acyclic':
-                                                                                    return p_.option(
+                                                                                case 'acyclic': return p_.option(
                                                                                         $,
                                                                                         ($) => ['acyclic', null],
                                                                                     )
-                                                                                case 'cyclic':
-                                                                                    return p_.option(
+                                                                                case 'cyclic': return p_.option(
                                                                                         $,
                                                                                         ($) => ['cyclic', null],
                                                                                     )
-                                                                                case 'stack':
-                                                                                    return p_.option(
+                                                                                case 'stack': return p_.option(
                                                                                         $,
                                                                                         ($) => ['stack', null],
                                                                                     )
-                                                                                default:
-                                                                                    return p_.au(
+                                                                                default: return p_.exhaustive(
                                                                                         $[0],
                                                                                     )
                                                                             }
@@ -921,8 +895,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                             ),
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -932,8 +905,7 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                case 'state':
-                    return p_.option(
+                case 'state': return p_.option(
                         $,
                         ($) => ['state', {
                             'options': p_change_context(
@@ -1007,8 +979,7 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                case 'text':
-                    return p_.option(
+                case 'text': return p_.option(
                         $,
                         ($) => ['text', {
                             'l location': {
@@ -1031,8 +1002,7 @@ export const Value: t_signatures.Value = ($) => ({
                                 $,
                                 ($): s_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
-                                        case 'global':
-                                            return p_.option(
+                                        case 'global': return p_.option(
                                                 $,
                                                 ($) => ['global', {
                                                     'l location': {
@@ -1054,15 +1024,13 @@ export const Value: t_signatures.Value = ($) => ({
                                                     'l reference': $['l id'],
                                                 }],
                                             )
-                                        case 'local':
-                                            return p_.option(
+                                        case 'local': return p_.option(
                                                 $,
                                                 ($) => ['local', Text_Type(
                                                     $,
                                                 )],
                                             )
-                                        default:
-                                            return p_.au(
+                                        default: return p_.exhaustive(
                                                 $[0],
                                             )
                                     }
@@ -1070,8 +1038,7 @@ export const Value: t_signatures.Value = ($) => ({
                             ),
                         }],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }
@@ -1323,23 +1290,19 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                     $,
                                     ($): s_out.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry.type_.l_state => {
                                         switch ($[0]) {
-                                            case 'cyclic':
-                                                return p_.option(
+                                            case 'cyclic': return p_.option(
                                                     $,
                                                     ($) => ['cyclic', null],
                                                 )
-                                            case 'acyclic':
-                                                return p_.option(
+                                            case 'acyclic': return p_.option(
                                                     $,
                                                     ($) => ['acyclic', null],
                                                 )
-                                            case 'stack':
-                                                return p_.option(
+                                            case 'stack': return p_.option(
                                                     $,
                                                     ($) => ['stack', null],
                                                 )
-                                            default:
-                                                return p_.au(
+                                            default: return p_.exhaustive(
                                                     $[0],
                                                 )
                                         }
@@ -1397,8 +1360,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
         $,
         ($): s_out.Resolver_Value.l_state => {
             switch ($[0]) {
-                case 'component':
-                    return p_.option(
+                case 'component': return p_.option(
                         $,
                         ($) => ['component', {
                             'definition': p_change_context(
@@ -1428,8 +1390,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                         $,
                                         ($): s_out.Resolver_Value.l_state.component.location.l_state => {
                                             switch ($[0]) {
-                                                case 'external':
-                                                    return p_.option(
+                                                case 'external': return p_.option(
                                                         $,
                                                         ($) => ['external', {
                                                             'schema import': p_change_context(
@@ -1500,8 +1461,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             ),
                                                         }],
                                                     )
-                                                case 'internal':
-                                                    return p_.option(
+                                                case 'internal': return p_.option(
                                                         $,
                                                         ($) => ['internal', {
                                                             'l location': {
@@ -1523,8 +1483,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             'l reference': $['l id'],
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -1586,22 +1545,19 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                     $,
                                                                     ($): s_out.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
-                                                                            case 'optional':
-                                                                                return p_.option(
+                                                                            case 'optional': return p_.option(
                                                                                     $,
                                                                                     ($) => ['optional', Resolver_Optional_Value_Initialization(
                                                                                         $,
                                                                                     )],
                                                                                 )
-                                                                            case 'required':
-                                                                                return p_.option(
+                                                                            case 'required': return p_.option(
                                                                                     $,
                                                                                     ($) => ['required', Resolver_Guaranteed_Value_Selection(
                                                                                         $,
                                                                                     )],
                                                                                 )
-                                                                            case 'parameter':
-                                                                                return p_.option(
+                                                                            case 'parameter': return p_.option(
                                                                                     $,
                                                                                     ($) => ['parameter', {
                                                                                         'l location': {
@@ -1623,8 +1579,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                         'l reference': $['l id'],
                                                                                     }],
                                                                                 )
-                                                                            default:
-                                                                                return p_.au(
+                                                                            default: return p_.exhaustive(
                                                                                     $[0],
                                                                                 )
                                                                         }
@@ -1697,8 +1652,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                     $,
                                                                     ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
-                                                                            case 'stack':
-                                                                                return p_.option(
+                                                                            case 'stack': return p_.option(
                                                                                     $,
                                                                                     ($) => ['stack', {
                                                                                         'l location': {
@@ -1721,13 +1675,11 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                             $,
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack.l_state => {
                                                                                                 switch ($[0]) {
-                                                                                                    case 'empty':
-                                                                                                        return p_.option(
+                                                                                                    case 'empty': return p_.option(
                                                                                                             $,
                                                                                                             ($) => ['empty', null],
                                                                                                         )
-                                                                                                    case 'push':
-                                                                                                        return p_.option(
+                                                                                                    case 'push': return p_.option(
                                                                                                             $,
                                                                                                             ($) => ['push', {
                                                                                                                 'stack': p_change_context(
@@ -1744,8 +1696,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                                 ),
                                                                                                             }],
                                                                                                         )
-                                                                                                    default:
-                                                                                                        return p_.au(
+                                                                                                    default: return p_.exhaustive(
                                                                                                             $[0],
                                                                                                         )
                                                                                                 }
@@ -1753,8 +1704,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                         ),
                                                                                     }],
                                                                                 )
-                                                                            case 'acyclic':
-                                                                                return p_.option(
+                                                                            case 'acyclic': return p_.option(
                                                                                     $,
                                                                                     ($) => ['acyclic', {
                                                                                         'l location': {
@@ -1777,13 +1727,11 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                             $,
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic.l_state => {
                                                                                                 switch ($[0]) {
-                                                                                                    case 'not set':
-                                                                                                        return p_.option(
+                                                                                                    case 'not set': return p_.option(
                                                                                                             $,
                                                                                                             ($) => ['not set', null],
                                                                                                         )
-                                                                                                    default:
-                                                                                                        return p_.au(
+                                                                                                    default: return p_.exhaustive(
                                                                                                             $[0],
                                                                                                         )
                                                                                                 }
@@ -1791,8 +1739,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                         ),
                                                                                     }],
                                                                                 )
-                                                                            case 'cyclic':
-                                                                                return p_.option(
+                                                                            case 'cyclic': return p_.option(
                                                                                     $,
                                                                                     ($) => ['cyclic', {
                                                                                         'l location': {
@@ -1815,13 +1762,11 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                             $,
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic.l_state => {
                                                                                                 switch ($[0]) {
-                                                                                                    case 'not set':
-                                                                                                        return p_.option(
+                                                                                                    case 'not set': return p_.option(
                                                                                                             $,
                                                                                                             ($) => ['not set', null],
                                                                                                         )
-                                                                                                    default:
-                                                                                                        return p_.au(
+                                                                                                    default: return p_.exhaustive(
                                                                                                             $[0],
                                                                                                         )
                                                                                                 }
@@ -1829,15 +1774,13 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                         ),
                                                                                     }],
                                                                                 )
-                                                                            case 'selection':
-                                                                                return p_.option(
+                                                                            case 'selection': return p_.option(
                                                                                     $,
                                                                                     ($) => ['selection', Resolver_Lookup_Selection(
                                                                                         $,
                                                                                     )],
                                                                                 )
-                                                                            default:
-                                                                                return p_.au(
+                                                                            default: return p_.exhaustive(
                                                                                     $[0],
                                                                                 )
                                                                         }
@@ -1876,8 +1819,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'dictionary':
-                    return p_.option(
+                case 'dictionary': return p_.option(
                         $,
                         ($) => ['dictionary', {
                             'definition': p_change_context(
@@ -1901,15 +1843,13 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'group':
-                    return p_.option(
+                case 'group': return p_.option(
                         $,
                         ($) => ['group', Resolver_Value_Group(
                             $,
                         )],
                     )
-                case 'list':
-                    return p_.option(
+                case 'list': return p_.option(
                         $,
                         ($) => ['list', {
                             'definition': p_change_context(
@@ -1933,18 +1873,15 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'nothing':
-                    return p_.option(
+                case 'nothing': return p_.option(
                         $,
                         ($) => ['nothing', null],
                     )
-                case 'simple':
-                    return p_.option(
+                case 'simple': return p_.option(
                         $,
                         ($) => ['simple', null],
                     )
-                case 'optional':
-                    return p_.option(
+                case 'optional': return p_.option(
                         $,
                         ($) => ['optional', {
                             'constraints': p_change_context(
@@ -1961,8 +1898,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'reference':
-                    return p_.option(
+                case 'reference': return p_.option(
                         $,
                         ($) => ['reference', {
                             'definition': p_change_context(
@@ -1992,8 +1928,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                         $,
                                         ($): s_out.Resolver_Value.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
-                                                case 'derived':
-                                                    return p_.option(
+                                                case 'derived': return p_.option(
                                                         $,
                                                         ($) => ['derived', {
                                                             'value': p_change_context(
@@ -2004,8 +1939,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             ),
                                                         }],
                                                     )
-                                                case 'selected':
-                                                    return p_.option(
+                                                case 'selected': return p_.option(
                                                         $,
                                                         ($) => ['selected', {
                                                             'definition': p_change_context(
@@ -2026,8 +1960,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                             ),
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -2037,8 +1970,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'state':
-                    return p_.option(
+                case 'state': return p_.option(
                         $,
                         ($) => ['state', {
                             'definition': p_change_context(
@@ -2103,13 +2035,11 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                             ),
                         }],
                     )
-                case 'text':
-                    return p_.option(
+                case 'text': return p_.option(
                         $,
                         ($) => ['text', null],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }
@@ -2190,8 +2120,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                 $,
                 ($): s_out.Module_Specification.complexity.l_state => {
                     switch ($[0]) {
-                        case 'constrained':
-                            return p_.option(
+                        case 'constrained': return p_.option(
                                 $,
                                 ($) => ['constrained', {
                                     'module resolver': p_change_context(
@@ -2200,8 +2129,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                                     ),
                                 }],
                             )
-                        case 'unconstrained':
-                            return p_.option(
+                        case 'unconstrained': return p_.option(
                                 $,
                                 ($) => ['unconstrained', {
                                     'module': p_change_context(
@@ -2210,8 +2138,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -2242,22 +2169,19 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
         $,
         ($): s_out.Schema_Tree.l_state => {
             switch ($[0]) {
-                case 'schema':
-                    return p_.option(
+                case 'schema': return p_.option(
                         $,
                         ($) => ['schema', Schema(
                             $,
                         )],
                     )
-                case 'set':
-                    return p_.option(
+                case 'set': return p_.option(
                         $,
                         ($) => ['set', Schemas(
                             $,
                         )],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }
@@ -2289,18 +2213,15 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 $,
                 ($): s_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
-                        case 'multi line':
-                            return p_.option(
+                        case 'multi line': return p_.option(
                                 $,
                                 ($) => ['multi line', null],
                             )
-                        case 'single line':
-                            return p_.option(
+                        case 'single line': return p_.option(
                                 $,
                                 ($) => ['single line', null],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -2331,13 +2252,11 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                 $,
                 ($): s_out.Text_Type.link.l_state => {
                     switch ($[0]) {
-                        case 'no':
-                            return p_.option(
+                        case 'no': return p_.option(
                                 $,
                                 ($) => ['no', null],
                             )
-                        case 'yes':
-                            return p_.option(
+                        case 'yes': return p_.option(
                                 $,
                                 ($) => ['yes', {
                                     'path prefix': p_change_context(
@@ -2350,8 +2269,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -2385,18 +2303,15 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                 $,
                 ($): s_out.Simple_Type.type_.l_state => {
                     switch ($[0]) {
-                        case 'boolean':
-                            return p_.option(
+                        case 'boolean': return p_.option(
                                 $,
                                 ($) => ['boolean', null],
                             )
-                        case 'date':
-                            return p_.option(
+                        case 'date': return p_.option(
                                 $,
                                 ($) => ['date', null],
                             )
-                        case 'number':
-                            return p_.option(
+                        case 'number': return p_.option(
                                 $,
                                 ($) => ['number', {
                                     'precision': p_change_context(
@@ -2422,8 +2337,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                 $,
                                                 ($): s_out.Simple_Type.type_.l_state.number_.precision.l_state => {
                                                     switch ($[0]) {
-                                                        case 'approximation':
-                                                            return p_.option(
+                                                        case 'approximation': return p_.option(
                                                                 $,
                                                                 ($) => ['approximation', {
                                                                     'significant digits': p_change_context(
@@ -2432,8 +2346,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                                     ),
                                                                 }],
                                                             )
-                                                        case 'exact':
-                                                            return p_.option(
+                                                        case 'exact': return p_.option(
                                                                 $,
                                                                 ($) => ['exact', {
                                                                     'number of fractional digits': p_change_context(
@@ -2466,23 +2379,19 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                                                 $,
                                                                                 ($): s_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_.l_state => {
                                                                                     switch ($[0]) {
-                                                                                        case 'integer':
-                                                                                            return p_.option(
+                                                                                        case 'integer': return p_.option(
                                                                                                 $,
                                                                                                 ($) => ['integer', null],
                                                                                             )
-                                                                                        case 'natural':
-                                                                                            return p_.option(
+                                                                                        case 'natural': return p_.option(
                                                                                                 $,
                                                                                                 ($) => ['natural', null],
                                                                                             )
-                                                                                        case 'positive natural':
-                                                                                            return p_.option(
+                                                                                        case 'positive natural': return p_.option(
                                                                                                 $,
                                                                                                 ($) => ['positive natural', null],
                                                                                             )
-                                                                                        default:
-                                                                                            return p_.au(
+                                                                                        default: return p_.exhaustive(
                                                                                                 $[0],
                                                                                             )
                                                                                     }
@@ -2492,8 +2401,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                                     ),
                                                                 }],
                                                             )
-                                                        default:
-                                                            return p_.au(
+                                                        default: return p_.exhaustive(
                                                                 $[0],
                                                             )
                                                     }
@@ -2503,8 +2411,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -2544,18 +2451,15 @@ export const Presence: t_signatures.Presence = ($) => ({
         $,
         ($): s_out.Presence.l_state => {
             switch ($[0]) {
-                case 'optional':
-                    return p_.option(
+                case 'optional': return p_.option(
                         $,
                         ($) => ['optional', null],
                     )
-                case 'required':
-                    return p_.option(
+                case 'required': return p_.option(
                         $,
                         ($) => ['required', null],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }
@@ -2748,13 +2652,11 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                 $['l value'],
                                 ($): s_out.Value_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
-                                        case 'dictionary':
-                                            return p_.option(
+                                        case 'dictionary': return p_.option(
                                                 $,
                                                 ($) => ['dictionary', null],
                                             )
-                                        case 'group':
-                                            return p_.option(
+                                        case 'group': return p_.option(
                                                 $,
                                                 ($) => ['group', {
                                                     'l location': {
@@ -2776,18 +2678,15 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                                     'l reference': $['l id'],
                                                 }],
                                             )
-                                        case 'list':
-                                            return p_.option(
+                                        case 'list': return p_.option(
                                                 $,
                                                 ($) => ['list', null],
                                             )
-                                        case 'optional':
-                                            return p_.option(
+                                        case 'optional': return p_.option(
                                                 $,
                                                 ($) => ['optional', null],
                                             )
-                                        case 'state':
-                                            return p_.option(
+                                        case 'state': return p_.option(
                                                 $,
                                                 ($) => ['state', {
                                                     'l location': {
@@ -2809,8 +2708,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                                     'l reference': $['l id'],
                                                 }],
                                             )
-                                        default:
-                                            return p_.au(
+                                        default: return p_.exhaustive(
                                                 $[0],
                                             )
                                     }
@@ -2868,8 +2766,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                 $,
                 ($): s_out.Module_Reference.location.l_state => {
                     switch ($[0]) {
-                        case 'internal':
-                            return p_.option(
+                        case 'internal': return p_.option(
                                 $,
                                 ($) => ['internal', {
                                     'l location': {
@@ -2891,8 +2788,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                     'l reference': $['l id'],
                                 }],
                             )
-                        case 'external':
-                            return p_.option(
+                        case 'external': return p_.option(
                                 $,
                                 ($) => ['external', {
                                     'import': p_change_context(
@@ -2941,8 +2837,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -2984,15 +2879,13 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                 $,
                 ($): s_out.Resolver_Signature.parameters.l_state => {
                     switch ($[0]) {
-                        case 'local':
-                            return p_.option(
+                        case 'local': return p_.option(
                                 $,
                                 ($) => ['local', Resolver_Signature_Parameters(
                                     $,
                                 )],
                             )
-                        case 'same as':
-                            return p_.option(
+                        case 'same as': return p_.option(
                                 $,
                                 ($) => ['same as', {
                                     'l location': {
@@ -3014,8 +2907,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                                     'l reference': $['l id'],
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -3075,13 +2967,11 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                 $,
                                 ($): s_out.Resolver_Relative_Value_Selection.path.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
-                                        case 'component':
-                                            return p_.option(
+                                        case 'component': return p_.option(
                                                 $,
                                                 ($) => ['component', null],
                                             )
-                                        case 'group':
-                                            return p_.option(
+                                        case 'group': return p_.option(
                                                 $,
                                                 ($) => ['group', {
                                                     'l location': {
@@ -3103,8 +2993,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                                     'l reference': $['l id'],
                                                 }],
                                             )
-                                        case 'reference':
-                                            return p_.option(
+                                        case 'reference': return p_.option(
                                                 $,
                                                 ($) => ['reference', {
                                                     'definition': p_change_context(
@@ -3113,8 +3002,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                                     ),
                                                 }],
                                             )
-                                        default:
-                                            return p_.au(
+                                        default: return p_.exhaustive(
                                                 $[0],
                                             )
                                     }
@@ -3172,8 +3060,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                 $,
                 ($): s_out.Resolver_Lookup_Selection.type_.l_state => {
                     switch ($[0]) {
-                        case 'acyclic':
-                            return p_.option(
+                        case 'acyclic': return p_.option(
                                 $,
                                 ($) => ['acyclic', {
                                     'l location': {
@@ -3196,13 +3083,11 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                         $,
                                         ($): s_out.Resolver_Lookup_Selection.type_.l_state.acyclic.l_state => {
                                             switch ($[0]) {
-                                                case 'siblings':
-                                                    return p_.option(
+                                                case 'siblings': return p_.option(
                                                         $,
                                                         ($) => ['siblings', null],
                                                     )
-                                                case 'resolved dictionary':
-                                                    return p_.option(
+                                                case 'resolved dictionary': return p_.option(
                                                         $,
                                                         ($) => ['resolved dictionary', {
                                                             'selection': p_change_context(
@@ -3217,8 +3102,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                                             ),
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -3226,8 +3110,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                     ),
                                 }],
                             )
-                        case 'cyclic':
-                            return p_.option(
+                        case 'cyclic': return p_.option(
                                 $,
                                 ($) => ['cyclic', {
                                     'l location': {
@@ -3250,13 +3133,11 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                         $,
                                         ($): s_out.Resolver_Lookup_Selection.type_.l_state.cyclic.l_state => {
                                             switch ($[0]) {
-                                                case 'siblings':
-                                                    return p_.option(
+                                                case 'siblings': return p_.option(
                                                         $,
                                                         ($) => ['siblings', null],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -3264,8 +3145,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                     ),
                                 }],
                             )
-                        case 'parameter':
-                            return p_.option(
+                        case 'parameter': return p_.option(
                                 $,
                                 ($) => ['parameter', {
                                     'l location': {
@@ -3287,8 +3167,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                     'l reference': $['l id'],
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -3332,8 +3211,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                 $,
                 ($): s_out.Resolver_Constraint.type_.l_state => {
                     switch ($[0]) {
-                        case 'state':
-                            return p_.option(
+                        case 'state': return p_.option(
                                 $,
                                 ($) => ['state', {
                                     'selected state': p_change_context(
@@ -3364,8 +3242,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                                     ),
                                 }],
                             )
-                        case 'optional value':
-                            return p_.option(
+                        case 'optional value': return p_.option(
                                 $,
                                 ($) => ['optional value', {
                                     'selected optional value': p_change_context(
@@ -3374,8 +3251,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -3426,8 +3302,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                     $,
                     ($): s_out.Resolver_Option_Constraints.l_dictionary.D.l_entry.l_state => {
                         switch ($[0]) {
-                            case 'state':
-                                return p_.option(
+                            case 'state': return p_.option(
                                     $,
                                     ($) => ['state', {
                                         'selection': p_change_context(
@@ -3464,15 +3339,13 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                                         ),
                                     }],
                                 )
-                            case 'assert is set':
-                                return p_.option(
+                            case 'assert is set': return p_.option(
                                     $,
                                     ($) => ['assert is set', Resolver_Possible_Value_Selection(
                                         $,
                                     )],
                                 )
-                            default:
-                                return p_.au(
+                            default: return p_.exhaustive(
                                     $[0],
                                 )
                         }
@@ -3593,20 +3466,17 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
                 $,
                 ($): s_out.Resolver_Value_Constraint.start.l_state => {
                     switch ($[0]) {
-                        case 'value':
-                            return p_.option(
+                        case 'value': return p_.option(
                                 $,
                                 ($) => ['value', null],
                             )
-                        case 'sibling':
-                            return p_.option(
+                        case 'sibling': return p_.option(
                                 $,
                                 ($) => ['sibling', Resolver_Reference_To_Value_Constraint(
                                     $,
                                 )],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -3643,27 +3513,23 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
         $,
         ($): s_out.Resolver_Optional_Value_Initialization.l_state => {
             switch ($[0]) {
-                case 'not set':
-                    return p_.option(
+                case 'not set': return p_.option(
                         $,
                         ($) => ['not set', null],
                     )
-                case 'set':
-                    return p_.option(
+                case 'set': return p_.option(
                         $,
                         ($) => ['set', Resolver_Guaranteed_Value_Selection(
                             $,
                         )],
                     )
-                case 'selection':
-                    return p_.option(
+                case 'selection': return p_.option(
                         $,
                         ($) => ['selection', Resolver_Possible_Value_Selection(
                             $,
                         )],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }
@@ -3843,8 +3709,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                 $,
                 ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state => {
                     switch ($[0]) {
-                        case 'sibling':
-                            return p_.option(
+                        case 'sibling': return p_.option(
                                 $,
                                 ($) => ['sibling', {
                                     'l location': {
@@ -3866,8 +3731,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     'l reference': $['l id'],
                                 }],
                             )
-                        case 'parent sibling':
-                            return p_.option(
+                        case 'parent sibling': return p_.option(
                                 $,
                                 ($) => ['parent sibling', {
                                     'l location': {
@@ -3889,8 +3753,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     'l reference': $['l id'],
                                 }],
                             )
-                        case 'option constraint':
-                            return p_.option(
+                        case 'option constraint': return p_.option(
                                 $,
                                 ($) => ['option constraint', {
                                     'l location': {
@@ -3912,18 +3775,15 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     'l reference': $['l id'],
                                 }],
                             )
-                        case 'list cursor':
-                            return p_.option(
+                        case 'list cursor': return p_.option(
                                 $,
                                 ($) => ['list cursor', null],
                             )
-                        case 'linked entry':
-                            return p_.option(
+                        case 'linked entry': return p_.option(
                                 $,
                                 ($) => ['linked entry', null],
                             )
-                        case 'constraint':
-                            return p_.option(
+                        case 'constraint': return p_.option(
                                 $,
                                 ($) => ['constraint', {
                                     'l location': {
@@ -3946,8 +3806,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                         $,
                                         ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.constraint.l_state => {
                                             switch ($[0]) {
-                                                case 'component':
-                                                    return p_.option(
+                                                case 'component': return p_.option(
                                                         $,
                                                         ($) => ['component', {
                                                             'property': p_change_context(
@@ -3996,8 +3855,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             ),
                                                         }],
                                                     )
-                                                case 'reference':
-                                                    return p_.option(
+                                                case 'reference': return p_.option(
                                                         $,
                                                         ($) => ['reference', {
                                                             'property': p_change_context(
@@ -4046,8 +3904,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             ),
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -4055,8 +3912,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     ),
                                 }],
                             )
-                        case 'parameter':
-                            return p_.option(
+                        case 'parameter': return p_.option(
                                 $,
                                 ($) => ['parameter', {
                                     'l location': {
@@ -4078,8 +3934,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     'l reference': $['l id'],
                                 }],
                             )
-                        case 'result':
-                            return p_.option(
+                        case 'result': return p_.option(
                                 $,
                                 ($) => ['result', {
                                     'l location': {
@@ -4102,8 +3957,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                         $,
                                         ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.result.l_state => {
                                             switch ($[0]) {
-                                                case 'list':
-                                                    return p_.option(
+                                                case 'list': return p_.option(
                                                         $,
                                                         ($) => ['list', {
                                                             'property': p_change_context(
@@ -4134,8 +3988,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             ),
                                                         }],
                                                     )
-                                                case 'state':
-                                                    return p_.option(
+                                                case 'state': return p_.option(
                                                         $,
                                                         ($) => ['state', {
                                                             'property': p_change_context(
@@ -4172,8 +4025,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             ),
                                                         }],
                                                     )
-                                                case 'optional value':
-                                                    return p_.option(
+                                                case 'optional value': return p_.option(
                                                         $,
                                                         ($) => ['optional value', {
                                                             'property': p_change_context(
@@ -4210,8 +4062,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                                             ),
                                                         }],
                                                     )
-                                                default:
-                                                    return p_.au(
+                                                default: return p_.exhaustive(
                                                         $[0],
                                                     )
                                             }
@@ -4219,8 +4070,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                     ),
                                 }],
                             )
-                        default:
-                            return p_.au(
+                        default: return p_.exhaustive(
                                 $[0],
                             )
                     }
@@ -4261,8 +4111,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
         $,
         ($): s_out.Resolver_Possible_Value_Selection.l_state => {
             switch ($[0]) {
-                case 'parameter':
-                    return p_.option(
+                case 'parameter': return p_.option(
                         $,
                         ($) => ['parameter', {
                             'l location': {
@@ -4284,8 +4133,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                             'l reference': $['l id'],
                         }],
                     )
-                case 'result':
-                    return p_.option(
+                case 'result': return p_.option(
                         $,
                         ($) => ['result', {
                             'l location': {
@@ -4308,8 +4156,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                 $,
                                 ($): s_out.Resolver_Possible_Value_Selection.l_state.result.l_state => {
                                     switch ($[0]) {
-                                        case 'state':
-                                            return p_.option(
+                                        case 'state': return p_.option(
                                                 $,
                                                 ($) => ['state', {
                                                     'property': p_change_context(
@@ -4346,8 +4193,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                     ),
                                                 }],
                                             )
-                                        case 'optional value':
-                                            return p_.option(
+                                        case 'optional value': return p_.option(
                                                 $,
                                                 ($) => ['optional value', {
                                                     'property': p_change_context(
@@ -4384,8 +4230,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                                     ),
                                                 }],
                                             )
-                                        default:
-                                            return p_.au(
+                                        default: return p_.exhaustive(
                                                 $[0],
                                             )
                                     }
@@ -4393,8 +4238,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                             ),
                         }],
                     )
-                default:
-                    return p_.au(
+                default: return p_.exhaustive(
                         $[0],
                     )
             }

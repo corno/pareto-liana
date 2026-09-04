@@ -2661,7 +2661,7 @@ export const Value: declarations.Resolver_Value_ = ($, abort, $l, $p) => {
                 )
 
 
-                // case 'state': return pa.ss($, ($): _i_generic.Resolved_Step<_i_out.Resolver_Relative_Value_Selection.tail.L, _i_out.Value> => pa.deprecated_block(
+                // case 'state': return pa.option($, ($): _i_generic.Resolved_Step<_i_out.Resolver_Relative_Value_Selection.tail.L, _i_out.Value> => pa.deprecated_block(
                 // () => {
                 //     return pa.deprecated_block(
                 // () => {
@@ -2738,7 +2738,7 @@ export const Value: declarations.Resolver_Value_ = ($, abort, $l, $p) => {
                 //     : $p.definition[1]
                 return ['text', null]
             })
-            // case 'type parameter': return _pt.ss($, ($) => {
+            // case 'type parameter': return _pt.option($, ($) => {
 
             //     const x = $p.definition[0] !== 'type parameter'
             //         ? _pt.fixme_abort("not a 'type parameter' but a '", $p.definition, "' @ ", $p['location 2 string'](loc))
