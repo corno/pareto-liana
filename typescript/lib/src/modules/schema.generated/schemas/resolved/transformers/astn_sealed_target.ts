@@ -1,13 +1,13 @@
 
-import * as p_ from 'pareto-core/implementation/transformer'
+import * as p_ from 'pareto-core/transformer'
 
-import * as p_di from 'pareto-core/interface/schema'
+import * as p_di from 'pareto-core/schema'
 const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
 const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => p_.from.optional($).decide(assign, otherwise)
 
-import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
+import p_change_context from 'pareto-core/refiner/specials/change_context'
 
-import _p_text_from_list from 'pareto-core/implementation/transformer/specials/text_from_list'
+import _p_text_from_list from 'pareto-core/transformer/specials/text_from_list'
 
 import type * as s_in from "../schema.js"
 namespace t_signatures {

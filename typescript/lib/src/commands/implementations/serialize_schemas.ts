@@ -1,5 +1,5 @@
 //core
-import * as p_ from 'pareto-core/implementation/command'
+import * as p_ from 'pareto-core/command'
 
 //interface dependencies
 import type * as command_interfaces_pareto_application_api from "pareto-application-api/commands/interfaces"

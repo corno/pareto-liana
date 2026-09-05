@@ -1,10 +1,10 @@
-import * as p_ from 'pareto-core/implementation/refiner'
-import type * as p_di from 'pareto-core/interface/schema'
-import type * as p_ri from 'pareto-core/interface/refiner'
+import * as p_ from 'pareto-core/refiner'
+import type * as p_di from 'pareto-core/schema'
+import type * as p_ri from 'pareto-core/refiner'
 
-import p_unreachable_code_path from 'pareto-core/implementation/transformer/specials/unreachable_code_path'
+import p_unreachable_code_path from 'pareto-core/transformer/specials/unreachable_code_path'
 
-import { type Abort } from 'pareto-core/interface/__internal/Abort'
+import { type Abort } from 'pareto-core/__internal/Abort'
 
 import * as gen_loc from "astn-core/modules/deserialization/schemas/location/schema"
 import * as gen_resolve from "liana-core/modules/resolved_document_deserialization/schemas/resolving/schema"

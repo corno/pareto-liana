@@ -1,5 +1,5 @@
 import * as p_ from 'pareto-core-shorthands/unconstrained_target'
-import * as p_temp from 'pareto-core/implementation/transformer'
+import * as p_temp from 'pareto-core/transformer'
 
 
 

@@ -1,4 +1,4 @@
-import * as p_t from 'pareto-core/implementation/transformer'
+import * as p_t from 'pareto-core/transformer'
 
 import * as sh from 'liana-core/temp/shorthand_helpers/unresolved_data'
 

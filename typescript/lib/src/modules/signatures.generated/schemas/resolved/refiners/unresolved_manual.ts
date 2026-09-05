@@ -1,12 +1,12 @@
-import * as p_ from 'pareto-core/implementation/refiner'
-import * as p_sl from 'pareto-core/implementation/refiner/specials/lookup'
-import p_variables from 'pareto-core/implementation/refiner/specials/variables'
-import p_change_context from 'pareto-core/implementation/refiner/specials/change_context'
+import * as p_ from 'pareto-core/refiner'
+import * as p_sl from 'pareto-core/refiner/specials/lookup'
+import p_variables from 'pareto-core/refiner/specials/variables'
+import p_change_context from 'pareto-core/refiner/specials/change_context'
 
 
-import * as p_i from 'pareto-core/interface/__internal/Abort'
-import * as p_di from 'pareto-core/interface/schema'
-import * as p_ri from 'pareto-core/interface/refiner'
+import * as p_i from 'pareto-core/__internal/Abort'
+import * as p_di from 'pareto-core/schema'
+import * as p_ri from 'pareto-core/refiner'
 
 import * as i_generic from "liana-core/modules/resolved_document_deserialization/schemas/resolving/schema"
 

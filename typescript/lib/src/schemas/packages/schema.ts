@@ -1,4 +1,4 @@
-import type * as p_ from 'pareto-core/interface/schema'
+import type * as p_ from 'pareto-core/schema'
 
 import type * as s_schema from "../../modules/schema.generated/schemas/unresolved/schema.js"
 
