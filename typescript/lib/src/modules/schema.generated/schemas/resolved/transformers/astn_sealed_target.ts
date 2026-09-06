@@ -1,9 +1,6 @@
 
 import * as p_ from 'pareto-core/transformer'
 
-import * as p_di from 'pareto-core/schema'
-const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
-const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => p_.from.optional($).decide(assign, otherwise)
 
 import p_change_context from 'pareto-core/refiner/specials/change_context'
 
@@ -236,29 +233,28 @@ export const Schema: t_signatures.Schema = ($) => ['group', ['verbose', p_.liter
         ),
         "complexity": p_change_context(
             $['complexity'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'constrained',
-                                    'value': Resolver(
-                                        $,
-                                    ),
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'constrained',
+                                'value': Resolver(
+                                    $,
+                                ),
+                            }),
+                        )
                         case 'unconstrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'unconstrained',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'unconstrained',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -296,27 +292,26 @@ export const Globals: t_signatures.Globals = ($) => ['group', ['verbose', p_.lit
     {
         "complexity": p_change_context(
             $['complexity'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'constrained',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'constrained',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'unconstrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'unconstrained',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'unconstrained',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -353,338 +348,331 @@ export const Dictionary: t_signatures.Dictionary = ($) => ['group', ['verbose', 
     },
 )]]
 
-export const Value: t_signatures.Value = ($) => ['state', p_decide_state(
-    $,
+export const Value: t_signatures.Value = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'component': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'component',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "type": p_change_context(
-                                    $['type'],
-                                    ($) => ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'external': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'external',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "import": p_change_context(
-                                                                        $['import'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "module": p_change_context(
-                                                                        $['module'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'internal': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'internal',
-                                                            'value': ['reference', {
-                                                                'value': $['l id'],
-                                                            }],
-                                                        }),
-                                                    )
-                                                case 'internal acyclic': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'internal acyclic',
-                                                            'value': ['reference', {
-                                                                'value': $['l id'],
-                                                            }],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
+                $,
+                ($) => ({
+                    'option': 'component',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "type": p_change_context(
+                                $['type'],
+                                ($) => ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'external': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'external',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "import": p_change_context(
+                                                                $['import'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "module": p_change_context(
+                                                                $['module'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'internal': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'internal',
+                                                    'value': ['reference', {
+                                                        'value': $['l id'],
+                                                    }],
+                                                }),
+                                            )
+                                            case 'internal acyclic': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'internal acyclic',
+                                                    'value': ['reference', {
+                                                        'value': $['l id'],
+                                                    }],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            ),
+                            "results": p_change_context(
+                                $['results'],
+                                ($) => Value_Results(
+                                    $,
                                 ),
-                                "results": p_change_context(
-                                    $['results'],
-                                    ($) => Value_Results(
-                                        $,
-                                    ),
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'dictionary': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'dictionary',
-                        'value': Dictionary(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'dictionary',
+                    'value': Dictionary(
+                        $,
+                    ),
+                }),
+            )
             case 'group': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'group',
-                        'value': Group(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'group',
+                    'value': Group(
+                        $,
+                    ),
+                }),
+            )
             case 'list': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'list',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "value": p_change_context(
-                                    $['value'],
-                                    ($) => Value(
-                                        $,
-                                    ),
+                $,
+                ($) => ({
+                    'option': 'list',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "value": p_change_context(
+                                $['value'],
+                                ($) => Value(
+                                    $,
                                 ),
-                                "results": p_change_context(
-                                    $['results'],
-                                    ($) => Value_Results(
-                                        $,
-                                    ),
+                            ),
+                            "results": p_change_context(
+                                $['results'],
+                                ($) => Value_Results(
+                                    $,
                                 ),
-                            },
-                        )]],
-                    }),
-                )
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'nothing': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'nothing',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'nothing',
+                    'value': ['nothing', null],
+                }),
+            )
             case 'simple': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'simple',
-                        'value': ['state', p_decide_state(
-                            $,
-                            ($): s_out.Value.state => {
-                                switch ($[0]) {
-                                    case 'global': return p_.option(
-                                            $,
-                                            ($) => ({
-                                                'option': 'global',
-                                                'value': ['reference', {
-                                                    'value': $['l id'],
-                                                }],
-                                            }),
-                                        )
-                                    default: return p_.exhaustive(
-                                            $[0],
-                                        )
-                                }
-                            },
-                        )],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'simple',
+                    'value': ['state', p_.from.state($).decide(
+                        ($): s_out.Value.state => {
+                            switch ($[0]) {
+                                case 'global': return p_.option(
+                                    $,
+                                    ($) => ({
+                                        'option': 'global',
+                                        'value': ['reference', {
+                                            'value': $['l id'],
+                                        }],
+                                    }),
+                                )
+                                default: return p_.exhaustive(
+                                    $[0],
+                                )
+                            }
+                        },
+                    )],
+                }),
+            )
             case 'optional': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'optional',
-                        'value': Value(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'optional',
+                    'value': Value(
+                        $,
+                    ),
+                }),
+            )
             case 'reference': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'reference',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "referent": p_change_context(
-                                    $['referent'],
-                                    ($) => Value_Reference(
-                                        $,
-                                    ),
+                $,
+                ($) => ({
+                    'option': 'reference',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "referent": p_change_context(
+                                $['referent'],
+                                ($) => Value_Reference(
+                                    $,
                                 ),
-                                "type": p_change_context(
-                                    $['type'],
-                                    ($) => ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'derived': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'derived',
-                                                            'value': ['nothing', null],
-                                                        }),
-                                                    )
-                                                case 'selected': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'selected',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "dictionary": p_change_context(
-                                                                        $['dictionary'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                    "dependency": p_change_context(
-                                                                        $['dependency'],
-                                                                        ($) => ['state', p_decide_state(
-                                                                            $,
-                                                                            ($): s_out.Value.state => {
-                                                                                switch ($[0]) {
-                                                                                    case 'acyclic': return p_.option(
-                                                                                            $,
-                                                                                            ($) => ({
-                                                                                                'option': 'acyclic',
-                                                                                                'value': ['nothing', null],
-                                                                                            }),
-                                                                                        )
-                                                                                    case 'cyclic': return p_.option(
-                                                                                            $,
-                                                                                            ($) => ({
-                                                                                                'option': 'cyclic',
-                                                                                                'value': ['nothing', null],
-                                                                                            }),
-                                                                                        )
-                                                                                    case 'stack': return p_.option(
-                                                                                            $,
-                                                                                            ($) => ({
-                                                                                                'option': 'stack',
-                                                                                                'value': ['nothing', null],
-                                                                                            }),
-                                                                                        )
-                                                                                    default: return p_.exhaustive(
-                                                                                            $[0],
-                                                                                        )
-                                                                                }
-                                                                            },
-                                                                        )],
-                                                                    ),
-                                                                    "results": p_change_context(
-                                                                        $['results'],
-                                                                        ($) => Value_Results(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                            ),
+                            "type": p_change_context(
+                                $['type'],
+                                ($) => ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'derived': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'derived',
+                                                    'value': ['nothing', null],
+                                                }),
+                                            )
+                                            case 'selected': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'selected',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "dictionary": p_change_context(
+                                                                $['dictionary'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                            "dependency": p_change_context(
+                                                                $['dependency'],
+                                                                ($) => ['state', p_.from.state($).decide(
+                                                                    ($): s_out.Value.state => {
+                                                                        switch ($[0]) {
+                                                                            case 'acyclic': return p_.option(
+                                                                                $,
+                                                                                ($) => ({
+                                                                                    'option': 'acyclic',
+                                                                                    'value': ['nothing', null],
+                                                                                }),
+                                                                            )
+                                                                            case 'cyclic': return p_.option(
+                                                                                $,
+                                                                                ($) => ({
+                                                                                    'option': 'cyclic',
+                                                                                    'value': ['nothing', null],
+                                                                                }),
+                                                                            )
+                                                                            case 'stack': return p_.option(
+                                                                                $,
+                                                                                ($) => ({
+                                                                                    'option': 'stack',
+                                                                                    'value': ['nothing', null],
+                                                                                }),
+                                                                            )
+                                                                            default: return p_.exhaustive(
+                                                                                $[0],
+                                                                            )
+                                                                        }
+                                                                    },
+                                                                )],
+                                                            ),
+                                                            "results": p_change_context(
+                                                                $['results'],
+                                                                ($) => Value_Results(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'state': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'state',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "options": p_change_context(
-                                    $['options'],
-                                    ($) => ['dictionary', p_.from.dictionary($,
-                                    ).map(
-                                        ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
-                                            {
-                                                "constraints": p_change_context(
-                                                    $['constraints'],
-                                                    ($) => Option_Constraints(
-                                                        $,
-                                                    ),
-                                                ),
-                                                "description": p_change_context(
-                                                    $['description'],
-                                                    ($) => ['optional', p_decide_optional(
-                                                        $,
-                                                        ($): s_out.Value.optional => ['set', ['text', {
-                                                            'delimiter': ['quote', null],
-                                                            'value': $,
-                                                        }]],
-                                                        () => ['not set', null],
-                                                    )],
-                                                ),
-                                                "value": p_change_context(
-                                                    $['value'],
-                                                    ($) => Value(
-                                                        $,
-                                                    ),
-                                                ),
-                                            },
-                                        )]],
-                                    )],
-                                ),
-                                "results": p_change_context(
-                                    $['results'],
-                                    ($) => Value_Results(
-                                        $,
-                                    ),
-                                ),
-                            },
-                        )]],
-                    }),
-                )
-            case 'text': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'text',
-                        'value': ['state', p_decide_state(
-                            $,
-                            ($): s_out.Value.state => {
-                                switch ($[0]) {
-                                    case 'global': return p_.option(
-                                            $,
-                                            ($) => ({
-                                                'option': 'global',
-                                                'value': ['reference', {
-                                                    'value': $['l id'],
-                                                }],
-                                            }),
-                                        )
-                                    case 'local': return p_.option(
-                                            $,
-                                            ($) => ({
-                                                'option': 'local',
-                                                'value': Text_Type(
+                $,
+                ($) => ({
+                    'option': 'state',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "options": p_change_context(
+                                $['options'],
+                                ($) => ['dictionary', p_.from.dictionary($,
+                                ).map(
+                                    ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
+                                        {
+                                            "constraints": p_change_context(
+                                                $['constraints'],
+                                                ($) => Option_Constraints(
                                                     $,
                                                 ),
-                                            }),
-                                        )
-                                    default: return p_.exhaustive(
-                                            $[0],
-                                        )
-                                }
-                            },
-                        )],
-                    }),
-                )
+                                            ),
+                                            "description": p_change_context(
+                                                $['description'],
+                                                ($) => ['optional', p_.from.optional($).decide(
+                                                    ($): s_out.Value.optional => ['set', ['text', {
+                                                        'delimiter': ['quote', null],
+                                                        'value': $,
+                                                    }]],
+                                                    () => ['not set', null],
+                                                )],
+                                            ),
+                                            "value": p_change_context(
+                                                $['value'],
+                                                ($) => Value(
+                                                    $,
+                                                ),
+                                            ),
+                                        },
+                                    )]],
+                                )],
+                            ),
+                            "results": p_change_context(
+                                $['results'],
+                                ($) => Value_Results(
+                                    $,
+                                ),
+                            ),
+                        },
+                    )]],
+                }),
+            )
+            case 'text': return p_.option(
+                $,
+                ($) => ({
+                    'option': 'text',
+                    'value': ['state', p_.from.state($).decide(
+                        ($): s_out.Value.state => {
+                            switch ($[0]) {
+                                case 'global': return p_.option(
+                                    $,
+                                    ($) => ({
+                                        'option': 'global',
+                                        'value': ['reference', {
+                                            'value': $['l id'],
+                                        }],
+                                    }),
+                                )
+                                case 'local': return p_.option(
+                                    $,
+                                    ($) => ({
+                                        'option': 'local',
+                                        'value': Text_Type(
+                                            $,
+                                        ),
+                                    }),
+                                )
+                                default: return p_.exhaustive(
+                                    $[0],
+                                )
+                            }
+                        },
+                    )],
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]
@@ -781,34 +769,33 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                         ),
                         "type": p_change_context(
                             $['type'],
-                            ($) => ['state', p_decide_state(
-                                $,
+                            ($) => ['state', p_.from.state($).decide(
                                 ($): s_out.Value.state => {
                                     switch ($[0]) {
                                         case 'cyclic': return p_.option(
-                                                $,
-                                                ($) => ({
-                                                    'option': 'cyclic',
-                                                    'value': ['nothing', null],
-                                                }),
-                                            )
+                                            $,
+                                            ($) => ({
+                                                'option': 'cyclic',
+                                                'value': ['nothing', null],
+                                            }),
+                                        )
                                         case 'acyclic': return p_.option(
-                                                $,
-                                                ($) => ({
-                                                    'option': 'acyclic',
-                                                    'value': ['nothing', null],
-                                                }),
-                                            )
+                                            $,
+                                            ($) => ({
+                                                'option': 'acyclic',
+                                                'value': ['nothing', null],
+                                            }),
+                                        )
                                         case 'stack': return p_.option(
-                                                $,
-                                                ($) => ({
-                                                    'option': 'stack',
-                                                    'value': ['nothing', null],
-                                                }),
-                                            )
+                                            $,
+                                            ($) => ({
+                                                'option': 'stack',
+                                                'value': ['nothing', null],
+                                            }),
+                                        )
                                         default: return p_.exhaustive(
-                                                $[0],
-                                            )
+                                            $[0],
+                                        )
                                     }
                                 },
                             )],
@@ -826,485 +813,472 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
     },
 )]]
 
-export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', p_decide_state(
-    $,
+export const Resolver_Value: t_signatures.Resolver_Value = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'component': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'component',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "definition": p_change_context(
-                                    $['definition'],
-                                    ($) => ['nothing', null],
-                                ),
-                                "location": p_change_context(
-                                    $['location'],
-                                    ($) => ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'external': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'external',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "schema import": p_change_context(
-                                                                        $['schema import'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "resolver import": p_change_context(
-                                                                        $['resolver import'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "signature": p_change_context(
-                                                                        $['signature'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'internal': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'internal',
-                                                            'value': ['reference', {
-                                                                'value': $['l id'],
-                                                            }],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
+                $,
+                ($) => ({
+                    'option': 'component',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "definition": p_change_context(
+                                $['definition'],
+                                ($) => ['nothing', null],
+                            ),
+                            "location": p_change_context(
+                                $['location'],
+                                ($) => ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'external': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'external',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "schema import": p_change_context(
+                                                                $['schema import'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "resolver import": p_change_context(
+                                                                $['resolver import'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "signature": p_change_context(
+                                                                $['signature'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'internal': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'internal',
+                                                    'value': ['reference', {
+                                                        'value': $['l id'],
+                                                    }],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            ),
+                            "signature": p_change_context(
+                                $['signature'],
+                                ($) => ['nothing', null],
+                            ),
+                            "arguments": p_change_context(
+                                $['arguments'],
+                                ($) => ['optional', p_.from.optional($).decide(
+                                    ($): s_out.Value.optional => ['set', ['group', ['verbose', p_.literal.dictionary(
+                                        {
+                                            "modules": p_change_context(
+                                                $['modules'],
+                                                ($) => ['optional', p_.from.optional($).decide(
+                                                    ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
+                                                    ).map(
+                                                        ($, id): s_out.Value => ['state', p_.from.state($).decide(
+                                                            ($): s_out.Value.state => {
+                                                                switch ($[0]) {
+                                                                    case 'optional': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'optional',
+                                                                            'value': Resolver_Optional_Value_Initialization(
+                                                                                $,
+                                                                            ),
+                                                                        }),
+                                                                    )
+                                                                    case 'required': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'required',
+                                                                            'value': Resolver_Guaranteed_Value_Selection(
+                                                                                $,
+                                                                            ),
+                                                                        }),
+                                                                    )
+                                                                    case 'parameter': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'parameter',
+                                                                            'value': ['reference', {
+                                                                                'value': $['l id'],
+                                                                            }],
+                                                                        }),
+                                                                    )
+                                                                    default: return p_.exhaustive(
+                                                                        $[0],
+                                                                    )
+                                                                }
+                                                            },
+                                                        )],
+                                                    )]],
+                                                    () => ['not set', null],
+                                                )],
+                                            ),
+                                            "lookups": p_change_context(
+                                                $['lookups'],
+                                                ($) => ['optional', p_.from.optional($).decide(
+                                                    ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
+                                                    ).map(
+                                                        ($, id): s_out.Value => ['state', p_.from.state($).decide(
+                                                            ($): s_out.Value.state => {
+                                                                switch ($[0]) {
+                                                                    case 'stack': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'stack',
+                                                                            'value': ['state', p_.from.state($).decide(
+                                                                                ($): s_out.Value.state => {
+                                                                                    switch ($[0]) {
+                                                                                        case 'empty': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'empty',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        case 'push': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'push',
+                                                                                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                                                                                    {
+                                                                                                        "stack": p_change_context(
+                                                                                                            $['stack'],
+                                                                                                            ($) => Resolver_Lookup_Selection(
+                                                                                                                $,
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                        "item": p_change_context(
+                                                                                                            $['item'],
+                                                                                                            ($) => Resolver_Lookup_Selection(
+                                                                                                                $,
+                                                                                                            ),
+                                                                                                        ),
+                                                                                                    },
+                                                                                                )]],
+                                                                                            }),
+                                                                                        )
+                                                                                        default: return p_.exhaustive(
+                                                                                            $[0],
+                                                                                        )
+                                                                                    }
+                                                                                },
+                                                                            )],
+                                                                        }),
+                                                                    )
+                                                                    case 'acyclic': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'acyclic',
+                                                                            'value': ['state', p_.from.state($).decide(
+                                                                                ($): s_out.Value.state => {
+                                                                                    switch ($[0]) {
+                                                                                        case 'not set': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'not set',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        default: return p_.exhaustive(
+                                                                                            $[0],
+                                                                                        )
+                                                                                    }
+                                                                                },
+                                                                            )],
+                                                                        }),
+                                                                    )
+                                                                    case 'cyclic': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'cyclic',
+                                                                            'value': ['state', p_.from.state($).decide(
+                                                                                ($): s_out.Value.state => {
+                                                                                    switch ($[0]) {
+                                                                                        case 'not set': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'not set',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        default: return p_.exhaustive(
+                                                                                            $[0],
+                                                                                        )
+                                                                                    }
+                                                                                },
+                                                                            )],
+                                                                        }),
+                                                                    )
+                                                                    case 'selection': return p_.option(
+                                                                        $,
+                                                                        ($) => ({
+                                                                            'option': 'selection',
+                                                                            'value': Resolver_Lookup_Selection(
+                                                                                $,
+                                                                            ),
+                                                                        }),
+                                                                    )
+                                                                    default: return p_.exhaustive(
+                                                                        $[0],
+                                                                    )
+                                                                }
+                                                            },
+                                                        )],
+                                                    )]],
+                                                    () => ['not set', null],
+                                                )],
+                                            ),
                                         },
-                                    )],
+                                    )]]],
+                                    () => ['not set', null],
+                                )],
+                            ),
+                            "constraints": p_change_context(
+                                $['constraints'],
+                                ($) => Resolver_Value_Constraints(
+                                    $,
                                 ),
-                                "signature": p_change_context(
-                                    $['signature'],
-                                    ($) => ['nothing', null],
-                                ),
-                                "arguments": p_change_context(
-                                    $['arguments'],
-                                    ($) => ['optional', p_decide_optional(
-                                        $,
-                                        ($): s_out.Value.optional => ['set', ['group', ['verbose', p_.literal.dictionary(
-                                            {
-                                                "modules": p_change_context(
-                                                    $['modules'],
-                                                    ($) => ['optional', p_decide_optional(
-                                                        $,
-                                                        ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
-                                                        ).map(
-                                                            ($, id): s_out.Value => ['state', p_decide_state(
-                                                                $,
-                                                                ($): s_out.Value.state => {
-                                                                    switch ($[0]) {
-                                                                        case 'optional': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'optional',
-                                                                                    'value': Resolver_Optional_Value_Initialization(
-                                                                                        $,
-                                                                                    ),
-                                                                                }),
-                                                                            )
-                                                                        case 'required': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'required',
-                                                                                    'value': Resolver_Guaranteed_Value_Selection(
-                                                                                        $,
-                                                                                    ),
-                                                                                }),
-                                                                            )
-                                                                        case 'parameter': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'parameter',
-                                                                                    'value': ['reference', {
-                                                                                        'value': $['l id'],
-                                                                                    }],
-                                                                                }),
-                                                                            )
-                                                                        default: return p_.exhaustive(
-                                                                                $[0],
-                                                                            )
-                                                                    }
-                                                                },
-                                                            )],
-                                                        )]],
-                                                        () => ['not set', null],
-                                                    )],
-                                                ),
-                                                "lookups": p_change_context(
-                                                    $['lookups'],
-                                                    ($) => ['optional', p_decide_optional(
-                                                        $,
-                                                        ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
-                                                        ).map(
-                                                            ($, id): s_out.Value => ['state', p_decide_state(
-                                                                $,
-                                                                ($): s_out.Value.state => {
-                                                                    switch ($[0]) {
-                                                                        case 'stack': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'stack',
-                                                                                    'value': ['state', p_decide_state(
-                                                                                        $,
-                                                                                        ($): s_out.Value.state => {
-                                                                                            switch ($[0]) {
-                                                                                                case 'empty': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'empty',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                case 'push': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'push',
-                                                                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                                                                {
-                                                                                                                    "stack": p_change_context(
-                                                                                                                        $['stack'],
-                                                                                                                        ($) => Resolver_Lookup_Selection(
-                                                                                                                            $,
-                                                                                                                        ),
-                                                                                                                    ),
-                                                                                                                    "item": p_change_context(
-                                                                                                                        $['item'],
-                                                                                                                        ($) => Resolver_Lookup_Selection(
-                                                                                                                            $,
-                                                                                                                        ),
-                                                                                                                    ),
-                                                                                                                },
-                                                                                                            )]],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                default: return p_.exhaustive(
-                                                                                                        $[0],
-                                                                                                    )
-                                                                                            }
-                                                                                        },
-                                                                                    )],
-                                                                                }),
-                                                                            )
-                                                                        case 'acyclic': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'acyclic',
-                                                                                    'value': ['state', p_decide_state(
-                                                                                        $,
-                                                                                        ($): s_out.Value.state => {
-                                                                                            switch ($[0]) {
-                                                                                                case 'not set': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'not set',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                default: return p_.exhaustive(
-                                                                                                        $[0],
-                                                                                                    )
-                                                                                            }
-                                                                                        },
-                                                                                    )],
-                                                                                }),
-                                                                            )
-                                                                        case 'cyclic': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'cyclic',
-                                                                                    'value': ['state', p_decide_state(
-                                                                                        $,
-                                                                                        ($): s_out.Value.state => {
-                                                                                            switch ($[0]) {
-                                                                                                case 'not set': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'not set',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                default: return p_.exhaustive(
-                                                                                                        $[0],
-                                                                                                    )
-                                                                                            }
-                                                                                        },
-                                                                                    )],
-                                                                                }),
-                                                                            )
-                                                                        case 'selection': return p_.option(
-                                                                                $,
-                                                                                ($) => ({
-                                                                                    'option': 'selection',
-                                                                                    'value': Resolver_Lookup_Selection(
-                                                                                        $,
-                                                                                    ),
-                                                                                }),
-                                                                            )
-                                                                        default: return p_.exhaustive(
-                                                                                $[0],
-                                                                            )
-                                                                    }
-                                                                },
-                                                            )],
-                                                        )]],
-                                                        () => ['not set', null],
-                                                    )],
-                                                ),
-                                            },
-                                        )]]],
-                                        () => ['not set', null],
-                                    )],
-                                ),
-                                "constraints": p_change_context(
-                                    $['constraints'],
-                                    ($) => Resolver_Value_Constraints(
-                                        $,
-                                    ),
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'dictionary': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'dictionary',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "definition": p_change_context(
-                                    $['definition'],
-                                    ($) => ['nothing', null],
+                $,
+                ($) => ({
+                    'option': 'dictionary',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "definition": p_change_context(
+                                $['definition'],
+                                ($) => ['nothing', null],
+                            ),
+                            "resolver": p_change_context(
+                                $['resolver'],
+                                ($) => Resolver_Value(
+                                    $,
                                 ),
-                                "resolver": p_change_context(
-                                    $['resolver'],
-                                    ($) => Resolver_Value(
+                            ),
+                            "benchmark": p_change_context(
+                                $['benchmark'],
+                                ($) => ['optional', p_.from.optional($).decide(
+                                    ($): s_out.Value.optional => ['set', Resolver_Benchmark(
                                         $,
-                                    ),
-                                ),
-                                "benchmark": p_change_context(
-                                    $['benchmark'],
-                                    ($) => ['optional', p_decide_optional(
-                                        $,
-                                        ($): s_out.Value.optional => ['set', Resolver_Benchmark(
-                                            $,
-                                        )],
-                                        () => ['not set', null],
                                     )],
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                                    () => ['not set', null],
+                                )],
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'group': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'group',
-                        'value': Resolver_Value_Group(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'group',
+                    'value': Resolver_Value_Group(
+                        $,
+                    ),
+                }),
+            )
             case 'list': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'list',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "definition": p_change_context(
-                                    $['definition'],
-                                    ($) => ['nothing', null],
+                $,
+                ($) => ({
+                    'option': 'list',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "definition": p_change_context(
+                                $['definition'],
+                                ($) => ['nothing', null],
+                            ),
+                            "resolver": p_change_context(
+                                $['resolver'],
+                                ($) => Resolver_Value(
+                                    $,
                                 ),
-                                "resolver": p_change_context(
-                                    $['resolver'],
-                                    ($) => Resolver_Value(
+                            ),
+                            "result": p_change_context(
+                                $['result'],
+                                ($) => ['optional', p_.from.optional($).decide(
+                                    ($): s_out.Value.optional => ['set', Resolver_Value_List_Result(
                                         $,
-                                    ),
-                                ),
-                                "result": p_change_context(
-                                    $['result'],
-                                    ($) => ['optional', p_decide_optional(
-                                        $,
-                                        ($): s_out.Value.optional => ['set', Resolver_Value_List_Result(
-                                            $,
-                                        )],
-                                        () => ['not set', null],
                                     )],
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                                    () => ['not set', null],
+                                )],
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'nothing': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'nothing',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'nothing',
+                    'value': ['nothing', null],
+                }),
+            )
             case 'simple': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'simple',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'simple',
+                    'value': ['nothing', null],
+                }),
+            )
             case 'optional': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'optional',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "constraints": p_change_context(
-                                    $['constraints'],
-                                    ($) => Resolver_Option_Constraints(
-                                        $,
-                                    ),
+                $,
+                ($) => ({
+                    'option': 'optional',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "constraints": p_change_context(
+                                $['constraints'],
+                                ($) => Resolver_Option_Constraints(
+                                    $,
                                 ),
-                                "resolver": p_change_context(
-                                    $['resolver'],
-                                    ($) => Resolver_Value(
-                                        $,
-                                    ),
+                            ),
+                            "resolver": p_change_context(
+                                $['resolver'],
+                                ($) => Resolver_Value(
+                                    $,
                                 ),
-                            },
-                        )]],
-                    }),
-                )
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'reference': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'reference',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "definition": p_change_context(
-                                    $['definition'],
-                                    ($) => ['nothing', null],
-                                ),
-                                "type": p_change_context(
-                                    $['type'],
-                                    ($) => ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'derived': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'derived',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "value": p_change_context(
-                                                                        $['value'],
-                                                                        ($) => Resolver_Guaranteed_Value_Selection(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'selected': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'selected',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "definition": p_change_context(
-                                                                        $['definition'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                    "lookup": p_change_context(
-                                                                        $['lookup'],
-                                                                        ($) => Resolver_Lookup_Selection(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                    "constraints": p_change_context(
-                                                                        $['constraints'],
-                                                                        ($) => Resolver_Value_Constraints(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'reference',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "definition": p_change_context(
+                                $['definition'],
+                                ($) => ['nothing', null],
+                            ),
+                            "type": p_change_context(
+                                $['type'],
+                                ($) => ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'derived': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'derived',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "value": p_change_context(
+                                                                $['value'],
+                                                                ($) => Resolver_Guaranteed_Value_Selection(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'selected': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'selected',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "definition": p_change_context(
+                                                                $['definition'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                            "lookup": p_change_context(
+                                                                $['lookup'],
+                                                                ($) => Resolver_Lookup_Selection(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                            "constraints": p_change_context(
+                                                                $['constraints'],
+                                                                ($) => Resolver_Value_Constraints(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'state': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'state',
-                        'value': ['group', ['verbose', p_.literal.dictionary(
-                            {
-                                "definition": p_change_context(
-                                    $['definition'],
-                                    ($) => ['nothing', null],
-                                ),
-                                "options": p_change_context(
-                                    $['options'],
-                                    ($) => ['dictionary', p_.from.dictionary($,
-                                    ).map(
-                                        ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
-                                            {
-                                                "constraints": p_change_context(
-                                                    $['constraints'],
-                                                    ($) => Resolver_Option_Constraints(
-                                                        $,
-                                                    ),
+                $,
+                ($) => ({
+                    'option': 'state',
+                    'value': ['group', ['verbose', p_.literal.dictionary(
+                        {
+                            "definition": p_change_context(
+                                $['definition'],
+                                ($) => ['nothing', null],
+                            ),
+                            "options": p_change_context(
+                                $['options'],
+                                ($) => ['dictionary', p_.from.dictionary($,
+                                ).map(
+                                    ($, id): s_out.Value => ['group', ['verbose', p_.literal.dictionary(
+                                        {
+                                            "constraints": p_change_context(
+                                                $['constraints'],
+                                                ($) => Resolver_Option_Constraints(
+                                                    $,
                                                 ),
-                                                "resolver": p_change_context(
-                                                    $['resolver'],
-                                                    ($) => Resolver_Value(
-                                                        $,
-                                                    ),
+                                            ),
+                                            "resolver": p_change_context(
+                                                $['resolver'],
+                                                ($) => Resolver_Value(
+                                                    $,
                                                 ),
-                                            },
-                                        )]],
-                                    )],
-                                ),
-                            },
-                        )]],
-                    }),
-                )
+                                            ),
+                                        },
+                                    )]],
+                                )],
+                            ),
+                        },
+                    )]],
+                }),
+            )
             case 'text': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'text',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'text',
+                    'value': ['nothing', null],
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]
@@ -1329,47 +1303,46 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ['
         ),
         "complexity": p_change_context(
             $['complexity'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'constrained',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "module resolver": p_change_context(
-                                                $['module resolver'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['quote', null],
-                                                    'value': $,
-                                                }],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'constrained',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "module resolver": p_change_context(
+                                            $['module resolver'],
+                                            ($) => ['text', {
+                                                'delimiter': ['quote', null],
+                                                'value': $,
+                                            }],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         case 'unconstrained': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'unconstrained',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "module": p_change_context(
-                                                $['module'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['quote', null],
-                                                    'value': $,
-                                                }],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'unconstrained',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "module": p_change_context(
+                                            $['module'],
+                                            ($) => ['text', {
+                                                'delimiter': ['quote', null],
+                                                'value': $,
+                                            }],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -1377,31 +1350,30 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ['
     },
 )]]
 
-export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_decide_state(
-    $,
+export const Schema_Tree: t_signatures.Schema_Tree = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'schema': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'schema',
-                        'value': Schema(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'schema',
+                    'value': Schema(
+                        $,
+                    ),
+                }),
+            )
             case 'set': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'set',
-                        'value': Schemas(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'set',
+                    'value': Schemas(
+                        $,
+                    ),
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]
@@ -1410,71 +1382,69 @@ export const Text_Type: t_signatures.Text_Type = ($) => ['group', ['verbose', p_
     {
         "type": p_change_context(
             $['type'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'multi line': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'multi line',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'multi line',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'single line': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'single line',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'single line',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
         ),
         "link": p_change_context(
             $['link'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'no': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'no',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'no',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'yes': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'yes',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "path prefix": p_change_context(
-                                                $['path prefix'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['quote', null],
-                                                    'value': $,
-                                                }],
-                                            ),
-                                            "path suffix": p_change_context(
-                                                $['path suffix'],
-                                                ($) => ['text', {
-                                                    'delimiter': ['quote', null],
-                                                    'value': $,
-                                                }],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'yes',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "path prefix": p_change_context(
+                                            $['path prefix'],
+                                            ($) => ['text', {
+                                                'delimiter': ['quote', null],
+                                                'value': $,
+                                            }],
+                                        ),
+                                        "path suffix": p_change_context(
+                                            $['path suffix'],
+                                            ($) => ['text', {
+                                                'delimiter': ['quote', null],
+                                                'value': $,
+                                            }],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -1486,126 +1456,122 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ['group', ['verbose'
     {
         "type": p_change_context(
             $['type'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'boolean': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'boolean',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'boolean',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'date': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'date',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'date',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'number': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'number',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "precision": p_change_context(
-                                                $['precision'],
-                                                ($) => ['state', p_decide_state(
-                                                    $,
-                                                    ($): s_out.Value.state => {
-                                                        switch ($[0]) {
-                                                            case 'approximation': return p_.option(
-                                                                    $,
-                                                                    ($) => ({
-                                                                        'option': 'approximation',
-                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                            {
-                                                                                "significant digits": p_change_context(
-                                                                                    $['significant digits'],
-                                                                                    ($) => ['text', {
-                                                                                        'delimiter': ['none', null],
-                                                                                        'value': v_primitives_to_text.decimal(
+                            $,
+                            ($) => ({
+                                'option': 'number',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "precision": p_change_context(
+                                            $['precision'],
+                                            ($) => ['state', p_.from.state($).decide(
+                                                ($): s_out.Value.state => {
+                                                    switch ($[0]) {
+                                                        case 'approximation': return p_.option(
+                                                            $,
+                                                            ($) => ({
+                                                                'option': 'approximation',
+                                                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                                                    {
+                                                                        "significant digits": p_change_context(
+                                                                            $['significant digits'],
+                                                                            ($) => ['text', {
+                                                                                'delimiter': ['none', null],
+                                                                                'value': v_primitives_to_text.decimal(
+                                                                                    $,
+                                                                                ),
+                                                                            }],
+                                                                        ),
+                                                                    },
+                                                                )]],
+                                                            }),
+                                                        )
+                                                        case 'exact': return p_.option(
+                                                            $,
+                                                            ($) => ({
+                                                                'option': 'exact',
+                                                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                                                    {
+                                                                        "number of fractional digits": p_change_context(
+                                                                            $['number of fractional digits'],
+                                                                            ($) => ['optional', p_.from.optional($).decide(
+                                                                                ($): s_out.Value.optional => ['set', ['text', {
+                                                                                    'delimiter': ['none', null],
+                                                                                    'value': v_primitives_to_text.decimal(
+                                                                                        $,
+                                                                                    ),
+                                                                                }]],
+                                                                                () => ['not set', null],
+                                                                            )],
+                                                                        ),
+                                                                        "type": p_change_context(
+                                                                            $['type'],
+                                                                            ($) => ['state', p_.from.state($).decide(
+                                                                                ($): s_out.Value.state => {
+                                                                                    switch ($[0]) {
+                                                                                        case 'integer': return p_.option(
                                                                                             $,
-                                                                                        ),
-                                                                                    }],
-                                                                                ),
-                                                                            },
-                                                                        )]],
-                                                                    }),
-                                                                )
-                                                            case 'exact': return p_.option(
-                                                                    $,
-                                                                    ($) => ({
-                                                                        'option': 'exact',
-                                                                        'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                            {
-                                                                                "number of fractional digits": p_change_context(
-                                                                                    $['number of fractional digits'],
-                                                                                    ($) => ['optional', p_decide_optional(
-                                                                                        $,
-                                                                                        ($): s_out.Value.optional => ['set', ['text', {
-                                                                                            'delimiter': ['none', null],
-                                                                                            'value': v_primitives_to_text.decimal(
-                                                                                                $,
-                                                                                            ),
-                                                                                        }]],
-                                                                                        () => ['not set', null],
-                                                                                    )],
-                                                                                ),
-                                                                                "type": p_change_context(
-                                                                                    $['type'],
-                                                                                    ($) => ['state', p_decide_state(
-                                                                                        $,
-                                                                                        ($): s_out.Value.state => {
-                                                                                            switch ($[0]) {
-                                                                                                case 'integer': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'integer',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                case 'natural': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'natural',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                case 'positive natural': return p_.option(
-                                                                                                        $,
-                                                                                                        ($) => ({
-                                                                                                            'option': 'positive natural',
-                                                                                                            'value': ['nothing', null],
-                                                                                                        }),
-                                                                                                    )
-                                                                                                default: return p_.exhaustive(
-                                                                                                        $[0],
-                                                                                                    )
-                                                                                            }
-                                                                                        },
-                                                                                    )],
-                                                                                ),
-                                                                            },
-                                                                        )]],
-                                                                    }),
-                                                                )
-                                                            default: return p_.exhaustive(
-                                                                    $[0],
-                                                                )
-                                                        }
-                                                    },
-                                                )],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                                                                                            ($) => ({
+                                                                                                'option': 'integer',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        case 'natural': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'natural',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        case 'positive natural': return p_.option(
+                                                                                            $,
+                                                                                            ($) => ({
+                                                                                                'option': 'positive natural',
+                                                                                                'value': ['nothing', null],
+                                                                                            }),
+                                                                                        )
+                                                                                        default: return p_.exhaustive(
+                                                                                            $[0],
+                                                                                        )
+                                                                                    }
+                                                                                },
+                                                                            )],
+                                                                        ),
+                                                                    },
+                                                                )]],
+                                                            }),
+                                                        )
+                                                        default: return p_.exhaustive(
+                                                            $[0],
+                                                        )
+                                                    }
+                                                },
+                                            )],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -1624,27 +1590,26 @@ export const Module: t_signatures.Module = ($) => ['group', ['verbose', p_.liter
     },
 )]]
 
-export const Presence: t_signatures.Presence = ($) => ['state', p_decide_state(
-    $,
+export const Presence: t_signatures.Presence = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'optional': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'optional',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'optional',
+                    'value': ['nothing', null],
+                }),
+            )
             case 'required': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'required',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'required',
+                    'value': ['nothing', null],
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]
@@ -1697,8 +1662,7 @@ export const Group: t_signatures.Group = ($) => ['dictionary', p_.from.dictionar
         {
             "description": p_change_context(
                 $['description'],
-                ($) => ['optional', p_decide_optional(
-                    $,
+                ($) => ['optional', p_.from.optional($).decide(
                     ($): s_out.Value.optional => ['set', ['text', {
                         'delimiter': ['quote', null],
                         'value': $,
@@ -1741,52 +1705,51 @@ export const Value_Path: t_signatures.Value_Path = ($) => ['group', ['verbose', 
             ).map(
                 ($) => p_change_context(
                     $['l item'],
-                    ($) => ['state', p_decide_state(
-                        $['l value'],
+                    ($) => ['state', p_.from.state($['l value']).decide(
                         ($): s_out.Value.state => {
                             switch ($[0]) {
                                 case 'dictionary': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'dictionary',
-                                            'value': ['nothing', null],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'dictionary',
+                                        'value': ['nothing', null],
+                                    }),
+                                )
                                 case 'group': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'group',
-                                            'value': ['reference', {
-                                                'value': $['l id'],
-                                            }],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'group',
+                                        'value': ['reference', {
+                                            'value': $['l id'],
+                                        }],
+                                    }),
+                                )
                                 case 'list': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'list',
-                                            'value': ['nothing', null],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'list',
+                                        'value': ['nothing', null],
+                                    }),
+                                )
                                 case 'optional': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'optional',
-                                            'value': ['nothing', null],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'optional',
+                                        'value': ['nothing', null],
+                                    }),
+                                )
                                 case 'state': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'state',
-                                            'value': ['reference', {
-                                                'value': $['l id'],
-                                            }],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'state',
+                                        'value': ['reference', {
+                                            'value': $['l id'],
+                                        }],
+                                    }),
+                                )
                                 default: return p_.exhaustive(
-                                        $[0],
-                                    )
+                                    $[0],
+                                )
                             }
                         },
                     )],
@@ -1804,46 +1767,45 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ['group', 
     {
         "location": p_change_context(
             $['location'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'internal': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'internal',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'internal',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         case 'external': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'external',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "import": p_change_context(
-                                                $['import'],
-                                                ($) => ['reference', {
-                                                    'delimiter': ['apostrophe', null],
-                                                    'value': $['l id'],
-                                                }],
-                                            ),
-                                            "module": p_change_context(
-                                                $['module'],
-                                                ($) => ['reference', {
-                                                    'delimiter': ['apostrophe', null],
-                                                    'value': $['l id'],
-                                                }],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'external',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "import": p_change_context(
+                                            $['import'],
+                                            ($) => ['reference', {
+                                                'delimiter': ['apostrophe', null],
+                                                'value': $['l id'],
+                                            }],
+                                        ),
+                                        "module": p_change_context(
+                                            $['module'],
+                                            ($) => ['reference', {
+                                                'delimiter': ['apostrophe', null],
+                                                'value': $['l id'],
+                                            }],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -1863,31 +1825,30 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ['grou
         ),
         "parameters": p_change_context(
             $['parameters'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'local': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'local',
-                                    'value': Resolver_Signature_Parameters(
-                                        $,
-                                    ),
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'local',
+                                'value': Resolver_Signature_Parameters(
+                                    $,
+                                ),
+                            }),
+                        )
                         case 'same as': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'same as',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'same as',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -1907,43 +1868,42 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
             ).map(
                 ($) => p_change_context(
                     $['l item'],
-                    ($) => ['state', p_decide_state(
-                        $,
+                    ($) => ['state', p_.from.state($).decide(
                         ($): s_out.Value.state => {
                             switch ($[0]) {
                                 case 'component': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'component',
-                                            'value': ['nothing', null],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'component',
+                                        'value': ['nothing', null],
+                                    }),
+                                )
                                 case 'group': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'group',
-                                            'value': ['reference', {
-                                                'value': $['l id'],
-                                            }],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'group',
+                                        'value': ['reference', {
+                                            'value': $['l id'],
+                                        }],
+                                    }),
+                                )
                                 case 'reference': return p_.option(
-                                        $,
-                                        ($) => ({
-                                            'option': 'reference',
-                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                {
-                                                    "definition": p_change_context(
-                                                        $['definition'],
-                                                        ($) => ['nothing', null],
-                                                    ),
-                                                },
-                                            )]],
-                                        }),
-                                    )
+                                    $,
+                                    ($) => ({
+                                        'option': 'reference',
+                                        'value': ['group', ['verbose', p_.literal.dictionary(
+                                            {
+                                                "definition": p_change_context(
+                                                    $['definition'],
+                                                    ($) => ['nothing', null],
+                                                ),
+                                            },
+                                        )]],
+                                    }),
+                                )
                                 default: return p_.exhaustive(
-                                        $[0],
-                                    )
+                                    $[0],
+                                )
                             }
                         },
                     )],
@@ -1961,88 +1921,85 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
     {
         "type": p_change_context(
             $['type'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'acyclic': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'acyclic',
-                                    'value': ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'siblings': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'siblings',
-                                                            'value': ['nothing', null],
-                                                        }),
-                                                    )
-                                                case 'resolved dictionary': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'resolved dictionary',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "selection": p_change_context(
-                                                                        $['selection'],
-                                                                        ($) => Resolver_Guaranteed_Value_Selection(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                    "selected dictionary": p_change_context(
-                                                                        $['selected dictionary'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'acyclic',
+                                'value': ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'siblings': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'siblings',
+                                                    'value': ['nothing', null],
+                                                }),
+                                            )
+                                            case 'resolved dictionary': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'resolved dictionary',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "selection": p_change_context(
+                                                                $['selection'],
+                                                                ($) => Resolver_Guaranteed_Value_Selection(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                            "selected dictionary": p_change_context(
+                                                                $['selected dictionary'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            }),
+                        )
                         case 'cyclic': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'cyclic',
-                                    'value': ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'siblings': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'siblings',
-                                                            'value': ['nothing', null],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'cyclic',
+                                'value': ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'siblings': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'siblings',
+                                                    'value': ['nothing', null],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            }),
+                        )
                         case 'parameter': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'parameter',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'parameter',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -2064,48 +2021,47 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ['gr
         ),
         "type": p_change_context(
             $['type'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'state': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'state',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "selected state": p_change_context(
-                                                $['selected state'],
-                                                ($) => ['nothing', null],
-                                            ),
-                                            "option": p_change_context(
-                                                $['option'],
-                                                ($) => ['reference', {
-                                                    'delimiter': ['apostrophe', null],
-                                                    'value': $['l id'],
-                                                }],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'state',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "selected state": p_change_context(
+                                            $['selected state'],
+                                            ($) => ['nothing', null],
+                                        ),
+                                        "option": p_change_context(
+                                            $['option'],
+                                            ($) => ['reference', {
+                                                'delimiter': ['apostrophe', null],
+                                                'value': $['l id'],
+                                            }],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         case 'optional value': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'optional value',
-                                    'value': ['group', ['verbose', p_.literal.dictionary(
-                                        {
-                                            "selected optional value": p_change_context(
-                                                $['selected optional value'],
-                                                ($) => ['nothing', null],
-                                            ),
-                                        },
-                                    )]],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'optional value',
+                                'value': ['group', ['verbose', p_.literal.dictionary(
+                                    {
+                                        "selected optional value": p_change_context(
+                                            $['selected optional value'],
+                                            ($) => ['nothing', null],
+                                        ),
+                                    },
+                                )]],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -2115,56 +2071,54 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ['gr
 
 export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constraints = ($) => ['dictionary', p_.from.dictionary($,
 ).map(
-    ($, id): s_out.Value => ['state', p_decide_state(
-        $,
+    ($, id): s_out.Value => ['state', p_.from.state($).decide(
         ($): s_out.Value.state => {
             switch ($[0]) {
                 case 'state': return p_.option(
-                        $,
-                        ($) => ({
-                            'option': 'state',
-                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                {
-                                    "selection": p_change_context(
-                                        $['selection'],
-                                        ($) => Resolver_Guaranteed_Value_Selection(
-                                            $,
-                                        ),
+                    $,
+                    ($) => ({
+                        'option': 'state',
+                        'value': ['group', ['verbose', p_.literal.dictionary(
+                            {
+                                "selection": p_change_context(
+                                    $['selection'],
+                                    ($) => Resolver_Guaranteed_Value_Selection(
+                                        $,
                                     ),
-                                    "selected state": p_change_context(
-                                        $['selected state'],
-                                        ($) => ['nothing', null],
-                                    ),
-                                    "option": p_change_context(
-                                        $['option'],
-                                        ($) => ['reference', {
-                                            'delimiter': ['apostrophe', null],
-                                            'value': $['l id'],
-                                        }],
-                                    ),
-                                },
-                            )]],
-                        }),
-                    )
+                                ),
+                                "selected state": p_change_context(
+                                    $['selected state'],
+                                    ($) => ['nothing', null],
+                                ),
+                                "option": p_change_context(
+                                    $['option'],
+                                    ($) => ['reference', {
+                                        'delimiter': ['apostrophe', null],
+                                        'value': $['l id'],
+                                    }],
+                                ),
+                            },
+                        )]],
+                    }),
+                )
                 case 'assert is set': return p_.option(
-                        $,
-                        ($) => ({
-                            'option': 'assert is set',
-                            'value': Resolver_Possible_Value_Selection(
-                                $,
-                            ),
-                        }),
-                    )
+                    $,
+                    ($) => ({
+                        'option': 'assert is set',
+                        'value': Resolver_Possible_Value_Selection(
+                            $,
+                        ),
+                    }),
+                )
                 default: return p_.exhaustive(
-                        $[0],
-                    )
+                    $[0],
+                )
             }
         },
     )],
 )]
 
-export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => ['optional', p_decide_optional(
-    $,
+export const Resolver_Optional_Value_Constraints: t_signatures.Resolver_Optional_Value_Constraints = ($) => ['optional', p_.from.optional($).decide(
     ($): s_out.Value.optional => ['set', Resolver_Value_Constraints(
         $,
     )],
@@ -2187,29 +2141,28 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
     {
         "start": p_change_context(
             $['start'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'value': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'value',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'value',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'sibling': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'sibling',
-                                    'value': Resolver_Reference_To_Value_Constraint(
-                                        $,
-                                    ),
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'sibling',
+                                'value': Resolver_Reference_To_Value_Constraint(
+                                    $,
+                                ),
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -2223,38 +2176,37 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
     },
 )]]
 
-export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($) => ['state', p_decide_state(
-    $,
+export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optional_Value_Initialization = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'not set': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'not set',
-                        'value': ['nothing', null],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'not set',
+                    'value': ['nothing', null],
+                }),
+            )
             case 'set': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'set',
-                        'value': Resolver_Guaranteed_Value_Selection(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'set',
+                    'value': Resolver_Guaranteed_Value_Selection(
+                        $,
+                    ),
+                }),
+            )
             case 'selection': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'selection',
-                        'value': Resolver_Possible_Value_Selection(
-                            $,
-                        ),
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'selection',
+                    'value': Resolver_Possible_Value_Selection(
+                        $,
+                    ),
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]
@@ -2281,8 +2233,7 @@ export const Resolver_Value_List_Result: t_signatures.Resolver_Value_List_Result
     $,
 )
 
-export const Value_Results: t_signatures.Value_Results = ($) => ['optional', p_decide_optional(
-    $,
+export const Value_Results: t_signatures.Value_Results = ($) => ['optional', p_.from.optional($).decide(
     ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
     ).map(
         ($, id) => Value_Reference(
@@ -2292,8 +2243,7 @@ export const Value_Results: t_signatures.Value_Results = ($) => ['optional', p_d
     () => ['not set', null],
 )]
 
-export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['optional', p_decide_optional(
-    $,
+export const Option_Constraints: t_signatures.Option_Constraints = ($) => ['optional', p_.from.optional($).decide(
     ($): s_out.Value.optional => ['set', ['dictionary', p_.from.dictionary($,
     ).map(
         ($, id) => Value_Reference(
@@ -2307,218 +2257,215 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
     {
         "start": p_change_context(
             $['start'],
-            ($) => ['state', p_decide_state(
-                $,
+            ($) => ['state', p_.from.state($).decide(
                 ($): s_out.Value.state => {
                     switch ($[0]) {
                         case 'sibling': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'sibling',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'sibling',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         case 'parent sibling': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'parent sibling',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'parent sibling',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         case 'option constraint': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'option constraint',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'option constraint',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         case 'list cursor': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'list cursor',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'list cursor',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'linked entry': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'linked entry',
-                                    'value': ['nothing', null],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'linked entry',
+                                'value': ['nothing', null],
+                            }),
+                        )
                         case 'constraint': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'constraint',
-                                    'value': ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'component': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'component',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "property": p_change_context(
-                                                                        $['property'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "constraint": p_change_context(
-                                                                        $['constraint'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'reference': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'reference',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "property": p_change_context(
-                                                                        $['property'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "constraint": p_change_context(
-                                                                        $['constraint'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'constraint',
+                                'value': ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'component': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'component',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "property": p_change_context(
+                                                                $['property'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "constraint": p_change_context(
+                                                                $['constraint'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'reference': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'reference',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "property": p_change_context(
+                                                                $['property'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "constraint": p_change_context(
+                                                                $['constraint'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            }),
+                        )
                         case 'parameter': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'parameter',
-                                    'value': ['reference', {
-                                        'value': $['l id'],
-                                    }],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'parameter',
+                                'value': ['reference', {
+                                    'value': $['l id'],
+                                }],
+                            }),
+                        )
                         case 'result': return p_.option(
-                                $,
-                                ($) => ({
-                                    'option': 'result',
-                                    'value': ['state', p_decide_state(
-                                        $,
-                                        ($): s_out.Value.state => {
-                                            switch ($[0]) {
-                                                case 'list': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'list',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "property": p_change_context(
-                                                                        $['property'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "list result": p_change_context(
-                                                                        $['list result'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'state': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'state',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "property": p_change_context(
-                                                                        $['property'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "state": p_change_context(
-                                                                        $['state'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                    "result": p_change_context(
-                                                                        $['result'],
-                                                                        ($) => Module_Reference(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                case 'optional value': return p_.option(
-                                                        $,
-                                                        ($) => ({
-                                                            'option': 'optional value',
-                                                            'value': ['group', ['verbose', p_.literal.dictionary(
-                                                                {
-                                                                    "property": p_change_context(
-                                                                        $['property'],
-                                                                        ($) => ['reference', {
-                                                                            'delimiter': ['apostrophe', null],
-                                                                            'value': $['l id'],
-                                                                        }],
-                                                                    ),
-                                                                    "optional value": p_change_context(
-                                                                        $['optional value'],
-                                                                        ($) => ['nothing', null],
-                                                                    ),
-                                                                    "result": p_change_context(
-                                                                        $['result'],
-                                                                        ($) => Module_Reference(
-                                                                            $,
-                                                                        ),
-                                                                    ),
-                                                                },
-                                                            )]],
-                                                        }),
-                                                    )
-                                                default: return p_.exhaustive(
-                                                        $[0],
-                                                    )
-                                            }
-                                        },
-                                    )],
-                                }),
-                            )
+                            $,
+                            ($) => ({
+                                'option': 'result',
+                                'value': ['state', p_.from.state($).decide(
+                                    ($): s_out.Value.state => {
+                                        switch ($[0]) {
+                                            case 'list': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'list',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "property": p_change_context(
+                                                                $['property'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "list result": p_change_context(
+                                                                $['list result'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'state': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'state',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "property": p_change_context(
+                                                                $['property'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "state": p_change_context(
+                                                                $['state'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                            "result": p_change_context(
+                                                                $['result'],
+                                                                ($) => Module_Reference(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            case 'optional value': return p_.option(
+                                                $,
+                                                ($) => ({
+                                                    'option': 'optional value',
+                                                    'value': ['group', ['verbose', p_.literal.dictionary(
+                                                        {
+                                                            "property": p_change_context(
+                                                                $['property'],
+                                                                ($) => ['reference', {
+                                                                    'delimiter': ['apostrophe', null],
+                                                                    'value': $['l id'],
+                                                                }],
+                                                            ),
+                                                            "optional value": p_change_context(
+                                                                $['optional value'],
+                                                                ($) => ['nothing', null],
+                                                            ),
+                                                            "result": p_change_context(
+                                                                $['result'],
+                                                                ($) => Module_Reference(
+                                                                    $,
+                                                                ),
+                                                            ),
+                                                        },
+                                                    )]],
+                                                }),
+                                            )
+                                            default: return p_.exhaustive(
+                                                $[0],
+                                            )
+                                        }
+                                    },
+                                )],
+                            }),
+                        )
                         default: return p_.exhaustive(
-                                $[0],
-                            )
+                            $[0],
+                        )
                     }
                 },
             )],
@@ -2536,92 +2483,90 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
     },
 )]]
 
-export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($) => ['state', p_decide_state(
-    $,
+export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_Value_Selection = ($) => ['state', p_.from.state($).decide(
     ($): s_out.Value.state => {
         switch ($[0]) {
             case 'parameter': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'parameter',
-                        'value': ['reference', {
-                            'value': $['l id'],
-                        }],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'parameter',
+                    'value': ['reference', {
+                        'value': $['l id'],
+                    }],
+                }),
+            )
             case 'result': return p_.option(
-                    $,
-                    ($) => ({
-                        'option': 'result',
-                        'value': ['state', p_decide_state(
-                            $,
-                            ($): s_out.Value.state => {
-                                switch ($[0]) {
-                                    case 'state': return p_.option(
-                                            $,
-                                            ($) => ({
-                                                'option': 'state',
-                                                'value': ['group', ['verbose', p_.literal.dictionary(
-                                                    {
-                                                        "property": p_change_context(
-                                                            $['property'],
-                                                            ($) => ['reference', {
-                                                                'delimiter': ['apostrophe', null],
-                                                                'value': $['l id'],
-                                                            }],
-                                                        ),
-                                                        "state": p_change_context(
-                                                            $['state'],
-                                                            ($) => ['nothing', null],
-                                                        ),
-                                                        "result": p_change_context(
-                                                            $['result'],
-                                                            ($) => Module_Reference(
-                                                                $,
-                                                            ),
-                                                        ),
-                                                    },
-                                                )]],
-                                            }),
-                                        )
-                                    case 'optional value': return p_.option(
-                                            $,
-                                            ($) => ({
-                                                'option': 'optional value',
-                                                'value': ['group', ['verbose', p_.literal.dictionary(
-                                                    {
-                                                        "property": p_change_context(
-                                                            $['property'],
-                                                            ($) => ['reference', {
-                                                                'delimiter': ['apostrophe', null],
-                                                                'value': $['l id'],
-                                                            }],
-                                                        ),
-                                                        "optional value": p_change_context(
-                                                            $['optional value'],
-                                                            ($) => ['nothing', null],
-                                                        ),
-                                                        "result": p_change_context(
-                                                            $['result'],
-                                                            ($) => Module_Reference(
-                                                                $,
-                                                            ),
-                                                        ),
-                                                    },
-                                                )]],
-                                            }),
-                                        )
-                                    default: return p_.exhaustive(
-                                            $[0],
-                                        )
-                                }
-                            },
-                        )],
-                    }),
-                )
+                $,
+                ($) => ({
+                    'option': 'result',
+                    'value': ['state', p_.from.state($).decide(
+                        ($): s_out.Value.state => {
+                            switch ($[0]) {
+                                case 'state': return p_.option(
+                                    $,
+                                    ($) => ({
+                                        'option': 'state',
+                                        'value': ['group', ['verbose', p_.literal.dictionary(
+                                            {
+                                                "property": p_change_context(
+                                                    $['property'],
+                                                    ($) => ['reference', {
+                                                        'delimiter': ['apostrophe', null],
+                                                        'value': $['l id'],
+                                                    }],
+                                                ),
+                                                "state": p_change_context(
+                                                    $['state'],
+                                                    ($) => ['nothing', null],
+                                                ),
+                                                "result": p_change_context(
+                                                    $['result'],
+                                                    ($) => Module_Reference(
+                                                        $,
+                                                    ),
+                                                ),
+                                            },
+                                        )]],
+                                    }),
+                                )
+                                case 'optional value': return p_.option(
+                                    $,
+                                    ($) => ({
+                                        'option': 'optional value',
+                                        'value': ['group', ['verbose', p_.literal.dictionary(
+                                            {
+                                                "property": p_change_context(
+                                                    $['property'],
+                                                    ($) => ['reference', {
+                                                        'delimiter': ['apostrophe', null],
+                                                        'value': $['l id'],
+                                                    }],
+                                                ),
+                                                "optional value": p_change_context(
+                                                    $['optional value'],
+                                                    ($) => ['nothing', null],
+                                                ),
+                                                "result": p_change_context(
+                                                    $['result'],
+                                                    ($) => Module_Reference(
+                                                        $,
+                                                    ),
+                                                ),
+                                            },
+                                        )]],
+                                    }),
+                                )
+                                default: return p_.exhaustive(
+                                    $[0],
+                                )
+                            }
+                        },
+                    )],
+                }),
+            )
             default: return p_.exhaustive(
-                    $[0],
-                )
+                $[0],
+            )
         }
     },
 )]

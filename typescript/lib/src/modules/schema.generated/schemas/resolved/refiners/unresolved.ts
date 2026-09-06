@@ -97,8 +97,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Globals.complexity => {
 //                             switch ($[0]) {
 //                                 case 'unconstrained':
@@ -174,8 +173,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Number_Type.precision => {
 //                             switch ($[0]) {
 //                                 case 'approximation':
@@ -214,8 +212,7 @@
 //                                                         () => {
                                                             
 //                                                             const var_location = $['l location']
-//                                                             return p_decide_state(
-//                                                                 $['l state'],
+//                                                             return p_.from.state(//                                                                 $['l state']).decide(
 //                                                                 ($): s_out.Number_Type.precision.exact.type_ => {
 //                                                                     switch ($[0]) {
 //                                                                         case 'integer':
@@ -275,8 +272,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Text_Type.type_ => {
 //                             switch ($[0]) {
 //                                 case 'multi line':
@@ -314,8 +310,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Module_Reference.location => {
 //                             switch ($[0]) {
 //                                 case 'internal':
@@ -354,7 +349,7 @@
 //                                         ($) => ['external', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_import = p_decide_optional(
+//                                                 const var_constraint_import = p_.from.optional($1).decide((
 //                                                     $p['imports'],
 //                                                     ($) => $,
 //                                                     () => abort(
@@ -522,8 +517,7 @@
 //                                                 "IM: value reference",
 //                                             ),
 //                                         },
-//                                         'l value': p_decide_state(
-//                                             $['l state'],
+//                                         'l value': p_.from.state(//                                             $['l state']).decide(
 //                                             ($): s_out.Value_Path.tail.l_value.L.l_item.l_value => {
 //                                                 switch ($[0]) {
 //                                                     case 'dictionary':
@@ -532,8 +526,7 @@
 //                                                             ($) => ['dictionary', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = p_decide_state(
-//                                                                         $,
+//                                                                     const var_constraint_definition = p_.from.state(//                                                                         $).decide(
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'dictionary':
@@ -561,8 +554,7 @@
 //                                                             ($) => ['group', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = p_decide_state(
-//                                                                         $,
+//                                                                     const var_constraint_definition = p_.from.state(//                                                                         $).decide(
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'group':
@@ -617,8 +609,7 @@
 //                                                             ($) => ['list', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = p_decide_state(
-//                                                                         $,
+//                                                                     const var_constraint_definition = p_.from.state(//                                                                         $).decide(
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'list':
@@ -646,8 +637,7 @@
 //                                                             ($) => ['optional', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = p_decide_state(
-//                                                                         $,
+//                                                                     const var_constraint_definition = p_.from.state(//                                                                         $).decide(
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'optional':
@@ -675,8 +665,7 @@
 //                                                             ($) => ['state', p_variables(
 //                                                                 () => {
                                                                     
-//                                                                     const var_constraint_definition = p_decide_state(
-//                                                                         $,
+//                                                                     const var_constraint_definition = p_.from.state(//                                                                         $).decide(
 //                                                                         ($) => {
 //                                                                             switch ($[0]) {
 //                                                                                 case 'state':
@@ -875,8 +864,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
@@ -896,8 +884,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Value.component.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'external':
@@ -906,7 +893,7 @@
 //                                                                     ($) => ['external', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_import = p_decide_optional(
+//                                                                             const var_constraint_import = p_.from.optional($1).decide((
 //                                                                                 $p['imports'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -1171,8 +1158,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Value.number_ => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
@@ -1181,7 +1167,7 @@
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = p_decide_optional(
+//                                                                 const var_constraint_globals = p_.from.optional($1).decide((
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -1284,8 +1270,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Value.reference.type_ => {
 //                                                         switch ($[0]) {
 //                                                             case 'derived':
@@ -1299,8 +1284,7 @@
 //                                                                     ($) => ['selected', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_dictionary = p_decide_state(
-//                                                                                 $,
+//                                                                             const var_constraint_dictionary = p_.from.state(//                                                                                 $).decide(
 //                                                                                 ($) => {
 //                                                                                     switch ($[0]) {
 //                                                                                         case 'dictionary':
@@ -1332,8 +1316,7 @@
 //                                                                                             () => {
                                                                                                 
 //                                                                                                 const var_location = $['l location']
-//                                                                                                 return p_decide_state(
-//                                                                                                     $['l state'],
+//                                                                                                 return p_.from.state(//                                                                                                     $['l state']).decide(
 //                                                                                                     ($): s_out.Value.reference.type_.selected.dependency => {
 //                                                                                                         switch ($[0]) {
 //                                                                                                             case 'acyclic':
@@ -1494,8 +1477,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Value.text => {
 //                                             switch ($[0]) {
 //                                                 case 'global':
@@ -1504,7 +1486,7 @@
 //                                                         ($) => ['global', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_globals = p_decide_optional(
+//                                                                 const var_constraint_globals = p_.from.optional($1).decide((
 //                                                                     $p['globals'],
 //                                                                     ($) => $,
 //                                                                     () => abort(
@@ -1595,8 +1577,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Resolver_Relative_Value_Selection.path.l_value.L.l_item => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
@@ -1605,8 +1586,7 @@
 //                                                         ($) => ['component', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = p_decide_state(
-//                                                                     $,
+//                                                                 const var_constraint_definition = p_.from.state(//                                                                     $).decide(
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'component':
@@ -1634,8 +1614,7 @@
 //                                                         ($) => ['group', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = p_decide_state(
-//                                                                     $,
+//                                                                 const var_constraint_definition = p_.from.state(//                                                                     $).decide(
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'group':
@@ -1690,8 +1669,7 @@
 //                                                         ($) => ['reference', p_variables(
 //                                                             () => {
                                                                 
-//                                                                 const var_constraint_definition = p_decide_state(
-//                                                                     $,
+//                                                                 const var_constraint_definition = p_.from.state(//                                                                     $).decide(
 //                                                                     ($) => {
 //                                                                         switch ($[0]) {
 //                                                                             case 'reference':
@@ -1770,8 +1748,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Presence => {
 //                 switch ($[0]) {
 //                     case 'optional':
@@ -1889,8 +1866,7 @@
 //                                     () => {
                                         
 //                                         const var_location = $['l location']
-//                                         return p_decide_state(
-//                                             $['l state'],
+//                                         return p_.from.state(//                                             $['l state']).decide(
 //                                             ($): s_out.Resolver_Signature_Parameters.lookups.D.type_ => {
 //                                                 switch ($[0]) {
 //                                                     case 'cyclic':
@@ -1962,8 +1938,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Resolver_Signature.parameters => {
 //                             switch ($[0]) {
 //                                 case 'local':
@@ -2071,8 +2046,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Resolver_Optional_Value_Initialization => {
 //                 switch ($[0]) {
 //                     case 'not set':
@@ -2118,8 +2092,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Resolver_Possible_Value_Selection => {
 //                 switch ($[0]) {
 //                     case 'parameter':
@@ -2161,8 +2134,7 @@
 //                                 () => {
                                     
 //                                     const var_location = $['l location']
-//                                     return p_decide_state(
-//                                         $['l state'],
+//                                     return p_.from.state(//                                         $['l state']).decide(
 //                                         ($): s_out.Resolver_Possible_Value_Selection.result => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
@@ -2410,8 +2382,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Resolver_Guaranteed_Value_Selection.start => {
 //                             switch ($[0]) {
 //                                 case 'list cursor':
@@ -2490,7 +2461,7 @@
 //                                         ($) => ['option constraint', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_oc = p_decide_optional(
+//                                                 const var_constraint_oc = p_.from.optional($1).decide((
 //                                                     $p['option constraints'],
 //                                                     ($) => $,
 //                                                     () => abort(
@@ -2538,8 +2509,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Resolver_Guaranteed_Value_Selection.start.constraint => {
 //                                                         switch ($[0]) {
 //                                                             case 'component':
@@ -2847,8 +2817,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Resolver_Guaranteed_Value_Selection.start.result => {
 //                                                         switch ($[0]) {
 //                                                             case 'list':
@@ -3217,8 +3186,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Resolver_Lookup_Selection.type_ => {
 //                             switch ($[0]) {
 //                                 case 'acyclic':
@@ -3228,8 +3196,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Resolver_Lookup_Selection.type_.acyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
@@ -3238,7 +3205,7 @@
 //                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_cd = p_decide_optional(
+//                                                                             const var_constraint_cd = p_.from.optional($1).decide((
 //                                                                                 $p['current ordered dictionary'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -3300,8 +3267,7 @@
 //                                             () => {
                                                 
 //                                                 const var_location = $['l location']
-//                                                 return p_decide_state(
-//                                                     $['l state'],
+//                                                 return p_.from.state(//                                                     $['l state']).decide(
 //                                                     ($): s_out.Resolver_Lookup_Selection.type_.cyclic => {
 //                                                         switch ($[0]) {
 //                                                             case 'siblings':
@@ -3310,7 +3276,7 @@
 //                                                                     ($) => ['siblings', p_variables(
 //                                                                         () => {
                                                                             
-//                                                                             const var_constraint_cd = p_decide_optional(
+//                                                                             const var_constraint_cd = p_.from.optional($1).decide((
 //                                                                                 $p['current dictionary'],
 //                                                                                 ($) => $,
 //                                                                                 () => abort(
@@ -3472,8 +3438,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Resolver_Constraint.type_ => {
 //                             switch ($[0]) {
 //                                 case 'state':
@@ -3482,8 +3447,7 @@
 //                                         ($) => ['state', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_state = p_decide_state(
-//                                                     $,
+//                                                 const var_constraint_state = p_.from.state(//                                                     $).decide(
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
@@ -3555,8 +3519,7 @@
 //                                         ($) => ['optional value', p_variables(
 //                                             () => {
                                                 
-//                                                 const var_constraint_optional = p_decide_state(
-//                                                     $,
+//                                                 const var_constraint_optional = p_.from.state(//                                                     $).decide(
 //                                                     ($) => {
 //                                                         switch ($[0]) {
 //                                                             case 'state':
@@ -3614,8 +3577,7 @@
 //             () => {
                 
 //                 const var_location = $['l location']
-//                 return p_decide_state(
-//                     $['l state'],
+//                 return p_.from.state(//                     $['l state']).decide(
 //                     ($): s_out.Resolver_Option_Constraints.D => {
 //                         switch ($[0]) {
 //                             case 'state':
@@ -3715,8 +3677,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Resolver_Value_Constraint.start => {
 //                             switch ($[0]) {
 //                                 case 'value':
@@ -3944,8 +3905,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Resolver_Value => {
 //                 switch ($[0]) {
 //                     case 'boolean':
@@ -3954,8 +3914,7 @@
 //                             ($) => ['boolean', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'boolean':
@@ -3983,8 +3942,7 @@
 //                             ($) => ['component', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'component':
@@ -4016,8 +3974,7 @@
 //                                                     () => {
                                                         
 //                                                         const var_location = $['l location']
-//                                                         return p_decide_state(
-//                                                             $['l state'],
+//                                                         return p_.from.state(//                                                             $['l state']).decide(
 //                                                             ($): s_out.Resolver_Value.component.location => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'external':
@@ -4026,7 +3983,7 @@
 //                                                                             ($) => ['external', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_schema_import = p_decide_optional(
+//                                                                                     const var_constraint_schema_import = p_.from.optional($1).decide((
 //                                                                                         $p['schema imports'],
 //                                                                                         ($) => $,
 //                                                                                         () => abort(
@@ -4037,7 +3994,7 @@
 //                                                                                         ),
 //                                                                                     )
                                                                                     
-//                                                                                     const var_constraint_resolver_import = p_decide_optional(
+//                                                                                     const var_constraint_resolver_import = p_.from.optional($1).decide((
 //                                                                                         $p['resolver imports'],
 //                                                                                         ($) => $,
 //                                                                                         () => abort(
@@ -4274,8 +4231,7 @@
 //                                                                                         () => {
                                                                                             
 //                                                                                             const var_location = $['l location']
-//                                                                                             return p_decide_state(
-//                                                                                                 $['l state'],
+//                                                                                             return p_.from.state(//                                                                                                 $['l state']).decide(
 //                                                                                                 ($): s_out.Resolver_Value.component.arguments_.O.modules.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'optional':
@@ -4370,8 +4326,7 @@
 //                                                                                         () => {
                                                                                             
 //                                                                                             const var_location = $['l location']
-//                                                                                             return p_decide_state(
-//                                                                                                 $['l state'],
+//                                                                                             return p_.from.state(//                                                                                                 $['l state']).decide(
 //                                                                                                 ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D => {
 //                                                                                                     switch ($[0]) {
 //                                                                                                         case 'stack':
@@ -4381,8 +4336,7 @@
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return p_decide_state(
-//                                                                                                                             $['l state'],
+//                                                                                                                         return p_.from.state(//                                                                                                                             $['l state']).decide(
 //                                                                                                                             ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.stack => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'empty':
@@ -4443,8 +4397,7 @@
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return p_decide_state(
-//                                                                                                                             $['l state'],
+//                                                                                                                         return p_.from.state(//                                                                                                                             $['l state']).decide(
 //                                                                                                                             ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.acyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
@@ -4469,8 +4422,7 @@
 //                                                                                                                     () => {
                                                                                                                         
 //                                                                                                                         const var_location = $['l location']
-//                                                                                                                         return p_decide_state(
-//                                                                                                                             $['l state'],
+//                                                                                                                         return p_.from.state(//                                                                                                                             $['l state']).decide(
 //                                                                                                                             ($): s_out.Resolver_Value.component.arguments_.O.lookups.O.D.cyclic => {
 //                                                                                                                                 switch ($[0]) {
 //                                                                                                                                     case 'not set':
@@ -4555,8 +4507,7 @@
 //                             ($) => ['dictionary', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'dictionary':
@@ -4642,8 +4593,7 @@
 //                             ($) => ['group', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'group':
@@ -4693,8 +4643,7 @@
 //                             ($) => ['list', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'list':
@@ -4784,8 +4733,7 @@
 //                             ($) => ['nothing', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'nothing':
@@ -4813,8 +4761,7 @@
 //                             ($) => ['number', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'number':
@@ -4842,8 +4789,7 @@
 //                             ($) => ['optional', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'optional':
@@ -4914,8 +4860,7 @@
 //                             ($) => ['reference', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'reference':
@@ -4947,8 +4892,7 @@
 //                                                     () => {
                                                         
 //                                                         const var_location = $['l location']
-//                                                         return p_decide_state(
-//                                                             $['l state'],
+//                                                         return p_.from.state(//                                                             $['l state']).decide(
 //                                                             ($): s_out.Resolver_Value.reference.type_ => {
 //                                                                 switch ($[0]) {
 //                                                                     case 'derived':
@@ -4957,8 +4901,7 @@
 //                                                                             ($) => ['derived', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_definition = p_decide_state(
-//                                                                                         $,
+//                                                                                     const var_constraint_definition = p_.from.state(//                                                                                         $).decide(
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'derived':
@@ -5004,8 +4947,7 @@
 //                                                                             ($) => ['selected', p_variables(
 //                                                                                 () => {
                                                                                     
-//                                                                                     const var_constraint_definition = p_decide_state(
-//                                                                                         $,
+//                                                                                     const var_constraint_definition = p_.from.state(//                                                                                         $).decide(
 //                                                                                         ($) => {
 //                                                                                             switch ($[0]) {
 //                                                                                                 case 'selected':
@@ -5091,8 +5033,7 @@
 //                             ($) => ['state', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'state':
@@ -5196,8 +5137,7 @@
 //                             ($) => ['text', p_variables(
 //                                 () => {
                                     
-//                                     const var_constraint_definition = p_decide_state(
-//                                         $,
+//                                     const var_constraint_definition = p_.from.state(//                                         $).decide(
 //                                         ($) => {
 //                                             switch ($[0]) {
 //                                                 case 'text':
@@ -5345,8 +5285,7 @@
 //     () => {
         
 //         const var_location = $['l location']
-//         return p_decide_state(
-//             $['l state'],
+//         return p_.from.state(//             $['l state']).decide(
 //             ($): s_out.Schema_Tree => {
 //                 switch ($[0]) {
 //                     case 'schema':
@@ -5455,8 +5394,7 @@
 //                 () => {
                     
 //                     const var_location = $['l location']
-//                     return p_decide_state(
-//                         $['l state'],
+//                     return p_.from.state(//                         $['l state']).decide(
 //                         ($): s_out.Schema.complexity => {
 //                             switch ($[0]) {
 //                                 case 'constrained':

@@ -2,8 +2,6 @@
 import * as p_ from 'pareto-core/transformer'
 
 import * as p_di from 'pareto-core/schema'
-const p_decide_state = <State, B>($: State,  assign: ($: State) => B) => assign($)
-const p_decide_optional = <OV extends p_di.Value, B extends p_di.Value>($: p_di.Optional_Value<OV>,  assign: ($: OV) => B,  otherwise: () => B) => p_.from.optional($).decide(assign, otherwise)
 
 import p_change_context from 'pareto-core/refiner/specials/change_context'
 
@@ -277,8 +275,7 @@ export const Schema: t_signatures.Schema = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Schema.complexity.l_state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
@@ -432,8 +429,7 @@ export const Globals: t_signatures.Globals = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Globals.complexity.l_state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
@@ -570,8 +566,7 @@ export const Value: t_signatures.Value = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Value.l_state => {
             switch ($[0]) {
                 case 'component': return p_.option(
@@ -596,8 +591,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Value.l_state.component.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'external': return p_.option(
@@ -761,8 +755,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Value.l_state.simple.l_state => {
                                     switch ($[0]) {
                                         case 'global': return p_.option(
@@ -829,8 +822,7 @@ export const Value: t_signatures.Value = ($) => ({
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Value.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived': return p_.option(
@@ -863,8 +855,7 @@ export const Value: t_signatures.Value = ($) => ({
                                                                             },
                                                                         },
                                                                     },
-                                                                    'l state': p_decide_state(
-                                                                        $,
+                                                                    'l state': p_.from.state($).decide(
                                                                         ($): s_out.Value.l_state.reference.type_.l_state.selected.dependency.l_state => {
                                                                             switch ($[0]) {
                                                                                 case 'acyclic': return p_.option(
@@ -998,8 +989,7 @@ export const Value: t_signatures.Value = ($) => ({
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Value.l_state.text.l_state => {
                                     switch ($[0]) {
                                         case 'global': return p_.option(
@@ -1286,8 +1276,7 @@ export const Resolver_Signature_Parameters: t_signatures.Resolver_Signature_Para
                                         },
                                     },
                                 },
-                                'l state': p_decide_state(
-                                    $,
+                                'l state': p_.from.state($).decide(
                                     ($): s_out.Resolver_Signature_Parameters.lookups.l_dictionary.D.l_entry.type_.l_state => {
                                         switch ($[0]) {
                                             case 'cyclic': return p_.option(
@@ -1356,8 +1345,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Resolver_Value.l_state => {
             switch ($[0]) {
                 case 'component': return p_.option(
@@ -1386,8 +1374,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Value.l_state.component.location.l_state => {
                                             switch ($[0]) {
                                                 case 'external': return p_.option(
@@ -1541,8 +1528,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                         },
                                                                     },
                                                                 },
-                                                                'l state': p_decide_state(
-                                                                    $,
+                                                                'l state': p_.from.state($).decide(
                                                                     ($): s_out.Resolver_Value.l_state.component.arguments_.O.modules.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'optional': return p_.option(
@@ -1648,8 +1634,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                         },
                                                                     },
                                                                 },
-                                                                'l state': p_decide_state(
-                                                                    $,
+                                                                'l state': p_.from.state($).decide(
                                                                     ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state => {
                                                                         switch ($[0]) {
                                                                             case 'stack': return p_.option(
@@ -1671,8 +1656,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                 },
                                                                                             },
                                                                                         },
-                                                                                        'l state': p_decide_state(
-                                                                                            $,
+                                                                                        'l state': p_.from.state($).decide(
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.stack.l_state => {
                                                                                                 switch ($[0]) {
                                                                                                     case 'empty': return p_.option(
@@ -1723,8 +1707,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                 },
                                                                                             },
                                                                                         },
-                                                                                        'l state': p_decide_state(
-                                                                                            $,
+                                                                                        'l state': p_.from.state($).decide(
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.acyclic.l_state => {
                                                                                                 switch ($[0]) {
                                                                                                     case 'not set': return p_.option(
@@ -1758,8 +1741,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                                                                                 },
                                                                                             },
                                                                                         },
-                                                                                        'l state': p_decide_state(
-                                                                                            $,
+                                                                                        'l state': p_.from.state($).decide(
                                                                                             ($): s_out.Resolver_Value.l_state.component.arguments_.O.lookups.O.l_dictionary.D.l_entry.l_state.cyclic.l_state => {
                                                                                                 switch ($[0]) {
                                                                                                     case 'not set': return p_.option(
@@ -1924,8 +1906,7 @@ export const Resolver_Value: t_signatures.Resolver_Value = ($) => ({
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Value.l_state.reference.type_.l_state => {
                                             switch ($[0]) {
                                                 case 'derived': return p_.option(
@@ -2116,8 +2097,7 @@ export const Module_Specification: t_signatures.Module_Specification = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Module_Specification.complexity.l_state => {
                     switch ($[0]) {
                         case 'constrained': return p_.option(
@@ -2165,8 +2145,7 @@ export const Schema_Tree: t_signatures.Schema_Tree = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Schema_Tree.l_state => {
             switch ($[0]) {
                 case 'schema': return p_.option(
@@ -2209,8 +2188,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Text_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'multi line': return p_.option(
@@ -2248,8 +2226,7 @@ export const Text_Type: t_signatures.Text_Type = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Text_Type.link.l_state => {
                     switch ($[0]) {
                         case 'no': return p_.option(
@@ -2299,8 +2276,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Simple_Type.type_.l_state => {
                     switch ($[0]) {
                         case 'boolean': return p_.option(
@@ -2333,8 +2309,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                     },
                                                 },
                                             },
-                                            'l state': p_decide_state(
-                                                $,
+                                            'l state': p_.from.state($).decide(
                                                 ($): s_out.Simple_Type.type_.l_state.number_.precision.l_state => {
                                                     switch ($[0]) {
                                                         case 'approximation': return p_.option(
@@ -2375,8 +2350,7 @@ export const Simple_Type: t_signatures.Simple_Type = ($) => ({
                                                                                     },
                                                                                 },
                                                                             },
-                                                                            'l state': p_decide_state(
-                                                                                $,
+                                                                            'l state': p_.from.state($).decide(
                                                                                 ($): s_out.Simple_Type.type_.l_state.number_.precision.l_state.exact.type_.l_state => {
                                                                                     switch ($[0]) {
                                                                                         case 'integer': return p_.option(
@@ -2447,8 +2421,7 @@ export const Presence: t_signatures.Presence = ($) => ({
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Presence.l_state => {
             switch ($[0]) {
                 case 'optional': return p_.option(
@@ -2648,8 +2621,7 @@ export const Value_Path: t_signatures.Value_Path = ($) => ({
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $['l value'],
+                            'l state': p_.from.state($['l value']).decide(
                                 ($): s_out.Value_Path.tail.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'dictionary': return p_.option(
@@ -2762,8 +2734,7 @@ export const Module_Reference: t_signatures.Module_Reference = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Module_Reference.location.l_state => {
                     switch ($[0]) {
                         case 'internal': return p_.option(
@@ -2875,8 +2846,7 @@ export const Resolver_Signature: t_signatures.Resolver_Signature = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Resolver_Signature.parameters.l_state => {
                     switch ($[0]) {
                         case 'local': return p_.option(
@@ -2963,8 +2933,7 @@ export const Resolver_Relative_Value_Selection: t_signatures.Resolver_Relative_V
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Resolver_Relative_Value_Selection.path.l_list.L.l_item.l_state => {
                                     switch ($[0]) {
                                         case 'component': return p_.option(
@@ -3056,8 +3025,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Resolver_Lookup_Selection.type_.l_state => {
                     switch ($[0]) {
                         case 'acyclic': return p_.option(
@@ -3079,8 +3047,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Lookup_Selection.type_.l_state.acyclic.l_state => {
                                             switch ($[0]) {
                                                 case 'siblings': return p_.option(
@@ -3129,8 +3096,7 @@ export const Resolver_Lookup_Selection: t_signatures.Resolver_Lookup_Selection =
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Lookup_Selection.type_.l_state.cyclic.l_state => {
                                             switch ($[0]) {
                                                 case 'siblings': return p_.option(
@@ -3207,8 +3173,7 @@ export const Resolver_Constraint: t_signatures.Resolver_Constraint = ($) => ({
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Resolver_Constraint.type_.l_state => {
                     switch ($[0]) {
                         case 'state': return p_.option(
@@ -3298,8 +3263,7 @@ export const Resolver_Option_Constraints: t_signatures.Resolver_Option_Constrain
                         },
                     },
                 },
-                'l state': p_decide_state(
-                    $,
+                'l state': p_.from.state($).decide(
                     ($): s_out.Resolver_Option_Constraints.l_dictionary.D.l_entry.l_state => {
                         switch ($[0]) {
                             case 'state': return p_.option(
@@ -3462,8 +3426,7 @@ export const Resolver_Value_Constraint: t_signatures.Resolver_Value_Constraint =
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Resolver_Value_Constraint.start.l_state => {
                     switch ($[0]) {
                         case 'value': return p_.option(
@@ -3509,8 +3472,7 @@ export const Resolver_Optional_Value_Initialization: t_signatures.Resolver_Optio
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Resolver_Optional_Value_Initialization.l_state => {
             switch ($[0]) {
                 case 'not set': return p_.option(
@@ -3705,8 +3667,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                     },
                 },
             },
-            'l state': p_decide_state(
-                $,
+            'l state': p_.from.state($).decide(
                 ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state => {
                     switch ($[0]) {
                         case 'sibling': return p_.option(
@@ -3802,8 +3763,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.constraint.l_state => {
                                             switch ($[0]) {
                                                 case 'component': return p_.option(
@@ -3953,8 +3913,7 @@ export const Resolver_Guaranteed_Value_Selection: t_signatures.Resolver_Guarante
                                             },
                                         },
                                     },
-                                    'l state': p_decide_state(
-                                        $,
+                                    'l state': p_.from.state($).decide(
                                         ($): s_out.Resolver_Guaranteed_Value_Selection.start.l_state.result.l_state => {
                                             switch ($[0]) {
                                                 case 'list': return p_.option(
@@ -4107,8 +4066,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
             },
         },
     },
-    'l state': p_decide_state(
-        $,
+    'l state': p_.from.state($).decide(
         ($): s_out.Resolver_Possible_Value_Selection.l_state => {
             switch ($[0]) {
                 case 'parameter': return p_.option(
@@ -4152,8 +4110,7 @@ export const Resolver_Possible_Value_Selection: t_signatures.Resolver_Possible_V
                                     },
                                 },
                             },
-                            'l state': p_decide_state(
-                                $,
+                            'l state': p_.from.state($).decide(
                                 ($): s_out.Resolver_Possible_Value_Selection.l_state.result.l_state => {
                                     switch ($[0]) {
                                         case 'state': return p_.option(
