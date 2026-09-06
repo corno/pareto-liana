@@ -13,11 +13,20 @@ import type * as s_out_schema from "../../../modules/schema.generated/schemas/re
 import type * as s_out from "../schema.js"
 
 namespace declarations {
-    export type Module_Specifier = p_.Refiner<
+    export type Module_Specifier = p_.Refiner_With_Parameter<
         s_out.Temp_Module_Specifier,
         s_function.Error,
-        s_in.List_Of_Characters
+        s_in.List_Of_Characters,
+        {
+            'tab size': number
+        }
     >
+}
+
+namespace s_parameters {
+    export type temp_find_schema = {
+        'schema path': s_out_schema.Module_Specification.schema_path
+    }
 }
 
 
@@ -25,13 +34,13 @@ namespace declarations {
 import * as r_schema_resolved_from_unresolved from "../../../modules/schema.generated/schemas/resolved/refiners/unresolved_manual.js"
 import * as r_schema_unresolved_from_loc from "../../../modules/schema.generated/schemas/unresolved/refiners/list_of_characters.js"
 
-export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
+export const Module_Specifier: declarations.Module_Specifier = ($, abort, $p) => {
     const almost_resolved_module_specification = r_schema_resolved_from_unresolved.Module_Specification(
         r_schema_unresolved_from_loc.Module_Specification(
             $,
             ($) => abort(['unresolved document deserialization', $]),
             {
-                'tab size': 4,
+                'tab size': $p['tab size'],
             }
         ),
         ($) => abort(['resolving', $]),
@@ -41,7 +50,7 @@ export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
 
     const temp_find_schema = (
         $: s_out_schema.Schema_Tree,
-        schema_path: p_di.List<string>,
+        $p: s_parameters.temp_find_schema,
     ): s_out_schema.Schema => {
         const st = $
 
@@ -71,7 +80,7 @@ export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
                 }),
             )
         }
-        return p_.from.optional(temp_pop_first_element(schema_path)).decide(
+        return p_.from.optional(temp_pop_first_element($p['schema path'])).decide(
             ($) => {
                 const split = $
                 return p_.from.state(st).decide(
@@ -81,7 +90,7 @@ export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
                             case 'schema': return p_.option($, ($) => p_implement_me(`(FIXME: make this a reference) the selected tree is a schema, not a set, can't do this step: ${split.element} `))
                             case 'set': return p_.option($, ($) => p_t.from.dictionary($).get_possible_entry(
                                 split.element,
-                                ($) => temp_find_schema($, split.rest),
+                                ($) => temp_find_schema($, { 'schema path': split.rest }),
                                 () => p_implement_me(`(FIXME: make this a reference) schema not found: '${split.element}'`)
                             ))
                             default: return p_.exhaustive($[0])
@@ -98,7 +107,12 @@ export const Module_Specifier: declarations.Module_Specifier = ($, abort) => {
                 })
         )
     }
-    const $_schema = temp_find_schema(almost_resolved_module_specification.schema, almost_resolved_module_specification['schema path'])
+    const $_schema = temp_find_schema(
+        almost_resolved_module_specification.schema,
+        {
+            'schema path': almost_resolved_module_specification['schema path']
+        }
+    )
 
     return p_.from.state(almost_resolved_module_specification.complexity).decide(
         ($): s_out.Temp_Module_Specifier => {
