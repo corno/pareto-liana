@@ -10,16 +10,15 @@ import * as p_ri from 'pareto-core/refiner'
 
 import * as i_generic from "liana-core/modules/resolved_document_deserialization/schemas/resolving/schema"
 
-import * as i_resolved from "../../../../schema.generated/schemas/resolved/schema.js"
-
-import * as i_unresolved from "../../../../schema.generated/schemas/unresolved/schema.js"
+import * as s_out from "../schema.js"
+import * as s_in from "../../../../schema.generated/schemas/unresolved/schema.js"
 
 namespace declarations {
 export namespace Package_ {
     
-    export type I = i_unresolved.Package
+    export type I = s_in.Package
     
-    export type O = i_resolved.Package
+    export type O = s_out.Package
     
     export type E = i_generic.Error
     
@@ -38,9 +37,9 @@ export type Package_ = (
 
 export namespace Presence_ {
     
-    export type I = i_unresolved.Presence
+    export type I = s_in.Presence
     
-    export type O = i_resolved.Presence
+    export type O = s_out.Presence
     
     export type E = i_generic.Error
     
@@ -59,9 +58,9 @@ export type Presence_ = (
 
 export namespace Simple_Type_ {
     
-    export type I = i_unresolved.Simple_Type
+    export type I = s_in.Simple_Type
     
-    export type O = i_resolved.Simple_Type
+    export type O = s_out.Simple_Type
     
     export type E = i_generic.Error
     
@@ -80,9 +79,9 @@ export type Simple_Type_ = (
 
 export namespace Text_Type_ {
     
-    export type I = i_unresolved.Text_Type
+    export type I = s_in.Text_Type
     
-    export type O = i_resolved.Text_Type
+    export type O = s_out.Text_Type
     
     export type E = i_generic.Error
     
@@ -101,9 +100,9 @@ export type Text_Type_ = (
 
 export namespace Globals_ {
     
-    export type I = i_unresolved.Globals
+    export type I = s_in.Globals
     
-    export type O = i_resolved.Globals
+    export type O = s_out.Globals
     
     export type E = i_generic.Error
     
@@ -122,21 +121,21 @@ export type Globals_ = (
 
 export namespace Group_ {
     
-    export type I = i_unresolved.Group
+    export type I = s_in.Group
     
-    export type O = i_resolved.Group
+    export type O = s_out.Group
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_modules = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = s_out.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = s_out.Modules_.D
         
     }
     
@@ -144,7 +143,7 @@ export namespace Group_ {
         
         export namespace globals {
             
-            export type O = i_resolved.Globals_
+            export type O = s_out.Globals_
             
         }
         
@@ -152,7 +151,7 @@ export namespace Group_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -177,21 +176,21 @@ export type Group_ = (
 
 export namespace Dictionary_ {
     
-    export type I = i_unresolved.Dictionary
+    export type I = s_in.Dictionary
     
-    export type O = i_resolved.Dictionary
+    export type O = s_out.Dictionary
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_modules = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = s_out.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = s_out.Modules_.D
         
     }
     
@@ -199,7 +198,7 @@ export namespace Dictionary_ {
         
         export namespace globals {
             
-            export type O = i_resolved.Globals_
+            export type O = s_out.Globals_
             
         }
         
@@ -207,7 +206,7 @@ export namespace Dictionary_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -232,21 +231,21 @@ export type Dictionary_ = (
 
 export namespace Value_ {
     
-    export type I = i_unresolved.Value
+    export type I = s_in.Value
     
-    export type O = i_resolved.Value
+    export type O = s_out.Value
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_modules = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = s_out.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = s_out.Modules_.D
         
     }
     
@@ -254,7 +253,7 @@ export namespace Value_ {
         
         export namespace globals {
             
-            export type O = i_resolved.Globals_
+            export type O = s_out.Globals_
             
         }
         
@@ -262,7 +261,7 @@ export namespace Value_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -287,15 +286,15 @@ export type Value_ = (
 
 export namespace Module_Reference_ {
     
-    export type I = i_unresolved.Module_Reference
+    export type I = s_in.Module_Reference
     
-    export type O = i_resolved.Module_Reference
+    export type O = s_out.Module_Reference
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type modules = i_resolved.Modules_.D
+        export type modules = s_out.Modules_.D
         
     }
     
@@ -303,7 +302,7 @@ export namespace Module_Reference_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -326,15 +325,15 @@ export type Module_Reference_ = (
 
 export namespace Value_Reference_ {
     
-    export type I = i_unresolved.Value_Reference
+    export type I = s_in.Value_Reference
     
-    export type O = i_resolved.Value_Reference
+    export type O = s_out.Value_Reference
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type modules = i_resolved.Modules_.D
+        export type modules = s_out.Modules_.D
         
     }
     
@@ -342,7 +341,7 @@ export namespace Value_Reference_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -365,15 +364,15 @@ export type Value_Reference_ = (
 
 export namespace Value_Results_ {
     
-    export type I = i_unresolved.Value_Results
+    export type I = s_in.Value_Results
     
-    export type O = i_resolved.Value_Results
+    export type O = s_out.Value_Results
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type modules = i_resolved.Modules_.D
+        export type modules = s_out.Modules_.D
         
     }
     
@@ -381,7 +380,7 @@ export namespace Value_Results_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -404,15 +403,15 @@ export type Value_Results_ = (
 
 export namespace Option_Constraints_ {
     
-    export type I = i_unresolved.Option_Constraints
+    export type I = s_in.Option_Constraints
     
-    export type O = i_resolved.Option_Constraints
+    export type O = s_out.Option_Constraints
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type modules = i_resolved.Modules_.D
+        export type modules = s_out.Modules_.D
         
     }
     
@@ -420,7 +419,7 @@ export namespace Option_Constraints_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -443,21 +442,21 @@ export type Option_Constraints_ = (
 
 export namespace Module_ {
     
-    export type I = i_unresolved.Module
+    export type I = s_in.Module
     
-    export type O = i_resolved.Module
+    export type O = s_out.Module
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type noncircular_sibling_modules = i_resolved.Modules_.D
+        export type noncircular_sibling_modules = s_out.Modules_.D
         
     }
     
     export namespace L {
         
-        export type possibly_circular_dependent_sibling_modules = i_resolved.Modules_.D
+        export type possibly_circular_dependent_sibling_modules = s_out.Modules_.D
         
     }
     
@@ -465,7 +464,7 @@ export namespace Module_ {
         
         export namespace globals {
             
-            export type O = i_resolved.Globals_
+            export type O = s_out.Globals_
             
         }
         
@@ -473,7 +472,7 @@ export namespace Module_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -498,15 +497,15 @@ export type Module_ = (
 
 export namespace Value_Path_ {
     
-    export type I = i_unresolved.Value_Path
+    export type I = s_in.Value_Path
     
-    export type O = i_resolved.Value_Path
+    export type O = s_out.Value_Path
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type module_ = i_resolved.Module_
+        export type module_ = s_out.Module_
         
     }
     
@@ -523,15 +522,15 @@ export type Value_Path_ = (
 
 export namespace Schemas_ {
     
-    export type I = i_unresolved.Schemas
+    export type I = s_in.Schemas
     
-    export type O = i_resolved.Schemas
+    export type O = s_out.Schemas
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_schemas = i_resolved.Schemas_.D
+        export type sibling_schemas = s_out.Schemas_.D
         
     }
     
@@ -552,31 +551,31 @@ export type Schemas_ = (
 
 export namespace Resolver_Value_ {
     
-    export type I = i_unresolved.Resolver_Value
+    export type I = s_in.Resolver_Value
     
-    export type O = i_resolved.Resolver_Value
+    export type O = s_out.Resolver_Value
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -584,7 +583,7 @@ export namespace Resolver_Value_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -592,7 +591,7 @@ export namespace Resolver_Value_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -600,17 +599,17 @@ export namespace Resolver_Value_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -618,19 +617,19 @@ export namespace Resolver_Value_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -664,31 +663,31 @@ export type Resolver_Value_ = (
 
 export namespace Resolver_Possible_Value_Selection_ {
     
-    export type I = i_unresolved.Resolver_Possible_Value_Selection
+    export type I = s_in.Resolver_Possible_Value_Selection
     
-    export type O = i_resolved.Resolver_Possible_Value_Selection
+    export type O = s_out.Resolver_Possible_Value_Selection
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -696,7 +695,7 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -704,7 +703,7 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -712,17 +711,17 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -730,19 +729,19 @@ export namespace Resolver_Possible_Value_Selection_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -776,31 +775,31 @@ export type Resolver_Possible_Value_Selection_ = (
 
 export namespace Resolver_Guaranteed_Value_Selection_ {
     
-    export type I = i_unresolved.Resolver_Guaranteed_Value_Selection
+    export type I = s_in.Resolver_Guaranteed_Value_Selection
     
-    export type O = i_resolved.Resolver_Guaranteed_Value_Selection
+    export type O = s_out.Resolver_Guaranteed_Value_Selection
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -808,7 +807,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -816,7 +815,7 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -824,17 +823,17 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -842,19 +841,19 @@ export namespace Resolver_Guaranteed_Value_Selection_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -888,31 +887,31 @@ export type Resolver_Guaranteed_Value_Selection_ = (
 
 export namespace Resolver_Benchmark_ {
     
-    export type I = i_unresolved.Resolver_Benchmark
+    export type I = s_in.Resolver_Benchmark
     
-    export type O = i_resolved.Resolver_Benchmark
+    export type O = s_out.Resolver_Benchmark
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -920,7 +919,7 @@ export namespace Resolver_Benchmark_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -928,7 +927,7 @@ export namespace Resolver_Benchmark_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -936,17 +935,17 @@ export namespace Resolver_Benchmark_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -954,19 +953,19 @@ export namespace Resolver_Benchmark_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -1000,31 +999,31 @@ export type Resolver_Benchmark_ = (
 
 export namespace Resolver_Optional_Value_Initialization_ {
     
-    export type I = i_unresolved.Resolver_Optional_Value_Initialization
+    export type I = s_in.Resolver_Optional_Value_Initialization
     
-    export type O = i_resolved.Resolver_Optional_Value_Initialization
+    export type O = s_out.Resolver_Optional_Value_Initialization
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -1032,7 +1031,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -1040,7 +1039,7 @@ export namespace Resolver_Optional_Value_Initialization_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -1048,17 +1047,17 @@ export namespace Resolver_Optional_Value_Initialization_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1066,19 +1065,19 @@ export namespace Resolver_Optional_Value_Initialization_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -1112,31 +1111,31 @@ export type Resolver_Optional_Value_Initialization_ = (
 
 export namespace Resolver_Lookup_Selection_ {
     
-    export type I = i_unresolved.Resolver_Lookup_Selection
+    export type I = s_in.Resolver_Lookup_Selection
     
-    export type O = i_resolved.Resolver_Lookup_Selection
+    export type O = s_out.Resolver_Lookup_Selection
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -1144,7 +1143,7 @@ export namespace Resolver_Lookup_Selection_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -1152,7 +1151,7 @@ export namespace Resolver_Lookup_Selection_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -1160,17 +1159,17 @@ export namespace Resolver_Lookup_Selection_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1178,19 +1177,19 @@ export namespace Resolver_Lookup_Selection_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -1224,31 +1223,31 @@ export type Resolver_Lookup_Selection_ = (
 
 export namespace Resolver_Option_Constraints_ {
     
-    export type I = i_unresolved.Resolver_Option_Constraints
+    export type I = s_in.Resolver_Option_Constraints
     
-    export type O = i_resolved.Resolver_Option_Constraints
+    export type O = s_out.Resolver_Option_Constraints
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Value_
+        export type definition = s_out.Value_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -1256,7 +1255,7 @@ export namespace Resolver_Option_Constraints_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -1264,7 +1263,7 @@ export namespace Resolver_Option_Constraints_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -1272,17 +1271,17 @@ export namespace Resolver_Option_Constraints_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1290,19 +1289,19 @@ export namespace Resolver_Option_Constraints_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -1336,15 +1335,15 @@ export type Resolver_Option_Constraints_ = (
 
 export namespace Resolver_Value_List_Result_ {
     
-    export type I = i_unresolved.Resolver_Value_List_Result
+    export type I = s_in.Resolver_Value_List_Result
     
-    export type O = i_resolved.Resolver_Value_List_Result
+    export type O = s_out.Resolver_Value_List_Result
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type modules = i_resolved.Modules_.D
+        export type modules = s_out.Modules_.D
         
     }
     
@@ -1352,7 +1351,7 @@ export namespace Resolver_Value_List_Result_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1375,31 +1374,31 @@ export type Resolver_Value_List_Result_ = (
 
 export namespace Resolver_Value_Group_ {
     
-    export type I = i_unresolved.Resolver_Value_Group
+    export type I = s_in.Resolver_Value_Group
     
-    export type O = i_resolved.Resolver_Value_Group
+    export type O = s_out.Resolver_Value_Group
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace L {
         
-        export type parent_sibling_property_resolvers = i_resolved.Resolver_Value_Group_.D
+        export type parent_sibling_property_resolvers = s_out.Resolver_Value_Group_.D
         
     }
     
     export namespace P {
         
-        export type definition = i_resolved.Group_
+        export type definition = s_out.Group_
         
         export namespace list_cursor {
             
-            export type O = i_resolved.Resolver_Value_List_Result_
+            export type O = s_out.Resolver_Value_List_Result_
             
         }
         
@@ -1407,7 +1406,7 @@ export namespace Resolver_Value_Group_ {
         
         export namespace linked_entry {
             
-            export type O = i_resolved.Resolver_Benchmark_
+            export type O = s_out.Resolver_Benchmark_
             
         }
         
@@ -1415,7 +1414,7 @@ export namespace Resolver_Value_Group_ {
         
         export namespace current_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
@@ -1423,17 +1422,17 @@ export namespace Resolver_Value_Group_ {
         
         export namespace current_ordered_dictionary {
             
-            export type O = i_resolved.Dictionary_
+            export type O = s_out.Dictionary_
             
         }
         
         export type current_ordered_dictionary = p_di.Optional_Value<current_ordered_dictionary.O>
         
-        export type signature = i_resolved.Resolver_Signature_
+        export type signature = s_out.Resolver_Signature_
         
         export namespace schema_imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1441,19 +1440,19 @@ export namespace Resolver_Value_Group_ {
         
         export namespace resolver_imports {
             
-            export type O = i_resolved.Resolver_Imports_
+            export type O = s_out.Resolver_Imports_
             
         }
         
         export type resolver_imports = p_di.Optional_Value<resolver_imports.O>
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
         export namespace option_constraints {
             
-            export type O = i_resolved.Resolver_Option_Constraints_
+            export type O = s_out.Resolver_Option_Constraints_
             
         }
         
@@ -1487,15 +1486,15 @@ export type Resolver_Value_Group_ = (
 
 export namespace Resolver_Relative_Value_Selection_ {
     
-    export type I = i_unresolved.Resolver_Relative_Value_Selection
+    export type I = s_in.Resolver_Relative_Value_Selection
     
-    export type O = i_resolved.Resolver_Relative_Value_Selection
+    export type O = s_out.Resolver_Relative_Value_Selection
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type value = i_resolved.Value_
+        export type value = s_out.Value_
         
     }
     
@@ -1512,15 +1511,15 @@ export type Resolver_Relative_Value_Selection_ = (
 
 export namespace Resolver_Constraint_ {
     
-    export type I = i_unresolved.Resolver_Constraint
+    export type I = s_in.Resolver_Constraint
     
-    export type O = i_resolved.Resolver_Constraint
+    export type O = s_out.Resolver_Constraint
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type value = i_resolved.Value_
+        export type value = s_out.Value_
         
     }
     
@@ -1537,15 +1536,15 @@ export type Resolver_Constraint_ = (
 
 export namespace Resolver_Optional_Value_Constraints_ {
     
-    export type I = i_unresolved.Resolver_Optional_Value_Constraints
+    export type I = s_in.Resolver_Optional_Value_Constraints
     
-    export type O = i_resolved.Resolver_Optional_Value_Constraints
+    export type O = s_out.Resolver_Optional_Value_Constraints
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type value = i_resolved.Value_
+        export type value = s_out.Value_
         
     }
     
@@ -1562,15 +1561,15 @@ export type Resolver_Optional_Value_Constraints_ = (
 
 export namespace Resolver_Value_Constraints_ {
     
-    export type I = i_unresolved.Resolver_Value_Constraints
+    export type I = s_in.Resolver_Value_Constraints
     
-    export type O = i_resolved.Resolver_Value_Constraints
+    export type O = s_out.Resolver_Value_Constraints
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type value = i_resolved.Value_
+        export type value = s_out.Value_
         
     }
     
@@ -1587,15 +1586,15 @@ export type Resolver_Value_Constraints_ = (
 
 export namespace Resolver_Value_Constraint_ {
     
-    export type I = i_unresolved.Resolver_Value_Constraint
+    export type I = s_in.Resolver_Value_Constraint
     
-    export type O = i_resolved.Resolver_Value_Constraint
+    export type O = s_out.Resolver_Value_Constraint
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
+        export type property_constraints = s_out.Resolver_Value_Constraints_.D
         
     }
     
@@ -1616,19 +1615,19 @@ export type Resolver_Value_Constraint_ = (
 
 export namespace Resolver_ {
     
-    export type I = i_unresolved.Resolver
+    export type I = s_in.Resolver
     
-    export type O = i_resolved.Resolver
+    export type O = s_out.Resolver
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
-        export type resolver_imports = i_resolved.Resolver_Imports_
+        export type resolver_imports = s_out.Resolver_Imports_
         
-        export type schema_imports = i_resolved.Schema_Imports_
+        export type schema_imports = s_out.Schema_Imports_
         
     }
     
@@ -1647,17 +1646,17 @@ export type Resolver_ = (
 
 export namespace Resolver_Signature_Parameters_ {
     
-    export type I = i_unresolved.Resolver_Signature_Parameters
+    export type I = s_in.Resolver_Signature_Parameters
     
-    export type O = i_resolved.Resolver_Signature_Parameters
+    export type O = s_out.Resolver_Signature_Parameters
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
-        export type imports = i_resolved.Schema_Imports_
+        export type imports = s_out.Schema_Imports_
         
     }
     
@@ -1675,25 +1674,25 @@ export type Resolver_Signature_Parameters_ = (
 
 export namespace Resolver_Signature_ {
     
-    export type I = i_unresolved.Resolver_Signature
+    export type I = s_in.Resolver_Signature
     
-    export type O = i_resolved.Resolver_Signature
+    export type O = s_out.Resolver_Signature
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_signatures = i_resolved.Resolver_Signatures_.D
+        export type sibling_signatures = s_out.Resolver_Signatures_.D
         
     }
     
     export namespace P {
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
-        export type module_ = i_resolved.Module_
+        export type module_ = s_out.Module_
         
-        export type imports = i_resolved.Schema_Imports_
+        export type imports = s_out.Schema_Imports_
         
     }
     
@@ -1714,17 +1713,17 @@ export type Resolver_Signature_ = (
 
 export namespace Resolver_Signatures_ {
     
-    export type I = i_unresolved.Resolver_Signatures
+    export type I = s_in.Resolver_Signatures
     
-    export type O = i_resolved.Resolver_Signatures
+    export type O = s_out.Resolver_Signatures
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
-        export type imports = i_resolved.Schema_Imports_
+        export type imports = s_out.Schema_Imports_
         
     }
     
@@ -1742,21 +1741,21 @@ export type Resolver_Signatures_ = (
 
 export namespace Resolver_Modules_ {
     
-    export type I = i_unresolved.Resolver_Modules
+    export type I = s_in.Resolver_Modules
     
-    export type O = i_resolved.Resolver_Modules
+    export type O = s_out.Resolver_Modules
     
     export type E = i_generic.Error
     
     export namespace P {
         
-        export type signatures = i_resolved.Resolver_Signatures_
+        export type signatures = s_out.Resolver_Signatures_
         
-        export type modules = i_resolved.Modules_
+        export type modules = s_out.Modules_
         
-        export type schema_imports = i_resolved.Schema_Imports_
+        export type schema_imports = s_out.Schema_Imports_
         
-        export type resolver_imports = i_resolved.Resolver_Imports_
+        export type resolver_imports = s_out.Resolver_Imports_
         
     }
     
@@ -1776,15 +1775,15 @@ export type Resolver_Modules_ = (
 
 export namespace Resolver_Reference_To_Value_Constraint_ {
     
-    export type I = i_unresolved.Resolver_Reference_To_Value_Constraint
+    export type I = s_in.Resolver_Reference_To_Value_Constraint
     
-    export type O = i_resolved.Resolver_Reference_To_Value_Constraint
+    export type O = s_out.Resolver_Reference_To_Value_Constraint
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type property_constraints = i_resolved.Resolver_Value_Constraints_.D
+        export type property_constraints = s_out.Resolver_Value_Constraints_.D
         
     }
     
@@ -1805,15 +1804,15 @@ export type Resolver_Reference_To_Value_Constraint_ = (
 
 export namespace Resolver_Imports_ {
     
-    export type I = i_unresolved.Resolver_Imports
+    export type I = s_in.Resolver_Imports
     
-    export type O = i_resolved.Resolver_Imports
+    export type O = s_out.Resolver_Imports
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_schemas = i_resolved.Schemas_.D
+        export type sibling_schemas = s_out.Schemas_.D
         
     }
     
@@ -1834,9 +1833,9 @@ export type Resolver_Imports_ = (
 
 export namespace Module_Specification_ {
     
-    export type I = i_unresolved.Module_Specification
+    export type I = s_in.Module_Specification
     
-    export type O = i_resolved.Module_Specification
+    export type O = s_out.Module_Specification
     
     export type E = i_generic.Error
     
@@ -1855,15 +1854,15 @@ export type Module_Specification_ = (
 
 export namespace Schema_Tree_ {
     
-    export type I = i_unresolved.Schema_Tree
+    export type I = s_in.Schema_Tree
     
-    export type O = i_resolved.Schema_Tree
+    export type O = s_out.Schema_Tree
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_schemas = i_resolved.Schemas_.D
+        export type sibling_schemas = s_out.Schemas_.D
         
     }
     
@@ -1884,15 +1883,15 @@ export type Schema_Tree_ = (
 
 export namespace Schema_ {
     
-    export type I = i_unresolved.Schema
+    export type I = s_in.Schema
     
-    export type O = i_resolved.Schema
+    export type O = s_out.Schema
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_schemas = i_resolved.Schemas_.D
+        export type sibling_schemas = s_out.Schemas_.D
         
     }
     
@@ -1913,15 +1912,15 @@ export type Schema_ = (
 
 export namespace Schema_Imports_ {
     
-    export type I = i_unresolved.Schema_Imports
+    export type I = s_in.Schema_Imports
     
-    export type O = i_resolved.Schema_Imports
+    export type O = s_out.Schema_Imports
     
     export type E = i_generic.Error
     
     export namespace L {
         
-        export type sibling_schemas = i_resolved.Schemas_.D
+        export type sibling_schemas = s_out.Schemas_.D
         
     }
     
@@ -1942,9 +1941,9 @@ export type Schema_Imports_ = (
 
 export namespace Modules_ {
     
-    export type I = i_unresolved.Modules
+    export type I = s_in.Modules
     
-    export type O = i_resolved.Modules
+    export type O = s_out.Modules
     
     export type E = i_generic.Error
     
@@ -1952,7 +1951,7 @@ export namespace Modules_ {
         
         export namespace globals {
             
-            export type O = i_resolved.Globals_
+            export type O = s_out.Globals_
             
         }
         
@@ -1960,7 +1959,7 @@ export namespace Modules_ {
         
         export namespace imports {
             
-            export type O = i_resolved.Schema_Imports_
+            export type O = s_out.Schema_Imports_
             
         }
         
@@ -1981,7 +1980,6 @@ export type Modules_ = (
 ) => Modules_.O
 }
 
-import * as s_out from "../../../../schema.generated/schemas/resolved/schema.js"
 
 import * as i_generic2 from "../../../../../temp/resolve_generic.js"
 
