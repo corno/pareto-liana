@@ -2297,22 +2297,21 @@ export const Value: declarations.Resolver_Value_ = ($, abort, $l, $p) => {
                         return p_.literal.set(x)
                     },
                     () => {
-                        {
-                            //additional validation
-                            if (p_signature['resolved parameters'].lookups !== $p.signature['resolved parameters'].lookups) {
-                                return i_generic2.abort.same_node_constraint(
-                                    "lookup parameters",
-                                    loc,
-                                    abort,
-                                )
-                            }
-                            if (p_signature['resolved parameters'].modules !== $p.signature['resolved parameters'].modules) {
-                                return i_generic2.abort.same_node_constraint(
-                                    "value parameters",
-                                    loc,
-                                    abort,
-                                )
-                            }
+
+                        //additional validation
+                        if (p_signature['resolved parameters'].lookups !== $p.signature['resolved parameters'].lookups) {
+                            return i_generic2.abort.same_node_constraint(
+                                "lookup parameters",
+                                loc,
+                                abort,
+                            )
+                        }
+                        if (p_signature['resolved parameters'].modules !== $p.signature['resolved parameters'].modules) {
+                            return i_generic2.abort.same_node_constraint(
+                                "value parameters",
+                                loc,
+                                abort,
+                            )
                         }
 
                         return p_.literal.not_set()
