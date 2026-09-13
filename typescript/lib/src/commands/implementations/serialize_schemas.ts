@@ -15,7 +15,7 @@ import type * as s_serialize_schemas from "../../schemas/schema_serialization/sc
 import * as deser_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/path/deserializers"
 import * as r_schema_resolved_from_unresolved from "../../modules/schema.generated/schemas/resolved/refiners/unresolved_manual.js"
 import * as t_paragraph_to_serialized from "pareto-fountain-pen/modules/paragraph/schemas/paragraph/transformers/serialized"
-import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/path/transformers/path"
+import * as t_path_to_path from "pareto-filesystem-unrestricted-api/modules/unrestricted/schemas/path/transformers/path_extended_with_single_step"
 import * as t_schema_to_paragraph from "../../modules/schema.generated/schemas/resolved/transformers/paragraph.js"
 import * as t_serialize_schemas_to_paragraph from "../../schemas/schema_serialization/transformers/paragraph.js"
 
@@ -51,15 +51,15 @@ export const $$: p_.Command_Implementation<
                             ($v) => [
                                 $c['write file'].execute(
                                     {
-                                        'path': t_path_to_path.create_node_path(
-                                            t_path_to_path.extend_context_path_with_single_step(
+                                        'path': {
+                                            'context': t_path_to_path.Context_Path(
                                                 deser_path.Context_Path($['target path']),
                                                 {
                                                     'addition': "liana"
                                                 }
                                             ),
-                                            { 'node': "module.liana.lna" }
-                                        ),
+                                            'node': "module.liana.lna"
+                                        },
                                         // 'data': p_list_from_text(
                                         //     "IMPLEMENT SERIALIZATION HERE",
                                         //     ($) => $,
