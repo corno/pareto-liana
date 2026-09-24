@@ -9595,8 +9595,8 @@
             )
         )
     }
-    `schema path`: [ ]
-    `complexity`: | `constrained` (
-        `module resolver`: "Root"
+    `schema path`: [ "schema" ]
+    `complexity`: | 'constrained' (
+        `module resolver`: "Module Specification"
     )
 )
